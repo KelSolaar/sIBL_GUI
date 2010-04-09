@@ -1,0 +1,12 @@
+[Component]
+Name = core.databaseBrowser
+Module = databaseBrowser
+Object = DatabaseBrowser
+Rank = 20
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = kelsolaar_fool@hotmail.com
+Url = http://www.hdrlabs.com/
+Description = This is the sIBL_GUI Database Browser Core Component.

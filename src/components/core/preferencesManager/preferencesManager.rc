@@ -1,0 +1,12 @@
+[Component]
+Name = core.preferencesManager
+Module = preferencesManager
+Object = PreferencesManager
+Rank = 10
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = kelsolaar_fool@hotmail.com
+Url = http://www.hdrlabs.com/
+Description = This is the sIBL_GUI Preferences Manager Core Component.

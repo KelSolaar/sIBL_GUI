@@ -1,0 +1,12 @@
+[Component]
+Name = addons.loaderScriptOptions
+Module = loaderScriptOptions
+Object = LoaderScriptOptions
+Rank = 80
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = kelsolaar_fool@hotmail.com
+Url = http://www.hdrlabs.com/
+Description = This is the sIBL_GUI Loader Script Options Addon Component.

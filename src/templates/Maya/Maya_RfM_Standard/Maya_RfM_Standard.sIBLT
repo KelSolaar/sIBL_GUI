@@ -1,0 +1,770 @@
+[Template]
+Name = @Name | Standard | String | Template Name
+HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.htm | String | Help File
+Release = @Release | 1.0.3 | String | Template Release
+Date = @Date | 10 October 2009 | String | Date
+Author = @Author | Kel Solaar | String | Author
+Email = @Email | kelsolaar_fool@hotmail.com | String | Email
+Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
+Software = @Software | Maya | String | Software
+Version = @Version | 2K | String | Version
+Renderer = @Renderer | RfM | String | Renderer
+OutputScript = @OutputScript | sIBL_Maya_Import.mel | String | Output Script
+Comment = @Comment | This is Renderman For Maya Template. | String | Comment
+
+[sIBL File Attributes]
+Background|BGfile = @BGfile
+Background|BGheight = @BGheight
+Enviroment|EVfile = @EVfile
+Enviroment|EVmulti = @EVmulti
+Enviroment|EVgamma = @EVgamma
+Reflection|REFfile = @REFfile
+Reflection|REFmulti = @REFmulti
+Reflection|REFgamma = @REFgamma
+Sun|SUNu = @SUNu
+Sun|SUNv = @SUNv
+Sun|SUNcolor = @SUNcolor
+Sun|SUNmulti = @SUNmulti
+Header|Height = @Height
+Header|North = @North
+Lights|DynamicLights = @dynamicLights
+
+[Common Attributes]
+createBackground = @createBackground | 1 | Boolean | Create Background
+createLighting = @createLighting | 1 | Boolean | Create Lighting
+createReflection = @createReflection | 1 | Boolean | Create Reflection
+createSun = @createSun | 1 | Boolean | Create Sun
+createLights = @createLights | 1 | Boolean | Create Dynamic Lights
+
+[Additional Attributes]
+createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
+feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
+createGround = @createGround | 1 | Boolean | Create Ground
+hideLights = @hideLights | 1 | Boolean | Hide Lights
+activateRaytracing = @activateRaytracing | 1 | Boolean | Activate Raytracing
+activateColorBleeding = @activateColorBleeding | 1 | Boolean | Activate Color Bleeding
+activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
+
+[Remote Connection]
+ConnectionType = @ConnectionType | Socket | String | Connection Type
+ExecutionCommand = @ExecutionCommand | source "$loaderScriptPath"; | String | ExecutionCommand
+DefaultAddress = @DefaultAddress | 127.0.0.1 | Integer | Default Address
+DefaultPort = @DefaultPort | 2048 | Integer | Default Port
+
+[Script]
+// @OutputScript - @Release For @Software @Version
+// Author : @Author
+// EMail : @Email
+// Homepage : @Url
+// Template Last Modified : @Date
+// sIBL_Framework
+string $cBackgroundFilePath = "@BGfile";
+int $cBackgroundWidth = @BGheight*2;
+string $cLightingFilePath = "@EVfile";
+float $lightingMultiplier = @EVmulti;
+float $lightingGamma = @EVgamma;
+string $cReflectionFilePath = "@REFfile";
+float $reflectionMultiplier = @REFmulti;
+float $reflectionGamma = @REFgamma;
+float $sunU = @SUNu;
+float $sunV = @SUNv;
+float $sunColor[] = {@SUNcolor};
+float $sunMultiplier = @SUNmulti;
+float $Height = @Height;
+float $North = @North;
+string $dynamicLights = "@dynamicLights";
+int $createBackground = @createBackground;
+int $createLighting = @createLighting;
+int $createReflection = @createReflection;
+int $createSun = @createSun;
+int $createLights = @createLights;
+int $createFeedBack = @createFeedBack;
+float $feedbackRadius = @feedbackRadius;
+int $createGround = @createGround;
+int $hideLights = @hideLights;
+int $activateRaytracing = @activateRaytracing;
+int $activateColorBleeding = @activateColorBleeding;
+int $activateLinearWorkflow = @activateLinearWorkflow;
+
+sIBL_Maya_RfM_Setup($cBackgroundFilePath,
+		$cBackgroundWidth,
+		$cLightingFilePath,
+		$lightingMultiplier,
+		$lightingGamma,
+		$cReflectionFilePath,
+		$reflectionMultiplier,
+		$reflectionGamma,
+		$sunU,
+		$sunV,
+		$sunColor,
+		$sunMultiplier,
+		$Height,
+		$North,
+		$dynamicLights,
+		$createBackground,
+		$createLighting,
+		$createReflection,
+		$createSun,
+		$createLights,
+		$createFeedBack,
+		$createGround,
+		$feedbackRadius,
+		$hideLights,
+		$activateRaytracing,
+		$activateColorBleeding,
+		$activateLinearWorkflow);
+
+global proc sIBL_Maya_RfM_Setup(string $cBackgroundFilePath,
+			int $cBackgroundWidth,
+			string $cLightingFilePath,
+			float $lightingMultiplier,
+			float $lightingGamma,
+			string $cReflectionFilePath,
+			float $reflectionMultiplier,
+			float $reflectionGamma,
+			float $sunU,
+			float $sunV,
+			float $sunColor[],
+			float $sunMultiplier,
+			float $Height,
+			float $North,
+			string $dynamicLights,
+			int $createBackground,
+			int $createLighting,
+			int $createReflection,
+			int $createSun,
+			int $createLights,
+			int $createFeedBack,
+			int $createGround,
+			float $feedbackRadius,
+			int $hideLights,
+			int $activateRaytracing,
+			int $activateColorBleeding,
+			int $activateLinearWorkflow)
+{
+	print("sIBL_GUI | Starting sIBL File Import !\n");
+
+	sIBL_Maya_RfM_ActivateRfM();
+
+	sIBL_Maya_RfM_EnvironmentDeletion();
+
+	sIBL_Maya_RfM_GetMainLocator();
+
+	if ($hideLights)
+		sIBL_Maya_RfM_HideLights();
+
+	sIBL_Maya_RfM_GetEnvironment($createBackground, $createLighting, $createReflection, $cBackgroundFilePath, $cLightingFilePath, $cReflectionFilePath, $feedbackRadius, $activateColorBleeding);
+
+	if ($createFeedBack)
+	{
+		if($cBackgroundWidth > 8192)
+		{
+			confirmDialog -title "sIBL_GUI | Information" -message ( "The Background Image Is Too Large To Be Displayed On The Visual Feedback.\nCurrent Environment Image Width : " +  $cBackgroundWidth + " Pixels.\nThe Visual Feedback Will Use The Reflection Image Instead." )  -button "Ok" -defaultButton "Ok";
+			sIBL_Maya_RfM_GetFeedback($cReflectionFilePath, $feedbackRadius);
+		}
+		else
+		{
+			sIBL_Maya_RfM_GetFeedback($cBackgroundFilePath, $feedbackRadius);
+		}
+	}
+
+	if (sIBL_Maya_RfM_ObjectExists( "sIBL_Feedback", "sIBL_GUI | No Feedback Found, Aborting !\n"))
+	{
+		if ($sunU != -1 && $sunV != -1)
+		{
+			if ($createSun)
+			{
+				sIBL_Maya_RfM_GetSun($sunU, $sunV, $sunColor, $sunMultiplier, $feedbackRadius );
+			}
+		}
+
+		if ($dynamicLights != -1)
+		{
+			if ($createLights)
+			{
+				sIBL_Maya_RfM_GetDynamicLights($dynamicLights, $feedbackRadius);
+			}
+		}
+
+		string $cFeedback = sIBL_Maya_RfM_GetObject("sIBL_Feedback");
+		sIBL_Maya_RfM_ConnectFeedBackToSIBLShaders($cFeedback, $createBackground, $createLighting, $createReflection);
+
+		if($createGround)
+			sIBL_Maya_RfM_GetGround($feedbackRadius);
+
+		if ($activateRaytracing)
+			sIBL_Maya_RfM_ActivateRaytracing();
+
+		if ($activateLinearWorkflow)
+			sIBL_Maya_RfM_ActivateLinearWorkflow($createBackground);
+
+		print("sIBL_GUI | sIBL File Import Finished !\n");
+		}
+}
+
+global proc sIBL_Maya_RfM_HideLights()
+{
+	SelectAllLights();
+	if(size(`ls -sl`) != 0)
+		HideSelectedObjects();
+}
+
+global proc sIBL_Maya_RfM_DeleteType( string $cType, string $cFilter)
+{
+		string $cTypesList[] = `ls -type $cType $cFilter`;
+		if(size($cTypesList) != 0)
+			delete($cTypesList);
+}
+
+global proc sIBL_Maya_RfM_EnvironmentDeletion()
+{
+	// sIBL Transform Group Deletion.
+	string $sceneSIBLGroup[] = `ls -fl "sIBL"`;
+	if ($sceneSIBLGroup[0] != "")
+	{
+		delete($sceneSIBLGroup);
+	}
+
+	// sIBL Texture Files Deletion.
+	sIBL_Maya_RfM_DeleteType("file", "sIBL*");
+
+	// sIBL place2dTexture Shaders Deletion.
+	sIBL_Maya_RfM_DeleteType("place2dTexture", "sIBL*");
+
+	// sIBL lambert Shaders Deletion.
+	sIBL_Maya_RfM_DeleteType("lambert", "sIBL*");
+	
+	// sIBL Surface Shaders Deletion.
+	sIBL_Maya_RfM_DeleteType("surfaceShader", "sIBL*");
+	
+	// sIBL Condition Nodes Deletion.
+	sIBL_Maya_RfM_DeleteType("condition", "sIBL*");
+	
+	// sIBL gammaCorrect Nodes Deletion.
+	sIBL_Maya_RfM_DeleteType("gammaCorrect", "sIBL*");	
+	
+	// sIBL RenderManEnvLightShape Deletion.
+	sIBL_Maya_RfM_DeleteType("RenderManEnvLightShape", "sIBL*");
+
+	// sIBL displayLayer Nodes Deletion.
+	sIBL_Maya_RfM_DeleteType("displayLayer", "sIBL*");
+	
+	// sIBL RenderMan Nodes Deletion.
+	sIBL_Maya_RfM_DeleteType("RenderMan", "sIBL*");
+}
+
+global proc sIBL_Maya_RfM_GetMainLocator()
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+	string $cSIBLLocator = `createNode annotationShape`;
+	
+	setAttr ($cSIBLLocator + ".displayArrow") 0;
+	setAttr -lock true -keyable false ($cSIBLLocator + ".displayArrow");
+	setAttr -type "string" ($cSIBLLocator + ".text") "[ Smart IBL Controls ]";
+	
+	string $cSIBLLocatorTransform = sIBL_Maya_RfM_GetTransform($cSIBLLocator);
+	
+	// Adding Attributes For Various Toggling And CC Controls.
+	addAttr -ln "renderTogglers" -nn "[ Render Togglers ]" -at "enum" -en "Smart IBL" $cSIBLLocatorTransform;
+	setAttr -e-keyable true ($cSIBLLocatorTransform + "." + "renderTogglers" );
+	setAttr -lock true ($cSIBLLocatorTransform + "." + "renderTogglers" );
+
+	string $cComponentsList[] = { "Background", "Reflection", "Lighting" };
+	
+	for( $cComponent in $cComponentsList )
+	{
+		addAttr -ln ( "toggle" + $cComponent )  -nn ( $cComponent ) -at bool  $cSIBLLocatorTransform;
+		setAttr -e-keyable true ($cSIBLLocatorTransform + ( ".toggle" + $cComponent ) );
+		setAttr ($cSIBLLocatorTransform + ( ".toggle" + $cComponent ) ) true;
+	}
+
+	string $cControlsList[] = { "Bias", "Gain" };
+	
+	for( $cComponent in $cComponentsList )
+	{	
+		addAttr -ln ("cc" + $cComponent) -nn ( "[ " + $cComponent + " CC ]" ) -at "enum" -en "Smart IBL" $cSIBLLocatorTransform;
+		setAttr -e-keyable true ($cSIBLLocatorTransform + "." + ("cc" + $cComponent) );
+		setAttr -lock true ($cSIBLLocatorTransform + "." + ("cc" + $cComponent) );
+		
+		for( $cControl in $cControlsList )
+		{
+			if( $cComponent == "Background" && $cControl == "Bias" )
+				$cControl = "Gamma";
+			
+			float $cValue = 0.5;
+			if( $cComponent == "Background" && $cControl == "Gain" )
+				$cValue = 1;
+
+			string $cLowerCaseComponent = `tolower $cComponent`;
+			addAttr -ln ( $cLowerCaseComponent + $cControl )  -nn $cControl -at double  $cSIBLLocatorTransform;
+			setAttr -e-keyable true ($cSIBLLocatorTransform + "." + ( $cLowerCaseComponent + $cControl ) );
+			setAttr ($cSIBLLocatorTransform + "." + ( $cLowerCaseComponent + $cControl ) ) true;
+			setAttr ($cSIBLLocatorTransform + "." + ( $cLowerCaseComponent + $cControl ) ) $cValue;
+		}
+	}
+
+	setAttr ( $cSIBLLocatorTransform + ".ty" ) 5;
+	string $cLocksList[] = { "rx", "ry", "rz", "sx", "sy", "sz" };
+	for( $cLock in $cLocksList )
+		setAttr -lock true -keyable false ($cSIBLLocatorTransform + "." + $cLock);
+
+	parent $cSIBLLocatorTransform $sIBLGroup;
+	
+	rename ( "sIBL" + $cSIBLLocatorTransform) "sIBL_Controls";
+}
+
+global proc sIBL_Maya_RfM_GetEnvironmentSphereBranch(float $cRadius, string $cPrefix, string $cFilePath, int $useOverride)
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+
+	string $cEnvironmentSphere[] = `sphere -name ($cPrefix + "_Environment_Sphere")`;
+	rebuildSurface -ch 1 -rpo 1 -rt 0 -end 1 -kr 0 -kcp 0 -kc 0 -su 4 -du 3 -sv 8 -dv 3 -tol 0.01 -fr 0  -dir 2 $cEnvironmentSphere;
+
+	string $cEnvironmentSphereShapes[] = sIBL_Maya_RfM_GetShapes($cEnvironmentSphere[0]);
+	select -r $cEnvironmentSphereShapes[0];
+
+	setAttr ($cEnvironmentSphereShapes[0] + ".overrideEnabled") 1;
+	setAttr ($cEnvironmentSphereShapes[0] + ".overrideShading") 0;
+
+	delete -ch;
+
+	setAttr ($cEnvironmentSphere[0] + ".rotateZ") (90);
+	setAttr ($cEnvironmentSphere[0] + ".scaleZ") (-1);
+	makeIdentity -apply true -t 0 -r 0 -s 1 -n 0 $cEnvironmentSphere[0];
+
+	string $cScaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
+	for( $cScaleAttribute in $cScaleAttributesList )
+		setAttr ($cEnvironmentSphere[0] + "." + $cScaleAttribute) $cRadius;
+
+	string $cSurfaceShader = `shadingNode -asShader surfaceShader`;
+	string $cShadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
+	sets -renderable true -noSurfaceShader true -empty -name $cShadingEngine;
+	connectAttr -f ($cSurfaceShader + ".outColor") ($cShadingEngine + ".surfaceShader");
+
+	string $cFile = `createNode file`;	
+	string $cGammaNode = `createNode gammaCorrect`;
+	
+	if($useOverride)
+	{
+		string $conditionNode = `createNode condition`;
+		setAttr ($conditionNode + ".secondTerm") 1;
+		connectAttr -f ($cGammaNode + ".outValue") ($conditionNode + ".colorIfTrue");
+			
+		string $cBlendColors = `createNode blendColors`;
+		setAttr ($cBlendColors + ".color1") -type double3 0 0 0 ;
+		setAttr ($cBlendColors + ".color2") -type double3 0 0 0 ;
+		setAttr ($cBlendColors + ".blender") 0;
+		
+		connectAttr -f ($cBlendColors + ".output") ($conditionNode + ".colorIfFalse");
+		connectAttr -f ($conditionNode + ".outColor") ($cSurfaceShader + ".outColor");
+		
+		rename $conditionNode ($cPrefix + "_" + `nodeType $conditionNode`);
+		rename $cBlendColors ($cPrefix + "_" + `nodeType $cBlendColors`);
+	}
+	else
+	{
+		connectAttr -f ($cGammaNode + ".outValue") ($cSurfaceShader + ".outColor");
+	}
+
+	setAttr -type "string" ($cFile + ".fileTextureName") $cFilePath;
+
+	if (!`attributeExists "resolution" $cFile`)
+		addAttr -ln "resolution" -at long $cFile;
+ 	setAttr  ($cFile + ".resolution") 2048;
+
+	connectAttr -f ($cFile + ".outColor") ($cGammaNode + ".value");
+
+	string $cPlace2DTexture = `createNode place2dTexture`;
+
+	connectAttr -f ($cPlace2DTexture + ".outUV") ($cFile + ".uvCoord");
+	connectAttr -f ($cPlace2DTexture + ".outUvFilterSize") ($cFile + ".uvFilterSize");
+
+	string $cUVAttributes[] = { "coverage", "translateFrame", "rotateFrame", "mirrorU", "mirrorV", "stagger", "wrapU", "wrapV" , "repeatUV" , "vertexUvOne" , "vertexUvTwo" , "vertexUvThree" , "vertexCameraOne", "noiseUV", "offset", "rotateUV"};
+	for( $cUVAttribute in $cUVAttributes )
+		connectAttr -f ($cPlace2DTexture + "." + $cUVAttribute) ($cFile + "." + $cUVAttribute);
+
+	setAttr ($cPlace2DTexture + ".rotateFrame") 90;
+
+	select -r $cEnvironmentSphere[0];
+	sets -e -forceElement $cShadingEngine;
+
+	parent $cEnvironmentSphere[0] $sIBLGroup;
+
+	rename $cEnvironmentSphere[0] ($cPrefix + "_Environment_Sphere");
+	rename $cSurfaceShader ($cPrefix + "_" + `nodeType $cSurfaceShader`);
+	rename $cShadingEngine ($cPrefix + "_" + `nodeType $cShadingEngine`);
+	rename $cGammaNode ($cPrefix + "_" + `nodeType $cGammaNode`);
+	rename $cFile ($cPrefix + "_" + `nodeType $cFile`);
+	rename $cPlace2DTexture ($cPrefix + "_" + `nodeType $cPlace2DTexture`);
+}
+
+global proc sIBL_Maya_RfM_GetEnvironmentLightBranch(float $cRadius, string $cPrefix, string $cFilePath)
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+
+	string $cEnvironmentLight = rmanCreateEnvLight();
+
+	setAttr -type "string" ($cEnvironmentLight + ".rman__EnvMap") $cFilePath;
+	setAttr ($cEnvironmentLight + ".rman__LightPrimaryVisibility") 0;
+	setAttr ($cEnvironmentLight + ".rman__EnvSamples") 128;
+	setAttr ($cEnvironmentLight + ".rman__EnvGIMaxVariation") 1;
+	setAttr ($cEnvironmentLight + ".rman__EnvColorCorrect") 1;
+	
+	setAttr ($cEnvironmentLight + ".template") 1;
+
+	string $cEnvironmentLightTransform = sIBL_Maya_RfM_GetTransform($cEnvironmentLight);
+	
+	string $cScaleAttributesList[] = {"scaleX", "scaleZ"};
+	for( $cScaleAttribute in $cScaleAttributesList )
+		setAttr ($cEnvironmentLightTransform + "." + $cScaleAttribute) $cRadius;
+	setAttr ($cEnvironmentLightTransform + ".scaleY") (- $cRadius);
+	setAttr ($cEnvironmentLightTransform + ".rotateX") -90;
+	setAttr ($cEnvironmentLightTransform + ".rotateY") 90;
+
+	parent $cEnvironmentLightTransform $sIBLGroup;
+	
+	rename ("sIBL" + $cEnvironmentLightTransform) ($cPrefix + "_EnvironmentLigtht");
+}
+
+global proc sIBL_Maya_RfM_GetEnvironment(int $createBackground, int $createLighting, int $createReflection, string $cBackgroundFilePath, string $cLightingFilePath, string $cReflectionFilePath, float $feedbackRadius, int $activateColorBleeding)
+{
+	if ($createBackground)
+	{
+		sIBL_Maya_RfM_GetEnvironmentSphereBranch(($feedbackRadius - ( $feedbackRadius * 5 / 100 )), "sIBL_Background", $cBackgroundFilePath, 1);
+		
+		string $cRenderStats[] = { "castsShadows", "receiveShadows", "visibleInReflections", "visibleInRefractions", "opposite"};
+		for( $cStat in $cRenderStats )
+			setAttr ("sIBL_Background_Environment_SphereShape" + "." + $cStat) false;
+	}
+
+	if ($createLighting)
+	{
+		sIBL_Maya_RfM_GetEnvironmentLightBranch($feedbackRadius*2 - ( $feedbackRadius * 7.5 / 100 ), "sIBL_Lighting", $cLightingFilePath);
+		
+		string $cEnvironmentLightNode = "sIBL_Lighting_EnvironmentLigthtShape";
+		setAttr ($cEnvironmentLightNode + ".rman__EnvEmitSpecular") 0;
+		
+		if ($activateColorBleeding)
+		{
+			rmanSetAttr($cEnvironmentLightNode,"rman__EnvGIScheme","colorbleeding");
+			string $cPassNode = `createRenderManNode pass:render:RenderRadiosity`;
+			connectAttr ($cPassNode + ".message") ($cEnvironmentLightNode + ".rman__GDMap");
+			
+			rename $cPassNode sIBL_rmanRenderRadiosityPass;
+		}
+		else
+			rmanSetAttr("sIBL_Lighting_EnvironmentLigthtShape","rman__EnvGIScheme","occlusion");
+	}
+
+	if ($createReflection)
+	{
+		sIBL_Maya_RfM_GetEnvironmentLightBranch($feedbackRadius*2 - ( $feedbackRadius * 10 / 100 ), "sIBL_Reflection", $cReflectionFilePath);
+		
+		string $cEnvironmentLightNode = "sIBL_Reflection_EnvironmentLigthtShape";
+		setAttr ($cEnvironmentLightNode + ".rman__EnvEmitDiffuse") 0;
+		rmanSetAttr($cEnvironmentLightNode,"rman__EnvGIScheme","none");
+	}
+}
+
+global proc string sIBL_Maya_RfM_GetSIBLGroup()
+{
+	string $cSIBLGroup[] = `ls -fl "sIBL"`;
+	if ($cSIBLGroup[0] == "")
+	{
+		$cSIBLGroup[0] = `createNode "transform" -n "sIBL"`;
+
+		string $cLocksList[] = { "tx", "ty", "tz", "rx", "ry", "rz", "sx", "sy", "sz" };
+		for( $cLock in $cLocksList )
+			setAttr -lock true -keyable false ($cSIBLGroup[0] + "." + $cLock);
+	}
+
+	return $cSIBLGroup[0];
+}
+
+global proc string sIBL_Maya_RfM_GetFeedbackGeometry(float $feedbackRadius)
+{
+ 	string $cFeedback[] = `sphere -name "sIBL_Feedback"`;
+	rebuildSurface -ch 1 -rpo 1 -rt 0 -end 1 -kr 0 -kcp 0 -kc 0 -su 4 -du 3 -sv 8 -dv 3 -tol 0.01 -fr 0  -dir 2 $cFeedback;
+
+	string $cFeedBackShapes[] = sIBL_Maya_RfM_GetShapes($cFeedback[0]);
+	select -r $cFeedBackShapes[0];
+
+	string $cRenderStats[] = { "castsShadows", "receiveShadows", "motionBlur", "primaryVisibility", "smoothShading", "visibleInReflections", "visibleInRefractions", "opposite" };
+	for( $cStat in $cRenderStats )
+			setAttr ($cFeedBackShapes[0] + "." + $cStat) false;
+
+	delete -ch;
+
+	setAttr ($cFeedback[0] + ".scaleZ") (-1);
+	makeIdentity -apply true -t 0 -r 0 -s 1 -n 0 $cFeedback[0];
+
+	string $cScaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
+	for( $cScaleAttribute in $cScaleAttributesList )
+		setAttr ($cFeedback[0] + "." + $cScaleAttribute) $feedbackRadius;
+
+	setAttr ($cFeedback[0] + ".rotateZ") 90;
+
+	string $cLocksList[] = { "tx", "ty", "tz", "ry", "rz" };
+	for( $cLock in $cLocksList )
+		setAttr -lock true -keyable false ($cFeedback[0] + "." + $cLock);
+
+	string $cFeedBackShapes[] = sIBL_Maya_RfM_GetShapes($cFeedback[0]);
+	setAttr ($cFeedBackShapes[0] + ".opposite") 0;
+
+	sIBL_Maya_RfM_AddToDisplayLayer("sIBL_FeedBack_Layer", $cFeedback[0]);
+
+	return $cFeedback[0];
+}
+
+global proc sIBL_Maya_RfM_GetFeedback(string $cBackgroundFilePath, float $feedbackRadius)
+{
+ 	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+	string $cFeedback = sIBL_Maya_RfM_GetFeedbackGeometry($feedbackRadius);
+	parent $cFeedback $sIBLGroup;
+
+	string $cLambertShader = `shadingNode -asShader lambert`;
+	string $cShadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
+	sets -renderable true -noSurfaceShader true -empty -name $cShadingEngine;
+	connectAttr -f ($cLambertShader + ".outColor") ($cShadingEngine + ".surfaceShader");
+
+	string $cFile = `createNode file`;
+	if (!`attributeExists "resolution" $cFile`)
+		addAttr -ln "resolution" -at long $cFile;
+ 	setAttr  ($cFile + ".resolution") 2048;
+
+	setAttr -type "string" ($cFile + ".fileTextureName") $cBackgroundFilePath;
+
+	connectAttr -f ($cFile + ".outColor") ($cLambertShader + ".color");
+
+	string $cPlace2DTexture = `createNode place2dTexture`;
+
+	connectAttr -f ($cPlace2DTexture + ".outUV") ($cFile + ".uvCoord");
+	connectAttr -f ($cPlace2DTexture + ".outUvFilterSize") ($cFile + ".uvFilterSize");
+
+	string $cUVAttributes[] = { "coverage", "translateFrame", "rotateFrame", "mirrorU", "mirrorV", "stagger", "wrapU", "wrapV" , "repeatUV" , "vertexUvOne" , "vertexUvTwo" , "vertexUvThree" , "vertexCameraOne", "noiseUV", "offset", "rotateUV"};
+	for( $cUVAttribute in $cUVAttributes )
+		connectAttr -f ($cPlace2DTexture + "." + $cUVAttribute) ($cFile + "." + $cUVAttribute);
+
+	setAttr ($cPlace2DTexture + ".rotateFrame") 90;
+
+	select -r $cFeedback;
+	sets -e -forceElement $cShadingEngine;
+
+	rename $cLambertShader ("sIBL_Feedback_" + `nodeType $cLambertShader`);
+	rename $cShadingEngine ("sIBL_Feedback_" + `nodeType $cShadingEngine`);
+	rename $cFile ("sIBL_Feedback_" + `nodeType $cFile`);
+	rename $cPlace2DTexture ("sIBL_Feedback_" + `nodeType $cPlace2DTexture`);
+}
+
+global proc string sIBL_Maya_RfM_GetLigthsTargetLocator()
+{
+	string $cSIBL_Lights_Target_Locator[] = `ls -fl "sIBL_Lights_Target_Locator"`;
+
+	if ($cSIBL_Lights_Target_Locator[0] == "")
+	{
+		string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+
+		$cSIBL_Lights_Target_Locator = `spaceLocator`;
+		parent $cSIBL_Lights_Target_Locator[0] $sIBLGroup;
+
+		rename $cSIBL_Lights_Target_Locator[0] "sIBL_Lights_Target_Locator";
+	}
+
+	$cSIBL_Lights_Target_Locator = `ls -fl "sIBL_Lights_Target_Locator"`;
+
+	sIBL_Maya_RfM_AddToDisplayLayer("sIBL_Lighting_Layer", $cSIBL_Lights_Target_Locator[0]);
+
+	return $cSIBL_Lights_Target_Locator[0];
+}
+
+global proc sIBL_Maya_RfM_GetLight( string $cLigthType, string $cLightName, float $cScale, float $cColor[], float $cIntensity, float $cU, float $cV )
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+	string $cFeedback[] = `ls -fl "sIBL_Feedback"`;
+
+	string $cLight = `shadingNode -asLight $cLigthType`;
+
+	setAttr ($cLight + ".locatorScale") $cScale;
+	setAttr -type double3 ($cLight + ".color") ($cColor[0]/255) ($cColor[1]/255) ($cColor[2]/255);
+	setAttr ($cLight + ".intensity") $cIntensity;
+	setAttr ($cLight + ".useRayTraceShadows") 1;
+	parent $cLight $sIBLGroup;
+
+	string $cPointOnSurfaceInfo = `createNode pointOnSurfaceInfo`;
+	connectAttr -f ($cFeedback[0] + "Shape.worldSpace[0]") ($cPointOnSurfaceInfo + ".inputSurface");
+	connectAttr -f ($cPointOnSurfaceInfo + ".position") ($cLight + ".translate");
+
+	setAttr ($cPointOnSurfaceInfo + ".parameterU") (0.5 + (0.5 - $cV));
+	setAttr ($cPointOnSurfaceInfo + ".parameterV") (0.5 + (0.5 - $cU));
+
+	string $cSIBL_Lights_Target_Locator = sIBL_Maya_RfM_GetLigthsTargetLocator();
+
+	select $cSIBL_Lights_Target_Locator;
+	select -tgl $cLight;
+	string $cConstraint[] = `aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0`;
+
+	sIBL_Maya_RfM_AddToDisplayLayer("sIBL_Lighting_Layer", $cLight);
+
+	rename $cLight $cLightName;
+	rename $cPointOnSurfaceInfo ($cLightName + "_PointOnSurfaceInfo");
+	rename $cConstraint[0] ($cLightName + "_AimConstraint");
+}
+
+global proc sIBL_Maya_RfM_GetSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius )
+{
+	sIBL_Maya_RfM_GetLight("directionalLight", "sIBL_Sun", ($feedbackRadius / 10), $sunColor, $sunMultiplier, $sunU, $sunV);
+}
+
+global proc sIBL_Maya_RfM_GetDynamicLights(string $compactedDynamicLights, float $feedbackRadius)
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+	string $cFeedback[] = `ls -fl "sIBL_Feedback"`;
+
+	string $dynamicLights[];
+	tokenize($compactedDynamicLights, "|", $dynamicLights);
+
+	for($i=0; $i<size($dynamicLights); $i+=8)
+	{
+		float $cColor[] = {float($dynamicLights[$i+2]), float($dynamicLights[$i+3]), float($dynamicLights[$i+4])};
+		sIBL_Maya_RfM_GetLight("spotLight", "sIBL_DKL_" + $dynamicLights[$i+1], ($feedbackRadius / 15), $cColor, float($dynamicLights[$i+5]), float($dynamicLights[$i+6]), float($dynamicLights[$i+7]));
+	}
+}
+
+global proc sIBL_Maya_RfM_BridgeFeedbackControlsAndShaders( string $cTarget )
+{
+		connectAttr -f ( "sIBL_Controls.toggle" + $cTarget )  ( "sIBL_" + $cTarget + "_EnvironmentLigtht.visibility") ;
+		string $cLowerCaseTarget = `tolower $cTarget`;
+
+		string $subComponentsList[] = {"R", "G", "B"};
+		for ($subComponent in $subComponentsList) 
+		{
+			connectAttr -f ("sIBL_Controls." + $cLowerCaseTarget + "Bias") ("sIBL_" + $cTarget + "_EnvironmentLigthtShape.rman__EnvColorBias.rman__EnvColorBias" + $subComponent);
+			connectAttr -f ("sIBL_Controls." + $cLowerCaseTarget + "Gain") ("sIBL_" + $cTarget + "_EnvironmentLigthtShape.rman__EnvColorGain.rman__EnvColorGain" + $subComponent);
+		}
+}
+
+global proc sIBL_Maya_RfM_ConnectFeedBackToSIBLShaders(string $cFeedback, int $connectToBackground, int $connectToLighting, int $connectToReflection)
+{
+	if ($connectToBackground)
+	{
+		expression -name "sIBL_Background_Expression" -s ("sIBL_Background_Environment_Sphere.rotateX = " + $cFeedback + ".rotateX;\nsIBL_Background_Environment_Sphere.scaleX = " + $cFeedback + ".scaleX-" + $cFeedback + ".scaleX*5/100;\nsIBL_Background_Environment_Sphere.scaleY = " + $cFeedback + ".scaleY-" + $cFeedback + ".scaleY*5/100;\nsIBL_Background_Environment_Sphere.scaleZ = " + $cFeedback + ".scaleZ-" + $cFeedback + ".scaleZ*5/100;");
+
+		connectAttr -f "sIBL_Controls.toggleBackground" "sIBL_Background_condition.firstTerm";
+
+		string $gammaSubComponentsList[] = {"X", "Y", "Z"};
+		for ($gammaSubComponent in $gammaSubComponentsList) 
+		{
+			connectAttr -f ("sIBL_Controls.backgroundGamma") ("sIBL_Background_gammaCorrect.gamma" + $gammaSubComponent);
+		}
+
+		string $gainSubComponentsList[] = {"R", "G", "B"};
+		for ($gainSubComponent in $gainSubComponentsList) 
+		{
+			connectAttr -f ("sIBL_Controls.backgroundGain") ("sIBL_Background_file.colorGain" + $gainSubComponent);
+		}
+	}
+
+	if ($connectToLighting)
+	{
+		expression -name "sIBL_Lighting_Expression" -s ("sIBL_Lighting_EnvironmentLigtht.rotateY = 90+" + $cFeedback + ".rotateX;\nsIBL_Lighting_EnvironmentLigtht.scaleX = " + $cFeedback + ".scaleX*2-" + $cFeedback + ".scaleX*7.5/100;\nsIBL_Lighting_EnvironmentLigtht.scaleY = -(" + $cFeedback + ".scaleY*2-" + $cFeedback + ".scaleY*7.5/100);\nsIBL_Lighting_EnvironmentLigtht.scaleZ = " + $cFeedback + ".scaleZ*2-" + $cFeedback + ".scaleZ*7.5/100;");
+		sIBL_Maya_RfM_BridgeFeedbackControlsAndShaders("Lighting");
+	}
+
+	if ($connectToReflection)
+	{
+		expression -name "sIBL_Reflection_Expression" -s ("sIBL_Reflection_EnvironmentLigtht.rotateY = 90+" + $cFeedback + ".rotateX;\nsIBL_Reflection_EnvironmentLigtht.scaleX = " + $cFeedback + ".scaleX*2-" + $cFeedback + ".scaleX*10/100;\nsIBL_Reflection_EnvironmentLigtht.scaleY = -(" + $cFeedback + ".scaleY*2-" + $cFeedback + ".scaleY*10/100);\nsIBL_Reflection_EnvironmentLigtht.scaleZ = " + $cFeedback + ".scaleZ*2-" + $cFeedback + ".scaleZ*10/100;");
+		sIBL_Maya_RfM_BridgeFeedbackControlsAndShaders("Reflection");
+	}
+}
+
+global proc sIBL_Maya_RfM_ActivateRaytracing()
+{
+	setAttr "defaultRenderGlobals.enableDefaultLight" 0;
+	setAttr "renderManGlobals.rman__torattr___rayTracing" 1;
+}
+
+global proc sIBL_Maya_RfM_ActivateLinearWorkflow(int $createBackground)
+{
+	setAttr "rmanFinalOutputGlobals0.rman__riopt__Display_exposure1" 2.2;
+	
+	if ($createBackground)
+		setAttr  "sIBL_Controls.backgroundGamma" 0.454545;
+}
+
+global proc sIBL_Maya_RfM_GetGround(float $feedbackRadius)
+{
+	string $sIBLGroup = sIBL_Maya_RfM_GetSIBLGroup();
+	string $cGround[] = `polyPlane -sx 15 -sy 15`;
+	delete -ch;
+
+	setAttr ($cGround[0] + ".overrideEnabled") 1;
+	setAttr ($cGround[0] + ".overrideShading") 0;
+
+	string $cScaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
+	for( $cScaleAttribute in $cScaleAttributesList )
+		setAttr ($cGround[0] + "." + $cScaleAttribute) ($feedbackRadius/4);
+
+	parent $cGround[0] $sIBLGroup;
+
+	sIBL_Maya_RfM_AddToDisplayLayer("sIBL_Ground_Layer", $cGround[0]);
+
+	rename $cGround[0] "sIBL_Ground";
+}
+
+global proc sIBL_Maya_RfM_ActivateRfM()
+{
+	if (`pluginInfo -q -loaded "RenderMan_for_Maya"` == 0)
+	{
+		loadPlugin("RenderMan_for_Maya");
+	}
+	setAttr defaultRenderGlobals.currentRenderer -type "string" "renderMan";
+	setAttr "renderManGlobals.rman__riattr___ShadingRate" 1;
+}
+
+global proc string[] sIBL_Maya_RfM_GetShapes(string $xform)
+{
+   string $shapes[];
+   $shapes[0] = $xform;
+   if ("transform" == `nodeType $xform`)
+      $shapes = `listRelatives -fullPath -shapes $xform`;
+   return $shapes;
+}
+
+global proc string sIBL_Maya_RfM_GetTransform(string $shape)
+{
+   string $transform = "";
+   if ("transform" != `nodeType $shape`)
+   {
+      string $parents[] = `listRelatives -fullPath -parent $shape`;
+      $transform = $parents[0];
+   }
+   return $transform;
+}
+
+global proc int sIBL_Maya_RfM_ObjectExists(string $cObject, string $cErrorMessage)
+{
+	string $cObjectList[] = `ls -fl $cObject`;
+	if ($cObjectList[0] != "")
+	{
+		return 1;
+	}
+	else
+	{
+		error($cErrorMessage);
+		return 0;
+	}
+}
+
+global proc string sIBL_Maya_RfM_GetObject(string $cObject)
+{
+	string $cList[] = `ls -fl $cObject`;
+	return $cList[0];
+}
+
+global proc sIBL_Maya_RfM_AddToDisplayLayer( string $cLayerName, string $cObject)
+{
+	string $cLayer = sIBL_Maya_RfM_GetObject($cLayerName);
+	if( $cLayer == "" )
+		$cLayer = `createDisplayLayer -name $cLayerName`;
+	editDisplayLayerMembers -noRecurse $cLayer $cObject;
+}

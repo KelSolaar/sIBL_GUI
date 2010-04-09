@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Online_Updater_Form</class>
+ <widget class="QWidget" name="Online_Updater_Form">
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="Online_Updater_Form_gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="Online_Updater_groupBox">
+     <property name="title">
+      <string>Online Updater</string>
+     </property>
+     <layout class="QGridLayout" name="Online_Updater_groupBox_gridLayout">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
+        <property name="statusTip">
+         <string>Check For New_Releases PushButton : sIBL_GUI Will Check If New Releases Are Available Online.</string>
+        </property>
+        <property name="text">
+         <string>Check For New Releases</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="Check_For_New_Releases_On_Startup_horizontalLayout">
+        <item>
+         <widget class="QLabel" name="Check_For_New_Releases_On_Startup_label">
+          <property name="text">
+           <string>Check For New Releases On Startup :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="Check_For_New_Releases_On_Startup_horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="Check_For_New_Releases_On_Startup_checkBox">
+          <property name="statusTip">
+           <string>Check For New Releases On Startup CheckBox : sIBL_GUI Will Check If New Releases Are Available On Startup.</string>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

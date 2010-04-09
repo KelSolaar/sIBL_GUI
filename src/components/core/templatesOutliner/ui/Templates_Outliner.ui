@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Templates_Outliner_DockWidget</class>
+ <widget class="QDockWidget" name="Templates_Outliner_DockWidget">
+  <property name="windowTitle">
+   <string>Templates Outliner</string>
+  </property>
+  <widget class="QWidget" name="Templates_Outliner_dockWidgetContents">
+   <layout class="QGridLayout" name="Components_Manager_Ui_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="Templates_Outliner_splitter">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QTreeWidget" name="Templates_Outliner_treeWidget">
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QGroupBox" name="Template_Informations_groupBox">
+       <property name="title">
+        <string>Template Informations</string>
+       </property>
+       <layout class="QGridLayout" name="Components_Informations_groupBox_gridLayout">
+        <item row="0" column="0">
+         <widget class="QTextBrowser" name="Template_Informations_textBrowser">
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

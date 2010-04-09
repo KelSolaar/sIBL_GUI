@@ -1,0 +1,10 @@
+.DS_Store
+.project
+.pydevproject
+.settings
+
+*.pyc
+
+references/
+releases/Windows/
+src/resources/builders/

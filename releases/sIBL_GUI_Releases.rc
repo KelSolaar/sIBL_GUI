@@ -1,0 +1,48 @@
+[sIBL_GUI]
+Release = 3.0.0
+Type = "Stable"
+
+[XSI_MR_Standard]
+Release = 1.5.7
+Type = "Stable"
+Comment = "XSI Mental Ray Template : Fixed Template Header Errors."
+
+[Maya_MR_Standard]
+Release = 1.6.9
+Type = "Stable"
+Comment = "Maya Mental Ray Template : Added Renderer Attribute."
+
+[Maya_VRay_Standard]
+Release = 1.1.3
+Type = "Stable"
+Comment = "VRay For Maya Template : Added Renderer Attribute."
+
+[Maya_VRay_Dome_Light]
+Release = 1.1.3
+Type = "Stable"
+Comment = "VRay For Maya Dome Light Template : Added Renderer Attribute."
+
+[Maya_Turtle_Standard]
+Release = 1.1.5
+Type = "Stable"
+Comment = "Maya Turtle Template : Added Renderer Attribute."
+
+[Maya_RfM_Standard]
+Release = 1.0.3
+Type = "Stable"
+Comment = "Renderman For Maya Template : Added Renderer Attribute."
+
+[3dsMax_MR_Standard]
+Release = 0.9.8
+Type = "Nightly"
+Comment = "3dsMax Mental Ray Base Template : Jeff H Initial Refactoring."
+
+[3dsMax_Scanline_Standard]
+Release = 0.9.8
+Type = "Nightly"
+Comment = "3dsMax Scanline Ray Base Template : Jeff H Initial Refactoring."
+
+[3dsMax_VRay_Standard]
+Release = 0.9.7
+Type = "Nightly"
+Comment = "3dsMax VRay Base Template : Added Renderer Attribute."

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Preferences_Manager_DockWidget</class>
+ <widget class="QDockWidget" name="Preferences_Manager_DockWidget">
+  <property name="windowTitle">
+   <string>Preferences Manager</string>
+  </property>
+  <widget class="QWidget" name="Preferences_Manager_dockWidgetContents">
+   <layout class="QGridLayout" name="Preferences_Manager_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QToolBox" name="Preferences_Manager_toolBox">
+      <property name="minimumSize">
+       <size>
+        <width>310</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="General_Preferences_page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>316</width>
+         <height>142</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>General</string>
+       </attribute>
+       <layout class="QGridLayout" name="General_Preferences_page_gridLayout">
+        <item row="2" column="0">
+         <spacer name="General_Preferences_verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="Logging_Settings_groupBox">
+          <property name="title">
+           <string>Logging</string>
+          </property>
+          <layout class="QGridLayout" name="Log_Settings_groupBox_gridLayout">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="Verbosity_horizontalLayout">
+             <item>
+              <widget class="QLabel" name="Verbose_Level_label">
+               <property name="text">
+                <string>Verbose Level :</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="Logging_Settings_horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="Verbose_Level_comboBox">
+               <property name="statusTip">
+                <string>Verbose Level ComboBox : Defines sIBL_GUI Verbose Level : Each Option Encompasses The Ones Over It In The List.</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Others_Preferences_page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>316</width>
+         <height>142</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Others</string>
+       </attribute>
+       <layout class="QGridLayout" name="Others_Preferences_page_gridLayout">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="Others_Preferences_gridLayout"/>
+        </item>
+        <item row="1" column="0">
+         <spacer name="Others_Preferences_page_verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

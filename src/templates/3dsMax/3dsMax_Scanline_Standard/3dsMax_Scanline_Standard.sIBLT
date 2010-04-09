@@ -1,0 +1,246 @@
+[Template]
+Name = @Name | Standard | String | Template Name
+HelpFile = @HelpFile | help/3dsMax_Scanline_Standard Template Manual.htm | String | Help File
+Release = @Release | 0.9.8 | String | Template Release
+Date = @Date | 10 November 2009 | String | Date
+Author = @Author | Dschaga / Jeff H | String | Author
+Email = @Email | christian@cgtechniques.com | String | Email
+Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
+Software = @Software | 3dsMax  | String | Software
+Version = @Version | 2008+ | String | Version
+Renderer = @Renderer | Scanline | String | Renderer
+OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
+Comment = @Comment | This is 3dsmax 2K Template. | String | Comment
+
+[sIBL File Attributes]
+Sun|SUNu = @SUNu
+Sun|SUNv = @SUNv
+Sun|SUNcolor = @SUNcolor
+Sun|SUNmulti = @SUNmulti
+Background|BGfile = @BGfile
+Background|BGmap = @BGmap
+Background|BGu = @BGu
+Background|BGv = @BGv
+Enviroment|EVfile = @EVfile
+Enviroment|EVmap = @EVmap
+Enviroment|EVmulti = @EVmulti
+Enviroment|EVgamma = @EVgamma
+Enviroment|EVu = @EVu
+Enviroment|EVv = @EVv
+Reflection|REFfile = @REFfile
+Reflection|REFmap = @REFmap
+Reflection|REFmulti = @REFmulti
+Reflection|REFgamma = @REFgamma
+Reflection|REFu = @REFu
+Reflection|REFv = @REFv
+
+[Common Attributes]
+createBackground = @createBackground | 1 | Boolean | Create Background
+createLighting = @createLighting | 1 | Boolean | Create Lighting
+createReflection = @createReflection | 1 | Boolean | Create Reflection
+createSun = @createSun | 1 | Boolean | Create Sun
+createLights = @createLights | 1 | Boolean | Create Dynamic Lights
+
+[Additional Attributes]
+north = @north | 0 | Float | North
+sundistance = @sundistance | 100 | Float | Sun Distance
+
+[Remote Connection]
+ConnectionType = @ConnectionType | Win32 | String
+TargetApplication = @TargetApplication | MAX.Application | String
+ExecutionCommand = @ExecutionCommand | fileIn ("$loaderScriptPath") | String
+
+[Script]
+/*
+@OutputScript - @Release For @Software @Version
+Author : @Author
+EMail : @Email
+Homepage : @Url
+Template Last Modified : @Date
+sIBL_Framework
+*/
+(
+	local SUNx = @SUNu
+	local SUNy = @SUNv
+	local SUNcolor = "@SUNcolor"
+	local SUNmulti = @SUNmulti
+	local BGfile = "@BGfile"
+	local BGmap = @BGmap
+	local BGu = @BGu as float -- convert to float just in case the sIBL file stored the value as an int.
+	local BGv = @BGv as float -- convert to float just in case the sIBL file stored the value as an int.
+	local EVfile = "@EVfile"
+	local EVmap = @EVmap
+	local EVmulti = @EVmulti
+	local EVgamma = @EVgamma
+	local EVu = @EVu as float -- convert to float just in case the sIBL file stored the value as an int.
+	local EVv = @EVv as float -- convert to float just in case the sIBL file stored the value as an int.
+	local REFfile = "@REFfile"
+	local REFmap = @REFmap
+	local REFmulti = @REFmulti
+	local REFgamma = @REFgamma
+	local REFu = @REFu as float -- convert to float just in case the sIBL file stored the value as an int.
+	local REFv = @REFv as float -- convert to float just in case the sIBL file stored the value as an int.
+	local sc = @sundistance
+	local n = @north
+
+	local createBackground = "@createBackground" as integer
+	local createLighting = "@createLighting" as integer
+	local createReflection = "@createReflection" as integer
+	local createSun = "@createSun" as integer
+
+	local a = bitmaptexture()
+	local b = bitmaptexture()
+	local c = bitmaptexture()
+
+	local delObjsList = #()
+
+
+	fn delOldObjs &objsList =
+	(
+		-- <ARRAY> objsList	Array of nodes to delete. Passed in by reference
+		-- TO DO: Should assert that objsList is an array class on Max 2010 or later.
+
+		for i = objsList.count to 1 by -1 do
+		(
+			if ( not (isValidNode objsList[i])) then
+			(
+				deleteItem objsList i	-- since delete() is a mapped method it is more
+			)									-- efficient to build up an array of objects to
+		)										-- delete and call the method once.
+
+		delete objsList
+	)
+
+	fn setHDRImage bmp bmpFilename bmpName bmpMappingType bmpUOffset bmpVOffset envMap:false =
+	(
+		-- Populates the
+		--
+		-- <bitmapTexture> bmp	The texture to be applied
+		-- <str>bmpFilename		The path to where bmp resides on the local machine
+		-- <str>bmpName			A friendly display name for bmp
+		-- <int>bmpMappingType	An enumeration for the type of mapping type to use for bmap
+		-- <float>bmpUOffset		The U tiling offset for bmp
+		-- <float>bmpVOffset		The V tiling offset for bmp
+		-- <bool>envMap			OPTIONAL: Should bmp be set as the environment map of the scene
+
+		if (bmp == undefined) then
+		(
+			bmp = Bitmaptexture()
+
+			if (envMap) then
+			(
+				environmentMap = bmp
+			)
+		)
+
+		bmp.filename = bmpFilename
+		bmp.name = bmpName
+		bmp.coordinates.mappingtype = 1
+
+		-- here we define the projection type
+		-- 0 - Spherical; 1 - Cylindrical; 2 - Shrink-Wrap; 3 - Screen
+		bmp.coordinates.mapping = bmpMappingType - 1
+
+		-- uv mapping writing
+		bmp.coordinates.U_Offset = bmpUOffset + n
+		bmp.coordinates.V_Offset = bmpVOffset
+		bmp.coordinates.U_Tiling = -1.0
+	)
+
+
+	mapped fn applyMapsToMaterials mtl &envMap &refMap =
+	(
+		-- Walks the provided array of scene materials and tries
+		-- to put environment and reflectionMap bitmaps on them.
+		-- if mtl is a multisub this function recurses into itself
+		-- to process the mtls in the multisub
+		--
+		-- <material>mtl				The scene material to modify
+		-- <bitmapTexture>envMap	The bitmap to apply to the material's .texmap_environment property.
+		-- <bitmapTexture>refMap	The bitmap to apply to the material's .reflectioMap property.
+		--									The map parameters are passed in as references to keep memory
+		--									usage down if the function ends up recursing.
+
+		if (classOf mtl != Multimaterial) then (
+		(
+			try
+			(
+				mtl.texmap_environment = envMap
+			) catch()
+
+			try
+			(
+				mtl.reflectionMap = refMap
+			) catch()
+		)
+		else
+		(
+			applyMapsToMaterials (mtl.materialList as array) &envMap &refMap
+		)
+	)
+
+	--------------------------------------
+	-- FIRST ..... CLEAN THE SCENE
+	--------------------------------------
+	--sIBL SUN
+	append delObjsList $sIBL_Sun
+
+	-- Old floorplane
+	append delObjsList $Floor_matte
+
+	delOldObjs &delObjsList
+
+	-- BGmap
+	environmentMap = undefined
+
+	-----------------------------------------
+	--	THE SUN
+	-----------------------------------------
+	-- Double check createSun and SUNcolor. Some sIBL sets
+	-- (Mono Lake C, Studio Backlot, probably others) have
+	-- createSun set to 1 but SUN color set to "-1". This
+	-- this causes the 'cc = filterstring SUN color ","' to create
+	-- an array of a single "-1" index, which in turn causes the
+	--'sIBL_sun = Target...' line to break and crash the script.
+
+	if ((createSun == 1) AND (SUNmulti > 0) AND ((striCmp SUNcolor "-1") != 0)) then
+	(
+		SUNx = SUNx + n + 0.75
+		cc = filterstring SUNcolor ","
+
+		sZ = sc * (sin((0.5 - SUNy) * 180))
+		dR = cos((0.5 - SUNy) * 180)
+		sX = sc * ((cos(SUNx * 360)) * dR)
+		sY = sc * ((sin(SUNx * 360)) * dR) * -1
+		sIBL_sun = TargetDirectionallight name:"sIBL_Sun" rgb:(color (cc[1] as float) (cc[2] as float) (cc[3] as float)) castShadows:on shadowColor:(color 0 0 0) multiplier:(SUNmulti as float) contrast:0 softenDiffuseEdge:0 nearAttenStart:0 nearAttenEnd:40 farAttenStart:80 farAttenEnd:200 decayRadius:40 atmosOpacity:100 atmosColorAmt:100 shadowMultiplier:1 hotSpot:43 falloff:sc aspect:1 pos:[(sx as float),(sy as float),(sz as float)] target:(Targetobject transform:(matrix3 [1,0,0] [0,1,0] [0,0,1] [0,0,0]))
+	)
+
+	--------------------------------------------------------------
+	-- BACKGROUND image
+	-- "a" is a objectholder for the environment map,
+	-- this object have additional variables which i can use with a.variable
+	--------------------------------------------------------------
+	if (createBackground == 1) then
+	(
+		setHDRImage a BGFile "sIBL-BGmap" BGmap BGu BGv envMap:true
+	)
+
+	-------------------------------------
+	-- read parameters for the ENViromentfile:
+	-------------------------------------
+	if (createLighting == 1) then
+	(
+		setHDRImage b EVFile "sIBL-EVmap" EVmap EVu EVv
+	)
+
+	------------------------------------------
+	-- read parameters fot the REFlectionfile:
+	------------------------------------------
+	if (createReflection == 1) then
+	(
+		setHDRImage c REFfile "sIBL-REFmap" REFmap REFu REFv
+
+		local mtlList = for mtl in SceneMaterials collect mtl -- SceneMaterials isn't an array so it can't be passed to a mapped fn.
+		applyMapsToMaterials mtlList &b &c
+	)
+)
