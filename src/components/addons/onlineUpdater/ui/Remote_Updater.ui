@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sIBL_GUI_Updater_Form</class>
+ <widget class="QWidget" name="sIBL_GUI_Updater_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>576</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>sIBL_GUI Updater</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/sIBL_GUI FTP/Resources/Icon_Light.png</normaloff>:/sIBL_GUI FTP/Resources/Icon_Light.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="sIBL_GUI_Updater_Form_gridLayout">
+   <property name="topMargin">
+    <number>8</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QSplitter" name="Releases_splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="sIBL_GUI_verticalLayout">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="sIBL_GUI_label">
+         <property name="text">
+          <string>sIBL_GUI</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="sIBL_GUI_groupBox">
+         <layout class="QGridLayout" name="sIBL_GUI_groupBox_gridLayout">
+          <item row="0" column="1" colspan="2">
+           <layout class="QHBoxLayout" name="Logo_horizontalLayout">
+            <item>
+             <spacer name="Logo_Left_horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="Logo_label">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>:/sIBL_GUI FTP/Resources/sIBL_GUI_Small_Logo.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="Logo_Right_horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="Your_Version_groupBox">
+            <property name="title">
+             <string>Your Version</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <layout class="QGridLayout" name="Your_Version_groupBox_gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="Your_Version_label">
+               <property name="font">
+                <font>
+                 <pointsize>15</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QGroupBox" name="Latest_Version_groupBox">
+            <property name="title">
+             <string>Latest Version</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <layout class="QGridLayout" name="Latest_Version_groupBox_gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="Latest_Version_label">
+               <property name="font">
+                <font>
+                 <pointsize>15</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+           <widget class="QGroupBox" name="Change_Log_groupBox">
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+            <layout class="QGridLayout" name="Change_Log_gridLayout">
+             <item row="0" column="0">
+              <widget class="QWebView" name="Change_Log_webView">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="url">
+                <url>
+                 <string>about:blank</string>
+                </url>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="Templates_verticalLayout">
+       <property name="spacing">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="Templates_label">
+         <property name="text">
+          <string>Templates</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="Templates_groupBox">
+         <layout class="QGridLayout" name="Templates_gridLayout">
+          <item row="0" column="0" colspan="2">
+           <widget class="QTableWidget" name="Templates_tableWidget"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QGroupBox" name="Bottom_groupBox">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="Bottom_groupBox_gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="Open_Repository_pushButton">
+        <property name="text">
+         <string>Open Repository</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="Get_Latest_Templates_pushButton">
+        <property name="text">
+         <string>Get Latest Templates</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="Close_pushButton">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="Buttons_horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

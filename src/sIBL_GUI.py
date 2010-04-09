@@ -1339,7 +1339,8 @@ if __name__ == "__main__":
 	# TODO: Implement New Releases Checking.
 	# TODO: Add Status Bar Help On Widgets.
 	# TODO: Saves Default Layouts.
-	# TODO: Add UI Comments.
+	# TODO: Make About Window.
+	# TODO: Add Help Link.
 
 #***********************************************************************************************
 #***	Python End
