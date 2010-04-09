@@ -339,6 +339,34 @@ class ProgrammingError( Exception ):
 
 		return repr( self.value )
 
+class NetworkError( Exception ):
+	'''
+	This Class Is Used For NetworkError Errors.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return repr( self.value )
+
 class SocketConnectionError( Exception ):
 	'''
 	This Class Is Used For Socket Connection Errors.
