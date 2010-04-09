@@ -114,7 +114,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
 
-		self._outputDirectory = None
+		self._ioDirectory = None
 
 		self._bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self._templateScriptSection = "Script"
@@ -295,36 +295,36 @@ class LoaderScript( UiComponent ):
 
 	@property
 	@core.executionTrace
-	def outputDirectory( self ):
+	def ioDirectory( self ):
 		'''
-		This Method Is The Property For The _outputDirectory Attribute.
+		This Method Is The Property For The _ioDirectory Attribute.
 
-		@return: self._outputDirectory. ( String )
+		@return: self._ioDirectory. ( String )
 		'''
 
-		return self._outputDirectory
+		return self._ioDirectory
 
-	@outputDirectory.setter
+	@ioDirectory.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def outputDirectory( self, value ):
+	def ioDirectory( self, value ):
 		'''
-		This Method Is The Setter Method For The _outputDirectory Attribute.
+		This Method Is The Setter Method For The _ioDirectory Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "outputDirectory" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "ioDirectory" ) )
 
-	@outputDirectory.deleter
+	@ioDirectory.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def outputDirectory( self ):
+	def ioDirectory( self ):
 		'''
-		This Method Is The Deleter Method For The _outputDirectory Attribute.
+		This Method Is The Deleter Method For The _ioDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "outputDirectory" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "ioDirectory" ) )
 
 	@property
 	@core.executionTrace
@@ -515,7 +515,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
-		self._outputDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory )
+		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory )
 
 		self._activate()
 
@@ -535,7 +535,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
 
-		self._outputDirectory = None
+		self._ioDirectory = None
 
 		self._deactivate()
 
@@ -638,7 +638,7 @@ class LoaderScript( UiComponent ):
 				try :
 					connection = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 					connection.connect( ( str( self.ui.Address_lineEdit.text() ), int( self.ui.Software_Port_spinBox.value() ) ) )
-					socketCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._outputDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
+					socketCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._ioDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
 					LOGGER.debug( "> Current Socket Command : '%s'.", socketCommand )
 					connection.send( socketCommand )
 					dataBack = connection.recv( 8192 )
@@ -654,7 +654,7 @@ class LoaderScript( UiComponent ):
 						import win32com.client
 						connection = win32com.client.Dispatch( foundations.parser.getAttributeCompound( "TargetApplication", templateParser.getValue( "TargetApplication", self._templateRemoteConnectionSection ) ).value )
 						connection._FlagAsMethod( self._win32ExecutionMethod )
-						connectionCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._outputDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
+						connectionCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._ioDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
 						LOGGER.debug( "> Current Connection Command : '%s'.", connectionCommand )
 						getattr( connection, self._win32ExecutionMethod )( connectionCommand )
 					except Exception as error:
@@ -714,7 +714,7 @@ class LoaderScript( UiComponent ):
 			if interface.activated and profile.name != self.name :
 				hasattr( interface, "getOverrideKeys" ) and interface.getOverrideKeys()
 
-		loaderScript = File( os.path.join( self._outputDirectory, template._datas.outputScript ) )
+		loaderScript = File( os.path.join( self._ioDirectory, template._datas.outputScript ) )
 		loaderScript.content = self.getLoaderScript( template._datas.path, set._datas.path, self._overrideKeys )
 		if loaderScript.content and loaderScript.write() :
 			messageBox.messageBox( "Information", "Information", "{0} | '{1}' Output Done !".format( self.__class__.__name__, template._datas.outputScript ) )
