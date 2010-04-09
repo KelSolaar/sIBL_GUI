@@ -1,8 +1,8 @@
 [Template]
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.htm | String | Help File
-Release = @Release | 1.5.7 | String | Template Release
-Date = @Date | 11 October 2009 | String | Date
+Release = @Release | 1.5.8 | String | Template Release
+Date = @Date | 9 April 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -10,7 +10,7 @@ Software = @Software | XSI | String | Software
 Version = @Version | 7.X | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_XSI_Import.js | String | Output Script
-Comment = @Comment | This is XSI 7.X Mental Ray Template. | String | Comment
+Comment = @Comment | This is XSI 7.X / 2K Mental Ray Template. | String | Comment
 
 [sIBL File Attributes]
 Background|BGfile = @BGfile
