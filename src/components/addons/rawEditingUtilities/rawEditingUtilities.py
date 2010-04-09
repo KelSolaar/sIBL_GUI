@@ -481,8 +481,8 @@ class RawEditingUtilities( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		selfself.ui.Custom_Text_Editor_Path_toolButton.disconnect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
-		selfself.ui.Custom_Text_Editor_Path_lineEdit.disconnect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
+		self.ui.Custom_Text_Editor_Path_toolButton.disconnect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
+		self.ui.Custom_Text_Editor_Path_lineEdit.disconnect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
 
 		self.removeActions_()
 
