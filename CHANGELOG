@@ -1,8 +1,11 @@
-s I B L _ G U I - 2 . 1 . 1 - S t a b l e - Change Log -
+sIBL_GUI - 2.1.1 - Stable - Change Log -
 
 - Releases -
+3.0.0 - Alpha
+Full sIBL_GUI rewrite / refactoring.
+First release in the new repository.
  
-2.1.1 - Stable
+2.1.1 Stable
 Updated sIBL_GUI Help / Manual.
 sIBL_GUI_FTP is now starting Download automatically when invoked, "Start Download" Button has been removed.
 sIBL_GUI now restores the last visited folder.
