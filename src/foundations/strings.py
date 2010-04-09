@@ -99,6 +99,16 @@ def getNiceName( name ) :
 	LOGGER.debug( "> '{0}' To '{1}'.".format( name, niceName ) )
 	return niceName
 
+@core.executionTrace
+def getVersionRank( version ):
+	'''
+	This Method Converts A Version String To It's Rank.
+
+	@param version: Current Version To Calculate Rank. ( String )
+	@return: Rank. ( Integer )
+	'''
+
+	return sum( [int ( token ) for token in version.split( "." )] )
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
