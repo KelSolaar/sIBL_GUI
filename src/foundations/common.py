@@ -129,7 +129,7 @@ def exit( exitCode, logger, handlers ):
 	@param handlers: Handlers. ( Object )
 	'''
 
-	LOGGER.debug( "> {0} | Exiting Current Process !".format( "Common" ) )
+	LOGGER.debug( "> {0} | Exiting Current Process !".format( core.getModule( exit ).__name__ ) )
 
 	LOGGER.debug( "> Stopping Logging Handlers And Logger, Then Exiting." )
 

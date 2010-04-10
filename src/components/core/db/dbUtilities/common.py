@@ -187,7 +187,7 @@ def addSet( session, name, path, collection ):
 		if dbItem.setContent() :
 			return addItem( session, dbItem )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( "dbUtilities.common", path ) )
+		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( core.getModule( addSet ).__name__, path ) )
 		return False
 
 @core.executionTrace
@@ -221,7 +221,7 @@ def updateSetContent( session, set ):
 	if set.setContent() :
 		return commit( session )
 	else :
-		LOGGER.warning( "!> {0} | '{1}' Set Content Update Failed !".format( "dbUtilities.common", set.name ) )
+		LOGGER.warning( "!> {0} | '{1}' Set Content Update Failed !".format( core.getModule( updateSetContent ).__name__, set.name ) )
 		return False
 
 @core.executionTrace
@@ -241,7 +241,7 @@ def updateSetLocation( session, set, path ):
 		set.path = path
 		return updateSetContent( session, set )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( "dbUtilities.common", path ) )
+		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( core.getModule( updateSetLocation ).__name__, path ) )
 		return False
 
 @core.executionTrace
@@ -290,7 +290,7 @@ def addCollection( session, collection, type, comment ):
 		dbItem = dbUtilities.types.DbCollection( name = collection, type = type, comment = comment )
 		return addItem( session, dbItem )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' Collection Already Exists In Database !".format( "dbUtilities.common", collection ) )
+		LOGGER.warning( "!> {0} | '{1}' Collection Already Exists In Database !".format( core.getModule( addCollection ).__name__, collection ) )
 		return False
 
 @core.executionTrace
@@ -400,7 +400,7 @@ def addTemplate( session, name, path, collection ):
 		if dbItem.setContent() :
 			return addItem( session, dbItem )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( "dbUtilities.common", path ) )
+		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( core.getModule( addTemplate ).__name__, path ) )
 		return False
 
 @core.executionTrace
@@ -434,7 +434,7 @@ def updateTemplateContent( session, template ):
 	if template.setContent() :
 		return commit( session )
 	else :
-		LOGGER.warning( "!> {0} | '{1}' Template Content Update Failed !".format( "dbUtilities.common", template.name ) )
+		LOGGER.warning( "!> {0} | '{1}' Template Content Update Failed !".format( core.getModule( updateTemplateContent ).__name__, template.name ) )
 		return False
 
 @core.executionTrace
@@ -454,7 +454,7 @@ def updateTemplateLocation( session, template, path ):
 		template.path = path
 		return updateTemplateContent( session, template )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( "dbUtilities.common", path ) )
+		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( core.getModule( updateTemplateLocation ).__name__, path ) )
 		return False
 
 @core.executionTrace
