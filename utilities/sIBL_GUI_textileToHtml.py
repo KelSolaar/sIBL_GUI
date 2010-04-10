@@ -93,8 +93,8 @@ def textileToHtml( fileIn, fileOut, title ):
 	            body {
 	                text-align: justify;
 	                margin: 10px 10px 10px 10px;
-	                background-color: rgb(45, 50, 50);
-	                color: rgb(192, 192, 192);
+	                background-color: rgb(192, 192, 192);
+	                color: rgb(45, 50, 50);
 	            }
 	            A:link {
 	                text-decoration: none;
