@@ -114,7 +114,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
 
-		self._ioDirectory = None
+		self._ioDirectory = "loaderScripts/"
 
 		self._bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self._templateScriptSection = "Script"
@@ -515,7 +515,8 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
-		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory )
+		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
+		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
 
 		self._activate()
 
@@ -535,7 +536,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
 
-		self._ioDirectory = None
+		self._ioDirectory = os.path.basename( os.path.abspath( self._ioDirectory ) )
 
 		self._deactivate()
 
