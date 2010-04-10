@@ -97,13 +97,80 @@ class ReleaseObject( core.Structure ):
 		'''
 		This Method Initializes The Class.
 
-		@param kwargs: name, repositoryVersion, localVersion, type, comment. ( Key / Value Pairs )
+		@param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value Pairs )
 		'''
 
 		core.Structure.__init__( self, **kwargs )
 
 		# --- Setting Class Attributes. ---
 		self.__dict__.update( kwargs )
+
+class DownloadManager( QThread ):
+	'''
+	This Is The DownloadManager Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, container, requests = None ):
+		'''
+		This Method Initializes The Class.
+		
+		@param container: Container. ( Object )
+		@param requests: Download Requests. ( List )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		QThread.__init__( self )
+
+		# --- Setting Class Attributes. ---
+		self._requests = None
+		self.requests = requests
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	@core.executionTrace
+	def requests( self ):
+		'''
+		This Method Is The Property For The _requests Attribute.
+
+		@return: self._requests. ( Dictionary )
+		'''
+
+		return self._requests
+
+	@requests.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def requests( self, value ):
+		'''
+		This Method Is The Setter Method For The _requests Attribute.
+		
+		@param value: Attribute Value. ( Dictionary )
+		'''
+
+		if value :
+			assert type( value ) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format( "requests", value )
+		self._requests = value
+
+	@requests.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def requests( self ):
+		'''
+		This Method Is The Deleter Method For The _requests Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "requests" ) )
+
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def run( self ) :
+		if self._requests : print self._requests
 
 class RemoteUpdater( object ):
 	'''
@@ -128,16 +195,17 @@ class RemoteUpdater( object ):
 		self._uiResources = "resources/"
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
-
-		self._applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
-
 		self._uiGreenColor = QColor( 128, 192, 128 )
 		self._uiRedColor = QColor( 192, 128, 128 )
+		self._tableWidgetRowHeight = 30
+		self._tableWidgetHeaderHeight = 25
 
-#		self._templatesUrl = "templates/"
-#		self._sIBL_GUI_BuildsUrl = "builds/"
+		self._templatesTableWidgetHeaders = ["_datas", "Get It !", "Local Version", "Repository Version", "Release Type", "Comment"]
 
-		self._templatesTableWidgetHeaders = ["Get It !", "Local Version", "Repository Version", "Release Type", "Comment"]
+		self._applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
+		self._repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
+
+		self._downloadManager = None
 
 		self._ui = uic.loadUi( self._uiFile )
 		if "." in sys.path :
@@ -148,6 +216,41 @@ class RemoteUpdater( object ):
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
+	@property
+	@core.executionTrace
+	def releases( self ):
+		'''
+		This Method Is The Property For The _releases Attribute.
+
+		@return: self._releases. ( Dictionary )
+		'''
+
+		return self._releases
+
+	@releases.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def releases( self, value ):
+		'''
+		This Method Is The Setter Method For The _releases Attribute.
+		
+		@param value: Attribute Value. ( Dictionary )
+		'''
+
+		if value :
+			assert type( value ) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format( "releases", value )
+		self._releases = value
+
+	@releases.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def releases( self ):
+		'''
+		This Method Is The Deleter Method For The _releases Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "releases" ) )
+
 	@property
 	@core.executionTrace
 	def uiPath( self ):
@@ -280,38 +383,135 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
-	def releases( self ):
+	def uiGreenColor( self ):
 		'''
-		This Method Is The Property For The _releases Attribute.
+		This Method Is The Property For The _uiGreenColor Attribute.
 
-		@return: self._releases. ( Dictionary )
-		'''
-
-		return self._releases
-
-	@releases.setter
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def releases( self, value ):
-		'''
-		This Method Is The Setter Method For The _releases Attribute.
-		
-		@param value: Attribute Value. ( Dictionary )
+		@return: self._uiGreenColor. ( QColor )
 		'''
 
-		if value :
-			assert type( value ) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format( "releases", value )
-		self._releases = value
+		return self._uiGreenColor
 
-	@releases.deleter
+	@uiGreenColor.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def releases( self ):
+	def uiGreenColor( self, value ):
 		'''
-		This Method Is The Deleter Method For The _releases Attribute.
+		This Method Is The Setter Method For The _uiGreenColor Attribute.
+
+		@param value: Attribute Value. ( QColor )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "releases" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiGreenColor" ) )
+
+	@uiGreenColor.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiGreenColor( self ):
+		'''
+		This Method Is The Deleter Method For The _uiGreenColor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiGreenColor" ) )
+
+	@property
+	@core.executionTrace
+	def uiRedColor( self ):
+		'''
+		This Method Is The Property For The _uiRedColor Attribute.
+
+		@return: self._uiRedColor. ( QColor )
+		'''
+
+		return self._uiRedColor
+
+	@uiRedColor.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiRedColor( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiRedColor Attribute.
+
+		@param value: Attribute Value. ( QColor )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiRedColor" ) )
+
+	@uiRedColor.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiRedColor( self ):
+		'''
+		This Method Is The Deleter Method For The _uiRedColor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRedColor" ) )
+
+	@property
+	@core.executionTrace
+	def tableWidgetRowHeight( self ):
+		'''
+		This Method Is The Property For The _tableWidgetRowHeight Attribute.
+
+		@return: self._tableWidgetRowHeight. ( Integer )
+		'''
+
+		return self._tableWidgetRowHeight
+
+	@tableWidgetRowHeight.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def tableWidgetRowHeight( self, value ):
+		'''
+		This Method Is The Setter Method For The _tableWidgetRowHeight Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "tableWidgetRowHeight" ) )
+
+	@tableWidgetRowHeight.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def tableWidgetRowHeight( self ):
+		'''
+		This Method Is The Deleter Method For The _tableWidgetRowHeight Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "tableWidgetRowHeight" ) )
+
+	@property
+	@core.executionTrace
+	def tableWidgetHeaderHeight( self ):
+		'''
+		This Method Is The Property For The _tableWidgetHeaderHeight Attribute.
+
+		@return: self._tableWidgetHeaderHeight. ( Integer )
+		'''
+
+		return self._tableWidgetHeaderHeight
+
+	@tableWidgetHeaderHeight.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def tableWidgetHeaderHeight( self, value ):
+		'''
+		This Method Is The Setter Method For The _tableWidgetHeaderHeight Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "tableWidgetHeaderHeight" ) )
+
+	@tableWidgetHeaderHeight.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def tableWidgetHeaderHeight( self ):
+		'''
+		This Method Is The Deleter Method For The _tableWidgetHeaderHeight Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "tableWidgetHeaderHeight" ) )
 
 	@property
 	@core.executionTrace
@@ -345,10 +545,108 @@ class RemoteUpdater( object ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "templatesTableWidgetHeaders" ) )
 
+	@property
+	@core.executionTrace
+	def applicationChangeLogUrl( self ):
+		'''
+		This Method Is The Property For The _applicationChangeLogUrl Attribute.
+
+		@return: self._applicationChangeLogUrl. ( String )
+		'''
+
+		return self._applicationChangeLogUrl
+
+	@applicationChangeLogUrl.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def applicationChangeLogUrl( self, value ):
+		'''
+		This Method Is The Setter Method For The _applicationChangeLogUrl Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "applicationChangeLogUrl" ) )
+
+	@applicationChangeLogUrl.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def applicationChangeLogUrl( self ):
+		'''
+		This Method Is The Deleter Method For The _applicationChangeLogUrl Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "applicationChangeLogUrl" ) )
+
+	@property
+	@core.executionTrace
+	def repositoryUrl( self ):
+		'''
+		This Method Is The Property For The _repositoryUrl Attribute.
+
+		@return: self._repositoryUrl. ( String )
+		'''
+
+		return self._repositoryUrl
+
+	@repositoryUrl.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def repositoryUrl( self, value ):
+		'''
+		This Method Is The Setter Method For The _repositoryUrl Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "repositoryUrl" ) )
+
+	@repositoryUrl.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def repositoryUrl( self ):
+		'''
+		This Method Is The Deleter Method For The _repositoryUrl Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "repositoryUrl" ) )
+
+	@property
+	@core.executionTrace
+	def downloadManager( self ):
+		'''
+		This Method Is The Property For The _downloadManager Attribute.
+
+		@return: self._downloadManager. ( Object )
+		'''
+
+		return self._downloadManager
+
+	@downloadManager.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _downloadManager Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloadManager" ) )
+
+	@downloadManager.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadManager( self ):
+		'''
+		This Method Is The Deleter Method For The _downloadManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadManager" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-
 	@core.executionTrace
 	def initializeUi( self ):
 		'''
@@ -359,6 +657,7 @@ class RemoteUpdater( object ):
 
 		if Constants.applicationName not in self._releases :
 			self._ui.sIBL_GUI_groupBox.hide()
+			self._ui.Get_sIBL_GUI_pushButton.hide()
 		else :
 			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
 			self._ui.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
@@ -367,6 +666,7 @@ class RemoteUpdater( object ):
 
 		if not len( self._releases ):
 			self._ui.Templates_groupBox.hide()
+			self._ui.Get_Latest_Templates_pushButton.hide()
 		else :
 			if Constants.applicationName in self._releases :
 				templatesReleases = dict( self._releases )
@@ -379,32 +679,80 @@ class RemoteUpdater( object ):
 			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
 			self._ui.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
 			self._ui.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
+			self._ui.Templates_tableWidget.hideColumn( 0 )
 			self._ui.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
+			self._ui.Templates_tableWidget.setMinimumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+			self._ui.Templates_tableWidget.setMaximumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+
+			palette = QPalette()
+			palette.setColor( QPalette.Base, Qt.transparent )
+			self._ui.Templates_tableWidget.setPalette( palette )
 
 			verticalHeaderLabels = []
 			for row, release in enumerate( templatesReleases ) :
 					verticalHeaderLabels.append( release )
 
-					item = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "Yes", "No" ) )
-					self._ui.Templates_tableWidget.setCellWidget( row, 0, item )
+					tableWidgetItem = QTableWidgetItem()
+					tableWidgetItem._datas = templatesReleases[release]
+					self._ui.Templates_tableWidget.setItem( row, 0, tableWidgetItem )
+
+					tableWidgetItem = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "Yes", "No" ) )
+					self._ui.Templates_tableWidget.setCellWidget( row, 1, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].localVersion or Constants.nullObject )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 1, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].repositoryVersion )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].type )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].comment )
-					self._ui.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 5, tableWidgetItem )
 
 			self._ui.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
 			self._ui.Templates_tableWidget.resizeColumnsToContents()
+
+		# Signals / Slots.
+		self._ui.Get_Latest_Templates_pushButton.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
+		self._ui.Open_Repository_pushButton.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
+		self._ui.Close_pushButton.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+
+	@core.executionTrace
+	def Get_Latest_Templates_pushButton_OnClicked( self ):
+		'''
+		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
+		'''
+
+		requests = []
+		for row in range( self._ui.Templates_tableWidget.rowCount() ) :
+			if self._ui.Templates_tableWidget.cellWidget( row, 1 ).state :
+				requests.append( self._ui.Templates_tableWidget.item( row, 0 )._datas )
+		if requests :
+			self._downloadManager = DownloadManager( self, requests )
+			self._downloadManager.start()
+
+	@core.executionTrace
+	def Open_Repository_pushButton_OnClicked( self ):
+		'''
+		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
+		'''
+
+		LOGGER.debug( "> Opening URL : '{0}'.".format( self._repositoryUrl ) )
+		QDesktopServices.openUrl( QUrl( QString( self._repositoryUrl ) ) )
+
+	@core.executionTrace
+	def Close_pushButton_OnClicked( self ):
+		'''
+		This Method Closes The RemoteUpdater.
+		'''
+
+		LOGGER.info( "{0} | Closing '{1}' Updater !".format( self.__class__.__name__, Constants.applicationName ) )
+		self._ui.close()
 
 class OnlineUpdater( UiComponent ):
 	'''
@@ -435,7 +783,7 @@ class OnlineUpdater( UiComponent ):
 
 		self._corePreferencesManager = None
 
-		self._ioDirectory = None
+		self._ioDirectory = "remote/"
 
 		self._repositoryUrl = REPOSITORY_URL
 		self._releasesFileUrl = "sIBL_GUI_Releases.rc"
@@ -792,7 +1140,8 @@ class OnlineUpdater( UiComponent ):
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 
-		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory )
+		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
+		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
 
 		self._networkAccessManager = QNetworkAccessManager()
 
@@ -816,7 +1165,7 @@ class OnlineUpdater( UiComponent ):
 		self._corePreferencesManager = None
 		self._coreDb = None
 
-		self._ioDirectory = None
+		self._ioDirectory = os.path.basename( os.path.abspath( self._ioDirectory ) )
 
 		self._networkAccessManager = None
 
@@ -897,12 +1246,12 @@ class OnlineUpdater( UiComponent ):
 					dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
 					if dbTemplate :
 						if dbTemplate.release != parser.getValue( "Release", remoteObject ) :
-							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = dbTemplate.release, type = parser.getValue( "Type", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
+							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = dbTemplate.release, type = parser.getValue( "Type", remoteObject ), url = parser.getValue( "Url", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
 					else :
-							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = None, type = parser.getValue( "Type", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
+							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = None, type = parser.getValue( "Type", remoteObject ), url = parser.getValue( "Url", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
 				else :
 					if Constants.releaseVersion != parser.getValue( "Release", remoteObject ) :
-						releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = Constants.releaseVersion, type = parser.getValue( "Type", remoteObject ), comment = None )
+						releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = Constants.releaseVersion, url = parser.getValue( "Url", remoteObject ), type = parser.getValue( "Type", remoteObject ), comment = None )
 			if releases :
 				self._remoteUpdater = RemoteUpdater( releases )
 			else :
