@@ -1342,6 +1342,7 @@ if __name__ == "__main__":
 	# TODO: Make About Window.
 	# TODO: Add Help Link.
 	# TODO: Better Component Comments.
+	# TODO: Split "io" directory.
 
 #***********************************************************************************************
 #***	Python End
