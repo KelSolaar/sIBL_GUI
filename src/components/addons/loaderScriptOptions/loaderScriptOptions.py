@@ -687,14 +687,13 @@ class LoaderScriptOptions( UiComponent ):
 				verticalHeaderLabels.append( strings.getNiceName( attributeCompound.name ) )
 
 			if attributeCompound.type == "Boolean" :
-				colors = ( self._uiGreenColor, self._uiRedColor )
 				if attributeCompound.value == "1":
-					item = Variable_QPushButton( True, colors, ( "True", "False" ) )
+					item = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "True", "False" ) )
 					item.setChecked( True )
 					item._datas = attributeCompound
 					tableWidget.setCellWidget( row, 0, item )
 				else :
-					item = Variable_QPushButton( False, colors, ( "True", "False" ) )
+					item = Variable_QPushButton( False, ( self._uiGreenColor, self._uiRedColor ), ( "True", "False" ) )
 					item.setChecked( False )
 					item._datas = attributeCompound
 					tableWidget.setCellWidget( row, 0, item )
