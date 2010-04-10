@@ -55,7 +55,7 @@ import sys
 #***********************************************************************************************
 def recursiveRemove( rootDirectory, pattern ):
 	'''
-	This Method Recursively Delete The Matching Items.
+	This Method Recursively Deletes The Matching Items.
 		
 	@param rootDirectory: Directory To Recurse. ( String )
 	@param pattern: Pattern To Match. ( String )
@@ -69,11 +69,16 @@ def recursiveRemove( rootDirectory, pattern ):
 					remove( itemPath )
 
 def remove( item ):
-	print( "recursiveRemove | Removing : '%s'" % item )
+	'''
+	This Method Deletes Provided Item.
+	@param item: Item To Delete. ( String )
+	'''
+
+	print( "remove | Removing : '%s'" % item )
 	try :
 		os.remove( item )
 	except:
-		print( "recursiveRemove | '%s' Remove Failed !" % item )
+		print( "remove | '%s' Remove Failed !" % item )
 
 if __name__ == '__main__':
 	recursiveRemove( sys.argv[1], sys.argv[2] )
