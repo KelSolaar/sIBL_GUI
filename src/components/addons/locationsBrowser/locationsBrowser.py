@@ -610,14 +610,17 @@ class LocationsBrowser( UiComponent ):
 
 		self.addActions_()
 
-		if self._addonsLoaderScript.activated :
-			self._Open_Output_Folder_pushButton = QPushButton( "Open Output Folder" )
-			self._addonsLoaderScript.activated and self._addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget( self._Open_Output_Folder_pushButton )
-
 		# Signals / Slots.
 		self.ui.Custom_File_Browser_Path_toolButton.connect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
 		self.ui.Custom_File_Browser_Path_lineEdit.connect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
-		self._addonsLoaderScript.activated and self._Open_Output_Folder_pushButton.connect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
+
+		# LoaderScript Addon Component Specific Code.
+		if self._addonsLoaderScript.activated :
+			self._Open_Output_Folder_pushButton = QPushButton( "Open Output Folder" )
+			self._addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget( self._Open_Output_Folder_pushButton )
+
+			# Signals / Slots.
+			self._Open_Output_Folder_pushButton.connect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -630,11 +633,14 @@ class LocationsBrowser( UiComponent ):
 		# Signals / Slots.
 		self.ui.Custom_File_Browser_Path_toolButton.disconnect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
 		self.ui.Custom_File_Browser_Path_lineEdit.disconnect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
-		self._addonsLoaderScript.activated and self._Open_Output_Folder_pushButton.disconnect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
 
+		# LoaderScript Addon Component Specific Code.
 		if self._addonsLoaderScript.activated :
 			self._Open_Output_Folder_pushButton.setParent( None )
 			self._Open_Output_Folder_pushButton = None
+
+			# Signals / Slots.
+			self._Open_Output_Folder_pushButton.disconnect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
 
 		self.removeActions_()
 
