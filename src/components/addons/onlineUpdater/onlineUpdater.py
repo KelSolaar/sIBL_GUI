@@ -75,13 +75,14 @@ from foundations.io import File
 from foundations.parser import Parser
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
+from ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
-REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/repository/"
+REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -124,16 +125,24 @@ class RemoteUpdater( object ):
 		self.releases = releases
 		self._uiPath = "ui/Remote_Updater.ui"
 		self._uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
+		self._uiResources = "resources/"
+		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
 
-		self._templatesUrl = "templates/"
-		self._sIBL_GUI_BuildsUrl = "builds/"
+		self._applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
+
+		self._uiGreenColor = QColor( 128, 192, 128 )
+		self._uiRedColor = QColor( 192, 128, 128 )
+
+#		self._templatesUrl = "templates/"
+#		self._sIBL_GUI_BuildsUrl = "builds/"
+
+		self._templatesTableWidgetHeaders = ["Get It !", "Local Version", "Repository Version", "Release Type", "Comment"]
 
 		self._ui = uic.loadUi( self._uiFile )
 		if "." in sys.path :
 			sys.path.remove( "." )
-
 		self.initializeUi()
-
 		self._ui.show()
 
 	#***************************************************************************************
@@ -207,6 +216,70 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
+	def uiResources( self ):
+		'''
+		This Method Is The Property For The _uiResources Attribute.
+
+		@return: self._uiResources. ( String )
+		'''
+
+		return self._uiResources
+
+	@uiResources.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiResources Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+
+	@uiResources.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self ):
+		'''
+		This Method Is The Deleter Method For The _uiResources Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+
+	@property
+	@core.executionTrace
+	def uiLogoIcon( self ):
+		'''
+		This Method Is The Property For The _uiLogoIcon Attribute.
+
+		@return: self._uiLogoIcon. ( String )
+		'''
+
+		return self._uiLogoIcon
+
+	@uiLogoIcon.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLogoIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiLogoIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
+
+	@uiLogoIcon.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLogoIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+
+	@property
+	@core.executionTrace
 	def releases( self ):
 		'''
 		This Method Is The Property For The _releases Attribute.
@@ -240,6 +313,38 @@ class RemoteUpdater( object ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "releases" ) )
 
+	@property
+	@core.executionTrace
+	def templatesTableWidgetHeaders( self ):
+		'''
+		This Method Is The Property For The _templatesTableWidgetHeaders Attribute.
+
+		@return: self._templatesTableWidgetHeaders. ( String )
+		'''
+
+		return self._templatesTableWidgetHeaders
+
+	@templatesTableWidgetHeaders.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def templatesTableWidgetHeaders( self, value ):
+		'''
+		This Method Is The Setter Method For The _templatesTableWidgetHeaders Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "templatesTableWidgetHeaders" ) )
+
+	@templatesTableWidgetHeaders.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def templatesTableWidgetHeaders( self ):
+		'''
+		This Method Is The Deleter Method For The _templatesTableWidgetHeaders Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "templatesTableWidgetHeaders" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -247,21 +352,59 @@ class RemoteUpdater( object ):
 	@core.executionTrace
 	def initializeUi( self ):
 		'''
-		This Method Initializes The Component Ui.
+		This Method Initializes The Widget Ui.
 		'''
 
 		LOGGER.debug( "> Initializing '{0}' Ui.".format( self.__class__.__name__ ) )
 
 		if Constants.applicationName not in self._releases :
 			self._ui.sIBL_GUI_groupBox.hide()
-			self._ui.sIBL_GUI_label.hide()
 		else :
+			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
 			self._ui.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
 			self._ui.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
+			self._ui.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
 
-		if Constants.applicationName in self._releases and len( self._releases ) == 1:
-			for child in self._ui.Templates_verticalLayout.children() : child.hide()
+		if not len( self._releases ):
+			self._ui.Templates_groupBox.hide()
+		else :
+			if Constants.applicationName in self._releases :
+				templatesReleases = dict( self._releases )
+				templatesReleases.pop( Constants.applicationName )
+			else :
+				templatesReleases = self._releases
 
+			self._ui.Templates_tableWidget.clear()
+			self._ui.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
+			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
+			self._ui.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
+			self._ui.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
+			self._ui.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
+
+			verticalHeaderLabels = []
+			for row, release in enumerate( templatesReleases ) :
+					verticalHeaderLabels.append( release )
+
+					item = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "Yes", "No" ) )
+					self._ui.Templates_tableWidget.setCellWidget( row, 0, item )
+
+					tableWidgetItem = QTableWidgetItem( templatesReleases[release].localVersion or Constants.nullObject )
+					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
+					self._ui.Templates_tableWidget.setItem( row, 1, tableWidgetItem )
+
+					tableWidgetItem = QTableWidgetItem( templatesReleases[release].repositoryVersion )
+					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
+					self._ui.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
+
+					tableWidgetItem = QTableWidgetItem( templatesReleases[release].type )
+					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
+					self._ui.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
+
+					tableWidgetItem = QTableWidgetItem( templatesReleases[release].comment )
+					self._ui.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
+
+			self._ui.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
+			self._ui.Templates_tableWidget.resizeColumnsToContents()
 
 class OnlineUpdater( UiComponent ):
 	'''
