@@ -92,25 +92,26 @@ def textileToHtml( fileIn, fileOut, title ):
 			"""\t\t<style type="text/css">
 	            body {
 	                text-align: justify;
+	                font-size: 10pt;
 	                margin: 10px 10px 10px 10px;
 	                background-color: rgb(192, 192, 192);
 	                color: rgb(45, 50, 50);
 	            }
 	            A:link {
 	                text-decoration: none;
-	                color: rgb(100, 120, 135);
+	                color: rgb(50, 100, 150);
 	            }
 	            A:visited {
 	                text-decoration: none;
-	                color: rgb(100, 120, 135);
+	                color: rgb(50, 100, 150);
 	            }
 	            A:active {
 	                text-decoration: none;
-	                color: rgb(100, 120, 135);
+	                color: rgb(50, 100, 150);
 	            }
 	            A:hover {
 	                text-decoration: underline;
-	                color: rgb(100, 120, 135);
+	                color: rgb(50, 100, 150);
 	            }
 	        </style>\n""" )
 	output.append( "\t</head>\n\t<body>\n" )
