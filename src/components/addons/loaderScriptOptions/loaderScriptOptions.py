@@ -116,8 +116,8 @@ class LoaderScriptOptions( UiComponent ):
 		self._templateScriptSection = "Script"
 		self._optionsToolboxesHeaders = ["Value"]
 
-		self._greenUiColor = QColor( 128, 192, 128 )
-		self._redUiColor = QColor( 192, 128, 128 )
+		self._uiGreenColor = QColor( 128, 192, 128 )
+		self._uiRedColor = QColor( 192, 128, 128 )
 
 		self._tableWidgetRowHeight = 30
 		self._tableWidgetHeaderHeight = 26
@@ -424,6 +424,72 @@ class LoaderScriptOptions( UiComponent ):
 
 	@property
 	@core.executionTrace
+	def uiGreenColor( self ):
+		'''
+		This Method Is The Property For The _uiGreenColor Attribute.
+
+		@return: self._uiGreenColor. ( QColor )
+		'''
+
+		return self._uiGreenColor
+
+	@uiGreenColor.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiGreenColor( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiGreenColor Attribute.
+
+		@param value: Attribute Value. ( QColor )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiGreenColor" ) )
+
+	@uiGreenColor.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiGreenColor( self ):
+		'''
+		This Method Is The Deleter Method For The _uiGreenColor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiGreenColor" ) )
+
+	@property
+	@core.executionTrace
+	def uiRedColor( self ):
+		'''
+		This Method Is The Property For The _uiRedColor Attribute.
+
+		@return: self._uiRedColor. ( QColor )
+		'''
+
+		return self._uiRedColor
+
+	@uiRedColor.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiRedColor( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiRedColor Attribute.
+
+		@param value: Attribute Value. ( QColor )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiRedColor" ) )
+
+	@uiRedColor.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiRedColor( self ):
+		'''
+		This Method Is The Deleter Method For The _uiRedColor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRedColor" ) )
+
+	@property
+	@core.executionTrace
 	def tableWidgetRowHeight( self ):
 		'''
 		This Method Is The Property For The _tableWidgetRowHeight Attribute.
@@ -621,7 +687,7 @@ class LoaderScriptOptions( UiComponent ):
 				verticalHeaderLabels.append( strings.getNiceName( attributeCompound.name ) )
 
 			if attributeCompound.type == "Boolean" :
-				colors = ( self._greenUiColor, self._redUiColor )
+				colors = ( self._uiGreenColor, self._uiRedColor )
 				if attributeCompound.value == "1":
 					item = Variable_QPushButton( True, colors, ( "True", "False" ) )
 					item.setChecked( True )
