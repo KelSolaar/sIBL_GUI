@@ -258,7 +258,7 @@ class UiComponent( QWidget ):
 		'''
 		This Method Is The Property For The _ui Attribute.
 
-		@return: self._ui. ( String )
+		@return: self._ui. ( Object )
 		'''
 
 		return self._ui
@@ -269,7 +269,7 @@ class UiComponent( QWidget ):
 		'''
 		This Method Is The Setter Method For The _ui Attribute.
 		
-		@param value: Attribute Value. ( String )
+		@param value: Attribute Value. ( Object )
 		'''
 
 		self._ui = value
