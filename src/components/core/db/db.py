@@ -44,7 +44,7 @@
 ***		Database Backup Component Module.
 ***
 ***	Others :
-***		Code Extracted From rotatingbackup.py Written By leo.ss.pku@gmail.com
+***
 ************************************************************************************************
 '''
 
