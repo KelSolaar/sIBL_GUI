@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>sIBL_GUI Downloads Manager</string>
+   <string>sIBL_GUI - Downloads Manager</string>
   </property>
   <layout class="QGridLayout" name="sIBL_GUI_Download_Manager_Form_gridLayout">
    <item row="0" column="0">

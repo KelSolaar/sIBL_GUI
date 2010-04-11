@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>sIBL_GUI Remote Updater</string>
+   <string>sIBL_GUI - Remote Updater</string>
   </property>
   <layout class="QGridLayout" name="sIBL_GUI_Updater_Form_gridLayout">
    <item row="0" column="0">

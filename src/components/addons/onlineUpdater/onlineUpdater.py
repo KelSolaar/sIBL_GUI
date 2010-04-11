@@ -170,7 +170,9 @@ class DownloadManager( QThread ):
 	#***************************************************************************************
 	@core.executionTrace
 	def run( self ) :
-		if self._requests : print self._requests
+
+		for request in self._requests :
+			print request
 
 class RemoteUpdater( object ):
 	'''
@@ -190,8 +192,10 @@ class RemoteUpdater( object ):
 		# --- Setting Class Attributes. ---
 		self._releases = None
 		self.releases = releases
-		self._uiPath = "ui/Remote_Updater.ui"
-		self._uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
+		self._uiRemoteUpdaterPath = "ui/Remote_Updater.ui"
+		self._uiRemoteUpdaterPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiRemoteUpdaterPath )
+		self._uiDownloadManagerPath = "ui/Download_Manager.ui"
+		self._uiDownloadManagerPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiDownloadManagerPath )
 		self._uiResources = "resources/"
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
@@ -207,11 +211,14 @@ class RemoteUpdater( object ):
 
 		self._downloadManager = None
 
-		self._ui = uic.loadUi( self._uiFile )
+		self._uiRu = uic.loadUi( self._uiRemoteUpdaterPath )
+		self._uiDm = uic.loadUi( self._uiDownloadManagerPath )
 		if "." in sys.path :
 			sys.path.remove( "." )
-		self.initializeUi()
-		self._ui.show()
+
+		self.initializeRuUi()
+		self.initializeDmUi()
+		self._uiRu.show()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -253,69 +260,69 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
-	def uiPath( self ):
+	def uiRemoteUpdaterPath( self ):
 		'''
-		This Method Is The Property For The _uiPath Attribute.
+		This Method Is The Property For The _uiRemoteUpdaterPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self._uiRemoteUpdaterPath. ( String )
 		'''
 
-		return self._uiPath
+		return self._uiRemoteUpdaterPath
 
-	@uiPath.setter
+	@uiRemoteUpdaterPath.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	def uiRemoteUpdaterPath( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This Method Is The Setter Method For The _uiRemoteUpdaterPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiRemoteUpdaterPath" ) )
 
-	@uiPath.deleter
+	@uiRemoteUpdaterPath.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	def uiRemoteUpdaterPath( self ):
 		'''
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This Method Is The Deleter Method For The _uiRemoteUpdaterPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRemoteUpdaterPath" ) )
 
 	@property
 	@core.executionTrace
-	def uiFile( self ):
+	def uiDownloadManagerPath( self ):
 		'''
-		This Method Is The Property For The _uiFile Attribute.
+		This Method Is The Property For The _uiDownloadManagerPath Attribute.
 
-		@return: self._uiFile. ( String )
+		@return: self._uiDownloadManagerPath. ( String )
 		'''
 
-		return self._uiFile
+		return self._uiDownloadManagerPath
 
-	@uiFile.setter
+	@uiDownloadManagerPath.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiFile( self, value ):
+	def uiDownloadManagerPath( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiFile Attribute.
+		This Method Is The Setter Method For The _uiDownloadManagerPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiFile" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDownloadManagerPath" ) )
 
-	@uiFile.deleter
+	@uiDownloadManagerPath.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiFile( self ):
+	def uiDownloadManagerPath( self ):
 		'''
-		This Method Is The Deleter Method For The _uiFile Attribute.
+		This Method Is The Deleter Method For The _uiDownloadManagerPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiFile" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDownloadManagerPath" ) )
 
 	@property
 	@core.executionTrace
@@ -644,29 +651,93 @@ class RemoteUpdater( object ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadManager" ) )
 
+	@property
+	@core.executionTrace
+	def uiRu( self ):
+		'''
+		This Method Is The Property For The _uiRu Attribute.
+
+		@return: self._uiRu. ( Object )
+		'''
+
+		return self._uiRu
+
+	@uiRu.setter
+	@core.executionTrace
+	def uiRu( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiRu Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		self._uiRu = value
+
+	@uiRu.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiRu( self ):
+		'''
+		This Method Is The Deleter Method For The _uiRu Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRu" ) )
+
+	@property
+	@core.executionTrace
+	def uiDm( self ):
+		'''
+		This Method Is The Property For The _uiDm Attribute.
+
+		@return: self._uiDm. ( Object )
+		'''
+
+		return self._uiDm
+
+	@uiDm.setter
+	@core.executionTrace
+	def uiDm( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiDm Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		self._uiDm = value
+
+	@uiDm.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiDm( self ):
+		'''
+		This Method Is The Deleter Method For The _uiDm Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDm" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeRuUi( self ):
 		'''
-		This Method Initializes The Widget Ui.
+		This Method Initializes The Remote_Updater Widget Ui.
 		'''
 
 		LOGGER.debug( "> Initializing '{0}' Ui.".format( self.__class__.__name__ ) )
 
 		if Constants.applicationName not in self._releases :
-			self._ui.sIBL_GUI_groupBox.hide()
-			self._ui.Get_sIBL_GUI_pushButton.hide()
+			self._uiRu.sIBL_GUI_groupBox.hide()
+			self._uiRu.Get_sIBL_GUI_pushButton.hide()
 		else :
-			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
-			self._ui.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
-			self._ui.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
-			self._ui.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
+			self._uiRu.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
+			self._uiRu.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
+			self._uiRu.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
+			self._uiRu.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
 
 		if not len( self._releases ):
-			self._ui.Templates_groupBox.hide()
-			self._ui.Get_Latest_Templates_pushButton.hide()
+			self._uiRu.Templates_groupBox.hide()
+			self._uiRu.Get_Latest_Templates_pushButton.hide()
 		else :
 			if Constants.applicationName in self._releases :
 				templatesReleases = dict( self._releases )
@@ -674,19 +745,19 @@ class RemoteUpdater( object ):
 			else :
 				templatesReleases = self._releases
 
-			self._ui.Templates_tableWidget.clear()
-			self._ui.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
-			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
-			self._ui.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
-			self._ui.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
-			self._ui.Templates_tableWidget.hideColumn( 0 )
-			self._ui.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
-			self._ui.Templates_tableWidget.setMinimumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
-			self._ui.Templates_tableWidget.setMaximumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+			self._uiRu.Templates_tableWidget.clear()
+			self._uiRu.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
+			self._uiRu.Templates_tableWidget.setRowCount( len( templatesReleases ) )
+			self._uiRu.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
+			self._uiRu.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
+			self._uiRu.Templates_tableWidget.hideColumn( 0 )
+			self._uiRu.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
+			self._uiRu.Templates_tableWidget.setMinimumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+			self._uiRu.Templates_tableWidget.setMaximumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
 
 			palette = QPalette()
 			palette.setColor( QPalette.Base, Qt.transparent )
-			self._ui.Templates_tableWidget.setPalette( palette )
+			self._uiRu.Templates_tableWidget.setPalette( palette )
 
 			verticalHeaderLabels = []
 			for row, release in enumerate( templatesReleases ) :
@@ -694,33 +765,41 @@ class RemoteUpdater( object ):
 
 					tableWidgetItem = QTableWidgetItem()
 					tableWidgetItem._datas = templatesReleases[release]
-					self._ui.Templates_tableWidget.setItem( row, 0, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setItem( row, 0, tableWidgetItem )
 
 					tableWidgetItem = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "Yes", "No" ) )
-					self._ui.Templates_tableWidget.setCellWidget( row, 1, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setCellWidget( row, 1, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].localVersion or Constants.nullObject )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].repositoryVersion )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].type )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._ui.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].comment )
-					self._ui.Templates_tableWidget.setItem( row, 5, tableWidgetItem )
+					self._uiRu.Templates_tableWidget.setItem( row, 5, tableWidgetItem )
 
-			self._ui.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
-			self._ui.Templates_tableWidget.resizeColumnsToContents()
+			self._uiRu.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
+			self._uiRu.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self._ui.Get_Latest_Templates_pushButton.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
-		self._ui.Open_Repository_pushButton.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
-		self._ui.Close_pushButton.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+		self._uiRu.Get_Latest_Templates_pushButton.connect( self._uiRu.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
+		self._uiRu.Open_Repository_pushButton.connect( self._uiRu.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
+		self._uiRu.Close_pushButton.connect( self._uiRu.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+
+	@core.executionTrace
+	def initializeDmUi( self ):
+		'''
+		This Method Initializes The Remote_Updater Widget Ui.
+		'''
+
+		self._uiDm.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
 
 	@core.executionTrace
 	def Get_Latest_Templates_pushButton_OnClicked( self ):
@@ -729,10 +808,11 @@ class RemoteUpdater( object ):
 		'''
 
 		requests = []
-		for row in range( self._ui.Templates_tableWidget.rowCount() ) :
-			if self._ui.Templates_tableWidget.cellWidget( row, 1 ).state :
-				requests.append( self._ui.Templates_tableWidget.item( row, 0 )._datas )
+		for row in range( self._uiRu.Templates_tableWidget.rowCount() ) :
+			if self._uiRu.Templates_tableWidget.cellWidget( row, 1 ).state :
+				requests.append( self._uiRu.Templates_tableWidget.item( row, 0 )._datas )
 		if requests :
+			self._uiDm.show()
 			self._downloadManager = DownloadManager( self, requests )
 			self._downloadManager.start()
 
@@ -752,7 +832,7 @@ class RemoteUpdater( object ):
 		'''
 
 		LOGGER.info( "{0} | Closing '{1}' Updater !".format( self.__class__.__name__, Constants.applicationName ) )
-		self._ui.close()
+		self._uiRu.close()
 
 class OnlineUpdater( UiComponent ):
 	'''
