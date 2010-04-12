@@ -894,7 +894,7 @@ class DatabaseBrowser( UiComponent ):
 		@param collectionId: Target Collection Id. ( Integer )		
 		'''
 
-		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, self.tr( "Add Directory :" ), self._container.lastBrowsedPath ) ) )
+		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 		if directory :
 			walker = Walker( directory )
 			walker.walk( self._extension )
@@ -914,7 +914,7 @@ class DatabaseBrowser( UiComponent ):
 		@return: Addition Success. ( Boolean )
 		'''
 
-		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, self.tr( "Add Set :" ), self._container.lastBrowsedPath, self.tr( "Ibls Files (*{0})".format( self._extension ) ) ) ) )
+		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if file :
 			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
 			if not dbUtilities.common.addSet( self._coreDb.dbSession, os.path.basename( file ).replace( self._extension, "" ), file, self._coreCollectionsOutliner.getUniqueCollectionId() ) :
@@ -944,7 +944,7 @@ class DatabaseBrowser( UiComponent ):
 		@return: Update Success. ( Boolean )
 		'''
 
-		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, self.tr( "Updating '{0}' Set Location :".format( set.name ) ), self._container.lastBrowsedPath, self.tr( "Ibls Files (*{0})".format( self._extension ) ) ) ) )
+		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Set Location :".format( set.name ), self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if file :
 			LOGGER.info( "{0} | Updating '{1}' Set !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
 			if not dbUtilities.common.updateSetLocation( self._coreDb.dbSession, set, file ) :

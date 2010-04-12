@@ -456,7 +456,7 @@ class sIBLeditUtilities( UiComponent ):
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
 		'''
 
-		sIBLeditExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, self.tr( "sIBLedit Executable :" ), self._container.lastBrowsedPath ) )
+		sIBLeditExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "sIBLedit Executable :", self._container.lastBrowsedPath ) )
 		if sIBLeditExecutable != "":
 			LOGGER.debug( "> Chosen sIBLedit Executable : '{0}'.".format( sIBLeditExecutable ) )
 			self.ui.sIBLedit_Path_lineEdit.setText( QString( sIBLeditExecutable ) )

@@ -573,7 +573,7 @@ class RawEditingUtilities( UiComponent ):
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
 		'''
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, self.tr( "Custom Text Editor Executable :" ), self._container.lastBrowsedPath ) )
+		customTextEditorExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom Text Editor Executable :", self._container.lastBrowsedPath ) )
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom Text Editor Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText( QString( customTextEditorExecutable ) )

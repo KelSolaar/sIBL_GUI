@@ -750,7 +750,7 @@ class LocationsBrowser( UiComponent ):
 		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
 		'''
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, self.tr( "Custom File Browser Executable :" ), self._container.lastBrowsedPath ) )
+		customTextEditorExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom File Browser Executable :", self._container.lastBrowsedPath ) )
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom File Browser Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_File_Browser_Path_lineEdit.setText( QString( customTextEditorExecutable ) )

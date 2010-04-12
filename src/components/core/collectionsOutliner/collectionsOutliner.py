@@ -1134,7 +1134,7 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		dialogMessage = "Enter Your Collection Name !"
-		collectionInformations = QInputDialog.getText( self, self.tr( "Add Collection" ), dialogMessage )
+		collectionInformations = QInputDialog.getText( self, "Add Collection", dialogMessage )
 		if collectionInformations[1] :
 			collectionInformations = str( collectionInformations[0] ).split( "," )
 			collection = collectionInformations[0].strip()

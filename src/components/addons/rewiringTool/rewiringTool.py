@@ -523,7 +523,7 @@ class RewiringTool( UiComponent ):
 		@param component: Target Component. ( String )
 		'''
 
-		customFile = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, self.tr( "Custom " + component + " File :" ), self._container.lastBrowsedPath ) )
+		customFile = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom " + component + " File :", self._container.lastBrowsedPath ) )
 		LOGGER.debug( "> Chosen Custom %s : '%s'.", component, customFile )
 		if customFile != "":
 			if component == "Background":
