@@ -63,9 +63,6 @@
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
      </property>
      <layout class="QGridLayout" name="Online_Repository_groupBox_gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="Current_File_label"/>
-      </item>
       <item row="1" column="0">
        <widget class="QProgressBar" name="Download_progressBar">
         <property name="value">
@@ -73,7 +70,13 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="Current_File_label"/>
+      </item>
      </layout>
+     <zorder>Current_File_label</zorder>
+     <zorder>Download_progressBar</zorder>
+     <zorder>verticalLayoutWidget</zorder>
     </widget>
    </item>
    <item row="3" column="0">
@@ -92,16 +95,10 @@
       </spacer>
      </item>
      <item>
-      <widget class="QGroupBox" name="Buttons_groupBox">
-       <layout class="QGridLayout" name="Buttons_gridLayout">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="Cancel_pushButton">
-          <property name="text">
-           <string>Cancel</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <widget class="QPushButton" name="Cancel_pushButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
       </widget>
      </item>
     </layout>

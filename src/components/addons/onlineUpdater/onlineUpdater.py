@@ -105,13 +105,13 @@ class ReleaseObject( core.Structure ):
 		# --- Setting Class Attributes. ---
 		self.__dict__.update( kwargs )
 
-class DownloadManager( QThread ):
+class DownloadManager( QObject ):
 	'''
 	This Is The DownloadManager Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, container, requests = None ):
+	def __init__( self, container, networkAccessManager, requests = None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -121,22 +121,93 @@ class DownloadManager( QThread ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QThread.__init__( self )
+		QObject.__init__( self )
 
 		# --- Setting Class Attributes. ---
+		self._container = container
+		self._networkAccessManager = networkAccessManager
+
 		self._requests = None
 		self.requests = requests
+
+		self._currentRequest = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
 	@core.executionTrace
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	@core.executionTrace
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Property For The _networkAccessManager Attribute.
+
+		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		'''
+
+		return self._networkAccessManager
+
+	@networkAccessManager.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _networkAccessManager Attribute.
+
+		@param value: Attribute Value. ( QNetworkAccessManager )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "networkAccessManager" ) )
+
+	@networkAccessManager.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "networkAccessManager" ) )
+
+	@property
+	@core.executionTrace
 	def requests( self ):
 		'''
 		This Method Is The Property For The _requests Attribute.
 
-		@return: self._requests. ( Dictionary )
+		@return: self._requests. ( List )
 		'''
 
 		return self._requests
@@ -165,14 +236,72 @@ class DownloadManager( QThread ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "requests" ) )
 
+	@property
+	@core.executionTrace
+	def currentRequest( self ):
+		'''
+		This Method Is The Property For The _currentRequest Attribute.
+
+		@return: self._currentRequest. ( QNetworkReply )
+		'''
+
+		return self._currentRequest
+
+	@currentRequest.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentRequest( self, value ):
+		'''
+		This Method Is The Setter Method For The _currentRequest Attribute.
+
+		@param value: Attribute Value. ( QNetworkReply )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "currentRequest" ) )
+
+	@currentRequest.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentRequest( self ):
+		'''
+		This Method Is The Deleter Method For The _currentRequest Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "currentRequest" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def run( self ) :
+	def downloadNext( self ):
+		if not self._requests :
+			return
 
-		for request in self._requests :
-			print request
+		request = self._requests.pop()
+
+		self._currentRequest = self._networkAccessManager.get( QNetworkRequest( QUrl( request.url ) ) )
+
+		# Signals / Slots.
+		self._currentRequest.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
+		self._currentRequest.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
+		self._currentRequest.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
+
+	@core.executionTrace
+	def downloadProgress( self, bytesReceived, bytesTotal ):
+		print  bytesReceived
+
+	@core.executionTrace
+	def requestReady( self ):
+		print self._currentRequest.readAll()
+
+	@core.executionTrace
+	def downloadFinished( self ):
+		self._currentRequest.deleteLater();
+		self.downloadNext()
+
+	@core.executionTrace
+	def startDownload( self ):
+		self.downloadNext()
 
 class RemoteUpdater( object ):
 	'''
@@ -180,7 +309,7 @@ class RemoteUpdater( object ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, releases = None ):
+	def __init__( self, container, releases = None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -190,6 +319,7 @@ class RemoteUpdater( object ):
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
 		# --- Setting Class Attributes. ---
+		self._container = container
 		self._releases = None
 		self.releases = releases
 		self._uiRemoteUpdaterPath = "ui/Remote_Updater.ui"
@@ -210,6 +340,7 @@ class RemoteUpdater( object ):
 		self._repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
 
 		self._downloadManager = None
+		self._networkAccessManager = self._container.networkAccessManager
 
 		self._uiRu = uic.loadUi( self._uiRemoteUpdaterPath )
 		self._uiDm = uic.loadUi( self._uiDownloadManagerPath )
@@ -223,6 +354,39 @@ class RemoteUpdater( object ):
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
+	@property
+	@core.executionTrace
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
 	@property
 	@core.executionTrace
 	def releases( self ):
@@ -653,6 +817,39 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Property For The _networkAccessManager Attribute.
+
+		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		'''
+
+		return self._networkAccessManager
+
+	@networkAccessManager.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _networkAccessManager Attribute.
+
+		@param value: Attribute Value. ( QNetworkAccessManager )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "networkAccessManager" ) )
+
+	@networkAccessManager.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "networkAccessManager" ) )
+
+	@property
+	@core.executionTrace
 	def uiRu( self ):
 		'''
 		This Method Is The Property For The _uiRu Attribute.
@@ -812,9 +1009,10 @@ class RemoteUpdater( object ):
 			if self._uiRu.Templates_tableWidget.cellWidget( row, 1 ).state :
 				requests.append( self._uiRu.Templates_tableWidget.item( row, 0 )._datas )
 		if requests :
-			self._uiDm.show()
-			self._downloadManager = DownloadManager( self, requests )
-			self._downloadManager.start()
+			print self.getTemplatesDownloadFolder()
+			#self._uiDm.show()
+			#self._downloadManager = DownloadManager( self, self._networkAccessManager, requests )
+			#self._downloadManager.startDownload()
 
 	@core.executionTrace
 	def Open_Repository_pushButton_OnClicked( self ):
@@ -833,6 +1031,29 @@ class RemoteUpdater( object ):
 
 		LOGGER.info( "{0} | Closing '{1}' Updater !".format( self.__class__.__name__, Constants.applicationName ) )
 		self._uiRu.close()
+
+	@core.executionTrace
+	def getTemplatesDownloadFolder( self ):
+		'''
+		This Method Gets The Templates Folder.
+		'''
+
+		messageBox = QMessageBox()
+		messageBox.setWindowTitle( "{0}".format( self.__class__.__name__ ) )
+		messageBox.setIcon( QMessageBox.Question )
+		messageBox.setText( "{0} | Which Directory Do You Want To Install The Templates Into ?".format( self.__class__.__name__ ) )
+		messageBox.addButton( QString( "Cancel" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "Custom" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "User" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "Factory" ), QMessageBox.AcceptRole )
+		reply = messageBox.exec_()
+
+		if reply == 3 :
+			return os.path.join( os.getcwd(), Constants.templatesDirectory )
+		elif reply == 2 :
+			return os.path.join( self._container.container.userApplicationDirectory, Constants.templatesDirectory )
+		elif reply == 1 :
+			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._uiRu, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
 
 class OnlineUpdater( UiComponent ):
 	'''
@@ -867,6 +1088,9 @@ class OnlineUpdater( UiComponent ):
 
 		self._repositoryUrl = REPOSITORY_URL
 		self._releasesFileUrl = "sIBL_GUI_Releases.rc"
+
+		self._networkAccessManager = None
+		self._releaseReply = None
 
 		self._remoteUpdater = None
 
@@ -1170,6 +1394,72 @@ class OnlineUpdater( UiComponent ):
 
 	@property
 	@core.executionTrace
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Property For The _networkAccessManager Attribute.
+
+		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		'''
+
+		return self._networkAccessManager
+
+	@networkAccessManager.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _networkAccessManager Attribute.
+
+		@param value: Attribute Value. ( QNetworkAccessManager )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "networkAccessManager" ) )
+
+	@networkAccessManager.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def networkAccessManager( self ):
+		'''
+		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "networkAccessManager" ) )
+
+	@property
+	@core.executionTrace
+	def releaseReply( self ):
+		'''
+		This Method Is The Property For The _releaseReply Attribute.
+
+		@return: self._releaseReply. ( QNetworkReply )
+		'''
+
+		return self._releaseReply
+
+	@releaseReply.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def releaseReply( self, value ):
+		'''
+		This Method Is The Setter Method For The _releaseReply Attribute.
+
+		@param value: Attribute Value. ( QNetworkReply )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "releaseReply" ) )
+
+	@releaseReply.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def releaseReply( self ):
+		'''
+		This Method Is The Deleter Method For The _releaseReply Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "releaseReply" ) )
+
+	@property
+	@core.executionTrace
 	def remoteUpdater( self ):
 		'''
 		This Method Is The Property For The _remoteUpdater Attribute.
@@ -1225,10 +1515,6 @@ class OnlineUpdater( UiComponent ):
 
 		self._networkAccessManager = QNetworkAccessManager()
 
-		self._networkAccessManager.connect( self._networkAccessManager, SIGNAL( "finished(QNetworkReply *)" ), self.networkAccessManager_OnReplyFinished )
-
-		self._remoteStack = {}
-
 		self._activate()
 
 	@core.executionTrace
@@ -1248,8 +1534,6 @@ class OnlineUpdater( UiComponent ):
 		self._ioDirectory = os.path.basename( os.path.abspath( self._ioDirectory ) )
 
 		self._networkAccessManager = None
-
-		self._remoteStack = None
 
 		self._deactivate()
 
@@ -1305,15 +1589,15 @@ class OnlineUpdater( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.NetworkError )
-	def networkAccessManager_OnReplyFinished( self, reply ):
+	def releaseReply_OnDownloadFinished( self ):
 		'''
-		This Method Is Triggered When The networkAccessManager Reply Finishes.
+		This Method Is Triggered When The Release Reply Finishes.
 		'''
 
-		if not reply.error():
+		if not self._releaseReply.error():
 			content = []
-			while not reply.atEnd () :
-				content.append( str( reply.readLine() ) )
+			while not self._releaseReply.atEnd () :
+				content.append( str( self._releaseReply.readLine() ) )
 
 			parser = Parser()
 			parser.content = content
@@ -1326,18 +1610,33 @@ class OnlineUpdater( UiComponent ):
 					dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
 					if dbTemplate :
 						if dbTemplate.release != parser.getValue( "Release", remoteObject ) :
-							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = dbTemplate.release, type = parser.getValue( "Type", remoteObject ), url = parser.getValue( "Url", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
+							releases[remoteObject] = ReleaseObject( name = remoteObject,
+																repositoryVersion = parser.getValue( "Release", remoteObject ),
+																localVersion = dbTemplate.release,
+																type = parser.getValue( "Type", remoteObject ),
+																url = parser.getValue( "Url", remoteObject ),
+																comment = parser.getValue( "Comment", remoteObject ) )
 					else :
-							releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = None, type = parser.getValue( "Type", remoteObject ), url = parser.getValue( "Url", remoteObject ), comment = parser.getValue( "Comment", remoteObject ) )
+							releases[remoteObject] = ReleaseObject( name = remoteObject,
+																repositoryVersion = parser.getValue( "Release", remoteObject ),
+																localVersion = None,
+																type = parser.getValue( "Type", remoteObject ),
+																url = parser.getValue( "Url", remoteObject ),
+																comment = parser.getValue( "Comment", remoteObject ) )
 				else :
 					if Constants.releaseVersion != parser.getValue( "Release", remoteObject ) :
-						releases[remoteObject] = ReleaseObject( name = remoteObject, repositoryVersion = parser.getValue( "Release", remoteObject ), localVersion = Constants.releaseVersion, url = parser.getValue( "Url", remoteObject ), type = parser.getValue( "Type", remoteObject ), comment = None )
+						releases[remoteObject] = ReleaseObject( name = remoteObject,
+															repositoryVersion = parser.getValue( "Release", remoteObject ),
+															localVersion = Constants.releaseVersion,
+															url = parser.getValue( "Url", remoteObject ),
+															type = parser.getValue( "Type", remoteObject ),
+															comment = None )
 			if releases :
-				self._remoteUpdater = RemoteUpdater( releases )
+				self._remoteUpdater = RemoteUpdater( self, releases )
 			else :
 				messageBox.messageBox( "Informations", "Informations", "{0} | '{1}' Is Up To Date !".format( self.__class__.__name__, Constants.applicationName ) )
 		else:
-			raise foundations.exceptions.NetworkError( "QNetworkAccessManager Error Code : '{0}'.".format( reply.error() ) )
+			raise foundations.exceptions.NetworkError( "QNetworkAccessManager Error Code : '{0}'.".format( self._releaseReply.error() ) )
 
 	@core.executionTrace
 	def checkForNewReleases( self ):
@@ -1350,10 +1649,11 @@ class OnlineUpdater( UiComponent ):
 	@core.executionTrace
 	def getReleaseFile( self, url ):
 		'''
-		This Method Gets A Remote File.
+		This Method Gets The Release File.
 		'''
 
-		self._networkAccessManager.get( QNetworkRequest( url ) )
+		self._releaseReply = self._networkAccessManager.get( QNetworkRequest( url ) )
+		self._releaseReply.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )
 
 #***********************************************************************************************
 #***	Python End
