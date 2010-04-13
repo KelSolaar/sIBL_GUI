@@ -58,6 +58,7 @@
 import logging
 import os
 import sys
+from new import instancemethod
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -111,11 +112,13 @@ class DownloadManager( QObject ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, container, networkAccessManager, requests = None ):
+	def __init__( self, container, networkAccessManager, downloadFolder, requests = None ):
 		'''
 		This Method Initializes The Class.
 		
 		@param container: Container. ( Object )
+		@param networkAccessManager: Network Access Manager. ( QNetworkAccessManager )
+		@param downloadFolder: Download Folder. ( String )
 		@param requests: Download Requests. ( List )
 		'''
 
@@ -126,11 +129,28 @@ class DownloadManager( QObject ):
 		# --- Setting Class Attributes. ---
 		self._container = container
 		self._networkAccessManager = networkAccessManager
+		self._downloadFolder = downloadFolder
+
+		self._uiPath = "ui/Download_Manager.ui"
+		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
+		self._uiResources = "resources/"
+		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
 
 		self._requests = None
 		self.requests = requests
-
+		self._downloads = []
 		self._currentRequest = None
+
+		# Helper Attribute For QNetwork Reply Crash.
+		self._downloadFinished = None
+
+		self._ui = uic.loadUi( self._uiPath )
+		if "." in sys.path :
+			sys.path.remove( "." )
+
+		self.initializeUi()
+		self._ui.show()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -203,6 +223,137 @@ class DownloadManager( QObject ):
 
 	@property
 	@core.executionTrace
+	def downloadFolder( self ):
+		'''
+		This Method Is The Property For The _downloadFolder Attribute.
+
+		@return: self._downloadFolder. ( String )
+		'''
+
+		return self._downloadFolder
+
+	@downloadFolder.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadFolder( self, value ):
+		'''
+		This Method Is The Setter Method For The _downloadFolder Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloadFolder" ) )
+
+	@downloadFolder.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadFolder( self ):
+		'''
+		This Method Is The Deleter Method For The _downloadFolder Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadFolder" ) )
+
+	@property
+	@core.executionTrace
+	def uiPath( self ):
+		'''
+		This Method Is The Property For The _uiPath Attribute.
+
+		@return: self._uiPath. ( String )
+		'''
+
+		return self._uiPath
+
+	@uiPath.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiPath( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiPath Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+
+	@uiPath.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiPath( self ):
+		'''
+		This Method Is The Deleter Method For The _uiPath Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+
+	@property
+	@core.executionTrace
+	def uiResources( self ):
+		'''
+		This Method Is The Property For The _uiResources Attribute.
+
+		@return: self._uiResources. ( String )
+		'''
+
+		return self._uiResources
+
+	@uiResources.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiResources Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+
+	@uiResources.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self ):
+		'''
+		This Method Is The Deleter Method For The _uiResources Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+
+	@property
+	@core.executionTrace
+	def uiLogoIcon( self ):
+		'''
+		This Method Is The Property For The _uiLogoIcon Attribute.
+
+		@return: self._uiLogoIcon. ( String )
+		'''
+
+		return self._uiLogoIcon
+
+	@uiLogoIcon.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLogoIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiLogoIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
+
+	@uiLogoIcon.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLogoIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+
+	@property
+	@core.executionTrace
 	def requests( self ):
 		'''
 		This Method Is The Property For The _requests Attribute.
@@ -238,6 +389,39 @@ class DownloadManager( QObject ):
 
 	@property
 	@core.executionTrace
+	def downloads( self ):
+		'''
+		This Method Is The Property For The _downloads Attribute.
+
+		@return: self._downloads. ( List )
+		'''
+
+		return self._downloads
+
+	@downloads.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def downloads( self, value ):
+		'''
+		This Method Is The Setter Method For The _downloads Attribute.
+		
+		@param value: Attribute Value. ( Dictionary )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloads" ) )
+
+	@downloads.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloads( self ):
+		'''
+		This Method Is The Deleter Method For The _downloads Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloads" ) )
+
+	@property
+	@core.executionTrace
 	def currentRequest( self ):
 		'''
 		This Method Is The Property For The _currentRequest Attribute.
@@ -269,39 +453,182 @@ class DownloadManager( QObject ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "currentRequest" ) )
 
+	@property
+	@core.executionTrace
+	def downloadFinished( self ):
+		'''
+		This Method Is The Property For The _downloadFinished Attribute.
+
+		@return: self._downloadFinished. ( QObject )
+		'''
+
+		return self._downloadFinished
+
+	@downloadFinished.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadFinished( self, value ):
+		'''
+		This Method Is The Setter Method For The _downloadFinished Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloadFinished" ) )
+
+	@downloadFinished.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def downloadFinished( self ):
+		'''
+		This Method Is The Deleter Method For The _downloadFinished Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadFinished" ) )
+
+	@property
+	@core.executionTrace
+	def ui( self ):
+		'''
+		This Method Is The Property For The _ui Attribute.
+
+		@return: self._ui. ( Object )
+		'''
+
+		return self._ui
+
+	@ui.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def ui( self, value ):
+		'''
+		This Method Is The Setter Method For The _ui Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "ui" ) )
+
+	@ui.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def ui( self ):
+		'''
+		This Method Is The Deleter Method For The _ui Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "ui" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def downloadNext( self ):
-		if not self._requests :
-			return
+	def initializeUi( self ):
+		'''
+		This Method Initializes The Widget Ui.
+		'''
 
-		request = self._requests.pop()
+		self._ui.Download_progressBar.setValue( 0 )
+		self._ui.Download_progressBar.hide()
+		self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
 
-		self._currentRequest = self._networkAccessManager.get( QNetworkRequest( QUrl( request.url ) ) )
+		self._ui.closeEvent = self.closeEvent #instancemethod(  )
 
 		# Signals / Slots.
-		self._currentRequest.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
-		self._currentRequest.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
-		self._currentRequest.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
+		self._ui.Cancel_Close_pushButton.connect( self._ui.Cancel_Close_pushButton, SIGNAL( "clicked()" ), self.Cancel_Close_pushButton_OnClicked )
+
+	@core.executionTrace
+	def closeEvent( self, closeEvent ):
+		'''
+		This Method Overloads The DownloadManager CloseEvent.
+		
+		@param closeEvent: Close Event. ( QCloseEvent )
+		'''
+
+		self._downloadFinished or self.abortDownload()
+		closeEvent.accept()
+
+	@core.executionTrace
+	def Cancel_Close_pushButton_OnClicked( self ):
+		'''
+		This Method Triggers The DownloadManager Close.
+		'''
+
+		self._ui.close()
+
+	@core.executionTrace
+	def downloadNext( self ):
+		'''
+		This Method Downloads The Next Request.
+		'''
+
+		if self._requests :
+			self._ui.Download_progressBar.show()
+
+			self._currentRequest = self._networkAccessManager.get( QNetworkRequest( QUrl( self._requests.pop() ) ) )
+
+			# Signals / Slots.
+			self._currentRequest.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
+			self._currentRequest.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
+			self._currentRequest.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
 
 	@core.executionTrace
 	def downloadProgress( self, bytesReceived, bytesTotal ):
-		print  bytesReceived
+		'''
+		This Method Updates The Download Progress.
+		
+		@param bytesReceived: Bytes Received. ( Integer )
+		@param bytesTotal: Bytes Total. ( Integer )
+		'''
+
+		self._ui.Current_File_label.setText( "Downloading : '{0}'".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
+		self._ui.Download_progressBar.setRange( 0, bytesTotal )
+		self._ui.Download_progressBar.setValue( bytesReceived )
 
 	@core.executionTrace
 	def requestReady( self ):
-		print self._currentRequest.readAll()
+		'''
+		This Method Is Triggered When The Request Is Ready To Write.
+		'''
+
+		outputFile = os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) )
+		self._downloads.append( outputFile )
+		file = File( outputFile, [self._currentRequest.readAll()] )
+		file.append()
 
 	@core.executionTrace
 	def downloadFinished( self ):
+		'''
+		This Method Is Triggered When The Request Download Is Finished.
+		'''
+
+		self._ui.Current_File_label.setText( "'{0}' Downloading Done !".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
+		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
-		self.downloadNext()
+		if self._requests :
+			self.downloadNext()
+		else :
+			self._downloadFinished = True
+			self._ui.Cancel_Close_pushButton.setText( "Close" )
+			self.emit( SIGNAL( "downloadFinished()" ) )
 
 	@core.executionTrace
 	def startDownload( self ):
+		'''
+		This Method Triggers The Download.
+		'''
+
+		self._downloadFinished = False
 		self.downloadNext()
+
+	@core.executionTrace
+	def abortDownload( self ):
+		'''
+		This Method Aborts The Current Download.
+		'''
+
+		self._currentRequest.abort()
+		self._currentRequest.deleteLater()
 
 class RemoteUpdater( object ):
 	'''
@@ -322,10 +649,8 @@ class RemoteUpdater( object ):
 		self._container = container
 		self._releases = None
 		self.releases = releases
-		self._uiRemoteUpdaterPath = "ui/Remote_Updater.ui"
-		self._uiRemoteUpdaterPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiRemoteUpdaterPath )
-		self._uiDownloadManagerPath = "ui/Download_Manager.ui"
-		self._uiDownloadManagerPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiDownloadManagerPath )
+		self._uiPath = "ui/Remote_Updater.ui"
+		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = "resources/"
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
@@ -342,14 +667,12 @@ class RemoteUpdater( object ):
 		self._downloadManager = None
 		self._networkAccessManager = self._container.networkAccessManager
 
-		self._uiRu = uic.loadUi( self._uiRemoteUpdaterPath )
-		self._uiDm = uic.loadUi( self._uiDownloadManagerPath )
+		self._ui = uic.loadUi( self._uiPath )
 		if "." in sys.path :
 			sys.path.remove( "." )
 
-		self.initializeRuUi()
-		self.initializeDmUi()
-		self._uiRu.show()
+		self.initializeUi()
+		self._ui.show()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -424,69 +747,36 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
-	def uiRemoteUpdaterPath( self ):
+	def uiPath( self ):
 		'''
-		This Method Is The Property For The _uiRemoteUpdaterPath Attribute.
+		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiRemoteUpdaterPath. ( String )
+		@return: self._uiPath. ( String )
 		'''
 
-		return self._uiRemoteUpdaterPath
+		return self._uiPath
 
-	@uiRemoteUpdaterPath.setter
+	@uiPath.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiRemoteUpdaterPath( self, value ):
+	def uiPath( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiRemoteUpdaterPath Attribute.
+		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiRemoteUpdaterPath" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
 
-	@uiRemoteUpdaterPath.deleter
+	@uiPath.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiRemoteUpdaterPath( self ):
+	def uiPath( self ):
 		'''
-		This Method Is The Deleter Method For The _uiRemoteUpdaterPath Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRemoteUpdaterPath" ) )
-
-	@property
-	@core.executionTrace
-	def uiDownloadManagerPath( self ):
-		'''
-		This Method Is The Property For The _uiDownloadManagerPath Attribute.
-
-		@return: self._uiDownloadManagerPath. ( String )
+		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		return self._uiDownloadManagerPath
-
-	@uiDownloadManagerPath.setter
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDownloadManagerPath( self, value ):
-		'''
-		This Method Is The Setter Method For The _uiDownloadManagerPath Attribute.
-
-		@param value: Attribute Value. ( String )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDownloadManagerPath" ) )
-
-	@uiDownloadManagerPath.deleter
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDownloadManagerPath( self ):
-		'''
-		This Method Is The Deleter Method For The _uiDownloadManagerPath Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDownloadManagerPath" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
 	@core.executionTrace
@@ -850,73 +1140,41 @@ class RemoteUpdater( object ):
 
 	@property
 	@core.executionTrace
-	def uiRu( self ):
+	def ui( self ):
 		'''
-		This Method Is The Property For The _uiRu Attribute.
+		This Method Is The Property For The _ui Attribute.
 
-		@return: self._uiRu. ( Object )
+		@return: self._ui. ( Object )
 		'''
 
-		return self._uiRu
+		return self._ui
 
-	@uiRu.setter
+	@ui.setter
 	@core.executionTrace
-	def uiRu( self, value ):
+	def ui( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiRu Attribute.
+		This Method Is The Setter Method For The _ui Attribute.
 		
 		@param value: Attribute Value. ( Object )
 		'''
 
-		self._uiRu = value
+		self._ui = value
 
-	@uiRu.deleter
+	@ui.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiRu( self ):
+	def ui( self ):
 		'''
-		This Method Is The Deleter Method For The _uiRu Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRu" ) )
-
-	@property
-	@core.executionTrace
-	def uiDm( self ):
-		'''
-		This Method Is The Property For The _uiDm Attribute.
-
-		@return: self._uiDm. ( Object )
+		This Method Is The Deleter Method For The _ui Attribute.
 		'''
 
-		return self._uiDm
-
-	@uiDm.setter
-	@core.executionTrace
-	def uiDm( self, value ):
-		'''
-		This Method Is The Setter Method For The _uiDm Attribute.
-		
-		@param value: Attribute Value. ( Object )
-		'''
-
-		self._uiDm = value
-
-	@uiDm.deleter
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDm( self ):
-		'''
-		This Method Is The Deleter Method For The _uiDm Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDm" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "ui" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def initializeRuUi( self ):
+	def initializeUi( self ):
 		'''
 		This Method Initializes The Remote_Updater Widget Ui.
 		'''
@@ -924,17 +1182,17 @@ class RemoteUpdater( object ):
 		LOGGER.debug( "> Initializing '{0}' Ui.".format( self.__class__.__name__ ) )
 
 		if Constants.applicationName not in self._releases :
-			self._uiRu.sIBL_GUI_groupBox.hide()
-			self._uiRu.Get_sIBL_GUI_pushButton.hide()
+			self._ui.sIBL_GUI_groupBox.hide()
+			self._ui.Get_sIBL_GUI_pushButton.hide()
 		else :
-			self._uiRu.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
-			self._uiRu.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
-			self._uiRu.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
-			self._uiRu.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
+			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
+			self._ui.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
+			self._ui.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
+			self._ui.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
 
 		if not len( self._releases ):
-			self._uiRu.Templates_groupBox.hide()
-			self._uiRu.Get_Latest_Templates_pushButton.hide()
+			self._ui.Templates_groupBox.hide()
+			self._ui.Get_Latest_Templates_pushButton.hide()
 		else :
 			if Constants.applicationName in self._releases :
 				templatesReleases = dict( self._releases )
@@ -942,19 +1200,19 @@ class RemoteUpdater( object ):
 			else :
 				templatesReleases = self._releases
 
-			self._uiRu.Templates_tableWidget.clear()
-			self._uiRu.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
-			self._uiRu.Templates_tableWidget.setRowCount( len( templatesReleases ) )
-			self._uiRu.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
-			self._uiRu.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
-			self._uiRu.Templates_tableWidget.hideColumn( 0 )
-			self._uiRu.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
-			self._uiRu.Templates_tableWidget.setMinimumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
-			self._uiRu.Templates_tableWidget.setMaximumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+			self._ui.Templates_tableWidget.clear()
+			self._ui.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
+			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
+			self._ui.Templates_tableWidget.setColumnCount( len( self._templatesTableWidgetHeaders ) )
+			self._ui.Templates_tableWidget.setHorizontalHeaderLabels( self._templatesTableWidgetHeaders )
+			self._ui.Templates_tableWidget.hideColumn( 0 )
+			self._ui.Templates_tableWidget.horizontalHeader().setStretchLastSection( True )
+			self._ui.Templates_tableWidget.setMinimumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
+			self._ui.Templates_tableWidget.setMaximumHeight( len( templatesReleases ) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight )
 
 			palette = QPalette()
 			palette.setColor( QPalette.Base, Qt.transparent )
-			self._uiRu.Templates_tableWidget.setPalette( palette )
+			self._ui.Templates_tableWidget.setPalette( palette )
 
 			verticalHeaderLabels = []
 			for row, release in enumerate( templatesReleases ) :
@@ -962,41 +1220,33 @@ class RemoteUpdater( object ):
 
 					tableWidgetItem = QTableWidgetItem()
 					tableWidgetItem._datas = templatesReleases[release]
-					self._uiRu.Templates_tableWidget.setItem( row, 0, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 0, tableWidgetItem )
 
 					tableWidgetItem = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "Yes", "No" ) )
-					self._uiRu.Templates_tableWidget.setCellWidget( row, 1, tableWidgetItem )
+					self._ui.Templates_tableWidget.setCellWidget( row, 1, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].localVersion or Constants.nullObject )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._uiRu.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 2, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].repositoryVersion )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._uiRu.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 3, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].type )
 					tableWidgetItem.setTextAlignment( Qt.AlignCenter )
-					self._uiRu.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 4, tableWidgetItem )
 
 					tableWidgetItem = QTableWidgetItem( templatesReleases[release].comment )
-					self._uiRu.Templates_tableWidget.setItem( row, 5, tableWidgetItem )
+					self._ui.Templates_tableWidget.setItem( row, 5, tableWidgetItem )
 
-			self._uiRu.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
-			self._uiRu.Templates_tableWidget.resizeColumnsToContents()
+			self._ui.Templates_tableWidget.setVerticalHeaderLabels( verticalHeaderLabels )
+			self._ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self._uiRu.Get_Latest_Templates_pushButton.connect( self._uiRu.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
-		self._uiRu.Open_Repository_pushButton.connect( self._uiRu.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
-		self._uiRu.Close_pushButton.connect( self._uiRu.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
-
-	@core.executionTrace
-	def initializeDmUi( self ):
-		'''
-		This Method Initializes The Remote_Updater Widget Ui.
-		'''
-
-		self._uiDm.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
+		self._ui.Get_Latest_Templates_pushButton.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
+		self._ui.Open_Repository_pushButton.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
+		self._ui.Close_pushButton.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
 
 	@core.executionTrace
 	def Get_Latest_Templates_pushButton_OnClicked( self ):
@@ -1005,14 +1255,15 @@ class RemoteUpdater( object ):
 		'''
 
 		requests = []
-		for row in range( self._uiRu.Templates_tableWidget.rowCount() ) :
-			if self._uiRu.Templates_tableWidget.cellWidget( row, 1 ).state :
-				requests.append( self._uiRu.Templates_tableWidget.item( row, 0 )._datas )
+		for row in range( self._ui.Templates_tableWidget.rowCount() ) :
+			if self._ui.Templates_tableWidget.cellWidget( row, 1 ).state :
+				requests.append( self._ui.Templates_tableWidget.item( row, 0 )._datas )
 		if requests :
-			print self.getTemplatesDownloadFolder()
-			#self._uiDm.show()
-			#self._downloadManager = DownloadManager( self, self._networkAccessManager, requests )
-			#self._downloadManager.startDownload()
+			downloadFolder = self.getTemplatesDownloadFolder()
+			if downloadFolder :
+				self._downloadManager = DownloadManager( self, self._networkAccessManager, downloadFolder, [request.url for request in requests] )
+				self._downloadManager.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+				self._downloadManager.startDownload()
 
 	@core.executionTrace
 	def Open_Repository_pushButton_OnClicked( self ):
@@ -1030,7 +1281,7 @@ class RemoteUpdater( object ):
 		'''
 
 		LOGGER.info( "{0} | Closing '{1}' Updater !".format( self.__class__.__name__, Constants.applicationName ) )
-		self._uiRu.close()
+		self._ui.close()
 
 	@core.executionTrace
 	def getTemplatesDownloadFolder( self ):
@@ -1053,7 +1304,15 @@ class RemoteUpdater( object ):
 		elif reply == 2 :
 			return os.path.join( self._container.container.userApplicationDirectory, Constants.templatesDirectory )
 		elif reply == 1 :
-			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._uiRu, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
+			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
+
+	@core.executionTrace
+	def downloadManager_OnFinished( self ):
+		'''
+		This Method Is Triggered When The Download Manager Finishes.
+		'''
+
+		print self._downloadManager.downloads
 
 class OnlineUpdater( UiComponent ):
 	'''

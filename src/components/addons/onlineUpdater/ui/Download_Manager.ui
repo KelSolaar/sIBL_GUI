@@ -57,7 +57,7 @@
    <item row="1" column="0">
     <widget class="QGroupBox" name="Downloads_groupBox">
      <property name="title">
-      <string>Downloads</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -95,7 +95,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="Cancel_pushButton">
+      <widget class="QPushButton" name="Cancel_Close_pushButton">
        <property name="text">
         <string>Cancel</string>
        </property>
