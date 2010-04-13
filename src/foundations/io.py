@@ -203,6 +203,22 @@ class File( object ):
 				file.write( line )
 			return True
 
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, OSError )
+	def append( self ):
+		'''
+		This Method Append Content To Provided File.
+		
+		@return: Append Succes. ( Boolean )
+		'''
+
+		LOGGER.debug( "> Current File Path : '{0}'.".format( self._file ) )
+
+		with open( self._file, "a" ) as file:
+			for line in self._content:
+				file.write( line )
+			return True
+
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler( None, False, OSError )
 def setLocalDirectory( path ):
