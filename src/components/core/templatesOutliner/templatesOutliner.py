@@ -788,7 +788,7 @@ class TemplatesOutliner( UiComponent ):
 	@core.executionTrace
 	def Templates_Outliner_treeWidget_setActions( self ):
 		'''
-		This Method Sets The Templates_Outliner_treeWidget_setUi Actions.
+		This Method Sets The Templates_Outliner_treeWidget Actions.
 		'''
 
 		addTemplateAction = QAction( "Add Template ...", self.ui.Templates_Outliner_treeWidget )
