@@ -575,8 +575,6 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Manager_Ui_treeWidget.setIndentation( self._treeWidgetIndentation )
 		self.ui.Components_Manager_Ui_treeWidget.setSortingEnabled( True )
 
-		print self._container.componentsManager.paths
-
 		for path in self._container.componentsManager.paths :
 			pathTreeWidgetItem = QTreeWidgetItem()
 			pathTreeWidgetItem.setText( 0, path )
