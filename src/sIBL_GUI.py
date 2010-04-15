@@ -1336,14 +1336,12 @@ if __name__ == "__main__":
 	sIBL_GUI_start()
 	# TODO: Add Collections Scanner.
 	# TODO: Add Code Debugging Logging.
-	# TODO: Implement New Releases Checking.
 	# TODO: Add Status Bar Help On Widgets.
 	# TODO: Saves Default Layouts.
 	# TODO: Make About Window.
 	# TODO: Add Help Link.
 	# TODO: Better Component Comments.
-	# TODO: Split "io" directory.
-	# TODO: Add Template Origin In Templates.
+	# TODO: Add Origin In Templates.
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
