@@ -575,6 +575,8 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Manager_Ui_treeWidget.setIndentation( self._treeWidgetIndentation )
 		self.ui.Components_Manager_Ui_treeWidget.setSortingEnabled( True )
 
+		print self._container.componentsManager.paths
+
 		for path in self._container.componentsManager.paths :
 			pathTreeWidgetItem = QTreeWidgetItem()
 			pathTreeWidgetItem.setText( 0, path )
@@ -586,7 +588,8 @@ class ComponentsManagerUi( UiComponent ):
 			pathTreeWidgetItem.setExpanded( True )
 
 			for component in self._container.componentsManager.components :
-				if self._container.componentsManager.paths[path] in self._container.componentsManager.components[component].path :
+				print self._container.componentsManager.paths[path], self._container.componentsManager.components[component].path
+				if os.path.normpath( self._container.componentsManager.paths[path] ) in os.path.normpath( self._container.componentsManager.components[component].path ):
 					componentTreeWidgetItem = QTreeWidgetItem( pathTreeWidgetItem )
 
 					componentTreeWidgetItem.setText( 0, strings.getNiceName( self._container.componentsManager.components[component].module ) )
