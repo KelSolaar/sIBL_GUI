@@ -74,6 +74,8 @@ import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parser import Parser
+from foundations.pkzip import Pkzip
+reload( foundations.pkzip )
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
 from ui.widgets.variable_QPushButton import Variable_QPushButton
@@ -143,7 +145,7 @@ class DownloadManager( QObject ):
 		self._currentRequest = None
 
 		# Helper Attribute For QNetwork Reply Crash.
-		self._downloadFinished = None
+		self._downloadStatus = None
 
 		self._ui = uic.loadUi( self._uiPath )
 		if "." in sys.path :
@@ -455,36 +457,36 @@ class DownloadManager( QObject ):
 
 	@property
 	@core.executionTrace
-	def downloadFinished( self ):
+	def downloadStatus( self ):
 		'''
-		This Method Is The Property For The _downloadFinished Attribute.
+		This Method Is The Property For The _downloadStatus Attribute.
 
-		@return: self._downloadFinished. ( QObject )
+		@return: self._downloadStatus. ( QObject )
 		'''
 
-		return self._downloadFinished
+		return self._downloadStatus
 
-	@downloadFinished.setter
+	@downloadStatus.setter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def downloadFinished( self, value ):
+	def downloadStatus( self, value ):
 		'''
-		This Method Is The Setter Method For The _downloadFinished Attribute.
+		This Method Is The Setter Method For The _downloadStatus Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloadFinished" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "downloadStatus" ) )
 
-	@downloadFinished.deleter
+	@downloadStatus.deleter
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def downloadFinished( self ):
+	def downloadStatus( self ):
 		'''
-		This Method Is The Deleter Method For The _downloadFinished Attribute.
+		This Method Is The Deleter Method For The _downloadStatus Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadFinished" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "downloadStatus" ) )
 
 	@property
 	@core.executionTrace
@@ -532,7 +534,7 @@ class DownloadManager( QObject ):
 		self._ui.Download_progressBar.hide()
 		self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
 
-		self._ui.closeEvent = self.closeEvent #instancemethod(  )
+		self._ui.closeEvent = self.closeEvent
 
 		# Signals / Slots.
 		self._ui.Cancel_Close_pushButton.connect( self._ui.Cancel_Close_pushButton, SIGNAL( "clicked()" ), self.Cancel_Close_pushButton_OnClicked )
@@ -545,7 +547,7 @@ class DownloadManager( QObject ):
 		@param closeEvent: Close Event. ( QCloseEvent )
 		'''
 
-		self._downloadFinished or self.abortDownload()
+		self._downloadStatus or self.abortDownload()
 		closeEvent.accept()
 
 	@core.executionTrace
@@ -581,7 +583,7 @@ class DownloadManager( QObject ):
 		@param bytesTotal: Bytes Total. ( Integer )
 		'''
 
-		self._ui.Current_File_label.setText( "Downloading : '{0}'".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
+		self._ui.Current_File_label.setText( "Downloading : '{0}'.".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
 		self._ui.Download_progressBar.setRange( 0, bytesTotal )
 		self._ui.Download_progressBar.setValue( bytesReceived )
 
@@ -591,9 +593,7 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Is Ready To Write.
 		'''
 
-		outputFile = os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) )
-		self._downloads.append( outputFile )
-		file = File( outputFile, [self._currentRequest.readAll()] )
+		file = File( os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) ), [self._currentRequest.readAll()] )
 		file.append()
 
 	@core.executionTrace
@@ -602,13 +602,15 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Download Is Finished.
 		'''
 
+		self._downloads.append( os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) ) )
 		self._ui.Current_File_label.setText( "'{0}' Downloading Done !".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
 		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
 		if self._requests :
 			self.downloadNext()
 		else :
-			self._downloadFinished = True
+			self._downloadStatus = True
+			self._ui.Current_File_label.setText( "Downloads Finished !" )
 			self._ui.Cancel_Close_pushButton.setText( "Close" )
 			self.emit( SIGNAL( "downloadFinished()" ) )
 
@@ -618,7 +620,7 @@ class DownloadManager( QObject ):
 		This Method Triggers The Download.
 		'''
 
-		self._downloadFinished = False
+		self._downloadStatus = False
 		self.downloadNext()
 
 	@core.executionTrace
@@ -1190,16 +1192,14 @@ class RemoteUpdater( object ):
 			self._ui.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
 			self._ui.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
 
-		if not len( self._releases ):
+		templatesReleases = dict( self._releases )
+		if Constants.applicationName in self._releases :
+			templatesReleases.pop( Constants.applicationName )
+
+		if not templatesReleases :
 			self._ui.Templates_groupBox.hide()
 			self._ui.Get_Latest_Templates_pushButton.hide()
 		else :
-			if Constants.applicationName in self._releases :
-				templatesReleases = dict( self._releases )
-				templatesReleases.pop( Constants.applicationName )
-			else :
-				templatesReleases = self._releases
-
 			self._ui.Templates_tableWidget.clear()
 			self._ui.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
 			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
@@ -1312,7 +1312,16 @@ class RemoteUpdater( object ):
 		This Method Is Triggered When The Download Manager Finishes.
 		'''
 
-		print self._downloadManager.downloads
+		pkzip = Pkzip()
+		for download in self._downloadManager.downloads :
+			pkzip.archive = download
+			pkzip.extract( os.path.dirname( download ) )
+
+			LOGGER.info( "{0} | Deleting '{1}' Archive !".format( self.__class__.__name__, download ) )
+			os.remove( download )
+
+			self._container.coreTemplatesOutliner.getTemplates( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
+			self._container.coreTemplatesOutliner.refreshUi()
 
 class OnlineUpdater( UiComponent ):
 	'''
@@ -1342,6 +1351,8 @@ class OnlineUpdater( UiComponent ):
 		self._settings = None
 
 		self._corePreferencesManager = None
+		self._coreDb = None
+		self._coreTemplatesOutliner = None
 
 		self._ioDirectory = "remote/"
 
@@ -1551,6 +1562,39 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
+
+	@property
+	@core.executionTrace
+	def coreTemplatesOutliner( self ):
+		'''
+		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+
+		@return: self._coreTemplatesOutliner. ( Object )
+		'''
+
+		return self._coreTemplatesOutliner
+
+	@coreTemplatesOutliner.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreTemplatesOutliner( self, value ):
+		'''
+		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreTemplatesOutliner" ) )
+
+	@coreTemplatesOutliner.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreTemplatesOutliner( self ):
+		'''
+		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreTemplatesOutliner" ) )
 
 	@property
 	@core.executionTrace
@@ -1768,6 +1812,7 @@ class OnlineUpdater( UiComponent ):
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
+		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
 		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
 		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
@@ -1789,6 +1834,7 @@ class OnlineUpdater( UiComponent ):
 
 		self._corePreferencesManager = None
 		self._coreDb = None
+		self._coreTemplatesOutliner = None
 
 		self._ioDirectory = os.path.basename( os.path.abspath( self._ioDirectory ) )
 
