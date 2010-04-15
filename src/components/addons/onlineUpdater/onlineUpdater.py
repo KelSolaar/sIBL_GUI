@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import platform
 import sys
 from new import instancemethod
 from PyQt4 import uic
@@ -75,7 +76,6 @@ import ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parser import Parser
 from foundations.pkzip import Pkzip
-reload( foundations.pkzip )
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
 from ui.widgets.variable_QPushButton import Variable_QPushButton
@@ -658,6 +658,7 @@ class RemoteUpdater( object ):
 		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
 		self._uiGreenColor = QColor( 128, 192, 128 )
 		self._uiRedColor = QColor( 192, 128, 128 )
+		self._splitter = "|"
 		self._tableWidgetRowHeight = 30
 		self._tableWidgetHeaderHeight = 25
 
@@ -909,6 +910,39 @@ class RemoteUpdater( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRedColor" ) )
+
+	@property
+	@core.executionTrace
+	def splitter( self ):
+		'''
+		This Method Is The Property For The _splitter Attribute.
+
+		@return: self._splitter. ( String )
+		'''
+
+		return self._splitter
+
+	@splitter.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def splitter( self, value ):
+		'''
+		This Method Is The Setter Method For The _splitter Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "splitter" ) )
+
+	@splitter.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def splitter( self ):
+		'''
+		This Method Is The Deleter Method For The _splitter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "splitter" ) )
 
 	@property
 	@core.executionTrace
@@ -1244,9 +1278,29 @@ class RemoteUpdater( object ):
 			self._ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
+		self._ui.Get_sIBL_GUI_pushButton.connect( self._ui.Get_sIBL_GUI_pushButton, SIGNAL( "clicked()" ), self.Get_sIBL_GUI_pushButton_OnClicked )
 		self._ui.Get_Latest_Templates_pushButton.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
 		self._ui.Open_Repository_pushButton.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
 		self._ui.Close_pushButton.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+
+	@core.executionTrace
+	def Get_sIBL_GUI_pushButton_OnClicked( self ):
+		'''
+		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
+		'''
+		urlTokens = self.releases[Constants.applicationName].url.split( self._splitter )
+		builds = dict( [( urlTokens[i].strip(), urlTokens[i + 1].strip( " \"" ) ) for i in range( 0, len( urlTokens ), 2 )] )
+
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+			url = builds["Windows"]
+		elif platform.system() == "Darwin" :
+			url = builds["Mac Os X"]
+		elif platform.system() == "Linux":
+			url = builds["Linux"]
+
+		self._downloadManager = DownloadManager( self, self._networkAccessManager, self._container.ioDirectory, [url] )
+		self._downloadManager.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+		self._downloadManager.startDownload()
 
 	@core.executionTrace
 	def Get_Latest_Templates_pushButton_OnClicked( self ):
@@ -1312,16 +1366,20 @@ class RemoteUpdater( object ):
 		This Method Is Triggered When The Download Manager Finishes.
 		'''
 
-		pkzip = Pkzip()
 		for download in self._downloadManager.downloads :
-			pkzip.archive = download
-			pkzip.extract( os.path.dirname( download ) )
+			if download.endswith( ".zip" ) :
+				pkzip = Pkzip()
+				pkzip.archive = download
+				pkzip.extract( os.path.dirname( download ) )
 
-			LOGGER.info( "{0} | Deleting '{1}' Archive !".format( self.__class__.__name__, download ) )
-			os.remove( download )
+				LOGGER.info( "{0} | Deleting '{1}' Archive !".format( self.__class__.__name__, download ) )
+				os.remove( download )
 
-			self._container.coreTemplatesOutliner.getTemplates( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
-			self._container.coreTemplatesOutliner.refreshUi()
+				self._container.coreTemplatesOutliner.getTemplates( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
+				self._container.coreTemplatesOutliner.refreshUi()
+			else :
+				if self._container.addonsLocationsBrowser.activated :
+					self._container.addonsLocationsBrowser.exploreProvidedFolder( os.path.dirname( download ) )
 
 class OnlineUpdater( UiComponent ):
 	'''
@@ -1353,6 +1411,7 @@ class OnlineUpdater( UiComponent ):
 		self._corePreferencesManager = None
 		self._coreDb = None
 		self._coreTemplatesOutliner = None
+		self._addonsLocationsBrowser = None
 
 		self._ioDirectory = "remote/"
 
@@ -1598,6 +1657,39 @@ class OnlineUpdater( UiComponent ):
 
 	@property
 	@core.executionTrace
+	def addonsLocationsBrowser( self ):
+		'''
+		This Method Is The Property For The _addonsLocationsBrowser Attribute.
+
+		@return: self._addonsLocationsBrowser. ( Object )
+		'''
+
+		return self._addonsLocationsBrowser
+
+	@addonsLocationsBrowser.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def addonsLocationsBrowser( self, value ):
+		'''
+		This Method Is The Setter Method For The _addonsLocationsBrowser Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "addonsLocationsBrowser" ) )
+
+	@addonsLocationsBrowser.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def addonsLocationsBrowser( self ):
+		'''
+		This Method Is The Deleter Method For The _addonsLocationsBrowser Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "addonsLocationsBrowser" ) )
+
+	@property
+	@core.executionTrace
 	def ioDirectory( self ):
 		'''
 		This Method Is The Property For The _ioDirectory Attribute.
@@ -1809,10 +1901,12 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
+		self._settings = self._container.settings
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+		self._addonsLocationsBrowser = self._container.componentsManager.components["addons.locationsBrowser"].interface
 
 		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
 		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
@@ -1831,10 +1925,12 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
+		self._settings = None
 
 		self._corePreferencesManager = None
 		self._coreDb = None
 		self._coreTemplatesOutliner = None
+		self._addonsLocationsBrowser = None
 
 		self._ioDirectory = os.path.basename( os.path.abspath( self._ioDirectory ) )
 
@@ -1850,8 +1946,11 @@ class OnlineUpdater( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
+		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
+
 		# Signals / Slots.
 		self.ui.Check_For_New_Releases_pushButton.connect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.connect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged( int )" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -1863,6 +1962,39 @@ class OnlineUpdater( UiComponent ):
 
 		# Signals / Slots.
 		self.ui.Check_For_New_Releases_pushButton.disconnect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.disconnect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged()" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+
+	@core.executionTrace
+	def Check_For_New_Releases_On_Startup_checkBox_setUi( self ) :
+		'''
+		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
+		'''
+
+		# Adding Settings Key If It Does'nt Exists.
+		self._settings.getKey( "Others", "CheckForNewReleasesOnStartup" ).isNull() and self._settings.setKey( "Others", "CheckForNewReleasesOnStartup", Qt.Checked )
+
+		checkForNewReleasesOnStartup = self._settings.getKey( "Others", "CheckForNewReleasesOnStartup" )
+		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0] ) )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState( checkForNewReleasesOnStartup.toInt()[0] )
+
+	@core.executionTrace
+	def Check_For_New_Releases_On_Startup_checkBox_OnStateChanged( self, state ) :
+		'''
+		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
+		
+		@param state: Checkbox State. ( Integer )
+		'''
+
+		LOGGER.debug( "> Check For New Releases On Startup State : '{0}'.".format( self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() ) )
+		self._settings.setKey( "Others", "CheckForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
+
+	@core.executionTrace
+	def onStartup( self ):
+		'''
+		This Method Is Called On Framework Startup.
+		'''
+
+		self._ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 
 	@core.executionTrace
 	def addWidget( self ):
