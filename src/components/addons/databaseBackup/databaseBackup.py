@@ -489,7 +489,7 @@ class DatabaseBackup( Component ):
 		This Method Initializes The Component.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug( "> Initializing '{0}' Component.".format( self.__class__.__name__ ) )
 
 		pass
 
@@ -499,7 +499,7 @@ class DatabaseBackup( Component ):
 		This Method Uninitializes The Component.
 		'''
 
-		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug( "> Uninitializing '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._databaseFile = None
 		self._destination = None

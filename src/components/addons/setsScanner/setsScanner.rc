@@ -1,0 +1,12 @@
+[Component]
+Name = addons.setsScanner
+Module = setsScanner
+Object = SetsScanner
+Rank = 65
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = kelsolaar_fool@hotmail.com
+Url = http://www.hdrlabs.com/
+Description = This is the sIBL_GUI Sets Scanner Addons Component.
