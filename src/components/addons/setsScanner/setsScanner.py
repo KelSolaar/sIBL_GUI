@@ -99,6 +99,8 @@ class SetsScanner( Component ):
 
 		self._container = None
 
+		self._extension = ".ibl"
+
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
 
@@ -137,6 +139,39 @@ class SetsScanner( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	@core.executionTrace
+	def extension( self ):
+		'''
+		This Method Is The Property For The _extension Attribute.
+
+		@return: self._extension. ( String )
+		'''
+
+		return self._extension
+
+	@extension.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def extension( self, value ):
+		'''
+		This Method Is The Setter Method For The _extension Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "extension" ) )
+
+	@extension.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def extension( self ):
+		'''
+		This Method Is The Deleter Method For The _extension Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "extension" ) )
 
 	@property
 	@core.executionTrace
@@ -204,6 +239,39 @@ class SetsScanner( Component ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
 
+	@property
+	@core.executionTrace
+	def coreDatabaseBrowser( self ):
+		'''
+		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+
+		@return: self._coreDatabaseBrowser. ( Object )
+		'''
+
+		return self._coreDatabaseBrowser
+
+	@coreDatabaseBrowser.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDatabaseBrowser( self, value ):
+		'''
+		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+
+	@coreDatabaseBrowser.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDatabaseBrowser( self ):
+		'''
+		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -221,6 +289,7 @@ class SetsScanner( Component ):
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
+		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
 
@@ -236,6 +305,7 @@ class SetsScanner( Component ):
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
+		self._coreDatabaseBrowser = None
 
 		self._deactivate()
 
@@ -245,7 +315,7 @@ class SetsScanner( Component ):
 		This Method Initializes The Component.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug( "> Initializing '{0}' Component.".format( self.__class__.__name__ ) )
 
 		pass
 
@@ -255,10 +325,9 @@ class SetsScanner( Component ):
 		This Method Uninitializes The Component.
 		'''
 
-		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug( "> Uninitializing '{0}' Component.".format( self.__class__.__name__ ) )
 
-		self._databaseFile = None
-		self._destination = None
+		pass
 
 	@core.executionTrace
 	def onStartup( self ):
@@ -274,21 +343,24 @@ class SetsScanner( Component ):
 		This Method Scans Sets Directories.
 		'''
 
-		LOGGER.info( "{0} | Scanning Sets Directories !".format( self.__class__.__name__, Constants.databaseFile, self._destination ) )
+		LOGGER.info( "{0} | Scanning Sets Directories For New Sets !".format( self.__class__.__name__ ) )
 
 		paths = [path[0] for path in self._coreDb.dbSession.query( dbUtilities.types.DbSet.path ).all()]
 		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
+		needUiRefresh = False
 		for folder in folders :
 			walker = Walker( folder )
 			walker.walk( self._extension )
 			for set_, path in walker.files.items() :
 				if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+					needUiRefresh = True
 					LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, set_ ) )
 					if not dbUtilities.common.addSet( self._coreDb.dbSession, set_, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
 						LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, set_ ) )
-					else :
-						LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, set_ ) )
 
+		if needUiRefresh :
+			self._coreDatabaseBrowser.setCollectionsDisplaySets()
+			self._coreDatabaseBrowser.refreshUi()
 
 #***********************************************************************************************
 #***	Python End

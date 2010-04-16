@@ -2,7 +2,7 @@
 Name = addons.setsScanner
 Module = setsScanner
 Object = SetsScanner
-Rank = 65
+Rank = 80
 Version = 1.0
 
 [Informations]
