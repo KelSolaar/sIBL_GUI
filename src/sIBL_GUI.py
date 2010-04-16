@@ -1334,7 +1334,6 @@ def setApplicationPreferencesDirectories( path ):
 #***********************************************************************************************
 if __name__ == "__main__":
 	sIBL_GUI_start()
-	# TODO: Add Collections Scanner.
 	# TODO: Add Code Debugging Logging.
 	# TODO: Saves Default Layouts.
 	# TODO: Make About Window.
