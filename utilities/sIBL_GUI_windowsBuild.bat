@@ -15,6 +15,7 @@ xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI.ui" "Y:\sIBL_GUI\releases\Windows\sIBL_
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_SpashScreen.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Logo.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Layout.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
+xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Help.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_CentralWidget.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\components" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\components"
 rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\Help" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Help\"

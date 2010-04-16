@@ -70,6 +70,7 @@ class UiConstants():
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
 	frameworLayoutIcon = "./resources/sIBL_GUI_Layout.png"
 	frameworCentralWidgetIcon = "./resources/sIBL_GUI_CentralWidget.png"
+	frameworkMiscIcon = "./resources/sIBL_GUI_Misc.png"
 
 	componentsDirectory = "components"
 

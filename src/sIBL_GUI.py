@@ -296,6 +296,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._setsCentricLayoutComponents = []
 		self._templatesCentricLayoutComponents = []
 		self._preferencesCentricLayoutComponents = []
+		self._layoutMenu = None
+		self._miscMenu = None
 
 		# --- Initializing sIBL_GUI. ---
 		SPLASHSCREEN.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
@@ -894,6 +896,72 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "preferencesCentricLayoutComponents" ) )
 
+	@property
+	@core.executionTrace
+	def layoutMenu( self ):
+		'''
+		This Method Is The Property For The _layoutMenu Attribute.
+
+		@return: self._layoutMenu. ( QMenu )
+		'''
+
+		return self._layoutMenu
+
+	@layoutMenu.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutMenu( self, value ):
+		'''
+		This Method Is The Setter Method For The _layoutMenu Attribute.
+
+		@param value: Attribute Value. ( QMenu )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "layoutMenu" ) )
+
+	@layoutMenu.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutMenu( self ):
+		'''
+		This Method Is The Deleter Method For The _layoutMenu Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "layoutMenu" ) )
+
+	@property
+	@core.executionTrace
+	def miscMenu( self ):
+		'''
+		This Method Is The Property For The _miscMenu Attribute.
+
+		@return: self._miscMenu. ( QMenu )
+		'''
+
+		return self._miscMenu
+
+	@miscMenu.setter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def miscMenu( self, value ):
+		'''
+		This Method Is The Setter Method For The _miscMenu Attribute.
+
+		@param value: Attribute Value. ( QMenu )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "miscMenu" ) )
+
+	@miscMenu.deleter
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def miscMenu( self ):
+		'''
+		This Method Is The Deleter Method For The _miscMenu Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "miscMenu" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -938,7 +1006,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		layoutbutton.setIcon( QIcon( QPixmap( UiConstants.frameworLayoutIcon ) ) )
 		layoutbutton.setPopupMode( QToolButton.InstantPopup )
 
-		self.layoutMenu = QMenu( "Layout", layoutbutton )
+		self._layoutMenu = QMenu( "Layout", layoutbutton )
 
 		restoreSetsCentricLayoutAction = QAction( "Restore Sets Centric Layout", self )
 		restoreSetsCentricLayoutAction.setShortcut( QKeySequence( Qt.Key_0 ) )
@@ -972,21 +1040,21 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		storeLayoutFiveAction = QAction( "Store Layout 5", self )
 		storeLayoutFiveAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_5 ) )
 
-		self.layoutMenu.addAction( restoreSetsCentricLayoutAction )
-		self.layoutMenu.addAction( restoreTemplatesCentricLayoutAction )
-		self.layoutMenu.addAction( restorePreferencesCentricLayoutAction )
-		self.layoutMenu.addSeparator()
-		self.layoutMenu.addAction( restoreLayoutOneAction )
-		self.layoutMenu.addAction( restoreLayoutTwoAction )
-		self.layoutMenu.addAction( restoreLayoutThreeAction )
-		self.layoutMenu.addAction( restoreLayoutFourAction )
-		self.layoutMenu.addAction( restoreLayoutFiveAction )
-		self.layoutMenu.addSeparator()
-		self.layoutMenu.addAction( storeLayoutOneAction )
-		self.layoutMenu.addAction( storeLayoutTwoAction )
-		self.layoutMenu.addAction( storeLayoutThreeAction )
-		self.layoutMenu.addAction( storeLayoutFourAction )
-		self.layoutMenu.addAction( storeLayoutFiveAction )
+		self._layoutMenu.addAction( restoreSetsCentricLayoutAction )
+		self._layoutMenu.addAction( restoreTemplatesCentricLayoutAction )
+		self._layoutMenu.addAction( restorePreferencesCentricLayoutAction )
+		self._layoutMenu.addSeparator()
+		self._layoutMenu.addAction( restoreLayoutOneAction )
+		self._layoutMenu.addAction( restoreLayoutTwoAction )
+		self._layoutMenu.addAction( restoreLayoutThreeAction )
+		self._layoutMenu.addAction( restoreLayoutFourAction )
+		self._layoutMenu.addAction( restoreLayoutFiveAction )
+		self._layoutMenu.addSeparator()
+		self._layoutMenu.addAction( storeLayoutOneAction )
+		self._layoutMenu.addAction( storeLayoutTwoAction )
+		self._layoutMenu.addAction( storeLayoutThreeAction )
+		self._layoutMenu.addAction( storeLayoutFourAction )
+		self._layoutMenu.addAction( storeLayoutFiveAction )
 
 		self.connect( restoreSetsCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreSetsCentricLayoutAction_OnTriggered )
 		self.connect( restoreTemplatesCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreTemplatesCentricLayoutAction_OnTriggered )
@@ -1002,9 +1070,28 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.connect( storeLayoutFourAction, SIGNAL( "triggered()" ), self.storeLayoutFourAction_OnTriggered )
 		self.connect( storeLayoutFiveAction, SIGNAL( "triggered()" ), self.storeLayoutFiveAction_OnTriggered )
 
-		layoutbutton.setMenu( self.layoutMenu )
+		layoutbutton.setMenu( self._layoutMenu )
 
 		self.toolBar.addWidget( layoutbutton )
+
+		miscButton = QToolButton()
+		miscButton.setIcon( QIcon( QPixmap( UiConstants.frameworkMiscIcon ) ) )
+		miscButton.setPopupMode( QToolButton.InstantPopup )
+
+		helpDisplayMiscAction = QAction( "Help Content ...", self )
+		apiDisplayMiscAction = QAction( "Api Content ...", self )
+		aboutMiscAction = QAction( "About {0} ...".format( Constants.applicationName ), self )
+
+		self._miscMenu = QMenu( "Miscellaneous", miscButton )
+
+		self._miscMenu.addAction( helpDisplayMiscAction )
+		self._miscMenu.addAction( apiDisplayMiscAction )
+		self._miscMenu.addSeparator()
+		self._miscMenu.addAction( aboutMiscAction )
+
+		miscButton.setMenu( self._miscMenu )
+
+		self.toolBar.addWidget( miscButton )
 
 	@core.executionTrace
 	def centralWidgetButton_OnClicked( self ):
