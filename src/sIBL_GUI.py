@@ -1336,7 +1336,6 @@ if __name__ == "__main__":
 	sIBL_GUI_start()
 	# TODO: Add Collections Scanner.
 	# TODO: Add Code Debugging Logging.
-	# TODO: Add Status Bar Help On Widgets.
 	# TODO: Saves Default Layouts.
 	# TODO: Make About Window.
 	# TODO: Add Help Link.

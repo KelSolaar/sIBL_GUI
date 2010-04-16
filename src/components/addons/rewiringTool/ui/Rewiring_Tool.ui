@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Rewiring_Tool_DockWidget</class>
  <widget class="QDockWidget" name="Rewiring_Tool_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>283</width>
+    <height>351</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Rewiring Tool</string>
   </property>
@@ -25,7 +33,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="Background_comboBox"/>
+         <widget class="QComboBox" name="Background_comboBox">
+          <property name="statusTip">
+           <string>Background Combo Box : Rewires Background With Selected Component.</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -42,7 +54,11 @@
           <number>0</number>
          </property>
          <item row="1" column="0">
-          <widget class="QLineEdit" name="Background_Path_lineEdit"/>
+          <widget class="QLineEdit" name="Background_Path_lineEdit">
+           <property name="statusTip">
+            <string>Background Path Line Edit : Custom Background Component.</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QToolButton" name="Background_Path_toolButton">
@@ -77,7 +93,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="Lighting_comboBox"/>
+         <widget class="QComboBox" name="Lighting_comboBox">
+          <property name="statusTip">
+           <string>Lighting Combo Box : Rewires Lighting With Selected Component.</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -94,7 +114,11 @@
           <number>0</number>
          </property>
          <item row="1" column="0">
-          <widget class="QLineEdit" name="Lighting_Path_lineEdit"/>
+          <widget class="QLineEdit" name="Lighting_Path_lineEdit">
+           <property name="statusTip">
+            <string>Lighting Path Line Edit : Custom Lighting Component.</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QToolButton" name="Lighting_Path_toolButton">
@@ -129,7 +153,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="Reflection_comboBox"/>
+         <widget class="QComboBox" name="Reflection_comboBox">
+          <property name="statusTip">
+           <string>Reflection Combo Box : Rewires Reflection With Selected Component.</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -146,7 +174,11 @@
           <number>0</number>
          </property>
          <item row="1" column="0">
-          <widget class="QLineEdit" name="Reflection_Path_lineEdit"/>
+          <widget class="QLineEdit" name="Reflection_Path_lineEdit">
+           <property name="statusTip">
+            <string>Reflection Path Line Edit : Custom Reflection Component.</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QToolButton" name="Reflection_Path_toolButton">

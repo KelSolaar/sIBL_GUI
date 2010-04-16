@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Online_Updater_Form</class>
  <widget class="QWidget" name="Online_Updater_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>346</width>
+    <height>110</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -18,7 +26,7 @@
       <item row="1" column="0">
        <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
         <property name="statusTip">
-         <string>Check For New_Releases PushButton : sIBL_GUI Will Check If New Releases Are Available Online.</string>
+         <string>Check For New Releases Push Button : Checks If New Releases Are Available Online.</string>
         </property>
         <property name="text">
          <string>Check For New Releases</string>
@@ -50,7 +58,7 @@
         <item>
          <widget class="QCheckBox" name="Check_For_New_Releases_On_Startup_checkBox">
           <property name="statusTip">
-           <string>Check For New Releases On Startup CheckBox : sIBL_GUI Will Check If New Releases Are Available On Startup.</string>
+           <string>Check For New Releases On Startup Check Box :  Check If New Releases Are Available On Startup.</string>
           </property>
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>

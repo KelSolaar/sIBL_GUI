@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>310</width>
+    <height>348</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -32,12 +40,16 @@
           </property>
           <layout class="QGridLayout" name="Search_groupBox_gridLayout">
            <item row="0" column="0" colspan="2">
-            <widget class="QComboBox" name="Search_Database_comboBox"/>
+            <widget class="QComboBox" name="Search_Database_comboBox">
+             <property name="statusTip">
+              <string>Search Database Combo Box : Database Fields Types.</string>
+             </property>
+            </widget>
            </item>
            <item row="1" column="0">
             <widget class="QLineEdit" name="Search_Database_lineEdit">
              <property name="statusTip">
-              <string>Search Database LineEdit : Searches Input Text Through The Database.</string>
+              <string>Search Database Line Edit : Searches Input Text Through The Database.</string>
              </property>
             </widget>
            </item>
@@ -157,6 +169,9 @@
                <height>16777215</height>
               </size>
              </property>
+             <property name="statusTip">
+              <string>Time Low Time Edit : Time From When To Search.</string>
+             </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
@@ -179,6 +194,9 @@
                <width>64</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="statusTip">
+              <string>High Time Edit : Time To When To Search.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

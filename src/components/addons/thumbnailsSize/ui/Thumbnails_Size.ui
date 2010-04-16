@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Thumbnails_Size_DockWidget</class>
  <widget class="QDockWidget" name="Thumbnails_Size_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>169</width>
+    <height>126</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Thumbnails Size</string>
   </property>
@@ -48,7 +56,7 @@
     <item row="0" column="1">
      <widget class="QSlider" name="Thumbnails_Size_horizontalSlider">
       <property name="statusTip">
-       <string>Thumbnails Size Horizontal Slider : Adjust Database Browser Icon Size.</string>
+       <string>Thumbnails Size Horizontal Slider : Adjusts Database Browser Icon Size.</string>
       </property>
       <property name="minimum">
        <number>24</number>

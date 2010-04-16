@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Preferences_Manager_DockWidget</class>
  <widget class="QDockWidget" name="Preferences_Manager_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>340</width>
+    <height>260</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Preferences Manager</string>
   </property>
@@ -75,7 +83,7 @@
              <item>
               <widget class="QComboBox" name="Verbose_Level_comboBox">
                <property name="statusTip">
-                <string>Verbose Level ComboBox : Defines sIBL_GUI Verbose Level : Each Option Encompasses The Ones Over It In The List.</string>
+                <string>Verbose Level ComboBox : Defines Application Verbose Level : Each Option Encompasses The Ones Over It In The List.</string>
                </property>
               </widget>
              </item>

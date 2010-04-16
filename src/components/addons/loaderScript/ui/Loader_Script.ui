@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Loader_Script_DockWidget</class>
  <widget class="QDockWidget" name="Loader_Script_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>239</width>
+    <height>278</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Loader Script</string>
   </property>
@@ -22,7 +30,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Send To Software PushButton : Direct Connection To Target Application If Remote Connection Is Available.</string>
+          <string>Send To Software Push Button : Direct Connection To Target Application If Remote Connection Is Available.</string>
          </property>
          <property name="text">
           <string>Send To Software</string>
@@ -57,7 +65,7 @@
              </size>
             </property>
             <property name="statusTip">
-             <string>Software Port SpinBox : Opened Port Of The Target 3D Package.</string>
+             <string>Software Port Spin Box : Port Of The Target 3D Package.</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -73,7 +81,7 @@
           <item row="1" column="1">
            <widget class="QLineEdit" name="Address_lineEdit">
             <property name="statusTip">
-             <string>Ip Address LineEdit : Ip Adress Of The Computer Running The Target 3D Package.</string>
+             <string>Ip Address Line Edit : Ip Adress Of The Computer Running The Target 3D Package.</string>
             </property>
             <property name="text">
              <string>127.0.0.1</string>
@@ -120,7 +128,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Output Loader Script PushButton : Outputs The Loader Script.</string>
+         <string>Output Loader Script Push Button : Outputs The Loader Script.</string>
         </property>
         <property name="text">
          <string>Output Loader Script</string>

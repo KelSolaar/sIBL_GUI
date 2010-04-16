@@ -56,6 +56,9 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="Downloads_groupBox">
+     <property name="statusTip">
+      <string>Downloads Group Box : Current Downloads.</string>
+     </property>
      <property name="title">
       <string/>
      </property>
@@ -63,6 +66,9 @@
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
      </property>
      <layout class="QGridLayout" name="Online_Repository_groupBox_gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="Current_File_label"/>
+      </item>
       <item row="1" column="0">
        <widget class="QProgressBar" name="Download_progressBar">
         <property name="value">
@@ -70,13 +76,9 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="Current_File_label"/>
-      </item>
      </layout>
      <zorder>Current_File_label</zorder>
      <zorder>Download_progressBar</zorder>
-     <zorder>verticalLayoutWidget</zorder>
     </widget>
    </item>
    <item row="3" column="0">
@@ -118,12 +120,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../sIBL_GUI_FTP.qrc"/>
-  <include location="../sIBL_GUI_FTP.qrc"/>
-  <include location="../sIBL_GUI_FTP.qrc"/>
-  <include location="../sIBL_GUI_FTP.qrc"/>
-  <include location="../sIBL_GUI_FTP.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

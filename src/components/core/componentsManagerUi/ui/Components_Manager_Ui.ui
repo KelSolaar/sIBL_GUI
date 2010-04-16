@@ -21,6 +21,9 @@
        <enum>Qt::Vertical</enum>
       </property>
       <widget class="QTreeWidget" name="Components_Manager_Ui_treeWidget">
+       <property name="statusTip">
+        <string>Components Manager Ui Tree : Displays Application Components</string>
+       </property>
        <column>
         <property name="text">
          <string notr="true">1</string>
@@ -34,6 +37,9 @@
        <layout class="QGridLayout" name="Components_Informations_groupBox_gridLayout">
         <item row="0" column="0">
          <widget class="QTextBrowser" name="Components_Informations_textBrowser">
+          <property name="statusTip">
+           <string>Components Informations Text Browser : Displays Selected Components Informations.</string>
+          </property>
           <property name="openExternalLinks">
            <bool>true</bool>
           </property>
