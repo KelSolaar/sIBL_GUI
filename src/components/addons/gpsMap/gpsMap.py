@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import platform
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -597,7 +598,7 @@ class GpsMap( UiComponent ):
 
 		self._map = Map()
 		self._map.setMinimumSize( self._gpsMapBaseSize )
-		self._map.load( QUrl( "file://{0}".format( os.path.join( self._uiResources, self._gpsMapHtmlFile ) ) ) )
+		self._map.load( QUrl.fromLocalFile( os.path.normpath( os.path.join( self._uiResources, self._gpsMapHtmlFile ) ) ) )
 
 		self.ui.Map_groupBox_gridLayout.addWidget( self._map )
 
