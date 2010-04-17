@@ -838,7 +838,7 @@ class Manager( object ) :
 
 			sys.path.append( profile.path )
 			profile.import_ = __import__( profile.module )
-			object_ = profile.object_ in dir( profile._import ) and getattr( profile.import_, profile.object_ ) or None
+			object_ = profile.object_ in profile._import.__dict__ and getattr( profile.import_, profile.object_ ) or None
 			if object_ and inspect.isclass( object_ ) :
 				for categorie, type in self._categories.items() :
 					profile.categorie = categorie
