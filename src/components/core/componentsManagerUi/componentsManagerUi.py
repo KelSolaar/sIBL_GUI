@@ -632,7 +632,6 @@ class ComponentsManagerUi( UiComponent ):
 
 		self.Components_Manager_Ui_treeWidget_refreshActivationsStatus()
 
-
 	@core.executionTrace
 	def Components_Manager_Ui_treeWidget_refreshActivationsStatus( self ):
 		'''
