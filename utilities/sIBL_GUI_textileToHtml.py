@@ -114,9 +114,8 @@ def textileToHtml( fileIn, fileOut, title ):
 	                color: rgb(50, 100, 150);
 	            }
 	        </style>\n""" )
-	output.append( "\t</head>\n\t<body>\n" )
-	output.append( "\t\t<span>\n\t\t" )
-	output.append( "\n\t\t".join( [line for line in textile.textile( "".join( file.content ) ).split( "\n" ) if line] ) )
+	output.append( "\t</head>\n\t<body>\n\t" )
+	output.append( "\n\t".join( [line for line in textile.textile( "".join( file.content ) ).split( "\n" ) if line] ) )
 	output.append( "\t\t</span>\n" )
 	output.append( "\t</body>\n</html>" )
 
