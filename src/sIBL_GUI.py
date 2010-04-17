@@ -1026,14 +1026,12 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		helpDisplayMiscAction = QAction( "Help Content ...", self )
 		apiDisplayMiscAction = QAction( "Api Content ...", self )
-		aboutMiscAction = QAction( "About {0} ...".format( Constants.applicationName ), self )
 
 		self._miscMenu = QMenu( "Miscellaneous", miscButton )
 
 		self._miscMenu.addAction( helpDisplayMiscAction )
 		self._miscMenu.addAction( apiDisplayMiscAction )
 		self._miscMenu.addSeparator()
-		self._miscMenu.addAction( aboutMiscAction )
 
 		miscButton.setMenu( self._miscMenu )
 
