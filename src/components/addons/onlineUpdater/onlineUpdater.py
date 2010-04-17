@@ -1322,7 +1322,6 @@ class OnlineUpdater( UiComponent ):
 		self.deactivatable = True
 
 		self._uiPath = "ui/Online_Updater.ui"
-		self._dockArea = 8
 
 		self._container = None
 		self._settings = None
@@ -1374,36 +1373,6 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
-
-	@property
-	def dockArea( self ):
-		'''
-		This Method Is The Property For The _dockArea Attribute.
-
-		@return: self._dockArea. ( Integer )
-		'''
-
-		return self._dockArea
-
-	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
-		'''
-		This Method Is The Setter Method For The _dockArea Attribute.
-
-		@param value: Attribute Value. ( Integer )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
-
-	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
-		'''
-		This Method Is The Deleter Method For The _dockArea Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
 	def container( self ):
