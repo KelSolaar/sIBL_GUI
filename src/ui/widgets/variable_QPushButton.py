@@ -114,7 +114,6 @@ class Variable_QPushButton( QPushButton ) :
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def state( self ):
 		'''
 		This Method Is The Property For The _state Attribute.
@@ -125,7 +124,6 @@ class Variable_QPushButton( QPushButton ) :
 		return self._state
 
 	@state.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def state( self, value ):
 		'''
@@ -139,7 +137,6 @@ class Variable_QPushButton( QPushButton ) :
 		self._state = value
 
 	@state.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def state( self ):
 		'''
@@ -149,7 +146,6 @@ class Variable_QPushButton( QPushButton ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "state" ) )
 
 	@property
-	@core.executionTrace
 	def colors( self ):
 		'''
 		This Method Is The Property For The _colors Attribute.
@@ -160,7 +156,6 @@ class Variable_QPushButton( QPushButton ) :
 		return self._colors
 
 	@colors.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def colors( self, value ):
 		'''
@@ -176,7 +171,6 @@ class Variable_QPushButton( QPushButton ) :
 		self._colors = value
 
 	@colors.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def colors( self ):
 		'''
@@ -186,7 +180,6 @@ class Variable_QPushButton( QPushButton ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "colors" ) )
 
 	@property
-	@core.executionTrace
 	def labels( self ):
 		'''
 		This Method Is The Property For The _labels Attribute.
@@ -197,7 +190,6 @@ class Variable_QPushButton( QPushButton ) :
 		return self._labels
 
 	@labels.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def labels( self, value ):
 		'''
@@ -213,7 +205,6 @@ class Variable_QPushButton( QPushButton ) :
 		self._labels = value
 
 	@labels.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def labels( self ):
 		'''

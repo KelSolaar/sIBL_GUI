@@ -99,7 +99,6 @@ class File( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def file( self ):
 		'''
 		This Method Is The Property For The _file Attribute.
@@ -110,7 +109,6 @@ class File( object ):
 		return self._file
 
 	@file.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def file( self, value ):
 		'''
@@ -124,7 +122,6 @@ class File( object ):
 		self._file = value
 
 	@file.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def file( self ):
 		'''
@@ -134,7 +131,6 @@ class File( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "file" ) )
 
 	@property
-	@core.executionTrace
 	def content( self ):
 		'''
 		This Method Is The Property For The _content Attribute.
@@ -145,7 +141,6 @@ class File( object ):
 		return self._content
 
 	@content.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def content( self, value ):
 		'''
@@ -159,7 +154,6 @@ class File( object ):
 		self._content = value
 
 	@content.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def content( self ):
 		'''

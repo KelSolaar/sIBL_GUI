@@ -128,7 +128,6 @@ class TemplatesOutliner( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def uiPath( self ):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
@@ -139,7 +138,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self, value ):
 		'''
@@ -151,7 +149,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
 
 	@uiPath.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self ):
 		'''
@@ -161,7 +158,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
-	@core.executionTrace
 	def uiResources( self ):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
@@ -172,7 +168,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self, value ):
 		'''
@@ -183,7 +178,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self ):
 		'''
@@ -193,7 +187,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
 
 	@property
-	@core.executionTrace
 	def uiSoftwareAffixe( self ):
 		'''
 		This Method Is The Property For The _uiSoftwareAffixe Attribute.
@@ -204,7 +197,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._uiSoftwareAffixe
 
 	@uiSoftwareAffixe.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiSoftwareAffixe( self, value ):
 		'''
@@ -215,7 +207,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSoftwareAffixe" ) )
 
 	@uiSoftwareAffixe.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiSoftwareAffixe( self ):
 		'''
@@ -225,7 +216,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiSoftwareAffixe" ) )
 
 	@property
-	@core.executionTrace
 	def dockArea( self ):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
@@ -236,7 +226,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self, value ):
 		'''
@@ -247,7 +236,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self ):
 		'''
@@ -257,7 +245,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -268,7 +255,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -280,7 +266,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -289,7 +274,6 @@ class TemplatesOutliner( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 	@property
-	@core.executionTrace
 	def timer( self ):
 		'''
 		This Method Is The Property For The _timer Attribute.
@@ -300,7 +284,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._timer
 
 	@timer.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timer( self, value ):
 		'''
@@ -311,7 +294,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
 
 	@timer.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timer( self ):
 		'''
@@ -321,7 +303,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
 
 	@property
-	@core.executionTrace
 	def timerCycleMultiplier( self ):
 		'''
 		This Method Is The Property For The _timerCycleMultiplier Attribute.
@@ -332,7 +313,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._timerCycleMultiplier
 
 	@timerCycleMultiplier.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timerCycleMultiplier( self, value ):
 		'''
@@ -343,7 +323,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
 
 	@timerCycleMultiplier.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timerCycleMultiplier( self ):
 		'''
@@ -353,7 +332,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
 
 	@property
-	@core.executionTrace
 	def coreDb( self ):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
@@ -364,7 +342,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._coreDb
 
 	@coreDb.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self, value ):
 		'''
@@ -375,7 +352,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self ):
 		'''
@@ -385,7 +361,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
-	@core.executionTrace
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -396,7 +371,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._extension
 
 	@extension.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def extension( self, value ):
 		'''
@@ -407,7 +381,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "extension" ) )
 
 	@extension.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def extension( self ):
 		'''
@@ -417,7 +390,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "extension" ) )
 
 	@property
-	@core.executionTrace
 	def defaultCollections( self ):
 		'''
 		This Method Is The Property For The _defaultCollections Attribute.
@@ -428,7 +400,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._defaultCollections
 
 	@defaultCollections.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def defaultCollections( self, value ):
 		'''
@@ -439,7 +410,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "defaultCollections" ) )
 
 	@defaultCollections.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def defaultCollections( self ):
 		'''
@@ -449,7 +419,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultCollections" ) )
 
 	@property
-	@core.executionTrace
 	def factoryCollection( self ):
 		'''
 		This Method Is The Property For The _factoryCollection Attribute.
@@ -460,7 +429,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._factoryCollection
 
 	@factoryCollection.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def factoryCollection( self, value ):
 		'''
@@ -471,7 +439,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "factoryCollection" ) )
 
 	@factoryCollection.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def factoryCollection( self ):
 		'''
@@ -481,7 +448,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "factoryCollection" ) )
 
 	@property
-	@core.executionTrace
 	def userCollection( self ):
 		'''
 		This Method Is The Property For The _userCollection Attribute.
@@ -492,7 +458,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._userCollection
 
 	@userCollection.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def userCollection( self, value ):
 		'''
@@ -503,7 +468,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "userCollection" ) )
 
 	@userCollection.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def userCollection( self ):
 		'''
@@ -513,7 +477,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userCollection" ) )
 
 	@property
-	@core.executionTrace
 	def treeWidgetHeaders( self ):
 		'''
 		This Method Is The Property For The _treeWidgetHeaders Attribute.
@@ -524,7 +487,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._treeWidgetHeaders
 
 	@treeWidgetHeaders.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetHeaders( self, value ):
 		'''
@@ -535,7 +497,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetHeaders" ) )
 
 	@treeWidgetHeaders.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetHeaders( self ):
 		'''
@@ -545,7 +506,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetHeaders" ) )
 
 	@property
-	@core.executionTrace
 	def treeWidgetIndentation( self ):
 		'''
 		This Method Is The Property For The _treeWidgetIndentation Attribute.
@@ -556,7 +516,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._treeWidgetIndentation
 
 	@treeWidgetIndentation.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetIndentation( self, value ):
 		'''
@@ -567,7 +526,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetIndentation" ) )
 
 	@treeWidgetIndentation.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetIndentation( self ):
 		'''
@@ -577,7 +535,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetIndentation" ) )
 
 	@property
-	@core.executionTrace
 	def Template_Informations_textBrowser_defaultText( self ):
 		'''
 		This Method Is The Property For The _Template_Informations_textBrowser_defaultText Attribute.
@@ -588,7 +545,6 @@ class TemplatesOutliner( UiComponent ):
 		return self._Template_Informations_textBrowser_defaultText
 
 	@Template_Informations_textBrowser_defaultText.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def Template_Informations_textBrowser_defaultText( self, value ):
 		'''
@@ -599,7 +555,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Template_Informations_textBrowser_defaultText" ) )
 
 	@Template_Informations_textBrowser_defaultText.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def Template_Informations_textBrowser_defaultText( self ):
 		'''

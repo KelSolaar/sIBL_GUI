@@ -99,7 +99,6 @@ class Walker( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def root( self ):
 		'''
 		This Method Is The Property For The _root Attribute.
@@ -110,7 +109,6 @@ class Walker( object ):
 		return self._root
 
 	@root.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def root( self, value ):
 		'''
@@ -125,7 +123,6 @@ class Walker( object ):
 		self._root = value
 
 	@root.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def root( self ):
 		'''
@@ -135,7 +132,6 @@ class Walker( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "root" ) )
 
 	@property
-	@core.executionTrace
 	def files( self ):
 		'''
 		This Method Is The Property For The _files Attribute.
@@ -146,7 +142,6 @@ class Walker( object ):
 		return self._files
 
 	@files.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def files( self, value ):
 		'''
@@ -160,7 +155,6 @@ class Walker( object ):
 		self._files = value
 
 	@files.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def files( self ):
 		'''

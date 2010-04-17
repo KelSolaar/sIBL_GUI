@@ -112,7 +112,6 @@ class LoggingWindow( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def uiPath( self ):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
@@ -123,7 +122,6 @@ class LoggingWindow( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self, value ):
 		'''
@@ -135,7 +133,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
 
 	@uiPath.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self ):
 		'''
@@ -145,7 +142,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
-	@core.executionTrace
 	def dockArea( self ):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
@@ -156,7 +152,6 @@ class LoggingWindow( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self, value ):
 		'''
@@ -168,7 +163,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self ):
 		'''
@@ -178,7 +172,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -189,7 +182,6 @@ class LoggingWindow( UiComponent ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -201,7 +193,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -211,7 +202,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	@core.executionTrace
 	def timer( self ):
 		'''
 		This Method Is The Property For The _timer Attribute.
@@ -222,7 +212,6 @@ class LoggingWindow( UiComponent ):
 		return self._timer
 
 	@timer.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timer( self, value ):
 		'''
@@ -234,7 +223,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
 
 	@timer.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def timer( self ):
 		'''

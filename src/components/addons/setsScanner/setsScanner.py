@@ -108,7 +108,6 @@ class SetsScanner( Component ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -119,7 +118,6 @@ class SetsScanner( Component ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -131,7 +129,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -141,7 +138,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	@core.executionTrace
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -152,7 +148,6 @@ class SetsScanner( Component ):
 		return self._extension
 
 	@extension.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def extension( self, value ):
 		'''
@@ -164,7 +159,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "extension" ) )
 
 	@extension.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def extension( self ):
 		'''
@@ -174,7 +168,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "extension" ) )
 
 	@property
-	@core.executionTrace
 	def coreDb( self ):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
@@ -185,7 +178,6 @@ class SetsScanner( Component ):
 		return self._coreDb
 
 	@coreDb.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self, value ):
 		'''
@@ -197,7 +189,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self ):
 		'''
@@ -207,7 +198,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
-	@core.executionTrace
 	def coreCollectionsOutliner( self ):
 		'''
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
@@ -218,7 +208,6 @@ class SetsScanner( Component ):
 		return self._coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreCollectionsOutliner( self, value ):
 		'''
@@ -230,7 +219,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreCollectionsOutliner" ) )
 
 	@coreCollectionsOutliner.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreCollectionsOutliner( self ):
 		'''
@@ -240,7 +228,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
 
 	@property
-	@core.executionTrace
 	def coreDatabaseBrowser( self ):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
@@ -251,7 +238,6 @@ class SetsScanner( Component ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self, value ):
 		'''
@@ -263,7 +249,6 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
 
 	@coreDatabaseBrowser.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self ):
 		'''

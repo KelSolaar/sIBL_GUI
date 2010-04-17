@@ -131,7 +131,6 @@ class Parser( io.File ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def splitter( self ):
 		'''
 		This Method Is The Property For The _splitter Attribute.
@@ -142,7 +141,6 @@ class Parser( io.File ):
 		return self._splitter
 
 	@splitter.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def splitter( self, value ):
 		'''
@@ -158,7 +156,6 @@ class Parser( io.File ):
 		self._splitter = value
 
 	@splitter.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def splitter( self ):
 		'''
@@ -178,7 +175,6 @@ class Parser( io.File ):
 		return self._namespaceSplitter
 
 	@namespaceSplitter.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def namespaceSplitter( self, value ):
 		'''
@@ -213,7 +209,6 @@ class Parser( io.File ):
 		return self._commentLimiter
 
 	@commentLimiter.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def commentLimiter( self, value ):
 		'''
@@ -247,7 +242,6 @@ class Parser( io.File ):
 		return self._rawSectionContentIdentifier
 
 	@rawSectionContentIdentifier.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def rawSectionContentIdentifier( self, value ):
 		'''
@@ -270,7 +264,6 @@ class Parser( io.File ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "rawSectionContentIdentifier" ) )
 
 	@property
-	@core.executionTrace
 	def sections( self ):
 		'''
 		This Method Is The Property For The _sections Attribute.
@@ -281,7 +274,6 @@ class Parser( io.File ):
 		return self._sections
 
 	@sections.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def sections( self, value ):
 		'''
@@ -295,7 +287,6 @@ class Parser( io.File ):
 		self._sections = value
 
 	@sections.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def sections( self ):
 		'''
@@ -305,7 +296,6 @@ class Parser( io.File ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "sections" ) )
 
 	@property
-	@core.executionTrace
 	def comments( self ):
 		'''
 		This Method Is The Property For The _comments Attribute.
@@ -317,7 +307,6 @@ class Parser( io.File ):
 
 
 	@comments.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def comments( self, value ):
 		'''
@@ -331,7 +320,6 @@ class Parser( io.File ):
 		self._comments = value
 
 	@comments.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def comments( self ):
 		'''

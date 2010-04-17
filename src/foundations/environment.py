@@ -97,7 +97,6 @@ class Environment( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def variable( self ):
 		'''
 		This Method Is The Property For The _variable Attribute.
@@ -108,7 +107,6 @@ class Environment( object ):
 		return self._variable
 
 	@variable.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def variable( self, value ):
 		'''
@@ -123,7 +121,6 @@ class Environment( object ):
 		self._variable = value
 
 	@variable.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def variable( self ):
 		'''

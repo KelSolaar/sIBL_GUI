@@ -112,7 +112,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -123,7 +122,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -135,7 +133,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -145,7 +142,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	@core.executionTrace
 	def coreDb( self ):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
@@ -156,7 +152,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		return self._coreDb
 
 	@coreDb.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self, value ):
 		'''
@@ -168,7 +163,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self ):
 		'''
@@ -178,7 +172,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
-	@core.executionTrace
 	def coreDatabaseBrowser( self ):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
@@ -189,7 +182,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self, value ):
 		'''
@@ -201,7 +193,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
 
 	@coreDatabaseBrowser.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self ):
 		'''
@@ -211,7 +202,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
 
 	@property
-	@core.executionTrace
 	def coreCollectionsOutliner( self ):
 		'''
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
@@ -222,7 +212,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		return self._coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreCollectionsOutliner( self, value ):
 		'''
@@ -234,7 +223,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreCollectionsOutliner" ) )
 
 	@coreCollectionsOutliner.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreCollectionsOutliner( self ):
 		'''
@@ -244,7 +232,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
 
 	@property
-	@core.executionTrace
 	def previousCollection( self ):
 		'''
 		This Method Is The Property For The _previousCollection Attribute.
@@ -255,7 +242,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		return self._previousCollection
 
 	@previousCollection.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def previousCollection( self, value ):
 		'''
@@ -267,7 +253,6 @@ class CollectionsOutliner_QTreeWidget( QTreeWidget ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "previousCollection" ) )
 
 	@previousCollection.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def previousCollection( self ):
 		'''
@@ -417,7 +402,6 @@ class CollectionsOutliner( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def uiPath( self ):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
@@ -428,7 +412,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self, value ):
 		'''
@@ -440,7 +423,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
 
 	@uiPath.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self ):
 		'''
@@ -450,7 +432,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
-	@core.executionTrace
 	def uiResources( self ):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
@@ -461,7 +442,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self, value ):
 		'''
@@ -473,7 +453,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self ):
 		'''
@@ -483,7 +462,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
 
 	@property
-	@core.executionTrace
 	def uiDefaultCollectionIcon( self ):
 		'''
 		This Method Is The Property For The _uiDefaultCollectionIcon Attribute.
@@ -494,7 +472,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiDefaultCollectionIcon
 
 	@uiDefaultCollectionIcon.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiDefaultCollectionIcon( self, value ):
 		'''
@@ -506,7 +483,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDefaultCollectionIcon" ) )
 
 	@uiDefaultCollectionIcon.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiDefaultCollectionIcon( self ):
 		'''
@@ -516,7 +492,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDefaultCollectionIcon" ) )
 
 	@property
-	@core.executionTrace
 	def uiUserCollectionIcon( self ):
 		'''
 		This Method Is The Property For The _uiUserCollectionIcon Attribute.
@@ -527,7 +502,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiUserCollectionIcon
 
 	@uiUserCollectionIcon.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiUserCollectionIcon( self, value ):
 		'''
@@ -539,7 +513,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiUserCollectionIcon" ) )
 
 	@uiUserCollectionIcon.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiUserCollectionIcon( self ):
 		'''
@@ -549,7 +522,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiUserCollectionIcon" ) )
 
 	@property
-	@core.executionTrace
 	def dockArea( self ):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
@@ -560,7 +532,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self, value ):
 		'''
@@ -572,7 +543,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self ):
 		'''
@@ -582,7 +552,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -593,7 +562,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -605,7 +573,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -615,7 +582,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	@core.executionTrace
 	def coreDb( self ):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
@@ -626,7 +592,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._coreDb
 
 	@coreDb.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self, value ):
 		'''
@@ -638,7 +603,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDb( self ):
 		'''
@@ -648,7 +612,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
-	@core.executionTrace
 	def coreDatabaseBrowser( self ):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
@@ -659,7 +622,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self, value ):
 		'''
@@ -671,7 +633,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
 
 	@coreDatabaseBrowser.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self ):
 		'''
@@ -681,7 +642,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
 
 	@property
-	@core.executionTrace
 	def Collections_Outliner_treeWidget( self ):
 		'''
 		This Method Is The Property For The _Collections_Outliner_treeWidget Attribute.
@@ -692,7 +652,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._Collections_Outliner_treeWidget
 
 	@Collections_Outliner_treeWidget.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def Collections_Outliner_treeWidget( self, value ):
 		'''
@@ -704,7 +663,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Collections_Outliner_treeWidget" ) )
 
 	@Collections_Outliner_treeWidget.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def Collections_Outliner_treeWidget( self ):
 		'''
@@ -714,7 +672,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "Collections_Outliner_treeWidget" ) )
 
 	@property
-	@core.executionTrace
 	def overallCollection( self ):
 		'''
 		This Method Is The Property For The _overallCollection Attribute.
@@ -725,7 +682,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._overallCollection
 
 	@overallCollection.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def overallCollection( self, value ):
 		'''
@@ -737,7 +693,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "overallCollection" ) )
 
 	@overallCollection.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def overallCollection( self ):
 		'''
@@ -747,7 +702,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "overallCollection" ) )
 
 	@property
-	@core.executionTrace
 	def defaultCollection( self ):
 		'''
 		This Method Is The Property For The _defaultCollection Attribute.
@@ -758,7 +712,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._defaultCollection
 
 	@defaultCollection.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def defaultCollection( self, value ):
 		'''
@@ -770,7 +723,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "defaultCollection" ) )
 
 	@defaultCollection.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def defaultCollection( self ):
 		'''
@@ -780,7 +732,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultCollection" ) )
 
 	@property
-	@core.executionTrace
 	def setsCountLabel( self ):
 		'''
 		This Method Is The Property For The _setsCountLabel Attribute.
@@ -791,7 +742,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._setsCountLabel
 
 	@setsCountLabel.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def setsCountLabel( self, value ):
 		'''
@@ -803,7 +753,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "setsCountLabel" ) )
 
 	@setsCountLabel.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def setsCountLabel( self ):
 		'''
@@ -813,7 +762,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "setsCountLabel" ) )
 
 	@property
-	@core.executionTrace
 	def treeWidgetHeaders( self ):
 		'''
 		This Method Is The Property For The _treeWidgetHeaders Attribute.
@@ -824,7 +772,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._treeWidgetHeaders
 
 	@treeWidgetHeaders.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetHeaders( self, value ):
 		'''
@@ -836,7 +783,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetHeaders" ) )
 
 	@treeWidgetHeaders.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetHeaders( self ):
 		'''
@@ -846,7 +792,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetHeaders" ) )
 
 	@property
-	@core.executionTrace
 	def treeWidgetIndentation( self ):
 		'''
 		This Method Is The Property For The _treeWidgetIndentation Attribute.
@@ -857,7 +802,6 @@ class CollectionsOutliner( UiComponent ):
 		return self._treeWidgetIndentation
 
 	@treeWidgetIndentation.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetIndentation( self, value ):
 		'''
@@ -869,7 +813,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetIndentation" ) )
 
 	@treeWidgetIndentation.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def treeWidgetIndentation( self ):
 		'''

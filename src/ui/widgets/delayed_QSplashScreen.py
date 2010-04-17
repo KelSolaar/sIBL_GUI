@@ -103,7 +103,6 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def waitTime( self ):
 		'''
 		This Method Is The Property For The _waitTime Attribute.
@@ -114,7 +113,6 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		return self._waitTime
 
 	@waitTime.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def waitTime( self, value ):
 		'''
@@ -129,7 +127,6 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		self._waitTime = value
 
 	@waitTime.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def waitTime( self ):
 		'''

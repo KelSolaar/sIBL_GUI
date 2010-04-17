@@ -112,7 +112,6 @@ class ThumbnailsSize( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def uiPath( self ):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
@@ -123,7 +122,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self, value ):
 		'''
@@ -135,7 +133,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
 
 	@uiPath.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiPath( self ):
 		'''
@@ -145,7 +142,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
-	@core.executionTrace
 	def uiResources( self ):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
@@ -156,7 +152,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self, value ):
 		'''
@@ -167,7 +162,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiResources( self ):
 		'''
@@ -177,7 +171,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
 
 	@property
-	@core.executionTrace
 	def uiLargestSizeIcon( self ):
 		'''
 		This Method Is The Property For The _uiLargestSizeIcon Attribute.
@@ -188,7 +181,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._uiLargestSizeIcon
 
 	@uiLargestSizeIcon.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiLargestSizeIcon( self, value ):
 		'''
@@ -199,7 +191,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLargestSizeIcon" ) )
 
 	@uiLargestSizeIcon.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiLargestSizeIcon( self ):
 		'''
@@ -209,7 +200,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLargestSizeIcon" ) )
 
 	@property
-	@core.executionTrace
 	def uiSmallestSizeIcon( self ):
 		'''
 		This Method Is The Property For The _uiSmallestSizeIcon Attribute.
@@ -220,7 +210,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._uiSmallestSizeIcon
 
 	@uiSmallestSizeIcon.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiSmallestSizeIcon( self, value ):
 		'''
@@ -231,7 +220,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSmallestSizeIcon" ) )
 
 	@uiSmallestSizeIcon.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiSmallestSizeIcon( self ):
 		'''
@@ -241,7 +229,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiSmallestSizeIcon" ) )
 
 	@property
-	@core.executionTrace
 	def dockArea( self ):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
@@ -252,7 +239,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self, value ):
 		'''
@@ -264,7 +250,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def dockArea( self ):
 		'''
@@ -274,7 +259,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
-	@core.executionTrace
 	def listWidgetIconSize( self ):
 		'''
 		This Method Is The Property For The _listWidgetIconSize Attribute.
@@ -285,7 +269,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._listWidgetIconSize
 
 	@listWidgetIconSize.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def listWidgetIconSize( self, value ):
 		'''
@@ -300,7 +283,6 @@ class ThumbnailsSize( UiComponent ):
 		self._listWidgetIconSize = value
 
 	@listWidgetIconSize.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def listWidgetIconSize( self ):
 		'''
@@ -310,7 +292,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listWidgetIconSize" ) )
 
 	@property
-	@core.executionTrace
 	def container( self ):
 		'''
 		This Method Is The Property For The _container Attribute.
@@ -321,7 +302,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._container
 
 	@container.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self, value ):
 		'''
@@ -333,7 +313,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
 
 	@container.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def container( self ):
 		'''
@@ -343,7 +322,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	@core.executionTrace
 	def coreDatabaseBrowser( self ):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
@@ -354,7 +332,6 @@ class ThumbnailsSize( UiComponent ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self, value ):
 		'''
@@ -366,7 +343,6 @@ class ThumbnailsSize( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
 
 	@coreDatabaseBrowser.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def coreDatabaseBrowser( self ):
 		'''

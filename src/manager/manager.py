@@ -119,7 +119,6 @@ class Profile( object ) :
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def name( self ):
 		'''
 		This Method Is The Property For The _name Attribute.
@@ -130,7 +129,6 @@ class Profile( object ) :
 		return self._name
 
 	@name.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def name( self, value ):
 		'''
@@ -144,7 +142,6 @@ class Profile( object ) :
 		self._name = value
 
 	@name.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def name( self ):
 		'''
@@ -154,7 +151,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "name" ) )
 
 	@property
-	@core.executionTrace
 	def path( self ):
 		'''
 		This Method Is The Property For The _path Attribute.
@@ -165,7 +161,6 @@ class Profile( object ) :
 		return self._path
 
 	@path.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def path( self, value ):
 		'''
@@ -180,7 +175,6 @@ class Profile( object ) :
 		self._path = value
 
 	@path.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def path( self ):
 		'''
@@ -190,7 +184,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "path" ) )
 
 	@property
-	@core.executionTrace
 	def object_( self ):
 		'''
 		This Method Is The Property For The _object_ Attribute.
@@ -201,7 +194,6 @@ class Profile( object ) :
 		return self._object_
 
 	@object_.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def object_( self, value ):
 		'''
@@ -215,7 +207,6 @@ class Profile( object ) :
 		self._object_ = value
 
 	@object_.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def object_( self ):
 		'''
@@ -225,7 +216,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "object_" ) )
 
 	@property
-	@core.executionTrace
 	def rank( self ):
 		'''
 		This Method Is The Property For The _rank Attribute.
@@ -236,7 +226,6 @@ class Profile( object ) :
 		return self._rank
 
 	@rank.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def rank( self, value ):
 		'''
@@ -250,7 +239,6 @@ class Profile( object ) :
 		self._rank = value
 
 	@rank.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def rank( self ):
 		'''
@@ -260,7 +248,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "rank" ) )
 
 	@property
-	@core.executionTrace
 	def import_( self ):
 		'''
 		This Method Is The Property For The _import_ Attribute.
@@ -271,7 +258,6 @@ class Profile( object ) :
 		return self._import
 
 	@import_.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def import_( self, value ):
 		'''
@@ -285,7 +271,6 @@ class Profile( object ) :
 		self._import = value
 
 	@import_.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def import_( self ):
 		'''
@@ -295,7 +280,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "import" ) )
 
 	@property
-	@core.executionTrace
 	def interface( self ):
 		'''
 		This Method Is The Property For The _interface Attribute.
@@ -306,7 +290,6 @@ class Profile( object ) :
 		return self._interface
 
 	@interface.setter
-	@core.executionTrace
 	def interface( self, value ):
 		'''
 		This Method Is The Setter Method For The _interface Attribute.
@@ -317,7 +300,6 @@ class Profile( object ) :
 		self._interface = value
 
 	@interface.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def interface( self ):
 		'''
@@ -327,7 +309,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "interface" ) )
 
 	@property
-	@core.executionTrace
 	def categorie( self ):
 		'''
 		This Method Is The Property For The _categorie Attribute.
@@ -338,7 +319,6 @@ class Profile( object ) :
 		return self._categorie
 
 	@categorie.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def categorie( self, value ):
 		'''
@@ -352,7 +332,6 @@ class Profile( object ) :
 		self._categorie = value
 
 	@categorie.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def categorie( self ):
 		'''
@@ -362,7 +341,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "categorie" ) )
 
 	@property
-	@core.executionTrace
 	def module( self ):
 		'''
 		This Method Is The Property For The _module Attribute.
@@ -373,7 +351,6 @@ class Profile( object ) :
 		return self._module
 
 	@module.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def module( self, value ):
 		'''
@@ -387,7 +364,6 @@ class Profile( object ) :
 		self._module = value
 
 	@module.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def module( self ):
 		'''
@@ -397,7 +373,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "module" ) )
 
 	@property
-	@core.executionTrace
 	def version( self ):
 		'''
 		This Method Is The Property For The _version Attribute.
@@ -408,7 +383,6 @@ class Profile( object ) :
 		return self._version
 
 	@version.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def version( self, value ):
 		'''
@@ -422,7 +396,6 @@ class Profile( object ) :
 		self._version = value
 
 	@version.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def version( self ):
 		'''
@@ -432,7 +405,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "version" ) )
 
 	@property
-	@core.executionTrace
 	def author( self ):
 		'''
 		This Method Is The Property For The _author Attribute.
@@ -443,7 +415,6 @@ class Profile( object ) :
 		return self._author
 
 	@author.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def author( self, value ):
 		'''
@@ -457,7 +428,6 @@ class Profile( object ) :
 		self._author = value
 
 	@author.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def author( self ):
 		'''
@@ -467,7 +437,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "author" ) )
 
 	@property
-	@core.executionTrace
 	def email( self ):
 		'''
 		This Method Is The Property For The _email Attribute.
@@ -478,7 +447,6 @@ class Profile( object ) :
 		return self._email
 
 	@email.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def email( self, value ):
 		'''
@@ -492,7 +460,6 @@ class Profile( object ) :
 		self._email = value
 
 	@email.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def email( self ):
 		'''
@@ -502,7 +469,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "email" ) )
 
 	@property
-	@core.executionTrace
 	def url( self ):
 		'''
 		This Method Is The Property For The _url Attribute.
@@ -513,7 +479,6 @@ class Profile( object ) :
 		return self._url
 
 	@url.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def url( self, value ):
 		'''
@@ -527,7 +492,6 @@ class Profile( object ) :
 		self._url = value
 
 	@url.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def url( self ):
 		'''
@@ -537,7 +501,6 @@ class Profile( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "url" ) )
 
 	@property
-	@core.executionTrace
 	def description( self ):
 		'''
 		This Method Is The Property For The _description Attribute.
@@ -548,7 +511,6 @@ class Profile( object ) :
 		return self._description
 
 	@description.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def description( self, value ):
 		'''
@@ -562,7 +524,6 @@ class Profile( object ) :
 		self._description = value
 
 	@description.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def description( self ):
 		'''
@@ -599,7 +560,6 @@ class Manager( object ) :
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def paths( self ):
 		'''
 		This Method Is The Property For The _paths Attribute.
@@ -610,7 +570,6 @@ class Manager( object ) :
 		return self._paths
 
 	@paths.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def paths( self, value ):
 		'''
@@ -625,7 +584,6 @@ class Manager( object ) :
 		self._paths = value
 
 	@paths.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def paths( self ):
 		'''
@@ -635,7 +593,6 @@ class Manager( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "paths" ) )
 
 	@property
-	@core.executionTrace
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -646,7 +603,6 @@ class Manager( object ) :
 		return self._extension
 
 	@extension.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def extension( self, value ):
 		'''
@@ -661,7 +617,6 @@ class Manager( object ) :
 		self._extension = value
 
 	@extension.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def extension( self ):
 		'''
@@ -671,7 +626,6 @@ class Manager( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "extension" ) )
 
 	@property
-	@core.executionTrace
 	def categories( self ):
 		'''
 		This Method Is The Property For The _categories Attribute.
@@ -682,7 +636,6 @@ class Manager( object ) :
 		return self._categories
 
 	@categories.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def categories( self, value ):
 		'''
@@ -696,7 +649,6 @@ class Manager( object ) :
 		self._categories = value
 
 	@categories.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def categories( self ):
 		'''
@@ -706,7 +658,6 @@ class Manager( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "categories" ) )
 
 	@property
-	@core.executionTrace
 	def components( self ):
 		'''
 		This Method Is The Property For The _components Attribute.
@@ -717,7 +668,6 @@ class Manager( object ) :
 		return self._components
 
 	@components.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def components( self, value ):
 		'''
@@ -729,7 +679,6 @@ class Manager( object ) :
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "components" ) )
 
 	@components.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def components( self ):
 		'''

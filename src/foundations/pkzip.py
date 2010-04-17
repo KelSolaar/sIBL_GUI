@@ -99,7 +99,6 @@ class Pkzip( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	@core.executionTrace
 	def archive( self ):
 		'''
 		This Method Is The Property For The _archive Attribute.
@@ -110,7 +109,6 @@ class Pkzip( object ):
 		return self._archive
 
 	@archive.setter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def archive( self, value ):
 		'''
@@ -125,7 +123,6 @@ class Pkzip( object ):
 		self._archive = value
 
 	@archive.deleter
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def archive( self ):
 		'''
