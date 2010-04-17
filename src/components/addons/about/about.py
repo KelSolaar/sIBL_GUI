@@ -74,6 +74,61 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
+ABOUT_MESSAGE = """
+		<center>
+		*
+		<p>
+		<img src="{0}">
+		</p>
+		<p>
+		s I B L _ G U I - {1}
+		</p>
+		*
+		<br/><br/>Thanks To All Folks At <b>HDRLabs.com</b> To Provide Smart IBL World !
+		<br/>
+		Special Thanks To : Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler.
+		<br/>
+		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle.
+		<p>
+		Very Special Thanks To Christian For Providing Me Some Space On His Server :]
+		</p>
+		<p>
+		This Software Uses Python, Qt, PyQT, Py2App, PyInstaller And NSIS.
+		<br/>
+		Coded With Eclipse - Pydev - Aptana - TextMate - Jedit And Git.
+		</p>
+		<p>
+		Light Bulb Icon Is Copyright Christian Bloch.
+		</p>
+		<p>
+		If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+		<br/>
+		Please Contact Us At HDRLabs :
+		<br/>
+		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#000000;">blochi@edenfx.com</span></a>
+		<br/>
+		Thomas Mansencal - <a href="mailto:kelsolaar_fool@hotmail.com"><span style=" text-decoration: underline; color:#000000;">kelsolaar_fool@hotmail.com</span></a>
+		</p>
+		<p>
+		sIBL_GUI by Thomas Mansencal - 2008 - 2010
+		<br/>
+		This Software Is Released Under Terms Of GNU GPL V3 License : <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
+		<br/>
+		<a href="http://my.opera.com/KelSolaar/"><span style=" text-decoration: underline; color:#000000;">http://my.opera.com/KelSolaar/</span></a>
+		</p>
+		<p>
+		*
+		</p>
+		<p>
+		<a href="http://www.hdrlabs.com/"><span style=" text-decoration: underline; color:#000000;">http://www.hdrlabs.com/</span></a>
+		</p>
+		*
+		<p>
+		<img src="{2}">
+		</p>
+		*
+		</center>
+		"""
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
@@ -101,6 +156,7 @@ class About( UiComponent ):
 		self._uiPath = "ui/About.ui"
 		self._uiResources = "resources"
 		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
+		self._uiGpl3Icon = "GPL_V3.png"
 
 		self._container = None
 		self._miscMenu = None
@@ -187,6 +243,7 @@ class About( UiComponent ):
 		'''
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
 
+
 	@uiLogoIcon.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
 	def uiLogoIcon( self ):
@@ -195,6 +252,35 @@ class About( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+
+	@property
+	def uiGpl3Icon( self ):
+		'''
+		This Method Is The Property For The _uiGpl3Icon Attribute.
+
+		@return: self._uiGpl3Icon. ( String )
+		'''
+
+		return self._uiGpl3Icon
+
+	@uiGpl3Icon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiGpl3Icon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiGpl3Icon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiGpl3Icon" ) )
+
+	@uiGpl3Icon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiGpl3Icon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiGpl3Icon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiGpl3Icon" ) )
 
 	@property
 	def container( self ):
@@ -225,6 +311,36 @@ class About( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def miscMenu( self ):
+		'''
+		This Method Is The Property For The _miscMenu Attribute.
+
+		@return: self._miscMenu. ( QMenu )
+		'''
+
+		return self._miscMenu
+
+	@miscMenu.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def miscMenu( self, value ):
+		'''
+		This Method Is The Setter Method For The _miscMenu Attribute.
+
+		@param value: Attribute Value. ( QMenu )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "miscMenu" ) )
+
+	@miscMenu.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def miscMenu( self ):
+		'''
+		This Method Is The Deleter Method For The _miscMenu Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "miscMenu" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -325,56 +441,15 @@ class About( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		aboutMessage = """
-		<center>
-		*
-		<p>
-		s I B L _ G U I - {0}
-		</p>
-		*
-		<br/><br/>Thanks To All Folks At HDRLabs.com To Provide Smart IBL World !
-		<br/>
-		Special Thanks To : Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork.
-		<br/>
-		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle.
-		<br/>
-		Very Special Thanks To Christian For Providing Me Some Space On His Server :]
-		<p>
-		This Software Uses Python, PyQT, Py2App, PyInstaller And NSIS.
-		<br/>
-		Coded With Eclipse - Pydev - Aptana - TextMate And Jedit.
-		</p>
-		<p>
-		Light Bulb Icon Is Copyright Christian Bloch.
-		</p>
-		<p>
-		If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-		<br/>
-		Please Contact Us At HDRLabs :
-		<br/>
-		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#000000;">blochi@edenfx.com</span></a>
-		<br/>
-		Thomas Mansencal - <a href="mailto:kelsolaar_fool@hotmail.com"><span style=" text-decoration: underline; color:#000000;">kelsolaar_fool@hotmail.com</span></a>
-		</p>
-		<p>
-		sIBL_GUI And sIBL_Framework by Thomas Mansencal - 2008 - 2010
-		<br/>
-		This Software Is Released Under Terms Of GNU GPL V3 License : <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
-	        <br/>
-	        <a href="http://my.opera.com/KelSolaar/"><span style=" text-decoration: underline; color:#000000;">http://my.opera.com/KelSolaar/</span></a>
-		</p>
-		*
-		<p>
-		<img src="{1}">
-		</p>
-		*
-		</center>
-		""".format( Constants.releaseVersion.replace( ".", " . " ),
-					"" )
+		aboutMessage = ABOUT_MESSAGE.format( os.path.join( self._uiResources, self._uiLogoIcon ),
+					Constants.releaseVersion.replace( ".", " . " ),
+					os.path.join( self._uiResources, self._uiGpl3Icon )
+					)
 
 		self.ui.About_label.setText( aboutMessage )
 
 		self.ui.show()
+		self.ui.raise_()
 
 #***********************************************************************************************
 #***	Python End
