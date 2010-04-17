@@ -407,11 +407,12 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			if interface.activated:
 				hasattr( interface, "onStartup" ) and interface.onStartup()
 
-		# for component in self._componentsManager.getComponents() :
-		# 	interface = self._componentsManager.getInterface( component )
-		# 	hasattr( interface, "ui" ) and interface.name != "code.databaseBrowser" and interface.ui.hide()
+		visibleComponents = ()
+		for component in self._componentsManager.getComponents() :
+			interface = self._componentsManager.getInterface( component )
+			hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
-		self.restoreSetsCentricLayout()
+		#self.restoreSetsCentricLayout()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1077,12 +1078,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
 
+		visibleComponents = [ "core.databaseBrowser" ]
+		for component, profile in self._componentsManager.components.items() :
+			profile.categorie == "ui" and component not in visibleComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
 
-		#self.hide()
 		self.centralwidget.setVisible( self._settings.getKey( "Layouts", "{0}_centralWidget".format( name ) ).toBool() )
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
 		self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
-		#self.show()
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
 	@core.executionTrace
@@ -1092,7 +1094,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component not in self._setsCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
+			profile.categorie == "ui" and component in self._setsCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "setsCentric" )
 
 	@core.executionTrace
@@ -1110,7 +1112,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component not in self._templatesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
+			profile.categorie == "ui" and component in self._templatesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "templatesCentric" )
 
 	@core.executionTrace
@@ -1128,7 +1130,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component not in self._preferencesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
+			profile.categorie == "ui" and component in self._preferencesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "preferencesCentric" )
 
 	@core.executionTrace

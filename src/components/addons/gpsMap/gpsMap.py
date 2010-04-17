@@ -567,7 +567,7 @@ class GpsMap( UiComponent ):
 		self._map.setMinimumSize( self._gpsMapBaseSize )
 		self._map.load( QUrl.fromLocalFile( os.path.normpath( os.path.join( self._uiResources, self._gpsMapHtmlFile ) ) ) )
 
-		self.ui.Map_groupBox_gridLayout.addWidget( self._map )
+		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget( self._map )
 
 		# Signals / Slots.
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.connect( self._coreDatabaseBrowser.ui.Database_Browser_listWidget, SIGNAL( "itemSelectionChanged()" ), self.coreDatabaseBrowser_Database_Browser_listWidget_OnItemSelectionChanged )

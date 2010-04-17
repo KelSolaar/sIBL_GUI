@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Gps_Map_DockWidget</class>
  <widget class="QDockWidget" name="Gps_Map_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>313</width>
-    <height>146</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Gps Map</string>
   </property>
@@ -23,7 +15,30 @@
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="Map_groupBox_gridLayout"/>
+      <layout class="QGridLayout" name="Map_groupBox_gridLayout">
+       <item row="0" column="0">
+        <widget class="QScrollArea" name="Map_scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="Map_scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>255</width>
+            <height>76</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="Map_scrollAreaWidgetContents_gridLayout">
+           <property name="margin">
+            <number>0</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="1" column="0">
@@ -31,7 +46,7 @@
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="Options_groupBox_gridLayout">
        <item row="1" column="3">
         <widget class="QComboBox" name="Map_Type_comboBox">
          <property name="statusTip">
