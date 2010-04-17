@@ -1390,7 +1390,6 @@ if __name__ == "__main__":
 	sIBL_GUI_start()
 	# TODO: Make Documentations.
 	# TODO: Saves Default Layouts.
-	# TODO: Better Component Comments.
 	# TODO: Add Origin In Templates.
 #***********************************************************************************************
 #***	Python End
