@@ -1002,6 +1002,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._layoutMenu.addAction( storeLayoutFourAction )
 		self._layoutMenu.addAction( storeLayoutFiveAction )
 
+		# Signals / Slots.
 		self.connect( restoreSetsCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreSetsCentricLayoutAction_OnTriggered )
 		self.connect( restoreTemplatesCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreTemplatesCentricLayoutAction_OnTriggered )
 		self.connect( restorePreferencesCentricLayoutAction, SIGNAL( "triggered()" ), self.restorePreferencesCentricLayoutAction_OnTriggered )
@@ -1032,6 +1033,10 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._miscMenu.addAction( helpDisplayMiscAction )
 		self._miscMenu.addAction( apiDisplayMiscAction )
 		self._miscMenu.addSeparator()
+
+		# Signals / Slots.
+		self.connect( helpDisplayMiscAction, SIGNAL( "triggered()" ), self.helpDisplayMiscAction_OnTriggered )
+		self.connect( apiDisplayMiscAction, SIGNAL( "triggered()" ), self.apiDisplayMiscAction_OnTriggered )
 
 		miscButton.setMenu( self._miscMenu )
 
@@ -1215,6 +1220,24 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.storeLayout( "five" )
 
 	@core.executionTrace
+	def helpDisplayMiscAction_OnTriggered( self ):
+		'''
+		This Method Is Triggered By helpDisplayMiscAction.
+		'''
+
+		LOGGER.debug( "> Opening URL : '{0}'.".format( UiConstants.frameworkHelpFile ) )
+		QDesktopServices.openUrl( QUrl( QString( UiConstants.frameworkHelpFile ) ) )
+
+	@core.executionTrace
+	def apiDisplayMiscAction_OnTriggered( self ):
+		'''
+		This Method Is Triggered By apiDisplayMiscAction.
+		'''
+
+		LOGGER.debug( "> Opening URL : '{0}'.".format( UiConstants.frameworkApiFile ) )
+		QDesktopServices.openUrl( QUrl( QString( UiConstants.frameworkApiFile ) ) )
+
+	@core.executionTrace
 	def storeLastBrowsedPath( self, path ):
 		'''
 		This Method Is A Wrapper Method For Storing The Last Browser Path.
@@ -1365,10 +1388,8 @@ def setApplicationPreferencesDirectories( path ):
 #***********************************************************************************************
 if __name__ == "__main__":
 	sIBL_GUI_start()
-	# TODO: Add Code Debugging Logging.
+	# TODO: Make Documentations.
 	# TODO: Saves Default Layouts.
-	# TODO: Make About Window.
-	# TODO: Add Help Link.
 	# TODO: Better Component Comments.
 	# TODO: Add Origin In Templates.
 #***********************************************************************************************

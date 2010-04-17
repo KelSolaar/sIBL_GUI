@@ -74,21 +74,8 @@ class UiConstants():
 
 	componentsDirectory = "components"
 
-#	manualFile = "sIBL_GUI Manual.htm"
-#
-#	ftpHost = "ftp.hdrlabs.com"
-#	ftpPort = 21
-#	ftpLogin = "noob4kel@hdrlabs.com"
-#	ftpPassword = "k1dy0un0t"
-#	onlineRepository = "/sIBL_GUI/"
-#	releasesFile = "/sIBL_GUI/Releases/sIBL_Releases.rc"
-#
-#	changeLogFile = "http://kelsolaar.hdrlabs.com/sIBL_Framework/sIBL_GUI/Change%20Log/Change%20Log.htm"
-#
-#	releasesUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_Framework/sIBL_GUI/"
-#
-#	linuxTextEditors = ( "gedit", "kwrite", "nedit", "mousepad" )
-#	linuxFileManagers = ( "nautilus", "dolphin", "konqueror", "thunar" )
+	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
+	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 
 #***********************************************************************************************
 #***	Python End
