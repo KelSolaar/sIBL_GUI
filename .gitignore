@@ -3,8 +3,11 @@
 .pydevproject
 .settings
 
+*.exe
+*.log
 *.pyc
 *.pyo
+*.nsh
 
 references/
 releases/Windows/
