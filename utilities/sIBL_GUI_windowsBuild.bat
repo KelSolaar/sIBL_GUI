@@ -11,6 +11,7 @@ python c:\pyinstaller\Build.py Y:\sIBL_GUI\releases\Windows\sIBL_GUI.spec
 rem // Windows Release.
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\sIBL_GUI"
 xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\releases\Windows\dist\sIBL_GUI" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI"
+rem // xcopy /c /y "Y:\sIBL_GUI\releases\Windows\dist\sIBL_GUI.exe" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\"
 xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI.ui" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI_Layouts.rc" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_SpashScreen.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
