@@ -88,7 +88,9 @@ ABOUT_MESSAGE = """
 		<br/>
 		Special Thanks To : Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler.
 		<br/>
-		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle.
+		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle. 
+		<br/>
+		Thanks To Marienz From Irc #python For Optimisations Tips.
 		<p>
 		Very Special Thanks To Christian For Providing Me Some Space On His Server :]
 		</p>
