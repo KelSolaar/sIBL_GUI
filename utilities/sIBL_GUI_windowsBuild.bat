@@ -5,18 +5,20 @@ echo ----------------------------------------------------------------
 rem // Windows Build.
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\build\
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\dist\
-python c:\pyinstaller\Makespec.py -F --icon "Y:\sIBL_GUI\src\resources\Icon_Light_48.ico" Y:\sIBL_GUI\src\sIBL_GUI.py -o Y:\sIBL_GUI\releases\Windows
+python c:\pyinstaller\Makespec.py --icon "Y:\sIBL_GUI\src\resources\Icon_Light_48.ico" Y:\sIBL_GUI\src\sIBL_GUI.py -o Y:\sIBL_GUI\releases\Windows
 python c:\pyinstaller\Build.py Y:\sIBL_GUI\releases\Windows\sIBL_GUI.spec
 
 rem // Windows Release.
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\sIBL_GUI"
-xcopy /c /y "Y:\sIBL_GUI\releases\Windows\dist\sIBL_GUI.exe" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\"
+xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\releases\Windows\dist\sIBL_GUI" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI"
 xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI.ui" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
+xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI_Layouts.rc" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_SpashScreen.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Logo.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Layout.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
-xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Help.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
+xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Misc.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_CentralWidget.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
+xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\templates" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates"
 xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\components" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\components"
 rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\Help" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Help\"
 rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\Templates" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Templates"
