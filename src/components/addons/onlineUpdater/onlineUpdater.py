@@ -1265,18 +1265,18 @@ class RemoteUpdater( object ):
 		messageBox = QMessageBox()
 		messageBox.setWindowTitle( "{0}".format( self.__class__.__name__ ) )
 		messageBox.setIcon( QMessageBox.Question )
-		messageBox.setText( "{0} | Which Directory Do You Want To Install The Templates Into ?".format( self.__class__.__name__ ) )
-		messageBox.addButton( QString( "Cancel" ), QMessageBox.AcceptRole )
-		messageBox.addButton( QString( "Custom" ), QMessageBox.AcceptRole )
-		messageBox.addButton( QString( "User" ), QMessageBox.AcceptRole )
+		messageBox.setText( "{0} | Which Folder Do You Want To Install The Templates Into ?".format( self.__class__.__name__ ) )
 		messageBox.addButton( QString( "Factory" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "User" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "Custom" ), QMessageBox.AcceptRole )
+		messageBox.addButton( QString( "Cancel" ), QMessageBox.AcceptRole )
 		reply = messageBox.exec_()
 
-		if reply == 3 :
+		if reply == 0 :
 			return os.path.join( os.getcwd(), Constants.templatesDirectory )
-		elif reply == 2 :
-			return os.path.join( self._container.container.userApplicationDirectory, Constants.templatesDirectory )
 		elif reply == 1 :
+			return os.path.join( self._container.container.userApplicationDirectory, Constants.templatesDirectory )
+		elif reply == 2 :
 			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
 
 	@core.executionTrace
