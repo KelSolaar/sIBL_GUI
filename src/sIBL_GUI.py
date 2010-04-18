@@ -1221,7 +1221,7 @@ def sIBL_GUI_start():
 	try :
 		os.path.exists( GUI_LOGGING_FILE ) and os.remove( GUI_LOGGING_FILE )
 	except :
-		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, Unpredictable Application Behavior !".format( GUI_LOGGING_FILE ) )
+		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( GUI_LOGGING_FILE, Constants.applicationName ) )
 
 	try :
 		LOGGING_FILE_HANDLER = logging.FileHandler( GUI_LOGGING_FILE )
