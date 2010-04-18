@@ -11,6 +11,6 @@
 
 references/
 releases/Windows/
-releases/MacOsX/
+releases/Darwin/
 releases/Change Log.html
 src/resources/builders/
