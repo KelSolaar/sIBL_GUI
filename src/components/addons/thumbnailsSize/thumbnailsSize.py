@@ -368,8 +368,6 @@ class ThumbnailsSize( UiComponent ):
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
 
-		self._container.setsCentricLayoutComponents.append( self.name )
-
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
@@ -381,8 +379,6 @@ class ThumbnailsSize( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
-
-		self._container.setsCentricLayoutComponents.remove( self.name )
 
 		self.uiFile = None
 		self._uiResources = os.path.basename( self._uiResources )

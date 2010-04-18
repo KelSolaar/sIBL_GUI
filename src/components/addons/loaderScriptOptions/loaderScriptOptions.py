@@ -531,8 +531,6 @@ class LoaderScriptOptions( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
 
-		self._container.templatesCentricLayoutComponents.append( self.name )
-
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
 
@@ -545,8 +543,6 @@ class LoaderScriptOptions( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
-
-		self._container.templatesCentricLayoutComponents.remove( self.name )
 
 		self.uiFile = None
 		self._container = None

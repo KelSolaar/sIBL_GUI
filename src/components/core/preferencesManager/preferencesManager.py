@@ -244,8 +244,6 @@ class PreferencesManager( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
 
-		self._container.preferencesCentricLayoutComponents.append( self.name )
-
 		self._settings = self._container.settings
 
 		self._activate()

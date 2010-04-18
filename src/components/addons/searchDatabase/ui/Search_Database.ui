@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>310</width>
-    <height>348</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -154,6 +146,12 @@
            <string/>
           </property>
           <layout class="QGridLayout" name="Shot_Time_groupBox_gridLayout">
+           <property name="leftMargin">
+            <number>8</number>
+           </property>
+           <property name="rightMargin">
+            <number>8</number>
+           </property>
            <item row="3" column="0">
             <widget class="QLabel" name="To_label">
              <property name="text">

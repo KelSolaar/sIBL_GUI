@@ -477,8 +477,6 @@ class LoaderScript( UiComponent ):
 
 		self._container = container
 
-		self._container.templatesCentricLayoutComponents.append( self.name )
-
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
@@ -494,8 +492,6 @@ class LoaderScript( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
-
-		self._container.templatesCentricLayoutComponents.remove( self.name )
 
 		self.uiFile = None
 		self._container = None

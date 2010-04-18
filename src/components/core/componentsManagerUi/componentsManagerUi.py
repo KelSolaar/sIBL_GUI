@@ -464,8 +464,6 @@ class ComponentsManagerUi( UiComponent ):
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
 
-		self._container.preferencesCentricLayoutComponents.append( self.name )
-
 		self._settings = self._container.settings
 
 		self._activate()

@@ -211,9 +211,39 @@ class Preferences():
 
 		LOGGER.debug( "> Initializing Default Settings !" )
 
+		LOGGER.debug( "> Accessing '{0}' Layouts Settings File !".format( UiConstants.frameworkLayoutsFile ) )
+
+		layoutSettings = QSettings( os.path.join( os.getcwd(), UiConstants.frameworkLayoutsFile ), QSettings.IniFormat )
+
 		self._settings.beginGroup( "Settings" )
 		self._settings.setValue( "VerbosityLevel", QVariant( "3" ) )
 		self._settings.setValue( "DeactivatedComponents", QVariant( "" ) )
+		self._settings.endGroup()
+		self._settings.beginGroup( "Layouts" )
+		self._settings.setValue( "setsCentric_geometry", layoutSettings.value( "setsCentric/geometry" ) )
+		self._settings.setValue( "setsCentric_windowState", layoutSettings.value( "setsCentric/windowState" ) )
+		self._settings.setValue( "setsCentric_centralWidget", layoutSettings.value( "setsCentric/centralWidget" ) )
+		self._settings.setValue( "templatesCentric_geometry", layoutSettings.value( "templatesCentric/geometry" ) )
+		self._settings.setValue( "templatesCentric_windowState", layoutSettings.value( "templatesCentric/windowState" ) )
+		self._settings.setValue( "templatesCentric_centralWidget", layoutSettings.value( "templatesCentric/centralWidget" ) )
+		self._settings.setValue( "preferencesCentric_geometry", layoutSettings.value( "preferencesCentric/geometry" ) )
+		self._settings.setValue( "preferencesCentric_windowState", layoutSettings.value( "preferencesCentric/windowState" ) )
+		self._settings.setValue( "preferencesCentric_centralWidget", layoutSettings.value( "preferencesCentric/centralWidget" ) )
+		self._settings.setValue( "one_geometry", "" )
+		self._settings.setValue( "one_windowState", "" )
+		self._settings.setValue( "one_centralWidget", True )
+		self._settings.setValue( "two_geometry", "" )
+		self._settings.setValue( "two_windowState", "" )
+		self._settings.setValue( "two_centralWidget", True )
+		self._settings.setValue( "three_geometry", "" )
+		self._settings.setValue( "three_windowState", "" )
+		self._settings.setValue( "three_centralWidget", True )
+		self._settings.setValue( "four_geometry", "" )
+		self._settings.setValue( "four_windowState", "" )
+		self._settings.setValue( "four_centralWidget", True )
+		self._settings.setValue( "five_geometry", "" )
+		self._settings.setValue( "five_windowState", "" )
+		self._settings.setValue( "five_centralWidget", True )
 		self._settings.endGroup()
 		self._settings.beginGroup( "Others" )
 		self._settings.endGroup()
@@ -287,9 +317,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._loggingMemoryHandler = LOGGING_SESSION_HANDLER_STREAM
 		self._settings = SETTINGS
 		self._verbosityLevel = VERBOSITY_LEVEL
-		self._setsCentricLayoutComponents = []
-		self._templatesCentricLayoutComponents = []
-		self._preferencesCentricLayoutComponents = []
 		self._layoutMenu = None
 		self._miscMenu = None
 
@@ -407,12 +434,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			if interface.activated:
 				hasattr( interface, "onStartup" ) and interface.onStartup()
 
-		visibleComponents = ()
-		for component in self._componentsManager.getComponents() :
-			interface = self._componentsManager.getInterface( component )
-			hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
+		# Layouts Helper Snippet.
+		# visibleComponents = ()
+		# for component in self._componentsManager.getComponents() :
+		#	 interface = self._componentsManager.getInterface( component )
+		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
-		#self.restoreSetsCentricLayout()
+		self.restoreSetsCentricLayout()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -754,102 +782,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "verbosityLevel" ) )
 
 	@property
-	def setsCentricLayoutComponents( self ):
-		'''
-		This Method Is The Property For The _setsCentricLayoutComponents Attribute.
-
-		@return: self._setsCentricLayoutComponents. ( List )
-		'''
-
-		return self._setsCentricLayoutComponents
-
-	@setsCentricLayoutComponents.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def setsCentricLayoutComponents( self, value ):
-		'''
-		This Method Is The Setter Method For The _setsCentricLayoutComponents Attribute.
-
-		@param value: Attribute Value. ( List )
-		'''
-
-		if value :
-			assert type( value ) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format( "content", value )
-		self._setsCentricLayoutComponents = value
-
-	@setsCentricLayoutComponents.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def setsCentricLayoutComponents( self ):
-		'''
-		This Method Is The Deleter Method For The _setsCentricLayoutComponents Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "setsCentricLayoutComponents" ) )
-
-	@property
-	def templatesCentricLayoutComponents( self ):
-		'''
-		This Method Is The Property For The _templatesCentricLayoutComponents Attribute.
-
-		@return: self._templatesCentricLayoutComponents. ( List )
-		'''
-
-		return self._templatesCentricLayoutComponents
-
-	@templatesCentricLayoutComponents.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def templatesCentricLayoutComponents( self, value ):
-		'''
-		This Method Is The Setter Method For The _templatesCentricLayoutComponents Attribute.
-
-		@param value: Attribute Value. ( List )
-		'''
-
-		if value :
-			assert type( value ) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format( "content", value )
-		self._templatesCentricLayoutComponents = value
-
-	@templatesCentricLayoutComponents.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def templatesCentricLayoutComponents( self ):
-		'''
-		This Method Is The Deleter Method For The _templatesCentricLayoutComponents Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "templatesCentricLayoutComponents" ) )
-
-	@property
-	def preferencesCentricLayoutComponents( self ):
-		'''
-		This Method Is The Property For The _preferencesCentricLayoutComponents Attribute.
-
-		@return: self._preferencesCentricLayoutComponents. ( List )
-		'''
-
-		return self._preferencesCentricLayoutComponents
-
-	@preferencesCentricLayoutComponents.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def preferencesCentricLayoutComponents( self, value ):
-		'''
-		This Method Is The Setter Method For The _preferencesCentricLayoutComponents Attribute.
-
-		@param value: Attribute Value. ( List )
-		'''
-
-		if value :
-			assert type( value ) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format( "content", value )
-		self._preferencesCentricLayoutComponents = value
-
-	@preferencesCentricLayoutComponents.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def preferencesCentricLayoutComponents( self ):
-		'''
-		This Method Is The Deleter Method For The _preferencesCentricLayoutComponents Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "preferencesCentricLayoutComponents" ) )
-
-	@property
 	def layoutMenu( self ):
 		'''
 		This Method Is The Property For The _layoutMenu Attribute.
@@ -1093,8 +1025,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Restores The Sets Centric Layout.
 		'''
 
-		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component in self._setsCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "setsCentric" )
 
 	@core.executionTrace
@@ -1111,8 +1041,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Restores The Templates Centric Layout.
 		'''
 
-		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component in self._templatesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "templatesCentric" )
 
 	@core.executionTrace
@@ -1129,8 +1057,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Restores The Preferences Centric Layout.
 		'''
 
-		for component, profile in self._componentsManager.components.items() :
-			profile.categorie == "ui" and component in self._preferencesCentricLayoutComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.show()
 		self.restoreLayout( "preferencesCentric" )
 
 	@core.executionTrace
@@ -1391,7 +1317,6 @@ def setApplicationPreferencesDirectories( path ):
 if __name__ == "__main__":
 	sIBL_GUI_start()
 	# TODO: Make Documentations.
-	# TODO: Saves Default Layouts.
 	# TODO: Add Origin In Templates.
 #***********************************************************************************************
 #***	Python End

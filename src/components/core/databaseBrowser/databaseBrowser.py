@@ -572,9 +572,6 @@ class DatabaseBrowser( UiComponent ):
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
 
-		self._container.setsCentricLayoutComponents.append( self.name )
-		self._container.templatesCentricLayoutComponents.append( self.name )
-
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
 

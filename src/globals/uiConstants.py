@@ -66,6 +66,7 @@ class UiConstants():
 	'''
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"
+	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
 	frameworLayoutIcon = "./resources/sIBL_GUI_Layout.png"
