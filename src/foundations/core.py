@@ -150,7 +150,8 @@ def getObjectName( object_ ):
 		'''
 
 		moduleName = getModule( inspect.getmodule( object_ ) ).__name__
-		codeLayerName = getCodeLayerName() != UNDEFINED_CODE_LAYER and getCodeLayerName() != "<module>" and "{0}.".format( getCodeLayerName() ) or ""
+		codeLayerName = getCodeLayerName()
+		codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format( codeLayerName ) or ""
 
 		return hasattr( object_, "__name__" ) and "{0} | {1}{2}()".format( moduleName, codeLayerName, object_.__name__ ) or "Undefined"
 
