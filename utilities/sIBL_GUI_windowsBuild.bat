@@ -5,7 +5,7 @@ echo ----------------------------------------------------------------
 rem // Windows Build.
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\build\
 rmdir /S /Q "Y:\sIBL_GUI\releases\Windows\dist\
-python c:\pyinstaller\Makespec.py --icon "Y:\sIBL_GUI\src\resources\Icon_Light_48.ico" Y:\sIBL_GUI\src\sIBL_GUI.py -o Y:\sIBL_GUI\releases\Windows
+python c:\pyinstaller\Makespec.py --noconsole --icon "Y:\sIBL_GUI\src\resources\Icon_Light_48.ico" Y:\sIBL_GUI\src\sIBL_GUI.py -o Y:\sIBL_GUI\releases\Windows
 python c:\pyinstaller\Build.py Y:\sIBL_GUI\releases\Windows\sIBL_GUI.spec
 
 rem // Windows Release.
@@ -39,6 +39,7 @@ rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\QtGui4.dll"
 
 rem // Windows Release .DS_Store / .pyc Cleanup.
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .pyc
+python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .pyo
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .DS_Store
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI Thumbs.db
 
