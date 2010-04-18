@@ -737,7 +737,7 @@ class LocationsBrowser( UiComponent ):
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
 		'''
 
-		self.exploreProvidedFolder( os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory ) )
+		self.exploreProvidedFolder( self._addonsLoaderScript.ioDirectory )
 
 	@core.executionTrace
 	def exploreProvidedFolder( self, folder ) :
