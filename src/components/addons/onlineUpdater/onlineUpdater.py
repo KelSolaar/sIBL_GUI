@@ -561,7 +561,7 @@ class DownloadManager( QObject ):
 		'''
 
 		file = File( os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) ), [self._currentRequest.readAll()] )
-		file.append()
+		file.append( "ab" )
 
 	@core.executionTrace
 	def downloadFinished( self ):

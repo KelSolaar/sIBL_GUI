@@ -167,48 +167,51 @@ class File( object ):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, IOError )
-	def read( self ):
+	def read( self, mode = "r" ):
 		'''
 		This Method Reads Provided File And Return The Content As A List.
 
+		@param mode: File Read Mode. ( String )
 		@return: Read Succes. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Current File Path : '{0}'.".format( self._file ) )
 		LOGGER.debug( "> Reading Current File Content." )
 
-		with open( self._file, "r" ) as file:
+		with open( self._file, mode ) as file:
 			self._content = file.readlines()
 			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, OSError )
-	def write( self ):
+	def write( self, mode = "w" ):
 		'''
 		This Method Writes Content To Provided File.
 		
+		@param mode: File Write Mode. ( String )
 		@return: Write Succes. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Current File Path : '{0}'.".format( self._file ) )
 
-		with open( self._file, "w" ) as file:
+		with open( self._file, mode ) as file:
 			for line in self._content:
 				file.write( line )
 			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, OSError )
-	def append( self ):
+	def append( self, mode = "a" ):
 		'''
 		This Method Append Content To Provided File.
 		
+		@param mode: File Write Mode. ( String )
 		@return: Append Succes. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Current File Path : '{0}'.".format( self._file ) )
 
-		with open( self._file, "a" ) as file:
+		with open( self._file, mode ) as file:
 			for line in self._content:
 				file.write( line )
 			return True
