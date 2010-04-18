@@ -441,7 +441,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
 		self.restoreSetsCentricLayout()
-		sys.exit()
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
