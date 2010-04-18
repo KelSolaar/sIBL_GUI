@@ -116,8 +116,8 @@ class LoaderScriptOptions( UiComponent ):
 		self._templateScriptSection = "Script"
 		self._optionsToolboxesHeaders = ["Value"]
 
-		self._uiGreenColor = QColor( 128, 192, 128 )
-		self._uiRedColor = QColor( 192, 128, 128 )
+		self._uiLightGrayColor = QColor( 240, 240, 240 )
+		self._uiDarkGrayColor = QColor( 160, 160, 160 )
 
 		self._tableWidgetRowHeight = 30
 		self._tableWidgetHeaderHeight = 26
@@ -396,64 +396,64 @@ class LoaderScriptOptions( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "optionsToolboxesHeaders" ) )
 
 	@property
-	def uiGreenColor( self ):
+	def uiLightGrayColor( self ):
 		'''
-		This Method Is The Property For The _uiGreenColor Attribute.
+		This Method Is The Property For The _uiLightGrayColor Attribute.
 
-		@return: self._uiGreenColor. ( QColor )
+		@return: self._uiLightGrayColor. ( QColor )
 		'''
 
-		return self._uiGreenColor
+		return self._uiLightGrayColor
 
-	@uiGreenColor.setter
+	@uiLightGrayColor.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiGreenColor( self, value ):
+	def uiLightGrayColor( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiGreenColor Attribute.
+		This Method Is The Setter Method For The _uiLightGrayColor Attribute.
 
 		@param value: Attribute Value. ( QColor )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiGreenColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLightGrayColor" ) )
 
-	@uiGreenColor.deleter
+	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiGreenColor( self ):
+	def uiLightGrayColor( self ):
 		'''
-		This Method Is The Deleter Method For The _uiGreenColor Attribute.
+		This Method Is The Deleter Method For The _uiLightGrayColor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiGreenColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLightGrayColor" ) )
 
 	@property
-	def uiRedColor( self ):
+	def uiDarkGrayColor( self ):
 		'''
-		This Method Is The Property For The _uiRedColor Attribute.
+		This Method Is The Property For The _uiDarkGrayColor Attribute.
 
-		@return: self._uiRedColor. ( QColor )
+		@return: self._uiDarkGrayColor. ( QColor )
 		'''
 
-		return self._uiRedColor
+		return self._uiDarkGrayColor
 
-	@uiRedColor.setter
+	@uiDarkGrayColor.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiRedColor( self, value ):
+	def uiDarkGrayColor( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiRedColor Attribute.
+		This Method Is The Setter Method For The _uiDarkGrayColor Attribute.
 
 		@param value: Attribute Value. ( QColor )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiRedColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDarkGrayColor" ) )
 
-	@uiRedColor.deleter
+	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiRedColor( self ):
+	def uiDarkGrayColor( self ):
 		'''
-		This Method Is The Deleter Method For The _uiRedColor Attribute.
+		This Method Is The Deleter Method For The _uiDarkGrayColor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiRedColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDarkGrayColor" ) )
 
 	@property
 	def tableWidgetRowHeight( self ):
@@ -645,12 +645,12 @@ class LoaderScriptOptions( UiComponent ):
 
 			if attributeCompound.type == "Boolean" :
 				if attributeCompound.value == "1":
-					item = Variable_QPushButton( True, ( self._uiGreenColor, self._uiRedColor ), ( "True", "False" ) )
+					item = Variable_QPushButton( True, ( self._uiLightGrayColor, self._uiDarkGrayColor ), ( "True", "False" ) )
 					item.setChecked( True )
 					item._datas = attributeCompound
 					tableWidget.setCellWidget( row, 0, item )
 				else :
-					item = Variable_QPushButton( False, ( self._uiGreenColor, self._uiRedColor ), ( "True", "False" ) )
+					item = Variable_QPushButton( False, ( self._uiLightGrayColor, self._uiDarkGrayColor ), ( "True", "False" ) )
 					item.setChecked( False )
 					item._datas = attributeCompound
 					tableWidget.setCellWidget( row, 0, item )
