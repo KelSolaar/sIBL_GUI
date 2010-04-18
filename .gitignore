@@ -10,7 +10,8 @@
 *.nsh
 
 references/
-releases/Windows/
-releases/Darwin/
 releases/Change Log.html
+releases/Darwin/
+releases/repository/
+releases/Windows/
 src/resources/builders/

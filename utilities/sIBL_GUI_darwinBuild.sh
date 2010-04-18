@@ -23,3 +23,15 @@ cp -rf ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/qt.conf ./dist/sIBL_GUI.app/Contents/Resources/
 cp -rf ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
+rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/3dsMax
+rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/XSI
+
+#! sIBL_GUI Cleanup.
+python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .pyc
+python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .pyo
+python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .DS_Store
+python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ Thumbs.db
+
+#! sIBL_GUI DMG.
+hdiutil create ./dist/sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "./dist/sIBL_GUI.app"
+mv ./dist/sIBL_GUI.dmg ../repository
