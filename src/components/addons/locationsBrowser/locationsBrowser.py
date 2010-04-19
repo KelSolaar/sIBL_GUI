@@ -691,9 +691,10 @@ class LocationsBrowser( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedTemplate = self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.selectedItems()
-		selectedTemplate = selectedTemplate and selectedTemplate[0] or None
-		selectedTemplate and hasattr( selectedTemplate, "_datas" ) and type( selectedTemplate._datas ) == dbUtilities.types.DbTemplate and os.path.exists( selectedTemplate._datas.path ) and self.exploreProvidedFolder( selectedTemplate._datas.path )
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		if selectedTemplates :
+			for template in selectedTemplates :
+				os.path.exists( template._datas.path ) and self.exploreProvidedFolder( os.path.dirname( template._datas.path ) )
 
 	@core.executionTrace
 	def Custom_File_Browser_Path_lineEdit_setUi( self ) :

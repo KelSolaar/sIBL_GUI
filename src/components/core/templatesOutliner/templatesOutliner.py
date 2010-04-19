@@ -676,9 +676,9 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
 
-		self.ui.Templates_Outliner_treeWidget.setDragDropMode( QAbstractItemView.NoDragDrop )
-
 		self.ui.Templates_Outliner_treeWidget.clear()
+		self.ui.Templates_Outliner_treeWidget.setDragDropMode( QAbstractItemView.NoDragDrop )
+		self.ui.Templates_Outliner_treeWidget.setSelectionMode( QAbstractItemView.ExtendedSelection )
 		self.ui.Templates_Outliner_treeWidget.setColumnCount( len( self._treeWidgetHeaders ) )
 		self.ui.Templates_Outliner_treeWidget.setHeaderLabels( QStringList( self._treeWidgetHeaders ) )
 		self.ui.Templates_Outliner_treeWidget.setIndentation( self._treeWidgetIndentation )
@@ -751,9 +751,9 @@ class TemplatesOutliner( UiComponent ):
 		addTemplateAction.triggered.connect( self.Components_Manager_Ui_treeWidget_addTemplateAction )
 		self.ui.Templates_Outliner_treeWidget.addAction( addTemplateAction )
 
-		removeTemplateAction = QAction( "Remove Template ...", self.ui.Templates_Outliner_treeWidget )
-		removeTemplateAction.triggered.connect( self.Components_Manager_Ui_treeWidget_removeTemplateAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( removeTemplateAction )
+		removeTemplatesAction = QAction( "Remove Template(s) ...", self.ui.Templates_Outliner_treeWidget )
+		removeTemplatesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_removeTemplatesAction )
+		self.ui.Templates_Outliner_treeWidget.addAction( removeTemplatesAction )
 
 		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
 		separatorAction.setSeparator( True )
@@ -787,14 +787,14 @@ class TemplatesOutliner( UiComponent ):
 		self.addTemplate() and self.refreshUi()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_removeTemplateAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_removeTemplatesAction( self, checked ):
 		'''
-		This Method Is Triggered By removeTemplateAction.
+		This Method Is Triggered By removeTemplatesAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.removeTemplate( self.getSelectedTemplate() ) and self.refreshUi()
+		self.removeTemplates() and self.refreshUi()
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeWidget_importDefaultTemplatesAction( self, checked ):
@@ -816,8 +816,10 @@ class TemplatesOutliner( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		template = self.getSelectedTemplate()
-		template and QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
+		selectedTemplates = self.getSelectedTemplates()
+		if selectedTemplates :
+			for template in selectedTemplates :
+				QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
 
 	@core.executionTrace
 	def updateTemplates( self ):
@@ -867,20 +869,28 @@ class TemplatesOutliner( UiComponent ):
 					</p>
 					"""
 
-		template = self.getSelectedTemplate()
-		template and content.append( subContent.format( "{0} {1} {2}".format( template._datas.software, template._datas.renderer, template._datas.title ),
-							template._datas.date,
-							template._datas.author,
-							template._datas.email,
-							template._datas.url,
-							template._datas.outputScript,
-							template._datas.comment,
-							template._datas.helpFile
-							) )
+		selectedItems = self.ui.Templates_Outliner_treeWidget.selectedItems()
+		selectedTemplates = [template for template in selectedItems if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
-		content or content.append( self._Template_Informations_textBrowser_defaultText )
+		if selectedTemplates :
+			for template in selectedTemplates :
+				if hasattr( template, "_datas" ) :
+					if type( template._datas ) == dbUtilities.types.DbTemplate :
+						template and content.append( subContent.format( "{0} {1} {2}".format( template._datas.software, template._datas.renderer, template._datas.title ),
+											template._datas.date,
+											template._datas.author,
+											template._datas.email,
+											template._datas.url,
+											template._datas.outputScript,
+											template._datas.comment,
+											template._datas.helpFile
+											) )
+		else :
+			content.append( self._Template_Informations_textBrowser_defaultText )
 
-		self.ui.Template_Informations_textBrowser.setText( "".join( content ) )
+		separator = len( content ) == 1 and "" or "<p><center>* * *<center/></p>"
+
+		self.ui.Template_Informations_textBrowser.setText( separator.join( content ) )
 
 	@core.executionTrace
 	def Template_Informations_textBrowser_OnAnchorClicked( self, url ):
@@ -893,16 +903,15 @@ class TemplatesOutliner( UiComponent ):
 		QDesktopServices.openUrl( url )
 
 	@core.executionTrace
-	def getSelectedTemplate( self ):
+	def getSelectedTemplates( self ):
 		'''
-		This Method Returns The Selected Template.
+		This Method Returns The Selected Templates.
 		
 		@return: Selected Template. ( QTreeWidgetItem )
 		'''
 
-		selectedTemplate = self.ui.Templates_Outliner_treeWidget.selectedItems()
-		selectedTemplate = selectedTemplate and selectedTemplate[0] or None
-		return selectedTemplate and hasattr( selectedTemplate, "_datas" ) and type( selectedTemplate._datas ) == dbUtilities.types.DbTemplate and selectedTemplate or None
+		selectedTemplates = self.ui.Templates_Outliner_treeWidget.selectedItems()
+		return selectedTemplates and [template for template in selectedTemplates if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
 	@core.executionTrace
 	def addTemplate( self ):
@@ -922,22 +931,36 @@ class TemplatesOutliner( UiComponent ):
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
 
 	@core.executionTrace
-	def removeTemplate( self, template ) :
+	def removeTemplates( self ) :
 		'''
-		This Method Removes Template From The Database.
+		This Method Removes Templates From The Database.
 		
 		@return: Removal Success. ( Boolean )
 		'''
 
-		if template :
-			if hasattr( template, "_datas" ) :
-				if type( template._datas ) == dbUtilities.types.DbTemplate :
-					if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template ?".format( template.text( 0 ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						return dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
-				else:
-					messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Collection !".format( self.__class__.__name__, template.text( 0 ) ) )
+		selectedItems = self.ui.Templates_Outliner_treeWidget.selectedItems()
+
+		selectedCollections = []
+		selectedSoftwares = []
+		selectedTemplates = []
+		for item in selectedItems :
+			if hasattr( item, "_datas" ) :
+				if type( item._datas ) != dbUtilities.types.DbTemplate :
+					selectedCollections.append( str( item.text( 0 ) ) )
+				else :
+					selectedTemplates.append( item )
 			else:
-				messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Software !".format( self.__class__.__name__, template.text( 0 ) ) )
+				selectedSoftwares.append( str( item.text( 0 ) ) )
+
+		selectedCollections and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s) !".format( self.__class__.__name__, ", ".join( selectedCollections ) ) )
+		selectedSoftwares and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s) !".format( self.__class__.__name__, ", ".join( selectedSoftwares ) ) )
+
+		if selectedTemplates :
+			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text( 0 ) ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+				success = True
+				for template in selectedTemplates :
+							success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
+				return success
 
 	@core.executionTrace
 	def updateTemplateLocation( self, template ):

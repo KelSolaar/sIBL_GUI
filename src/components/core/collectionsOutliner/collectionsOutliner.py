@@ -993,8 +993,7 @@ class CollectionsOutliner( UiComponent ):
 		@return: Sets List. ( List )
 		'''
 
-		selectedItems = self._Collections_Outliner_treeWidget.selectedItems()
-		selectedCollections = selectedItems != [] and selectedItems or None
+		selectedCollections = self.getSelectedCollections()
 		allIds = [collection._datas.id for collection in self._Collections_Outliner_treeWidget.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) if hasattr( collection, "_datas" )]
 		ids = selectedCollections and ( self._overallCollection in [collection.text( 0 ) for collection in selectedCollections] and allIds or self.getSelectedCollectionsIds() ) or allIds
 
@@ -1113,7 +1112,7 @@ class CollectionsOutliner( UiComponent ):
 		if self._overallCollection in [str( collection.text( 0 ) ) for collection in selectedCollections] or self._defaultCollection in [str( collection.text( 0 ) ) for collection in selectedCollections]:
 			messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection !".format( self.__class__.__name__, self._overallCollection, self._defaultCollection ) )
 
-		selectedCollections = [collection for collection in self._Collections_Outliner_treeWidget.selectedItems() if collection.text( 0 ) != self._overallCollection and collection.text( 0 ) != self._defaultCollection ]
+		selectedCollections = self.getSelectedCollections()
 		if selectedCollections :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format( ", ".join( [str( collection.text( 0 ) ) for collection in selectedCollections] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				sets = dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, self.getSelectedCollectionsIds() )
@@ -1127,6 +1126,17 @@ class CollectionsOutliner( UiComponent ):
 				return success
 
 	@core.executionTrace
+	def getSelectedCollections( self ):
+		'''
+		This Method Gets Selected Collections.
+	
+		@return: Selected Collections. ( List )
+		'''
+
+		selectedCollections = [collection for collection in self._Collections_Outliner_treeWidget.selectedItems() if collection.text( 0 ) != self._overallCollection and collection.text( 0 ) != self._defaultCollection ]
+		return selectedCollections and selectedCollections or None
+
+	@core.executionTrace
 	def getSelectedCollectionsIds( self ):
 		'''
 		This Method Gets Selected Collections Ids.
@@ -1134,10 +1144,11 @@ class CollectionsOutliner( UiComponent ):
 		@return: Collections Ids. ( List )
 		'''
 
-		selectedCollections = self._Collections_Outliner_treeWidget.selectedItems() != [] and self._Collections_Outliner_treeWidget.selectedItems() or None
+		selectedCollections = self.getSelectedCollections()
+
 		ids = []
 		if selectedCollections :
-			ids = [collection._datas.id for collection in selectedCollections if hasattr( collection, "_datas" )]
+			ids = [collection._datas.id for collection in selectedCollections]
 			return ids == [] and ids.append( self.getCollectionId( self._defaultCollection ) ) or ids
 		else :
 			return ids

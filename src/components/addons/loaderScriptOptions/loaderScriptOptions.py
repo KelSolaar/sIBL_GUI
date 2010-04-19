@@ -601,7 +601,8 @@ class LoaderScriptOptions( UiComponent ):
 		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeWidget Selection Has Changed.
 		'''
 
-		template = self._coreTemplatesOutliner.getSelectedTemplate()
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template :
 			templateParser = Parser( template._datas.path )

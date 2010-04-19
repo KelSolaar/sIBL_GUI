@@ -731,7 +731,7 @@ class ComponentsManagerUi( UiComponent ):
 												component._datas.description
 												) )
 			else:
-				content.append( self._Components_Informations_textBrowser_defaultText )
+				len( selectedComponents ) == 1 and content.append( self._Components_Informations_textBrowser_defaultText )
 
 		separator = len( content ) == 1 and "" or "<p><center>* * *<center/></p>"
 		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )

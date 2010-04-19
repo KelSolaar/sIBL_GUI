@@ -558,7 +558,7 @@ class LoaderScript( UiComponent ):
 		This Method Is Triggered When Output_Loader_Script_pushButton Is Clicked.
 		'''
 
-		self.outputLoadertScript()
+		self.outputLoaderScript()
 
 	@core.executionTrace
 	def coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged( self ):
@@ -566,7 +566,8 @@ class LoaderScript( UiComponent ):
 		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeWidget Selection Has Changed.
 		'''
 
-		template = self._coreTemplatesOutliner.getSelectedTemplate()
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template :
 			templateParser = Parser( template._datas.path )
@@ -593,16 +594,20 @@ class LoaderScript( UiComponent ):
 		This Method Remotes Connect To Target Software.
 		'''
 
-		if self.outputLoadertScript() :
+		if self.outputLoaderScript() :
+			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
 			LOGGER.info( "{0} | Starting Remote Connection !".format( self.__class__.__name__ ) )
-			templateParser = Parser( self._coreTemplatesOutliner.getSelectedTemplate()._datas.path )
+			templateParser = Parser( selectedTemplate._datas.path )
 			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 			connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
+			loaderScriptPath = os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript )
+			if platform.system() == "Windows" or platform.system() == "Microsoft":
+						loaderScriptPath = loaderScriptPath.replace( "\\", "\\\\" )
 			if connectionType.value == "Socket" :
 				try :
 					connection = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
 					connection.connect( ( str( self.ui.Address_lineEdit.text() ), int( self.ui.Software_Port_spinBox.value() ) ) )
-					socketCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._ioDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
+					socketCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", loaderScriptPath )
 					LOGGER.debug( "> Current Socket Command : '%s'.", socketCommand )
 					connection.send( socketCommand )
 					dataBack = connection.recv( 8192 )
@@ -618,7 +623,7 @@ class LoaderScript( UiComponent ):
 						import win32com.client
 						connection = win32com.client.Dispatch( foundations.parser.getAttributeCompound( "TargetApplication", templateParser.getValue( "TargetApplication", self._templateRemoteConnectionSection ) ).value )
 						connection._FlagAsMethod( self._win32ExecutionMethod )
-						connectionCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", os.path.join( self._ioDirectory, self._coreTemplatesOutliner.getSelectedTemplate()._datas.outputScript ) )
+						connectionCommand = foundations.parser.getAttributeCompound( "ExecutionCommand", templateParser.getValue( "ExecutionCommand", self._templateRemoteConnectionSection ) ).value.replace( "$loaderScriptPath", loaderScriptPath )
 						LOGGER.debug( "> Current Connection Command : '%s'.", connectionCommand )
 						getattr( connection, self._win32ExecutionMethod )( connectionCommand )
 					except Exception as error:
@@ -642,14 +647,18 @@ class LoaderScript( UiComponent ):
 		return overrideKeys
 
 	@core.executionTrace
-	def outputLoadertScript( self ) :
+	def outputLoaderScript( self ) :
 		'''
 		This Method Output The Loader Script.
 		
 		@return: Output Success. ( Boolean )
 		'''
 
-		template = self._coreTemplatesOutliner.getSelectedTemplate()
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		if selectedTemplates and len( selectedTemplates ) != 1:
+			messageBox.messageBox( "Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used !".format( self.__class__.__name__, selectedTemplates[0]._datas.name ) )
+
+		template = selectedTemplates and selectedTemplates[0] or None
 
 		if not template :
 			messageBox.messageBox( "Error", "Error", "{0} | In Order To Output The Loader Script, You Need To Select A Template !".format( self.__class__.__name__ ) )

@@ -4,9 +4,11 @@ h2=. Change Log
 
 h3. 3.0.1 - Alpha
 
-* Prevent Drag'N'Drop in the Templates Outliner Widget.
+* Fixed Incorrect loaderScript path on Windows Socket Connections.
+* Fixed an error preventing the Templates Locations of being browsed.
+* Prevented Drag'N'Drop in the Templates Outliner Widget.
 
-h3. 3.0.0 - Alpha
+h3. 3.0.0
 
 * Full sIBL_GUI rewrite / refactoring.
 * First release in the new repository.
