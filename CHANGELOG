@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.1 - Alpha
 
+* Fixed slashes path issues on Windows preventing correct Sets loading in Maya.
 * Fixed Incorrect loaderScript path on Windows Socket Connections.
 * Fixed an error preventing the Templates Locations of being browsed.
 * Prevented Drag'N'Drop in the Templates Outliner Widget.
