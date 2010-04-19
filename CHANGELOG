@@ -9,7 +9,7 @@ h3. 3.0.1 - Alpha
 * Fixed an error preventing the Templates Locations of being browsed.
 * Prevented Drag'N'Drop in the Templates Outliner Widget.
 
-h3. 3.0.0
+h3. 3.0.0 - Alpha
 
 * Full sIBL_GUI rewrite / refactoring.
 * First release in the new repository.
@@ -22,33 +22,33 @@ h3. 2.1.1 - Stable
 * Render Combo Box added in the Import Tab ( Usefull when you have multiple Templates for a Renderer ).
 * Refinements in sIBL_GUI UI.
 
-h3. 2.1.0
+h3. 2.1.0 - Release Candidate
 
 * New ReWire Widget in the Import Tab, you can now for example use the Lighting Image as Background or the Reflection one for the Lighting, it's even possible to load Custom Images so you can nearlly dynamically create your IBL on the fly.
 * Resorted sIBL_GUI Updater Columns.
 * Refinements in sIBL_GUI UI.
 * Corrected the incorrect Help / Manual Files Download Path on Frozen Executables.
 
-h3. 2.0.8
+h3. 2.0.8 - Beta
 
 * Updater / FTP Code Cleanup.
 * Fixed a Bug where more Templates than required were downloaded by sIBL_GUI Updater.
 * Debugging Code Cleanup.
 
-h3. 2.0.7
+h3. 2.0.7 - Beta
 
 * Refinements in sIBL_GUI UI.
 * Better Verbose when Remote Connection failed.
 * Manual / Help Files now load properly from a Windows Server Path.
 * Code Consolidation on Windows.
 
-h3. 2.0.6
+h3. 2.0.6 - Beta
 
 * Last Maya Templates are packaged.
 * Corrected a bug introduced during the Custom Text Editor / Browser Code Refactoring.
 * Wait Cursor is properly released when Checking For New Releases.
 
-h3. 2.0.5
+h3. 2.0.5 - Beta
 
 * Updated sIBL_GUI Help / Manual.
 * Refinements in sIBL_GUI UI.
@@ -59,13 +59,13 @@ h3. 2.0.5
 * It's now possible to choose the Templates you want to download.
 * Custom Widgets Code Refactoring For Better Reusability.
 
-h3. 2.0.2
+h3. 2.0.2 - Beta
 
 * Maya MR Template Help / Manual Files updated.
 * Maya Templates have been updated, VRay For Maya and Turtle For Maya are released as stable.
 * GPS Map is now a .jpg file for faster loading and XSI Addon Packaging Problem.
 
-h3. 2.0.1
+h3. 2.0.1 - Beta
 
 * Corrected a Windows bug preventing download of Templates / Help.
 * Started Maya VRay and Maya Turtle Help / Manual Files.
@@ -74,7 +74,7 @@ h3. 2.0.1
 * "Ignore Missing Templates" Option sets to False by default now on a fresh install.
 * Refinements in sIBL_GUI UI.
 
-h3. 2.0.0
+h3. 2.0.0 - Alpha
 
 * Updated sIBL_GUI Help / Manual.
 * Refinements in sIBL_GUI UI.
@@ -83,7 +83,7 @@ h3. 2.0.0
 * GPS Map Markers weren't properly resized while using the keyboard shortcuts to zoom in and out.
 * Cleaned a bit the Collection ListWidget ToolTips V2 Support Code.
 
-h3. 1.9.2
+h3. 1.9.2 - Alpha
 
 * Updated sIBL_GUI Help / Manual.
 * Improved Collection ListWidget ToolTips with Shot Time.
@@ -92,13 +92,13 @@ h3. 1.9.2
 * Changed the About Tab with Links Support, etc.
 * An option is now available in Preferences to Ignore Missing Templates so you are not spammed with Templates you don't have locally.
 
-h3. 1.9.1
+h3. 1.9.1 - Alpha
 
 * Updated sIBL_GUI Help / Manual.
 * Tweaked the Walker so it correctly return files with multiple "." in their name.
 * Splashscreen now stays on top of other windows.
 
-h3. 1.9.0
+h3. 1.9.0 - Alpha
 
 * Templates names have been changed.
 * A Splashscreen is now showing on initialization.
@@ -108,7 +108,7 @@ h3. 1.9.0
 * Refinements in sIBL_GUI UI.
 * I wanted sIBL_GUI next stable release to be a 1.5, but since we are introducing the sIBL V2 File Format, I'm jumping the release numbers closer to 2.0.
 
-h3. 1.4.3
+h3. 1.4.3 - Alpha
 
 * GPS Map Zooming code has been tweaked, it should be smoother now.
 * Added OpenGL support to the GPS Map. There are some new related options in the preferences.
@@ -122,18 +122,18 @@ h3. 1.4.3
 * Optimised Edit / Browser Code.
 * Exit Code is much cleaner, Logging Handlers are properly stopped and closed.
 
-h3. 1.4.2
+h3. 1.4.2 - Alpha
 
 * sIBL_Framework / sIBL_Parser have been refactored to deal with the new introduced parameters.
 * Refinements in sIBL_GUI UI.
 
-h3. 1.4.1
+h3. 1.4.1 - Alpha
 
 * Refactored some sIBL_GUI Methods and changed the GUI Messages code.
 * An Online Version Checker is now checking for sIBL_GUI Last Releases.
 * The Manual Browser has been changed to a more powerfull Widget ( QWebView ).
 
-h3. 1.4.0
+h3. 1.4.0 - Alpha
 
 * sIBL_IO Refactored to a more generic Class ( sIBL_Parser ).
 * Corrected one of the most nastier Bug I encountered since I'm working on sIBL_GUI. QSetting Class seems to affect Qt Dynamic Libraries ( I'm using the Jpeg one ) in a way that was making Qjpeg not working when reading settings.
@@ -142,7 +142,7 @@ h3. 1.4.0
 * sIBL_Templates Class has been changed to a more generic and flexible Class ( sIBL_Recursive_Walker ).
 * Refinements in sIBL_GUI UI to include the new Help features.
 
-h3. 1.3.0
+h3. 1.3.0 - Alpha
 
 * Added Remote Templates / Help Download with the coding of sIBL_GUI_FTP Class. You can now download Templates and the Help directly from HDRLabs FTP. Notice the FTP Code is curently not multithreaded so the interface can be a bit laggy while downloading.
 * Added an Edit button for easier Collection Management.
@@ -151,14 +151,14 @@ h3. 1.3.0
 * Corrected some sIBL_Framework Logging issues.
 * Reworked the Exception Code.
 
-h3. 1.2.6
+h3. 1.2.6 - Alpha
 
 * Corrected a bug with Logging File not being found when opening a sIBL_GUI File / Directory Browser.
 * Logging Level is now correctly evaluated at sIBL_GUI startup.
 * Fixed the Code Syntax that was making the compiled sIBL_GUI Executable to crash on program exit ( Console Verbose was disabled because of this in sIBL_GUI 1.2.5 ).
 * Refactored sIBL_GUI Settings Code using the QSettings Class.
 
-h3. 1.2.5
+h3. 1.2.5 - Alpha
 
 * Refactored sIBL_GUI Logging / Verbose: Now sIBL_GUI and sIBL_Framework use Python Standard Logging. Both are using a Log file : "sIBL_GUI_LogFile.log" for sIBL_GUI and "sIBL_Framework_LogFile.log" for sIBL_Framework. Those files are deleted then created each time the softwares start. One side effect is that if you launch two instances of sIBL_GUI, they will both output Log to "sIBL_GUI_LogFile.log" file, while it will not prevent sIBL_GUI from working, both Logging will be mixed.
 * Refactored sIBL_GUI Functions Call Trace : A Decorator is now used to trace whenever a function is called.
@@ -170,14 +170,14 @@ h3. 1.0.0 - Stable
 
 * Added "Edit In sIBLEdit" Linux Code though it seems there is maybe a bug with sIBLEdit preventing it to work.
 
-h3. 0.9.9
+h3. 0.9.9 - Release Candidate
 
 * Corrected introduced Bug in "Open Output Folder" button.
 * Code refactoring around Collections management.
 * Corrected Code execution when clicking Remove button and nothing was selected.
 * Clicking Remove Button when multiple items were selected on same row was throwing an error, this has been fixed.
 
-h3. 0.9.8
+h3. 0.9.8 - Beta
 
 * Code refinement for Mac Os X.
 * Mac Os X Release is now available as .dmg files ( Thanx to Emanuele Santos and Volxen for their help ).
@@ -185,19 +185,19 @@ h3. 0.9.8
 * Minor Code tweaks on sIBL_Framework.
 * Updated sIBL_GUI Help File - Manual.
 
-h3. 0.9.7
+h3. 0.9.7 - Beta
 
 * sIBL_GUI behavior with corrupted sIBL Sets should be better.
 * Started Mac Os X Code ( There is no sIBL_GUI packaged version for now ).
 * Managed to half pack the Linux Release ( You still need to download QT Libraries, refer to the Help File - Manual ).
 * Updated sIBL_GUI Help File - Manual.
 
-h3. 0.9.6
+h3. 0.9.6 - Alpha
 
 * Bug introduced with Linux Code that prevented remote execution with Maya on Windows.
 * Corrected a dangerous behavior introduced with Eclipse NSIS Plugin: It adds this line to the setup script : "RmDir /r /REBOOTOK $INSTDIR". That means that if you installed by mistake at the root of "Program Files/" and not in "Program Files/sIBL_GUI", everything in "Program Files/" will be deleted. sIBL_GUI - 0.9.6 For Windows and 12 October Nightly Releases are concerned !
 
-h3. 0.9.6
+h3. 0.9.6 - Alpha
 
 * Windows version now uses NSIS Installer for a better user experience.
 * Added Custom Browser Option in Preferences.
@@ -206,7 +206,7 @@ h3. 0.9.6
 * Linux Code. ( Notice that you will need a "TMPDIR" Environment Variable )
 * Documented the Code for Sources Release.
 
-h3. 0.9.5
+h3. 0.9.5 - Alpha
 
 * Corrected some erroneus Preferences File save state.
 * Template folder is now recursively scanned, so you can add as many folders you want in, try avoid using same Template names.
@@ -216,7 +216,7 @@ h3. 0.9.5
 * Search function available.
 * Improved filtering methods and behavior of sIBL_GUI.
 
-h3. 0.9.4
+h3. 0.9.4 - Alpha
 
 * Refined Socket Connection Code ( sIBL_GUI can now directly connect to XSI too ).
 * Added Custom IP Adress instead of the "HardCoded" "Localhost" one ( sIBL_GUI should be able to connect through Network ).
@@ -225,26 +225,26 @@ h3. 0.9.4
 * Removed Collections Items reordering pop when triggering Filtering.
 * Corrected a bug related to the Nice Attribute Name feature and the sIBL Input/Output Class.
 
-h3. 0.9.3
+h3. 0.9.3 - Alpha
 
 * Wrote Socket and OLE Connection Code ( sIBL_GUI can now directly connect To 3dsmax and Maya ).
 * Added some eye candy buttons in the Templates Options.
 * Code cleaning and increased Verbose in Debug.
 
-h3. 0.9.2
+h3. 0.9.2 - Alpha
 
 * Corrected the Collection Filtering bug ( Forget to pass a value to my verbose function :| )
 
-h3. 0.9.2
+h3. 0.9.2 - Alpha
 
 * Improved Templates folder parsing.
 * Started Socket Connection Code.
 
-h3. 0.9.1
+h3. 0.9.1 - Alpha
 
 * Fixed refreshing Log Window bug.
 
-h3. 0.9.0
+h3. 0.9.0 - Alpha
 
 * Initial Release of sIBL_GUI For Windows.
 
