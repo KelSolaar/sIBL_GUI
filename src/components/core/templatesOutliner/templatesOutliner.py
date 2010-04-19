@@ -676,6 +676,8 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
 
+		self.ui.Templates_Outliner_treeWidget.setDragDropMode( QAbstractItemView.NoDragDrop )
+
 		self.ui.Templates_Outliner_treeWidget.clear()
 		self.ui.Templates_Outliner_treeWidget.setColumnCount( len( self._treeWidgetHeaders ) )
 		self.ui.Templates_Outliner_treeWidget.setHeaderLabels( QStringList( self._treeWidgetHeaders ) )
