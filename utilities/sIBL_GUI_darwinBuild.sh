@@ -33,5 +33,4 @@ python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .DS_Stor
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ Thumbs.db
 
 #! sIBL_GUI DMG.
-hdiutil create ./dist/sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "./dist/sIBL_GUI.app"
-mv ./dist/sIBL_GUI.dmg ../repository
+hdiutil create ./sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "./dist/sIBL_GUI.app"
