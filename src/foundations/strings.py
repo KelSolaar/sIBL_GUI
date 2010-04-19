@@ -56,6 +56,8 @@
 #***	External Imports
 #***********************************************************************************************
 import logging
+import os
+import platform
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -109,6 +111,20 @@ def getVersionRank( version ):
 	'''
 
 	return sum( [int ( token ) for token in version.split( "." )] )
+
+@core.executionTrace
+def getNormalisedPath( path ):
+	'''
+	This Method Normalises A Path, Escaping Slashes If Needeed On Windows.
+
+	@param path: Path To Normalise. ( String )
+	@return: Normalised Path. ( String )
+	'''
+
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
+		return os.path.normpath( path ).replace( "\\", "\\\\" )
+	else :
+		return os.path.normpath( path )
 
 #***********************************************************************************************
 #***	Python End

@@ -543,9 +543,9 @@ class RewiringTool( UiComponent ):
 				for index, comboBox in enumerate( self._reWireComboBoxesWidgets ):
 					parameter = self._rewiringParameters[comboBox.currentIndex()]
 					if comboBox.currentText() == "Custom Image" :
-						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound( parameter[1], self._reWireLineEditWidgets[index].text() )
+						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( str( self._reWireLineEditWidgets[index].text() ) ) )
 					else:
-						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr( set._datas, parameter[2] ) and foundations.parser.getAttributeCompound( parameter[1], getattr( set._datas, parameter[2] ) )
+						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr( set._datas, parameter[2] ) and foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( getattr( set._datas, parameter[2] ) ) )
 
 #***********************************************************************************************
 #***	Python End

@@ -71,6 +71,7 @@ import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.parser
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
 from foundations.io import File
@@ -600,9 +601,7 @@ class LoaderScript( UiComponent ):
 			templateParser = Parser( selectedTemplate._datas.path )
 			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 			connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
-			loaderScriptPath = os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript )
-			if platform.system() == "Windows" or platform.system() == "Microsoft":
-						loaderScriptPath = loaderScriptPath.replace( "\\", "\\\\" )
+			loaderScriptPath = strings.getNormalisedPath( os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript ) )
 			if connectionType.value == "Socket" :
 				try :
 					connection = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
@@ -640,9 +639,10 @@ class LoaderScript( UiComponent ):
 
 		selectedSet = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
 		set = selectedSet and selectedSet[0] or None
-		overrideKeys["Background|BGfile"] = foundations.parser.getAttributeCompound( "Background|BGfile", set._datas.backgroundImage )
-		overrideKeys["Enviroment|EVfile"] = foundations.parser.getAttributeCompound( "Enviroment|EVfile", set._datas.lightingImage )
-		overrideKeys["Reflection|REFfile"] = foundations.parser.getAttributeCompound( "Reflection|REFfile", set._datas.reflectionImage )
+
+		overrideKeys["Background|BGfile"] = foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
+		overrideKeys["Enviroment|EVfile"] = foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
+		overrideKeys["Reflection|REFfile"] = foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
 
 		return overrideKeys
 

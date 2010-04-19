@@ -169,10 +169,10 @@ class DbSet( DbBase ):
 			self.title = parser.getValue( "Name", "Header", encode = True )
 			self.author = parser.getValue( "Author", "Header", encode = True )
 			self.link = parser.getValue( "Link", "Header", encode = True )
-			self.icon = parser.getValue( "ICOfile", "Header", encode = True ) and os.path.join( os.path.dirname( self.path ), parser.getValue( "ICOfile", "Header", encode = True ) ) or None
-			self.backgroundImage = parser.getValue( "BGfile", "Background", encode = True ) and os.path.join( os.path.dirname( self.path ), parser.getValue( "BGfile", "Background", encode = True ) ) or None
-			self.lightingImage = parser.getValue( "EVfile", "Enviroment", encode = True ) and os.path.join( os.path.dirname( self.path ), parser.getValue( "EVfile", "Enviroment", encode = True ) ) or None
-			self.reflectionImage = parser.getValue( "REFfile", "Reflection", encode = True ) and os.path.join( os.path.dirname( self.path ), parser.getValue( "REFfile", "Reflection", encode = True ) ) or None
+			self.icon = parser.getValue( "ICOfile", "Header", encode = True ) and os.path.normpath( os.path.join( os.path.dirname( self.path ), parser.getValue( "ICOfile", "Header", encode = True ) ) ) or None
+			self.backgroundImage = parser.getValue( "BGfile", "Background", encode = True ) and  os.path.normpath( os.path.join( os.path.dirname( self.path ), parser.getValue( "BGfile", "Background", encode = True ) ) ) or None
+			self.lightingImage = parser.getValue( "EVfile", "Enviroment", encode = True ) and  os.path.normpath( os.path.join( os.path.dirname( self.path ), parser.getValue( "EVfile", "Enviroment", encode = True ) ) ) or None
+			self.reflectionImage = parser.getValue( "REFfile", "Reflection", encode = True ) and  os.path.normpath( os.path.join( os.path.dirname( self.path ), parser.getValue( "REFfile", "Reflection", encode = True ) ) ) or None
 			self.location = parser.getValue( "Location", "Header", encode = True )
 			self.latitude = parser.getValue( "GEOlat", "Header", encode = True )
 			self.longitude = parser.getValue( "GEOlong", "Header", encode = True )
