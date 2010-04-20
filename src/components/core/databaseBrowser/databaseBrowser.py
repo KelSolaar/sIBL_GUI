@@ -108,6 +108,8 @@ class DatabaseBrowser( UiComponent ):
 		self._uiResources = "resources"
 		self._uiFormatErrorIcon = "Thumbnails_Format_Not_Supported_Yet.png"
 		self._uiMissingIcon = "Thumbnailst_Not_Found.png"
+		self._uiLargestSizeIcon = "Largest_Size.png"
+		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
 		self._listWidgetSpacing = 4
 		self._listWidgetIconSize = 128
@@ -246,6 +248,64 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiMissingIcon" ) )
+
+	@property
+	def uiLargestSizeIcon( self ):
+		'''
+		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+
+		@return: self._uiLargestSizeIcon. ( String )
+		'''
+
+		return self._uiLargestSizeIcon
+
+	@uiLargestSizeIcon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLargestSizeIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLargestSizeIcon" ) )
+
+	@uiLargestSizeIcon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiLargestSizeIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLargestSizeIcon" ) )
+
+	@property
+	def uiSmallestSizeIcon( self ):
+		'''
+		This Method Is The Property For The _uiSmallestSizeIcon Attribute.
+
+		@return: self._uiSmallestSizeIcon. ( String )
+		'''
+
+		return self._uiSmallestSizeIcon
+
+	@uiSmallestSizeIcon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiSmallestSizeIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiSmallestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSmallestSizeIcon" ) )
+
+	@uiSmallestSizeIcon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiSmallestSizeIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiSmallestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiSmallestSizeIcon" ) )
 
 	@property
 	def dockArea( self ):
@@ -606,11 +666,15 @@ class DatabaseBrowser( UiComponent ):
 
 		self.Database_Browser_listWidget_setUi()
 
+		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
+		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
+
 		self._timer = QTimer( self )
 		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
 		# Signals / Slots.
 		self.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets )
+		self.ui.Thumbnails_Size_horizontalSlider.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -817,6 +881,17 @@ class DatabaseBrowser( UiComponent ):
 		if needUiRefresh :
 			self.setCollectionsDisplaySets()
 			self.refreshUi()
+
+	@core.executionTrace
+	def Thumbnails_Size_horizontalSlider_OnChanged( self, value ):
+		'''
+		This Method Scales The Database_Browser_listWidget Icons.
+		
+		@param value: Thumbnails Size. ( Integer )
+		'''
+
+		self.ui.Database_Browser_listWidget.listWidgetIconSize = value
+		self.ui.Database_Browser_listWidget.setIconSize( QSize( value, value ) )
 
 	@core.executionTrace
 	def updateSets( self ):
