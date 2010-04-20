@@ -875,6 +875,18 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		spacer.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
 		self.toolBar.addWidget( spacer )
 
+		libraryAction = QAction( "Library", self )
+		libraryAction.setShortcut( QKeySequence( Qt.Key_0 ) )
+		self.toolBar.addAction( libraryAction )
+
+		exportAction = QAction( "Export", self )
+		exportAction.setShortcut( QKeySequence( Qt.Key_9 ) )
+		self.toolBar.addAction( exportAction )
+
+		preferencesAction = QAction( "Preferences", self )
+		preferencesAction.setShortcut( QKeySequence( Qt.Key_8 ) )
+		self.toolBar.addAction( preferencesAction )
+
 		centralWidgetButton = QToolButton()
 		centralWidgetButton.setIcon( QIcon( QPixmap( UiConstants.frameworCentralWidgetIcon ) ) )
 		self.toolBar.addWidget( centralWidgetButton )
@@ -886,13 +898,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		layoutbutton.setPopupMode( QToolButton.InstantPopup )
 
 		self._layoutMenu = QMenu( "Layout", layoutbutton )
-
-		restoreSetsCentricLayoutAction = QAction( "Restore Sets Centric Layout", self )
-		restoreSetsCentricLayoutAction.setShortcut( QKeySequence( Qt.Key_0 ) )
-		restoreTemplatesCentricLayoutAction = QAction( "Restore Templates Centric Layout", self )
-		restoreTemplatesCentricLayoutAction.setShortcut( QKeySequence( Qt.Key_9 ) )
-		restorePreferencesCentricLayoutAction = QAction( "Restore Preferences Centric Layout", self )
-		restorePreferencesCentricLayoutAction.setShortcut( QKeySequence( Qt.Key_8 ) )
 
 		restoreLayoutOneAction = QAction( "Restore Layout 1", self )
 		restoreLayoutOneAction.setShortcut( QKeySequence( Qt.Key_1 ) )
@@ -919,10 +924,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		storeLayoutFiveAction = QAction( "Store Layout 5", self )
 		storeLayoutFiveAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_5 ) )
 
-		self._layoutMenu.addAction( restoreSetsCentricLayoutAction )
-		self._layoutMenu.addAction( restoreTemplatesCentricLayoutAction )
-		self._layoutMenu.addAction( restorePreferencesCentricLayoutAction )
-		self._layoutMenu.addSeparator()
 		self._layoutMenu.addAction( restoreLayoutOneAction )
 		self._layoutMenu.addAction( restoreLayoutTwoAction )
 		self._layoutMenu.addAction( restoreLayoutThreeAction )
@@ -936,9 +937,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._layoutMenu.addAction( storeLayoutFiveAction )
 
 		# Signals / Slots.
-		self.connect( restoreSetsCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreSetsCentricLayoutAction_OnTriggered )
-		self.connect( restoreTemplatesCentricLayoutAction, SIGNAL( "triggered()" ), self.restoreTemplatesCentricLayoutAction_OnTriggered )
-		self.connect( restorePreferencesCentricLayoutAction, SIGNAL( "triggered()" ), self.restorePreferencesCentricLayoutAction_OnTriggered )
+		self.connect( libraryAction, SIGNAL( "triggered()" ), self.libraryAction_OnTriggered )
+		self.connect( exportAction, SIGNAL( "triggered()" ), self.exportAction_OnTriggered )
+		self.connect( preferencesAction, SIGNAL( "triggered()" ), self.preferencesAction_OnTriggered )
 		self.connect( restoreLayoutOneAction, SIGNAL( "triggered()" ), self.restoreLayoutOneAction_OnTriggered )
 		self.connect( restoreLayoutTwoAction, SIGNAL( "triggered()" ), self.restoreLayoutTwoAction_OnTriggered )
 		self.connect( restoreLayoutThreeAction, SIGNAL( "triggered()" ), self.restoreLayoutThreeAction_OnTriggered )
@@ -1028,9 +1029,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.restoreLayout( "setsCentric" )
 
 	@core.executionTrace
-	def restoreSetsCentricLayoutAction_OnTriggered( self ):
+	def libraryAction_OnTriggered( self ):
 		'''
-		This Method Is Called When Restoring Sets Centric Layout.
+		This Method Is Called When libraryAction Is Triggered.
 		'''
 
 		self.restoreSetsCentricLayout()
@@ -1044,9 +1045,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.restoreLayout( "templatesCentric" )
 
 	@core.executionTrace
-	def restoreTemplatesCentricLayoutAction_OnTriggered( self ):
+	def exportAction_OnTriggered( self ):
 		'''
-		This Method Is Called When Restoring Templates Centric Layout.
+		This Method Is Called When exportAction Is Triggered.
 		'''
 
 		self.restoreTemplatesCentricLayout()
@@ -1060,9 +1061,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.restoreLayout( "preferencesCentric" )
 
 	@core.executionTrace
-	def restorePreferencesCentricLayoutAction_OnTriggered( self ):
+	def preferencesAction_OnTriggered( self ):
 		'''
-		This Method Is Called When Restoring Preferences Centric Layout.
+		This Method Is Called When preferencesAction Is Triggered.
 		'''
 
 		self.restorePreferencesCentricLayout()
