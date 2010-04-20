@@ -143,6 +143,8 @@ class DownloadManager( QObject ):
 		self.requests = requests
 		self._downloads = []
 		self._currentRequest = None
+		self._currentFile = None
+		self._currentFilePath = None
 
 		# Helper Attribute For QNetwork Reply Crash.
 		self._downloadStatus = None
@@ -429,6 +431,66 @@ class DownloadManager( QObject ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "currentRequest" ) )
 
 	@property
+	def currentFile( self ):
+		'''
+		This Method Is The Property For The _currentFile Attribute.
+
+		@return: self._currentFile. ( QFile )
+		'''
+
+		return self._currentFile
+
+	@currentFile.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentFile( self, value ):
+		'''
+		This Method Is The Setter Method For The _currentFile Attribute.
+
+		@param value: Attribute Value. ( QFile )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "currentFile" ) )
+
+	@currentFile.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentFile( self ):
+		'''
+		This Method Is The Deleter Method For The _currentFile Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "currentFile" ) )
+
+	@property
+	def currentFilePath( self ):
+		'''
+		This Method Is The Property For The _currentFilePath Attribute.
+
+		@return: self._currentFilePath. ( String )
+		'''
+
+		return self._currentFilePath
+
+	@currentFilePath.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentFilePath( self, value ):
+		'''
+		This Method Is The Setter Method For The _currentFilePath Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "currentFilePath" ) )
+
+	@currentFilePath.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def currentFilePath( self ):
+		'''
+		This Method Is The Deleter Method For The _currentFilePath Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "currentFilePath" ) )
+
+	@property
 	def downloadStatus( self ):
 		'''
 		This Method Is The Property For The _downloadStatus Attribute.
@@ -536,6 +598,18 @@ class DownloadManager( QObject ):
 
 			self._currentRequest = self._networkAccessManager.get( QNetworkRequest( QUrl( self._requests.pop() ) ) )
 
+			self._currentFilePath = os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) )
+			if os.path.exists( self._currentFilePath ) :
+				LOGGER.info( "{0} | Removing '{1}' Local File From Previous Online Update !".format( self.__class__.__name__, os.path.basename( self._currentFilePath ) ) )
+				os.remove( self._currentFilePath )
+
+			self._currentFile = QFile( self._currentFilePath )
+
+			if not self._currentFile.open( QIODevice.WriteOnly ) :
+				messageBox.messageBox( "Error", "Error", "{0} | Error While Writing '{1}' File To Disk !".format( self.__class__.__name__, os.path.basename( self._currentFilePath ) ) )
+				self.downloadNext()
+				return
+
 			# Signals / Slots.
 			self._currentRequest.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
 			self._currentRequest.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
@@ -560,8 +634,7 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Is Ready To Write.
 		'''
 
-		file = File( os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) ), [self._currentRequest.readAll()] )
-		file.append( "ab" )
+		self._currentFile.write( self._currentRequest.readAll() )
 
 	@core.executionTrace
 	def downloadFinished( self ):
@@ -569,8 +642,9 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Download Is Finished.
 		'''
 
-		self._downloads.append( os.path.join( self._downloadFolder, os.path.basename( str( self._currentRequest.url().path() ) ) ) )
-		self._ui.Current_File_label.setText( "'{0}' Downloading Done !".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
+		self._currentFile.close()
+		self._downloads.append( self._currentFilePath )
+		self._ui.Current_File_label.setText( "'{0}' Downloading Done !".format( os.path.basename( self._currentFilePath ) ) )
 		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
 		if self._requests :
@@ -1291,7 +1365,7 @@ class RemoteUpdater( object ):
 				pkzip.archive = download
 				pkzip.extract( os.path.dirname( download ) )
 
-				LOGGER.info( "{0} | Deleting '{1}' Archive !".format( self.__class__.__name__, download ) )
+				LOGGER.info( "{0} | Removing '{1}' Archive !".format( self.__class__.__name__, download ) )
 				os.remove( download )
 
 				self._container.coreTemplatesOutliner.getTemplates( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
