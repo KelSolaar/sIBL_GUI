@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.2 - Alpha
 
+* Merged "DatabaseBrowser" and "ThumbnailsSize" components.
 * Changed "onlineUpdater" component IODevice to QFile, Windows 7 and Vista downloads are not corrupted anymore.
 
 h3. 3.0.1 - Alpha
