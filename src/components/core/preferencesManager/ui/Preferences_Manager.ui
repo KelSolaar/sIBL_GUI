@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Preferences_Manager_DockWidget</class>
  <widget class="QDockWidget" name="Preferences_Manager_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>340</width>
-    <height>260</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Preferences Manager</string>
   </property>
@@ -31,15 +23,15 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>316</width>
-         <height>142</height>
+         <width>329</width>
+         <height>178</height>
         </rect>
        </property>
        <attribute name="label">
         <string>General</string>
        </attribute>
        <layout class="QGridLayout" name="General_Preferences_page_gridLayout">
-        <item row="2" column="0">
+        <item row="3" column="0">
          <spacer name="General_Preferences_verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -92,6 +84,49 @@
           </layout>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="Layouts_groupBox">
+          <property name="title">
+           <string>Layouts</string>
+          </property>
+          <layout class="QGridLayout" name="Layouts_groupBox_gridLayout">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="Restore_Geometry_On_Layout_Change_horizontalLayout">
+             <item>
+              <widget class="QLabel" name="Restore_Geometry_On_Layout_Change_label">
+               <property name="text">
+                <string>Restore Geometry On Layout Change</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="Restore_Geometry_On_Layout_Change_horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="Restore_Geometry_On_Layout_Change_checkBox">
+               <property name="statusTip">
+                <string>Restore Geometry On Layout Change Check Box : Application Window Size And Placement Are Also Restored When Changing Application Layout.</string>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="Others_Preferences_page">
@@ -99,8 +134,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>316</width>
-         <height>142</height>
+         <width>464</width>
+         <height>243</height>
         </rect>
        </property>
        <attribute name="label">

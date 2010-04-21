@@ -772,7 +772,7 @@ class ComponentsManagerUi( UiComponent ):
 		for component in self.ui.Components_Manager_Ui_treeWidget.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) :
 			if component and hasattr( component, "_datas" ) :
 				component._datas.interface.activated or deactivatedComponents.append( component._datas.name )
-		self._settings.setKey( "Settings", "DeactivatedComponents", ",".join( deactivatedComponents ) )
+		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
 
 #***********************************************************************************************
 #***	Python End

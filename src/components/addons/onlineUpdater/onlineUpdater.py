@@ -1926,9 +1926,9 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		# Adding Settings Key If It Does'nt Exists.
-		self._settings.getKey( "Others", "CheckForNewReleasesOnStartup" ).isNull() and self._settings.setKey( "Others", "CheckForNewReleasesOnStartup", Qt.Checked )
+		self._settings.getKey( "Others", "checkForNewReleasesOnStartup" ).isNull() and self._settings.setKey( "Others", "checkForNewReleasesOnStartup", Qt.Checked )
 
-		checkForNewReleasesOnStartup = self._settings.getKey( "Others", "CheckForNewReleasesOnStartup" )
+		checkForNewReleasesOnStartup = self._settings.getKey( "Others", "checkForNewReleasesOnStartup" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0] ) )
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState( checkForNewReleasesOnStartup.toInt()[0] )
 
@@ -1941,7 +1941,7 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Check For New Releases On Startup State : '{0}'.".format( self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() ) )
-		self._settings.setKey( "Others", "CheckForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
+		self._settings.setKey( "Others", "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
 
 	@core.executionTrace
 	def onStartup( self ):

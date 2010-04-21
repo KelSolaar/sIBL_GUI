@@ -216,8 +216,9 @@ class Preferences():
 		layoutSettings = QSettings( os.path.join( os.getcwd(), UiConstants.frameworkLayoutsFile ), QSettings.IniFormat )
 
 		self._settings.beginGroup( "Settings" )
-		self._settings.setValue( "VerbosityLevel", QVariant( "3" ) )
-		self._settings.setValue( "DeactivatedComponents", QVariant( "" ) )
+		self._settings.setValue( "verbosityLevel", QVariant( "3" ) )
+		self._settings.setValue( "restoreGeometryOnLayoutChange", Qt.Unchecked )
+		self._settings.setValue( "deactivatedComponents", QVariant( "" ) )
 		self._settings.endGroup()
 		self._settings.beginGroup( "Layouts" )
 		self._settings.setValue( "setsCentric_geometry", layoutSettings.value( "setsCentric/geometry" ) )
@@ -409,7 +410,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
 
 		# --- Activating Others Components. ---
-		deactivatedComponents = self._settings.getKey( "Settings", "DeactivatedComponents" ).toString().split( "," )
+		deactivatedComponents = self._settings.getKey( "Settings", "deactivatedComponents" ).toString().split( "," )
 		for component in self._componentsManager.getComponents() :
 			if component not in deactivatedComponents :
 				profile = self._componentsManager.components[component]
@@ -1017,7 +1018,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self.centralwidget.setVisible( self._settings.getKey( "Layouts", "{0}_centralWidget".format( name ) ).toBool() )
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
-		self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
+		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
 	@core.executionTrace
@@ -1243,7 +1244,7 @@ def sIBL_GUI_start():
 
 	os.path.exists( SETTINGS_FILE ) or SETTINGS.setDefaultPreferences()
 
-	VERBOSITY_LEVEL = SETTINGS.getKey( "Settings", "VerbosityLevel" ).toInt()[0]
+	VERBOSITY_LEVEL = SETTINGS.getKey( "Settings", "verbosityLevel" ).toInt()[0]
 	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( VERBOSITY_LEVEL ) )
 	core.setVerbosityLevel( VERBOSITY_LEVEL )
 

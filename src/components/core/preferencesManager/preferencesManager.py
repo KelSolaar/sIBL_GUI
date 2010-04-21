@@ -266,9 +266,11 @@ class PreferencesManager( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self.Verbose_Level_comboBox_OnActivated_setUi()
+		self.Restore_Geometry_On_Layout_Change_checkBox_setUi()
 
 		# Signals / Slots.
 		self.ui.Verbose_Level_comboBox.connect( self.ui.Verbose_Level_comboBox, SIGNAL( "activated( int )" ), self.Verbose_Level_comboBox_OnActivated )
+		self.ui.Restore_Geometry_On_Layout_Change_checkBox.connect( self.ui.Restore_Geometry_On_Layout_Change_checkBox, SIGNAL( "stateChanged( int )" ), self.Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -307,7 +309,7 @@ class PreferencesManager( UiComponent ):
 		self.ui.Verbose_Level_comboBox.clear()
 		LOGGER.debug( "> Available Verbose Levels : '{0}'.".format( Constants.verbosityLabels ) )
 		self.ui.Verbose_Level_comboBox.insertItems( 0, QStringList ( Constants.verbosityLabels ) )
-		self._container.verbosityLevel = self._settings.getKey( "Settings", "VerbosityLevel" ).toInt()[0]
+		self._container.verbosityLevel = self._settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
 		self.ui.Verbose_Level_comboBox.setCurrentIndex( self._container.verbosityLevel )
 
 	@core.executionTrace
@@ -321,7 +323,31 @@ class PreferencesManager( UiComponent ):
 		LOGGER.debug( "> Setting Verbose Level : '{0}'.".format( self.ui.Verbose_Level_comboBox.currentText() ) )
 		self._container.verbosityLevel = int( self.ui.Verbose_Level_comboBox.currentIndex() )
 		core.setVerbosityLevel( int( self.ui.Verbose_Level_comboBox.currentIndex() ) )
-		self._settings.setKey( "Settings", "VerbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex() )
+		self._settings.setKey( "Settings", "verbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex() )
+
+	@core.executionTrace
+	def Restore_Geometry_On_Layout_Change_checkBox_setUi( self ) :
+		'''
+		This Method Sets The Restore_Geometry_On_Layout_Change_checkBox.
+		'''
+
+		# Adding Settings Key If It Does'nt Exists.
+		self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" ).isNull() and self._settings.setKey( "Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked )
+
+		checkForNewReleasesOnStartup = self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" )
+		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Restore_Geometry_On_Layout_Change_checkBox", checkForNewReleasesOnStartup.toInt()[0] ) )
+		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState( checkForNewReleasesOnStartup.toInt()[0] )
+
+	@core.executionTrace
+	def Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged( self, state ) :
+		'''
+		This Method Is Called When Restore_Geometry_On_Layout_Change_checkBox State Changes.
+		
+		@param state: Checkbox State. ( Integer )
+		'''
+
+		LOGGER.debug( "> Check For New Releases On Startup State : '{0}'.".format( self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState() ) )
+		self._settings.setKey( "Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState() )
 
 #***********************************************************************************************
 #***	Python End
