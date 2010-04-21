@@ -346,7 +346,7 @@ class PreferencesManager( UiComponent ):
 		@param state: Checkbox State. ( Integer )
 		'''
 
-		LOGGER.debug( "> Check For New Releases On Startup State : '{0}'.".format( self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState() ) )
+		LOGGER.debug( "> Restore Geometry On Layout Change State : '{0}'.".format( self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState() ) )
 		self._settings.setKey( "Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState() )
 
 #***********************************************************************************************
