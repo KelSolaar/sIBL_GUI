@@ -334,9 +334,9 @@ class PreferencesManager( UiComponent ):
 		# Adding Settings Key If It Does'nt Exists.
 		self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" ).isNull() and self._settings.setKey( "Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked )
 
-		checkForNewReleasesOnStartup = self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" )
-		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Restore_Geometry_On_Layout_Change_checkBox", checkForNewReleasesOnStartup.toInt()[0] ) )
-		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState( checkForNewReleasesOnStartup.toInt()[0] )
+		restoreGeometryOnLayoutChange = self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" )
+		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Restore_Geometry_On_Layout_Change_checkBox", restoreGeometryOnLayoutChange.toInt()[0] ) )
+		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState( restoreGeometryOnLayoutChange.toInt()[0] )
 
 	@core.executionTrace
 	def Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged( self, state ) :
