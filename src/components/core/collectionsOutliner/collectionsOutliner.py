@@ -1028,9 +1028,11 @@ class CollectionsOutliner( UiComponent ):
 		collection = self.addCollection()
 		if collection :
 			self.Collections_Outliner_treeWidget_setUi()
-			self.coreDatabaseBrowser.addDirectory( self.getCollectionId( collection ) )
-			self._Collections_Outliner_treeWidget.setCurrentItem( self.Collections_Outliner_treeWidget.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] )
-			self.Collections_Outliner_treeWidget_refreshSetsCounts()
+			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
+			if directory :
+				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
+				self._Collections_Outliner_treeWidget.setCurrentItem( self.Collections_Outliner_treeWidget.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] )
+				self.Collections_Outliner_treeWidget_refreshSetsCounts()
 
 	@core.executionTrace
 	def Collections_Outliner_treeWidget_addCollectionAction( self, checked ):
@@ -1061,7 +1063,7 @@ class CollectionsOutliner( UiComponent ):
 		This Method Refreshes The Database Browser Depending On The Collections Outliner Selected Items.
 		'''
 
-		self._coreDatabaseBrowser.setCollectionsDisplaySets()
+		self._coreDatabaseBrowser.displaySets = self.getCollectionsSets()
 		self._coreDatabaseBrowser.refreshUi()
 		self.Collections_Outliner_treeWidget_refreshSetsCounts()
 
@@ -1133,7 +1135,7 @@ class CollectionsOutliner( UiComponent ):
 		@return: Selected Collections. ( List )
 		'''
 
-		selectedCollections = [collection for collection in self._Collections_Outliner_treeWidget.selectedItems() if collection.text( 0 ) != self._overallCollection and collection.text( 0 ) != self._defaultCollection ]
+		selectedCollections = [collection for collection in self._Collections_Outliner_treeWidget.selectedItems() if collection.text( 0 ) != self._overallCollection ]
 		return selectedCollections and selectedCollections or None
 
 	@core.executionTrace
