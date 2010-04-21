@@ -1944,6 +1944,30 @@ class OnlineUpdater( UiComponent ):
 		self._settings.setKey( "Others", "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
 
 	@core.executionTrace
+	def Ignore_Non_Existing_Templates_checkBox_setUi( self ) :
+		'''
+		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
+		'''
+
+		# Adding Settings Key If It Does'nt Exists.
+		self._settings.getKey( "Others", "ignoreNonExistingTemplates" ).isNull() and self._settings.setKey( "Others", "ignoreNonExistingTemplates", Qt.Checked )
+
+		ignoreNonExistingTemplates = self._settings.getKey( "Others", "ignoreNonExistingTemplates" )
+		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0] ) )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState( ignoreNonExistingTemplates.toInt()[0] )
+
+	@core.executionTrace
+	def Ignore_Non_Existing_Templates_checkBox_OnStateChanged( self, state ) :
+		'''
+		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
+		
+		@param state: Checkbox State. ( Integer )
+		'''
+
+		LOGGER.debug( "> Ignore Non Existing Templates State : '{0}'.".format( self.ui.Ignore_Non_Existing_Templates_checkBox.checkState() ) )
+		self._settings.setKey( "Others", "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState() )
+
+	@core.executionTrace
 	def onStartup( self ):
 		'''
 		This Method Is Called On Framework Startup.
@@ -2011,6 +2035,7 @@ class OnlineUpdater( UiComponent ):
 																url = parser.getValue( "Url", remoteObject ),
 																comment = parser.getValue( "Comment", remoteObject ) )
 					else :
+						if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked() :
 							releases[remoteObject] = ReleaseObject( name = remoteObject,
 																repositoryVersion = parser.getValue( "Release", remoteObject ),
 																localVersion = None,

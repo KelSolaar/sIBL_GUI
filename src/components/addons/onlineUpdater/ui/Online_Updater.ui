@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Online_Updater_Form</class>
  <widget class="QWidget" name="Online_Updater_Form">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>346</width>
-    <height>110</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -24,16 +16,6 @@
      </property>
      <layout class="QGridLayout" name="Online_Updater_groupBox_gridLayout">
       <item row="1" column="0">
-       <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
-        <property name="statusTip">
-         <string>Check For New Releases Push Button : Checks If New Releases Are Available Online.</string>
-        </property>
-        <property name="text">
-         <string>Check For New Releases</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
        <layout class="QHBoxLayout" name="Check_For_New_Releases_On_Startup_horizontalLayout">
         <item>
          <widget class="QLabel" name="Check_For_New_Releases_On_Startup_label">
@@ -69,6 +51,53 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="Ignore_Non_Existing_Templates_horizontalLayout">
+        <item>
+         <widget class="QLabel" name="Ignore_Non_Existing_Templates_label">
+          <property name="text">
+           <string>Ignore Non Existing Templates :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="Ignore_Non_Existing_Templates_horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="Ignore_Non_Existing_Templates_checkBox">
+          <property name="statusTip">
+           <string>Ignore Non Existing Templates Check Box : Online Updater Will Only Consider Templates In The Database When Checking For Updates.</string>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
+        <property name="statusTip">
+         <string>Check For New Releases Push Button : Checks If New Releases Are Available Online.</string>
+        </property>
+        <property name="text">
+         <string>Check For New Releases</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
