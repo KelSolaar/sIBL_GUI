@@ -922,6 +922,23 @@ class DatabaseBrowser( UiComponent ):
 			self.refreshUi()
 
 	@core.executionTrace
+	def addSet( self, name, path, collectionId = None ):
+		'''
+		This Method Adds A Set To The Database.
+		
+		@param name: Set Name. ( String )		
+		@param path: Set Path. ( String )		
+		@param collectionId: Target Collection Id. ( Integer )		
+		'''
+
+		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
+			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
+				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
+		else:
+			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, set ) )
+
+	@core.executionTrace
 	def addDirectory( self, directory, collectionId = None ):
 		'''
 		This Method Adds A Sets Directory Content To The Database.
@@ -934,23 +951,6 @@ class DatabaseBrowser( UiComponent ):
 		walker.walk( self._extension )
 		for set, path in walker.files.items() :
 			self.addSet( set, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() )
-
-	@core.executionTrace
-	def addSet( self, name, path, collectionId = None ):
-		'''
-		This Method Adds A Set To The Database.
-		
-		@param path: Set Path. ( String )		
-		@param name: Set Name. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
-		'''
-
-		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
-			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
-			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
-		else:
-			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, set ) )
 
 	@core.executionTrace
 	def removeSets( self ):
