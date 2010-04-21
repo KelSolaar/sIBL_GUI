@@ -68,6 +68,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -763,6 +764,10 @@ class TemplatesOutliner( UiComponent ):
 		importDefaultTemplatesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_importDefaultTemplatesAction )
 		self.ui.Templates_Outliner_treeWidget.addAction( importDefaultTemplatesAction )
 
+		filterTemplatesVersionsAction = QAction( "Filter Templates Versions", self.ui.Templates_Outliner_treeWidget )
+		filterTemplatesVersionsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_filterTemplatesVersionsAction )
+		self.ui.Templates_Outliner_treeWidget.addAction( filterTemplatesVersionsAction )
+
 		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
 		separatorAction.setSeparator( True )
 		self.ui.Templates_Outliner_treeWidget.addAction( separatorAction )
@@ -820,6 +825,25 @@ class TemplatesOutliner( UiComponent ):
 		if selectedTemplates :
 			for template in selectedTemplates :
 				QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
+
+	@core.executionTrace
+	def Components_Manager_Ui_treeWidget_filterTemplatesVersionsAction( self, checked ):
+		'''
+		This Method Is Triggered By filterTemplatesVersionsAction.
+
+		@param checked: Action Checked State. ( Boolean )
+		'''
+
+		templates = dbUtilities.common.getTemplates( self._coreDb.dbSession )
+		needUiRefresh = False
+		for template in templates :
+			matchingTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template.name ), "name" )
+			if len( matchingTemplates ) != 1 :
+				needUiRefresh = True
+				for id in sorted( [( dbTemplate.id, dbTemplate.release ) for dbTemplate in matchingTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )[1:] :
+					dbUtilities.common.removeTemplate( self._coreDb.dbSession, id[0] )
+
+		needUiRefresh and self.refreshUi()
 
 	@core.executionTrace
 	def updateTemplates( self ):
@@ -959,7 +983,7 @@ class TemplatesOutliner( UiComponent ):
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text( 0 ) ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				success = True
 				for template in selectedTemplates :
-							success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
+					success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 				return success
 
 	@core.executionTrace
