@@ -348,6 +348,8 @@ class SetsScanner( Component ):
 			self._coreDatabaseBrowser.setCollectionsDisplaySets()
 			self._coreDatabaseBrowser.refreshUi()
 
+		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
