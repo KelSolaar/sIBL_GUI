@@ -91,6 +91,8 @@ class Variable_QPushButton( QPushButton ) :
 		QPushButton.__init__( self )
 
 		# --- Setting Class Attributes. ---
+		self._signalsSlotsCenter = QObject()
+
 		self._state = None
 		self.state = state
 
@@ -108,11 +110,41 @@ class Variable_QPushButton( QPushButton ) :
 			self.setFalseState()
 
 		# Variable_QPushButton Signals / Slots.
-		self.connect( self, SIGNAL( "clicked()" ), self.variable_QPushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self, SIGNAL( "clicked()" ), self.variable_QPushButton_OnClicked )
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
 	@property
 	def state( self ):
 		'''

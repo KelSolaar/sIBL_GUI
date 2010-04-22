@@ -108,6 +108,7 @@ class SearchDatabase( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._coreCollectionsOutliner = None
@@ -271,6 +272,36 @@ class SearchDatabase( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDb( self ):
@@ -469,6 +500,7 @@ class SearchDatabase( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
@@ -487,6 +519,7 @@ class SearchDatabase( UiComponent ):
 		self.uiFile = None
 		self._uiResources = os.path.basename( self._uiResources )
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 		self._coreDatabaseBrowser = None
@@ -512,11 +545,11 @@ class SearchDatabase( UiComponent ):
 		self.ui.Search_Database_lineEdit.setCompleter( self._completer )
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.connect( self.ui.Search_Database_lineEdit, SIGNAL( "textChanged( const QString & )" ), self.Search_Database_lineEdit_OnTextChanged )
-		self.ui.Search_Database_comboBox.connect( self.ui.Search_Database_comboBox, SIGNAL( "activated( int )" ), self.Search_Database_comboBox_OnActivated )
-		self.ui.Case_Insensitive_Matching_checkBox.connect( self.ui.Case_Insensitive_Matching_checkBox, SIGNAL( "stateChanged( int )" ), self.Case_Insensitive_Matching_checkBox_OnStateChanged )
-		self.ui.Time_Low_timeEdit.connect( self.ui.Time_Low_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_Low_timeEdit_OnTimeChanged )
-		self.ui.Time_High_timeEdit.connect( self.ui.Time_High_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_High_timeEdit_OnTimeChanged )
+		self._signalsSlotsCenter.connect( self.ui.Search_Database_lineEdit, SIGNAL( "textChanged( const QString & )" ), self.Search_Database_lineEdit_OnTextChanged )
+		self._signalsSlotsCenter.connect( self.ui.Search_Database_comboBox, SIGNAL( "activated( int )" ), self.Search_Database_comboBox_OnActivated )
+		self._signalsSlotsCenter.connect( self.ui.Case_Insensitive_Matching_checkBox, SIGNAL( "stateChanged( int )" ), self.Case_Insensitive_Matching_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.connect( self.ui.Time_Low_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_Low_timeEdit_OnTimeChanged )
+		self._signalsSlotsCenter.connect( self.ui.Time_High_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_High_timeEdit_OnTimeChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -529,11 +562,11 @@ class SearchDatabase( UiComponent ):
 		self._completer = None
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.disconnect( self.ui.Search_Database_lineEdit, SIGNAL( "textChanged( const QString & )" ), self.Search_Database_lineEdit_OnTextChanged )
-		self.ui.Search_Database_comboBox.disconnect( self.ui.Search_Database_comboBox, SIGNAL( "activated( int )" ), self.Search_Database_comboBox_OnActivated )
-		self.ui.Case_Insensitive_Matching_checkBox.disconnect( self.ui.Case_Insensitive_Matching_checkBox, SIGNAL( "stateChanged( int )" ), self.Case_Insensitive_Matching_checkBox_OnStateChanged )
-		self.ui.Time_Low_timeEdit.disconnect( self.ui.Time_Low_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_Low_timeEdit_OnTimeChanged )
-		self.ui.Time_High_timeEdit.disconnect( self.ui.Time_High_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_High_timeEdit_OnTimeChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Search_Database_lineEdit, SIGNAL( "textChanged( const QString & )" ), self.Search_Database_lineEdit_OnTextChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Search_Database_comboBox, SIGNAL( "activated( int )" ), self.Search_Database_comboBox_OnActivated )
+		self._signalsSlotsCenter.disconnect( self.ui.Case_Insensitive_Matching_checkBox, SIGNAL( "stateChanged( int )" ), self.Case_Insensitive_Matching_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Time_Low_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_Low_timeEdit_OnTimeChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Time_High_timeEdit, SIGNAL( "timeChanged( const QTime & )" ), self.Time_High_timeEdit_OnTimeChanged )
 
 	@core.executionTrace
 	def addWidget( self ):

@@ -111,6 +111,7 @@ class LoaderScript( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
@@ -218,6 +219,36 @@ class LoaderScript( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDatabaseBrowser( self ):
@@ -477,6 +508,7 @@ class LoaderScript( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
@@ -496,6 +528,7 @@ class LoaderScript( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
@@ -515,9 +548,9 @@ class LoaderScript( UiComponent ):
 		self.ui.Remote_Connection_groupBox.hide()
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.connect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
-		self.ui.Send_To_Software_pushButton.connect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -528,9 +561,9 @@ class LoaderScript( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.disconnect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
-		self.ui.Send_To_Software_pushButton.disconnect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
+		self._signalsSlotsCenter.disconnect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
+		self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
 
 	@core.executionTrace
 	def addWidget( self ):

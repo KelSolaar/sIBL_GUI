@@ -109,6 +109,7 @@ class TemplatesOutliner( UiComponent ):
 		self._dockArea = 1
 
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._timer = None
 		self._timerCycleMultiplier = 5
@@ -274,6 +275,37 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
 	@property
 	def timer( self ):
 		'''
@@ -580,6 +612,7 @@ class TemplatesOutliner( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 
@@ -620,9 +653,9 @@ class TemplatesOutliner( UiComponent ):
 		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
 		# Signals / Slots.
-		self.ui.Templates_Outliner_treeWidget.connect( self.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.Templates_Outliner_treeWidget_OnItemSelectionChanged )
-		self.ui.Template_Informations_textBrowser.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
-		self.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates )
+		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
+		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )

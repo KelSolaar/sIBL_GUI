@@ -386,6 +386,7 @@ class CollectionsOutliner( UiComponent ):
 		self._dockArea = 1
 
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 		self._coreDatabaseBrowser = None
@@ -837,6 +838,7 @@ class CollectionsOutliner( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
@@ -871,9 +873,9 @@ class CollectionsOutliner( UiComponent ):
 		self.Collections_Outliner_treeWidget_setUi()
 
 		# Signals / Slots.
-		self._Collections_Outliner_treeWidget.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.Collections_Outliner_treeWidget_OnItemSelectionChanged )
-		self._Collections_Outliner_treeWidget.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemClicked( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnClicked )
-		self._Collections_Outliner_treeWidget.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemDoubleClicked( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnDoubleClicked )
+		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.Collections_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemClicked( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnClicked )
+		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemDoubleClicked( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnDoubleClicked )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -911,7 +913,7 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
 
-		self._Collections_Outliner_treeWidget.disconnect( self._Collections_Outliner_treeWidget, SIGNAL( "itemChanged( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnItemChanged )
+		self._signalsSlotsCenter.disconnect( self._Collections_Outliner_treeWidget, SIGNAL( "itemChanged( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnItemChanged )
 
 		self._Collections_Outliner_treeWidget.clear()
 		self._Collections_Outliner_treeWidget.setSelectionMode( QAbstractItemView.ExtendedSelection )
@@ -963,7 +965,7 @@ class CollectionsOutliner( UiComponent ):
 
 		self._Collections_Outliner_treeWidget.sortItems( 0, Qt.AscendingOrder )
 
-		self._Collections_Outliner_treeWidget.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemChanged( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnItemChanged )
+		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeWidget, SIGNAL( "itemChanged( QTreeWidgetItem *, int )" ), self._Collections_Outliner_treeWidget.QTreeWidgetItem_OnItemChanged )
 
 	@core.executionTrace
 	def refreshUi( self ):

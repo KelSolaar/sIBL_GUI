@@ -104,6 +104,7 @@ class RawEditingUtilities( UiComponent ):
 		self._uiPath = "ui/Raw_Editing_Utilities.ui"
 
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._corePreferencesManager = None
@@ -177,6 +178,36 @@ class RawEditingUtilities( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -403,6 +434,7 @@ class RawEditingUtilities( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
@@ -421,6 +453,7 @@ class RawEditingUtilities( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._corePreferencesManager = None
@@ -442,8 +475,8 @@ class RawEditingUtilities( UiComponent ):
 		self.addActions_()
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.connect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
-		self.ui.Custom_Text_Editor_Path_lineEdit.connect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
+		self._signalsSlotsCenter.connect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -454,8 +487,8 @@ class RawEditingUtilities( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.disconnect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
-		self.ui.Custom_Text_Editor_Path_lineEdit.disconnect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
+		self._signalsSlotsCenter.disconnect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
+		self._signalsSlotsCenter.disconnect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
 
 		self.removeActions_()
 

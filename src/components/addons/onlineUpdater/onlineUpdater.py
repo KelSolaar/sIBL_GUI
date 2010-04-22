@@ -130,6 +130,7 @@ class DownloadManager( QObject ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 		self._networkAccessManager = networkAccessManager
 		self._downloadFolder = downloadFolder
 
@@ -188,6 +189,36 @@ class DownloadManager( QObject ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def networkAccessManager( self ):
@@ -566,7 +597,7 @@ class DownloadManager( QObject ):
 		self._ui.closeEvent = self.closeEvent
 
 		# Signals / Slots.
-		self._ui.Cancel_Close_pushButton.connect( self._ui.Cancel_Close_pushButton, SIGNAL( "clicked()" ), self.Cancel_Close_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._ui.Cancel_Close_pushButton, SIGNAL( "clicked()" ), self.Cancel_Close_pushButton_OnClicked )
 
 	@core.executionTrace
 	def closeEvent( self, closeEvent ):
@@ -611,9 +642,9 @@ class DownloadManager( QObject ):
 				return
 
 			# Signals / Slots.
-			self._currentRequest.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
-			self._currentRequest.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
-			self._currentRequest.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
+			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
+			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
+			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
 
 	@core.executionTrace
 	def downloadProgress( self, bytesReceived, bytesTotal ):
@@ -690,6 +721,7 @@ class RemoteUpdater( object ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 		self._releases = None
 		self.releases = releases
 		self._uiPath = "ui/Remote_Updater.ui"
@@ -750,6 +782,36 @@ class RemoteUpdater( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def releases( self ):
@@ -1271,10 +1333,10 @@ class RemoteUpdater( object ):
 			self._ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self._ui.Get_sIBL_GUI_pushButton.connect( self._ui.Get_sIBL_GUI_pushButton, SIGNAL( "clicked()" ), self.Get_sIBL_GUI_pushButton_OnClicked )
-		self._ui.Get_Latest_Templates_pushButton.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
-		self._ui.Open_Repository_pushButton.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
-		self._ui.Close_pushButton.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._ui.Get_sIBL_GUI_pushButton, SIGNAL( "clicked()" ), self.Get_sIBL_GUI_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
 
 	@core.executionTrace
 	def Get_sIBL_GUI_pushButton_OnClicked( self ):
@@ -1292,7 +1354,7 @@ class RemoteUpdater( object ):
 			url = builds["Linux"]
 
 		self._downloadManager = DownloadManager( self, self._networkAccessManager, self._container.ioDirectory, [url] )
-		self._downloadManager.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+		self._signalsSlotsCenter.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
 		self._downloadManager.startDownload()
 
 	@core.executionTrace
@@ -1309,7 +1371,7 @@ class RemoteUpdater( object ):
 			downloadFolder = self.getTemplatesDownloadFolder()
 			if downloadFolder :
 				self._downloadManager = DownloadManager( self, self._networkAccessManager, downloadFolder, [request.url for request in requests] )
-				self._downloadManager.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+				self._signalsSlotsCenter.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
 				self._downloadManager.startDownload()
 
 	@core.executionTrace
@@ -1398,6 +1460,7 @@ class OnlineUpdater( UiComponent ):
 		self._uiPath = "ui/Online_Updater.ui"
 
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._corePreferencesManager = None
@@ -1478,6 +1541,45 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -1852,6 +1954,7 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
@@ -1878,6 +1981,7 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._corePreferencesManager = None
@@ -1904,8 +2008,8 @@ class OnlineUpdater( UiComponent ):
 		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.connect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.connect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged( int )" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged( int )" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -1916,8 +2020,8 @@ class OnlineUpdater( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.disconnect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.disconnect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged()" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
+		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged()" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def Check_For_New_Releases_On_Startup_checkBox_setUi( self ) :
@@ -2072,7 +2176,7 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		self._releaseReply = self._networkAccessManager.get( QNetworkRequest( url ) )
-		self._releaseReply.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )
+		self._signalsSlotsCenter.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )
 
 #***********************************************************************************************
 #***	Python End

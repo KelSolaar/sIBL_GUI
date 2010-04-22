@@ -104,6 +104,7 @@ class LocationsBrowser( UiComponent ):
 		self._uiPath = "ui/Locations_Browser.ui"
 
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._coreComponentsManagerUi = None
@@ -182,6 +183,36 @@ class LocationsBrowser( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -528,6 +559,7 @@ class LocationsBrowser( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 
 		self._coreComponentsManagerUi = self._container.componentsManager.components["core.componentsManagerUi"].interface
@@ -548,6 +580,7 @@ class LocationsBrowser( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
+		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._coreComponentsManagerUi = None
@@ -572,8 +605,8 @@ class LocationsBrowser( UiComponent ):
 		self.addActions_()
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.connect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
-		self.ui.Custom_File_Browser_Path_lineEdit.connect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
+		self._signalsSlotsCenter.connect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
 
 		# LoaderScript Addon Component Specific Code.
 		if self._addonsLoaderScript.activated :
@@ -581,7 +614,7 @@ class LocationsBrowser( UiComponent ):
 			self._addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget( self._Open_Output_Folder_pushButton )
 
 			# Signals / Slots.
-			self._Open_Output_Folder_pushButton.connect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
+			self._signalsSlotsCenter.connect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -592,8 +625,8 @@ class LocationsBrowser( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.disconnect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
-		self.ui.Custom_File_Browser_Path_lineEdit.disconnect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
+		self._signalsSlotsCenter.disconnect( self.ui.Custom_File_Browser_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_File_Browser_Path_toolButton_OnClicked )
+		self._signalsSlotsCenter.disconnect( self.ui.Custom_File_Browser_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_File_Browser_Path_lineEdit_OnEditFinished )
 
 		# LoaderScript Addon Component Specific Code.
 		if self._addonsLoaderScript.activated :
@@ -601,7 +634,7 @@ class LocationsBrowser( UiComponent ):
 			self._Open_Output_Folder_pushButton = None
 
 			# Signals / Slots.
-			self._Open_Output_Folder_pushButton.disconnect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
+			self._signalsSlotsCenter.disconnect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
 
 		self.removeActions_()
 
