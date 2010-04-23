@@ -442,7 +442,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		#	 interface = self._componentsManager.getInterface( component )
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
-		self.restoreSetsCentricLayout()
+		self.restoreLayout( "setsCentric" )
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -907,15 +907,21 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		spacer.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
 		self.toolBar.addWidget( spacer )
 
+		toolbarFont = QFont()
+		toolbarFont.setPointSize( 18 )
+
 		libraryAction = QAction( "Library", self )
+		libraryAction.setFont( toolbarFont )
 		libraryAction.setShortcut( QKeySequence( Qt.Key_0 ) )
 		self.toolBar.addAction( libraryAction )
 
 		exportAction = QAction( "Export", self )
+		exportAction.setFont( toolbarFont )
 		exportAction.setShortcut( QKeySequence( Qt.Key_9 ) )
 		self.toolBar.addAction( exportAction )
 
 		preferencesAction = QAction( "Preferences", self )
+		preferencesAction.setFont( toolbarFont )
 		preferencesAction.setShortcut( QKeySequence( Qt.Key_8 ) )
 		self.toolBar.addAction( preferencesAction )
 
@@ -931,57 +937,31 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self._layoutMenu = QMenu( "Layout", layoutbutton )
 
-		restoreLayoutOneAction = QAction( "Restore Layout 1", self )
-		restoreLayoutOneAction.setShortcut( QKeySequence( Qt.Key_1 ) )
-		storeLayoutOneAction = QAction( "Store Layout 1", self )
-		storeLayoutOneAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_1 ) )
+		userLayouts = ( ( "1", Qt.Key_1, "one" ), ( "2", Qt.Key_2, "two" ), ( "3", Qt.Key_3, "three" ), ( "4", Qt.Key_4, "four" ), ( "5", Qt.Key_5, "five" ) )
 
-		restoreLayoutTwoAction = QAction( "Restore Layout 2", self )
-		restoreLayoutTwoAction.setShortcut( QKeySequence( Qt.Key_2 ) )
-		storeLayoutTwoAction = QAction( "Store Layout 2", self )
-		storeLayoutTwoAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_2 ) )
+		for layout in userLayouts :
+			action = QAction( "Restore Layout {0}".format( layout[0] ), self )
+			action.setShortcut( QKeySequence( layout[1] ) )
+			self._layoutMenu.addAction( action )
 
-		restoreLayoutThreeAction = QAction( "Restore Layout 3", self )
-		restoreLayoutThreeAction.setShortcut( QKeySequence( Qt.Key_3 ) )
-		storeLayoutThreeAction = QAction( "Store Layout 3", self )
-		storeLayoutThreeAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_3 ) )
+			# Signals / Slots.
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layout[2] : self.restoreLayout( layout ) )
 
-		restoreLayoutFourAction = QAction( "Restore Layout 4", self )
-		restoreLayoutFourAction.setShortcut( QKeySequence( Qt.Key_4 ) )
-		storeLayoutFourAction = QAction( "Store Layout 4", self )
-		storeLayoutFourAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_4 ) )
-
-		restoreLayoutFiveAction = QAction( "Restore Layout 5", self )
-		restoreLayoutFiveAction.setShortcut( QKeySequence( Qt.Key_5 ) )
-		storeLayoutFiveAction = QAction( "Store Layout 5", self )
-		storeLayoutFiveAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_5 ) )
-
-		self._layoutMenu.addAction( restoreLayoutOneAction )
-		self._layoutMenu.addAction( restoreLayoutTwoAction )
-		self._layoutMenu.addAction( restoreLayoutThreeAction )
-		self._layoutMenu.addAction( restoreLayoutFourAction )
-		self._layoutMenu.addAction( restoreLayoutFiveAction )
 		self._layoutMenu.addSeparator()
-		self._layoutMenu.addAction( storeLayoutOneAction )
-		self._layoutMenu.addAction( storeLayoutTwoAction )
-		self._layoutMenu.addAction( storeLayoutThreeAction )
-		self._layoutMenu.addAction( storeLayoutFourAction )
-		self._layoutMenu.addAction( storeLayoutFiveAction )
+
+		for layout in userLayouts :
+			action = QAction( "Store Layout {0}".format( layout[0] ), self )
+			action.setShortcut( QKeySequence( Qt.CTRL + layout[1] ) )
+			self._layoutMenu.addAction( action )
+
+			# Signals / Slots.
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layout[2] : self.storeLayout( layout ) )
+
+		restoreDefaultLayoutsActions = ( ( libraryAction, "setsCentric" ), ( exportAction, "templatesCentric" ), ( preferencesAction, "preferencesCentric" ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( libraryAction, SIGNAL( "triggered()" ), self.libraryAction_OnTriggered )
-		self._signalsSlotsCenter.connect( exportAction, SIGNAL( "triggered()" ), self.exportAction_OnTriggered )
-		self._signalsSlotsCenter.connect( preferencesAction, SIGNAL( "triggered()" ), self.preferencesAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutOneAction, SIGNAL( "triggered()" ), self.restoreLayoutOneAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutTwoAction, SIGNAL( "triggered()" ), self.restoreLayoutTwoAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutThreeAction, SIGNAL( "triggered()" ), self.restoreLayoutThreeAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutFourAction, SIGNAL( "triggered()" ), self.restoreLayoutFourAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutFiveAction, SIGNAL( "triggered()" ), self.restoreLayoutFiveAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutOneAction, SIGNAL( "triggered()" ), self.storeLayoutOneAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutTwoAction, SIGNAL( "triggered()" ), self.storeLayoutTwoAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutThreeAction, SIGNAL( "triggered()" ), self.storeLayoutThreeAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutFourAction, SIGNAL( "triggered()" ), self.storeLayoutFourAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutFiveAction, SIGNAL( "triggered()" ), self.storeLayoutFiveAction_OnTriggered )
+		for action in restoreDefaultLayoutsActions :
+			self._signalsSlotsCenter.connect( action[0], SIGNAL( "triggered()" ), lambda layout = action[1] : self.restoreLayout( layout ) )
 
 		layoutbutton.setMenu( self._layoutMenu )
 
@@ -1051,134 +1031,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
 		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
-
-	@core.executionTrace
-	def restoreSetsCentricLayout( self ):
-		'''
-		This Method Restores The Sets Centric Layout.
-		'''
-
-		self.restoreLayout( "setsCentric" )
-
-	@core.executionTrace
-	def libraryAction_OnTriggered( self ):
-		'''
-		This Method Is Called When libraryAction Is Triggered.
-		'''
-
-		self.restoreSetsCentricLayout()
-
-	@core.executionTrace
-	def restoreTemplatesCentricLayout( self ):
-		'''
-		This Method Restores The Templates Centric Layout.
-		'''
-
-		self.restoreLayout( "templatesCentric" )
-
-	@core.executionTrace
-	def exportAction_OnTriggered( self ):
-		'''
-		This Method Is Called When exportAction Is Triggered.
-		'''
-
-		self.restoreTemplatesCentricLayout()
-
-	@core.executionTrace
-	def restorePreferencesCentricLayout( self ):
-		'''
-		This Method Restores The Preferences Centric Layout.
-		'''
-
-		self.restoreLayout( "preferencesCentric" )
-
-	@core.executionTrace
-	def preferencesAction_OnTriggered( self ):
-		'''
-		This Method Is Called When preferencesAction Is Triggered.
-		'''
-
-		self.restorePreferencesCentricLayout()
-
-	@core.executionTrace
-	def restoreLayoutOneAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout One.
-		'''
-
-		self.restoreLayout( "one" )
-
-	@core.executionTrace
-	def restoreLayoutTwoAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Two.
-		'''
-
-		self.restoreLayout( "two" )
-
-	@core.executionTrace
-	def restoreLayoutThreeAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Three.
-		'''
-
-		self.restoreLayout( "three" )
-
-	@core.executionTrace
-	def restoreLayoutFourAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Four.
-		'''
-
-		self.restoreLayout( "four" )
-
-	@core.executionTrace
-	def restoreLayoutFiveAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Five.
-		'''
-
-		self.restoreLayout( "five" )
-
-	@core.executionTrace
-	def storeLayoutOneAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout One.
-		'''
-
-		self.storeLayout( "one" )
-
-	@core.executionTrace
-	def storeLayoutTwoAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Two.
-		'''
-
-		self.storeLayout( "two" )
-
-	@core.executionTrace
-	def storeLayoutThreeAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Three.
-		'''
-
-		self.storeLayout( "three" )
-
-	@core.executionTrace
-	def storeLayoutFourAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Four.
-		'''
-
-		self.storeLayout( "four" )
-
-	@core.executionTrace
-	def storeLayoutFiveAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Five.
-		'''
-
-		self.storeLayout( "five" )
 
 	@core.executionTrace
 	def helpDisplayMiscAction_OnTriggered( self ):
