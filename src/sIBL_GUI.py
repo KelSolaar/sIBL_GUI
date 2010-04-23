@@ -75,8 +75,9 @@ import ui.widgets.messageBox as messageBox
 from ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 from foundations.environment import Environment
 from foundations.streamObject import StreamObject
-from globals.uiConstants import UiConstants
 from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
+from globals.uiConstants import UiConstants
 from manager.manager import Manager
 
 #***********************************************************************************************
@@ -85,30 +86,16 @@ from manager.manager import Manager
 LOGGER = logging.getLogger( Constants.logger )
 
 # Starting The Console Handler.
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler( sys.stdout )
-LOGGING_CONSOLE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
+RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
+LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-UI_FILE = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
-if os.path.exists( UI_FILE ):
-	Ui_Setup, Ui_Type = uic.loadUiType( UI_FILE )
+RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
+if os.path.exists( RuntimeConstants.uiFile ):
+	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
 else :
 	messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' ui File Is Not Available, {2} Will Now Close !".format( Constants.applicationName, UiConstants.frameworkUiFile, Constants.applicationName ) )
-	foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
-
-USER_DATAS_DIRECTORY = None
-USER_APPLICATION_DIRECTORY = None
-GUI_LOGGING_FILE = None
-LOGGING_FILE_HANDLER = None
-SETTINGS_FILE = None
-SETTINGS = None
-VERBOSITY_LEVEL = None
-APPLICATION = None
-SPLASHSCREEN_PICTURE = None
-SPLASHSCREEN = None
-LOGGING_SESSION_HANDLER_STREAM = None
-LOGGING_SESSION_HANDLER = None
-UI = None
+	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -315,15 +302,15 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._coreCollectionsOutliner = None
 		self._coreTemplatesOutliner = None
 		self._lastBrowsedPath = os.getcwd()
-		self._userApplicationDirectory = USER_APPLICATION_DIRECTORY
-		self._loggingMemoryHandler = LOGGING_SESSION_HANDLER_STREAM
-		self._settings = SETTINGS
-		self._verbosityLevel = VERBOSITY_LEVEL
+		self._userApplicationDirectory = RuntimeConstants.userApplicationDirectory
+		self._loggingMemoryHandler = RuntimeConstants.loggingSessionHandlerStream
+		self._settings = RuntimeConstants.settings
+		self._verbosityLevel = RuntimeConstants.verbosityLevel
 		self._layoutMenu = None
 		self._miscMenu = None
 
 		# --- Initializing sIBL_GUI. ---
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
 
 		# Visual Style Choice.
 		if not platform.system() == "Darwin" :
@@ -334,81 +321,81 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.initializeToolbar()
 
 		# --- Initializing Component Manager. ---
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ) )
 
 		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
 
 		if not self._componentsManager.components :
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Manager Has No Components !, {2} Will Now Close !".format( self.__class__.__name__, self._componentsManager, Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		self._componentsManager.instantiateComponents()
 
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface( "core.componentsManagerUi" )
 		if self._coreComponentsManagerUi :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
 			self._coreComponentsManagerUi.activate( self )
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.componentsManagerUi", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Preferences Manager Component. ---
 		self._preferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
 		if self._preferencesManager :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
 			self._preferencesManager.activate( self )
 			self._preferencesManager.addWidget()
 			self._preferencesManager.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.preferencesManager", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface( "core.db" )
 		if self._coreDb :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
 			self._coreDb.activate( self )
 			self._coreDb.initialize()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.db", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface( "core.collectionsOutliner" )
 		if self._coreCollectionsOutliner :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
 			self._coreCollectionsOutliner.activate( self )
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.collectionsOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface( "core.databaseBrowser" )
 		if self._coreDatabaseBrowser :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
 			self._coreDatabaseBrowser.activate( self )
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.databaseBrowser", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface( "core.templatesOutliner" )
 		if self._coreTemplatesOutliner :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
 			self._coreTemplatesOutliner.activate( self )
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.templatesOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey( "Settings", "deactivatedComponents" ).toString().split( "," )
@@ -417,7 +404,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 				profile = self._componentsManager.components[component]
 				interface = self._componentsManager.getInterface( component )
 				if not interface.activated:
-					SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
+					RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
 					interface.activate( self )
 					if profile.categorie == "default" :
 						interface.initialize()
@@ -427,8 +414,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		# Hiding Splashscreen.
 		LOGGER.debug( " > Hiding SplashScreen." )
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
-		SPLASHSCREEN.hide()
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents() :
@@ -884,9 +871,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		foundations.common.closeHandler( LOGGER, LOGGING_FILE_HANDLER )
-		foundations.common.closeHandler( LOGGER, LOGGING_SESSION_HANDLER )
-		# foundations.common.closeHandler( LOGGER, LOGGING_CONSOLE_HANDLER )
+		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
+		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
+		# foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 		self.deleteLater()
 		event.accept()
@@ -908,7 +895,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.toolBar.addWidget( spacer )
 
 		toolbarFont = QFont()
-		toolbarFont.setPointSize( 18 )
+		toolbarFont.setPointSize( 16 )
 
 		libraryAction = QAction( "Library", self )
 		libraryAction.setFont( toolbarFont )
@@ -1076,69 +1063,55 @@ def sIBL_GUI_start():
 	This Method Is Called When sIBL_GUI Starts.
 	'''
 
-	global USER_DATAS_DIRECTORY
-	global USER_APPLICATION_DIRECTORY
-	global GUI_LOGGING_FILE
-	global LOGGING_FILE_HANDLER
-	global SETTINGS_FILE
-	global SETTINGS
-	global VERBOSITY_LEVEL
-	global APPLICATION
-	global SPLASHSCREEN_PICTURE
-	global SPLASHSCREEN
-	global LOGGING_SESSION_HANDLER_STREAM
-	global LOGGING_SESSION_HANDLER
-	global UI
-
 	# Setting User Preferences Directory.
-	USER_DATAS_DIRECTORY = foundations.common.getSystemApplicationDatasDirectory()
-	USER_APPLICATION_DIRECTORY = foundations.common.getUserApplicationDatasDirectory()
+	RuntimeConstants.userDatasDirectory = foundations.common.getSystemApplicationDatasDirectory()
+	RuntimeConstants.userApplicationDirectory = foundations.common.getUserApplicationDatasDirectory()
 
-	if USER_DATAS_DIRECTORY :
-		setApplicationPreferencesDirectories( USER_DATAS_DIRECTORY ) or messageBox.standaloneMessageBox( "Error", "Error", "{0} Has Encountered An Error And Will Now Close !".format( Constants.applicationName ) ) or foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER, LOGGING_SESSION_HANDLER ] )
+	if RuntimeConstants.userDatasDirectory :
+		setApplicationPreferencesDirectories( RuntimeConstants.userDatasDirectory ) or messageBox.standaloneMessageBox( "Error", "Error", "{0} Has Encountered An Error And Will Now Close !".format( Constants.applicationName ) ) or foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingSessionHandler ] )
 	else :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( USER_DATAS_DIRECTORY, Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userDatasDirectory, Constants.applicationName ) )
+		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	# Getting The Logging File Path.
-	GUI_LOGGING_FILE = os.path.join( USER_APPLICATION_DIRECTORY, Constants.loggingDirectory, Constants.loggingFile )
+	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.loggingDirectory, Constants.loggingFile )
 
 	try :
-		os.path.exists( GUI_LOGGING_FILE ) and os.remove( GUI_LOGGING_FILE )
+		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
 	except :
-		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( GUI_LOGGING_FILE, Constants.applicationName ) )
+		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) )
 
 	try :
-		LOGGING_FILE_HANDLER = logging.FileHandler( GUI_LOGGING_FILE )
-		LOGGING_FILE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-		LOGGER.addHandler( LOGGING_FILE_HANDLER )
+		RuntimeConstants.loggingFileHandler = logging.FileHandler( RuntimeConstants.loggingFile )
+		RuntimeConstants.loggingFileHandler.setFormatter( core.LOGGING_FORMATTER )
+		LOGGER.addHandler( RuntimeConstants.loggingFileHandler )
 	except Exception as error:
 		foundations.exceptions.defaultExceptionsHandler( error, Constants.applicationName )
 		messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0} Module | Logging File Is Not Available, {0} Will Now Close !".format( Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	# Retrieving Framework Verbose Level From Settings File.
 	LOGGER.debug( "> Initializing {0} !".format( Constants.applicationName ) )
 	LOGGER.debug( "> Retrieving Stored Verbose Level." )
 
-	SETTINGS_FILE = os.path.join( USER_APPLICATION_DIRECTORY, Constants.settingsDirectory, Constants.settingsFile )
+	RuntimeConstants.settingsFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.settingsDirectory, Constants.settingsFile )
 
-	SETTINGS = Preferences( SETTINGS_FILE )
+	RuntimeConstants.settings = Preferences( RuntimeConstants.settingsFile )
 
-	os.path.exists( SETTINGS_FILE ) or SETTINGS.setDefaultPreferences()
+	os.path.exists( RuntimeConstants.settingsFile ) or RuntimeConstants.settings.setDefaultPreferences()
 
-	VERBOSITY_LEVEL = SETTINGS.getKey( "Settings", "verbosityLevel" ).toInt()[0]
-	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( VERBOSITY_LEVEL ) )
-	core.setVerbosityLevel( VERBOSITY_LEVEL )
+	RuntimeConstants.verbosityLevel = RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
+	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( RuntimeConstants.verbosityLevel ) )
+	core.setVerbosityLevel( RuntimeConstants.verbosityLevel )
 
 	if hasattr( sys, "frozen" ) :
-		foundations.common.closeHandler ( LOGGER, LOGGING_CONSOLE_HANDLER )
+		foundations.common.closeHandler ( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 	# Starting The Session Handler.
-	LOGGING_SESSION_HANDLER_STREAM = StreamObject()
-	LOGGING_SESSION_HANDLER = logging.StreamHandler( LOGGING_SESSION_HANDLER_STREAM )
-	LOGGING_SESSION_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-	LOGGER.addHandler( LOGGING_SESSION_HANDLER )
+	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
+	RuntimeConstants.loggingSessionHandler = logging.StreamHandler( RuntimeConstants.loggingSessionHandlerStream )
+	RuntimeConstants.loggingSessionHandler.setFormatter( core.LOGGING_FORMATTER )
+	LOGGER.addHandler( RuntimeConstants.loggingSessionHandler )
 
 	LOGGER.info( Constants.loggingSeparators )
 	LOGGER.info( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - kelsolaar_fool@hotmail.com".format( Constants.applicationName ) )
@@ -1149,21 +1122,21 @@ def sIBL_GUI_start():
 	LOGGER.info( Constants.loggingSeparators )
 	LOGGER.info( "{0} | Starting Interface !".format( Constants.applicationName ) )
 
-	APPLICATION = QApplication( sys.argv )
+	RuntimeConstants.application = QApplication( sys.argv )
 
 	# Initializing SplashScreen.
 	LOGGER.debug( "> Initializing SplashScreen." )
 
-	SPLASHSCREEN_PICTURE = QPixmap( UiConstants.frameworkSplashScreenPicture )
-	SPLASHSCREEN = Delayed_QSplashScreen( SPLASHSCREEN_PICTURE, 0.05 )
-	SPLASHSCREEN.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
-	SPLASHSCREEN.show()
+	RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
+	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture, 0.05 )
+	RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
+	RuntimeConstants.splashscreen.show()
 
-	UI = sIBL_GUI()
-	UI.show()
-	UI.raise_()
+	RuntimeConstants.ui = sIBL_GUI()
+	RuntimeConstants.ui.show()
+	RuntimeConstants.ui.raise_()
 
-	sys.exit( APPLICATION.exec_() )
+	sys.exit( RuntimeConstants.application.exec_() )
 
 @core.executionTrace
 def sIBL_GUI_close() :
@@ -1176,7 +1149,7 @@ def sIBL_GUI_close() :
 	LOGGER.info( "{0} | Session Ended At : {1}".format( Constants.applicationName, time.strftime( '%X - %x' ) ) )
 	LOGGER.info( Constants.loggingSeparators )
 
-	foundations.common.exit( 0, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+	foundations.common.exit( 0, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
 def setApplicationPreferencesDirectories( path ):
@@ -1186,7 +1159,7 @@ def setApplicationPreferencesDirectories( path ):
 	@param path: Starting Point For The Directories Tree Creation. ( String )
 	'''
 
-	applicationDirectory = USER_APPLICATION_DIRECTORY
+	applicationDirectory = RuntimeConstants.userApplicationDirectory
 
 	LOGGER.debug( "> Current Application Preferences Directory '{0}'.".format( applicationDirectory ) )
 	if io.setLocalDirectory( applicationDirectory ) :
