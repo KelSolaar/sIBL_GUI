@@ -1,0 +1,5 @@
+/* sIBL_GUI - Stylesheet - Darwin Os */
+
+QToolTip {
+	background-color: rgb(230, 230, 230);
+}

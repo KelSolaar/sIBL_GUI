@@ -1,0 +1,10 @@
+/* sIBL_GUI - Stylesheet - Linux Os */
+
+QToolBar {
+	background: rgb(192, 192, 192);
+	background-image: url(./resources/Toolbar.png);
+}
+
+QToolTip {
+	background-color: rgb(230, 230, 230);
+}

@@ -66,6 +66,9 @@ class UiConstants():
 	'''
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"
+	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
+	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
+	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
 	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
 
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"

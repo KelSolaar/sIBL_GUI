@@ -272,6 +272,24 @@ class Preferences():
 
 		return value
 
+class LayoutActiveLabel( core.Structure ):
+	'''
+	This Is The LayoutActiveLabel Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, **kwargs ):
+		'''
+		This Method Initializes The Class.
+
+		@param kwargs: name, object_, layout, shortcut. ( Key / Value Pairs )
+		'''
+
+		core.Structure.__init__( self, **kwargs )
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update( kwargs )
+
 class sIBL_GUI( Ui_Type, Ui_Setup ):
 	'''
 	This Class Is The Main Class For sIBL_GUI.
@@ -317,9 +335,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Initializing sIBL_GUI. ---
 		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
 
-		# Visual Style Choice.
-		if not platform.system() == "Darwin" :
-			QApplication.setStyle( "Plastique" )
+		# Visual Style Initialisation.
+		self.setVisualStyle()
 
 		# Setting Window Title And Toolbar.
 		self.setWindowTitle( "{0} - {1}".format( Constants.applicationName, Constants.releaseVersion ) )
@@ -434,8 +451,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		#	 interface = self._componentsManager.getInterface( component )
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
-		self.restoreLayout( "setsCentric" )
-		self._libraryActiveLabel.activate()
+		self.setLayoutsActiveLabelsShortcuts()
+
+		self.setDefaultLayout()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1007,6 +1025,27 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		sIBL_GUI_close()
 
 	@core.executionTrace
+	def setVisualStyle( self ):
+		'''
+		This Method Sets The Application Visual Style.
+		'''
+
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+			RuntimeConstants.application.setStyle( "Plastique" )
+			styleSheetFile = io.File( UiConstants.frameworkWindowsStylesheetFile )
+		elif platform.system() == "Darwin" :
+			styleSheetFile = io.File( UiConstants.frameworkDarwinStylesheetFile )
+		elif platform.system() == "Linux":
+			RuntimeConstants.application.setStyle( "Plastique" )
+			styleSheetFile = io.File( UiConstants.frameworkLinuxStylesheetFile )
+
+		if os.path.exists( styleSheetFile.file ):
+			styleSheetFile.read()
+			RuntimeConstants.application.setStyleSheet( QString( "".join( styleSheetFile.content ) ) )
+		else :
+			messageBox.messageBox( "Error", "Error", "Exception In {0}.__init__() Method | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format( self.__class__.__name__, styleSheetFile.file ) )
+
+	@core.executionTrace
 	def initializeToolbar( self ):
 		'''
 		This Method Initializes sIBL_GUI Toolbar.
@@ -1016,7 +1055,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		logolabel.setPixmap( QPixmap( UiConstants.frameworkLogoPicture ) )
 		self.toolBar.addWidget( logolabel )
 
-		spacer = QWidget()
+		spacer = QLabel()
 		spacer.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
 		self.toolBar.addWidget( spacer )
 
@@ -1024,22 +1063,22 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		toolbarFont.setPointSize( 16 )
 
 		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ) )
-		#self._libraryActiveLabel.setShortcut( QKeySequence( Qt.Key_0 ) )
 		self.toolBar.addWidget( self._libraryActiveLabel )
 
 		self._exportActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkExportIcon ), QPixmap( UiConstants.frameworkExportHoverIcon ), QPixmap( UiConstants.frameworkExportActiveIcon ) )
-		#self._exportActiveLabel.setShortcut( QKeySequence( Qt.Key_9 ) )
 		self.toolBar.addWidget( self._exportActiveLabel )
 
 		self._preferencesActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkPreferencesIcon ), QPixmap( UiConstants.frameworkPreferencesHoverIcon ), QPixmap( UiConstants.frameworkPreferencesActiveIcon ) )
-		#self._preferencesActiveLabel.setShortcut( QKeySequence( Qt.Key_8 ) )
 		self.toolBar.addWidget( self._preferencesActiveLabel )
 
-		self._layoutsActiveLabels = ( ( self._libraryActiveLabel, "setsCentric" ), ( self._exportActiveLabel, "templatesCentric" ), ( self._preferencesActiveLabel, "preferencesCentric" ) )
+		self._layoutsActiveLabels = ( LayoutActiveLabel( name = "Library", object_ = self._libraryActiveLabel, layout = "setsCentric", shortcut = Qt.Key_8 ),
+									LayoutActiveLabel( name = "Export", object_ = self._exportActiveLabel, layout = "templatesCentric", shortcut = Qt.Key_9 ),
+									LayoutActiveLabel( name = "Preferences", object_ = self._preferencesActiveLabel, layout = "preferencesCentric", shortcut = Qt.Key_0 )
+									)
 
 		# Signals / Slots.
-		for activeLabel in self._layoutsActiveLabels :
-			self._signalsSlotsCenter.connect( activeLabel[0], SIGNAL( "clicked()" ), lambda activeLabel = activeLabel : self.activeLabel_OnClicked( activeLabel ) )
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			self._signalsSlotsCenter.connect( layoutActiveLabel.object_, SIGNAL( "clicked()" ), lambda activeLabel = layoutActiveLabel.layout : self.activeLabel_OnClicked( activeLabel ) )
 
 		centralWidgetButton = QToolButton()
 		centralWidgetButton.setIcon( QIcon( QPixmap( UiConstants.frameworCentralWidgetIcon ) ) )
@@ -1104,9 +1143,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Is Triggered When An Active Label Is CLicked.
 		'''
 
-		self.restoreLayout( activeLabel[1] )
-		for label in self._layoutsActiveLabels :
-			label is not activeLabel[0] and label[0].deactivate()
+		self.restoreLayout( activeLabel )
+		for layoutActivelabel in self._layoutsActiveLabels :
+			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.deactivate()
 
 	@core.executionTrace
 	def centralWidgetButton_OnClicked( self ):
@@ -1118,6 +1157,27 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self.centralwidget.hide()
 		else :
 			self.centralwidget.show()
+
+	@core.executionTrace
+	def setLayoutsActiveLabelsShortcuts( self ):
+		'''
+		This Method Sets The Layouts Active Labels Shortcuts.
+		'''
+
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			action = QAction( layoutActiveLabel.name, self )
+			action.setShortcut( QKeySequence( layoutActiveLabel.shortcut ) )
+			self.addAction( action )
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layoutActiveLabel.layout : self.restoreLayout( layout ) )
+
+	@core.executionTrace
+	def setDefaultLayout( self ):
+		'''
+		This Method Sets The Default Layout.
+		'''
+
+		self.restoreLayout( "setsCentric" )
+		self._libraryActiveLabel.activate()
 
 	@core.executionTrace
 	def storeLayout( self, name ):
@@ -1142,6 +1202,16 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
+
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			name != layoutActiveLabel.layout and layoutActiveLabel.object_.deactivate()
+
+		if name == "setsCentric" :
+			self._libraryActiveLabel.activate()
+		elif name == "templatesCentric" :
+			self._exportActiveLabel.activate()
+		elif name == "preferencesCentric" :
+			self._preferencesActiveLabel.activate()
 
 		visibleComponents = [ "core.databaseBrowser" ]
 		for component, profile in self._componentsManager.components.items() :

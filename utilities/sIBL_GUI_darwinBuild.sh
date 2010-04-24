@@ -12,6 +12,9 @@ rm -rf `find ./dist/sIBL_GUI.app/ -name *debug*`
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI.ui ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI_Layouts.rc ./dist/sIBL_GUI.app/Contents/Resources/ui
+cp  ../../src/ui/Windows_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
+cp  ../../src/ui/Darwin_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
+cp  ../../src/ui/Linux_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
@@ -27,6 +30,7 @@ cp  ../../src/resources/Export_Active.png ./dist/sIBL_GUI.app/Contents/Resources
 cp  ../../src/resources/Preferences.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Preferences_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Preferences_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Toolbar.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp -rf ../../src/templates ./dist/sIBL_GUI.app/Contents/Resources/
 cp -rf ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
