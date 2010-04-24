@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	variable_QPushButton.py
+***	active_QLabel.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Custom Variable QPushButton Module.
+***		Custom Active QLabel.
 ***
 ***	Others :
 ***
@@ -74,224 +74,215 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Variable_QPushButton( QPushButton ) :
+class Active_QLabel( QLabel ):
+	'''
+	This Class Is The Active_QLabel Class.
+	'''
 
 	@core.executionTrace
-	def __init__( self, state, colors, labels, parent = None ) :
+	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, parent = None ) :
 		'''
 		This Method Initializes The Class.
 
-		@param state: Current Button State. ( Boolean )
-		@param colors: Button Colors. ( Tuple )
-		@param labels: Button Texts. ( Tuple )
+		@param defaultPixmap: Label Default Pixmap. ( QPixmap )
+		@param hoverPixmap: Label Hover Pixmap. ( QPixmap )
+		@param activePixmap: Label Active Pixmap. ( QPixmap )
 		@param parent: Widget Parent. ( QObject )
 		'''
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QPushButton.__init__( self, parent )
+		QLabel.__init__( self, parent )
 
 		# --- Setting Class Attributes. ---
-		self._signalsSlotsCenter = QObject()
+		self._defaultPixmap = defaultPixmap
+		self._hoverPixmap = hoverPixmap
+		self._activePixmap = activePixmap
+		self._activated = None
 
-		self._state = None
-		self.state = state
-
-		self._colors = None
-		self.colors = colors
-
-		self._labels = None
-		self.labels = labels
-
-		# Initializing The Button
-		self.setCheckable( True )
-		if self._state :
-			self.setTrueState()
-		else :
-			self.setFalseState()
-
-		# Variable_QPushButton Signals / Slots.
-		self._signalsSlotsCenter.connect( self, SIGNAL( "clicked()" ), self.variable_QPushButton_OnClicked )
+		self.setPixmap( self._defaultPixmap )
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def signalsSlotsCenter( self ):
+	def defaultPixmap( self ):
 		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
+		This Method Is The Property For The _defaultPixmap Attribute.
 
-		@return: self._signalsSlotsCenter. ( QObject )
+		@return: self._defaultPixmap. ( QPixmap )
 		'''
 
-		return self._signalsSlotsCenter
+		return self._defaultPixmap
 
-	@signalsSlotsCenter.setter
+	@defaultPixmap.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
+	def defaultPixmap( self, value ):
 		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+		This Method Is The Setter Method For The _defaultPixmap Attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute Value. ( QPixmap )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+		if value :
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+		self._defaultPixmap = value
 
-	@signalsSlotsCenter.deleter
+	@defaultPixmap.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
+	def defaultPixmap( self ):
 		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		This Method Is The Deleter Method For The _defaultPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultPixmap" ) )
 
 	@property
-	def state( self ):
+	def hoverPixmap( self ):
 		'''
-		This Method Is The Property For The _state Attribute.
+		This Method Is The Property For The _hoverPixmap Attribute.
 
-		@return: self._state. ( Boolean )
+		@return: self._hoverPixmap. ( QPixmap )
 		'''
 
-		return self._state
+		return self._hoverPixmap
 
-	@state.setter
+	@hoverPixmap.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def state( self, value ):
+	def hoverPixmap( self, value ):
 		'''
-		This Method Is The Setter Method For The _state Attribute.
+		This Method Is The Setter Method For The _hoverPixmap Attribute.
+
+		@param value: Attribute Value. ( QPixmap )
+		'''
+
+		if value :
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+		self._hoverPixmap = value
+
+	@hoverPixmap.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def hoverPixmap( self ):
+		'''
+		This Method Is The Deleter Method For The _hoverPixmap Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "hoverPixmap" ) )
+
+	@property
+	def activePixmap( self ):
+		'''
+		This Method Is The Property For The _activePixmap Attribute.
+
+		@return: self._activePixmap. ( QPixmap )
+		'''
+
+		return self._activePixmap
+
+	@activePixmap.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def activePixmap( self, value ):
+		'''
+		This Method Is The Setter Method For The _activePixmap Attribute.
+
+		@param value: Attribute Value. ( QPixmap )
+		'''
+
+		if value :
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+		self._activePixmap = value
+
+	@activePixmap.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def activePixmap( self ):
+		'''
+		This Method Is The Deleter Method For The _activePixmap Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activePixmap" ) )
+
+	@property
+	def activated( self ):
+		'''
+		This Method Is The Property For The _activated Attribute.
+
+		@return: self._activated. ( Boolean )
+		'''
+
+		return self._activated
+
+	@activated.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def activated( self, value ):
+		'''
+		This Method Is The Setter Method For The _activated Attribute.
 
 		@param value: Attribute Value. ( Boolean )
 		'''
 
 		if value :
 			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
-		self._state = value
+		self._activated = value
 
-	@state.deleter
+	@activated.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def state( self ):
+	def activated( self ):
 		'''
-		This Method Is The Deleter Method For The _state Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "state" ) )
-
-	@property
-	def colors( self ):
-		'''
-		This Method Is The Property For The _colors Attribute.
-
-		@return: self._colors. ( Tuple )
+		This Method Is The Deleter Method For The _activated Attribute.
 		'''
 
-		return self._colors
-
-	@colors.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def colors( self, value ):
-		'''
-		This Method Is The Setter Method For The _colors Attribute.
-
-		@param value: Attribute Value. ( Tuple )
-		'''
-		if value :
-			assert type( value ) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format( "colors", value )
-			assert len( value ) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format( "colors", value )
-			for index in range( len( value ) ) :
-				assert type( value[index] ) is QColor, "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'QColor' !".format( "colors", index, value )
-		self._colors = value
-
-	@colors.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def colors( self ):
-		'''
-		This Method Is The Deleter Method For The _colors Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "colors" ) )
-
-	@property
-	def labels( self ):
-		'''
-		This Method Is The Property For The _labels Attribute.
-
-		@return: self._labels. ( Tuple )
-		'''
-
-		return self._labels
-
-	@labels.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def labels( self, value ):
-		'''
-		This Method Is The Setter Method For The _labels Attribute.
-
-		@param value: Attribute Value. ( Tuple )
-		'''
-		if value :
-			assert type( value ) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format( "labels", value )
-			assert len( value ) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format( "labels", value )
-			for index in range( len( value ) ) :
-				assert type( value[index] ) in ( str, unicode ), "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'str' or 'unicode' !".format( "labels", index, value )
-		self._labels = value
-
-	@labels.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def labels( self ):
-		'''
-		This Method Is The Deleter Method For The _labels Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "labels" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activated" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def variable_QPushButton_OnClicked( self ) :
+	def activate( self ):
 		'''
-		This Method Is Called When A Variable QPushButton Is Clicked.
+		This Method Sets The Widget Activated State.
 		'''
 
-		if self._state :
-			self.setFalseState()
-		else :
-			self.setTrueState()
+		self._activated = True
+		self.setPixmap( self._activePixmap )
 
 	@core.executionTrace
-	def setTrueState( self ) :
+	def deactivate( self ):
 		'''
-		This Method Sets The Variable Button True State.
+		This Method Sets The Widget Deactivated State.
 		'''
-
-		LOGGER.debug( "> Setting Variable QPushButton() To 'True' State." )
-		self._state = True
-
-		palette = QPalette()
-		palette.setColor( QPalette.Button, self._colors[0] )
-		self.setPalette( palette )
-
-		self.setChecked( True )
-		self.setText( self._labels[0] )
+		self._activated = False
+		self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
-	def setFalseState( self ) :
+	def enterEvent( self, event ):
 		'''
-		This Method Sets The Variable QPushButton True State.
+		This Method Defines The Mouse Enter Event.
+		
+		@param event: QEvent. ( QEvent )
 		'''
 
-		LOGGER.debug( "> Setting Variable QPushButton() To 'False' State." )
+		not self._activated and self.setPixmap( self._hoverPixmap )
 
-		self._state = False
+	@core.executionTrace
+	def leaveEvent( self, event ):
+		'''
+		This Method Defines The Mouse Leave Event.
+		
+		@param event: QEvent. ( QEvent )
+		'''
 
-		palette = QPalette()
-		palette.setColor( QPalette.Button, self._colors[1] )
-		self.setPalette( palette )
+		not self._activated and self.setPixmap( self._defaultPixmap )
 
-		self.setChecked( False )
-		self.setText( self._labels[1] )
+	@core.executionTrace
+	def mousePressEvent( self, event ):
+		'''
+		This Method Defines The Mouse Press Event.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		self.emit( SIGNAL( "clicked()" ) )
+		self.activate()
 
 #***********************************************************************************************
 #***	Python End

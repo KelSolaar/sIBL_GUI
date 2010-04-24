@@ -67,11 +67,24 @@ class UiConstants():
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"
 	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
+
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
-	frameworLayoutIcon = "./resources/sIBL_GUI_Layout.png"
-	frameworCentralWidgetIcon = "./resources/sIBL_GUI_CentralWidget.png"
-	frameworkMiscIcon = "./resources/sIBL_GUI_Misc.png"
+	frameworLayoutIcon = "./resources/Layout.png"
+	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
+	frameworkMiscIcon = "./resources/Miscellaneous.png"
+
+	frameworkLibraryIcon = "./resources/Library.png"
+	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
+	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
+
+	frameworkExportIcon = "./resources/Export.png"
+	frameworkExportHoverIcon = "./resources/Export_Hover.png"
+	frameworkExportActiveIcon = "./resources/Export_Active.png"
+
+	frameworkPreferencesIcon = "./resources/Preferences.png"
+	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
+	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
 
 	componentsDirectory = "components"
 

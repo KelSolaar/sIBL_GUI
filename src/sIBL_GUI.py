@@ -72,6 +72,7 @@ import foundations.exceptions
 import foundations.io as io
 import foundations.common
 import ui.widgets.messageBox as messageBox
+from ui.widgets.active_QLabel import Active_QLabel
 from ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 from foundations.environment import Environment
 from foundations.streamObject import StreamObject
@@ -306,6 +307,10 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._loggingMemoryHandler = RuntimeConstants.loggingSessionHandlerStream
 		self._settings = RuntimeConstants.settings
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
+		self._libraryActiveLabel = None
+		self._exportActiveLabel = None
+		self._preferencesActiveLabel = None
+		self._layoutsActiveLabels = None
 		self._layoutMenu = None
 		self._miscMenu = None
 
@@ -430,6 +435,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
 		self.restoreLayout( "setsCentric" )
+		self._libraryActiveLabel.activate()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -801,6 +807,126 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "verbosityLevel" ) )
 
 	@property
+	def libraryActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _libraryActiveLabel  Attribute.
+
+		@return: self._libraryActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._libraryActiveLabel
+
+	@libraryActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def libraryActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _libraryActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "libraryActiveLabel " ) )
+
+	@libraryActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def libraryActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _libraryActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "libraryActiveLabel " ) )
+
+	@property
+	def exportActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _exportActiveLabel  Attribute.
+
+		@return: self._exportActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._exportActiveLabel
+
+	@exportActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def exportActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _exportActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "exportActiveLabel " ) )
+
+	@exportActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def exportActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _exportActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "exportActiveLabel " ) )
+
+	@property
+	def preferencesActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _preferencesActiveLabel  Attribute.
+
+		@return: self._preferencesActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._preferencesActiveLabel
+
+	@preferencesActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def preferencesActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _preferencesActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "preferencesActiveLabel " ) )
+
+	@preferencesActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def preferencesActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _preferencesActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "preferencesActiveLabel " ) )
+
+	@property
+	def layoutsActiveLabels( self ):
+		'''
+		This Method Is The Property For The _layoutsActiveLabels Attribute.
+
+		@return: self._layoutsActiveLabels. ( Tuple )
+		'''
+
+		return self._layoutsActiveLabels
+
+	@layoutsActiveLabels.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutsActiveLabels( self, value ):
+		'''
+		This Method Is The Setter Method For The _layoutsActiveLabels Attribute.
+
+		@param value: Attribute Value. ( Tuple )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "layoutsActiveLabels" ) )
+
+	@layoutsActiveLabels.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutsActiveLabels( self ):
+		'''
+		This Method Is The Deleter Method For The _layoutsActiveLabels Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "layoutsActiveLabels" ) )
+
+	@property
 	def layoutMenu( self ):
 		'''
 		This Method Is The Property For The _layoutMenu Attribute.
@@ -897,20 +1023,23 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		toolbarFont = QFont()
 		toolbarFont.setPointSize( 16 )
 
-		libraryAction = QAction( "Library", self )
-		libraryAction.setFont( toolbarFont )
-		libraryAction.setShortcut( QKeySequence( Qt.Key_0 ) )
-		self.toolBar.addAction( libraryAction )
+		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ) )
+		#self._libraryActiveLabel.setShortcut( QKeySequence( Qt.Key_0 ) )
+		self.toolBar.addWidget( self._libraryActiveLabel )
 
-		exportAction = QAction( "Export", self )
-		exportAction.setFont( toolbarFont )
-		exportAction.setShortcut( QKeySequence( Qt.Key_9 ) )
-		self.toolBar.addAction( exportAction )
+		self._exportActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkExportIcon ), QPixmap( UiConstants.frameworkExportHoverIcon ), QPixmap( UiConstants.frameworkExportActiveIcon ) )
+		#self._exportActiveLabel.setShortcut( QKeySequence( Qt.Key_9 ) )
+		self.toolBar.addWidget( self._exportActiveLabel )
 
-		preferencesAction = QAction( "Preferences", self )
-		preferencesAction.setFont( toolbarFont )
-		preferencesAction.setShortcut( QKeySequence( Qt.Key_8 ) )
-		self.toolBar.addAction( preferencesAction )
+		self._preferencesActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkPreferencesIcon ), QPixmap( UiConstants.frameworkPreferencesHoverIcon ), QPixmap( UiConstants.frameworkPreferencesActiveIcon ) )
+		#self._preferencesActiveLabel.setShortcut( QKeySequence( Qt.Key_8 ) )
+		self.toolBar.addWidget( self._preferencesActiveLabel )
+
+		self._layoutsActiveLabels = ( ( self._libraryActiveLabel, "setsCentric" ), ( self._exportActiveLabel, "templatesCentric" ), ( self._preferencesActiveLabel, "preferencesCentric" ) )
+
+		# Signals / Slots.
+		for activeLabel in self._layoutsActiveLabels :
+			self._signalsSlotsCenter.connect( activeLabel[0], SIGNAL( "clicked()" ), lambda activeLabel = activeLabel : self.activeLabel_OnClicked( activeLabel ) )
 
 		centralWidgetButton = QToolButton()
 		centralWidgetButton.setIcon( QIcon( QPixmap( UiConstants.frameworCentralWidgetIcon ) ) )
@@ -944,12 +1073,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			# Signals / Slots.
 			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layout[2] : self.storeLayout( layout ) )
 
-		restoreDefaultLayoutsActions = ( ( libraryAction, "setsCentric" ), ( exportAction, "templatesCentric" ), ( preferencesAction, "preferencesCentric" ) )
-
-		# Signals / Slots.
-		for action in restoreDefaultLayoutsActions :
-			self._signalsSlotsCenter.connect( action[0], SIGNAL( "triggered()" ), lambda layout = action[1] : self.restoreLayout( layout ) )
-
 		layoutbutton.setMenu( self._layoutMenu )
 
 		self.toolBar.addWidget( layoutbutton )
@@ -974,6 +1097,16 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		miscButton.setMenu( self._miscMenu )
 
 		self.toolBar.addWidget( miscButton )
+
+	@core.executionTrace
+	def activeLabel_OnClicked( self, activeLabel ):
+		'''
+		This Method Is Triggered When An Active Label Is CLicked.
+		'''
+
+		self.restoreLayout( activeLabel[1] )
+		for label in self._layoutsActiveLabels :
+			label is not activeLabel[0] and label[0].deactivate()
 
 	@core.executionTrace
 	def centralWidgetButton_OnClicked( self ):

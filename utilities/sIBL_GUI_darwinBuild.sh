@@ -15,9 +15,18 @@ cp  ../../src/ui/sIBL_GUI_Layouts.rc ./dist/sIBL_GUI.app/Contents/Resources/ui
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/sIBL_GUI_Layout.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/sIBL_GUI_Misc.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/sIBL_GUI_CentralWidget.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Layout.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Miscellaneous.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Central_Widget.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Library.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Library_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Library_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Export.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Export_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Export_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Preferences.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Preferences_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Preferences_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp -rf ../../src/templates ./dist/sIBL_GUI.app/Contents/Resources/
 cp -rf ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
