@@ -80,7 +80,7 @@ TEMPLATES_EXTENSION = ".sIBLT"
 #***********************************************************************************************
 def getTemplatesReleases():
 	'''
-	This Method Gets Templates Releases.
+	This Definition Gets Templates Releases.
 	'''
 
 	walker = Walker()

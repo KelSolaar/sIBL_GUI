@@ -1262,7 +1262,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 #***************************************************************************************
 def sIBL_GUI_start():
 	'''
-	This Method Is Called When sIBL_GUI Starts.
+	This Definition Is Called When sIBL_GUI Starts.
 	'''
 
 	# Setting User Preferences Directory.
@@ -1343,7 +1343,7 @@ def sIBL_GUI_start():
 @core.executionTrace
 def sIBL_GUI_close() :
 	'''
-	This Method Is Called When sIBL_GUI Closes.
+	This Definition Is Called When sIBL_GUI Closes.
 	'''
 
 	LOGGER.info( "{0} | Closing Interface ! ".format( Constants.applicationName ) )
@@ -1356,7 +1356,7 @@ def sIBL_GUI_close() :
 @core.executionTrace
 def setApplicationPreferencesDirectories( path ):
 	'''
-	This Method Sets The Application Preferences Directory.
+	This Definition Sets The Application Preferences Directory.
 
 	@param path: Starting Point For The Directories Tree Creation. ( String )
 	'''

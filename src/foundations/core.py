@@ -142,18 +142,18 @@ def getModule( object_ ):
 	return inspect.getmodule( object_ )
 
 def getObjectName( object_ ):
-		'''
-		This Definition Returns The Object Name Related To The Provided Frame.
-	
-		@param object_: Object. ( Object )
-		@return: Object Name. ( String )
-		'''
+	'''
+	This Definition Returns The Object Name Related To The Provided Frame.
 
-		moduleName = getModule( inspect.getmodule( object_ ) ).__name__
-		codeLayerName = getCodeLayerName()
-		codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format( codeLayerName ) or ""
+	@param object_: Object. ( Object )
+	@return: Object Name. ( String )
+	'''
 
-		return hasattr( object_, "__name__" ) and "{0} | {1}{2}()".format( moduleName, codeLayerName, object_.__name__ ) or "Undefined"
+	moduleName = getModule( inspect.getmodule( object_ ) ).__name__
+	codeLayerName = getCodeLayerName()
+	codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format( codeLayerName ) or ""
+
+	return hasattr( object_, "__name__" ) and "{0} | {1}{2}()".format( moduleName, codeLayerName, object_.__name__ ) or "Undefined"
 
 def executionTrace( object_ ):
 	'''
