@@ -1132,6 +1132,10 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		miscellaneousbutton.setMenu( self._miscMenu )
 
+		spacer = QLabel()
+		spacer.setSizePolicy( QSizePolicy.Maximum, QSizePolicy.Maximum )
+		self.toolBar.addWidget( spacer )
+
 	@core.executionTrace
 	def activeLabel_OnClicked( self, activeLabel ):
 		'''
