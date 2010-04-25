@@ -1420,21 +1420,38 @@ class RemoteUpdater( object ):
 		'''
 		This Method Is Triggered When The Download Manager Finishes.
 		'''
-
+		needUiRefresh = False
 		for download in self._downloadManager.downloads :
 			if download.endswith( ".zip" ) :
-				pkzip = Pkzip()
-				pkzip.archive = download
-				pkzip.extract( os.path.dirname( download ) )
-
-				LOGGER.info( "{0} | Removing '{1}' Archive !".format( self.__class__.__name__, download ) )
-				os.remove( download )
+				if self.extractZipFile( download ) :
+					LOGGER.info( "{0} | Removing '{1}' Archive !".format( self.__class__.__name__, download ) )
+					os.remove( download )
+				else :
+					messageBox.messageBox( "Error", "Error", "{0} | Failed Extracting '{1}' !".format( self.__class__.__name__, os.path.basename( download ) ) )
 
 				self._container.coreTemplatesOutliner.getTemplates( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
-				self._container.coreTemplatesOutliner.refreshUi()
+				needUiRefresh = True
 			else :
 				if self._container.addonsLocationsBrowser.activated :
 					self._container.addonsLocationsBrowser.exploreProvidedFolder( os.path.dirname( download ) )
+
+		needUiRefresh and self._container.coreTemplatesOutliner.refreshUi()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, Exception )
+	def extractZipFile( self, file ):
+		'''
+		This Method Uncompress The Provided Zip File.
+		
+		@param file: File To Extract. ( String )
+		@return: Extraction Success. ( Boolean )
+		'''
+
+		pkzip = Pkzip()
+		pkzip.archive = file
+		pkzip.extract( os.path.dirname( file ) )
+
+		return True
 
 class OnlineUpdater( UiComponent ):
 	'''
@@ -2006,10 +2023,12 @@ class OnlineUpdater( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
+		self.Ignore_Non_Existing_Templates_checkBox_setUi()
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged( int )" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.connect( self.ui.Ignore_Non_Existing_Templates_checkBox, SIGNAL( "stateChanged( int )" ), self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -2022,6 +2041,7 @@ class OnlineUpdater( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
 		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged()" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self._signalsSlotsCenter.disconnect( self.ui.Ignore_Non_Existing_Templates_checkBox, SIGNAL( "stateChanged( int )" ), self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def Check_For_New_Releases_On_Startup_checkBox_setUi( self ) :
@@ -2058,7 +2078,7 @@ class OnlineUpdater( UiComponent ):
 
 		ignoreNonExistingTemplates = self._settings.getKey( "Others", "ignoreNonExistingTemplates" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0] ) )
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState( ignoreNonExistingTemplates.toInt()[0] )
+		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState( ignoreNonExistingTemplates.toInt()[0] )
 
 	@core.executionTrace
 	def Ignore_Non_Existing_Templates_checkBox_OnStateChanged( self, state ) :

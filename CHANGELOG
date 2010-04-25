@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.3 - Alpha
 
+* Online Updater skip extracting corrupted .zip files.
 * Changed the Toolbar Widgets.
 * Updated various Ui files / pictures.
 
