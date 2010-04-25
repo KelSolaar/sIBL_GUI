@@ -20,7 +20,7 @@ zip -r ../../../releases/repository/templates/3dsMax_Scanline_Standard.zip 3dsMa
 zip -r ../../../releases/repository/templates/3dsMax_VRay_Standard.zip 3dsMax_VRay_Standard
 cd ../Maya
 zip -r ../../../releases/repository/templates/Maya_MR_Standard.zip Maya_MR_Standard
-zip -r ../../../releases/repository/templates/Maya_Rfm_Standard.zip Maya_Rfm_Standard
+zip -r ../../../releases/repository/templates/Maya_RfM_Standard.zip Maya_RfM_Standard
 zip -r ../../../releases/repository/templates/Maya_Turtle_Standard.zip Maya_Turtle_Standard
 zip -r ../../../releases/repository/templates/Maya_VRay_Dome_Light.zip Maya_VRay_Dome_Light
 zip -r ../../../releases/repository/templates/Maya_VRay_Standard.zip Maya_VRay_Standard
