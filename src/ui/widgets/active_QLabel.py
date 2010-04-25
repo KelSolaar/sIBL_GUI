@@ -80,13 +80,15 @@ class Active_QLabel( QLabel ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, parent = None ) :
+	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, checkable = False, checked = False, parent = None ) :
 		'''
 		This Method Initializes The Class.
 
 		@param defaultPixmap: Label Default Pixmap. ( QPixmap )
 		@param hoverPixmap: Label Hover Pixmap. ( QPixmap )
 		@param activePixmap: Label Active Pixmap. ( QPixmap )
+		@param checkable: Checkable State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		@param parent: Widget Parent. ( QObject )
 		'''
 
@@ -98,9 +100,18 @@ class Active_QLabel( QLabel ):
 		self._defaultPixmap = defaultPixmap
 		self._hoverPixmap = hoverPixmap
 		self._activePixmap = activePixmap
-		self._activated = None
 
-		self.setPixmap( self._defaultPixmap )
+		self._checkable = None
+		self.checkable = checkable
+		self._checked = None
+		self.checked = checked
+
+		self._parent = None
+		self.parent = parent
+
+		self._menu = None
+
+		self._checked and self.setPixmap( self._activePixmap ) or self.setPixmap( self._defaultPixmap )
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -116,7 +127,7 @@ class Active_QLabel( QLabel ):
 		return self._defaultPixmap
 
 	@defaultPixmap.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def defaultPixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _defaultPixmap Attribute.
@@ -125,7 +136,7 @@ class Active_QLabel( QLabel ):
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._defaultPixmap = value
 
 	@defaultPixmap.deleter
@@ -148,7 +159,7 @@ class Active_QLabel( QLabel ):
 		return self._hoverPixmap
 
 	@hoverPixmap.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def hoverPixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _hoverPixmap Attribute.
@@ -157,7 +168,7 @@ class Active_QLabel( QLabel ):
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._hoverPixmap = value
 
 	@hoverPixmap.deleter
@@ -180,7 +191,7 @@ class Active_QLabel( QLabel ):
 		return self._activePixmap
 
 	@activePixmap.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
 	def activePixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _activePixmap Attribute.
@@ -189,7 +200,7 @@ class Active_QLabel( QLabel ):
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._activePixmap = value
 
 	@activePixmap.deleter
@@ -202,56 +213,159 @@ class Active_QLabel( QLabel ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activePixmap" ) )
 
 	@property
-	def activated( self ):
+	def checkable( self ):
 		'''
-		This Method Is The Property For The _activated Attribute.
+		This Method Is The Property For The _checkable Attribute.
 
-		@return: self._activated. ( Boolean )
+		@return: self._checkable. ( Boolean )
 		'''
 
-		return self._activated
+		return self._checkable
 
-	@activated.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def activated( self, value ):
+	@checkable.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def checkable( self, value ):
 		'''
-		This Method Is The Setter Method For The _activated Attribute.
+		This Method Is The Setter Method For The _checkable Attribute.
 
 		@param value: Attribute Value. ( Boolean )
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
-		self._activated = value
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "checkable", value )
+		self._checkable = value
 
-	@activated.deleter
+	@checkable.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def activated( self ):
+	def checkable( self ):
 		'''
-		This Method Is The Deleter Method For The _activated Attribute.
+		This Method Is The Deleter Method For The _checkable Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activated" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "checkable" ) )
+
+	@property
+	def checked( self ):
+		'''
+		This Method Is The Property For The _checked Attribute.
+
+		@return: self._checked. ( Boolean )
+		'''
+
+		return self._checked
+
+	@checked.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def checked( self, value ):
+		'''
+		This Method Is The Setter Method For The _checked Attribute.
+
+		@param value: Attribute Value. ( Boolean )
+		'''
+
+		if value :
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "checked", value )
+		self._checked = value
+
+	@checked.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def checked( self ):
+		'''
+		This Method Is The Deleter Method For The _checked Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "checked" ) )
+
+	@property
+	def parent( self ):
+		'''
+		This Method Is The Property For The _parent Attribute.
+
+		@return: self._parent. ( QObject )
+		'''
+
+		return self._parent
+
+	@parent.setter
+	def parent( self, value ):
+		'''
+		This Method Is The Setter Method For The _parent Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		self._parent = value
+
+	@parent.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def parent( self ):
+		'''
+		This Method Is The Deleter Method For The _parent Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "parent" ) )
+
+	@property
+	def menu( self ):
+		'''
+		This Method Is The Property For The _menu Attribute.
+
+		@return: self._menu. ( QMenu )
+		'''
+
+		return self._menu
+
+	@menu.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def menu( self, value ):
+		'''
+		This Method Is The Setter Method For The _menu Attribute.
+
+		@param value: Attribute Value. ( QMenu )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "menu " ) )
+
+	@menu.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def menu( self ):
+		'''
+		This Method Is The Deleter Method For The _menu Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "menu" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self ):
+	def setChecked( self, state ):
 		'''
-		This Method Sets The Widget Activated State.
+		This Method Sets The Widget Checked State.
+		
+		@param state: New Check State. ( Boolean )
 		'''
 
-		self._activated = True
-		self.setPixmap( self._activePixmap )
+		if state :
+			self._checked = True
+			self.setPixmap( self._activePixmap )
+		else :
+			self._checked = False
+			self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
-	def deactivate( self ):
+	def setMenu( self, menu ):
 		'''
-		This Method Sets The Widget Deactivated State.
+		This Method Sets The Widget Menu.
+		
+		@param menu: Menu. ( QMenu )
 		'''
-		self._activated = False
-		self.setPixmap( self._defaultPixmap )
+
+		self._menu = menu
+
+		# Propagating Actions To Parent.
+		for action in self._menu.actions():
+			not action.shortcut().isEmpty() and self._parent.addAction( action )
 
 	@core.executionTrace
 	def enterEvent( self, event ):
@@ -261,7 +375,10 @@ class Active_QLabel( QLabel ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		not self._activated and self.setPixmap( self._hoverPixmap )
+		if self._checkable :
+			not self._checked and self.setPixmap( self._hoverPixmap )
+		else :
+			self.setPixmap( self._hoverPixmap )
 
 	@core.executionTrace
 	def leaveEvent( self, event ):
@@ -271,7 +388,10 @@ class Active_QLabel( QLabel ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		not self._activated and self.setPixmap( self._defaultPixmap )
+		if self._checkable :
+			not self._checked and self.setPixmap( self._defaultPixmap )
+		else :
+			self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
 	def mousePressEvent( self, event ):
@@ -282,7 +402,22 @@ class Active_QLabel( QLabel ):
 		'''
 
 		self.emit( SIGNAL( "clicked()" ) )
-		self.activate()
+
+		if self._checkable :
+			self.setChecked( True )
+		else :
+			self.setPixmap( self._activePixmap )
+			self._menu and self._menu.exec_( QCursor.pos() )
+
+	@core.executionTrace
+	def mouseReleaseEvent( self, event ):
+		'''
+		This Method Defines The Mouse Release Event.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		not self._checkable and	self.setPixmap( self._defaultPixmap )
 
 #***********************************************************************************************
 #***	Python End

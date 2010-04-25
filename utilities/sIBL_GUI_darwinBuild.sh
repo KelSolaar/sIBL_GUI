@@ -18,9 +18,15 @@ cp  ../../src/ui/Linux_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/Layout.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/Miscellaneous.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Central_Widget.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Central_Widget_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Central_Widget_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Layout.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Layout_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Layout_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Miscellaneous.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Miscellaneous_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Miscellaneous_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Library.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Library_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Library_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources

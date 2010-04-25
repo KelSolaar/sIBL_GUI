@@ -73,9 +73,22 @@ class UiConstants():
 
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
-	frameworLayoutIcon = "./resources/Layout.png"
+
+	frameworkMenuArrowIcon = "./resources/Menu_Arrow.png"
+
+	frameworkDefaultToolbarIconSize = 32
+
 	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
-	frameworkMiscIcon = "./resources/Miscellaneous.png"
+	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
+	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
+
+	frameworLayoutIcon = "./resources/Layout.png"
+	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
+	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
+
+	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"
+	frameworMiscellaneousHoverIcon = "./resources/Miscellaneous_Hover.png"
+	frameworMiscellaneousActiveIcon = "./resources/Miscellaneous_Active.png"
 
 	frameworkLibraryIcon = "./resources/Library.png"
 	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"

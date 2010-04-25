@@ -1051,6 +1051,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Initializes sIBL_GUI Toolbar.
 		'''
 
+		self.toolBar.setIconSize( QSize( UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize ) )
+
 		logolabel = QLabel()
 		logolabel.setPixmap( QPixmap( UiConstants.frameworkLogoPicture ) )
 		self.toolBar.addWidget( logolabel )
@@ -1062,13 +1064,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		toolbarFont = QFont()
 		toolbarFont.setPointSize( 16 )
 
-		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ) )
+		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ), True )
 		self.toolBar.addWidget( self._libraryActiveLabel )
 
-		self._exportActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkExportIcon ), QPixmap( UiConstants.frameworkExportHoverIcon ), QPixmap( UiConstants.frameworkExportActiveIcon ) )
+		self._exportActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkExportIcon ), QPixmap( UiConstants.frameworkExportHoverIcon ), QPixmap( UiConstants.frameworkExportActiveIcon ), True )
 		self.toolBar.addWidget( self._exportActiveLabel )
 
-		self._preferencesActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkPreferencesIcon ), QPixmap( UiConstants.frameworkPreferencesHoverIcon ), QPixmap( UiConstants.frameworkPreferencesActiveIcon ) )
+		self._preferencesActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkPreferencesIcon ), QPixmap( UiConstants.frameworkPreferencesHoverIcon ), QPixmap( UiConstants.frameworkPreferencesActiveIcon ), True )
 		self.toolBar.addWidget( self._preferencesActiveLabel )
 
 		self._layoutsActiveLabels = ( LayoutActiveLabel( name = "Library", object_ = self._libraryActiveLabel, layout = "setsCentric", shortcut = Qt.Key_8 ),
@@ -1080,15 +1082,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		for layoutActiveLabel in self._layoutsActiveLabels :
 			self._signalsSlotsCenter.connect( layoutActiveLabel.object_, SIGNAL( "clicked()" ), lambda activeLabel = layoutActiveLabel.layout : self.activeLabel_OnClicked( activeLabel ) )
 
-		centralWidgetButton = QToolButton()
-		centralWidgetButton.setIcon( QIcon( QPixmap( UiConstants.frameworCentralWidgetIcon ) ) )
+		centralWidgetButton = Active_QLabel( QPixmap( UiConstants.frameworCentralWidgetIcon ), QPixmap( UiConstants.frameworCentralWidgetHoverIcon ), QPixmap( UiConstants.frameworCentralWidgetActiveIcon ) )
 		self.toolBar.addWidget( centralWidgetButton )
 
 		self._signalsSlotsCenter.connect( centralWidgetButton, SIGNAL( "clicked()" ), self.centralWidgetButton_OnClicked )
 
-		layoutbutton = QToolButton()
-		layoutbutton.setIcon( QIcon( QPixmap( UiConstants.frameworLayoutIcon ) ) )
-		layoutbutton.setPopupMode( QToolButton.InstantPopup )
+		layoutbutton = Active_QLabel( QPixmap( UiConstants.frameworLayoutIcon ), QPixmap( UiConstants.frameworLayoutHoverIcon ), QPixmap( UiConstants.frameworLayoutActiveIcon ), parent = self )
+		self.toolBar.addWidget( layoutbutton )
 
 		self._layoutMenu = QMenu( "Layout", layoutbutton )
 
@@ -1114,16 +1114,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		layoutbutton.setMenu( self._layoutMenu )
 
-		self.toolBar.addWidget( layoutbutton )
-
-		miscButton = QToolButton()
-		miscButton.setIcon( QIcon( QPixmap( UiConstants.frameworkMiscIcon ) ) )
-		miscButton.setPopupMode( QToolButton.InstantPopup )
+		miscellaneousbutton = Active_QLabel( QPixmap( UiConstants.frameworMiscellaneousIcon ), QPixmap( UiConstants.frameworMiscellaneousHoverIcon ), QPixmap( UiConstants.frameworMiscellaneousActiveIcon ), parent = self )
+		self.toolBar.addWidget( miscellaneousbutton )
 
 		helpDisplayMiscAction = QAction( "Help Content ...", self )
 		apiDisplayMiscAction = QAction( "Api Content ...", self )
 
-		self._miscMenu = QMenu( "Miscellaneous", miscButton )
+		self._miscMenu = QMenu( "Miscellaneous", miscellaneousbutton )
 
 		self._miscMenu.addAction( helpDisplayMiscAction )
 		self._miscMenu.addAction( apiDisplayMiscAction )
@@ -1133,9 +1130,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._signalsSlotsCenter.connect( helpDisplayMiscAction, SIGNAL( "triggered()" ), self.helpDisplayMiscAction_OnTriggered )
 		self._signalsSlotsCenter.connect( apiDisplayMiscAction, SIGNAL( "triggered()" ), self.apiDisplayMiscAction_OnTriggered )
 
-		miscButton.setMenu( self._miscMenu )
-
-		self.toolBar.addWidget( miscButton )
+		miscellaneousbutton.setMenu( self._miscMenu )
 
 	@core.executionTrace
 	def activeLabel_OnClicked( self, activeLabel ):
@@ -1145,7 +1140,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self.restoreLayout( activeLabel )
 		for layoutActivelabel in self._layoutsActiveLabels :
-			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.deactivate()
+			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked( False )
 
 	@core.executionTrace
 	def centralWidgetButton_OnClicked( self ):
@@ -1177,7 +1172,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		self.restoreLayout( "setsCentric" )
-		self._libraryActiveLabel.activate()
+		self._libraryActiveLabel.setChecked( True )
 
 	@core.executionTrace
 	def storeLayout( self, name ):
@@ -1204,14 +1199,14 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
 
 		for layoutActiveLabel in self._layoutsActiveLabels :
-			name != layoutActiveLabel.layout and layoutActiveLabel.object_.deactivate()
+			name != layoutActiveLabel.layout and layoutActiveLabel.object_.setChecked( False )
 
 		if name == "setsCentric" :
-			self._libraryActiveLabel.activate()
+			self._libraryActiveLabel.setChecked( True )
 		elif name == "templatesCentric" :
-			self._exportActiveLabel.activate()
+			self._exportActiveLabel.setChecked( True )
 		elif name == "preferencesCentric" :
-			self._preferencesActiveLabel.activate()
+			self._preferencesActiveLabel.setChecked( True )
 
 		visibleComponents = [ "core.databaseBrowser" ]
 		for component, profile in self._componentsManager.components.items() :
