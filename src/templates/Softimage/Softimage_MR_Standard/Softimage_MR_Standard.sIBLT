@@ -211,7 +211,7 @@ function sIBL_XSI_MR_Setup(backgroundFilePath,
 						progressBar.Increment();
 
 						// Environment Shaders Update.
-						sIBL_XSI_MR_Update_Mib_Lookup_SphericalShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks);
+						sIBL_XSI_MR_Update_EnvironmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks);
 						progressBar.Increment();
 
 						// Feedback Update.
@@ -329,7 +329,7 @@ function sIBL_XSI_MR_Setup(backgroundFilePath,
 
 					progressBar.Visible = false;
 				}
-				
+
 				SetCurrentLayer(layer);
 
 				sIBL_XSI_MR_ScriptEditorVerbose(true);
@@ -582,7 +582,7 @@ function sIBL_XSI_MR_GetEnvironmentShaderBranch(pass, inputShader, imageSource, 
 	lookupSphericalShader.Parameters("name").value = name + "_Mib_Lookup_Spherical";
 }
 
-function sIBL_XSI_MR_Update_Mib_Lookup_SphericalShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks)
+function sIBL_XSI_MR_Update_EnvironmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks)
 {
 	var pass = selectedPassesList[0];
 
@@ -607,8 +607,8 @@ function sIBL_XSI_MR_Update_Mib_Lookup_SphericalShaders(createBackground, create
 				backgroundSource = Application.CreateImageClip2(backgroundFilePath, "sIBL_Background_Clip");
 			}
 
-			var backgroundEnvironmentShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Background_Mib_Lookup_Spherical", true);
-			if(backgroundEnvironmentShader == 0)
+			var backgroundLookupSphericalShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Background_Mib_Lookup_Spherical", true);
+			if(backgroundLookupSphericalShader == 0)
 			{
 				sIBL_XSI_MR_GetEnvironmentShaderBranch(pass, raytype, backgroundSource, ports, "sIBL_Background");
 			}
@@ -636,8 +636,8 @@ function sIBL_XSI_MR_Update_Mib_Lookup_SphericalShaders(createBackground, create
 				lightingSource = Application.CreateImageClip2(lightingFilePath, "sIBL_Lighting_Clip");
 			}
 
-			var lightingEnvironmentShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Lighting_Mib_Lookup_Spherical", true);
-			if(lightingEnvironmentShader == 0)
+			var lightingLookupSphericalShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Lighting_Mib_Lookup_Spherical", true);
+			if(lightingLookupSphericalShader == 0)
 			{
 				sIBL_XSI_MR_GetEnvironmentShaderBranch(pass, raytype, lightingSource, ports, "sIBL_Lighting");
 			}
@@ -668,8 +668,8 @@ function sIBL_XSI_MR_Update_Mib_Lookup_SphericalShaders(createBackground, create
 				reflectionSource = Application.CreateImageClip2(reflectionFilePath, "sIBL_Reflection_Clip");
 			}
 
-			var reflectionEnvironmentShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Reflection_Mib_Lookup_Spherical", true);
-			if(reflectionEnvironmentShader == 0)
+			var reflectionLookupSphericalShader = sIBL_XSI_MR_GetMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Reflection_Mib_Lookup_Spherical", true);
+			if(reflectionLookupSphericalShader == 0)
 			{
 				sIBL_XSI_MR_GetEnvironmentShaderBranch(pass, raytype, reflectionSource, ports, "sIBL_Reflection");
 			}
@@ -1110,19 +1110,19 @@ function sIBL_XSI_MR_ConnectFeedBackToSIBLShaders( feedback, connectToBackground
 
 	if (connectToBackground)
 	{
-		AddExpr(pass + ".sIBL_Background_Mib_Lookup_Spherical.transform.StaticKineState.oriy", "-" + feedback + ".kine.global.roty" + " + 225", true);
+		SetExpr(pass + ".sIBL_Background_Mib_Lookup_Spherical.rotate", "(" + feedback + ".kine.global.roty / 2 )  * PI / 180 + ( 67.5 * PI / 180 )");
 		sIBL_XSI_MR_BridgeControlsAndShaders( pass, "Background" );
 	}
 
 	if (connectToLighting)
 	{
-		AddExpr(pass + ".sIBL_Lighting_Mib_Lookup_Spherical.transform.StaticKineState.oriy", "-" + feedback + ".kine.global.roty" + " + 225", true);
+		SetExpr(pass + ".sIBL_Lighting_Mib_Lookup_Spherical.rotate", "(" + feedback + ".kine.global.roty / 2 )  * PI / 180 + ( 67.5 * PI / 180 )");
 		sIBL_XSI_MR_BridgeControlsAndShaders( pass, "Lighting" );
 	}
 
 	if (connectToReflection)
 	{
-		AddExpr(pass + ".sIBL_Reflection_Mib_Lookup_Spherical.transform.StaticKineState.oriy", "-" + feedback + ".kine.global.roty" + " + 225", true);
+		SetExpr(pass + ".sIBL_Reflection_Mib_Lookup_Spherical.rotate", "(" + feedback + ".kine.global.roty / 2 )  * PI / 180 + ( 67.5 * PI / 180 )");
 		sIBL_XSI_MR_BridgeControlsAndShaders( pass, "Reflection" );
 	}
 }
@@ -1156,9 +1156,11 @@ function sIBL_XSI_MR_ActivateColorManagement(createBackground, selectedPassesLis
 		pass.Parameters("UseDisplayGammaCorrection").value = true;
 	}
 
-	// Adjust Background Color Space Because Of The Color Management.
-	if (createBackground)
-		ActiveProject.ActiveScene.ImageClips("sIBL_Background_Clip").Parameters("RenderColorProfile").Value = "sRGB";
+	// Adjust Background Gamma Color Because Of The Color Management.
+	if (createBackground) 
+	{
+		SetValue("sIBL.Smart_IBL_Controls.Background_Gamma", 1 / 2.2 );
+	}
 }
 
 function sIBL_XSI_MR_Update_Ground(feedbackRadius, shadowCatcher, overrideTweaks)
@@ -1244,9 +1246,9 @@ function sIBL_XSI_MR_AddToDisplayLayer( layerName, object)
 
 function sIBL_XSI_MR_ScriptEditorVerbose(verboseState)
 {
-	//Application.Preferences.SetPreferenceValue("scripting.cmdlog", verboseState);
-	//Application.Preferences.SetPreferenceValue("scripting.msglog", verboseState);
-	//Application.Preferences.SetPreferenceValue("scripting.msglogverbose", verboseState);
+	Application.Preferences.SetPreferenceValue("scripting.cmdlog", verboseState);
+	Application.Preferences.SetPreferenceValue("scripting.msglog", verboseState);
+	Application.Preferences.SetPreferenceValue("scripting.msglogverbose", verboseState);
 }
 
 function sIBL_XSI_MR_AutoInspectState(autoInspectState)
