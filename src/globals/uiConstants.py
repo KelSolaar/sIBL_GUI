@@ -66,12 +66,41 @@ class UiConstants():
 	'''
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"
+	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
+	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
+	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
 	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
+
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
-	frameworLayoutIcon = "./resources/sIBL_GUI_Layout.png"
-	frameworCentralWidgetIcon = "./resources/sIBL_GUI_CentralWidget.png"
-	frameworkMiscIcon = "./resources/sIBL_GUI_Misc.png"
+
+	frameworkMenuArrowIcon = "./resources/Menu_Arrow.png"
+
+	frameworkDefaultToolbarIconSize = 32
+
+	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
+	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
+	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
+
+	frameworLayoutIcon = "./resources/Layout.png"
+	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
+	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
+
+	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"
+	frameworMiscellaneousHoverIcon = "./resources/Miscellaneous_Hover.png"
+	frameworMiscellaneousActiveIcon = "./resources/Miscellaneous_Active.png"
+
+	frameworkLibraryIcon = "./resources/Library.png"
+	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
+	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
+
+	frameworkExportIcon = "./resources/Export.png"
+	frameworkExportHoverIcon = "./resources/Export_Hover.png"
+	frameworkExportActiveIcon = "./resources/Export_Active.png"
+
+	frameworkPreferencesIcon = "./resources/Preferences.png"
+	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
+	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
 
 	componentsDirectory = "components"
 

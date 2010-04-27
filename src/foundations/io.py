@@ -220,7 +220,7 @@ class File( object ):
 @foundations.exceptions.exceptionsHandler( None, False, OSError )
 def setLocalDirectory( path ):
 	'''
-	This Method Creates A Directory With Provided Path.
+	This Definition Creates A Directory With Provided Path.
 
 	@param path: Directory Path. ( String )
 	@return: Directory Creation Success. ( Boolean )

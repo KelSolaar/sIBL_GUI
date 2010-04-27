@@ -452,7 +452,7 @@ class Parser( io.File ):
 @core.executionTrace
 def setNamespace( section, attribute, namespaceSplitter = "|" ):
 	'''
-	This Method Returns The Compounded Attribute And Compounded Namespace.
+	This Definition Returns The Compounded Attribute And Compounded Namespace.
 
 	@param section: Section. ( String )
 	@param attribute: Attribute. ( String )
@@ -465,7 +465,7 @@ def setNamespace( section, attribute, namespaceSplitter = "|" ):
 @core.executionTrace
 def getNamespace( attribute, namespaceSplitter = "|" ):
 	'''
-	This Method Returns The Attribute Namespace.
+	This Definition Returns The Attribute Namespace.
 
 	@param attribute: Attribute. ( String )
 	@param namespaceSplitter: Namespace Splitter Character. ( String )
@@ -481,7 +481,7 @@ def getNamespace( attribute, namespaceSplitter = "|" ):
 @core.executionTrace
 def removeNamespace( attribute, namespaceSplitter = "|", rootOnly = False ):
 	'''
-	This Method Returns The Attribute Without Namespace.
+	This Definition Returns The Attribute Without Namespace.
 
 	@param attribute: Attribute. ( String )
 	@param namespaceSplitter: Namespace Splitter Character. ( String )

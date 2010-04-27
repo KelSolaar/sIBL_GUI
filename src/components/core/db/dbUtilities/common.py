@@ -92,7 +92,7 @@ DB_ERRORS = {
 @core.executionTrace
 def commit( session ):
 	'''
-	This Method Commits Changes To The Database.
+	This Definition Commits Changes To The Database.
 	
 	@param session: Database Session. ( Session )
 	@return: Database Commit Success. ( Boolean )
@@ -109,7 +109,7 @@ def commit( session ):
 @foundations.exceptions.exceptionsHandler( None, False, Exception )
 def addItem( session, item ):
 	'''
-	This Method Adds An Item To The Database.
+	This Definition Adds An Item To The Database.
 	
 	@param session: Database Session. ( Session )
 	@param item: Item To Add. ( sIBL_DB Object )
@@ -126,7 +126,7 @@ def addItem( session, item ):
 @foundations.exceptions.exceptionsHandler( None, False, Exception )
 def removeItem( session, item ):
 	'''
-	This Method Removes An Item From The Database.
+	This Definition Removes An Item From The Database.
 	
 	@param session: Database Session. ( Session )
 	@param item: Item To Remove. ( sIBL_DB Object )
@@ -142,7 +142,7 @@ def removeItem( session, item ):
 @core.executionTrace
 def getSets( session ):
 	'''
-	This Method Gets The Sets From The Database.
+	This Definition Gets The Sets From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Sets. ( List )
@@ -153,7 +153,7 @@ def getSets( session ):
 @core.executionTrace
 def filterSets( session, pattern, field, flags = 0 ):
 	'''
-	This Method Filters The Sets From The Database.
+	This Definition Filters The Sets From The Database.
 
 	@param session: Database Session. ( Session )
 	@param pattern: Filtering Pattern. ( String )
@@ -170,7 +170,7 @@ def filterSets( session, pattern, field, flags = 0 ):
 @core.executionTrace
 def addSet( session, name, path, collection ):
 	'''
-	This Method Adds A New Set To The Database.
+	This Definition Adds A New Set To The Database.
 
 	@param session: Database Session. ( Session )
 	@param name: Set Name. ( String )
@@ -193,7 +193,7 @@ def addSet( session, name, path, collection ):
 @core.executionTrace
 def removeSet( session, id ):
 	'''
-	This Method Remove A Set From The Database.
+	This Definition Remove A Set From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Set Id. ( String )
@@ -208,7 +208,7 @@ def removeSet( session, id ):
 @core.executionTrace
 def updateSetContent( session, set ):
 	'''
-	This Method Update A Set Content.
+	This Definition Update A Set Content.
 
 	@param session: Database Session. ( Session )
 	@param set: Set To Set Content. ( DbSet )
@@ -227,7 +227,7 @@ def updateSetContent( session, set ):
 @core.executionTrace
 def updateSetLocation( session, set, path ):
 	'''
-	This Method Updates A Set Location.
+	This Definition Updates A Set Location.
 
 	@param session: Database Session. ( Session )
 	@param set: Set To Update. ( DbSet )
@@ -247,7 +247,7 @@ def updateSetLocation( session, set, path ):
 @core.executionTrace
 def getCollections( session ):
 	'''
-	This Method Gets The Collections From The Database.
+	This Definition Gets The Collections From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Collections. ( List )
@@ -258,7 +258,7 @@ def getCollections( session ):
 @core.executionTrace
 def filterCollections( session, pattern, field, flags = 0 ):
 	'''
-	This Method Filters The Collections From The Database.
+	This Definition Filters The Collections From The Database.
 
 	@param session: Database Session. ( Session )
 	@param pattern: Filtering Pattern. ( String )
@@ -275,7 +275,7 @@ def filterCollections( session, pattern, field, flags = 0 ):
 @core.executionTrace
 def addCollection( session, collection, type, comment ):
 	'''
-	This Method Adds A Collection To The Database.
+	This Definition Adds A Collection To The Database.
 
 	@param session: Database Session. ( Session )
 	@param collection: Collection Name. ( String )
@@ -296,7 +296,7 @@ def addCollection( session, collection, type, comment ):
 @core.executionTrace
 def removeCollection( session, id ):
 	'''
-	This Method Remove A Collection From The Database.
+	This Definition Remove A Collection From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Collection Id. ( String )
@@ -311,7 +311,7 @@ def removeCollection( session, id ):
 @core.executionTrace
 def getCollectionsSets( session, ids ):
 	'''
-	This Method Gets Sets From Collections Ids
+	This Definition Gets Sets From Collections Ids
 
 	@param session: Database Session. ( Session )
 	@param ids: Collections Ids. ( List )
@@ -329,7 +329,7 @@ def getCollectionsSets( session, ids ):
 @core.executionTrace
 def checkSetsTableIntegrity( session ):
 	'''
-	This Method Checks Sets Table Integrity.
+	This Definition Checks Sets Table Integrity.
 
 	@param session: Database Session. ( Session )
 	@return: Sets Table Erroneous Items. ( Dictionary )
@@ -355,7 +355,7 @@ def checkSetsTableIntegrity( session ):
 @core.executionTrace
 def getTemplates( session ):
 	'''
-	This Method Gets The Templates From The Database.
+	This Definition Gets The Templates From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Templates. ( List )
@@ -366,7 +366,7 @@ def getTemplates( session ):
 @core.executionTrace
 def filterTemplates( session, pattern, field, flags = 0 ):
 	'''
-	This Method Filters The Templates From The Database.
+	This Definition Filters The Templates From The Database.
 
 	@param session: Database Session. ( Session )
 	@param pattern: Filtering Pattern. ( String )
@@ -383,7 +383,7 @@ def filterTemplates( session, pattern, field, flags = 0 ):
 @core.executionTrace
 def addTemplate( session, name, path, collection ):
 	'''
-	This Method Adds A New Template To The Database.
+	This Definition Adds A New Template To The Database.
 
 	@param session: Database Session. ( Session )
 	@param name: Template Name. ( String )
@@ -406,7 +406,7 @@ def addTemplate( session, name, path, collection ):
 @core.executionTrace
 def removeTemplate( session, id ):
 	'''
-	This Method Remove A Template From The Database.
+	This Definition Remove A Template From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Template Id. ( String )
@@ -421,7 +421,7 @@ def removeTemplate( session, id ):
 @core.executionTrace
 def updateTemplateContent( session, template ):
 	'''
-	This Method Update A Template Content.
+	This Definition Update A Template Content.
 
 	@param session: Database Session. ( Session )
 	@param template: Template To Template Content. ( DbTemplate )
@@ -440,7 +440,7 @@ def updateTemplateContent( session, template ):
 @core.executionTrace
 def updateTemplateLocation( session, template, path ):
 	'''
-	This Method Updates A Template Location.
+	This Definition Updates A Template Location.
 
 	@param session: Database Session. ( Session )
 	@param template: Template To Update. ( DbTemplate )
@@ -460,7 +460,7 @@ def updateTemplateLocation( session, template, path ):
 @core.executionTrace
 def checkTemplatesTableIntegrity( session ):
 	'''
-	This Method Checks Templates Table Integrity.
+	This Definition Checks Templates Table Integrity.
 
 	@param session: Database Session. ( Session )
 	@return: Templates Table Erroneous Items. ( Dictionary )

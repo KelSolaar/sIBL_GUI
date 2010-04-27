@@ -76,7 +76,7 @@ LOGGER = logging.getLogger( Constants.logger )
 @core.executionTrace
 def getNiceName( name ) :
 	'''
-	This Method Converts A String To Nice String : currentLogText -> Current Log Text.
+	This Definition Converts A String To Nice String : currentLogText -> Current Log Text.
 
 	@param name: Current String To Be Nicified. ( String )
 	@return: Nicified String. ( String )
@@ -104,7 +104,7 @@ def getNiceName( name ) :
 @core.executionTrace
 def getVersionRank( version ):
 	'''
-	This Method Converts A Version String To It's Rank.
+	This Definition Converts A Version String To It's Rank.
 
 	@param version: Current Version To Calculate Rank. ( String )
 	@return: Rank. ( Integer )
@@ -115,7 +115,7 @@ def getVersionRank( version ):
 @core.executionTrace
 def getNormalisedPath( path ):
 	'''
-	This Method Normalises A Path, Escaping Slashes If Needeed On Windows.
+	This Definition Normalises A Path, Escaping Slashes If Needeed On Windows.
 
 	@param path: Path To Normalise. ( String )
 	@return: Normalised Path. ( String )

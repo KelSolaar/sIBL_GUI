@@ -77,7 +77,7 @@ LOGGER = logging.getLogger( Constants.logger )
 @core.executionTrace
 def messageBox( type, title, message, icon = None, buttons = QMessageBox.Ok ):
 	'''
-	This Function Provides A Fast GUI Message Box.
+	This Definition Provides A Fast GUI Message Box.
 
 	@param title: Current Message Title. ( String )
 	@param message:	Message. ( String )
@@ -134,7 +134,7 @@ def messageBox( type, title, message, icon = None, buttons = QMessageBox.Ok ):
 @core.executionTrace
 def standaloneMessageBox( type, caption, message ):
 	'''
-	This Function Provides A Standalone Message Box.
+	This Definition Provides A Standalone Message Box.
 	
 	@param type: MessageBox Type. ( String )
 	@param caption: MessageBox Title. ( String )

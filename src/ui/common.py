@@ -76,7 +76,7 @@ LOGGER = logging.getLogger( Constants.logger )
 @core.executionTrace
 def decodeMimeDatas( byteArray ):
 	'''
-	This Method Decodes Qt Mime Datas.
+	This Definition Decodes Qt Mime Datas.
 
 	@return: Decoded Mime Datas. ( List )
 	'''

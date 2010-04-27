@@ -74,7 +74,7 @@ core.setVerbosityLevel( 3 )
 #***********************************************************************************************
 def textileToHtml( fileIn, fileOut, title ):
 	'''
-	This Method Outputs A Textile File To HTML.
+	This Definition Outputs A Textile File To HTML.
 		
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
@@ -95,23 +95,23 @@ def textileToHtml( fileIn, fileOut, title ):
 	                font-size: 10pt;
 	                margin: 10px 10px 10px 10px;
 	                background-color: rgb(192, 192, 192);
-	                color: rgb(45, 50, 50);
+	                color: rgb(50, 50, 50);
 	            }
 	            A:link {
 	                text-decoration: none;
-	                color: rgb(50, 100, 150);
+	                color: rgb(50, 85, 125);
 	            }
 	            A:visited {
 	                text-decoration: none;
-	                color: rgb(50, 100, 150);
+	                color: rgb(50, 85, 125);
 	            }
 	            A:active {
 	                text-decoration: none;
-	                color: rgb(50, 100, 150);
+	                color: rgb(50, 85, 125);
 	            }
 	            A:hover {
 	                text-decoration: underline;
-	                color: rgb(50, 100, 150);
+	                color: rgb(50, 85, 125);
 	            }
 	        </style>\n""" )
 	output.append( "\t</head>\n\t<body>\n\t" )

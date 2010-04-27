@@ -24,16 +24,24 @@
 #
 # The Following Code Is Protected By GNU GPL V3 Licence.
 #
+#***********************************************************************************************
+#
+# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# Please Contact Us At HDRLabs :
+# Christian Bloch - blochi@edenfx.com
+# Thomas Mansencal - kelsolaar_fool@hotmail.com
+#
+#***********************************************************************************************
 
 '''
 ************************************************************************************************
-***	sIBL_GUI_getTemplatesReleases.py
+***	runtimeConstants.py
 ***
 ***	Platform :
-***		Windows
+***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Get Templates Releases.
+***		Runtime Constants Module.
 ***
 ***	Others :
 ***
@@ -43,57 +51,39 @@
 #***********************************************************************************************
 #***	Python Begin
 #***********************************************************************************************
+
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import logging
-import os
-import sys
-import textile
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Module Classes And Definitions
 #***********************************************************************************************
-import foundations.core as core
-from foundations.io import File
-import foundations.parser
-from globals.constants import Constants
-from foundations.walker import Walker
-from foundations.parser import Parser
-
-#***********************************************************************************************
-#***	Global Variables
-#***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
-
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler( sys.stdout )
-LOGGING_CONSOLE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
-
-core.setVerbosityLevel( 3 )
-
-TEMPLATES_PATH = "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates"
-TEMPLATES_EXTENSION = ".sIBLT"
-
-#***********************************************************************************************
-#***	Main Python Code
-#***********************************************************************************************
-def getTemplatesReleases():
+class RuntimeConstants():
 	'''
-	This Definition Gets Templates Releases.
+	This Class Is The RuntimeConstants Class.
 	'''
 
-	walker = Walker()
-	walker.root = TEMPLATES_PATH
-	templates = walker.walk( TEMPLATES_EXTENSION )
-	for template, path in templates.items() :
-		parser = Parser( path )
-		parser.read() and parser.parse()
+	loggingConsoleHandler = None
+	loggingFileHandler = None
+	loggingSessionHandler = None
+	loggingSessionHandlerStream = None
 
-		LOGGER.info( "{0} | '{1}' : '{2}' !".format( getTemplatesReleases.__name__, template, foundations.parser.getAttributeCompound( "Release", parser.getValue( "Release", "Template", encode = True ) ).value ) )
+	verbosityLevel = None
+	loggingFile = None
 
-if __name__ == '__main__':
-	getTemplatesReleases()
+	application = None
+	userDatasDirectory = None
+	userApplicationDirectory = None
+
+	uiFile = None
+	ui = None
+
+	settingsFile = None
+	settings = None
+
+	splashscreenPicture = None
+	splashscreen = None
 
 #***********************************************************************************************
 #***	Python End

@@ -1,10 +1,12 @@
 - s I B L _ G U I -
 
 - Introduction -
-sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. What is sIBL ? It's a short for "Smart IBL" . It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. A lot more informations are available here : http://www.smartibl.com. 
+sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. 
+What is sIBL ? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
+A lot more informations are available here : http://www.smartibl.com. 
 
 - Installation / Usage -
-For Installation and Usage check the Manual / Help File available here : http://kelsolaar.hdrlabs.com/sIBL_Framework/Repository/sIBL_GUI/Help/sIBL_GUI/sIBL_GUI%20Manual.htm and the related thread here : http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1219865135/0#0
+For Installation and Usage check the Manual / Help File available here : http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html and the related thread here : http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
 
 - About -
 sIBL_GUI by Thomas Mansencal - 2008 - 2010

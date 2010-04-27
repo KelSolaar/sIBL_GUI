@@ -55,7 +55,7 @@ import sys
 #***********************************************************************************************
 def recursiveRemove( rootDirectory, pattern ):
 	'''
-	This Method Recursively Deletes The Matching Items.
+	This Definition Recursively Deletes The Matching Items.
 		
 	@param rootDirectory: Directory To Recurse. ( String )
 	@param pattern: Pattern To Match. ( String )
@@ -70,7 +70,7 @@ def recursiveRemove( rootDirectory, pattern ):
 
 def remove( item ):
 	'''
-	This Method Deletes Provided Item.
+	This Definition Deletes Provided Item.
 	@param item: Item To Delete. ( String )
 	'''
 

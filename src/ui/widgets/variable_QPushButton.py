@@ -77,18 +77,19 @@ LOGGER = logging.getLogger( Constants.logger )
 class Variable_QPushButton( QPushButton ) :
 
 	@core.executionTrace
-	def __init__( self, state, colors, labels ) :
+	def __init__( self, state, colors, labels, parent = None ) :
 		'''
 		This Method Initializes The Class.
 
 		@param state: Current Button State. ( Boolean )
 		@param colors: Button Colors. ( Tuple )
 		@param labels: Button Texts. ( Tuple )
+		@param parent: Widget Parent. ( QObject )
 		'''
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QPushButton.__init__( self )
+		QPushButton.__init__( self, parent )
 
 		# --- Setting Class Attributes. ---
 		self._signalsSlotsCenter = QObject()
@@ -101,6 +102,9 @@ class Variable_QPushButton( QPushButton ) :
 
 		self._labels = None
 		self.labels = labels
+
+		self._parent = None
+		self.parent = parent
 
 		# Initializing The Button
 		self.setCheckable( True )
@@ -244,6 +248,35 @@ class Variable_QPushButton( QPushButton ) :
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "labels" ) )
+
+	@property
+	def parent( self ):
+		'''
+		This Method Is The Property For The _parent Attribute.
+
+		@return: self._parent. ( QObject )
+		'''
+
+		return self._parent
+
+	@parent.setter
+	def parent( self, value ):
+		'''
+		This Method Is The Setter Method For The _parent Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		self._parent = value
+
+	@parent.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def parent( self ):
+		'''
+		This Method Is The Deleter Method For The _parent Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "parent" ) )
 
 	#***************************************************************************************
 	#***	Class Methods

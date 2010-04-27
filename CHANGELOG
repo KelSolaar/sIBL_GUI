@@ -1,6 +1,12 @@
-h1=. sIBL_GUI - 3.0.2 - Alpha
+h1=. sIBL_GUI - 3.0.3 - Alpha
 
 h2=. Change Log
+
+h3. 3.0.3 - Alpha
+
+* Online Updater skip extracting corrupted .zip files.
+* Changed the Toolbar Widgets.
+* Updated various Ui files / pictures.
 
 h3. 3.0.2 - Alpha
 
@@ -8,6 +14,7 @@ h3. 3.0.2 - Alpha
 * Added Templates Versions filtering context menu option.
 * Merged "DatabaseBrowser" and "ThumbnailsSize" components.
 * Changed "onlineUpdater" component IODevice to QFile, Windows 7 and Vista downloads are not corrupted anymore.
+* Various Ui tweaks.
 
 h3. 3.0.1 - Alpha
 

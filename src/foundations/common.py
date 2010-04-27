@@ -80,7 +80,7 @@ LOGGER = logging.getLogger( Constants.logger )
 @core.executionTrace
 def getSystemApplicationDatasDirectory():
 	'''
-	This Method Gets The User Application Datas Directory.
+	This Definition Gets The User Application Datas Directory.
 
 	@return: User Application Datas Directory. ( String )
 	'''
@@ -100,7 +100,7 @@ def getSystemApplicationDatasDirectory():
 @core.executionTrace
 def getUserApplicationDatasDirectory():
 	'''
-	This Method Gets The User Application Directory.
+	This Definition Gets The User Application Directory.
 
 	@return: User Application Directory. ( String )
 	'''

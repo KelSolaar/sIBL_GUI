@@ -72,11 +72,13 @@ import foundations.exceptions
 import foundations.io as io
 import foundations.common
 import ui.widgets.messageBox as messageBox
+from ui.widgets.active_QLabel import Active_QLabel
 from ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 from foundations.environment import Environment
 from foundations.streamObject import StreamObject
-from globals.uiConstants import UiConstants
 from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
+from globals.uiConstants import UiConstants
 from manager.manager import Manager
 
 #***********************************************************************************************
@@ -85,30 +87,16 @@ from manager.manager import Manager
 LOGGER = logging.getLogger( Constants.logger )
 
 # Starting The Console Handler.
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler( sys.stdout )
-LOGGING_CONSOLE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
+RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
+LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-UI_FILE = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
-if os.path.exists( UI_FILE ):
-	Ui_Setup, Ui_Type = uic.loadUiType( UI_FILE )
+RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
+if os.path.exists( RuntimeConstants.uiFile ):
+	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
 else :
 	messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' ui File Is Not Available, {2} Will Now Close !".format( Constants.applicationName, UiConstants.frameworkUiFile, Constants.applicationName ) )
-	foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
-
-USER_DATAS_DIRECTORY = None
-USER_APPLICATION_DIRECTORY = None
-GUI_LOGGING_FILE = None
-LOGGING_FILE_HANDLER = None
-SETTINGS_FILE = None
-SETTINGS = None
-VERBOSITY_LEVEL = None
-APPLICATION = None
-SPLASHSCREEN_PICTURE = None
-SPLASHSCREEN = None
-LOGGING_SESSION_HANDLER_STREAM = None
-LOGGING_SESSION_HANDLER = None
-UI = None
+	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -284,6 +272,24 @@ class Preferences():
 
 		return value
 
+class LayoutActiveLabel( core.Structure ):
+	'''
+	This Is The LayoutActiveLabel Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, **kwargs ):
+		'''
+		This Method Initializes The Class.
+
+		@param kwargs: name, object_, layout, shortcut. ( Key / Value Pairs )
+		'''
+
+		core.Structure.__init__( self, **kwargs )
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update( kwargs )
+
 class sIBL_GUI( Ui_Type, Ui_Setup ):
 	'''
 	This Class Is The Main Class For sIBL_GUI.
@@ -315,100 +321,103 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._coreCollectionsOutliner = None
 		self._coreTemplatesOutliner = None
 		self._lastBrowsedPath = os.getcwd()
-		self._userApplicationDirectory = USER_APPLICATION_DIRECTORY
-		self._loggingMemoryHandler = LOGGING_SESSION_HANDLER_STREAM
-		self._settings = SETTINGS
-		self._verbosityLevel = VERBOSITY_LEVEL
+		self._userApplicationDirectory = RuntimeConstants.userApplicationDirectory
+		self._loggingMemoryHandler = RuntimeConstants.loggingSessionHandlerStream
+		self._settings = RuntimeConstants.settings
+		self._verbosityLevel = RuntimeConstants.verbosityLevel
+		self._libraryActiveLabel = None
+		self._exportActiveLabel = None
+		self._preferencesActiveLabel = None
+		self._layoutsActiveLabels = None
 		self._layoutMenu = None
 		self._miscMenu = None
 
 		# --- Initializing sIBL_GUI. ---
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
 
-		# Visual Style Choice.
-		if not platform.system() == "Darwin" :
-			QApplication.setStyle( "Plastique" )
+		# Visual Style Initialisation.
+		self.setVisualStyle()
 
 		# Setting Window Title And Toolbar.
 		self.setWindowTitle( "{0} - {1}".format( Constants.applicationName, Constants.releaseVersion ) )
 		self.initializeToolbar()
 
 		# --- Initializing Component Manager. ---
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ) )
 
 		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
 
 		if not self._componentsManager.components :
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Manager Has No Components !, {2} Will Now Close !".format( self.__class__.__name__, self._componentsManager, Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		self._componentsManager.instantiateComponents()
 
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface( "core.componentsManagerUi" )
 		if self._coreComponentsManagerUi :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
 			self._coreComponentsManagerUi.activate( self )
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.componentsManagerUi", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Preferences Manager Component. ---
 		self._preferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
 		if self._preferencesManager :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
 			self._preferencesManager.activate( self )
 			self._preferencesManager.addWidget()
 			self._preferencesManager.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.preferencesManager", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface( "core.db" )
 		if self._coreDb :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
 			self._coreDb.activate( self )
 			self._coreDb.initialize()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.db", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface( "core.collectionsOutliner" )
 		if self._coreCollectionsOutliner :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
 			self._coreCollectionsOutliner.activate( self )
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.collectionsOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface( "core.databaseBrowser" )
 		if self._coreDatabaseBrowser :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
 			self._coreDatabaseBrowser.activate( self )
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.databaseBrowser", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface( "core.templatesOutliner" )
 		if self._coreTemplatesOutliner :
-			SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
 			self._coreTemplatesOutliner.activate( self )
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
 		else:
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.templatesOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ LOGGING_SESSION_HANDLER, LOGGING_FILE_HANDLER, LOGGING_CONSOLE_HANDLER ] )
+			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey( "Settings", "deactivatedComponents" ).toString().split( "," )
@@ -417,7 +426,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 				profile = self._componentsManager.components[component]
 				interface = self._componentsManager.getInterface( component )
 				if not interface.activated:
-					SPLASHSCREEN.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
+					RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
 					interface.activate( self )
 					if profile.categorie == "default" :
 						interface.initialize()
@@ -427,8 +436,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		# Hiding Splashscreen.
 		LOGGER.debug( " > Hiding SplashScreen." )
-		SPLASHSCREEN.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
-		SPLASHSCREEN.hide()
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents() :
@@ -442,7 +451,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		#	 interface = self._componentsManager.getInterface( component )
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
-		self.restoreSetsCentricLayout()
+		self.setLayoutsActiveLabelsShortcuts()
+
+		self.setDefaultLayout()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -814,6 +825,126 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "verbosityLevel" ) )
 
 	@property
+	def libraryActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _libraryActiveLabel  Attribute.
+
+		@return: self._libraryActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._libraryActiveLabel
+
+	@libraryActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def libraryActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _libraryActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "libraryActiveLabel " ) )
+
+	@libraryActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def libraryActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _libraryActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "libraryActiveLabel " ) )
+
+	@property
+	def exportActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _exportActiveLabel  Attribute.
+
+		@return: self._exportActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._exportActiveLabel
+
+	@exportActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def exportActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _exportActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "exportActiveLabel " ) )
+
+	@exportActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def exportActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _exportActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "exportActiveLabel " ) )
+
+	@property
+	def preferencesActiveLabel ( self ):
+		'''
+		This Method Is The Property For The _preferencesActiveLabel  Attribute.
+
+		@return: self._preferencesActiveLabel . ( Active_QLabel )
+		'''
+
+		return self._preferencesActiveLabel
+
+	@preferencesActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def preferencesActiveLabel ( self, value ):
+		'''
+		This Method Is The Setter Method For The _preferencesActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "preferencesActiveLabel " ) )
+
+	@preferencesActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def preferencesActiveLabel ( self ):
+		'''
+		This Method Is The Deleter Method For The _preferencesActiveLabel  Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "preferencesActiveLabel " ) )
+
+	@property
+	def layoutsActiveLabels( self ):
+		'''
+		This Method Is The Property For The _layoutsActiveLabels Attribute.
+
+		@return: self._layoutsActiveLabels. ( Tuple )
+		'''
+
+		return self._layoutsActiveLabels
+
+	@layoutsActiveLabels.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutsActiveLabels( self, value ):
+		'''
+		This Method Is The Setter Method For The _layoutsActiveLabels Attribute.
+
+		@param value: Attribute Value. ( Tuple )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "layoutsActiveLabels" ) )
+
+	@layoutsActiveLabels.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def layoutsActiveLabels( self ):
+		'''
+		This Method Is The Deleter Method For The _layoutsActiveLabels Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "layoutsActiveLabels" ) )
+
+	@property
 	def layoutMenu( self ):
 		'''
 		This Method Is The Property For The _layoutMenu Attribute.
@@ -884,9 +1015,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		foundations.common.closeHandler( LOGGER, LOGGING_FILE_HANDLER )
-		foundations.common.closeHandler( LOGGER, LOGGING_SESSION_HANDLER )
-		# foundations.common.closeHandler( LOGGER, LOGGING_CONSOLE_HANDLER )
+		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
+		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
+		# foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 		self.deleteLater()
 		event.accept()
@@ -894,107 +1025,102 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		sIBL_GUI_close()
 
 	@core.executionTrace
+	def setVisualStyle( self ):
+		'''
+		This Method Sets The Application Visual Style.
+		'''
+
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+			RuntimeConstants.application.setStyle( "Plastique" )
+			styleSheetFile = io.File( UiConstants.frameworkWindowsStylesheetFile )
+		elif platform.system() == "Darwin" :
+			styleSheetFile = io.File( UiConstants.frameworkDarwinStylesheetFile )
+		elif platform.system() == "Linux":
+			RuntimeConstants.application.setStyle( "Plastique" )
+			styleSheetFile = io.File( UiConstants.frameworkLinuxStylesheetFile )
+
+		if os.path.exists( styleSheetFile.file ):
+			styleSheetFile.read()
+			RuntimeConstants.application.setStyleSheet( QString( "".join( styleSheetFile.content ) ) )
+		else :
+			messageBox.messageBox( "Error", "Error", "Exception In {0}.__init__() Method | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format( self.__class__.__name__, styleSheetFile.file ) )
+
+	@core.executionTrace
 	def initializeToolbar( self ):
 		'''
 		This Method Initializes sIBL_GUI Toolbar.
 		'''
 
+		self.toolBar.setIconSize( QSize( UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize ) )
+
 		logolabel = QLabel()
 		logolabel.setPixmap( QPixmap( UiConstants.frameworkLogoPicture ) )
 		self.toolBar.addWidget( logolabel )
 
-		spacer = QWidget()
+		spacer = QLabel()
 		spacer.setSizePolicy( QSizePolicy.Expanding, QSizePolicy.Expanding )
 		self.toolBar.addWidget( spacer )
 
-		libraryAction = QAction( "Library", self )
-		libraryAction.setShortcut( QKeySequence( Qt.Key_0 ) )
-		self.toolBar.addAction( libraryAction )
+		toolbarFont = QFont()
+		toolbarFont.setPointSize( 16 )
 
-		exportAction = QAction( "Export", self )
-		exportAction.setShortcut( QKeySequence( Qt.Key_9 ) )
-		self.toolBar.addAction( exportAction )
+		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ), True )
+		self.toolBar.addWidget( self._libraryActiveLabel )
 
-		preferencesAction = QAction( "Preferences", self )
-		preferencesAction.setShortcut( QKeySequence( Qt.Key_8 ) )
-		self.toolBar.addAction( preferencesAction )
+		self._exportActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkExportIcon ), QPixmap( UiConstants.frameworkExportHoverIcon ), QPixmap( UiConstants.frameworkExportActiveIcon ), True )
+		self.toolBar.addWidget( self._exportActiveLabel )
 
-		centralWidgetButton = QToolButton()
-		centralWidgetButton.setIcon( QIcon( QPixmap( UiConstants.frameworCentralWidgetIcon ) ) )
+		self._preferencesActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkPreferencesIcon ), QPixmap( UiConstants.frameworkPreferencesHoverIcon ), QPixmap( UiConstants.frameworkPreferencesActiveIcon ), True )
+		self.toolBar.addWidget( self._preferencesActiveLabel )
+
+		self._layoutsActiveLabels = ( LayoutActiveLabel( name = "Library", object_ = self._libraryActiveLabel, layout = "setsCentric", shortcut = Qt.Key_8 ),
+									LayoutActiveLabel( name = "Export", object_ = self._exportActiveLabel, layout = "templatesCentric", shortcut = Qt.Key_9 ),
+									LayoutActiveLabel( name = "Preferences", object_ = self._preferencesActiveLabel, layout = "preferencesCentric", shortcut = Qt.Key_0 )
+									)
+
+		# Signals / Slots.
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			self._signalsSlotsCenter.connect( layoutActiveLabel.object_, SIGNAL( "clicked()" ), lambda activeLabel = layoutActiveLabel.layout : self.activeLabel_OnClicked( activeLabel ) )
+
+		centralWidgetButton = Active_QLabel( QPixmap( UiConstants.frameworCentralWidgetIcon ), QPixmap( UiConstants.frameworCentralWidgetHoverIcon ), QPixmap( UiConstants.frameworCentralWidgetActiveIcon ) )
 		self.toolBar.addWidget( centralWidgetButton )
 
 		self._signalsSlotsCenter.connect( centralWidgetButton, SIGNAL( "clicked()" ), self.centralWidgetButton_OnClicked )
 
-		layoutbutton = QToolButton()
-		layoutbutton.setIcon( QIcon( QPixmap( UiConstants.frameworLayoutIcon ) ) )
-		layoutbutton.setPopupMode( QToolButton.InstantPopup )
+		layoutbutton = Active_QLabel( QPixmap( UiConstants.frameworLayoutIcon ), QPixmap( UiConstants.frameworLayoutHoverIcon ), QPixmap( UiConstants.frameworLayoutActiveIcon ), parent = self )
+		self.toolBar.addWidget( layoutbutton )
 
 		self._layoutMenu = QMenu( "Layout", layoutbutton )
 
-		restoreLayoutOneAction = QAction( "Restore Layout 1", self )
-		restoreLayoutOneAction.setShortcut( QKeySequence( Qt.Key_1 ) )
-		storeLayoutOneAction = QAction( "Store Layout 1", self )
-		storeLayoutOneAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_1 ) )
+		userLayouts = ( ( "1", Qt.Key_1, "one" ), ( "2", Qt.Key_2, "two" ), ( "3", Qt.Key_3, "three" ), ( "4", Qt.Key_4, "four" ), ( "5", Qt.Key_5, "five" ) )
 
-		restoreLayoutTwoAction = QAction( "Restore Layout 2", self )
-		restoreLayoutTwoAction.setShortcut( QKeySequence( Qt.Key_2 ) )
-		storeLayoutTwoAction = QAction( "Store Layout 2", self )
-		storeLayoutTwoAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_2 ) )
+		for layout in userLayouts :
+			action = QAction( "Restore Layout {0}".format( layout[0] ), self )
+			action.setShortcut( QKeySequence( layout[1] ) )
+			self._layoutMenu.addAction( action )
 
-		restoreLayoutThreeAction = QAction( "Restore Layout 3", self )
-		restoreLayoutThreeAction.setShortcut( QKeySequence( Qt.Key_3 ) )
-		storeLayoutThreeAction = QAction( "Store Layout 3", self )
-		storeLayoutThreeAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_3 ) )
+			# Signals / Slots.
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layout[2] : self.restoreLayout( layout ) )
 
-		restoreLayoutFourAction = QAction( "Restore Layout 4", self )
-		restoreLayoutFourAction.setShortcut( QKeySequence( Qt.Key_4 ) )
-		storeLayoutFourAction = QAction( "Store Layout 4", self )
-		storeLayoutFourAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_4 ) )
-
-		restoreLayoutFiveAction = QAction( "Restore Layout 5", self )
-		restoreLayoutFiveAction.setShortcut( QKeySequence( Qt.Key_5 ) )
-		storeLayoutFiveAction = QAction( "Store Layout 5", self )
-		storeLayoutFiveAction.setShortcut( QKeySequence( Qt.CTRL + Qt.Key_5 ) )
-
-		self._layoutMenu.addAction( restoreLayoutOneAction )
-		self._layoutMenu.addAction( restoreLayoutTwoAction )
-		self._layoutMenu.addAction( restoreLayoutThreeAction )
-		self._layoutMenu.addAction( restoreLayoutFourAction )
-		self._layoutMenu.addAction( restoreLayoutFiveAction )
 		self._layoutMenu.addSeparator()
-		self._layoutMenu.addAction( storeLayoutOneAction )
-		self._layoutMenu.addAction( storeLayoutTwoAction )
-		self._layoutMenu.addAction( storeLayoutThreeAction )
-		self._layoutMenu.addAction( storeLayoutFourAction )
-		self._layoutMenu.addAction( storeLayoutFiveAction )
 
-		# Signals / Slots.
-		self._signalsSlotsCenter.connect( libraryAction, SIGNAL( "triggered()" ), self.libraryAction_OnTriggered )
-		self._signalsSlotsCenter.connect( exportAction, SIGNAL( "triggered()" ), self.exportAction_OnTriggered )
-		self._signalsSlotsCenter.connect( preferencesAction, SIGNAL( "triggered()" ), self.preferencesAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutOneAction, SIGNAL( "triggered()" ), self.restoreLayoutOneAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutTwoAction, SIGNAL( "triggered()" ), self.restoreLayoutTwoAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutThreeAction, SIGNAL( "triggered()" ), self.restoreLayoutThreeAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutFourAction, SIGNAL( "triggered()" ), self.restoreLayoutFourAction_OnTriggered )
-		self._signalsSlotsCenter.connect( restoreLayoutFiveAction, SIGNAL( "triggered()" ), self.restoreLayoutFiveAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutOneAction, SIGNAL( "triggered()" ), self.storeLayoutOneAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutTwoAction, SIGNAL( "triggered()" ), self.storeLayoutTwoAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutThreeAction, SIGNAL( "triggered()" ), self.storeLayoutThreeAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutFourAction, SIGNAL( "triggered()" ), self.storeLayoutFourAction_OnTriggered )
-		self._signalsSlotsCenter.connect( storeLayoutFiveAction, SIGNAL( "triggered()" ), self.storeLayoutFiveAction_OnTriggered )
+		for layout in userLayouts :
+			action = QAction( "Store Layout {0}".format( layout[0] ), self )
+			action.setShortcut( QKeySequence( Qt.CTRL + layout[1] ) )
+			self._layoutMenu.addAction( action )
+
+			# Signals / Slots.
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layout[2] : self.storeLayout( layout ) )
 
 		layoutbutton.setMenu( self._layoutMenu )
 
-		self.toolBar.addWidget( layoutbutton )
-
-		miscButton = QToolButton()
-		miscButton.setIcon( QIcon( QPixmap( UiConstants.frameworkMiscIcon ) ) )
-		miscButton.setPopupMode( QToolButton.InstantPopup )
+		miscellaneousbutton = Active_QLabel( QPixmap( UiConstants.frameworMiscellaneousIcon ), QPixmap( UiConstants.frameworMiscellaneousHoverIcon ), QPixmap( UiConstants.frameworMiscellaneousActiveIcon ), parent = self )
+		self.toolBar.addWidget( miscellaneousbutton )
 
 		helpDisplayMiscAction = QAction( "Help Content ...", self )
 		apiDisplayMiscAction = QAction( "Api Content ...", self )
 
-		self._miscMenu = QMenu( "Miscellaneous", miscButton )
+		self._miscMenu = QMenu( "Miscellaneous", miscellaneousbutton )
 
 		self._miscMenu.addAction( helpDisplayMiscAction )
 		self._miscMenu.addAction( apiDisplayMiscAction )
@@ -1004,9 +1130,21 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._signalsSlotsCenter.connect( helpDisplayMiscAction, SIGNAL( "triggered()" ), self.helpDisplayMiscAction_OnTriggered )
 		self._signalsSlotsCenter.connect( apiDisplayMiscAction, SIGNAL( "triggered()" ), self.apiDisplayMiscAction_OnTriggered )
 
-		miscButton.setMenu( self._miscMenu )
+		miscellaneousbutton.setMenu( self._miscMenu )
 
-		self.toolBar.addWidget( miscButton )
+		spacer = QLabel()
+		spacer.setSizePolicy( QSizePolicy.Maximum, QSizePolicy.Maximum )
+		self.toolBar.addWidget( spacer )
+
+	@core.executionTrace
+	def activeLabel_OnClicked( self, activeLabel ):
+		'''
+		This Method Is Triggered When An Active Label Is CLicked.
+		'''
+
+		self.restoreLayout( activeLabel )
+		for layoutActivelabel in self._layoutsActiveLabels :
+			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked( False )
 
 	@core.executionTrace
 	def centralWidgetButton_OnClicked( self ):
@@ -1018,6 +1156,27 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self.centralwidget.hide()
 		else :
 			self.centralwidget.show()
+
+	@core.executionTrace
+	def setLayoutsActiveLabelsShortcuts( self ):
+		'''
+		This Method Sets The Layouts Active Labels Shortcuts.
+		'''
+
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			action = QAction( layoutActiveLabel.name, self )
+			action.setShortcut( QKeySequence( layoutActiveLabel.shortcut ) )
+			self.addAction( action )
+			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layoutActiveLabel.layout : self.restoreLayout( layout ) )
+
+	@core.executionTrace
+	def setDefaultLayout( self ):
+		'''
+		This Method Sets The Default Layout.
+		'''
+
+		self.restoreLayout( "setsCentric" )
+		self._libraryActiveLabel.setChecked( True )
 
 	@core.executionTrace
 	def storeLayout( self, name ):
@@ -1043,6 +1202,16 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
 
+		for layoutActiveLabel in self._layoutsActiveLabels :
+			name != layoutActiveLabel.layout and layoutActiveLabel.object_.setChecked( False )
+
+		if name == "setsCentric" :
+			self._libraryActiveLabel.setChecked( True )
+		elif name == "templatesCentric" :
+			self._exportActiveLabel.setChecked( True )
+		elif name == "preferencesCentric" :
+			self._preferencesActiveLabel.setChecked( True )
+
 		visibleComponents = [ "core.databaseBrowser" ]
 		for component, profile in self._componentsManager.components.items() :
 			profile.categorie == "ui" and component not in visibleComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
@@ -1051,134 +1220,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
 		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
-
-	@core.executionTrace
-	def restoreSetsCentricLayout( self ):
-		'''
-		This Method Restores The Sets Centric Layout.
-		'''
-
-		self.restoreLayout( "setsCentric" )
-
-	@core.executionTrace
-	def libraryAction_OnTriggered( self ):
-		'''
-		This Method Is Called When libraryAction Is Triggered.
-		'''
-
-		self.restoreSetsCentricLayout()
-
-	@core.executionTrace
-	def restoreTemplatesCentricLayout( self ):
-		'''
-		This Method Restores The Templates Centric Layout.
-		'''
-
-		self.restoreLayout( "templatesCentric" )
-
-	@core.executionTrace
-	def exportAction_OnTriggered( self ):
-		'''
-		This Method Is Called When exportAction Is Triggered.
-		'''
-
-		self.restoreTemplatesCentricLayout()
-
-	@core.executionTrace
-	def restorePreferencesCentricLayout( self ):
-		'''
-		This Method Restores The Preferences Centric Layout.
-		'''
-
-		self.restoreLayout( "preferencesCentric" )
-
-	@core.executionTrace
-	def preferencesAction_OnTriggered( self ):
-		'''
-		This Method Is Called When preferencesAction Is Triggered.
-		'''
-
-		self.restorePreferencesCentricLayout()
-
-	@core.executionTrace
-	def restoreLayoutOneAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout One.
-		'''
-
-		self.restoreLayout( "one" )
-
-	@core.executionTrace
-	def restoreLayoutTwoAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Two.
-		'''
-
-		self.restoreLayout( "two" )
-
-	@core.executionTrace
-	def restoreLayoutThreeAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Three.
-		'''
-
-		self.restoreLayout( "three" )
-
-	@core.executionTrace
-	def restoreLayoutFourAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Four.
-		'''
-
-		self.restoreLayout( "four" )
-
-	@core.executionTrace
-	def restoreLayoutFiveAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Restoring Layout Five.
-		'''
-
-		self.restoreLayout( "five" )
-
-	@core.executionTrace
-	def storeLayoutOneAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout One.
-		'''
-
-		self.storeLayout( "one" )
-
-	@core.executionTrace
-	def storeLayoutTwoAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Two.
-		'''
-
-		self.storeLayout( "two" )
-
-	@core.executionTrace
-	def storeLayoutThreeAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Three.
-		'''
-
-		self.storeLayout( "three" )
-
-	@core.executionTrace
-	def storeLayoutFourAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Four.
-		'''
-
-		self.storeLayout( "four" )
-
-	@core.executionTrace
-	def storeLayoutFiveAction_OnTriggered( self ):
-		'''
-		This Method Is Called When Storing Layout Five.
-		'''
-
-		self.storeLayout( "five" )
 
 	@core.executionTrace
 	def helpDisplayMiscAction_OnTriggered( self ):
@@ -1221,72 +1262,58 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 #***************************************************************************************
 def sIBL_GUI_start():
 	'''
-	This Method Is Called When sIBL_GUI Starts.
+	This Definition Is Called When sIBL_GUI Starts.
 	'''
 
-	global USER_DATAS_DIRECTORY
-	global USER_APPLICATION_DIRECTORY
-	global GUI_LOGGING_FILE
-	global LOGGING_FILE_HANDLER
-	global SETTINGS_FILE
-	global SETTINGS
-	global VERBOSITY_LEVEL
-	global APPLICATION
-	global SPLASHSCREEN_PICTURE
-	global SPLASHSCREEN
-	global LOGGING_SESSION_HANDLER_STREAM
-	global LOGGING_SESSION_HANDLER
-	global UI
-
 	# Setting User Preferences Directory.
-	USER_DATAS_DIRECTORY = foundations.common.getSystemApplicationDatasDirectory()
-	USER_APPLICATION_DIRECTORY = foundations.common.getUserApplicationDatasDirectory()
+	RuntimeConstants.userDatasDirectory = foundations.common.getSystemApplicationDatasDirectory()
+	RuntimeConstants.userApplicationDirectory = foundations.common.getUserApplicationDatasDirectory()
 
-	if USER_DATAS_DIRECTORY :
-		setApplicationPreferencesDirectories( USER_DATAS_DIRECTORY ) or messageBox.standaloneMessageBox( "Error", "Error", "{0} Has Encountered An Error And Will Now Close !".format( Constants.applicationName ) ) or foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER, LOGGING_SESSION_HANDLER ] )
+	if RuntimeConstants.userDatasDirectory :
+		setApplicationPreferencesDirectories( RuntimeConstants.userDatasDirectory ) or messageBox.standaloneMessageBox( "Error", "Error", "{0} Has Encountered An Error And Will Now Close !".format( Constants.applicationName ) ) or foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingSessionHandler ] )
 	else :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( USER_DATAS_DIRECTORY, Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userDatasDirectory, Constants.applicationName ) )
+		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	# Getting The Logging File Path.
-	GUI_LOGGING_FILE = os.path.join( USER_APPLICATION_DIRECTORY, Constants.loggingDirectory, Constants.loggingFile )
+	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.loggingDirectory, Constants.loggingFile )
 
 	try :
-		os.path.exists( GUI_LOGGING_FILE ) and os.remove( GUI_LOGGING_FILE )
+		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
 	except :
-		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( GUI_LOGGING_FILE, Constants.applicationName ) )
+		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) )
 
 	try :
-		LOGGING_FILE_HANDLER = logging.FileHandler( GUI_LOGGING_FILE )
-		LOGGING_FILE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-		LOGGER.addHandler( LOGGING_FILE_HANDLER )
+		RuntimeConstants.loggingFileHandler = logging.FileHandler( RuntimeConstants.loggingFile )
+		RuntimeConstants.loggingFileHandler.setFormatter( core.LOGGING_FORMATTER )
+		LOGGER.addHandler( RuntimeConstants.loggingFileHandler )
 	except Exception as error:
 		foundations.exceptions.defaultExceptionsHandler( error, Constants.applicationName )
 		messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0} Module | Logging File Is Not Available, {0} Will Now Close !".format( Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	# Retrieving Framework Verbose Level From Settings File.
 	LOGGER.debug( "> Initializing {0} !".format( Constants.applicationName ) )
 	LOGGER.debug( "> Retrieving Stored Verbose Level." )
 
-	SETTINGS_FILE = os.path.join( USER_APPLICATION_DIRECTORY, Constants.settingsDirectory, Constants.settingsFile )
+	RuntimeConstants.settingsFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.settingsDirectory, Constants.settingsFile )
 
-	SETTINGS = Preferences( SETTINGS_FILE )
+	RuntimeConstants.settings = Preferences( RuntimeConstants.settingsFile )
 
-	os.path.exists( SETTINGS_FILE ) or SETTINGS.setDefaultPreferences()
+	os.path.exists( RuntimeConstants.settingsFile ) or RuntimeConstants.settings.setDefaultPreferences()
 
-	VERBOSITY_LEVEL = SETTINGS.getKey( "Settings", "verbosityLevel" ).toInt()[0]
-	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( VERBOSITY_LEVEL ) )
-	core.setVerbosityLevel( VERBOSITY_LEVEL )
+	RuntimeConstants.verbosityLevel = RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
+	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( RuntimeConstants.verbosityLevel ) )
+	core.setVerbosityLevel( RuntimeConstants.verbosityLevel )
 
 	if hasattr( sys, "frozen" ) :
-		foundations.common.closeHandler ( LOGGER, LOGGING_CONSOLE_HANDLER )
+		foundations.common.closeHandler ( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 	# Starting The Session Handler.
-	LOGGING_SESSION_HANDLER_STREAM = StreamObject()
-	LOGGING_SESSION_HANDLER = logging.StreamHandler( LOGGING_SESSION_HANDLER_STREAM )
-	LOGGING_SESSION_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-	LOGGER.addHandler( LOGGING_SESSION_HANDLER )
+	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
+	RuntimeConstants.loggingSessionHandler = logging.StreamHandler( RuntimeConstants.loggingSessionHandlerStream )
+	RuntimeConstants.loggingSessionHandler.setFormatter( core.LOGGING_FORMATTER )
+	LOGGER.addHandler( RuntimeConstants.loggingSessionHandler )
 
 	LOGGER.info( Constants.loggingSeparators )
 	LOGGER.info( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - kelsolaar_fool@hotmail.com".format( Constants.applicationName ) )
@@ -1297,26 +1324,26 @@ def sIBL_GUI_start():
 	LOGGER.info( Constants.loggingSeparators )
 	LOGGER.info( "{0} | Starting Interface !".format( Constants.applicationName ) )
 
-	APPLICATION = QApplication( sys.argv )
+	RuntimeConstants.application = QApplication( sys.argv )
 
 	# Initializing SplashScreen.
 	LOGGER.debug( "> Initializing SplashScreen." )
 
-	SPLASHSCREEN_PICTURE = QPixmap( UiConstants.frameworkSplashScreenPicture )
-	SPLASHSCREEN = Delayed_QSplashScreen( SPLASHSCREEN_PICTURE, 0.05 )
-	SPLASHSCREEN.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
-	SPLASHSCREEN.show()
+	RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
+	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture, 0.05 )
+	RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
+	RuntimeConstants.splashscreen.show()
 
-	UI = sIBL_GUI()
-	UI.show()
-	UI.raise_()
+	RuntimeConstants.ui = sIBL_GUI()
+	RuntimeConstants.ui.show()
+	RuntimeConstants.ui.raise_()
 
-	sys.exit( APPLICATION.exec_() )
+	sys.exit( RuntimeConstants.application.exec_() )
 
 @core.executionTrace
 def sIBL_GUI_close() :
 	'''
-	This Method Is Called When sIBL_GUI Closes.
+	This Definition Is Called When sIBL_GUI Closes.
 	'''
 
 	LOGGER.info( "{0} | Closing Interface ! ".format( Constants.applicationName ) )
@@ -1324,17 +1351,17 @@ def sIBL_GUI_close() :
 	LOGGER.info( "{0} | Session Ended At : {1}".format( Constants.applicationName, time.strftime( '%X - %x' ) ) )
 	LOGGER.info( Constants.loggingSeparators )
 
-	foundations.common.exit( 0, LOGGER, [ LOGGING_CONSOLE_HANDLER ] )
+	foundations.common.exit( 0, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
 def setApplicationPreferencesDirectories( path ):
 	'''
-	This Method Sets The Application Preferences Directory.
+	This Definition Sets The Application Preferences Directory.
 
 	@param path: Starting Point For The Directories Tree Creation. ( String )
 	'''
 
-	applicationDirectory = USER_APPLICATION_DIRECTORY
+	applicationDirectory = RuntimeConstants.userApplicationDirectory
 
 	LOGGER.debug( "> Current Application Preferences Directory '{0}'.".format( applicationDirectory ) )
 	if io.setLocalDirectory( applicationDirectory ) :
