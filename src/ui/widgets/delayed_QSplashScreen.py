@@ -139,7 +139,7 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def setMessage( self, message ):
+	def setMessage( self, message, waitTime = None ):
 		'''
 		This Method Initializes The Class.
 
@@ -147,7 +147,11 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		'''
 
 		self.showMessage( message )
-		foundations.common.wait( self._waitTime )
+
+		if self._waitTime :
+			waitTime = self._waitTime
+
+		waitTime and foundations.common.wait( waitTime )
 
 #***********************************************************************************************
 #***	Python End
