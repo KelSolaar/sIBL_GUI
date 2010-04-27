@@ -333,7 +333,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._miscMenu = None
 
 		# --- Initializing sIBL_GUI. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		# Visual Style Initialisation.
 		self.setVisualStyle()
@@ -343,7 +343,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.initializeToolbar()
 
 		# --- Initializing Component Manager. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
@@ -352,7 +352,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Manager Has No Components !, {2} Will Now Close !".format( self.__class__.__name__, self._componentsManager, Constants.applicationName ) )
 			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
-		self._componentsManager.instantiateComponents()
+		self._componentsManager.instantiateComponents( self.componentsInstantiationCallback )
 
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface( "core.componentsManagerUi" )
@@ -1025,6 +1025,16 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		sIBL_GUI_close()
 
 	@core.executionTrace
+	def componentsInstantiationCallback( self, profile ):
+		'''
+		This Method Is A Callback For The Components Instantiation.
+		
+		@param profile: Component Profile. ( Profile )	
+		'''
+
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
+
+	@core.executionTrace
 	def setVisualStyle( self ):
 		'''
 		This Method Sets The Application Visual Style.
@@ -1330,7 +1340,7 @@ def sIBL_GUI_start():
 	LOGGER.debug( "> Initializing SplashScreen." )
 
 	RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
-	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture, 0.05 )
+	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture )
 	RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
 	RuntimeConstants.splashscreen.show()
 
