@@ -106,6 +106,7 @@ class TemplatesOutliner( UiComponent ):
 		self._uiPath = "ui/Templates_Outliner.ui"
 		self._uiResources = "resources"
 		self._uiSoftwareAffixe = "_Software.png"
+		self._uiUnknownSoftwareIcon = "Unknown_Software.png"
 		self._dockArea = 1
 
 		self._container = None
@@ -216,6 +217,35 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiSoftwareAffixe" ) )
+
+	@property
+	def uiUnknownSoftwareIcon( self ):
+		'''
+		This Method Is The Property For The _uiUnknownSoftwareIcon Attribute.
+
+		@return: self._uiUnknownSoftwareIcon. ( String )
+		'''
+
+		return self._uiUnknownSoftwareIcon
+
+	@uiUnknownSoftwareIcon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiUnknownSoftwareIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiUnknownSoftwareIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiUnknownSoftwareIcon" ) )
+
+	@uiUnknownSoftwareIcon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiUnknownSoftwareIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiUnknownSoftwareIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiUnknownSoftwareIcon" ) )
 
 	@property
 	def dockArea( self ):
@@ -736,7 +766,10 @@ class TemplatesOutliner( UiComponent ):
 				softwareTreeWidgetItem = QTreeWidgetItem( collectionTreeWidgetItem )
 				softwareTreeWidgetItem.setText( 0, software )
 				iconPath = os.path.join( self._uiResources, "{0}{1}".format( software, self._uiSoftwareAffixe ) )
-				os.path.exists( iconPath ) and	softwareTreeWidgetItem.setIcon( 0, QIcon( iconPath ) )
+				if os.path.exists( iconPath ) :
+					softwareTreeWidgetItem.setIcon( 0, QIcon( iconPath ) )
+				else :
+					softwareTreeWidgetItem.setIcon( 0, QIcon( os.path.join( self._uiResources, self._uiUnknownSoftwareIcon ) ) )
 
 				LOGGER.debug( " > Adding '{0}' Software To 'Templates_Outliner_treeWidget'.".format( software ) )
 				self.ui.Templates_Outliner_treeWidget.addTopLevelItem( softwareTreeWidgetItem )
