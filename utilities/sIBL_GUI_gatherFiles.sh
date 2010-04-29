@@ -18,6 +18,8 @@ cd ./src/templates/3dsMax/
 zip -r ../../../releases/repository/templates/3dsMax_MR_Standard.zip 3dsMax_MR_Standard
 zip -r ../../../releases/repository/templates/3dsMax_Scanline_Standard.zip 3dsMax_Scanline_Standard
 zip -r ../../../releases/repository/templates/3dsMax_VRay_Standard.zip 3dsMax_VRay_Standard
+cd ../Softimage
+zip -r ../../../releases/repository/templates/Softimage_Standard.zip Softimage_MR_Standard
 cd ../Maya
 zip -r ../../../releases/repository/templates/Maya_MR_Standard.zip Maya_MR_Standard
 zip -r ../../../releases/repository/templates/Maya_RfM_Standard.zip Maya_RfM_Standard

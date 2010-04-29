@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.3 - Alpha
 
+* Added Softimage 2011 Template.
 * Improved startup time.
 * Added callback for components instantiation.
 * Online Updater skip extracting corrupted .zip files.
