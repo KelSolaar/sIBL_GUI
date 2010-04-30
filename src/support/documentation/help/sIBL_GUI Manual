@@ -1,0 +1,66 @@
+<CENTER>
+!resources/pictures/sIBL_GUI_Logo.png(sIBL_GUI_Logo)!
+</CENTER>
+        
+h1=. Manual - Help File
+
+h3. Table Of Content
+
+* Introduction
+* Concept
+* Installation
+* Usage
+* Change Log
+* About
+
+h3. Introduction
+
+sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. 
+What is sIBL ? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
+A lot more informations are available here : "http://www.smartibl.com":http://www.smartibl.com
+
+h3. Concept
+
+Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and inconvenients in both methods. 
+Doing the external application way, all the sIBL parsing, Collection Browsing is handled by sIBL_GUI, you just just have to deal with a simple Loader Script for each 3D package : It took me only a few hours to convert the XSI Template into a Maya one. Rescripting an entire browser with a nice interface would have taken days and I must admit it : I failed to do it for XSI, that's why I decided to build an external application. 
+More informations about sIBL_GUI are available into this thread : "sIBL_GUI Thread":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
+
+h3. Installation
+
+h4. Windows Platform
+
+Installation on Windows is pretty straightforward, just launch "sIBL_GUI_Setup.exe".
+
+h4. Linux Platform
+
+You will need some QT Libraries in order to run sIBL_GUI under Linux :
+
+* Debian Distributions ( Ubuntu ) : 
+
+bq. _sudo apt-get install libqt4-core_ 
+sudo _apt-get install libqt4-gui_
+
+* RPM Distributions ( Fedora ): 
+
+bq. _su root_ 
+yum _install qt_ 
+yum _install qt-x11_
+
+Uncompress the sIBL_GUI archive into the folder of your choice, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from your file browser.
+
+h4. Mac Os X Platform
+
+Download "sIBL_GUI.dmg". Open it and drag "sIBL_GUI" into your "Application" folder.
+
+h3. Usage
+
+h3. Change Log
+
+"sIBL_GUI - Change Log":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
+
+h3. About
+
+sIBL_GUI by Thomas Mansencal - 2008 - 2010
+Copyright (C) 2008 - 2010 - Thomas Mansencal - "kelsolaar_fool@hotmail.com":mailto:kelsolaar_fool@hotmail.com 
+This Software Is Released Under Terms Of GNU GPL V3 License : "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/ 
+"http://my.opera.com/KelSolaar/":http://my.opera.com/KelSolaar/
