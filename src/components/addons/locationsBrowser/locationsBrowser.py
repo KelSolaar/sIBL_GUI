@@ -114,8 +114,8 @@ class LocationsBrowser( UiComponent ):
 		self._addonsLoaderScript = None
 
 		self._openSetsLocationsAction = None
-		self._openComponentLocationAction = None
-		self._openTemplateLocationAction = None
+		self._openComponentsLocationsAction = None
+		self._openTemplatesLocationsAction = None
 
 		self._Open_Output_Folder_pushButton = None
 
@@ -425,64 +425,64 @@ class LocationsBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openSetsLocationsAction" ) )
 
 	@property
-	def openComponentLocationAction( self ):
+	def openComponentsLocationsAction( self ):
 		'''
-		This Method Is The Property For The _openComponentLocationAction Attribute.
+		This Method Is The Property For The _openComponentsLocationsAction Attribute.
 
-		@return: self._openComponentLocationAction. ( QAction )
+		@return: self._openComponentsLocationsAction. ( QAction )
 		'''
 
-		return self._openComponentLocationAction
+		return self._openComponentsLocationsAction
 
-	@openComponentLocationAction.setter
+	@openComponentsLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openComponentLocationAction( self, value ):
+	def openComponentsLocationsAction( self, value ):
 		'''
-		This Method Is The Setter Method For The _openComponentLocationAction Attribute.
+		This Method Is The Setter Method For The _openComponentsLocationsAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openComponentLocationAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openComponentsLocationsAction" ) )
 
-	@openComponentLocationAction.deleter
+	@openComponentsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openComponentLocationAction( self ):
+	def openComponentsLocationsAction( self ):
 		'''
-		This Method Is The Deleter Method For The _openComponentLocationAction Attribute.
+		This Method Is The Deleter Method For The _openComponentsLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openComponentLocationAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openComponentsLocationsAction" ) )
 
 	@property
-	def openTemplateLocationAction( self ):
+	def openTemplatesLocationsAction( self ):
 		'''
-		This Method Is The Property For The _openTemplateLocationAction Attribute.
+		This Method Is The Property For The _openTemplatesLocationsAction Attribute.
 
-		@return: self._openTemplateLocationAction. ( QAction )
+		@return: self._openTemplatesLocationsAction. ( QAction )
 		'''
 
-		return self._openTemplateLocationAction
+		return self._openTemplatesLocationsAction
 
-	@openTemplateLocationAction.setter
+	@openTemplatesLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openTemplateLocationAction( self, value ):
+	def openTemplatesLocationsAction( self, value ):
 		'''
-		This Method Is The Setter Method For The _openTemplateLocationAction Attribute.
+		This Method Is The Setter Method For The _openTemplatesLocationsAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openTemplateLocationAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openTemplatesLocationsAction" ) )
 
-	@openTemplateLocationAction.deleter
+	@openTemplatesLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openTemplateLocationAction( self ):
+	def openTemplatesLocationsAction( self ):
 		'''
-		This Method Is The Deleter Method For The _openTemplateLocationAction Attribute.
+		This Method Is The Deleter Method For The _openTemplatesLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openTemplateLocationAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openTemplatesLocationsAction" ) )
 
 	@property
 	def Open_Output_Folder_pushButton( self ):
@@ -668,13 +668,13 @@ class LocationsBrowser( UiComponent ):
 		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listWidget_openSetsLocationsAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._openSetsLocationsAction )
 
-		self._openComponentLocationAction = QAction( "Open Component Location ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget )
-		self._openComponentLocationAction.triggered.connect( self.Components_Manager_Ui_treeWidget_openComponentLocationAction )
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.addAction( self._openComponentLocationAction )
+		self._openComponentsLocationsAction = QAction( "Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget )
+		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_openComponentsLocationsAction )
+		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.addAction( self._openComponentsLocationsAction )
 
-		self._openTemplateLocationAction = QAction( "Open Template Location ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
-		self._openTemplateLocationAction.triggered.connect( self.Templates_Outliner_treeWidget_openTemplateLocationAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._openTemplateLocationAction )
+		self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
+		self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeWidget_openTemplatesLocationsAction )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._openTemplatesLocationsAction )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -683,12 +683,12 @@ class LocationsBrowser( UiComponent ):
 		'''
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._openSetsLocationsAction )
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.removeAction( self._openComponentLocationAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.removeAction( self._openTemplateLocationAction )
+		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.removeAction( self._openComponentsLocationsAction )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.removeAction( self._openTemplatesLocationsAction )
 
 		self._openSetsLocationsAction = None
-		self._openComponentLocationAction = None
-		self._openTemplateLocationAction = None
+		self._openComponentsLocationsAction = None
+		self._openTemplatesLocationsAction = None
 
 	@core.executionTrace
 	def Database_Browser_listWidget_openSetsLocationsAction( self, checked ):
@@ -705,9 +705,9 @@ class LocationsBrowser( UiComponent ):
 			setPath and self.exploreProvidedFolder( setPath )
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_openComponentLocationAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_openComponentsLocationsAction( self, checked ):
 		'''
-		This Method Is Triggered By openComponentLocationAction.
+		This Method Is Triggered By openComponentsLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
@@ -717,9 +717,9 @@ class LocationsBrowser( UiComponent ):
 			hasattr( component, "_datas" ) and os.path.exists( component._datas.path ) and self.exploreProvidedFolder( component._datas.path )
 
 	@core.executionTrace
-	def Templates_Outliner_treeWidget_openTemplateLocationAction( self, checked ):
+	def Templates_Outliner_treeWidget_openTemplatesLocationsAction( self, checked ):
 		'''
-		This Method Is Triggered By openTemplateLocationAction.
+		This Method Is Triggered By openTemplatesLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''

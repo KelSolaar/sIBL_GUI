@@ -647,30 +647,30 @@ class ComponentsManagerUi( UiComponent ):
 		This Method Sets The Components_Manager_Ui_treeWidget Actions.
 		'''
 
-		activateComponentAction = QAction( "Activate Component", self.ui.Components_Manager_Ui_treeWidget )
-		activateComponentAction.triggered.connect( self.Components_Manager_Ui_treeWidget_activateComponentAction )
-		self.ui.Components_Manager_Ui_treeWidget.addAction( activateComponentAction )
+		activateComponentsAction = QAction( "Activate Component(s)", self.ui.Components_Manager_Ui_treeWidget )
+		activateComponentsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_activateComponentsAction )
+		self.ui.Components_Manager_Ui_treeWidget.addAction( activateComponentsAction )
 
-		deactivateComponentAction = QAction( "Deactivate Component", self.ui.Components_Manager_Ui_treeWidget )
-		deactivateComponentAction.triggered.connect( self.Components_Manager_Ui_treeWidget_deactivateComponentAction )
-		self.ui.Components_Manager_Ui_treeWidget.addAction( deactivateComponentAction )
+		deactivateComponentsAction = QAction( "Deactivate Component(s)", self.ui.Components_Manager_Ui_treeWidget )
+		deactivateComponentsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_deactivateComponentsAction )
+		self.ui.Components_Manager_Ui_treeWidget.addAction( deactivateComponentsAction )
 
 		separatorAction = QAction( self.ui.Components_Manager_Ui_treeWidget )
 		separatorAction.setSeparator( True )
 		self.ui.Components_Manager_Ui_treeWidget.addAction( separatorAction )
 
-		reloadComponentAction = QAction( "Reload Component", self.ui.Components_Manager_Ui_treeWidget )
-		reloadComponentAction.triggered.connect( self.Components_Manager_Ui_treeWidget_reloadComponentAction )
-		self.ui.Components_Manager_Ui_treeWidget.addAction( reloadComponentAction )
+		reloadComponentsAction = QAction( "Reload Component(s)", self.ui.Components_Manager_Ui_treeWidget )
+		reloadComponentsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_reloadComponentsAction )
+		self.ui.Components_Manager_Ui_treeWidget.addAction( reloadComponentsAction )
 
 		separatorAction = QAction( self.ui.Components_Manager_Ui_treeWidget )
 		separatorAction.setSeparator( True )
 		self.ui.Components_Manager_Ui_treeWidget.addAction( separatorAction )
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_activateComponentAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_activateComponentsAction( self, checked ):
 		'''
-		This Method Is Triggered By activateComponentAction.
+		This Method Is Triggered By activateComponentsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
@@ -687,9 +687,9 @@ class ComponentsManagerUi( UiComponent ):
 		selectedComponents and self.storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_deactivateComponentAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_deactivateComponentsAction( self, checked ):
 		'''
-		This Method Is Triggered By deactivateComponentAction.
+		This Method Is Triggered By deactivateComponentsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
@@ -709,9 +709,9 @@ class ComponentsManagerUi( UiComponent ):
 		selectedComponents and self.storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_reloadComponentAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_reloadComponentsAction( self, checked ):
 		'''
-		This Method Is Triggered By reloadComponentAction.
+		This Method Is Triggered By reloadComponentsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
