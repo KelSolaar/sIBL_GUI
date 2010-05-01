@@ -28,25 +28,36 @@
 	        </style>
 	</head>
 	<body>
-		<p><CENTER><br /><img src="resources/pictures/sIBL_GUI_Logo.png" title="sIBL_GUI_Logo" alt="sIBL_GUI_Logo" /><br /></CENTER></p>
+		<p><center> <img src="resources/pictures/sIBL_GUI_Logo.png" title="sIBL_GUI_Logo" alt="sIBL_GUI_Logo" /> </center></p>
 		<h1 style="text-align:center;">Manual &#8211; Help File</h1>
-		<h3>Table Of Content</h3>
-		<ul>
-			<li>Introduction</li>
-			<li>Concept</li>
-			<li>Installation</li>
-			<li>Usage</li>
-			<li>Change Log</li>
-			<li>About</li>
+		<h2>Table Of Content</h2>
+		<ul style="color:rgb(50, 85, 125); font-size: 12pt;">
+			<li><a href="#Introduction">Introduction</a></li>
+			<li><a href="#Features">Features</a></li>
+			<li><a href="#Installation">Installation</a></li>
+			<li><a href="#Usage">Usage</a></li>
+			<li><a href="#Components">Components</a></li>
+			<li><a href="#ChangeLog">Change Log</a></li>
+			<li><a href="#About">About</a></li>
 		</ul>
-		<h3>Introduction</h3>
+		<h2 id="Introduction">Introduction</h2>
 		<p>sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. <br />What is sIBL ? It&#8217;s a short for &#8220;Smart IBL&#8221;. It&#8217;s a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. <br />A lot more informations are available here : <a href="http://www.smartibl.com">http://www.smartibl.com</a></p>
-		<h3>Concept</h3>
-		<p>Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and inconvenients in both methods. <br />Doing the external application way, all the sIBL parsing, Collection Browsing is handled by sIBL_GUI, you just just have to deal with a simple Loader Script for each 3D package : It took me only a few hours to convert the <span class="caps">XSI</span> Template into a Maya one. Rescripting an entire browser with a nice interface would have taken days and I must admit it : I failed to do it for <span class="caps">XSI</span>, that&#8217;s why I decided to build an external application. <br />More informations about sIBL_GUI are available into this thread : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI Thread</a></p>
-		<h3>Installation</h3>
-		<h4>Windows Platform</h4>
+		<h2 id="Features">Features</h2>
+		<p>Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and issues with both methods. <br />With an external application way, .Ibl format parsing, Collection management is handled by sIBL_GUI, it offers more flexibility being independent.<br />The bridge beetween sIBL_GUI and the package is done through Templates that output simple Loader Scripts, that&#8217;s one of sIBL_GUI strength : It only took a few hours to convert the <span class="caps">XSI</span> Mental Ray Template into a Maya Mental Ray one. Scripting a full browser with a nice interface and the same functionalities would have taken days and sometimes the 3D Package <span class="caps">SDK</span> is limited.</p>
+		<p>sIBL_GUI is built around Nokia Qt Ui Framework : <a href="http://qt.nokia.com/">http://qt.nokia.com/</a> and SQLAlchemy : <a href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a></p>
+		<p>Some sIBL_GUI features :</p>
+		<p>	<ul>
+			<li>Components Framework.</li>
+			<li>User Configurable Ui Layout.</li>
+			<li>SQlite Database.</li>
+			<li>Online Updater.</li>
+			<li>Google Map Gps map.</li>
+		</ul><br />and much more &#8230;</p>
+		<p>More informations about sIBL_GUI are available into this thread : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI Thread</a></p>
+		<h2 id="Installation">Installation</h2>
+		<h3>Windows Platform</h3>
 		<p>Installation on Windows is pretty straightforward, just launch &#8220;sIBL_GUI_Setup.exe&#8221;.</p>
-		<h4>Linux Platform</h4>
+		<h3>Linux Platform</h3>
 		<p>You will need some QT Libraries in order to run sIBL_GUI under Linux :</p>
 		<ul>
 			<li>Debian Distributions ( Ubuntu ) : </li>
@@ -61,12 +72,93 @@
 			<p><em>su root</em> <br />yum <em>install qt</em> <br />yum <em>install qt-x11</em></p>
 		</blockquote>
 		<p>Uncompress the sIBL_GUI archive into the folder of your choice, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from your file browser.</p>
-		<h4>Mac Os X Platform</h4>
+		<h3>Mac Os X Platform</h3>
 		<p>Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI&#8221; into your &#8220;Application&#8221; folder.</p>
-		<h3>Usage</h3>
-		<h3>Change Log</h3>
+		<h2 id="Usage">Usage</h2>
+		<h3>Ibl Sets Wizard</h3>
+		<p>The first time sIBL_GUI is started a Wizard proposes to add Ibl Sets to the database :</p>
+		<p><img src="resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg" title="sIBL_GUI_EmptyDatabaseWizard_A" alt="sIBL_GUI_EmptyDatabaseWizard_A" /></p>
+		<p>Choose a directory where are stored some Ibl Sets and they will be added to the Default Sets Collection.</p>
+		<p><img src="resources/pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg" title="sIBL_GUI_EmptyDatabaseWizard_B" alt="sIBL_GUI_EmptyDatabaseWizard_B" /></p>
+		<p>sIBL_GUI interface is customizable and comes with 3 main layouts directly available from the main toolbar : </p>
+		<ul style="color:rgb(50, 85, 125); font-size: 12pt;">
+			<li><a href="#Library">Library</a></li>
+			<li><a href="#Export">Export</a></li>
+			<li><a href="#Preferences">Preferences</a></li>
+		</ul>
+		<p>Right clicking the main toolbar displays a context menu with the Ui Widgets list :</p>
+		<p><img src="resources/pictures/sIBL_GUI_ToolbarContextMenu.jpg" title="sIBL_GUI_ToolbarContextMenu" alt="sIBL_GUI_ToolbarContextMenu" /></p>
+		<p>It&#8217;s possible to Store / Restore up to 5 custom layouts and recall them whenever needeed using the Layout Icon or associated Shortcuts:</p>
+		<p><img src="resources/pictures/sIBL_GUI_LayoutsContextMenu.jpg" title="sIBL_GUI_LayoutsContextMenu" alt="sIBL_GUI_LayoutsContextMenu" /></p>
+		<h3 id="Library">Library</h3>
+		<p>The Library layout is where most of the Sets management is done. <br />This layout displays 4 components :</p>
+		<ul>
+			<li><strong>Collections Outliner</strong> ( core.collectionsOutliner component )</li>
+			<li><strong>Database Browser</strong> ( core.databaseBrowser component )</li>
+			<li><strong>Search Database</strong> ( addons.searchDatabase component )</li>
+			<li><strong>Gps Map</strong> ( addons.gpsMap component )</li>
+		</ul>
+		<p><img src="resources/pictures/sIBL_GUI_SetsCentricLayout.jpg" title="sIBL_GUI_SetsCentricLayout" alt="sIBL_GUI_SetsCentricLayout" /></p>
+		<h3 id="Export">Export</h3>
+		<p>The Export layout is where the brige beetween sIBL_GUI and the 3D Packages is created. <br />This layout displays 4 components :</p>
+		<ul>
+			<li><strong>Templates Outliner</strong> ( core.templatesOutliner component )</li>
+			<li><strong>Database Browser</strong> ( core.databaseBrowser component )</li>
+			<li><strong>Loader Script</strong> ( addons.loaderScript component )</li>
+			<li><strong>Loader Script Options</strong> ( addons.loaderScriptOptions component )</li>
+		</ul>
+		<p>An additional export related component is available by right clicking the main toolbar :</p>
+		<ul>
+			<li><strong>Rewiring Tool</strong> ( addons.rewiringTool component )</li>
+		</ul>
+		<p><img src="resources/pictures/sIBL_GUI_TemplatesCentricLayout.jpg" title="sIBL_GUI_TemplatesCentricLayout" alt="sIBL_GUI_TemplatesCentricLayout" /></p>
+		<h3 id="Preferences">Preferences</h3>
+		<p>The Preferences layout is where you can configure sIBL_GUI behavior. <br />This layout displays 2 components :</p>
+		<ul>
+			<li><strong>Components Manager</strong> ( core.componentsManagerUi component )</li>
+			<li><strong>Preferences Manager</strong> ( core.preferencesManager component )</li>
+		</ul>
+		<p><img src="resources/pictures/sIBL_GUI_PreferencesCentricLayout.jpg" title="sIBL_GUI_PreferencesCentricLayout" alt="sIBL_GUI_PreferencesCentricLayout" /></p>
+		<h2 id="Components">Components</h2>
+		<p>sIBL_GUI has currently 2 categories of components :</p>
+		<ul>
+			<li><strong>Default Component</strong> ( Components without an associated Ui Widget )</li>
+			<li><strong>Ui Component</strong> ( Components with an associated Ui Widget ).</li>
+		</ul>
+		<p>Those 2 types are split into 3 main families :</p>
+		<ul>
+			<li><strong>Core</strong> ( Required components, not deactivable and not removable )</li>
+			<li><strong>Addons</strong> ( Optional components, deactivable and removable )</li>
+			<li><strong>User</strong> ( Optional components, deactivable and removable )</li>
+		</ul>
+		<h3>Core Components</h3>
+		<p><strong style="font-size: 11pt;">Components Manager</strong> ( core.componentsManagerUi )</p>
+		<p><img src="resources/pictures/sIBL_GUI_ComponentsManager.jpg" title="sIBL_GUI_ComponentsManager" alt="sIBL_GUI_ComponentsManager" /></p>
+		<p>The Components Manager component allows sIBL_GUI addons components activation / deactivation  ( Core components are required and not deactivable ). Selected components details are displayed in the bottom <em>Components Informations</em> widget.</p>
+		<p>Columns Descriptions :</p>
+		<ul>
+			<li><strong>Components</strong> : Component name ( Components are sorted by families ).</li>
+			<li><strong>Activated</strong> : Component activation status.</li>
+			<li><strong>Categorie</strong> : Component categorie ( Default or Ui ).</li>
+			<li><strong>Rank</strong> : Component rank ( The lower the rank is, the higher component instantiation priority will be ).</li>
+		</ul>
+		<p>Components Manager Context Menu :</p>
+		<p><img src="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" title="sIBL_GUI_ComponentsManagerContextMenu" alt="sIBL_GUI_ComponentsManagerContextMenu" /></p>
+		<ul>
+			<li><strong>Activate Component(s)</strong> : Activates selected component(s).</li>
+			<li><strong>Dectivate Component(s)</strong> : Deactivates selected component(s).</li>
+			<li><strong>Reload Component(s)</strong> : Reload selected component(s) ( Deactivate the component, reload component code, activate back the component ).</li>
+			<li><strong>Open Component(s) Location(s)</strong> : Opens component(s) folder(s).</li>
+		</ul>
+		<p><strong style="font-size: 11pt;">Preferences Manager</strong> ( core.preferencesManager )</p>
+		<p><strong style="font-size: 11pt;">db</strong> ( core.db )</p>
+		<p><strong style="font-size: 11pt;">Database Browser</strong> ( core.databaseBrowser )</p>
+		<p><strong style="font-size: 11pt;">Collections Outliner</strong> ( core.collectionsOutliner )</p>
+		<p><strong style="font-size: 11pt;">Templates Outliner</strong> ( core.templatesOutliner )</p>
+		<h3>Addons Components</h3>
+		<h2 id="ChangeLog">Change Log</h2>
 		<p><a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI &#8211; Change Log</a></p>
-		<h3>About</h3>
+		<h2 id="About">About</h2>
 		<p>sIBL_GUI by Thomas Mansencal &#8211; 2008 &#8211; 2010<br />Copyright&#169; 2008 &#8211; 2010 &#8211; Thomas Mansencal &#8211; <a href="mailto:kelsolaar_fool@hotmail.com">kelsolaar_fool@hotmail.com</a> <br />This Software Is Released Under Terms Of <span class="caps">GNU</span> <span class="caps">GPL</span> V3 License : <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> <br /><a href="http://my.opera.com/KelSolaar/">http://my.opera.com/KelSolaar/</a></p>		</span>
 	</body>
 </html>
