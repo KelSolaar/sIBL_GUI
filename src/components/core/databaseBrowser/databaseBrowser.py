@@ -744,7 +744,7 @@ class DatabaseBrowser( UiComponent ):
 
 		# Wizard If Sets Table Is Empty.
 		if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
-			if messageBox.messageBox( "Question", "Question", "The Database Has No Sets, Do You Want To Add Some ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 				if directory :
 					self.addDirectory( directory )
