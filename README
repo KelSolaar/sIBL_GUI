@@ -1,7 +1,7 @@
 - sIBL_GUI -
 
 - Introduction -
-sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. 
+sIBL_GUI is a tool making the process of importing sIBL files into a 3D Package easier and straight forward. 
 What is sIBL ? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
 A lot more informations are available here : http://www.smartibl.com. 
 
