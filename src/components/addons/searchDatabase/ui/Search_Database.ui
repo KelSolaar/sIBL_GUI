@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>310</width>
+    <height>348</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -89,7 +97,7 @@
            <item row="0" column="2">
             <widget class="QCheckBox" name="Case_Insensitive_Matching_checkBox">
              <property name="statusTip">
-              <string>Case Insensitive checkBox : Database Search Will Ignore Case.</string>
+              <string>Case Insensitive Check Box : Database Search Will Ignore Case.</string>
              </property>
              <property name="checked">
               <bool>true</bool>
@@ -132,8 +140,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>286</width>
-         <height>230</height>
+         <width>268</width>
+         <height>95</height>
         </rect>
        </property>
        <attribute name="label">
