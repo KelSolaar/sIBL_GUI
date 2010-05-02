@@ -87,7 +87,6 @@ class Constants():
 	userComponentsDirectory = "components"
 	loggingDirectory = "logging"
 	templatesDirectory = "templates"
-	helpDirectory = "help"
 	ioDirectory = "io"
 
 	preferencesDirectories = ( databaseDirectory,
@@ -95,7 +94,6 @@ class Constants():
 								userComponentsDirectory,
 								loggingDirectory,
 								templatesDirectory,
-								helpDirectory,
 								ioDirectory
 							)
 	coreComponentsDirectory = "components/core"
