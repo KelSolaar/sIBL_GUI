@@ -36,14 +36,31 @@
 			<li><a href="#Features">Features</a></li>
 			<li><a href="#Installation">Installation</a></li>
 			<li><a href="#Usage">Usage</a></li>
-			<li><a href="#Components">Components</a></li>
+			<li><a href="#Components">Components</a>
+		<ul>
+			<li>Core
+		<ul>
+			<li><a href="#core.componentsManagerUi">Components Manager</a> ( core.componentsManagerUi )</li>
+			<li><a href="#core.preferencesManager">Preferences Manager</a> ( core.preferencesManager )</li>
+			<li><a href="#core.db">Db</a> ( core.db )</li>
+			<li><a href="#core.databaseBrowser">Database Browser</a> ( core.databaseBrowser )</li>
+			<li><a href="#core.collectionsOutliner">Collections Outliner</a> ( core.collectionsOutliner )</li>
+			<li><a href="#core.templatesOutliner">Templates Outliner</a> ( core.templatesOutliner )</li>
+		</ul></li>
+			<li>Addons
+		<ul>
+			<li><a href="#addons.about">About</a> ( addons.about )</li>
+			<li><a href="#addons.databaseBackup">Database Backup</a> ( addons.databaseBackup )</li>
+			<li><a href="#addons.gpsMap">Gps Map</a> ( addons.gpsMap )</li>
+		</ul></li>
+		</ul></li>
 			<li><a href="#ChangeLog">Change Log</a></li>
 			<li><a href="#About">About</a></li>
 		</ul>
 		<h2 id="Introduction">Introduction</h2>
-		<p>sIBL_GUI is a tool making easier the process of importing sIBL files in your Target 3D Package. <br />What is sIBL ? It&#8217;s a short for &#8220;Smart IBL&#8221;. It&#8217;s a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. <br />A lot more informations are available here : <a href="http://www.smartibl.com">http://www.smartibl.com</a></p>
+		<p>sIBL_GUI is a tool making the process of importing sIBL files into a 3D Package easier and straight forward. <br />What is sIBL ? It&#8217;s a short for &#8220;Smart IBL&#8221;. It&#8217;s a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. <br />A lot more informations are available here : <a href="http://www.smartibl.com">http://www.smartibl.com</a></p>
 		<h2 id="Features">Features</h2>
-		<p>Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and issues with both methods. <br />With an external application way, .Ibl format parsing, Collection management is handled by sIBL_GUI, it offers more flexibility being independent.<br />The bridge beetween sIBL_GUI and the package is done through Templates that output simple Loader Scripts, that&#8217;s one of sIBL_GUI strength : It only took a few hours to convert the <span class="caps">XSI</span> Mental Ray Template into a Maya Mental Ray one. Scripting a full browser with a nice interface and the same functionalities would have taken days and sometimes the 3D Package <span class="caps">SDK</span> is limited.</p>
+		<p>Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and issues with both methods. <br />With an external application way, .Ibl format parsing, Collection management is handled by sIBL_GUI, it offers more flexibility being independent.<br />The bridge between sIBL_GUI and the 3D Package is done through Templates that output simple Loader Scripts, that&#8217;s one of sIBL_GUI strength : It only took a few hours to convert the <span class="caps">XSI</span> Mental Ray Template into a Maya Mental Ray one. Scripting a full browser with a nice interface and the same functionalities as sIBL_GUI would have taken days.</p>
 		<p>sIBL_GUI is built around Nokia Qt Ui Framework : <a href="http://qt.nokia.com/">http://qt.nokia.com/</a> and SQLAlchemy : <a href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a></p>
 		<p>Some sIBL_GUI features :</p>
 		<p>	<ul>
@@ -58,7 +75,7 @@
 		<h3>Windows Platform</h3>
 		<p>Installation on Windows is pretty straightforward, just launch &#8220;sIBL_GUI_Setup.exe&#8221;.</p>
 		<h3>Linux Platform</h3>
-		<p>You will need some QT Libraries in order to run sIBL_GUI under Linux :</p>
+		<p>Some QT Libraries are needeed in order to run sIBL_GUI under Linux :</p>
 		<ul>
 			<li>Debian Distributions ( Ubuntu ) : </li>
 		</ul>
@@ -71,10 +88,36 @@
 		<blockquote>
 			<p><em>su root</em> <br />yum <em>install qt</em> <br />yum <em>install qt-x11</em></p>
 		</blockquote>
-		<p>Uncompress the sIBL_GUI archive into the folder of your choice, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from your file browser.</p>
+		<p>Uncompress the sIBL_GUI archive into the chosen destination folder, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from a file browser.</p>
 		<h3>Mac Os X Platform</h3>
-		<p>Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI&#8221; into your &#8220;Application&#8221; folder.</p>
+		<p>Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI&#8221; into the &#8220;Application&#8221; folder.</p>
 		<h2 id="Usage">Usage</h2>
+		<h3>User Preferences</h3>
+		<p>sIBL_GUI preferences are stored per user in their home directory :</p>
+		<ul>
+			<li>C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI on Windows 7</li>
+			<li>C:\Documents and Settings\$USER\Application Data\HDRLabs\sIBL_GUI on Windows XP</li>
+			<li>/Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI on Macintosh</li>
+			<li>/home/$USER/.HDRLabs/sIBL_GUI on Linux</li>
+		</ul>
+		<p>The typical sIBL_GUI directory structure is the following :</p>
+		<p><img src="resources/pictures/sIBL_GUI_PreferencesFolder.jpg" title="sIBL_GUI_PreferencesFolder" alt="sIBL_GUI_PreferencesFolder" /></p>
+		<p>Structure Description :</p>
+		<ul>
+			<li><strong>templates</strong> : Directory storing user templates ( This directory is scanned by sIBL_GUI when importing default templates ).</li>
+			<li><strong>settings</strong> : Directory storing sIBL_GUI settings file.</li>
+			<li><strong>logging</strong> : Directory storing sIBL_GUI logging file.</li>
+			<li><strong>io</strong> : Directory used for sIBL_GUI input / output operations.
+		<ul>
+			<li><strong>remote</strong> : Directory used by the Online Updater component when it downloads online files.</li>
+			<li><strong>loaderScripts</strong> : Directory used as output folder by the Loader Script component.</li>
+		</ul></li>
+			<li><strong>database</strong> : Directory storing the SQLite database.
+		<ul>
+			<li><strong>backup</strong> : Directory used by the Database Backup component when it backups the database.</li>
+		</ul></li>
+			<li><strong>components</strong> : Directory storing user components.</li>
+		</ul>
 		<h3>Ibl Sets Wizard</h3>
 		<p>The first time sIBL_GUI is started a Wizard proposes to add Ibl Sets to the database :</p>
 		<p><img src="resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg" title="sIBL_GUI_EmptyDatabaseWizard_A" alt="sIBL_GUI_EmptyDatabaseWizard_A" /></p>
@@ -92,20 +135,20 @@
 		<p><img src="resources/pictures/sIBL_GUI_LayoutsContextMenu.jpg" title="sIBL_GUI_LayoutsContextMenu" alt="sIBL_GUI_LayoutsContextMenu" /></p>
 		<h3 id="Library">Library</h3>
 		<p>The Library layout is where most of the Sets management is done. <br />This layout displays 4 components :</p>
-		<ul>
-			<li><strong>Collections Outliner</strong> ( core.collectionsOutliner component )</li>
-			<li><strong>Database Browser</strong> ( core.databaseBrowser component )</li>
-			<li><strong>Search Database</strong> ( addons.searchDatabase component )</li>
-			<li><strong>Gps Map</strong> ( addons.gpsMap component )</li>
+		<ul style="color:rgb(50, 85, 125);">
+			<li><a href="#core.collectionsOutliner"><strong>Collections Outliner</strong></a> ( core.collectionsOutliner )</li>
+			<li><a href="#core.databaseBrowser"><strong>Database Browser</strong></a> ( core.databaseBrowser )</li>
+			<li><strong>Search Database</strong> ( addons.searchDatabase )</li>
+			<li><strong>Gps Map</strong> ( addons.gpsMap )</li>
 		</ul>
 		<p><img src="resources/pictures/sIBL_GUI_SetsCentricLayout.jpg" title="sIBL_GUI_SetsCentricLayout" alt="sIBL_GUI_SetsCentricLayout" /></p>
 		<h3 id="Export">Export</h3>
-		<p>The Export layout is where the brige beetween sIBL_GUI and the 3D Packages is created. <br />This layout displays 4 components :</p>
-		<ul>
-			<li><strong>Templates Outliner</strong> ( core.templatesOutliner component )</li>
-			<li><strong>Database Browser</strong> ( core.databaseBrowser component )</li>
-			<li><strong>Loader Script</strong> ( addons.loaderScript component )</li>
-			<li><strong>Loader Script Options</strong> ( addons.loaderScriptOptions component )</li>
+		<p>The Export layout is where the bridge between sIBL_GUI and the 3D Packages is created. <br />This layout displays 4 components :</p>
+		<ul style="color:rgb(50, 85, 125);">
+			<li> <a href="#core.templatesOutliner"><strong>Templates Outliner</strong></a> ( core.templatesOutliner )</li>
+			<li><a href="#core.databaseBrowser"><strong>Database Browser</strong></a> ( core.databaseBrowser )</li>
+			<li><strong>Loader Script</strong> ( addons.loaderScript )</li>
+			<li><strong>Loader Script Options</strong> ( addons.loaderScriptOptions )</li>
 		</ul>
 		<p>An additional export related component is available by right clicking the main toolbar :</p>
 		<ul>
@@ -113,16 +156,16 @@
 		</ul>
 		<p><img src="resources/pictures/sIBL_GUI_TemplatesCentricLayout.jpg" title="sIBL_GUI_TemplatesCentricLayout" alt="sIBL_GUI_TemplatesCentricLayout" /></p>
 		<h3 id="Preferences">Preferences</h3>
-		<p>The Preferences layout is where you can configure sIBL_GUI behavior. <br />This layout displays 2 components :</p>
-		<ul>
-			<li><strong>Components Manager</strong> ( core.componentsManagerUi component )</li>
-			<li><strong>Preferences Manager</strong> ( core.preferencesManager component )</li>
+		<p>The Preferences layout is where sIBL_GUI behavior is configured. <br />This layout displays 2 components :</p>
+		<ul style="color:rgb(50, 85, 125);">
+			<li><a href="#core.componentsManagerUi"><strong>Components Manager</strong></a> ( core.componentsManagerUi )</li>
+			<li><a href="#core.preferencesManager"><strong>Preferences Manager</strong></a> ( core.preferencesManager )</li>
 		</ul>
 		<p><img src="resources/pictures/sIBL_GUI_PreferencesCentricLayout.jpg" title="sIBL_GUI_PreferencesCentricLayout" alt="sIBL_GUI_PreferencesCentricLayout" /></p>
 		<h2 id="Components">Components</h2>
 		<p>sIBL_GUI has currently 2 categories of components :</p>
 		<ul>
-			<li><strong>Default Component</strong> ( Components without an associated Ui Widget )</li>
+			<li><strong>Default Component</strong> ( Components without an associated Ui Widget ).</li>
 			<li><strong>Ui Component</strong> ( Components with an associated Ui Widget ).</li>
 		</ul>
 		<p>Those 2 types are split into 3 main families :</p>
@@ -132,30 +175,156 @@
 			<li><strong>User</strong> ( Optional components, deactivable and removable )</li>
 		</ul>
 		<h3>Core Components</h3>
-		<p><strong style="font-size: 11pt;">Components Manager</strong> ( core.componentsManagerUi )</p>
+		<p><strong style="font-size: 11pt;" id="core.componentsManagerUi">Components Manager</strong> ( core.componentsManagerUi )</p>
 		<p><img src="resources/pictures/sIBL_GUI_ComponentsManager.jpg" title="sIBL_GUI_ComponentsManager" alt="sIBL_GUI_ComponentsManager" /></p>
 		<p>The Components Manager component allows sIBL_GUI addons components activation / deactivation  ( Core components are required and not deactivable ). Selected components details are displayed in the bottom <em>Components Informations</em> widget.</p>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
+		</ul>
 		<p>Columns Descriptions :</p>
 		<ul>
-			<li><strong>Components</strong> : Component name ( Components are sorted by families ).</li>
-			<li><strong>Activated</strong> : Component activation status.</li>
-			<li><strong>Categorie</strong> : Component categorie ( Default or Ui ).</li>
-			<li><strong>Rank</strong> : Component rank ( The lower the rank is, the higher component instantiation priority will be ).</li>
+			<li><strong>Components</strong> : Components names ( Components are sorted by families ).</li>
+			<li><strong>Activated</strong> : Components activations status.</li>
+			<li><strong>Categorie</strong> : Components categories ( Default or Ui ).</li>
+			<li><strong>Rank</strong> : Components ranks ( The lower the rank is, the higher component instantiation priority will be ).</li>
 		</ul>
-		<p>Components Manager Context Menu :</p>
+		<p>Context Menu :</p>
 		<p><img src="resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg" title="sIBL_GUI_ComponentsManagerContextMenu" alt="sIBL_GUI_ComponentsManagerContextMenu" /></p>
 		<ul>
 			<li><strong>Activate Component(s)</strong> : Activates selected component(s).</li>
 			<li><strong>Dectivate Component(s)</strong> : Deactivates selected component(s).</li>
 			<li><strong>Reload Component(s)</strong> : Reload selected component(s) ( Deactivate the component, reload component code, activate back the component ).</li>
-			<li><strong>Open Component(s) Location(s)</strong> : Opens component(s) folder(s).</li>
 		</ul>
-		<p><strong style="font-size: 11pt;">Preferences Manager</strong> ( core.preferencesManager )</p>
-		<p><strong style="font-size: 11pt;">db</strong> ( core.db )</p>
-		<p><strong style="font-size: 11pt;">Database Browser</strong> ( core.databaseBrowser )</p>
-		<p><strong style="font-size: 11pt;">Collections Outliner</strong> ( core.collectionsOutliner )</p>
-		<p><strong style="font-size: 11pt;">Templates Outliner</strong> ( core.templatesOutliner )</p>
+	Addons Functionalities :
+		<ul>
+			<li><strong>Open Component(s) Location(s) ...</strong> : Opens component(s) folder(s).</li>
+		</ul>
+		<p><strong style="font-size: 11pt;" id="core.preferencesManager">Preferences Manager</strong> ( core.preferencesManager )</p>
+		<p><img src="resources/pictures/sIBL_GUI_PreferencesManager.jpg" title="sIBL_GUI_PreferencesManager" alt="sIBL_GUI_PreferencesManager" /></p>
+		<p>The Preferences Manager component is used to configure sIBL_GUI behavior. There are 2 pages where settings are adjustable :</p>
+		<ul>
+			<li><strong>General</strong> : Overall sIBL_GUI settings.</li>
+			<li><strong>Others</strong> : Components added settings.</li>
+		</ul>
+		<p>General Page :</p>
+		<ul>
+			<li><strong>Verbose Level</strong> : Adjust sIBL_GUI verbose level between different modes ( From the one verbosing the most to the less verbosing ) :
+		<ul>
+			<li>Debug</li>
+			<li>Info</li>
+			<li>Warning</li>
+			<li>Error</li>
+			<li>Critical</li>
+		</ul></li>
+			<li><strong>Restore Geometry On Layout Change</strong> : sIBL_GUI window size and position will also be restored when switching layouts.</li>
+		</ul>
+		<p>Others Page :</p>
+		<p>Those settings are components dependent and will be described per related component.</p>
+		<p><strong style="font-size: 11pt;" id="core.db">Db</strong> ( core.db )</p>
+		<p>The Db component is the heart of sIBL_GUI datas storage, it is responsible of the database manipulation methods providing read and write access.</p>
+		<p><strong style="font-size: 11pt;" id="core.databaseBrowser">Database Browser</strong> ( core.databaseBrowser )</p>
+		<p><img src="resources/pictures/sIBL_GUI_DatabaseBrowser.jpg" title="sIBL_GUI_DatabaseBrowser" alt="sIBL_GUI_DatabaseBrowser" /></p>
+		<p>The Database Browser component is the central component where the Ibl sets are viewed and chosen for export.</p>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
+			<li><strong>Drag&#8217;n&#8217;drop</strong> : Drag&#8217;n&#8217;dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.</li>
+			<li><strong>Hovering</strong> : Hovering an Ibl Set raises a popup with informations about the focused set.</li>
+			<li><strong>Thumbnails Size Horizontal Slider</strong> : Adjusts Ibl sets icons size.</li>
+		</ul>
+		<p>Context Menu :</p>
+		<p><img src="resources/pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg" title="sIBL_GUI_DatabaseBrowserContextMenu" alt="sIBL_GUI_DatabaseBrowserContextMenu" /></p>
+		<ul>
+			<li><strong>Add Content &#8230;</strong> : Recursively adds chosen directory Ibl sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
+			<li><strong>Add Set &#8230;</strong> : Adds the selected Ibl sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
+			<li><strong>Remove Set(s) ...</strong> : Removes selected Ibl sets from the database.</li>
+			<li><strong>Update Set(s) Location(s) ...</strong> : Updates selected Ibl sets files paths.</li>
+		</ul>
+	Addons Functionalities :
+		<ul>
+			<li><strong>Edit In sIBLedit &#8230;</strong> : Sends selected Ibl set to sIBLedit.</li>
+			<li><strong>Edit In Text Editor &#8230;</strong> : Edit selected Ibl sets with system or custom user defined text editor.</li>
+			<li><strong>Open Set(s) Location(s) ...</strong> : Opens selected Ibl sets folders.</li>
+		</ul>
+		<p><strong style="font-size: 11pt;" id="core.collectionsOutliner">Collections Outliner</strong> ( core.collectionsOutliner )</p>
+		<p><img src="resources/pictures/sIBL_GUI_CollectionsOutliner.jpg" title="sIBL_GUI_CollectionsOutliner" alt="sIBL_GUI_CollectionsOutliner" /></p>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Double clic</strong> : Edit collection name or comment.</li>
+			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
+			<li><strong>Drag&#8217;n&#8217;drop</strong> : Drag&#8217;n&#8217;dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.</li>
+		</ul>
+		<p>Columns Descriptions :</p>
+		<ul>
+			<li><strong>Collections</strong> : Collections names ( Editable through double click ).</li>
+			<li><strong>Sets</strong> : Sets count per collections.</li>
+			<li><strong>Comments</strong> : Collections comments ( Editable through double click ).</li>
+		</ul>
+		<p>Context Menu :</p>
+		<p><img src="resources/pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg" title="sIBL_GUI_CollectionsOutlinerContextMenu" alt="sIBL_GUI_CollectionsOutlinerContextMenu" /></p>
+		<ul>
+			<li><strong>Add Content &#8230;</strong> : Adds a new collection then recursively adds chosen directory Ibl sets into the database assigning them to the new collection. </li>
+			<li><strong>Add Collection &#8230;</strong> : Adds a new collection to the database.</li>
+			<li><strong>Remove Collection(s) ...</strong> : Removes selected collections from the database ( Overall and Default Collections cannot be removed ).</li>
+		</ul>
+		<p><strong>Note</strong>:</p>
+		<p>While adding a new collection, a comment can be provided directly by using a comma separated name and comment.</p>
+		<p><img src="resources/pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg" title="sIBL_GUI_CollectionsOutlinerAddCollection" alt="sIBL_GUI_CollectionsOutlinerAddCollection" /></p>
+		<p><strong style="font-size: 11pt;" id="core.templatesOutliner">Templates Outliner</strong> ( core.templatesOutliner )</p>
+		<p><img src="resources/pictures/sIBL_GUI_TemplatesOutliner.jpg" title="sIBL_GUI_TemplatesOutliner" alt="sIBL_GUI_TemplatesOutliner" /></p>
+		<p>The Templates Outliner component is where templates are organised and reviewed. Selected templates details are displayed in the bottom <em>Templates Informations</em> widget.</p>
+		<p>Templates are sorted into 2 main categories :</p>
+		<ul>
+			<li><strong>Factory</strong> ( Templates from sIBL_GUI installation directory ).</li>
+			<li><strong>User</strong> ( Templates not from sIBL_GUI installation directory ).</li>
+		</ul>
+		<p>In those categories templates are sorted by 3D Packages.</p>
+		<p>Columns Descriptions :</p>
+		<ul>
+			<li><strong>Templates</strong> : Templates names.</li>
+			<li><strong>Release</strong> : Templates versions numbers.</li>
+			<li><strong>Software Version</strong> : 3D Packages compatible version.</li>
+		</ul>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
+		</ul>
+		<p>Context Menu :</p>
+		<p><img src="resources/pictures/sIBL_GUI_TemplatesOutlinerContextMenu.jpg" title="sIBL_GUI_TemplatesOutlinerContextMenu" alt="sIBL_GUI_TemplatesOutlinerContextMenu" /></p>
+		<ul>
+			<li><strong>Add Template &#8230;</strong> : Adds the selected templates file into the database.</li>
+			<li><strong>Remove Templates(s) ...</strong> : Removes selected templates from the database.</li>
+			<li><strong>Import Default Templates</strong> : sIBL_GUI will scan for templates into it&#8217;s installation folder and the user preferences directory.</li>
+			<li><strong>Filter Templates Versions</strong> : sIBL_GUI will filter the templates keeping the highest version of them.</li>
+			<li><strong>Display Help File(s) ...</strong> : Display templates associated help files.</li>
+		</ul>
+	Addons Functionalities :
+		<ul>
+			<li><strong>Edit In Text Editor &#8230;</strong> : Edit selected templates with system or custom user defined text editor.</li>
+			<li><strong>Open Templates(s) Location(s) ...</strong> : Opens selected templates folders.</li>
+		</ul>
 		<h3>Addons Components</h3>
+		<p><strong style="font-size: 11pt;" id="addons.about">About</strong> ( addons.about )</p>
+		<p><img src="resources/pictures/sIBL_GUI_About.jpg" title="sIBL_GUI_About" alt="sIBL_GUI_About" /></p>
+		<p>The About component displays the <em>About</em> Window.</p>
+		<p><strong style="font-size: 11pt;" id="addons.databaseBackup">Database Backup</strong> ( addons.databaseBackup )</p>
+		<p>The Database Backup component is a rotating backup component. Every sIBL_GUI startup the SQLite database is copied with a version number appended, the older version being the one with the highest number.</p>
+		<p><strong style="font-size: 11pt;" id="addons.gpsMap">Gps Map</strong> ( addons.gpsMap )</p>
+		<p><img src="resources/pictures/sIBL_GUI_GpsMap.jpg" title="sIBL_GUI_GpsMap" alt="sIBL_GUI_GpsMap" /></p>
+		<p>The Gps Map component is embedding a Google Map into sIBL_GUI : Selecting some Ibl sets ( Sets with <span class="caps">GEO</span> coordinates ) in the Database Browser component will display their markers onto the Gps Map.</p>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Zoom In Push Button</strong> : Zooms into the Gps Map.</li>
+			<li><strong>Zoom Out Push Button</strong> : Zooms out of the Gps Map.</li>
+			<li><strong>Map Type Combo Box</strong> : Switch the Gps Map style.
+		<ul>
+			<li>Roadmap : This map type displays a normal street map.</li>
+			<li>Satellite : This map type displays satellite images.</li>
+			<li>Hybrid : This map type displays a transparent layer of major streets on satellite images.</li>
+			<li>Terrain : This map type displays maps with physical features such as terrain and vegetation.</li>
+		</ul></li>
+		</ul>
 		<h2 id="ChangeLog">Change Log</h2>
 		<p><a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI &#8211; Change Log</a></p>
 		<h2 id="About">About</h2>
