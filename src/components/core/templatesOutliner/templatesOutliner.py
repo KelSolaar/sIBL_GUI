@@ -838,9 +838,9 @@ class TemplatesOutliner( UiComponent ):
 		separatorAction.setSeparator( True )
 		self.ui.Templates_Outliner_treeWidget.addAction( separatorAction )
 
-		displayHelpFileAction = QAction( "Display Help File ...", self.ui.Templates_Outliner_treeWidget )
-		displayHelpFileAction.triggered.connect( self.Components_Manager_Ui_treeWidget_displayHelpFileAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( displayHelpFileAction )
+		displayHelpFilesAction = QAction( "Display Help File(s) ...", self.ui.Templates_Outliner_treeWidget )
+		displayHelpFilesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_displayHelpFilesAction )
+		self.ui.Templates_Outliner_treeWidget.addAction( displayHelpFilesAction )
 
 		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
 		separatorAction.setSeparator( True )
@@ -880,9 +880,9 @@ class TemplatesOutliner( UiComponent ):
 		self.refreshUi()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_displayHelpFileAction( self, checked ):
+	def Components_Manager_Ui_treeWidget_displayHelpFilesAction( self, checked ):
 		'''
-		This Method Is Triggered By importDefaultTemplatesAction.
+		This Method Is Triggered By displayHelpFilesAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
