@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Gps_Map_DockWidget</class>
  <widget class="QDockWidget" name="Gps_Map_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>313</width>
+    <height>226</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Gps Map</string>
   </property>
@@ -50,7 +58,7 @@
        <item row="1" column="3">
         <widget class="QComboBox" name="Map_Type_comboBox">
          <property name="statusTip">
-          <string>Map Type ComboBox : Gps Map Display Type.</string>
+          <string>Map Type Combo Box : Gps Map Display Type.</string>
          </property>
         </widget>
        </item>
