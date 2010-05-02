@@ -1,60 +1,90 @@
-<center> !resources/pictures/sIBL_GUI_Logo.png(sIBL_GUI_Logo)! </center>
+<center>
+!resources/pictures/sIBL_GUI_Logo.png(sIBL_GUI_Logo)!
+</center>
         
 h1=. Manual - Help File
 
 h2. Table Of Content
 
-*{color:rgb(50, 85, 125); font-size: 12pt;} "Introduction":#Introduction
+*{color:rgb(50, 85, 125); font-size : 11pt;} "Introduction":#Introduction
 * "Features":#Features
 * "Installation":#Installation
+** "Windows Platform":#WindowsPlatformInstallation 
+** "Mac Os X Platform":#MacOsXPlatformInstallation 
+** "Linux Platform":#LinuxPlatformInstallation 
 * "Usage":#Usage
+** "User Preferences":#UserPreferences 
+** "Ibl Sets Wizard":#IblSetsWizard 
+** "Interface":#Interface
+*** "Toolbar":#Toolbar
+*** "Library Layout":#LibraryLayout
+*** "Export Layout":#ExportLayout
+*** "Preferences Layout":#PreferencesLayout
 * "Components":#Components
-** Core
-*** "Components Manager":#core.componentsManagerUi ( core.componentsManagerUi )
-*** "Preferences Manager":#core.preferencesManager ( core.preferencesManager )
-*** "Db":#core.db ( core.db )
-*** "Database Browser":#core.databaseBrowser ( core.databaseBrowser )
-*** "Collections Outliner":#core.collectionsOutliner ( core.collectionsOutliner )
-*** "Templates Outliner":#core.templatesOutliner ( core.templatesOutliner )
-** Addons
-*** "About":#addons.about ( addons.about )
-*** "Database Backup":#addons.databaseBackup ( addons.databaseBackup )
-*** "Gps Map":#addons.gpsMap ( addons.gpsMap )
+** "Core":#Core
+*** "Components Manager":#core.componentsManagerUi
+*** "Preferences Manager":#core.preferencesManager
+*** "Db":#core.db
+*** "Database Browser":#core.databaseBrowser
+*** "Collections Outliner":#core.collectionsOutliner
+*** "Templates Outliner":#core.templatesOutliner
+** "Addons":#Addons
+*** "About":#addons.about
+*** "Database Backup":#addons.databaseBackup
+*** "Gps Map":#addons.gpsMap
+*** "Loader Script":#addons.loaderScript
+*** "Loader Script Options":#addons.loaderScriptOptions
+*** "Locations Browser":#addons.locationsBrowser
+*** "Logging Window":#addons.loggingWindow
+*** "Online Updater":#addons.onlineUpdater
+*** "Raw Editing Utilities":#addons.rawEditingUtilities
+*** "Rewiring Tool":#addons.rewiringTool
+*** "Search Database":#addons.searchDatabase
+*** "Sets Scanner":#addons.setsScanner
+*** "sIBLedit Utilities":#addons.sIBLeditUtilities
+* "Api":#Api
 * "Change Log":#ChangeLog
 * "About":#About
 
 h2(#Introduction). Introduction
 
-sIBL_GUI is a tool making the process of importing sIBL files into a 3D Package easier and straight forward. 
+sIBL_GUI is a tool making the process of importing sIBL files into a 3d package easier and straight forward. 
 What is sIBL ? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
 A lot more informations are available here : "http://www.smartibl.com":http://www.smartibl.com
 
 h2(#Features). Features
 
-Why the need of an external application to load sIBL files into a 3D package and not directly use scripting possibilities of the package itself ? There are advantages and issues with both methods. 
-With an external application way, .Ibl format parsing, Collection management is handled by sIBL_GUI, it offers more flexibility being independent.
-The bridge between sIBL_GUI and the 3D Package is done through Templates that output simple Loader Scripts, that's one of sIBL_GUI strength : It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a full browser with a nice interface and the same functionalities as sIBL_GUI would have taken days.
+Why the need of an external application to load sIBL files into a 3d package and not directly use scripting possibilities of the package itself ? There are advantages and issues with both methods. 
+With an external application way, ".Ibl" files format parsing, Collection management is handled by sIBL_GUI.
+The bridge between sIBL_GUI and the 3d package is done through templates that output simple loader scripts. 
+That's one of sIBL_GUI strength : It only took a few hours to convert the XSI Mental Ray template into a Maya Mental Ray one. Scripting a full browser with a nice interface and the same functionalities as sIBL_GUI would have taken days.
 
 sIBL_GUI is built around Nokia Qt Ui Framework : "http://qt.nokia.com/":http://qt.nokia.com/ and SQLAlchemy : "http://www.sqlalchemy.org/":http://www.sqlalchemy.org/
 
-Some sIBL_GUI features :
+Some features highlights :
 
 * Components Framework.
-* User Configurable Ui Layout.
+* Configurable Ui Layout.
 * SQlite Database.
 * Online Updater.
 * Google Map Gps map.
 and much more ...
 
-More informations about sIBL_GUI are available into this thread : "sIBL_GUI Thread":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
+Additional informations about sIBL_GUI are available into this thread : "sIBL_GUI Thread":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
+
+The source code is available on "github":http://github.com/ : "http://github.com/KelSolaar":http://github.com/KelSolaar
 
 h2(#Installation). Installation
 
-h3. Windows Platform
+h3(#WindowsPlatformInstallation). Windows Platform
 
 Installation on Windows is pretty straightforward, just launch "sIBL_GUI_Setup.exe".
 
-h3. Linux Platform
+h3(#MacOsXPlatformInstallation). Mac Os X Platform
+
+Download "sIBL_GUI.dmg". Open it and drag "sIBL_GUI.app" into the "Application" folder.
+
+h3(#LinuxPlatformInstallation). Linux Platform
 
 Some QT Libraries are needeed in order to run sIBL_GUI under Linux :
 
@@ -71,24 +101,21 @@ yum _install qt-x11_
 
 Uncompress the sIBL_GUI archive into the chosen destination folder, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from a file browser.
 
-h3. Mac Os X Platform
-
-Download "sIBL_GUI.dmg". Open it and drag "sIBL_GUI" into the "Application" folder.
-
 h2(#Usage). Usage
 
-h3. User Preferences
+h3(#UserPreferences). User Preferences
 
 sIBL_GUI preferences are stored per user in their home directory :
 
 * C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI on Windows 7
 * C:\Documents and Settings\$USER\Application Data\HDRLabs\sIBL_GUI on Windows XP
-* /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI on Macintosh
+* /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI on Mac Os X
 * /home/$USER/.HDRLabs/sIBL_GUI on Linux
 
-The typical sIBL_GUI directory structure is the following :
+The typical sIBL_GUI preferences directory structure is the following :
 
-!resources/pictures/sIBL_GUI_PreferencesFolder.jpg(sIBL_GUI_PreferencesFolder)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_PreferencesFolder.jpg(sIBL_GUI_PreferencesFolder)!|
 
 Structure Description :
 
@@ -102,67 +129,90 @@ Structure Description :
 ** *backup* : Directory used by the Database Backup component when it backups the database.
 * *components* : Directory storing user components.
 
-h3. Ibl Sets Wizard
+h3(#IblSetsWizard). Ibl Sets Wizard
 
-The first time sIBL_GUI is started a Wizard proposes to add Ibl Sets to the database :
+The first time sIBL_GUI is started a wizard	asks to add Ibl Sets into the database :
 
-!resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg(sIBL_GUI_EmptyDatabaseWizard_A)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg(sIBL_GUI_EmptyDatabaseWizard_A)!|
 
 Choose a directory where are stored some Ibl Sets and they will be added to the Default Sets Collection.
 
-!resources/pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg(sIBL_GUI_EmptyDatabaseWizard_B)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg(sIBL_GUI_EmptyDatabaseWizard_B)!|
+
+h3(#Interface). Interface
 
 sIBL_GUI interface is customizable and comes with 3 main layouts directly available from the main toolbar : 
 
-*{color:rgb(50, 85, 125); font-size: 12pt;} "Library":#Library
-* "Export":#Export
-* "Preferences":#Preferences
+*{color:rgb(50, 85, 125); font-size : 11pt;} "LibraryLayout":#Library Layout
+* "Export Layout":#ExportLayout
+* "Preferences Layout":#PreferencesLayout
 
-Right clicking the main toolbar displays a context menu with the Ui Widgets list :
+h3(#Toolbar). Toolbar
 
-!resources/pictures/sIBL_GUI_ToolbarContextMenu.jpg(sIBL_GUI_ToolbarContextMenu)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_Toolbar.jpg(sIBL_GUI_Toolbar)!|
 
-It's possible to Store / Restore up to 5 custom layouts and recall them whenever needeed using the Layout Icon or associated Shortcuts:
+Interactions :
 
-!resources/pictures/sIBL_GUI_LayoutsContextMenu.jpg(sIBL_GUI_LayoutsContextMenu)!
+*Right clic* : raises a context menu with the Ui Widgets list :
 
-h3(#Library). Library
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_ToolbarContextMenu.jpg(sIBL_GUI_ToolbarContextMenu)!|
 
-The Library layout is where most of the Sets management is done. 
-This layout displays 4 components :
+*Central Widget icon* : Shows / hides the Database Browser component widget Ui.
+
+*Layouts icon* : Raises a context menu where the user can store / restore up to 5 custom layouts and recall them whenever needed :
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_LayoutsContextMenu.jpg(sIBL_GUI_LayoutsContextMenu)!|
+
+*Miscellaneous icon* : Raises a context menu with some links and miscellaneous functionalities :
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_MiscellaneousContextMenu.jpg(sIBL_GUI_MiscellaneousContextMenu)!|
+
+h3(#LibraryLayout). Library Layout
+
+The Library layout is where most of the sets management is done. 
+This layout is built around 4 components :
 
 *{color:rgb(50, 85, 125);} "*Collections Outliner*":#core.collectionsOutliner ( core.collectionsOutliner )
 * "*Database Browser*":#core.databaseBrowser ( core.databaseBrowser )
-* *Search Database* ( addons.searchDatabase )
-* *Gps Map* ( addons.gpsMap )
+* "*Search Database*":#addons.searchDatabase ( addons.searchDatabase )
+* "*Gps Map*":#addons.gpsMap ( addons.gpsMap )
 
-!resources/pictures/sIBL_GUI_SetsCentricLayout.jpg(sIBL_GUI_SetsCentricLayout)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_SetsCentricLayout.jpg(sIBL_GUI_SetsCentricLayout)!|
 
-h3(#Export). Export
+h3(#ExportLayout). Export Layout
 
-The Export layout is where the bridge between sIBL_GUI and the 3D Packages is created. 
-This layout displays 4 components :
+The Export layout is where the bridge between sIBL_GUI and the 3d packages is created. 
+This layout is built around 4 components :
 
 *{color:rgb(50, 85, 125);}  "*Templates Outliner*":#core.templatesOutliner ( core.templatesOutliner )
 * "*Database Browser*":#core.databaseBrowser ( core.databaseBrowser )
-* *Loader Script* ( addons.loaderScript )
-* *Loader Script Options* ( addons.loaderScriptOptions )
+* "*Loader Script*":#addons.loaderScript ( addons.loaderScript )
+* "*Loader Script Options*":#addons.loaderScriptOptions ( addons.loaderScriptOptions )
 
-An additional export related component is available by right clicking the main toolbar :
+An additional but extremely powerful export related component is available by right clicking the main toolbar :
 
-* *Rewiring Tool* ( addons.rewiringTool component )
+*{color:rgb(50, 85, 125);} "*Rewiring Tool*":#addons.rewiringTool ( addons.rewiringTool )
 
-!resources/pictures/sIBL_GUI_TemplatesCentricLayout.jpg(sIBL_GUI_TemplatesCentricLayout)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_TemplatesCentricLayout.jpg(sIBL_GUI_TemplatesCentricLayout)!|
 
-h3(#Preferences). Preferences
+h3(#PreferencesLayout). Preferences Layout
 
 The Preferences layout is where sIBL_GUI behavior is configured. 
-This layout displays 2 components :
+This layout is built around 2 components :
 
 *{color:rgb(50, 85, 125);} "*Components Manager*":#core.componentsManagerUi ( core.componentsManagerUi )
 * "*Preferences Manager*":#core.preferencesManager ( core.preferencesManager )
 
-!resources/pictures/sIBL_GUI_PreferencesCentricLayout.jpg(sIBL_GUI_PreferencesCentricLayout)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_PreferencesCentricLayout.jpg(sIBL_GUI_PreferencesCentricLayout)!|
 
 h2(#Components). Components
 
@@ -173,17 +223,18 @@ sIBL_GUI has currently 2 categories of components :
 
 Those 2 types are split into 3 main families :
 
-* *Core* ( Required components, not deactivable and not removable )
-* *Addons* ( Optional components, deactivable and removable )
-* *User* ( Optional components, deactivable and removable )
+* *Core* ( Factory required components, not deactivable and not removable )
+* *Addons* ( Factory optional components, deactivable and removable )
+* *User* ( User optional components, deactivable and removable )
 
-h3. Core Components
+h3(#Core). Core
 
-*{font-size: 11pt;}(#core.componentsManagerUi)Components Manager* ( core.componentsManagerUi )
+*{font-size : 12pt;}(#core.componentsManagerUi)Components Manager* ( core.componentsManagerUi )
 
-!resources/pictures/sIBL_GUI_ComponentsManager.jpg(sIBL_GUI_ComponentsManager)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_ComponentsManager.jpg(sIBL_GUI_ComponentsManager)!|
 
-The Components Manager component allows sIBL_GUI addons components activation / deactivation  ( Core components are required and not deactivable ). Selected components details are displayed in the bottom _Components Informations_ widget.
+The Components Manager component allows sIBL_GUI addons and user components activation / deactivation  ( Core components are required and not deactivable ). Selected components details are displayed in the bottom _Components Informations_ widget.
 
 Interactions :
 
@@ -194,11 +245,12 @@ Columns Descriptions :
 * *Components* : Components names ( Components are sorted by families ).
 * *Activated* : Components activations status.
 * *Categorie* : Components categories ( Default or Ui ).
-* *Rank* : Components ranks ( The lower the rank is, the higher component instantiation priority will be ).
+* *Rank* : Components ranks ( Components with a low rank will have a high instantiation priority ).
 
 Context Menu :
 
-!resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg(sIBL_GUI_ComponentsManagerContextMenu)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg(sIBL_GUI_ComponentsManagerContextMenu)!|
 
 * *Activate Component(s)* : Activates selected component(s).
 * *Dectivate Component(s)* : Deactivates selected component(s).
@@ -206,49 +258,58 @@ Context Menu :
 Addons Functionalities :
 * *Open Component(s) Location(s) ...* : Opens component(s) folder(s).
 
-*{font-size: 11pt;}(#core.preferencesManager)Preferences Manager* ( core.preferencesManager )
+h3=. ***
 
-!resources/pictures/sIBL_GUI_PreferencesManager.jpg(sIBL_GUI_PreferencesManager)!
+*{font-size : 12pt;}(#core.preferencesManager)Preferences Manager* ( core.preferencesManager )
 
-The Preferences Manager component is used to configure sIBL_GUI behavior. There are 2 pages where settings are adjustable :
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_PreferencesManager.jpg(sIBL_GUI_PreferencesManager)!|
+
+The Preferences Manager component is used to configure sIBL_GUI behavior. There are 2 pages where settings can be changed :
 
 * *General* : Overall sIBL_GUI settings.
 * *Others* : Components added settings.
 
 General Page :
 
-* *Verbose Level* : Adjust sIBL_GUI verbose level between different modes ( From the one verbosing the most to the less verbosing ) :
+* *Verbose Level* : Adjust sIBL_GUI verbose level between different modes ( Debug being the most verbosing, Critical the less ) :
 ** Debug
 ** Info
 ** Warning
 ** Error
 ** Critical
-* *Restore Geometry On Layout Change* : sIBL_GUI window size and position will also be restored when switching layouts.
+* *Restore Geometry On Layout Change* : sIBL_GUI window size and position will be restored when switching layouts.
 
 Others Page :
 
-Those settings are components dependent and will be described per related component.
+Those settings are components dependent and will be described related component.
 
-*{font-size: 11pt;}(#core.db)Db* ( core.db )
+h3=. ***
 
-The Db component is the heart of sIBL_GUI datas storage, it is responsible of the database manipulation methods providing read and write access.
+*{font-size : 12pt;}(#core.db)Db* ( core.db )
 
-*{font-size: 11pt;}(#core.databaseBrowser)Database Browser* ( core.databaseBrowser )
+The Db component is the heart of sIBL_GUI datas storage, it provides the database manipulation, read and write methods.
 
-!resources/pictures/sIBL_GUI_DatabaseBrowser.jpg(sIBL_GUI_DatabaseBrowser)!
+h3=. ***
 
-The Database Browser component is the central component where the Ibl sets are viewed and chosen for export.
+*{font-size : 12pt;}(#core.databaseBrowser)Database Browser* ( core.databaseBrowser )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_DatabaseBrowser.jpg(sIBL_GUI_DatabaseBrowser)!|
+
+The Database Browser component is the central component where Ibl sets are viewed and chosen for export. The component is tracking the Ibl sets files on the disk and reload them automatically when modified.
 
 Interactions :
 
 * *Right clic* : Displays a context menu described further.
-* *Drag'n'drop* : Drag'n'dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.
+* *Drag'n'drop* : Drag'n'dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change the selected sets collection.
 * *Hovering* : Hovering an Ibl Set raises a popup with informations about the focused set.
 * *Thumbnails Size Horizontal Slider* : Adjusts Ibl sets icons size.
 
 Context Menu :
 
-!resources/pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg(sIBL_GUI_DatabaseBrowserContextMenu)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg(sIBL_GUI_DatabaseBrowserContextMenu)!|
 
 * *Add Content ...* : Recursively adds chosen directory Ibl sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.
 * *Add Set ...* : Adds the selected Ibl sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.
@@ -256,16 +317,21 @@ Context Menu :
 * *Update Set(s) Location(s) ...* : Updates selected Ibl sets files paths.
 Addons Functionalities :
 * *Edit In sIBLedit ...* : Sends selected Ibl set to sIBLedit.
-* *Edit In Text Editor ...* : Edit selected Ibl sets with system or custom user defined text editor.
+* *Edit In Text Editor ...* : Edits selected Ibl sets with system or custom user defined text editor.
 * *Open Set(s) Location(s) ...* : Opens selected Ibl sets folders.
 
-*{font-size: 11pt;}(#core.collectionsOutliner)Collections Outliner* ( core.collectionsOutliner )
+h3=. ***
 
-!resources/pictures/sIBL_GUI_CollectionsOutliner.jpg(sIBL_GUI_CollectionsOutliner)!
+*{font-size : 12pt;}(#core.collectionsOutliner)Collections Outliner* ( core.collectionsOutliner )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_CollectionsOutliner.jpg(sIBL_GUI_CollectionsOutliner)!|
+
+The Collections Outliner component is where the Ibl sets are organized into collections for better management. There is a Default Collection where Ibl sets fall when they are added without a specific collection container.
 
 Interactions :
 
-* *Double clic* : Edit collection name or comment.
+* *Double clic* : Edits collection name or comment.
 * *Right clic* : Displays a context menu described further.
 * *Drag'n'drop* : Drag'n'dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.
 
@@ -277,36 +343,41 @@ Columns Descriptions :
 
 Context Menu :
 
-!resources/pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg(sIBL_GUI_CollectionsOutlinerContextMenu)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_CollectionsOutlinerContextMenu.jpg(sIBL_GUI_CollectionsOutlinerContextMenu)!|
 
-* *Add Content ...* : Adds a new collection then recursively adds chosen directory Ibl sets into the database assigning them to the new collection. 
+* *Add Content ...* : Adds a new collection, then recursively adds chosen directory Ibl sets into the database, assigning them to the new collection. 
 * *Add Collection ...* : Adds a new collection to the database.
 * *Remove Collection(s) ...* : Removes selected collections from the database ( Overall and Default Collections cannot be removed ).
 
 *Note*:
 
-While adding a new collection, a comment can be provided directly by using a comma separated name and comment.
+While adding a new collection, a comment can be directly provided by using a comma separated name and comment.
 
-!resources/pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg(sIBL_GUI_CollectionsOutlinerAddCollection)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_CollectionsOutlinerAddCollection.jpg(sIBL_GUI_CollectionsOutlinerAddCollection)!|
 
-*{font-size: 11pt;}(#core.templatesOutliner)Templates Outliner* ( core.templatesOutliner )
+h3=. ***
 
-!resources/pictures/sIBL_GUI_TemplatesOutliner.jpg(sIBL_GUI_TemplatesOutliner)!
+*{font-size : 12pt;}(#core.templatesOutliner)Templates Outliner* ( core.templatesOutliner )
 
-The Templates Outliner component is where templates are organised and reviewed. Selected templates details are displayed in the bottom _Templates Informations_ widget.
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_TemplatesOutliner.jpg(sIBL_GUI_TemplatesOutliner)!|
+
+The Templates Outliner component is where templates are organized and reviewed. Selected templates details are displayed in the bottom _Templates Informations_ widget. The component is tracking the templates files on the disk and reload them automatically when modified.
 
 Templates are sorted into 2 main categories :
 
 * *Factory* ( Templates from sIBL_GUI installation directory ).
 * *User* ( Templates not from sIBL_GUI installation directory ).
 
-In those categories templates are sorted by 3D Packages.
+In those categories, templates are sorted by 3d packages.
 
 Columns Descriptions :
 
 * *Templates* : Templates names.
 * *Release* : Templates versions numbers.
-* *Software Version* : 3D Packages compatible version.
+* *Software Version* : 3d packages compatible version.
 
 Interactions :
 
@@ -314,32 +385,39 @@ Interactions :
 
 Context Menu :
 
-!resources/pictures/sIBL_GUI_TemplatesOutlinerContextMenu.jpg(sIBL_GUI_TemplatesOutlinerContextMenu)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_TemplatesOutlinerContextMenu.jpg(sIBL_GUI_TemplatesOutlinerContextMenu)!|
 
-* *Add Template ...* : Adds the selected templates file into the database.
+* *Add Template ...* : Adds the selected templates file to the database.
 * *Remove Templates(s) ...* : Removes selected templates from the database.
-* *Import Default Templates* : sIBL_GUI will scan for templates into it's installation folder and the user preferences directory.
-* *Filter Templates Versions* : sIBL_GUI will filter the templates keeping the highest version of them.
-* *Display Help File(s) ...* : Display templates associated help files.
+* *Import Default Templates* : sIBL_GUI will scan for templates into it's installation folder and the user preferences directories.
+* *Filter Templates Versions* : sIBL_GUI will filter the templates keeping the highest version of multiple same templates.
+* *Display Help File(s) ...* : Displays templates associated help files.
 Addons Functionalities :
-* *Edit In Text Editor ...* : Edit selected templates with system or custom user defined text editor.
+* *Edit In Text Editor ...* : Edits selected templates with system or custom user defined text editor.
 * *Open Templates(s) Location(s) ...* : Opens selected templates folders.
 
-h3. Addons Components
+h3(#Addons). Addons
 
-*{font-size: 11pt;}(#addons.about)About* ( addons.about )
+*{font-size : 12pt;}(#addons.about)About* ( addons.about )
 
-!resources/pictures/sIBL_GUI_About.jpg(sIBL_GUI_About)!
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_About.jpg(sIBL_GUI_About)!|
 
-The About component displays the _About_ Window.
+The About component displays the _About_ window.
 
-*{font-size: 11pt;}(#addons.databaseBackup)Database Backup* ( addons.databaseBackup )
+h3=. ***
+
+*{font-size : 12pt;}(#addons.databaseBackup)Database Backup* ( addons.databaseBackup )
 
 The Database Backup component is a rotating backup component. Every sIBL_GUI startup the SQLite database is copied with a version number appended, the older version being the one with the highest number.
 
-*{font-size: 11pt;}(#addons.gpsMap)Gps Map* ( addons.gpsMap )
+h3=. ***
 
-!resources/pictures/sIBL_GUI_GpsMap.jpg(sIBL_GUI_GpsMap)!
+*{font-size : 12pt;}(#addons.gpsMap)Gps Map* ( addons.gpsMap )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_GpsMap.jpg(sIBL_GUI_GpsMap)!|
 
 The Gps Map component is embedding a Google Map into sIBL_GUI : Selecting some Ibl sets ( Sets with GEO coordinates ) in the Database Browser component will display their markers onto the Gps Map.
 
@@ -347,11 +425,196 @@ Interactions :
 
 * *Zoom In Push Button* : Zooms into the Gps Map.
 * *Zoom Out Push Button* : Zooms out of the Gps Map.
-* *Map Type Combo Box* : Switch the Gps Map style.
+* *Map Type Combo Box* : Switches the Gps Map style.
 ** Roadmap : This map type displays a normal street map.
 ** Satellite : This map type displays satellite images.
 ** Hybrid : This map type displays a transparent layer of major streets on satellite images.
 ** Terrain : This map type displays maps with physical features such as terrain and vegetation.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.loaderScript)Loader Script* ( addons.loaderScript )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_LoaderScript.jpg(sIBL_GUI_LoaderScript)!|
+
+The Loader Script component is providing the bridge between sIBL_GUI and the 3d packages. It parses the selected Ibl set, extracts datas from it, and feeds the selected template with those datas resulting in a loader script that can be executed by the 3d package.
+
+Interactions :
+
+* *Output Loader Script Push Button* : Outputs the loader script to the output folder.
+* *Send To Software Push Button* : Sends a command to the 3d package that will execute the loader script.
+* *Software Port Spin Box* : Communication port of the host running the target 3d package.
+* *Ip Adress Line Edit* : Ip address of the host running the target 3d package. 
+Addons Functionalities :
+* *Open Output Folder Push Button* : Opens the output folder.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.loaderScriptOptions)Loader Script Options* ( addons.loaderScriptOptions )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_LoaderScriptOptions.jpg(sIBL_GUI_LoaderScriptOptions)!|
+
+The Loader Script Options component allows the user to tweak the way the loader script will behave in the 3d package.
+Templates attributes are exposed in 2 pages where they can be adjusted :
+
+* *Common Attributes* : Common template attributes ( Refer to the current template help file for details about an attribute ).
+* *Additional Attributes* : Additional template attributes ( Refer to the current template help file for details about an attribute ).
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.locationsBrowser)Locations Browser* ( addons.locationsBrowser )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_LocationsBrowser.jpg(sIBL_GUI_LocationsBrowser)!|
+
+The Locations Browser component provides browsing capability to sIBL_GUI, adding folder browsing at various entry points in sIBL_GUI Ui. The browsing is done either by the Os default file browser or an user defined file browser.
+
+Default Supported File Browsers :
+
+* *Windows* :
+** Explorer
+* *Mac Os X* :
+** Finder
+* *Linux* :
+** Nautilus
+** Dolphin
+** Konqueror
+** Thunar
+
+Interactions :
+
+* *Custom File Browser Path Line Edit* : User defined file browser executable path.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.loggingWindow)Logging Window* ( addons.loggingWindow )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_LoggingWindow.jpg(sIBL_GUI_LoggingWindow)!|
+
+The Logging Window component is available by right clicking the main toolbar and displays sIBL_GUI verbose messages.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.onlineUpdater)Online Updater* ( addons.onlineUpdater )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_OnlineUpdater.jpg(sIBL_GUI_OnlineUpdater)!|
+
+The Online Updater component maintains sIBL_GUI and it's templates up to date by checking HDRLabs repository for new releases on startup.
+
+Interactions :
+
+* *Get sIBL_GUI Push Button* : Starts sIBL_GUI download.
+* *Get Lastest Templates* : Starts selected templates download.
+* *Open Repository* : Opens HDRLabs repository.
+
+When a download starts the _Download Manager_ window will open :
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_DownloadManager.jpg(sIBL_GUI_DownloadManager)!|
+
+The Online Updater component is configurable in the Preferences Manager component :
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_OnlineUpdaterPreferences.jpg(sIBL_GUI_OnlineUpdaterPreferences)!|
+
+Interactions :
+
+* *Check For New Releases Push Button* : Checks for new releases on HDRLabs repository.
+* *Check For New Releases On Startup Check Box* : sIBL_GUI will check for new releases on startup.
+* *Ignore Non Existing Templates Check Box* : sIBL_GUI will ignore non existing template when checking for new releases, meaning that if a template for a new 3d package is available, it will be skipped.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.rawEditingUtilities)Raw Editing Utilities* ( addons.rawEditingUtilities )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_RawEditingUtilities.jpg(sIBL_GUI_RawEditingUtilities)!|
+
+The Raw Editing Utilities component provides text editing capability to sIBL_GUI, adding text edition at various entry points in sIBL_GUI Ui. The text edition is done either by the Os default text editor or an user defined text editor.
+
+Default Supported Text Editors :
+
+* *Windows* :
+** Notepad
+* *Mac Os X* :
+** TextEdit
+* *Linux* :
+** Gedit
+** Kwrite
+** Nedit
+** Mousepad
+
+Interactions :
+
+* *Custom Text Editor Path Line Edit* : User defined Text Editor executable path.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.rewiringTool)Rewiring Tool* ( addons.rewiringTool )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_RewiringTool.jpg(sIBL_GUI_RewiringTool)!|
+
+The Rewiring Tool component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl set file to another file of that set or an arbitrary image. This widget is powerful because it's possible to dynamically generate IBL sets and arbitrary load whatever HDR you want and still benefit from sIBL_GUI one click lighting setup.
+
+Interactions :
+
+* *Combo Boxes* : The current image will be remapped to the chosen entry.
+* *Path Line Edits* : The current image will be remapped to the chosen custom image.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.searchDatabase)Search Database* ( addons.searchDatabase )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_SearchDatabase_A.jpg(sIBL_GUI_SearchDatabase_A)!|!resources/pictures/sIBL_GUI_SearchDatabase_B.jpg(sIBL_GUI_SearchDatabase_B)!|
+
+The Search Database component enables search in the database. There are 2 pages providing different search options :
+
+* *Search In Fields* : Searches in database fields.
+* *Search In Shot Time* : Searches in shot time range.
+
+Interactions :
+
+Search In Fields Page :
+* *Search Database Combo Box* : Field against which the search will be executed. There are 5 different fields types available :
+** Names
+** Authors
+** Links
+** Locations
+** Comments
+* *Search Database Line Edit* : The string entered will be matched in the selected database field. Regular expressions are accepted. An autocompletion list will raise once characters starts being typed.
+* *Case Insensitive Matching Check Box* : The string matching is done case insensitively.
+Search In Shot Time :
+* *From Time Edit* : Time range search start.
+* *To Time Edit* : Time range search end.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.setsScanner)Sets Scanner* ( addons.setsScanner )
+
+The Sets Scanner component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl sets parent folder. This behavior can be stopped by deactivating the component.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.sIBLeditUtilities)sIBLedit Utilities* ( addons.sIBLeditUtilities )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_sIBLeditUtilities.jpg(sIBL_GUI_sIBLeditUtilities)!|
+
+The sIBLedit Utilities component provides a bridge between sIBL_GUI and sIBLedit.
+
+Interactions :
+
+* *sIBLedit Executable Path Line Edit* : sIBLedit executable path.
+
+h2(#Api). Api
+
+"sIBL_GUI - Api":http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html
 
 h2(#ChangeLog). Change Log
 
