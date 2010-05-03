@@ -1,9 +1,9 @@
 [Template]
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.htm | String | Help File
-Release = @Release | 0.9.9 | String | Template Release
-Date = @Date | 9 April 2010 | String | Date
-Author = @Author | Dschaga / Jeff H | String | Author
+Release = @Release | 1.0.0 | String | Template Release
+Date = @Date | 4 May 2010 | String | Date
+Author = @Author | Dschaga / Jeff Hanna / Thomas Mansencal | String | Author
 Email = @Email | christian@cgtechniques.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
@@ -18,21 +18,8 @@ Sun|SUNv = @SUNv
 Sun|SUNcolor = @SUNcolor
 Sun|SUNmulti = @SUNmulti
 Background|BGfile = @BGfile
-Background|BGmap = @BGmap
-Background|BGu = @BGu
-Background|BGv = @BGv
 Enviroment|EVfile = @EVfile
-Enviroment|EVmap = @EVmap
-Enviroment|EVmulti = @EVmulti
-Enviroment|EVgamma = @EVgamma
-Enviroment|EVu = @EVu
-Enviroment|EVv = @EVv
 Reflection|REFfile = @REFfile
-Reflection|REFmap = @REFmap
-Reflection|REFmulti = @REFmulti
-Reflection|REFgamma = @REFgamma
-Reflection|REFu = @REFu
-Reflection|REFv = @REFv
 
 [Common Attributes]
 createBackground = @createBackground | 1 | Boolean | Create Background
@@ -43,7 +30,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
 north = @north | 0 | Float | North
-sundistance = @sundistance | 100 | Float | Sun Distance
+sunDistance = @sunDistance | 100 | Float | Sun Distance
 
 [Remote Connection]
 ConnectionType = @ConnectionType | Win32 | String
@@ -57,192 +44,87 @@ Author : @Author
 EMail : @Email
 Homepage : @Url
 Template Last Modified : @Date
-sIBL_Framework
+sIBL_GUI
 */
+
+struct sIBL_datas ( backgroundFilePath, lightingFilePath, reflectionFilePath, sunU, sunV, sunColor, sunMultiplier )
+struct sIBL_options ( createBackground, createLighting, createReflection, createSun )
+	
+global IBL_SET_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti
+global LOADER_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun
+
+fn sIBL_3dsmax_MR_createSkyLight =
 (
-	local SUNx = @SUNu
-	local SUNy = @SUNv
-	local SUNcolor = "@SUNcolor"
-	local SUNmulti = @SUNmulti
-	local BGfile = "@BGfile"
-	local BGmap = @BGmap
-	local BGu = @BGu as float -- convert to float just in case the sIBL file stored the value as an int.
-	local BGv = @BGv as float -- convert to float just in case the sIBL file stored the value as an int.
-	local EVfile = "@EVfile"
-	local EVmap = @EVmap
-	local EVmulti = @EVmulti
-	local EVgamma = @EVgamma
-	local EVu = @EVu as float -- convert to float just in case the sIBL file stored the value as an int.
-	local EVv = @EVv as float -- convert to float just in case the sIBL file stored the value as an int.
-	local REFfile = "@REFfile"
-	local REFmap = @REFmap
-	local REFmulti = @REFmulti
-	local REFgamma = @REFgamma
-	local REFu = @REFu as float -- convert to float just in case the sIBL file stored the value as an int.
-	local REFv = @REFv as float -- convert to float just in case the sIBL file stored the value as an int.
-	local sc = @sundistance
-	local n = @north
+	iblSkylight = Skylight()
+	iblSkylight.sky_mode = 0
+	iblSkylight.name = "sIBL_SkyLight"
+)
 
-	local createBackground = "@createBackground" as integer
-	local createLighting = "@createLighting" as integer
-	local createReflection = "@createReflection" as integer
-	local createSun = "@createSun" as integer
+fn sIBL_3dsmax_MR_activateMentalRay =
+(
+	renderers.current = mental_ray_renderer()
+)
 
-	local a = bitmaptexture()
-	local b = bitmaptexture()
-	local c = bitmaptexture()
+fn sIBL_3dsmax_MR_getEnvironmentBranch branchName filePath =
+(
+	texture = Bitmaptexture()
+	texture.filename = filePath
+	texture.coordinates.mappingtype = 1
+	
+	texture.name = branchName + "_BitmapTexture"
+	
+	return texture
+)
 
-	local delObjsList = #()
-
-
-	fn delOldObjs &objsList =
+fn sIBL_3dsmax_MR_setEnvironment createBackground createLighting createReflection backgroundFilePath lightingFilePath reflectionFilePath =
+(
+	local rayswitchShader = mr_Raytype_Switcher__advanced()
+	environmentMap = rayswitchShader
+	
+	if( createBackground == 1 ) then
 	(
-		-- <ARRAY> objsList	Array of nodes to delete. Passed in by reference
-		-- TO DO: Should assert that objsList is an array class on Max 2010 or later.
-
-		for i = objsList.count to 1 by -1 do
-		(
-			if ( not (isValidNode objsList[i])) then
-			(
-				deleteItem objsList i	-- since delete() is a mapped method it is more
-			)									-- efficient to build up an array of objects to
-		)										-- delete and call the method once.
-
-		delete objsList
+		local backgroundBranch = sIBL_3dsmax_MR_getEnvironmentBranch "sIBL_Background" backgroundFilePath
+		rayswitchShader.eye = backgroundBranch
 	)
-
-	fn setHDRImage bmp bmpFilename bmpName bmpMappingType bmpUOffset bmpVOffset envMap:false =
+	
+	if( createLighting == 1 ) then
 	(
-		-- <bitmapTexture> bmp	The texture to be applied
-		-- <str>bmpFilename		The path to where bmp resides on the local machine
-		-- <str>bmpName			A friendly display name for bmp
-		-- <int>bmpMappingType	An enumeration for the type of mapping type to use for bmap
-		-- <float>bmpUOffset		The U tiling offset for bmp
-		-- <float>bmpVOffset		The V tiling offset for bmp
-		-- <bool>envMap			OPTIONAL: Should bmp be set as the environment map of the scene
-
-		-- TODO: Should probably do a doesFileExist() on bmpFilename to ensure the texture is a valid file.
-
-		if (bmp == undefined) then
-		(
-			bmp = Bitmaptexture()
-
-			if (envMap) then
-			(
-				environmentMap = bmp
-			)
-		)
-
-		bmp.filename = bmpFilename
-		bmp.name = bmpName
-		bmp.coordinates.mappingtype = 1
-
-		-- here we define the projection type
-		-- 0 - Spherical; 1 - Cylindrical; 2 - Shrink-Wrap; 3 - Screen
-		bmp.coordinates.mapping = bmpMappingType - 1
-
-		-- uv mapping writing
-		bmp.coordinates.U_Offset = bmpUOffset + n
-		bmp.coordinates.V_Offset = bmpVOffset
-		bmp.coordinates.U_Tiling = -1.0
+		local lightingBranch = sIBL_3dsmax_MR_getEnvironmentBranch "sIBL_Lighting" lightingFilePath
+		rayswitchShader.finalgather = lightingBranch
 	)
-
-	--------------------------------------
-	-- FIRST ..... CLEAN THE SCENE
-	--------------------------------------
-	-- ev. daylight
-	append delObjsList $Daylight01
-
-	-- ev. skylight
-	append delObjsList $sIBL_skylight
-
-
-	--sIBL SUN
-	append delObjsList $sIBL_Sun
-
-	-- Old floorplane
-	append delObjsList $Floor_matte
-
-	delOldObjs &delObjsList
-
-	-- BGmap
-	environmentMap = undefined
-
-	-----------------------------------------
-	--	THE SUN
-	-----------------------------------------
-	-- Double check createSun and SUNcolor. Some sIBL sets
-	-- (Mono Lake C, Studio Backlot, probably others) have
-	-- createSun set to 1 but SUN color set to "-1". This
-	-- this causes the 'cc = filterstring SUN color ","' to create
-	-- an array of a single "-1" index, which in turn causes the
-	--'sIBL_sun = Target...' line to break and crash the script.
-
-	if ((createSun == 1) and ((striCmp SUNcolor "-1") != 0)) then
+	
+	if( createReflection == 1 ) then
 	(
-		SUNx = SUNx + n + 0.75
-		cc = filterstring SUNcolor ","
-
-		sZ = sc * (sin((0.5 - SUNy) * 180))
-		dR = cos((0.5 - SUNy) * 180)
-		sX = sc * ((cos(SUNx * 360)) * dR)
-		sY = sc * ((sin(SUNx * 360)) * dR) * -1
-		sIBL_sun = TargetDirectionallight name:"sIBL_Sun" rgb:(color (cc[1] as float) (cc[2] as float) (cc[3] as float)) castShadows:on shadowColor:(color 0 0 0) multiplier:(SUNmulti as float) contrast:0 softenDiffuseEdge:0 nearAttenStart:0 nearAttenEnd:40 farAttenStart:80 farAttenEnd:200 decayRadius:40 atmosOpacity:100 atmosColorAmt:100 shadowMultiplier:1 hotSpot:43 falloff:sc aspect:1 pos:[(sx as float),(sy as float),(sz as float)] target:(Targetobject transform:(matrix3 [1,0,0] [0,1,0] [0,0,1] [0,0,0]))
+		local reflectionBranch = sIBL_3dsmax_MR_getEnvironmentBranch "sIBL_Reflection" reflectionFilePath
+		rayswitchShader.environment = reflectionBranch
+		rayswitchShader.reflection = reflectionBranch
+		rayswitchShader.refraction = reflectionBranch
 	)
+	
+	rayswitchShader.name = "sIBL_RaySwitch"
+)
 
-	--------------------------------------------------------------
-	-- BACKGROUND image
-	-- "a" is a objectholder for the environment map,
-	-- this object have additional variables which i can use with a.variable
-	--------------------------------------------------------------
-	if (createBackground == 1) then
+fn sIBL_3dsmax_MR_activateLinearWorkflow =
+(
+	local gammaGainShader = Utility_Gamma___Gain__mi()
+	renderers.current.Camera_Lens_Shader = gammaGainShader
+	gammaGainShader.reverse = False
+	gammaGainShader.name = "sIBL_GammaGain"
+)
+
+fn sIBL_3dsmax_MR_setup  =
+(
+	if( mr_Raytype_Switcher__advanced != undefined )then
 	(
-		setHDRImage a BGFile "sIBL-BGmap" BGmap BGu BGv envMap:true
+		sIBL_3dsmax_MR_activateMentalRay()
+		sIBL_3dsmax_MR_createSkyLight()
+		sIBL_3dsmax_MR_setEnvironment LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection IBL_SET_DATAS.backgroundFilePath IBL_SET_DATAS.lightingFilePath IBL_SET_DATAS.reflectionFilePath
+		sIBL_3dsmax_MR_activateLinearWorkflow()
 	)
-
-	-------------------------------------
-	-- read parameters for the ENViromentfile:
-	-------------------------------------
-	if (createLighting == 1) then
+	else
 	(
-		setHDRImage b EVFile "sIBL-EVmap" EVmap EVu EVv
-	)
-
-	------------------------------------------
-	-- read parameters fot the REFlectionfile:
-	------------------------------------------
-	if (createReflection == 1) then
-	(
-		setHDRImage c REFfile "sIBL-REFmap" REFmap REFu REFv
-	)
-
-	try
-	(
-		local mr_env_shader = mr_Raytype_Switcher__advanced()
-	) catch()
-
-	if (mr_env_shader != undefined) then
-	(
-		sceneExposureControl.exposurecontrol = mr_photographic_exposure_control()
-		SceneExposureControl.exposureControl.preset = 4
-		SceneExposureControl.exposureControl.physical_scale_mode = 1
-		SceneExposureControl.exposureControl.physical_scale = 80000
-		environmentMap = mr_env_shader
-
-		mr_env_shader.eye = a -- bg
-
-		if ((b != undefined) AND (createLighting == 1)) then
-		(
-			mr_env_shader.finalgather = b  --env
-		)
-
-		if ((c != undefined) AND (createReflection == 1)) then
-		(
-			mr_env_shader.environment = c --ref
-		)
-
-		Skylight name:"sIBL_Skylight" sky_mode:0 pos:[0,0,0]
-	) else (
-		messageBox "Could not create the MentalRay environment shader\nEnsure the MR production shaders are available." title:"sIBL MR ERROR"
+		messageBox "sIBL_GUI | Mental Ray Productions Shaders Are Not Available !" title:"sIBL_GUI Error"
 	)
 )
+
+sIBL_3dsmax_MR_setup()
