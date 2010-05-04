@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.htm | String | Help File
 Release = @Release | 1.7.2 | String | Template Release
-Date = @Date | 29 April 2010 | String | Date
+Date = @Date | 4 May 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -61,7 +61,7 @@ DefaultPort = @DefaultPort | 2048 | Integer | Default Port
 // EMail : @Email
 // Homepage : @Url
 // Template Last Modified : @Date
-// sIBL_Framework
+// sIBL_GUI
 string $backgroundFilePath = "@BGfile";
 int $backgroundWidth = @BGheight*2;
 string $lightingFilePath = "@EVfile";
@@ -74,8 +74,8 @@ float $sunU = @SUNu;
 float $sunV = @SUNv;
 float $sunColor[] = {@SUNcolor};
 float $sunMultiplier = @SUNmulti;
-float $Height = @Height;
-float $North = @North;
+float $height = @Height;
+float $north = @North;
 string $dynamicLights = "@dynamicLights";
 int $createBackground = @createBackground;
 int $createLighting = @createLighting;
@@ -106,8 +106,8 @@ sIBL_Maya_MR_setup($backgroundFilePath,
 		$sunV,
 		$sunColor,
 		$sunMultiplier,
-		$Height,
-		$North,
+		$height,
+		$north,
 		$dynamicLights,
 		$createBackground,
 		$createLighting,
@@ -138,8 +138,8 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 			float $sunV,
 			float $sunColor[],
 			float $sunMultiplier,
-			float $Height,
-			float $North,
+			float $height,
+			float $north,
 			string $dynamicLights,
 			int $createBackground,
 			int $createLighting,

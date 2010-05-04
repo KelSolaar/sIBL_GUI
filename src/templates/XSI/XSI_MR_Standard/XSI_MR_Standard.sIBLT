@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.htm | String | Help File
 Release = @Release | 1.6.0 | String | Template Release
-Date = @Date | 29 April 2010 | String | Date
+Date = @Date | 4 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -26,7 +26,7 @@ Sun|SUNcolor = @SUNcolor
 Sun|SUNmulti = @SUNmulti
 Header|Height = @Height
 Header|North = @North
-Lights|Dynamilights = @dynamicLights
+Lights|DynamicLights = @dynamicLights
 
 [Common Attributes]
 createBackground = @createBackground | 1 | Boolean | Create / Update Background
@@ -60,7 +60,7 @@ DefaultPort = @DefaultPort | 12288 | Integer | Default Port
 // EMail : @Email
 // Homepage : @Url
 // Template Last Modified : @Date
-// sIBL_Framework
+// sIBL_GUI
 var backgroundFilePath = "@BGfile";
 var lightingFilePath = "@EVfile";
 var lightingMultiplier = @EVmulti;
@@ -72,8 +72,8 @@ var sunU = @SUNu;
 var sunV = @SUNv;
 var sunColor = [@SUNcolor];
 var sunMultiplier = @SUNmulti;
-var Height = @Height;
-var North = @North;
+var height = @Height;
+var north = @North;
 var dynamicLights = "@dynamicLights";
 var createBackground = @createBackground;
 var createLighting = @createLighting;
@@ -103,8 +103,8 @@ sIBL_XSI_MR_setup(backgroundFilePath,
 		sunV,
 		sunColor,
 		sunMultiplier,
-		Height,
-		North,
+		height,
+		north,
 		dynamicLights,
 		createBackground,
 		createLighting,
@@ -134,8 +134,8 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 			sunV,
 			sunColor,
 			sunMultiplier,
-			Height,
-			North,
+			height,
+			north,
 			dynamicLights,
 			createBackground,
 			createLighting,
