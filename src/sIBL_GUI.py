@@ -71,6 +71,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.io as io
 import foundations.common
+import ui.common
 import ui.widgets.messageBox as messageBox
 from ui.widgets.active_QLabel import Active_QLabel
 from ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
@@ -337,6 +338,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		# Visual Style Initialisation.
 		self.setVisualStyle()
+		ui.common.setWindowDefaultIcon( self )
 
 		# Setting Window Title And Toolbar.
 		self.setWindowTitle( "{0} - {1}".format( Constants.applicationName, Constants.releaseVersion ) )
@@ -1292,6 +1294,7 @@ def sIBL_GUI_start():
 		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
 	except :
 		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) )
+		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	try :
 		RuntimeConstants.loggingFileHandler = logging.FileHandler( RuntimeConstants.loggingFile )

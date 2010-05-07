@@ -56,7 +56,10 @@
 #***	External Imports
 #***********************************************************************************************
 import logging
+import os
+import platform
 from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -64,6 +67,7 @@ from PyQt4.QtCore import *
 import foundations.core as core
 import foundations.exceptions
 from globals.constants import Constants
+from globals.uiConstants import UiConstants
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -73,6 +77,21 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+@core.executionTrace
+def setWindowDefaultIcon( window ):
+	'''
+	This Method Sets The Application Icon To The Provided Window.
+
+	@param window: Window. ( QWidget )	
+	'''
+
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
+		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationWindowsIcon ) ) )
+	elif platform.system() == "Darwin" :
+		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationDarwinIcon ) ) )
+	elif platform.system() == "Linux":
+		pass
+
 @core.executionTrace
 def decodeMimeDatas( byteArray ):
 	'''

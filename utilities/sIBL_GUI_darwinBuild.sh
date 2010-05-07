@@ -16,6 +16,7 @@ cp  ../../src/ui/Windows_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/u
 cp  ../../src/ui/Darwin_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Linux_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/resources
+cp  ../../src/resources/Icon_Light_512.icns ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Central_Widget.png ./dist/sIBL_GUI.app/Contents/Resources/resources

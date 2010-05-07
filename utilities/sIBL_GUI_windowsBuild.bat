@@ -17,6 +17,7 @@ xcopy /c /y "Y:\sIBL_GUI\src\ui\sIBL_GUI_Layouts.rc" "Y:\sIBL_GUI\releases\Windo
 xcopy /c /y "Y:\sIBL_GUI\src\ui\Windows_styleSheet.qss" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Y:\sIBL_GUI\src\ui\Darwin_styleSheet.qss" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Y:\sIBL_GUI\src\ui\Linux_styleSheet.qss" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
+xcopy /c /y "Y:\sIBL_GUI\src\resources\Icon_Light_48.ico" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_SpashScreen.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\sIBL_GUI_Logo.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Y:\sIBL_GUI\src\resources\Central_Widget.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"

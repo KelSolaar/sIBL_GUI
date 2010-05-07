@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.3 - Alpha
 
+* Added application icon.
 * Added documentation help file.
 * Added Softimage 2011 Template.
 * Improved startup time.

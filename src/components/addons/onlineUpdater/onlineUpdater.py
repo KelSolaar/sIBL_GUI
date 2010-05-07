@@ -72,6 +72,7 @@ import dbUtilities.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parser import Parser
@@ -155,6 +156,7 @@ class DownloadManager( QObject ):
 			sys.path.remove( "." )
 
 		self.initializeUi()
+
 		self._ui.show()
 
 	#***************************************************************************************
@@ -590,6 +592,8 @@ class DownloadManager( QObject ):
 		This Method Initializes The Widget Ui.
 		'''
 
+		ui.common.setWindowDefaultIcon( self.ui )
+
 		self._ui.Download_progressBar.setValue( 0 )
 		self._ui.Download_progressBar.hide()
 		self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
@@ -748,6 +752,7 @@ class RemoteUpdater( object ):
 			sys.path.remove( "." )
 
 		self.initializeUi()
+
 		self._ui.show()
 
 	#***************************************************************************************
@@ -1269,6 +1274,8 @@ class RemoteUpdater( object ):
 		'''
 		This Method Initializes The Remote_Updater Widget Ui.
 		'''
+
+		ui.common.setWindowDefaultIcon( self.ui )
 
 		LOGGER.debug( "> Initializing '{0}' Ui.".format( self.__class__.__name__ ) )
 

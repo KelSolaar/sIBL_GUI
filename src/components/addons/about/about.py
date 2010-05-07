@@ -66,6 +66,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
 
@@ -443,6 +444,8 @@ class About( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
+		ui.common.setWindowDefaultIcon( self.ui )
+
 		aboutMessage = ABOUT_MESSAGE.format( os.path.join( self._uiResources, self._uiLogoIcon ),
 					Constants.releaseVersion.replace( ".", " . " ),
 					os.path.join( self._uiResources, self._uiGpl3Icon )
@@ -451,7 +454,6 @@ class About( UiComponent ):
 		self.ui.About_label.setText( aboutMessage )
 
 		self.ui.show()
-		self.ui.raise_()
 
 #***********************************************************************************************
 #***	Python End
