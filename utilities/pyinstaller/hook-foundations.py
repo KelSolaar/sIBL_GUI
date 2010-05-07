@@ -1,0 +1,1 @@
+hiddenimports = ["foundations.strings", "foundations.pkzip", "ui.widgets.variable_QPushButton", "sqlalchemy", "sqlalchemy.orm", "sqlalchemy.ext", "sqlalchemy.ext.declarative", "PyQt4.QtNetwork", "PyQt4.QtWebKit", "win32com.client"]
