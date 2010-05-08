@@ -45,6 +45,22 @@ cp -f ./support/qt.conf ./dist/sIBL_GUI.app/Contents/Resources/
 cp -rf ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
 rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/3dsMax
 rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/XSI
+rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/Softimage
+
+#! Maya_MR_Standard Textile Template Documentation Removal.
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
+
+#! Maya_RfM_Standard Textile Template Documentation Removal.
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
+
+#! Maya_Turtle_Standard Textile Template Documentation Removal.
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_Turtle_Standard/help/Maya_Turtle_Standard Template Manual"
+
+#! Maya_VRay_Dome_Light Textile Template Documentation Removal.
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
+
+#! Maya_VRay_Standard Textile Template Documentation Removal.
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
 
 #! sIBL_GUI Cleanup.
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .pyc

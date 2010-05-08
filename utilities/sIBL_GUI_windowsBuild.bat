@@ -41,34 +41,40 @@ xcopy /c /y "Y:\sIBL_GUI\src\resources\Preferences_Active.png" "Y:\sIBL_GUI\rele
 xcopy /c /y "Y:\sIBL_GUI\src\resources\Toolbar.png" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\templates" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates"
 xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\components" "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\components"
-rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\Help" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Help\"
-rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\Templates" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Templates"
-rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\releases\Windows\Utilities\PyQt4" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\PyQt4"
-rem // xcopy /c /y "Y:\sIBL_GUI\src\releases\Windows\Utilities\qt.conf" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\"
-rem // xcopy /c /y "Y:\sIBL_GUI\src\Resources\Earth_Map.jpg" "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\Resources\"
 
-rem // Upx.
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\sIBL_GUI.exe"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\sIBL_Framework.exe"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\w9xpopen.exe"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\python26.dll"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\pythoncom26.dll"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\pywintypes26.dll"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\QtCore4.dll"
-rem // upx "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI\QtGui4.dll"
+rem \\ Templates Textile Files Cleanup.
+rem \\ XSI_MR_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\XSI\XSI_MR_Standard\help\XSI_MR_Standard Template Manual"
+
+rem \\ Softimage_MR_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Softimage\Softimage_MR_Standard\help\Softimage_MR_Standard Template Manual"
+
+rem \\ Maya_MR_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_MR_Standard\help\Maya_MR_Standard Template Manual"
+
+rem \\ Maya_RfM_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_RfM_Standard\help\Maya_RfM_Standard Template Manual"
+
+rem \\ Maya_Turtle_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_Turtle_Standard\help\Maya_Turtle_Standard Template Manual"
+
+rem \\ Maya_VRay_Dome_Light Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_VRay_Dome_Light\help\Maya_VRay_Dome_Light Template Manual"
+
+rem \\ Maya_VRay_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_VRay_Standard\help\Maya_VRay_Standard Template Manual"
+
+rem \\ 3dsMax_MR_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_MR_Standard\help\3dsMax_MR_Standard Template Manual"
+
+rem \\ 3dsMax_Scanline_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_Scanline_Standard\help\3dsMax_Scanline_Standard Template Manual"
+
+rem \\ 3dsMax_VRay_Standard Textile Template Documentation Removal.
+del "Y:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_VRay_Standard\help\3dsMax_VRay_Standard Template Manual"
 
 rem // Windows Release .DS_Store / .pyc Cleanup.
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .pyc
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .pyo
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI .DS_Store
 python "Y:\sIBL_GUI\utilities\sIBL_GUI_recursiveRemove.py" Y:\sIBL_GUI\releases\Windows\sIBL_GUI Thumbs.db
-
-rem // Windows XSI Release.
-rem // rmdir /S /Q "Y:\sIBL_GUI_For_XSI\Addons\sIBL_GUI_For_XSI\Application\Plugins\sIBL_GUI_Windows\"
-rem // xcopy /e /c /i /h /k /y "Y:\sIBL_GUI\src\releases\Windows\sIBL_GUI" "Y:\sIBL_GUI_For_XSI\Addons\sIBL_GUI_For_XSI\Application\Plugins\sIBL_GUI_Windows\"
-rem // rmdir /S /Q "Y:\sIBL_GUI_For_XSI\Addons\sIBL_GUI_For_XSI\Application\Plugins\sIBL_GUI_Windows\Templates\3ds Max"
-rem // rmdir /S /Q "Y:\sIBL_GUI_For_XSI\Addons\sIBL_GUI_For_XSI\Application\Plugins\sIBL_GUI_Windows\Templates\Maya"
-
-rem // Windows XSI Release .DS_Store Cleanup.
-rem // python "Y:\sIBL_GUI\src\utilities\KSL_RecursiveRemove.py" Y:\sIBL_GUI_For_XSI .DS_Store
-rem // python "Y:\sIBL_GUI\src\utilities\KSL_RecursiveRemove.py" Y:\sIBL_GUI_For_XSI Thumbs.db
