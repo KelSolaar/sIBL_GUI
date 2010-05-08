@@ -11,7 +11,7 @@ h2. Table Of Content
 
 h2(#Introduction). Introduction
 
-Maya VRay Dome Light is a sIBL_GUI Template for Maya and VRay starting from 2K versions. It provides a bridge beetween Maya, VRay and Smart IBL.
+Maya VRay Dome Light is a sIBL_GUI Template for Maya and VRay starting from 2K versions. It provides a bridge between Maya, VRay and Smart IBL.
 It creates a VRay Dome Light and connects the Lighting Texture to it so the Lighting is provided by the Light and not the Environment. 
 There is an Helper Script with everything you need to use sIBL_GUI smoothly with Maya here : "sIBL_GUI For Maya - Helper Script":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1223936394/2#2
 

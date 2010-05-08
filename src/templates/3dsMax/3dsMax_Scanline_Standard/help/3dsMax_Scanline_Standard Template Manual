@@ -11,7 +11,7 @@ h2. Table Of Content
 
 h2(#Introduction). Introduction
 
-3dsMax Scanline Standard is a sIBL_GUI Template for 3dsMax and Scanline Renderer. It provides a bridge beetween 3dsMax, Scanline Renderer and Smart IBL. 
+3dsMax Scanline Standard is a sIBL_GUI Template for 3dsMax and Scanline Renderer. It provides a bridge between 3dsMax, Scanline Renderer and Smart IBL. 
 There is an Helper Script with everything you need to use sIBL_GUI smoothly with 3dsMax here : "sIBL_GUI For 3dsMax - Helper Script":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1223936394/2#2
 
 h2(#Options). Options

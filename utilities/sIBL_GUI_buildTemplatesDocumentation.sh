@@ -31,3 +31,6 @@ python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_G
 
 #! 3dsMax_Scanline_Standard Template Documentation Building.
 python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_Scanline_Standard/help/3dsMax_Scanline_Standard Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_Scanline_Standard/help/3dsMax_Scanline_Standard Template Manual.html"  "3dsMax Scanline Standard - Template - Manual - Help File"
+
+#! 3dsMax_VRay_Standard Template Documentation Building.
+python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_VRay_Standard/help/3dsMax_VRay_Standard Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_VRay_Standard/help/3dsMax_VRay_Standard Template Manual.html"  "3dsMax VRay Standard - Template - Manual - Help File"

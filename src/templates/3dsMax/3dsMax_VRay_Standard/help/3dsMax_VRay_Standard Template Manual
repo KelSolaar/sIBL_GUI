@@ -1,4 +1,4 @@
-h1=. 3dsMax MR Standard - Template
+h1=. 3dsMax VRay Standard - Template
 
 h1=. Manual - Help File
 
@@ -11,7 +11,7 @@ h2. Table Of Content
 
 h2(#Introduction). Introduction
 
-3dsMax MR Standard is a sIBL_GUI Template for 3dsMax and Mental Ray. It provides a bridge between 3dsMax, Mental Ray and Smart IBL. 
+3dsMax VRay Standard is a sIBL_GUI Template for 3dsMax and VRay. It provides a bridge between 3dsMax, VRay and Smart IBL. 
 There is an Helper Script with everything you need to use sIBL_GUI smoothly with 3dsMax here : "sIBL_GUI For 3dsMax - Helper Script":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1223936394/2#2
 
 h2(#Options). Options
@@ -25,12 +25,6 @@ h3. Common Attributes
 * *Create Sun* : Create the light used as Sun.
 
 h3. Additional Attributes
-
-* *Create Ground* : A Plane is added to the Scene.
-* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Activate Linear Workflow* : Connect a Utility_Gamma___Gain__mi shader to the current Render Settings Lens Shader slot.
-* *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
-* *Hide Lights* : Hides all current Scene lights.
 
 h2(#ChangeLog). Change Log
 

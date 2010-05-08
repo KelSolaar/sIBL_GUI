@@ -11,7 +11,7 @@ h2. Table Of Content
 
 h2(#Introduction). Introduction
 
-XSI MR Standard is a sIBL_GUI Template for XSI and Mental Ray starting from 7.X to 2010 versions. It provides a bridge beetween XSI, Mental Ray and Smart IBL. 
+XSI MR Standard is a sIBL_GUI Template for XSI and Mental Ray starting from 7.X to 2010 versions. It provides a bridge between XSI, Mental Ray and Smart IBL. 
 There is an XSI Addon with everything needed to use sIBL_GUI smoothly with XSI here : "sIBL_GUI For XSI":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1221392511
 
 h2(#Options). Options
