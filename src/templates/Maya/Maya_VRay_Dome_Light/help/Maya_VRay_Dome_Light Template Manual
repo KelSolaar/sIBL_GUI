@@ -1,0 +1,58 @@
+h1=. Maya VRay Dome Light - Template
+
+h1=. Manual - Help File
+
+h2. Table Of Content
+
+*{color:rgb(50, 85, 125); font-size : 11pt;} "Introduction":#Introduction
+* "Options":#Options
+* "Change Log":#ChangeLog
+* "About":#About
+
+h2(#Introduction). Introduction
+
+Maya VRay Dome Light is a sIBL_GUI Template for Maya and VRay starting from 2K versions. It provides a bridge beetween Maya, VRay and Smart IBL.
+It creates a VRay Dome Light and connects the Lighting Texture to it so the Lighting is provided by the Light and not the Environment. 
+There is an Helper Script with everything you need to use sIBL_GUI smoothly with Maya here : "sIBL_GUI For Maya - Helper Script":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1223936394/2#2
+
+h2(#Options). Options
+
+h3. Common Attributes
+
+* *Create Lights* : Create the sIBL Dynamics Lights.
+* *Create Background* : Create the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create Reflection* : Create the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create Lighting* : Create the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create Sun* : Create the light used as Sun.
+
+h3. Additional Attributes
+
+* *Create Ground* : A Plane is added to the Scene.
+* *Hide Lights* : Hides all current Scene lights.
+* *Activate Linear Workflow* : Set the Output Gamma to 2.2.
+* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
+* *Feedback Radius* : Sets the Feedback radius in Maya units.
+
+h3. Scene Components
+
+h4. sIBL_Controls / [ Smart IBL Controls ]
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_Controls_Attributes.jpg(sIBL_Controls_Attributes)!|
+
+There are several Controls Attributes on the sIBL_Controls Annotation available in the Channel Box.
+
+* Render Togglers : 
+** Activate / Deactivate the different Smart IBL Components.
+** ==* ==CC : Gamma / Gain Controls of the different Smart IBL Components.
+
+h2(#ChangeLog). Change Log
+
+<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Softwares/Maya/Helper%20Script/Change%20Log/Change%20Log.html">sIBL_GUI For Maya - Change Log</a></p>
+
+h2(#About). About
+
+sIBL_GUI by Thomas Mansencal - 2008 - 2010
+Copyright (C) 2008 - 2010 - Thomas Mansencal - "kelsolaar_fool@hotmail.com":mailto:kelsolaar_fool@hotmail.com 
+This Software Is Released Under Terms Of GNU GPL V3 License : "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/ 
+"http://my.opera.com/KelSolaar/":http://my.opera.com/KelSolaar/
