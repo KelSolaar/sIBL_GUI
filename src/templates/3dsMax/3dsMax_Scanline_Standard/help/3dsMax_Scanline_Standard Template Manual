@@ -1,0 +1,38 @@
+h1=. 3dsMax Scanline Standard - Template
+
+h1=. Manual - Help File
+
+h2. Table Of Content
+
+*{color:rgb(50, 85, 125); font-size : 11pt;} "Introduction":#Introduction
+* "Options":#Options
+* "Change Log":#ChangeLog
+* "About":#About
+
+h2(#Introduction). Introduction
+
+3dsMax Scanline Standard is a sIBL_GUI Template for 3dsMax and Scanline Renderer. It provides a bridge beetween 3dsMax, Scanline Renderer and Smart IBL. 
+There is an Helper Script with everything you need to use sIBL_GUI smoothly with 3dsMax here : "sIBL_GUI For 3dsMax - Helper Script":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1223936394/2#2
+
+h2(#Options). Options
+
+h3. Common Attributes
+
+* *Create Lights* : Create the sIBL Dynamics Lights.
+* *Create Background* : Create the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create Reflection* : Create the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create Lighting* : Create the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create Sun* : Create the light used as Sun.
+
+h3. Additional Attributes
+
+h2(#ChangeLog). Change Log
+
+<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Softwares/3dsMax/Helper%20Script/Change%20Log/Change%20Log.html">sIBL_GUI For 3dsMax - Change Log</a></p>
+
+h2(#About). About
+
+sIBL_GUI by Thomas Mansencal - 2008 - 2010
+Copyright (C) 2008 - 2010 - Thomas Mansencal - "kelsolaar_fool@hotmail.com":mailto:kelsolaar_fool@hotmail.com 
+This Software Is Released Under Terms Of GNU GPL V3 License : "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/ 
+"http://my.opera.com/KelSolaar/":http://my.opera.com/KelSolaar/
