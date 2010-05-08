@@ -1,6 +1,6 @@
 [Template]
 Name = @Name | Standard | String | Template Name
-HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.htm | String | Help File
+HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.1 | String | Template Release
 Date = @Date | 4 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
