@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<title>XSI MR Standard - Template - Manual - Help File</title>
+		<style type="text/css">
+	            body {
+	                text-align: justify;
+	                font-size: 10pt;
+	                margin: 10px 10px 10px 10px;
+	                background-color: rgb(192, 192, 192);
+	                color: rgb(50, 50, 50);
+	            }
+	            A:link {
+	                text-decoration: none;
+	                color: rgb(50, 85, 125);
+	            }
+	            A:visited {
+	                text-decoration: none;
+	                color: rgb(50, 85, 125);
+	            }
+	            A:active {
+	                text-decoration: none;
+	                color: rgb(50, 85, 125);
+	            }
+	            A:hover {
+	                text-decoration: underline;
+	                color: rgb(50, 85, 125);
+	            }
+	        </style>
+	</head>
+	<body>
+		<h1 style="text-align:center;"><span class="caps">XSI</span> MR Standard &#8211; Template</h1>
+		<h1 style="text-align:center;">Manual &#8211; Help File</h1>
+		<h2>Table Of Content</h2>
+		<ul style="color:rgb(50, 85, 125); font-size : 11pt;">
+			<li><a href="#Introduction">Introduction</a></li>
+			<li><a href="#Options">Options</a></li>
+			<li><a href="#ChangeLog">Change Log</a></li>
+			<li><a href="#About">About</a></li>
+		</ul>
+		<h2 id="Introduction">Introduction</h2>
+		<p><span class="caps">XSI</span> MR Standard is a sIBL_GUI Template for <span class="caps">XSI</span> and Mental Ray starting from 7.X to 2010 versions. It provides a bridge beetween <span class="caps">XSI</span>, Mental Ray and Smart <span class="caps">IBL</span>. <br />There is an <span class="caps">XSI</span> Addon with everything needed to use sIBL_GUI smoothly with <span class="caps">XSI</span> here : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1221392511">sIBL_GUI For XSI</a></p>
+		<h2 id="Options">Options</h2>
+		<h3>Common Attributes</h3>
+		<ul>
+			<li><strong>Create / Update Lights</strong> : Create the sIBL Dynamics Lights.</li>
+			<li><strong>Create / Update Background</strong> : Create / Update the Background Environment Branch of the Raytype Shader ( Using the High Resolution <span class="caps">LDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Reflection</strong> : Create / Update the Reflection Environment Branch of the Raytype Shader ( Using the Reflection <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Lighting</strong> : Create / Update the Lighting Environment Branch of the Raytype Shader ( Using the Lighting <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Sun</strong> : Create / Update the light used as Sun.</li>
+		</ul>
+		<h3>Additional Attributes</h3>
+		<ul>
+			<li><strong>Physical Sun</strong> : The Sun is created with a mia_Physical_Sun shader instead of the default soft_light one.</li>
+			<li><strong>Create Ground</strong> : A Grid is added to the Scene.</li>
+			<li><strong>Ground Shadow Catcher</strong> : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in <span class="caps">XSI</span>, the Background is made Transparent so it&#8217;s possible to see behind the Ground Plane, object crossing through will be visible ).</li>
+			<li><strong>Activate Final Gather</strong> : Ambiant Lighting ( Ambience ) of the scene is desactivated and Final Gathering is set for the current / selected Pass(es).</li>
+			<li><strong>Create FeedBack</strong> : Make the Feedback visible and attach to it the current <span class="caps">IBL</span> <span class="caps">LDR</span> Background image so there is a visual feedback in the Viewport.</li>
+			<li><strong>Passes Selection Dialog</strong> : A Pass(es) selection dialog appears to choose wich Pass(es) will be affected by the <span class="caps">IBL</span>.</li>
+			<li><strong>Override User Tweaks</strong> : User tweaks on the Scene <span class="caps">IBL</span> Setup will be be overriden when updating the Scene.</li>
+			<li><strong>Update Scene</strong> : Update the Scene <span class="caps">IBL</span> Setup with the new provided informations, this option works with the &#8220;Override User Tweaks&#8221; one, there is a lot of possibilities available, it&#8217;s possible to mix different <span class="caps">IBL</span> with those 2 options.</li>
+			<li><strong>Activate Color Management</strong> : Activate <span class="caps">XSI</span> 7.0 Color Management ( Preferences > Display > Color Management ).</li>
+			<li><strong>Feedback Radius</strong> : Sets the Feedback radius in <span class="caps">XSI</span> units.</li>
+			<li><strong>Hide Lights</strong> : Hides all current Scene lights.</li>
+		</ul>
+		<h3>Scene Components</h3>
+		<h4>Smart_IBL_Controls</h4>
+		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
+			<tr>
+				<td><img src="resources/pictures/Smart_IBL_Controls.jpg" title="Smart_IBL_Controls" alt="Smart_IBL_Controls" /></td>
+			</tr>
+		</table>
+		<p>There are several Controls Attributes on the Smart_IBL_Controls Property available in the sIBL Group.</p>
+		<ul>
+			<li>Render Togglers : 
+		<ul>
+			<li>Activate / Deactivate the different Smart <span class="caps">IBL</span> Components.</li>
+			<li>Color Correction : Gamma / Gain Controls of the different Smart <span class="caps">IBL</span> Components.</li>
+		</ul></li>
+		</ul>
+		<h2 id="ChangeLog">Change Log</h2>
+	<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Softwares/XSI/sIBL_GUI_For_XSI/Helper%20Script/Change%20Log/Change%20Log.html">sIBL_GUI For <span class="caps">XSI</span> &#8211; Change Log</a></p>
+		<h2 id="About">About</h2>
+		<p>sIBL_GUI by Thomas Mansencal &#8211; 2008 &#8211; 2010<br />Copyright&#169; 2008 &#8211; 2010 &#8211; Thomas Mansencal &#8211; <a href="mailto:kelsolaar_fool@hotmail.com">kelsolaar_fool@hotmail.com</a> <br />This Software Is Released Under Terms Of <span class="caps">GNU</span> <span class="caps">GPL</span> V3 License : <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a> <br /><a href="http://my.opera.com/KelSolaar/">http://my.opera.com/KelSolaar/</a></p>		</span>
+	</body>
+</html>
