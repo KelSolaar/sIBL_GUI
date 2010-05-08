@@ -1,8 +1,8 @@
 [Template]
 Name = @Name | Standard | String | Template Name
-HelpFile = @HelpFile | help/Maya_Turtle_Standard Template Manual.htm | String | Help File
+HelpFile = @HelpFile | help/Maya_Turtle_Standard Template Manual.html | String | Help File
 Release = @Release | 1.1.8 | String | Template Release
-Date = @Date | 4 May 2010 | String | Date
+Date = @Date | 8 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
