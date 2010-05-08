@@ -25,3 +25,6 @@ python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_G
 
 #! Maya_VRay_Standard Template Documentation Building.
 python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual.html"  "Maya VRay Standard - Template - Manual - Help File"
+
+#! 3dsMax_MR_Standard Template Documentation Building.
+python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_MR_Standard/help/3dsMax_MR_Standard Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/3dsMax/3dsMax_MR_Standard/help/3dsMax_MR_Standard Template Manual.html"  "3dsMax MR Standard - Template - Manual - Help File"

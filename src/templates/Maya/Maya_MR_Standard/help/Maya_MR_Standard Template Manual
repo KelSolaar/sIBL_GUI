@@ -31,7 +31,7 @@ h3. Additional Attributes
 * *Ground Shadow* Catcher : A mip_matteshadow Shader is assigned to the Ground.
 * *Activate Final* Gather : Final Gathering is activated in the current Scene.
 * *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Activate Linea Workflow* : Connect a mia_exposure_simple shader in current / selected Camera(s).
+* *Activate Linear Workflow* : Connect a mia_exposure_simple shader in current / selected Camera(s).
 * *Use Framebuffer Gamma* : Sets the Render Globals Framebuffer Gamma to appropriate value. The mia_exposure_simple Gamma is set to 1.0.
 * *Camera Selection Dialog* : A Camera(s) selection dialog appears so you can choose wich Camera(s) will be affected by the IBL.
 * *Feedback Radius* : Sets the Feedback radius in Maya units.
