@@ -22,3 +22,6 @@ python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_G
 
 #! Maya_VRay_Dome_Light Template Documentation Building.
 python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual.html"  "Maya VRay Dome Light - Template - Manual - Help File"
+
+#! Maya_VRay_Standard Template Documentation Building.
+python sIBL_GUI_textileToHtml.py "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual" "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual.html"  "Maya VRay Standard - Template - Manual - Help File"
