@@ -49,7 +49,7 @@ There are several Controls Attributes on the Smart_IBL_Controls Property availab
 
 * Render Togglers : 
 ** Activate / Deactivate the different Smart IBL Components.
-** Color Correction : Gamma / Gain Controls of the different Smart IBL Components.
+** ==* ==Color Correction : Gamma / Gain Controls of the different Smart IBL Components.
 
 h2(#ChangeLog). Change Log
 
