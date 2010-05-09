@@ -117,14 +117,16 @@ class TemplatesOutliner( UiComponent ):
 
 		self._coreDb = None
 
+		self._model = None
+
 		self._extension = "sIBLT"
 
 		self._defaultCollections = None
 		self._factoryCollection = "Factory"
 		self._userCollection = "User"
 
-		self._treeWidgetHeaders = [ "Templates", "Release", "Software Version" ]
-		self._treeWidgetIndentation = 15
+		self._modelHeaders = [ "Templates", "Release", "Software Version" ]
+		self._treeViewIndentation = 15
 		self._Template_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations !<h4>* * *</h4></center>"
 
 	#***************************************************************************************
@@ -424,6 +426,35 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
+	def model( self ):
+		'''
+		This Method Is The Property For The _model Attribute.
+
+		@return: self._model. ( QStandardItemModel )
+		'''
+
+		return self._model
+
+	@model.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def model( self, value ):
+		'''
+		This Method Is The Setter Method For The _model Attribute.
+
+		@param value: Attribute Value. ( QStandardItemModel )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
+
+	@model.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def model( self ):
+		'''
+		This Method Is The Deleter Method For The _model Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
+
+	@property
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -540,62 +571,62 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userCollection" ) )
 
 	@property
-	def treeWidgetHeaders( self ):
+	def modelHeaders( self ):
 		'''
-		This Method Is The Property For The _treeWidgetHeaders Attribute.
+		This Method Is The Property For The _modelHeaders Attribute.
 
-		@return: self._treeWidgetHeaders. ( List )
+		@return: self._modelHeaders. ( List )
 		'''
 
-		return self._treeWidgetHeaders
+		return self._modelHeaders
 
-	@treeWidgetHeaders.setter
+	@modelHeaders.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetHeaders( self, value ):
+	def modelHeaders( self, value ):
 		'''
-		This Method Is The Setter Method For The _treeWidgetHeaders Attribute.
+		This Method Is The Setter Method For The _modelHeaders Attribute.
 
 		@param value: Attribute Value. ( List )
 		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetHeaders" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelHeaders" ) )
 
-	@treeWidgetHeaders.deleter
+	@modelHeaders.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetHeaders( self ):
+	def modelHeaders( self ):
 		'''
-		This Method Is The Deleter Method For The _treeWidgetHeaders Attribute.
+		This Method Is The Deleter Method For The _modelHeaders Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetHeaders" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelHeaders" ) )
 
 	@property
-	def treeWidgetIndentation( self ):
+	def treeViewIndentation( self ):
 		'''
-		This Method Is The Property For The _treeWidgetIndentation Attribute.
+		This Method Is The Property For The _treeViewIndentation Attribute.
 
-		@return: self._treeWidgetIndentation. ( Integer )
+		@return: self._treeViewIndentation. ( Integer )
 		'''
 
-		return self._treeWidgetIndentation
+		return self._treeViewIndentation
 
-	@treeWidgetIndentation.setter
+	@treeViewIndentation.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetIndentation( self, value ):
+	def treeViewIndentation( self, value ):
 		'''
-		This Method Is The Setter Method For The _treeWidgetIndentation Attribute.
+		This Method Is The Setter Method For The _treeViewIndentation Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetIndentation" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewIndentation" ) )
 
-	@treeWidgetIndentation.deleter
+	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetIndentation( self ):
+	def treeViewIndentation( self ):
 		'''
-		This Method Is The Deleter Method For The _treeWidgetIndentation Attribute.
+		This Method Is The Deleter Method For The _treeViewIndentation Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetIndentation" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewIndentation" ) )
 
 	@property
 	def Template_Informations_textBrowser_defaultText( self ):
@@ -669,10 +700,14 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
-		self.ui.Templates_Outliner_treeWidget.setContextMenuPolicy( Qt.ActionsContextMenu )
-		self.Templates_Outliner_treeWidget_setActions()
+		self._model = QStandardItemModel()
 
-		self.Templates_Outliner_treeWidget_setUi()
+		self.Templates_Outliner_treeView_setModel()
+
+		self.ui.Templates_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
+		self.Templates_Outliner_treeView_setActions()
+
+		self.Templates_Outliner_treeView_setUi()
 
 		self.ui.Template_Informations_textBrowser.setText( self._Template_Informations_textBrowser_defaultText )
 		self.ui.Template_Informations_textBrowser.setOpenLinks( False )
@@ -683,9 +718,10 @@ class TemplatesOutliner( UiComponent ):
 		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
 		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates )
+		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Templates_Outliner_treeView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -730,145 +766,176 @@ class TemplatesOutliner( UiComponent ):
 						self.updateTemplateLocation( template )
 				else :
 					messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_ERRORS[erroneousTemplates[template]] ) )
-			self.refreshUi()
+			self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Templates_Outliner_treeWidget_setUi( self ):
+	def Templates_Outliner_treeView_setModel( self ):
 		'''
-		This Method Sets The Templates_Outliner_treeWidget.
+		This Method Sets The Templates_Outliner_treeView Model.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
+		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
-		self.ui.Templates_Outliner_treeWidget.clear()
-		self.ui.Templates_Outliner_treeWidget.setDragDropMode( QAbstractItemView.NoDragDrop )
-		self.ui.Templates_Outliner_treeWidget.setSelectionMode( QAbstractItemView.ExtendedSelection )
-		self.ui.Templates_Outliner_treeWidget.setColumnCount( len( self._treeWidgetHeaders ) )
-		self.ui.Templates_Outliner_treeWidget.setHeaderLabels( QStringList( self._treeWidgetHeaders ) )
-		self.ui.Templates_Outliner_treeWidget.setIndentation( self._treeWidgetIndentation )
-		self.ui.Templates_Outliner_treeWidget.setSortingEnabled( True )
+		self._model.beginResetModel()
+
+		self._model.clear()
+		self._model.setHorizontalHeaderLabels( self._modelHeaders )
+		self._model.setColumnCount( len( self._modelHeaders ) )
 
 		collections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
+
 		for collection in collections :
-			collectionTreeWidgetItem = QTreeWidgetItem()
-			collectionTreeWidgetItem.setText( 0, collection.name )
-
-			collectionTreeWidgetItem._datas = collection
-
-			LOGGER.debug( " > Adding '{0}' Path To 'Templates_Outliner_treeWidget'.".format( collection.name ) )
-			self.ui.Templates_Outliner_treeWidget.addTopLevelItem( collectionTreeWidgetItem )
-
-			collectionTreeWidgetItem.setExpanded( True )
-
 			softwares = set( [ software[0] for software in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.software ).filter( dbUtilities.types.DbTemplate.collection == collection.id )] )
 
-			for software in softwares :
-				softwareTreeWidgetItem = QTreeWidgetItem( collectionTreeWidgetItem )
-				softwareTreeWidgetItem.setText( 0, software )
-				iconPath = os.path.join( self._uiResources, "{0}{1}".format( software, self._uiSoftwareAffixe ) )
-				if os.path.exists( iconPath ) :
-					softwareTreeWidgetItem.setIcon( 0, QIcon( iconPath ) )
-				else :
-					softwareTreeWidgetItem.setIcon( 0, QIcon( os.path.join( self._uiResources, self._uiUnknownSoftwareIcon ) ) )
+			if softwares :
+				collectionStandardItem = QStandardItem( QString( collection.name ) )
+				collectionStandardItem._datas = collection
 
-				LOGGER.debug( " > Adding '{0}' Software To 'Templates_Outliner_treeWidget'.".format( software ) )
-				self.ui.Templates_Outliner_treeWidget.addTopLevelItem( softwareTreeWidgetItem )
+				LOGGER.debug( " > Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
+				self._model.appendRow( collectionStandardItem )
 
-				softwareTreeWidgetItem.setExpanded( True )
+				for software in softwares :
+					templates = set( [ template[0] for template in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.id ).filter( dbUtilities.types.DbTemplate.collection == collection.id ).filter( dbUtilities.types.DbTemplate.software == software )] )
 
-				templates = set( [ template[0] for template in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.id ).filter( dbUtilities.types.DbTemplate.collection == collection.id ).filter( dbUtilities.types.DbTemplate.software == software )] )
-				for template in templates :
-					template = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template ), "id" )[0]
-					templateTreeWidgetItem = QTreeWidgetItem( softwareTreeWidgetItem )
-					templateTreeWidgetItem.setText( 0, "{0} {1}".format( template.renderer, template.title ) )
+					if templates :
+						softwareStandardItem = QStandardItem( QString( software ) )
+						iconPath = os.path.join( self._uiResources, "{0}{1}".format( software, self._uiSoftwareAffixe ) )
+						if os.path.exists( iconPath ) :
+							softwareStandardItem.setIcon( QIcon( iconPath ) )
+						else :
+							softwareStandardItem.setIcon( QIcon( os.path.join( self._uiResources, self._uiUnknownSoftwareIcon ) ) )
 
-					templateTreeWidgetItem.setText( 1, template.release )
-					templateTreeWidgetItem.setTextAlignment( 1, Qt.AlignCenter )
+						LOGGER.debug( " > Adding '{0}' Software To '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
+						collectionStandardItem.appendRow( [softwareStandardItem, None, None] )
 
-					templateTreeWidgetItem.setText( 2, template.version )
-					templateTreeWidgetItem.setTextAlignment( 2, Qt.AlignCenter )
+						for template in templates :
+							template = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template ), "id" )[0]
+							templateNameStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
 
-					templateTreeWidgetItem._datas = template
+							templateReleaseStandardItem = QStandardItem( QString( template.release ) )
+							templateReleaseStandardItem.setTextAlignment( Qt.AlignCenter )
 
-					LOGGER.debug( " > Adding '{0}' Template To 'Templates_Outliner_treeWidget'.".format( template.title ) )
-					self.ui.Templates_Outliner_treeWidget.addTopLevelItem( templateTreeWidgetItem )
+							templateVersionStandardItem = QStandardItem( QString( template.version ) )
+							templateVersionStandardItem.setTextAlignment( Qt.AlignCenter )
 
-					templateTreeWidgetItem.setExpanded( True )
+							templateNameStandardItem._datas = template
 
-		for column in range( len( self._treeWidgetHeaders ) ) :
-			self.ui.Templates_Outliner_treeWidget.resizeColumnToContents( column )
+							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.title, "Templates_Outliner_treeView" ) )
+							softwareStandardItem.appendRow( [templateNameStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
 
-		self.ui.Templates_Outliner_treeWidget.sortItems( 0, Qt.AscendingOrder )
-
-	@core.executionTrace
-	def refreshUi( self ):
-		'''
-		This Method Refreshes The Templates_Outliner_treeWidget.
-		'''
-
-		self.Templates_Outliner_treeWidget_setUi()
+		self._model.endResetModel()
 
 	@core.executionTrace
-	def Templates_Outliner_treeWidget_setActions( self ):
+	def Templates_Outliner_treeView_refreshModel( self ):
 		'''
-		This Method Sets The Templates_Outliner_treeWidget Actions.
+		This Method Refreshes The Templates_Outliner_treeView Model.
 		'''
 
-		addTemplateAction = QAction( "Add Template ...", self.ui.Templates_Outliner_treeWidget )
-		addTemplateAction.triggered.connect( self.Components_Manager_Ui_treeWidget_addTemplateAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( addTemplateAction )
+		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
-		removeTemplatesAction = QAction( "Remove Template(s) ...", self.ui.Templates_Outliner_treeWidget )
-		removeTemplatesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_removeTemplatesAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( removeTemplatesAction )
+		self.Templates_Outliner_treeView_setModel()
 
-		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
+	@core.executionTrace
+	def Templates_Outliner_treeView_setUi( self ):
+		'''
+		This Method Sets The Templates_Outliner_treeView Ui.
+		'''
+
+		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Templates_Outliner_treeView" ) )
+
+		self.ui.Templates_Outliner_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
+		self.ui.Templates_Outliner_treeView.setDragDropMode( QAbstractItemView.NoDragDrop )
+		self.ui.Templates_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
+		self.ui.Templates_Outliner_treeView.setIndentation( self._treeViewIndentation )
+		self.ui.Templates_Outliner_treeView.setSortingEnabled( True )
+
+		self.ui.Templates_Outliner_treeView.setModel( self._model )
+
+		self.Templates_Outliner_treeView_setDefaultViewState()
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_setDefaultViewState( self ):
+		'''
+		This Method Sets Templates_Outliner_treeView Default View State.
+		'''
+
+		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Templates_Outliner_treeView" ) )
+
+		self.ui.Templates_Outliner_treeView.expandAll()
+		for column in range( len( self._modelHeaders ) ) :
+			self.ui.Templates_Outliner_treeView.resizeColumnToContents( column )
+
+		self.ui.Templates_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_refreshView( self ):
+		'''
+		This Method Refreshes The Templates_Outliner_treeView View.
+		'''
+
+		self.Templates_Outliner_treeView_setDefaultViewState()
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_setActions( self ):
+		'''
+		This Method Sets The Templates_Outliner_treeView Actions.
+		'''
+
+		addTemplateAction = QAction( "Add Template ...", self.ui.Templates_Outliner_treeView )
+		addTemplateAction.triggered.connect( self.Templates_Outliner_treeView_addTemplateAction )
+		self.ui.Templates_Outliner_treeView.addAction( addTemplateAction )
+
+		removeTemplatesAction = QAction( "Remove Template(s) ...", self.ui.Templates_Outliner_treeView )
+		removeTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_removeTemplatesAction )
+		self.ui.Templates_Outliner_treeView.addAction( removeTemplatesAction )
+
+		separatorAction = QAction( self.ui.Templates_Outliner_treeView )
 		separatorAction.setSeparator( True )
-		self.ui.Templates_Outliner_treeWidget.addAction( separatorAction )
+		self.ui.Templates_Outliner_treeView.addAction( separatorAction )
 
-		importDefaultTemplatesAction = QAction( "Import Default Templates", self.ui.Templates_Outliner_treeWidget )
-		importDefaultTemplatesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_importDefaultTemplatesAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( importDefaultTemplatesAction )
+		importDefaultTemplatesAction = QAction( "Import Default Templates", self.ui.Templates_Outliner_treeView )
+		importDefaultTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_importDefaultTemplatesAction )
+		self.ui.Templates_Outliner_treeView.addAction( importDefaultTemplatesAction )
 
-		filterTemplatesVersionsAction = QAction( "Filter Templates Versions", self.ui.Templates_Outliner_treeWidget )
-		filterTemplatesVersionsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_filterTemplatesVersionsAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( filterTemplatesVersionsAction )
+		filterTemplatesVersionsAction = QAction( "Filter Templates Versions", self.ui.Templates_Outliner_treeView )
+		filterTemplatesVersionsAction.triggered.connect( self.Templates_Outliner_treeView_filterTemplatesVersionsAction )
+		self.ui.Templates_Outliner_treeView.addAction( filterTemplatesVersionsAction )
 
-		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
+		separatorAction = QAction( self.ui.Templates_Outliner_treeView )
 		separatorAction.setSeparator( True )
-		self.ui.Templates_Outliner_treeWidget.addAction( separatorAction )
+		self.ui.Templates_Outliner_treeView.addAction( separatorAction )
 
-		displayHelpFilesAction = QAction( "Display Help File(s) ...", self.ui.Templates_Outliner_treeWidget )
-		displayHelpFilesAction.triggered.connect( self.Components_Manager_Ui_treeWidget_displayHelpFilesAction )
-		self.ui.Templates_Outliner_treeWidget.addAction( displayHelpFilesAction )
+		displayHelpFilesAction = QAction( "Display Help File(s) ...", self.ui.Templates_Outliner_treeView )
+		displayHelpFilesAction.triggered.connect( self.Templates_Outliner_treeView_displayHelpFilesAction )
+		self.ui.Templates_Outliner_treeView.addAction( displayHelpFilesAction )
 
-		separatorAction = QAction( self.ui.Templates_Outliner_treeWidget )
+		separatorAction = QAction( self.ui.Templates_Outliner_treeView )
 		separatorAction.setSeparator( True )
-		self.ui.Templates_Outliner_treeWidget.addAction( separatorAction )
+		self.ui.Templates_Outliner_treeView.addAction( separatorAction )
 
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_addTemplateAction( self, checked ):
+	def Templates_Outliner_treeView_addTemplateAction( self, checked ):
 		'''
 		This Method Is Triggered By addTemplateAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.addTemplate() and self.refreshUi()
+		self.addTemplate() and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_removeTemplatesAction( self, checked ):
+	def Templates_Outliner_treeView_removeTemplatesAction( self, checked ):
 		'''
 		This Method Is Triggered By removeTemplatesAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.removeTemplates() and self.refreshUi()
+		self.removeTemplates() and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_importDefaultTemplatesAction( self, checked ):
+	def Templates_Outliner_treeView_importDefaultTemplatesAction( self, checked ):
 		'''
 		This Method Is Triggered By importDefaultTemplatesAction.
 
@@ -877,10 +944,10 @@ class TemplatesOutliner( UiComponent ):
 
 		for collection, path in self._defaultCollections.items() :
 			os.path.exists( path ) and self.getTemplates( path, self.getCollection( collection ).id )
-		self.refreshUi()
+		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_displayHelpFilesAction( self, checked ):
+	def Templates_Outliner_treeView_displayHelpFilesAction( self, checked ):
 		'''
 		This Method Is Triggered By displayHelpFilesAction.
 
@@ -893,7 +960,7 @@ class TemplatesOutliner( UiComponent ):
 				QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_filterTemplatesVersionsAction( self, checked ):
+	def Templates_Outliner_treeView_filterTemplatesVersionsAction( self, checked ):
 		'''
 		This Method Is Triggered By filterTemplatesVersionsAction.
 
@@ -901,40 +968,23 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		templates = dbUtilities.common.getTemplates( self._coreDb.dbSession )
-		needUiRefresh = False
+		needModelRefresh = False
 		for template in templates :
 			matchingTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template.name ), "name" )
 			if len( matchingTemplates ) != 1 :
-				needUiRefresh = True
+				needModelRefresh = True
 				for id in sorted( [( dbTemplate.id, dbTemplate.release ) for dbTemplate in matchingTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )[1:] :
 					dbUtilities.common.removeTemplate( self._coreDb.dbSession, id[0] )
 
-		needUiRefresh and self.refreshUi()
+		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def updateTemplates( self ):
-		'''
-		This Method Updates Database Templates If They Have Been Modified On Disk.
-		'''
-
-		needUiRefresh = False
-		for template in dbUtilities.common.getTemplates( self._coreDb.dbSession ) :
-			if template.path :
-				if os.path.exists( template.path ) :
-					storedStats = template.osStats.split( "," )
-					osStats = os.stat( template.path )
-					if str( osStats[8] ) != str( storedStats[8] ):
-						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
-						if dbUtilities.common.updateTemplateContent( self._coreDb.dbSession, template ) :
-							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
-							needUiRefresh = True
-
-		needUiRefresh and self.refreshUi()
-
-	@core.executionTrace
-	def Templates_Outliner_treeWidget_OnItemSelectionChanged( self ):
+	def Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
 		This Method Sets The Template_Informations_textEdit Widget.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
 		content = []
@@ -959,7 +1009,7 @@ class TemplatesOutliner( UiComponent ):
 					</p>
 					"""
 
-		selectedItems = self.ui.Templates_Outliner_treeWidget.selectedItems()
+		selectedItems = [self._model.itemFromIndex( index ) for index in selectedItems.indexes()]
 		selectedTemplates = [template for template in selectedItems if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
 		if selectedTemplates :
@@ -993,6 +1043,16 @@ class TemplatesOutliner( UiComponent ):
 		QDesktopServices.openUrl( url )
 
 	@core.executionTrace
+	def getSelectedItems( self ):
+		'''
+		This Method Returns The Templates_Outliner_treeView Selected Items.
+		
+		@return: Selected Items. ( QStringList )
+		'''
+
+		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes() if index.column() == 0]
+
+	@core.executionTrace
 	def getSelectedTemplates( self ):
 		'''
 		This Method Returns The Selected Templates.
@@ -1000,7 +1060,7 @@ class TemplatesOutliner( UiComponent ):
 		@return: Selected Template. ( QTreeWidgetItem )
 		'''
 
-		selectedTemplates = self.ui.Templates_Outliner_treeWidget.selectedItems()
+		selectedTemplates = self.getSelectedItems()
 		return selectedTemplates and [template for template in selectedTemplates if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
 	@core.executionTrace
@@ -1013,7 +1073,7 @@ class TemplatesOutliner( UiComponent ):
 
 		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if file :
-			collectionId = self.defaultCollections[self._factoryCollection] in file and self.ui.Templates_Outliner_treeWidget.findItems( self._factoryCollection, Qt.MatchExactly, 0 )[0]._datas.id or self.ui.Templates_Outliner_treeWidget.findItems( self._userCollection, Qt.MatchExactly, 0 )[0]._datas.id
+			collectionId = self.defaultCollections[self._factoryCollection] in file and self._model.findItems( self._factoryCollection, Qt.MatchExactly, 0 )[0]._datas.id or self._model.findItems( self._userCollection, Qt.MatchExactly, 0 )[0]._datas.id
 			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
 			if dbUtilities.common.addTemplate( self._coreDb.dbSession, os.path.basename( file ).replace( self._extension, "" ), file, collectionId ) :
 				return True
@@ -1028,7 +1088,7 @@ class TemplatesOutliner( UiComponent ):
 		@return: Removal Success. ( Boolean )
 		'''
 
-		selectedItems = self.ui.Templates_Outliner_treeWidget.selectedItems()
+		selectedItems = self.getSelectedItems()
 
 		selectedCollections = []
 		selectedSoftwares = []
@@ -1036,21 +1096,41 @@ class TemplatesOutliner( UiComponent ):
 		for item in selectedItems :
 			if hasattr( item, "_datas" ) :
 				if type( item._datas ) != dbUtilities.types.DbTemplate :
-					selectedCollections.append( str( item.text( 0 ) ) )
+					selectedCollections.append( str( item.text() ) )
 				else :
 					selectedTemplates.append( item )
 			else:
-				selectedSoftwares.append( str( item.text( 0 ) ) )
+				selectedSoftwares.append( str( item.text() ) )
 
 		selectedCollections and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s) !".format( self.__class__.__name__, ", ".join( selectedCollections ) ) )
 		selectedSoftwares and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s) !".format( self.__class__.__name__, ", ".join( selectedSoftwares ) ) )
 
 		if selectedTemplates :
-			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text( 0 ) ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				success = True
 				for template in selectedTemplates :
 					success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 				return success
+
+	@core.executionTrace
+	def updateTemplates( self ):
+		'''
+		This Method Updates Database Templates If They Have Been Modified On Disk.
+		'''
+
+		needModelRefresh = False
+		for template in dbUtilities.common.getTemplates( self._coreDb.dbSession ) :
+			if template.path :
+				if os.path.exists( template.path ) :
+					storedStats = template.osStats.split( "," )
+					osStats = os.stat( template.path )
+					if str( osStats[8] ) != str( storedStats[8] ):
+						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
+						if dbUtilities.common.updateTemplateContent( self._coreDb.dbSession, template ) :
+							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
+							needModelRefresh = True
+
+		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def updateTemplateLocation( self, template ):

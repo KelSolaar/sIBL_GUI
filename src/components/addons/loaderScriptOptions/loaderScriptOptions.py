@@ -594,7 +594,7 @@ class LoaderScriptOptions( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -605,7 +605,7 @@ class LoaderScriptOptions( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def addWidget( self ):
@@ -629,11 +629,13 @@ class LoaderScriptOptions( UiComponent ):
 		self.ui.setParent( None )
 
 	@core.executionTrace
-	def coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged( self ):
+	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeWidget Selection Has Changed.
+		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
-
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
