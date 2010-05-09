@@ -672,9 +672,9 @@ class LocationsBrowser( UiComponent ):
 		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_openComponentsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.addAction( self._openComponentsLocationsAction )
 
-		self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
-		self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeWidget_openTemplatesLocationsAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._openTemplatesLocationsAction )
+		# TODO: self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
+		# TODO: self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeWidget_openTemplatesLocationsAction )
+		# TODO: self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._openTemplatesLocationsAction )
 
 	@core.executionTrace
 	def removeActions_( self ):

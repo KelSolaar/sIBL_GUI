@@ -523,9 +523,9 @@ class RawEditingUtilities( UiComponent ):
 		self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listWidget_editSetInTextEditorAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._editSetInTextEditorAction )
 
-		self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
-		self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeWidget_editSetInTextEditorAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._editTemplateInTextEditorAction )
+		# TODO: self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
+		# TODO: self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeWidget_editSetInTextEditorAction )
+		# TODO: self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._editTemplateInTextEditorAction )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -534,7 +534,7 @@ class RawEditingUtilities( UiComponent ):
 		'''
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._editSetInTextEditorAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.removeAction( self._editTemplateInTextEditorAction )
+		# TODO: self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.removeAction( self._editTemplateInTextEditorAction )
 
 		self._editSetInTextEditorAction = None
 		self._editTemplateInTextEditorAction = None
