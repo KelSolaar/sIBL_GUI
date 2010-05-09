@@ -803,7 +803,7 @@ class TemplatesOutliner( UiComponent ):
 	@core.executionTrace
 	def refreshUi( self ):
 		'''
-		This Method Refreshes The _Collections_Outliner_treeWidget.
+		This Method Refreshes The Templates_Outliner_treeWidget.
 		'''
 
 		self.Templates_Outliner_treeWidget_setUi()
