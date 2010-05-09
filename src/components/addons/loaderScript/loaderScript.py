@@ -550,7 +550,7 @@ class LoaderScript( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		# TODO: self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -563,7 +563,7 @@ class LoaderScript( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.disconnect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
 		self._signalsSlotsCenter.disconnect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		# TODO: self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget, SIGNAL( "itemSelectionChanged()" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged )
+		self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def addWidget( self ):
@@ -595,9 +595,12 @@ class LoaderScript( UiComponent ):
 		self.outputLoaderScript()
 
 	@core.executionTrace
-	def coreTemplatesOutlinerUi_Templates_Outliner_treeWidget_OnItemSelectionChanged( self ):
+	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeWidget Selection Has Changed.
+		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()

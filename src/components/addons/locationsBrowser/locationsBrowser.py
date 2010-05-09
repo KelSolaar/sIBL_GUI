@@ -672,9 +672,9 @@ class LocationsBrowser( UiComponent ):
 		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_openComponentsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.addAction( self._openComponentsLocationsAction )
 
-		# TODO: self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget )
-		# TODO: self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeWidget_openTemplatesLocationsAction )
-		# TODO: self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.addAction( self._openTemplatesLocationsAction )
+		self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
+		self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeView_openTemplatesLocationsAction )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction( self._openTemplatesLocationsAction )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -684,7 +684,7 @@ class LocationsBrowser( UiComponent ):
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._openSetsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.removeAction( self._openComponentsLocationsAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeWidget.removeAction( self._openTemplatesLocationsAction )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._openTemplatesLocationsAction )
 
 		self._openSetsLocationsAction = None
 		self._openComponentsLocationsAction = None
@@ -717,7 +717,7 @@ class LocationsBrowser( UiComponent ):
 			hasattr( component, "_datas" ) and os.path.exists( component._datas.path ) and self.exploreProvidedFolder( component._datas.path )
 
 	@core.executionTrace
-	def Templates_Outliner_treeWidget_openTemplatesLocationsAction( self, checked ):
+	def Templates_Outliner_treeView_openTemplatesLocationsAction( self, checked ):
 		'''
 		This Method Is Triggered By openTemplatesLocationsAction.
 
