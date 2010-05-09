@@ -20,16 +20,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTreeWidget" name="Components_Manager_Ui_treeWidget">
-       <property name="statusTip">
-        <string>Components Manager Ui Tree : Displays Application Components</string>
-       </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
-      </widget>
+      <widget class="QTreeView" name="Components_Manager_Ui_treeView"/>
       <widget class="QGroupBox" name="Components_Informations_groupBox">
        <property name="title">
         <string>Components Informations</string>

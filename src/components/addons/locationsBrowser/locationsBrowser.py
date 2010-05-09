@@ -668,9 +668,9 @@ class LocationsBrowser( UiComponent ):
 		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listWidget_openSetsLocationsAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._openSetsLocationsAction )
 
-		self._openComponentsLocationsAction = QAction( "Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget )
-		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeWidget_openComponentsLocationsAction )
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.addAction( self._openComponentsLocationsAction )
+		self._openComponentsLocationsAction = QAction( "Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView )
+		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeView_openComponentsLocationsAction )
+		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction( self._openComponentsLocationsAction )
 
 		self._openTemplatesLocationsAction = QAction( "Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
 		self._openTemplatesLocationsAction.triggered.connect( self.Templates_Outliner_treeView_openTemplatesLocationsAction )
@@ -683,7 +683,7 @@ class LocationsBrowser( UiComponent ):
 		'''
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._openSetsLocationsAction )
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.removeAction( self._openComponentsLocationsAction )
+		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction( self._openComponentsLocationsAction )
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._openTemplatesLocationsAction )
 
 		self._openSetsLocationsAction = None
@@ -705,14 +705,14 @@ class LocationsBrowser( UiComponent ):
 			setPath and self.exploreProvidedFolder( setPath )
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeWidget_openComponentsLocationsAction( self, checked ):
+	def Components_Manager_Ui_treeView_openComponentsLocationsAction( self, checked ):
 		'''
 		This Method Is Triggered By openComponentsLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedComponent = self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeWidget.selectedItems()
+		selectedComponent = self._coreComponentsManagerUi.getSelectedItems()
 		for component in selectedComponent :
 			hasattr( component, "_datas" ) and os.path.exists( component._datas.path ) and self.exploreProvidedFolder( component._datas.path )
 

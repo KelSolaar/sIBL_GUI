@@ -810,7 +810,7 @@ class TemplatesOutliner( UiComponent ):
 
 						for template in templates :
 							template = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template ), "id" )[0]
-							templateNameStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
+							templateStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
 
 							templateReleaseStandardItem = QStandardItem( QString( template.release ) )
 							templateReleaseStandardItem.setTextAlignment( Qt.AlignCenter )
@@ -818,10 +818,10 @@ class TemplatesOutliner( UiComponent ):
 							templateVersionStandardItem = QStandardItem( QString( template.version ) )
 							templateVersionStandardItem.setTextAlignment( Qt.AlignCenter )
 
-							templateNameStandardItem._datas = template
+							templateStandardItem._datas = template
 
 							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.title, "Templates_Outliner_treeView" ) )
-							softwareStandardItem.appendRow( [templateNameStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
+							softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
 
 		self._model.endResetModel()
 
@@ -1009,7 +1009,7 @@ class TemplatesOutliner( UiComponent ):
 					</p>
 					"""
 
-		selectedItems = [self._model.itemFromIndex( index ) for index in selectedItems.indexes()]
+		selectedItems = self.getSelectedItems()
 		selectedTemplates = [template for template in selectedItems if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
 		if selectedTemplates :
@@ -1050,7 +1050,7 @@ class TemplatesOutliner( UiComponent ):
 		@return: Selected Items. ( QStringList )
 		'''
 
-		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes() if index.column() == 0]
+		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes()]
 
 	@core.executionTrace
 	def getSelectedTemplates( self ):
@@ -1088,7 +1088,7 @@ class TemplatesOutliner( UiComponent ):
 		@return: Removal Success. ( Boolean )
 		'''
 
-		selectedItems = self.getSelectedItems()
+		selectedItems = [item for item in self.getSelectedItems() if item.column() == 0]
 
 		selectedCollections = []
 		selectedSoftwares = []
