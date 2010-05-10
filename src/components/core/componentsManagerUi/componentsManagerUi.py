@@ -843,16 +843,6 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )
 
 	@core.executionTrace
-	def getSelectedItems( self ):
-		'''
-		This Method Returns The Components_Manager_Ui_treeView Selected Items.
-		
-		@return: Selected Items. ( QStringList )
-		'''
-
-		return [self._model.itemFromIndex( index ) for index in self.ui.Components_Manager_Ui_treeView.selectedIndexes()]
-
-	@core.executionTrace
 	def activateComponent( self, component ):
 		'''
 		This Method Activates The Provided Component.
@@ -889,6 +879,16 @@ class ComponentsManagerUi( UiComponent ):
 			if component and hasattr( component, "_datas" ) :
 				component._datas.interface.activated or deactivatedComponents.append( component._datas.name )
 		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
+
+	@core.executionTrace
+	def getSelectedItems( self ):
+		'''
+		This Method Returns The Components_Manager_Ui_treeView Selected Items.
+		
+		@return: Selected Items. ( QStringList )
+		'''
+
+		return [self._model.itemFromIndex( index ) for index in self.ui.Components_Manager_Ui_treeView.selectedIndexes()]
 
 #***********************************************************************************************
 #***	Python End

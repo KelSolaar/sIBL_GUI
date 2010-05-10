@@ -1043,27 +1043,6 @@ class TemplatesOutliner( UiComponent ):
 		QDesktopServices.openUrl( url )
 
 	@core.executionTrace
-	def getSelectedItems( self ):
-		'''
-		This Method Returns The Templates_Outliner_treeView Selected Items.
-		
-		@return: Selected Items. ( QStringList )
-		'''
-
-		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes()]
-
-	@core.executionTrace
-	def getSelectedTemplates( self ):
-		'''
-		This Method Returns The Selected Templates.
-		
-		@return: Selected Template. ( QTreeWidgetItem )
-		'''
-
-		selectedTemplates = self.getSelectedItems()
-		return selectedTemplates and [template for template in selectedTemplates if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
-
-	@core.executionTrace
 	def addTemplate( self ):
 		'''
 		This Method Adds A Template To The Database.
@@ -1191,6 +1170,27 @@ class TemplatesOutliner( UiComponent ):
 			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( templates[template] ), "path" ) :
 				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )
 				dbUtilities.common.addTemplate( self._coreDb.dbSession, template, templates[template], id )
+
+	@core.executionTrace
+	def getSelectedItems( self ):
+		'''
+		This Method Returns The Templates_Outliner_treeView Selected Items.
+		
+		@return: Selected Items. ( QStringList )
+		'''
+
+		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes()]
+
+	@core.executionTrace
+	def getSelectedTemplates( self ):
+		'''
+		This Method Returns The Selected Templates.
+		
+		@return: Selected Template. ( QTreeWidgetItem )
+		'''
+
+		selectedTemplates = self.getSelectedItems()
+		return selectedTemplates and [template for template in selectedTemplates if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
 
 #***********************************************************************************************
 #***	Python End

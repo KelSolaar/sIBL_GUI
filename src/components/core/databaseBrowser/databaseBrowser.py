@@ -748,7 +748,7 @@ class DatabaseBrowser( UiComponent ):
 				directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 				if directory :
 					self.addDirectory( directory )
-					self._coreCollectionsOutliner.Collections_Outliner_treeWidget_refreshSetsCounts()
+					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 					self.refreshUi()
 
 		# Sets Table Integrity Checking.
@@ -869,7 +869,7 @@ class DatabaseBrowser( UiComponent ):
 		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 		if directory :
 			self.addDirectory( directory )
-			self._coreCollectionsOutliner.Collections_Outliner_treeWidget_refreshSetsCounts()
+			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
 			self.refreshUi()
 
@@ -884,7 +884,7 @@ class DatabaseBrowser( UiComponent ):
 		setPath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if setPath :
 			self.addSet( os.path.basename( setPath ).replace( self._extension, "" ), setPath )
-			self._coreCollectionsOutliner.Collections_Outliner_treeWidget_refreshSetsCounts()
+			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
 			self.refreshUi()
 
@@ -897,7 +897,7 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		self.removeSets()
-		self._coreCollectionsOutliner.Collections_Outliner_treeWidget_refreshSetsCounts()
+		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 		self.setCollectionsDisplaySets()
 		self.refreshUi()
 
@@ -968,7 +968,7 @@ class DatabaseBrowser( UiComponent ):
 			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
 		else:
-			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, set ) )
+			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
 	@core.executionTrace
 	def addDirectory( self, directory, collectionId = None ):

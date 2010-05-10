@@ -344,7 +344,7 @@ class SetsScanner( Component ):
 						LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, set_ ) )
 
 		if needUiRefresh :
-			self._coreCollectionsOutliner.Collections_Outliner_treeWidget_refreshSetsCounts()
+			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self._coreDatabaseBrowser.setCollectionsDisplaySets()
 			self._coreDatabaseBrowser.refreshUi()
 
