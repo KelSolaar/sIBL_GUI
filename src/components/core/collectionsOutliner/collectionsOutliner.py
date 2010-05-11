@@ -873,7 +873,7 @@ class CollectionsOutliner( UiComponent ):
 		self._Collections_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Collections_Outliner_treeView_setActions()
 
-		self.Collections_Outliner_treeView_setUi()
+		self.Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnItemSelectionChanged )
@@ -1010,9 +1010,9 @@ class CollectionsOutliner( UiComponent ):
 				dbUtilities.common.commit( self._coreDb.dbSession )
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setUi( self ):
+	def Collections_Outliner_treeView_setView( self ):
 		'''
-		This Method Sets The Collections_Outliner_treeView Ui.
+		This Method Sets The Collections_Outliner_treeView View.
 		'''
 
 		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Collections_Outliner_treeView" ) )
@@ -1023,6 +1023,14 @@ class CollectionsOutliner( UiComponent ):
 		self._Collections_Outliner_treeView.setSortingEnabled( True )
 
 		self._Collections_Outliner_treeView.setModel( self._model )
+
+		self.Collections_Outliner_treeView_setDefaultViewState()
+
+	@core.executionTrace
+	def Collections_Outliner_treeView_refreshView( self ):
+		'''
+		This Method Refreshes The Collections_Outliner_treeView View.
+		'''
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
 
@@ -1039,14 +1047,6 @@ class CollectionsOutliner( UiComponent ):
 			self._Collections_Outliner_treeView.resizeColumnToContents( column )
 
 		self._Collections_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
-
-	@core.executionTrace
-	def Collections_Outliner_treeView_refreshView( self ):
-		'''
-		This Method Refreshes The Collections_Outliner_treeView View.
-		'''
-
-		self.Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_refreshSetsCounts( self ):

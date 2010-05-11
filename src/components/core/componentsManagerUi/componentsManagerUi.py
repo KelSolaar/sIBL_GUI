@@ -550,12 +550,12 @@ class ComponentsManagerUi( UiComponent ):
 
 		self._model = QStandardItemModel()
 
-		self.Components_Manager_Ui_setModel()
+		self.Components_Manager_Ui_treeView_setModel()
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Components_Manager_Ui_treeView_setActions()
 
-		self.Components_Manager_Ui_treeView_setUi()
+		self.Components_Manager_Ui_treeView_setView()
 
 		self.ui.Components_Informations_textBrowser.setText( self._Components_Informations_textBrowser_defaultText )
 
@@ -602,7 +602,7 @@ class ComponentsManagerUi( UiComponent ):
 		self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
-	def Components_Manager_Ui_setModel( self ):
+	def Components_Manager_Ui_treeView_setModel( self ):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView Model.
 		'''
@@ -659,9 +659,9 @@ class ComponentsManagerUi( UiComponent ):
 		self.Components_Manager_Ui_treeView_setModel()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setUi( self ):
+	def Components_Manager_Ui_treeView_setView( self ):
 		'''
-		This Method Sets The Components_Manager_Ui_treeView.
+		This Method Sets The Components_Manager_Ui_treeView View.
 		'''
 
 		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
@@ -673,6 +673,14 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Manager_Ui_treeView.setSortingEnabled( True )
 
 		self.ui.Components_Manager_Ui_treeView.setModel( self._model )
+
+		self.Components_Manager_Ui_treeView_setDefaultViewState()
+
+	@core.executionTrace
+	def Components_Manager_Ui_treeView_refreshView( self ):
+		'''
+		This Method Refreshes The Components_Manager_Ui_treeView View.
+		'''
 
 		self.Components_Manager_Ui_treeView_setDefaultViewState()
 
@@ -689,14 +697,6 @@ class ComponentsManagerUi( UiComponent ):
 			self.ui.Components_Manager_Ui_treeView.resizeColumnToContents( column )
 
 		self.ui.Components_Manager_Ui_treeView.sortByColumn( 0, Qt.AscendingOrder )
-
-	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshView( self ):
-		'''
-		This Method Refreshes The Components_Manager_Ui_treeView View.
-		'''
-
-		self.Components_Manager_Ui_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_refreshActivationsStatus( self ):

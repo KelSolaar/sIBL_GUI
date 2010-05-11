@@ -706,7 +706,7 @@ class TemplatesOutliner( UiComponent ):
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Templates_Outliner_treeView_setActions()
 
-		self.Templates_Outliner_treeView_setUi()
+		self.Templates_Outliner_treeView_setView()
 
 		self.ui.Template_Informations_textBrowser.setText( self._Template_Informations_textBrowser_defaultText )
 		self.ui.Template_Informations_textBrowser.setOpenLinks( False )
@@ -835,9 +835,9 @@ class TemplatesOutliner( UiComponent ):
 		self.Templates_Outliner_treeView_setModel()
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_setUi( self ):
+	def Templates_Outliner_treeView_setView( self ):
 		'''
-		This Method Sets The Templates_Outliner_treeView Ui.
+		This Method Sets The Templates_Outliner_treeView View.
 		'''
 
 		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Templates_Outliner_treeView" ) )
@@ -849,6 +849,14 @@ class TemplatesOutliner( UiComponent ):
 		self.ui.Templates_Outliner_treeView.setSortingEnabled( True )
 
 		self.ui.Templates_Outliner_treeView.setModel( self._model )
+
+		self.Templates_Outliner_treeView_setDefaultViewState()
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_refreshView( self ):
+		'''
+		This Method Refreshes The Templates_Outliner_treeView View.
+		'''
 
 		self.Templates_Outliner_treeView_setDefaultViewState()
 
@@ -865,14 +873,6 @@ class TemplatesOutliner( UiComponent ):
 			self.ui.Templates_Outliner_treeView.resizeColumnToContents( column )
 
 		self.ui.Templates_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
-
-	@core.executionTrace
-	def Templates_Outliner_treeView_refreshView( self ):
-		'''
-		This Method Refreshes The Templates_Outliner_treeView View.
-		'''
-
-		self.Templates_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setActions( self ):
