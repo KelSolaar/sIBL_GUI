@@ -701,7 +701,6 @@ class TemplatesOutliner( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self._model = QStandardItemModel()
-
 		self.Templates_Outliner_treeView_setModel()
 
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
