@@ -299,7 +299,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 					set._datas.collection = collectionStandardItem._datas.id
 				if dbUtilities.common.commit( self._coreDb.dbSession ) :
 					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-					self._coreCollectionsOutliner.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+					self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def QTreeView_OnClicked( self, index ):
@@ -362,7 +362,8 @@ class CollectionsOutliner( UiComponent ):
 
 		self._model = None
 
-		self._Collections_Outliner_treeView = None
+		# CollectionsOutliner_QTreeView Allocation.
+		# self.ui.Collections_Outliner_treeView = None
 
 		self._overallCollection = "Overall"
 		self._defaultCollection = "Default"
@@ -643,36 +644,6 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
 
 	@property
-	def Collections_Outliner_treeView( self ):
-		'''
-		This Method Is The Property For The _Collections_Outliner_treeView Attribute.
-
-		@return: self._Collections_Outliner_treeView. ( QTreeView )
-		'''
-
-		return self._Collections_Outliner_treeView
-
-	@Collections_Outliner_treeView.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def Collections_Outliner_treeView( self, value ):
-		'''
-		This Method Is The Setter Method For The _Collections_Outliner_treeView Attribute.
-
-		@param value: Attribute Value. ( QTreeView )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Collections_Outliner_treeView" ) )
-
-	@Collections_Outliner_treeView.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def Collections_Outliner_treeView( self ):
-		'''
-		This Method Is The Deleter Method For The _Collections_Outliner_treeView Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "Collections_Outliner_treeView" ) )
-
-	@property
 	def overallCollection( self ):
 		'''
 		This Method Is The Property For The _overallCollection Attribute.
@@ -867,18 +838,18 @@ class CollectionsOutliner( UiComponent ):
 		self._model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 
-		self._Collections_Outliner_treeView = CollectionsOutliner_QTreeView( self._container )
-		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget( self._Collections_Outliner_treeView )
+		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView( self._container )
+		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Collections_Outliner_treeView )
 
-		self._Collections_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
+		self.ui.Collections_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Collections_Outliner_treeView_setActions()
 
 		self.Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnItemSelectionChanged )
-		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeView, SIGNAL( "clicked( const QModelIndex & )" ), self._Collections_Outliner_treeView.QTreeView_OnClicked )
-		self._signalsSlotsCenter.connect( self._Collections_Outliner_treeView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self._Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
+		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "clicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
 		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Collections_Outliner_treeView_refreshView )
 		self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
 
@@ -1017,12 +988,12 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Collections_Outliner_treeView" ) )
 
-		self._Collections_Outliner_treeView.setAutoScroll( False )
-		self._Collections_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
-		self._Collections_Outliner_treeView.setIndentation( self._treeViewIndentation )
-		self._Collections_Outliner_treeView.setSortingEnabled( True )
+		self.ui.Collections_Outliner_treeView.setAutoScroll( False )
+		self.ui.Collections_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
+		self.ui.Collections_Outliner_treeView.setIndentation( self._treeViewIndentation )
+		self.ui.Collections_Outliner_treeView.setSortingEnabled( True )
 
-		self._Collections_Outliner_treeView.setModel( self._model )
+		self.ui.Collections_Outliner_treeView.setModel( self._model )
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
 
@@ -1042,11 +1013,11 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Collections_Outliner_treeView" ) )
 
-		self._Collections_Outliner_treeView.expandAll()
+		self.ui.Collections_Outliner_treeView.expandAll()
 		for column in range( len( self._modelHeaders ) ) :
-			self._Collections_Outliner_treeView.resizeColumnToContents( column )
+			self.ui.Collections_Outliner_treeView.resizeColumnToContents( column )
 
-		self._Collections_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
+		self.ui.Collections_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_refreshSetsCounts( self ):
@@ -1069,17 +1040,17 @@ class CollectionsOutliner( UiComponent ):
 		This Method Sets The Collections Outliner Actions.
 		'''
 
-		addContentAction = QAction( "Add Content ...", self._Collections_Outliner_treeView )
+		addContentAction = QAction( "Add Content ...", self.ui.Collections_Outliner_treeView )
 		addContentAction.triggered.connect( self.Collections_Outliner_treeView_addContentAction )
-		self._Collections_Outliner_treeView.addAction( addContentAction )
+		self.ui.Collections_Outliner_treeView.addAction( addContentAction )
 
-		addCollectionAction = QAction( "Add Collection ...", self._Collections_Outliner_treeView )
+		addCollectionAction = QAction( "Add Collection ...", self.ui.Collections_Outliner_treeView )
 		addCollectionAction.triggered.connect( self.Collections_Outliner_treeView_addCollectionAction )
-		self._Collections_Outliner_treeView.addAction( addCollectionAction )
+		self.ui.Collections_Outliner_treeView.addAction( addCollectionAction )
 
-		removeCollectionsAction = QAction( "Remove Collection(s) ...", self._Collections_Outliner_treeView )
+		removeCollectionsAction = QAction( "Remove Collection(s) ...", self.ui.Collections_Outliner_treeView )
 		removeCollectionsAction.triggered.connect( self.Collections_Outliner_treeView_removeCollectionsAction )
-		self._Collections_Outliner_treeView.addAction( removeCollectionsAction )
+		self.ui.Collections_Outliner_treeView.addAction( removeCollectionsAction )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_addContentAction( self, checked ):
@@ -1095,7 +1066,7 @@ class CollectionsOutliner( UiComponent ):
 			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 			if directory :
 				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
-				self._Collections_Outliner_treeView.selectionModel().setCurrentIndex( self._model.indexFromItem( self._model.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] ), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( self._model.indexFromItem( self._model.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] ), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 				self.Collections_Outliner_treeView_refreshSetsCounts()
 
 	@core.executionTrace
@@ -1194,14 +1165,17 @@ class CollectionsOutliner( UiComponent ):
 				return success
 
 	@core.executionTrace
-	def getSelectedItems( self ):
+	def getSelectedItems( self, rowsRootOnly = True ):
 		'''
 		This Method Returns The Collections_Outliner_treeView Selected Items.
 		
-		@return: Selected Items. ( QStringList )
+		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
 		'''
 
-		return [self._model.itemFromIndex( index ) for index in self._Collections_Outliner_treeView.selectedIndexes()]
+		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set( [self._model.itemFromIndex( self._model.sibling( index.row(), 0, index ) ) for index in selectedIndexes] )] or [self._model.itemFromIndex( index ) for index in selectedIndexes]
 
 	@core.executionTrace
 	def getSelectedCollections( self ):

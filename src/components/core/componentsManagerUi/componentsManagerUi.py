@@ -881,14 +881,17 @@ class ComponentsManagerUi( UiComponent ):
 		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
 
 	@core.executionTrace
-	def getSelectedItems( self ):
+	def getSelectedItems( self, rowsRootOnly = True ):
 		'''
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
 		
-		@return: Selected Items. ( QStringList )
+		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
 		'''
 
-		return [self._model.itemFromIndex( index ) for index in self.ui.Components_Manager_Ui_treeView.selectedIndexes()]
+		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set( [self._model.itemFromIndex( self._model.sibling( index.row(), 0, index ) ) for index in selectedIndexes] )] or [self._model.itemFromIndex( index ) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End

@@ -775,6 +775,8 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
+		self.Templates_Outliner_treeView_storeModelSelection()
+
 		self._model.beginResetModel()
 
 		self._model.clear()
@@ -873,6 +875,14 @@ class TemplatesOutliner( UiComponent ):
 			self.ui.Templates_Outliner_treeView.resizeColumnToContents( column )
 
 		self.ui.Templates_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_storeModelSelection( self ):
+		'''
+		This Method Stores Templates_Outliner_treeView Model Selection.
+		'''
+
+		selection = self.getSelectedItems()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setActions( self ):
@@ -1067,7 +1077,7 @@ class TemplatesOutliner( UiComponent ):
 		@return: Removal Success. ( Boolean )
 		'''
 
-		selectedItems = [item for item in self.getSelectedItems() if item.column() == 0]
+		selectedItems = self.getSelectedItems()
 
 		selectedCollections = []
 		selectedSoftwares = []
@@ -1172,14 +1182,17 @@ class TemplatesOutliner( UiComponent ):
 				dbUtilities.common.addTemplate( self._coreDb.dbSession, template, templates[template], id )
 
 	@core.executionTrace
-	def getSelectedItems( self ):
+	def getSelectedItems( self, rowsRootOnly = True ):
 		'''
 		This Method Returns The Templates_Outliner_treeView Selected Items.
 		
-		@return: Selected Items. ( QStringList )
+		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
 		'''
 
-		return [self._model.itemFromIndex( index ) for index in self.ui.Templates_Outliner_treeView.selectedIndexes()]
+		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set( [self._model.itemFromIndex( self._model.sibling( index.row(), 0, index ) ) for index in selectedIndexes] )] or [self._model.itemFromIndex( index ) for index in selectedIndexes]
 
 	@core.executionTrace
 	def getSelectedTemplates( self ):
