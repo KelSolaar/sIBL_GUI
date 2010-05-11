@@ -1051,7 +1051,8 @@ class TemplatesOutliner( UiComponent ):
 
 		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if file :
-			collectionId = self.defaultCollections[self._factoryCollection] in file and self._model.findItems( self._factoryCollection, Qt.MatchExactly, 0 )[0]._datas.id or self._model.findItems( self._userCollection, Qt.MatchExactly, 0 )[0]._datas.id
+			templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
+			collectionId = self.defaultCollections[self._factoryCollection] in file and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
 			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
 			if dbUtilities.common.addTemplate( self._coreDb.dbSession, os.path.basename( file ).replace( self._extension, "" ), file, collectionId ) :
 				return True
