@@ -600,7 +600,7 @@ class GpsMap( UiComponent ):
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget( self._map )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._coreDatabaseBrowser.ui.Database_Browser_listView, SIGNAL( "itemSelectionChanged()" ), self.coreDatabaseBrowser_Database_Browser_listView_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel(), SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
 		self._signalsSlotsCenter.connect( self._map, SIGNAL( "loadFinished( bool )" ), self.map_OnLoadFinished )
 		self._signalsSlotsCenter.connect( self.ui.Map_Type_comboBox, SIGNAL( "activated( int )" ), self.Map_Type_comboBox_OnActivated )
 		self._signalsSlotsCenter.connect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
@@ -613,7 +613,7 @@ class GpsMap( UiComponent ):
 		'''
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self._coreDatabaseBrowser.ui.Database_Browser_listView, SIGNAL( "itemSelectionChanged()" ), self.coreDatabaseBrowser_Database_Browser_listView_OnItemSelectionChanged )
+		self._signalsSlotsCenter.disconnect( self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel(), SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
 		self._signalsSlotsCenter.disconnect( self._map, SIGNAL( "loadFinished( bool )" ), self.map_OnLoadFinished )
 		self._signalsSlotsCenter.disconnect( self.ui.Map_Type_comboBox, SIGNAL( "activated( int )" ), self.Map_Type_comboBox_OnActivated )
 		self._signalsSlotsCenter.disconnect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
@@ -643,9 +643,12 @@ class GpsMap( UiComponent ):
 		self.ui.setParent( None )
 
 	@core.executionTrace
-	def coreDatabaseBrowser_Database_Browser_listView_OnItemSelectionChanged( self ):
+	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
 		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
 		self.setMarkers()
