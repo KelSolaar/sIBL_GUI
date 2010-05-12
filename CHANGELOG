@@ -1,6 +1,10 @@
-h1=. sIBL_GUI - 3.0.3 - Alpha
+h1=. sIBL_GUI - 3.0.4 - Alpha
 
 h2=. Change Log
+
+h3. 3.0.4 - Alpha
+
+* Changed "ComponentsManagerUi", "DatabaseBrowser", "CollectionsOutliner", "TemplatesOutliner" components to Qt Model / View framework.
 
 h3. 3.0.3 - Alpha
 
