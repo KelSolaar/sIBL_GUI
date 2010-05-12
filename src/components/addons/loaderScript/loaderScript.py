@@ -673,7 +673,7 @@ class LoaderScript( UiComponent ):
 
 		overrideKeys = {}
 
-		selectedSet = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
 		overrideKeys["Background|BGfile"] = foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
@@ -704,7 +704,7 @@ class LoaderScript( UiComponent ):
 			messageBox.messageBox( "Error", "Error", "{0} | '{1}' Template File Doesn't Exists !".format( self.__class__.__name__, template.name ) )
 			return
 
-		selectedSet = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
 		if not set :

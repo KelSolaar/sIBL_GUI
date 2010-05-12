@@ -568,7 +568,7 @@ class RewiringTool( UiComponent ):
 		This Method Gets Override Keys.
 		'''
 
-		selectedSet = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
 		if set :

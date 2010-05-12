@@ -519,9 +519,9 @@ class RawEditingUtilities( UiComponent ):
 		This Method Adds Actions.
 		'''
 
-		self._editSetInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listWidget )
-		self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listWidget_editSetInTextEditorAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._editSetInTextEditorAction )
+		self._editSetInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+		self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listView_editSetInTextEditorAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editSetInTextEditorAction )
 
 		self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
 		self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeView_editSetInTextEditorAction )
@@ -533,21 +533,21 @@ class RawEditingUtilities( UiComponent ):
 		This Method Removes Actions.
 		'''
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._editSetInTextEditorAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editSetInTextEditorAction )
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._editTemplateInTextEditorAction )
 
 		self._editSetInTextEditorAction = None
 		self._editTemplateInTextEditorAction = None
 
 	@core.executionTrace
-	def Database_Browser_listWidget_editSetInTextEditorAction( self, checked ):
+	def Database_Browser_listView_editSetInTextEditorAction( self, checked ):
 		'''
 		This Method Is Triggered By editSetInTextEditorAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedSets = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
 		for set in selectedSets:
 			set._datas.path and os.path.exists( set._datas.path ) and self.editProvidedfile( set._datas.path )
 

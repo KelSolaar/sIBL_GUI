@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Database_Browser_Widget</class>
  <widget class="QWidget" name="Database_Browser_Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>256</width>
+    <height>220</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Database Browser</string>
   </property>
@@ -12,31 +20,6 @@
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="0">
-    <widget class="QListWidget" name="Database_Browser_listWidget">
-     <property name="statusTip">
-      <string>Database Browser List Widget : Displays Your Database Items.</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Box</enum>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
-     </property>
-     <property name="resizeMode">
-      <enum>QListView::Adjust</enum>
-     </property>
-     <property name="viewMode">
-      <enum>QListView::IconMode</enum>
-     </property>
-     <property name="uniformItemSizes">
-      <bool>true</bool>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0">
     <widget class="QFrame" name="Database_Browser_frame">
      <property name="frameShape">
@@ -105,6 +88,9 @@
       </item>
      </layout>
     </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QListView" name="Database_Browser_listView"/>
    </item>
   </layout>
  </widget>

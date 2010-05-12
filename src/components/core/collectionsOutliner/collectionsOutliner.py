@@ -272,7 +272,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		if event.mimeData().hasFormat( 'application/x-qabstractitemmodeldatalist' ):
+		if event.mimeData().hasFormat( "application/x-qabstractitemmodeldatalist" ):
 			LOGGER.debug( "> Drag Event Accepted !" )
 			event.accept()
 		else:
@@ -294,7 +294,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 			LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
 			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
 			if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
-				sets = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+				sets = self._coreDatabaseBrowser.getSelectedItems()
 				for set in sets :
 					set._datas.collection = collectionStandardItem._datas.id
 				if dbUtilities.common.commit( self._coreDb.dbSession ) :
@@ -1102,7 +1102,7 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		self._coreDatabaseBrowser.displaySets = self.getCollectionsSets()
-		self._coreDatabaseBrowser.refreshUi()
+		self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def addCollection( self ) :

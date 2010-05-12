@@ -418,9 +418,9 @@ class sIBLeditUtilities( UiComponent ):
 		This Method Adds Actions.
 		'''
 
-		self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listWidget )
-		self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listWidget_editInSIBLEditAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._editInSIBLEditAction )
+		self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+		self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listView_editInSIBLEditAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editInSIBLEditAction )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -428,12 +428,12 @@ class sIBLeditUtilities( UiComponent ):
 		This Method Removes Actions.
 		'''
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._editInSIBLEditAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editInSIBLEditAction )
 
 		self._editInSIBLEditAction = None
 
 	@core.executionTrace
-	def Database_Browser_listWidget_editInSIBLEditAction( self, checked ):
+	def Database_Browser_listView_editInSIBLEditAction( self, checked ):
 		'''
 		This Method Is Triggered By editInSIBLEditAction.
 
@@ -441,7 +441,7 @@ class sIBLeditUtilities( UiComponent ):
 		'''
 
 		sIBLedit = str( self.ui.sIBLedit_Path_lineEdit.text() )
-		selectedSet = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		selectedSet = selectedSet and os.path.exists( selectedSet[0]._datas.path ) and selectedSet[0] or None
 
 		if sIBLedit :

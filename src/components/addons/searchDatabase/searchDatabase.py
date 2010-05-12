@@ -664,7 +664,7 @@ class SearchDatabase( UiComponent ):
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets
-			self._coreDatabaseBrowser.refreshUi()
+			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def setSearchMatchingSets( self ):
@@ -688,7 +688,7 @@ class SearchDatabase( UiComponent ):
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets
-			self._coreDatabaseBrowser.refreshUi()
+			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 #***********************************************************************************************
 #***	Python End

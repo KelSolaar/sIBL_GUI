@@ -346,7 +346,7 @@ class SetsScanner( Component ):
 		if needUiRefresh :
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self._coreDatabaseBrowser.setCollectionsDisplaySets()
-			self._coreDatabaseBrowser.refreshUi()
+			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
 

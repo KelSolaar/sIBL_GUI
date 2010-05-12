@@ -111,8 +111,9 @@ class DatabaseBrowser( UiComponent ):
 		self._uiLargestSizeIcon = "Largest_Size.png"
 		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
-		self._listWidgetSpacing = 4
-		self._listWidgetIconSize = 128
+		self._listViewSpacing = 16
+		self._listViewMargin = 24
+		self._listViewIconSize = 128
 
 		self._container = None
 		self._signalsSlotsCenter = None
@@ -124,6 +125,8 @@ class DatabaseBrowser( UiComponent ):
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
+
+		self._model = None
 
 		self._displaySets = None
 
@@ -339,70 +342,103 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
 
 	@property
-	def listWidgetSpacing( self ):
+	def listViewSpacing( self ):
 		'''
-		This Method Is The Property For The _listWidgetSpacing Attribute.
+		This Method Is The Property For The _listViewSpacing Attribute.
 
-		@return: self._listWidgetSpacing. ( Integer )
+		@return: self._listViewSpacing. ( Integer )
 		'''
 
-		return self._listWidgetSpacing
+		return self._listViewSpacing
 
-	@listWidgetSpacing.setter
+	@listViewSpacing.setter
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def listWidgetSpacing( self, value ):
+	def listViewSpacing( self, value ):
 		'''
-		This Method Is The Setter Method For The _listWidgetSpacing Attribute.
+		This Method Is The Setter Method For The _listViewSpacing Attribute.
 		
 		@param value: Attribute Value. ( Integer )
 		'''
 
 		if value :
-			assert type( value ) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format( "listWidgetSpacing", value )
-			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "listWidgetSpacing", value )
-		self._listWidgetSpacing = value
+			assert type( value ) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format( "listViewSpacing", value )
+			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "listViewSpacing", value )
+		self._listViewSpacing = value
 
-	@listWidgetSpacing.deleter
+	@listViewSpacing.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def listWidgetSpacing( self ):
+	def listViewSpacing( self ):
 		'''
-		This Method Is The Deleter Method For The _listWidgetSpacing Attribute.
+		This Method Is The Deleter Method For The _listViewSpacing Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listWidgetSpacing" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listViewSpacing" ) )
 
 	@property
-	def listWidgetIconSize( self ):
+	def listViewMargin( self ):
 		'''
-		This Method Is The Property For The _listWidgetIconSize Attribute.
+		This Method Is The Property For The _listViewMargin Attribute.
 
-		@return: self._listWidgetIconSize. ( Integer )
+		@return: self._listViewMargin. ( Integer )
 		'''
 
-		return self._listWidgetIconSize
+		return self._listViewMargin
 
-	@listWidgetIconSize.setter
+	@listViewMargin.setter
 	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def listWidgetIconSize( self, value ):
+	def listViewMargin( self, value ):
 		'''
-		This Method Is The Setter Method For The _listWidgetIconSize Attribute.
+		This Method Is The Setter Method For The _listViewMargin Attribute.
 		
 		@param value: Attribute Value. ( Integer )
 		'''
 
 		if value :
-			assert type( value ) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format( "listWidgetIconSize", value )
-			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "listWidgetIconSize", value )
-		self._listWidgetIconSize = value
+			assert type( value ) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format( "listViewMargin", value )
+			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "listViewMargin", value )
+		self._listViewMargin = value
 
-	@listWidgetIconSize.deleter
+	@listViewMargin.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def listWidgetIconSize( self ):
+	def listViewMargin( self ):
 		'''
-		This Method Is The Deleter Method For The _listWidgetIconSize Attribute.
+		This Method Is The Deleter Method For The _listViewMargin Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listWidgetIconSize" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listViewMargin" ) )
+
+	@property
+	def listViewIconSize( self ):
+		'''
+		This Method Is The Property For The _listViewIconSize Attribute.
+
+		@return: self._listViewIconSize. ( Integer )
+		'''
+
+		return self._listViewIconSize
+
+	@listViewIconSize.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def listViewIconSize( self, value ):
+		'''
+		This Method Is The Setter Method For The _listViewIconSize Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		if value :
+			assert type( value ) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format( "listViewIconSize", value )
+			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "listViewIconSize", value )
+		self._listViewIconSize = value
+
+	@listViewIconSize.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def listViewIconSize( self ):
+		'''
+		This Method Is The Deleter Method For The _listViewIconSize Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "listViewIconSize" ) )
 
 	@property
 	def container( self ):
@@ -614,6 +650,36 @@ class DatabaseBrowser( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
 
+
+	@property
+	def model( self ):
+		'''
+		This Method Is The Property For The _model Attribute.
+
+		@return: self._model. ( QStandardItemModel )
+		'''
+
+		return self._model
+
+	@model.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def model( self, value ):
+		'''
+		This Method Is The Setter Method For The _model Attribute.
+
+		@param value: Attribute Value. ( QStandardItemModel )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
+
+	@model.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def model( self ):
+		'''
+		This Method Is The Deleter Method For The _model Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
+
 	@property
 	def displaySets( self ):
 		'''
@@ -686,17 +752,16 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
-		self.ui.Database_Browser_listWidget.setSpacing( self._listWidgetSpacing )
-		self.ui.Database_Browser_listWidget.setIconSize( QSize( self._listWidgetIconSize, self._listWidgetIconSize ) )
-		self.ui.Database_Browser_listWidget.setAcceptDrops( False )
-
-		self.ui.Database_Browser_listWidget.setContextMenuPolicy( Qt.ActionsContextMenu )
-
-		self.Database_Browser_listWidget_setActions()
-
 		self._displaySets = dbUtilities.common.getSets( self._coreDb.dbSession )
 
-		self.Database_Browser_listWidget_setUi()
+		self._model = QStandardItemModel()
+		self.Database_Browser_listView_setModel()
+
+		self.ui.Database_Browser_listView.setContextMenuPolicy( Qt.ActionsContextMenu )
+
+		self.Database_Browser_listView_setActions()
+
+		self.Database_Browser_listView_setView()
 
 		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
 		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
@@ -707,6 +772,7 @@ class DatabaseBrowser( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets )
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
+		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Database_Browser_listView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -749,7 +815,7 @@ class DatabaseBrowser( UiComponent ):
 				if directory :
 					self.addDirectory( directory )
 					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-					self.refreshUi()
+					self.Database_Browser_listView_refreshModel()
 
 		# Sets Table Integrity Checking.
 		erroneousSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
@@ -761,36 +827,21 @@ class DatabaseBrowser( UiComponent ):
 				else :
 					messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_ERRORS[erroneousSets[set]] ) )
 			self.setCollectionsDisplaySets()
-			self.refreshUi()
+			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
-	def setCollectionsDisplaySets( self ):
+	def Database_Browser_listView_setModel( self ):
 		'''
-		This Method Gets The Display Sets Associated To Selected coreCollectionsOutliner Collections.
-		'''
-
-		self._displaySets = self._coreCollectionsOutliner.getCollectionsSets()
-
-	@core.executionTrace
-	def refreshUi( self ):
-		'''
-		This Method Refreshes The Database_Browser_listWidget Ui.
+		This Method Sets The Database_Browser_listView Model.
 		'''
 
-		self.Database_Browser_listWidget_setUi()
+		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
-	@core.executionTrace
-	def Database_Browser_listWidget_setUi( self ):
-		'''
-		This Method Sets The Database_Browser_listWidget Ui.
-		'''
+		self._model.beginResetModel()
 
-		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
+		self._model.clear()
 
-		self.ui.Database_Browser_listWidget.clear()
-
-		for set in self._displaySets :
-
+		for set in [set[0] for set in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
 			id = set.id
 			name = set.name or Constants.nullObject
 			title = set.title
@@ -802,10 +853,10 @@ class DatabaseBrowser( UiComponent ):
 			comment = set.comment or Constants.nullObject
 
 			if title :
-				listWidgetItem = QListWidgetItem( QString( title ) )
+				iblSetStandardItemItem = QStandardItem()# QString( title ) )
+				iblSetStandardItemItem.setData( title, Qt.DisplayRole )
 
 				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( date, time ) )
-
 				toolTip = QString( """
 								<p><b>{0}</b></p>
 								<p><b>Author : </b>{1}<br>
@@ -813,53 +864,106 @@ class DatabaseBrowser( UiComponent ):
 								{3}<br>
 								<b>Comment : </b>{4}</p>
 								""".format( title, author, location, shotDateString, comment ) )
-
-				listWidgetItem.setToolTip( toolTip )
+				iblSetStandardItemItem.setToolTip( toolTip )
 
 				if re.search( "\.[jJ][pP][gG]", icon ) or re.search( "\.[jJ][pP][eE][gG]", icon ) or re.search( "\.[pP][nN][gG]", icon ):
-					icon = os.path.exists( icon ) and QIcon( QPixmap( icon ) ) or QIcon( os.path.join( self._uiResources, self.uiMissingIcon ) )
+					iconPath = os.path.exists( icon ) and icon or os.path.join( self._uiResources, self.uiMissingIcon )
 				else :
-					icon = QIcon( os.path.join( self._uiResources, self.uiFormatErrorIcon ) )
-				listWidgetItem.setIcon( icon )
+					iconPath = os.path.join( self._uiResources, self.uiFormatErrorIcon )
+				iblSetStandardItemItem.setIcon( QIcon( iconPath ) )
 
-				listWidgetItem._datas = set
+				iblSetStandardItemItem._datas = set
 
-				LOGGER.debug( " > Adding '{0}' To 'self.Collections_listWidget'.".format( title ) )
-				self.ui.Database_Browser_listWidget.addItem( listWidgetItem )
+				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( title, "Database_Browser_listView" ) )
 
-			else:
-				messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Has No 'Name' Field And Can't Be Added !".format( self.__class__.__name__, name ) )
+				self._model.appendRow( iblSetStandardItemItem )
 
-		self.ui.Database_Browser_listWidget.sortItems( Qt.AscendingOrder )
+		self._model.endResetModel()
 
 	@core.executionTrace
-	def Database_Browser_listWidget_setActions( self ):
+	def Database_Browser_listView_refreshModel( self ):
+		'''
+		This Method Refreshes The Database_Browser_listView Model.
+		'''
+
+		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Database_Browser_listView" ) )
+
+		self.Database_Browser_listView_setModel()
+
+	@core.executionTrace
+	def Database_Browser_listView_setView( self ):
+		'''
+		This Method Sets The Database_Browser_listView Ui.
+		'''
+
+		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Database_Browser_listView" ) )
+
+		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
+		self.ui.Database_Browser_listView.setSelectionMode( QAbstractItemView.ExtendedSelection )
+		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
+		self.ui.Database_Browser_listView.setAcceptDrops( False )
+
+		self.Database_Browser_listView_setItemSize()
+
+		self.ui.Database_Browser_listView.setModel( self._model )
+
+	@core.executionTrace
+	def Database_Browser_listView_refreshView( self ):
+		'''
+		This Method Refreshes The Database_Browser_listView View.
+		'''
+
+		self.Database_Browser_listView_setDefaultViewState()
+
+	@core.executionTrace
+	def Database_Browser_listView_setDefaultViewState( self ):
+		'''
+		This Method Sets Database_Browser_listView Default View State.
+		'''
+
+		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Database_Browser_listView" ) )
+
+		self.Database_Browser_listView_setItemSize()
+
+	@core.executionTrace
+	def Database_Browser_listView_setItemSize( self ):
+		'''
+		This Method Scales The Database_Browser_listView Item Size.
+		
+		@param value: Thumbnails Size. ( Integer )
+		'''
+
+		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
+		self.ui.Database_Browser_listView.setGridSize( QSize( self._listViewIconSize + self._listViewSpacing, self._listViewIconSize + self._listViewMargin ) )
+
+	@core.executionTrace
+	def Database_Browser_listView_setActions( self ):
 		'''
 		This Method Sets The Database Browser Actions.
 		'''
 
-		addContentAction = QAction( "Add Content ...", self.ui.Database_Browser_listWidget )
-		addContentAction.triggered.connect( self.Database_Browser_listWidget_addContentAction )
-		self.ui.Database_Browser_listWidget.addAction( addContentAction )
+		addContentAction = QAction( "Add Content ...", self.ui.Database_Browser_listView )
+		addContentAction.triggered.connect( self.Database_Browser_listView_addContentAction )
+		self.ui.Database_Browser_listView.addAction( addContentAction )
 
-		addSetAction = QAction( "Add Set ...", self.ui.Database_Browser_listWidget )
-		addSetAction.triggered.connect( self.Database_Browser_listWidget_addSetAction )
-		self.ui.Database_Browser_listWidget.addAction( addSetAction )
+		addSetAction = QAction( "Add Set ...", self.ui.Database_Browser_listView )
+		addSetAction.triggered.connect( self.Database_Browser_listView_addSetAction )
+		self.ui.Database_Browser_listView.addAction( addSetAction )
 
-		removeSetsAction = QAction( "Remove Set(s) ...", self.ui.Database_Browser_listWidget )
-		removeSetsAction.triggered.connect( self.Database_Browser_listWidget_removeSetsAction )
-		self.ui.Database_Browser_listWidget.addAction( removeSetsAction )
+		removeSetsAction = QAction( "Remove Set(s) ...", self.ui.Database_Browser_listView )
+		removeSetsAction.triggered.connect( self.Database_Browser_listView_removeSetsAction )
+		self.ui.Database_Browser_listView.addAction( removeSetsAction )
 
-		updateSetsLocationsAction = QAction( "Update Set(s) Location(s) ...", self.ui.Database_Browser_listWidget )
-		updateSetsLocationsAction.triggered.connect( self.Database_Browser_listWidget_updateSetsLocationsAction )
-		self.ui.Database_Browser_listWidget.addAction( updateSetsLocationsAction )
+		updateSetsLocationsAction = QAction( "Update Set(s) Location(s) ...", self.ui.Database_Browser_listView )
+		updateSetsLocationsAction.triggered.connect( self.Database_Browser_listView_updateSetsLocationsAction )
+		self.ui.Database_Browser_listView.addAction( updateSetsLocationsAction )
 
-		separatorAction = QAction( self.ui.Database_Browser_listWidget )
+		separatorAction = QAction( self.ui.Database_Browser_listView )
 		separatorAction.setSeparator( True )
-		self.ui.Database_Browser_listWidget.addAction( separatorAction )
+		self.ui.Database_Browser_listView.addAction( separatorAction )
 
 	@core.executionTrace
-	def Database_Browser_listWidget_addContentAction( self, checked ):
+	def Database_Browser_listView_addContentAction( self, checked ):
 		'''
 		This Method Is Triggered By addContentAction.
 
@@ -871,10 +975,10 @@ class DatabaseBrowser( UiComponent ):
 			self.addDirectory( directory )
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
-			self.refreshUi()
+			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listWidget_addSetAction( self, checked ):
+	def Database_Browser_listView_addSetAction( self, checked ):
 		'''
 		This Method Is Triggered By addSetAction.
 
@@ -886,10 +990,10 @@ class DatabaseBrowser( UiComponent ):
 			self.addSet( os.path.basename( setPath ).replace( self._extension, "" ), setPath )
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
-			self.refreshUi()
+			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listWidget_removeSetsAction( self, checked ):
+	def Database_Browser_listView_removeSetsAction( self, checked ):
 		'''
 		This Method Is Triggered By removeSetsAction.
 
@@ -899,37 +1003,46 @@ class DatabaseBrowser( UiComponent ):
 		self.removeSets()
 		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 		self.setCollectionsDisplaySets()
-		self.refreshUi()
+		self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listWidget_updateSetsLocationsAction( self, checked ):
+	def Database_Browser_listView_updateSetsLocationsAction( self, checked ):
 		'''
 		This Method Is Triggered By updateSetsLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		needUiRefresh = False
-		selectedSets = self.ui.Database_Browser_listWidget.selectedItems()
+		needModelRefresh = False
+		selectedSets = self.getSelectedItems()
 		if selectedSets :
 			for set in selectedSets :
 				self.updateSetLocation( set._datas )
-				needUiRefresh = True
+				needModelRefresh = True
 
-		if needUiRefresh :
+		if needModelRefresh :
 			self.setCollectionsDisplaySets()
-			self.refreshUi()
+			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def Thumbnails_Size_horizontalSlider_OnChanged( self, value ):
 		'''
-		This Method Scales The Database_Browser_listWidget Icons.
+		This Method Scales The Database_Browser_listView Icons.
 		
 		@param value: Thumbnails Size. ( Integer )
 		'''
 
-		self.ui.Database_Browser_listWidget.listWidgetIconSize = value
-		self.ui.Database_Browser_listWidget.setIconSize( QSize( value, value ) )
+		self._listViewIconSize = value
+
+		self.Database_Browser_listView_setItemSize()
+
+	@core.executionTrace
+	def setCollectionsDisplaySets( self ):
+		'''
+		This Method Gets The Display Sets Associated To Selected coreCollectionsOutliner Collections.
+		'''
+
+		self._displaySets = self._coreCollectionsOutliner.getCollectionsSets()
 
 	@core.executionTrace
 	def updateSets( self ):
@@ -937,7 +1050,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Updates Database Sets If They Have Been Modified On Disk.
 		'''
 
-		needUiRefresh = False
+		needModelRefresh = False
 		for set in dbUtilities.common.getSets( self._coreDb.dbSession ) :
 			if set.path :
 				if os.path.exists( set.path ) :
@@ -947,11 +1060,11 @@ class DatabaseBrowser( UiComponent ):
 						LOGGER.info( "{0} | '{1}' Set IBL File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, set.name ) )
 						if dbUtilities.common.updateSetContent( self._coreDb.dbSession, set ) :
 							LOGGER.info( "{0} | '{1}' Set Has Been Updated !".format( self.__class__.__name__, set.name ) )
-							needUiRefresh = True
+							needModelRefresh = True
 
-		if needUiRefresh :
+		if needModelRefresh :
 			self.setCollectionsDisplaySets()
-			self.refreshUi()
+			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def addSet( self, name, path, collectionId = None ):
@@ -992,7 +1105,7 @@ class DatabaseBrowser( UiComponent ):
 		@return: Removal Success. ( Boolean )
 		'''
 
-		selectedSets = self.ui.Database_Browser_listWidget.selectedItems()
+		selectedSets = self.getSelectedItems()
 		if selectedSets :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format( ", ".join( [str( set.text() ) for set in selectedSets] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for set in selectedSets :
@@ -1016,6 +1129,16 @@ class DatabaseBrowser( UiComponent ):
 				return False
 			else :
 				return True
+
+	@core.executionTrace
+	def getSelectedItems( self ):
+		'''
+		This Method Returns The Database_Browser_listView Selected Items.
+		
+		@return: View Selected Items. ( List )
+		'''
+
+		return [self._model.itemFromIndex( index ) for index in self.ui.Database_Browser_listView.selectedIndexes()]
 
 	@core.executionTrace
 	def getFormatedShotDate( self, date, time ):

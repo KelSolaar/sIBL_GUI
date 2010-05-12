@@ -664,9 +664,9 @@ class LocationsBrowser( UiComponent ):
 		This Method Adds Actions.
 		'''
 
-		self._openSetsLocationsAction = QAction( "Open Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listWidget )
-		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listWidget_openSetsLocationsAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.addAction( self._openSetsLocationsAction )
+		self._openSetsLocationsAction = QAction( "Open Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listView_openSetsLocationsAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._openSetsLocationsAction )
 
 		self._openComponentsLocationsAction = QAction( "Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView )
 		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeView_openComponentsLocationsAction )
@@ -682,7 +682,7 @@ class LocationsBrowser( UiComponent ):
 		This Method Removes Actions.
 		'''
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listWidget.removeAction( self._openSetsLocationsAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._openSetsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction( self._openComponentsLocationsAction )
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._openTemplatesLocationsAction )
 
@@ -691,14 +691,14 @@ class LocationsBrowser( UiComponent ):
 		self._openTemplatesLocationsAction = None
 
 	@core.executionTrace
-	def Database_Browser_listWidget_openSetsLocationsAction( self, checked ):
+	def Database_Browser_listView_openSetsLocationsAction( self, checked ):
 		'''
 		This Method Is Triggered By openSetsLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedSets = self._coreDatabaseBrowser.ui.Database_Browser_listWidget.selectedItems()
+		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
 		for set in selectedSets :
 			setPath = set._datas.path
 			setPath = setPath and os.path.exists( setPath ) and os.path.dirname( setPath )
