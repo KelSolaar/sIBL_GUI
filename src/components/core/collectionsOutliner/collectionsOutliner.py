@@ -1026,13 +1026,13 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		for i in range( self._model.rowCount() ) :
+			currentStandardItem = self._model.item( i )
+			if currentStandardItem.text() == self._overallCollection :
+				self._model.itemFromIndex( self._model.sibling( i, 1, self._model.indexFromItem( currentStandardItem ) ) ).setText( str( dbUtilities.common.getSets( self._coreDb.dbSession ).count() ) )
 			for j in range( self._model.item( i ).rowCount() ):
-				collectionStandardItem = self._model.item( i ).child( j, 0 )
-				collectionSetsCountStandardItem = self._model.item( i ).child( j, 1 )
-				if collectionStandardItem.text() == self._overallCollection :
-					collectionSetsCountStandardItem.setText( str( dbUtilities.common.getSets( self._coreDb.dbSession ).count() ) )
-				else :
-					collectionSetsCountStandardItem.setText( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collectionStandardItem._datas.id ).count() ) )
+				collectionStandardItem = currentStandardItem.child( j, 0 )
+				collectionSetsCountStandardItem = currentStandardItem.child( j, 1 )
+				collectionSetsCountStandardItem.setText( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collectionStandardItem._datas.id ).count() ) )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setActions( self ):
