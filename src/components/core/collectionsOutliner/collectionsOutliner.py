@@ -847,7 +847,7 @@ class CollectionsOutliner( UiComponent ):
 		self.Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnItemSelectionChanged )
+		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnModelSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "clicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
 		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Collections_Outliner_treeView_refreshView )
@@ -1093,7 +1093,7 @@ class CollectionsOutliner( UiComponent ):
 		self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_OnItemSelectionChanged( self, selectedItems, deselectedItems ):
+	def Collections_Outliner_treeView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
 		This Method Refreshes The Database Browser Depending On The Collections Outliner Selected Items.
 		
