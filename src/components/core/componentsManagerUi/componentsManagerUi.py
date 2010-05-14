@@ -678,6 +678,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
 
+		self.ui.Components_Manager_Ui_treeView.setAutoScroll( False )
 		self.ui.Components_Manager_Ui_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
 		self.ui.Components_Manager_Ui_treeView.setDragDropMode( QAbstractItemView.NoDragDrop )
 		self.ui.Components_Manager_Ui_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )

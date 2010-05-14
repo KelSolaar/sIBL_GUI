@@ -130,6 +130,7 @@ class DatabaseBrowser( UiComponent ):
 		self._coreCollectionsOutliner = None
 
 		self._model = None
+		self._modelSelection = None
 
 		self._displaySets = None
 
@@ -684,6 +685,35 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
 
 	@property
+	def modelSelection( self ):
+		'''
+		This Method Is The Property For The _modelSelection Attribute.
+
+		@return: self._modelSelection. ( Dictionary )
+		'''
+
+		return self._modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self, value ):
+		'''
+		This Method Is The Setter Method For The _modelSelection Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self ):
+		'''
+		This Method Is The Deleter Method For The _modelSelection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
+
+	@property
 	def displaySets( self ):
 		'''
 		This Method Is The Property For The _displaySets Attribute.
@@ -840,6 +870,8 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
+		self.Database_Browser_listView_storeModelSelection()
+
 		self._model.clear()
 
 		for set in [set[0] for set in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
@@ -876,7 +908,6 @@ class DatabaseBrowser( UiComponent ):
 				iblSetStandardItemItem._datas = set
 
 				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( title, "Database_Browser_listView" ) )
-
 				self._model.appendRow( iblSetStandardItemItem )
 
 		self.emit( SIGNAL( "modelChanged()" ) )
@@ -899,6 +930,7 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Database_Browser_listView" ) )
 
+		self.ui.Database_Browser_listView.setAutoScroll( False )
 		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
 		self.ui.Database_Browser_listView.setSelectionMode( QAbstractItemView.ExtendedSelection )
 		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
@@ -915,6 +947,7 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		self.Database_Browser_listView_setDefaultViewState()
+		self.Database_Browser_listView_restoreModelSelection()
 
 	@core.executionTrace
 	def Database_Browser_listView_setDefaultViewState( self ):
@@ -927,12 +960,42 @@ class DatabaseBrowser( UiComponent ):
 		self.Database_Browser_listView_setItemSize()
 
 	@core.executionTrace
+	def Database_Browser_listView_storeModelSelection( self ):
+		'''
+		This Method Stores Database_Browser_listView Model Selection.
+		'''
+
+		LOGGER.debug( " > Storing '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+
+		self._modelSelection = []
+		for item in self.getSelectedItems() :
+			self._modelSelection.append( item._datas.id )
+
+	@core.executionTrace
+	def Database_Browser_listView_restoreModelSelection( self ):
+		'''
+		This Method Restores Database_Browser_listView Model Selection.
+		'''
+
+		LOGGER.debug( " > Restoring '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+
+		indexes = []
+		for i in range( self._model.rowCount() ) :
+			collectionStandardItem = self._model.item( i )
+			collectionStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
+
+		for index in indexes :
+			self.ui.Database_Browser_listView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select )
+
+	@core.executionTrace
 	def Database_Browser_listView_setItemSize( self ):
 		'''
 		This Method Scales The Database_Browser_listView Item Size.
 		
 		@param value: Thumbnails Size. ( Integer )
 		'''
+
+		LOGGER.debug( " > Restoring '{0}' View Item Size To : {1}.".format( "Database_Browser_listView", self._listViewIconSize ) )
 
 		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
 		self.ui.Database_Browser_listView.setGridSize( QSize( self._listViewIconSize + self._listViewSpacing, self._listViewIconSize + self._listViewMargin ) )
