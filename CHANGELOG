@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.4 - Beta
 
+* "DatabaseBrowser" and "TemplatesOutliner" components store / restore their selection when the Database is updated.
 * Changed "ComponentsManagerUi", "DatabaseBrowser", "CollectionsOutliner", "TemplatesOutliner" components to Qt Model / View framework.
 
 h3. 3.0.3 - Alpha
