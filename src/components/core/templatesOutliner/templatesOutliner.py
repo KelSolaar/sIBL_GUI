@@ -121,6 +121,7 @@ class TemplatesOutliner( UiComponent ):
 		self._coreDb = None
 
 		self._model = None
+		self._modelSelection = None
 
 		self._extension = "sIBLT"
 
@@ -458,6 +459,35 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
 
 	@property
+	def modelSelection( self ):
+		'''
+		This Method Is The Property For The _modelSelection Attribute.
+
+		@return: self._modelSelection. ( Dictionary )
+		'''
+
+		return self._modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self, value ):
+		'''
+		This Method Is The Setter Method For The _modelSelection Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self ):
+		'''
+		This Method Is The Deleter Method For The _modelSelection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
+
+	@property
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -774,6 +804,14 @@ class TemplatesOutliner( UiComponent ):
 	def Templates_Outliner_treeView_setModel( self ):
 		'''
 		This Method Sets The Templates_Outliner_treeView Model.
+		
+		Columns :
+		Templates | Release | Software Version
+		
+		Rows :
+		* Collection : { _type : "Collection" }
+		** Software : { _type : "Software" }
+		***	Template : { _type : "Template", _datas : dbUtilities.types.DbTemplate }
 		'''
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
@@ -793,6 +831,7 @@ class TemplatesOutliner( UiComponent ):
 			if softwares :
 				collectionStandardItem = QStandardItem( QString( collection.name ) )
 				collectionStandardItem._datas = collection
+				collectionStandardItem._type = "Collection"
 
 				LOGGER.debug( " > Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
 				self._model.appendRow( collectionStandardItem )
@@ -808,6 +847,8 @@ class TemplatesOutliner( UiComponent ):
 						else :
 							softwareStandardItem.setIcon( QIcon( os.path.join( self._uiResources, self._uiUnknownSoftwareIcon ) ) )
 
+						softwareStandardItem._type = "Software"
+
 						LOGGER.debug( " > Adding '{0}' Software To '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
 						collectionStandardItem.appendRow( [softwareStandardItem, None, None] )
 
@@ -822,6 +863,7 @@ class TemplatesOutliner( UiComponent ):
 							templateVersionStandardItem.setTextAlignment( Qt.AlignCenter )
 
 							templateStandardItem._datas = template
+							templateStandardItem._type = "Template"
 
 							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.title, "Templates_Outliner_treeView" ) )
 							softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
@@ -863,6 +905,7 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		self.Templates_Outliner_treeView_setDefaultViewState()
+		self.Templates_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setDefaultViewState( self ):
@@ -884,7 +927,38 @@ class TemplatesOutliner( UiComponent ):
 		This Method Stores Templates_Outliner_treeView Model Selection.
 		'''
 
-		selection = self.getSelectedItems()
+		LOGGER.debug( " > Storing '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
+
+		self._modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
+		for item in self.getSelectedItems() :
+			if item._type == "Collection" :
+				self._modelSelection["Collections"].append( item.text() )
+			elif item._type == "Software" :
+				self._modelSelection["Softwares"].append( item.text() )
+			else :
+				self._modelSelection["Templates"].append( item._datas.id )
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_restoreModelSelection( self ):
+		'''
+		This Method Restores Templates_Outliner_treeView Model Selection.
+		'''
+
+		LOGGER.debug( " > Restoring '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
+
+		indexes = []
+		for i in range( self._model.rowCount() ) :
+			collectionStandardItem = self._model.item( i )
+			collectionStandardItem.text() in self._modelSelection["Collections"] and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
+			for j in range( collectionStandardItem.rowCount() ) :
+				softwareStandardItem = collectionStandardItem.child( j, 0 )
+				softwareStandardItem.text() in self._modelSelection["Softwares"] and indexes.append( self._model.indexFromItem( softwareStandardItem ) )
+				for k in range( softwareStandardItem.rowCount() ) :
+					templateStandardItem = softwareStandardItem.child( k, 0 )
+					templateStandardItem._datas.id in self._modelSelection["Templates"] and indexes.append( self._model.indexFromItem( templateStandardItem ) )
+
+		for index in indexes :
+			self.ui.Templates_Outliner_treeView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setActions( self ):
@@ -1020,22 +1094,19 @@ class TemplatesOutliner( UiComponent ):
 					</p>
 					"""
 
-		selectedItems = self.getSelectedItems()
-		selectedTemplates = [template for template in selectedItems if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
+		selectedTemplates = self.getSelectedTemplates()
 
 		if selectedTemplates :
 			for template in selectedTemplates :
-				if hasattr( template, "_datas" ) :
-					if type( template._datas ) == dbUtilities.types.DbTemplate :
-						template and content.append( subContent.format( "{0} {1} {2}".format( template._datas.software, template._datas.renderer, template._datas.title ),
-											template._datas.date,
-											template._datas.author,
-											template._datas.email,
-											template._datas.url,
-											template._datas.outputScript,
-											template._datas.comment,
-											template._datas.helpFile
-											) )
+				template and content.append( subContent.format( "{0} {1} {2}".format( template._datas.software, template._datas.renderer, template._datas.title ),
+									template._datas.date,
+									template._datas.author,
+									template._datas.email,
+									template._datas.url,
+									template._datas.outputScript,
+									template._datas.comment,
+									template._datas.helpFile
+									) )
 		else :
 			content.append( self._Template_Informations_textBrowser_defaultText )
 
@@ -1084,14 +1155,14 @@ class TemplatesOutliner( UiComponent ):
 		selectedCollections = []
 		selectedSoftwares = []
 		selectedTemplates = []
+
 		for item in selectedItems :
-			if hasattr( item, "_datas" ) :
-				if type( item._datas ) != dbUtilities.types.DbTemplate :
-					selectedCollections.append( str( item.text() ) )
-				else :
-					selectedTemplates.append( item )
-			else:
+			if item._type == "Collection" :
+				selectedCollections.append( str( item.text() ) )
+			elif item._type == "Software" :
 				selectedSoftwares.append( str( item.text() ) )
+			else :
+				selectedTemplates.append( item )
 
 		selectedCollections and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s) !".format( self.__class__.__name__, ", ".join( selectedCollections ) ) )
 		selectedSoftwares and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s) !".format( self.__class__.__name__, ", ".join( selectedSoftwares ) ) )
@@ -1204,8 +1275,8 @@ class TemplatesOutliner( UiComponent ):
 		@return: Selected Template. ( QTreeWidgetItem )
 		'''
 
-		selectedTemplates = self.getSelectedItems()
-		return selectedTemplates and [template for template in selectedTemplates if hasattr( template, "_datas" ) and type( template._datas ) == dbUtilities.types.DbTemplate] or None
+		selectedItems = self.getSelectedItems()
+		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
 
 #***********************************************************************************************
 #***	Python End

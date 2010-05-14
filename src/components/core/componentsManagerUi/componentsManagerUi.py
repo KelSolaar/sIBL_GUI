@@ -608,6 +608,13 @@ class ComponentsManagerUi( UiComponent ):
 	def Components_Manager_Ui_treeView_setModel( self ):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView Model.
+		
+		Columns :
+		Collections | Activated | Categorie | Rank | Version
+		
+		Rows :
+		* Path : { _type : "Path" }
+		** Component : { _type : "Component", _datas : profile }
 		'''
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
@@ -622,6 +629,8 @@ class ComponentsManagerUi( UiComponent ):
 
 			if components :
 				pathStandardItem = QStandardItem( QString( path ) )
+				pathStandardItem._type = "Path"
+
 				LOGGER.debug( " > Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui" ) )
 				self._model.appendRow( pathStandardItem )
 
@@ -644,6 +653,7 @@ class ComponentsManagerUi( UiComponent ):
 					componentVersionStandardItem.setTextAlignment( Qt.AlignCenter )
 
 					componentStandardItem._datas = self._container.componentsManager.components[component]
+					componentStandardItem._type = "Component"
 
 					LOGGER.debug( " > Adding '{0}' Component To '{1}'.".format( component, "Components_Manager_Ui_treeView" ) )
 					pathStandardItem.appendRow( [componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem] )
@@ -750,7 +760,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		selectedComponents = self.getSelectedItems()
 		for component in selectedComponents :
-			if component and hasattr( component, "_datas" ) :
+			if component._type == "Component" :
 				if not component._datas.interface.activated :
 					self.activateComponent( component )
 				else :
@@ -769,7 +779,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		selectedComponents = self.getSelectedItems()
 		for component in selectedComponents :
-			if component and hasattr( component, "_datas" ) :
+			if component._type == "Component" :
 				if component._datas.interface.activated :
 					if component._datas.interface.deactivatable :
 						self.deactivateComponent( component )
@@ -791,7 +801,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		selectedComponents = self.getSelectedItems()
 		for component in selectedComponents :
-			if component and hasattr( component, "_datas" ) :
+			if component._type == "Component" :
 				if component._datas.interface.deactivatable :
 					if component._datas.interface.activated :
 						self.deactivateComponent( component )
@@ -828,18 +838,18 @@ class ComponentsManagerUi( UiComponent ):
 					</p>
 					"""
 
-		selectedComponents = self.getSelectedItems()
-		for component in selectedComponents :
-			if component and hasattr( component, "_datas" ) :
-				content.append( subContent.format( component._datas.name,
-												strings.getNiceName( component._datas.categorie ),
-												component._datas.author,
-												component._datas.email,
-												component._datas.url,
-												component._datas.description
+		selectedItems = self.getSelectedItems()
+		for item in selectedItems :
+			if item._type == "Component" :
+				content.append( subContent.format( item._datas.name,
+												strings.getNiceName( item._datas.categorie ),
+												item._datas.author,
+												item._datas.email,
+												item._datas.url,
+												item._datas.description
 												) )
 			else:
-				len( selectedComponents ) == 1 and content.append( self._Components_Informations_textBrowser_defaultText )
+				len( selectedItems ) == 1 and content.append( self._Components_Informations_textBrowser_defaultText )
 
 		separator = len( content ) == 1 and "" or "<p><center>* * *<center/></p>"
 		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )
@@ -878,7 +888,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		deactivatedComponents = []
 		for component in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) :
-			if component and hasattr( component, "_datas" ) :
+			if component._type == "Component" :
 				component._datas.interface.activated or deactivatedComponents.append( component._datas.name )
 		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
 

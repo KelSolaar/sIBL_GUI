@@ -888,6 +888,13 @@ class CollectionsOutliner( UiComponent ):
 	def Collections_Outliner_treeView_setModel( self ):
 		'''
 		This Method Sets The Collections_Outliner_treeView Model.
+
+		Columns :
+		Collections | Sets | Comment
+		
+		Rows :
+		* Overall Collection : { _type : "Overall" }
+		** Collection : { _type : "Collection", _datas : dbUtilities.types.DbCollection }
 		'''
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
@@ -907,6 +914,8 @@ class CollectionsOutliner( UiComponent ):
 
 		overallCollectionCommentsStandardItem = QStandardItem()
 		overallCollectionCommentsStandardItem.setFlags( readOnlyFlags )
+
+		overallCollectionStandardItem._type = "Overall"
 
 		LOGGER.debug( " > Adding '{0}' Collection To '{1}'.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
 		self._model.appendRow( [overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem] )
@@ -933,6 +942,7 @@ class CollectionsOutliner( UiComponent ):
 				collection.name == self._defaultCollection and collectionCommentsStandardItem.setFlags( readOnlyFlags )
 
 				collectionStandardItem._datas = collection
+				collectionStandardItem._type = "Collection"
 
 				LOGGER.debug( " > Adding '{0}' Collection To '{1}' Model.".format( name, "Collections_Outliner_treeView" ) )
 				overallCollectionStandardItem.appendRow( [collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem] )
@@ -965,7 +975,7 @@ class CollectionsOutliner( UiComponent ):
 
 		collectionStandardItem = self._model.itemFromIndex( self._model.sibling( startIndex.row(), 0, startIndex ) )
 
-		identity = hasattr( collectionStandardItem, "_datas" ) and collectionStandardItem._datas.id or None
+		identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
 		collections = [collection for collection in dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" )]
 		if identity and collections :
 			if startIndex.column() == 0 :
@@ -1031,7 +1041,7 @@ class CollectionsOutliner( UiComponent ):
 			currentStandardItem = self._model.item( i )
 			if currentStandardItem.text() == self._overallCollection :
 				self._model.itemFromIndex( self._model.sibling( i, 1, self._model.indexFromItem( currentStandardItem ) ) ).setText( str( dbUtilities.common.getSets( self._coreDb.dbSession ).count() ) )
-			for j in range( self._model.item( i ).rowCount() ):
+			for j in range( currentStandardItem.rowCount() ):
 				collectionStandardItem = currentStandardItem.child( j, 0 )
 				collectionSetsCountStandardItem = currentStandardItem.child( j, 1 )
 				collectionSetsCountStandardItem.setText( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collectionStandardItem._datas.id ).count() ) )
@@ -1187,7 +1197,7 @@ class CollectionsOutliner( UiComponent ):
 		@return: Selected Collections. ( List )
 		'''
 
-		selectedCollections = [item for item in self.getSelectedItems() if hasattr( item, "_datas" ) and item.text() != self._overallCollection]
+		selectedCollections = [item for item in self.getSelectedItems() if item._type == "Collection"]
 		return selectedCollections and selectedCollections or None
 
 	@core.executionTrace
@@ -1227,7 +1237,7 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		selectedCollections = self.getSelectedCollections()
-		allIds = [collection._datas.id for collection in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) if hasattr( collection, "_datas" )]
+		allIds = [collection._datas.id for collection in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) if collection._type == "Collection"]
 		ids = selectedCollections and ( self._overallCollection in [collection.text() for collection in selectedCollections] and allIds or self.getSelectedCollectionsIds() ) or allIds
 
 		return dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, ids )
