@@ -332,6 +332,9 @@ class CollectionsOutliner( UiComponent ):
 	This Class Is The CollectionsOutliner Class.
 	'''
 
+	# Custom Signals Definitions.
+	modelChanged = pyqtSignal()
+
 	@core.executionTrace
 	def __init__( self, name = None, uiFile = None ):
 		'''
@@ -850,7 +853,7 @@ class CollectionsOutliner( UiComponent ):
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Collections_Outliner_treeView_OnModelSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "clicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
-		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Collections_Outliner_treeView_refreshView )
+		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Collections_Outliner_treeView_refreshView )
 		self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
 
 	@core.executionTrace
@@ -889,9 +892,8 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
 
-		self._model.beginResetModel()
-
 		self._model.clear()
+
 		self._model.setHorizontalHeaderLabels( self._modelHeaders )
 		self._model.setColumnCount( len( self._modelHeaders ) )
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
@@ -937,7 +939,7 @@ class CollectionsOutliner( UiComponent ):
 		else :
 			LOGGER.info( "{0} | Database Has No User Defined Collections !".format( self.__class__.__name__ ) )
 
-		self._model.endResetModel()
+		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_refreshModel( self ):

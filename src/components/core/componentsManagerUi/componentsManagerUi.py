@@ -84,6 +84,9 @@ class ComponentsManagerUi( UiComponent ):
 	This Class Is The ComponentsManagerUi Class.
 	'''
 
+	# Custom Signals Definitions.
+	modelChanged = pyqtSignal()
+
 	@core.executionTrace
 	def __init__( self, name = None, uiFile = None ):
 		'''
@@ -563,7 +566,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Components_Manager_Ui_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Components_Manager_Ui_treeView_OnSelectionChanged )
-		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Components_Manager_Ui_treeView_refreshView )
+		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Components_Manager_Ui_treeView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -609,9 +612,8 @@ class ComponentsManagerUi( UiComponent ):
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
 
-		self._model.beginResetModel()
-
 		self._model.clear()
+
 		self._model.setHorizontalHeaderLabels( self._modelHeaders )
 		self._model.setColumnCount( len( self._modelHeaders ) )
 
@@ -646,7 +648,7 @@ class ComponentsManagerUi( UiComponent ):
 					LOGGER.debug( " > Adding '{0}' Component To '{1}'.".format( component, "Components_Manager_Ui_treeView" ) )
 					pathStandardItem.appendRow( [componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem] )
 
-		self._model.endResetModel()
+		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_refreshModel( self ):

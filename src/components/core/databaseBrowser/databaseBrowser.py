@@ -88,6 +88,9 @@ class DatabaseBrowser( UiComponent ):
 	This Class Is The DatabaseBrowser Class.
 	'''
 
+	# Custom Signals Definitions.
+	modelChanged = pyqtSignal()
+
 	@core.executionTrace
 	def __init__( self, name = None, uiFile = None ):
 		'''
@@ -772,7 +775,7 @@ class DatabaseBrowser( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets )
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
-		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Database_Browser_listView_refreshView )
+		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Database_Browser_listView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -837,8 +840,6 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
-		self._model.beginResetModel()
-
 		self._model.clear()
 
 		for set in [set[0] for set in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
@@ -878,7 +879,7 @@ class DatabaseBrowser( UiComponent ):
 
 				self._model.appendRow( iblSetStandardItemItem )
 
-		self._model.endResetModel()
+		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
 	def Database_Browser_listView_refreshModel( self ):

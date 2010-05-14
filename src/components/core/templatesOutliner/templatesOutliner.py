@@ -87,6 +87,9 @@ class TemplatesOutliner( UiComponent ):
 	This Class Is The TemplatesOutliner Class.
 	'''
 
+	# Custom Signals Definitions.
+	modelChanged = pyqtSignal()
+
 	@core.executionTrace
 	def __init__( self, name = None, uiFile = None ):
 		'''
@@ -720,7 +723,7 @@ class TemplatesOutliner( UiComponent ):
 		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
 		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates )
-		self._signalsSlotsCenter.connect( self._model, SIGNAL( "modelReset()" ), self.Templates_Outliner_treeView_refreshView )
+		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Templates_Outliner_treeView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -777,9 +780,8 @@ class TemplatesOutliner( UiComponent ):
 
 		self.Templates_Outliner_treeView_storeModelSelection()
 
-		self._model.beginResetModel()
-
 		self._model.clear()
+
 		self._model.setHorizontalHeaderLabels( self._modelHeaders )
 		self._model.setColumnCount( len( self._modelHeaders ) )
 
@@ -824,7 +826,7 @@ class TemplatesOutliner( UiComponent ):
 							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.title, "Templates_Outliner_treeView" ) )
 							softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
 
-		self._model.endResetModel()
+		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_refreshModel( self ):
