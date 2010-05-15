@@ -1,8 +1,8 @@
 [Template]
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.0 | String | Template Release
-Date = @Date | 8 May 2010 | String | Date
+Release = @Release | 1.0.1 | String | Template Release
+Date = @Date | 15 May 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -218,14 +218,15 @@ fn sIBL_3dsmax_MR_createGround currentScale =
 	currentPlane.name =  "sIBL_Ground"
 )
 
-fn sIBL_3dsmax_MR_activateLinearWorkflow =
+fn sIBL_3dsmax_MR_activateLinearWorkflow createBackground =
 (
 	local lensShader = Utility_Gamma___Gain__mi()
 	renderers.current.Camera_Lens_Shader = lensShader
 	lensShader.reverse = False
 	lensShader.name = "sIBL_Lens"
 	
-	environmentMap.eye.gamma = 2.2
+	if( createBackground == 1 ) then
+		environmentMap.eye.gamma = 2.2
 )
 
 fn sIBL_3dsmax_MR_setup  =
@@ -257,7 +258,7 @@ fn sIBL_3dsmax_MR_setup  =
 			sIBL_3dsmax_MR_createGround LOADER_OPTIONS.feedbackRadius
 		
 		if( LOADER_OPTIONS.activateLinearWorkflow == 1 ) then
-			sIBL_3dsmax_MR_activateLinearWorkflow()
+			sIBL_3dsmax_MR_activateLinearWorkflow LOADER_OPTIONS.createBackground
 		
 		print "sIBL_GUI | sIBL File Import Finished !"
 	)
