@@ -676,9 +676,9 @@ class LoaderScript( UiComponent ):
 		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
-		overrideKeys["Background|BGfile"] = foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
-		overrideKeys["Enviroment|EVfile"] = foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
-		overrideKeys["Reflection|REFfile"] = foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
+		overrideKeys["Background|BGfile"] = set._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
+		overrideKeys["Enviroment|EVfile"] = set._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
+		overrideKeys["Reflection|REFfile"] = set._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
 
 		return overrideKeys
 
