@@ -1,16 +1,16 @@
 [Template]
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 0.9.8 | String | Template Release
-Date = @Date | 8 May 2010 | String | Date
-Author = @Author | Dschaga | String | Author
-Email = @Email | christian@cgtechniques.com | String | Email
+Release = @Release | 1.0.0 | String | Template Release
+Date = @Date | 14 May 2010 | String | Date
+Author = @Author | Dschaga / Kel Solaar | String | Author
+Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
 Version = @Version | 2008+ | String | Version
-Renderer = @Renderer | VRay | String | Renderer
+Renderer = @Renderer | VRay| String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
-Comment = @Comment | This is 3dsmax 2K* VRay Template with maps. | String | Comment
+Comment = @Comment | This is 3dsmax 2K VRay Template. | String | Comment
 
 [sIBL File Attributes]
 Sun|SUNu = @SUNu
@@ -18,21 +18,9 @@ Sun|SUNv = @SUNv
 Sun|SUNcolor = @SUNcolor
 Sun|SUNmulti = @SUNmulti
 Background|BGfile = @BGfile
-Background|BGmap = @BGmap
-Background|BGu = @BGu
-Background|BGv = @BGv
 Enviroment|EVfile = @EVfile
-Enviroment|EVmap = @EVmap
-Enviroment|EVmulti = @EVmulti
-Enviroment|EVgamma = @EVgamma
-Enviroment|EVu = @EVu
-Enviroment|EVv = @EVv
 Reflection|REFfile = @REFfile
-Reflection|REFmap = @REFmap
-Reflection|REFmulti = @REFmulti
-Reflection|REFgamma = @REFgamma
-Reflection|REFu = @REFu
-Reflection|REFv = @REFv
+Lights|DynamicLights = @dynamicLights
 
 [Common Attributes]
 createBackground = @createBackground | 1 | Boolean | Create Background
@@ -42,8 +30,11 @@ createSun = @createSun | 1 | Boolean | Create Sun
 createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
-north = @north | 0 | Float | North
-sundistance = @sundistance | 100 | Float | Sun Distance
+createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
+feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
+createGround = @createGround | 1 | Boolean | Create Ground
+hideLights = @hideLights | 1 | Boolean | Hide Lights
+activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
 
 [Remote Connection]
 ConnectionType = @ConnectionType | Win32 | String
@@ -60,225 +51,211 @@ Template Last Modified : @Date
 sIBL_GUI
 */
 
-SUNx = @SUNu
-SUNy = @SUNv
-SUNcolor = "@SUNcolor"
-SUNmulti = @SUNmulti
-BGfile = "@BGfile"
-BGmap = @BGmap
-BGu = @BGu
-BGv = @BGv
-EVfile = "@EVfile"
-EVmap = @EVmap
-EVmulti = @EVmulti
-EVgamma = @EVgamma
-EVu = @EVu
-EVv = @EVv
-REFfile = "@REFfile"
-REFmap = @REFmap
-REFmulti = @REFmulti
-REFgamma = @REFgamma
-REFu = @REFu
-REFv = @REFv
-sc = @sundistance
-n = @north
+struct sIBL_datas ( backgroundFilePath, lightingFilePath, reflectionFilePath, sunU, sunV, sunColor, sunMultiplier, dynamicLights )
+struct sIBL_options ( createBackground, createLighting, createReflection,  createSun, createLights, createFeedBack, feedbackRadius, hideLights, createGround, activateLinearWorkflow )
+	
+global IBL_SET_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti dynamicLights:"@dynamicLights"
+global LOADER_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius hideLights:@hideLights createGround:@createGround activateLinearWorkflow:@activateLinearWorkflow
 
-createBackground = "@createBackground"
-createLighting = "@createLighting"
-createReflection = "@createReflection"
-createSun = "@createSun"
+fn sIBL_3dsmax_VRay_deleteByName currentNode =
+(
+	local nodes = getNodeByName currentNode all:on
 
-global a = bitmaptexture()
-global b = bitmaptexture()
-global c = bitmaptexture()
+	for currentNode in nodes do 
+		delete currentNode
+)
 
-	--------------------------------------
-	-- FIRST ..... CLEAN THE SCENE
-	--------------------------------------
+fn sIBL_3dsmax_VRay_environmentDeletion =
+(
+	-- sIBL Group Children Deletion.
+	if( getNodeByName "sIBL" != undefined ) then
+	(
+		for child in ( getNodeByName "sIBL" ).children do
+			if( not isDeleted child ) then 
+				delete child
+	)
 
-		-- RESET to Defaults --------------------
-			
-		renderers.current.environment_gi_on = off
-		renderers.current.environment_gi_map_on = off
-		renderers.current.environment_gi_map = undefined
+	-- sIBL Group Deletion.
+	sIBL_3dsmax_VRay_deleteByName "sIBL"
+	
+	-- sIBL Environment Map  Deletion.
+	environmentMap = undefined
+)
+
+fn sIBL_3dsmax_VRay_activateVRay =
+(
+	renderers.current = vray()
+	renderers.current.gi_on = True
+)
+
+fn sIBL_3dsmax_VRay_hideLights =
+(
+	hide lights
+)
+
+fn sIBL_3dsmax_VRay_getSIBLGroup = 
+(
+	local sIBL_Dummy = Dummy name:"sIBL_Dummy"
+	group sIBL_Dummy name:"sIBL" 
+)
+
+fn sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate =
+(
+	lightColorTokens = filterstring lightColor ","
+
+	uCoordinate += 0.5
+	projectedRadius = cos( ( 0.5 - vCoordinate ) * 180 )
+	
+	local xPos = lightDistance * ( ( cos( uCoordinate * 360 ) ) * projectedRadius )
+	local yPos = lightDistance * ( ( sin( uCoordinate * 360 ) ) * projectedRadius ) * -1
+	local zPos = lightDistance * ( sin( ( 0.5 - vCoordinate ) * 180 ) )
+	
+	local lightTarget = TargetObject transform:( matrix3 [1,0,0] [0,1,0] [0,0,1] [0,0,0] )
+	lightTarget.parent = getNodeByName "sIBL"
+	
+	local lightFalloff = lightDistance + 5	
+	local light = TargetDirectionallight rgb:( color ( lightColorTokens[1] as float ) ( lightColorTokens[2] as float ) ( lightColorTokens[3] as float ) ) multiplier:( intensity as float) castShadows:on hotspot:lightDistance falloff:lightFalloff pos:[ ( xPos as float ),  ( yPos as float ), ( zPos as float ) ] target:lightTarget
+	light.shadowGenerator = VRayShadow()
+	light.parent = getNodeByName "sIBL"
+
+	lightTarget.name = lightName + "_Target"
+	light.name = lightName
+)
+
+fn sIBL_3dsmax_VRay_createDynamicLights dynamicLights lightDistance =
+(
+	local dynamicLightsTokens = filterString dynamicLights ","
+
+	for i = 1 to dynamicLightsTokens.count by 8 do
+	(		
+		local lightName = "sIBL_" + substituteString dynamicLightsTokens[i+1] " " "_"
+		local lightColor = dynamicLightsTokens[i+2] + "," + dynamicLightsTokens[i+3] + "," + dynamicLightsTokens[i+4]
+		local intensity = dynamicLightsTokens[i+5] as float
+		local uCoordinate = dynamicLightsTokens[i+6] as float
+		local vCoordinate = dynamicLightsTokens[i+7] as float
 		
-		renderers.current.environment_rr_on = off
-		renderers.current.environment_rr_map_on = off
-		renderers.current.environment_rr_map = undefined
+		sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate
+	)
+)
 
-		-- ev. daylight
-		if ($Daylight01 != undefined) then
-		(
+fn sIBL_3dsmax_VRay_createSun sunColor sunMultiplier lightDistance sunU sunV =
+(
+	sIBL_3dsmax_VRay_getLight "sIBL_Sun" sunColor sunMultiplier lightDistance sunU sunV
+)
 
-			delete #($Daylight01)
-		)
+fn sIBL_3dsmax_VRay_getEnvironmentBranch branchName filePath =
+(
+	local texture = VRayHDRI()
+	texture.hdriMapName = filePath
+	texture.horizontalFlip = True
+	texture.maptype = 2
 
-		-- ev. skylight
-		if ($sIBL_skylight != undefined) then
-		(
-
-			delete #($sIBL_skylight)
-		)
-
-		--sIBL SUN
-		if ($sIBL_sun != undefined) then
-		(
-			--delete #($sIBL_sun, $target01)
-			delete #($sIBL_sun)
-
-			-- delete old floorplane
-			if ($Floor_matte != undefined) then (delete $Floor_matte)
-			-- BGmap
-			environmentMap = undefined
-		)
+	texture.name = branchName + "_VRayHDRI"	
 	
-	-----------------------------------------
-	--	THE SUN
-	-----------------------------------------
+	return texture
+)
 
-		if  (createSun  == "1") then
-		(
+fn sIBL_3dsmax_VRay_getClassicEnvironmentBranch branchName filePath =
+(
+	local texture = Bitmaptexture()
+	texture.filename = filePath
+	texture.coordinates.UVW_Type = 0
+	texture.coordinates.mappingtype = 1	
+	texture.coordinates.U_Tile = True
+	texture.coordinates.U_Tiling = -1.0
+	texture.coordinates.U_Offset = 0.25
 
-			SUNx = (SUNx + n + 0.75)
-			cc = filterstring SUNcolor ","
+	local colorCorrection_ =  ColorCorrection()
+	colorCorrection_.map = texture
 
-			sZ = sc* (sin((0.5 - SUNy)*180))
-			dR = cos((0.5 - SUNy)*180)
-			sX = sc* ((cos(SUNx*360)) * dR)
-			sY = sc* ((sin(SUNx*360)) * dR)*-1	
-			
---------------------- VRAY SUN dedicated settings start ---
+	texture.name = branchName + "_BitmapTexture"
+	colorCorrection_.name = branchName + "_ColorCorrection"
 
-					-- getting the values
-					sun_color = (color (cc[1] as float) (cc[2] as float) (cc[3] as float))
-					sun_pos = [(sX as float),(sY as float),(sZ as float)]
-					
-					try
-					(
-						sIBL_sun = VRayLight name:"sIBL_Sun" color:sun_color normalizeColor:off noDecay:on type:2 size0:(sc/150 as float) size1:(sc/150 as float) size2:(sc/150 as float) multiplier:(SUNmulti as float) pos:sun_pos
-					)
-					catch
-					(	-- workaround for newer vray versions...
-						sIBL_sun = VRayLight name:"sIBL_Sun" color:sun_color noDecay:on type:2 size0:(sc/150 as float) size1:(sc/150 as float) size2:(sc/150 as float) multiplier:(SUNmulti as float) pos:sun_pos
-					)					
-					
----------------------- VRAY SUN dedicated settings end ---
-		)
+	return colorCorrection_
+)
+
+fn sIBL_3dsmax_VRay_setEnvironment createBackground createLighting createReflection backgroundFilePath lightingFilePath reflectionFilePath =
+(
+	if( createBackground == 1 ) then
+	(
+		local backgroundBranch = sIBL_3dsmax_VRay_getClassicEnvironmentBranch "sIBL_Background" backgroundFilePath
+		environmentMap = backgroundBranch
+		environmentMap.map.coordinates.mapping = 0
+	)
 	
-	--------------------------------------------------------------
-	-- BACKGROUND image
-	-- "a" is a objectholder for the enviroment map,
-	-- this object have additonal variables which i can use with a.variable
-	--------------------------------------------------------------
+	if( createLighting == 1 ) then
+	(
+		local lightingBranch = sIBL_3dsmax_VRay_getEnvironmentBranch "sIBL_Lighting" lightingFilePath
+		renderers.current.environment_gi_on = True
+		renderers.current.environment_gi_map = lightingBranch
+	)
+	
+	if( createReflection == 1 ) then
+	(
+		local reflectionBranch = sIBL_3dsmax_VRay_getEnvironmentBranch "sIBL_Reflection" reflectionFilePath
+		renderers.current.environment_rr_on = True
+		renderers.current.environment_rr_map = reflectionBranch
+		/*
+		renderers.current.environment_refract_on = True
+		renderers.current.environment_refract_map = reflectionBranch
+		*/
+	)
+)
 
-		if  (createBackground == "1") then
-		(
-			if (a == undefined) then environmentMap = Bitmaptexture()
-			
-			environmentMap = a
-			a.filename = BGfile
-			a.name = "sIBL-BGmap"
-			a.coordinates.mappingtype = 1
+fn sIBL_3dsmax_VRay_createGround currentScale =
+(
+	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
+	currentPlane.parent = getNodeByName "sIBL"
+	
+	local groundShader = StandardMaterial name:"sIBL_GroundShader"
+	currentPlane.material = groundShader
 
-			-- here we define the projection type
-			-- 0 - Spherical; 1 - Cylindrical; 2 - Shrink-Wrap; 3 - Screen
-			a.coordinates.mapping = (BGmap - 1)
+	currentPlane.name =  "sIBL_Ground"
+)
 
-			-- uv mapping writing
-			a.coordinates.U_Offset = (BGu as float) + n
-			a.coordinates.V_Offset = BGv as float
-			a.coordinates.U_Tiling = -1.0
+fn sIBL_3dsmax_VRay_activateLinearWorkflow createBackground =
+(
+	renderers.current.colorMapping_gamma = 2.2
+	if( createBackground == 1 ) then
+	(
+		environmentMap.lightnessMode = 1
+		environmentMap.gammaRGB = 1/2.2
+	)
+)
 
----------------------- NO CHANGES FOR VRAY NEEDED ---
-		)
+fn sIBL_3dsmax_VRay_setup  =
+(
+	if( vray != undefined ) then
+	(
+		print "sIBL_GUI | Starting sIBL File Import !"
 
-	-------------------------------------
-	-- read parameters for the ENViromentfile:
-	-------------------------------------
+		sIBL_3dsmax_VRay_environmentDeletion()
 
-		if  (createLighting == "1") then
-		(
-			if (b == undefined) then b = bitmaptexture()
-			b.filename = EVfile
-			b.name = "sIBL-EVmap"
-			b.coordinates.mappingtype = 1
+		sIBL_3dsmax_VRay_activateVRay()
+		
+		if( LOADER_OPTIONS.hideLights == 1 ) then
+			sIBL_3dsmax_VRay_hideLights()
+	
+		sIBL_3dsmax_VRay_getSIBLGroup()
+		
+		sIBL_3dsmax_VRay_setEnvironment LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection IBL_SET_DATAS.backgroundFilePath IBL_SET_DATAS.lightingFilePath IBL_SET_DATAS.reflectionFilePath
+	
+		if( LOADER_OPTIONS.createSun == 1 and IBL_SET_DATAS.sunU != -1 and IBL_SET_DATAS.sunV != -1 ) then
+			sIBL_3dsmax_VRay_createSun IBL_SET_DATAS.sunColor IBL_SET_DATAS.sunMultiplier LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.sunU IBL_SET_DATAS.sunV
+	
+		if( LOADER_OPTIONS.createLights == 1 and IBL_SET_DATAS.dynamicLights != "-1" ) then
+			sIBL_3dsmax_VRay_createDynamicLights IBL_SET_DATAS.dynamicLights LOADER_OPTIONS.feedbackRadius
 
-			-- here we define the projection type
-			-- 0 - Spherical; 1 - Cylindrical; 2 - Shrink-Wrap; 3 - Screen
-			b.coordinates.mapping = (EVmap- 1)
+		if( LOADER_OPTIONS.createGround == 1 ) then
+			sIBL_3dsmax_VRay_createGround LOADER_OPTIONS.feedbackRadius
+		
+		if( LOADER_OPTIONS.activateLinearWorkflow == 1 ) then
+			sIBL_3dsmax_VRay_activateLinearWorkflow LOADER_OPTIONS.createBackground
+		
+		print "sIBL_GUI | sIBL File Import Finished !"
+	)
+	else
+		messageBox "sIBL_GUI | VRay Renderer Is Not Available !" title:"sIBL_GUI Error"
+)
 
-			-- uv mapping writing
-			b.coordinates.U_Offset = (EVu as float) + n
-			b.coordinates.V_Offset = EVv as float
-			b.coordinates.U_Tiling = -1.0
-
----------------------- VRAY ENVmap dedicated settings start ---
-					
-					-- some renderrollout changes
-					renderers.current.environment_gi_on = on
-					renderers.current.environment_gi_map_on = on
-					
-					try  -- here we offer a native way of loading the hdr with the Vrayhdri
-					(
-						-- since this is the not standardmap i call the Vrayhdri map "bv"
-						bv = renderers.current.environment_gi_map = VRayHDRI()  --we overwrite the before declared EVmap "b"
-						bv.name = "sIBL-ENVmap" 
-						bv.HDRIMapName = EVfile
-						bv.maptype = 2
-						bv.horizontalRotation = ((EVu as float) + (90 as float) + (north as float))
-						bv.horizontalFlip = on
-						bv.verticalRotation = (EVv as float)	
-					)
-					catch   --or go basic
-					(
-						renderers.current.environment_gi_map = b
-					
-					)
-					
----------------------- VRAY ENVmap dedicated settings end ---	
-		)
-
-	------------------------------------------
-	-- read parameters for the REFlectionfile:
-	------------------------------------------
-
-		if  (createReflection == "1") then
-		(
-			if (c == undefined) then c = bitmaptexture()
-			c.filename = REFfile
-			c.name = "sIBL-REFmap"
-			c.coordinates.mappingtype = 1
-
-			-- here we define the projection type
-			-- 0 - Spherical; 1 - Cylindrical; 2 - Shrink-Wrap; 3 - Screen
-			c.coordinates.mapping = (REFmap - 1)
-
-			-- uv mapping writing
-			c.coordinates.U_Offset = (REFu as float) + n
-			c.coordinates.V_Offset = REFv as float
-			c.coordinates.U_Tiling = -1.0
-
----------------------- VRAY REFmap dedicated settings start ---
-					
-					-- some renderrollout changes
-					renderers.current.environment_rr_on = on
-					renderers.current.environment_rr_map_on = on
-				
-					try  -- here we offer a native way of loading the hdr with the Vrayhdri
-					(
-						-- since this is the not standardmap i call the Vrayhdri map "cv"
-						cv = renderers.current.environment_rr_map = VRayHDRI()  --we overwrite the before declared REFmap "c"
-						cv.name = "sIBL-REFmap" 
-						cv.HDRIMapName = REFfile
-						cv.maptype = 2
-						cv.horizontalRotation = ((REFu as float) + (90 as float) + (north as float))
-						cv.horizontalFlip = on
-						cv.verticalRotation = (REFv as float)
-					)
-					catch  --or go basic 
-					(
-						renderers.current.environment_rr_map = c   -- else it will load the bitmaptexture
-					)
-								
----------------------- VRAY REFmap dedicated settings end ---	
-		)
+sIBL_3dsmax_VRay_setup()
