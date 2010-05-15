@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.0 | String | Template Release
-Date = @Date | 14 May 2010 | String | Date
+Date = @Date | 15 May 2010 | String | Date
 Author = @Author | Dschaga / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -65,15 +65,23 @@ fn sIBL_3dsmax_VRay_deleteByName currentNode =
 		delete currentNode
 )
 
-fn sIBL_3dsmax_VRay_environmentDeletion =
+fn sIBL_3dsmax_VRay_deleteChildren currentNode =
 (
-	-- sIBL Group Children Deletion.
-	if( getNodeByName "sIBL" != undefined ) then
+	if( getNodeByName currentNode != undefined ) then
 	(
-		for child in ( getNodeByName "sIBL" ).children do
+		for child in ( getNodeByName currentNode ).children do
 			if( not isDeleted child ) then 
 				delete child
 	)
+)
+
+fn sIBL_3dsmax_VRay_environmentDeletion =
+(
+	-- sIBL_Lights Group Children Deletion.
+	sIBL_3dsmax_VRay_deleteChildren "sIBL_Lights"
+
+	-- sIBL Group Children Deletion.
+	sIBL_3dsmax_VRay_deleteChildren "sIBL"
 
 	-- sIBL Group Deletion.
 	sIBL_3dsmax_VRay_deleteByName "sIBL"
@@ -95,15 +103,53 @@ fn sIBL_3dsmax_VRay_hideLights =
 
 fn sIBL_3dsmax_VRay_getSIBLGroup = 
 (
-	local sIBL_Dummy = Dummy name:"sIBL_Dummy"
-	group sIBL_Dummy name:"sIBL" 
+	local sIBL_Point = Point name:"sIBL_Point" centermarker:off axistripod:off cross:off Box:off
+	group sIBL_Point name:"sIBL"
+)
+
+fn sIBL_3dsmax_VRay_getFeedBack feedbackRadius texturePath =
+(
+	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on
+	
+	local normalModifier_ = Normalmodifier()
+	normalModifier_.flip = True
+	addModifier feedbackSphere normalModifier_
+	collapseStack feedbackSphere
+	
+	feedbackSphere.renderable = False
+	local feedbackShader = StandardMaterial name:"sIBL_FeedBackShader"
+	feedbackShader.diffuseMap =  Bitmaptexture fileName:texturePath
+	feedbackShader.diffuseMap.coordinates.u_tiling = -1
+	feedbackSphere.material = feedbackShader
+	showTextureMap feedbackShader True
+
+	feedbackSphere.parent = getNodeByName "sIBL"
+	setTransformLockFlags feedbackSphere #{1,2,3,4,5}
+	
+	feedbackSphere.name = "sIBL_FeedBack"
+	
+	return feedbackSphere
+)
+
+fn sIBL_3dsmax_VRay_getLightsGroup = 
+(
+	local sIBL_Point = Point name:"sIBL_Lights_Point" centermarker:off axistripod:off cross:off Box:off
+	local lightsGroup = group sIBL_Point name:"sIBL_Lights"
+
+	lightsGroup.parent = getNodeByName "sIBL"
+		
+	return lightsGroup
 )
 
 fn sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate =
 (
+	lightsGroup = getNodeByName "sIBL_Lights"
+	if( lightsGroup == undefined ) then
+		lightsGroup = sIBL_3dsmax_VRay_getLightsGroup()
+
 	lightColorTokens = filterstring lightColor ","
 
-	uCoordinate += 0.5
+	uCoordinate += 0.75
 	projectedRadius = cos( ( 0.5 - vCoordinate ) * 180 )
 	
 	local xPos = lightDistance * ( ( cos( uCoordinate * 360 ) ) * projectedRadius )
@@ -111,12 +157,12 @@ fn sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoord
 	local zPos = lightDistance * ( sin( ( 0.5 - vCoordinate ) * 180 ) )
 	
 	local lightTarget = TargetObject transform:( matrix3 [1,0,0] [0,1,0] [0,0,1] [0,0,0] )
-	lightTarget.parent = getNodeByName "sIBL"
+	lightTarget.parent = lightsGroup
 	
 	local lightFalloff = lightDistance + 5	
 	local light = TargetDirectionallight rgb:( color ( lightColorTokens[1] as float ) ( lightColorTokens[2] as float ) ( lightColorTokens[3] as float ) ) multiplier:( intensity as float) castShadows:on hotspot:lightDistance falloff:lightFalloff pos:[ ( xPos as float ),  ( yPos as float ), ( zPos as float ) ] target:lightTarget
 	light.shadowGenerator = VRayShadow()
-	light.parent = getNodeByName "sIBL"
+	light.parent = lightsGroup
 
 	lightTarget.name = lightName + "_Target"
 	light.name = lightName
@@ -142,11 +188,12 @@ fn sIBL_3dsmax_VRay_createSun sunColor sunMultiplier lightDistance sunU sunV =
 (
 	sIBL_3dsmax_VRay_getLight "sIBL_Sun" sunColor sunMultiplier lightDistance sunU sunV
 )
-
+	
 fn sIBL_3dsmax_VRay_getEnvironmentBranch branchName filePath =
 (
 	local texture = VRayHDRI()
 	texture.hdriMapName = filePath
+	texture.horizontalRotation = 90
 	texture.horizontalFlip = True
 	texture.maptype = 2
 
@@ -160,10 +207,11 @@ fn sIBL_3dsmax_VRay_getClassicEnvironmentBranch branchName filePath =
 	local texture = Bitmaptexture()
 	texture.filename = filePath
 	texture.coordinates.UVW_Type = 0
+	texture.coordinates.mapping = 0
 	texture.coordinates.mappingtype = 1	
 	texture.coordinates.U_Tile = True
 	texture.coordinates.U_Tiling = -1.0
-	texture.coordinates.U_Offset = 0.25
+	texture.coordinates.U_Offset = 0
 
 	local colorCorrection_ =  ColorCorrection()
 	colorCorrection_.map = texture
@@ -180,6 +228,7 @@ fn sIBL_3dsmax_VRay_setEnvironment createBackground createLighting createReflect
 	(
 		local backgroundBranch = sIBL_3dsmax_VRay_getClassicEnvironmentBranch "sIBL_Background" backgroundFilePath
 		environmentMap = backgroundBranch
+		-- Fact : 3dsMax 2010 Fails To Update Correctly The Coordinates Mapping Type Until Connected To The EnvironmentMap Slot.
 		environmentMap.map.coordinates.mapping = 0
 	)
 	
@@ -202,12 +251,42 @@ fn sIBL_3dsmax_VRay_setEnvironment createBackground createLighting createReflect
 	)
 )
 
+fn sIBL_3dsmax_VRay_connectFeedBackToSIBLShaders createBackground createLighting createReflection =
+(
+	feedbackSphere = getNodeByName "sIBL_FeedBack"
+	
+	if( createBackground == 1 ) then
+	(
+		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.map.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+	)
+	
+	if( createLighting == 1 ) then
+	(
+		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] renderers.current.environment_gi_map[#horizontalRotation] "-Z_Rotation+(pi/2)"
+	)
+	
+	if( createReflection == 1 ) then
+	(
+		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] renderers.current.environment_rr_map[#horizontalRotation] "-Z_Rotation+(pi/2)"
+	)
+)
+
+fn sIBL_3dsmax_VRay_connectFeedBackToLights =
+(
+	lightsGroup = getNodeByName "sIBL_Lights"
+	if( lightsGroup != undefined ) then
+		feedbackSphere = getNodeByName "sIBL_FeedBack"
+		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] lightsGroup.rotation.controller[#Z_Rotation] "Z_Rotation"
+		paramWire.connect feedbackSphere.transform.controller[#Scale] lightsGroup.transform.controller[#Scale] "Scale"
+)
+
 fn sIBL_3dsmax_VRay_createGround currentScale =
 (
+	local currentScale = currentScale * 1.375
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
 	currentPlane.parent = getNodeByName "sIBL"
 	
-	local groundShader = StandardMaterial name:"sIBL_GroundShader"
+	local groundShader = VRayMtl name:"sIBL_GroundShader"
 	currentPlane.material = groundShader
 
 	currentPlane.name =  "sIBL_Ground"
@@ -238,13 +317,22 @@ fn sIBL_3dsmax_VRay_setup  =
 	
 		sIBL_3dsmax_VRay_getSIBLGroup()
 		
+		if( LOADER_OPTIONS.createFeedBack == 1 ) then
+			sIBL_3dsmax_VRay_getFeedBack LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.backgroundFilePath
+		
 		sIBL_3dsmax_VRay_setEnvironment LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection IBL_SET_DATAS.backgroundFilePath IBL_SET_DATAS.lightingFilePath IBL_SET_DATAS.reflectionFilePath
-	
+		
+		if( LOADER_OPTIONS.createFeedBack == 1 ) then
+			sIBL_3dsmax_VRay_connectFeedBackToSIBLShaders  LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection
+
 		if( LOADER_OPTIONS.createSun == 1 and IBL_SET_DATAS.sunU != -1 and IBL_SET_DATAS.sunV != -1 ) then
 			sIBL_3dsmax_VRay_createSun IBL_SET_DATAS.sunColor IBL_SET_DATAS.sunMultiplier LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.sunU IBL_SET_DATAS.sunV
 	
 		if( LOADER_OPTIONS.createLights == 1 and IBL_SET_DATAS.dynamicLights != "-1" ) then
 			sIBL_3dsmax_VRay_createDynamicLights IBL_SET_DATAS.dynamicLights LOADER_OPTIONS.feedbackRadius
+		
+		if( LOADER_OPTIONS.createFeedBack == 1 ) then
+			sIBL_3dsmax_VRay_connectFeedBackToLights()
 
 		if( LOADER_OPTIONS.createGround == 1 ) then
 			sIBL_3dsmax_VRay_createGround LOADER_OPTIONS.feedbackRadius
