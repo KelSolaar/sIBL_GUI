@@ -4,6 +4,7 @@ h2=. Change Log
 
 h3. 3.0.4 - Beta
 
+* Templates path are now provided to Loader Scripts.
 * "DatabaseBrowser" and "TemplatesOutliner" components store / restore their selection when the Database is updated.
 * Changed "ComponentsManagerUi", "DatabaseBrowser", "CollectionsOutliner", "TemplatesOutliner" components to Qt Model / View framework.
 
@@ -44,7 +45,7 @@ h3. 2.1.1 - Stable
 * Updated sIBL_GUI Help / Manual.
 * sIBL_GUI_FTP is now starting Download automatically when invoked, "Start Download" Button has been removed.
 * sIBL_GUI now restores the last visited folder.
-* Render Combo Box added in the Import Tab ( Usefull when you have multiple Templates for a Renderer ).
+* Render Combo Box added in the Import Tab ( Useful when you have multiple Templates for a Renderer ).
 * Refinements in sIBL_GUI UI.
 
 h3. 2.1.0 - Release Candidate
