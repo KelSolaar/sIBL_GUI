@@ -2,7 +2,7 @@ Name sIBL_GUI
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 3.0.4
+!define VERSION 3.0.5
 !define COMPANY "HDRLabs"
 !define URL http://my.opera.com/KelSolaar/blog/
 
@@ -45,7 +45,7 @@ InstallDir $PROGRAMFILES\sIBL_GUI
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 3.0.4.0
+VIProductVersion 3.0.5.0
 VIAddVersionKey ProductName sIBL_GUI
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"

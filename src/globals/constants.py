@@ -66,7 +66,7 @@ class Constants():
 	'''
 
 	applicationName = "sIBL_GUI"
-	releaseVersion = "3.0.4"
+	releaseVersion = "3.0.5"
 
 	logger = "sIBL_GUI_Logger"
 	verbosityLevel = 4
