@@ -1,6 +1,10 @@
-h1=. sIBL_GUI - 3.0.4 - Beta
+h1=. sIBL_GUI - 3.0.5 - Beta
 
 h2=. Change Log
+
+h3. 3.0.5 - Beta
+
+* Fixed wrong versions numbers calculations.
 
 h3. 3.0.4 - Beta
 
