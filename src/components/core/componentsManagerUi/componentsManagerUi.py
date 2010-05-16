@@ -90,7 +90,7 @@ def componentActivationErrorHandler( exception, origin ):
 	'''
 
 	foundations.exceptions.defaultExceptionsHandler( exception, origin )
-	messageBox.messageBox( "Error", "Error", "An Exception Occured While Activating A Component :\n{0}".format( traceback.format_exc() ) )
+	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Activating A Component :\n{0}".format( traceback.format_exc() ) )
 
 @core.executionTrace
 def componentDeactivationErrorHandler( exception, origin ):
@@ -102,7 +102,7 @@ def componentDeactivationErrorHandler( exception, origin ):
 	'''
 
 	foundations.exceptions.defaultExceptionsHandler( exception, origin )
-	messageBox.messageBox( "Error", "Error", "An Exception Occured While Deactivating A Component :\n{0}".format( traceback.format_exc() ) )
+	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Deactivating A Component :\n{0}".format( traceback.format_exc() ) )
 
 class ComponentsManagerUi( UiComponent ):
 	'''
