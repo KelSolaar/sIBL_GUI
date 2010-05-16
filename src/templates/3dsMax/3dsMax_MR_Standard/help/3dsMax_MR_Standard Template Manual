@@ -27,7 +27,7 @@ h3. Common Attributes
 h3. Additional Attributes
 
 * *Create Ground* : A Plane is added to the Scene.
-* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
+* *Create FeedBack* : Create a viewport Visual Feedback with the current IBL LDR Background image.
 * *Activate Linear Workflow* : Connect a Utility_Gamma___Gain__mi shader to the current Render Settings Lens Shader slot.
 * *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
 * *Hide Lights* : Hides all current Scene lights.
