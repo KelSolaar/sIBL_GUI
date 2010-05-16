@@ -19,7 +19,7 @@ zip -r ../../../releases/repository/sIBL_GUI/templates/3dsMax_MR_Standard.zip 3d
 zip -r ../../../releases/repository/sIBL_GUI/templates/3dsMax_Scanline_Standard.zip 3dsMax_Scanline_Standard -xi "./3dsMax_Scanline_Standard/help/3dsMax_Scanline_Standard Template Manual"
 zip -r ../../../releases/repository/sIBL_GUI/templates/3dsMax_VRay_Standard.zip 3dsMax_VRay_Standard -xi "./3dsMax_VRay_Standard/help/3dsMax_VRay_Standard Template Manual"
 cd ../Softimage
-zip -r ../../../releases/repository/sIBL_GUI/templates/Softimage_Standard.zip Softimage_MR_Standard -xi "./Softimage_MR_Standard/help/Softimage_MR_Standard Template Manual"
+zip -r ../../../releases/repository/sIBL_GUI/templates/Softimage_MR_Standard.zip Softimage_MR_Standard -xi "./Softimage_MR_Standard/help/Softimage_MR_Standard Template Manual"
 cd ../Maya
 zip -r ../../../releases/repository/sIBL_GUI/templates/Maya_MR_Standard.zip Maya_MR_Standard -xi "./Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 zip -r ../../../releases/repository/sIBL_GUI/templates/Maya_RfM_Standard.zip Maya_RfM_Standard -xi "./Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
