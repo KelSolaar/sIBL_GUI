@@ -110,7 +110,8 @@ def getVersionRank( version ):
 	@return: Rank. ( Integer )
 	'''
 
-	return sum( [int ( token ) for token in version.split( "." )] )
+	tokens = version.split( "." )
+	return sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
 
 @core.executionTrace
 def getNormalisedPath( path ):
