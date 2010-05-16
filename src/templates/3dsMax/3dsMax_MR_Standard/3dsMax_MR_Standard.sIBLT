@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.1 | String | Template Release
-Date = @Date | 15 May 2010 | String | Date
+Date = @Date | 16 May 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -31,7 +31,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
+feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
@@ -81,10 +81,10 @@ fn sIBL_3dsmax_MR_environmentDeletion =
 	sIBL_3dsmax_MR_deleteChildren "sIBL_Lights"
 
 	-- sIBL Group Children Deletion.
-	sIBL_3dsmax_MR_deleteChildren "sIBL"
+	sIBL_3dsmax_MR_deleteChildren "sIBL_Datas"
 
 	-- sIBL Group Deletion.
-	sIBL_3dsmax_MR_deleteByName "sIBL"
+	sIBL_3dsmax_MR_deleteByName "sIBL_Datas"
 	
 	-- sIBL Environment Map  Deletion.
 	environmentMap = undefined
@@ -92,6 +92,8 @@ fn sIBL_3dsmax_MR_environmentDeletion =
 	-- sIBL Lens Shader  Deletion.
 	if( classOf  renderers.current == mental_ray_renderer ) then
 		renderers.current.Camera_Lens_Shader = undefined
+	
+	freeSceneBitmaps()
 )
 
 fn sIBL_3dsmax_MR_activateMentalRay =
@@ -113,10 +115,10 @@ fn sIBL_3dsmax_MR_hideLights =
 fn sIBL_3dsmax_MR_getSIBLGroup = 
 (
 	local sIBL_Point = Point name:"sIBL_Point" centermarker:off axistripod:off cross:off Box:off
-	group sIBL_Point name:"sIBL"
+	group sIBL_Point name:"sIBL_Datas"
 )
 
-fn sIBL_3dsmax_MR_getFeedBack feedbackRadius texturePath =
+fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 (
 	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on
 	
@@ -124,15 +126,22 @@ fn sIBL_3dsmax_MR_getFeedBack feedbackRadius texturePath =
 	normalModifier_.flip = True
 	addModifier feedbackSphere normalModifier_
 	collapseStack feedbackSphere
-	
-	feedbackSphere.renderable = False
-	local feedbackShader = StandardMaterial name:"sIBL_FeedBackShader"
-	feedbackShader.diffuseMap =  Bitmaptexture fileName:texturePath
-	feedbackShader.diffuseMap.coordinates.u_tiling = -1
-	feedbackSphere.material = feedbackShader
-	showTextureMap feedbackShader True
 
-	feedbackSphere.parent = getNodeByName "sIBL"
+	feedbackSphere.renderable = False
+	
+	if( createBackground == 1 ) then
+	(
+		local feedbackShader = StandardMaterial name:"sIBL_FeedBackShader"
+		feedbackShader.selfIllumAmount = 100
+		feedbackShader.diffuse = color 255 255 255
+		feedbackShader.ambient = feedbackShader.diffuse
+		feedbackShader.diffuseMap =  Bitmaptexture fileName:texturePath
+		feedbackShader.diffuseMap.coordinates.u_tiling = -1
+		feedbackSphere.material = feedbackShader
+		showTextureMap feedbackShader True
+	)
+
+	feedbackSphere.parent = getNodeByName "sIBL_Datas"
 	setTransformLockFlags feedbackSphere #{1,2,3,4,5}
 	
 	feedbackSphere.name = "sIBL_FeedBack"
@@ -145,7 +154,7 @@ fn sIBL_3dsmax_MR_getLightsGroup =
 	local sIBL_Point = Point name:"sIBL_Lights_Point" centermarker:off axistripod:off cross:off Box:off
 	local lightsGroup = group sIBL_Point name:"sIBL_Lights"
 
-	lightsGroup.parent = getNodeByName "sIBL"
+	lightsGroup.parent = getNodeByName "sIBL_Datas"
 		
 	return lightsGroup
 )
@@ -155,7 +164,7 @@ fn sIBL_3dsmax_MR_createSkyLight =
 	local iblSkylight = Skylight()
 	iblSkylight.sky_mode = 0
 	
-	iblSkylight.parent = getNodeByName "sIBL"
+	iblSkylight.parent = getNodeByName "sIBL_Datas"
 
 	iblSkylight.name = "sIBL_SkyLight"
 )
@@ -286,8 +295,9 @@ fn sIBL_3dsmax_MR_connectFeedBackToLights =
 
 fn sIBL_3dsmax_MR_createGround currentScale =
 (
+	local currentScale = currentScale * ( sqrt 2 )
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
-	currentPlane.parent = getNodeByName "sIBL"
+	currentPlane.parent = getNodeByName "sIBL_Datas"
 	
 	local groundShader = StandardMaterial name:"sIBL_GroundShader"
 	currentPlane.material = groundShader
@@ -333,7 +343,7 @@ fn sIBL_3dsmax_MR_setup  =
 		sIBL_3dsmax_MR_getSIBLGroup()
 
 		if( LOADER_OPTIONS.createFeedBack == 1 ) then
-			sIBL_3dsmax_MR_getFeedBack LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.backgroundFilePath
+			sIBL_3dsmax_MR_getFeedBack LOADER_OPTIONS.feedbackRadius  LOADER_OPTIONS.createBackground IBL_SET_DATAS.backgroundFilePath
 		
 		sIBL_3dsmax_MR_createSkyLight()
 
