@@ -630,11 +630,11 @@ class LocationsBrowser( UiComponent ):
 
 		# LoaderScript Addon Component Specific Code.
 		if self._addonsLoaderScript.activated :
-			self._Open_Output_Folder_pushButton.setParent( None )
-			self._Open_Output_Folder_pushButton = None
-
 			# Signals / Slots.
 			self._signalsSlotsCenter.disconnect( self._Open_Output_Folder_pushButton, SIGNAL( "clicked()" ), self.Open_Output_Folder_pushButton_OnClicked )
+
+			self._Open_Output_Folder_pushButton.setParent( None )
+			self._Open_Output_Folder_pushButton = None
 
 		self.removeActions_()
 

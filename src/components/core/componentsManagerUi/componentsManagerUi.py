@@ -60,6 +60,7 @@ import os
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+import traceback
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -79,6 +80,30 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+@core.executionTrace
+def componentActivationErrorHandler( exception, origin ):
+	'''
+	This Definition Provides An Exception Handler For Component Activation.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	'''
+
+	foundations.exceptions.defaultExceptionsHandler( exception, origin )
+	messageBox.messageBox( "Error", "Error", "An Exception Occured While Activating A Component :\n{0}".format( traceback.format_exc() ) )
+
+@core.executionTrace
+def componentDeactivationErrorHandler( exception, origin ):
+	'''
+	This Definition Provides An Exception Handler For Component Deactivation.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	'''
+
+	foundations.exceptions.defaultExceptionsHandler( exception, origin )
+	messageBox.messageBox( "Error", "Error", "An Exception Occured While Deactivating A Component :\n{0}".format( traceback.format_exc() ) )
+
 class ComponentsManagerUi( UiComponent ):
 	'''
 	This Class Is The ComponentsManagerUi Class.
@@ -760,15 +785,17 @@ class ComponentsManagerUi( UiComponent ):
 		'''
 
 		selectedComponents = self.getSelectedItems()
-		for component in selectedComponents :
-			if component._type == "Component" :
-				if not component._datas.interface.activated :
-					self.activateComponent( component )
-				else :
-					messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format( self.__class__.__name__, component._datas.name ) )
 
-		selectedComponents and self.Components_Manager_Ui_treeView_refreshActivationsStatus()
-		selectedComponents and self.storeDeactivatedComponents()
+		if selectedComponents :
+			for component in selectedComponents :
+				if component._type == "Component" :
+					if not component._datas.interface.activated :
+						self.activateComponent( component )
+					else :
+						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format( self.__class__.__name__, component._datas.name ) )
+
+			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+			self.storeDeactivatedComponents()
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_deactivateComponentsAction( self, checked ):
@@ -779,18 +806,20 @@ class ComponentsManagerUi( UiComponent ):
 		'''
 
 		selectedComponents = self.getSelectedItems()
-		for component in selectedComponents :
-			if component._type == "Component" :
-				if component._datas.interface.activated :
-					if component._datas.interface.deactivatable :
-						self.deactivateComponent( component )
-					else :
-						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format( self.__class__.__name__, component._datas.name ) )
-				else :
-					messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated !".format( self.__class__.__name__, component._datas.name ) )
 
-		selectedComponents and self.Components_Manager_Ui_treeView_refreshActivationsStatus()
-		selectedComponents and self.storeDeactivatedComponents()
+		if selectedComponents :
+			for component in selectedComponents :
+				if component._type == "Component" :
+					if component._datas.interface.activated :
+						if component._datas.interface.deactivatable :
+							self.deactivateComponent( component )
+						else :
+							messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format( self.__class__.__name__, component._datas.name ) )
+					else :
+						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated !".format( self.__class__.__name__, component._datas.name ) )
+
+			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+			self.storeDeactivatedComponents()
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_reloadComponentsAction( self, checked ):
@@ -801,17 +830,18 @@ class ComponentsManagerUi( UiComponent ):
 		'''
 
 		selectedComponents = self.getSelectedItems()
-		for component in selectedComponents :
-			if component._type == "Component" :
-				if component._datas.interface.deactivatable :
-					if component._datas.interface.activated :
-						self.deactivateComponent( component )
-					self._container.componentsManager.reloadComponent( component._datas.name )
-					if not component._datas.interface.activated :
-						self.activateComponent( component )
-				else :
-					messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format( self.__class__.__name__, component._datas.name ) )
-		selectedComponents and self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+		if selectedComponents :
+			for component in selectedComponents :
+				if component._type == "Component" :
+					if component._datas.interface.deactivatable :
+						if component._datas.interface.activated :
+							self.deactivateComponent( component )
+						self._container.componentsManager.reloadComponent( component._datas.name )
+						if not component._datas.interface.activated :
+							self.activateComponent( component )
+					else :
+						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format( self.__class__.__name__, component._datas.name ) )
+			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
@@ -856,6 +886,7 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( componentDeactivationErrorHandler, False, foundations.exceptions.ComponentActivationError )
 	def activateComponent( self, component ):
 		'''
 		This Method Activates The Provided Component.
@@ -869,6 +900,7 @@ class ComponentsManagerUi( UiComponent ):
 			component._datas.interface.initializeUi()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError )
 	def deactivateComponent( self, component ):
 		'''
 		This Method Deactivates The Provided Component.

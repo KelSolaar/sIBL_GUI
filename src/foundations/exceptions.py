@@ -106,6 +106,8 @@ def exceptionsHandler( handler = None, raise_ = False, *args ):
 			@param **kwargs: Arguments. ( * )
 			'''
 
+			exception = None
+
 			try:
 				return object_( *args, **kwargs )
 			except exceptions as exception :
@@ -113,7 +115,8 @@ def exceptionsHandler( handler = None, raise_ = False, *args ):
 			except Exception as exception:
 				handler( exception , origin )
 			finally:
-				if raise_ : raise exception
+				if raise_ and exception :
+					raise exception
 		return function
 	return wrapper
 
@@ -395,6 +398,61 @@ class SocketConnectionError( Exception ):
 
 		return repr( self.value )
 
+class ComponentActivationError( Exception ):
+	'''
+	This Class Is Used For Component Activation Error.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return repr( self.value )
+
+class ComponentDeactivationError( Exception ):
+	'''
+	This Class Is Used For Component Deactivation Error.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return repr( self.value )
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
