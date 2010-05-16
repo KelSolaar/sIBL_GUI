@@ -34,7 +34,7 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome
 Comment = "VRay For Maya Dome Light Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_Turtle_Standard]
-Release = 1.1.8
+Release = 1.1.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
 Comment = "Maya Turtle Template : Updates For sIBL_GUI 3.x.x."

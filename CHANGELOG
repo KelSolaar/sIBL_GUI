@@ -4,7 +4,7 @@ h2=. Change Log
 
 h3. 3.0.4 - Beta
 
-* Templates path are now provided to Loader Scripts.
+* Templates paths are now provided to Loader Scripts.
 * "DatabaseBrowser" and "TemplatesOutliner" components store / restore their selection when the Database is updated.
 * Changed "ComponentsManagerUi", "DatabaseBrowser", "CollectionsOutliner", "TemplatesOutliner" components to Qt Model / View framework.
 
