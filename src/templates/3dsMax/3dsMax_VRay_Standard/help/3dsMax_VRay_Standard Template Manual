@@ -26,6 +26,13 @@ h3. Common Attributes
 
 h3. Additional Attributes
 
+* *Create Ground* : A Plane is added to the Scene.
+* *Create FeedBack* : Create a viewport Visual Feedback with the current IBL LDR Background image.
+* *Sun As VRaySun Light* : The Sun will use a VRaySun light.
+* *Activate Linear Workflow* : Sets the Color Mapping values for Linear Workflow.
+* *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
+* *Hide Lights* : Hides all current Scene lights.
+
 h2(#ChangeLog). Change Log
 
 <p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Softwares/3dsMax/Helper%20Script/Change%20Log/Change%20Log.html">sIBL_GUI For 3dsMax - Change Log</a></p>
