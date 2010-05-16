@@ -1,8 +1,9 @@
 [Template]
 Name = @Name | Standard | String | Template Name
+Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.0 | String | Template Release
-Date = @Date | 16May 2010 | String | Date
+Date = @Date | 16 May 2010 | String | Date
 Author = @Author | Dschaga / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -48,6 +49,7 @@ ExecutionCommand = @ExecutionCommand | fileIn ("$loaderScriptPath") | String
 Author : @Author
 EMail : @Email
 Homepage : @Url
+Template Path : @Path
 Template Last Modified : @Date
 sIBL_GUI
 */

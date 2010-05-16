@@ -1,5 +1,6 @@
 [Template]
 Name = @Name | Standard | String | Template Name
+Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.1 | String | Template Release
 Date = @Date | 16 May 2010 | String | Date
@@ -47,6 +48,7 @@ ExecutionCommand = @ExecutionCommand | fileIn ("$loaderScriptPath") | String
 Author : @Author
 EMail : @Email
 Homepage : @Url
+Template Path : @Path
 Template Last Modified : @Date
 sIBL_GUI
 */

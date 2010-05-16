@@ -673,12 +673,19 @@ class LoaderScript( UiComponent ):
 
 		overrideKeys = {}
 
-		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
-		set = selectedSet and selectedSet[0] or None
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
 
-		overrideKeys["Background|BGfile"] = set._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
-		overrideKeys["Enviroment|EVfile"] = set._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
-		overrideKeys["Reflection|REFfile"] = set._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
+		if template :
+			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound( "Template|Path", template._datas.path )
+
+		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
+		set = selectedSets and selectedSets[0] or None
+
+		if set :
+			overrideKeys["Background|BGfile"] = set._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
+			overrideKeys["Enviroment|EVfile"] = set._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
+			overrideKeys["Reflection|REFfile"] = set._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
 
 		return overrideKeys
 

@@ -1,8 +1,9 @@
 [Template]
 Name = @Name | Standard | String | Template Name
+Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.7.2 | String | Template Release
-Date = @Date | 8 May 2010 | String | Date
+Release = @Release | 1.7.3 | String | Template Release
+Date = @Date | 16 May 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -60,6 +61,7 @@ DefaultPort = @DefaultPort | 2048 | Integer | Default Port
 // Author : @Author
 // EMail : @Email
 // Homepage : @Url
+// Template Path : @Path
 // Template Last Modified : @Date
 // sIBL_GUI
 string $backgroundFilePath = "@BGfile";
