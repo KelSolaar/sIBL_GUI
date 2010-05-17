@@ -4,6 +4,8 @@ h2=. Change Log
 
 h3. 3.0.5 - Beta
 
+* Database Browser items are again correctly laid out on sIBL_GUI resize.
+* Added "debug" verbose messages in a lot of methods.
 * Fixed wrong versions numbers calculations.
 
 h3. 3.0.4 - Beta
