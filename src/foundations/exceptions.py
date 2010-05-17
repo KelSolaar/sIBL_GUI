@@ -111,9 +111,9 @@ def exceptionsHandler( handler = None, raise_ = False, *args ):
 			try:
 				return object_( *args, **kwargs )
 			except exceptions as exception :
-				handler( exception , origin )
+				handler( exception , origin, *args, **kwargs )
 			except Exception as exception:
-				handler( exception , origin )
+				handler( exception , origin, *args, **kwargs )
 			finally:
 				if raise_ and exception :
 					raise exception
@@ -121,12 +121,14 @@ def exceptionsHandler( handler = None, raise_ = False, *args ):
 	return wrapper
 
 @core.executionTrace
-def defaultExceptionsHandler( exception, origin ) :
+def defaultExceptionsHandler( exception, origin, *args, **kwargs ) :
 	'''
 	This Definition Provides An Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
 	'''
 
 	LOGGER.error( "!> {0}".format( Constants.loggingSeparators ) )

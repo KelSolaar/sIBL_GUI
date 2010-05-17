@@ -81,7 +81,7 @@ LOGGER = logging.getLogger( Constants.logger )
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def componentActivationErrorHandler( exception, origin ):
+def componentActivationErrorHandler( exception, origin, *args, **kwargs ):
 	'''
 	This Definition Provides An Exception Handler For Component Activation.
 	
@@ -89,11 +89,11 @@ def componentActivationErrorHandler( exception, origin ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	foundations.exceptions.defaultExceptionsHandler( exception, origin )
-	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Activating A Component :\n{0}".format( traceback.format_exc() ) )
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, args, kwargs )
+	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Activating '{0}' Component :\n{1}".format( args[1]._datas.name, traceback.format_exc() ) )
 
 @core.executionTrace
-def componentDeactivationErrorHandler( exception, origin ):
+def componentDeactivationErrorHandler( exception, origin, *args, **kwargs ):
 	'''
 	This Definition Provides An Exception Handler For Component Deactivation.
 	
@@ -101,8 +101,8 @@ def componentDeactivationErrorHandler( exception, origin ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	foundations.exceptions.defaultExceptionsHandler( exception, origin )
-	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Deactivating A Component :\n{0}".format( traceback.format_exc() ) )
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, args, kwargs )
+	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Deactivating '{0}' Component :\n{1}".format( args[1]._datas.name, traceback.format_exc() ) )
 
 class ComponentsManagerUi( UiComponent ):
 	'''
@@ -886,7 +886,7 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( componentDeactivationErrorHandler, False, foundations.exceptions.ComponentActivationError )
+	@foundations.exceptions.exceptionsHandler( componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError )
 	def activateComponent( self, component ):
 		'''
 		This Method Activates The Provided Component.
