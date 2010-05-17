@@ -381,10 +381,10 @@ class Parser( io.File ):
 		'''
 
 		if section in self._sections.keys() :
-			LOGGER.debug( "> '{0}' Exists In '{0}'.".format( section, self ) )
+			LOGGER.debug( "> '{0}' Section Exists In '{1}'.".format( section, self ) )
 			return True
 		else :
-			LOGGER.debug( "> '{0}' Doesn't Exists In '{0}'.".format( section, self ) )
+			LOGGER.debug( "> '{0}' Section Doesn't Exists In '{1}'.".format( section, self ) )
 			return False
 
 	@core.executionTrace

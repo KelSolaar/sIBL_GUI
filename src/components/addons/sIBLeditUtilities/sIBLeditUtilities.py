@@ -418,6 +418,8 @@ class sIBLeditUtilities( UiComponent ):
 		This Method Adds Actions.
 		'''
 
+		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
+
 		self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
 		self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listView_editInSIBLEditAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editInSIBLEditAction )
@@ -427,6 +429,8 @@ class sIBLeditUtilities( UiComponent ):
 		'''
 		This Method Removes Actions.
 		'''
+
+		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editInSIBLEditAction )
 

@@ -295,6 +295,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
 			if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
 				sets = self._coreDatabaseBrowser.getSelectedItems()
+				LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in sets] ), collectionStandardItem._datas.name ) )
 				for set in sets :
 					set._datas.collection = collectionStandardItem._datas.id
 				if dbUtilities.common.commit( self._coreDb.dbSession ) :
@@ -1077,6 +1078,7 @@ class CollectionsOutliner( UiComponent ):
 			self.Collections_Outliner_treeView_refreshModel()
 			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 			if directory :
+				LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
 				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( self._model.indexFromItem( self._model.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] ), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 				self.Collections_Outliner_treeView_refreshSetsCounts()
@@ -1127,6 +1129,7 @@ class CollectionsOutliner( UiComponent ):
 		dialogMessage = "Enter Your Collection Name !"
 		collectionInformations = QInputDialog.getText( self, "Add Collection", dialogMessage )
 		if collectionInformations[1] :
+			LOGGER.debug( "> Chosen Collection Name : '{0}'.".format( collectionInformations[1] ) )
 			collectionInformations = str( collectionInformations[0] ).split( "," )
 			collection = collectionInformations[0].strip()
 			comment = len( collectionInformations ) == 1 and "Double Click To Set A Comment !" or collectionInformations[1].strip()

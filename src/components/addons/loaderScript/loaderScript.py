@@ -595,36 +595,6 @@ class LoaderScript( UiComponent ):
 		self.outputLoaderScript()
 
 	@core.executionTrace
-	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
-		'''
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
-		
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
-		'''
-
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
-
-		if template :
-			templateParser = Parser( template._datas.path )
-			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
-
-			if self._templateRemoteConnectionSection in templateParser.sections :
-				self.ui.Remote_Connection_groupBox.show()
-				connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
-				if connectionType.value == "Socket" :
-					self.ui.Software_Port_spinBox.setValue( int( foundations.parser.getAttributeCompound( "DefaultPort", templateParser.getValue( "DefaultPort", self._templateRemoteConnectionSection ) ).value ) )
-					self.ui.Address_lineEdit.setText( QString( foundations.parser.getAttributeCompound( "DefaultAddress", templateParser.getValue( "DefaultAddress", self._templateRemoteConnectionSection ) ).value ) )
-					self.ui.Remote_Connection_Options_frame.show()
-				elif connectionType.value == "Win32" :
-					self.ui.Remote_Connection_Options_frame.hide()
-			else :
-				self.ui.Remote_Connection_groupBox.hide()
-		else :
-			self.ui.Remote_Connection_groupBox.hide()
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.SocketConnectionError )
 	def Send_To_Software_pushButton_OnClicked( self ) :
 		'''
@@ -666,10 +636,46 @@ class LoaderScript( UiComponent ):
 						raise foundations.exceptions.SocketConnectionError( error )
 
 	@core.executionTrace
+	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
+		'''
+		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
+		'''
+
+		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
+
+		if template :
+			LOGGER.debug( "> Parsing '{0}' Template For '{1}' Section.".format( template._datas.name, self._templateRemoteConnectionSection ) )
+			templateParser = Parser( template._datas.path )
+			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+
+			if self._templateRemoteConnectionSection in templateParser.sections :
+				LOGGER.debug( "> {0}' Section Found.".format( self._templateRemoteConnectionSection ) )
+				self.ui.Remote_Connection_groupBox.show()
+				connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
+				if connectionType.value == "Socket" :
+					LOGGER.debug( "> Remote Connection Type : 'Socket'." )
+					self.ui.Software_Port_spinBox.setValue( int( foundations.parser.getAttributeCompound( "DefaultPort", templateParser.getValue( "DefaultPort", self._templateRemoteConnectionSection ) ).value ) )
+					self.ui.Address_lineEdit.setText( QString( foundations.parser.getAttributeCompound( "DefaultAddress", templateParser.getValue( "DefaultAddress", self._templateRemoteConnectionSection ) ).value ) )
+					self.ui.Remote_Connection_Options_frame.show()
+				elif connectionType.value == "Win32" :
+					LOGGER.debug( "> Remote Connection : 'Win32'." )
+					self.ui.Remote_Connection_Options_frame.hide()
+			else :
+				self.ui.Remote_Connection_groupBox.hide()
+		else :
+			self.ui.Remote_Connection_groupBox.hide()
+
+	@core.executionTrace
 	def getDefaultOverrideKeys( self ):
 		'''
 		This Method Gets Default Override Keys.
 		'''
+
+		LOGGER.debug( "> Constructing Default Override Keys." )
 
 		overrideKeys = {}
 
@@ -677,14 +683,20 @@ class LoaderScript( UiComponent ):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template :
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Template|Path", template._datas.path ) )
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound( "Template|Path", template._datas.path )
 
 		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSets and selectedSets[0] or None
 
 		if set :
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Background|BGfile", set._datas.backgroundImage ) )
 			overrideKeys["Background|BGfile"] = set._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
+
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Enviroment|EVfile", set._datas.lightingImage ) )
 			overrideKeys["Enviroment|EVfile"] = set._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
+
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Reflection|REFfile", set._datas.reflectionImage ) )
 			overrideKeys["Reflection|REFfile"] = set._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
 
 		return overrideKeys
@@ -696,6 +708,8 @@ class LoaderScript( UiComponent ):
 		
 		@return: Output Success. ( Boolean )
 		'''
+
+		LOGGER.debug( "> Initializing Loader Script Output." )
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len( selectedTemplates ) != 1:
@@ -731,6 +745,9 @@ class LoaderScript( UiComponent ):
 				hasattr( interface, "getOverrideKeys" ) and interface.getOverrideKeys()
 
 		loaderScript = File( os.path.join( self._ioDirectory, template._datas.outputScript ) )
+
+		LOGGER.debug( "> Loader Script Output File Path : '{0}'.".format( loaderScript.file ) )
+
 		loaderScript.content = self.getLoaderScript( template._datas.path, set._datas.path, self._overrideKeys )
 		if loaderScript.content and loaderScript.write() :
 			messageBox.messageBox( "Information", "Information", "{0} | '{1}' Output Done !".format( self.__class__.__name__, template._datas.outputScript ) )
@@ -751,6 +768,7 @@ class LoaderScript( UiComponent ):
 		@return: Loader Script. ( List )
 		'''
 
+		LOGGER.debug( "> Parsing Template File : '{0}'.".format( template ) )
 		templateParser = Parser( template )
 		templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 		templateSections = dict.copy( templateParser.sections )
@@ -759,12 +777,15 @@ class LoaderScript( UiComponent ):
 			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace( attribute, rootOnly = True )] = value
 			del templateSections[self._templateIblAttributesSection][attribute]
 
+		LOGGER.debug( "> Binding Templates File Attributes." )
 		bindedAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in templateSections.keys() if section not in ( self._templateScriptSection ) for attribute, value in templateSections[section].items() ] )
 
+		LOGGER.debug( "> Parsing Ibl Set File : '{0}'.".format( iblSet ) )
 		iblSetParser = Parser( iblSet )
 		iblSetParser.read() and iblSetParser.parse()
 		iblSetSections = dict.copy( iblSetParser.sections )
 
+		LOGGER.debug( "> Flattening Ibl Set File Attributes." )
 		flattenedIblAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items() ] )
 
 		for attribute in flattenedIblAttributes :
@@ -772,6 +793,7 @@ class LoaderScript( UiComponent ):
 				bindedAttributes[attribute].value = flattenedIblAttributes[attribute].value
 
 		if "Lights|DynamicLights" in bindedAttributes.keys() :
+			LOGGER.debug( "> Building '{0}' Custom Attribute.".format( "Lights|DynamicLights" ) )
 			dynamicLights = []
 			for section in iblSetSections :
 				if re.search( "Light[0-9]*", section ) :
@@ -784,14 +806,15 @@ class LoaderScript( UiComponent ):
 					dynamicLights.append( iblSetParser.getValue( "LIGHTu", section ) )
 					dynamicLights.append( iblSetParser.getValue( "LIGHTv", section ) )
 
-					LOGGER.debug( "> Dynamic Lights : '{0}'.".format( ", ".join( dynamicLights ) ) )
-
+			LOGGER.debug( "> Adding '{0}' Custom Attribute With Value : '{1}'.".format( "Lights|DynamicLights", ", ".join( dynamicLights ) ) )
 			bindedAttributes["Lights|DynamicLights"].value = ",".join( dynamicLights )
 
+		LOGGER.debug( "> Updating Attributes With Override Keys." )
 		for attribute in overrideKeys :
 			if attribute in bindedAttributes.keys() :
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
+		LOGGER.debug( "> Updating Loader Script Content." )
 		loaderScript = templateParser.sections[self._templateScriptSection][foundations.parser.setNamespace( "Script", templateParser.rawSectionContentIdentifier )]
 
 		bindedLoaderScript = []
@@ -801,6 +824,7 @@ class LoaderScript( UiComponent ):
 				for parameter in bindingParameters :
 					for attribute in bindedAttributes.values() :
 						if parameter == attribute.link :
+							LOGGER.debug( "> Updating Loader Script Parameter '{0}' With Value : '{1}'.".format( parameter, attribute.value ) )
 							line = line.replace( parameter, attribute.value and attribute.value or "-1" )
 			bindedLoaderScript.append( line )
 

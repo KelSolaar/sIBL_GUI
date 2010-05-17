@@ -636,10 +636,12 @@ class LoaderScriptOptions( UiComponent ):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
+
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template :
+			LOGGER.debug( "> Parsing '{0}' Template For '{1}' and '{2}'Section.".format( template._datas.name, self._templateCommonAttributesSection, self._templateAdditionalAttributesSection ) )
 			templateParser = Parser( template._datas.path )
 			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 
@@ -654,6 +656,8 @@ class LoaderScriptOptions( UiComponent ):
 		@param section: Section Attributes. ( Dictionary )
 		@param tableWidget: Table Widget. ( QTableWidget )
 		'''
+
+		LOGGER.debug( " > Updating '{0}'.".format( tableWidget.objectName() ) )
 
 		tableWidget.hide()
 
@@ -672,13 +676,14 @@ class LoaderScriptOptions( UiComponent ):
 
 		verticalHeaderLabels = []
 		for row, attribute in enumerate( section.keys() ) :
-			LOGGER.debug( " > Current Attribute : '%s'.", attribute )
+			LOGGER.debug( " > Current Attribute : '{0}'.".format( attribute ) )
 			attributeCompound = foundations.parser.getAttributeCompound( attribute, section[attribute] )
 			if attributeCompound.name :
 				verticalHeaderLabels.append( attributeCompound.alias )
 			else:
 				verticalHeaderLabels.append( strings.getNiceName( attributeCompound.name ) )
 
+			LOGGER.debug( " > Attribute Type : '{0}'.".format( "Boolean" ) )
 			if attributeCompound.type == "Boolean" :
 				if attributeCompound.value == "1":
 					item = Variable_QPushButton( True, ( self._uiLightGrayColor, self._uiDarkGrayColor ), ( "True", "False" ) )
@@ -714,6 +719,8 @@ class LoaderScriptOptions( UiComponent ):
 		@param tableWidget: Table Widget. ( QTableWidget )
 		'''
 
+		LOGGER.debug( "> Updating Override Keys With '{0}' Attributes.".format( tableWidget.objectName() ) )
+
 		for row in range( tableWidget.rowCount() ) :
 			widget = tableWidget.cellWidget( row, 0 )
 			if type( widget ) is Variable_QPushButton :
@@ -723,6 +730,8 @@ class LoaderScriptOptions( UiComponent ):
 			else:
 				value = str( tableWidget.cellWidget( row, 0 ).text() )
 			widget._datas.value = value
+
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( widget._datas.name, widget._datas.value ) )
 			self._addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
 
 	@core.executionTrace
@@ -730,6 +739,8 @@ class LoaderScriptOptions( UiComponent ):
 		'''
 		This Method Gets Override Keys.
 		'''
+
+		LOGGER.info( "{0} | Updating Loader Script Override Keys !".format( self.__class__.__name__ ) )
 
 		self.updateOverrideKeys( self.ui.Common_Attributes_tableWidget )
 		self.updateOverrideKeys( self.ui.Additional_Attributes_tableWidget )

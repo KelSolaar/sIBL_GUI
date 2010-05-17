@@ -196,12 +196,20 @@ class Db( Component ):
 		This Method Initializes The Component.
 		'''
 
+		LOGGER.debug( "> Initializing '{0}' Component.".format( self.__class__.__name__ ) )
+
+
+		LOGGER.debug( "> Initializing '{0}' SQLite Database.".format( Constants.databaseFile ) )
 		dbName = os.path.join( self._container.userApplicationDirectory , Constants.databaseDirectory, Constants.databaseFile )
+
+		LOGGER.debug( "> Creating Database Engine." )
 		dbEngine = sqlalchemy.create_engine( "sqlite:///" + dbName )
 
+		LOGGER.debug( "> Creating Database Metadatas." )
 		dbCatalog = dbUtilities.types.DbBase.metadata
 		dbCatalog.create_all( dbEngine )
 
+		LOGGER.debug( "> Initializing Database Session." )
 		dbSession_ = sqlalchemy.orm.sessionmaker( bind = dbEngine )
 
 		self._dbSession = dbSession_()

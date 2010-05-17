@@ -664,6 +664,8 @@ class LocationsBrowser( UiComponent ):
 		This Method Adds Actions.
 		'''
 
+		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
+
 		self._openSetsLocationsAction = QAction( "Open Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
 		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listView_openSetsLocationsAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._openSetsLocationsAction )
@@ -681,6 +683,8 @@ class LocationsBrowser( UiComponent ):
 		'''
 		This Method Removes Actions.
 		'''
+
+		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._openSetsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction( self._openComponentsLocationsAction )

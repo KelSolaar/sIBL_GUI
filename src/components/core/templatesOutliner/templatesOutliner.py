@@ -789,6 +789,8 @@ class TemplatesOutliner( UiComponent ):
 		This Method Is Called On Framework Startup.
 		'''
 
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
 		erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity( self._coreDb.dbSession )
 
 		if erroneousTemplates :
@@ -865,7 +867,7 @@ class TemplatesOutliner( UiComponent ):
 							templateStandardItem._datas = template
 							templateStandardItem._type = "Template"
 
-							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.title, "Templates_Outliner_treeView" ) )
+							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
 							softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
 
 		self.emit( SIGNAL( "modelChanged()" ) )
@@ -1073,6 +1075,8 @@ class TemplatesOutliner( UiComponent ):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
+		LOGGER.debug( "> Initializing '{0}' Widget.".format( "Template_Informations_textEdit" ) )
+
 		content = []
 		subContent = """
 					<h4><center>{0}</center></h4>
@@ -1133,15 +1137,16 @@ class TemplatesOutliner( UiComponent ):
 		@return: Addition Success. ( Boolean )
 		'''
 
-		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
-		if file :
+		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
+		if templatePath :
+			LOGGER.debug( "> Chosen Template Path : '{0}'.".format( templatePath ) )
 			templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
-			collectionId = self.defaultCollections[self._factoryCollection] in file and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
-			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
-			if dbUtilities.common.addTemplate( self._coreDb.dbSession, os.path.basename( file ).replace( self._extension, "" ), file, collectionId ) :
+			collectionId = self.defaultCollections[self._factoryCollection] in templatePath and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
+			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
+			if dbUtilities.common.addTemplate( self._coreDb.dbSession, os.path.basename( templatePath ).replace( self._extension, "" ), templatePath, collectionId ) :
 				return True
 			else :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
+				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
 
 	@core.executionTrace
 	def removeTemplates( self ) :
@@ -1204,10 +1209,10 @@ class TemplatesOutliner( UiComponent ):
 		@return: Update Success. ( Boolean )
 		'''
 
-		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Template Location :".format( template.name ), self._container.lastBrowsedPath, "Template Files (*{0})".format( self._extension ) ) ) )
-		if file :
-			LOGGER.info( "{0} | Updating '{1}' Template !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
-			if not dbUtilities.common.updateTemplateLocation( self._coreDb.dbSession, template, file ) :
+		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Template Location :".format( template.name ), self._container.lastBrowsedPath, "Template Files (*{0})".format( self._extension ) ) ) )
+		if templatePath :
+			LOGGER.info( "{0} | Updating '{1}' Template Location !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
+			if not dbUtilities.common.updateTemplateLocation( self._coreDb.dbSession, template, templatePath ) :
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Updating '{1}' Template !".format( self.__class__.__name__, template.name ) )
 				return False
 			else :
@@ -1218,6 +1223,8 @@ class TemplatesOutliner( UiComponent ):
 		'''
 		This Method Adds Default Templates Collections / Templates To The Database.
 		'''
+
+		LOGGER.debug( "> Adding Default Templates To Database." )
 
 		if not dbUtilities.common.getTemplates( self._coreDb.dbSession ).count():
 			for collection, path in self._defaultCollections.items() :
@@ -1239,16 +1246,18 @@ class TemplatesOutliner( UiComponent ):
 		return [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( collection ), "name" ) ).intersection( dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" ) )][0]
 
 	@core.executionTrace
-	def getTemplates( self, path, id ):
+	def getTemplates( self, directory, id ):
 		'''
-		This Method Imports Provided Path Templates Into Provided Collection.
+		This Method Imports Provided Directory Templates Into Provided Collection.
 		
-		@param path: Templates Path. ( String )
+		@param directory: Templates Directory. ( String )
 		@param id: Collection Id. ( Integer )
 		'''
 
+		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
+
 		walker = Walker()
-		walker.root = path
+		walker.root = directory
 		templates = walker.walk( self._extension )
 		for template in templates :
 			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( templates[template] ), "path" ) :

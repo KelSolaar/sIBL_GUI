@@ -627,6 +627,8 @@ class ComponentsManagerUi( UiComponent ):
 		This Method Is Called On Framework Startup.
 		'''
 
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
 		self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
@@ -790,7 +792,7 @@ class ComponentsManagerUi( UiComponent ):
 			for component in selectedComponents :
 				if component._type == "Component" :
 					if not component._datas.interface.activated :
-						self.activateComponent( component )
+						self.activateComponent( component._datas )
 					else :
 						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format( self.__class__.__name__, component._datas.name ) )
 
@@ -812,7 +814,7 @@ class ComponentsManagerUi( UiComponent ):
 				if component._type == "Component" :
 					if component._datas.interface.activated :
 						if component._datas.interface.deactivatable :
-							self.deactivateComponent( component )
+							self.deactivateComponent( component._datas )
 						else :
 							messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format( self.__class__.__name__, component._datas.name ) )
 					else :
@@ -835,10 +837,10 @@ class ComponentsManagerUi( UiComponent ):
 				if component._type == "Component" :
 					if component._datas.interface.deactivatable :
 						if component._datas.interface.activated :
-							self.deactivateComponent( component )
+							self.deactivateComponent( component._datas )
 						self._container.componentsManager.reloadComponent( component._datas.name )
 						if not component._datas.interface.activated :
-							self.activateComponent( component )
+							self.activateComponent( component._datas )
 					else :
 						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format( self.__class__.__name__, component._datas.name ) )
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
@@ -851,6 +853,8 @@ class ComponentsManagerUi( UiComponent ):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
+
+		LOGGER.debug( "> Initializing '{0}' Widget.".format( "Additional_Informations_textEdit" ) )
 
 		content = []
 		subContent = """
@@ -890,28 +894,36 @@ class ComponentsManagerUi( UiComponent ):
 	def activateComponent( self, component ):
 		'''
 		This Method Activates The Provided Component.
+		
+		@param component: Component. ( Profile )
 		'''
 
-		component._datas.interface.activate( self._container )
-		if component._datas.categorie == "default" :
-			component._datas.interface.initialize()
-		elif component._datas.categorie == "ui" :
-			component._datas.interface.addWidget()
-			component._datas.interface.initializeUi()
+		LOGGER.debug( "> Attempting '{0}' Component Activation.".format( component.name ) )
+
+		component.interface.activate( self._container )
+		if component.categorie == "default" :
+			component.interface.initialize()
+		elif component.categorie == "ui" :
+			component.interface.addWidget()
+			component.interface.initializeUi()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError )
 	def deactivateComponent( self, component ):
 		'''
 		This Method Deactivates The Provided Component.
+		
+		@param component: Component. ( Profile )
 		'''
 
-		if component._datas.categorie == "default" :
-			component._datas.interface.uninitialize()
-		elif component._datas.categorie == "ui" :
-			component._datas.interface.uninitializeUi()
-			component._datas.interface.removeWidget()
-		component._datas.interface.deactivate()
+		LOGGER.debug( "> Attempting '{0}' Component Deactivation.".format( component.name ) )
+
+		if component.categorie == "default" :
+			component.interface.uninitialize()
+		elif component.categorie == "ui" :
+			component.interface.uninitializeUi()
+			component.interface.removeWidget()
+		component.interface.deactivate()
 
 	@core.executionTrace
 	def storeDeactivatedComponents( self ):
@@ -923,6 +935,8 @@ class ComponentsManagerUi( UiComponent ):
 		for component in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) :
 			if component._type == "Component" :
 				component._datas.interface.activated or deactivatedComponents.append( component._datas.name )
+
+		LOGGER.debug( "> Storing '{0}' Deactivated Components.".format( ", ".join( deactivatedComponents ) ) )
 		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
 
 	@core.executionTrace

@@ -59,7 +59,6 @@ import logging
 import os
 import platform
 import sys
-from new import instancemethod
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -659,6 +658,8 @@ class DownloadManager( QObject ):
 		@param bytesTotal: Bytes Total. ( Integer )
 		'''
 
+		LOGGER.debug( "> Updating Download Progress : '{0}' Bytes Received, '{1}' Bytes Total.".format( bytesReceived, bytesTotal ) )
+
 		self._ui.Current_File_label.setText( "Downloading : '{0}'.".format( os.path.basename( str( self._currentRequest.url().path() ) ) ) )
 		self._ui.Download_progressBar.setRange( 0, bytesTotal )
 		self._ui.Download_progressBar.setValue( bytesReceived )
@@ -669,6 +670,8 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Is Ready To Write.
 		'''
 
+		LOGGER.debug( "> Updating '{0}' File Content.".format( self._currentFile ) )
+
 		self._currentFile.write( self._currentRequest.readAll() )
 
 	@core.executionTrace
@@ -677,12 +680,16 @@ class DownloadManager( QObject ):
 		This Method Is Triggered When The Request Download Is Finished.
 		'''
 
+		LOGGER.debug( "> '{0}' Download Finished.".format( self._currentFile ) )
+
 		self._currentFile.close()
 		self._downloads.append( self._currentFilePath )
 		self._ui.Current_File_label.setText( "'{0}' Downloading Done !".format( os.path.basename( self._currentFilePath ) ) )
 		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
+
 		if self._requests :
+			LOGGER.debug( "> Proceeding To Next Download Request." )
 			self.downloadNext()
 		else :
 			self._downloadStatus = True
@@ -1377,6 +1384,7 @@ class RemoteUpdater( object ):
 		if requests :
 			downloadFolder = self.getTemplatesDownloadFolder()
 			if downloadFolder :
+				LOGGER.debug( "> Templates Download Folder : '{0}'.".format( downloadFolder ) )
 				self._downloadManager = DownloadManager( self, self._networkAccessManager, downloadFolder, [request.url for request in requests] )
 				self._signalsSlotsCenter.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
 				self._downloadManager.startDownload()
@@ -1405,6 +1413,8 @@ class RemoteUpdater( object ):
 		This Method Gets The Templates Folder.
 		'''
 
+		LOGGER.debug( "> Retrieving Templates Download Folder." )
+
 		messageBox = QMessageBox()
 		messageBox.setWindowTitle( "{0}".format( self.__class__.__name__ ) )
 		messageBox.setIcon( QMessageBox.Question )
@@ -1427,6 +1437,7 @@ class RemoteUpdater( object ):
 		'''
 		This Method Is Triggered When The Download Manager Finishes.
 		'''
+
 		needModelRefresh = False
 		for download in self._downloadManager.downloads :
 			if download.endswith( ".zip" ) :
@@ -1453,6 +1464,8 @@ class RemoteUpdater( object ):
 		@param file: File To Extract. ( String )
 		@return: Extraction Success. ( Boolean )
 		'''
+
+		LOGGER.debug( "> Initializing '{0}' File Uncompress.".format( file ) )
 
 		pkzip = Pkzip()
 		pkzip.archive = file
@@ -2104,6 +2117,8 @@ class OnlineUpdater( UiComponent ):
 		This Method Is Called On Framework Startup.
 		'''
 
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
 		self._reportUpdateStatus = False
 		self._ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 
@@ -2148,6 +2163,7 @@ class OnlineUpdater( UiComponent ):
 			while not self._releaseReply.atEnd () :
 				content.append( str( self._releaseReply.readLine() ) )
 
+			LOGGER.debug( " > Parsing Releases File Content." )
 			parser = Parser()
 			parser.content = content
 			parser.parse()
@@ -2182,6 +2198,7 @@ class OnlineUpdater( UiComponent ):
 															type = parser.getValue( "Type", remoteObject ),
 															comment = None )
 			if releases :
+				LOGGER.debug( " > Initialising Remote Updater." )
 				self._remoteUpdater = RemoteUpdater( self, releases )
 			else :
 				self._reportUpdateStatus and messageBox.messageBox( "Information", "Information", "{0} | '{1}' Is Up To Date !".format( self.__class__.__name__, Constants.applicationName ) )
@@ -2201,6 +2218,8 @@ class OnlineUpdater( UiComponent ):
 		'''
 		This Method Gets The Release File.
 		'''
+
+		LOGGER.debug( " > Downloading '{0}' Releases File.".format( url.path() ) )
 
 		self._releaseReply = self._networkAccessManager.get( QNetworkRequest( url ) )
 		self._signalsSlotsCenter.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )

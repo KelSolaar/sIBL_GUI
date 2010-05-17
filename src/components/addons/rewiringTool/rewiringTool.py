@@ -514,10 +514,10 @@ class RewiringTool( UiComponent ):
 
 		for index in range( len( self._reWireComboBoxesWidgets ) ):
 			if self._reWireComboBoxesWidgets[index].currentText() == "Custom Image" :
-				LOGGER.debug( "> Showing ReWire Frame '%s'.", self._reWireFramesWidgets[index] )
+				LOGGER.debug( "> Showing ReWire Frame '{0}'.".format( self._reWireFramesWidgets[index] ) )
 				self._reWireFramesWidgets[index].show()
 			else:
-				LOGGER.debug( "> Hiding ReWire Frame '%s'.", self._reWireFramesWidgets[index] )
+				LOGGER.debug( "> Hiding ReWire Frame '{0}'.".format( self._reWireFramesWidgets[index] ) )
 				self._reWireFramesWidgets[index].hide()
 
 	@core.executionTrace
@@ -529,7 +529,7 @@ class RewiringTool( UiComponent ):
 		'''
 
 		customFile = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom " + component + " File :", self._container.lastBrowsedPath ) )
-		LOGGER.debug( "> Chosen Custom %s : '%s'.", component, customFile )
+		LOGGER.debug( "> Chosen Custom '{0}' : '{1}'.".format( component, customFile ) )
 		if customFile != "":
 			if component == "Background":
 				self.ui.Background_Path_lineEdit.setText( QString( customFile ) )
@@ -568,6 +568,8 @@ class RewiringTool( UiComponent ):
 		This Method Gets Override Keys.
 		'''
 
+		LOGGER.info( "{0} | Updating Loader Script Override Keys !".format( self.__class__.__name__ ) )
+
 		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
@@ -576,8 +578,10 @@ class RewiringTool( UiComponent ):
 				for index, comboBox in enumerate( self._reWireComboBoxesWidgets ):
 					parameter = self._rewiringParameters[comboBox.currentIndex()]
 					if comboBox.currentText() == "Custom Image" :
+						LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( comboBox._datas, str( self._reWireLineEditWidgets[index].text() ) ) )
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( str( self._reWireLineEditWidgets[index].text() ) ) )
 					else:
+						LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( comboBox._datas, getattr( set._datas, parameter[2] ) ) )
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr( set._datas, parameter[2] ) and foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( getattr( set._datas, parameter[2] ) ) )
 
 #***********************************************************************************************

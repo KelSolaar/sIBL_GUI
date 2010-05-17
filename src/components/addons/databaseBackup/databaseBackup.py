@@ -210,6 +210,8 @@ class RotatingBackup( object ):
 		This Method Does The Rotating Backup.
 		'''
 
+		LOGGER.debug( "> Storing '{0}' File Backup.".format( self._source ) )
+
 		if self._source and self._destination :
 			os.path.exists( self._destination ) or os.mkdir( self._destination )
 			destination = os.path.join( self._destination, os.path.basename( self._source ) )
@@ -233,6 +235,8 @@ class RotatingBackup( object ):
 		@param destination: Destination To Copy To. ( String )
 		'''
 
+		LOGGER.debug( "> Copying '{0}' File To '{1}'.".format( source, destination ) )
+
 		if os.path.isfile( source ):
 			shutil.copyfile( source, destination )
 		else:
@@ -246,6 +250,8 @@ class RotatingBackup( object ):
 
 		@param path: Ressource To Delete. ( String )
 		'''
+
+		LOGGER.debug( "> Removing '{0}' File.".format( path ) )
 
 		if os.path.isfile( path ):
 			os.remove( path )
@@ -485,6 +491,8 @@ class DatabaseBackup( Component ):
 		'''
 		This Method Is Called On Framework Startup.
 		'''
+
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
 		self._databaseFile = os.path.join( self._container.userApplicationDirectory, Constants.databaseDirectory, Constants.databaseFile )
 		self._destination = os.path.join( self._container.userApplicationDirectory, Constants.databaseDirectory, self._backupDirectory )

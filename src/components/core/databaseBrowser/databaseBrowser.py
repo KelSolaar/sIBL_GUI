@@ -841,6 +841,8 @@ class DatabaseBrowser( UiComponent ):
 		This Method Is Called On Framework Startup.
 		'''
 
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
 		# Wizard If Sets Table Is Empty.
 		if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
 			if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
@@ -995,7 +997,7 @@ class DatabaseBrowser( UiComponent ):
 		@param value: Thumbnails Size. ( Integer )
 		'''
 
-		LOGGER.debug( " > Restoring '{0}' View Item Size To : {1}.".format( "Database_Browser_listView", self._listViewIconSize ) )
+		LOGGER.debug( " > Setting '{0}' View Item Size To : {1}.".format( "Database_Browser_listView", self._listViewIconSize ) )
 
 		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
 		self.ui.Database_Browser_listView.setGridSize( QSize( self._listViewIconSize + self._listViewSpacing, self._listViewIconSize + self._listViewMargin ) )
@@ -1036,6 +1038,7 @@ class DatabaseBrowser( UiComponent ):
 
 		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 		if directory :
+			LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 			self.addDirectory( directory )
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
@@ -1051,6 +1054,7 @@ class DatabaseBrowser( UiComponent ):
 
 		setPath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if setPath :
+			LOGGER.debug( "> Chosen Ibl Set Path : '{0}'.".format( setPath ) )
 			self.addSet( os.path.basename( setPath ).replace( self._extension, "" ), setPath )
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
@@ -1156,6 +1160,8 @@ class DatabaseBrowser( UiComponent ):
 		@param collectionId: Target Collection Id. ( Integer )		
 		'''
 
+		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
+
 		walker = Walker( directory )
 		walker.walk( self._extension )
 		for set, path in walker.files.items() :
@@ -1214,12 +1220,16 @@ class DatabaseBrowser( UiComponent ):
 		@return: Current Shot Date. ( String )
 		'''
 
+		LOGGER.debug( "> Formatting Shot Date With '{0}' Date and '{1} Time'.".format( date, time ) )
+
 		try :
 			assert date and date != Constants.nullObject
 			assert time and time != Constants.nullObject
 			shotTime = time.split( ":" )
 			shotTime = shotTime[0] + "H" + shotTime[1]
 			shotDate = date.replace( ":", "/" )[2:] + " - " + shotTime
+
+			LOGGER.debug( "> Formatted Shot Date : '{0}'.".format( shotDate ) )
 			return shotDate
 		except :
 			return Constants.nullObject

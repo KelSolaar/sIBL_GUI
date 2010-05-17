@@ -320,6 +320,8 @@ class SetsScanner( Component ):
 		This Method Is Called On Framework Startup.
 		'''
 
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
 		self.scanSetsDirectories()
 
 	@core.executionTrace

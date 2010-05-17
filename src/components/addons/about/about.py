@@ -422,6 +422,8 @@ class About( UiComponent ):
 		This Method Adds Actions.
 		'''
 
+		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
+
 		self._aboutMiscAction = QAction( "About {0} ...".format( Constants.applicationName ), self )
 		self._aboutMiscAction.triggered.connect( self.miscMenu_aboutMiscAction )
 		self._miscMenu.addAction( self._aboutMiscAction )
@@ -431,6 +433,8 @@ class About( UiComponent ):
 		'''
 		This Method Removes Actions.
 		'''
+
+		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
 		self._miscMenu.removeAction( self._aboutMiscAction )
 
@@ -443,6 +447,9 @@ class About( UiComponent ):
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
+
+
+		LOGGER.debug( "> Initializing '{0}' Window.".format( "About" ) )
 
 		ui.common.setWindowDefaultIcon( self.ui )
 

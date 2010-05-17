@@ -654,6 +654,8 @@ class SearchDatabase( UiComponent ):
 		timeLow = self.ui.Time_Low_timeEdit.time()
 		timeHigh = self.ui.Time_High_timeEdit.time()
 
+		LOGGER.debug( "> Filtering Sets By Time Range From '{0}' To '{1}'.".format( timeLow, timeHigh ) )
+
 		filteredSets = []
 		for iblSet in sets :
 			if iblSet.time :
@@ -661,6 +663,8 @@ class SearchDatabase( UiComponent ):
 				int( timeTokens[0] ) * 60 + int( timeTokens[1] ) >= timeLow.hour()* 60 + timeLow.minute() and int( timeTokens[0] ) * 60 + int( timeTokens[1] ) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append( iblSet )
 
 		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( filteredSets )]
+
+		LOGGER.debug( "> Time Range Filtered Ibl Set(s) : '{0}'".format( ", ".join( [iblSet.name for iblSet in displaySets] ) ) )
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets
@@ -674,8 +678,11 @@ class SearchDatabase( UiComponent ):
 
 		previousDisplaySets = self._coreDatabaseBrowser.displaySets
 
+
 		pattern = str( self.ui.Search_Database_lineEdit.text() )
 		currentField = self._databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
+
+		LOGGER.debug( "> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format( pattern, currentField ) )
 
 		try :
 			re.compile( pattern )
@@ -685,6 +692,8 @@ class SearchDatabase( UiComponent ):
 		self._completer.setModel( QStringListModel( sorted( [fieldValue for fieldValue in set( [fieldValue[0] or "" for fieldValue in self._coreDb.dbSession.query( getattr( dbUtilities.types.DbSet, currentField ) ).all()] ) if re.search( pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 )] ) ) )
 
 		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( dbUtilities.common.filterSets( self._coreDb.dbSession, "{0}".format( str( pattern ) ), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 ) )]
+
+		LOGGER.debug( "> Pattern Filtered Ibl Set(s) : '{0}'".format( ", ".join( [iblSet.name for iblSet in displaySets] ) ) )
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets

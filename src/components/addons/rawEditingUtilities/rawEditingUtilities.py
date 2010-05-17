@@ -519,6 +519,8 @@ class RawEditingUtilities( UiComponent ):
 		This Method Adds Actions.
 		'''
 
+		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
+
 		self._editSetInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
 		self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listView_editSetInTextEditorAction )
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editSetInTextEditorAction )
@@ -532,6 +534,8 @@ class RawEditingUtilities( UiComponent ):
 		'''
 		This Method Removes Actions.
 		'''
+
+		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editSetInTextEditorAction )
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._editTemplateInTextEditorAction )

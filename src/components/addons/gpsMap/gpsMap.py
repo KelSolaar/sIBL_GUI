@@ -105,6 +105,8 @@ class Map( QWebView ):
 		@param content: Marker Popup Window Content. ( String )
 		'''
 
+		LOGGER.debug( "> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format( title, coordinates ) )
+
 		self.page().mainFrame().evaluateJavaScript( "addMarker( new google.maps.LatLng({0},{1}),\"{2}\",\"{3}\")".format( coordinates[0], coordinates[1], title, content ) )
 
 	@core.executionTrace
@@ -112,6 +114,8 @@ class Map( QWebView ):
 		'''
 		This Method Removes The Map Markers.
 		'''
+
+		LOGGER.debug( "> Removing GPS Map Markers." )
 
 		self.page().mainFrame().evaluateJavaScript( "removeMarkers()" )
 
@@ -121,13 +125,19 @@ class Map( QWebView ):
 		This Method Center The Map.
 		'''
 
+		LOGGER.debug( "> Centering GPS Map." )
+
 		self.page().mainFrame().evaluateJavaScript( "setCenter()" )
 
 	@core.executionTrace
 	def setMapType( self, mapTypeId ):
 		'''
 		This Method Sets The Map Type.
+		
+		@param mapTypeId: GPS Map Type. ( String )
 		'''
+
+		LOGGER.debug( "> Setting GPS Map Type To '{0}'.".format( mapTypeId ) )
 
 		self.page().mainFrame().evaluateJavaScript( "setMapType(\"{0}\")".format( mapTypeId ) )
 
@@ -135,7 +145,11 @@ class Map( QWebView ):
 	def setZoom( self, type ):
 		'''
 		This Method Sets The Map Zoom.
+		
+		@param type: Zoom Type. ( String )
 		'''
+
+		LOGGER.debug( "> Zooming '{0}' GPS Map.".format( type ) )
 
 		self.page().mainFrame().evaluateJavaScript( "setZoom(\"{0}\")".format( type ) )
 
@@ -654,16 +668,6 @@ class GpsMap( UiComponent ):
 		self.setMarkers()
 
 	@core.executionTrace
-	def map_OnLoadFinished( self, state ):
-		'''
-		This Method Is Triggered When The GPS Map Finishes Loading.
-		
-		@param state: Loading State. ( Boolean )
-		'''
-
-		self.setMarkers()
-
-	@core.executionTrace
 	def Map_Type_comboBox_OnActivated( self, index ):
 		'''
 		This Method Is Triggered When Map_Type_comboBox Index Changes.
@@ -672,22 +676,6 @@ class GpsMap( UiComponent ):
 		'''
 
 		self._map.setMapType( self._mapTypeIds[index][1] )
-
-	@core.executionTrace
-	def setMarkers( self ):
-		'''
-		This Method Triggers The GPS Map Markers.
-		'''
-
-		self._map.removeMarkers()
-
-		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
-		for set in selectedSets :
-			if set._datas.latitude and set._datas.longitude :
-				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( set._datas.date, set._datas.time ) )
-				content = "<p><b>{0}</b></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}<br><b>Url : </b><a href={5}>{5}</a></p>".format( set._datas.title, set._datas.author, set._datas.location, shotDateString, set._datas.comment, set._datas.link )
-				self._map.addMarker( ( set._datas.latitude, set._datas.longitude ), set._datas.title, content )
-		self._map.setCenter()
 
 	@core.executionTrace
 	def Zoom_In_pushButton_OnClicked( self ):
@@ -704,6 +692,34 @@ class GpsMap( UiComponent ):
 		'''
 
 		self._map.setZoom( "Out" )
+
+	@core.executionTrace
+	def map_OnLoadFinished( self, state ):
+		'''
+		This Method Is Triggered When The GPS Map Finishes Loading.
+		
+		@param state: Loading State. ( Boolean )
+		'''
+
+		self.setMarkers()
+
+	@core.executionTrace
+	def setMarkers( self ):
+		'''
+		This Method Triggers The GPS Map Markers.
+		'''
+
+		self._map.removeMarkers()
+
+		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
+		for set in selectedSets :
+			LOGGER.debug( "> Current Ibl Set : '{0}'.".format( set._datas.name ) )
+			if set._datas.latitude and set._datas.longitude :
+				LOGGER.debug( "> Ibl Set '{0}' Provides GEO Coordinates.".format( set._datas.name ) )
+				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( set._datas.date, set._datas.time ) )
+				content = "<p><b>{0}</b></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}<br><b>Url : </b><a href={5}>{5}</a></p>".format( set._datas.title, set._datas.author, set._datas.location, shotDateString, set._datas.comment, set._datas.link )
+				self._map.addMarker( ( set._datas.latitude, set._datas.longitude ), set._datas.title, content )
+		self._map.setCenter()
 
 #***********************************************************************************************
 #***	Python End
