@@ -934,6 +934,7 @@ class DatabaseBrowser( UiComponent ):
 
 		self.ui.Database_Browser_listView.setAutoScroll( False )
 		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
+		self.ui.Database_Browser_listView.setResizeMode( QListView.Adjust )
 		self.ui.Database_Browser_listView.setSelectionMode( QAbstractItemView.ExtendedSelection )
 		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
 		self.ui.Database_Browser_listView.setAcceptDrops( False )
