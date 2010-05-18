@@ -877,16 +877,16 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model.clear()
 
-		for set in [set[0] for set in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
-			id = set.id
-			name = set.name or Constants.nullObject
-			title = set.title
-			author = set.author or Constants.nullObject
-			icon = set.icon or Constants.nullObject
-			location = set.location or Constants.nullObject
-			date = set.date or Constants.nullObject
-			time = set.time or Constants.nullObject
-			comment = set.comment or Constants.nullObject
+		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
+			id = iblSet.id
+			name = iblSet.name or Constants.nullObject
+			title = iblSet.title
+			author = iblSet.author or Constants.nullObject
+			icon = iblSet.icon or Constants.nullObject
+			location = iblSet.location or Constants.nullObject
+			date = iblSet.date or Constants.nullObject
+			time = iblSet.time or Constants.nullObject
+			comment = iblSet.comment or Constants.nullObject
 
 			if title :
 				iblSetStandardItemItem = QStandardItem()# QString( title ) )
@@ -908,7 +908,7 @@ class DatabaseBrowser( UiComponent ):
 					iconPath = os.path.join( self._uiResources, self.uiFormatErrorIcon )
 				iblSetStandardItemItem.setIcon( QIcon( iconPath ) )
 
-				iblSetStandardItemItem._datas = set
+				iblSetStandardItemItem._datas = iblSet
 
 				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( title, "Database_Browser_listView" ) )
 				self._model.appendRow( iblSetStandardItemItem )
