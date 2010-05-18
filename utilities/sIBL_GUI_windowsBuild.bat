@@ -1,5 +1,5 @@
 echo ----------------------------------------------------------------
-echo sIBL_GUI - Windows Build
+echo sIBL_GUI - Windows - Build
 echo ----------------------------------------------------------------
 
 rem // Windows Build.
