@@ -796,6 +796,7 @@ class DatabaseBrowser( UiComponent ):
 
 		self.Database_Browser_listView_setView()
 
+		self.ui.Thumbnails_Size_horizontalSlider.setValue( self._listViewIconSize )
 		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
 		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
 
