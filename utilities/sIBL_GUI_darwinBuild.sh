@@ -1,14 +1,26 @@
 #/usr/bin/bash
 
 echo ----------------------------------------------------------------
-echo sIBL_GUI - Mac Os X - Build
+echo sIBL_GUI - Mac Os X - Overall Build
 echo ----------------------------------------------------------------
 
 alias python=/Library/Frameworks/Python.framework/Versions/2.6/bin/python
-#! sIBL_GUI Build.
+
+#! Darwin Build.
+echo ----------------------------------------------------------------
+echo Build - Begin
+echo ----------------------------------------------------------------
 rm -rf build dist
 python ../../utilities/sIBL_GUI_darwinSetup.py py2app --includes "foundations.strings,foundations.pkzip,ui.widgets.variable_QPushButton,sip,PyQt4.QtNetwork,PyQt4.QtWebKit,sqlalchemy,sqlalchemy.orm,sqlalchemy.ext,sqlalchemy.ext.declarative,sqlalchemy.databases" --no-strip
 rm -rf `find ./dist/sIBL_GUI.app/ -name *debug*`
+echo ----------------------------------------------------------------
+echo Build - End
+echo ----------------------------------------------------------------
+
+#! Darwin Release.
+echo ----------------------------------------------------------------
+echo Release - Begin
+echo ----------------------------------------------------------------
 mkdir ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI.ui ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI_Layouts.rc ./dist/sIBL_GUI.app/Contents/Resources/ui
@@ -46,8 +58,14 @@ cp -rf ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
 rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/3dsMax
 rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/XSI
 rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/Softimage
+echo ----------------------------------------------------------------
+echo Release - End
+echo ----------------------------------------------------------------
 
 #! Maya_MR_Standard Textile Template Documentation Removal.
+echo ----------------------------------------------------------------
+echo Templates Textile Files Cleanup - Begin
+echo ----------------------------------------------------------------
 rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 
 #! Maya_RfM_Standard Textile Template Documentation Removal.
@@ -61,14 +79,29 @@ rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Dome_Light/h
 
 #! Maya_VRay_Standard Textile Template Documentation Removal.
 rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
+echo ----------------------------------------------------------------
+echo Templates Textile Files Cleanup - End
+echo ----------------------------------------------------------------
 
 #! sIBL_GUI Cleanup.
+echo ----------------------------------------------------------------
+echo Cleanup - Begin
+echo ----------------------------------------------------------------
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .pyc
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .pyo
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ .DS_Store
 python ../../utilities/sIBL_GUI_recursiveRemove.py ./dist/sIBL_GUI.app/ Thumbs.db
+echo ----------------------------------------------------------------
+echo Cleanup - End
+echo ----------------------------------------------------------------
 
 #! sIBL_GUI DMG.
+echo ----------------------------------------------------------------
+echo Dmg Compilation - Begin
+echo ----------------------------------------------------------------
 rm -f ./sIBL_GUI.dmg
 hdiutil create ./sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "./dist/sIBL_GUI.app"
 #! /usr/local/bin/./dmgcanvas ../../utilities/dmgCanvas/sIBL_GUI.dmgCanvas ./sIBL_GUI.dmg
+echo ----------------------------------------------------------------
+echo Dmg Compilation - End
+echo ----------------------------------------------------------------
