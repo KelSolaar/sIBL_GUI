@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import platform
 import re
 from PyQt4 import uic
 from PyQt4.QtCore import *
@@ -114,7 +115,10 @@ class DatabaseBrowser( UiComponent ):
 		self._uiLargestSizeIcon = "Largest_Size.png"
 		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
-		self._listViewSpacing = 16
+		if platform.system() == "Linux" :
+			self._listViewSpacing = 14
+		else :
+			self._listViewSpacing = 16
 		self._listViewMargin = 24
 		self._listViewIconSize = 128
 
