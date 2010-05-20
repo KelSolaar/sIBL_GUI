@@ -8,7 +8,7 @@ Author = @Author | Dschaga / Jeff Hanna / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
-Version = @Version | 2008+ | String | Version
+Version = @Version | 2009+ | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
 Comment = @Comment | This is 3dsmax 2K Mental Ray Template. | String | Comment
@@ -128,7 +128,8 @@ fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 	normalModifier_.flip = True
 	addModifier feedbackSphere normalModifier_
 	collapseStack feedbackSphere
-
+	
+	feedbackSphere.backfacecull = on
 	feedbackSphere.renderable = False
 	
 	if( createBackground == 1 ) then
@@ -299,6 +300,7 @@ fn sIBL_3dsmax_MR_createGround currentScale =
 (
 	local currentScale = currentScale * ( sqrt 2 )
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
+	currentPlane.backfacecull = on
 	currentPlane.parent = getNodeByName "sIBL_Datas"
 	
 	local groundShader = StandardMaterial name:"sIBL_GroundShader"

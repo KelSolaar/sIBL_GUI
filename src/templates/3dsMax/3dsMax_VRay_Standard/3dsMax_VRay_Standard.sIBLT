@@ -2,13 +2,13 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.0 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.0.1 | String | Template Release
+Date = @Date | 20 May 2010 | String | Date
 Author = @Author | Dschaga / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
-Version = @Version | 2008+ | String | Version
+Version = @Version | 2009+ | String | Version
 Renderer = @Renderer | VRay| String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
 Comment = @Comment | This is 3dsmax 2K VRay Template. | String | Comment
@@ -121,6 +121,7 @@ fn sIBL_3dsmax_VRay_getFeedBack feedbackRadius createBackground texturePath =
 	addModifier feedbackSphere normalModifier_
 	collapseStack feedbackSphere
 	
+	feedbackSphere.backfacecull = on
 	feedbackSphere.renderable = False
 	
 	if( createBackground == 1 ) then
@@ -306,6 +307,7 @@ fn sIBL_3dsmax_VRay_createGround currentScale =
 (
 	local currentScale = currentScale * ( sqrt 2 )
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
+	currentPlane.backfacecull = on
 	currentPlane.parent = getNodeByName "sIBL_Datas"
 	
 	local groundShader = VRayMtl name:"sIBL_GroundShader"
