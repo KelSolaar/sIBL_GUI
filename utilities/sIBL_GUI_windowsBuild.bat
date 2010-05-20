@@ -48,7 +48,10 @@ xcopy /c /y "Z:\sIBL_GUI\src\resources\Preferences.png" "Z:\sIBL_GUI\releases\Wi
 xcopy /c /y "Z:\sIBL_GUI\src\resources\Preferences_Hover.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Z:\sIBL_GUI\src\resources\Preferences_Active.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Z:\sIBL_GUI\src\resources\Toolbar.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
-xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates"
+xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\3dsMax\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
+xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\Maya\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
+xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\Softimage\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
+xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\XSI\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
 xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\components" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\components"
 echo ----------------------------------------------------------------
 echo Release - End
@@ -59,34 +62,34 @@ echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
 rem \\ XSI_MR_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\XSI\XSI_MR_Standard\help\XSI_MR_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\XSI_MR_Standard\help\XSI_MR_Standard Template Manual"
 
 rem \\ Softimage_MR_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Softimage\Softimage_MR_Standard\help\Softimage_MR_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Softimage_MR_Standard\help\Softimage_MR_Standard Template Manual"
 
 rem \\ Maya_MR_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_MR_Standard\help\Maya_MR_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya_MR_Standard\help\Maya_MR_Standard Template Manual"
 
 rem \\ Maya_RfM_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_RfM_Standard\help\Maya_RfM_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya_RfM_Standard\help\Maya_RfM_Standard Template Manual"
 
 rem \\ Maya_Turtle_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_Turtle_Standard\help\Maya_Turtle_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya_Turtle_Standard\help\Maya_Turtle_Standard Template Manual"
 
 rem \\ Maya_VRay_Dome_Light Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_VRay_Dome_Light\help\Maya_VRay_Dome_Light Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya_VRay_Dome_Light\help\Maya_VRay_Dome_Light Template Manual"
 
 rem \\ Maya_VRay_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya\Maya_VRay_Standard\help\Maya_VRay_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\Maya_VRay_Standard\help\Maya_VRay_Standard Template Manual"
 
 rem \\ 3dsMax_MR_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_MR_Standard\help\3dsMax_MR_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax_MR_Standard\help\3dsMax_MR_Standard Template Manual"
 
 rem \\ 3dsMax_Scanline_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_Scanline_Standard\help\3dsMax_Scanline_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax_Scanline_Standard\help\3dsMax_Scanline_Standard Template Manual"
 
 rem \\ 3dsMax_VRay_Standard Textile Template Documentation Removal.
-del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax\3dsMax_VRay_Standard\help\3dsMax_VRay_Standard Template Manual"
+del "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\3dsMax_VRay_Standard\help\3dsMax_VRay_Standard Template Manual"
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo ----------------------------------------------------------------

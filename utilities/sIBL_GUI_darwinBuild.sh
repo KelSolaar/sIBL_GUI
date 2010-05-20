@@ -50,14 +50,12 @@ cp  ../../src/resources/Preferences.png ./dist/sIBL_GUI.app/Contents/Resources/r
 cp  ../../src/resources/Preferences_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Preferences_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Toolbar.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp -rf ../../src/templates ./dist/sIBL_GUI.app/Contents/Resources/
-cp -rf ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
+mkdir ./dist/sIBL_GUI.app/Contents/Resources/templates
+cp -r ../../src/templates/Maya/* ./dist/sIBL_GUI.app/Contents/Resources/templates/
+cp -r ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/qt.conf ./dist/sIBL_GUI.app/Contents/Resources/
-cp -rf ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
-rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/3dsMax
-rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/XSI
-rm -rf ./dist/sIBL_GUI.app/Contents/Resources/Templates/Softimage
+cp -r ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
 echo ----------------------------------------------------------------
 echo Release - End
 echo ----------------------------------------------------------------
@@ -66,19 +64,19 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
-rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 
 #! Maya_RfM_Standard Textile Template Documentation Removal.
-rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
 
 #! Maya_Turtle_Standard Textile Template Documentation Removal.
-rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_Turtle_Standard/help/Maya_Turtle_Standard Template Manual"
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_Turtle_Standard/help/Maya_Turtle_Standard Template Manual"
 
 #! Maya_VRay_Dome_Light Textile Template Documentation Removal.
-rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
 
 #! Maya_VRay_Standard Textile Template Documentation Removal.
-rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
+rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo ----------------------------------------------------------------

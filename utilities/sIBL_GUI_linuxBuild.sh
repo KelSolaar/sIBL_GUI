@@ -50,7 +50,10 @@ cp ../src/resources/Preferences.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Preferences_Hover.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Preferences_Active.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Toolbar.png ../releases/Linux/sIBL_GUI/resources/
-cp -r ../src/templates/ ../releases/Linux/sIBL_GUI/
+mkdir ../releases/Linux/sIBL_GUI/templates
+cp -r ../src/templates/Maya/* ../releases/Linux/sIBL_GUI/templates/
+cp -r ../src/templates/Softimage/* ../releases/Linux/sIBL_GUI/templates/
+cp -r ../src/templates/XSI/* ../releases/Linux/sIBL_GUI/templates/
 cp -r ../src/components/ ../releases/Linux/sIBL_GUI/
 echo ----------------------------------------------------------------
 echo Release - End
@@ -61,34 +64,26 @@ echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
 #! XSI_MR_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/XSI/XSI_MR_Standard/help/XSI_MR_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/XSI_MR_Standard/help/XSI_MR_Standard Template Manual"
 
 #! Softimage_MR_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Softimage/Softimage_MR_Standard/help/Softimage_MR_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Softimage_MR_Standard/help/Softimage_MR_Standard Template Manual"
 
 #! Maya_MR_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Maya/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 
 #! Maya_RfM_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Maya/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
 
 #! Maya_Turtle_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Maya/Maya_Turtle_Standard/help/Maya_Turtle_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Maya_Turtle_Standard/help/Maya_Turtle_Standard Template Manual"
 
 #! Maya_VRay_Dome_Light Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Maya/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
 
 #! Maya_VRay_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/Maya/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
+rm "../releases/Linux/sIBL_GUI/templates/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
 
-#! 3dsMax_MR_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/3dsMax/3dsMax_MR_Standard/help/3dsMax_MR_Standard Template Manual"
-
-#! 3dsMax_Scanline_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/3dsMax/3dsMax_Scanline_Standard/help/3dsMax_Scanline_Standard Template Manual"
-
-#! 3dsMax_VRay_Standard Textile Template Documentation Removal.
-rm "../releases/Linux/sIBL_GUI/templates/3dsMax/3dsMax_VRay_Standard/help/3dsMax_VRay_Standard Template Manual"
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo ----------------------------------------------------------------
