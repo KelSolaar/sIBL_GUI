@@ -1105,14 +1105,23 @@ class CollectionsOutliner( UiComponent ):
 
 		self.removeCollections()
 		self.Collections_Outliner_treeView_refreshModel()
+		self.coreDatabaseBrowser_Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
 		'''
-		This Method Refreshes The Database Browser Depending On The Collections Outliner Selected Items.
+		This Method Triggers The Database_Browser_listView Refresh Depending On The Collections Outliner Selected Items.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
+		'''
+
+		self.coreDatabaseBrowser_Database_Browser_listView_refreshModel()
+
+	@core.executionTrace
+	def coreDatabaseBrowser_Database_Browser_listView_refreshModel( self ) :
+		'''
+		This Method Refreshes The Database_Browser_listView Model.
 		'''
 
 		self._coreDatabaseBrowser.displaySets = self.getCollectionsSets()
