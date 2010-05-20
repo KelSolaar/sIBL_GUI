@@ -37,7 +37,7 @@ Var StartMenuGroup
 !insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer languages
-!insertmacro MUI_LANGUAGE French
+!insertmacro MUI_LANGUAGE English
 
 # Installer attributes
 OutFile sIBL_GUI_Setup.exe
