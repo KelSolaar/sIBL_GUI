@@ -55,6 +55,7 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import os
 import platform
 
 #***********************************************************************************************
@@ -102,6 +103,14 @@ class Constants():
 	databaseFile = "sIBL_Database.sqlite"
 	settingsFile = "sIBL_Settings.rc"
 	loggingFile = "sIBL_Logging.log"
+
+	librariesDirectory = "libraries"
+	if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		freeImageLibrary = "libraries/"
+	elif platform.system() == "Darwin" :
+		freeImageLibrary = os.path.join( librariesDirectory, "libfreeimage.dylib" )
+	elif platform.system() == "Linux" :
+		freeImageLibrary = "libraries/"
 
 	defaultTimerCycle = 250
 	nullObject = "None"
