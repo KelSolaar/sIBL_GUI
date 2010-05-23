@@ -106,7 +106,7 @@ class Constants():
 
 	librariesDirectory = "libraries"
 	if platform.system() == "Windows" or platform.system() == "Microsoft" :
-		freeImageLibrary = "libraries/"
+		freeImageLibrary = os.path.join( librariesDirectory, "FreeImage.dll" )
 	elif platform.system() == "Darwin" :
 		freeImageLibrary = os.path.join( librariesDirectory, "libfreeimage.dylib" )
 	elif platform.system() == "Linux" :

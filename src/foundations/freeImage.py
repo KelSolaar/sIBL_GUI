@@ -646,29 +646,6 @@ FI_COLOR_ALPHA_IS_INDEX			 = 0x04
 FI_COLOR_PALETTE_SEARCH_MASK	 = ( FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX )
 
 '''
-Extension To Type.
-'''
-EXTToType = dict( bmp = ( FREE_IMAGE_FORMAT.FIF_BMP, BMP_DEFAULT, '.bmp' ),
-				ico = ( FREE_IMAGE_FORMAT.FIF_ICO, ICO_DEFAULT, '.ico' ),
-				gif = ( FREE_IMAGE_FORMAT.FIF_GIF, GIF_DEFAULT, '.gif' ),
-				jpeg = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_DEFAULT, '.jpg' ),
-				jpegfa = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_FAST, '.jpg' ),
-				jpegac = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_ACCURATE, '.jpg' ),
-				jpegsu = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYSUPERB, '.jpg' ),
-				jpeggo = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYGOOD, '.jpg' ),
-				jpegav = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYAVERAGE, '.jpg' ),
-				jpegba = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYBAD, '.jpg' ),
-				pbm = ( FREE_IMAGE_FORMAT.FIF_PBM, PNM_DEFAULT, '.pbm' ),
-				pgm = ( FREE_IMAGE_FORMAT.FIF_PGM, PNM_DEFAULT, '.pgm' ),
-				png = ( FREE_IMAGE_FORMAT.FIF_PNG, PNG_DEFAULT, '.png' ),
-				pnm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.pnm' ),
-				ppm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.ppm' ),
-				tiff = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_DEFAULT, '.tif' ),
-				tiffg3 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX3, '.tif' ),
-				tiffg4 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX4, '.tif' ),
-				tiffno = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_NONE, '.tif' ) )
-
-'''
 Custom Constants
 '''
 COL_1 = 1
@@ -685,6 +662,9 @@ COL_16TO32 = ( COL_16, COL_24, COL_32 )
 COL_1TO32 = ( COL_1, COL_4, COL_8, COL_16, COL_24, COL_32 )
 COL_1TO48 = COL_1TO32 + ( COL_48, )
 
+FI_DEFAULT_NULL = 0
+FI_DEFAULT_GAMMA = 2.2
+
 FREEIMAGE_FUNCTIONS = ( 
 
 	# Initialization Functions.
@@ -696,7 +676,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_GetCopyrightMessage" , affixe = "@0", argumentsType = None, returnValue = ctypes.c_char_p ),
 
 	# Message Output Functions.
-	# LibraryHook( name = "FreeImage_SetOutputMessageStdCall" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetOutputMessageStdCall" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetOutputMessage" , affixe = "@4", argumentsType = None, returnValue = None ),
 	# LibraryHook( name = "FreeImage_OutputMessageProc" , affixe = "@0", argumentsType = None, returnValue = None ),
 
@@ -715,20 +695,20 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_SaveToHandle" , affixe = "@20", argumentsType = None, returnValue = None ),
 
 	# Memory I/O Stream Functions.
-	# LibraryHook( name = "FreeImage_OpenMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_CloseMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_LoadFromMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SaveToMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_TellMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SeekMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_AcquireMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ReadMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_WriteMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_LoadMultiBitmapFromMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_OpenMemory" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_CloseMemory" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_LoadFromMemory" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SaveToMemory" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_TellMemory" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SeekMemory" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_AcquireMemory" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ReadMemory" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_WriteMemory" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_LoadMultiBitmapFromMemory" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Plugin Interface Functions.
 	LibraryHook( name = "FreeImage_RegisterLocalPlugin" , affixe = "@20", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_RegisterExternalPlugin" , affixe = "@0", argumentsType = None, returnValue = None ),
+	# LibraryHook( name = "FreeImage_RegisterExternalPlugin" , affixe = "@20", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetFIFCount" , affixe = "@0", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetPluginEnabled" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_IsPluginEnabled" , affixe = "@4", argumentsType = None, returnValue = None ),
@@ -749,7 +729,7 @@ FREEIMAGE_FUNCTIONS = (
 
 	# Multipaging Functions.
 	LibraryHook( name = "FreeImage_OpenMultiBitmap" , affixe = "@24", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_OpenMultiBitmapFromHandle" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_OpenMultiBitmapFromHandle" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_CloseMultiBitmap" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetPageCount" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_AppendPage" , affixe = "@8", argumentsType = None, returnValue = None ),
@@ -764,15 +744,15 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_GetFileType" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetFileTypeU" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetFileTypeFromHandle" , affixe = "@12", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_GetFileTypeFromMemory" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetFileTypeFromMemory" , affixe = "@8", argumentsType = None, returnValue = None ),
 
 	# Image Type Request Functions.
 	LibraryHook( name = "FreeImage_GetImageType" , affixe = "@4", argumentsType = None, returnValue = None ),
 
 	# FreeImage Helper Functions.
 	LibraryHook( name = "FreeImage_IsLittleEndian" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_LookupX11Color" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_LookupSVGColor" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_LookupX11Color" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_LookupSVGColor" , affixe = "@16", argumentsType = None, returnValue = None ),
 
 	# Pixel Access Functions.
 	LibraryHook( name = "FreeImage_GetBits" , affixe = "@4", argumentsType = None, returnValue = ctypes.POINTER( BYTE ) ),
@@ -796,7 +776,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_SetDotsPerMeterX" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetDotsPerMeterY" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetInfoHeader" , affixe = "@4", argumentsType = COL_1TO32, returnValue = ctypes.POINTER( BITMAPINFOHEADER ) ),
-	# LibraryHook( name = "FreeImage_GetInfo" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetInfo" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetColorType" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetRedMask" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetGreenMask" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
@@ -806,54 +786,54 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_SetTransparencyTable" , affixe = "@12", argumentsType = ( COL_8, ), returnValue = None ),
 	LibraryHook( name = "FreeImage_IsTransparent" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetTransparent" , affixe = "@8", argumentsType = ( COL_8, COL_32 ), returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTransparentIndex" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_GetTransparentIndex" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTransparentIndex" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetTransparentIndex" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_HasBackgroundColor" , affixe = "@4", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
 	LibraryHook( name = "FreeImage_GetBackgroundColor" , affixe = "@8", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.POINTER( RGBQUAD ) ),
 	LibraryHook( name = "FreeImage_SetBackgroundColor" , affixe = "@8", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
 
 	# ICC Profile Functions.
-	# LibraryHook( name = "FreeImage_GetICCProfile" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_CreateICCProfile" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_DestroyICCProfile" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetICCProfile" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_CreateICCProfile" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_DestroyICCProfile" , affixe = "@4", argumentsType = None, returnValue = None ),
 
 	# Line Conversion Functions.
-	# LibraryHook( name = "FreeImage_ConvertLine1To4" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine8To4" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To4_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To4_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine24To4" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine32To4" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine1To8" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine4To8" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To8_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To8_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine24To8" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine32To8" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine1To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine4To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine8To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16_565_To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine24To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine32To16_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine1To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine4To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine8To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16_555_To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine24To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine32To16_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine1To24" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine4To24" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine8To24" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To24_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To24_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine32To24" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine1To32" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine4To32" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine8To32" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To32_555" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine16To32_565" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ConvertLine24To32" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To4" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine8To4" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To4_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To4_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine24To4" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine32To4" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To8" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine4To8" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To8_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To8_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine24To8" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine32To8" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To16_555" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine4To16_555" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine8To16_555" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16_565_To16_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine24To16_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine32To16_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To16_565" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine4To16_565" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine8To16_565" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16_555_To16_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine24To16_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine32To16_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To24" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine4To24" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine8To24" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To24_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To24_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine32To24" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine1To32" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine4To32" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine8To32" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To32_555" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine16To32_565" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertLine24To32" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Smart Conversion Functions.
 	LibraryHook( name = "FreeImage_ConvertTo4Bits" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
@@ -874,23 +854,23 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_ConvertToType" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Tone Mapping Operators Functions.
-	# LibraryHook( name = "FreeImage_ToneMapping" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_TmoDrago03" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_TmoReinhard05" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_TmoReinhard05Ex" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_TmoFattal02" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ToneMapping" , affixe = "@24", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_TmoDrago03" , affixe = "@20", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_TmoReinhard05" , affixe = "@20", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_TmoReinhard05Ex" , affixe = "@36", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_TmoFattal02" , affixe = "@20", argumentsType = None, returnValue = None ),
 
 	# ZLib Functions.
-	# LibraryHook( name = "FreeImage_ZLibCompress" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ZLibUncompress" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ZLibGZip" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ZLibGUnzip" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ZLibCRC32" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ZLibCompress" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ZLibUncompress" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ZLibGZip" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ZLibGUnzip" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ZLibCRC32" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Tags Creation / Destruction Functions.
-	# LibraryHook( name = "FreeImage_CreateTag" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_DeleteTag" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_CloneTag" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_CreateTag" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_DeleteTag" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_CloneTag" , affixe = "@4", argumentsType = None, returnValue = None ),
 
 	# Tags Getters / Setters Functions.
 	LibraryHook( name = "FreeImage_GetTagKey" , affixe = "@4", argumentsType = None, returnValue = ctypes.c_char_p ),
@@ -898,15 +878,15 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_GetTagID" , affixe = "@4", argumentsType = None, returnValue = ctypes.c_char_p ),
 	LibraryHook( name = "FreeImage_GetTagType" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetTagCount" , affixe = "@4", argumentsType = None, returnValue = ctypes.c_ulong ),
-	# LibraryHook( name = "FreeImage_GetTagLength" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetTagLength" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetTagValue" , affixe = "@4", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagKey" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagDescription" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagID" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagType" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagCount" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagLength" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SetTagValue" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagKey" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagDescription" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagID" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagType" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagCount" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagLength" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTagValue" , affixe = "@8", argumentsType = None, returnValue = None ),
 
 	# Iterator Functions.
 	LibraryHook( name = "FreeImage_FindFirstMetadata" , affixe = "@12", argumentsType = None, returnValue = ctypes.c_void_p ),
@@ -914,22 +894,22 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_FindCloseMetadata" , affixe = "@4", argumentsType = None, returnValue = None ),
 
 	# Metadatas Getters / Setters Functions.
-	# LibraryHook( name = "FreeImage_SetMetadata" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetMetadata" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetMetadata" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetMetadataCount" , affixe = "@8", argumentsType = None, returnValue = ctypes.c_ulong ),
-	# LibraryHook( name = "FreeImage_CloneMetadata" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_CloneMetadata" , affixe = "@8", argumentsType = None, returnValue = None ),
 
 	# Tag To C String Conversion Function.
 	LibraryHook( name = "FreeImage_TagToString" , affixe = "@12", argumentsType = None, returnValue = ctypes.c_char_p ),
 
 	# Rotation and Flipping Functions.
 	LibraryHook( name = "FreeImage_RotateClassic" , affixe = "@12", argumentsType = COL_1TO32, returnValue = None ),
-	# LibraryHook( name = "FreeImage_Rotate" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_Rotate" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_RotateEx" , affixe = "@48", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
-	# LibraryHook( name = "FreeImage_FlipHorizontal" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_FlipVertical" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_JPEGTransform" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_JPEGTransformU" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_FlipHorizontal" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_FlipVertical" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_JPEGTransform" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_JPEGTransformU" , affixe = "@16", argumentsType = None, returnValue = None ),
 
 	# Upsampling / Downsampling Functions.
 	LibraryHook( name = "FreeImage_Rescale" , affixe = "@16", argumentsType = COL_1TO32, returnValue = None ),
@@ -942,12 +922,12 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_AdjustContrast" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
 	LibraryHook( name = "FreeImage_Invert" , affixe = "@4", argumentsType = COL_1TO32, returnValue = ctypes.c_long ),
 	LibraryHook( name = "FreeImage_GetHistogram" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
-	# LibraryHook( name = "FreeImage_GetAdjustColorsLookupTable" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_AdjustColors" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ApplyColorMapping" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SwapColors" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_ApplyPaletteIndexMapping" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_SwapPaletteIndices" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetAdjustColorsLookupTable" , affixe = "@32", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_AdjustColors" , affixe = "@32", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ApplyColorMapping" , affixe = "@24", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SwapColors" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_ApplyPaletteIndexMapping" , affixe = "@20", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_SwapPaletteIndices" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Channel Processing Functions.
 	LibraryHook( name = "FreeImage_GetChannel" , affixe = "@8", argumentsType = ( COL_24, COL_32, ), returnValue = None ),
@@ -958,19 +938,19 @@ FREEIMAGE_FUNCTIONS = (
 	# Copy / Paste / Composite Functions.
 	LibraryHook( name = "FreeImage_Copy" , affixe = "@20", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_Paste" , affixe = "@20", argumentsType = COL_1TO32, returnValue = None ),
-	# LibraryHook( name = "FreeImage_Composite" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_JPEGCrop" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_JPEGCropU" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_PreMultiplyWithAlpha" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_Composite" , affixe = "@16", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_JPEGCrop" , affixe = "@24", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_JPEGCropU" , affixe = "@24", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_PreMultiplyWithAlpha" , affixe = "@4", argumentsType = None, returnValue = None ),
 
 	# Background Filling Functions.
-	# LibraryHook( name = "FreeImage_FillBackground" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_EnlargeCanvas" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_AllocateEx" , affixe = "@0", argumentsType = None, returnValue = None ),
-	# LibraryHook( name = "FreeImage_AllocateExT" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_FillBackground" , affixe = "@12", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_EnlargeCanvas" , affixe = "@28", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_AllocateEx" , affixe = "@36", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_AllocateExT" , affixe = "@40", argumentsType = None, returnValue = None ),
 
 	# Miscellaneous Algorithms Functions.
-	# LibraryHook( name = "FreeImage_MultigridPoissonSolver" , affixe = "@0", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_MultigridPoissonSolver" , affixe = "@8", argumentsType = None, returnValue = None ),
  )
 
 #***********************************************************************************************
@@ -979,6 +959,7 @@ FREEIMAGE_FUNCTIONS = (
 
 class Image( object ):
 
+	@core.executionTrace
 	def __init__( self, imagePath = None ):
 		'''
 		This Method Initializes The Class.
@@ -991,8 +972,13 @@ class Image( object ):
 		# --- Setting Class Attributes. ---
 		self._library = foundations.library.Library( FREEIMAGE_LIBRARY_PATH, FREEIMAGE_FUNCTIONS )
 
+		self._errorsCallback = self._library._callback( self._logLibraryErrors )
+		self._library._library.FreeImage_SetOutputMessage( self._errorsCallback )
+
 		self._imagePath = None
 		self.imagePath = imagePath
+
+		self._bitmap = None
 
 		if imagePath :
 			self.load()
@@ -1019,7 +1005,7 @@ class Image( object ):
 		@param value: Attribute Value. ( Library )
 		'''
 
-		self._library = value
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "library" ) )
 
 	@library.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1029,6 +1015,36 @@ class Image( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "library" ) )
+
+	@property
+	def errorsCallback( self ):
+		'''
+		This Method Is The Property For The _errorsCallback Attribute.
+		
+		@return: self._errorsCallback. ( Object )
+		'''
+
+		return self._errorsCallback
+
+	@errorsCallback.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def errorsCallback( self, value ):
+		'''
+		This Method Is The Setter Method For The _errorsCallback Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "errorsCallback" ) )
+
+	@errorsCallback.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def errorsCallback( self ):
+		'''
+		This Method Is The Deleter Method For The _errorsCallback Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "errorsCallback" ) )
 
 	@property
 	def imagePath( self ):
@@ -1051,7 +1067,6 @@ class Image( object ):
 
 		if value :
 			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "imagePath", value )
-			assert os.path.exists( value ), "'{0}' Attribute : '{1}' File Doesn't Exists !".format( "imagePath", value )
 		self._imagePath = value
 
 	@imagePath.deleter
@@ -1063,10 +1078,125 @@ class Image( object ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "imagePath" ) )
 
+	@property
+	def bitmap( self ):
+		'''
+		This Method Is The Property For The _bitmap Attribute.
+		
+		@return: self._bitmap. ( Object )
+		'''
+
+		return self._bitmap
+
+	@bitmap.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def bitmap( self, value ):
+		'''
+		This Method Is The Setter Method For The _bitmap Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		self._bitmap = value
+
+	@bitmap.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def bitmap( self ):
+		'''
+		This Method Is The Deleter Method For The _bitmap Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "bitmap" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
+	def _logLibraryErrors( self, errorCode, message ):
+		'''
+		This Method Logs The Library Errors.
+		'''
 
+		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message : '{2}'".format( self.__class__.__name__, errorCode, message )
+
+	@core.executionTrace
+	def getImageFormat( self, imagePath = None ):
+		'''
+		This Method Gets The File Format.
+		
+		@param imagePath: Image Path. ( String )
+		'''
+
+		imagePath = imagePath or self._imagePath
+		if imagePath :
+			imagePath = ctypes.c_char_p( imagePath )
+			fileFormat = self._library.FreeImage_GetFileType( imagePath, False )
+			if fileFormat == -1 :
+				fileFormat = self._library.FreeImage_GetFIFFromFilename( imagePath )
+			return fileFormat
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
+	def load( self, imagePath = None ):
+		'''
+		This Method Loads The File.
+		
+		@param imagePath: Image Path. ( String )
+		'''
+
+		if self._imagePath :
+			imageFormat = self.getImageFormat( self._imagePath )
+			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN :
+				if self._library.FreeImage_FIFSupportsReading( imageFormat ) :
+					self._bitmap = self._library.FreeImage_Load( imageFormat, self._imagePath, FI_DEFAULT_NULL )
+					self._bitmap and LOGGER.debug( "> '{0}' Image Has Been Loaded !".format( self._imagePath ) )
+				else :
+					raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported !".format( imageFormat )
+
+	@core.executionTrace
+	def save( self ):
+		'''
+		This Method Save The File.
+		'''
+
+		self.saveAs( self.getImageFormat( self._imagePath ), self._imagePath, FI_DEFAULT_NULL )
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
+	def saveAs( self, imageFormat, imagePath, flags = 0 ):
+		'''
+		This Method Save The Image To The Provided File.
+		
+		@param imageFormat: Image Format. ( Integer )
+		@param imagePath: Image Path. ( String )
+		@param flags: Save Flags. ( Integer )
+		'''
+
+		if self._library.FreeImage_FIFSupportsWriting( imageFormat ) :
+			if imagePath :
+				success = self._library.FreeImage_Save( imageFormat, self._bitmap, ctypes.c_char_p( imagePath ), flags )
+				success and	LOGGER.debug( "> '{0}' Image Has Been Saved !".format( imagePath ) )
+		else :
+			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported !".format( imageFormat )
+
+	@core.executionTrace
+	def convertToType( self, targetType, linearScale = True ):
+		'''
+		This Method Converts A Bitmap To Provided Type.
+		
+		@param targetType: Target Type. ( Integer )
+		@param linearScale: Linear Scale. ( Boolean )
+		'''
+
+		self._bitmap = self._library.FreeImage_ConvertToType( self._bitmap, targetType, linearScale )
+		self._bitmap and LOGGER.debug( "> '{0}' Image Conversion Done !".format( self._imagePath ) )
+
+	@core.executionTrace
+	def convertToLdr( self ):
+		imageWidth = self._library.FreeImage_GetWidth( self._bitmap )
+		imageHeight = self._library.FreeImage_GetHeight( self._bitmap )
+		print imageWidth, imageHeight
 
 #***********************************************************************************************
 #***	Python End
@@ -1074,11 +1204,14 @@ class Image( object ):
 import sys
 from globals.runtimeConstants import RuntimeConstants
 
+LOGGER.setLevel( logging.INFO )
+
 # Starting The Console Handler.
 RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
 RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-imagePath = "/Users/KelSolaar/Documents/Developement/FreeImage/src/test/freeimage.jpg"
-freeImage = Image()
-print freeImage.getImageFormat( imagePath )
+imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.hdr"
+image = Image( imagePath )
+image.convertToLdr()
+image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )

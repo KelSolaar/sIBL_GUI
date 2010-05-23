@@ -483,6 +483,34 @@ class LibraryInitializationError( Exception ):
 		'''
 
 		return repr( self.value )
+
+class LibraryExecutionError( Exception ):
+	'''
+	This Class Is Used For Library Execution Error.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return repr( self.value )
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

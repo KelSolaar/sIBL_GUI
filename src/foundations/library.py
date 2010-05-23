@@ -101,6 +101,11 @@ class Library( object ):
 	_libraryInstance = None
 	_libraryInstantiated = False
 
+	if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		_callback = ctypes.WINFUNCTYPE( ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p )
+	else:
+		_callback = ctypes.CFUNCTYPE( ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p )
+
 	@core.executionTrace
 	def __new__( self, *args, **kwargs ):
 		'''
@@ -275,17 +280,15 @@ class Library( object ):
 
 		returnType = function.returnValue
 
-		bindingName = function.name.split( "_", 1 )[1]
-
 		if platform.system() == "Windows" or platform.system() == "Microsoft" :
-			functionName = getattr( self._library, '_{0}{1}'.format( function.name, function.affixe ) )
+			functionObject = getattr( self._library, '_{0}{1}'.format( function.name, function.affixe ) )
 		else:
-			functionName = getattr( self._library, function.name )
+			functionObject = getattr( self._library, function.name )
 
-		setattr( self, bindingName, functionName )
+		setattr( self, function.name, functionObject )
 
 		if returnType :
-			functionName.restype = returnType
+			functionObject.restype = returnType
 
 #***********************************************************************************************
 #***	Python End
