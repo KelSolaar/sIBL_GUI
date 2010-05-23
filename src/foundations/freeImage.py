@@ -354,7 +354,6 @@ class FREE_IMAGE_FORMAT( object ):
 	FIF_RAW		 = 34
 	FIF_MUTLIPAGE = ( FIF_TIFF, FIF_ICO, FIF_GIF )
 
-
 class FREE_IMAGE_TYPE( object ):
 	'''
 	This Class Is Used For Images Types.
@@ -373,7 +372,6 @@ class FREE_IMAGE_TYPE( object ):
 	FIT_RGBA16	 = 10
 	FIT_RGBF	 = 11
 	FIT_RGBAF	 = 12
-
 
 class FREE_IMAGE_COLOR_TYPE( object ):
 	'''
@@ -422,7 +420,6 @@ class FREE_IMAGE_JPEG_OPERATION( object ):
 	FIJPEG_OP_ROTATE_180	 = 6
 	FIJPEG_OP_ROTATE_270	 = 7
 
-
 class FREE_IMAGE_TMO( object ):
 	'''
 	This Class Is Used For Tone Mapping Operators.
@@ -431,7 +428,6 @@ class FREE_IMAGE_TMO( object ):
 	FITMO_DRAGO03	 = 0
 	FITMO_REINHARD05 = 1
 	FITMO_FATTAL02	 = 2
-
 
 class FREE_IMAGE_FILTER( object ):
 	'''
@@ -514,7 +510,6 @@ class FREE_IMAGE_MDMODEL( object ):
 	FIMD_ANIMATION		 = 9
 	FIMD_CUSTOM			 = 10
 
-
 class FIMETADATA( ctypes.Structure ) :
 	'''
 	This Class Is A Handle To A Metadata Model.
@@ -560,41 +555,53 @@ class FIMEMORY( ctypes.Structure ):
 '''
 Load / Save Flag Constants.
 '''
-BMP_DEFAULT		 = 0
-BMP_SAVE_RLE	 = 1
-
-EXR_DEFAULT	 = 0
-EXR_FLOAT	 = 0x0001
-EXR_NONE	 = 0x0002
-EXR_ZIP		 = 0x0004
-EXR_PIZ		 = 0x0008
-EXR_PXR24	 = 0x0010
-EXR_B44		 = 0x0020
-EXR_LC		 = 0x0040
-
-GIF_DEFAULT		 = 0
-GIF_LOAD256		 = 1
-GIF_PLAYBACK	 = 2
-
-ICO_DEFAULT		 = 0
-ICO_MAKEALPHA	 = 1
-
-JPEG_DEFAULT 			 = 0
-JPEG_FAST 				 = 0x0001
-JPEG_ACCURATE 			 = 0x0002
-JPEG_CMYK			 	 = 0x0004
-JPEG_EXIFROTATE		 	 = 0x0008
-JPEG_QUALITYSUPERB 		 = 0x80
-JPEG_QUALITYGOOD 		 = 0x0100
-JPEG_QUALITYNORMAL 		 = 0x0200
-JPEG_QUALITYAVERAGE 	 = 0x0400
-JPEG_QUALITYBAD 		 = 0x0800
-JPEG_PROGRESSIVE	 	 = 0x2000
-JPEG_SUBSAMPLING_411 	 = 0x1000
-JPEG_SUBSAMPLING_420	 = 0x4000
-JPEG_SUBSAMPLING_422 	 = 0x8000
-JPEG_SUBSAMPLING_444 	 = 0x10000
-
+BMP_DEFAULT					 = 0
+BMP_SAVE_RLE				 = 1
+CUT_DEFAULT					 = 0
+DDS_DEFAULT			 		 = 0
+EXR_DEFAULT					 = 0
+EXR_FLOAT					 = 0x0001
+EXR_NONE	 				 = 0x0002
+EXR_ZIP		 				 = 0x0004
+EXR_PIZ						 = 0x0008
+EXR_PXR24	 				 = 0x0010
+EXR_B44						 = 0x0020
+EXR_LC						 = 0x0040
+FAXG3_DEFAULT				 = 0
+GIF_DEFAULT					 = 0
+GIF_LOAD256					 = 1
+GIF_PLAYBACK	 			 = 2
+HDR_DEFAULT					 = 0
+ICO_DEFAULT					 = 0
+ICO_MAKEALPHA				 = 1
+IFF_DEFAULT					 = 0
+J2K_DEFAULT					 = 0
+JP2_DEFAULT			 		 = 0
+JPEG_DEFAULT 				 = 0
+JPEG_FAST 					 = 0x0001
+JPEG_ACCURATE 				 = 0x0002
+JPEG_CMYK			 		 = 0x0004
+JPEG_EXIFROTATE		 		 = 0x0008
+JPEG_QUALITYSUPERB 			 = 0x80
+JPEG_QUALITYGOOD 			 = 0x0100
+JPEG_QUALITYNORMAL 			 = 0x0200
+JPEG_QUALITYAVERAGE 		 = 0x0400
+JPEG_QUALITYBAD 			 = 0x0800
+JPEG_PROGRESSIVE	 		 = 0x2000
+JPEG_SUBSAMPLING_411 		 = 0x1000
+JPEG_SUBSAMPLING_420		 = 0x4000
+JPEG_SUBSAMPLING_422 		 = 0x8000
+JPEG_SUBSAMPLING_444 		 = 0x10000
+KOALA_DEFAULT				 = 0
+LBM_DEFAULT					 = 0
+MNG_DEFAULT					 = 0
+PCD_DEFAULT					 = 0
+PCD_BASE					 = 1
+PCD_BASEDIV4				 = 2
+PCD_BASEDIV16				 = 3
+PCX_DEFAULT			 		 = 0
+PFM_DEFAULT			 		 = 0
+PICT_DEFAULT		 		 = 0
 PNG_DEFAULT		 			 = 0
 PNG_IGNOREGAMMA	 			 = 1
 PNG_Z_BEST_SPEED			 = 0x0001
@@ -602,80 +609,62 @@ PNG_Z_DEFAULT_COMPRESSION	 = 0x0006
 PNG_Z_BEST_COMPRESSION		 = 0x0009
 PNG_Z_NO_COMPRESSION		 = 0x0100
 PNG_INTERLACED				 = 0x0200
+PNM_DEFAULT			 		 = 0
+PNM_SAVE_RAW		 		 = 0
+PNM_SAVE_ASCII		 		 = 1
+PSD_DEFAULT			 		 = 0
+RAS_DEFAULT			 		 = 0
+RAW_DEFAULT			 		 = 0
+RAW_PREVIEW			 		 = 1
+RAW_DISPLAY			 		 = 2
+SGI_DEFAULT			 		 = 0
+TARGA_DEFAULT 		 		 = 0
+TARGA_LOAD_RGB888	 		 = 1
+TIFF_DEFAULT		 		 = 0
+TIFF_CMYK			 		 = 0x0001
+TIFF_NONE			 		 = 0x0800
+TIFF_PACKBITS		 		 = 0x0100
+TIFF_DEFLATE		 		 = 0x0200
+TIFF_ADOBE_DEFLATE	 		 = 0x0400
+TIFF_CCITTFAX3		 		 = 0x1000
+TIFF_CCITTFAX4		 		 = 0x2000
+TIFF_LZW					 = 0x4000
+TIFF_JPEG			 		 = 0x8000
+WBMP_DEFAULT		 		 = 0
+XBM_DEFAULT					 = 0
+XPM_DEFAULT					 = 0
 
-RAW_DEFAULT			 = 0
-RAW_PREVIEW			 = 1
-RAW_DISPLAY			 = 2
-
-TIFF_DEFAULT		 = 0
-TIFF_CMYK			 = 0x0001
-TIFF_NONE			 = 0x0800
-TIFF_PACKBITS		 = 0x0100
-TIFF_DEFLATE		 = 0x0200
-TIFF_ADOBE_DEFLATE	 = 0x0400
-TIFF_CCITTFAX3		 = 0x1000
-TIFF_CCITTFAX4		 = 0x2000
-TIFF_LZW			 = 0x4000
-TIFF_JPEG			 = 0x8000
-
-CUT_DEFAULT			 = 0
-DDS_DEFAULT			 = 0
-
-FAXG3_DEFAULT		 = 0
-HDR_DEFAULT			 = 0
-IFF_DEFAULT			 = 0
-J2K_DEFAULT			 = 0
-JP2_DEFAULT			 = 0
-KOALA_DEFAULT		 = 0
-LBM_DEFAULT			 = 0
-MNG_DEFAULT			 = 0
-PCD_DEFAULT			 = 0
-PCD_BASE			 = 1
-PCD_BASEDIV4		 = 2
-PCD_BASEDIV16		 = 3
-PCX_DEFAULT			 = 0
-PFM_DEFAULT			 = 0
-PICT_DEFAULT		 = 0
-PNM_DEFAULT			 = 0
-PNM_SAVE_RAW		 = 0
-PNM_SAVE_ASCII		 = 1
-PSD_DEFAULT			 = 0
-RAS_DEFAULT			 = 0
-SGI_DEFAULT			 = 0
-TARGA_DEFAULT 		 = 0
-TARGA_LOAD_RGB888	 = 1
-WBMP_DEFAULT		 = 0
-XBM_DEFAULT			 = 0
-XPM_DEFAULT			 = 0
+'''
+Background Filling Options.
+'''
+FI_COLOR_IS_RGB_COLOR			 = 0x00
+FI_COLOR_IS_RGBA_COLOR			 = 0x01
+FI_COLOR_FIND_EQUAL_COLOR		 = 0x02
+FI_COLOR_ALPHA_IS_INDEX			 = 0x04
+FI_COLOR_PALETTE_SEARCH_MASK	 = ( FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX )
 
 '''
 Extension To Type.
 '''
-EXTToType = dict( tiff = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_DEFAULT, '.tif' ),
-			 tiffg3 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX3, '.tif' ),
-			 tiffg4 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX4, '.tif' ),
-			 tiffno = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_NONE, '.tif' ),
-
-			 jpeg = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_DEFAULT, '.jpg' ),
-			 jpegfa = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_FAST, '.jpg' ),
-			 jpegac = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_ACCURATE, '.jpg' ),
-			 jpegsu = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYSUPERB, '.jpg' ),
-			 jpeggo = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYGOOD, '.jpg' ),
-			 jpegav = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYAVERAGE, '.jpg' ),
-			 jpegba = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYBAD, '.jpg' ),
-
-			 png = ( FREE_IMAGE_FORMAT.FIF_PNG, PNG_DEFAULT, '.png' ),
-
-			 bmp = ( FREE_IMAGE_FORMAT.FIF_BMP, BMP_DEFAULT, '.bmp' ),
-
-			 ico = ( FREE_IMAGE_FORMAT.FIF_ICO, ICO_DEFAULT, '.ico' ),
-
-			 gif = ( FREE_IMAGE_FORMAT.FIF_GIF, GIF_DEFAULT, '.gif' ),
-
-			 pbm = ( FREE_IMAGE_FORMAT.FIF_PBM, PNM_DEFAULT, '.pbm' ),
-			 pgm = ( FREE_IMAGE_FORMAT.FIF_PGM, PNM_DEFAULT, '.pgm' ),
-			 pnm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.pnm' ),
-			 ppm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.ppm' ) )
+EXTToType = dict( bmp = ( FREE_IMAGE_FORMAT.FIF_BMP, BMP_DEFAULT, '.bmp' ),
+				ico = ( FREE_IMAGE_FORMAT.FIF_ICO, ICO_DEFAULT, '.ico' ),
+				gif = ( FREE_IMAGE_FORMAT.FIF_GIF, GIF_DEFAULT, '.gif' ),
+				jpeg = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_DEFAULT, '.jpg' ),
+				jpegfa = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_FAST, '.jpg' ),
+				jpegac = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_ACCURATE, '.jpg' ),
+				jpegsu = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYSUPERB, '.jpg' ),
+				jpeggo = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYGOOD, '.jpg' ),
+				jpegav = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYAVERAGE, '.jpg' ),
+				jpegba = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYBAD, '.jpg' ),
+				pbm = ( FREE_IMAGE_FORMAT.FIF_PBM, PNM_DEFAULT, '.pbm' ),
+				pgm = ( FREE_IMAGE_FORMAT.FIF_PGM, PNM_DEFAULT, '.pgm' ),
+				png = ( FREE_IMAGE_FORMAT.FIF_PNG, PNG_DEFAULT, '.png' ),
+				pnm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.pnm' ),
+				ppm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.ppm' ),
+				tiff = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_DEFAULT, '.tif' ),
+				tiffg3 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX3, '.tif' ),
+				tiffg4 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX4, '.tif' ),
+				tiffno = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_NONE, '.tif' ) )
 
 '''
 Custom Constants
@@ -696,27 +685,102 @@ COL_1TO48 = COL_1TO32 + ( COL_48, )
 
 FREEIMAGE_FUNCTIONS = ( 
 
-	# General Functions.
+	# Initialization Functions.
 	( "FreeImage_Initialise", "@4" ),
 	( "FreeImage_DeInitialise", "@0" ),
+
+	# Version Functions.
 	( "FreeImage_GetVersion", "@0", None, ctypes.c_char_p ),
 	( "FreeImage_GetCopyrightMessage", "@0", None, ctypes.c_char_p ),
-	( "FreeImage_SetOutputMessage", "@4" ),
 
-	# Bitmap Management Functions.
+	# Message Output Functions.
+	# ( "FreeImage_SetOutputMessageStdCall", "@0" ),
+	( "FreeImage_SetOutputMessage", "@4" ),
+	# ( "FreeImage_OutputMessageProc", "@0" ),
+
+	# Allocate / Clone / Unload Functions.
 	( "FreeImage_Allocate", "@24", COL_1TO32 ),
 	( "FreeImage_AllocateT", "@28" ),
+	( "FreeImage_Clone", "@4" ),
+	( "FreeImage_Unload", "@4" ),
+
+	# Load / Save Unload Functions.
 	( "FreeImage_Load", "@12" ),
 	( "FreeImage_LoadU", "@12" ),
 	( "FreeImage_LoadFromHandle", "@16" ),
 	( "FreeImage_Save", "@16" ),
 	( "FreeImage_SaveU", "@16" ),
 	( "FreeImage_SaveToHandle", "@20" ),
-	( "FreeImage_Clone", "@4" ),
-	( "FreeImage_Unload", "@4" ),
 
-	# Bitmap Information.
+	# Memory I/O Stream Functions.
+	# ( "FreeImage_OpenMemory", "@0" ),
+	# ( "FreeImage_CloseMemory", "@0" ),
+	# ( "FreeImage_LoadFromMemory", "@0" ),
+	# ( "FreeImage_SaveToMemory", "@0" ),
+	# ( "FreeImage_TellMemory", "@0" ),
+	# ( "FreeImage_SeekMemory", "@0" ),
+	# ( "FreeImage_AcquireMemory", "@0" ),
+	# ( "FreeImage_ReadMemory", "@0" ),
+	# ( "FreeImage_WriteMemory", "@0" ),
+	# ( "FreeImage_LoadMultiBitmapFromMemory", "@0" ),
+
+	# Plugin Interface Functions.
+	( "FreeImage_RegisterLocalPlugin", "@20" ),
+	# ( "FreeImage_RegisterExternalPlugin", "@0" ),
+	( "FreeImage_GetFIFCount", "@0" ),
+	( "FreeImage_SetPluginEnabled", "@8" ),
+	( "FreeImage_IsPluginEnabled", "@4" ),
+	( "FreeImage_GetFIFFromFormat", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFFromMime", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFormatFromFIF", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFExtensionList", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFDescription", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFRegExpr", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFMimeType", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetFIFFromFilename", "@4" ),
+	( "FreeImage_GetFIFFromFilenameU", "@4" ),
+	( "FreeImage_FIFSupportsReading", "@4" ),
+	( "FreeImage_FIFSupportsWriting", "@4" ),
+	( "FreeImage_FIFSupportsExportBPP", "@8" ),
+	( "FreeImage_FIFSupportsExportType", "@8" ),
+	( "FreeImage_FIFSupportsICCProfiles", "@4" ),
+
+	# Multipaging Functions.
+	( "FreeImage_OpenMultiBitmap", "@24" ),
+	# ( "FreeImage_OpenMultiBitmapFromHandle", "@0" ),
+	( "FreeImage_CloseMultiBitmap", "@8" ),
+	( "FreeImage_GetPageCount", "@4" ),
+	( "FreeImage_AppendPage", "@8" ),
+	( "FreeImage_InsertPage", "@12" ),
+	( "FreeImage_DeletePage", "@8" ),
+	( "FreeImage_LockPage", "@8" ),
+	( "FreeImage_UnlockPage", "@12" ),
+	( "FreeImage_MovePage", "@12" ),
+	( "FreeImage_GetLockedPageNumbers", "@12" ),
+
+	# File Type Request Functions.
+	( "FreeImage_GetFileType", "@8" ),
+	( "FreeImage_GetFileTypeU", "@8" ),
+	( "FreeImage_GetFileTypeFromHandle", "@12" ),
+	# ( "FreeImage_GetFileTypeFromMemory", "@0" ),
+
+	# Image Type Request Functions.
 	( "FreeImage_GetImageType", "@4" ),
+
+	# FreeImage Helper Functions.
+	( "FreeImage_IsLittleEndian", "@0" )
+	# ( "FreeImage_LookupX11Color", "@0" ),
+	# ( "FreeImage_LookupSVGColor", "@0" ),
+
+	# Pixel Access Functions.
+	( "FreeImage_GetBits", "@4", None, ctypes.POINTER( BYTE ) ),
+	( "FreeImage_GetScanLine", "@8", None, ctypes.POINTER( BYTE ) ),
+	( "FreeImage_GetPixelIndex", "@16", COL_1TO8 ),
+	( "FreeImage_GetPixelColor", "@16", COL_16TO32 ),
+	( "FreeImage_SetPixelIndex", "@16", COL_1TO8 ),
+	( "FreeImage_SetPixelColor", "@16", COL_16TO32 ),
+
+	# DIB Informations Functions.
 	( "FreeImage_GetColorsUsed", "@4", COL_1TO32 ),
 	( "FreeImage_GetBPP", "@4" ),
 	( "FreeImage_GetWidth", "@4" ),
@@ -730,6 +794,7 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_SetDotsPerMeterX", "@8" ),
 	( "FreeImage_SetDotsPerMeterY", "@8" ),
 	( "FreeImage_GetInfoHeader", "@4", COL_1TO32, ctypes.POINTER( BITMAPINFOHEADER ) ),
+	# ( "FreeImage_GetInfo", "@0" ),
 	( "FreeImage_GetColorType", "@4", COL_1TO32 ),
 	( "FreeImage_GetRedMask", "@4", COL_1TO32 ),
 	( "FreeImage_GetGreenMask", "@4", COL_1TO32 ),
@@ -737,26 +802,58 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_GetTransparencyCount", "@4", COL_1TO32 ),
 	( "FreeImage_GetTransparencyTable", "@4", ( COL_8, ), ctypes.POINTER( BYTE ) ),
 	( "FreeImage_SetTransparencyTable", "@12", ( COL_8, ) ),
-	( "FreeImage_SetTransparent", "@8", ( COL_8, COL_32 ) ),
 	( "FreeImage_IsTransparent", "@4", COL_1TO32 ),
+	( "FreeImage_SetTransparent", "@8", ( COL_8, COL_32 ) ),
+	# ( "FreeImage_SetTransparentIndex", "@0" ),
+	# ( "FreeImage_GetTransparentIndex", "@0" ),
 	( "FreeImage_HasBackgroundColor", "@4", ( COL_8, COL_24, COL_32 ) ),
 	( "FreeImage_GetBackgroundColor", "@8", ( COL_8, COL_24, COL_32 ), ctypes.POINTER( RGBQUAD ) ),
 	( "FreeImage_SetBackgroundColor", "@8", ( COL_8, COL_24, COL_32 ) ),
 
-	# Filetype Functions.
-	( "FreeImage_GetFileType", "@8" ),
-	( "FreeImage_GetFileTypeU", "@8" ),
-	( "FreeImage_GetFileTypeFromHandle", "@12" ),
+	# ICC Profile Functions.
+	# ( "FreeImage_GetICCProfile", "@0" ),
+	# ( "FreeImage_CreateICCProfile", "@0" ),
+	# ( "FreeImage_DestroyICCProfile", "@0" ),
 
-	# Pixel Access.
-	( "FreeImage_GetBits", "@4", None, ctypes.POINTER( BYTE ) ),
-	( "FreeImage_GetScanLine", "@8", None, ctypes.POINTER( BYTE ) ),
-	( "FreeImage_GetPixelIndex", "@16", COL_1TO8 ),
-	( "FreeImage_SetPixelIndex", "@16", COL_1TO8 ),
-	( "FreeImage_GetPixelColor", "@16", COL_16TO32 ),
-	( "FreeImage_SetPixelColor", "@16", COL_16TO32 ),
+	# Line Conversion Functions.
+	# ( "FreeImage_ConvertLine1To4", "@0" ),
+	# ( "FreeImage_ConvertLine8To4", "@0" ),
+	# ( "FreeImage_ConvertLine16To4_555", "@0" ),
+	# ( "FreeImage_ConvertLine16To4_565", "@0" ),
+	# ( "FreeImage_ConvertLine24To4", "@0" ),
+	# ( "FreeImage_ConvertLine32To4", "@0" ),
+	# ( "FreeImage_ConvertLine1To8", "@0" ),
+	# ( "FreeImage_ConvertLine4To8", "@0" ),
+	# ( "FreeImage_ConvertLine16To8_555", "@0" ),
+	# ( "FreeImage_ConvertLine16To8_565", "@0" ),
+	# ( "FreeImage_ConvertLine24To8", "@0" ),
+	# ( "FreeImage_ConvertLine32To8", "@0" ),
+	# ( "FreeImage_ConvertLine1To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine4To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine8To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine16_565_To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine24To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine32To16_555", "@0" ),
+	# ( "FreeImage_ConvertLine1To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine4To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine8To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine16_555_To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine24To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine32To16_565", "@0" ),
+	# ( "FreeImage_ConvertLine1To24", "@0" ),
+	# ( "FreeImage_ConvertLine4To24", "@0" ),
+	# ( "FreeImage_ConvertLine8To24", "@0" ),
+	# ( "FreeImage_ConvertLine16To24_555", "@0" ),
+	# ( "FreeImage_ConvertLine16To24_565", "@0" ),
+	# ( "FreeImage_ConvertLine32To24", "@0" ),
+	# ( "FreeImage_ConvertLine1To32", "@0" ),
+	# ( "FreeImage_ConvertLine4To32", "@0" ),
+	# ( "FreeImage_ConvertLine8To32", "@0" ),
+	# ( "FreeImage_ConvertLine16To32_555", "@0" ),
+	# ( "FreeImage_ConvertLine16To32_565", "@0" ),
+	# ( "FreeImage_ConvertLine24To32", "@0" ),
 
-	# Conversion / Trasformation.
+	# Smart Conversion Functions.
 	( "FreeImage_ConvertTo4Bits", "@4", COL_1TO32 ),
 	( "FreeImage_ConvertTo8Bits", "@4", COL_1TO32 ),
 	( "FreeImage_ConvertToGreyscale", "@4", COL_1TO32 ),
@@ -769,84 +866,109 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_Threshold", "@8", COL_1TO32 ),
 	( "FreeImage_Dither", "@8", COL_1TO32 ),
 	( "FreeImage_ConvertFromRawBits", "@36", COL_1TO32 ),
+	( "FreeImage_ConvertToRGBF", "@4", ( COL_24, COL_32, ) ),
 	( "FreeImage_ConvertToRawBits", "@32", COL_1TO32 ),
 	( "FreeImage_ConvertToStandardType", "@8" ),
 	( "FreeImage_ConvertToType", "@12" ),
-	( "FreeImage_ConvertToRGBF", "@4", ( COL_24, COL_32, ) ),
 
-	#Copy / Paste / Composite Routines.
-	( "FreeImage_Copy", "@20" ),
-	( "FreeImage_Paste", "@20", COL_1TO32 ),
+	# Tone Mapping Operators Functions.
+	# ( "FreeImage_ToneMapping", "@0" ),
+	# ( "FreeImage_TmoDrago03", "@0" ),
+	# ( "FreeImage_TmoReinhard05", "@0" ),
+	# ( "FreeImage_TmoReinhard05Ex", "@0" ),
+	# ( "FreeImage_TmoFattal02", "@0" ),
 
-	# Plugin.
-	( "FreeImage_GetFIFCount", "@0" ),
-	( "FreeImage_SetPluginEnabled", "@8" ),
-	( "FreeImage_FIFSupportsReading", "@4" ),
-	( "FreeImage_GetFIFFromFilename", "@4" ),
-	( "FreeImage_GetFIFFromFilenameU", "@4" ),
-	( "FreeImage_FIFSupportsExportBPP", "@8" ),
-	( "FreeImage_FIFSupportsExportType", "@8" ),
-	( "FreeImage_FIFSupportsICCProfiles", "@4" ),
-	( "FreeImage_FIFSupportsWriting", "@4" ),
-	( "FreeImage_IsPluginEnabled", "@4" ),
-	( "FreeImage_RegisterLocalPlugin", "@20" ),
-	( "FreeImage_GetFIFDescription", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFIFExtensionList", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFIFFromFormat", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFIFFromMime", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFIFMimeType", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFIFRegExpr", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetFormatFromFIF", "@4", None, ctypes.c_char_p ),
+	# ZLib Functions.
+	# ( "FreeImage_ZLibCompress", "@0" ),
+	# ( "FreeImage_ZLibUncompress", "@0" ),
+	# ( "FreeImage_ZLibGZip", "@0" ),
+	# ( "FreeImage_ZLibGUnzip", "@0" ),
+	# ( "FreeImage_ZLibCRC32", "@0" ),
 
-	# Upsampling / Downsampling.
+	# Tags Creation / Destruction Functions.
+	# ( "FreeImage_CreateTag", "@0" ),
+	# ( "FreeImage_DeleteTag", "@0" ),
+	# ( "FreeImage_CloneTag", "@0" ),
+
+	# Tags Getters / Setters Functions.
+	( "FreeImage_GetTagKey", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetTagDescription", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetTagID", "@4", None, ctypes.c_char_p ),
+	( "FreeImage_GetTagType", "@4" ),
+	( "FreeImage_GetTagCount", "@4", None, DWORD ),
+	# ( "FreeImage_GetTagLength", "@0" ),
+	( "FreeImage_GetTagValue", "@4" ),
+	# ( "FreeImage_SetTagKey", "@0" ),
+	# ( "FreeImage_SetTagDescription", "@0" ),
+	# ( "FreeImage_SetTagID", "@0" ),
+	# ( "FreeImage_SetTagType", "@0" ),
+	# ( "FreeImage_SetTagCount", "@0" ),
+	# ( "FreeImage_SetTagLength", "@0" ),
+	# ( "FreeImage_SetTagValue", "@0" ),
+
+	# Iterator Functions.
+	( "FreeImage_FindFirstMetadata", "@12", None, VOID ),
+	( "FreeImage_FindNextMetadata", "@8", None, VOID ),
+	( "FreeImage_FindCloseMetadata", "@4" ),
+
+	# Metadatas Getters / Setters Functions.
+	# ( "FreeImage_SetMetadata", "@0" ),
+	( "FreeImage_GetMetadata", "@16" ),
+	( "FreeImage_GetMetadataCount", "@8", None, DWORD ),
+	# ( "FreeImage_CloneMetadata", "@0" ),
+
+	# Tag To C String Conversion Function.
+	( "FreeImage_TagToString", "@12", None, ctypes.c_char_p ),
+
+	# Rotation and Flipping Functions.
+	( "FreeImage_RotateClassic", "@12", COL_1TO32 ),
+	# ( "FreeImage_Rotate", "@0" ),
+	( "FreeImage_RotateEx", "@48", ( COL_8, COL_24, COL_32 ), ),
+	# ( "FreeImage_FlipHorizontal", "@0" ),
+	# ( "FreeImage_FlipVertical", "@0" ),
+	# ( "FreeImage_JPEGTransform", "@0" ),
+	# ( "FreeImage_JPEGTransformU", "@0" ),
+
+	# Upsampling / Downsampling Functions.
 	( "FreeImage_Rescale", "@16", COL_1TO32 ),
 	( "FreeImage_MakeThumbnail", "@12", COL_1TO32 ),
 
-	# Rotation and Flipping.
-	( "FreeImage_RotateClassic", "@12", COL_1TO32 ),
-	( "FreeImage_RotateEx", "@48", ( COL_8, COL_24, COL_32 ), ),
-
-	# Color Manipulation.
-	( "FreeImage_AdjustBrightness", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
+	# Color Manipulation Functions.
 	( "FreeImage_AdjustCurve", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
 	( "FreeImage_AdjustGamma", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
+	( "FreeImage_AdjustBrightness", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
 	( "FreeImage_AdjustContrast", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
-	( "FreeImage_GetHistogram", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
 	( "FreeImage_Invert", "@4", COL_1TO32, BOOL ),
+	( "FreeImage_GetHistogram", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
+	# ( "FreeImage_GetAdjustColorsLookupTable", "@0" ),
+	# ( "FreeImage_AdjustColors", "@0" ),
+	# ( "FreeImage_ApplyColorMapping", "@0" ),
+	# ( "FreeImage_SwapColors", "@0" ),
+	# ( "FreeImage_ApplyPaletteIndexMapping", "@0" ),
+	# ( "FreeImage_SwapPaletteIndices", "@0" ),
+
+	# Channel Processing Functions.
 	( "FreeImage_GetChannel", "@8", ( COL_24, COL_32 ) ),
 	( "FreeImage_SetChannel", "@12", ( COL_24, COL_32 ) ),
 	( "FreeImage_GetComplexChannel", "@8" ),
 	( "FreeImage_SetComplexChannel", "@12" ),
 
-	# Multipage.
-	( "FreeImage_OpenMultiBitmap", "@24" ),
-	( "FreeImage_AppendPage", "@8" ),
-	( "FreeImage_CloseMultiBitmap", "@8" ),
-	( "FreeImage_GetPageCount", "@4" ),
-	( "FreeImage_LockPage", "@8" ),
-	( "FreeImage_UnlockPage", "@12" ),
-	( "FreeImage_InsertPage", "@12" ),
-	( "FreeImage_DeletePage", "@8" ),
-	( "FreeImage_MovePage", "@12" ),
-	( "FreeImage_GetLockedPageNumbers", "@12" ),
+	# Copy / Paste / Composite Functions.
+	( "FreeImage_Copy", "@20" ),
+	( "FreeImage_Paste", "@20", COL_1TO32 ),
+	# ( "FreeImage_Composite", "@0" ),
+	# ( "FreeImage_JPEGCrop", "@0" ),
+	# ( "FreeImage_JPEGCropU", "@0" ),
+	# ( "FreeImage_PreMultiplyWithAlpha", "@0" ),
 
-	# Tags.
-	( "FreeImage_GetTagValue", "@4" ),
-	( "FreeImage_GetTagDescription", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_TagToString", "@12", None, ctypes.c_char_p ),
-	( "FreeImage_GetTagCount", "@4", None, DWORD ),
-	( "FreeImage_GetTagKey", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetTagID", "@4", None, ctypes.c_char_p ),
-	( "FreeImage_GetTagType", "@4" ),
+	# Background Filling Functions.
+	# ( "FreeImage_FillBackground", "@0" ),
+	# ( "FreeImage_EnlargeCanvas", "@0" ),
+	# ( "FreeImage_AllocateEx", "@0" ),
+	# ( "FreeImage_AllocateExT", "@0" ),
 
-	# Metadatas.
-	( "FreeImage_GetMetadata", "@16" ),
-	( "FreeImage_GetMetadataCount", "@8", None, DWORD ),
-	( "FreeImage_FindFirstMetadata", "@12", None, VOID ),
-	( "FreeImage_FindNextMetadata", "@8", None, VOID ),
-	( "FreeImage_FindCloseMetadata", "@4" ),
-
-	( "FreeImage_IsLittleEndian", "@0" )
+	# Miscellaneous Algorithms Functions.
+	# ( "FreeImage_MultigridPoissonSolver", "@0" ),
  )
 
 #***********************************************************************************************
@@ -984,6 +1106,8 @@ class FreeImage( object ):
 		
 		@param function: Function To Bind. ( Tuple )
 		'''
+
+		LOGGER.debug( "> Binding '{0}' Library '{1}' Function.".format( self.__class__.__name__, function ) )
 
 		name, affixe = function[0:2]
 		returnType = len( function ) == 4 and function[3] or None
