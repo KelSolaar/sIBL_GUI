@@ -44,7 +44,7 @@
 ***		FreeImage libraryPath Manipulation Module.
 ***
 ***	Others :
-***		Large Portions Of The Code Are Taken From FreeImagePy By Michele Petrazzo : http://freeimagepy.sourceforge.net/.
+***		Portions Of The Code Are Taken From FreeImagePy By Michele Petrazzo : http://freeimagepy.sourceforge.net/.
 ************************************************************************************************
 '''
 
@@ -59,6 +59,7 @@ import ctypes
 import logging
 import os
 import platform
+import sys
 import types
 
 #***********************************************************************************************
@@ -77,13 +78,10 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	FreeImage Variables
 #***********************************************************************************************
-
 if platform.system() == "Windows" or platform.system() == "Microsoft" :
 	DLL_CALLCONV = ctypes.WINFUNCTYPE
 else:
 	DLL_CALLCONV = ctypes.CFUNCTYPE
-
-LITTLEENDIAN = 1
 
 '''
 Internal Types.
@@ -96,89 +94,468 @@ WORD	 = ctypes.c_ushort
 DWORD	 = ctypes.c_ulong
 LONG	 = ctypes.c_long
 
-FI_HANLDE = ctypes.c_void_p
 BYTE_P = ctypes.POINTER( BYTE )
 
 '''
-'I/O Image Format Identifiers.
+System Endian.
 '''
-FIF_UNKNOWN	 = -1
-FIF_BMP		 = 0
-FIF_ICO		 = 1
-FIF_JPEG	 = 2
-FIF_JNG		 = 3
-FIF_KOALA	 = 4
-FIF_LBM		 = 5
-FIF_IFF		 = FIF_LBM
-FIF_MNG		 = 6
-FIF_PBM		 = 7
-FIF_PBMRAW	 = 8
-FIF_PCD		 = 9
-FIF_PCX		 = 10
-FIF_PGM		 = 11
-FIF_PGMRAW	 = 12
-FIF_PNG		 = 13
-FIF_PPM		 = 14
-FIF_PPMRAW	 = 15
-FIF_RAS		 = 16
-FIF_TARGA	 = 17
-FIF_TIFF	 = 18
-FIF_WBMP	 = 19
-FIF_PSD		 = 20
-FIF_CUT		 = 21
-FIF_XBM		 = 22
-FIF_XPM		 = 23
-FIF_DDS		 = 24
-FIF_GIF		 = 25
-FIF_HDR		 = 26
-FIF_FAXG3	 = 27
-FIF_SGI		 = 28
-FIF_EXR		 = 29
-FIF_J2K		 = 30
-FIF_JP2		 = 31
-FIF_PFM		 = 32
-FIF_PICT	 = 33
-FIF_RAW		 = 34
+if sys.byteorder == "big" :
+	FREEIMAGE_BIGENDIAN = 1
+else :
+	FREEIMAGE_BIGENDIAN = 0
 
-FIFToType = { -1 : "UNKNOWN",
-			0 : "BMP",
-			1 : "ICO",
-			2 : "JPEG",
-			3 : "JNG",
-			4 : "KOALA",
-			5 : "IFF",
-			6 : "MNG",
-			7 : "BPM",
-			8 : "PBMRAW",
-			9 : "PCD",
-			10 : "PCX",
-			11 : "PGM",
-			12 : "PGMRAW",
-			13 : "PNG",
-			14 : "PPM",
-			15 : "PPMRAW",
-			16 : "RAS",
-			17 : "TARGA",
-			18 : "TIFF",
-			19 : "WBMP",
-			20 : "PSD",
-			21 : "CUT",
-			22 : "XBM",
-			23 : "XPM",
-			24 : "DDS",
-			25 : "GIF",
-			26 : "HDR",
-			27 : "FAXG3",
-			28 : "SGI",
-			29 : "EXR",
-			30 : "J2K",
-			31 : "JP2",
-			32 : "PFM",
-			33 : "PICT",
-			34 : "RAW"
-			}
+FREEIMAGE_COLORORDER_BGR = 0
+FREEIMAGE_COLORORDER_RGB = 1
 
-FIF_MUTLIPAGE = ( FIF_TIFF, FIF_ICO, FIF_GIF )
+if FREEIMAGE_BIGENDIAN :
+	FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_RGB
+else :
+	FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_BGR
+
+class RGBQUAD( ctypes.Structure ):
+	'''
+	This Class Is The RGBQUAD Class.
+	'''
+
+	_fields_ = []
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+		_fields_ += [( "rgbBlue", BYTE ),
+					 ( "rgbGreen", BYTE ),
+					 ( "rgbRed", BYTE )]
+	else:
+		_fields_ += [( "rgbRed", BYTE ),
+					 ( "rgbGreen", BYTE ),
+					 ( "rgbBlue", BYTE )]
+
+	_fields_ += [ ( "rgbReserved", BYTE ) ]
+
+class RGBTRIPLE( ctypes.Structure ):
+	'''
+	This Class Is The RGBTRIPLE Class.
+	'''
+
+	_fields_ = []
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+		_fields_ += [( "rgbBlue", BYTE ),
+					( "rgbGreen", BYTE ),
+					( "rgbRed", BYTE )]
+	else:
+		_fields_ += [( "rgbRed", BYTE ),
+					( "rgbGreen", BYTE ),
+					( "rgbBlue", BYTE )]
+
+class FIBITMAP( ctypes.Structure ):
+	'''
+	This Class Is The FIBITMAP Class.
+	'''
+
+	_fields_ = [ ( "data", ctypes.POINTER( VOID ) ) ]
+
+class BITMAPINFOHEADER( ctypes.Structure ):
+	'''
+	This Class Is The BITMAPINFOHEADER Class.
+	'''
+
+	_fields_ = [ ( "biSize", DWORD ),
+				 ( "biWidth", LONG ),
+				 ( "biHeight", LONG ),
+				 ( "biPlanes", WORD ),
+				 ( "biBitCount", WORD ),
+				 ( "biCompression", DWORD ),
+				 ( "biSizeImage", DWORD ),
+				 ( "biXPelsPerMeter", LONG ),
+				 ( "biYPelsPerMeter", LONG ),
+				 ( "biClrUsed", DWORD ),
+				 ( "biClrImportant", DWORD ) ]
+
+class BITMAPINFO( ctypes.Structure ):
+	'''
+	This Class Is The BITMAPINFO Class.
+	'''
+
+	_fields_ = [ ( "bmiHeader", BITMAPINFOHEADER ),
+				( "bmiColors[1]", RGBQUAD ) ]
+
+class FIRGB16( ctypes.Structure ):
+	'''
+	This Class Is The FIRGB16 Class.
+	'''
+
+	_fields_ = [ ( "red", WORD ),
+				( "green", WORD ),
+				( "blue", WORD ) ]
+
+class FIRGBA16( ctypes.Structure ):
+	'''
+	This Class Is The FIRGBA16 Class.
+	'''
+
+	_fields_ = [ ( "red", WORD ),
+				( "green", WORD ),
+				( "blue", WORD ),
+				( "alpha", WORD ) ]
+
+class FIRGBF( ctypes.Structure ):
+	'''
+	This Class Is The FIRGBF Class.
+	'''
+
+	_fields_ = [ ( "red", ctypes.c_float ),
+				( "green", ctypes.c_float ),
+				( "blue", ctypes.c_float ) ]
+
+class FIRGBAF( ctypes.Structure ):
+	'''
+	This Class Is The FIRGBAF Class.
+	'''
+
+	_fields_ = [ ( "red", ctypes.c_float ),
+				( "green", ctypes.c_float ),
+				( "blue", ctypes.c_float ),
+				( "alpha", ctypes.c_float ) ]
+
+class FICOMPLEX( ctypes.Structure ):
+	'''
+	This Class Is The FICOMPLEX Class.
+	'''
+
+	_fields_ = [ ( "r", ctypes.c_double ),
+				( "i", ctypes.c_double ) ]
+
+'''
+Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
+'''
+if FREEIMAGE_BIGENDIAN :
+	# Little Endian ( x86 / MS Windows, Linux ) : BGR(A) Order.
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
+		FI_RGBA_RED			 = 2
+		FI_RGBA_GREEN		 = 1
+		FI_RGBA_BLUE		 = 0
+		FI_RGBA_ALPHA		 = 3
+		FI_RGBA_RED_MASK	 = 0x00FF0000
+		FI_RGBA_GREEN_MASK	 = 0x0000FF00
+		FI_RGBA_BLUE_MASK	 = 0x000000FF
+		FI_RGBA_ALPHA_MASK	 = 0xFF000000L
+		FI_RGBA_RED_SHIFT	 = 16
+		FI_RGBA_GREEN_SHIFT	 = 8
+		FI_RGBA_BLUE_SHIFT	 = 0
+		FI_RGBA_ALPHA_SHIFT	 = 24
+	else:
+		# Little Endian ( x86 / MaxOSX ) : RGB(A) Order.
+		FI_RGBA_RED			 = 0
+		FI_RGBA_GREEN		 = 1
+		FI_RGBA_BLUE		 = 2
+		FI_RGBA_ALPHA		 = 3
+		FI_RGBA_RED_MASK	 = 0xFF000000
+		FI_RGBA_GREEN_MASK	 = 0x00FF0000
+		FI_RGBA_BLUE_MASK	 = 0x0000FF00
+		FI_RGBA_ALPHA_MASK	 = 0x000000FF
+		FI_RGBA_RED_SHIFT	 = 24
+		FI_RGBA_GREEN_SHIFT	 = 16
+		FI_RGBA_BLUE_SHIFT	 = 8
+		FI_RGBA_ALPHA_SHIFT	 = 0
+else :
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+		# Big Endian ( PPC / none ) : BGR(A) Order.
+		FI_RGBA_RED			 = 2
+		FI_RGBA_GREEN		 = 1
+		FI_RGBA_BLUE		 = 0
+		FI_RGBA_ALPHA		 = 3
+		FI_RGBA_RED_MASK	 = 0x0000FF00
+		FI_RGBA_GREEN_MASK	 = 0x00FF0000
+		FI_RGBA_BLUE_MASK	 = 0xFF000000
+		FI_RGBA_ALPHA_MASK	 = 0x000000FF
+		FI_RGBA_RED_SHIFT	 = 8
+		FI_RGBA_GREEN_SHIFT	 = 16
+		FI_RGBA_BLUE_SHIFT	 = 24
+		FI_RGBA_ALPHA_SHIFT	 = 0
+	else :
+		#Big Endian ( PPC / Linux, MaxOSX ) : RGB(A) Order.
+		FI_RGBA_RED			 = 0
+		FI_RGBA_GREEN		 = 1
+		FI_RGBA_BLUE		 = 2
+		FI_RGBA_ALPHA		 = 3
+		FI_RGBA_RED_MASK	 = 0xFF000000
+		FI_RGBA_GREEN_MASK	 = 0x00FF0000
+		FI_RGBA_BLUE_MASK	 = 0x0000FF00
+		FI_RGBA_ALPHA_MASK	 = 0x000000FF
+		FI_RGBA_RED_SHIFT	 = 24
+		FI_RGBA_GREEN_SHIFT	 = 16
+		FI_RGBA_BLUE_SHIFT 	 = 8
+		FI_RGBA_ALPHA_SHIFT	 = 0
+
+FI_RGBA_RGB_MASK = ( FI_RGBA_RED_MASK | FI_RGBA_GREEN_MASK | FI_RGBA_BLUE_MASK )
+
+FI16_555_RED_MASK		 = 0x7C00
+FI16_555_GREEN_MASK		 = 0x03E0
+FI16_555_BLUE_MASK		 = 0x001F
+FI16_555_RED_SHIFT		 = 10
+FI16_555_GREEN_SHIFT	 = 5
+FI16_555_BLUE_SHIFT		 = 0
+FI16_565_RED_MASK		 = 0xF800
+FI16_565_GREEN_MASK		 = 0x07E0
+FI16_565_BLUE_MASK		 = 0x001F
+FI16_565_RED_SHIFT		 = 11
+FI16_565_GREEN_SHIFT	 = 5
+FI16_565_BLUE_SHIFT		 = 0
+
+'''
+ICC Profile Support
+'''
+FIICC_DEFAULT			 = 0x00
+FIICC_COLOR_IS_CMYK		 = 0x01
+
+class FIICCPROFILE( ctypes.Structure ):
+	_fields_ = [ ( "flags", WORD ),
+				( "size", DWORD ),
+				( "data", VOID ) ]
+
+class FREE_IMAGE_FORMAT( object ):
+	'''
+	This Class Is Used For I/O Image Format Identifiers.
+	'''
+
+	FIF_UNKNOWN	 = -1
+	FIF_BMP		 = 0
+	FIF_ICO		 = 1
+	FIF_JPEG	 = 2
+	FIF_JNG		 = 3
+	FIF_KOALA	 = 4
+	FIF_LBM		 = 5
+	FIF_IFF		 = FIF_LBM
+	FIF_MNG		 = 6
+	FIF_PBM		 = 7
+	FIF_PBMRAW	 = 8
+	FIF_PCD		 = 9
+	FIF_PCX		 = 10
+	FIF_PGM		 = 11
+	FIF_PGMRAW	 = 12
+	FIF_PNG		 = 13
+	FIF_PPM		 = 14
+	FIF_PPMRAW	 = 15
+	FIF_RAS		 = 16
+	FIF_TARGA	 = 17
+	FIF_TIFF	 = 18
+	FIF_WBMP	 = 19
+	FIF_PSD		 = 20
+	FIF_CUT		 = 21
+	FIF_XBM		 = 22
+	FIF_XPM		 = 23
+	FIF_DDS		 = 24
+	FIF_GIF		 = 25
+	FIF_HDR		 = 26
+	FIF_FAXG3	 = 27
+	FIF_SGI		 = 28
+	FIF_EXR		 = 29
+	FIF_J2K		 = 30
+	FIF_JP2		 = 31
+	FIF_PFM		 = 32
+	FIF_PICT	 = 33
+	FIF_RAW		 = 34
+	FIF_MUTLIPAGE = ( FIF_TIFF, FIF_ICO, FIF_GIF )
+
+
+class FREE_IMAGE_TYPE( object ):
+	'''
+	This Class Is Used For Images Types.
+	'''
+
+	FIT_UNKNOWN	 = 0
+	FIT_BITMAP	 = 1
+	FIT_UINT16	 = 2
+	FIT_INT16	 = 3
+	FIT_UINT32	 = 4
+	FIT_INT32	 = 5
+	FIT_FLOAT	 = 6
+	FIT_DOUBLE	 = 7
+	FIT_COMPLEX	 = 8
+	FIT_RGB16	 = 9
+	FIT_RGBA16	 = 10
+	FIT_RGBF	 = 11
+	FIT_RGBAF	 = 12
+
+
+class FREE_IMAGE_COLOR_TYPE( object ):
+	'''
+	This Class Is Used For Image Color Types.
+	'''
+
+	FIC_MINISWHITE = 0
+	FIC_MINISBLACK = 1
+	FIC_RGB = 2
+	FIC_PALETTE = 3
+	FIC_RGBALPHA = 4
+	FIC_CMYK = 5
+
+class FREE_IMAGE_QUANTIZE( object ):
+	'''
+	This Class Is Used For Color Quantization Algorithms.
+	'''
+
+	FIQ_WUQUANT = 0
+	FIQ_NNQUANT = 1
+
+class FREE_IMAGE_DITHER( object ):
+	'''
+	This Class Is Used For Dithering Algorithms.
+	'''
+
+	FID_FS		 	 = 0
+	FID_BAYER4x4	 = 1
+	FID_BAYER8x8	 = 2
+	FID_CLUSTER6x6	 = 3
+	FID_CLUSTER8x8	 = 4
+	FID_CLUSTER16x16 = 5
+	FID_BAYER16x16 	 = 6
+
+class FREE_IMAGE_JPEG_OPERATION( object ):
+	'''
+	This Class Is Used For Lossless JPEG Transformations.
+	'''
+
+	FIJPEG_OP_NONE			 = 0
+	FIJPEG_OP_FLIP_H		 = 1
+	FIJPEG_OP_FLIP_V		 = 2
+	FIJPEG_OP_TRANSPOSE		 = 3
+	FIJPEG_OP_TRANSVERSE	 = 4
+	FIJPEG_OP_ROTATE_90		 = 5
+	FIJPEG_OP_ROTATE_180	 = 6
+	FIJPEG_OP_ROTATE_270	 = 7
+
+
+class FREE_IMAGE_TMO( object ):
+	'''
+	This Class Is Used For Tone Mapping Operators.
+	'''
+
+	FITMO_DRAGO03	 = 0
+	FITMO_REINHARD05 = 1
+	FITMO_FATTAL02	 = 2
+
+
+class FREE_IMAGE_FILTER( object ):
+	'''
+	This Class Is Used For Upsampling / Downsampling Filters.
+	'''
+
+	FILTER_BOX			 = 0
+	FILTER_BICUBIC		 = 1
+	FILTER_BILINEAR		 = 2
+	FILTER_BSPLINE		 = 3
+	FILTER_CATMULLROM	 = 4
+	FILTER_LANCZOS3		 = 5
+
+class FREE_IMAGE_COLOR_CHANNEL( object ):
+	'''
+	This Class Is Used For Color Channels.
+	'''
+	FICC_RGB	 = 0
+	FICC_RED	 = 1
+	FICC_GREEN	 = 2
+	FICC_BLUE	 = 3
+	FICC_ALPHA	 = 4
+	FICC_BLACK	 = 5
+	FICC_REAL	 = 6
+	FICC_IMAG	 = 7
+	FICC_MAG	 = 8
+	FICC_PHASE	 = 9
+
+class FREE_IMAGE_MDTYPE( object ):
+	'''
+	This Class Is Used For Tags Data Types Informations.
+	'''
+
+	FIDT_NOTYPE		 = 0
+	FIDT_BYTE		 = 1
+	FIDT_ASCII		 = 2
+	FIDT_SHORT		 = 3
+	FIDT_LONG		 = 4
+	FIDT_RATIONAL	 = 5
+	FIDT_SBYTE		 = 6
+	FIDT_UNDEFINED	 = 7
+	FIDT_SSHORT		 = 8
+	FIDT_SLONG		 = 9
+	FIDT_SRATIONAL	 = 10
+	FIDT_FLOAT		 = 11
+	FIDT_DOUBLE		 = 12
+	FIDT_IFD		 = 13
+	FIDT_PALETTE	 = 14
+
+	FIDTToType = { FIDT_NOTYPE : VOID,
+				FIDT_BYTE : ctypes.c_ubyte,
+				FIDT_ASCII : ctypes.c_char_p,
+				FIDT_SHORT : ctypes.c_ushort,
+				FIDT_LONG : ctypes.c_uint,
+				FIDT_RATIONAL: ctypes.c_ulong,
+				FIDT_SBYTE : ctypes.c_short,
+				FIDT_UNDEFINED : VOID,
+				FIDT_SSHORT : ctypes.c_short,
+				FIDT_SLONG : ctypes.c_long,
+				FIDT_SRATIONAL : ctypes.c_long,
+				FIDT_FLOAT : ctypes.c_float,
+				FIDT_DOUBLE : ctypes.c_double,
+				FIDT_IFD : ctypes.c_uint,
+				FIDT_PALETTE : RGBQUAD }
+
+class FREE_IMAGE_MDMODEL( object ):
+	'''
+	This Class Is Used For Metadatas Models.
+	'''
+	FIMD_NODATA			 = -1
+	FIMD_COMMENTS		 = 0
+	FIMD_EXIF_MAIN		 = 1
+	FIMD_EXIF_EXIF		 = 2
+	FIMD_EXIF_GPS		 = 3
+	FIMD_EXIF_MAKERNOTE	 = 4
+	FIMD_EXIF_INTEROP	 = 5
+	FIMD_IPTC			 = 6
+	FIMD_XMP			 = 7
+	FIMD_GEOTIFF		 = 8
+	FIMD_ANIMATION		 = 9
+	FIMD_CUSTOM			 = 10
+
+
+class FIMETADATA( ctypes.Structure ) :
+	'''
+	This Class Is A Handle To A Metadata Model.
+	'''
+
+	_fields_ = [ ( "data", VOID ), ]
+
+class FITAG( ctypes.Structure ):
+	'''
+	This Class Is A Handle To A FreeImage Tag.
+	'''
+
+	_fields_ = [ ( "data", VOID ) ]
+
+'''
+File IO Routines.
+'''
+
+fi_handle = ctypes.c_void_p
+
+FI_ReadProc = DLL_CALLCONV( ctypes.c_uint, BYTE_P, ctypes.c_uint, ctypes.c_uint, fi_handle )
+FI_WriteProc = DLL_CALLCONV( ctypes.c_uint, BYTE_P, ctypes.c_uint, ctypes.c_uint, fi_handle )
+FI_SeekProc = DLL_CALLCONV( ctypes.c_int, fi_handle, ctypes.c_long, ctypes.c_int )
+FI_TellProc = DLL_CALLCONV( ctypes.c_long, fi_handle )
+
+class FreeImageIO( ctypes.Structure ):
+	'''
+	This Class Is The FreeImageIO Class.
+	'''
+
+	_fields_ = [ ( 'read_proc', FI_ReadProc ),
+                ( 'write_proc', FI_WriteProc ),
+                ( 'seek_proc', FI_SeekProc ),
+                ( 'tell_proc', FI_TellProc ) ]
+
+class FIMEMORY( ctypes.Structure ):
+	'''
+	This Class Is A Handle To A Memory I/O stream
+	'''
+
+	_fields_ = [ ( "data", VOID ) ]
 
 '''
 Load / Save Flag Constants.
@@ -186,8 +563,14 @@ Load / Save Flag Constants.
 BMP_DEFAULT		 = 0
 BMP_SAVE_RLE	 = 1
 
-PNG_DEFAULT		 = 0
-PNG_IGNOREGAMMA	 = 1
+EXR_DEFAULT	 = 0
+EXR_FLOAT	 = 0x0001
+EXR_NONE	 = 0x0002
+EXR_ZIP		 = 0x0004
+EXR_PIZ		 = 0x0008
+EXR_PXR24	 = 0x0010
+EXR_B44		 = 0x0020
+EXR_LC		 = 0x0040
 
 GIF_DEFAULT		 = 0
 GIF_LOAD256		 = 1
@@ -195,6 +578,34 @@ GIF_PLAYBACK	 = 2
 
 ICO_DEFAULT		 = 0
 ICO_MAKEALPHA	 = 1
+
+JPEG_DEFAULT 			 = 0
+JPEG_FAST 				 = 0x0001
+JPEG_ACCURATE 			 = 0x0002
+JPEG_CMYK			 	 = 0x0004
+JPEG_EXIFROTATE		 	 = 0x0008
+JPEG_QUALITYSUPERB 		 = 0x80
+JPEG_QUALITYGOOD 		 = 0x0100
+JPEG_QUALITYNORMAL 		 = 0x0200
+JPEG_QUALITYAVERAGE 	 = 0x0400
+JPEG_QUALITYBAD 		 = 0x0800
+JPEG_PROGRESSIVE	 	 = 0x2000
+JPEG_SUBSAMPLING_411 	 = 0x1000
+JPEG_SUBSAMPLING_420	 = 0x4000
+JPEG_SUBSAMPLING_422 	 = 0x8000
+JPEG_SUBSAMPLING_444 	 = 0x10000
+
+PNG_DEFAULT		 			 = 0
+PNG_IGNOREGAMMA	 			 = 1
+PNG_Z_BEST_SPEED			 = 0x0001
+PNG_Z_DEFAULT_COMPRESSION	 = 0x0006
+PNG_Z_BEST_COMPRESSION		 = 0x0009
+PNG_Z_NO_COMPRESSION		 = 0x0100
+PNG_INTERLACED				 = 0x0200
+
+RAW_DEFAULT			 = 0
+RAW_PREVIEW			 = 1
+RAW_DISPLAY			 = 2
 
 TIFF_DEFAULT		 = 0
 TIFF_CMYK			 = 0x0001
@@ -207,21 +618,14 @@ TIFF_CCITTFAX4		 = 0x2000
 TIFF_LZW			 = 0x4000
 TIFF_JPEG			 = 0x8000
 
-JPEG_DEFAULT		 = 0
-JPEG_FAST			 = 1
-JPEG_ACCURATE		 = 2
-JPEG_QUALITYSUPERB	 = 0x80
-JPEG_QUALITYGOOD	 = 0x100
-JPEG_QUALITYNORMAL	 = 0x200
-JPEG_QUALITYAVERAGE	 = 0x400
-JPEG_QUALITYBAD		 = 0x800
-JPEG_CMYK			 = 0x1000
-JPEG_PROGRESSIVE	 = 0x2000
-
 CUT_DEFAULT			 = 0
 DDS_DEFAULT			 = 0
+
+FAXG3_DEFAULT		 = 0
 HDR_DEFAULT			 = 0
 IFF_DEFAULT			 = 0
+J2K_DEFAULT			 = 0
+JP2_DEFAULT			 = 0
 KOALA_DEFAULT		 = 0
 LBM_DEFAULT			 = 0
 MNG_DEFAULT			 = 0
@@ -230,239 +634,48 @@ PCD_BASE			 = 1
 PCD_BASEDIV4		 = 2
 PCD_BASEDIV16		 = 3
 PCX_DEFAULT			 = 0
+PFM_DEFAULT			 = 0
+PICT_DEFAULT		 = 0
 PNM_DEFAULT			 = 0
 PNM_SAVE_RAW		 = 0
 PNM_SAVE_ASCII		 = 1
 PSD_DEFAULT			 = 0
 RAS_DEFAULT			 = 0
+SGI_DEFAULT			 = 0
 TARGA_DEFAULT 		 = 0
 TARGA_LOAD_RGB888	 = 1
 WBMP_DEFAULT		 = 0
 XBM_DEFAULT			 = 0
-EXR_DEFAULT			 = 0
-PFM_DEFAULT			 = 0
+XPM_DEFAULT			 = 0
 
 '''
 Extension To Type.
 '''
-EXTToType = dict( 
-			 tiff = ( FIF_TIFF, TIFF_DEFAULT, '.tif' ),
-			 tiffg3 = ( FIF_TIFF, TIFF_CCITTFAX3, '.tif' ),
-			 tiffg4 = ( FIF_TIFF, TIFF_CCITTFAX4, '.tif' ),
-			 tiffno = ( FIF_TIFF, TIFF_NONE, '.tif' ),
+EXTToType = dict( tiff = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_DEFAULT, '.tif' ),
+			 tiffg3 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX3, '.tif' ),
+			 tiffg4 = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_CCITTFAX4, '.tif' ),
+			 tiffno = ( FREE_IMAGE_FORMAT.FIF_TIFF, TIFF_NONE, '.tif' ),
 
-			 jpeg = ( FIF_JPEG, JPEG_DEFAULT, '.jpg' ),
-			 jpegfa = ( FIF_JPEG, JPEG_FAST, '.jpg' ),
-			 jpegac = ( FIF_JPEG, JPEG_ACCURATE, '.jpg' ),
-			 jpegsu = ( FIF_JPEG, JPEG_QUALITYSUPERB, '.jpg' ),
-			 jpeggo = ( FIF_JPEG, JPEG_QUALITYGOOD, '.jpg' ),
-			 jpegav = ( FIF_JPEG, JPEG_QUALITYAVERAGE, '.jpg' ),
-			 jpegba = ( FIF_JPEG, JPEG_QUALITYBAD, '.jpg' ),
+			 jpeg = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_DEFAULT, '.jpg' ),
+			 jpegfa = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_FAST, '.jpg' ),
+			 jpegac = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_ACCURATE, '.jpg' ),
+			 jpegsu = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYSUPERB, '.jpg' ),
+			 jpeggo = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYGOOD, '.jpg' ),
+			 jpegav = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYAVERAGE, '.jpg' ),
+			 jpegba = ( FREE_IMAGE_FORMAT.FIF_JPEG, JPEG_QUALITYBAD, '.jpg' ),
 
-			 png = ( FIF_PNG, PNG_DEFAULT, '.png' ),
+			 png = ( FREE_IMAGE_FORMAT.FIF_PNG, PNG_DEFAULT, '.png' ),
 
-			 bmp = ( FIF_BMP, BMP_DEFAULT, '.bmp' ),
+			 bmp = ( FREE_IMAGE_FORMAT.FIF_BMP, BMP_DEFAULT, '.bmp' ),
 
-			 ico = ( FIF_ICO, ICO_DEFAULT, '.ico' ),
+			 ico = ( FREE_IMAGE_FORMAT.FIF_ICO, ICO_DEFAULT, '.ico' ),
 
-			 gif = ( FIF_GIF, GIF_DEFAULT, '.gif' ),
+			 gif = ( FREE_IMAGE_FORMAT.FIF_GIF, GIF_DEFAULT, '.gif' ),
 
-			 pbm = ( FIF_PBM, PNM_DEFAULT, '.pbm' ),
-			 pgm = ( FIF_PGM, PNM_DEFAULT, '.pgm' ),
-			 pnm = ( FIF_PPM, PNM_DEFAULT, '.pnm' ),
-			 ppm = ( FIF_PPM, PNM_DEFAULT, '.ppm' ),
-		)
-
-#Internal C structures
-class FITAG( ctypes.Structure ):
-	_fields_ = [ ( "data", VOID )]
-
-class RGBQUAD( ctypes.Structure ):
-	_fields_ = []
-	if LITTLEENDIAN:
-		_fields_ += [( "rgbBlue", BYTE ),
-					 ( "rgbGreen", BYTE ),
-					 ( "rgbRed", BYTE )]
-	else:
-		_fields_ += [( "rgbRed", BYTE ),
-					 ( "rgbGreen", BYTE ),
-					 ( "rgbBlue", BYTE )]
-
-	_fields_ += [ ( "rgbReserved", BYTE ) ]
-
-class FIBITMAP( ctypes.Structure ):
-	_fields_ = [ ( "data", ctypes.POINTER( VOID ) ) ]
-
-class FIMETADATA( ctypes.Structure ):
-	_fields_ = [ ( "data", VOID ), ]
-
-class PBITMAPINFOHEADER( ctypes.Structure ):
-	_fields_ = [ ( "biSize", DWORD ),
-				 ( "biWidth", LONG ),
-				 ( "biHeight", LONG ),
-				 ( "biPlanes", WORD ),
-				 ( "biBitCount", WORD ),
-				 ( "biCompression", DWORD ),
-				 ( "biSizeImage", DWORD ),
-				 ( "biXPelsPerMeter", LONG ),
-				 ( "biYPelsPerMeter", LONG ),
-				 ( "biClrUsed", DWORD ),
-				 ( "biClrImportant", DWORD ), ]
-
-'''
-Dither transformation
-'''
-FID_FS		 = 0
-FID_BAYER4x4	 = 1
-FID_BAYER8x8	 = 2
-FID_CLUSTER6x6	 = 3
-FID_CLUSTER8x8	 = 4
-FID_CLUSTER16x16 = 5
-FID_BAYER16x16 = 6
-
-# Get_type
-FIC_MINISWHITE = 0
-FIC_MINISBLACK = 1
-FIC_RGB = 2
-FIC_PALETTE = 3
-FIC_RGBALPHA = 4
-FIC_CMYK = 5
-
-FICToType = {0 : "MINISWHITE",
-			1 : "MINISBLACK",
-			2 : "RGB",
-			3 : "PALETTE",
-			4 : "RGBALPHA",
-			5 : "CMYK"
-			}
-
-'''
-Rescale Filters.
-'''
-
-FILTER_BOX			 = 0
-FILTER_BICUBIC		 = 1
-FILTER_BILINEAR		 = 2
-FILTER_BSPLINE		 = 3
-FILTER_CATMULLROM	 = 4
-FILTER_LANCZOS3		 = 5
-
-# Format Types.
-FIT_UNKNOWN	 = 0
-FIT_BITMAP	 = 1
-FIT_UINT16	 = 2
-FIT_INT16	 = 3
-FIT_UINT32	 = 4
-FIT_INT32	 = 5
-FIT_FLOAT	 = 6
-FIT_DOUBLE	 = 7
-FIT_COMPLEX	 = 8
-FIT_RGB16	 = 9
-FIT_RGBA16	 = 10
-FIT_RGBF	 = 11
-FIT_RGBAF	 = 12
-
-# Metadatas.
-FIMD_NODATA			 = -1
-FIMD_COMMENTS		 = 0
-FIMD_EXIF_MAIN		 = 1
-FIMD_EXIF_EXIF		 = 2
-FIMD_EXIF_GPS		 = 3
-FIMD_EXIF_MAKERNOTE	 = 4
-FIMD_EXIF_INTEROP	 = 5
-FIMD_IPTC			 = 6
-FIMD_XMP			 = 7
-FIMD_GEOTIFF		 = 8
-FIMD_ANIMATION		 = 9
-FIMD_CUSTOM			 = 10
-
-FIMD__METALIST = {"FIMD_NODATA": FIMD_NODATA, "FIMD_COMMENTS":FIMD_COMMENTS,
-				  "FIMD_EXIF_MAIN":FIMD_EXIF_MAIN, "FIMD_EXIF_EXIF": FIMD_EXIF_EXIF,
-				  "FIMD_EXIF_GPS": FIMD_EXIF_GPS, "FIMD_EXIF_MAKERNOTE": FIMD_EXIF_MAKERNOTE,
-				  "FIMD_EXIF_INTEROP": FIMD_EXIF_INTEROP, "FIMD_IPTC": FIMD_IPTC,
-				  "FIMD_XMP": FIMD_XMP, "FIMD_GEOTIFF": FIMD_GEOTIFF,
-				  "FIMD_ANIMATION": FIMD_ANIMATION, "FIMD_CUSTOM": FIMD_CUSTOM}
-
-FIDT_NOTYPE		 = 0
-FIDT_BYTE		 = 1
-FIDT_ASCII		 = 2
-FIDT_SHORT		 = 3
-FIDT_LONG		 = 4
-FIDT_RATIONAL	 = 5
-FIDT_SBYTE		 = 6
-FIDT_UNDEFINED	 = 7
-FIDT_SSHORT		 = 8
-FIDT_SLONG		 = 9
-FIDT_SRATIONAL	 = 10
-FIDT_FLOAT		 = 11
-FIDT_DOUBLE		 = 12
-FIDT_IFD		 = 13
-FIDT_PALETTE	 = 14
-
-FIDT__LIST = {FIDT_NOTYPE: VOID,
-			FIDT_BYTE: ctypes.c_ubyte,
-			FIDT_ASCII: ctypes.c_char_p,
-			FIDT_SHORT: ctypes.c_ushort,
-			FIDT_LONG: ctypes.c_uint,
-			FIDT_RATIONAL: ctypes.c_ulong,
-			FIDT_SBYTE: ctypes.c_short,
-			FIDT_UNDEFINED: VOID,
-			FIDT_SSHORT: ctypes.c_short,
-			FIDT_SLONG: ctypes.c_long,
-			FIDT_SRATIONAL: ctypes.c_long,
-			FIDT_FLOAT: ctypes.c_float,
-			FIDT_DOUBLE: ctypes.c_double,
-			FIDT_IFD: ctypes.c_uint,
-			FIDT_PALETTE: RGBQUAD
-			}
-
-
-'''
-Color Channels
-'''
-FICC_RGB	 = 0
-FICC_RED	 = 1
-FICC_GREEN	 = 2
-FICC_BLUE	 = 3
-FICC_ALPHA	 = 4
-FICC_BLACK	 = 5
-FICC_REAL	 = 6
-FICC_IMAG	 = 7
-FICC_MAG	 = 8
-FICC_PHASE	 = 9
-
-'''
-Image Quantize
-'''
-FIQ_WUQUANT = 0
-FIQ_NNQUANT = 1
-
-if LITTLEENDIAN:
-	FI_RGBA_RED			 = 2
-	FI_RGBA_GREEN		 = 1
-	FI_RGBA_BLUE		 = 0
-	FI_RGBA_ALPHA		 = 3
-	FI_RGBA_RED_MASK	 = 0x00FF0000
-	FI_RGBA_GREEN_MASK	 = 0x0000FF00
-	FI_RGBA_BLUE_MASK	 = 0x000000FF
-	FI_RGBA_ALPHA_MASK	 = 0xFF000000L
-	FI_RGBA_RED_SHIFT	 = 16
-	FI_RGBA_GREEN_SHIFT	 = 8
-	FI_RGBA_BLUE_SHIFT	 = 0
-	FI_RGBA_ALPHA_SHIFT	 = 24
-else:
-	FI_RGBA_RED			 = 0
-	FI_RGBA_GREEN		 = 1
-	FI_RGBA_BLUE		 = 2
-	FI_RGBA_ALPHA		 = 3
-	FI_RGBA_RED_MASK	 = 0xFF000000
-	FI_RGBA_GREEN_MASK	 = 0x00FF0000
-	FI_RGBA_BLUE_MASK	 = 0x0000FF00
-	FI_RGBA_ALPHA_MASK	 = 0x000000FF
-	FI_RGBA_RED_SHIFT	 = 24
-	FI_RGBA_GREEN_SHIFT	 = 16
-	FI_RGBA_BLUE_SHIFT	 = 8
-	FI_RGBA_ALPHA_SHIFT	 = 0
+			 pbm = ( FREE_IMAGE_FORMAT.FIF_PBM, PNM_DEFAULT, '.pbm' ),
+			 pgm = ( FREE_IMAGE_FORMAT.FIF_PGM, PNM_DEFAULT, '.pgm' ),
+			 pnm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.pnm' ),
+			 ppm = ( FREE_IMAGE_FORMAT.FIF_PPM, PNM_DEFAULT, '.ppm' ) )
 
 '''
 Custom Constants
@@ -481,82 +694,16 @@ COL_16TO32 = ( COL_16, COL_24, COL_32 )
 COL_1TO32 = ( COL_1, COL_4, COL_8, COL_16, COL_24, COL_32 )
 COL_1TO48 = COL_1TO32 + ( COL_48, )
 
-ROTATE_ANGLE_1BIT = ( -90, 90, 180, 270 )
-
-##Internal class structure
-#
-#class FISize( object ):
-#	''' A class used for store width and height bitmap informations
-#	'''
-#	def __init__( self, valW = 0, valH = 0 ):
-#		''' Pass me the width and height
-#		'''
-#		if type( valW ) == types.IntType:
-#			self.__W, self.__H = valW, valH
-#		elif len( valW ) == 2:
-#			self.__W, self.__H = valW
-#		else:
-#			raise ValueError
-#
-#	def getWidth( self ):
-#		return self.__W
-#
-#	def getHeight( self ):
-#		return self.__H
-#
-#	def getSize( self ):
-#		return ( self.__W, self.__H )
-#
-#	def __repr__( self ):
-#		'''
-#		'''
-#		return "FISize (%i, %i)" % ( self.getWidth(), self.getHeight() )
-#
-#	def __len__( self ):
-#		'''
-#		'''
-#		return 2
-#
-#	def __iter__( self ):
-#		'''
-#		'''
-#		yield self.__W
-#		yield self.__H
-#
-#	def __eq__( self, object ):
-#		'''
-#		'''
-#		if not isinstance( object, FISize ):
-#			return False
-#		else:
-#			#print object.w == self.getWidth(), object.h == self.getHeight()
-#			return object.w == self.getWidth() and object.h == self.getHeight()
-#
-#	w = property( getWidth )
-#	h = property( getHeight )
-#	size = property( getSize )
-#
-#FI_ReadProc = DLL_CALLCONV( ctypes.c_uint, BYTE_P, ctypes.c_uint, ctypes.c_uint, FI_HANLDE )
-#FI_WriteProc = DLL_CALLCONV( ctypes.c_uint, BYTE_P, ctypes.c_uint, ctypes.c_uint, FI_HANLDE )
-#FI_SeekProc = DLL_CALLCONV( ctypes.c_int, FI_HANLDE, ctypes.c_long, ctypes.c_int )
-#FI_TellProc = DLL_CALLCONV( ctypes.c_long, FI_HANLDE )
-#
-#class FreeImageIO( ctypes.Structure ):
-#	_fields_ = [( "read_proc", FI_ReadProc ),
-#				( "write_proc", FI_WriteProc ),
-#				( "seek_proc", FI_SeekProc ),
-#				( "tell_proc", FI_TellProc )]
-
 FREEIMAGE_FUNCTIONS = ( 
 
-	# General Funtions.
+	# General Functions.
 	( "FreeImage_Initialise", "@4" ),
 	( "FreeImage_DeInitialise", "@0" ),
 	( "FreeImage_GetVersion", "@0", None, ctypes.c_char_p ),
 	( "FreeImage_GetCopyrightMessage", "@0", None, ctypes.c_char_p ),
 	( "FreeImage_SetOutputMessage", "@4" ),
 
-	 # Bitmap Management Functions.
+	# Bitmap Management Functions.
 	( "FreeImage_Allocate", "@24", COL_1TO32 ),
 	( "FreeImage_AllocateT", "@28" ),
 	( "FreeImage_Load", "@12" ),
@@ -582,7 +729,7 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_GetDotsPerMeterY", "@4" ),
 	( "FreeImage_SetDotsPerMeterX", "@8" ),
 	( "FreeImage_SetDotsPerMeterY", "@8" ),
-	( "FreeImage_GetInfoHeader", "@4", COL_1TO32, ctypes.POINTER( PBITMAPINFOHEADER ) ),
+	( "FreeImage_GetInfoHeader", "@4", COL_1TO32, ctypes.POINTER( BITMAPINFOHEADER ) ),
 	( "FreeImage_GetColorType", "@4", COL_1TO32 ),
 	( "FreeImage_GetRedMask", "@4", COL_1TO32 ),
 	( "FreeImage_GetGreenMask", "@4", COL_1TO32 ),
@@ -600,7 +747,6 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_GetFileType", "@8" ),
 	( "FreeImage_GetFileTypeU", "@8" ),
 	( "FreeImage_GetFileTypeFromHandle", "@12" ),
-
 
 	# Pixel Access.
 	( "FreeImage_GetBits", "@4", None, ctypes.POINTER( BYTE ) ),
@@ -660,7 +806,6 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_RotateClassic", "@12", COL_1TO32 ),
 	( "FreeImage_RotateEx", "@48", ( COL_8, COL_24, COL_32 ), ),
 
-
 	# Color Manipulation.
 	( "FreeImage_AdjustBrightness", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
 	( "FreeImage_AdjustCurve", "@12", ( COL_8, COL_24, COL_32 ), BOOL ),
@@ -694,7 +839,6 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_GetTagID", "@4", None, ctypes.c_char_p ),
 	( "FreeImage_GetTagType", "@4" ),
 
-
 	# Metadatas.
 	( "FreeImage_GetMetadata", "@16" ),
 	( "FreeImage_GetMetadataCount", "@8", None, DWORD ),
@@ -703,7 +847,6 @@ FREEIMAGE_FUNCTIONS = (
 	( "FreeImage_FindCloseMetadata", "@4" ),
 
 	( "FreeImage_IsLittleEndian", "@0" )
-
  )
 
 #***********************************************************************************************
@@ -825,6 +968,16 @@ class FreeImage( object ):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, AttributeError )
+	def bindLibrary( self ):
+		'''
+		This Method Bind The Library.
+		'''
+
+		for function in FREEIMAGE_FUNCTIONS:
+			self.bindFunction( function )
+
+	@core.executionTrace
 	def bindFunction( self, function ):
 		'''
 		This Method Bind A Function.
@@ -845,17 +998,8 @@ class FreeImage( object ):
 		setattr( self, bindingName, functionName )
 
 		if returnType :
-			functionName.returnType = returnType
+			functionName.restype = returnType
 
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, AttributeError )
-	def bindLibrary( self ):
-		'''
-		This Method Bind The Library.
-		'''
-
-		for function in FREEIMAGE_FUNCTIONS:
-			self.bindFunction( function )
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
@@ -869,8 +1013,4 @@ LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
 freeImage = FreeImage( os.path.join( os.getcwd(), "..", Constants.freeImageLibrary ) )
 
-print freeImage
-
-freeImage2 = FreeImage( os.path.join( os.getcwd(), "..", Constants.freeImageLibrary ) )
-
-print freeImage
+print freeImage.GetVersion()
