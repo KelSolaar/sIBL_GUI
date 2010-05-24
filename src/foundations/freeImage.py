@@ -1194,24 +1194,40 @@ class Image( object ):
 
 	@core.executionTrace
 	def convertToLdr( self ):
-		imageWidth = self._library.FreeImage_GetWidth( self._bitmap )
-		imageHeight = self._library.FreeImage_GetHeight( self._bitmap )
-		print imageWidth, imageHeight
+		pass
+#		#if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
+#			width = self._library.FreeImage_GetWidth( self._bitmap )
+#			height = self._library.FreeImage_GetHeight( self._bitmap )
+#			pitch = self._library.FreeImage_GetPitch( self._bitmap )
+#
+#			#bits = self._library.FreeImage_GetBits( self._bitmap )
+#			for y in range( height ) :
+#				line = self._library.FreeImage_GetScanLine( self._bitmap, y )
+#				for x in range( width ) :
+#					value = ctypes.POINTER( RGBQUAD )
+#					self._library.FreeImage_GetPixelColor( self._bitmap, x, y, value )
+#					print value
+#				#	print line[x]
+#
+#			#	print bits[y]
+#			#	for x in range( width ) :
+#			#		pass
+#			#print width, height, pitch, bits
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-import sys
-from globals.runtimeConstants import RuntimeConstants
-
-LOGGER.setLevel( logging.INFO )
-
-# Starting The Console Handler.
-RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
-RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
-
-imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.hdr"
-image = Image( imagePath )
-image.convertToLdr()
-image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
+#import sys
+#from globals.runtimeConstants import RuntimeConstants
+#
+#LOGGER.setLevel( logging.INFO )
+#
+## Starting The Console Handler.
+#RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
+#RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
+#LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
+#
+#imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.bmp"
+#image = Image( imagePath )
+#image.convertToLdr()
+#image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
