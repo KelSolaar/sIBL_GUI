@@ -1,9 +1,12 @@
-h1=. sIBL_GUI - 3.0.5 - Beta
+h1=. sIBL_GUI - 3.0.5 - Stable
 
 h2=. Change Log
 
-h3. 3.0.5 - Beta
+p{font-size : 12pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
 
+h3. 3.0.5 - Stable
+
+* Templates folders hierarchy has been updated. *It's strongly advised to uninstall any previous sIBL_GUI 3 version before installing this stable release.*
 * Database Browser is properly refreshing when a collection is removed.
 * Database Browser items are again correctly laid out on sIBL_GUI resize.
 * Added "debug" verbose messages in a lot of methods.
