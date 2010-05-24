@@ -1201,11 +1201,11 @@ class Image( object ):
 
 			for y in range( height ) :
 				for x in range( width ) :
-					pixelColors = ctypes.pointer( RGBQUAD() )
+					pixelColors = RGBQUAD()
 					self._library.FreeImage_GetPixelColor( self._bitmap, x, y, ctypes.byref( pixelColors ) )
-					print pixelColors.contents.rgbRed
-					print pixelColors.contents.rgbGreen
-					print pixelColors.contents.rgbBlue
+					print pixelColors.rgbRed
+					print pixelColors.rgbGreen
+					print pixelColors.rgbBlue
 
 #***********************************************************************************************
 #***	Python End
@@ -1221,6 +1221,8 @@ LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
 imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.bmp"
 image = Image( imagePath )
+print "Width : ", image._library.FreeImage_GetWidth( image._bitmap )
+print "Height : ", image._library.FreeImage_GetHeight( image._bitmap )
 image.convertToLdr()
 #image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
 
@@ -1239,5 +1241,9 @@ image.convertToLdr()
 #
 #pixelColor = getattr( library, "FreeImage_GetPixelColor" )
 #value = ctypes.pointer( RGBQUAD() )
-#pixelColor( bitmap, 0, 0, ctypes.byref( value ) )
-#print value.contents.rgbBlue
+#value = RGBQUAD()
+#print "Success : ", pixelColor( bitmap, 0, 0, ctypes.byref( value ) )
+#
+#print value.rgbRed
+#print value.rgbGreen
+#print value.rgbBlue
