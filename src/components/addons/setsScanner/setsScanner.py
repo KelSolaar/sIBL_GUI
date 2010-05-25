@@ -337,7 +337,7 @@ class SetsScanner( Component ):
 		needUiRefresh = False
 		for folder in folders :
 			walker = Walker( folder )
-			walker.walk( self._extension )
+			walker.walk( self._extension, "\._" )
 			for set_, path in walker.files.items() :
 				if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
 					needUiRefresh = True

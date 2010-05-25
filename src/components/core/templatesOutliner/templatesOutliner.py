@@ -1258,7 +1258,7 @@ class TemplatesOutliner( UiComponent ):
 
 		walker = Walker()
 		walker.root = directory
-		templates = walker.walk( self._extension )
+		templates = walker.walk( self._extension, "\._" )
 		for template in templates :
 			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( templates[template] ), "path" ) :
 				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )

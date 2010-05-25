@@ -168,16 +168,16 @@ class Walker( object ):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler()
-	def walk( self, filter = None ):
+	def walk( self, filterIn = None, filterOut = None ):
 		'''
 		This Method Gets Root Directory Files List As A Dictionary.
 
-		@param filter: Regex Filtering String. ( String )
+		@param filterIn: Regex filterIning String. ( String )
 		@return: Files List. ( Dictionary Or None )
 		'''
 
-		if filter :
-			LOGGER.debug( "> Current Filter : '{0}'.".format( filter ) )
+		if filterIn :
+			LOGGER.debug( "> Current filterIn : '{0}'.".format( filterIn ) )
 
 		if self._root :
 				self._files = {}
@@ -186,8 +186,14 @@ class Walker( object ):
 						LOGGER.debug( "> Current File : '{0}' In '{1}'.".format( item, self._root ) )
 						itemPath = os.path.join( root, item ).replace( "\\", "/" )
 						if os.path.isfile( itemPath ):
-							if filter and not re.search( filter, itemPath ):
-								continue
+							if filterIn :
+								if not re.search( filterIn, itemPath ):
+									LOGGER.debug( "> '{0}' File Skipped, Filter In '{1}' Not Matched !.".format( itemPath, filterIn ) )
+									continue
+							if filterOut :
+								if re.search( filterOut, itemPath ) :
+									LOGGER.debug( "> '{0}' File Skipped, Filter Out '{1}' Matched !.".format( itemPath, filterOut ) )
+									continue
 							fileTokens = os.path.splitext( item )
 							if fileTokens[0] in self._files:
 								itemName = itemPath.replace( self._root, "" ).replace( "/", "|" ).replace( item, "" ) + fileTokens[0]
