@@ -648,19 +648,22 @@ FI_COLOR_PALETTE_SEARCH_MASK	 = ( FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_
 '''
 Custom Constants
 '''
-COL_1 = 1
-COL_4 = 4
-COL_8 = 8
-COL_16 = 16
-COL_24 = 24
-COL_32 = 32
-COL_48 = 48
-COL_64 = 64
-COL_96 = 96
-COL_1TO8 = ( COL_1, COL_4, COL_8 )
-COL_16TO32 = ( COL_16, COL_24, COL_32 )
-COL_1TO32 = ( COL_1, COL_4, COL_8, COL_16, COL_24, COL_32 )
-COL_1TO48 = COL_1TO32 + ( COL_48, )
+BPP_1 = 1
+BPP_4 = 4
+BPP_8 = 8
+BPP_16 = 16
+BPP_24 = 24
+BPP_32 = 32
+BPP_48 = 48
+BPP_64 = 64
+BPP_96 = 96
+BPP_1TO8 = ( BPP_1, BPP_4, BPP_8 )
+BPP_16TO32 = ( BPP_16, BPP_24, BPP_32 )
+BPP_1TO32 = ( BPP_1, BPP_4, BPP_8, BPP_16, BPP_24, BPP_32 )
+BPP_1TO48 = BPP_1TO32 + ( BPP_48, )
+
+CPC_8 = 255
+CPC_16 = 65535
 
 FI_DEFAULT_NULL = 0
 FI_DEFAULT_GAMMA = 2.2
@@ -681,7 +684,7 @@ FREEIMAGE_FUNCTIONS = (
 	# LibraryHook( name = "FreeImage_OutputMessageProc" , affixe = "@0", argumentsType = None, returnValue = None ),
 
 	# Allocate / Clone / Unload Functions.
-	LibraryHook( name = "FreeImage_Allocate" , affixe = "@24", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_Allocate" , affixe = "@24", argumentsType = BPP_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_AllocateT" , affixe = "@28", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_Clone" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_Unload" , affixe = "@4", argumentsType = None, returnValue = None ),
@@ -755,42 +758,42 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_LookupSVGColor" , affixe = "@16", argumentsType = None, returnValue = None ),
 
 	# Pixel Access Functions.
-	LibraryHook( name = "FreeImage_GetBits" , affixe = "@4", argumentsType = None, returnValue = ctypes.POINTER( BYTE ) ),
-	LibraryHook( name = "FreeImage_GetScanLine" , affixe = "@8", argumentsType = None, returnValue = ctypes.POINTER( BYTE ) ),
-	LibraryHook( name = "FreeImage_GetPixelIndex" , affixe = "@16", argumentsType = COL_1TO8, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetPixelColor" , affixe = "@16", argumentsType = COL_16TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_SetPixelIndex" , affixe = "@16", argumentsType = COL_1TO8, returnValue = None ),
-	LibraryHook( name = "FreeImage_SetPixelColor" , affixe = "@16", argumentsType = COL_16TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetBits" , affixe = "@4", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetScanLine" , affixe = "@8", argumentsType = None, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetPixelIndex" , affixe = "@16", argumentsType = BPP_1TO8, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetPixelColor" , affixe = "@16", argumentsType = BPP_16TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetPixelIndex" , affixe = "@16", argumentsType = BPP_1TO8, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetPixelColor" , affixe = "@16", argumentsType = BPP_16TO32, returnValue = None ),
 
 	# DIB Informations Functions.
-	LibraryHook( name = "FreeImage_GetColorsUsed" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetColorsUsed" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetBPP" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetWidth" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetHeight" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetLine" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetPitch" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetDIBSize" , affixe = "@4", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetPalette" , affixe = "@4", argumentsType = COL_1TO32, returnValue = ctypes.POINTER( RGBQUAD ) ),
+	LibraryHook( name = "FreeImage_GetPalette" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = ctypes.POINTER( RGBQUAD ) ),
 	LibraryHook( name = "FreeImage_GetDotsPerMeterX" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetDotsPerMeterY" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetDotsPerMeterX" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetDotsPerMeterY" , affixe = "@8", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetInfoHeader" , affixe = "@4", argumentsType = COL_1TO32, returnValue = ctypes.POINTER( BITMAPINFOHEADER ) ),
+	LibraryHook( name = "FreeImage_GetInfoHeader" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = ctypes.POINTER( BITMAPINFOHEADER ) ),
 	LibraryHook( name = "FreeImage_GetInfo" , affixe = "@4", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetColorType" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetRedMask" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetGreenMask" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetBlueMask" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetTransparencyCount" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_GetTransparencyTable" , affixe = "@4", argumentsType = ( COL_8, ), returnValue = ctypes.POINTER( BYTE ) ),
-	LibraryHook( name = "FreeImage_SetTransparencyTable" , affixe = "@12", argumentsType = ( COL_8, ), returnValue = None ),
-	LibraryHook( name = "FreeImage_IsTransparent" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_SetTransparent" , affixe = "@8", argumentsType = ( COL_8, COL_32 ), returnValue = None ),
+	LibraryHook( name = "FreeImage_GetColorType" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetRedMask" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetGreenMask" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetBlueMask" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetTransparencyCount" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_GetTransparencyTable" , affixe = "@4", argumentsType = ( BPP_8, ), returnValue = ctypes.POINTER( BYTE ) ),
+	LibraryHook( name = "FreeImage_SetTransparencyTable" , affixe = "@12", argumentsType = ( BPP_8, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_IsTransparent" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_SetTransparent" , affixe = "@8", argumentsType = ( BPP_8, BPP_32 ), returnValue = None ),
 	LibraryHook( name = "FreeImage_SetTransparentIndex" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_GetTransparentIndex" , affixe = "@4", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_HasBackgroundColor" , affixe = "@4", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
-	LibraryHook( name = "FreeImage_GetBackgroundColor" , affixe = "@8", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.POINTER( RGBQUAD ) ),
-	LibraryHook( name = "FreeImage_SetBackgroundColor" , affixe = "@8", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
+	LibraryHook( name = "FreeImage_HasBackgroundColor" , affixe = "@4", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = None ),
+	LibraryHook( name = "FreeImage_GetBackgroundColor" , affixe = "@8", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.POINTER( RGBQUAD ) ),
+	LibraryHook( name = "FreeImage_SetBackgroundColor" , affixe = "@8", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = None ),
 
 	# ICC Profile Functions.
 	LibraryHook( name = "FreeImage_GetICCProfile" , affixe = "@4", argumentsType = None, returnValue = None ),
@@ -836,20 +839,20 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_ConvertLine24To32" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Smart Conversion Functions.
-	LibraryHook( name = "FreeImage_ConvertTo4Bits" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertTo8Bits" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertToGreyscale" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertTo16Bits555" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertTo16Bits565" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertTo24Bits" , affixe = "@4", argumentsType = COL_1TO48, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertTo32Bits" , affixe = "@4", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ColorQuantize" , affixe = "@8", argumentsType = ( COL_24, ), returnValue = None ),
-	LibraryHook( name = "FreeImage_ColorQuantizeEx" , affixe = "@20", argumentsType = ( COL_24, ), returnValue = None ),
-	LibraryHook( name = "FreeImage_Threshold" , affixe = "@8", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_Dither" , affixe = "@8", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertFromRawBits" , affixe = "@36", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertToRGBF" , affixe = "@4", argumentsType = ( COL_24, COL_32, ), returnValue = None ),
-	LibraryHook( name = "FreeImage_ConvertToRawBits" , affixe = "@32", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo4Bits" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo8Bits" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertToGreyscale" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo16Bits555" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo16Bits565" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo24Bits" , affixe = "@4", argumentsType = BPP_1TO48, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertTo32Bits" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ColorQuantize" , affixe = "@8", argumentsType = ( BPP_24, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_ColorQuantizeEx" , affixe = "@20", argumentsType = ( BPP_24, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_Threshold" , affixe = "@8", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_Dither" , affixe = "@8", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertFromRawBits" , affixe = "@36", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertToRGBF" , affixe = "@4", argumentsType = ( BPP_24, BPP_32, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_ConvertToRawBits" , affixe = "@32", argumentsType = BPP_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_ConvertToStandardType" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_ConvertToType" , affixe = "@12", argumentsType = None, returnValue = None ),
 
@@ -903,25 +906,25 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_TagToString" , affixe = "@12", argumentsType = None, returnValue = ctypes.c_char_p ),
 
 	# Rotation and Flipping Functions.
-	LibraryHook( name = "FreeImage_RotateClassic" , affixe = "@12", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_RotateClassic" , affixe = "@12", argumentsType = BPP_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_Rotate" , affixe = "@16", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_RotateEx" , affixe = "@48", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = None ),
+	LibraryHook( name = "FreeImage_RotateEx" , affixe = "@48", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = None ),
 	LibraryHook( name = "FreeImage_FlipHorizontal" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_FlipVertical" , affixe = "@4", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_JPEGTransform" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_JPEGTransformU" , affixe = "@16", argumentsType = None, returnValue = None ),
 
 	# Upsampling / Downsampling Functions.
-	LibraryHook( name = "FreeImage_Rescale" , affixe = "@16", argumentsType = COL_1TO32, returnValue = None ),
-	LibraryHook( name = "FreeImage_MakeThumbnail" , affixe = "@12", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_Rescale" , affixe = "@16", argumentsType = BPP_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_MakeThumbnail" , affixe = "@12", argumentsType = BPP_1TO32, returnValue = None ),
 
 	# Color Manipulation Functions.
-	LibraryHook( name = "FreeImage_AdjustCurve" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
-	LibraryHook( name = "FreeImage_AdjustGamma" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
-	LibraryHook( name = "FreeImage_AdjustBrightness" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
-	LibraryHook( name = "FreeImage_AdjustContrast" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
-	LibraryHook( name = "FreeImage_Invert" , affixe = "@4", argumentsType = COL_1TO32, returnValue = ctypes.c_long ),
-	LibraryHook( name = "FreeImage_GetHistogram" , affixe = "@12", argumentsType = ( COL_8, COL_24, COL_32 ), returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_AdjustCurve" , affixe = "@12", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_AdjustGamma" , affixe = "@12", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_AdjustBrightness" , affixe = "@12", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_AdjustContrast" , affixe = "@12", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_Invert" , affixe = "@4", argumentsType = BPP_1TO32, returnValue = ctypes.c_long ),
+	LibraryHook( name = "FreeImage_GetHistogram" , affixe = "@12", argumentsType = ( BPP_8, BPP_24, BPP_32 ), returnValue = ctypes.c_long ),
 	LibraryHook( name = "FreeImage_GetAdjustColorsLookupTable" , affixe = "@32", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_AdjustColors" , affixe = "@32", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_ApplyColorMapping" , affixe = "@24", argumentsType = None, returnValue = None ),
@@ -930,14 +933,14 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_SwapPaletteIndices" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Channel Processing Functions.
-	LibraryHook( name = "FreeImage_GetChannel" , affixe = "@8", argumentsType = ( COL_24, COL_32, ), returnValue = None ),
-	LibraryHook( name = "FreeImage_SetChannel" , affixe = "@12", argumentsType = ( COL_24, COL_32, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_GetChannel" , affixe = "@8", argumentsType = ( BPP_24, BPP_32, ), returnValue = None ),
+	LibraryHook( name = "FreeImage_SetChannel" , affixe = "@12", argumentsType = ( BPP_24, BPP_32, ), returnValue = None ),
 	LibraryHook( name = "FreeImage_GetComplexChannel" , affixe = "@8", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_SetComplexChannel" , affixe = "@12", argumentsType = None, returnValue = None ),
 
 	# Copy / Paste / Composite Functions.
 	LibraryHook( name = "FreeImage_Copy" , affixe = "@20", argumentsType = None, returnValue = None ),
-	LibraryHook( name = "FreeImage_Paste" , affixe = "@20", argumentsType = COL_1TO32, returnValue = None ),
+	LibraryHook( name = "FreeImage_Paste" , affixe = "@20", argumentsType = BPP_1TO32, returnValue = None ),
 	LibraryHook( name = "FreeImage_Composite" , affixe = "@16", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_JPEGCrop" , affixe = "@24", argumentsType = None, returnValue = None ),
 	LibraryHook( name = "FreeImage_JPEGCropU" , affixe = "@24", argumentsType = None, returnValue = None ),
@@ -1164,7 +1167,7 @@ class Image( object ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
-	def saveAs( self, imageFormat, imagePath, flags = 0 ):
+	def saveAs( self, imageFormat, imagePath, flags = FI_DEFAULT_NULL ):
 		'''
 		This Method Save The Image To The Provided File.
 		
@@ -1183,7 +1186,7 @@ class Image( object ):
 	@core.executionTrace
 	def convertToType( self, targetType, linearScale = True ):
 		'''
-		This Method Converts A Bitmap To Provided Type.
+		This Method Converts The Bitmap To Provided Type.
 		
 		@param targetType: Target Type. ( Integer )
 		@param linearScale: Linear Scale. ( Boolean )
@@ -1194,18 +1197,23 @@ class Image( object ):
 
 	@core.executionTrace
 	def convertToLdr( self ):
-#		#if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
+		'''
+		This Method Converts The Bitmap To LDR.
+		'''
+
+		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
-			pitch = self._library.FreeImage_GetPitch( self._bitmap )
 
+			ldrBitmap = self._library.FreeImage_Allocate( width, height, BPP_32 )
 			for y in range( height ) :
+				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
+				bitsPointer = ctypes.pointer( FIRGBF.from_address( bitsAdress ) )
 				for x in range( width ) :
-					pixelColors = RGBQUAD()
-					self._library.FreeImage_GetPixelColor( self._bitmap, x, y, ctypes.byref( pixelColors ) )
-					print pixelColors.rgbRed
-					print pixelColors.rgbGreen
-					print pixelColors.rgbBlue
+					ldrPixel = RGBQUAD( int( bitsPointer[x].blue * CPC_8 ), int( bitsPointer[x].green * CPC_8 ), int( bitsPointer[x].red * CPC_8 ) )
+					self._library.FreeImage_SetPixelColor( ldrBitmap, x, y, ctypes.byref( ldrPixel ) )
+
+			self._bitmap = ldrBitmap
 
 #***********************************************************************************************
 #***	Python End
@@ -1219,31 +1227,9 @@ RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
 RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.bmp"
+imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.hdr"
 image = Image( imagePath )
 print "Width : ", image._library.FreeImage_GetWidth( image._bitmap )
 print "Height : ", image._library.FreeImage_GetHeight( image._bitmap )
 image.convertToLdr()
-#image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
-
-#library = ctypes.cdll.LoadLibrary( "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/libraries/libfreeimage.dylib" )
-#getVersion = getattr( library, "FreeImage_GetVersion" )
-#getVersion.restype = ctypes.c_char_p
-#print "FreeImage Version : ", getVersion()
-#
-#imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.bmp"
-#loadImage = getattr( library, "FreeImage_Load" )
-#bitmap = loadImage( 0, imagePath, 0 )
-#bitmapWidth = getattr( library, "FreeImage_GetWidth" )
-#bitmapHeight = getattr( library, "FreeImage_GetHeight" )
-#print "Width : ", bitmapWidth( bitmap )
-#print "Height : ", bitmapHeight( bitmap )
-#
-#pixelColor = getattr( library, "FreeImage_GetPixelColor" )
-#value = ctypes.pointer( RGBQUAD() )
-#value = RGBQUAD()
-#print "Success : ", pixelColor( bitmap, 0, 0, ctypes.byref( value ) )
-#
-#print value.rgbRed
-#print value.rgbGreen
-#print value.rgbBlue
+image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
