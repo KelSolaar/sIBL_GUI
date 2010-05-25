@@ -4,6 +4,10 @@ h2=. Change Log
 
 p{font-size : 12pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
 
+h3. 3.0.6 - Stable
+
+* Application walker is now skipping Mac Os X "._" files.
+
 h3. 3.0.5 - Stable
 
 * Templates folders hierarchy has been updated. *It's strongly advised to uninstall any previous sIBL_GUI 3 version before installing this stable release.*
@@ -58,33 +62,33 @@ h3. 2.1.1 - Stable
 * Render Combo Box added in the Import Tab ( Useful when you have multiple Templates for a Renderer ).
 * Refinements in sIBL_GUI UI.
 
-h3. 2.1.0 - Release Candidate
+h3. 2.1.0 - Stable
 
 * New ReWire Widget in the Import Tab, you can now for example use the Lighting Image as Background or the Reflection one for the Lighting, it's even possible to load Custom Images so you can nearlly dynamically create your IBL on the fly.
 * Resorted sIBL_GUI Updater Columns.
 * Refinements in sIBL_GUI UI.
 * Corrected the incorrect Help / Manual Files Download Path on Frozen Executables.
 
-h3. 2.0.8 - Beta
+h3. 2.0.8 - Stable
 
 * Updater / FTP Code Cleanup.
 * Fixed a Bug where more Templates than required were downloaded by sIBL_GUI Updater.
 * Debugging Code Cleanup.
 
-h3. 2.0.7 - Beta
+h3. 2.0.7 - Stable
 
 * Refinements in sIBL_GUI UI.
 * Better Verbose when Remote Connection failed.
 * Manual / Help Files now load properly from a Windows Server Path.
 * Code Consolidation on Windows.
 
-h3. 2.0.6 - Beta
+h3. 2.0.6 - Stable
 
 * Last Maya Templates are packaged.
-* Corrected a bug introduced during the Custom Text Editor / Browser Code Refactoring.
+* Corrected a bug introduced during the Custom Text Editor / Browser Code refactoring.
 * Wait Cursor is properly released when Checking For New Releases.
 
-h3. 2.0.5 - Beta
+h3. 2.0.5 - Release Candidate
 
 * Updated sIBL_GUI Help / Manual.
 * Refinements in sIBL_GUI UI.
@@ -93,7 +97,7 @@ h3. 2.0.5 - Beta
 * Options Table Widgets are now properly reseted when there are no Templates available.
 * sIBL_GUI FTP is verbosing when Gathering Files List.
 * It's now possible to choose the Templates you want to download.
-* Custom Widgets Code Refactoring For Better Reusability.
+* Custom Widgets code refactoring for better reusability.
 
 h3. 2.0.2 - Beta
 
