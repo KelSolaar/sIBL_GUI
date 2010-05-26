@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import optparse
 import platform
 import sys
 import time
@@ -1277,6 +1278,17 @@ def sIBL_GUI_start():
 	This Definition Is Called When sIBL_GUI Starts.
 	'''
 
+	# Command Line Parameters Handling.
+	parameters, args = getCommandLineParameters( sys.argv )
+
+	if parameters.about :
+		for line in getHeaderMessage() :
+			sys.stdout.write( "{0}\n".format( line ) )
+		foundations.common.exit( 1, LOGGER, [] )
+
+	# Setting Application Verbose Level.
+	LOGGER.setLevel( logging.DEBUG )
+
 	# Setting User Preferences Directory.
 	RuntimeConstants.userDatasDirectory = foundations.common.getSystemApplicationDatasDirectory()
 	RuntimeConstants.userApplicationDirectory = foundations.common.getUserApplicationDatasDirectory()
@@ -1315,7 +1327,7 @@ def sIBL_GUI_start():
 
 	os.path.exists( RuntimeConstants.settingsFile ) or RuntimeConstants.settings.setDefaultPreferences()
 
-	RuntimeConstants.verbosityLevel = RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
+	RuntimeConstants.verbosityLevel = parameters.verbosityLevel and parameters.verbosityLevel or RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
 	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( RuntimeConstants.verbosityLevel ) )
 	core.setVerbosityLevel( RuntimeConstants.verbosityLevel )
 
@@ -1329,10 +1341,8 @@ def sIBL_GUI_start():
 	LOGGER.addHandler( RuntimeConstants.loggingSessionHandler )
 
 	LOGGER.info( Constants.loggingSeparators )
-	LOGGER.info( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - kelsolaar_fool@hotmail.com".format( Constants.applicationName ) )
-	LOGGER.info( "{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format( Constants.applicationName ) )
-	LOGGER.info( "{0} | http://www.gnu.org/licenses/ ".format( Constants.applicationName ) )
-	LOGGER.info( "{0} | Version : {1}".format( Constants.applicationName, Constants.releaseVersion ) )
+	for line in getHeaderMessage() :
+		LOGGER.info( line )
 	LOGGER.info( "{0} | Session Started At : {1}".format( Constants.applicationName, time.strftime( '%X - %x' ) ) )
 	LOGGER.info( Constants.loggingSeparators )
 	LOGGER.info( "{0} | Starting Interface !".format( Constants.applicationName ) )
@@ -1383,6 +1393,44 @@ def setApplicationPreferencesDirectories( path ):
 		return True
 	else :
 		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' Directory Creation Failed !".format( applicationDirectory ) )
+
+@core.executionTrace
+def getHeaderMessage():
+	'''
+	This Definition Builds The Header Message.
+
+	@return: Header Message ( List )
+	'''
+
+	message = []
+
+	message.append( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - kelsolaar_fool@hotmail.com".format( Constants.applicationName ) )
+	message.append( "{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format( Constants.applicationName ) )
+	message.append( "{0} | http://www.gnu.org/licenses/ ".format( Constants.applicationName ) )
+	message.append( "{0} | Version : {1}".format( Constants.applicationName, Constants.releaseVersion ) )
+
+	return message
+
+@core.executionTrace
+def getCommandLineParameters( argv ):
+	'''
+	This Definition Process Command Line Parameters.
+
+	@param argv: Command Line Parameters. ( String )
+	@return: Settings, Arguments ( Parser Instance )
+	'''
+
+	argv = argv or sys.argv[1:]
+
+	parser = optparse.OptionParser( formatter = optparse.IndentedHelpFormatter ( indent_increment = 2, max_help_position = 8, width = 128, short_first = 1 ), add_help_option = None )
+
+	parser.add_option( "-h", "--help", action = "help", help = "'Display This Help Message And Exit.'" )
+	parser.add_option( "-a", "--about", action = "store_true", default = False, dest = "about", help = "'Display Application About Message.'" )
+	parser.add_option( "-v", "--verbose", action = "store", type = "int", dest = "verbosityLevel", help = "'Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'" )
+
+	parameters, args = parser.parse_args( argv )
+
+	return parameters, args
 
 #***********************************************************************************************
 #***	Launcher

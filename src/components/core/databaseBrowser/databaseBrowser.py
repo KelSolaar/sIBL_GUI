@@ -1168,7 +1168,7 @@ class DatabaseBrowser( UiComponent ):
 		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
 
 		walker = Walker( directory )
-		walker.walk( self._extension )
+		walker.walk( self._extension, "\._" )
 		for set, path in walker.files.items() :
 			self.addSet( set, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() )
 

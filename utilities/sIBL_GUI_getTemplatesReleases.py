@@ -85,7 +85,7 @@ def getTemplatesReleases():
 
 	walker = Walker()
 	walker.root = TEMPLATES_PATH
-	templates = walker.walk( TEMPLATES_EXTENSION )
+	templates = walker.walk( TEMPLATES_EXTENSION, "\._" )
 	for template, path in templates.items() :
 		parser = Parser( path )
 		parser.read() and parser.parse()

@@ -94,8 +94,6 @@ LOGGER = logging.getLogger( Constants.logger )
 
 LOGGING_FORMATTER = logging.Formatter( "%(levelname)-8s : %(message)s" )
 
-setVerbosityLevel( Constants.verbosityLevel )
-
 IGNORED_CODE_LAYERS = ( "getFrame",
 					"getCodeLayerName",
 					"getObjectName",
