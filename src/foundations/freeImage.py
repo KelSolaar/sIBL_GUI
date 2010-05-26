@@ -543,9 +543,9 @@ class FreeImageIO( ctypes.Structure ):
 	'''
 
 	_fields_ = [ ( 'read_proc', FI_ReadProc ),
-                ( 'write_proc', FI_WriteProc ),
-                ( 'seek_proc', FI_SeekProc ),
-                ( 'tell_proc', FI_TellProc ) ]
+				( 'write_proc', FI_WriteProc ),
+				( 'seek_proc', FI_SeekProc ),
+				( 'tell_proc', FI_TellProc ) ]
 
 class FIMEMORY( ctypes.Structure ):
 	'''
@@ -1196,6 +1196,7 @@ class Image( object ):
 		self._bitmap and LOGGER.debug( "> '{0}' Image Conversion Done !".format( self._imagePath ) )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
 	def convertToLdr( self ):
 		'''
 		This Method Converts The Bitmap To LDR.
@@ -1214,7 +1215,41 @@ class Image( object ):
 					self._library.FreeImage_SetPixelColor( ldrBitmap, x, y, ctypes.byref( ldrPixel ) )
 
 			self._bitmap = ldrBitmap
+		else :
+			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_RGBF )
 
+	@core.executionTrace
+	def convertToQImage( self ):
+		'''
+		This Method Converts The Bitmap To QImage.
+		'''
+
+		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_BITMAP :
+
+			from PyQt4.QtCore import *
+			from PyQt4.QtGui import *
+
+			width = self._library.FreeImage_GetWidth( self._bitmap )
+			height = self._library.FreeImage_GetHeight( self._bitmap )
+			pitch = self._library.FreeImage_GetPitch( self._bitmap )
+			bpp = self._library.FreeImage_GetBPP( self._bitmap )
+
+#			bits = ctypes.create_string_buffer( "\x00" * height * pitch )
+#			self._library.FreeImage_ConvertToRawBits( ctypes.byref( bits ), self._bitmap, pitch, bpp, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, False )
+#
+#			image = QImage( width, height, QImage.Format_RGB32 )
+#			image.loadFromData( bits.raw )
+			image = QImage( width, height, QImage.Format_RGB32 )
+
+			for y in range( height ) :
+				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
+				bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
+				for x in range( width ) :
+					image.setPixel( x, y, qRgb( bitsPointer[x].rgbRed, bitsPointer[x].rgbGreen, bitsPointer[x].rgbBlue ) )
+
+			return image
+		else :
+			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_BITMAP )
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
@@ -1227,9 +1262,30 @@ RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
 RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_05k.hdr"
+imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.tga"
 image = Image( imagePath )
 print "Width : ", image._library.FreeImage_GetWidth( image._bitmap )
 print "Height : ", image._library.FreeImage_GetHeight( image._bitmap )
-image.convertToLdr()
-image.saveAs( FREE_IMAGE_FORMAT.FIF_BMP, "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Output.bmp" )
+qImage = image.convertToQImage()
+
+#import sys
+#from PyQt4.QtGui import *
+#
+#class Display( QWidget ):
+#	def __init__( self, parent = None ):
+#		QWidget.__init__( self, parent )
+#
+#		self.setWindowTitle( 'Tga Loader' )
+#
+#		grid = QGridLayout()
+#		label = QLabel()
+#		label.setPixmap( QPixmap( qImage ) )
+#		grid.addWidget( label )
+#
+#		self.setLayout( grid )
+#
+#
+#app = QApplication( sys.argv )
+#qb = Display()
+#qb.show()
+#sys.exit( app.exec_() )
