@@ -1231,23 +1231,26 @@ class Image( object ):
 
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
-			pitch = self._library.FreeImage_GetPitch( self._bitmap )
-			bpp = self._library.FreeImage_GetBPP( self._bitmap )
 
-#			bits = ctypes.create_string_buffer( "\x00" * height * pitch )
-#			self._library.FreeImage_ConvertToRawBits( ctypes.byref( bits ), self._bitmap, pitch, bpp, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, False )
-#
-#			image = QImage( width, height, QImage.Format_RGB32 )
-#			image.loadFromData( bits.raw )
-			image = QImage( width, height, QImage.Format_RGB32 )
-
+			bits = QByteArray()
 			for y in range( height ) :
 				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
 				bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
 				for x in range( width ) :
-					image.setPixel( x, y, qRgb( bitsPointer[x].rgbRed, bitsPointer[x].rgbGreen, bitsPointer[x].rgbBlue ) )
+					bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
 
-			return image
+			image = QImage( bits, width, height, QImage.Format_RGB32 )
+
+			# Slow Deprecated Conversion.
+			# image = QImage( width, height, QImage.Format_RGB32 )
+
+			# for y in range( height ) :
+			#	 bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
+			#	 bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
+			#	 for x in range( width ) :
+			#		 image.setPixel( x, y, qRgb( bitsPointer[x].rgbRed, bitsPointer[x].rgbGreen, bitsPointer[x].rgbBlue ) )
+
+			return image.mirrored( vertical = True )
 		else :
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_BITMAP )
 #***********************************************************************************************
@@ -1262,30 +1265,30 @@ RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
 RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.tga"
+imagePath = "Z:/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.tga"
 image = Image( imagePath )
 print "Width : ", image._library.FreeImage_GetWidth( image._bitmap )
 print "Height : ", image._library.FreeImage_GetHeight( image._bitmap )
 qImage = image.convertToQImage()
 
-#import sys
-#from PyQt4.QtGui import *
-#
-#class Display( QWidget ):
-#	def __init__( self, parent = None ):
-#		QWidget.__init__( self, parent )
-#
-#		self.setWindowTitle( 'Tga Loader' )
-#
-#		grid = QGridLayout()
-#		label = QLabel()
-#		label.setPixmap( QPixmap( qImage ) )
-#		grid.addWidget( label )
-#
-#		self.setLayout( grid )
-#
-#
-#app = QApplication( sys.argv )
-#qb = Display()
-#qb.show()
-#sys.exit( app.exec_() )
+import sys
+from PyQt4.QtGui import *
+
+class Display( QWidget ):
+	def __init__( self, parent = None ):
+		QWidget.__init__( self, parent )
+
+		self.setWindowTitle( 'Tga Loader' )
+
+		grid = QGridLayout()
+		label = QLabel()
+		label.setPixmap( QPixmap( qImage ) )
+		grid.addWidget( label )
+
+		self.setLayout( grid )
+
+
+app = QApplication( sys.argv )
+qb = Display()
+qb.show()
+sys.exit( app.exec_() )
