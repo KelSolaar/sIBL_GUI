@@ -74,6 +74,7 @@ import ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
+from libraries.freeImage.freeImage import Image
 from manager.uiComponent import UiComponent
 
 #***********************************************************************************************
@@ -906,11 +907,23 @@ class DatabaseBrowser( UiComponent ):
 								""".format( title, author, location, shotDateString, comment ) )
 				iblSetStandardItemItem.setToolTip( toolTip )
 
-				if re.search( "\.[jJ][pP][gG]", icon ) or re.search( "\.[jJ][pP][eE][gG]", icon ) or re.search( "\.[pP][nN][gG]", icon ):
-					iconPath = os.path.exists( icon ) and icon or os.path.join( self._uiResources, self.uiMissingIcon )
-				else :
-					iconPath = os.path.join( self._uiResources, self.uiFormatErrorIcon )
-				iblSetStandardItemItem.setIcon( QIcon( iconPath ) )
+				iblIcon = QIcon()
+
+				if os.path.exists( icon ) :
+					for extension in UiConstants.nativeImageFormats.values() :
+						if re.search( extension, icon ) :
+							iblIcon = QIcon( icon )
+							break
+					else :
+						for extension in UiConstants.thirdPartyImageFormats.values() :
+							if re.search( extension, icon ) :
+								image = Image( str( icon ) )
+								iblIcon = QIcon( QPixmap( image.convertToQImage() ) )
+								break
+
+				if iblIcon.isNull() :
+					iblIcon = QIcon( os.path.join( self._uiResources, self.uiMissingIcon ) )
+				iblSetStandardItemItem.setIcon( iblIcon )
 
 				iblSetStandardItemItem._datas = iblSet
 

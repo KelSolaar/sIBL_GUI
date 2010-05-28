@@ -110,7 +110,7 @@ class Constants():
 	elif platform.system() == "Darwin" :
 		freeImageLibrary = os.path.join( librariesDirectory, "freeImage/resources/libfreeimage.dylib" )
 	elif platform.system() == "Linux" :
-		freeImageLibrary = "libraries/"
+		freeImageLibrary = os.path.join( librariesDirectory, "freeImage/resources/libfreeimage.so" )
 
 	defaultTimerCycle = 250
 	nullObject = "None"

@@ -110,6 +110,15 @@ class UiConstants():
 	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
 	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 
+	nativeImageFormats = { 	"Bmp" : "\.[bB][mM][pP]",
+							"Jpeg" : "\.[jJ][pP][eE][gG]",
+							"Jpg" : "\.[jJ][pP][gG]",
+							"Png" : "\.[pP][nN][gG]" }
+
+	thirdPartyImageFormats = { 	"Tga" : ( "\.[tT][gG][aA]" ),
+								"Tif" : ( "\.[tT][iI][fF]" ),
+								"Tiff" : ( "\.[tT][iI][fF][fF]" ) }
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

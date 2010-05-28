@@ -64,7 +64,7 @@ import sys
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import core
+import foundations.core as core
 import foundations.exceptions
 import foundations.library
 from foundations.library import LibraryHook
@@ -78,7 +78,7 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	FreeImage Variables
 #***********************************************************************************************
-FREEIMAGE_LIBRARY_PATH = os.path.join( os.getcwd(), "..", Constants.freeImageLibrary )
+FREEIMAGE_LIBRARY_PATH = os.path.join( os.getcwd(), Constants.freeImageLibrary )
 
 if platform.system() == "Windows" or platform.system() == "Microsoft" :
 	DLL_CALLCONV = ctypes.WINFUNCTYPE
@@ -1069,7 +1069,7 @@ class Image( object ):
 		'''
 
 		if value :
-			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "imagePath", value )
+			assert type( value ) is str, "'{0}' Attribute : '{1}' Type Is Not 'str' !".format( "imagePath", value )
 		self._imagePath = value
 
 	@imagePath.deleter
@@ -1147,7 +1147,6 @@ class Image( object ):
 		
 		@param imagePath: Image Path. ( String )
 		'''
-
 		if self._imagePath :
 			imageFormat = self.getImageFormat( self._imagePath )
 			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN :
@@ -1192,8 +1191,9 @@ class Image( object ):
 		@param linearScale: Linear Scale. ( Boolean )
 		'''
 
+		LOGGER.debug( "> Converting '{0}' Image Bitmap To Type '{1}' !".format( self._imagePath, targetType ) )
 		self._bitmap = self._library.FreeImage_ConvertToType( self._bitmap, targetType, linearScale )
-		self._bitmap and LOGGER.debug( "> '{0}' Image Conversion Done !".format( self._imagePath ) )
+		self._bitmap and LOGGER.debug( "> '{0}' Image Bitmap Conversion To Type '{1}' Done !".format( self._imagePath, targetType ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
@@ -1203,6 +1203,8 @@ class Image( object ):
 		'''
 
 		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
+			LOGGER.debug( "> Converting '{0}' Image Bitmap To Ldr !".format( self._imagePath ) )
+
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
 
@@ -1214,20 +1216,24 @@ class Image( object ):
 					ldrPixel = RGBQUAD( int( bitsPointer[x].blue * CPC_8 ), int( bitsPointer[x].green * CPC_8 ), int( bitsPointer[x].red * CPC_8 ) )
 					self._library.FreeImage_SetPixelColor( ldrBitmap, x, y, ctypes.byref( ldrPixel ) )
 
+			LOGGER.debug( "> '{0}' Image Bitmap Conversion To Ldr Done !".format( self._imagePath ) )
+
 			self._bitmap = ldrBitmap
 		else :
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_RGBF )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
 	def convertToQImage( self ):
 		'''
 		This Method Converts The Bitmap To QImage.
 		'''
 
 		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_BITMAP :
+			LOGGER.debug( "> Converting '{0}' Image Bitmap To QImage !".format( self._imagePath ) )
 
-			from PyQt4.QtCore import *
-			from PyQt4.QtGui import *
+			from PyQt4.QtCore import QByteArray
+			from PyQt4.QtGui import QImage
 
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
@@ -1250,45 +1256,12 @@ class Image( object ):
 			#	 for x in range( width ) :
 			#		 image.setPixel( x, y, qRgb( bitsPointer[x].rgbRed, bitsPointer[x].rgbGreen, bitsPointer[x].rgbBlue ) )
 
+			LOGGER.debug( "> '{0}' Image Bitmap Conversion To QImage Done !".format( self._imagePath ) )
+
 			return image.mirrored( vertical = True )
 		else :
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_BITMAP )
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-from globals.runtimeConstants import RuntimeConstants
-
-LOGGER.setLevel( logging.INFO )
-
-# Starting The Console Handler.
-RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
-RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
-
-imagePath = "Z:/sIBL_Library/Collection Test/Factory_Catwalk/Factory_Catwalk_2k.tga"
-image = Image( imagePath )
-print "Width : ", image._library.FreeImage_GetWidth( image._bitmap )
-print "Height : ", image._library.FreeImage_GetHeight( image._bitmap )
-qImage = image.convertToQImage()
-
-import sys
-from PyQt4.QtGui import *
-
-class Display( QWidget ):
-	def __init__( self, parent = None ):
-		QWidget.__init__( self, parent )
-
-		self.setWindowTitle( 'Tga Loader' )
-
-		grid = QGridLayout()
-		label = QLabel()
-		label.setPixmap( QPixmap( qImage ) )
-		grid.addWidget( label )
-
-		self.setLayout( grid )
-
-
-app = QApplication( sys.argv )
-qb = Display()
-qb.show()
-sys.exit( app.exec_() )
