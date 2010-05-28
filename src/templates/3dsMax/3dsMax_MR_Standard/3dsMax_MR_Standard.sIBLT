@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.2 | String | Template Release
-Date = @Date | 20 May 2010 | String | Date
+Release = @Release | 1.0.3 | String | Template Release
+Date = @Date | 29 May 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -201,7 +201,7 @@ fn sIBL_3dsmax_MR_getLight lightName lightColor intensity lightDistance uCoordin
 
 fn sIBL_3dsmax_MR_createDynamicLights dynamicLights lightDistance =
 (
-	local dynamicLightsTokens = filterString dynamicLights ","
+	local dynamicLightsTokens = filterString dynamicLights "|"
 
 	for i = 1 to dynamicLightsTokens.count by 8 do
 	(		
