@@ -46,7 +46,7 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Stand
 Comment = "Renderman For Maya Template : Updates For sIBL_GUI 3.x.x."
 
 [3dsMax_MR_Standard]
-Release = 1.0.2
+Release = 1.0.3
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
 Comment = "3dsMax Mental Ray Base Template : Updates For sIBL_GUI 3.x.x."
@@ -58,7 +58,7 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanlin
 Comment = "3dsMax Scanline Ray Base Template : Updates For sIBL_GUI 3.x.x."
 
 [3dsMax_VRay_Standard]
-Release = 1.0.1
+Release = 1.0.2
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
 Comment = "3dsMax VRay Base Template : Updates For sIBL_GUI 3.x.x."

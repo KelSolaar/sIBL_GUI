@@ -127,6 +127,8 @@ class LoaderScript( UiComponent ):
 
 		self._overrideKeys = {}
 
+		self._defaultStringSeparator = "|"
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -492,6 +494,40 @@ class LoaderScript( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "overrideKeys" ) )
 
+	@property
+	def defaultStringSeparator( self ):
+		'''
+		This Method Is The Property For The _defaultStringSeparator Attribute.
+
+		@return: self._defaultStringSeparator. ( String )
+		'''
+
+		return self._defaultStringSeparator
+
+	@defaultStringSeparator.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def defaultStringSeparator( self, value ):
+		'''
+		This Method Is The Setter Method For The _defaultStringSeparator Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		if value :
+			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "defaultStringSeparator", value )
+			assert len( value ) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format( "defaultStringSeparator", value )
+			assert not re.search( "\w", value ), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format( "defaultStringSeparator", value )
+		self._defaultStringSeparator = value
+
+	@defaultStringSeparator.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def defaultStringSeparator( self ):
+		'''
+		This Method Is The Deleter Method For The _defaultStringSeparator Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultStringSeparator" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -807,7 +843,7 @@ class LoaderScript( UiComponent ):
 					dynamicLights.append( iblSetParser.getValue( "LIGHTv", section ) )
 
 			LOGGER.debug( "> Adding '{0}' Custom Attribute With Value : '{1}'.".format( "Lights|DynamicLights", ", ".join( dynamicLights ) ) )
-			bindedAttributes["Lights|DynamicLights"].value = ",".join( dynamicLights )
+			bindedAttributes["Lights|DynamicLights"].value = self._defaultStringSeparator.join( dynamicLights )
 
 		LOGGER.debug( "> Updating Attributes With Override Keys." )
 		for attribute in overrideKeys :
