@@ -78,6 +78,13 @@ fn sIBL_3dsmax_VRay_deleteChildren currentNode =
 	)
 )
 
+fn sIBL_3dsmax_VRay_getDefaultControllers currentNode =
+(
+	currentNode.Transform.controller = prs ()
+	currentNode.rotation.controller = Euler_XYZ ()
+	currentNode.scale.controller = bezier_scale ()
+)
+
 fn sIBL_3dsmax_VRay_environmentDeletion =
 (
 	-- sIBL_Lights Group Children Deletion.
@@ -97,8 +104,11 @@ fn sIBL_3dsmax_VRay_environmentDeletion =
 
 fn sIBL_3dsmax_VRay_activateVRay =
 (
-	renderers.current = vray()
-	renderers.current.gi_on = True
+	if( IsKindOf renderers.current vray == False  ) then
+	(
+		renderers.current = vray()
+		renderers.current.gi_on = True
+	)
 )
 
 fn sIBL_3dsmax_VRay_hideLights =
@@ -116,6 +126,8 @@ fn sIBL_3dsmax_VRay_getFeedBack feedbackRadius createBackground texturePath =
 (
 	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on
 	
+	sIBL_3dsmax_VRay_getDefaultControllers feedbackSphere
+
 	local normalModifier_ = Normalmodifier()
 	normalModifier_.flip = True
 	addModifier feedbackSphere normalModifier_
@@ -148,6 +160,8 @@ fn sIBL_3dsmax_VRay_getLightsGroup =
 (
 	local sIBL_Point = Point name:"sIBL_Lights_Point" centermarker:off axistripod:off cross:off Box:off
 	local lightsGroup = group sIBL_Point name:"sIBL_Lights"
+	
+	sIBL_3dsmax_VRay_getDefaultControllers lightsGroup
 
 	lightsGroup.parent = getNodeByName "sIBL_Datas"
 		
@@ -202,7 +216,7 @@ fn sIBL_3dsmax_VRay_createDynamicLights dynamicLights lightDistance =
 		local uCoordinate = dynamicLightsTokens[i+6] as float
 		local vCoordinate = dynamicLightsTokens[i+7] as float
 		
-		sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate
+		sIBL_3dsmax_VRay_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate False
 	)
 )
 
@@ -340,7 +354,7 @@ fn sIBL_3dsmax_VRay_setup  =
 			sIBL_3dsmax_VRay_hideLights()
 	
 		sIBL_3dsmax_VRay_getSIBLGroup()
-		
+	
 		if( LOADER_OPTIONS.createFeedBack == 1 ) then
 			sIBL_3dsmax_VRay_getFeedBack LOADER_OPTIONS.feedbackRadius LOADER_OPTIONS.createBackground IBL_SET_DATAS.backgroundFilePath
 
@@ -348,7 +362,7 @@ fn sIBL_3dsmax_VRay_setup  =
 		
 		if( LOADER_OPTIONS.createFeedBack == 1 ) then
 			sIBL_3dsmax_VRay_connectFeedBackToSIBLShaders  LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection
-
+		
 		if( LOADER_OPTIONS.createSun == 1 and IBL_SET_DATAS.sunU != -1 and IBL_SET_DATAS.sunV != -1 ) then
 			sIBL_3dsmax_VRay_createSun IBL_SET_DATAS.sunColor IBL_SET_DATAS.sunMultiplier LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.sunU IBL_SET_DATAS.sunV LOADER_OPTIONS.sunAsVraySun
 	
@@ -363,7 +377,7 @@ fn sIBL_3dsmax_VRay_setup  =
 		
 		if( LOADER_OPTIONS.activateLinearWorkflow == 1 ) then
 			sIBL_3dsmax_VRay_activateLinearWorkflow LOADER_OPTIONS.createBackground
-		
+
 		print "sIBL_GUI | sIBL File Import Finished !"
 	)
 	else

@@ -77,6 +77,13 @@ fn sIBL_3dsmax_MR_deleteChildren currentNode =
 	)
 )
 
+fn sIBL_3dsmax_MR_getDefaultControllers currentNode =
+(
+	currentNode.Transform.controller = prs ()
+	currentNode.rotation.controller = Euler_XYZ ()
+	currentNode.scale.controller = bezier_scale ()
+)
+
 fn sIBL_3dsmax_MR_environmentDeletion =
 (
 	-- sIBL_Lights Group Children Deletion.
@@ -100,13 +107,16 @@ fn sIBL_3dsmax_MR_environmentDeletion =
 
 fn sIBL_3dsmax_MR_activateMentalRay =
 (
-	renderers.current = mental_ray_renderer()
-	
-	renderers.current.MinimumSamples = 0
-	renderers.current.MaximumSamples = 2
-	
-	if( ( maxVersion() )[1]/1000 >= 11 ) then
-		renderers.current.RestoreFinalGatherPreset 4
+	if( IsKindOf renderers.current mental_ray_renderer == False  ) then
+	(
+		renderers.current = mental_ray_renderer()
+		
+		renderers.current.MinimumSamples = 0
+		renderers.current.MaximumSamples = 2
+		
+		if( ( maxVersion() )[1]/1000 >= 11 ) then
+			renderers.current.RestoreFinalGatherPreset 4
+	)
 )
 
 fn sIBL_3dsmax_MR_hideLights =
@@ -123,6 +133,8 @@ fn sIBL_3dsmax_MR_getSIBLGroup =
 fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 (
 	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on
+	
+	sIBL_3dsmax_MR_getDefaultControllers feedbackSphere
 	
 	local normalModifier_ = Normalmodifier()
 	normalModifier_.flip = True
@@ -156,6 +168,8 @@ fn sIBL_3dsmax_MR_getLightsGroup =
 (
 	local sIBL_Point = Point name:"sIBL_Lights_Point" centermarker:off axistripod:off cross:off Box:off
 	local lightsGroup = group sIBL_Point name:"sIBL_Lights"
+	
+	sIBL_3dsmax_MR_getDefaultControllers lightsGroup
 
 	lightsGroup.parent = getNodeByName "sIBL_Datas"
 		
