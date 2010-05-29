@@ -82,6 +82,192 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class TemplatesOutliner_Worker( QThread ):
+	'''
+	This Class Is The TemplatesOutliner_Worker Class.
+	'''
+
+	# Custom Signals Definitions.
+	databaseChanged = pyqtSignal()
+
+	@core.executionTrace
+	def __init__( self, container ):
+		'''
+		This Method Initializes The Class.
+		
+		@param container: Object Container. ( Object )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		QThread.__init__( self, container )
+
+		# --- Setting Class Attributes. ---
+		self._container = container
+		self._signalsSlotsCenter = QObject()
+
+		self._timer = None
+		self._timerCycleMultiplier = 5
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
+	def timer( self ):
+		'''
+		This Method Is The Property For The _timer Attribute.
+
+		@return: self._timer. ( QTimer )
+		'''
+
+		return self._timer
+
+	@timer.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timer( self, value ):
+		'''
+		This Method Is The Setter Method For The _timer Attribute.
+
+		@param value: Attribute Value. ( QTimer )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
+
+	@timer.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timer( self ):
+		'''
+		This Method Is The Deleter Method For The _timer Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
+
+	@property
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Property For The _timerCycleMultiplier Attribute.
+
+		@return: self._timerCycleMultiplier. ( Float )
+		'''
+
+		return self._timerCycleMultiplier
+
+	@timerCycleMultiplier.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self, value ):
+		'''
+		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
+
+		@param value: Attribute Value. ( Float )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
+
+	@timerCycleMultiplier.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
+
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def run( self ):
+		'''
+		This Method Starts The QThread.
+		'''
+
+		self._timer = QTimer()
+		self._timer.moveToThread( self )
+		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
+
+		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates, Qt.DirectConnection )
+
+		self.exec_()
+
+	@core.executionTrace
+	def updateTemplates( self ):
+		'''
+		This Method Updates Database Templates If They Have Been Modified On Disk.
+		'''
+
+		needModelRefresh = False
+		for template in dbUtilities.common.getTemplates( self._container.coreDb.dbSession ) :
+			if template.path :
+				if os.path.exists( template.path ) :
+					storedStats = template.osStats.split( "," )
+					osStats = os.stat( template.path )
+					if str( osStats[8] ) != str( storedStats[8] ):
+						print template.name
+						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
+						if dbUtilities.common.updateTemplateContent( self._container.coreDb.dbSession, template ) :
+							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
+							needModelRefresh = True
+
+		needModelRefresh and self.emit( SIGNAL( "databaseChanged()" ) )
+
 class TemplatesOutliner( UiComponent ):
 	'''
 	This Class Is The TemplatesOutliner Class.
@@ -115,15 +301,14 @@ class TemplatesOutliner( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 
-		self._timer = None
-		self._timerCycleMultiplier = 5
-
 		self._coreDb = None
 
 		self._model = None
 		self._modelSelection = None
 
-		self._extension = "sIBLT"
+		self._templatesOutlinerWorkerThread = None
+
+		self._extension = ".sIBLT"
 
 		self._defaultCollections = None
 		self._factoryCollection = "Factory"
@@ -343,64 +528,6 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
-	def timer( self ):
-		'''
-		This Method Is The Property For The _timer Attribute.
-
-		@return: self._timer. ( QTimer )
-		'''
-
-		return self._timer
-
-	@timer.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self, value ):
-		'''
-		This Method Is The Setter Method For The _timer Attribute.
-
-		@param value: Attribute Value. ( QTimer )
-		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
-
-	@timer.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self ):
-		'''
-		This Method Is The Deleter Method For The _timer Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
-
-	@property
-	def timerCycleMultiplier( self ):
-		'''
-		This Method Is The Property For The _timerCycleMultiplier Attribute.
-
-		@return: self._timerCycleMultiplier. ( Float )
-		'''
-
-		return self._timerCycleMultiplier
-
-	@timerCycleMultiplier.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self, value ):
-		'''
-		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
-
-		@param value: Attribute Value. ( Float )
-		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
-
-	@timerCycleMultiplier.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self ):
-		'''
-		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
-
-	@property
 	def coreDb( self ):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
@@ -486,6 +613,35 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
+
+	@property
+	def templatesOutlinerWorkerThread( self ):
+		'''
+		This Method Is The Property For The _templatesOutlinerWorkerThread Attribute.
+
+		@return: self._templatesOutlinerWorkerThread. ( QThread )
+		'''
+
+		return self._templatesOutlinerWorkerThread
+
+	@templatesOutlinerWorkerThread.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def templatesOutlinerWorkerThread( self, value ):
+		'''
+		This Method Is The Setter Method For The _templatesOutlinerWorkerThread Attribute.
+
+		@param value: Attribute Value. ( QThread )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "templatesOutlinerWorkerThread" ) )
+
+	@templatesOutlinerWorkerThread.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def templatesOutlinerWorkerThread( self ):
+		'''
+		This Method Is The Deleter Method For The _templatesOutlinerWorkerThread Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "templatesOutlinerWorkerThread" ) )
 
 	@property
 	def extension( self ):
@@ -746,14 +902,14 @@ class TemplatesOutliner( UiComponent ):
 
 		self.ui.Templates_Outliner_splitter.setSizes( [ 16777215, 1 ] )
 
-		self._timer = QTimer( self )
-		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
+		self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker( self )
+		self._templatesOutlinerWorkerThread.start()
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
-		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Templates_Outliner_treeView_refreshView )
+		self._signalsSlotsCenter.connect( self._templatesOutlinerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1130,6 +1286,14 @@ class TemplatesOutliner( UiComponent ):
 		QDesktopServices.openUrl( url )
 
 	@core.executionTrace
+	def databaseChanged( self ):
+		'''
+		This Method Is Triggered By The TemplatesOutliner_Worker When The Database Has Changed.
+		'''
+
+		self.Templates_Outliner_treeView_refreshModel()
+
+	@core.executionTrace
 	def addTemplate( self ):
 		'''
 		This Method Adds A Template To The Database.
@@ -1142,11 +1306,12 @@ class TemplatesOutliner( UiComponent ):
 			LOGGER.debug( "> Chosen Template Path : '{0}'.".format( templatePath ) )
 			templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
 			collectionId = self.defaultCollections[self._factoryCollection] in templatePath and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
-			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
-			if dbUtilities.common.addTemplate( self._coreDb.dbSession, os.path.basename( templatePath ).replace( self._extension, "" ), templatePath, collectionId ) :
+			templateName = os.path.basename( templatePath ).replace( self._extension, "" )
+			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
+			if dbUtilities.common.addTemplate( self._coreDb.dbSession, templateName, templatePath, collectionId ) :
 				return True
 			else :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
+				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
 
 	@core.executionTrace
 	def removeTemplates( self ) :
@@ -1179,26 +1344,6 @@ class TemplatesOutliner( UiComponent ):
 				for template in selectedTemplates :
 					success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 				return success
-
-	@core.executionTrace
-	def updateTemplates( self ):
-		'''
-		This Method Updates Database Templates If They Have Been Modified On Disk.
-		'''
-
-		needModelRefresh = False
-		for template in dbUtilities.common.getTemplates( self._coreDb.dbSession ) :
-			if template.path :
-				if os.path.exists( template.path ) :
-					storedStats = template.osStats.split( "," )
-					osStats = os.stat( template.path )
-					if str( osStats[8] ) != str( storedStats[8] ):
-						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
-						if dbUtilities.common.updateTemplateContent( self._coreDb.dbSession, template ) :
-							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
-							needModelRefresh = True
-
-		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def updateTemplateLocation( self, template ):

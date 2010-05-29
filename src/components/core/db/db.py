@@ -203,7 +203,7 @@ class Db( Component ):
 		dbName = os.path.join( self._container.userApplicationDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
 		LOGGER.debug( "> Creating Database Engine." )
-		dbEngine = sqlalchemy.create_engine( "sqlite:///" + dbName )
+		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( dbName ) )
 
 		LOGGER.debug( "> Creating Database Metadatas." )
 		dbCatalog = dbUtilities.types.DbBase.metadata

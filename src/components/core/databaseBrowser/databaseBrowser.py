@@ -85,6 +85,191 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class DatabaseBrowser_Worker( QThread ):
+	'''
+	This Class Is The DatabaseBrowser_Worker Class.
+	'''
+
+	# Custom Signals Definitions.
+	databaseChanged = pyqtSignal()
+
+	@core.executionTrace
+	def __init__( self, container ):
+		'''
+		This Method Initializes The Class.
+		
+		@param container: Object Container. ( Object )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		QThread.__init__( self, container )
+
+		# --- Setting Class Attributes. ---
+		self._container = container
+		self._signalsSlotsCenter = QObject()
+
+		self._timer = None
+		self._timerCycleMultiplier = 5
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
+	def timer( self ):
+		'''
+		This Method Is The Property For The _timer Attribute.
+
+		@return: self._timer. ( QTimer )
+		'''
+
+		return self._timer
+
+	@timer.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timer( self, value ):
+		'''
+		This Method Is The Setter Method For The _timer Attribute.
+
+		@param value: Attribute Value. ( QTimer )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
+
+	@timer.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timer( self ):
+		'''
+		This Method Is The Deleter Method For The _timer Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
+
+	@property
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Property For The _timerCycleMultiplier Attribute.
+
+		@return: self._timerCycleMultiplier. ( Float )
+		'''
+
+		return self._timerCycleMultiplier
+
+	@timerCycleMultiplier.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self, value ):
+		'''
+		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
+
+		@param value: Attribute Value. ( Float )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
+
+	@timerCycleMultiplier.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
+
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def run( self ):
+		'''
+		This Method Starts The QThread.
+		'''
+
+		self._timer = QTimer()
+		self._timer.moveToThread( self )
+		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
+
+		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets, Qt.DirectConnection )
+
+		self.exec_()
+
+	@core.executionTrace
+	def updateSets( self ):
+		'''
+		This Method Updates Database Sets If They Have Been Modified On Disk.
+		'''
+
+		needModelRefresh = False
+		for set in dbUtilities.common.getSets( self._container.coreDb.dbSession ) :
+			if set.path :
+				if os.path.exists( set.path ) :
+					storedStats = set.osStats.split( "," )
+					osStats = os.stat( set.path )
+					if str( osStats[8] ) != str( storedStats[8] ):
+						LOGGER.info( "{0} | '{1}' Set IBL File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, set.name ) )
+						if dbUtilities.common.updateSetContent( self._container.coreDb.dbSession, set ) :
+							LOGGER.info( "{0} | '{1}' Set Has Been Updated !".format( self.__class__.__name__, set.name ) )
+							needModelRefresh = True
+
+		needModelRefresh and self.emit( SIGNAL( "databaseChanged()" ) )
+
 class DatabaseBrowser( UiComponent ):
 	'''
 	This Class Is The DatabaseBrowser Class.
@@ -126,9 +311,6 @@ class DatabaseBrowser( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 
-		self._timer = None
-		self._timerCycleMultiplier = 5
-
 		self._extension = ".ibl"
 
 		self._coreDb = None
@@ -136,6 +318,8 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model = None
 		self._modelSelection = None
+
+		self._databaseBrowserWorkerThread = None
 
 		self._displaySets = None
 
@@ -510,66 +694,6 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
-	def timer( self ):
-		'''
-		This Method Is The Property For The _timer Attribute.
-
-		@return: self._timer. ( QTimer )
-		'''
-
-		return self._timer
-
-	@timer.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self, value ):
-		'''
-		This Method Is The Setter Method For The _timer Attribute.
-
-		@param value: Attribute Value. ( QTimer )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
-
-	@timer.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self ):
-		'''
-		This Method Is The Deleter Method For The _timer Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
-
-	@property
-	def timerCycleMultiplier( self ):
-		'''
-		This Method Is The Property For The _timerCycleMultiplier Attribute.
-
-		@return: self._timerCycleMultiplier. ( Float )
-		'''
-
-		return self._timerCycleMultiplier
-
-	@timerCycleMultiplier.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self, value ):
-		'''
-		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
-
-		@param value: Attribute Value. ( Float )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
-
-	@timerCycleMultiplier.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self ):
-		'''
-		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
-
-	@property
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -719,6 +843,35 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
 
 	@property
+	def databaseBrowserWorkerThread( self ):
+		'''
+		This Method Is The Property For The _databaseBrowserWorkerThread Attribute.
+
+		@return: self._databaseBrowserWorkerThread. ( QThread )
+		'''
+
+		return self._databaseBrowserWorkerThread
+
+	@databaseBrowserWorkerThread.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def databaseBrowserWorkerThread( self, value ):
+		'''
+		This Method Is The Setter Method For The _databaseBrowserWorkerThread Attribute.
+
+		@param value: Attribute Value. ( QThread )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "databaseBrowserWorkerThread" ) )
+
+	@databaseBrowserWorkerThread.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def databaseBrowserWorkerThread( self ):
+		'''
+		This Method Is The Deleter Method For The _databaseBrowserWorkerThread Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "databaseBrowserWorkerThread" ) )
+
+	@property
 	def displaySets( self ):
 		'''
 		This Method Is The Property For The _displaySets Attribute.
@@ -805,13 +958,13 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
 		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
 
-		self._timer = QTimer( self )
-		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
+		self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
+		self._databaseBrowserWorkerThread.start()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets )
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Database_Browser_listView_refreshView )
+		self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1123,34 +1276,21 @@ class DatabaseBrowser( UiComponent ):
 		self.Database_Browser_listView_setItemSize()
 
 	@core.executionTrace
+	def databaseChanged( self ):
+		'''
+		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
+		'''
+
+		self.setCollectionsDisplaySets()
+		self.Database_Browser_listView_refreshModel()
+
+	@core.executionTrace
 	def setCollectionsDisplaySets( self ):
 		'''
 		This Method Gets The Display Sets Associated To Selected coreCollectionsOutliner Collections.
 		'''
 
 		self._displaySets = self._coreCollectionsOutliner.getCollectionsSets()
-
-	@core.executionTrace
-	def updateSets( self ):
-		'''
-		This Method Updates Database Sets If They Have Been Modified On Disk.
-		'''
-
-		needModelRefresh = False
-		for set in dbUtilities.common.getSets( self._coreDb.dbSession ) :
-			if set.path :
-				if os.path.exists( set.path ) :
-					storedStats = set.osStats.split( "," )
-					osStats = os.stat( set.path )
-					if str( osStats[8] ) != str( storedStats[8] ):
-						LOGGER.info( "{0} | '{1}' Set IBL File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, set.name ) )
-						if dbUtilities.common.updateSetContent( self._coreDb.dbSession, set ) :
-							LOGGER.info( "{0} | '{1}' Set Has Been Updated !".format( self.__class__.__name__, set.name ) )
-							needModelRefresh = True
-
-		if needModelRefresh :
-			self.setCollectionsDisplaySets()
-			self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def addSet( self, name, path, collectionId = None ):
