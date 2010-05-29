@@ -150,8 +150,12 @@ fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 		feedbackShader.selfIllumAmount = 100
 		feedbackShader.diffuse = color 255 255 255
 		feedbackShader.ambient = feedbackShader.diffuse
-		feedbackShader.diffuseMap =  Bitmaptexture fileName:texturePath
-		feedbackShader.diffuseMap.coordinates.u_tiling = -1
+		
+		feedBackTexture = Bitmaptexture fileName:texturePath
+		feedBackTexture.coordinates.u_tiling = -1
+		feedbackShader.diffuseMap =  feedBackTexture
+		feedbackShader.selfillumMap =  feedBackTexture
+
 		feedbackSphere.material = feedbackShader
 		showTextureMap feedbackShader True
 	)
