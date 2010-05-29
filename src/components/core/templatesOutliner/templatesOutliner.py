@@ -260,7 +260,6 @@ class TemplatesOutliner_Worker( QThread ):
 					storedStats = template.osStats.split( "," )
 					osStats = os.stat( template.path )
 					if str( osStats[8] ) != str( storedStats[8] ):
-						print template.name
 						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
 						if dbUtilities.common.updateTemplateContent( self._container.coreDb.dbSession, template ) :
 							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
