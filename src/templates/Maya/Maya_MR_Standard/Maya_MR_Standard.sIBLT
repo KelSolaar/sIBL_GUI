@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.7.3 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.7.4 | String | Template Release
+Date = @Date | 29 May 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -192,6 +192,8 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 		sIBL_Maya_MR_activateMentalRay();
 
 		sIBL_Maya_MR_environmentDeletion();
+
+		$camerasList = sIBL_Maya_MR_filterNonExistingNodes($camerasList);
 		
 		sIBL_Maya_MR_getMainLocator();
 
@@ -870,4 +872,13 @@ global proc sIBL_Maya_MR_addToDisplayLayer(string $layerName, string $object)
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+}
+
+global proc string[] sIBL_Maya_MR_filterNonExistingNodes(string $nodes[])
+{
+	string $filteredNodes[];
+	for($node in $nodes)
+	if(`objExists($node)` )
+		$filteredNodes[size($filteredNodes)] =  $node;
+	return $filteredNodes;
 }

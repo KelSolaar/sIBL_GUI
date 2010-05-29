@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.7 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.1.8 | String | Template Release
+Date = @Date | 29 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -145,7 +145,7 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 	sIBL_Maya_VRay_activateVRay();
 
 	sIBL_Maya_VRay_environmentDeletion();
-
+	
 	sIBL_Maya_VRay_getMainLocator();
 
 	if ($hideLights)
@@ -659,3 +659,13 @@ global proc sIBL_Maya_VRay_addToDisplayLayer( string $layerName, string $object)
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
 }
+
+global proc string[] sIBL_Maya_VRay_filterNonExistingNodes(string $nodes[])
+{
+	string $filteredNodes[];
+	for($node in $nodes)
+	if(`objExists($node)` )
+		$filteredNodes[size($filteredNodes)] =  $node;
+	return $filteredNodes;
+}
+

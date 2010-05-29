@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.7 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.0.8 | String | Template Release
+Date = @Date | 29 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -769,4 +769,13 @@ global proc sIBL_Maya_RfM_addToDisplayLayer( string $layerName, string $object)
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+}
+
+global proc string[] sIBL_Maya_RfM_filterNonExistingNodes(string $nodes[])
+{
+	string $filteredNodes[];
+	for($node in $nodes)
+	if(`objExists($node)` )
+		$filteredNodes[size($filteredNodes)] =  $node;
+	return $filteredNodes;
 }

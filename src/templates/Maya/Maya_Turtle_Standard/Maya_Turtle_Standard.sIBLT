@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_Turtle_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.9 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.2.0 | String | Template Release
+Date = @Date | 29 May 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -145,7 +145,7 @@ global proc sIBL_Maya_Turtle_setup(string $backgroundFilePath,
 	sIBL_Maya_Turtle_activateTurtle();
 
 	sIBL_Maya_Turtle_environmentDeletion();
-
+	
 	sIBL_Maya_Turtle_getMainLocator();
 
 	if ($hideLights)
@@ -725,4 +725,13 @@ global proc sIBL_Maya_Turtle_addToDisplayLayer( string $layerName, string $objec
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+}
+
+global proc string[] sIBL_Maya_Turtle_filterNonExistingNodes(string $nodes[])
+{
+	string $filteredNodes[];
+	for($node in $nodes)
+	if(`objExists($node)` )
+		$filteredNodes[size($filteredNodes)] =  $node;
+	return $filteredNodes;
 }

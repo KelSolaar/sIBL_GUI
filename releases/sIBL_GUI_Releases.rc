@@ -16,31 +16,31 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_S
 Comment = "Softimage Mental Ray Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_MR_Standard]
-Release = 1.7.3
+Release = 1.7.4
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standard/Stable/Maya_MR_Standard.zip"
 Comment = "Maya Mental Ray Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_VRay_Standard]
-Release = 1.1.7
+Release = 1.1.8
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Updates For sIBL_GUI 3.x.x."
+Comment = "VRay For Maya Template : Fixed An Execution Error When A Camera Is Parented Inside 'sIBL' Group."
 
 [Maya_VRay_Dome_Light]
-Release = 1.1.7
+Release = 1.1.8
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
 Comment = "VRay For Maya Dome Light Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_Turtle_Standard]
-Release = 1.1.9
+Release = 1.2.0
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
 Comment = "Maya Turtle Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_RfM_Standard]
-Release = 1.0.7
+Release = 1.0.8
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Standard/Stable/Maya_RfM_Standard.zip"
 Comment = "Renderman For Maya Template : Updates For sIBL_GUI 3.x.x."
@@ -49,7 +49,7 @@ Comment = "Renderman For Maya Template : Updates For sIBL_GUI 3.x.x."
 Release = 1.0.3
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
-Comment = "3dsMax Mental Ray Base Template : Updates For sIBL_GUI 3.x.x."
+Comment = "3dsMax Mental Ray Base Template : Various Updates And Fixes."
 
 [3dsMax_Scanline_Standard]
 Release = 0.9.9
@@ -61,4 +61,4 @@ Comment = "3dsMax Scanline Ray Base Template : Updates For sIBL_GUI 3.x.x."
 Release = 1.0.2
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Base Template : Updates For sIBL_GUI 3.x.x."
+Comment = "3dsMax VRay Base Template : Various Updates And Fixes."
