@@ -6,6 +6,7 @@ p{font-size : 12pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous 
 
 h3. 3.0.6 - Stable
 
+* Fixed a regression with Dynamic Lights attribute.
 * Binded FreeImage C/C++ imaging library, sIBL_GUI can now manipulate and access a lot more image formats.
 * Application walker is now skipping Mac Os X "._" files.
 
