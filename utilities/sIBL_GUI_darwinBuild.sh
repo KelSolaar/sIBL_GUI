@@ -11,7 +11,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf build dist
-python ../../utilities/sIBL_GUI_darwinSetup.py py2app --includes "foundations.strings,foundations.pkzip,ui.widgets.variable_QPushButton,sip,PyQt4.QtNetwork,PyQt4.QtWebKit,sqlalchemy,sqlalchemy.orm,sqlalchemy.ext,sqlalchemy.ext.declarative,sqlalchemy.databases" --no-strip
+python ../../utilities/sIBL_GUI_darwinSetup.py py2app --includes "foundations.strings,foundations.pkzip,ui.widgets.variable_QPushButton,libraries.freeImage.freeImage,sip,PyQt4.QtNetwork,PyQt4.QtWebKit,sqlalchemy,sqlalchemy.orm,sqlalchemy.ext,sqlalchemy.ext.declarative,sqlalchemy.databases" --no-strip
 rm -rf `find ./dist/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End
@@ -21,13 +21,13 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
-mkdir ./dist/sIBL_GUI.app/Contents/Resources/ui
+mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI.ui ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/sIBL_GUI_Layouts.rc ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Windows_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Darwin_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Linux_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
-mkdir ./dist/sIBL_GUI.app/Contents/Resources/resources
+mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Icon_Light_512.icns ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
@@ -50,9 +50,11 @@ cp  ../../src/resources/Preferences.png ./dist/sIBL_GUI.app/Contents/Resources/r
 cp  ../../src/resources/Preferences_Hover.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Preferences_Active.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Toolbar.png ./dist/sIBL_GUI.app/Contents/Resources/resources
-mkdir ./dist/sIBL_GUI.app/Contents/Resources/templates
+mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/templates
 cp -r ../../src/templates/Maya/* ./dist/sIBL_GUI.app/Contents/Resources/templates/
 cp -r ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
+mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources
+cp -r ../../src/libraries/freeImage/resources/* ./dist/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/qt.conf ./dist/sIBL_GUI.app/Contents/Resources/
 cp -r ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs

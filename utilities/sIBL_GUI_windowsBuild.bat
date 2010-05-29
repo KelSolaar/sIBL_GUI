@@ -53,6 +53,7 @@ xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\Maya\*" "Z:\sIBL_GUI\releases
 xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\Softimage\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
 xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\templates\XSI\*" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\templates\"
 xcopy /e /c /i /h /k /y "Z:\sIBL_GUI\src\components" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\components"
+xcopy /c /y "Z:\sIBL_GUI\src\libraries\freeImage\resources\FreeImage.dll" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\libraries\freeImage\resources\"
 echo ----------------------------------------------------------------
 echo Release - End
 echo ----------------------------------------------------------------
