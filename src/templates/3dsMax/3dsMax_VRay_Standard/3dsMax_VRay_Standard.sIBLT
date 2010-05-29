@@ -35,6 +35,7 @@ createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
 sunAsVraySun = @sunAsVraySun | 1 | Boolean | Sun As VRaySun Light
 createGround = @createGround | 1 | Boolean | Create Ground
+shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
 
@@ -55,10 +56,10 @@ sIBL_GUI
 */
 
 struct sIBL_datas ( backgroundFilePath, lightingFilePath, reflectionFilePath, sunU, sunV, sunColor, sunMultiplier, dynamicLights )
-struct sIBL_options ( createBackground, createLighting, createReflection,  createSun, createLights, createFeedBack, feedbackRadius, sunAsVraySun, hideLights, createGround, activateLinearWorkflow )
+struct sIBL_options ( createBackground, createLighting, createReflection,  createSun, createLights, createFeedBack, feedbackRadius, sunAsVraySun, hideLights, createGround, shadowCatcher, activateLinearWorkflow )
 	
 global IBL_SET_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti dynamicLights:"@dynamicLights"
-global LOADER_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius sunAsVraySun:@sunAsVraySun hideLights:@hideLights createGround:@createGround activateLinearWorkflow:@activateLinearWorkflow
+global LOADER_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius sunAsVraySun:@sunAsVraySun hideLights:@hideLights createGround:@createGround shadowCatcher:@shadowCatcher activateLinearWorkflow:@activateLinearWorkflow
 
 fn sIBL_3dsmax_VRay_deleteByName currentNode =
 (
@@ -142,8 +143,12 @@ fn sIBL_3dsmax_VRay_getFeedBack feedbackRadius createBackground texturePath =
 		feedbackShader.selfIllumAmount = 100
 		feedbackShader.diffuse = color 255 255 255
 		feedbackShader.ambient = feedbackShader.diffuse
-		feedbackShader.diffuseMap =  Bitmaptexture fileName:texturePath
-		feedbackShader.diffuseMap.coordinates.u_tiling = -1
+		
+		feedBackTexture = Bitmaptexture fileName:texturePath
+		feedBackTexture.coordinates.u_tiling = -1
+		feedbackShader.diffuseMap =  feedBackTexture
+		feedbackShader.selfillumMap =  feedBackTexture
+
 		feedbackSphere.material = feedbackShader
 		showTextureMap feedbackShader True
 	)
@@ -317,14 +322,24 @@ fn sIBL_3dsmax_VRay_connectFeedBackToLights =
 		paramWire.connect feedbackSphere.transform.controller[#Scale] lightsGroup.transform.controller[#Scale] "Scale"
 )
 
-fn sIBL_3dsmax_VRay_createGround currentScale =
+fn sIBL_3dsmax_VRay_createGround currentScale shadowCatcher =
 (
 	local currentScale = currentScale * ( sqrt 2 )
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
 	currentPlane.backfacecull = on
 	currentPlane.parent = getNodeByName "sIBL_Datas"
 	
-	local groundShader = VRayMtl name:"sIBL_GroundShader"
+	if( shadowCatcher == 1) then
+	(
+		local groundShader = VRayMtlWrapper name:"sIBL_GroundShader"
+		groundShader.baseMtl = VRayMtl  name:"sIBL_GroundShader_Base"
+		groundShader.matteSurface = on
+		groundShader.matte_shadows = on
+	)
+	else
+	(
+		local groundShader = VRayMtl name:"sIBL_GroundShader"
+	)
 	currentPlane.material = groundShader
 
 	currentPlane.name =  "sIBL_Ground"
@@ -373,7 +388,7 @@ fn sIBL_3dsmax_VRay_setup  =
 			sIBL_3dsmax_VRay_connectFeedBackToLights()
 
 		if( LOADER_OPTIONS.createGround == 1 ) then
-			sIBL_3dsmax_VRay_createGround LOADER_OPTIONS.feedbackRadius
+			sIBL_3dsmax_VRay_createGround LOADER_OPTIONS.feedbackRadius LOADER_OPTIONS.shadowCatcher
 		
 		if( LOADER_OPTIONS.activateLinearWorkflow == 1 ) then
 			sIBL_3dsmax_VRay_activateLinearWorkflow LOADER_OPTIONS.createBackground
