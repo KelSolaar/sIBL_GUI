@@ -14,6 +14,7 @@ h2. Table Of Content
 ** "Linux Platform":#LinuxPlatformInstallation 
 * "Usage":#Usage
 ** "User Preferences":#UserPreferences 
+** "Command Line Parameters":#CommandLineParameters 
 ** "Ibl Sets Wizard":#IblSetsWizard 
 ** "Interface":#Interface
 *** "Toolbar":#Toolbar
@@ -128,6 +129,16 @@ Structure Description :
 * *database* : Directory storing the SQLite database.
 ** *backup* : Directory used by the Database Backup component when it backups the database.
 * *components* : Directory storing user components.
+
+h3(#CommandLineParameters). Command Line Parameters
+
+sIBL_GUI accepts command line parameters :
+
+* *-h, --help* : Display The Help Message And Exit. ( Mac Os X and Linux only )
+* *-a, --about* : Display Application About Message. ( Mac Os X and Linux only )
+* *-v VERBOSITYLEVEL, --verbose=VERBOSITYLEVEL* : Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.
+
+Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : "cd" into "sIBL_GUI.app" folder and enter "./Contents/MacOS/sIBL_GUI" followed by the parameters.
 
 h3(#IblSetsWizard). Ibl Sets Wizard
 
