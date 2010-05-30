@@ -57,6 +57,8 @@
 #***********************************************************************************************
 import logging
 import os
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -65,6 +67,8 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import ui.widgets.messageBox as messageBox
+
 from foundations.walker import Walker
 from globals.constants import Constants
 from manager.component import Component
@@ -77,32 +81,31 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class SetsScanner( Component ):
+class SetsScanner_Worker( QThread ):
 	'''
-	This Class Is The SetsScanner Class.
+	This Class Is The SetsScanner_Worker Class.
 	'''
 
+	# Custom Signals Definitions.
+	databaseChanged = pyqtSignal()
+
 	@core.executionTrace
-	def __init__( self, name = None ):
+	def __init__( self, container ):
 		'''
 		This Method Initializes The Class.
 		
-		@param name: Component Name. ( String )
+		@param container: Object Container. ( Object )
 		'''
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		Component.__init__( self, name = name )
+		QThread.__init__( self )
 
 		# --- Setting Class Attributes. ---
-		self.deactivatable = True
-
-		self._container = None
+		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._extension = ".ibl"
-
-		self._coreDb = None
-		self._coreCollectionsOutliner = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -138,6 +141,36 @@ class SetsScanner( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -166,6 +199,162 @@ class SetsScanner( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "extension" ) )
+
+	@property
+	def newIblSets( self ):
+		'''
+		This Method Is The Property For The _newIblSets Attribute.
+
+		@return: self._newIblSets. ( Dictionary )
+		'''
+
+		return self._newIblSets
+
+	@newIblSets.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def newIblSets( self, value ):
+		'''
+		This Method Is The Setter Method For The _newIblSets Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "newIblSets" ) )
+
+	@newIblSets.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def newIblSets( self ):
+		'''
+		This Method Is The Deleter Method For The _newIblSets Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "newIblSets" ) )
+
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def run( self ):
+		'''
+		This Method Starts The QThread.
+		'''
+
+		self.scanSetsDirectories()
+
+	@core.executionTrace
+	def scanSetsDirectories( self ):
+		'''
+		This Method Scans Sets Directories.
+		'''
+
+		LOGGER.info( "{0} | Scanning Sets Directories For New Sets !".format( self.__class__.__name__ ) )
+
+		self._newIblSets = {}
+		paths = [path[0] for path in self._container.coreDb.dbSession.query( dbUtilities.types.DbSet.path ).all()]
+		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
+		needModelRefresh = False
+		for folder in folders :
+			walker = Walker( folder )
+			walker.walk( self._extension, "\._" )
+			for set_, path in walker.files.items() :
+				if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+					needModelRefresh = True
+					self._newIblSets[set_] = path
+
+		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
+
+		needModelRefresh and self.emit( SIGNAL( "databaseChanged()" ) )
+
+class SetsScanner( Component ):
+	'''
+	This Class Is The SetsScanner Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, name = None ):
+		'''
+		This Method Initializes The Class.
+		
+		@param name: Component Name. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		Component.__init__( self, name = name )
+
+		# --- Setting Class Attributes. ---
+		self.deactivatable = True
+
+		self._container = None
+		self._signalsSlotsCenter = None
+
+		self._coreDb = None
+		self._coreCollectionsOutliner = None
+
+		self._setsScannerWorkerThread = None
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDb( self ):
@@ -257,6 +446,35 @@ class SetsScanner( Component ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
 
+	@property
+	def setsScannerWorkerThread( self ):
+		'''
+		This Method Is The Property For The _setsScannerWorkerThread Attribute.
+
+		@return: self._setsScannerWorkerThread. ( QThread )
+		'''
+
+		return self._setsScannerWorkerThread
+
+	@setsScannerWorkerThread.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def setsScannerWorkerThread( self, value ):
+		'''
+		This Method Is The Setter Method For The _setsScannerWorkerThread Attribute.
+
+		@param value: Attribute Value. ( QThread )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "setsScannerWorkerThread" ) )
+
+	@setsScannerWorkerThread.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def setsScannerWorkerThread( self ):
+		'''
+		This Method Is The Deleter Method For The _setsScannerWorkerThread Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "setsScannerWorkerThread" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -271,10 +489,13 @@ class SetsScanner( Component ):
 		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._container = container
+		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+
+		self._setsScannerWorkerThread = SetsScanner_Worker( self )
 
 		self._activate()
 
@@ -287,10 +508,13 @@ class SetsScanner( Component ):
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._container = None
+		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
 		self._coreDatabaseBrowser = None
+
+		self._setsScannerWorkerThread = None
 
 		self._deactivate()
 
@@ -302,7 +526,8 @@ class SetsScanner( Component ):
 
 		LOGGER.debug( "> Initializing '{0}' Component.".format( self.__class__.__name__ ) )
 
-		pass
+		# Signals / Slots.
+		self._signalsSlotsCenter.connect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	def uninitialize( self ):
@@ -312,7 +537,8 @@ class SetsScanner( Component ):
 
 		LOGGER.debug( "> Uninitializing '{0}' Component.".format( self.__class__.__name__ ) )
 
-		pass
+		# Signals / Slots.
+		self._signalsSlotsCenter.disconnect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	def onStartup( self ):
@@ -322,35 +548,26 @@ class SetsScanner( Component ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		self.scanSetsDirectories()
+		self._setsScannerWorkerThread.start()
 
 	@core.executionTrace
-	def scanSetsDirectories( self ):
+	def databaseChanged( self ):
 		'''
-		This Method Scans Sets Directories.
+		This Method Is Triggered By The SetsScanner_Worker When The Database Has Changed.
 		'''
 
-		LOGGER.info( "{0} | Scanning Sets Directories For New Sets !".format( self.__class__.__name__ ) )
-
-		paths = [path[0] for path in self._coreDb.dbSession.query( dbUtilities.types.DbSet.path ).all()]
-		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
-		needUiRefresh = False
-		for folder in folders :
-			walker = Walker( folder )
-			walker.walk( self._extension, "\._" )
-			for set_, path in walker.files.items() :
-				if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
-					needUiRefresh = True
+		if self._setsScannerWorkerThread.newIblSets :
+			if messageBox.messageBox( "Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format( ", ".join( self._setsScannerWorkerThread.newIblSets.keys() ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+				for set_, path in self._setsScannerWorkerThread.newIblSets.items():
 					LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, set_ ) )
 					if not dbUtilities.common.addSet( self._coreDb.dbSession, set_, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
 						LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, set_ ) )
 
-		if needUiRefresh :
-			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-			self._coreDatabaseBrowser.setCollectionsDisplaySets()
-			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+				self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+				self._coreDatabaseBrowser.setCollectionsDisplaySets()
+				self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
-		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
+		self._setsScannerWorkerThread.exit()
 
 #***********************************************************************************************
 #***	Python End
