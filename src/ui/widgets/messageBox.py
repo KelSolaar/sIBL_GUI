@@ -132,19 +132,21 @@ def messageBox( type, title, message, icon = None, buttons = QMessageBox.Ok ):
 	return messageBox.exec_()
 
 @core.executionTrace
-def standaloneMessageBox( type, caption, message ):
+def standaloneMessageBox( type, caption, message, icon = None, buttons = QMessageBox.Ok ):
 	'''
 	This Definition Provides A Standalone Message Box.
 	
 	@param type: MessageBox Type. ( String )
 	@param caption: MessageBox Title. ( String )
 	@param message: MessageBox Message. ( String )	
+	@param icon: Custom Icon. ( QConstant )
+	@param buttons: Custom Buttons. ( QConstant )
 	'''
 
 	from PyQt4.QtGui import *
 
 	application = QApplication( sys.argv )
-	messageBox( type, caption, message )
+	messageBox( type, caption, message, icon, buttons )
 	sys.exit( application.exec_() )
 
 #***********************************************************************************************
