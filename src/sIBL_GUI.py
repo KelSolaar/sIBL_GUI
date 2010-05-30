@@ -211,30 +211,42 @@ class Preferences():
 		self._settings.setValue( "deactivatedComponents", QVariant( "" ) )
 		self._settings.endGroup()
 		self._settings.beginGroup( "Layouts" )
+		self._settings.setValue( "startupCentric_geometry", layoutSettings.value( "startupCentric/geometry" ) )
+		self._settings.setValue( "startupCentric_windowState", layoutSettings.value( "startupCentric/windowState" ) )
+		self._settings.setValue( "startupCentric_centralWidget", layoutSettings.value( "startupCentric/centralWidget" ) )
+		self._settings.setValue( "startupCentric_activeLabel", layoutSettings.value( "startupCentric/activeLabel" ) )
 		self._settings.setValue( "setsCentric_geometry", layoutSettings.value( "setsCentric/geometry" ) )
 		self._settings.setValue( "setsCentric_windowState", layoutSettings.value( "setsCentric/windowState" ) )
 		self._settings.setValue( "setsCentric_centralWidget", layoutSettings.value( "setsCentric/centralWidget" ) )
+		self._settings.setValue( "setsCentric_activeLabel", layoutSettings.value( "setsCentric/activeLabel" ) )
 		self._settings.setValue( "templatesCentric_geometry", layoutSettings.value( "templatesCentric/geometry" ) )
 		self._settings.setValue( "templatesCentric_windowState", layoutSettings.value( "templatesCentric/windowState" ) )
 		self._settings.setValue( "templatesCentric_centralWidget", layoutSettings.value( "templatesCentric/centralWidget" ) )
+		self._settings.setValue( "templatesCentric_activeLabel", layoutSettings.value( "templatesCentric/activeLabel" ) )
 		self._settings.setValue( "preferencesCentric_geometry", layoutSettings.value( "preferencesCentric/geometry" ) )
 		self._settings.setValue( "preferencesCentric_windowState", layoutSettings.value( "preferencesCentric/windowState" ) )
 		self._settings.setValue( "preferencesCentric_centralWidget", layoutSettings.value( "preferencesCentric/centralWidget" ) )
+		self._settings.setValue( "preferencesCentric_activeLabel", layoutSettings.value( "preferencesCentric/activeLabel" ) )
 		self._settings.setValue( "one_geometry", "" )
 		self._settings.setValue( "one_windowState", "" )
 		self._settings.setValue( "one_centralWidget", True )
+		self._settings.setValue( "one_activeLabel", "" )
 		self._settings.setValue( "two_geometry", "" )
 		self._settings.setValue( "two_windowState", "" )
 		self._settings.setValue( "two_centralWidget", True )
+		self._settings.setValue( "two_activeLabel", "" )
 		self._settings.setValue( "three_geometry", "" )
 		self._settings.setValue( "three_windowState", "" )
 		self._settings.setValue( "three_centralWidget", True )
+		self._settings.setValue( "three_activeLabel", "" )
 		self._settings.setValue( "four_geometry", "" )
 		self._settings.setValue( "four_windowState", "" )
 		self._settings.setValue( "four_centralWidget", True )
+		self._settings.setValue( "four_activeLabel", "" )
 		self._settings.setValue( "five_geometry", "" )
 		self._settings.setValue( "five_windowState", "" )
 		self._settings.setValue( "five_centralWidget", True )
+		self._settings.setValue( "five_activeLabel", "" )
 		self._settings.endGroup()
 		self._settings.beginGroup( "Others" )
 		self._settings.endGroup()
@@ -456,7 +468,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self.setLayoutsActiveLabelsShortcuts()
 
-		self.setDefaultLayout()
+		self.restoreStartupLayout()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1018,6 +1030,10 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param event: QEvent. ( QEvent )
 		'''
 
+		# Storing Current Layout
+		self.storeStartupLayout()
+		self._settings.settings.sync()
+
 		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
 		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
 		# foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
@@ -1152,7 +1168,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	@core.executionTrace
 	def activeLabel_OnClicked( self, activeLabel ):
 		'''
-		This Method Is Triggered When An Active Label Is CLicked.
+		This Method Is Triggered When An Active Label Is Clicked.
 		'''
 
 		self.restoreLayout( activeLabel )
@@ -1183,13 +1199,47 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._signalsSlotsCenter.connect( action, SIGNAL( "triggered()" ), lambda layout = layoutActiveLabel.layout : self.restoreLayout( layout ) )
 
 	@core.executionTrace
-	def setDefaultLayout( self ):
+	def getLayoutsActiveLabel( self ):
 		'''
-		This Method Sets The Default Layout.
+		This Method Returns The Layouts Active Label Index.
+
+		@return: Layouts Active Label Index. ( Integer )
 		'''
 
-		self.restoreLayout( "setsCentric" )
-		self._libraryActiveLabel.setChecked( True )
+		for index in range( len( self._layoutsActiveLabels ) ):
+			if self._layoutsActiveLabels[index].object_.isChecked():
+				return index
+
+	@core.executionTrace
+	def setLayoutsActiveLabel( self, index ):
+		'''
+		This Method Sets The Layouts Active Label.
+
+		@param index: Layouts Active Label. ( Integer )
+		'''
+
+		for index_ in range( len( self._layoutsActiveLabels ) ):
+			self._layoutsActiveLabels[index_].object_.setChecked( index == index_ and True or False )
+
+	@core.executionTrace
+	def restoreStartupLayout( self ):
+		'''
+		This Method Restores The Startup Layout.
+		'''
+
+		LOGGER.debug( " > Restoring Startup Layout." )
+
+		self.restoreLayout( UiConstants.frameworkStartupLayout )
+
+	@core.executionTrace
+	def storeStartupLayout( self ):
+		'''
+		This Method Restores The Startup Layout.
+		'''
+
+		LOGGER.debug( " > Storing Startup Layout." )
+
+		self.storeLayout( UiConstants.frameworkStartupLayout )
 
 	@core.executionTrace
 	def storeLayout( self, name ):
@@ -1204,6 +1254,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._settings.setKey( "Layouts", "{0}_geometry".format( name ), self.saveGeometry() )
 		self._settings.setKey( "Layouts", "{0}_windowState".format( name ), self.saveState() )
 		self._settings.setKey( "Layouts", "{0}_centralWidget".format( name ), self.centralwidget.isVisible() )
+		self._settings.setKey( "Layouts", "{0}_activeLabel".format( name ), self.getLayoutsActiveLabel() )
 
 	@core.executionTrace
 	def restoreLayout( self, name ):
@@ -1215,16 +1266,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
 
-		for layoutActiveLabel in self._layoutsActiveLabels :
-			name != layoutActiveLabel.layout and layoutActiveLabel.object_.setChecked( False )
-
-		if name == "setsCentric" :
-			self._libraryActiveLabel.setChecked( True )
-		elif name == "templatesCentric" :
-			self._exportActiveLabel.setChecked( True )
-		elif name == "preferencesCentric" :
-			self._preferencesActiveLabel.setChecked( True )
-
 		visibleComponents = [ "core.databaseBrowser" ]
 		for component, profile in self._componentsManager.components.items() :
 			profile.categorie == "ui" and component not in visibleComponents and self._componentsManager.getInterface( component ).ui and self._componentsManager.getInterface( component ).ui.hide()
@@ -1232,6 +1273,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.centralwidget.setVisible( self._settings.getKey( "Layouts", "{0}_centralWidget".format( name ) ).toBool() )
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
 		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
+		self.setLayoutsActiveLabel( self._settings.getKey( "Layouts", "{0}_activeLabel".format( name ) ).toInt()[0] )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
 	@core.executionTrace

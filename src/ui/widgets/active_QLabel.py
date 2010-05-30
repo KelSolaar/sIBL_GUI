@@ -354,6 +354,16 @@ class Active_QLabel( QLabel ):
 			self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
+	def isChecked( self ):
+		'''
+		This Method Returns The Widget Checked State.
+		
+		@return: Checked State. ( Boolean )
+		'''
+
+		return self._checked
+
+	@core.executionTrace
 	def setMenu( self, menu ):
 		'''
 		This Method Sets The Widget Menu.

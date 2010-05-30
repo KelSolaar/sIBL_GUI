@@ -105,6 +105,8 @@ class UiConstants():
 	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
 	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
 
+	frameworkStartupLayout = "startupCentric"
+
 	componentsDirectory = "components"
 
 	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
