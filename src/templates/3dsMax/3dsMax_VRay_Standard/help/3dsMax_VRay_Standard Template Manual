@@ -27,6 +27,7 @@ h3. Common Attributes
 h3. Additional Attributes
 
 * *Create Ground* : A Plane is added to the Scene.
+* *Ground Shadow* Catcher : A VRayMtlWrapper Shader is assigned to the Ground.
 * *Create FeedBack* : Create a viewport Visual Feedback with the current IBL LDR Background image.
 * *Sun As VRaySun Light* : The Sun will use a VRaySun light.
 * *Activate Linear Workflow* : Sets the Color Mapping values for Linear Workflow.
