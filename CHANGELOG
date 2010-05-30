@@ -1,10 +1,12 @@
-h1=. sIBL_GUI - 3.0.6 - Stable
+h1=. sIBL_GUI - 3.0.7 - Stable
 
 h2=. Change Log
 
 p{font-size : 11pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
 
 p{font-size : 11pt;}=. *Information Notice : Try running sIBL_GUI as Administrator if you are experiencing slow startup on Windows Vista / Seven.*
+
+h3. 3.0.7 - Stable
 
 h3. 3.0.6 - Stable
 
