@@ -8,9 +8,9 @@ p{font-size : 11pt;}=. *Information Notice : Try running sIBL_GUI as Administrat
 
 h3. 3.0.6 - Stable
 
-* Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may have two issues : 
-** The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I avoid implementing compatibility code.
-** Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. *It's however advised to remove it !* If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering problems while doing the merge.
+* Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may encounter two issues : 
+** The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I would like to avoid implementing compatibility code.
+** Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. *It's however advised to remove it !* If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering difficulties while doing the merge.
 * Moved Templates and Ibl Sets scanners to separate threads for increased performances.
 * Added support for command line parameters.
 * Fixed a regression with "Lights|DynamicLights" attribute export.
