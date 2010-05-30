@@ -200,7 +200,7 @@ class Db( Component ):
 
 
 		LOGGER.debug( "> Initializing '{0}' SQLite Database.".format( Constants.databaseFile ) )
-		dbName = os.path.join( self._container.userApplicationDirectory , Constants.databaseDirectory, Constants.databaseFile )
+		dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
 		LOGGER.debug( "> Creating Database Engine." )
 		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( dbName ) )

@@ -73,8 +73,7 @@ class RuntimeConstants():
 	loggingFile = None
 
 	application = None
-	userDatasDirectory = None
-	userApplicationDirectory = None
+	userApplicationDatasDirectory = None
 
 	uiFile = None
 	ui = None

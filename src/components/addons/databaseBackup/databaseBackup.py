@@ -494,8 +494,8 @@ class DatabaseBackup( Component ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		self._databaseFile = os.path.join( self._container.userApplicationDirectory, Constants.databaseDirectory, Constants.databaseFile )
-		self._destination = os.path.join( self._container.userApplicationDirectory, Constants.databaseDirectory, self._backupDirectory )
+		self._databaseFile = os.path.join( self._container.userApplicationDatasDirectory, Constants.databaseDirectory, Constants.databaseFile )
+		self._destination = os.path.join( self._container.userApplicationDatasDirectory, Constants.databaseDirectory, self._backupDirectory )
 
 		self.rotatingBackup()
 

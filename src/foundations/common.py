@@ -78,7 +78,7 @@ LOGGER = logging.getLogger( Constants.logger )
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def getSystemApplicationDatasDirectory():
+def getSystemDatasDirectory():
 	'''
 	This Definition Gets The User Application Datas Directory.
 
@@ -105,7 +105,7 @@ def getUserApplicationDatasDirectory():
 	@return: User Application Directory. ( String )
 	'''
 
-	return os.path.join( getSystemApplicationDatasDirectory(), Constants.providerDirectory, Constants.applicationDirectory )
+	return os.path.join( getSystemDatasDirectory(), Constants.providerDirectory, Constants.applicationDirectory )
 
 @core.executionTrace
 def closeHandler( logger, handler ):

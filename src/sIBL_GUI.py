@@ -335,7 +335,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._coreCollectionsOutliner = None
 		self._coreTemplatesOutliner = None
 		self._lastBrowsedPath = os.getcwd()
-		self._userApplicationDirectory = RuntimeConstants.userApplicationDirectory
+		self._userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
 		self._loggingMemoryHandler = RuntimeConstants.loggingSessionHandlerStream
 		self._settings = RuntimeConstants.settings
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
@@ -360,7 +360,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Initializing Component Manager. ---
 		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
-		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDirectory, Constants.userComponentsDirectory ) } )
+		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDatasDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
 
 		if not self._componentsManager.components :
@@ -717,34 +717,34 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "lastBrowsedPath" ) )
 
 	@property
-	def userApplicationDirectory( self ):
+	def userApplicationDatasDirectory( self ):
 		'''
-		This Method Is The Property For The _userApplicationDirectory Attribute.
+		This Method Is The Property For The _userApplicationDatasDirectory Attribute.
 
-		@return: self._userApplicationDirectory. ( String )
+		@return: self._userApplicationDatasDirectory. ( String )
 		'''
 
-		return self._userApplicationDirectory
+		return self._userApplicationDatasDirectory
 
-	@userApplicationDirectory.setter
+	@userApplicationDatasDirectory.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def userApplicationDirectory( self, value ):
+	def userApplicationDatasDirectory( self, value ):
 		'''
-		This Method Is The Setter Method For The _userApplicationDirectory Attribute.
+		This Method Is The Setter Method For The _userApplicationDatasDirectory Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "userApplicationDirectory" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "userApplicationDatasDirectory" ) )
 
-	@userApplicationDirectory.deleter
+	@userApplicationDatasDirectory.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def userApplicationDirectory( self ):
+	def userApplicationDatasDirectory( self ):
 		'''
-		This Method Is The Deleter Method For The _userApplicationDirectory Attribute.
+		This Method Is The Deleter Method For The _userApplicationDatasDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userApplicationDirectory" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userApplicationDatasDirectory" ) )
 
 	@property
 	def loggingMemoryHandler( self ):
@@ -1331,18 +1331,18 @@ def sIBL_GUI_start():
 	# Setting Application Verbose Level.
 	LOGGER.setLevel( logging.DEBUG )
 
-	# Setting User Preferences Directory.
-	RuntimeConstants.userDatasDirectory = foundations.common.getSystemApplicationDatasDirectory()
-	RuntimeConstants.userApplicationDirectory = foundations.common.getUserApplicationDatasDirectory()
-
-	if RuntimeConstants.userDatasDirectory :
-		setApplicationPreferencesDirectories( RuntimeConstants.userDatasDirectory ) or messageBox.standaloneMessageBox( "Error", "Error", "{0} Has Encountered An Error And Will Now Close !".format( Constants.applicationName ) ) or foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingSessionHandler ] )
+	# Setting User Application Datas Directory.
+	if parameters.userApplicationDatasDirectory :
+		RuntimeConstants.userApplicationDatasDirectory = parameters.userApplicationDatasDirectory
 	else :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userDatasDirectory, Constants.applicationName ) )
+		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
+
+	if not setUserApplicationDataDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
+		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName ) )
 		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 	# Getting The Logging File Path.
-	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.loggingDirectory, Constants.loggingFile )
+	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile )
 
 	try :
 		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
@@ -1363,7 +1363,7 @@ def sIBL_GUI_start():
 	LOGGER.debug( "> Initializing {0} !".format( Constants.applicationName ) )
 	LOGGER.debug( "> Retrieving Stored Verbose Level." )
 
-	RuntimeConstants.settingsFile = os.path.join( RuntimeConstants.userApplicationDirectory, Constants.settingsDirectory, Constants.settingsFile )
+	RuntimeConstants.settingsFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile )
 
 	RuntimeConstants.settings = Preferences( RuntimeConstants.settingsFile )
 
@@ -1419,22 +1419,22 @@ def sIBL_GUI_close() :
 	foundations.common.exit( 0, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
-def setApplicationPreferencesDirectories( path ):
+def setUserApplicationDataDirectory( path ):
 	'''
-	This Definition Sets The Application Preferences Directory.
+	This Definition Sets The Application Datas Directory.
 
 	@param path: Starting Point For The Directories Tree Creation. ( String )
 	'''
 
-	applicationDirectory = RuntimeConstants.userApplicationDirectory
+	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
 
-	LOGGER.debug( "> Current Application Preferences Directory '{0}'.".format( applicationDirectory ) )
-	if io.setLocalDirectory( applicationDirectory ) :
+	LOGGER.debug( "> Current Application Datas Directory '{0}'.".format( userApplicationDatasDirectory ) )
+	if io.setLocalDirectory( userApplicationDatasDirectory ) :
 		for directory in Constants.preferencesDirectories :
-				io.setLocalDirectory( os.path.join( applicationDirectory, directory ) ) or messageBox.standaloneMessageBox( "Critical", "Critical", "'{0}' Directory Creation Failed !".format( os.path.join( applicationDirectory, directory ) ) )
+				io.setLocalDirectory( os.path.join( userApplicationDatasDirectory, directory ) ) or messageBox.standaloneMessageBox( "Critical", "Critical", "'{0}' Directory Creation Failed !".format( os.path.join( userApplicationDatasDirectory, directory ) ) )
 		return True
 	else :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' Directory Creation Failed !".format( applicationDirectory ) )
+		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' Directory Creation Failed !".format( userApplicationDatasDirectory ) )
 
 @core.executionTrace
 def getHeaderMessage():
@@ -1469,6 +1469,7 @@ def getCommandLineParameters( argv ):
 	parser.add_option( "-h", "--help", action = "help", help = "'Display This Help Message And Exit.'" )
 	parser.add_option( "-a", "--about", action = "store_true", default = False, dest = "about", help = "'Display Application About Message.'" )
 	parser.add_option( "-v", "--verbose", action = "store", type = "int", dest = "verbosityLevel", help = "'Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'" )
+	parser.add_option( "-u", "--userApplicationDatasDirectory", action = "store", type = "string", dest = "userApplicationDatasDirectory", help = "'User Application Datas Directory'." )
 
 	parameters, args = parser.parse_args( argv )
 

@@ -137,6 +137,7 @@ sIBL_GUI accepts command line parameters :
 * *-h, --help* : Display The Help Message And Exit. ( Mac Os X and Linux only )
 * *-a, --about* : Display Application About Message. ( Mac Os X and Linux only )
 * *-v VERBOSITYLEVEL, --verbose=VERBOSITYLEVEL* : Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.
+* *-u USERAPPLICATIONDATASDIRECTORY, --userApplicationDatasDirectory=USERAPPLICATIONDATASDIRECTORY* : User Application Datas Directory. 
 
 Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : "cd" into "sIBL_GUI.app" folder and enter "./Contents/MacOS/sIBL_GUI" followed by the parameters.
 

@@ -865,7 +865,7 @@ class TemplatesOutliner( UiComponent ):
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 
-		self._defaultCollections = { self._factoryCollection : os.path.join( os.getcwd(), Constants.templatesDirectory ), self._userCollection : os.path.join( self._container.userApplicationDirectory, Constants.templatesDirectory ) }
+		self._defaultCollections = { self._factoryCollection : os.path.join( os.getcwd(), Constants.templatesDirectory ), self._userCollection : os.path.join( self._container.userApplicationDatasDirectory, Constants.templatesDirectory ) }
 
 		self.addDefaultTemplates()
 

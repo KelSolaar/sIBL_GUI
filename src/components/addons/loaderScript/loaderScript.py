@@ -549,7 +549,7 @@ class LoaderScript( UiComponent ):
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
-		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
+		self._ioDirectory = os.path.join( self._container.userApplicationDatasDirectory, Constants.ioDirectory, self._ioDirectory )
 		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
 
 		self._activate()

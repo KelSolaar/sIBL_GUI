@@ -1459,7 +1459,7 @@ class RemoteUpdater( object ):
 		if reply == 0 :
 			return os.path.join( os.getcwd(), Constants.templatesDirectory )
 		elif reply == 1 :
-			return os.path.join( self._container.container.userApplicationDirectory, Constants.templatesDirectory )
+			return os.path.join( self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory )
 		elif reply == 2 :
 			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
 
@@ -2030,7 +2030,7 @@ class OnlineUpdater( UiComponent ):
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 		self._addonsLocationsBrowser = self._container.componentsManager.components["addons.locationsBrowser"].interface
 
-		self._ioDirectory = os.path.join( self._container.userApplicationDirectory, Constants.ioDirectory, self._ioDirectory )
+		self._ioDirectory = os.path.join( self._container.userApplicationDatasDirectory, Constants.ioDirectory, self._ioDirectory )
 		not os.path.exists( self._ioDirectory ) and os.makedirs( self._ioDirectory )
 
 		self._networkAccessManager = QNetworkAccessManager()
