@@ -169,7 +169,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Templates</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -263,7 +263,7 @@
   <customwidget>
    <class>QWebView</class>
    <extends>QWidget</extends>
-   <header>PyQt4.QtWebKit</header>
+   <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -138,7 +138,7 @@ class DownloadManager( QObject ):
 		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = "resources/"
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
-		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
+		self._uiLogoPixmap = "sIBL_GUI_Small_Logo.png"
 
 		self._requests = None
 		self.requests = requests
@@ -342,33 +342,33 @@ class DownloadManager( QObject ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
 
 	@property
-	def uiLogoIcon( self ):
+	def uiLogoPixmap( self ):
 		'''
-		This Method Is The Property For The _uiLogoIcon Attribute.
+		This Method Is The Property For The _uiLogoPixmap Attribute.
 
-		@return: self._uiLogoIcon. ( String )
+		@return: self._uiLogoPixmap. ( String )
 		'''
 
-		return self._uiLogoIcon
+		return self._uiLogoPixmap
 
-	@uiLogoIcon.setter
+	@uiLogoPixmap.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self, value ):
+	def uiLogoPixmap( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiLogoIcon Attribute.
+		This Method Is The Setter Method For The _uiLogoPixmap Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoPixmap" ) )
 
-	@uiLogoIcon.deleter
+	@uiLogoPixmap.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self ):
+	def uiLogoPixmap( self ):
 		'''
-		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
+		This Method Is The Deleter Method For The _uiLogoPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoPixmap" ) )
 
 	@property
 	def requests( self ):
@@ -595,7 +595,7 @@ class DownloadManager( QObject ):
 
 		self._ui.Download_progressBar.setValue( 0 )
 		self._ui.Download_progressBar.hide()
-		self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
+		self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoPixmap ) ) )
 
 		self._ui.closeEvent = self.closeEvent
 
@@ -739,7 +739,8 @@ class RemoteUpdater( object ):
 		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = "resources/"
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
-		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
+		self._uiLogoPixmap = "sIBL_GUI_Small_Logo.png"
+		self._uiTemplatesPixmap = "sIBL_GUI_Templates.png"
 		self._uiLightGrayColor = QColor( 240, 240, 240 )
 		self._uiDarkGrayColor = QColor( 160, 160, 160 )
 		self._splitter = "|"
@@ -917,33 +918,62 @@ class RemoteUpdater( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
 
 	@property
-	def uiLogoIcon( self ):
+	def uiLogoPixmap( self ):
 		'''
-		This Method Is The Property For The _uiLogoIcon Attribute.
+		This Method Is The Property For The _uiLogoPixmap Attribute.
 
-		@return: self._uiLogoIcon. ( String )
+		@return: self._uiLogoPixmap. ( String )
 		'''
 
-		return self._uiLogoIcon
+		return self._uiLogoPixmap
 
-	@uiLogoIcon.setter
+	@uiLogoPixmap.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self, value ):
+	def uiLogoPixmap( self, value ):
 		'''
-		This Method Is The Setter Method For The _uiLogoIcon Attribute.
+		This Method Is The Setter Method For The _uiLogoPixmap Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoPixmap" ) )
 
-	@uiLogoIcon.deleter
+	@uiLogoPixmap.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self ):
+	def uiLogoPixmap( self ):
 		'''
-		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
+		This Method Is The Deleter Method For The _uiLogoPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoPixmap" ) )
+
+	@property
+	def uiTemplatesPixmap( self ):
+		'''
+		This Method Is The Property For The _uiTemplatesPixmap Attribute.
+
+		@return: self._uiTemplatesPixmap. ( String )
+		'''
+
+		return self._uiTemplatesPixmap
+
+	@uiTemplatesPixmap.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiTemplatesPixmap( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiTemplatesPixmap Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiTemplatesPixmap" ) )
+
+	@uiTemplatesPixmap.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiTemplatesPixmap( self ):
+		'''
+		This Method Is The Deleter Method For The _uiTemplatesPixmap Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiTemplatesPixmap" ) )
 
 	@property
 	def uiLightGrayColor( self ):
@@ -1290,7 +1320,7 @@ class RemoteUpdater( object ):
 			self._ui.sIBL_GUI_groupBox.hide()
 			self._ui.Get_sIBL_GUI_pushButton.hide()
 		else :
-			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoIcon ) ) )
+			self._ui.Logo_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLogoPixmap ) ) )
 			self._ui.Your_Version_label.setText( self._releases[Constants.applicationName].localVersion )
 			self._ui.Latest_Version_label.setText( self._releases[Constants.applicationName].repositoryVersion )
 			self._ui.Change_Log_webView.load( QUrl.fromEncoded( QByteArray( self._applicationChangeLogUrl ) ) )
@@ -1303,6 +1333,7 @@ class RemoteUpdater( object ):
 			self._ui.Templates_groupBox.hide()
 			self._ui.Get_Latest_Templates_pushButton.hide()
 		else :
+			self._ui.Templates_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiTemplatesPixmap ) ) )
 			self._ui.Templates_tableWidget.clear()
 			self._ui.Templates_tableWidget.setEditTriggers( QAbstractItemView.NoEditTriggers )
 			self._ui.Templates_tableWidget.setRowCount( len( templatesReleases ) )
