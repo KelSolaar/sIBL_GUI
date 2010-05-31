@@ -355,7 +355,7 @@ class LoggingWindow( UiComponent ):
 		This Method Sets The Logging TextEdit.
 		'''
 
-		self.ui.Logging_textEdit.setPlainText( QString( "".join( self._container.loggingMemoryHandler.stream ) ) )
+		self.ui.Logging_textEdit.setPlainText( QString( "".join( self._container.loggingSessionHandlerStream.stream ) ) )
 		self.ui.Logging_textEdit.moveCursor( QTextCursor.End )
 		self.ui.Logging_textEdit.ensureCursorVisible()
 
@@ -365,7 +365,7 @@ class LoggingWindow( UiComponent ):
 		This Method Updates The Logging TextEdit.
 		'''
 
-		memoryHandlerStack = len( self._container.loggingMemoryHandler.stream )
+		memoryHandlerStack = len( self._container.loggingSessionHandlerStream.stream )
 		if memoryHandlerStack != self._memoryHandlerStack :
 			self.setLoggingTextEdit()
 			self._memoryHandlerStack = memoryHandlerStack

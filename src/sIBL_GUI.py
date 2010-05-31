@@ -336,7 +336,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._coreTemplatesOutliner = None
 		self._lastBrowsedPath = os.getcwd()
 		self._userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
-		self._loggingMemoryHandler = RuntimeConstants.loggingSessionHandlerStream
+		self._loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
 		self._settings = RuntimeConstants.settings
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
 		self._libraryActiveLabel = None
@@ -747,34 +747,34 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userApplicationDatasDirectory" ) )
 
 	@property
-	def loggingMemoryHandler( self ):
+	def loggingSessionHandlerStream( self ):
 		'''
-		This Method Is The Property For The _loggingMemoryHandler Attribute.
+		This Method Is The Property For The _loggingSessionHandlerStream Attribute.
 
-		@return: self._loggingMemoryHandler. ( StreamObject )
+		@return: self._loggingSessionHandlerStream. ( StreamObject )
 		'''
 
-		return self._loggingMemoryHandler
+		return self._loggingSessionHandlerStream
 
-	@loggingMemoryHandler.setter
+	@loggingSessionHandlerStream.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def loggingMemoryHandler( self, value ):
+	def loggingSessionHandlerStream( self, value ):
 		'''
-		This Method Is The Setter Method For The _loggingMemoryHandler Attribute.
+		This Method Is The Setter Method For The _loggingSessionHandlerStream Attribute.
 
 		@param value: Attribute Value. ( StreamObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "loggingMemoryHandler" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "loggingSessionHandlerStream" ) )
 
-	@loggingMemoryHandler.deleter
+	@loggingSessionHandlerStream.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def loggingMemoryHandler( self ):
+	def loggingSessionHandlerStream( self ):
 		'''
-		This Method Is The Deleter Method For The _loggingMemoryHandler Attribute.
+		This Method Is The Deleter Method For The _loggingSessionHandlerStream Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "loggingMemoryHandler" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "loggingSessionHandlerStream" ) )
 
 	@property
 	def settings( self ):
