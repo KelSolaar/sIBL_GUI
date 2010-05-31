@@ -339,6 +339,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
 		self._settings = RuntimeConstants.settings
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
+		self._parameters = RuntimeConstants.parameters
 		self._libraryActiveLabel = None
 		self._exportActiveLabel = None
 		self._preferencesActiveLabel = None
@@ -838,6 +839,36 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "verbosityLevel" ) )
+
+	@property
+	def parameters( self ):
+		'''
+		This Method Is The Property For The _parameters Attribute.
+
+		@return: self._parameters. ( Object )
+		'''
+
+		return self._parameters
+
+	@parameters.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def parameters( self, value ):
+		'''
+		This Method Is The Setter Method For The _parameters Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "parameters" ) )
+
+	@parameters.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def parameters( self ):
+		'''
+		This Method Is The Deleter Method For The _parameters Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "parameters" ) )
 
 	@property
 	def libraryActiveLabel ( self ):
@@ -1470,6 +1501,7 @@ def getCommandLineParameters( argv ):
 	parser.add_option( "-a", "--about", action = "store_true", default = False, dest = "about", help = "'Display Application About Message.'" )
 	parser.add_option( "-v", "--verbose", action = "store", type = "int", dest = "verbosityLevel", help = "'Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'" )
 	parser.add_option( "-u", "--userApplicationDatasDirectory", action = "store", type = "string", dest = "userApplicationDatasDirectory", help = "'User Application Datas Directory'." )
+	parser.add_option( "-d", "--databaseDirectory", action = "store", type = "string", dest = "databaseDirectory", help = "'Database Directory'." )
 
 	parameters, args = parser.parse_args( argv )
 

@@ -230,9 +230,11 @@ class Db( Component ):
 
 		LOGGER.debug( "> Initializing '{0}' Component.".format( self.__class__.__name__ ) )
 
-
 		LOGGER.debug( "> Initializing '{0}' SQLite Database.".format( Constants.databaseFile ) )
-		self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
+		if self._container.parameters.databaseDirectory :
+			self._dbName = os.path.join( self._container.parameters.databaseDirectory, Constants.databaseFile )
+		else :
+			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
 		LOGGER.debug( "> Creating Database Engine." )
 		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( self._dbName ) )
