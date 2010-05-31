@@ -49,16 +49,16 @@ Comment = "Renderman For Maya Template : Updates For sIBL_GUI 3.x.x."
 Release = 1.0.3
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
-Comment = "3dsMax Mental Ray Base Template : Various Updates And Fixes."
+Comment = "3dsMax Mental Ray Template : Various Updates And Fixes."
 
 [3dsMax_Scanline_Standard]
 Release = 0.9.9
 Type = "Nightly"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanline_Standard/Nightly/3dsMax_Scanline_Standard.zip"
-Comment = "3dsMax Scanline Ray Base Template : Updates For sIBL_GUI 3.x.x."
+Comment = "3dsMax Scanline Template : Updates For sIBL_GUI 3.x.x."
 
 [3dsMax_VRay_Standard]
-Release = 1.0.2
+Release = 1.0.3
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Base Template : Various Updates And Fixes."
+Comment = "3dsMax VRay Template : Shadow Catching Ground Does'nt Block Environment Lighting Anymore."
