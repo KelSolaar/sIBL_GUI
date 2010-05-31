@@ -100,6 +100,8 @@ class Db( Component ):
 		self.deactivatable = False
 
 		self._container = None
+
+		self._dbName = None
 		self._dbSession = None
 
 	#***************************************************************************************
@@ -134,6 +136,36 @@ class Db( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def dbName( self ):
+		'''
+		This Method Is The Property For The _dbName Attribute.
+
+		@return: self._dbName. ( String )
+		'''
+
+		return self._dbName
+
+	@dbName.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbName( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbName Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbName" ) )
+
+	@dbName.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbName( self ):
+		'''
+		This Method Is The Deleter Method For The _dbName Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbName" ) )
 
 	@property
 	def dbSession( self ):
@@ -200,10 +232,10 @@ class Db( Component ):
 
 
 		LOGGER.debug( "> Initializing '{0}' SQLite Database.".format( Constants.databaseFile ) )
-		dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
+		self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
 		LOGGER.debug( "> Creating Database Engine." )
-		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( dbName ) )
+		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( self._dbName ) )
 
 		LOGGER.debug( "> Creating Database Metadatas." )
 		dbCatalog = dbUtilities.types.DbBase.metadata

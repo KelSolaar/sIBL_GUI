@@ -280,6 +280,8 @@ class DatabaseBackup( Component ):
 
 		self._container = None
 
+		self._coreDb = None
+
 		self._databaseFile = None
 		self._destination = None
 
@@ -319,6 +321,35 @@ class DatabaseBackup( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def coreDb( self ):
+		'''
+		This Method Is The Property For The _coreDb Attribute.
+
+		@return: self._coreDb. ( Object )
+		'''
+
+		return self._coreDb
+
+	@coreDb.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDb( self, value ):
+		'''
+		This Method Is The Setter Method For The _coreDb Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
+
+	@coreDb.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDb( self ):
+		'''
+		This Method Is The Deleter Method For The _coreDb Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
 
 	@property
 	def databaseFile( self ):
@@ -451,6 +482,8 @@ class DatabaseBackup( Component ):
 
 		self._container = container
 
+		self._coreDb = self._container.componentsManager.components["core.db"].interface
+
 		self._activate()
 
 	@core.executionTrace
@@ -462,6 +495,8 @@ class DatabaseBackup( Component ):
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._container = None
+
+		self._coreDb = None
 
 		self._deactivate()
 
@@ -494,8 +529,8 @@ class DatabaseBackup( Component ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		self._databaseFile = os.path.join( self._container.userApplicationDatasDirectory, Constants.databaseDirectory, Constants.databaseFile )
-		self._destination = os.path.join( self._container.userApplicationDatasDirectory, Constants.databaseDirectory, self._backupDirectory )
+		self._databaseFile = self._coreDb.dbName
+		self._destination = os.path.join( os.path.dirname( self._coreDb.dbName ), self._backupDirectory )
 
 		self.rotatingBackup()
 
