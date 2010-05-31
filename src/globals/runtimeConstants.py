@@ -64,6 +64,9 @@ class RuntimeConstants():
 	This Class Is The RuntimeConstants Class.
 	'''
 
+	parameters = None
+	args = None
+
 	loggingConsoleHandler = None
 	loggingFileHandler = None
 	loggingSessionHandler = None

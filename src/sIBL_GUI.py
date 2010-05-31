@@ -1321,9 +1321,9 @@ def sIBL_GUI_start():
 	'''
 
 	# Command Line Parameters Handling.
-	parameters, args = getCommandLineParameters( sys.argv )
+	RuntimeConstants.parameters, RuntimeConstants.args = getCommandLineParameters( sys.argv )
 
-	if parameters.about :
+	if RuntimeConstants.parameters.about :
 		for line in getHeaderMessage() :
 			sys.stdout.write( "{0}\n".format( line ) )
 		foundations.common.exit( 1, LOGGER, [] )
@@ -1332,8 +1332,8 @@ def sIBL_GUI_start():
 	LOGGER.setLevel( logging.DEBUG )
 
 	# Setting User Application Datas Directory.
-	if parameters.userApplicationDatasDirectory :
-		RuntimeConstants.userApplicationDatasDirectory = parameters.userApplicationDatasDirectory
+	if RuntimeConstants.parameters.userApplicationDatasDirectory :
+		RuntimeConstants.userApplicationDatasDirectory = RuntimeConstants.parameters.userApplicationDatasDirectory
 	else :
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
@@ -1369,7 +1369,7 @@ def sIBL_GUI_start():
 
 	os.path.exists( RuntimeConstants.settingsFile ) or RuntimeConstants.settings.setDefaultPreferences()
 
-	RuntimeConstants.verbosityLevel = parameters.verbosityLevel and parameters.verbosityLevel or RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
+	RuntimeConstants.verbosityLevel = RuntimeConstants.parameters.verbosityLevel and RuntimeConstants.parameters.verbosityLevel or RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
 	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( RuntimeConstants.verbosityLevel ) )
 	core.setVerbosityLevel( RuntimeConstants.verbosityLevel )
 
