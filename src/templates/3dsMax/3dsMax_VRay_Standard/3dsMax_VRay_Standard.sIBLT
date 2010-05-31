@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.2 | String | Template Release
-Date = @Date | 29 May 2010 | String | Date
+Release = @Release | 1.0.4 | String | Template Release
+Date = @Date | 31 May 2010 | String | Date
 Author = @Author | Dschaga / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -34,7 +34,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
 sunAsVraySun = @sunAsVraySun | 1 | Boolean | Sun As VRaySun Light
-createGround = @createGround | 0 | Boolean | Create Ground
+createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
@@ -335,6 +335,9 @@ fn sIBL_3dsmax_VRay_createGround currentScale shadowCatcher =
 		groundShader.baseMtl = VRayMtl  name:"sIBL_GroundShader_Base"
 		groundShader.matteSurface = on
 		groundShader.matte_shadows = on
+		
+		for property in #( "VRay_GI_VisibleToGI", "VRay_GI_VisibleToReflections", "VRay_GI_VisibleToRefractions" ) do
+			setUserProp currentPlane property false
 	)
 	else
 	(
