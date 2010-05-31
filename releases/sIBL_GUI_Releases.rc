@@ -58,7 +58,7 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanlin
 Comment = "3dsMax Scanline Template : Updates For sIBL_GUI 3.x.x."
 
 [3dsMax_VRay_Standard]
-Release = 1.0.3
+Release = 1.0.4
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Template : Shadow Catching Ground Does'nt Block Environment Lighting Anymore."
+Comment = "3dsMax VRay Template : Shadow Catching Ground Is Hidden In Reflections / Refractions."

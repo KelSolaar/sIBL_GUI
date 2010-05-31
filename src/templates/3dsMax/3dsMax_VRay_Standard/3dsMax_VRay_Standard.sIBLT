@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.3 | String | Template Release
+Release = @Release | 1.0.4 | String | Template Release
 Date = @Date | 31 May 2010 | String | Date
 Author = @Author | Dschaga / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
@@ -336,7 +336,8 @@ fn sIBL_3dsmax_VRay_createGround currentScale shadowCatcher =
 		groundShader.matteSurface = on
 		groundShader.matte_shadows = on
 		
-		setUserProp currentPlane "VRay_GI_VisibleToGI" false
+		for property in #( "VRay_GI_VisibleToGI", "VRay_GI_VisibleToReflections", "VRay_GI_VisibleToRefractions" ) do
+			setUserProp currentPlane property false
 	)
 	else
 	(
