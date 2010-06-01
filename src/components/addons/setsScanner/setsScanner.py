@@ -254,12 +254,14 @@ class SetsScanner_Worker( QThread ):
 		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
 		needModelRefresh = False
 		for folder in folders :
-			walker = Walker( folder )
-			walker.walk( self._extension, "\._" )
-			for set_, path in walker.files.items() :
-				if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( path ), "path" ) :
-					needModelRefresh = True
-					self._newIblSets[set_] = path
+			if os.path.exists( folder ):
+				walker = Walker( folder )
+				walker.walk( self._extension, "\._" )
+				for set_, path in walker.files.items() :
+					if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+						needModelRefresh = True
+						self._newIblSets[set_] = path
+			LOGGER.warning( "!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets !".format( folder ) )
 
 		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
 
