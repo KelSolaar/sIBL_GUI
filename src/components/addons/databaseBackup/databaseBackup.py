@@ -529,10 +529,11 @@ class DatabaseBackup( Component ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		self._databaseFile = self._coreDb.dbName
-		self._destination = os.path.join( os.path.dirname( self._coreDb.dbName ), self._backupDirectory )
+		if not self._container.parameters.databaseReadOnly :
+			self._databaseFile = self._coreDb.dbName
+			self._destination = os.path.join( os.path.dirname( self._coreDb.dbName ), self._backupDirectory )
 
-		self.rotatingBackup()
+			self.rotatingBackup()
 
 	@core.executionTrace
 	def rotatingBackup( self ):

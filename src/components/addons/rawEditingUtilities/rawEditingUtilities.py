@@ -521,13 +521,14 @@ class RawEditingUtilities( UiComponent ):
 
 		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._editSetInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
-		self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listView_editSetInTextEditorAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editSetInTextEditorAction )
+		if not self._container.parameters.databaseReadOnly :
+			self._editSetInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+			self._editSetInTextEditorAction.triggered.connect( self.Database_Browser_listView_editSetInTextEditorAction )
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editSetInTextEditorAction )
 
-		self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
-		self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeView_editSetInTextEditorAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction( self._editTemplateInTextEditorAction )
+			self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
+			self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeView_editSetInTextEditorAction )
+			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction( self._editTemplateInTextEditorAction )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -537,11 +538,12 @@ class RawEditingUtilities( UiComponent ):
 
 		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editSetInTextEditorAction )
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._editTemplateInTextEditorAction )
+		if not self._container.parameters.databaseReadOnly :
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editSetInTextEditorAction )
+			self._editSetInTextEditorAction = None
 
-		self._editSetInTextEditorAction = None
-		self._editTemplateInTextEditorAction = None
+			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._editTemplateInTextEditorAction )
+			self._editTemplateInTextEditorAction = None
 
 	@core.executionTrace
 	def Database_Browser_listView_editSetInTextEditorAction( self, checked ):

@@ -901,14 +901,15 @@ class TemplatesOutliner( UiComponent ):
 
 		self.ui.Templates_Outliner_splitter.setSizes( [ 16777215, 1 ] )
 
-		self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker( self )
-		self._templatesOutlinerWorkerThread.start()
+		if not self._container.parameters.databaseReadOnly :
+			self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker( self )
+			self._templatesOutlinerWorkerThread.start()
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
 		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Templates_Outliner_treeView_refreshView )
-		self._signalsSlotsCenter.connect( self._templatesOutlinerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.connect( self._templatesOutlinerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1124,29 +1125,30 @@ class TemplatesOutliner( UiComponent ):
 		This Method Sets The Templates_Outliner_treeView Actions.
 		'''
 
-		addTemplateAction = QAction( "Add Template ...", self.ui.Templates_Outliner_treeView )
-		addTemplateAction.triggered.connect( self.Templates_Outliner_treeView_addTemplateAction )
-		self.ui.Templates_Outliner_treeView.addAction( addTemplateAction )
+		if not self._container.parameters.databaseReadOnly :
+			addTemplateAction = QAction( "Add Template ...", self.ui.Templates_Outliner_treeView )
+			addTemplateAction.triggered.connect( self.Templates_Outliner_treeView_addTemplateAction )
+			self.ui.Templates_Outliner_treeView.addAction( addTemplateAction )
 
-		removeTemplatesAction = QAction( "Remove Template(s) ...", self.ui.Templates_Outliner_treeView )
-		removeTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_removeTemplatesAction )
-		self.ui.Templates_Outliner_treeView.addAction( removeTemplatesAction )
+			removeTemplatesAction = QAction( "Remove Template(s) ...", self.ui.Templates_Outliner_treeView )
+			removeTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_removeTemplatesAction )
+			self.ui.Templates_Outliner_treeView.addAction( removeTemplatesAction )
 
-		separatorAction = QAction( self.ui.Templates_Outliner_treeView )
-		separatorAction.setSeparator( True )
-		self.ui.Templates_Outliner_treeView.addAction( separatorAction )
+			separatorAction = QAction( self.ui.Templates_Outliner_treeView )
+			separatorAction.setSeparator( True )
+			self.ui.Templates_Outliner_treeView.addAction( separatorAction )
 
-		importDefaultTemplatesAction = QAction( "Import Default Templates", self.ui.Templates_Outliner_treeView )
-		importDefaultTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_importDefaultTemplatesAction )
-		self.ui.Templates_Outliner_treeView.addAction( importDefaultTemplatesAction )
+			importDefaultTemplatesAction = QAction( "Import Default Templates", self.ui.Templates_Outliner_treeView )
+			importDefaultTemplatesAction.triggered.connect( self.Templates_Outliner_treeView_importDefaultTemplatesAction )
+			self.ui.Templates_Outliner_treeView.addAction( importDefaultTemplatesAction )
 
-		filterTemplatesVersionsAction = QAction( "Filter Templates Versions", self.ui.Templates_Outliner_treeView )
-		filterTemplatesVersionsAction.triggered.connect( self.Templates_Outliner_treeView_filterTemplatesVersionsAction )
-		self.ui.Templates_Outliner_treeView.addAction( filterTemplatesVersionsAction )
+			filterTemplatesVersionsAction = QAction( "Filter Templates Versions", self.ui.Templates_Outliner_treeView )
+			filterTemplatesVersionsAction.triggered.connect( self.Templates_Outliner_treeView_filterTemplatesVersionsAction )
+			self.ui.Templates_Outliner_treeView.addAction( filterTemplatesVersionsAction )
 
-		separatorAction = QAction( self.ui.Templates_Outliner_treeView )
-		separatorAction.setSeparator( True )
-		self.ui.Templates_Outliner_treeView.addAction( separatorAction )
+			separatorAction = QAction( self.ui.Templates_Outliner_treeView )
+			separatorAction.setSeparator( True )
+			self.ui.Templates_Outliner_treeView.addAction( separatorAction )
 
 		displayHelpFilesAction = QAction( "Display Help File(s) ...", self.ui.Templates_Outliner_treeView )
 		displayHelpFilesAction.triggered.connect( self.Templates_Outliner_treeView_displayHelpFilesAction )

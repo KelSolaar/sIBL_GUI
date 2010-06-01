@@ -1053,17 +1053,18 @@ class CollectionsOutliner( UiComponent ):
 		This Method Sets The Collections Outliner Actions.
 		'''
 
-		addContentAction = QAction( "Add Content ...", self.ui.Collections_Outliner_treeView )
-		addContentAction.triggered.connect( self.Collections_Outliner_treeView_addContentAction )
-		self.ui.Collections_Outliner_treeView.addAction( addContentAction )
+		if not self._container.parameters.databaseReadOnly :
+			addContentAction = QAction( "Add Content ...", self.ui.Collections_Outliner_treeView )
+			addContentAction.triggered.connect( self.Collections_Outliner_treeView_addContentAction )
+			self.ui.Collections_Outliner_treeView.addAction( addContentAction )
 
-		addCollectionAction = QAction( "Add Collection ...", self.ui.Collections_Outliner_treeView )
-		addCollectionAction.triggered.connect( self.Collections_Outliner_treeView_addCollectionAction )
-		self.ui.Collections_Outliner_treeView.addAction( addCollectionAction )
+			addCollectionAction = QAction( "Add Collection ...", self.ui.Collections_Outliner_treeView )
+			addCollectionAction.triggered.connect( self.Collections_Outliner_treeView_addCollectionAction )
+			self.ui.Collections_Outliner_treeView.addAction( addCollectionAction )
 
-		removeCollectionsAction = QAction( "Remove Collection(s) ...", self.ui.Collections_Outliner_treeView )
-		removeCollectionsAction.triggered.connect( self.Collections_Outliner_treeView_removeCollectionsAction )
-		self.ui.Collections_Outliner_treeView.addAction( removeCollectionsAction )
+			removeCollectionsAction = QAction( "Remove Collection(s) ...", self.ui.Collections_Outliner_treeView )
+			removeCollectionsAction.triggered.connect( self.Collections_Outliner_treeView_removeCollectionsAction )
+			self.ui.Collections_Outliner_treeView.addAction( removeCollectionsAction )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_addContentAction( self, checked ):

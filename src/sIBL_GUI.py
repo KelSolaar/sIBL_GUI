@@ -1502,6 +1502,7 @@ def getCommandLineParameters( argv ):
 	parser.add_option( "-v", "--verbose", action = "store", type = "int", dest = "verbosityLevel", help = "'Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'" )
 	parser.add_option( "-u", "--userApplicationDatasDirectory", action = "store", type = "string", dest = "userApplicationDatasDirectory", help = "'User Application Datas Directory'." )
 	parser.add_option( "-d", "--databaseDirectory", action = "store", type = "string", dest = "databaseDirectory", help = "'Database Directory'." )
+	parser.add_option( "-r", "--databaseReadOnly", action = "store_true", default = False, dest = "databaseReadOnly", help = "'Database Read Only'." )
 
 	parameters, args = parser.parse_args( argv )
 

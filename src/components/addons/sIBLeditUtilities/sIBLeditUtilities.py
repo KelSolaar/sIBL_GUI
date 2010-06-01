@@ -420,9 +420,10 @@ class sIBLeditUtilities( UiComponent ):
 
 		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
-		self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listView_editInSIBLEditAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editInSIBLEditAction )
+		if not self._container.parameters.databaseReadOnly :
+			self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+			self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listView_editInSIBLEditAction )
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editInSIBLEditAction )
 
 	@core.executionTrace
 	def removeActions_( self ):

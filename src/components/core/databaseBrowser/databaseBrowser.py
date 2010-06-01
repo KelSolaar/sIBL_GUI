@@ -958,13 +958,14 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
 		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
 
-		self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
-		self._databaseBrowserWorkerThread.start()
+		if not self._container.parameters.databaseReadOnly :
+			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
+			self._databaseBrowserWorkerThread.start()
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Database_Browser_listView_refreshView )
-		self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1179,25 +1180,26 @@ class DatabaseBrowser( UiComponent ):
 		This Method Sets The Database Browser Actions.
 		'''
 
-		addContentAction = QAction( "Add Content ...", self.ui.Database_Browser_listView )
-		addContentAction.triggered.connect( self.Database_Browser_listView_addContentAction )
-		self.ui.Database_Browser_listView.addAction( addContentAction )
+		if not self._container.parameters.databaseReadOnly :
+			addContentAction = QAction( "Add Content ...", self.ui.Database_Browser_listView )
+			addContentAction.triggered.connect( self.Database_Browser_listView_addContentAction )
+			self.ui.Database_Browser_listView.addAction( addContentAction )
 
-		addSetAction = QAction( "Add Set ...", self.ui.Database_Browser_listView )
-		addSetAction.triggered.connect( self.Database_Browser_listView_addSetAction )
-		self.ui.Database_Browser_listView.addAction( addSetAction )
+			addSetAction = QAction( "Add Set ...", self.ui.Database_Browser_listView )
+			addSetAction.triggered.connect( self.Database_Browser_listView_addSetAction )
+			self.ui.Database_Browser_listView.addAction( addSetAction )
 
-		removeSetsAction = QAction( "Remove Set(s) ...", self.ui.Database_Browser_listView )
-		removeSetsAction.triggered.connect( self.Database_Browser_listView_removeSetsAction )
-		self.ui.Database_Browser_listView.addAction( removeSetsAction )
+			removeSetsAction = QAction( "Remove Set(s) ...", self.ui.Database_Browser_listView )
+			removeSetsAction.triggered.connect( self.Database_Browser_listView_removeSetsAction )
+			self.ui.Database_Browser_listView.addAction( removeSetsAction )
 
-		updateSetsLocationsAction = QAction( "Update Set(s) Location(s) ...", self.ui.Database_Browser_listView )
-		updateSetsLocationsAction.triggered.connect( self.Database_Browser_listView_updateSetsLocationsAction )
-		self.ui.Database_Browser_listView.addAction( updateSetsLocationsAction )
+			updateSetsLocationsAction = QAction( "Update Set(s) Location(s) ...", self.ui.Database_Browser_listView )
+			updateSetsLocationsAction.triggered.connect( self.Database_Browser_listView_updateSetsLocationsAction )
+			self.ui.Database_Browser_listView.addAction( updateSetsLocationsAction )
 
-		separatorAction = QAction( self.ui.Database_Browser_listView )
-		separatorAction.setSeparator( True )
-		self.ui.Database_Browser_listView.addAction( separatorAction )
+			separatorAction = QAction( self.ui.Database_Browser_listView )
+			separatorAction.setSeparator( True )
+			self.ui.Database_Browser_listView.addAction( separatorAction )
 
 	@core.executionTrace
 	def Database_Browser_listView_addContentAction( self, checked ):
