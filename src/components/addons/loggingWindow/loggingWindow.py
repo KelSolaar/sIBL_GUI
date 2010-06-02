@@ -106,6 +106,7 @@ class LoggingWindow( UiComponent ):
 		self._signalsSlotsCenter = None
 
 		self._timer = None
+		self._timerCycleMultiplier = 1.5
 
 		self._memoryHandlerStack = None
 
@@ -262,6 +263,35 @@ class LoggingWindow( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
 
+	@property
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Property For The _timerCycleMultiplier Attribute.
+
+		@return: self._timerCycleMultiplier. ( Float )
+		'''
+
+		return self._timerCycleMultiplier
+
+	@timerCycleMultiplier.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self, value ):
+		'''
+		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
+
+		@param value: Attribute Value. ( Float )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
+
+	@timerCycleMultiplier.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def timerCycleMultiplier( self ):
+		'''
+		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -304,7 +334,7 @@ class LoggingWindow( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self._timer = QTimer( self )
-		self._timer.start( Constants.defaultTimerCycle )
+		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
 		self.ui.Logging_textEdit.setReadOnly( True )
 		self.ui.Logging_textEdit.setWordWrapMode( QTextOption.NoWrap )

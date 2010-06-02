@@ -613,7 +613,6 @@ class Manager( object ) :
 
 		if value :
 			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "extension", value )
-			assert value.startswith( "." ), "'{0}' Attribute : '{1}' Doesn't Start With '.' !".format( "extension", value )
 		self._extension = value
 
 	@extension.deleter
