@@ -1253,26 +1253,6 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._layoutsActiveLabels[index_].object_.setChecked( index == index_ and True or False )
 
 	@core.executionTrace
-	def restoreStartupLayout( self ):
-		'''
-		This Method Restores The Startup Layout.
-		'''
-
-		LOGGER.debug( " > Restoring Startup Layout." )
-
-		self.restoreLayout( UiConstants.frameworkStartupLayout )
-
-	@core.executionTrace
-	def storeStartupLayout( self ):
-		'''
-		This Method Restores The Startup Layout.
-		'''
-
-		LOGGER.debug( " > Storing Startup Layout." )
-
-		self.storeLayout( UiConstants.frameworkStartupLayout )
-
-	@core.executionTrace
 	def storeLayout( self, name ):
 		'''
 		This Method Is Called When Storing A Layout.
@@ -1306,6 +1286,27 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		self.setLayoutsActiveLabel( self._settings.getKey( "Layouts", "{0}_activeLabel".format( name ) ).toInt()[0] )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
+
+	@core.executionTrace
+	def restoreStartupLayout( self ):
+		'''
+		This Method Restores The Startup Layout.
+		'''
+
+		LOGGER.debug( " > Restoring Startup Layout." )
+
+		self.restoreLayout( UiConstants.frameworkStartupLayout )
+		not self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
+
+	@core.executionTrace
+	def storeStartupLayout( self ):
+		'''
+		This Method Restores The Startup Layout.
+		'''
+
+		LOGGER.debug( " > Storing Startup Layout." )
+
+		self.storeLayout( UiConstants.frameworkStartupLayout )
 
 	@core.executionTrace
 	def helpDisplayMiscAction_OnTriggered( self ):
