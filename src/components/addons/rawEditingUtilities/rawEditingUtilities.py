@@ -106,6 +106,7 @@ class RawEditingUtilities( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
@@ -238,6 +239,36 @@ class RawEditingUtilities( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settings" ) )
+
+	@property
+	def settingsSection( self ):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self, value ):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settingsSection" ) )
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self ):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settingsSection" ) )
 
 	@property
 	def corePreferencesManager( self ):
@@ -436,6 +467,7 @@ class RawEditingUtilities( UiComponent ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
@@ -455,6 +487,7 @@ class RawEditingUtilities( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
@@ -576,7 +609,7 @@ class RawEditingUtilities( UiComponent ):
 		This Method Fills The Custom_Text_Editor_Path_lineEdit.
 		'''
 
-		customTextEditor = self._settings.getKey( "Others", "customTextEditor" )
+		customTextEditor = self._settings.getKey( self._settingsSection, "customTextEditor" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Custom_Text_Editor_Path_lineEdit", customTextEditor.toString() ) )
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText( customTextEditor.toString() )
 
@@ -590,7 +623,7 @@ class RawEditingUtilities( UiComponent ):
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom Text Editor Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText( QString( customTextEditorExecutable ) )
-			self._settings.setKey( "Others", "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Custom_Text_Editor_Path_lineEdit_OnEditFinished( self ) :
@@ -604,7 +637,7 @@ class RawEditingUtilities( UiComponent ):
 
 			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom Text Editor Executable File !".format( self.__class__.__name__ ) )
 		else :
-			self._settings.setKey( "Others", "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def editProvidedfile( self, file ):

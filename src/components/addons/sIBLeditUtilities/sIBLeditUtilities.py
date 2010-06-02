@@ -104,6 +104,7 @@ class sIBLeditUtilities( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
@@ -233,6 +234,36 @@ class sIBLeditUtilities( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settings" ) )
 
 	@property
+	def settingsSection( self ):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self, value ):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settingsSection" ) )
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self ):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settingsSection" ) )
+
+	@property
 	def corePreferencesManager( self ):
 		'''
 		This Method Is The Property For The _corePreferencesManager Attribute.
@@ -335,6 +366,8 @@ class sIBLeditUtilities( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
 		self._signalsSlotsCenter = QObject()
+		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
@@ -352,6 +385,8 @@ class sIBLeditUtilities( UiComponent ):
 		self.uiFile = None
 		self._container = None
 		self._signalsSlotsCenter = None
+		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
@@ -365,8 +400,6 @@ class sIBLeditUtilities( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
-
-		self._settings = self._container.settings
 
 		self.sIBLedit_Path_lineEdit_setUi()
 
@@ -387,8 +420,6 @@ class sIBLeditUtilities( UiComponent ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.disconnect( self.ui.sIBLedit_Path_toolButton, SIGNAL( "clicked()" ), self.sIBLedit_Path_toolButton_OnClicked )
 		self._signalsSlotsCenter.disconnect( self.ui.sIBLedit_Path_lineEdit, SIGNAL( "editingFinished()" ), self.sIBLedit_Path_lineEdit_OnEditFinished )
-
-		self._settings = None
 
 		self.removeActions_()
 
@@ -466,7 +497,7 @@ class sIBLeditUtilities( UiComponent ):
 		This Method Fills The sIBLedit_Path_lineEdit.
 		'''
 
-		sIBLeditExecutable = self._settings.getKey( "Others", "sIBLeditExecutable" )
+		sIBLeditExecutable = self._settings.getKey( self._settingsSection, "sIBLeditExecutable" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "sIBLedit_Path_lineEdit", sIBLeditExecutable.toString() ) )
 		self.ui.sIBLedit_Path_lineEdit.setText( sIBLeditExecutable.toString() )
 
@@ -480,7 +511,7 @@ class sIBLeditUtilities( UiComponent ):
 		if sIBLeditExecutable != "":
 			LOGGER.debug( "> Chosen sIBLedit Executable : '{0}'.".format( sIBLeditExecutable ) )
 			self.ui.sIBLedit_Path_lineEdit.setText( QString( sIBLeditExecutable ) )
-			self._settings.setKey( "Others", "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def sIBLedit_Path_lineEdit_OnEditFinished( self ) :
@@ -494,7 +525,7 @@ class sIBLeditUtilities( UiComponent ):
 
 			messageBox.messageBox( "Error", "Error", "{0} | Invalid sIBLedit Executable File !".format( self.__class__.__name__ ) )
 		else :
-			self._settings.setKey( "Others", "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
 
 #***********************************************************************************************
 #***	Python End

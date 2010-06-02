@@ -67,6 +67,7 @@ from PyQt4.QtGui import *
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from foundations.environment import Environment
 from globals.constants import Constants
@@ -106,6 +107,7 @@ class LocationsBrowser( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._coreComponentsManagerUi = None
 		self._corePreferencesManager = None
@@ -243,6 +245,36 @@ class LocationsBrowser( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settings" ) )
+
+	@property
+	def settingsSection( self ):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self, value ):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settingsSection" ) )
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self ):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settingsSection" ) )
 
 	@property
 	def coreComponentsManagerUi( self ):
@@ -561,6 +593,7 @@ class LocationsBrowser( UiComponent ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._coreComponentsManagerUi = self._container.componentsManager.components["core.componentsManagerUi"].interface
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
@@ -582,6 +615,7 @@ class LocationsBrowser( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._coreComponentsManagerUi = None
 		self._corePreferencesManager = None
@@ -739,7 +773,7 @@ class LocationsBrowser( UiComponent ):
 		This Method Fills The Custom_File_Browser_Path_lineEdit.
 		'''
 
-		customTextEditor = self._settings.getKey( "Others", "customFileBrowser" )
+		customTextEditor = self._settings.getKey( self._settingsSection, "customFileBrowser" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Custom_File_Browser_Path_lineEdit", customTextEditor.toString() ) )
 		self.ui.Custom_File_Browser_Path_lineEdit.setText( customTextEditor.toString() )
 
@@ -753,7 +787,7 @@ class LocationsBrowser( UiComponent ):
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom File Browser Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_File_Browser_Path_lineEdit.setText( QString( customTextEditorExecutable ) )
-			self._settings.setKey( "Others", "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Custom_File_Browser_Path_lineEdit_OnEditFinished( self ) :
@@ -767,7 +801,7 @@ class LocationsBrowser( UiComponent ):
 
 			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom File Browser Executable File !".format( self.__class__.__name__ ) )
 		else :
-			self._settings.setKey( "Others", "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
+			self._settings.setKey( self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Open_Output_Folder_pushButton_OnClicked( self ) :

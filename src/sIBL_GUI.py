@@ -248,8 +248,6 @@ class Preferences():
 		self._settings.setValue( "five_centralWidget", True )
 		self._settings.setValue( "five_activeLabel", "" )
 		self._settings.endGroup()
-		self._settings.beginGroup( "Others" )
-		self._settings.endGroup()
 
 	@core.executionTrace
 	def setKey( self, section, key, value ) :

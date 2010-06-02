@@ -1531,6 +1531,7 @@ class OnlineUpdater( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDb = None
@@ -1659,6 +1660,36 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		return self._settings
+
+	@property
+	def settingsSection( self ):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self, value ):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settingsSection" ) )
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self ):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settingsSection" ) )
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -2025,6 +2056,7 @@ class OnlineUpdater( UiComponent ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
@@ -2052,6 +2084,7 @@ class OnlineUpdater( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 		self._settings = None
+		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDb = None
@@ -2102,9 +2135,9 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		# Adding Settings Key If It Does'nt Exists.
-		self._settings.getKey( "Others", "checkForNewReleasesOnStartup" ).isNull() and self._settings.setKey( "Others", "checkForNewReleasesOnStartup", Qt.Checked )
+		self._settings.getKey( self._settingsSection, "checkForNewReleasesOnStartup" ).isNull() and self._settings.setKey( self._settingsSection, "checkForNewReleasesOnStartup", Qt.Checked )
 
-		checkForNewReleasesOnStartup = self._settings.getKey( "Others", "checkForNewReleasesOnStartup" )
+		checkForNewReleasesOnStartup = self._settings.getKey( self._settingsSection, "checkForNewReleasesOnStartup" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0] ) )
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState( checkForNewReleasesOnStartup.toInt()[0] )
 
@@ -2117,7 +2150,7 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Check For New Releases On Startup State : '{0}'.".format( self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() ) )
-		self._settings.setKey( "Others", "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
+		self._settings.setKey( self._settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState() )
 
 	@core.executionTrace
 	def Ignore_Non_Existing_Templates_checkBox_setUi( self ) :
@@ -2126,9 +2159,9 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		# Adding Settings Key If It Does'nt Exists.
-		self._settings.getKey( "Others", "ignoreNonExistingTemplates" ).isNull() and self._settings.setKey( "Others", "ignoreNonExistingTemplates", Qt.Checked )
+		self._settings.getKey( self._settingsSection, "ignoreNonExistingTemplates" ).isNull() and self._settings.setKey( self._settingsSection, "ignoreNonExistingTemplates", Qt.Checked )
 
-		ignoreNonExistingTemplates = self._settings.getKey( "Others", "ignoreNonExistingTemplates" )
+		ignoreNonExistingTemplates = self._settings.getKey( self._settingsSection, "ignoreNonExistingTemplates" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0] ) )
 		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState( ignoreNonExistingTemplates.toInt()[0] )
 
@@ -2141,7 +2174,7 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		LOGGER.debug( "> Ignore Non Existing Templates State : '{0}'.".format( self.ui.Ignore_Non_Existing_Templates_checkBox.checkState() ) )
-		self._settings.setKey( "Others", "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState() )
+		self._settings.setKey( self._settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState() )
 
 	@core.executionTrace
 	def onStartup( self ):
