@@ -576,7 +576,7 @@ class RawEditingUtilities( UiComponent ):
 		This Method Fills The Custom_Text_Editor_Path_lineEdit.
 		'''
 
-		customTextEditor = self._settings.getKey( "Others", "CustomTextEditor" )
+		customTextEditor = self._settings.getKey( "Others", "customTextEditor" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Custom_Text_Editor_Path_lineEdit", customTextEditor.toString() ) )
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText( customTextEditor.toString() )
 
@@ -590,7 +590,7 @@ class RawEditingUtilities( UiComponent ):
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom Text Editor Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText( QString( customTextEditorExecutable ) )
-			self._settings.setKey( "Others", "CustomTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
+			self._settings.setKey( "Others", "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Custom_Text_Editor_Path_lineEdit_OnEditFinished( self ) :
@@ -604,7 +604,7 @@ class RawEditingUtilities( UiComponent ):
 
 			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom Text Editor Executable File !".format( self.__class__.__name__ ) )
 		else :
-			self._settings.setKey( "Others", "CustomTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
+			self._settings.setKey( "Others", "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def editProvidedfile( self, file ):
