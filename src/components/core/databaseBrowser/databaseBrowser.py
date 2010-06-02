@@ -342,6 +342,8 @@ class DatabaseBrowser( UiComponent ):
 
 		self._container = None
 		self._signalsSlotsCenter = None
+		self._settings = None
+		self._settingsSection = None
 
 		self._extension = "ibl"
 
@@ -726,6 +728,66 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
+	def settings( self ):
+		'''
+		This Method Is The Property For The _settings Attribute.
+
+		@return: self._settings. ( QSettings )
+		'''
+
+		return self._settings
+
+	@settings.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settings( self, value ):
+		'''
+		This Method Is The Setter Method For The _settings Attribute.
+
+		@param value: Attribute Value. ( QSettings )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settings" ) )
+
+	@settings.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settings( self ):
+		'''
+		This Method Is The Deleter Method For The _settings Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settings" ) )
+
+	@property
+	def settingsSection( self ):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self, value ):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settingsSection" ) )
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def settingsSection( self ):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settingsSection" ) )
+
+	@property
 	def extension( self ):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -952,6 +1014,8 @@ class DatabaseBrowser( UiComponent ):
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
 		self._signalsSlotsCenter = QObject()
+		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
@@ -977,6 +1041,9 @@ class DatabaseBrowser( UiComponent ):
 
 		self._displaySets = dbUtilities.common.getSets( self._coreDb.dbSession )
 
+		listViewIconSize = self._settings.getKey( self._settingsSection, "listViewIconSize" )
+		self._listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self._listViewIconSize
+
 		self._model = QStandardItemModel()
 		self.Database_Browser_listView_setModel()
 
@@ -986,13 +1053,13 @@ class DatabaseBrowser( UiComponent ):
 
 		self.Database_Browser_listView_setView()
 
-		self.ui.Thumbnails_Size_horizontalSlider.setValue( self._listViewIconSize )
-		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
-		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
-
 		if not self._container.parameters.databaseReadOnly :
 			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
 			self._databaseBrowserWorkerThread.start()
+
+		self.ui.Thumbnails_Size_horizontalSlider.setValue( self._listViewIconSize )
+		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
+		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
@@ -1308,6 +1375,10 @@ class DatabaseBrowser( UiComponent ):
 		self._listViewIconSize = value
 
 		self.Database_Browser_listView_setItemSize()
+
+		# Storing Settings Key.
+		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "listViewIconSize", value ) )
+		self._settings.setKey( self._settingsSection, "listViewIconSize", value )
 
 	@core.executionTrace
 	def databaseChanged( self ):
