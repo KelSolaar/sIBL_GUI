@@ -181,7 +181,7 @@ def addSet( session, name, path, collection ):
 
 	LOGGER.debug( "> Adding : '{0}' Set To Database.".format( name ) )
 
-	if not filterSets( session, "^{0}$".format( path ), "path" ) :
+	if not filterSets( session, "^{0}$".format( re.escape( path ) ), "path" ) :
 		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
 		dbItem = dbUtilities.types.DbSet( name = name, path = path, collection = collection, osStats = osStats )
 		if dbItem.setContent() :
@@ -237,7 +237,7 @@ def updateSetLocation( session, set, path ):
 
 	LOGGER.debug( "> Updating '{0}' Set Location.".format( set ) )
 
-	if not filterSets( session, "^{0}$".format( path ), "path" ) :
+	if not filterSets( session, "^{0}$".format( re.escape( path ) ), "path" ) :
 		set.path = path
 		return updateSetContent( session, set )
 	else:
@@ -396,7 +396,7 @@ def addTemplate( session, name, path, collection ):
 
 	LOGGER.debug( "> Adding : '{0}' Template To Database.".format( name ) )
 
-	if not filterTemplates( session, "^{0}$".format( path ), "path" ) :
+	if not filterTemplates( session, "^{0}$".format( re.escape( path ) ), "path" ) :
 		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
 		dbItem = dbUtilities.types.DbTemplate( name = name, path = path, collection = collection, osStats = osStats )
 		if dbItem.setContent() :
@@ -452,7 +452,7 @@ def updateTemplateLocation( session, template, path ):
 
 	LOGGER.debug( "> Updating '{0}' Template Location.".format( template ) )
 
-	if not filterTemplates( session, "^{0}$".format( path ), "path" ) :
+	if not filterTemplates( session, "^{0}$".format( re.escape( path ) ), "path" ) :
 		template.path = path
 		return updateTemplateContent( session, template )
 	else:

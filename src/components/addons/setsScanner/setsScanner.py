@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import re
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -67,6 +68,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 
 from foundations.walker import Walker
@@ -258,10 +260,11 @@ class SetsScanner_Worker( QThread ):
 				walker = Walker( folder )
 				walker.walk( self._extension, "\._" )
 				for set_, path in walker.files.items() :
-					if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+					if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 						needModelRefresh = True
 						self._newIblSets[set_] = path
-			LOGGER.warning( "!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets !".format( folder ) )
+			else:
+				LOGGER.warning( "!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets !".format( folder ) )
 
 		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
 

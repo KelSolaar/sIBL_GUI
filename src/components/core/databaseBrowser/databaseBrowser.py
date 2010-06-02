@@ -1304,7 +1304,7 @@ class DatabaseBrowser( UiComponent ):
 		@param collectionId: Target Collection Id. ( Integer )		
 		'''
 
-		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( path ), "path" ) :
+		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
 			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
