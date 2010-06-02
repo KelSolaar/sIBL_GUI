@@ -739,7 +739,7 @@ class LocationsBrowser( UiComponent ):
 		This Method Fills The Custom_File_Browser_Path_lineEdit.
 		'''
 
-		customTextEditor = self._settings.getKey( "Others", "CustomFileBrowser" )
+		customTextEditor = self._settings.getKey( "Others", "customFileBrowser" )
 		LOGGER.debug( "> Setting '{0}' With Value '{1}'.".format( "Custom_File_Browser_Path_lineEdit", customTextEditor.toString() ) )
 		self.ui.Custom_File_Browser_Path_lineEdit.setText( customTextEditor.toString() )
 
@@ -753,7 +753,7 @@ class LocationsBrowser( UiComponent ):
 		if customTextEditorExecutable != "":
 			LOGGER.debug( "> Chosen Custom File Browser Executable : '{0}'.".format( customTextEditorExecutable ) )
 			self.ui.Custom_File_Browser_Path_lineEdit.setText( QString( customTextEditorExecutable ) )
-			self._settings.setKey( "Others", "CustomFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
+			self._settings.setKey( "Others", "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Custom_File_Browser_Path_lineEdit_OnEditFinished( self ) :
@@ -767,7 +767,7 @@ class LocationsBrowser( UiComponent ):
 
 			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom File Browser Executable File !".format( self.__class__.__name__ ) )
 		else :
-			self._settings.setKey( "Others", "CustomFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
+			self._settings.setKey( "Others", "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
 	def Open_Output_Folder_pushButton_OnClicked( self ) :
