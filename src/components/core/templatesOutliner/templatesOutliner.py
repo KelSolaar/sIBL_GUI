@@ -107,6 +107,8 @@ class TemplatesOutliner_Worker( QThread ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 
+		self._dbSession = self._container.coreDb.dbSessionMaker()
+
 		self._timer = None
 		self._timerCycleMultiplier = 5
 
@@ -172,6 +174,37 @@ class TemplatesOutliner_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
+	def dbSession( self ):
+		'''
+		This Method Is The Property For The _dbSession Attribute.
+
+		@return: self._dbSession. ( Object )
+		'''
+
+		return self._dbSession
+
+	@dbSession.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbSession Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbSession" ) )
+
+	@dbSession.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self ):
+		'''
+		This Method Is The Deleter Method For The _dbSession Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbSession" ) )
+
 
 	@property
 	def timer( self ):
@@ -255,14 +288,14 @@ class TemplatesOutliner_Worker( QThread ):
 		'''
 
 		needModelRefresh = False
-		for template in dbUtilities.common.getTemplates( self._container.coreDb.dbSession ) :
+		for template in dbUtilities.common.getTemplates( self._dbSession ) :
 			if template.path :
 				if os.path.exists( template.path ) :
 					storedStats = template.osStats.split( "," )
 					osStats = os.stat( template.path )
 					if str( osStats[8] ) != str( storedStats[8] ):
 						LOGGER.info( "{0} | '{1}' Template File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, template.name ) )
-						if dbUtilities.common.updateTemplateContent( self._container.coreDb.dbSession, template ) :
+						if dbUtilities.common.updateTemplateContent( self._dbSession, template ) :
 							LOGGER.info( "{0} | '{1}' Template Has Been Updated !".format( self.__class__.__name__, template.name ) )
 							needModelRefresh = True
 

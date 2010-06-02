@@ -103,6 +103,8 @@ class Db( Component ):
 
 		self._dbName = None
 		self._dbSession = None
+		self._dbEngine = None
+		self._dbCatalog = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -168,6 +170,66 @@ class Db( Component ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbName" ) )
 
 	@property
+	def dbEngine( self ):
+		'''
+		This Method Is The Property For The _dbEngine Attribute.
+
+		@return: self._dbEngine. ( Object )
+		'''
+
+		return self._dbEngine
+
+	@dbEngine.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbEngine( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbEngine Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbEngine" ) )
+
+	@dbEngine.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbEngine( self ):
+		'''
+		This Method Is The Deleter Method For The _dbEngine Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbEngine" ) )
+
+	@property
+	def dbCatalog( self ):
+		'''
+		This Method Is The Property For The _dbCatalog Attribute.
+
+		@return: self._dbCatalog. ( Object )
+		'''
+
+		return self._dbCatalog
+
+	@dbCatalog.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbCatalog( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbCatalog Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbCatalog" ) )
+
+	@dbCatalog.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbCatalog( self ):
+		'''
+		This Method Is The Deleter Method For The _dbCatalog Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbCatalog" ) )
+
+	@property
 	def dbSession( self ):
 		'''
 		This Method Is The Property For The _dbSession Attribute.
@@ -196,6 +258,36 @@ class Db( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbSession" ) )
+
+	@property
+	def dbSessionMaker( self ):
+		'''
+		This Method Is The Property For The _dbSessionMaker Attribute.
+
+		@return: self._dbSessionMaker. ( Object )
+		'''
+
+		return self._dbSessionMaker
+
+	@dbSessionMaker.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSessionMaker( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbSessionMaker Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbSessionMaker" ) )
+
+	@dbSessionMaker.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSessionMaker( self ):
+		'''
+		This Method Is The Deleter Method For The _dbSessionMaker Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbSessionMaker" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -237,16 +329,16 @@ class Db( Component ):
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
 		LOGGER.debug( "> Creating Database Engine." )
-		dbEngine = sqlalchemy.create_engine( "sqlite:///{0}?check_same_thread=False".format( self._dbName ) )
+		self._dbEngine = sqlalchemy.create_engine( "sqlite:///{0}".format( self._dbName ) )
 
 		LOGGER.debug( "> Creating Database Metadatas." )
-		dbCatalog = dbUtilities.types.DbBase.metadata
-		dbCatalog.create_all( dbEngine )
+		self._dbCatalog = dbUtilities.types.DbBase.metadata
+		self._dbCatalog.create_all( self._dbEngine )
 
 		LOGGER.debug( "> Initializing Database Session." )
-		dbSession_ = sqlalchemy.orm.sessionmaker( bind = dbEngine )
+		self._dbSessionMaker = sqlalchemy.orm.sessionmaker( bind = self._dbEngine )
 
-		self._dbSession = dbSession_()
+		self._dbSession = self._dbSessionMaker()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )

@@ -8,6 +8,7 @@ p{font-size : 11pt;}=. *Information Notice : Try running sIBL_GUI as Administrat
 
 h3. 3.0.7 - Stable
 
+* sIBL_GUI creates one session per thread for SQLite database access thus increasing application stability.
 * Added "-r / --databaseReadOnly" command line parameter that disable database edition methods.
 * Added "-d / --databaseDirectory" command line parameter allowing user to specify the database directory.
 * Added "-u / --userApplicationDatasDirectory" command line parameter allowing user application datas directory choice.

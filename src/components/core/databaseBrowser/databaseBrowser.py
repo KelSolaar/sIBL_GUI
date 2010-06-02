@@ -109,6 +109,8 @@ class DatabaseBrowser_Worker( QThread ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 
+		self._dbSession = self._container.coreDb.dbSessionMaker()
+
 		self._timer = None
 		self._timerCycleMultiplier = 5
 
@@ -174,6 +176,36 @@ class DatabaseBrowser_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
+	def dbSession( self ):
+		'''
+		This Method Is The Property For The _dbSession Attribute.
+
+		@return: self._dbSession. ( Object )
+		'''
+
+		return self._dbSession
+
+	@dbSession.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbSession Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbSession" ) )
+
+	@dbSession.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self ):
+		'''
+		This Method Is The Deleter Method For The _dbSession Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbSession" ) )
 
 	@property
 	def timer( self ):
@@ -257,14 +289,14 @@ class DatabaseBrowser_Worker( QThread ):
 		'''
 
 		needModelRefresh = False
-		for set in dbUtilities.common.getSets( self._container.coreDb.dbSession ) :
+		for set in dbUtilities.common.getSets( self._dbSession ) :
 			if set.path :
 				if os.path.exists( set.path ) :
 					storedStats = set.osStats.split( "," )
 					osStats = os.stat( set.path )
 					if str( osStats[8] ) != str( storedStats[8] ):
 						LOGGER.info( "{0} | '{1}' Set IBL File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, set.name ) )
-						if dbUtilities.common.updateSetContent( self._container.coreDb.dbSession, set ) :
+						if dbUtilities.common.updateSetContent( self._dbSession, set ) :
 							LOGGER.info( "{0} | '{1}' Set Has Been Updated !".format( self.__class__.__name__, set.name ) )
 							needModelRefresh = True
 

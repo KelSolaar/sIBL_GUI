@@ -107,6 +107,8 @@ class SetsScanner_Worker( QThread ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 
+		self._dbSession = self._container.coreDb.dbSessionMaker()
+
 		self._extension = "ibl"
 
 	#***************************************************************************************
@@ -171,6 +173,36 @@ class SetsScanner_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
+
+	@property
+	def dbSession( self ):
+		'''
+		This Method Is The Property For The _dbSession Attribute.
+
+		@return: self._dbSession. ( Object )
+		'''
+
+		return self._dbSession
+
+	@dbSession.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self, value ):
+		'''
+		This Method Is The Setter Method For The _dbSession Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dbSession" ) )
+
+	@dbSession.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def dbSession( self ):
+		'''
+		This Method Is The Deleter Method For The _dbSession Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dbSession" ) )
 
 	@property
 	def extension( self ):
@@ -252,7 +284,7 @@ class SetsScanner_Worker( QThread ):
 		LOGGER.info( "{0} | Scanning Sets Directories For New Sets !".format( self.__class__.__name__ ) )
 
 		self._newIblSets = {}
-		paths = [path[0] for path in self._container.coreDb.dbSession.query( dbUtilities.types.DbSet.path ).all()]
+		paths = [path[0] for path in self._dbSession.query( dbUtilities.types.DbSet.path ).all()]
 		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
 		needModelRefresh = False
 		for folder in folders :
@@ -260,11 +292,13 @@ class SetsScanner_Worker( QThread ):
 				walker = Walker( folder )
 				walker.walk( "\.{0}$".format( self._extension ), "\._" )
 				for set_, path in walker.files.items() :
-					if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
+					if not dbUtilities.common.filterSets( self._dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 						needModelRefresh = True
 						self._newIblSets[set_] = path
 			else:
 				LOGGER.warning( "!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets !".format( folder ) )
+
+		self._dbSession.close()
 
 		LOGGER.info( "{0} | Scanning Done !".format( self.__class__.__name__ ) )
 
