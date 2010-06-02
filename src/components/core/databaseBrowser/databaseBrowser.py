@@ -311,7 +311,7 @@ class DatabaseBrowser( UiComponent ):
 		self._container = None
 		self._signalsSlotsCenter = None
 
-		self._extension = ".ibl"
+		self._extension = "ibl"
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
@@ -1228,7 +1228,7 @@ class DatabaseBrowser( UiComponent ):
 		setPath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if setPath :
 			LOGGER.debug( "> Chosen Ibl Set Path : '{0}'.".format( setPath ) )
-			self.addSet( os.path.basename( setPath ).replace( self._extension, "" ), setPath )
+			self.addSet( os.path.basename( setPath ).replace( ".{0}".format( self._extension ), "" ), setPath )
 			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 			self.setCollectionsDisplaySets()
 			self.Database_Browser_listView_refreshModel()
@@ -1305,9 +1305,9 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
-			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
+			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, name ) )
 			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, os.path.basename( path ).replace( self._extension, "" ) ) )
+				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, name ) )
 		else:
 			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
@@ -1323,7 +1323,7 @@ class DatabaseBrowser( UiComponent ):
 		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
 
 		walker = Walker( directory )
-		walker.walk( self._extension, "\._" )
+		walker.walk( "\.{0}$".format( self._extension ), "\._" )
 		for set, path in walker.files.items() :
 			self.addSet( set, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() )
 
@@ -1351,9 +1351,9 @@ class DatabaseBrowser( UiComponent ):
 		@return: Update Success. ( Boolean )
 		'''
 
-		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Set Location :".format( set.name ), self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
+		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Set Location :".format( set.name ), self._container.lastBrowsedPath, "Ibls Files (*.{0})".format( self._extension ) ) ) )
 		if file :
-			LOGGER.info( "{0} | Updating '{1}' Set !".format( self.__class__.__name__, os.path.basename( file ).replace( self._extension, "" ) ) )
+			LOGGER.info( "{0} | Updating '{1}' Set With New Location : '{2}' !".format( self.__class__.__name__, set.name, file ) )
 			if not dbUtilities.common.updateSetLocation( self._coreDb.dbSession, set, file ) :
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Updating '{1}' Set !".format( self.__class__.__name__, set.name ) )
 				return False

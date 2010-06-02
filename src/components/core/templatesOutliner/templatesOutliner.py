@@ -308,7 +308,7 @@ class TemplatesOutliner( UiComponent ):
 
 		self._templatesOutlinerWorkerThread = None
 
-		self._extension = ".sIBLT"
+		self._extension = "sIBLT"
 
 		self._defaultCollections = None
 		self._factoryCollection = "Factory"
@@ -1303,12 +1303,12 @@ class TemplatesOutliner( UiComponent ):
 		@return: Addition Success. ( Boolean )
 		'''
 
-		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
+		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*.{0})".format( self._extension ) ) ) )
 		if templatePath :
 			LOGGER.debug( "> Chosen Template Path : '{0}'.".format( templatePath ) )
 			templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
 			collectionId = self.defaultCollections[self._factoryCollection] in templatePath and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
-			templateName = os.path.basename( templatePath ).replace( self._extension, "" )
+			templateName = os.path.basename( templatePath ).replace( ".{0}".format( self._extension ), "" )
 			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
 			if dbUtilities.common.addTemplate( self._coreDb.dbSession, templateName, templatePath, collectionId ) :
 				return True
@@ -1358,7 +1358,7 @@ class TemplatesOutliner( UiComponent ):
 
 		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Template Location :".format( template.name ), self._container.lastBrowsedPath, "Template Files (*{0})".format( self._extension ) ) ) )
 		if templatePath :
-			LOGGER.info( "{0} | Updating '{1}' Template Location !".format( self.__class__.__name__, os.path.basename( templatePath ).replace( self._extension, "" ) ) )
+			LOGGER.info( "{0} | Updating '{1}' Template With New Location '{2}' !".format( self.__class__.__name__, template.name, file ) )
 			if not dbUtilities.common.updateTemplateLocation( self._coreDb.dbSession, template, templatePath ) :
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Updating '{1}' Template !".format( self.__class__.__name__, template.name ) )
 				return False
@@ -1405,7 +1405,7 @@ class TemplatesOutliner( UiComponent ):
 
 		walker = Walker()
 		walker.root = directory
-		templates = walker.walk( self._extension, "\._" )
+		templates = walker.walk( "\.{0}$".format( self._extension ), "\._" )
 		for template in templates :
 			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( re.escape( templates[template] ) ), "path" ) :
 				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )

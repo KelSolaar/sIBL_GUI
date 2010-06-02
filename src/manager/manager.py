@@ -538,7 +538,7 @@ class Manager( object ) :
 	'''
 
 	@core.executionTrace
-	def __init__( self, paths = None, extension = ".rc", categories = { "default" : Component, "ui" : UiComponent } ):
+	def __init__( self, paths = None, extension = "rc", categories = { "default" : Component, "ui" : UiComponent } ):
 		'''
 		This Method Initializes The Class.
 		@param paths: Paths To Walk. ( String )
@@ -753,7 +753,7 @@ class Manager( object ) :
 			walker = Walker()
 			for path in self.paths.keys() :
 				walker.root = self.paths[path]
-				walker.walk( self.extension + "$", "\._" )
+				walker.walk( "\.{0}$".format( self._extension ), "\._" )
 				for component in walker.files.keys():
 					LOGGER.debug( "> Current Component : '{0}'.".format( component ) )
 					profile = self.getProfile( walker.files[component] )

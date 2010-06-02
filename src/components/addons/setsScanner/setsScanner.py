@@ -107,7 +107,7 @@ class SetsScanner_Worker( QThread ):
 		self._container = container
 		self._signalsSlotsCenter = QObject()
 
-		self._extension = ".ibl"
+		self._extension = "ibl"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -258,7 +258,7 @@ class SetsScanner_Worker( QThread ):
 		for folder in folders :
 			if os.path.exists( folder ):
 				walker = Walker( folder )
-				walker.walk( self._extension, "\._" )
+				walker.walk( "\.{0}$".format( self._extension ), "\._" )
 				for set_, path in walker.files.items() :
 					if not dbUtilities.common.filterSets( self._container.coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 						needModelRefresh = True
