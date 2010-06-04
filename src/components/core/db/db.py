@@ -315,6 +315,7 @@ class Db( Component ):
 		messageBox.messageBox( "Warning", "Warning", "{0} Component Cannot Be Deactivated !".format( self.__class__.__name__ ) )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, OSError )
 	def initialize( self ):
 		'''
 		This Method Initializes The Component.
@@ -324,7 +325,10 @@ class Db( Component ):
 
 		LOGGER.debug( "> Initializing '{0}' SQLite Database.".format( Constants.databaseFile ) )
 		if self._container.parameters.databaseDirectory :
-			self._dbName = os.path.join( self._container.parameters.databaseDirectory, Constants.databaseFile )
+			if os.path.exists( self._container.parameters.databaseDirectory ) :
+				self._dbName = os.path.join( self._container.parameters.databaseDirectory, Constants.databaseFile )
+			else :
+				raise OSError, "'{0}' Database Storing Directory Does'nt Exists !".format( self._container.parameters.databaseDirectory )
 		else :
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
