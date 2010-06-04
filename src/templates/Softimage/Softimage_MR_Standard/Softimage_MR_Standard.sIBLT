@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.2 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.0.3 | String | Template Release
+Date = @Date | 04 June 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -1161,7 +1161,7 @@ function sIBL_XSI_MR_activateColorManagement(createBackground, selectedPassesLis
 	// Adjust Background Gamma Color Because Of The Color Management.
 	if (createBackground) 
 	{
-		var Smart_IBL_Controls_Property = sIBL_getRequestedPropertiesAsCollection("Smart_IBL_Controls");
+		var Smart_IBL_Controls_Property = sIBL_XSI_MR_getRequestedPropertiesAsCollection("Smart_IBL_Controls");
 		Smart_IBL_Controls_Property.item(0).Background_Gamma.value = 1 / 2.2;
 	}
 }
