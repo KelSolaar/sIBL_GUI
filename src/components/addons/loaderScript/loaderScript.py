@@ -738,7 +738,7 @@ class LoaderScript( UiComponent ):
 		return overrideKeys
 
 	@core.executionTrace
-#	@foundations.exceptions.exceptionsHandler( None, False, OSError )
+	@foundations.exceptions.exceptionsHandler( None, False, OSError )
 	def outputLoaderScript( self ) :
 		'''
 		This Method Output The Loader Script.
@@ -780,7 +780,7 @@ class LoaderScript( UiComponent ):
 			interface = self._container.componentsManager.getInterface( component )
 			if interface.activated and profile.name != self.name :
 				hasattr( interface, "getOverrideKeys" ) and interface.getOverrideKeys()
-		raise "fd"
+
 		if self._container.parameters.loaderScriptsOutputDirectory :
 			if os.path.exists( self._container.parameters.loaderScriptsOutputDirectory ) :
 				loaderScript = File( os.path.join( self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript ) )
