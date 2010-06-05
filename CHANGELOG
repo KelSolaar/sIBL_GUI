@@ -15,6 +15,7 @@ h3. 3.0.7 - Stable
 * Session geometry is always restored on application start ignoring the state of the "Restore Geometry On Layout Change" preferences option.
 * Fixed setsScanner component regular expressions so that it manages to compare properly paths with non alphanumerical characters ( "C:/Program Files (x86)/" ).
 * Fixed walkers arguments regular expressions so that they search for correct files extensions.
+* Added "-o / --loaderScriptsOutputDirectory" command line parameter allowing user to specify loader scripts output directory.
 * Added "-r / --databaseReadOnly" command line parameter that disable database edition methods.
 * Added "-d / --databaseDirectory" command line parameter allowing user to specify the database directory.
 * Added "-u / --userApplicationDatasDirectory" command line parameter allowing user application datas directory choice.
