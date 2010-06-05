@@ -901,8 +901,6 @@ class TemplatesOutliner( UiComponent ):
 
 		self._defaultCollections = { self._factoryCollection : os.path.join( os.getcwd(), Constants.templatesDirectory ), self._userCollection : os.path.join( self._container.userApplicationDatasDirectory, Constants.templatesDirectory ) }
 
-		self.addDefaultTemplates()
-
 		self._activate()
 
 	@core.executionTrace
@@ -981,16 +979,20 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity( self._coreDb.dbSession )
+		if not self._container.parameters.databaseReadOnly :
+			# Adding Default Templates.			
+			self.addDefaultTemplates()
 
-		if erroneousTemplates :
-			for template in erroneousTemplates :
-				if erroneousTemplates[template] == "errorInexistingTemplateFile" :
-					if messageBox.messageBox( "Question", "error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, template.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						self.updateTemplateLocation( template )
-				else :
-					messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_ERRORS[erroneousTemplates[template]] ) )
-			self.Templates_Outliner_treeView_refreshModel()
+			# Templates Table Integrity Checking.
+			erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity( self._coreDb.dbSession )
+			if erroneousTemplates :
+				for template in erroneousTemplates :
+					if erroneousTemplates[template] == "errorInexistingTemplateFile" :
+						if messageBox.messageBox( "Question", "error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, template.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							self.updateTemplateLocation( template )
+					else :
+						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_ERRORS[erroneousTemplates[template]] ) )
+				self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setModel( self ):

@@ -1102,26 +1102,27 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		# Wizard If Sets Table Is Empty.
-		if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
-			if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-				directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
-				if directory :
-					self.addDirectory( directory )
-					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-					self.Database_Browser_listView_refreshModel()
+		if not self._container.parameters.databaseReadOnly :
+			# Wizard If Sets Table Is Empty.
+			if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
+				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
+					if directory :
+						self.addDirectory( directory )
+						self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+						self.Database_Browser_listView_refreshModel()
 
-		# Sets Table Integrity Checking.
-		erroneousSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
-		if erroneousSets :
-			for set in erroneousSets :
-				if erroneousSets[set] == "errorInexistingIblSetFile" :
-					if messageBox.messageBox( "Question", "error", "{0} | '{1}' Set File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, set.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						self.updateSetLocation( set )
-				else :
-					messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_ERRORS[erroneousSets[set]] ) )
-			self.setCollectionsDisplaySets()
-			self.Database_Browser_listView_refreshModel()
+			# Sets Table Integrity Checking.
+			erroneousSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
+			if erroneousSets :
+				for set in erroneousSets :
+					if erroneousSets[set] == "errorInexistingIblSetFile" :
+						if messageBox.messageBox( "Question", "error", "{0} | '{1}' Set File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, set.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							self.updateSetLocation( set )
+					else :
+						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_ERRORS[erroneousSets[set]] ) )
+				self.setCollectionsDisplaySets()
+				self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_setModel( self ):

@@ -2235,7 +2235,7 @@ class OnlineUpdater( UiComponent ):
 
 			releases = {}
 			for remoteObject in parser.sections :
-				if remoteObject != Constants.applicationName :
+				if remoteObject != Constants.applicationName and not self._container.parameters.databaseReadOnly :
 					dbTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( remoteObject ), "name" )
 					dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
 					if dbTemplate :

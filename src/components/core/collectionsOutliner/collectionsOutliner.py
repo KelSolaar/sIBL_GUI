@@ -818,8 +818,6 @@ class CollectionsOutliner( UiComponent ):
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 
-		self.addDefaultCollection()
-
 		self._activate()
 
 	@core.executionTrace
@@ -884,6 +882,16 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Component Widget Cannot Be Removed !".format( self.name ) )
+
+	@core.executionTrace
+	def onStartup( self ):
+		'''
+		This Method Is Called On Framework Startup.
+		'''
+
+		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+
+		not self._container.parameters.databaseReadOnly and self.addDefaultCollection()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setModel( self ):
