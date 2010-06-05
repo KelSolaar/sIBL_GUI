@@ -88,14 +88,15 @@ from manager.manager import Manager
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
+# Starting The Console Handler.
+if not hasattr( sys, "frozen" ) and not ( platform.system() == "Windows" or platform.system() == "Microsoft" ) :
+	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.__stdout__ )
+	RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
+	LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
+
 # Redirecting Standard Output And Error.
 sys.stdout = core.StandardMessageHook( LOGGER )
 sys.stderr = core.StandardMessageHook( LOGGER )
-
-# Starting The Console Handler.
-RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.__stdout__ )
-RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
 RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
 if os.path.exists( RuntimeConstants.uiFile ):
@@ -1406,9 +1407,6 @@ def sIBL_GUI_start():
 	RuntimeConstants.verbosityLevel = RuntimeConstants.parameters.verbosityLevel and RuntimeConstants.parameters.verbosityLevel or RuntimeConstants.settings.getKey( "Settings", "verbosityLevel" ).toInt()[0]
 	LOGGER.debug( "> Setting Logger Verbosity Level To : '{0}'.".format( RuntimeConstants.verbosityLevel ) )
 	core.setVerbosityLevel( RuntimeConstants.verbosityLevel )
-
-	if hasattr( sys, "frozen" ) :
-		foundations.common.closeHandler ( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 	# Starting The Session Handler.
 	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
