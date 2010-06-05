@@ -8,6 +8,7 @@ p{font-size : 11pt;}=. *Information Notice : Try running sIBL_GUI as Administrat
 
 h3. 3.0.7 - Stable
 
+* Standard Output and Standard Errors messages are redirected to the Logging Window.
 * sIBL_GUI creates one session per thread for SQLite database access thus increasing application stability.
 * Thumbnails size preference is restored on application start.
 * Each component has its own section in the preferences file, resulting in a better and stronger file structure. ( You will will need to reconfigure components preferences ).
