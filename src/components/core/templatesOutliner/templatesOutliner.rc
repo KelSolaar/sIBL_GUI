@@ -2,7 +2,7 @@
 Name = core.templatesOutliner
 Module = templatesOutliner
 Object = TemplatesOutliner
-Rank = 20
+Rank = 30
 Version = 1.0
 
 [Informations]

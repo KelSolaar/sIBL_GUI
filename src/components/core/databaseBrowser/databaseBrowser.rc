@@ -2,7 +2,7 @@
 Name = core.databaseBrowser
 Module = databaseBrowser
 Object = DatabaseBrowser
-Rank = 20
+Rank = 25
 Version = 1.0
 
 [Informations]
