@@ -94,10 +94,6 @@ if not hasattr( sys, "frozen" ) and not ( platform.system() == "Windows" or plat
 	RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 	LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
-# Redirecting Standard Output And Error.
-sys.stdout = core.StandardMessageHook( LOGGER )
-sys.stderr = core.StandardMessageHook( LOGGER )
-
 RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
 if os.path.exists( RuntimeConstants.uiFile ):
 	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
@@ -1362,6 +1358,10 @@ def sIBL_GUI_start():
 		for line in getHeaderMessage() :
 			sys.stdout.write( "{0}\n".format( line ) )
 		foundations.common.exit( 1, LOGGER, [] )
+
+	# Redirecting Standard Output And Error Messages.
+	sys.stdout = core.StandardMessageHook( LOGGER )
+	sys.stderr = core.StandardMessageHook( LOGGER )
 
 	# Setting Application Verbose Level.
 	LOGGER.setLevel( logging.DEBUG )
