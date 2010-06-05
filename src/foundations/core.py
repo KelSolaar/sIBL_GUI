@@ -145,13 +145,6 @@ class StandardMessageHook:
 		for handler in self._logger.__dict__["handlers"] :
 			handler.stream.write( message )
 
-	def flush( self ):
-		'''
-		This Method Is Provided For Compatibility Reasons.
-		'''
-
-		pass
-
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
