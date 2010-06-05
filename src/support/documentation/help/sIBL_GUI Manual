@@ -139,7 +139,7 @@ sIBL_GUI accepts command line parameters :
 * *-v VERBOSITYLEVEL, --verbose=VERBOSITYLEVEL* : Application verbosity levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.
 * *-u USERAPPLICATIONDATASDIRECTORY, --userApplicationDatasDirectory=USERAPPLICATIONDATASDIRECTORY* : User application datas directory ( Preferences directory ). 
 * *-d DATABASEDIRECTORY, --databaseDirectory=DATABASEDIRECTORY* : Database directory.
-* *-r DATABASEDIRECTORY, --databaseReadOnly* : Database is read only, database write access methods are not exposed into the interface.
+* *-r databaseReadOnly, --databaseReadOnly* : Database is read only, database write access methods are not exposed into the interface.
 * *-o LOADERSCRIPTSOUTPUTDIRECTORY, --loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY* : Loader scripts output directory.
 
 Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : "cd" into "sIBL_GUI.app" folder and enter "./Contents/MacOS/sIBL_GUI" followed by the parameters.
