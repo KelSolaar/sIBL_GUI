@@ -328,7 +328,7 @@ class Db( Component ):
 			if os.path.exists( self._container.parameters.databaseDirectory ) :
 				self._dbName = os.path.join( self._container.parameters.databaseDirectory, Constants.databaseFile )
 			else :
-				raise OSError, "'{0}' Database Storing Directory Does'nt Exists !".format( self._container.parameters.databaseDirectory )
+				raise OSError, "'{0}' Database Storing Directory Doesn't Exists !".format( self._container.parameters.databaseDirectory )
 		else :
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 

@@ -2134,7 +2134,7 @@ class OnlineUpdater( UiComponent ):
 		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
 		'''
 
-		# Adding Settings Key If It Does'nt Exists.
+		# Adding Settings Key If It Doesn't Exists.
 		self._settings.getKey( self._settingsSection, "checkForNewReleasesOnStartup" ).isNull() and self._settings.setKey( self._settingsSection, "checkForNewReleasesOnStartup", Qt.Checked )
 
 		checkForNewReleasesOnStartup = self._settings.getKey( self._settingsSection, "checkForNewReleasesOnStartup" )
@@ -2158,7 +2158,7 @@ class OnlineUpdater( UiComponent ):
 		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
 		'''
 
-		# Adding Settings Key If It Does'nt Exists.
+		# Adding Settings Key If It Doesn't Exists.
 		self._settings.getKey( self._settingsSection, "ignoreNonExistingTemplates" ).isNull() and self._settings.setKey( self._settingsSection, "ignoreNonExistingTemplates", Qt.Checked )
 
 		ignoreNonExistingTemplates = self._settings.getKey( self._settingsSection, "ignoreNonExistingTemplates" )

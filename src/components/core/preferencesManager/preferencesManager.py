@@ -363,7 +363,7 @@ class PreferencesManager( UiComponent ):
 		This Method Sets The Restore_Geometry_On_Layout_Change_checkBox.
 		'''
 
-		# Adding Settings Key If It Does'nt Exists.
+		# Adding Settings Key If It Doesn't Exists.
 		self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" ).isNull() and self._settings.setKey( "Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked )
 
 		restoreGeometryOnLayoutChange = self._settings.getKey( "Settings", "restoreGeometryOnLayoutChange" )
