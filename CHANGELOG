@@ -13,12 +13,12 @@ h3. 3.0.7 - Stable
 * Thumbnails size preference is restored on application start.
 * Each component has its own section in the preferences file, resulting in a better and stronger file structure. ( You will will need to reconfigure components preferences ).
 * Session geometry is always restored on application start ignoring the state of the "Restore Geometry On Layout Change" preferences option.
-* Fixed setsScanner component regular expressions so that it manages to process non alphanumerical characters ( "C:/Program Files (x86)/" ).
+* Fixed "setsScanner" component regular expressions, it can now process paths with non alphanumerical characters ( "C:/Program Files (x86)/" ).
 * Fixed walkers arguments regular expressions so that they search for correct files extensions.
 * Added "-o / --loaderScriptsOutputDirectory" command line parameter allowing user to specify loader scripts output directory.
 * Added "-r / --databaseReadOnly" command line parameter that disable database edition methods.
 * Added "-d / --databaseDirectory" command line parameter allowing user to specify the database directory.
-* Added "-u / --userApplicationDatasDirectory" command line parameter allowing user application datas directory choice.
+* Added "-u / --userApplicationDatasDirectory" command line parameter allowing user to specify application datas directory ( Preferences directory ).
 
 h3. 3.0.6 - Stable
 
