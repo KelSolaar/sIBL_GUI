@@ -936,6 +936,8 @@ class TemplatesOutliner( UiComponent ):
 		if not self._container.parameters.databaseReadOnly :
 			self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker( self )
 			self._templatesOutlinerWorkerThread.start()
+		else :
+			LOGGER.info( "{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
@@ -993,6 +995,8 @@ class TemplatesOutliner( UiComponent ):
 					else :
 						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_ERRORS[erroneousTemplates[template]] ) )
 				self.Templates_Outliner_treeView_refreshModel()
+		else :
+			LOGGER.info( "{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setModel( self ):
@@ -1185,6 +1189,8 @@ class TemplatesOutliner( UiComponent ):
 			separatorAction = QAction( self.ui.Templates_Outliner_treeView )
 			separatorAction.setSeparator( True )
 			self.ui.Templates_Outliner_treeView.addAction( separatorAction )
+		else :
+			LOGGER.info( "{0} | Templates Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 		displayHelpFilesAction = QAction( "Display Help File(s) ...", self.ui.Templates_Outliner_treeView )
 		displayHelpFilesAction.triggered.connect( self.Templates_Outliner_treeView_displayHelpFilesAction )

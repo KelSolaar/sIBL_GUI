@@ -2235,25 +2235,28 @@ class OnlineUpdater( UiComponent ):
 
 			releases = {}
 			for remoteObject in parser.sections :
-				if remoteObject != Constants.applicationName and not self._container.parameters.databaseReadOnly :
-					dbTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( remoteObject ), "name" )
-					dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
-					if dbTemplate :
-						if dbTemplate.release != parser.getValue( "Release", remoteObject ) :
-							releases[remoteObject] = ReleaseObject( name = remoteObject,
-																repositoryVersion = parser.getValue( "Release", remoteObject ),
-																localVersion = dbTemplate.release,
-																type = parser.getValue( "Type", remoteObject ),
-																url = parser.getValue( "Url", remoteObject ),
-																comment = parser.getValue( "Comment", remoteObject ) )
-					else :
-						if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked() :
-							releases[remoteObject] = ReleaseObject( name = remoteObject,
-																repositoryVersion = parser.getValue( "Release", remoteObject ),
-																localVersion = None,
-																type = parser.getValue( "Type", remoteObject ),
-																url = parser.getValue( "Url", remoteObject ),
-																comment = parser.getValue( "Comment", remoteObject ) )
+				if remoteObject != Constants.applicationName :
+						dbTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( remoteObject ), "name" )
+						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
+						if not self._container.parameters.databaseReadOnly :
+							if dbTemplate :
+								if dbTemplate.release != parser.getValue( "Release", remoteObject ) :
+									releases[remoteObject] = ReleaseObject( name = remoteObject,
+																		repositoryVersion = parser.getValue( "Release", remoteObject ),
+																		localVersion = dbTemplate.release,
+																		type = parser.getValue( "Type", remoteObject ),
+																		url = parser.getValue( "Url", remoteObject ),
+																		comment = parser.getValue( "Comment", remoteObject ) )
+							else :
+								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked() :
+									releases[remoteObject] = ReleaseObject( name = remoteObject,
+																		repositoryVersion = parser.getValue( "Release", remoteObject ),
+																		localVersion = None,
+																		type = parser.getValue( "Type", remoteObject ),
+																		url = parser.getValue( "Url", remoteObject ),
+																		comment = parser.getValue( "Comment", remoteObject ) )
+						else :
+							LOGGER.info( "{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value !".format( self.__class__.__name__, remoteObject, "databaseReadOnly" ) )
 				else :
 					if Constants.releaseVersion != parser.getValue( "Release", remoteObject ) :
 						releases[remoteObject] = ReleaseObject( name = remoteObject,

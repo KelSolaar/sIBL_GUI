@@ -891,7 +891,10 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
 
-		not self._container.parameters.databaseReadOnly and self.addDefaultCollection()
+		if not self._container.parameters.databaseReadOnly :
+			 self.addDefaultCollection()
+		else :
+			LOGGER.info( "{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setModel( self ):
@@ -1073,6 +1076,8 @@ class CollectionsOutliner( UiComponent ):
 			removeCollectionsAction = QAction( "Remove Collection(s) ...", self.ui.Collections_Outliner_treeView )
 			removeCollectionsAction.triggered.connect( self.Collections_Outliner_treeView_removeCollectionsAction )
 			self.ui.Collections_Outliner_treeView.addAction( removeCollectionsAction )
+		else :
+			LOGGER.info( "{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_addContentAction( self, checked ):

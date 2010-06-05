@@ -455,6 +455,8 @@ class sIBLeditUtilities( UiComponent ):
 			self._editInSIBLEditAction = QAction( "Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
 			self._editInSIBLEditAction.triggered.connect( self.Database_Browser_listView_editInSIBLEditAction )
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._editInSIBLEditAction )
+		else :
+			LOGGER.info( "{0} | sIBLedit Link Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def removeActions_( self ):
@@ -464,9 +466,9 @@ class sIBLeditUtilities( UiComponent ):
 
 		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editInSIBLEditAction )
-
-		self._editInSIBLEditAction = None
+		if not self._container.parameters.databaseReadOnly :
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._editInSIBLEditAction )
+			self._editInSIBLEditAction = None
 
 	@core.executionTrace
 	def Database_Browser_listView_editInSIBLEditAction( self, checked ):

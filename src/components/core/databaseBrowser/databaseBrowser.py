@@ -1056,6 +1056,8 @@ class DatabaseBrowser( UiComponent ):
 		if not self._container.parameters.databaseReadOnly :
 			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
 			self._databaseBrowserWorkerThread.start()
+		else :
+			LOGGER.info( "{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 		self.ui.Thumbnails_Size_horizontalSlider.setValue( self._listViewIconSize )
 		self.ui.Largest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiLargestSizeIcon ) ) )
@@ -1123,6 +1125,8 @@ class DatabaseBrowser( UiComponent ):
 						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_ERRORS[erroneousSets[set]] ) )
 				self.setCollectionsDisplaySets()
 				self.Database_Browser_listView_refreshModel()
+		else :
+			LOGGER.info( "{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def Database_Browser_listView_setModel( self ):
@@ -1300,6 +1304,8 @@ class DatabaseBrowser( UiComponent ):
 			separatorAction = QAction( self.ui.Database_Browser_listView )
 			separatorAction.setSeparator( True )
 			self.ui.Database_Browser_listView.addAction( separatorAction )
+		else :
+			LOGGER.info( "{0} | Ibl Sets Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def Database_Browser_listView_addContentAction( self, checked ):

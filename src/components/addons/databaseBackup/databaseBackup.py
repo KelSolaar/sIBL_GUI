@@ -534,6 +534,8 @@ class DatabaseBackup( Component ):
 			self._destination = os.path.join( os.path.dirname( self._coreDb.dbName ), self._backupDirectory )
 
 			self.rotatingBackup()
+		else :
+			LOGGER.info( "{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def rotatingBackup( self ):

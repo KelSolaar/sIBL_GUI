@@ -562,6 +562,8 @@ class RawEditingUtilities( UiComponent ):
 			self._editTemplateInTextEditorAction = QAction( "Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView )
 			self._editTemplateInTextEditorAction.triggered.connect( self.Templates_Outliner_treeView_editSetInTextEditorAction )
 			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction( self._editTemplateInTextEditorAction )
+		else :
+			LOGGER.info( "{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def removeActions_( self ):

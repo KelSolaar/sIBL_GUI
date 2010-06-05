@@ -566,6 +566,8 @@ class SetsScanner( Component ):
 
 			# Signals / Slots.
 			self._signalsSlotsCenter.connect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+		else :
+			LOGGER.info( "{0} | Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 	@core.executionTrace
 	def uninitialize( self ):
