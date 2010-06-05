@@ -652,8 +652,8 @@ class RawEditingUtilities( UiComponent ):
 		editCommand = None
 		customTextEditor = str( self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
+		file = os.path.normpath( file )
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			file = file.replace( "/", "\\" )
 			if customTextEditor :
 				LOGGER.info( "{0} | Launching '{1}' Custom Text Editor With '{2}'.".format( self.__class__.__name__, os.path.basename( customTextEditor ), file ) )
 				editCommand = "\"{0}\" \"{1}\"".format( customTextEditor, file )

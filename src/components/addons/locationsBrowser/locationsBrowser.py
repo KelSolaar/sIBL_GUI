@@ -828,15 +828,14 @@ class LocationsBrowser( UiComponent ):
 		browserCommand = None
 		customFileBrowser = str( self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
+		folder = os.path.normpath( folder )
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			folder = folder.replace( "/", "\\" )
 			if customFileBrowser :
 				LOGGER.info( "{0} | Launching '{1}' Custom File Browser With '{2}'.".format( self.__class__.__name__, os.path.basename( customFileBrowser ), folder ) )
 				browserCommand = "\"{0}\" \"{1}\"".format( customFileBrowser, folder )
 			else:
 				LOGGER.info( "{0} | Launching 'explorer.exe' With '{1}'.".format( self.__class__.__name__, folder ) )
 				browserCommand = "explorer.exe \"{0}\"".format( folder )
-
 		elif platform.system() == "Darwin" :
 			if customFileBrowser :
 				LOGGER.info( "{0} | Launching '{1}' Custom File Browser With '{2}'.".format( self.__class__.__name__, os.path.basename( customFileBrowser ), folder ) )
