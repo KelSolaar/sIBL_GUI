@@ -785,7 +785,7 @@ class LoaderScript( UiComponent ):
 			if os.path.exists( self._container.parameters.loaderScriptsOutputDirectory ) :
 				loaderScript = File( os.path.join( self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript ) )
 			else :
-				raise OSError, "'{0}' Loader Script Output Directory Doesn't Exists !".format( self._container.parameters.loaderScriptsOutputDirectory )
+				messageBox.messageBox( "Error", "Error", "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory ) )
 		else :
 			loaderScript = File( os.path.join( self._ioDirectory, template._datas.outputScript ) )
 

@@ -809,7 +809,13 @@ class LocationsBrowser( UiComponent ):
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
 		'''
 
-		self.exploreProvidedFolder( self._addonsLoaderScript.ioDirectory )
+		if self._container.parameters.loaderScriptsOutputDirectory :
+			if os.path.exists( self._container.parameters.loaderScriptsOutputDirectory ) :
+				self.exploreProvidedFolder( self._container.parameters.loaderScriptsOutputDirectory )
+			else :
+				messageBox.messageBox( "Error", "Error", "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory ) )
+		else :
+			self.exploreProvidedFolder( self._addonsLoaderScript.ioDirectory )
 
 	@core.executionTrace
 	def exploreProvidedFolder( self, folder ) :
