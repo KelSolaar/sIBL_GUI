@@ -115,6 +115,10 @@ class StreamObject( object ):
 		self._stream.append( message )
 
 	def flush( self ):
+		'''
+		This Method Flushes The Current Stream.
+		'''
+
 		pass
 
 #***********************************************************************************************

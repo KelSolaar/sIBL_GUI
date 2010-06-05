@@ -87,12 +87,71 @@ def setVerbosityLevel( verbosityLevel ):
 	elif verbosityLevel == 4:
 		LOGGER.setLevel( logging.DEBUG )
 
+class StandardMessageHook:
+	'''
+	This Is The StandardMessageHook Class.
+	'''
+
+	def __init__( self, logger ):
+		'''
+		This Method Initializes The Class.
+
+		@param logger: LOGGER. ( Object )
+		'''
+
+		self._logger = logger
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def logger( self ):
+		'''
+		This Method Is The Property For The _logger Attribute.
+
+		@return: self._logger. ( Object )
+		'''
+
+		return self._logger
+
+	@logger.setter
+	def logger( self, value ):
+		'''
+		This Method Is The Setter Method For The _logger Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "logger" ) )
+
+	@logger.deleter
+	def logger( self ):
+		'''
+		This Method Is The Deleter Method For The _logger Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "logger" ) )
+
+ 	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+  	def write( self, message ):
+		'''
+		This Method Logs The Current StdOut Message.
+		
+		@param message: Message. ( String )
+		'''
+
+		for handler in self._logger.__dict__["handlers"] :
+			handler.stream.write( message )
+
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
 LOGGING_FORMATTER = logging.Formatter( "%(levelname)-8s : %(message)s" )
+LOGGING_STANDARD_FORMATTER = logging.Formatter()
 
 IGNORED_CODE_LAYERS = ( "getFrame",
 					"getCodeLayerName",

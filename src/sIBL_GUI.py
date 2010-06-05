@@ -88,8 +88,12 @@ from manager.manager import Manager
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
+# Redirecting Standard Output And Error.
+sys.stdout = core.StandardMessageHook( LOGGER )
+sys.stderr = core.StandardMessageHook( LOGGER )
+
 # Starting The Console Handler.
-RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.__stdout__ )
 RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
 
