@@ -1230,7 +1230,7 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		for collection, path in self._defaultCollections.items() :
-			os.path.exists( path ) and self.getTemplates( path, self.getCollection( collection ).id )
+			os.path.exists( path ) and self.addDirectory( path, self.getCollection( collection ).id )
 		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
@@ -1357,6 +1357,25 @@ class TemplatesOutliner( UiComponent ):
 				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
 
 	@core.executionTrace
+	def addDirectory( self, directory, id ):
+		'''
+		This Method Imports Provided Directory Templates Into Provided Collection.
+		
+		@param directory: Templates Directory. ( String )
+		@param id: Collection Id. ( Integer )
+		'''
+
+		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
+
+		walker = Walker()
+		walker.root = directory
+		templates = walker.walk( "\.{0}$".format( self._extension ), "\._" )
+		for template in templates :
+			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( re.escape( templates[template] ) ), "path" ) :
+				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )
+				dbUtilities.common.addTemplate( self._coreDb.dbSession, template, templates[template], id )
+
+	@core.executionTrace
 	def removeTemplates( self ) :
 		'''
 		This Method Removes Templates From The Database.
@@ -1415,12 +1434,16 @@ class TemplatesOutliner( UiComponent ):
 		LOGGER.debug( "> Adding Default Templates To Database." )
 
 		if not dbUtilities.common.getTemplates( self._coreDb.dbSession ).count():
+			needModelRefresh = False
 			for collection, path in self._defaultCollections.items() :
 				if os.path.exists( path ) :
 					if not set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( collection ), "name" ) ).intersection( dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" ) ):
 						LOGGER.info( "{0} | Adding '{1}' Collection To Database !".format( self.__class__.__name__, collection ) )
 						dbUtilities.common.addCollection( self._coreDb.dbSession, collection, "Templates", "Template {0} Collection".format( collection ) )
-					self.getTemplates( path, self.getCollection( collection ).id )
+					needModelRefresh = True
+					self.addDirectory( path, self.getCollection( collection ).id )
+
+			needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def getCollection( self, collection ):
@@ -1432,25 +1455,6 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		return [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( collection ), "name" ) ).intersection( dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" ) )][0]
-
-	@core.executionTrace
-	def getTemplates( self, directory, id ):
-		'''
-		This Method Imports Provided Directory Templates Into Provided Collection.
-		
-		@param directory: Templates Directory. ( String )
-		@param id: Collection Id. ( Integer )
-		'''
-
-		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
-
-		walker = Walker()
-		walker.root = directory
-		templates = walker.walk( "\.{0}$".format( self._extension ), "\._" )
-		for template in templates :
-			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( re.escape( templates[template] ) ), "path" ) :
-				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )
-				dbUtilities.common.addTemplate( self._coreDb.dbSession, template, templates[template], id )
 
 	@core.executionTrace
 	def getSelectedItems( self, rowsRootOnly = True ):

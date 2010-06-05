@@ -1174,7 +1174,8 @@ class CollectionsOutliner( UiComponent ):
 
 		if not collections :
 			LOGGER.info( "{0} | Adding '{1}' Collection To Database !".format( self.__class__.__name__, self._defaultCollection ) )
-			return dbUtilities.common.addCollection( self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection" ) and self._defaultCollection
+			dbUtilities.common.addCollection( self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection" )
+			self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def removeCollections( self ) :
