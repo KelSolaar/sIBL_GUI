@@ -54,7 +54,7 @@ mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/templates
 cp -r ../../src/templates/Maya/* ./dist/sIBL_GUI.app/Contents/Resources/templates/
 cp -r ../../src/components ./dist/sIBL_GUI.app/Contents/Resources/
 mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources
-cp -r ../../src/libraries/freeImage/resources/* ./dist/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources/
+cp -r ../../src/libraries/freeImage/resources/libfreeimage.dylib ./dist/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources/
 cp -f ./support/__boot__.py ./dist/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/qt.conf ./dist/sIBL_GUI.app/Contents/Resources/
 cp -r ./support/imageformats ./dist/sIBL_GUI.app/Contents/MacOs
