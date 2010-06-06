@@ -55,6 +55,7 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import inspect
 import logging
 import os
 import optparse
@@ -93,13 +94,12 @@ if not hasattr( sys, "frozen" ) and not ( platform.system() == "Windows" or plat
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.__stdout__ )
 	RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 	LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
-
 RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
+
 if os.path.exists( RuntimeConstants.uiFile ):
 	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
 else :
-	messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' ui File Is Not Available, {2} Will Now Close !".format( Constants.applicationName, UiConstants.frameworkUiFile, Constants.applicationName ) )
-	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
+	ui.common.criticalMessageBoxExceptionHandler( Exception( "'{0}' Ui File Is Not Available, {1} Will Now Close !".format( UiConstants.frameworkUiFile, Constants.applicationName ) ), Constants.applicationName, ui.common.STANDALONE_EXCEPTION_HANDLER )
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -312,7 +312,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	#***	Initialization.
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.criticalExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.criticalMessageBoxExceptionHandler, False, Exception )
 	def __init__( self ) :
 		'''
 		This Method Initializes The Class.
@@ -1460,8 +1460,7 @@ def sIBL_GUI_start():
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
 	if not setUserApplicationDataDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
+		ui.common.criticalMessageBoxExceptionHandler( Exception( "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_EXCEPTION_HANDLER )
 
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile )
@@ -1469,17 +1468,14 @@ def sIBL_GUI_start():
 	try :
 		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
 	except :
-		messageBox.standaloneMessageBox( "Error", "Error", "{0} File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
+		ui.common.criticalMessageBoxExceptionHandler( Exception( "{0} Logging File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_EXCEPTION_HANDLER )
 
 	try :
 		RuntimeConstants.loggingFileHandler = logging.FileHandler( RuntimeConstants.loggingFile )
 		RuntimeConstants.loggingFileHandler.setFormatter( core.LOGGING_FORMATTER )
 		LOGGER.addHandler( RuntimeConstants.loggingFileHandler )
-	except Exception as error:
-		foundations.exceptions.defaultExceptionsHandler( error, Constants.applicationName )
-		messageBox.standaloneMessageBox( "Critical", "Critical", "Exception In {0} Module | Logging File Is Not Available, {0} Will Now Close !".format( Constants.applicationName ) )
-		foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
+	except :
+		ui.common.criticalMessageBoxExceptionHandler( Exception( "{0} Logging File Is Not Available, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_EXCEPTION_HANDLER )
 
 	# Retrieving Framework Verbose Level From Settings File.
 	LOGGER.debug( "> Initializing {0} !".format( Constants.applicationName ) )
@@ -1550,10 +1546,10 @@ def setUserApplicationDataDirectory( path ):
 	LOGGER.debug( "> Current Application Datas Directory '{0}'.".format( userApplicationDatasDirectory ) )
 	if io.setLocalDirectory( userApplicationDatasDirectory ) :
 		for directory in Constants.preferencesDirectories :
-				io.setLocalDirectory( os.path.join( userApplicationDatasDirectory, directory ) ) or messageBox.standaloneMessageBox( "Critical", "Critical", "'{0}' Directory Creation Failed !".format( os.path.join( userApplicationDatasDirectory, directory ) ) )
+			io.setLocalDirectory( os.path.join( userApplicationDatasDirectory, directory ) ) or ui.common.criticalMessageBoxExceptionHandler( Exception( "'{0}' Directory Creation Failed , {1} Will Now Close !".format( os.path.join( userApplicationDatasDirectory, directory ), Constants.applicationName ) ), "{0} | {1}()".format( __name__, setUserApplicationDataDirectory.__name__ ), ui.common.STANDALONE_EXCEPTION_HANDLER )
 		return True
 	else :
-		messageBox.standaloneMessageBox( "Error", "Error", "'{0}' Directory Creation Failed !".format( userApplicationDatasDirectory ) )
+		ui.common.criticalMessageBoxExceptionHandler( Exception( "'{0}' Directory Creation Failed , {1} Will Now Close !".format( userApplicationDatasDirectory, Constants.applicationName ) ), "{0} | {1}()".format( __name__, setUserApplicationDataDirectory.__name__ ), ui.common.STANDALONE_EXCEPTION_HANDLER )
 
 @core.executionTrace
 def getHeaderMessage():

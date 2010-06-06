@@ -117,7 +117,7 @@ def closeHandler( logger, handler ):
 	'''
 
 	len( logger.__dict__["handlers"] ) and LOGGER.debug( "> Stopping Handler : '{0}'.".format( handler ) )
-	handler or handler.flush() and handler.close() and logger.removeHandler( handler )
+	logger.removeHandler( handler )
 
 @core.executionTrace
 def exit( exitCode, logger, handlers ):
@@ -134,7 +134,7 @@ def exit( exitCode, logger, handlers ):
 	LOGGER.debug( "> Stopping Logging Handlers And Logger, Then Exiting." )
 
 	for handler in handlers :
-		closeHandler( logger, handler )
+		handler and closeHandler( logger, handler )
 
 	sys.exit( exitCode )
 
@@ -149,6 +149,7 @@ def wait( waitTime ):
 	LOGGER.debug( "> Waiting '{0}' Seconds !".format( waitTime ) )
 
 	time.sleep( waitTime )
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

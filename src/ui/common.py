@@ -77,6 +77,8 @@ from globals.runtimeConstants import RuntimeConstants
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
+STANDALONE_EXCEPTION_HANDLER = "STANDALONE_EXCEPTION_HANDLER"
+
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
@@ -96,7 +98,7 @@ def setWindowDefaultIcon( window ):
 		pass
 
 @core.executionTrace
-def exceptionHandler( exception, origin, *args, **kwargs ) :
+def messageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
 	This Definition Provides A Message Box Exception Handler.
 	
@@ -106,12 +108,15 @@ def exceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.messageBox( "Critical", "Exception", "Exception In {0} Method | {1}".format( origin, exception ) )
+	if STANDALONE_EXCEPTION_HANDLER in args :
+		messageBox.standaloneMessageBox( "Critical", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+	else :
+		messageBox.messageBox( "Critical", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
 
 @core.executionTrace
-def criticalExceptionHandler( exception, origin, *args, **kwargs ) :
+def criticalMessageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
-	This Definition Provides Critical Exception Handler.
+	This Definition Provides A Critical Message Box Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
@@ -119,7 +124,7 @@ def criticalExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	exceptionHandler( exception, origin, args, kwargs )
+	messageBoxExceptionHandler( exception, origin, *args, **kwargs )
 	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace

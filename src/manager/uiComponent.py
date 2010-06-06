@@ -67,7 +67,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import ui.widgets.messageBox as messageBox
+import ui.common as common
 from globals.constants import Constants
 
 #***********************************************************************************************
@@ -291,7 +291,7 @@ class UiComponent( QWidget ):
 		self._activated = False
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, OSError )
+	@foundations.exceptions.exceptionsHandler( common.messageBoxExceptionHandler, False, Exception )
 	def _loadUi( self ):
 		'''
 		This Method Loads The Ui File.
@@ -303,7 +303,7 @@ class UiComponent( QWidget ):
 				sys.path.remove( "." )
 			return True
 		else :
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.activate() Method | '{1}' ui File Doesn't Exists !".format( self.__class__.__name__, self._uiFile ) )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Ui File Doesn't Exists !".format( self._name )
 
 #***********************************************************************************************
 #***	Python End

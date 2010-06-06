@@ -144,11 +144,8 @@ def standaloneMessageBox( type, caption, message, icon = None, buttons = QMessag
 	@param buttons: Custom Buttons. ( QConstant )
 	'''
 
-	from PyQt4.QtGui import *
-
 	application = QApplication( sys.argv )
 	messageBox( type, caption, message, icon, buttons )
-	sys.exit( application.exec_() )
 
 #***********************************************************************************************
 #***	Python End
