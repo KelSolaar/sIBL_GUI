@@ -141,10 +141,11 @@ def defaultExceptionsHandler( exception, origin, *args, **kwargs ) :
 	LOGGER.error( "!> {0}".format( Constants.loggingSeparators ) )
 
 	traceback_ = traceback.format_exc().splitlines()
-	for line in traceback_ :
-		LOGGER.error( "!> {0}".format( line ) )
+	if len( traceback_ ) > 1 :
+		for line in traceback_ :
+			LOGGER.error( "!> {0}".format( line ) )
 
-	LOGGER.error( "!> {0}".format( Constants.loggingSeparators ) )
+		LOGGER.error( "!> {0}".format( Constants.loggingSeparators ) )
 
 class FileStructureError( Exception ):
 	'''	
@@ -172,7 +173,7 @@ class FileStructureError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class AttributeStructureError( Exception ):
 	'''
@@ -200,7 +201,7 @@ class AttributeStructureError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class DirectoryExistsError( Exception ):
 	'''
@@ -229,7 +230,7 @@ class DirectoryExistsError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class FileExistsError( Exception ):
 	'''
@@ -258,7 +259,7 @@ class FileExistsError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class ObjectTypeError( Exception ):
 	'''
@@ -286,7 +287,7 @@ class ObjectTypeError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class ObjectExistsError( Exception ):
 	'''
@@ -314,7 +315,7 @@ class ObjectExistsError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class ProgrammingError( Exception ):
 	'''
@@ -342,7 +343,7 @@ class ProgrammingError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class NetworkError( Exception ):
 	'''
@@ -370,7 +371,7 @@ class NetworkError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class SocketConnectionError( Exception ):
 	'''
@@ -398,7 +399,7 @@ class SocketConnectionError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class ComponentActivationError( Exception ):
 	'''
@@ -426,7 +427,7 @@ class ComponentActivationError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class ComponentDeactivationError( Exception ):
 	'''
@@ -454,7 +455,7 @@ class ComponentDeactivationError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class LibraryInitializationError( Exception ):
 	'''
@@ -482,7 +483,7 @@ class LibraryInitializationError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 
 class LibraryExecutionError( Exception ):
 	'''
@@ -510,7 +511,7 @@ class LibraryExecutionError( Exception ):
 		@return: Exception Representation. ( String )
 		'''
 
-		return repr( self.value )
+		return self.value
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

@@ -316,7 +316,7 @@ class Db( Component ):
 		messageBox.messageBox( "Warning", "Warning", "{0} Component Cannot Be Deactivated !".format( self.__class__.__name__ ) )
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.criticalMessageBoxExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, Exception )
 	def initialize( self ):
 		'''
 		This Method Initializes The Component.

@@ -232,11 +232,11 @@ def executionTrace( object_ ):
 		@return: Object. ( Object )
 		'''
 
-		len( LOGGER.__dict__["handlers"] ) and LOGGER.debug( "--->>> '{0}' <<<---".format( origin ) )
+		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug( "--->>> '{0}' <<<---".format( origin ) )
 
 		value = object_( *args, **kwargs )
 
-		len( LOGGER.__dict__["handlers"] ) and LOGGER.debug( "---<<< '{0}' >>>---".format( origin ) )
+		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug( "---<<< '{0}' >>>---".format( origin ) )
 
 		return value
 

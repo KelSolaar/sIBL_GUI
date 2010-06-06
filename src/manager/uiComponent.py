@@ -291,7 +291,7 @@ class UiComponent( QWidget ):
 		self._activated = False
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( common.messageBoxExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( common.uiExceptionHandler, False, Exception )
 	def _loadUi( self ):
 		'''
 		This Method Loads The Ui File.

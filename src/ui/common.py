@@ -77,7 +77,7 @@ from globals.runtimeConstants import RuntimeConstants
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
-STANDALONE_EXCEPTION_HANDLER = "STANDALONE_EXCEPTION_HANDLER"
+STANDALONE_UI_EXCEPTION_HANDLER = "STANDALONE_UI_EXCEPTION_HANDLER"
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -98,9 +98,9 @@ def setWindowDefaultIcon( window ):
 		pass
 
 @core.executionTrace
-def messageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
-	This Definition Provides A Message Box Exception Handler.
+	This Definition Provides A Ui Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
@@ -108,15 +108,17 @@ def messageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	if STANDALONE_EXCEPTION_HANDLER in args :
-		messageBox.standaloneMessageBox( "Critical", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+	if not STANDALONE_UI_EXCEPTION_HANDLER in args :
+		messageBox.messageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
 	else :
-		messageBox.messageBox( "Critical", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+		messageBox.standaloneMessageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
 @core.executionTrace
-def criticalMessageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiUserExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
-	This Definition Provides A Critical Message Box Exception Handler.
+	This Definition Provides A Ui Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
@@ -124,7 +126,25 @@ def criticalMessageBoxExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBoxExceptionHandler( exception, origin, *args, **kwargs )
+	if not STANDALONE_UI_EXCEPTION_HANDLER in args :
+		messageBox.messageBox( "Error", "Exception", "{0}".format( exception ) )
+	else :
+		messageBox.standaloneMessageBox( "Error", "Exception", "{0}".format( exception ) )
+
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
+
+@core.executionTrace
+def uiSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides A Ui System Exit Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	uiExceptionHandler( exception, origin, *args, **kwargs )
 	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace

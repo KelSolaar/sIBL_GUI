@@ -72,6 +72,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.parser
 import foundations.strings as strings
+import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
 from foundations.io import File
@@ -631,7 +632,7 @@ class LoaderScript( UiComponent ):
 		self.outputLoaderScript()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.SocketConnectionError )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiUserExceptionHandler, False, foundations.exceptions.SocketConnectionError )
 	def Send_To_Software_pushButton_OnClicked( self ) :
 		'''
 		This Method Remotes Connect To Target Software.
@@ -656,8 +657,7 @@ class LoaderScript( UiComponent ):
 					connection.close()
 					LOGGER.info( "{0} | Ending Remote Connection !".format( self.__class__.__name__ ) )
 				except Exception as error:
-					messageBox.messageBox( "Error", "Error", "{0} | Remote Connection Error : '{1}' !".format( self.__class__.__name__, error ) )
-					raise foundations.exceptions.SocketConnectionError( error )
+					raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error : '{1}' !".format( self.__class__.__name__, error )
 			elif connectionType.value == "Win32" :
 				if platform.system() == "Windows" or platform.system() == "Microsoft":
 					try :
@@ -668,8 +668,7 @@ class LoaderScript( UiComponent ):
 						LOGGER.debug( "> Current Connection Command : '%s'.", connectionCommand )
 						getattr( connection, self._win32ExecutionMethod )( connectionCommand )
 					except Exception as error:
-						messageBox.messageBox( "Error", "Error", "{0} | Remote Connection On Win32 OLE Server Error: '{1}' !".format( self.__class__.__name__, error ) )
-						raise foundations.exceptions.SocketConnectionError( error )
+						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error : '{1}' !".format( self.__class__.__name__, error )
 
 	@core.executionTrace
 	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
