@@ -67,6 +67,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.component import Component
@@ -315,7 +316,7 @@ class Db( Component ):
 		messageBox.messageBox( "Warning", "Warning", "{0} Component Cannot Be Deactivated !".format( self.__class__.__name__ ) )
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, OSError )
+	@foundations.exceptions.exceptionsHandler( ui.common.criticalExceptionHandler, False, Exception )
 	def initialize( self ):
 		'''
 		This Method Initializes The Component.
@@ -328,7 +329,7 @@ class Db( Component ):
 			if os.path.exists( self._container.parameters.databaseDirectory ) :
 				self._dbName = os.path.join( self._container.parameters.databaseDirectory, Constants.databaseFile )
 			else :
-				raise OSError, "'{0}' Database Storing Directory Doesn't Exists !".format( self._container.parameters.databaseDirectory )
+				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close !".format( self._container.parameters.databaseDirectory, Constants.applicationName )
 		else :
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 

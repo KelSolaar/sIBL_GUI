@@ -64,10 +64,13 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
+import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
+from globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -91,6 +94,33 @@ def setWindowDefaultIcon( window ):
 		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationDarwinIcon ) ) )
 	elif platform.system() == "Linux":
 		pass
+
+@core.executionTrace
+def exceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides A Message Box Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	messageBox.messageBox( "Critical", "Exception", "Exception In {0} Method | {1}".format( origin, exception ) )
+
+@core.executionTrace
+def criticalExceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides Critical Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	exceptionHandler( exception, origin, args, kwargs )
+	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
 def decodeMimeDatas( byteArray ):

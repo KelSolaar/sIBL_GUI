@@ -64,6 +64,7 @@ from PyQt4.QtGui import *
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.core as core
+import foundations.exceptions
 from globals.constants import Constants
 
 #***********************************************************************************************

@@ -68,10 +68,10 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import foundations.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.io as io
-import foundations.common
 import ui.common
 import ui.widgets.messageBox as messageBox
 from ui.widgets.active_QLabel import Active_QLabel
@@ -312,6 +312,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	#***	Initialization.
 	#***************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.criticalExceptionHandler, False, Exception )
 	def __init__( self ) :
 		'''
 		This Method Initializes The Class.
@@ -335,6 +336,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._coreTemplatesOutliner = None
 		self._lastBrowsedPath = os.getcwd()
 		self._userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
+		self._loggingSessionHandler = RuntimeConstants.loggingSessionHandler
+		self._loggingFileHandler = RuntimeConstants.loggingFileHandler
+		self._loggingConsoleHandler = RuntimeConstants.loggingConsoleHandler
 		self._loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
 		self._settings = RuntimeConstants.settings
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
@@ -364,8 +368,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._componentsManager.gatherComponents()
 
 		if not self._componentsManager.components :
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Manager Has No Components !, {2} Will Now Close !".format( self.__class__.__name__, self._componentsManager, Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close !".format( self._componentsManager, Constants.applicationName )
 
 		self._componentsManager.instantiateComponents( self.componentsInstantiationCallback )
 
@@ -377,8 +380,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.componentsManagerUi", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.componentsManagerUi", Constants.applicationName )
 
 		# --- Activating Preferences Manager Component. ---
 		self._preferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
@@ -388,8 +390,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._preferencesManager.addWidget()
 			self._preferencesManager.initializeUi()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.preferencesManager", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.preferencesManager", Constants.applicationName )
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface( "core.db" )
@@ -398,8 +399,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._coreDb.activate( self )
 			self._coreDb.initialize()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.db", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.db", Constants.applicationName )
 
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface( "core.collectionsOutliner" )
@@ -409,8 +409,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.collectionsOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.collectionsOutliner", Constants.applicationName )
 
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface( "core.databaseBrowser" )
@@ -420,8 +419,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.databaseBrowser", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.databaseBrowser", Constants.applicationName )
 
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface( "core.templatesOutliner" )
@@ -431,8 +429,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
 		else:
-			messageBox.messageBox( "Critical", "Critical", "Exception In {0}.__init__() Method | '{1}' Component Is Not Available, {2} Will Now Close !".format( self.__class__.__name__, "core.templatesOutliner", Constants.applicationName ) )
-			foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.templatesOutliner", Constants.applicationName )
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey( "Settings", "deactivatedComponents" ).toString().split( "," )
@@ -745,6 +742,96 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "userApplicationDatasDirectory" ) )
+
+	@property
+	def loggingSessionHandler( self ):
+		'''
+		This Method Is The Property For The _loggingSessionHandler Attribute.
+
+		@return: self._loggingSessionHandler. ( Handler )
+		'''
+
+		return self._loggingSessionHandler
+
+	@loggingSessionHandler.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingSessionHandler( self, value ):
+		'''
+		This Method Is The Setter Method For The _loggingSessionHandler Attribute.
+
+		@param value: Attribute Value. ( Handler )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "loggingSessionHandler" ) )
+
+	@loggingSessionHandler.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingSessionHandler( self ):
+		'''
+		This Method Is The Deleter Method For The _loggingSessionHandler Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "loggingSessionHandler" ) )
+
+	@property
+	def loggingFileHandler( self ):
+		'''
+		This Method Is The Property For The _loggingFileHandler Attribute.
+
+		@return: self._loggingFileHandler. ( Handler )
+		'''
+
+		return self._loggingFileHandler
+
+	@loggingFileHandler.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingFileHandler( self, value ):
+		'''
+		This Method Is The Setter Method For The _loggingFileHandler Attribute.
+
+		@param value: Attribute Value. ( Handler )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "loggingFileHandler" ) )
+
+	@loggingFileHandler.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingFileHandler( self ):
+		'''
+		This Method Is The Deleter Method For The _loggingFileHandler Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "loggingFileHandler" ) )
+
+	@property
+	def loggingConsoleHandler( self ):
+		'''
+		This Method Is The Property For The _loggingConsoleHandler Attribute.
+
+		@return: self._loggingConsoleHandler. ( Handler )
+		'''
+
+		return self._loggingConsoleHandler
+
+	@loggingConsoleHandler.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingConsoleHandler( self, value ):
+		'''
+		This Method Is The Setter Method For The _loggingConsoleHandler Attribute.
+
+		@param value: Attribute Value. ( Handler )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "loggingConsoleHandler" ) )
+
+	@loggingConsoleHandler.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def loggingConsoleHandler( self ):
+		'''
+		This Method Is The Deleter Method For The _loggingConsoleHandler Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "loggingConsoleHandler" ) )
 
 	@property
 	def loggingSessionHandlerStream( self ):
@@ -1064,9 +1151,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.storeStartupLayout()
 		self._settings.settings.sync()
 
-		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
-		foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
-		# foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
+		foundations.common.closeHandler( LOGGER, self._loggingFileHandler )
+		foundations.common.closeHandler( LOGGER, self._loggingSessionHandler )
+		# foundations.common.closeHandler( LOGGER, self._loggingConsoleHandler )
 
 		self.deleteLater()
 		event.accept()
