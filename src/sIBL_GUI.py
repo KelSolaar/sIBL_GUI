@@ -99,7 +99,7 @@ RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile
 if os.path.exists( RuntimeConstants.uiFile ):
 	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
 else :
-	ui.common.uiSystemExitExceptionHandler( Exception( "'{0}' Ui File Is Not Available, {1} Will Now Close !".format( UiConstants.frameworkUiFile, Constants.applicationName ) ), Constants.applicationName, ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+	ui.common.uiStandaloneSystemExitExceptionHandler( OSError( "'{0}' Ui File Is Not Available, {1} Will Now Close !".format( UiConstants.frameworkUiFile, Constants.applicationName ) ), Constants.applicationName )
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -1434,6 +1434,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 #***************************************************************************************
 #***	Overall Definitions.
 #***************************************************************************************
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler( ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError )
 def sIBL_GUI_start():
 	'''
 	This Definition Is Called When sIBL_GUI Starts.
@@ -1461,7 +1463,7 @@ def sIBL_GUI_start():
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
 	if not setUserApplicationDataDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
-		ui.common.uiSystemExitExceptionHandler( Exception( "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName )
 
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile )
@@ -1469,14 +1471,14 @@ def sIBL_GUI_start():
 	try :
 		os.path.exists( RuntimeConstants.loggingFile ) and os.remove( RuntimeConstants.loggingFile )
 	except :
-		ui.common.uiSystemExitExceptionHandler( Exception( "{0} Logging File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+		raise OSError, "{0} Logging File Is Currently Locked, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName )
 
 	try :
 		RuntimeConstants.loggingFileHandler = logging.FileHandler( RuntimeConstants.loggingFile )
 		RuntimeConstants.loggingFileHandler.setFormatter( core.LOGGING_FORMATTER )
 		LOGGER.addHandler( RuntimeConstants.loggingFileHandler )
 	except :
-		ui.common.uiSystemExitExceptionHandler( Exception( "{0} Logging File Is Not Available, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName ) ), "{0} | {1}()".format( __name__, sIBL_GUI_start.__name__ ), ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close !".format( RuntimeConstants.loggingFile, Constants.applicationName )
 
 	# Retrieving Framework Verbose Level From Settings File.
 	LOGGER.debug( "> Initializing {0} !".format( Constants.applicationName ) )
@@ -1535,6 +1537,7 @@ def sIBL_GUI_close() :
 	foundations.common.exit( 0, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler( ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError )
 def setUserApplicationDataDirectory( path ):
 	'''
 	This Definition Sets The Application Datas Directory.
@@ -1547,10 +1550,11 @@ def setUserApplicationDataDirectory( path ):
 	LOGGER.debug( "> Current Application Datas Directory '{0}'.".format( userApplicationDatasDirectory ) )
 	if io.setLocalDirectory( userApplicationDatasDirectory ) :
 		for directory in Constants.preferencesDirectories :
-			io.setLocalDirectory( os.path.join( userApplicationDatasDirectory, directory ) ) or ui.common.uiSystemExitExceptionHandler( Exception( "'{0}' Directory Creation Failed , {1} Will Now Close !".format( os.path.join( userApplicationDatasDirectory, directory ), Constants.applicationName ) ), "{0} | {1}()".format( __name__, setUserApplicationDataDirectory.__name__ ), ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+			if not io.setLocalDirectory( os.path.join( userApplicationDatasDirectory, directory ) ) :
+				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format( os.path.join( userApplicationDatasDirectory, directory ), Constants.applicationName )
 		return True
 	else :
-		ui.common.uiSystemExitExceptionHandler( Exception( "'{0}' Directory Creation Failed , {1} Will Now Close !".format( userApplicationDatasDirectory, Constants.applicationName ) ), "{0} | {1}()".format( __name__, setUserApplicationDataDirectory.__name__ ), ui.common.STANDALONE_UI_EXCEPTION_HANDLER )
+		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format( userApplicationDatasDirectory, Constants.applicationName )
 
 @core.executionTrace
 def getHeaderMessage():

@@ -77,30 +77,13 @@ from globals.runtimeConstants import RuntimeConstants
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
-STANDALONE_UI_EXCEPTION_HANDLER = "STANDALONE_UI_EXCEPTION_HANDLER"
-
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def setWindowDefaultIcon( window ):
-	'''
-	This Method Sets The Application Icon To The Provided Window.
-
-	@param window: Window. ( QWidget )	
-	'''
-
-	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationWindowsIcon ) ) )
-	elif platform.system() == "Darwin" :
-		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationDarwinIcon ) ) )
-	elif platform.system() == "Linux":
-		pass
-
-@core.executionTrace
 def uiExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
-	This Definition Provides A Ui Exception Handler.
+	This Definition Provides A Ui Extended Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
@@ -108,17 +91,27 @@ def uiExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	if not STANDALONE_UI_EXCEPTION_HANDLER in args :
-		messageBox.messageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
-	else :
-		messageBox.standaloneMessageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+	messageBox.messageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
+@core.executionTrace
+def uiStandaloneExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides A Ui Standalone Extended Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	messageBox.standaloneMessageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
 	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
 @core.executionTrace
 def uiBasicExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
-	This Definition Provides A Ui Exception Handler.
+	This Definition Provides A Ui Basic Exception Handler.
 	
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
@@ -126,11 +119,21 @@ def uiBasicExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	if not STANDALONE_UI_EXCEPTION_HANDLER in args :
-		messageBox.messageBox( "Error", "Exception", "{0}".format( exception ) )
-	else :
-		messageBox.standaloneMessageBox( "Error", "Exception", "{0}".format( exception ) )
+	messageBox.messageBox( "Error", "Exception", "{0}".format( exception ) )
+	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
+@core.executionTrace
+def uiStandaloneBasicExceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides A Ui Standalone Basic Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	messageBox.standaloneMessageBox( "Error", "Exception", "{0}".format( exception ) )
 	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
 @core.executionTrace
@@ -146,6 +149,35 @@ def uiSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
 
 	uiExtendedExceptionHandler( exception, origin, *args, **kwargs )
 	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+
+@core.executionTrace
+def uiStandaloneSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
+	'''
+	This Definition Provides A Ui Standalone System Exit Exception Handler.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	@param *args: Arguments. ( * )
+	@param **kwargs: Arguments. ( * )
+	'''
+
+	uiStandaloneExtendedExceptionHandler( exception, origin, *args, **kwargs )
+	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+
+@core.executionTrace
+def setWindowDefaultIcon( window ):
+	'''
+	This Method Sets The Application Icon To The Provided Window.
+
+	@param window: Window. ( QWidget )	
+	'''
+
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
+		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationWindowsIcon ) ) )
+	elif platform.system() == "Darwin" :
+		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationDarwinIcon ) ) )
+	elif platform.system() == "Linux":
+		pass
 
 @core.executionTrace
 def decodeMimeDatas( byteArray ):
