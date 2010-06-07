@@ -1171,6 +1171,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, OSError )
 	def setVisualStyle( self ):
 		'''
 		This Method Sets The Application Visual Style.
@@ -1189,7 +1190,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			styleSheetFile.read()
 			RuntimeConstants.application.setStyleSheet( QString( "".join( styleSheetFile.content ) ) )
 		else :
-			messageBox.messageBox( "Error", "Error", "Exception In {0}.__init__() Method | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format( self.__class__.__name__, styleSheetFile.file ) )
+			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format( self.__class__.__name__, styleSheetFile.file )
 
 	@core.executionTrace
 	def initializeToolbar( self ):

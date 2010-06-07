@@ -68,6 +68,7 @@ import traceback
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -89,8 +90,7 @@ def componentActivationErrorHandler( exception, origin, *args, **kwargs ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, args, kwargs )
-	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Activating '{0}' Component :\n{1}".format( args[1]._datas.name, traceback.format_exc() ) )
+	ui.common.uiBasicExceptionHandler( Exception( "{0} | An Exception Occurred While Activating '{1}' Component :\n{2}".format( core.getModule( componentActivationErrorHandler ).__name__, args[1].name, traceback.format_exc() ) ), origin, *args, **kwargs )
 
 @core.executionTrace
 def componentDeactivationErrorHandler( exception, origin, *args, **kwargs ):
@@ -101,8 +101,7 @@ def componentDeactivationErrorHandler( exception, origin, *args, **kwargs ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, args, kwargs )
-	messageBox.messageBox( "Error", "Error", "An Exception Occurred While Deactivating '{0}' Component :\n{1}".format( args[1]._datas.name, traceback.format_exc() ) )
+	ui.common.uiBasicExceptionHandler( Exception( "{0} | An Exception Occurred While Deactivating '{1}' Component :\n{2}".format( core.getModule( componentActivationErrorHandler ).__name__, args[1].name, traceback.format_exc() ) ), origin, *args, **kwargs )
 
 class ComponentsManagerUi( UiComponent ):
 	'''

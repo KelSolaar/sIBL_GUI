@@ -642,11 +642,13 @@ class LoaderScriptOptions( UiComponent ):
 
 		if template :
 			LOGGER.debug( "> Parsing '{0}' Template For '{1}' and '{2}'Section.".format( template._datas.name, self._templateCommonAttributesSection, self._templateAdditionalAttributesSection ) )
-			templateParser = Parser( template._datas.path )
-			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 
-			self.setOptionsToolBox( templateParser.sections[self._templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget )
-			self.setOptionsToolBox( templateParser.sections[self._templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget )
+			if os.path.exists( template._datas.path ) :
+				templateParser = Parser( template._datas.path )
+				templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+
+				self.setOptionsToolBox( templateParser.sections[self._templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget )
+				self.setOptionsToolBox( templateParser.sections[self._templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget )
 
 	@core.executionTrace
 	def setOptionsToolBox( self, section, tableWidget ) :

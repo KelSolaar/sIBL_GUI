@@ -75,14 +75,14 @@ from globals.constants import Constants
 #***********************************************************************************************
 LOGGER = logging.getLogger( Constants.logger )
 
-DB_ERRORS = {
-			"errorInexistingIblSetFile" : "Set's Ibl File Is Missing !",
-			"errorInexistingSetIcon" : "Set's Icon Is Missing !",
-			"errorInexistingSetBackgroundImage" : "Set's Background Image Is Missing !",
-			"errorInexistingSetLightingImage" : "Set's Lighting Image Is Missing !",
-			"errorInexistingSetReflectionImage" : "Set's Reflection Image Is Missing !",
-			"errorInexistingTemplateFile" : "Template File Is Missing !",
-			"errorInexistingTemplateHelpFile" : "Template Help File Is Missing !"
+DB_EXCEPTIONS = {
+			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Set's Ibl File Is Missing !",
+			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Set's Icon Is Missing !",
+			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Set's Background Image Is Missing !",
+			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Set's Lighting Image Is Missing !",
+			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Set's Reflection Image Is Missing !",
+			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template File Is Missing !",
+			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template Help File Is Missing !"
 		}
 
 #***********************************************************************************************
@@ -341,16 +341,16 @@ def checkSetsTableIntegrity( session ):
 	if getSets( session ) :
 		for set in getSets( session ) :
 			if not os.path.exists( set.path ) :
-				erroneousSets[set] = "errorInexistingIblSetFile"
+				erroneousSets[set] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
 				continue
 			if not os.path.exists( set.icon ) :
-				erroneousSets[set] = "errorInexistingSetIcon"
+				erroneousSets[set] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
 			if set.backgroundImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.backgroundImage ) ) :
-				erroneousSets[set] = "errorInexistingSetBackgroundImage"
+				erroneousSets[set] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
 			if set.lightingImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.lightingImage ) ) :
-				erroneousSets[set] = "errorInexistingSetLightingImage"
+				erroneousSets[set] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
 			if  set.reflectionImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.reflectionImage ) ) :
-				erroneousSets[set] = "errorInexistingSetReflectionImage"
+				erroneousSets[set] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
 	if erroneousSets : return erroneousSets
 
@@ -474,10 +474,10 @@ def checkTemplatesTableIntegrity( session ):
 	if getTemplates( session ) :
 		for template in getTemplates( session ) :
 			if not os.path.exists( template.path ) :
-				erroneousTemplates[template] = "errorInexistingTemplateFile"
+				erroneousTemplates[template] = "INEXISTING_TEMPLATE_FILE_EXCEPTION"
 				continue
 			if not os.path.exists( template.helpFile ) :
-				erroneousTemplates[template] = "errorInexistingTemplateHelpFile"
+				erroneousTemplates[template] = "INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION"
 	return erroneousTemplates
 
 #***********************************************************************************************

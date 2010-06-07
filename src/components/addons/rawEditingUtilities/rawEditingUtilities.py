@@ -67,6 +67,7 @@ from PyQt4.QtGui import *
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.environment import Environment
 from globals.constants import Constants
@@ -628,6 +629,7 @@ class RawEditingUtilities( UiComponent ):
 			self._settings.setKey( self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
 	def Custom_Text_Editor_Path_lineEdit_OnEditFinished( self ) :
 		'''
 		This Method Is Called When Custom_Text_Editor_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
@@ -637,7 +639,7 @@ class RawEditingUtilities( UiComponent ):
 			LOGGER.debug( "> Restoring Preferences !" )
 			self.Custom_Text_Editor_Path_lineEdit_setUi()
 
-			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom Text Editor Executable File !".format( self.__class__.__name__ ) )
+			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File !".format( self.__class__.__name__ )
 		else :
 			self._settings.setKey( self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text() )
 

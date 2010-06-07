@@ -68,6 +68,7 @@ import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.environment import Environment
 from globals.constants import Constants
@@ -790,6 +791,7 @@ class LocationsBrowser( UiComponent ):
 			self._settings.setKey( self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
 	def Custom_File_Browser_Path_lineEdit_OnEditFinished( self ) :
 		'''
 		This Method Is Called When Custom_File_Browser_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
@@ -799,11 +801,12 @@ class LocationsBrowser( UiComponent ):
 			LOGGER.debug( "> Restoring Preferences !" )
 			self.Custom_File_Browser_Path_lineEdit_setUi()
 
-			messageBox.messageBox( "Error", "Error", "{0} | Invalid Custom File Browser Executable File !".format( self.__class__.__name__ ) )
+			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File !".format( self.__class__.__name__ )
 		else :
 			self._settings.setKey( self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text() )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, OSError )
 	def Open_Output_Folder_pushButton_OnClicked( self ) :
 		'''
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
@@ -813,7 +816,7 @@ class LocationsBrowser( UiComponent ):
 			if os.path.exists( self._container.parameters.loaderScriptsOutputDirectory ) :
 				self.exploreProvidedFolder( self._container.parameters.loaderScriptsOutputDirectory )
 			else :
-				messageBox.messageBox( "Error", "Error", "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory ) )
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory )
 		else :
 			self.exploreProvidedFolder( self._addonsLoaderScript.ioDirectory )
 

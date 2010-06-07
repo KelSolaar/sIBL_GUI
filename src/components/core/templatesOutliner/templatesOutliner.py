@@ -70,6 +70,7 @@ import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -989,11 +990,11 @@ class TemplatesOutliner( UiComponent ):
 			erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity( self._coreDb.dbSession )
 			if erroneousTemplates :
 				for template in erroneousTemplates :
-					if erroneousTemplates[template] == "errorInexistingTemplateFile" :
-						if messageBox.messageBox( "Question", "error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, template.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
+					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION" :
+						if messageBox.messageBox( "Question", "Error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, template.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							self.updateTemplateLocation( template )
 					else :
-						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_ERRORS[erroneousTemplates[template]] ) )
+						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' {2}".format( self.__class__.__name__, template.name, dbUtilities.common.DB_EXCEPTIONS[erroneousTemplates[template]] ) )
 				self.Templates_Outliner_treeView_refreshModel()
 		else :
 			LOGGER.info( "{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
@@ -1337,6 +1338,7 @@ class TemplatesOutliner( UiComponent ):
 		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def addTemplate( self ):
 		'''
 		This Method Adds A Template To The Database.
@@ -1354,7 +1356,7 @@ class TemplatesOutliner( UiComponent ):
 			if dbUtilities.common.addTemplate( self._coreDb.dbSession, templateName, templatePath, collectionId ) :
 				return True
 			else :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName )
 
 	@core.executionTrace
 	def addDirectory( self, directory, id ):
@@ -1408,6 +1410,7 @@ class TemplatesOutliner( UiComponent ):
 				return success
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def updateTemplateLocation( self, template ):
 		'''
 		This Method Updates A Template Location.
@@ -1420,8 +1423,7 @@ class TemplatesOutliner( UiComponent ):
 		if templatePath :
 			LOGGER.info( "{0} | Updating '{1}' Template With New Location '{2}' !".format( self.__class__.__name__, template.name, file ) )
 			if not dbUtilities.common.updateTemplateLocation( self._coreDb.dbSession, template, templatePath ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Updating '{1}' Template !".format( self.__class__.__name__, template.name ) )
-				return False
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template !".format( self.__class__.__name__, template.name )
 			else :
 				return True
 

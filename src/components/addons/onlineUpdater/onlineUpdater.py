@@ -641,7 +641,7 @@ class DownloadManager( QObject ):
 			self._currentFile = QFile( self._currentFilePath )
 
 			if not self._currentFile.open( QIODevice.WriteOnly ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Error While Writing '{1}' File To Disk !".format( self.__class__.__name__, os.path.basename( self._currentFilePath ) ) )
+				messageBox.messageBox( "Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download !".format( self.__class__.__name__, os.path.basename( self._currentFilePath ) ) )
 				self.downloadNext()
 				return
 
@@ -1477,7 +1477,7 @@ class RemoteUpdater( object ):
 					LOGGER.info( "{0} | Removing '{1}' Archive !".format( self.__class__.__name__, download ) )
 					os.remove( download )
 				else :
-					messageBox.messageBox( "Error", "Error", "{0} | Failed Extracting '{1}' !".format( self.__class__.__name__, os.path.basename( download ) ) )
+					messageBox.messageBox( "Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File !".format( self.__class__.__name__, os.path.basename( download ) ) )
 				self._container.coreTemplatesOutliner.addDirectory( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id )
 				needModelRefresh = True
 			else :

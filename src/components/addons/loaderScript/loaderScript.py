@@ -632,7 +632,7 @@ class LoaderScript( UiComponent ):
 		self.outputLoaderScript()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiUserExceptionHandler, False, foundations.exceptions.SocketConnectionError )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError )
 	def Send_To_Software_pushButton_OnClicked( self ) :
 		'''
 		This Method Remotes Connect To Target Software.
@@ -684,23 +684,25 @@ class LoaderScript( UiComponent ):
 
 		if template :
 			LOGGER.debug( "> Parsing '{0}' Template For '{1}' Section.".format( template._datas.name, self._templateRemoteConnectionSection ) )
-			templateParser = Parser( template._datas.path )
-			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 
-			if self._templateRemoteConnectionSection in templateParser.sections :
-				LOGGER.debug( "> {0}' Section Found.".format( self._templateRemoteConnectionSection ) )
-				self.ui.Remote_Connection_groupBox.show()
-				connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
-				if connectionType.value == "Socket" :
-					LOGGER.debug( "> Remote Connection Type : 'Socket'." )
-					self.ui.Software_Port_spinBox.setValue( int( foundations.parser.getAttributeCompound( "DefaultPort", templateParser.getValue( "DefaultPort", self._templateRemoteConnectionSection ) ).value ) )
-					self.ui.Address_lineEdit.setText( QString( foundations.parser.getAttributeCompound( "DefaultAddress", templateParser.getValue( "DefaultAddress", self._templateRemoteConnectionSection ) ).value ) )
-					self.ui.Remote_Connection_Options_frame.show()
-				elif connectionType.value == "Win32" :
-					LOGGER.debug( "> Remote Connection : 'Win32'." )
-					self.ui.Remote_Connection_Options_frame.hide()
-			else :
-				self.ui.Remote_Connection_groupBox.hide()
+			if os.path.exists( template._datas.path ) :
+				templateParser = Parser( template._datas.path )
+				templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+
+				if self._templateRemoteConnectionSection in templateParser.sections :
+					LOGGER.debug( "> {0}' Section Found.".format( self._templateRemoteConnectionSection ) )
+					self.ui.Remote_Connection_groupBox.show()
+					connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
+					if connectionType.value == "Socket" :
+						LOGGER.debug( "> Remote Connection Type : 'Socket'." )
+						self.ui.Software_Port_spinBox.setValue( int( foundations.parser.getAttributeCompound( "DefaultPort", templateParser.getValue( "DefaultPort", self._templateRemoteConnectionSection ) ).value ) )
+						self.ui.Address_lineEdit.setText( QString( foundations.parser.getAttributeCompound( "DefaultAddress", templateParser.getValue( "DefaultAddress", self._templateRemoteConnectionSection ) ).value ) )
+						self.ui.Remote_Connection_Options_frame.show()
+					elif connectionType.value == "Win32" :
+						LOGGER.debug( "> Remote Connection : 'Win32'." )
+						self.ui.Remote_Connection_Options_frame.hide()
+				else :
+					self.ui.Remote_Connection_groupBox.hide()
 		else :
 			self.ui.Remote_Connection_groupBox.hide()
 
@@ -737,7 +739,7 @@ class LoaderScript( UiComponent ):
 		return overrideKeys
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, OSError )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception )
 	def outputLoaderScript( self ) :
 		'''
 		This Method Output The Loader Script.
@@ -754,23 +756,19 @@ class LoaderScript( UiComponent ):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if not template :
-			messageBox.messageBox( "Error", "Error", "{0} | In Order To Output The Loader Script, You Need To Select A Template !".format( self.__class__.__name__ ) )
-			return
+			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Template !".format( self.__class__.__name__ )
 
 		if not os.path.exists( template._datas.path ) :
-			messageBox.messageBox( "Error", "Error", "{0} | '{1}' Template File Doesn't Exists !".format( self.__class__.__name__, template.name ) )
-			return
+			raise OSError, "{0} | '{1}' Template File Doesn't Exists !".format( self.__class__.__name__, template._datas.name )
 
 		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
 		set = selectedSet and selectedSet[0] or None
 
 		if not set :
-			messageBox.messageBox( "Error", "Error", "{0} | In Order To Output The Loader Script, You Need To Select A Set !".format( self.__class__.__name__ ) )
-			return
+			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set !".format( self.__class__.__name__ )
 
 		if not os.path.exists( set._datas.path ) :
-			messageBox.messageBox( "Error", "Error", "{0} | '{1}' Ibl Set File Doesn't Exists !".format( self.__class__.__name__, set.name ) )
-			return
+			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists !".format( self.__class__.__name__, set._datas.name )
 
 		self._overrideKeys = self.getDefaultOverrideKeys()
 
@@ -784,7 +782,7 @@ class LoaderScript( UiComponent ):
 			if os.path.exists( self._container.parameters.loaderScriptsOutputDirectory ) :
 				loaderScript = File( os.path.join( self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript ) )
 			else :
-				messageBox.messageBox( "Error", "Error", "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory ) )
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format( self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory )
 		else :
 			loaderScript = File( os.path.join( self._ioDirectory, template._datas.outputScript ) )
 
@@ -795,8 +793,7 @@ class LoaderScript( UiComponent ):
 			messageBox.messageBox( "Information", "Information", "{0} | '{1}' Output Done !".format( self.__class__.__name__, template._datas.outputScript ) )
 			return True
 		else :
-			messageBox.messageBox( "Error", "Error", "{0} | '{1}' Output Failed !".format( self.__class__.__name__, template._datas.outputScript ) )
-			return False
+			raise Exception, "{0} | '{1}' Output Failed !".format( self.__class__.__name__, template._datas.outputScript )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, Exception )

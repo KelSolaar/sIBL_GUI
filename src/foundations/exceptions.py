@@ -317,9 +317,65 @@ class ObjectExistsError( Exception ):
 
 		return self.value
 
+class DatabaseOperationError( Exception ):
+	'''
+	This Class Is Used For Database Operation Errors.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return self.value
+
 class ProgrammingError( Exception ):
 	'''
 	This Class Is Used For Programming Errors.
+	'''
+
+	@core.executionTrace
+	def __init__( self, value ) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__( self ) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return self.value
+
+class UserError( Exception ):
+	'''
+	This Class Is Used For User Errors.
 	'''
 
 	@core.executionTrace

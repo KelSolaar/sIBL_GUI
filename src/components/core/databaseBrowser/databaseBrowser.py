@@ -70,6 +70,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
 from globals.constants import Constants
@@ -1118,11 +1119,11 @@ class DatabaseBrowser( UiComponent ):
 			erroneousSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
 			if erroneousSets :
 				for set in erroneousSets :
-					if erroneousSets[set] == "errorInexistingIblSetFile" :
-						if messageBox.messageBox( "Question", "error", "{0} | '{1}' Set File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, set.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
+					if erroneousSets[set] == "INEXISTING_IBL_SET_FILE_EXCEPTION" :
+						if messageBox.messageBox( "Question", "Error", "{0} | '{1}' Set File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, set.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							self.updateSetLocation( set )
 					else :
-						messageBox.messageBox( "Error", "Error", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_ERRORS[erroneousSets[set]] ) )
+						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' {2}".format( self.__class__.__name__, set.name, dbUtilities.common.DB_EXCEPTIONS[erroneousSets[set]] ) )
 				self.setCollectionsDisplaySets()
 				self.Database_Browser_listView_refreshModel()
 		else :
@@ -1405,6 +1406,7 @@ class DatabaseBrowser( UiComponent ):
 		self._displaySets = self._coreCollectionsOutliner.getCollectionsSets()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def addSet( self, name, path, collectionId = None ):
 		'''
 		This Method Adds A Set To The Database.
@@ -1417,7 +1419,7 @@ class DatabaseBrowser( UiComponent ):
 		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 			LOGGER.info( "{0} | Adding '{1}' Set To Database !".format( self.__class__.__name__, name ) )
 			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, name ) )
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Set To Database !".format( self.__class__.__name__, name )
 		else:
 			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
@@ -1453,6 +1455,7 @@ class DatabaseBrowser( UiComponent ):
 					dbUtilities.common.removeSet( self._coreDb.dbSession, set._datas.id )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def updateSetLocation( self, set ):
 		'''
 		This Method Updates A Set Location.
@@ -1465,8 +1468,7 @@ class DatabaseBrowser( UiComponent ):
 		if file :
 			LOGGER.info( "{0} | Updating '{1}' Set With New Location : '{2}' !".format( self.__class__.__name__, set.name, file ) )
 			if not dbUtilities.common.updateSetLocation( self._coreDb.dbSession, set, file ) :
-				messageBox.messageBox( "Error", "Error", "{0} | Exception Raised While Updating '{1}' Set !".format( self.__class__.__name__, set.name ) )
-				return False
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Set !".format( self.__class__.__name__, set.name )
 			else :
 				return True
 

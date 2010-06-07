@@ -66,6 +66,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -516,6 +517,7 @@ class sIBLeditUtilities( UiComponent ):
 			self._settings.setKey( self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
 	def sIBLedit_Path_lineEdit_OnEditFinished( self ) :
 		'''
 		This Method Is Called When sIBLedit_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
@@ -525,7 +527,7 @@ class sIBLeditUtilities( UiComponent ):
 			LOGGER.debug( "> Restoring Preferences !" )
 			self.sIBLedit_Path_lineEdit_setUi()
 
-			messageBox.messageBox( "Error", "Error", "{0} | Invalid sIBLedit Executable File !".format( self.__class__.__name__ ) )
+			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File !".format( self.__class__.__name__ )
 		else :
 			self._settings.setKey( self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text() )
 

@@ -98,7 +98,7 @@ def setWindowDefaultIcon( window ):
 		pass
 
 @core.executionTrace
-def uiExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
 	This Definition Provides A Ui Exception Handler.
 	
@@ -116,7 +116,7 @@ def uiExceptionHandler( exception, origin, *args, **kwargs ) :
 	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
 
 @core.executionTrace
-def uiUserExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiBasicExceptionHandler( exception, origin, *args, **kwargs ) :
 	'''
 	This Definition Provides A Ui Exception Handler.
 	
@@ -144,7 +144,7 @@ def uiSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	uiExceptionHandler( exception, origin, *args, **kwargs )
+	uiExtendedExceptionHandler( exception, origin, *args, **kwargs )
 	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
 
 @core.executionTrace
