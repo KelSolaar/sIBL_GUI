@@ -1462,7 +1462,7 @@ def sIBL_GUI_start():
 	else :
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
-	if not setUserApplicationDataDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
+	if not setUserApplicationDatasDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
 		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName )
 
 	# Getting The Logging File Path.
@@ -1538,7 +1538,7 @@ def sIBL_GUI_close() :
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler( ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError )
-def setUserApplicationDataDirectory( path ):
+def setUserApplicationDatasDirectory( path ):
 	'''
 	This Definition Sets The Application Datas Directory.
 
