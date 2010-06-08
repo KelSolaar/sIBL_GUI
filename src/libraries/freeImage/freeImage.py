@@ -976,7 +976,7 @@ class Image( object ):
 		self._library = foundations.library.Library( FREEIMAGE_LIBRARY_PATH, FREEIMAGE_FUNCTIONS )
 
 		self._errorsCallback = self._library._callback( self._logLibraryErrors )
-		self._library._library.FreeImage_SetOutputMessage( self._errorsCallback )
+		self._library.library.FreeImage_SetOutputMessage( self._errorsCallback )
 
 		self._imagePath = None
 		self.imagePath = imagePath
