@@ -95,6 +95,7 @@ BYTE	 = ctypes.c_ubyte
 WORD	 = ctypes.c_ushort
 DWORD	 = ctypes.c_ulong
 LONG	 = ctypes.c_long
+DOUBLE	 = ctypes.c_double
 
 BYTE_P = ctypes.POINTER( BYTE )
 
@@ -954,6 +955,10 @@ FREEIMAGE_FUNCTIONS = (
 
 	# Miscellaneous Algorithms Functions.
 	LibraryHook( name = "FreeImage_MultigridPoissonSolver" , affixe = "@8", argumentsType = None, returnValue = None ),
+
+	# Custom Functions.
+	LibraryHook( name = "FreeImage_HDRLabs_ConvertToLdr" , affixe = "@20", argumentsType = ( ctypes.c_double, ctypes.c_double ), returnValue = None ),
+
  )
 
 #***********************************************************************************************
@@ -1208,17 +1213,50 @@ class Image( object ):
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
 
-			ldrBitmap = self._library.FreeImage_Allocate( width, height, BPP_32 )
+			ldrBitmap = self._library.FreeImage_Allocate( width, height, BPP_24 )
 			for y in range( height ) :
 				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
 				bitsPointer = ctypes.pointer( FIRGBF.from_address( bitsAdress ) )
 				for x in range( width ) :
-					ldrPixel = RGBQUAD( int( bitsPointer[x].blue * CPC_8 ), int( bitsPointer[x].green * CPC_8 ), int( bitsPointer[x].red * CPC_8 ) )
+					ldrPixel = RGBTRIPLE( clamp( int( bitsPointer[x].blue * CPC_8 ), 0, CPC_8 ), clamp( int( bitsPointer[x].green * CPC_8 ), 0, CPC_8 ), clamp( int( bitsPointer[x].red * CPC_8 ), 0, CPC_8 ) )
 					self._library.FreeImage_SetPixelColor( ldrBitmap, x, y, ctypes.byref( ldrPixel ) )
 
 			LOGGER.debug( "> '{0}' Image Bitmap Conversion To Ldr Done !".format( self._imagePath ) )
 
 			self._bitmap = ldrBitmap
+		else :
+			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_RGBF )
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
+	def convertHDRToQImage( self ):
+		'''
+		This Method Converts The HDR To QImage.
+		'''
+
+		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
+			LOGGER.debug( "> Converting '{0}' HDR Image Bitmap To QImage !".format( self._imagePath ) )
+
+			from PyQt4.QtCore import QByteArray
+			from PyQt4.QtGui import QImage
+
+			self._bitmap = self._library.FreeImage_HDRLabs_ConvertToLdr( self._bitmap, ctypes.c_double( 2.2 ), ctypes.c_double( 1 ) )
+
+			width = self._library.FreeImage_GetWidth( self._bitmap )
+			height = self._library.FreeImage_GetHeight( self._bitmap )
+
+			bits = QByteArray()
+			for y in range( height ) :
+				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
+				bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
+				for x in range( width ) :
+					bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
+
+			image = QImage( bits, width, height, QImage.Format_RGB32 )
+
+			LOGGER.debug( "> '{0}' HDR Image Bitmap Conversion To QImage Done !".format( self._imagePath ) )
+
+			return image.mirrored( vertical = True )
 		else :
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_RGBF )
 
@@ -1265,3 +1303,47 @@ class Image( object ):
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+#def clamp( value, maximum ):
+#	return value > maximum and maximum or value
+
+import time
+
+FREEIMAGE_LIBRARY_PATH = "/Users/KelSolaar/Documents/Developement/FreeImage/Dist/libfreeimage-3.13.1.dylib"
+
+from globals.runtimeConstants import RuntimeConstants
+
+LOGGER.setLevel( logging.INFO )
+
+# Starting The Console Handler.
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
+RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
+LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
+
+imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection A/Alexs_Apartment/Alexs_Apt_Env.hdr"
+image = Image( imagePath )
+
+t1 = time.time()
+qImage = image.convertHDRToQImage()
+t2 = time.time()
+print 'HDR TO QImage Conversion took %0.3f ms' % ( ( t2 - t1 ) * 1000.0 )
+
+import sys
+from PyQt4.QtGui import *
+
+class Display( QWidget ):
+	def __init__( self, parent = None ):
+		QWidget.__init__( self, parent )
+
+		self.setWindowTitle( 'Tga Loader' )
+
+		grid = QGridLayout()
+		label = QLabel()
+		label.setPixmap( QPixmap( qImage ) )
+		grid.addWidget( label )
+
+		self.setLayout( grid )
+
+app = QApplication( sys.argv )
+qb = Display()
+qb.show()
+sys.exit( app.exec_() )
