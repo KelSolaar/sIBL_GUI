@@ -1142,11 +1142,9 @@ class DatabaseBrowser( UiComponent ):
 		self._model.clear()
 
 		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
-
 			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
-
 				iblSetStandardItemItem = QStandardItem()
 				iblSetStandardItemItem.setData( iblSet.title, Qt.DisplayRole )
 
