@@ -294,10 +294,10 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 			LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
 			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
 			if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
-				sets = self._coreDatabaseBrowser.getSelectedItems()
-				LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in sets] ), collectionStandardItem._datas.name ) )
-				for set in sets :
-					set._datas.collection = collectionStandardItem._datas.id
+				iblSets = self._coreDatabaseBrowser.getSelectedItems()
+				LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
+				for iblSet in iblSets :
+					iblSet._datas.collection = collectionStandardItem._datas.id
 				if dbUtilities.common.commit( self._coreDb.dbSession ) :
 					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 					self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
@@ -1197,10 +1197,10 @@ class CollectionsOutliner( UiComponent ):
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self._defaultCollection]
 		if selectedCollections :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format( ", ".join( [str( collection.text() ) for collection in selectedCollections] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-				sets = dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, self.getSelectedCollectionsIds() )
-				for set in sets :
-					LOGGER.info( "{0} | Moving '{1}' Set To Default Collection !".format( self.__class__.__name__, set.name ) )
-					set.collection = self.getCollectionId( self._defaultCollection )
+				iblSets = dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, self.getSelectedCollectionsIds() )
+				for iblSet in iblSets :
+					LOGGER.info( "{0} | Moving '{1}' Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
+					iblSet.collection = self.getCollectionId( self._defaultCollection )
 				success = True
 				for collection in selectedCollections :
 					LOGGER.info( "{0} | Removing '{1}' Collection From Database !".format( self.__class__.__name__, collection.text() ) )

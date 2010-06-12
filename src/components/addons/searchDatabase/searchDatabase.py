@@ -649,7 +649,7 @@ class SearchDatabase( UiComponent ):
 
 		previousDisplaySets = self._coreDatabaseBrowser.displaySets
 
-		sets = self._coreCollectionsOutliner.getCollectionsSets()
+		iblSets = self._coreCollectionsOutliner.getCollectionsSets()
 
 		timeLow = self.ui.Time_Low_timeEdit.time()
 		timeHigh = self.ui.Time_High_timeEdit.time()
@@ -657,7 +657,7 @@ class SearchDatabase( UiComponent ):
 		LOGGER.debug( "> Filtering Sets By Time Range From '{0}' To '{1}'.".format( timeLow, timeHigh ) )
 
 		filteredSets = []
-		for iblSet in sets :
+		for iblSet in iblSets :
 			if iblSet.time :
 				timeTokens = iblSet.time.split( ":" )
 				int( timeTokens[0] ) * 60 + int( timeTokens[1] ) >= timeLow.hour()* 60 + timeLow.minute() and int( timeTokens[0] ) * 60 + int( timeTokens[1] ) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append( iblSet )

@@ -723,18 +723,18 @@ class LoaderScript( UiComponent ):
 			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Template|Path", template._datas.path ) )
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound( "Template|Path", template._datas.path )
 
-		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
-		set = selectedSets and selectedSets[0] or None
+		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		iblSet = selectedIblSets and selectedIblSets[0] or None
 
-		if set :
-			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Background|BGfile", set._datas.backgroundImage ) )
-			overrideKeys["Background|BGfile"] = set._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( set._datas.backgroundImage ) )
+		if iblSet :
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Background|BGfile", iblSet._datas.backgroundImage ) )
+			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( iblSet._datas.backgroundImage ) )
 
-			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Enviroment|EVfile", set._datas.lightingImage ) )
-			overrideKeys["Enviroment|EVfile"] = set._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( set._datas.lightingImage ) )
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Enviroment|EVfile", iblSet._datas.lightingImage ) )
+			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( iblSet._datas.lightingImage ) )
 
-			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Reflection|REFfile", set._datas.reflectionImage ) )
-			overrideKeys["Reflection|REFfile"] = set._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( set._datas.reflectionImage ) )
+			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Reflection|REFfile", iblSet._datas.reflectionImage ) )
+			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( iblSet._datas.reflectionImage ) )
 
 		return overrideKeys
 
@@ -761,14 +761,14 @@ class LoaderScript( UiComponent ):
 		if not os.path.exists( template._datas.path ) :
 			raise OSError, "{0} | '{1}' Template File Doesn't Exists !".format( self.__class__.__name__, template._datas.name )
 
-		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
-		set = selectedSet and selectedSet[0] or None
+		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
+		iblSet = selectedIblSet and selectedIblSet[0] or None
 
-		if not set :
+		if not iblSet :
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set !".format( self.__class__.__name__ )
 
-		if not os.path.exists( set._datas.path ) :
-			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists !".format( self.__class__.__name__, set._datas.name )
+		if not os.path.exists( iblSet._datas.path ) :
+			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists !".format( self.__class__.__name__, iblSet._datas.name )
 
 		self._overrideKeys = self.getDefaultOverrideKeys()
 
@@ -788,7 +788,7 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Loader Script Output File Path : '{0}'.".format( loaderScript.file ) )
 
-		loaderScript.content = self.getLoaderScript( template._datas.path, set._datas.path, self._overrideKeys )
+		loaderScript.content = self.getLoaderScript( template._datas.path, iblSetk._datas.path, self._overrideKeys )
 		if loaderScript.content and loaderScript.write() :
 			messageBox.messageBox( "Information", "Information", "{0} | '{1}' Output Done !".format( self.__class__.__name__, template._datas.outputScript ) )
 			return True

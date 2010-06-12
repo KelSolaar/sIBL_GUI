@@ -589,9 +589,9 @@ class RawEditingUtilities( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
-		for set in selectedSets:
-			set._datas.path and os.path.exists( set._datas.path ) and self.editProvidedfile( set._datas.path )
+		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		for iblSet in selectedIblSets:
+			iblSet._datas.path and os.path.exists( iblSet._datas.path ) and self.editProvidedfile( iblSet._datas.path )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_editSetInTextEditorAction( self, checked ):

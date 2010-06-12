@@ -737,11 +737,11 @@ class LocationsBrowser( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		selectedSets = self._coreDatabaseBrowser.getSelectedItems()
-		for set in selectedSets :
-			setPath = set._datas.path
-			setPath = setPath and os.path.exists( setPath ) and os.path.dirname( setPath )
-			setPath and self.exploreProvidedFolder( setPath )
+		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		for iblSet in selectedIblSets :
+			iblSetPath = iblSet._datas.path
+			iblSetPath = iblSetPath and os.path.exists( iblSetPath ) and os.path.dirname( iblSetPath )
+			iblSetPath and self.exploreProvidedFolder( iblSetPath )
 
 	@core.executionTrace
 	def Components_Manager_Ui_treeView_openComponentsLocationsAction( self, checked ):

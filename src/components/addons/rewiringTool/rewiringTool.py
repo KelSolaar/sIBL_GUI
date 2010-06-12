@@ -570,19 +570,19 @@ class RewiringTool( UiComponent ):
 
 		LOGGER.info( "{0} | Updating Loader Script Override Keys !".format( self.__class__.__name__ ) )
 
-		selectedSet = self._coreDatabaseBrowser.getSelectedItems()
-		set = selectedSet and selectedSet[0] or None
+		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
+		iblSet = selectedIblSet and selectedIblSet[0] or None
 
-		if set :
-			if os.path.exists( set._datas.path ) :
+		if iblSet :
+			if os.path.exists( iblSet._datas.path ) :
 				for index, comboBox in enumerate( self._reWireComboBoxesWidgets ):
 					parameter = self._rewiringParameters[comboBox.currentIndex()]
 					if comboBox.currentText() == "Custom Image" :
 						LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( comboBox._datas, str( self._reWireLineEditWidgets[index].text() ) ) )
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( str( self._reWireLineEditWidgets[index].text() ) ) )
 					else:
-						LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( comboBox._datas, getattr( set._datas, parameter[2] ) ) )
-						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr( set._datas, parameter[2] ) and foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( getattr( set._datas, parameter[2] ) ) )
+						LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( comboBox._datas, getattr( iblSet._datas, parameter[2] ) ) )
+						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr( iblSet._datas, parameter[2] ) and foundations.parser.getAttributeCompound( parameter[1], strings.getNormalisedPath( getattr( iblSet._datas, parameter[2] ) ) )
 
 #***********************************************************************************************
 #***	Python End
