@@ -1028,6 +1028,8 @@ class TemplatesOutliner( UiComponent ):
 			softwares = set( [ software[0] for software in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.software ).filter( dbUtilities.types.DbTemplate.collection == collection.id )] )
 
 			if softwares :
+				LOGGER.debug( " > Preparing '{0}' Collection For '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
+
 				collectionStandardItem = QStandardItem( QString( collection.name ) )
 				collectionStandardItem._datas = collection
 				collectionStandardItem._type = "Collection"
@@ -1039,6 +1041,8 @@ class TemplatesOutliner( UiComponent ):
 					templates = set( [ template[0] for template in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.id ).filter( dbUtilities.types.DbTemplate.collection == collection.id ).filter( dbUtilities.types.DbTemplate.software == software )] )
 
 					if templates :
+						LOGGER.debug( " > Preparing '{0}' Software For '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
+
 						softwareStandardItem = QStandardItem( QString( software ) )
 						iconPath = os.path.join( self._uiResources, "{0}{1}".format( software, self._uiSoftwareAffixe ) )
 						if os.path.exists( iconPath ) :
@@ -1048,24 +1052,32 @@ class TemplatesOutliner( UiComponent ):
 
 						softwareStandardItem._type = "Software"
 
-						LOGGER.debug( " > Adding '{0}' Software To '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
+						LOGGER.debug( "> Adding '{0}' Software To '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
 						collectionStandardItem.appendRow( [softwareStandardItem, None, None] )
 
 						for template in templates :
 							template = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template ), "id" )[0]
-							templateStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
 
-							templateReleaseStandardItem = QStandardItem( QString( template.release ) )
-							templateReleaseStandardItem.setTextAlignment( Qt.AlignCenter )
+							LOGGER.debug( " > Preparing '{0}' Template For '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
 
-							templateVersionStandardItem = QStandardItem( QString( template.version ) )
-							templateVersionStandardItem.setTextAlignment( Qt.AlignCenter )
+							try :
+								templateStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
 
-							templateStandardItem._datas = template
-							templateStandardItem._type = "Template"
+								templateReleaseStandardItem = QStandardItem( QString( template.release ) )
+								templateReleaseStandardItem.setTextAlignment( Qt.AlignCenter )
 
-							LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
-							softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
+								templateVersionStandardItem = QStandardItem( QString( template.version ) )
+								templateVersionStandardItem.setTextAlignment( Qt.AlignCenter )
+
+								templateStandardItem._datas = template
+								templateStandardItem._type = "Template"
+
+								LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
+								softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
+
+							except Exception as error :
+								LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Template To '{2}' Model !".format( self.__class__.__name__, template.name, "Templates_Outliner_treeView" ) )
+								foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Templates_Outliner_treeView_setModel" ) )
 
 		self.emit( SIGNAL( "modelChanged()" ) )
 

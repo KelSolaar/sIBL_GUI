@@ -1142,41 +1142,34 @@ class DatabaseBrowser( UiComponent ):
 		self._model.clear()
 
 		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
-			id = iblSet.id
-			name = iblSet.name or Constants.nullObject
-			title = iblSet.title
-			author = iblSet.author or Constants.nullObject
-			icon = iblSet.icon or Constants.nullObject
-			location = iblSet.location or Constants.nullObject
-			date = iblSet.date or Constants.nullObject
-			time = iblSet.time or Constants.nullObject
-			comment = iblSet.comment or Constants.nullObject
 
-			if title :
-				iblSetStandardItemItem = QStandardItem()# QString( title ) )
-				iblSetStandardItemItem.setData( title, Qt.DisplayRole )
+			LOGGER.debug( " > Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
-				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( date, time ) or Constants.nullObject )
+			try :
+
+				iblSetStandardItemItem = QStandardItem()
+				iblSetStandardItemItem.setData( iblSet.title, Qt.DisplayRole )
+
+				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( iblSet.date or Constants.nullObject, iblSet.time or Constants.nullObject ) or Constants.nullObject )
 				toolTip = QString( """
 								<p><b>{0}</b></p>
 								<p><b>Author : </b>{1}<br>
 								<b>Location : </b>{2}<br>
 								{3}<br>
 								<b>Comment : </b>{4}</p>
-								""".format( title, author, location, shotDateString, comment ) )
+								""".format( iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject ) )
 				iblSetStandardItemItem.setToolTip( toolTip )
 
 				iblIcon = QIcon()
-
-				if os.path.exists( icon ) :
+				if os.path.exists( iblSet.icon ) :
 					for extension in UiConstants.nativeImageFormats.values() :
-						if re.search( extension, icon ) :
-							iblIcon = QIcon( icon )
+						if re.search( extension, iblSet.icon ) :
+							iblIcon = QIcon( iblSet.icon )
 							break
 					else :
 						for extension in UiConstants.thirdPartyImageFormats.values() :
-							if re.search( extension, icon ) :
-								image = Image( str( icon ) )
+							if re.search( extension, iblSet.icon ) :
+								image = Image( str( iblSet.icon ) )
 								iblIcon = QIcon( QPixmap( image.convertToQImage() ) )
 								break
 
@@ -1186,8 +1179,12 @@ class DatabaseBrowser( UiComponent ):
 
 				iblSetStandardItemItem._datas = iblSet
 
-				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( title, "Database_Browser_listView" ) )
+				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 				self._model.appendRow( iblSetStandardItemItem )
+
+			except Exception as error :
+				LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model !".format( self.__class__.__name__, iblSet.name, "Database_Browser_listView" ) )
+				foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Database_Browser_listView_setModel" ) )
 
 		self.emit( SIGNAL( "modelChanged()" ) )
 
