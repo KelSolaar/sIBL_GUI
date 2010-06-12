@@ -340,7 +340,7 @@ class Parser( io.File ):
 		@return: Current File Sections. ( Dictionary Or None )
 		'''
 
-		LOGGER.debug( " > Reading Sections From : '{0}'.".format( self._file ) )
+		LOGGER.debug( "> Reading Sections From : '{0}'.".format( self._file ) )
 		if self._content :
 			if re.search( "^\[.*\]", self._content[0] ) :
 				self._sections = {}

@@ -909,7 +909,7 @@ class CollectionsOutliner( UiComponent ):
 		** Collection : { _type : "Collection", _datas : dbUtilities.types.DbCollection }
 		'''
 
-		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
 
 		self._model.clear()
 
@@ -929,7 +929,7 @@ class CollectionsOutliner( UiComponent ):
 
 		overallCollectionStandardItem._type = "Overall"
 
-		LOGGER.debug( " > Adding '{0}' Collection To '{1}'.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
+		LOGGER.debug( "> Adding '{0}' Collection To '{1}'.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
 		self._model.appendRow( [overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem] )
 
 		collections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" )
@@ -956,7 +956,7 @@ class CollectionsOutliner( UiComponent ):
 				collectionStandardItem._datas = collection
 				collectionStandardItem._type = "Collection"
 
-				LOGGER.debug( " > Adding '{0}' Collection To '{1}' Model.".format( name, "Collections_Outliner_treeView" ) )
+				LOGGER.debug( "> Adding '{0}' Collection To '{1}' Model.".format( name, "Collections_Outliner_treeView" ) )
 				overallCollectionStandardItem.appendRow( [collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem] )
 		else :
 			LOGGER.info( "{0} | Database Has No User Defined Collections !".format( self.__class__.__name__ ) )
@@ -969,7 +969,7 @@ class CollectionsOutliner( UiComponent ):
 		This Method Refreshes The Collections_Outliner_treeView Model.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Collections_Outliner_treeView" ) )
 
 		self.Collections_Outliner_treeView_setModel()
 
@@ -1010,7 +1010,7 @@ class CollectionsOutliner( UiComponent ):
 		This Method Sets The Collections_Outliner_treeView View.
 		'''
 
-		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug( "> Initializing '{0}' Widget !".format( "Collections_Outliner_treeView" ) )
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll( False )
 		self.ui.Collections_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
@@ -1035,7 +1035,7 @@ class CollectionsOutliner( UiComponent ):
 		This Method Sets Collections_Outliner_treeView Default View State.
 		'''
 
-		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Collections_Outliner_treeView" ) )
 
 		self.ui.Collections_Outliner_treeView.expandAll()
 		for column in range( len( self._modelHeaders ) ) :

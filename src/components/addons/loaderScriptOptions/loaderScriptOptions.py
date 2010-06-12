@@ -659,7 +659,7 @@ class LoaderScriptOptions( UiComponent ):
 		@param tableWidget: Table Widget. ( QTableWidget )
 		'''
 
-		LOGGER.debug( " > Updating '{0}'.".format( tableWidget.objectName() ) )
+		LOGGER.debug( "> Updating '{0}'.".format( tableWidget.objectName() ) )
 
 		tableWidget.hide()
 
@@ -678,14 +678,14 @@ class LoaderScriptOptions( UiComponent ):
 
 		verticalHeaderLabels = []
 		for row, attribute in enumerate( section.keys() ) :
-			LOGGER.debug( " > Current Attribute : '{0}'.".format( attribute ) )
+			LOGGER.debug( "> Current Attribute : '{0}'.".format( attribute ) )
 			attributeCompound = foundations.parser.getAttributeCompound( attribute, section[attribute] )
 			if attributeCompound.name :
 				verticalHeaderLabels.append( attributeCompound.alias )
 			else:
 				verticalHeaderLabels.append( strings.getNiceName( attributeCompound.name ) )
 
-			LOGGER.debug( " > Attribute Type : '{0}'.".format( "Boolean" ) )
+			LOGGER.debug( "> Attribute Type : '{0}'.".format( "Boolean" ) )
 			if attributeCompound.type == "Boolean" :
 				if attributeCompound.value == "1":
 					item = Variable_QPushButton( True, ( self._uiLightGrayColor, self._uiDarkGrayColor ), ( "True", "False" ) )

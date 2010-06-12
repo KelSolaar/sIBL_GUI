@@ -1013,7 +1013,7 @@ class TemplatesOutliner( UiComponent ):
 		***	Template : { _type : "Template", _datas : dbUtilities.types.DbTemplate }
 		'''
 
-		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
 		self.Templates_Outliner_treeView_storeModelSelection()
 
@@ -1028,20 +1028,20 @@ class TemplatesOutliner( UiComponent ):
 			softwares = set( [ software[0] for software in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.software ).filter( dbUtilities.types.DbTemplate.collection == collection.id )] )
 
 			if softwares :
-				LOGGER.debug( " > Preparing '{0}' Collection For '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
+				LOGGER.debug( "> Preparing '{0}' Collection For '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
 
 				collectionStandardItem = QStandardItem( QString( collection.name ) )
 				collectionStandardItem._datas = collection
 				collectionStandardItem._type = "Collection"
 
-				LOGGER.debug( " > Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
+				LOGGER.debug( "> Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Templates_Outliner_treeView" ) )
 				self._model.appendRow( collectionStandardItem )
 
 				for software in softwares :
 					templates = set( [ template[0] for template in self._coreDb.dbSession.query( dbUtilities.types.DbTemplate.id ).filter( dbUtilities.types.DbTemplate.collection == collection.id ).filter( dbUtilities.types.DbTemplate.software == software )] )
 
 					if templates :
-						LOGGER.debug( " > Preparing '{0}' Software For '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
+						LOGGER.debug( "> Preparing '{0}' Software For '{1}' Model.".format( software, "Templates_Outliner_treeView" ) )
 
 						softwareStandardItem = QStandardItem( QString( software ) )
 						iconPath = os.path.join( self._uiResources, "{0}{1}".format( software, self._uiSoftwareAffixe ) )
@@ -1058,7 +1058,7 @@ class TemplatesOutliner( UiComponent ):
 						for template in templates :
 							template = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template ), "id" )[0]
 
-							LOGGER.debug( " > Preparing '{0}' Template For '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
+							LOGGER.debug( "> Preparing '{0}' Template For '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
 
 							try :
 								templateStandardItem = QStandardItem( QString( "{0} {1}".format( template.renderer, template.title ) ) )
@@ -1072,7 +1072,7 @@ class TemplatesOutliner( UiComponent ):
 								templateStandardItem._datas = template
 								templateStandardItem._type = "Template"
 
-								LOGGER.debug( " > Adding '{0}' Template To '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
+								LOGGER.debug( "> Adding '{0}' Template To '{1}' Model.".format( template.name, "Templates_Outliner_treeView" ) )
 								softwareStandardItem.appendRow( [templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem] )
 
 							except Exception as error :
@@ -1087,7 +1087,7 @@ class TemplatesOutliner( UiComponent ):
 		This Method Refreshes The Templates_Outliner_treeView Model.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
 		self.Templates_Outliner_treeView_setModel()
 
@@ -1097,7 +1097,7 @@ class TemplatesOutliner( UiComponent ):
 		This Method Sets The Templates_Outliner_treeView View.
 		'''
 
-		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Initializing '{0}' Widget !".format( "Templates_Outliner_treeView" ) )
 
 		self.ui.Templates_Outliner_treeView.setAutoScroll( False )
 		self.ui.Templates_Outliner_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
@@ -1125,7 +1125,7 @@ class TemplatesOutliner( UiComponent ):
 		This Method Sets Templates_Outliner_treeView Default View State.
 		'''
 
-		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Templates_Outliner_treeView" ) )
 
 		self.ui.Templates_Outliner_treeView.expandAll()
 		for column in range( len( self._modelHeaders ) ) :
@@ -1139,7 +1139,7 @@ class TemplatesOutliner( UiComponent ):
 		This Method Stores Templates_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug( " > Storing '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
 
 		self._modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
 		for item in self.getSelectedItems() :
@@ -1156,7 +1156,7 @@ class TemplatesOutliner( UiComponent ):
 		This Method Restores Templates_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug( " > Restoring '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Templates_Outliner_treeView" ) )
 
 		indexes = []
 		for i in range( self._model.rowCount() ) :

@@ -447,7 +447,7 @@ class RewiringTool( UiComponent ):
 		self._reWireLineEditWidgets = ( self.ui.Background_Path_lineEdit, self.ui.Lighting_Path_lineEdit, self.ui.Reflection_Path_lineEdit )
 
 		for frame in self._reWireFramesWidgets:
-			LOGGER.debug( " > Hiding '%s'.", frame )
+			LOGGER.debug( "> Hiding '%s'.", frame )
 			frame.hide()
 
 		for index in range( len( self._reWireComboBoxesWidgets ) ):

@@ -1135,7 +1135,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Sets The Database_Browser_listView Model.
 		'''
 
-		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Templates_Outliner_treeView" ) )
 
 		self.Database_Browser_listView_storeModelSelection()
 
@@ -1143,7 +1143,7 @@ class DatabaseBrowser( UiComponent ):
 
 		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
 
-			LOGGER.debug( " > Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
+			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
 
@@ -1179,7 +1179,7 @@ class DatabaseBrowser( UiComponent ):
 
 				iblSetStandardItemItem._datas = iblSet
 
-				LOGGER.debug( " > Adding '{0}' To '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
+				LOGGER.debug( "> Adding '{0}' To '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 				self._model.appendRow( iblSetStandardItemItem )
 
 			except Exception as error :
@@ -1194,7 +1194,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Refreshes The Database_Browser_listView Model.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Database_Browser_listView" ) )
+		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Database_Browser_listView" ) )
 
 		self.Database_Browser_listView_setModel()
 
@@ -1204,7 +1204,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Sets The Database_Browser_listView Ui.
 		'''
 
-		LOGGER.debug( " > Initializing '{0}' Widget !".format( "Database_Browser_listView" ) )
+		LOGGER.debug( "> Initializing '{0}' Widget !".format( "Database_Browser_listView" ) )
 
 		# self.ui.Database_Browser_listView.setAutoScroll( False )
 		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
@@ -1231,7 +1231,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Sets Database_Browser_listView Default View State.
 		'''
 
-		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Database_Browser_listView" ) )
+		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Database_Browser_listView" ) )
 
 		self.Database_Browser_listView_setItemSize()
 
@@ -1241,7 +1241,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Stores Database_Browser_listView Model Selection.
 		'''
 
-		LOGGER.debug( " > Storing '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+		LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Database_Browser_listView" ) )
 
 		self._modelSelection = []
 		for item in self.getSelectedItems() :
@@ -1253,7 +1253,7 @@ class DatabaseBrowser( UiComponent ):
 		This Method Restores Database_Browser_listView Model Selection.
 		'''
 
-		LOGGER.debug( " > Restoring '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+		LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Database_Browser_listView" ) )
 
 		indexes = []
 		for i in range( self._model.rowCount() ) :
@@ -1271,7 +1271,7 @@ class DatabaseBrowser( UiComponent ):
 		@param value: Thumbnails Size. ( Integer )
 		'''
 
-		LOGGER.debug( " > Setting '{0}' View Item Size To : {1}.".format( "Database_Browser_listView", self._listViewIconSize ) )
+		LOGGER.debug( "> Setting '{0}' View Item Size To : {1}.".format( "Database_Browser_listView", self._listViewIconSize ) )
 
 		self.ui.Database_Browser_listView.setIconSize( QSize( self._listViewIconSize, self._listViewIconSize ) )
 		self.ui.Database_Browser_listView.setGridSize( QSize( self._listViewIconSize + self._listViewSpacing, self._listViewIconSize + self._listViewMargin ) )

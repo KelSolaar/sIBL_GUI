@@ -643,7 +643,7 @@ class ComponentsManagerUi( UiComponent ):
 		** Component : { _type : "Component", _datas : profile }
 		'''
 
-		LOGGER.debug( " > Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
 
 		self._model.clear()
 
@@ -657,7 +657,7 @@ class ComponentsManagerUi( UiComponent ):
 				pathStandardItem = QStandardItem( QString( path ) )
 				pathStandardItem._type = "Path"
 
-				LOGGER.debug( " > Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui" ) )
+				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui" ) )
 				self._model.appendRow( pathStandardItem )
 
 				for component in components :
@@ -681,7 +681,7 @@ class ComponentsManagerUi( UiComponent ):
 					componentStandardItem._datas = self._container.componentsManager.components[component]
 					componentStandardItem._type = "Component"
 
-					LOGGER.debug( " > Adding '{0}' Component To '{1}'.".format( component, "Components_Manager_Ui_treeView" ) )
+					LOGGER.debug( "> Adding '{0}' Component To '{1}'.".format( component, "Components_Manager_Ui_treeView" ) )
 					pathStandardItem.appendRow( [componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem] )
 
 		self.emit( SIGNAL( "modelChanged()" ) )
@@ -692,7 +692,7 @@ class ComponentsManagerUi( UiComponent ):
 		This Method Refreshes The Components_Manager_Ui_treeView Model.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
+		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
 
 		self.Components_Manager_Ui_treeView_setModel()
 
@@ -702,7 +702,7 @@ class ComponentsManagerUi( UiComponent ):
 		This Method Sets The Components_Manager_Ui_treeView View.
 		'''
 
-		LOGGER.debug( " > Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
+		LOGGER.debug( "> Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
 
 		self.ui.Components_Manager_Ui_treeView.setAutoScroll( False )
 		self.ui.Components_Manager_Ui_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
@@ -729,7 +729,7 @@ class ComponentsManagerUi( UiComponent ):
 		This Method Sets Components_Manager_Ui_treeView Default View State.
 		'''
 
-		LOGGER.debug( " > Setting '{0}' Default View State !".format( "Components_Manager_Ui_treeView" ) )
+		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Components_Manager_Ui_treeView" ) )
 
 		self.ui.Components_Manager_Ui_treeView.expandAll()
 		for column in range( len( self._modelHeaders ) ) :

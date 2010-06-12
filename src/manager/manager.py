@@ -782,7 +782,7 @@ class Manager( object ) :
 			profile = self._components[component]
 			callback and callback( profile )
 
-			LOGGER.debug( " > Current Component : '{0}'.".format( component ) )
+			LOGGER.debug( "> Current Component : '{0}'.".format( component ) )
 
 			sys.path.append( profile.path )
 			profile.import_ = __import__( profile.module )

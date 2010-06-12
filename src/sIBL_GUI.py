@@ -447,7 +447,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 						interface.initializeUi()
 
 		# Hiding Splashscreen.
-		LOGGER.debug( " > Hiding SplashScreen." )
+		LOGGER.debug( "> Hiding SplashScreen." )
 		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
 		RuntimeConstants.splashscreen.hide()
 
@@ -1347,7 +1347,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param name: Layout Name. ( String )
 		'''
 
-		LOGGER.debug( " > Storing Layout '{0}'.".format( name ) )
+		LOGGER.debug( "> Storing Layout '{0}'.".format( name ) )
 
 		self._settings.setKey( "Layouts", "{0}_geometry".format( name ), self.saveGeometry() )
 		self._settings.setKey( "Layouts", "{0}_windowState".format( name ), self.saveState() )
@@ -1362,7 +1362,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param name: Layout Name. ( String )
 		'''
 
-		LOGGER.debug( " > Restoring Layout '{0}'.".format( name ) )
+		LOGGER.debug( "> Restoring Layout '{0}'.".format( name ) )
 
 		visibleComponents = [ "core.databaseBrowser" ]
 		for component, profile in self._componentsManager.components.items() :
@@ -1380,7 +1380,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Restores The Startup Layout.
 		'''
 
-		LOGGER.debug( " > Restoring Startup Layout." )
+		LOGGER.debug( "> Restoring Startup Layout." )
 
 		self.restoreLayout( UiConstants.frameworkStartupLayout )
 		not self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
@@ -1391,7 +1391,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Restores The Startup Layout.
 		'''
 
-		LOGGER.debug( " > Storing Startup Layout." )
+		LOGGER.debug( "> Storing Startup Layout." )
 
 		self.storeLayout( UiConstants.frameworkStartupLayout )
 

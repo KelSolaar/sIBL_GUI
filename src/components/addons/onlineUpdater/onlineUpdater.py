@@ -2227,7 +2227,7 @@ class OnlineUpdater( UiComponent ):
 			while not self._releaseReply.atEnd () :
 				content.append( str( self._releaseReply.readLine() ) )
 
-			LOGGER.debug( " > Parsing Releases File Content." )
+			LOGGER.debug( "> Parsing Releases File Content." )
 			parser = Parser()
 			parser.content = content
 			parser.parse()
@@ -2265,7 +2265,7 @@ class OnlineUpdater( UiComponent ):
 															type = parser.getValue( "Type", remoteObject ),
 															comment = None )
 			if releases :
-				LOGGER.debug( " > Initialising Remote Updater." )
+				LOGGER.debug( "> Initialising Remote Updater." )
 				self._remoteUpdater = RemoteUpdater( self, releases )
 			else :
 				self._reportUpdateStatus and messageBox.messageBox( "Information", "Information", "{0} | '{1}' Is Up To Date !".format( self.__class__.__name__, Constants.applicationName ) )
@@ -2286,7 +2286,7 @@ class OnlineUpdater( UiComponent ):
 		This Method Gets The Release File.
 		'''
 
-		LOGGER.debug( " > Downloading '{0}' Releases File.".format( url.path() ) )
+		LOGGER.debug( "> Downloading '{0}' Releases File.".format( url.path() ) )
 
 		self._releaseReply = self._networkAccessManager.get( QNetworkRequest( url ) )
 		self._signalsSlotsCenter.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )

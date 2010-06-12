@@ -335,7 +335,7 @@ def checkSetsTableIntegrity( session ):
 	@return: Sets Table Erroneous Items. ( Dictionary )
 	'''
 
-	LOGGER.debug( " > Checking 'Sets' Database Table Integrity." )
+	LOGGER.debug( "> Checking 'Sets' Database Table Integrity." )
 
 	erroneousSets = {}
 	if getSets( session ) :
@@ -468,7 +468,7 @@ def checkTemplatesTableIntegrity( session ):
 	@return: Templates Table Erroneous Items. ( Dictionary )
 	'''
 
-	LOGGER.debug( " > Checking 'Templates' Database Table Integrity." )
+	LOGGER.debug( "> Checking 'Templates' Database Table Integrity." )
 
 	erroneousTemplates = {}
 	if getTemplates( session ) :
