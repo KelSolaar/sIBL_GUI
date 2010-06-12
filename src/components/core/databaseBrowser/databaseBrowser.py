@@ -1150,7 +1150,7 @@ class DatabaseBrowser( UiComponent ):
 				iblSetStandardItemItem = QStandardItem()
 				iblSetStandardItemItem.setData( iblSet.title, Qt.DisplayRole )
 
-				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( iblSet.date or Constants.nullObject, iblSet.time or Constants.nullObject ) or Constants.nullObject )
+				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( iblSet.date, iblSet.time ) or Constants.nullObject )
 				toolTip = QString( """
 								<p><b>{0}</b></p>
 								<p><b>Author : </b>{1}<br>
@@ -1492,7 +1492,7 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Formatting Shot Date With '{0}' Date and '{1} Time'.".format( date, time ) )
 
-		if date != Constants.nullObject and time != Constants.nullObject :
+		if date and time and date != Constants.nullObject and time != Constants.nullObject :
 			shotTime = time.split( ":" )
 			shotTime = shotTime[0] + "H" + shotTime[1]
 			shotDate = date.replace( ":", "/" )[2:] + " - " + shotTime

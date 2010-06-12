@@ -716,7 +716,7 @@ class GpsMap( UiComponent ):
 			LOGGER.debug( "> Current Ibl Set : '{0}'.".format( set._datas.name ) )
 			if set._datas.latitude and set._datas.longitude :
 				LOGGER.debug( "> Ibl Set '{0}' Provides GEO Coordinates.".format( set._datas.name ) )
-				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( set._datas.date, set._datas.time ) )
+				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( set._datas.date, set._datas.time ) or Constants.nullObject )
 				content = "<p><b>{0}</b></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}<br><b>Url : </b><a href={5}>{5}</a></p>".format( set._datas.title, set._datas.author, set._datas.location, shotDateString, set._datas.comment, set._datas.link )
 				self._map.addMarker( ( set._datas.latitude, set._datas.longitude ), set._datas.title, content )
 		self._map.setCenter()
