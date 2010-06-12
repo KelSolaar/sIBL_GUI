@@ -1199,7 +1199,7 @@ class CollectionsOutliner( UiComponent ):
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format( ", ".join( [str( collection.text() ) for collection in selectedCollections] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				iblSets = dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, self.getSelectedCollectionsIds() )
 				for iblSet in iblSets :
-					LOGGER.info( "{0} | Moving '{1}' Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
+					LOGGER.info( "{0} | Moving '{1}' Ibl Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
 					iblSet.collection = self.getCollectionId( self._defaultCollection )
 				success = True
 				for collection in selectedCollections :

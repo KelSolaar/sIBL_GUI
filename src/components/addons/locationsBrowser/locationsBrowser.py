@@ -116,7 +116,7 @@ class LocationsBrowser( UiComponent ):
 		self._coreTemplatesOutliner = None
 		self._addonsLoaderScript = None
 
-		self._openSetsLocationsAction = None
+		self._openIblSetsLocationsAction = None
 		self._openComponentsLocationsAction = None
 		self._openTemplatesLocationsAction = None
 
@@ -428,34 +428,34 @@ class LocationsBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "addonsLoaderScript" ) )
 
 	@property
-	def openSetsLocationsAction( self ):
+	def openIblSetsLocationsAction( self ):
 		'''
-		This Method Is The Property For The _openSetsLocationsAction Attribute.
+		This Method Is The Property For The _openIblSetsLocationsAction Attribute.
 
-		@return: self._openSetsLocationsAction. ( QAction )
+		@return: self._openIblSetsLocationsAction. ( QAction )
 		'''
 
-		return self._openSetsLocationsAction
+		return self._openIblSetsLocationsAction
 
-	@openSetsLocationsAction.setter
+	@openIblSetsLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openSetsLocationsAction( self, value ):
+	def openIblSetsLocationsAction( self, value ):
 		'''
-		This Method Is The Setter Method For The _openSetsLocationsAction Attribute.
+		This Method Is The Setter Method For The _openIblSetsLocationsAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openSetsLocationsAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "openIblSetsLocationsAction" ) )
 
-	@openSetsLocationsAction.deleter
+	@openIblSetsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def openSetsLocationsAction( self ):
+	def openIblSetsLocationsAction( self ):
 		'''
-		This Method Is The Deleter Method For The _openSetsLocationsAction Attribute.
+		This Method Is The Deleter Method For The _openIblSetsLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openSetsLocationsAction" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "openIblSetsLocationsAction" ) )
 
 	@property
 	def openComponentsLocationsAction( self ):
@@ -701,9 +701,9 @@ class LocationsBrowser( UiComponent ):
 
 		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._openSetsLocationsAction = QAction( "Open Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
-		self._openSetsLocationsAction.triggered.connect( self.Database_Browser_listView_openSetsLocationsAction )
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._openSetsLocationsAction )
+		self._openIblSetsLocationsAction = QAction( "Open Ibl Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView )
+		self._openIblSetsLocationsAction.triggered.connect( self.Database_Browser_listView_openIblSetsLocationsAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction( self._openIblSetsLocationsAction )
 
 		self._openComponentsLocationsAction = QAction( "Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView )
 		self._openComponentsLocationsAction.triggered.connect( self.Components_Manager_Ui_treeView_openComponentsLocationsAction )
@@ -721,18 +721,18 @@ class LocationsBrowser( UiComponent ):
 
 		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._openSetsLocationsAction )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction( self._openIblSetsLocationsAction )
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction( self._openComponentsLocationsAction )
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction( self._openTemplatesLocationsAction )
 
-		self._openSetsLocationsAction = None
+		self._openIblSetsLocationsAction = None
 		self._openComponentsLocationsAction = None
 		self._openTemplatesLocationsAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_openSetsLocationsAction( self, checked ):
+	def Database_Browser_listView_openIblSetsLocationsAction( self, checked ):
 		'''
-		This Method Is Triggered By openSetsLocationsAction.
+		This Method Is Triggered By openIblSetsLocationsAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		'''
