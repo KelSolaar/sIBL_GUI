@@ -788,7 +788,7 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Loader Script Output File Path : '{0}'.".format( loaderScript.file ) )
 
-		loaderScript.content = self.getLoaderScript( template._datas.path, iblSetk._datas.path, self._overrideKeys )
+		loaderScript.content = self.getLoaderScript( template._datas.path, iblSet._datas.path, self._overrideKeys )
 		if loaderScript.content and loaderScript.write() :
 			messageBox.messageBox( "Information", "Information", "{0} | '{1}' Output Done !".format( self.__class__.__name__, template._datas.outputScript ) )
 			return True
