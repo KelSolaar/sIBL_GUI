@@ -1156,7 +1156,7 @@ class DatabaseBrowser( UiComponent ):
 				iblSetStandardItemItem = QStandardItem()# QString( title ) )
 				iblSetStandardItemItem.setData( title, Qt.DisplayRole )
 
-				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( date, time ) )
+				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( date, time ) or Constants.nullObject )
 				toolTip = QString( """
 								<p><b>{0}</b></p>
 								<p><b>Author : </b>{1}<br>
@@ -1483,6 +1483,7 @@ class DatabaseBrowser( UiComponent ):
 		return [self._model.itemFromIndex( index ) for index in self.ui.Database_Browser_listView.selectedIndexes()]
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, Exception )
 	def getFormatedShotDate( self, date, time ):
 		'''
 		This Method Returns A Formated Shot Date.
@@ -1494,16 +1495,14 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Formatting Shot Date With '{0}' Date and '{1} Time'.".format( date, time ) )
 
-		try :
-			assert date and date != Constants.nullObject
-			assert time and time != Constants.nullObject
+		if date != Constants.nullObject and time != Constants.nullObject :
 			shotTime = time.split( ":" )
 			shotTime = shotTime[0] + "H" + shotTime[1]
 			shotDate = date.replace( ":", "/" )[2:] + " - " + shotTime
 
 			LOGGER.debug( "> Formatted Shot Date : '{0}'.".format( shotDate ) )
 			return shotDate
-		except :
+		else :
 			return Constants.nullObject
 
 #***********************************************************************************************
