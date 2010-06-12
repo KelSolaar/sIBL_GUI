@@ -917,6 +917,8 @@ class CollectionsOutliner( UiComponent ):
 		self._model.setColumnCount( len( self._modelHeaders ) )
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
 
+		LOGGER.debug( "> Preparing '{0}' Collection For '{1}' Model.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
+
 		overallCollectionStandardItem = QStandardItem( QString( self._overallCollection ) )
 		overallCollectionStandardItem.setFlags( readOnlyFlags )
 
@@ -936,28 +938,30 @@ class CollectionsOutliner( UiComponent ):
 
 		if collections :
 			for collection in collections :
-				id = collection.id
-				name = collection.name
-				type = collection.type
-				comment = collection.comment
+				LOGGER.debug( "> Preparing '{0}' Collection For '{1}' Model.".format( collection.name, "Collections_Outliner_treeView" ) )
 
-				collectionStandardItem = QStandardItem( QString( name ) )
-				iconPath = name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon )  or os.path.join( self._uiResources, self._uiUserCollectionIcon )
-				collectionStandardItem.setIcon( QIcon( iconPath ) )
-				collection.name == self._defaultCollection and collectionStandardItem.setFlags( readOnlyFlags )
+				try :
+					collectionStandardItem = QStandardItem( QString( collection.name ) )
+					iconPath = collection.name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon )  or os.path.join( self._uiResources, self._uiUserCollectionIcon )
+					collectionStandardItem.setIcon( QIcon( iconPath ) )
+					collection.name == self._defaultCollection and collectionStandardItem.setFlags( readOnlyFlags )
 
-				collectionSetsCountStandardItem = QStandardItem( QString( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = id ).count() ) ) )
-				collectionSetsCountStandardItem.setTextAlignment( Qt.AlignCenter )
-				collectionSetsCountStandardItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled )
+					collectionSetsCountStandardItem = QStandardItem( QString( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collection.id ).count() ) ) )
+					collectionSetsCountStandardItem.setTextAlignment( Qt.AlignCenter )
+					collectionSetsCountStandardItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled )
 
-				collectionCommentsStandardItem = QStandardItem( QString( comment ) )
-				collection.name == self._defaultCollection and collectionCommentsStandardItem.setFlags( readOnlyFlags )
+					collectionCommentsStandardItem = QStandardItem( QString( collection.comment ) )
+					collection.name == self._defaultCollection and collectionCommentsStandardItem.setFlags( readOnlyFlags )
 
-				collectionStandardItem._datas = collection
-				collectionStandardItem._type = "Collection"
+					collectionStandardItem._datas = collection
+					collectionStandardItem._type = "Collection"
 
-				LOGGER.debug( "> Adding '{0}' Collection To '{1}' Model.".format( name, "Collections_Outliner_treeView" ) )
-				overallCollectionStandardItem.appendRow( [collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem] )
+					LOGGER.debug( "> Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Collections_Outliner_treeView" ) )
+					overallCollectionStandardItem.appendRow( [collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem] )
+
+				except Exception as error :
+					LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Collection To '{2}' Model !".format( self.__class__.__name__, collection.name, "Collections_Outliner_treeView" ) )
+					foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Collections_Outliner_treeView" ) )
 		else :
 			LOGGER.info( "{0} | Database Has No User Defined Collections !".format( self.__class__.__name__ ) )
 
