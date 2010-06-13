@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Database_Browser_Widget</class>
  <widget class="QWidget" name="Database_Browser_Widget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>256</width>
-    <height>220</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Database Browser</string>
   </property>

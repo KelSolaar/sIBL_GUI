@@ -606,9 +606,7 @@ class SetsScanner( Component ):
 					if not dbUtilities.common.addSet( self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
 						LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, iblSet ) )
 
-				self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-				self._coreDatabaseBrowser.setCollectionsDisplaySets()
-				self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+				self._coreDatabaseBrowser.extendedRefresh()
 
 		self._setsScannerWorkerThread.exit()
 

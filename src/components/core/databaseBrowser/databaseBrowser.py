@@ -303,6 +303,145 @@ class DatabaseBrowser_Worker( QThread ):
 
 		needModelRefresh and self.emit( SIGNAL( "databaseChanged()" ) )
 
+class DatabaseBrowser_QListView( QListView ):
+	'''
+	This Class Is The DatabaseBrowser_QListView Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, container ):
+		'''
+		This Method Initializes The Class.
+		
+		@param container: Container To Attach The Component To. ( QObject )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		QListView.__init__( self, container )
+
+		self.setAcceptDrops( True )
+
+
+		# --- Setting Class Attributes. ---
+		self._container = container
+
+		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def coreDatabaseBrowser( self ):
+		'''
+		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+
+		@return: self._coreDatabaseBrowser. ( Object )
+		'''
+
+		return self._coreDatabaseBrowser
+
+	@coreDatabaseBrowser.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDatabaseBrowser( self, value ):
+		'''
+		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+
+	@coreDatabaseBrowser.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreDatabaseBrowser( self ):
+		'''
+		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def dragEnterEvent( self, event ):
+		'''
+		This Method Defines The Drag Enter Event Behavior.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		if event.mimeData().hasFormat( "application/x-qabstractitemmodeldatalist" ):
+			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "application/x-qabstractitemmodeldatalist" ) )
+			event.accept()
+		elif event.mimeData().hasFormat( "text/uri-list" ):
+			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "text/uri-list" ) )
+			event.accept()
+		else:
+			event.ignore()
+
+	@core.executionTrace
+	def dragMoveEvent( self, event ):
+		'''
+		This Method Defines The Drag Move Event Behavior.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		pass
+
+	@foundations.exceptions.exceptionsHandler( None, False, Exception )
+	@core.executionTrace
+	def dropEvent( self, event ):
+		'''
+		This Method Defines The Drop Event Behavior.
+		
+		@param event: QEvent. ( QEvent )		
+		'''
+
+		if event.mimeData().hasUrls() :
+			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+			for url in event.mimeData().urls() :
+				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
+					name = os.path.splitext( os.path.basename( str( url.path() ) ) )[0]
+					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						 self._coreDatabaseBrowser.addIblSet( name, str( url.path() ) )
+						 self._coreDatabaseBrowser.extendedRefresh()
+				else :
+					if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( url.path() ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						 self._coreDatabaseBrowser.addDirectory( str( url.path() ) )
+						 self._coreDatabaseBrowser.extendedRefresh()
+
 class DatabaseBrowser( UiComponent ):
 	'''
 	This Class Is The DatabaseBrowser Class.
@@ -1040,6 +1179,9 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
+		self.ui.Database_Browser_listView = DatabaseBrowser_QListView( self._container )
+		self.ui.Database_Browser_Widget_gridLayout.addWidget( self.ui.Database_Browser_listView, 0, 0 )
+
 		self._displaySets = dbUtilities.common.getSets( self._coreDb.dbSession )
 
 		listViewIconSize = self._settings.getKey( self._settingsSection, "listViewIconSize" )
@@ -1112,8 +1254,7 @@ class DatabaseBrowser( UiComponent ):
 					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 					if directory :
 						self.addDirectory( directory )
-						self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-						self.Database_Browser_listView_refreshModel()
+						self.extendedRefresh()
 
 			# Ibl Sets Table Integrity Checking.
 			erroneousIblSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
@@ -1124,8 +1265,7 @@ class DatabaseBrowser( UiComponent ):
 							self.updateSetLocation( iblSet )
 					else :
 						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' {2}".format( self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]] ) )
-				self.setCollectionsDisplaySets()
-				self.Database_Browser_listView_refreshModel()
+				self.localRefresh()
 		else :
 			LOGGER.info( "{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
@@ -1208,7 +1348,7 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
 		self.ui.Database_Browser_listView.setResizeMode( QListView.Adjust )
 		self.ui.Database_Browser_listView.setSelectionMode( QAbstractItemView.ExtendedSelection )
-		self.ui.Database_Browser_listView.setAcceptDrops( False )
+#		self.ui.Database_Browser_listView.setAcceptDrops( False )
 
 		self.Database_Browser_listView_setItemSize()
 
@@ -1315,9 +1455,7 @@ class DatabaseBrowser( UiComponent ):
 		if directory :
 			LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 			self.addDirectory( directory )
-			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-			self.setCollectionsDisplaySets()
-			self.Database_Browser_listView_refreshModel()
+			self.extendedRefresh()
 
 	@core.executionTrace
 	def Database_Browser_listView_addIblSetAction( self, checked ):
@@ -1331,9 +1469,7 @@ class DatabaseBrowser( UiComponent ):
 		if iblSetPath :
 			LOGGER.debug( "> Chosen Ibl Set Path : '{0}'.".format( iblSetPath ) )
 			self.addIblSet( os.path.basename( iblSetPath ).replace( ".{0}".format( self._extension ), "" ), iblSetPath )
-			self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-			self.setCollectionsDisplaySets()
-			self.Database_Browser_listView_refreshModel()
+			self.extendedRefresh()
 
 	@core.executionTrace
 	def Database_Browser_listView_removeIblSetsAction( self, checked ):
@@ -1344,9 +1480,7 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		self.removeIblSets()
-		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-		self.setCollectionsDisplaySets()
-		self.Database_Browser_listView_refreshModel()
+		self.extendedRefresh()
 
 	@core.executionTrace
 	def Database_Browser_listView_updateIblSetsLocationsAction( self, checked ):
@@ -1364,8 +1498,7 @@ class DatabaseBrowser( UiComponent ):
 				needModelRefresh = True
 
 		if needModelRefresh :
-			self.setCollectionsDisplaySets()
-			self.Database_Browser_listView_refreshModel()
+			self.localRefresh()
 
 	@core.executionTrace
 	def Thumbnails_Size_horizontalSlider_OnChanged( self, value ):
@@ -1384,13 +1517,38 @@ class DatabaseBrowser( UiComponent ):
 		self._settings.setKey( self._settingsSection, "listViewIconSize", value )
 
 	@core.executionTrace
+	def refresh( self ):
+		'''
+		This Method Provides The Default Refresh Behavior.
+		'''
+
+		self.Database_Browser_listView_refreshModel()
+
+	@core.executionTrace
+	def localRefresh( self ):
+		'''
+		This Method Provides The Local Refresh Behavior.
+		'''
+
+		self.setCollectionsDisplaySets()
+		self.refresh()
+
+	@core.executionTrace
+	def extendedRefresh( self ):
+		'''
+		This Method Provides The Extended Refresh Behavior.
+		'''
+
+		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+		self.localRefresh()
+
+	@core.executionTrace
 	def databaseChanged( self ):
 		'''
 		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
 		'''
 
-		self.setCollectionsDisplaySets()
-		self.Database_Browser_listView_refreshModel()
+		self.extendedRefresh()
 
 	@core.executionTrace
 	def setCollectionsDisplaySets( self ):

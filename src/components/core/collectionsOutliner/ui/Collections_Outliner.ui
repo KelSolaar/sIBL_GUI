@@ -2,19 +2,15 @@
 <ui version="4.0">
  <class>Collections_Outliner_DockWidget</class>
  <widget class="QDockWidget" name="Collections_Outliner_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>95</width>
-    <height>50</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Collections Outliner</string>
   </property>
   <widget class="QWidget" name="Collections_Outliner_dockWidgetContents">
-   <layout class="QGridLayout" name="Collections_Outliner_dockWidgetContents_gridLayout"/>
+   <layout class="QGridLayout" name="Collections_Outliner_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QTreeView" name="Collections_Outliner_treeView"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

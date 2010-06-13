@@ -95,7 +95,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QTreeView.__init__( self )
+		QTreeView.__init__( self, container )
 
 		self.setAcceptDrops( True )
 
@@ -273,7 +273,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		'''
 
 		if event.mimeData().hasFormat( "application/x-qabstractitemmodeldatalist" ):
-			LOGGER.debug( "> Drag Event Accepted !" )
+			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "application/x-qabstractitemmodeldatalist" ) )
 			event.accept()
 		else:
 			event.ignore()
@@ -841,7 +841,7 @@ class CollectionsOutliner( UiComponent ):
 		self.Collections_Outliner_treeView_setModel()
 
 		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView( self._container )
-		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Collections_Outliner_treeView )
+		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Collections_Outliner_treeView, 0, 0 )
 
 		self.ui.Collections_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Collections_Outliner_treeView_setActions()
@@ -1123,7 +1123,7 @@ class CollectionsOutliner( UiComponent ):
 
 		self.removeCollections()
 		self.Collections_Outliner_treeView_refreshModel()
-		self.coreDatabaseBrowser_Database_Browser_listView_refreshModel()
+		self._coreDatabaseBrowser.localRefresh()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
@@ -1134,16 +1134,7 @@ class CollectionsOutliner( UiComponent ):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
-		self.coreDatabaseBrowser_Database_Browser_listView_refreshModel()
-
-	@core.executionTrace
-	def coreDatabaseBrowser_Database_Browser_listView_refreshModel( self ) :
-		'''
-		This Method Refreshes The Database_Browser_listView Model.
-		'''
-
-		self._coreDatabaseBrowser.displaySets = self.getCollectionsSets()
-		self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+		self._coreDatabaseBrowser.localRefresh()
 
 	@core.executionTrace
 	def addCollection( self ) :
