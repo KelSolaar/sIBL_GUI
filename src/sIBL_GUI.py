@@ -1177,12 +1177,12 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Sets The Application Visual Style.
 		'''
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft":
+		if platform.system() == "Windows" or platform.system() == "Microsoft" :
 			RuntimeConstants.application.setStyle( "Plastique" )
 			styleSheetFile = io.File( UiConstants.frameworkWindowsStylesheetFile )
 		elif platform.system() == "Darwin" :
 			styleSheetFile = io.File( UiConstants.frameworkDarwinStylesheetFile )
-		elif platform.system() == "Linux":
+		elif platform.system() == "Linux" :
 			RuntimeConstants.application.setStyle( "Plastique" )
 			styleSheetFile = io.File( UiConstants.frameworkLinuxStylesheetFile )
 

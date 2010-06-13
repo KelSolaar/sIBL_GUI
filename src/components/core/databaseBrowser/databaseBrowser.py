@@ -432,15 +432,17 @@ class DatabaseBrowser_QListView( QListView ):
 		if event.mimeData().hasUrls() :
 			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
 			for url in event.mimeData().urls() :
+				path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
 				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
-					name = os.path.splitext( os.path.basename( str( url.path() ) ) )[0]
+					name = os.path.splitext( os.path.basename( path ) )[0]
 					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						 self._coreDatabaseBrowser.addIblSet( name, str( url.path() ) )
+						 self._coreDatabaseBrowser.addIblSet( name, path )
 						 self._coreDatabaseBrowser.extendedRefresh()
 				else :
-					if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( url.path() ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						 self._coreDatabaseBrowser.addDirectory( str( url.path() ) )
-						 self._coreDatabaseBrowser.extendedRefresh()
+					if os.path.isdir( path ):
+						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							 self._coreDatabaseBrowser.addDirectory( path )
+							 self._coreDatabaseBrowser.extendedRefresh()
 
 class DatabaseBrowser( UiComponent ):
 	'''
@@ -1519,7 +1521,7 @@ class DatabaseBrowser( UiComponent ):
 	@core.executionTrace
 	def refresh( self ):
 		'''
-		This Method Provides The Default Refresh Behavior.
+		This Method Implements The Default Refresh Behavior.
 		'''
 
 		self.Database_Browser_listView_refreshModel()
@@ -1527,7 +1529,7 @@ class DatabaseBrowser( UiComponent ):
 	@core.executionTrace
 	def localRefresh( self ):
 		'''
-		This Method Provides The Local Refresh Behavior.
+		This Method Implements The Local Refresh Behavior.
 		'''
 
 		self.setCollectionsDisplaySets()
@@ -1536,7 +1538,7 @@ class DatabaseBrowser( UiComponent ):
 	@core.executionTrace
 	def extendedRefresh( self ):
 		'''
-		This Method Provides The Extended Refresh Behavior.
+		This Method Implements The Extended Refresh Behavior.
 		'''
 
 		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()

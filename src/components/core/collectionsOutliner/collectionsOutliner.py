@@ -59,6 +59,8 @@ import dbUtilities.common
 import dbUtilities.types
 import logging
 import os
+import platform
+import re
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -275,8 +277,21 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		if event.mimeData().hasFormat( "application/x-qabstractitemmodeldatalist" ):
 			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "application/x-qabstractitemmodeldatalist" ) )
 			event.accept()
+		elif event.mimeData().hasFormat( "text/uri-list" ):
+			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "text/uri-list" ) )
+			event.accept()
 		else:
 			event.ignore()
+
+	@core.executionTrace
+	def dragMoveEvent( self, event ):
+		'''
+		This Method Defines The Drag Move Event Behavior.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		pass
 
 	@foundations.exceptions.exceptionsHandler( None, False, Exception )
 	@core.executionTrace
@@ -287,20 +302,35 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		@param event: QEvent. ( QEvent )		
 		'''
 
-		indexAt = self.indexAt( event.pos() )
-		itemAt = self.model().itemFromIndex( indexAt )
+		if event.mimeData().hasUrls() :
+			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+			for url in event.mimeData().urls() :
+				path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
+				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
+					name = os.path.splitext( os.path.basename( path ) )[0]
+					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						 self._coreDatabaseBrowser.addIblSet( name, path )
+						 self._coreDatabaseBrowser.extendedRefresh()
+				else :
+					if os.path.isdir( path ):
+						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							 self._coreDatabaseBrowser.addDirectory( path )
+							 self._coreDatabaseBrowser.extendedRefresh()
+		else :
+			indexAt = self.indexAt( event.pos() )
+			itemAt = self.model().itemFromIndex( indexAt )
 
-		if itemAt :
-			LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
-			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
-			if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
-				iblSets = self._coreDatabaseBrowser.getSelectedItems()
-				LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
-				for iblSet in iblSets :
-					iblSet._datas.collection = collectionStandardItem._datas.id
-				if dbUtilities.common.commit( self._coreDb.dbSession ) :
-					self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-					self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+			if itemAt :
+				LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
+				collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
+				if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
+					iblSets = self._coreDatabaseBrowser.getSelectedItems()
+					LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
+					for iblSet in iblSets :
+						iblSet._datas.collection = collectionStandardItem._datas.id
+					if dbUtilities.common.commit( self._coreDb.dbSession ) :
+						self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+						self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def QTreeView_OnClicked( self, index ):
@@ -365,9 +395,6 @@ class CollectionsOutliner( UiComponent ):
 		self._coreDatabaseBrowser = None
 
 		self._model = None
-
-		# CollectionsOutliner_QTreeView Allocation.
-		# self.ui.Collections_Outliner_treeView = None
 
 		self._overallCollection = "Overall"
 		self._defaultCollection = "Default"
