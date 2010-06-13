@@ -4,10 +4,13 @@ h2=. Change Log
 
 p{font-size : 11pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
 
-p{font-size : 11pt;}=. *Information Notice : Try running sIBL_GUI as Administrator if you are experiencing slow startup on Windows Vista / Seven.*
-
 h3. 3.0.8 - Stable
 
+* sIBL_GUI For Windows is natively built on Windows 7 now, this should fix the slow startup issues reported on Windows Vista / 7.
+* Implemented dragNdrop in various components ( Network paths are currently not supported on Windows Vista / 7 ) :
+** Database Browser Component : You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
+** Collections Outliner Component : You can also dragNdrop folders or Ibl Sets files directly from the Os.
+** Templates Outliner Component : You can dragNdrop Templates folders or Templates files directly from the Os.
 * Made the code stronger when sIBL_GUI deals with corrupted Ibl / Templates Files.
 * Refactored portions of the exceptions handling code.
 
