@@ -332,13 +332,17 @@
 				<td><img src="resources/pictures/sIBL_GUI_DatabaseBrowser.jpg" title="sIBL_GUI_DatabaseBrowser" alt="sIBL_GUI_DatabaseBrowser" /></td>
 			</tr>
 		</table>
-		<p>The Database Browser component is the central component where Ibl sets are viewed and chosen for export. The component is tracking the Ibl sets files on the disk and reload them automatically when modified.</p>
+		<p>The Database Browser component is the central component where Ibl Sets are viewed and chosen for export. The component is tracking the Ibl Sets files on the disk and reload them automatically when modified.</p>
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
-			<li><strong>Drag&#8217;n&#8217;drop</strong> : Drag&#8217;n&#8217;dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change the selected sets collection.</li>
+			<li><strong>Drag&#8217;n&#8217;drop</strong> :
+		<ul>
+			<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the Database Browser component to a Collections Outliner component collection change the selected sets collection.</li>
+			<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or folders from the Os will raise a message box asking confirmation for their addition into the database.</li>
+		</ul></li>
 			<li><strong>Hovering</strong> : Hovering an Ibl Set raises a popup with informations about the focused set.</li>
-			<li><strong>Thumbnails Size Horizontal Slider</strong> : Adjusts Ibl sets icons size.</li>
+			<li><strong>Thumbnails Size Horizontal Slider</strong> : Adjusts Ibl Sets icons size.</li>
 		</ul>
 		<p>Context Menu :</p>
 		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
@@ -347,16 +351,16 @@
 			</tr>
 		</table>
 		<ul>
-			<li><strong>Add Content &#8230;</strong> : Recursively adds chosen directory Ibl sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
-			<li><strong>Add Set &#8230;</strong> : Adds the selected Ibl sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
-			<li><strong>Remove Set(s) ...</strong> : Removes selected Ibl sets from the database.</li>
-			<li><strong>Update Set(s) Location(s) ...</strong> : Updates selected Ibl sets files paths.</li>
+			<li><strong>Add Content &#8230;</strong> : Recursively adds chosen directory Ibl Sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
+			<li><strong>Add Set &#8230;</strong> : Adds the selected Ibl Sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
+			<li><strong>Remove Set(s) ...</strong> : Removes selected Ibl Sets from the database.</li>
+			<li><strong>Update Set(s) Location(s) ...</strong> : Updates selected Ibl Sets files paths.</li>
 		</ul>
 	Addons Functionalities :
 		<ul>
-			<li><strong>Edit In sIBLedit &#8230;</strong> : Sends selected Ibl set to sIBLedit.</li>
-			<li><strong>Edit In Text Editor &#8230;</strong> : Edits selected Ibl sets with system or custom user defined text editor.</li>
-			<li><strong>Open Set(s) Location(s) ...</strong> : Opens selected Ibl sets folders.</li>
+			<li><strong>Edit In sIBLedit &#8230;</strong> : Sends selected Ibl Set to sIBLedit.</li>
+			<li><strong>Edit In Text Editor &#8230;</strong> : Edits selected Ibl Sets with system or custom user defined text editor.</li>
+			<li><strong>Open Set(s) Location(s) ...</strong> : Opens selected Ibl Sets folders.</li>
 		</ul>
 		<h3 style="text-align:center;">***</h3>
 		<p><strong style="font-size : 12pt;" id="core.collectionsOutliner">Collections Outliner</strong> ( core.collectionsOutliner )</p>
@@ -365,12 +369,16 @@
 				<td><img src="resources/pictures/sIBL_GUI_CollectionsOutliner.jpg" title="sIBL_GUI_CollectionsOutliner" alt="sIBL_GUI_CollectionsOutliner" /></td>
 			</tr>
 		</table>
-		<p>The Collections Outliner component is where the Ibl sets are organized into collections for better management. There is a Default Collection where Ibl sets fall when they are added without a specific collection container.</p>
+		<p>The Collections Outliner component is where the Ibl Sets are organized into collections for better management. There is a Default Collection where Ibl Sets fall when they are added without a specific collection container.</p>
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Double clic</strong> : Edits collection name or comment.</li>
 			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
-			<li><strong>Drag&#8217;n&#8217;drop</strong> : Drag&#8217;n&#8217;dropping an Ibl sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.</li>
+			<li><strong>Drag&#8217;n&#8217;drop</strong> : 
+		<ul>
+			<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the Database Browser component to a Collections Outliner component collection change sets current collection.</li>
+			<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or folders from the Os will raise a message box asking confirmation for their addition into the database.</li>
+		</ul></li>
 		</ul>
 		<p>Columns Descriptions :</p>
 		<ul>
@@ -385,7 +393,7 @@
 			</tr>
 		</table>
 		<ul>
-			<li><strong>Add Content &#8230;</strong> : Adds a new collection, then recursively adds chosen directory Ibl sets into the database, assigning them to the new collection. </li>
+			<li><strong>Add Content &#8230;</strong> : Adds a new collection, then recursively adds chosen directory Ibl Sets into the database, assigning them to the new collection. </li>
 			<li><strong>Add Collection &#8230;</strong> : Adds a new collection to the database.</li>
 			<li><strong>Remove Collection(s) ...</strong> : Removes selected collections from the database ( Overall and Default Collections cannot be removed ).</li>
 		</ul>
@@ -419,6 +427,10 @@
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Right clic</strong> : Displays a context menu described further.</li>
+			<li><strong>Drag&#8217;n&#8217;drop</strong> : 
+		<ul>
+			<li>Drag&#8217;n&#8217;dropping some Templates files or folders from the Os will raise a message box asking confirmation for their addition into the database.</li>
+		</ul></li>
 		</ul>
 		<p>Context Menu :</p>
 		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
@@ -456,7 +468,7 @@
 				<td><img src="resources/pictures/sIBL_GUI_GpsMap.jpg" title="sIBL_GUI_GpsMap" alt="sIBL_GUI_GpsMap" /></td>
 			</tr>
 		</table>
-		<p>The Gps Map component is embedding a Google Map into sIBL_GUI : Selecting some Ibl sets ( Sets with <span class="caps">GEO</span> coordinates ) in the Database Browser component will display their markers onto the Gps Map.</p>
+		<p>The Gps Map component is embedding a Google Map into sIBL_GUI : Selecting some Ibl Sets ( Sets with <span class="caps">GEO</span> coordinates ) in the Database Browser component will display their markers onto the Gps Map.</p>
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Zoom In Push Button</strong> : Zooms into the Gps Map.</li>
@@ -476,7 +488,7 @@
 				<td><img src="resources/pictures/sIBL_GUI_LoaderScript.jpg" title="sIBL_GUI_LoaderScript" alt="sIBL_GUI_LoaderScript" /></td>
 			</tr>
 		</table>
-		<p>The Loader Script component is providing the bridge between sIBL_GUI and the 3d packages. It parses the selected Ibl set, extracts datas from it, and feeds the selected template with those datas resulting in a loader script that can be executed by the 3d package.</p>
+		<p>The Loader Script component is providing the bridge between sIBL_GUI and the 3d packages. It parses the selected Ibl Set, extracts datas from it, and feeds the selected template with those datas resulting in a loader script that can be executed by the 3d package.</p>
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Output Loader Script Push Button</strong> : Outputs the loader script to the output folder.</li>
@@ -607,7 +619,7 @@
 				<td><img src="resources/pictures/sIBL_GUI_RewiringTool.jpg" title="sIBL_GUI_RewiringTool" alt="sIBL_GUI_RewiringTool" /></td>
 			</tr>
 		</table>
-		<p>The Rewiring Tool component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate <span class="caps">IBL</span> sets and arbitrary load whatever <span class="caps">HDR</span> you want and still benefit from sIBL_GUI one click lighting setup.</p>
+		<p>The Rewiring Tool component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate <span class="caps">IBL</span> sets and arbitrary load whatever <span class="caps">HDR</span> you want and still benefit from sIBL_GUI one click lighting setup.</p>
 		<p>Interactions :</p>
 		<ul>
 			<li><strong>Combo Boxes</strong> : The current image will be remapped to the chosen entry.</li>
@@ -646,7 +658,7 @@
 		</ul></p>
 		<h3 style="text-align:center;">***</h3>
 		<p><strong style="font-size : 12pt;" id="addons.setsScanner">Sets Scanner</strong> ( addons.setsScanner )</p>
-		<p>The Sets Scanner component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl sets parent folder. This behavior can be stopped by deactivating the component.</p>
+		<p>The Sets Scanner component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent folder. This behavior can be stopped by deactivating the component.</p>
 		<h3 style="text-align:center;">***</h3>
 		<p><strong style="font-size : 12pt;" id="addons.sIBLeditUtilities">sIBLedit Utilities</strong> ( addons.sIBLeditUtilities )</p>
 		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
