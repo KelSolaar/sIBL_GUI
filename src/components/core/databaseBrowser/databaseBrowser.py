@@ -420,8 +420,8 @@ class DatabaseBrowser_QListView( QListView ):
 
 		pass
 
-	@foundations.exceptions.exceptionsHandler( None, False, Exception )
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def dropEvent( self, event ):
 		'''
 		This Method Defines The Drop Event Behavior.
@@ -436,13 +436,14 @@ class DatabaseBrowser_QListView( QListView ):
 				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
 					name = os.path.splitext( os.path.basename( path ) )[0]
 					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						 self._coreDatabaseBrowser.addIblSet( name, path )
-						 self._coreDatabaseBrowser.extendedRefresh()
+						 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.extendedRefresh()
 				else :
 					if os.path.isdir( path ):
 						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreDatabaseBrowser.addDirectory( path )
 							 self._coreDatabaseBrowser.extendedRefresh()
+					else :
+						raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
 
 class DatabaseBrowser( UiComponent ):
 	'''
@@ -1470,8 +1471,7 @@ class DatabaseBrowser( UiComponent ):
 		iblSetPath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Ibl Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if iblSetPath :
 			LOGGER.debug( "> Chosen Ibl Set Path : '{0}'.".format( iblSetPath ) )
-			self.addIblSet( os.path.basename( iblSetPath ).replace( ".{0}".format( self._extension ), "" ), iblSetPath )
-			self.extendedRefresh()
+			self.addIblSet( os.path.basename( iblSetPath ).replace( ".{0}".format( self._extension ), "" ), iblSetPath ) and self.extendedRefresh()
 
 	@core.executionTrace
 	def Database_Browser_listView_removeIblSetsAction( self, checked ):
@@ -1562,29 +1562,34 @@ class DatabaseBrowser( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def addIblSet( self, name, path, collectionId = None ):
+	def addIblSet( self, name, path, collectionId = None, noWarning = False ):
 		'''
 		This Method Adds An Ibl Set To The Database.
 		
 		@param name: Ibl Set Name. ( String )		
 		@param path: Ibl Set Path. ( String )		
 		@param collectionId: Target Collection Id. ( Integer )		
+		@param noWarning: No Warning Message. ( Boolean )
+		@return: Ibl Set Database Addition Success. ( Boolean )		
 		'''
 
 		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 			LOGGER.info( "{0} | Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, name ) )
-			if not dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
+			if dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
+				return True
+			else :
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, name )
 		else:
-			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
+			noWarning or messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
 	@core.executionTrace
-	def addDirectory( self, directory, collectionId = None ):
+	def addDirectory( self, directory, collectionId = None, noWarning = False ):
 		'''
 		This Method Adds A Sets Directory Content To The Database.
 		
 		@param directory: Directory To Add. ( String )		
 		@param collectionId: Target Collection Id. ( Integer )		
+		@param noWarning: No Warning Message. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )

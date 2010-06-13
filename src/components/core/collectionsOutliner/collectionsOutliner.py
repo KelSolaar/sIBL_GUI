@@ -70,6 +70,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -293,8 +294,8 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 
 		pass
 
-	@foundations.exceptions.exceptionsHandler( None, False, Exception )
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
 	def dropEvent( self, event ):
 		'''
 		This Method Defines The Drop Event Behavior.
@@ -316,6 +317,8 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreDatabaseBrowser.addDirectory( path )
 							 self._coreDatabaseBrowser.extendedRefresh()
+					else :
+						raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
 		else :
 			indexAt = self.indexAt( event.pos() )
 			itemAt = self.model().itemFromIndex( indexAt )

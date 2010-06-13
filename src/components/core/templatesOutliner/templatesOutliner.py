@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import platform
 import re
 from PyQt4 import uic
 from PyQt4.QtCore import *
@@ -301,6 +302,145 @@ class TemplatesOutliner_Worker( QThread ):
 							needModelRefresh = True
 
 		needModelRefresh and self.emit( SIGNAL( "databaseChanged()" ) )
+
+class TemplatesOutliner_QTreeView( QTreeView ):
+	'''
+	This Class Is The TemplatesOutliner_QTreeView Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, container ):
+		'''
+		This Method Initializes The Class.
+		
+		@param container: Container To Attach The Component To. ( QObject )
+		'''
+
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+
+		QTreeView.__init__( self, container )
+
+		self.setAcceptDrops( True )
+
+
+		# --- Setting Class Attributes. ---
+		self._container = container
+
+		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+
+	#***************************************************************************************
+	#***	Attributes Properties
+	#***************************************************************************************
+	@property
+	def container( self ):
+		'''
+		This Method Is The Property For The _container Attribute.
+
+		@return: self._container. ( QObject )
+		'''
+
+		return self._container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self, value ):
+		'''
+		This Method Is The Setter Method For The _container Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def container( self ):
+		'''
+		This Method Is The Deleter Method For The _container Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def coreTemplatesOutliner( self ):
+		'''
+		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+
+		@return: self._coreTemplatesOutliner. ( Object )
+		'''
+
+		return self._coreTemplatesOutliner
+
+	@coreTemplatesOutliner.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreTemplatesOutliner( self, value ):
+		'''
+		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreTemplatesOutliner" ) )
+
+	@coreTemplatesOutliner.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def coreTemplatesOutliner( self ):
+		'''
+		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreTemplatesOutliner" ) )
+	#***************************************************************************************
+	#***	Class Methods
+	#***************************************************************************************
+	@core.executionTrace
+	def dragEnterEvent( self, event ):
+		'''
+		This Method Defines The Drag Enter Event Behavior.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		if event.mimeData().hasFormat( "text/uri-list" ):
+			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "text/uri-list" ) )
+			event.accept()
+		else:
+			event.ignore()
+
+	@core.executionTrace
+	def dragMoveEvent( self, event ):
+		'''
+		This Method Defines The Drag Move Event Behavior.
+		
+		@param event: QEvent. ( QEvent )
+		'''
+
+		pass
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
+	def dropEvent( self, event ):
+		'''
+		This Method Defines The Drop Event Behavior.
+		
+		@param event: QEvent. ( QEvent )		
+		'''
+
+		if event.mimeData().hasUrls() :
+			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+			for url in event.mimeData().urls() :
+				path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
+				if re.search( "\.{0}$".format( self._coreTemplatesOutliner.extension ), str( url.path() ) ) :
+					name = os.path.splitext( os.path.basename( path ) )[0]
+					if messageBox.messageBox( "Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						 self._coreTemplatesOutliner.addTemplate( name, path ) and self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+				else :
+					if os.path.isdir( path ):
+						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							 self._coreTemplatesOutliner.addDirectory( path )
+							 self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+					else :
+						raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
 
 class TemplatesOutliner( UiComponent ):
 	'''
@@ -924,6 +1064,9 @@ class TemplatesOutliner( UiComponent ):
 		self._model = QStandardItemModel()
 		self.Templates_Outliner_treeView_setModel()
 
+		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView( self._container )
+		self.ui.Templates_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Templates_Outliner_treeView, 0, 0 )
+
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Templates_Outliner_treeView_setActions()
 
@@ -1101,7 +1244,6 @@ class TemplatesOutliner( UiComponent ):
 
 		self.ui.Templates_Outliner_treeView.setAutoScroll( False )
 		self.ui.Templates_Outliner_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
-		self.ui.Templates_Outliner_treeView.setDragDropMode( QAbstractItemView.NoDragDrop )
 		self.ui.Templates_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
 		self.ui.Templates_Outliner_treeView.setIndentation( self._treeViewIndentation )
 		self.ui.Templates_Outliner_treeView.setSortingEnabled( True )
@@ -1222,7 +1364,11 @@ class TemplatesOutliner( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.addTemplate() and self.Templates_Outliner_treeView_refreshModel()
+		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*.{0})".format( self._extension ) ) ) )
+		if templatePath :
+			LOGGER.debug( "> Chosen Template Path : '{0}'.".format( templatePath ) )
+			templateName = os.path.basename( templatePath ).replace( ".{0}".format( self._extension ), "" )
+			self.addTemplate( templateName, templatePath ) and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_removeTemplatesAction( self, checked ):
@@ -1243,7 +1389,7 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		for collection, path in self._defaultCollections.items() :
-			os.path.exists( path ) and self.addDirectory( path, self.getCollection( collection ).id )
+			os.path.exists( path ) and self.addDirectory( path, self.getCollection( collection ).id, noWarning = True )
 		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
@@ -1351,32 +1497,34 @@ class TemplatesOutliner( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def addTemplate( self ):
+	def addTemplate( self, name, path, collectionId = None, noWarning = False ):
 		'''
 		This Method Adds A Template To The Database.
 		
-		@return: Addition Success. ( Boolean )
+		@param name: Template Set Name. ( String )		
+		@param path: Template Set Path. ( String )		
+		@param collectionId: Target Collection Id. ( Integer )		
+		@param noWarning: No Warning Message. ( Boolean )
+		@return: Template Database Addition Success. ( Boolean )		
 		'''
 
-		templatePath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*.{0})".format( self._extension ) ) ) )
-		if templatePath :
-			LOGGER.debug( "> Chosen Template Path : '{0}'.".format( templatePath ) )
-			templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
-			collectionId = self.defaultCollections[self._factoryCollection] in templatePath and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
-			templateName = os.path.basename( templatePath ).replace( ".{0}".format( self._extension ), "" )
-			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName ) )
-			if dbUtilities.common.addTemplate( self._coreDb.dbSession, templateName, templatePath, collectionId ) :
+		if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
+			LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, name ) )
+			if dbUtilities.common.addTemplate( self._coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId( path ) ) :
 				return True
 			else :
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, templateName )
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database !".format( self.__class__.__name__, name )
+		else :
+			noWarning or messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Template Path Already Exists In Database !".format( self.__class__.__name__, path ) )
 
 	@core.executionTrace
-	def addDirectory( self, directory, id ):
+	def addDirectory( self, directory, collectionId = None, noWarning = False ):
 		'''
 		This Method Imports Provided Directory Templates Into Provided Collection.
 		
 		@param directory: Templates Directory. ( String )
-		@param id: Collection Id. ( Integer )
+		@param collectionId: Collection Id. ( Integer )
+		@param noWarning: No Warning Message. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
@@ -1385,9 +1533,7 @@ class TemplatesOutliner( UiComponent ):
 		walker.root = directory
 		templates = walker.walk( "\.{0}$".format( self._extension ), "\._" )
 		for template in templates :
-			if not dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( re.escape( templates[template] ) ), "path" ) :
-				LOGGER.info( "{0} | Adding '{1}' Template To Database !".format( self.__class__.__name__, template ) )
-				dbUtilities.common.addTemplate( self._coreDb.dbSession, template, templates[template], id )
+			self.addTemplate( template, templates[template], collectionId, noWarning )
 
 	@core.executionTrace
 	def removeTemplates( self ) :
@@ -1469,6 +1615,18 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		return [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( collection ), "name" ) ).intersection( dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" ) )][0]
+
+	@core.executionTrace
+	def getUniqueCollectionId( self, path ) :
+		'''
+		This Method Gets A Unique Collection Id Using Provided Path.
+		
+		@param path: Template Path. ( String )
+		@return: Collection. ( Integer )
+		'''
+
+		templatesCollections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Templates", "type" )
+		return self.defaultCollections[self._factoryCollection] in path and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
 
 	@core.executionTrace
 	def getSelectedItems( self, rowsRootOnly = True ):
