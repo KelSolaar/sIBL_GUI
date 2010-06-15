@@ -22,16 +22,16 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standa
 Comment = "Maya Mental Ray Template : Updates For sIBL_GUI 3.x.x."
 
 [Maya_VRay_Standard]
-Release = 1.1.8
+Release = 1.1.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Fixed An Execution Error When A Camera Is Parented Inside 'sIBL' Group."
+Comment = "VRay For Maya Template : Implemented Shadow Catching Ground."
 
 [Maya_VRay_Dome_Light]
-Release = 1.1.8
+Release = 1.1.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
-Comment = "VRay For Maya Dome Light Template : Updates For sIBL_GUI 3.x.x."
+Comment = "VRay For Maya Dome Light Template : Implemented Shadow Catching Ground."
 
 [Maya_Turtle_Standard]
 Release = 1.2.0

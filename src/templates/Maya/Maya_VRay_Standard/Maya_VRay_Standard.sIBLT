@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.8 | String | Template Release
-Date = @Date | 29 May 2010 | String | Date
+Release = @Release | 1.1.9 | String | Template Release
+Date = @Date | 16 June 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -41,6 +41,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
+shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateIndirectIllumination = @activateIndirectIllumination | 1 | Boolean | Activate Indirect Illumination
 activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
@@ -82,6 +83,7 @@ int $createLights = @createLights;
 int $createFeedBack = @createFeedBack;
 float $feedbackRadius = @feedbackRadius;
 int $createGround = @createGround;
+int $shadowCatcher = @shadowCatcher;
 int $hideLights = @hideLights;
 int $activateIndirectIllumination = @activateIndirectIllumination;
 int $activateLinearWorkflow = @activateLinearWorkflow;
@@ -108,6 +110,7 @@ sIBL_Maya_VRay_setup($backgroundFilePath,
 		$createLights,
 		$createFeedBack,
 		$createGround,
+		$shadowCatcher,
 		$feedbackRadius,
 		$hideLights,
 		$activateIndirectIllumination,
@@ -135,6 +138,7 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 			int $createLights,
 			int $createFeedBack,
 			int $createGround,
+			int $shadowCatcher,
 			float $feedbackRadius,
 			int $hideLights,
 			int $activateIndirectIllumination,
@@ -188,7 +192,7 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 		sIBL_Maya_VRay_connectFeedBackToSIBLShaders($feedback, $createBackground, $createLighting, $createReflection);
 
 		if($createGround)
-			sIBL_Maya_VRay_getGround($feedbackRadius);
+			sIBL_Maya_VRay_getGround($feedbackRadius, $shadowCatcher);
 
 		if ($activateIndirectIllumination)
 			sIBL_Maya_VRay_activateIndirectIllumination();
@@ -440,11 +444,11 @@ global proc sIBL_Maya_VRay_getFeedback(string $backgroundFilePath, float $feedba
 	select -r $feedback;
 	sets -e -forceElement $shadingEngine;
 
-	string $vCoordinateRayObjPropertiesNode = `createNode "VRayObjectProperties"`;
-	connectAttr -f ($feedback + ".instObjGroups[0]") ($vCoordinateRayObjPropertiesNode + ".dnSetMembers[0]");
+	string $VRayObjPropertiesNode = `createNode "VRayObjectProperties"`;
+	connectAttr -f ($feedback + ".instObjGroups[0]") ($VRayObjPropertiesNode + ".dnSetMembers[0]");
 	string $attributesList[] = {"generateGI", "receiveGI", "generateCaustics", "receiveCaustics", "giVisibility", "reflectionVisibility", "refractionVisibility" };
 	for( $attribute in $attributesList )
-		setAttr ($vCoordinateRayObjPropertiesNode + "." + $attribute) 0;
+		setAttr ($VRayObjPropertiesNode + "." + $attribute) 0;
 
 	$attributesList = {"castsShadows", "receiveShadows", "motionBlur", "primaryVisibility", "smoothShading", "visibleInReflections", "visibleInRefractions" };
 	for( $attribute in $attributesList )
@@ -453,7 +457,7 @@ global proc sIBL_Maya_VRay_getFeedback(string $backgroundFilePath, float $feedba
 	rename $lambertShader ("sIBL_Feedback_" + `nodeType $lambertShader`);
 	rename $shadingEngine ("sIBL_Feedback_" + `nodeType $shadingEngine`);
 	rename $file ("sIBL_Feedback_" + `nodeType $file`);
-	rename $vCoordinateRayObjPropertiesNode ("sIBL_" + `nodeType $vCoordinateRayObjPropertiesNode`);
+	rename $VRayObjPropertiesNode ("sIBL_Feedback_" + `nodeType $VRayObjPropertiesNode`);
 	rename $place2dTexture ("sIBL_Feedback_" + `nodeType $place2dTexture`);
 }
 
@@ -582,11 +586,10 @@ global proc sIBL_Maya_VRay_activateLinearWorkflow()
 	setAttr "vraySettings.cmap_affectBackground" 0;
 }
 
-global proc sIBL_Maya_VRay_getGround(float $feedbackRadius)
+global proc sIBL_Maya_VRay_getGround(float $feedbackRadius, int $shadowCatcher)
 {
 	string $sIBLGroup = sIBL_Maya_VRay_getSIBLGroup();
-	string $ground[] = `polyPlane -sx 15 -sy 15`;
-	delete -ch;
+	string $ground[] = `polyPlane -sx 15 -sy 15 -ch 0`;
 
 	setAttr ($ground[0] + ".overrideEnabled") 1;
 	setAttr ($ground[0] + ".overrideShading") 0;
@@ -596,7 +599,24 @@ global proc sIBL_Maya_VRay_getGround(float $feedbackRadius)
 		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius/4);
 
 	parent $ground[0] $sIBLGroup;
-
+	
+	if ( $shadowCatcher )
+	{
+		string $VRayObjPropertiesNode = `createNode "VRayObjectProperties"`;
+		connectAttr -f ($ground[0] + ".instObjGroups[0]") ($VRayObjPropertiesNode + ".dnSetMembers[0]");
+		string $attributesList[] = {"giVisibility" };
+		for( $attribute in $attributesList )
+			setAttr ($VRayObjPropertiesNode + "." + $attribute) 0;
+		string $attributesList[] = {"matteSurface", "shadows" };
+		for( $attribute in $attributesList )
+			setAttr ($VRayObjPropertiesNode + "." + $attribute) 1;
+		
+		setAttr ($VRayObjPropertiesNode + ".shadowBrightness") 0.5;
+		setAttr ($VRayObjPropertiesNode + ".giAmount") 0.5;
+		
+		rename $VRayObjPropertiesNode ("sIBL_Ground_" + `nodeType $VRayObjPropertiesNode`);
+	}
+	
 	sIBL_Maya_VRay_addToDisplayLayer("sIBL_Ground_Layer", $ground[0]);
 
 	rename $ground[0] "sIBL_Ground";
