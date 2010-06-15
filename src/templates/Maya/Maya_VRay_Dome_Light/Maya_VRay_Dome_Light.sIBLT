@@ -40,6 +40,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 [Additional Attributes]
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
+sunAsVraySun = @sunAsVraySun | 1 | Boolean | Sun As VRaySun Light
 createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
@@ -81,6 +82,7 @@ int $createSun = @createSun;
 int $createLights = @createLights;
 int $createFeedBack = @createFeedBack;
 float $feedbackRadius = @feedbackRadius;
+int $sunAsVraySun = @sunAsVraySun;
 int $createGround = @createGround;
 int $shadowCatcher = @shadowCatcher;
 int $hideLights = @hideLights;
@@ -110,6 +112,7 @@ sIBL_Maya_VRay_DLight_setup($backgroundFilePath,
 		$createGround,
 		$shadowCatcher,
 		$feedbackRadius,
+		$sunAsVraySun,
 		$hideLights,
 		$activateLinearWorkflow);
 
@@ -137,6 +140,7 @@ global proc sIBL_Maya_VRay_DLight_setup(string $backgroundFilePath,
 			int $createGround,
 			int $shadowCatcher,
 			float $feedbackRadius,
+			int $sunAsVraySun,
 			int $hideLights,
 			int $activateLinearWorkflow)
 {
@@ -172,7 +176,7 @@ global proc sIBL_Maya_VRay_DLight_setup(string $backgroundFilePath,
 		{
 			if ($createSun)
 			{
-				sIBL_Maya_VRay_DLight_getSun($sunU, $sunV, $sunColor, $sunMultiplier, $feedbackRadius );
+				sIBL_Maya_VRay_DLight_getSun($sunU, $sunV, $sunColor, $sunMultiplier, $feedbackRadius, $sunAsVraySun);
 			}
 		}
 
@@ -497,17 +501,26 @@ global proc string sIBL_Maya_VRay_DLight_getLigthsTargetLocator()
 	return $sIBL_Lights_Target_Locator[0];
 }
 
-global proc sIBL_Maya_VRay_DLight_getLight( string $ligthType, string $lightName, float $scale, float $color[], float $intensity, float $uCoordinate, float $vCoordinate )
+global proc sIBL_Maya_VRay_DLight_getLight(string $ligthType, string $lightName, float $scale, float $color[], float $intensity, float $uCoordinate, float $vCoordinate)
 {
 	string $sIBLGroup = sIBL_Maya_VRay_DLight_getSIBLGroup();
 	string $feedback[] = `ls -fl "sIBL_Feedback"`;
 
 	string $light = `shadingNode -asLight $ligthType`;
-
-	setAttr ($light + ".locatorScale") $scale;
-	setAttr -type double3 ($light + ".color") ($color[0]/255) ($color[1]/255) ($color[2]/255);
-	setAttr ($light + ".intensity") $intensity;
-	setAttr ($light + ".useRayTraceShadows") 1;
+	
+	if($ligthType == "VRaySunShape")
+	{
+		setAttr ($light + ".intensityMult") (0.375*$intensity);
+		setAttr ($light + ".sizeMultiplier") (1*($scale/20));
+	}
+	else
+	{
+		setAttr ($light + ".locatorScale") $scale;
+		setAttr -type double3 ($light + ".color") ($color[0]/255) ($color[1]/255) ($color[2]/255);
+		setAttr ($light + ".intensity") $intensity;
+		setAttr ($light + ".useRayTraceShadows") 1;
+	}
+	
 	parent $light $sIBLGroup;
 
 	string $pointOnSurfaceInfo = `createNode pointOnSurfaceInfo`;
@@ -530,9 +543,15 @@ global proc sIBL_Maya_VRay_DLight_getLight( string $ligthType, string $lightName
 	rename $constraint[0] ($lightName + "_AimConstraint");
 }
 
-global proc sIBL_Maya_VRay_DLight_getSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius )
+global proc sIBL_Maya_VRay_DLight_getSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius, int $sunAsVraySun)
 {
-	sIBL_Maya_VRay_DLight_getLight("directionalLight", "sIBL_Sun", ($feedbackRadius / 10), $sunColor, $sunMultiplier, $sunU, $sunV);
+	string $lightType = "directionalLight";
+	if( $sunAsVraySun )
+	{
+		$lightType = "VRaySunShape";
+	}
+
+	sIBL_Maya_VRay_DLight_getLight($lightType, "sIBL_Sun", ($feedbackRadius / 10), $sunColor, $sunMultiplier, $sunU, $sunV);
 }
 
 global proc sIBL_Maya_VRay_DLight_getDynamicLights(string $compactedDynamicLights, float $feedbackRadius)
