@@ -4,16 +4,16 @@ Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows
 Type = "Stable"
 
 [XSI_MR_Standard]
-Release = 1.6.1
+Release = 1.6.2
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/XSI_MR_Standard/Stable/XSI_MR_Standard.zip"
-Comment = "XSI Mental Ray Template : Updates For sIBL_GUI 3.x.x."
+Comment = "XSI Mental Ray Template : Fixed Dynamic Lights Type Checking Issues."
 
 [Softimage_MR_Standard]
-Release = 1.0.3
+Release = 1.0.4
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_Standard/Stable/Softimage_MR_Standard.zip"
-Comment = "Softimage Mental Ray Template : Fixed A Wrong Method Name Call Resulting In An Execution Error."
+Comment = "Softimage Mental Ray Template : Fixed Dynamic Lights Type Checking Issues."
 
 [Maya_MR_Standard]
 Release = 1.7.4
