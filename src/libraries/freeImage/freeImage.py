@@ -59,7 +59,6 @@ import ctypes
 import logging
 import os
 import platform
-import sip
 import sys
 
 #***********************************************************************************************
@@ -1224,8 +1223,8 @@ class Image( object ):
 		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_BITMAP :
 			LOGGER.debug( "> Converting '{0}' Image Bitmap To QImage !".format( self._imagePath ) )
 
-			from PyQt4.QtCore import QByteArray
-			from PyQt4.QtGui import QPixmap
+			from PyQt4.QtGui import QImage
+			from sip import voidptr
 
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
@@ -1253,7 +1252,7 @@ class Image( object ):
 			LOGGER.debug( "> Image Pitch : '{0}'.".format( pitch ) )
 			LOGGER.debug( "> Initializing QImage With Memory Pointer '{0}' Address.".format( bitsPointer ) )
 
-			image = QImage( sip.voidptr( bitsPointer, size = height * pitch ), width, height, pitch, QImage.Format_RGB32 )
+			image = QImage( voidptr( bitsPointer, size = height * pitch ), width, height, pitch, QImage.Format_RGB32 )
 
 			# Removing The Following Line Would Result In A Python Process Crash, I Need To Call 'bits()' Method At Some Point.
 			LOGGER.debug( "> Final Memory Pointer With '{0}' Address.".format( image.bits().__int__() ) )
@@ -1267,47 +1266,3 @@ class Image( object ):
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-if __name__ == "__main__" :
-	import time
-
-	FREEIMAGE_LIBRARY_PATH = "/Users/KelSolaar/Documents/Developement/FreeImage/Dist/libfreeimage-3.13.1.dylib"
-
-	from globals.runtimeConstants import RuntimeConstants
-
-	LOGGER.setLevel( logging.INFO )
-
-	# Starting The Console Handler.
-	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.stdout )
-	RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
-	LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
-
-	import sys
-	from PyQt4.QtGui import *
-	from PyQt4.QtCore import *
-
-	class Display( QWidget ):
-		def __init__( self, parent = None ):
-			QWidget.__init__( self, parent )
-
-			self.setWindowTitle( 'Image Loader' )
-
-			grid = QGridLayout()
-			label = QLabel()
-			grid.addWidget( label )
-			self.setLayout( grid )
-
-			imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection A/Alexs_Apartment/Mire.bmp"
-			imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection A/Alexs_Apartment/Alexs_Apt_2k.hdr"
-			imagePath = "/Users/KelSolaar/Documents/Developement/sIBL_Library/Collection A/Alexs_Apartment/Alexs_Apt_2k.bmp"
-
-			image = Image( imagePath )
-			t1 = time.time()
-			image = image.convertToQImage()
-			t2 = time.time()
-			print 'HDR TO QImage Conversion took %0.3f ms' % ( ( t2 - t1 ) * 1000.0 )
-			label.setPixmap( QPixmap.fromImage( image ) )
-
-	app = QApplication( sys.argv )
-	qb = Display()
-	qb.show()
-	sys.exit( app.exec_() )
