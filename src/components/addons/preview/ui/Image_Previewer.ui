@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sIBL_GUI_Image_Previewer_Form</class>
+ <widget class="QWidget" name="sIBL_GUI_Image_Previewer_Form">
+  <property name="windowTitle">
+   <string>sIBL_GUI - Image Previewer</string>
+  </property>
+  <layout class="QGridLayout" name="sIBL_GUI_Image_Previewer_Form_gridLayout"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
