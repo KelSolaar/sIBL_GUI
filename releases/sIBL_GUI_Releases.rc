@@ -1,5 +1,5 @@
 [sIBL_GUI]
-Release = 3.0.8
+Release = 3.0.9
 Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows/Stable/sIBL_GUI.exe" | Mac Os X | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Darwin/Stable/sIBL_GUI.dmg" | Linux | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Linux/Nightly/sIBL_GUI.tar.gz"
 Type = "Stable"
 

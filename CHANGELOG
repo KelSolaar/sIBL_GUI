@@ -1,8 +1,10 @@
-h1=. sIBL_GUI - 3.0.8 - Stable
+h1=. sIBL_GUI - 3.0.9 - Stable
 
 h2=. Change Log
 
 p{font-size : 11pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
+
+h3. 3.0.9 - Stable
 
 h3. 3.0.8 - Stable
 
