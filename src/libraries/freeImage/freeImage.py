@@ -95,6 +95,7 @@ BYTE	 = ctypes.c_ubyte
 WORD	 = ctypes.c_ushort
 DWORD	 = ctypes.c_ulong
 LONG	 = ctypes.c_long
+DOUBLE	 = ctypes.c_double
 
 BYTE_P = ctypes.POINTER( BYTE )
 
@@ -954,6 +955,9 @@ FREEIMAGE_FUNCTIONS = (
 
 	# Miscellaneous Algorithms Functions.
 	LibraryHook( name = "FreeImage_MultigridPoissonSolver" , affixe = "@8", argumentsType = None, returnValue = None ),
+
+	# Custom Functions.
+	LibraryHook( name = "FreeImage_HDRLabs_ConvertToLdr" , affixe = "@20", argumentsType = ( ctypes.c_double, ctypes.c_double ), returnValue = None ),
  )
 
 #***********************************************************************************************
@@ -1196,31 +1200,16 @@ class Image( object ):
 		self._bitmap and LOGGER.debug( "> '{0}' Image Bitmap Conversion To Type '{1}' Done !".format( self._imagePath, targetType ) )
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
-	def convertToLdr( self ):
+	def convertToLdr( self, gamma = 2.2 ):
 		'''
-		This Method Converts The Bitmap To LDR.
+		This Method Converts The HDR Bitmap To LDR.
+		
+		@param gamma: Image Conversion Gamma. ( Float )
 		'''
 
-		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF :
-			LOGGER.debug( "> Converting '{0}' Image Bitmap To Ldr !".format( self._imagePath ) )
-
-			width = self._library.FreeImage_GetWidth( self._bitmap )
-			height = self._library.FreeImage_GetHeight( self._bitmap )
-
-			ldrBitmap = self._library.FreeImage_Allocate( width, height, BPP_32 )
-			for y in range( height ) :
-				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
-				bitsPointer = ctypes.pointer( FIRGBF.from_address( bitsAdress ) )
-				for x in range( width ) :
-					ldrPixel = RGBQUAD( int( bitsPointer[x].blue * CPC_8 ), int( bitsPointer[x].green * CPC_8 ), int( bitsPointer[x].red * CPC_8 ) )
-					self._library.FreeImage_SetPixelColor( ldrBitmap, x, y, ctypes.byref( ldrPixel ) )
-
-			LOGGER.debug( "> '{0}' Image Bitmap Conversion To Ldr Done !".format( self._imagePath ) )
-
-			self._bitmap = ldrBitmap
-		else :
-			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_RGBF )
+		LOGGER.debug( "> Converting '{0}' HDR Image Bitmap To LDR !".format( self._imagePath ) )
+		self._bitmap = self._library.FreeImage_HDRLabs_ConvertToLdr( self._bitmap, ctypes.c_double( gamma ) )
+		self._bitmap and LOGGER.debug( "> '{0}' HDR Image Bitmap Conversion To LDR Done !".format( self._imagePath ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryExecutionError )
@@ -1229,36 +1218,48 @@ class Image( object ):
 		This Method Converts The Bitmap To QImage.
 		'''
 
+		( self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF or self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBAF ) and self.convertToLdr( 2.2 )
+
 		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_BITMAP :
 			LOGGER.debug( "> Converting '{0}' Image Bitmap To QImage !".format( self._imagePath ) )
 
-			from PyQt4.QtCore import QByteArray
 			from PyQt4.QtGui import QImage
+			from sip import voidptr
 
 			width = self._library.FreeImage_GetWidth( self._bitmap )
 			height = self._library.FreeImage_GetHeight( self._bitmap )
+			pitch = width * ( BPP_32 / 8 )
+			# pitch = self._library.FreeImage_GetPitch( self._bitmap )
 
-			bits = QByteArray()
-			for y in range( height ) :
-				bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
-				bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
-				for x in range( width ) :
-					bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
-
-			image = QImage( bits, width, height, QImage.Format_RGB32 )
-
-			# Slow Deprecated Conversion.
-			# image = QImage( width, height, QImage.Format_RGB32 )
-
+			# Deprecated Memory Access Method.
+			# bits = QByteArray()
 			# for y in range( height ) :
-			#	 bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
-			#	 bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
-			#	 for x in range( width ) :
-			#		 image.setPixel( x, y, qRgb( bitsPointer[x].rgbRed, bitsPointer[x].rgbGreen, bitsPointer[x].rgbBlue ) )
+			# 	bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
+			# 	bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
+			# 	for x in range( width ) :
+			# 		bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
+			#image = QImage( bits, width, height, QImage.Format_RGB32 )
+
+			# New Memory Access Method.
+			bits = ctypes.create_string_buffer( chr( 0 ) * height * pitch )
+			self._library.FreeImage_ConvertToRawBits( ctypes.byref( bits ), self._bitmap, pitch, BPP_32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, True )
+
+			bitsPointer = ctypes.addressof( bits )
+
+			LOGGER.debug( "> Initializing Image From Memory Pointer '{0}' Address.".format( bitsPointer ) )
+			LOGGER.debug( "> Image Width : '{0}'.".format( width ) )
+			LOGGER.debug( "> Image Height : '{0}'.".format( height ) )
+			LOGGER.debug( "> Image Pitch : '{0}'.".format( pitch ) )
+			LOGGER.debug( "> Initializing QImage With Memory Pointer '{0}' Address.".format( bitsPointer ) )
+
+			image = QImage( voidptr( bitsPointer, size = height * pitch ), width, height, pitch, QImage.Format_RGB32 )
+
+			# Removing The Following Line Would Result In A Python Process Crash, I Need To Call 'bits()' Method At Some Point.
+			LOGGER.debug( "> Final Memory Pointer With '{0}' Address.".format( image.bits().__int__() ) )
 
 			LOGGER.debug( "> '{0}' Image Bitmap Conversion To QImage Done !".format( self._imagePath ) )
 
-			return image.mirrored( vertical = True )
+			return image
 		else :
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format( FREE_IMAGE_TYPE.FIT_BITMAP )
 
