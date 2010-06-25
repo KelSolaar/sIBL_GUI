@@ -115,7 +115,7 @@ class Library( object ):
 		@param **kwargs: Arguments. ( * )
 		'''
 
-		if self._libraryInstance is None:
+		if not self._libraryInstance :
 			self._libraryInstance = object.__new__( self )
 		return self._libraryInstance
 
