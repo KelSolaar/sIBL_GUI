@@ -105,12 +105,24 @@ class ImagePreviewer( object ):
 
 		self._uiPath = "ui/Image_Previewer.ui"
 		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = "resources/"
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 
 		self._ui = uic.loadUi( self._uiPath )
 		if "." in sys.path :
 			sys.path.remove( "." )
+
+		self._pixmap = None
+		self._graphicsPixmapItem = None
+
+		self._graphicsView = QGraphicsView()
+		self._graphicsScene = QGraphicsScene( self._graphicsView )
+		self._graphicsSceneBackgroundColor = QColor( 128, 128, 128 )
+		self._graphicsSceneMargin = 64
+		self._graphicsSceneWidth = 8192
+		self._graphicsSceneHeight = 6144
+		self._minimumZoomFactor = 0.5
+		self._maximumZoomFactor = 25
+		self._wheelZoomFactor = 250.0
+		self._keyZoomFactor = 1.20
 
 		self.initializeUi()
 
@@ -243,34 +255,368 @@ class ImagePreviewer( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
 
 	@property
-	def uiResources( self ):
+	def pixmap( self ):
 		'''
-		This Method Is The Property For The _uiResources Attribute.
+		This Method Is The Property For The _pixmap Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self._pixmap. ( QPixmap )
 		'''
 
-		return self._uiResources
+		return self._pixmap
 
-	@uiResources.setter
+	@pixmap.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def pixmap( self, value ):
+		'''
+		This Method Is The Setter Method For The _pixmap Attribute.
+		
+		@param value: Attribute Value. ( QPixmap )
+		'''
+
+		if value :
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "pixmap", value )
+		self._imagePath = value
+
+	@pixmap.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	def pixmap( self ):
 		'''
-		This Method Is The Setter Method For The _uiResources Attribute.
-
-		@param value: Attribute Value. ( String )
+		This Method Is The Deleter Method For The _pixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "pixmap" ) )
 
-	@uiResources.deleter
+	@property
+	def graphicsPixmapItem( self ):
+		'''
+		This Method Is The Property For The _graphicsPixmapItem Attribute.
+
+		@return: self._graphicsPixmapItem. ( QGraphicsPixmapItem )
+		'''
+
+		return self._graphicsPixmapItem
+
+	@graphicsPixmapItem.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def graphicsPixmapItem( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsPixmapItem Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsPixmapItem )
+		'''
+
+		if value :
+			assert type( value ) is QGraphicsPixmapItem, "'{0}' Attribute : '{1}' Type Is Not 'QGraphicsPixmapItem' !".format( "graphicsPixmapItem", value )
+		self._graphicsPixmapItem = value
+
+	@graphicsPixmapItem.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	def graphicsPixmapItem( self ):
 		'''
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This Method Is The Deleter Method For The _graphicsPixmapItem Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsPixmapItem" ) )
+
+	@property
+	def graphicsView( self ):
+		'''
+		This Method Is The Property For The _graphicsView Attribute.
+
+		@return: self._graphicsView. ( QGraphicsView )
+		'''
+
+		return self._graphicsView
+
+	@graphicsView.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsView( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsView Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsView )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsView" ) )
+
+	@graphicsView.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsView( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsView Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsView" ) )
+
+	@property
+	def graphicsScene( self ):
+		'''
+		This Method Is The Property For The _graphicsScene Attribute.
+
+		@return: self._graphicsScene. ( QGraphicsScene )
+		'''
+
+		return self._graphicsScene
+
+	@graphicsScene.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsScene( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsScene Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsScene )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsScene" ) )
+
+	@graphicsScene.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsScene( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsScene Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsScene" ) )
+
+	@property
+	def graphicsSceneBackgroundColor( self ):
+		'''
+		This Method Is The Property For The _graphicsSceneBackgroundColor Attribute.
+
+		@return: self._graphicsSceneBackgroundColor. ( QColor )
+		'''
+
+		return self._graphicsSceneBackgroundColor
+
+	@graphicsSceneBackgroundColor.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneBackgroundColor( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsSceneBackgroundColor Attribute.
+		
+		@param value: Attribute Value. ( QColor )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneBackgroundColor" ) )
+
+	@graphicsSceneBackgroundColor.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneBackgroundColor( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsSceneBackgroundColor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneBackgroundColor" ) )
+
+	@property
+	def graphicsSceneMargin( self ):
+		'''
+		This Method Is The Property For The _graphicsSceneMargin Attribute.
+
+		@return: self._graphicsSceneMargin. ( Integer )
+		'''
+
+		return self._graphicsSceneMargin
+
+	@graphicsSceneMargin.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneMargin( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsSceneMargin Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneMargin" ) )
+
+	@graphicsSceneMargin.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneMargin( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsSceneMargin Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneMargin" ) )
+
+	@property
+	def graphicsSceneWidth( self ):
+		'''
+		This Method Is The Property For The _graphicsSceneWidth Attribute.
+
+		@return: self._graphicsSceneWidth. ( Integer )
+		'''
+
+		return self._graphicsSceneWidth
+
+	@graphicsSceneWidth.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneWidth( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsSceneWidth Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneWidth" ) )
+
+	@graphicsSceneWidth.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneWidth( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsSceneWidth Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneWidth" ) )
+
+	@property
+	def graphicsSceneHeight( self ):
+		'''
+		This Method Is The Property For The _graphicsSceneHeight Attribute.
+
+		@return: self._graphicsSceneHeight. ( Object )
+		'''
+
+		return self._graphicsSceneHeight
+
+	@graphicsSceneHeight.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneHeight( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsSceneHeight Attribute.
+		
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneHeight" ) )
+
+	@graphicsSceneHeight.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneHeight( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsSceneHeight Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneHeight" ) )
+
+	@property
+	def minimumZoomFactor( self ):
+		'''
+		This Method Is The Property For The _minimumZoomFactor Attribute.
+
+		@return: self._minimumZoomFactor. ( Float )
+		'''
+
+		return self._minimumZoomFactor
+
+	@minimumZoomFactor.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def minimumZoomFactor( self, value ):
+		'''
+		This Method Is The Setter Method For The _minimumZoomFactor Attribute.
+		
+		@param value: Attribute Value. ( Float )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "minimumZoomFactor" ) )
+
+	@minimumZoomFactor.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def minimumZoomFactor( self ):
+		'''
+		This Method Is The Deleter Method For The _minimumZoomFactor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "minimumZoomFactor" ) )
+
+	@property
+	def maximumZoomFactor( self ):
+		'''
+		This Method Is The Property For The _maximumZoomFactor Attribute.
+
+		@return: self._maximumZoomFactor. ( Float )
+		'''
+
+		return self._maximumZoomFactor
+
+	@maximumZoomFactor.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def maximumZoomFactor( self, value ):
+		'''
+		This Method Is The Setter Method For The _maximumZoomFactor Attribute.
+		
+		@param value: Attribute Value. ( Float )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "maximumZoomFactor" ) )
+
+	@maximumZoomFactor.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def maximumZoomFactor( self ):
+		'''
+		This Method Is The Deleter Method For The _maximumZoomFactor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "maximumZoomFactor" ) )
+
+	@property
+	def wheelZoomFactor( self ):
+		'''
+		This Method Is The Property For The _wheelZoomFactor Attribute.
+
+		@return: self._wheelZoomFactor. ( Float )
+		'''
+
+		return self._wheelZoomFactor
+
+	@wheelZoomFactor.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def wheelZoomFactor( self, value ):
+		'''
+		This Method Is The Setter Method For The _wheelZoomFactor Attribute.
+		
+		@param value: Attribute Value. ( Float )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "wheelZoomFactor" ) )
+
+	@wheelZoomFactor.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def wheelZoomFactor( self ):
+		'''
+		This Method Is The Deleter Method For The _wheelZoomFactor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "wheelZoomFactor" ) )
+
+	@property
+	def keyZoomFactor( self ):
+		'''
+		This Method Is The Property For The _keyZoomFactor Attribute.
+
+		@return: self._keyZoomFactor. ( Float )
+		'''
+
+		return self._keyZoomFactor
+
+	@keyZoomFactor.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def keyZoomFactor( self, value ):
+		'''
+		This Method Is The Setter Method For The _keyZoomFactor Attribute.
+		
+		@param value: Attribute Value. ( Float )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "keyZoomFactor" ) )
+
+	@keyZoomFactor.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def keyZoomFactor( self ):
+		'''
+		This Method Is The Deleter Method For The _keyZoomFactor Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "keyZoomFactor" ) )
 
 	@property
 	def ui( self ):
@@ -312,10 +658,75 @@ class ImagePreviewer( object ):
 		'''
 
 		image = Image( str( self._imagePath ) )
+		self._pixmap = QPixmap().fromImage( image.convertToQImage() )
 
-		label = QLabel()
-		label.setPixmap( QPixmap().fromImage( image.convertToQImage() ) )
-		self._ui.sIBL_GUI_Image_Previewer_Form_gridLayout.addWidget( label )
+		#self._scaleFactor = 1 / ( float( self.cWorldMap_QPixmap.width() ) / float( cWidgetSizeX ) )
+		#self._graphicsView.scale( self._scaleFactor, self._scaleFactor )
+
+		self._graphicsView.setHorizontalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
+		self._graphicsView.setVerticalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
+		self._graphicsView.setTransformationAnchor( QGraphicsView.AnchorUnderMouse )
+		self._graphicsView.setDragMode( QGraphicsView.ScrollHandDrag )
+		self._graphicsView.wheelEvent = self.wheelEvent
+
+		self._graphicsScene.setItemIndexMethod( QGraphicsScene.NoIndex )
+		self._graphicsScene.setSceneRect( -( float( self._graphicsSceneWidth ) + self._pixmap.width() / 2 ) / 2, -( float( self._graphicsSceneHeight ) + self._pixmap.height() / 2 ) / 2, float( self._graphicsSceneWidth ) + self._pixmap.width() / 2, float( self._graphicsSceneHeight ) + self._pixmap.height() / 2 )
+
+		self._graphicsView.setScene( self._graphicsScene )
+
+		self._graphicsView.setBackgroundBrush( QBrush( self._graphicsSceneBackgroundColor ) )
+
+		self._graphicsPixmapItem = QGraphicsPixmapItem( self._pixmap )
+		self._graphicsPixmapItem.setOffset( -self._pixmap.width() / 2, -self._pixmap.height() / 2 )
+		self._graphicsScene.addItem( self._graphicsPixmapItem )
+
+		self._ui.sIBL_GUI_Image_Previewer_Form_gridLayout.addWidget( self._graphicsView )
+
+
+		width = self._pixmap.width() > QApplication.desktop().width() and QApplication.desktop().width() + self._graphicsSceneMargin or self._pixmap.width() + self._graphicsSceneMargin
+		height = self._pixmap.height() > QApplication.desktop().height() and QApplication.desktop().height() + self._graphicsSceneMargin or self._pixmap.height() + self._graphicsSceneMargin
+
+		self._ui.resize( width, height )
+
+	@core.executionTrace
+	def scaleView( self, scaleFactor ) :
+		'''
+		This Method Scales The QGraphicsView.
+
+		@param scaleFactor: Float ( Float )
+		'''
+
+		factor = self._graphicsView.matrix().scale( scaleFactor, scaleFactor ).mapRect( QRectF( 0, 0, 1, 1 ) ).width()
+		if factor < self._minimumZoomFactor or factor > self._maximumZoomFactor :
+			return
+
+		self._graphicsView.scale( scaleFactor, scaleFactor )
+
+	@core.executionTrace
+	def wheelEvent( self, event ) :
+		'''
+		This Method Redefines wheelEvent.
+
+		@param event: QEvent ( QEvent )
+		'''
+
+		self.scaleView( pow( 1.5, event.delta() / self._wheelZoomFactor ) )
+
+	@core.executionTrace
+	def keyPressEvent( self, event ) :
+		'''
+		This Method Redefines keyPressEvent.
+
+		@param event: QEvent ( QEvent )
+		'''
+
+		key = event.key()
+		if key == Qt.Key_Plus:
+			self.scaleView( self._keyZoomFactor )
+		elif key == Qt.Key_Minus:
+			self.scaleView( 1 / self._keyZoomFactor )
+		else:
+			QGraphicsView.keyPressEvent( self, event )
 
 class Preview( UiComponent ):
 	'''
