@@ -94,8 +94,8 @@ if not hasattr( sys, "frozen" ) and not ( platform.system() == "Windows" or plat
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler( sys.__stdout__ )
 	RuntimeConstants.loggingConsoleHandler.setFormatter( core.LOGGING_FORMATTER )
 	LOGGER.addHandler( RuntimeConstants.loggingConsoleHandler )
-RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
 
+RuntimeConstants.uiFile = os.path.join( os.getcwd(), UiConstants.frameworkUiFile )
 if os.path.exists( RuntimeConstants.uiFile ):
 	Ui_Setup, Ui_Type = uic.loadUiType( RuntimeConstants.uiFile )
 else :
