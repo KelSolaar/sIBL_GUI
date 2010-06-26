@@ -1244,6 +1244,8 @@ class Image( object ):
 			bits = ctypes.create_string_buffer( chr( 0 ) * height * pitch )
 			self._library.FreeImage_ConvertToRawBits( ctypes.byref( bits ), self._bitmap, pitch, BPP_32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, True )
 
+			self._library.FreeImage_Unload( self._bitmap )
+
 			bitsPointer = ctypes.addressof( bits )
 
 			LOGGER.debug( "> Initializing Image From Memory Pointer '{0}' Address.".format( bitsPointer ) )
