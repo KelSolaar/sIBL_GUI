@@ -117,11 +117,12 @@ class UiConstants():
 							"Jpg" : "\.[jJ][pP][gG]",
 							"Png" : "\.[pP][nN][gG]" }
 
-	thirdPartyImageFormats = { 	"Tga" : ( "\.[tT][gG][aA]" ),
+	thirdPartyImageFormats = { 	"Exr" : ( "\.[eE][xX][rR]" ),
+								"Hdr" : ( "\.[hH][dD][rR]" ),
 								"Tif" : ( "\.[tT][iI][fF]" ),
 								"Tiff" : ( "\.[tT][iI][fF][fF]" ),
-								"Hdr" : ( "\.[hH][dD][rR]" ),
-								"Exr" : ( "\.[eE][xX][rR]" ) }
+								"Tga" : ( "\.[tT][gG][aA]" )
+								 }
 
 #***********************************************************************************************
 #***	Python End
