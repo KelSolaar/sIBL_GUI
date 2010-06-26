@@ -119,7 +119,9 @@ class UiConstants():
 
 	thirdPartyImageFormats = { 	"Tga" : ( "\.[tT][gG][aA]" ),
 								"Tif" : ( "\.[tT][iI][fF]" ),
-								"Tiff" : ( "\.[tT][iI][fF][fF]" ) }
+								"Tiff" : ( "\.[tT][iI][fF][fF]" ),
+								"Hdr" : ( "\.[hH][dD][rR]" ),
+								"Exr" : ( "\.[eE][xX][rR]" ) }
 
 #***********************************************************************************************
 #***	Python End
