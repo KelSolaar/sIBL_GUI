@@ -161,13 +161,10 @@ class Image_QGraphicsItem( QGraphicsItem ) :
 
 		painter.drawImage( -( self._image.width() / 2 ), -( self._image.height() / 2 ), self._image )
 
-class ImagePreviewer( QObject ):
+class ImagePreviewer( object ):
 	'''
 	This Is The ImagePreviewer Class.
 	'''
-
-	# Custom Signals Definitions.
-	closed = pyqtSignal( QObject )
 
 	@core.executionTrace
 	def __init__( self, container, imagePath ):
@@ -180,33 +177,37 @@ class ImagePreviewer( QObject ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QObject.__init__( self, container )
-
 		# --- Setting Class Attributes. ---
 		self._container = container
 		self._imagePath = None
 		self.imagePath = imagePath
 
+		self._signalsSlotsCenter = QObject()
+
 		self._uiPath = "ui/Image_Previewer.ui"
 		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
+		self._uiResources = "resources"
+		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self._uiZoomInIcon = "Zoom_In.png"
+		self._uiZoomOutIcon = "Zoom_Out.png"
 
 		self._ui = uic.loadUi( self._uiPath )
 		if "." in sys.path :
 			sys.path.remove( "." )
-
 		# Ensure The Ui Object Is Destroyed On Close To Avoid Memory Leaks.
 		self._ui.setAttribute( Qt.WA_DeleteOnClose )
-
+		self._ui._datas = "Toto"
 		# Reimplementing Widget Close Event Method.
 		self._ui.closeEvent = self.closeUi
 
+#		self._graphicsSceneBackgroundColors = ( ( "Dark", QColor( 32, 32, 32 ) ), ( "Average", QColor( 128, 128, 128 ) ), ( "Bright", QColor( 160, 160, 160 ) ) )
 		self._graphicsSceneBackgroundColor = QColor( 128, 128, 128 )
-		self._graphicsSceneMargin = 64
+		self._graphicsSceneMargin = 128
 		self._graphicsSceneWidth = 8192
 		self._graphicsSceneHeight = 6144
-		self._minimumZoomFactor = 0.25
+		self._minimumZoomFactor = 0.125
 		self._maximumZoomFactor = 25
-		self._wheelZoomFactor = 250.0
+		self._wheelZoomFactor = 350.0
 		self._keyZoomFactor = 1.20
 
 		self.initializeUi()
@@ -245,6 +246,36 @@ class ImagePreviewer( QObject ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def imagePath( self ):
@@ -308,6 +339,96 @@ class ImagePreviewer( QObject ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+
+	@property
+	def uiResources( self ):
+		'''
+		This Method Is The Property For The _uiResources Attribute.
+
+		@return: self._uiResources. ( String )
+		'''
+
+		return self._uiResources
+
+	@uiResources.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiResources Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+
+	@uiResources.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiResources( self ):
+		'''
+		This Method Is The Deleter Method For The _uiResources Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+
+	@property
+	def uiZoomInIcon( self ):
+		'''
+		This Method Is The Property For The _uiZoomInIcon Attribute.
+
+		@return: self._uiZoomInIcon. ( String )
+		'''
+
+		return self._uiZoomInIcon
+
+	@uiZoomInIcon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiZoomInIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiZoomInIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiZoomInIcon" ) )
+
+	@uiZoomInIcon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiZoomInIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiZoomInIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiZoomInIcon" ) )
+
+	@property
+	def uiZoomOutIcon( self ):
+		'''
+		This Method Is The Property For The _uiZoomOutIcon Attribute.
+
+		@return: self._uiZoomOutIcon. ( String )
+		'''
+
+		return self._uiZoomOutIcon
+
+	@uiZoomOutIcon.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiZoomOutIcon( self, value ):
+		'''
+		This Method Is The Setter Method For The _uiZoomOutIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiZoomOutIcon" ) )
+
+	@uiZoomOutIcon.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def uiZoomOutIcon( self ):
+		'''
+		This Method Is The Deleter Method For The _uiZoomOutIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiZoomOutIcon" ) )
 
 	@property
 	def graphicsSceneBackgroundColor( self ):
@@ -588,20 +709,23 @@ class ImagePreviewer( QObject ):
 		This Method Initializes The Widget Ui.
 		'''
 
-		if os.path.exists( self._imagePath ) :
-			for extension in UiConstants.nativeImageFormats.values() :
-				if re.search( extension, self._imagePath ) :
-					image = QImage( self._imagePath )
-					break
-			else :
-				for extension in UiConstants.thirdPartyImageFormats.values() :
-					if re.search( extension, self._imagePath ) :
-						image = Image( str( self._imagePath ) )
-						image = image.convertToQImage()
-						break
+		self._ui.Zoom_In_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomInIcon ) ) )
+		self._ui.Zoom_Out_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomOutIcon ) ) )
 
-		#self._scaleFactor = 1 / ( float( image.width() ) / float( widgetSizeX ) )
-		#self._graphicsView.scale( self._scaleFactor, self._scaleFactor )
+		for extension in UiConstants.nativeImageFormats.values() :
+			if re.search( extension, self._imagePath ) :
+				image = QImage( self._imagePath )
+				bpp = image.depth()
+				break
+		else :
+			for extension in UiConstants.thirdPartyImageFormats.values() :
+				if re.search( extension, self._imagePath ) :
+					image = Image( str( self._imagePath ) )
+					image = image.convertToQImage()
+					bpp = image._datas.bpp
+					break
+
+		self._ui.Image_Informations_label.setText( "{0} - {1} x {2} - {3} BPP".format( os.path.basename( self._imagePath ), image.width(), image.height(), bpp ) )
 
 		graphicsView = QGraphicsView()
 		graphicsView.setHorizontalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
@@ -623,12 +747,16 @@ class ImagePreviewer( QObject ):
 
 		graphicsScene.addItem( graphicsItem )
 
-		self._ui.sIBL_GUI_Image_Previewer_Form_gridLayout.addWidget( graphicsView )
+		self._ui.Image_Previewer_frame_gridLayout.addWidget( graphicsView )
 
-		width = image.width() > QApplication.desktop().width() and QApplication.desktop().width() / 2 + self._graphicsSceneMargin or image.width() + self._graphicsSceneMargin
-		height = image.height() > QApplication.desktop().height() and QApplication.desktop().height() / 2 + self._graphicsSceneMargin or image.height() + self._graphicsSceneMargin
+		width = image.width() > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._graphicsSceneMargin or image.width() + self._graphicsSceneMargin
+		height = image.height() > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._graphicsSceneMargin or image.height() + self._graphicsSceneMargin
 
 		self._ui.resize( width, height )
+
+		# Signals / Slots.
+		self._signalsSlotsCenter.connect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Zoom_Out_pushButton, SIGNAL( "clicked()" ), self.Zoom_Out_pushButton_OnClicked )
 
 	@core.executionTrace
 	def closeUi( self, event ):
@@ -638,9 +766,25 @@ class ImagePreviewer( QObject ):
 		@param event: QEvent ( QEvent )
 		'''
 
-		self.emit( SIGNAL( "closed(ImagePreviewer)" ), self )
-
 		event.accept()
+
+		self._container.imagePreviewers.remove( self )
+
+	@core.executionTrace
+	def Zoom_In_pushButton_OnClicked( self ):
+		'''
+		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
+		'''
+
+		self.scaleView( self._keyZoomFactor )
+
+	@core.executionTrace
+	def Zoom_Out_pushButton_OnClicked( self ):
+		'''
+		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
+		'''
+
+		self.scaleView( 1 / self._keyZoomFactor )
 
 	@core.executionTrace
 	def scaleView( self, scaleFactor ) :
@@ -650,11 +794,12 @@ class ImagePreviewer( QObject ):
 		@param scaleFactor: Float ( Float )
 		'''
 
-		factor = self._graphicsView.matrix().scale( scaleFactor, scaleFactor ).mapRect( QRectF( 0, 0, 1, 1 ) ).width()
+		graphicsView = self._ui.findChild( QGraphicsView )
+		factor = graphicsView.matrix().scale( scaleFactor, scaleFactor ).mapRect( QRectF( 0, 0, 1, 1 ) ).width()
 		if factor < self._minimumZoomFactor or factor > self._maximumZoomFactor :
 			return
 
-		self._graphicsView.scale( scaleFactor, scaleFactor )
+		graphicsView.scale( scaleFactor, scaleFactor )
 
 	@core.executionTrace
 	def wheelEvent( self, event ) :
@@ -715,7 +860,7 @@ class Preview( UiComponent ):
 		self._coreDatabaseBrowser = None
 
 		self._imagePreviewers = None
-		self._maximumImagePreviewersInstances = 3
+		self._maximumImagePreviewersInstances = 5
 
 		self._previewLightingImageAction = None
 		self._previewReflectionImageAction = None
@@ -1158,7 +1303,8 @@ class Preview( UiComponent ):
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
 
-		self._imagePreviewers = None
+		for imagePreviewer in self._imagePreviewers[:] :
+			imagePreviewer.ui.close()
 
 		self._deactivate()
 
@@ -1346,8 +1492,12 @@ class Preview( UiComponent ):
 						if not len( self._imagePreviewers ) >= self._maximumImagePreviewersInstances :
 							self.launchImagePreviewer( imagePath )
 						else:
-							messageBox.messageBox( "Warning", "Warning", "{0} | You Can Only Launch {1} Image Previewer Instances At Same Time, Please Close One !".format( self.__class__.__name__, self._maximumImagePreviewersInstances ) )
+							messageBox.messageBox( "Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time !".format( self.__class__.__name__, self._maximumImagePreviewersInstances ) )
 							break
+				else :
+					messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped !".format( self.__class__.__name__, imagePath ) )
+			else :
+				messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped !".format( self.__class__.__name__, iblSet._datas.title, imageType ) )
 
 	@core.executionTrace
 	def launchImagePreviewer( self, imagePath ):
@@ -1359,7 +1509,6 @@ class Preview( UiComponent ):
 
 		imagePreviewer = ImagePreviewer( self, imagePath )
 		self._imagePreviewers.append( imagePreviewer )
-		self._signalsSlotsCenter.connect( imagePreviewer, SIGNAL( "closed(ImagePreviewer)" ), self.removeImagePreviewer )
 
 	@core.executionTrace
 	def removeImagePreviewer( self, imagePreviewer ):

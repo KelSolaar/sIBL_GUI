@@ -963,6 +963,23 @@ FREEIMAGE_FUNCTIONS = (
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class ImageInformationsHeader( core.Structure ):
+	'''
+	This Is The AttributeCompound Class.
+	'''
+
+	@core.executionTrace
+	def __init__( self, **kwargs ):
+		'''
+		This Method Initializes The Class.
+
+		@param kwargs: path, width, height, bpp. ( Key / Value Pairs )
+		'''
+
+		core.Structure.__init__( self, **kwargs )
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update( kwargs )
 
 class Image( object ):
 
@@ -1218,6 +1235,7 @@ class Image( object ):
 		This Method Converts The Bitmap To QImage.
 		'''
 
+		bpp = self._library.FreeImage_GetBPP( self._bitmap )
 		( self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBF or self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_RGBAF ) and self.convertToLdr( 2.2 )
 
 		if self._library.FreeImage_GetImageType( self._bitmap ) == FREE_IMAGE_TYPE.FIT_BITMAP :
@@ -1255,6 +1273,8 @@ class Image( object ):
 			LOGGER.debug( "> Initializing QImage With Memory Pointer '{0}' Address.".format( bitsPointer ) )
 
 			image = QImage( voidptr( bitsPointer, size = height * pitch ), width, height, pitch, QImage.Format_RGB32 )
+
+			image._datas = ImageInformationsHeader( path = self._imagePath, width = width, height = height, bpp = bpp )
 
 			# Removing The Following Line Would Result In A Python Process Crash, I Need To Call 'bits()' Method At Some Point.
 			LOGGER.debug( "> Final Memory Pointer With '{0}' Address.".format( image.bits().__int__() ) )
