@@ -295,7 +295,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
 	def dropEvent( self, event ):
 		'''
 		This Method Defines The Drop Event Behavior.
@@ -303,37 +303,40 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		@param event: QEvent. ( QEvent )		
 		'''
 
-		if event.mimeData().hasUrls() :
-			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
-			for url in event.mimeData().urls() :
-				path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
-				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
-					name = os.path.splitext( os.path.basename( path ) )[0]
-					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						 self._coreDatabaseBrowser.addIblSet( name, path )
-						 self._coreDatabaseBrowser.extendedRefresh()
-				else :
-					if os.path.isdir( path ):
-						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-							 self._coreDatabaseBrowser.addDirectory( path )
+		if not self._container.parameters.databaseReadOnly :
+			if event.mimeData().hasUrls() :
+				LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+				for url in event.mimeData().urls() :
+					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
+					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
+						name = os.path.splitext( os.path.basename( path ) )[0]
+						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							 self._coreDatabaseBrowser.addIblSet( name, path )
 							 self._coreDatabaseBrowser.extendedRefresh()
 					else :
-						raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
-		else :
-			indexAt = self.indexAt( event.pos() )
-			itemAt = self.model().itemFromIndex( indexAt )
+						if os.path.isdir( path ):
+							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+								 self._coreDatabaseBrowser.addDirectory( path )
+								 self._coreDatabaseBrowser.extendedRefresh()
+						else :
+							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
+			else :
+				indexAt = self.indexAt( event.pos() )
+				itemAt = self.model().itemFromIndex( indexAt )
 
-			if itemAt :
-				LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
-				collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
-				if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
-					iblSets = self._coreDatabaseBrowser.getSelectedItems()
-					LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
-					for iblSet in iblSets :
-						iblSet._datas.collection = collectionStandardItem._datas.id
-					if dbUtilities.common.commit( self._coreDb.dbSession ) :
-						self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-						self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+				if itemAt :
+					LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
+					collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
+					if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
+						iblSets = self._coreDatabaseBrowser.getSelectedItems()
+						LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
+						for iblSet in iblSets :
+							iblSet._datas.collection = collectionStandardItem._datas.id
+						if dbUtilities.common.commit( self._coreDb.dbSession ) :
+							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+		else :
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
 	@core.executionTrace
 	def QTreeView_OnClicked( self, index ):
@@ -346,6 +349,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		self._previousCollection = self.model().itemFromIndex( self.model().sibling( index.row(), 0, index ) ).text()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
 	def QTreeView_OnDoubleClicked( self, index ):
 		'''
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
@@ -353,13 +357,16 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		'''
 
-		collectionStandardItem = self.model().itemFromIndex( self.model().sibling( index.row(), 0, index ) )
+		if not self._container.parameters.databaseReadOnly :
+			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( index.row(), 0, index ) )
 
-		if collectionStandardItem.text() != self._coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self._coreCollectionsOutliner.overallCollection :
-			if self.model().itemFromIndex( index ).column() == self._coreCollectionsOutliner.modelHeaders.index( self._coreCollectionsOutliner.setsCountLabel ) :
-				messageBox.messageBox( "Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only !".format( self.__class__.__name__ ) )
+			if collectionStandardItem.text() != self._coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self._coreCollectionsOutliner.overallCollection :
+				if self.model().itemFromIndex( index ).column() == self._coreCollectionsOutliner.modelHeaders.index( self._coreCollectionsOutliner.setsCountLabel ) :
+					messageBox.messageBox( "Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only !".format( self.__class__.__name__ ) )
+			else :
+				messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only !".format( self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection ) )
 		else :
-			messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only !".format( self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection ) )
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
 class CollectionsOutliner( UiComponent ):
 	'''
@@ -867,6 +874,7 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
+		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Database Collections Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 		self._model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 
@@ -883,7 +891,7 @@ class CollectionsOutliner( UiComponent ):
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "clicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Collections_Outliner_treeView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Collections_Outliner_treeView_refreshView )
-		self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
+		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -974,14 +982,14 @@ class CollectionsOutliner( UiComponent ):
 					collectionStandardItem = QStandardItem( QString( collection.name ) )
 					iconPath = collection.name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon )  or os.path.join( self._uiResources, self._uiUserCollectionIcon )
 					collectionStandardItem.setIcon( QIcon( iconPath ) )
-					collection.name == self._defaultCollection and collectionStandardItem.setFlags( readOnlyFlags )
+					( collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly ) and collectionStandardItem.setFlags( readOnlyFlags )
 
 					collectionSetsCountStandardItem = QStandardItem( QString( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collection.id ).count() ) ) )
 					collectionSetsCountStandardItem.setTextAlignment( Qt.AlignCenter )
 					collectionSetsCountStandardItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled )
 
 					collectionCommentsStandardItem = QStandardItem( QString( collection.comment ) )
-					collection.name == self._defaultCollection and collectionCommentsStandardItem.setFlags( readOnlyFlags )
+					( collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly ) and collectionCommentsStandardItem.setFlags( readOnlyFlags )
 
 					collectionStandardItem._datas = collection
 					collectionStandardItem._type = "Collection"

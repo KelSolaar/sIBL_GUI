@@ -421,7 +421,7 @@ class DatabaseBrowser_QListView( QListView ):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError )
 	def dropEvent( self, event ):
 		'''
 		This Method Defines The Drop Event Behavior.
@@ -429,21 +429,38 @@ class DatabaseBrowser_QListView( QListView ):
 		@param event: QEvent. ( QEvent )		
 		'''
 
-		if event.mimeData().hasUrls() :
-			LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
-			for url in event.mimeData().urls() :
-				path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
-				if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
-					name = os.path.splitext( os.path.basename( path ) )[0]
-					if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-						 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.extendedRefresh()
-				else :
-					if os.path.isdir( path ):
-						if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-							 self._coreDatabaseBrowser.addDirectory( path )
-							 self._coreDatabaseBrowser.extendedRefresh()
+		if not self._container.parameters.databaseReadOnly :
+			if event.mimeData().hasUrls() :
+				LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+				for url in event.mimeData().urls() :
+					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
+					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
+						name = os.path.splitext( os.path.basename( path ) )[0]
+						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.extendedRefresh()
 					else :
-						raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
+						if os.path.isdir( path ):
+							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+								 self._coreDatabaseBrowser.addDirectory( path )
+								 self._coreDatabaseBrowser.extendedRefresh()
+						else :
+							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
+		else :
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
+	def QListView_OnDoubleClicked( self, index ):
+		'''
+		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
+		
+		@param index: Clicked Model Item Index. ( QModelIndex )
+		'''
+
+		if not self._container.parameters.databaseReadOnly :
+			pass
+		else :
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
 class DatabaseBrowser( UiComponent ):
 	'''
@@ -1190,6 +1207,7 @@ class DatabaseBrowser( UiComponent ):
 		listViewIconSize = self._settings.getKey( self._settingsSection, "listViewIconSize" )
 		self._listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self._listViewIconSize
 
+		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Database Ibl Sets Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 		self._model = QStandardItemModel()
 		self.Database_Browser_listView_setModel()
 
@@ -1211,8 +1229,11 @@ class DatabaseBrowser( UiComponent ):
 
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
+		self._signalsSlotsCenter.connect( self.ui.Database_Browser_listView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Database_Browser_listView.QListView_OnDoubleClicked )
 		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Database_Browser_listView_refreshView )
-		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+		if not self._container.parameters.databaseReadOnly :
+			self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+			self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Database_Browser_listView_OnModelDataChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1284,7 +1305,7 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.name ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
+		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.title ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
 			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
@@ -1318,6 +1339,8 @@ class DatabaseBrowser( UiComponent ):
 					iblIcon = QIcon( os.path.join( self._uiResources, self.uiMissingIcon ) )
 				iblSetStandardItemItem.setIcon( iblIcon )
 
+				self._container.parameters.databaseReadOnly and iblSetStandardItemItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled )
+
 				iblSetStandardItemItem._datas = iblSet
 
 				LOGGER.debug( "> Adding '{0}' To '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
@@ -1338,6 +1361,23 @@ class DatabaseBrowser( UiComponent ):
 		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Database_Browser_listView" ) )
 
 		self.Database_Browser_listView_setModel()
+
+	@core.executionTrace
+	def Database_Browser_listView_OnModelDataChanged( self, startIndex, endIndex ):
+		'''
+		This Method Defines The Behavior When The Database_Browser_listView Model Data Change.
+		
+		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
+		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
+		'''
+
+		standardItem = self._model.itemFromIndex( startIndex )
+		currentTitle = standardItem.text()
+
+		LOGGER.debug( "> Updating Ibl Set '{0}' Title To '{1}'.".format( standardItem._datas.title, currentTitle ) )
+		iblSet = dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( standardItem._datas.id ), "id" )[0]
+		iblSet.title = str( currentTitle )
+		dbUtilities.common.commit( self._coreDb.dbSession )
 
 	@core.executionTrace
 	def Database_Browser_listView_setView( self ):
