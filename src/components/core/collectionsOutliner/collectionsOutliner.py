@@ -874,7 +874,7 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Database Collections Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
+		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 		self._model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 

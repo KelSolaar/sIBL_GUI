@@ -1207,7 +1207,7 @@ class DatabaseBrowser( UiComponent ):
 		listViewIconSize = self._settings.getKey( self._settingsSection, "listViewIconSize" )
 		self._listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self._listViewIconSize
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Database Ibl Sets Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
+		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Database_Browser_listView Model Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 		self._model = QStandardItemModel()
 		self.Database_Browser_listView_setModel()
 
