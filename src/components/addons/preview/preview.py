@@ -86,7 +86,7 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 class Image_QGraphicsItem( QGraphicsItem ) :
 	'''
-	This Class Is The WImage_QGraphicsItem Class.
+	This Class Is The Image_QGraphicsItem Class.
 	'''
 
 	@core.executionTrace
@@ -180,8 +180,7 @@ class ImagePreviewer( object ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._imagePath = None
-		self.imagePath = imagePath
+		self._imagePath = imagePath
 
 		self._signalsSlotsCenter = QObject()
 
@@ -197,16 +196,15 @@ class ImagePreviewer( object ):
 			sys.path.remove( "." )
 		# Ensure The Ui Object Is Destroyed On Close To Avoid Memory Leaks.
 		self._ui.setAttribute( Qt.WA_DeleteOnClose )
-		self._ui._datas = "Toto"
 		# Reimplementing Widget Close Event Method.
 		self._ui.closeEvent = self.closeUi
 
 		self._graphicsSceneBackgroundColors = ( ( "Dark", QColor( 32, 32, 32 ) ), ( "Average", QColor( 128, 128, 128 ) ), ( "Bright", QColor( 200, 200, 200 ) ) )
-		self._graphicsSceneMargin = 128
-		self._graphicsSceneWidth = 8192
-		self._graphicsSceneHeight = 6144
 		self._minimumZoomFactor = 0.125
 		self._maximumZoomFactor = 25
+		self._graphicsSceneMargin = 128
+		self._graphicsSceneWidth = QApplication.desktop().width() * ( 1 / self._minimumZoomFactor * 1.75 )
+		self._graphicsSceneHeight = QApplication.desktop().height() * ( 1 / self._minimumZoomFactor * 1.75 )
 		self._wheelZoomFactor = 350.0
 		self._keyZoomFactor = 1.20
 
@@ -248,36 +246,6 @@ class ImagePreviewer( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def imagePath( self ):
 		'''
 		This Method Is The Property For The _imagePath Attribute.
@@ -309,6 +277,36 @@ class ImagePreviewer( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "imagePath" ) )
+
+	@property
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Property For The _signalsSlotsCenter Attribute.
+
+		@return: self._signalsSlotsCenter. ( QObject )
+		'''
+
+		return self._signalsSlotsCenter
+
+	@signalsSlotsCenter.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self, value ):
+		'''
+		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
+
+		@param value: Attribute Value. ( QObject )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
+
+	@signalsSlotsCenter.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def signalsSlotsCenter( self ):
+		'''
+		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def uiPath( self ):
@@ -733,7 +731,7 @@ class ImagePreviewer( object ):
 
 		self._ui.Image_Informations_label.setText( "{0} - {1} x {2} - {3} BPP".format( os.path.basename( self._imagePath ), image.width(), image.height(), bpp ) )
 
-		LOGGER.debug( "> Initialising Graphics View." )
+		LOGGER.debug( "> Initializing Graphics View." )
 		graphicsView = QGraphicsView()
 		graphicsView.setHorizontalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
 		graphicsView.setVerticalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
@@ -742,16 +740,16 @@ class ImagePreviewer( object ):
 		# Reimplementing QGraphics View wheelEvent Method.
 		graphicsView.wheelEvent = self.wheelEvent
 
-		LOGGER.debug( "> Initialising Graphics Scene." )
+		LOGGER.debug( "> Initializing Graphics Scene." )
 		graphicsScene = QGraphicsScene( graphicsView )
 		graphicsScene.setItemIndexMethod( QGraphicsScene.NoIndex )
-		graphicsScene.setSceneRect( -( float( self._graphicsSceneWidth ) + image.width() / 2 ) / 2, -( float( self._graphicsSceneHeight ) + image.height() / 2 ) / 2, float( self._graphicsSceneWidth ) + image.width() / 2, float( self._graphicsSceneHeight ) + image.height() / 2 )
+		graphicsScene.setSceneRect( -( float( self._graphicsSceneWidth ) ) / 2, -( float( self._graphicsSceneHeight ) ) / 2, float( self._graphicsSceneWidth ), float( self._graphicsSceneHeight ) )
 
 		graphicsView.setScene( graphicsScene )
 
 		graphicsView.setBackgroundBrush( QBrush( self._graphicsSceneBackgroundColors[0][1] ) )
 
-		LOGGER.debug( "> Initialising Graphics Item." )
+		LOGGER.debug( "> Initializing Graphics Item." )
 		graphicsItem = Image_QGraphicsItem( image )
 		graphicsScene.addItem( graphicsItem )
 
@@ -777,6 +775,7 @@ class ImagePreviewer( object ):
 
 		event.accept()
 
+		LOGGER.debug( "> Removing '{0}' From Image Previewers List.".format( self ) )
 		self._container.imagePreviewers.remove( self )
 
 	@core.executionTrace
