@@ -96,7 +96,7 @@ ABOUT_MESSAGE = """
 		Very Special Thanks To Christian For Providing Me Some Space On His Server :]
 		</p>
 		<p>
-		This Software Uses Python, Qt, PyQT, Py2App, PyInstaller And NSIS.
+		This Software Uses Python, Qt, PyQT, FreeImage, Py2App, PyInstaller And NSIS.
 		<br/>
 		Coded With Eclipse - Pydev - Aptana - TextMate - Jedit And Git.
 		</p>
@@ -132,6 +132,7 @@ ABOUT_MESSAGE = """
 		*
 		</center>
 		"""
+
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
