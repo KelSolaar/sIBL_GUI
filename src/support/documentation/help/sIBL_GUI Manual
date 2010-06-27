@@ -38,6 +38,7 @@ h2. Table Of Content
 *** "Locations Browser":#addons.locationsBrowser
 *** "Logging Window":#addons.loggingWindow
 *** "Online Updater":#addons.onlineUpdater
+*** "Preview":#addons.preview
 *** "Raw Editing Utilities":#addons.rawEditingUtilities
 *** "Rewiring Tool":#addons.rewiringTool
 *** "Search Database":#addons.searchDatabase
@@ -69,6 +70,7 @@ Some features highlights :
 * SQlite Database.
 * Online Updater.
 * Google Map Gps map.
+* Internal Image Previewer.
 and much more ...
 
 Additional informations about sIBL_GUI are available into this thread : "sIBL_GUI Thread":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
@@ -87,7 +89,7 @@ Download "sIBL_GUI.dmg". Open it and drag "sIBL_GUI.app" into the "Application" 
 
 h3(#LinuxPlatformInstallation). Linux Platform
 
-Some QT Libraries are needeed in order to run sIBL_GUI under Linux :
+Some QT Libraries are needed in order to run sIBL_GUI under Linux :
 
 * Debian Distributions ( Ubuntu ) : 
 
@@ -329,13 +331,16 @@ table(class#id){border-collapse : collapse; border-width : 1px; border-style : s
 |!resources/pictures/sIBL_GUI_DatabaseBrowserContextMenu.jpg(sIBL_GUI_DatabaseBrowserContextMenu)!|
 
 * *Add Content ...* : Recursively adds chosen directory Ibl Sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.
-* *Add Set ...* : Adds the selected Ibl Sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.
-* *Remove Set(s) ...* : Removes selected Ibl Sets from the database.
-* *Update Set(s) Location(s) ...* : Updates selected Ibl Sets files paths.
+* *Add Ibl Set ...* : Adds the selected Ibl Set file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.
+* *Remove Ibl Set(s) ...* : Removes selected Ibl Sets from the database.
+* *Update Ibl Set(s) Location(s) ...* : Updates selected Ibl Sets files paths.
 Addons Functionalities :
 * *Edit In sIBLedit ...* : Sends selected Ibl Set to sIBLedit.
 * *Edit In Text Editor ...* : Edits selected Ibl Sets with system or custom user defined text editor.
-* *Open Set(s) Location(s) ...* : Opens selected Ibl Sets folders.
+* *Open Ibl Set(s) Location(s) ...* : Opens selected Ibl Sets folders.
+* *Preview Background Image ...* : Preview the Ibl Set background image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+* *Preview Lighting Image ...* : Preview the Ibl Set lighting image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+* *Preview Reflection Image ...* : Preview the Ibl Set reflection image in either the Internal Image Previewer or the application defined in the Preview component preferences.
 
 h3=. ***
 
@@ -547,6 +552,34 @@ Interactions :
 * *Check For New Releases Push Button* : Checks for new releases on HDRLabs repository.
 * *Check For New Releases On Startup Check Box* : sIBL_GUI will check for new releases on startup.
 * *Ignore Non Existing Templates Check Box* : sIBL_GUI will ignore non existing template when checking for new releases, meaning that if a template for a new 3d package is available, it will be skipped.
+
+h3=. ***
+
+*{font-size : 12pt;}(#addons.preview)Preview* ( addons.preview )
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_Preview.jpg(sIBL_GUI_Preview)!|
+
+The Preview component provides image viewing capability to sIBL_GUI through the use of the Internal Image Previewer or the application defined in the Preview component preferences.
+
+Interactions :
+
+* *Custom Previewer Path Line Edit* : User defined Image Viewer / Editor executable path.
+
+The Internal Image Previewer window provides basic informations about the current Image :
+
+table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
+|!resources/pictures/sIBL_GUI_ImagePreviewer.jpg(sIBL_GUI_ImagePreviewer)!|
+
+Interactions :
+
+* *Clic'n'dragging* : Pans into the Image.
+* *Mouse Scrool Wheel* : Zooms into the Image.
+* *Shortcut Key "+"* : Zooms into the Image.
+* *Shortcut Key "-"* : Zooms out of the Image.
+* *Zoom In Push Button* : Zooms into the Image.
+* *Zoom Out Push Button* : Zooms out of the Image.
+* *Background Color Combo Box* : Switches the Image Previewer background color.
 
 h3=. ***
 

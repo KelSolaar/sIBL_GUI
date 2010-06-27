@@ -74,6 +74,7 @@
 			<li><a href="#addons.locationsBrowser">Locations Browser</a></li>
 			<li><a href="#addons.loggingWindow">Logging Window</a></li>
 			<li><a href="#addons.onlineUpdater">Online Updater</a></li>
+			<li><a href="#addons.preview">Preview</a></li>
 			<li><a href="#addons.rawEditingUtilities">Raw Editing Utilities</a></li>
 			<li><a href="#addons.rewiringTool">Rewiring Tool</a></li>
 			<li><a href="#addons.searchDatabase">Search Database</a></li>
@@ -97,6 +98,7 @@
 			<li>SQlite Database.</li>
 			<li>Online Updater.</li>
 			<li>Google Map Gps map.</li>
+			<li>Internal Image Previewer.</li>
 		</ul><br />and much more &#8230;</p>
 		<p>Additional informations about sIBL_GUI are available into this thread : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI Thread</a></p>
 		<p>The source code is available on <a href="http://github.com/">github</a> : <a href="http://github.com/KelSolaar">http://github.com/KelSolaar</a></p>
@@ -106,7 +108,7 @@
 		<h3 id="MacOsXPlatformInstallation">Mac Os X Platform</h3>
 		<p>Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI.app&#8221; into the &#8220;Application&#8221; folder.</p>
 		<h3 id="LinuxPlatformInstallation">Linux Platform</h3>
-		<p>Some QT Libraries are needeed in order to run sIBL_GUI under Linux :</p>
+		<p>Some QT Libraries are needed in order to run sIBL_GUI under Linux :</p>
 		<ul>
 			<li>Debian Distributions ( Ubuntu ) : </li>
 		</ul>
@@ -352,15 +354,18 @@
 		</table>
 		<ul>
 			<li><strong>Add Content &#8230;</strong> : Recursively adds chosen directory Ibl Sets into the database assigning them to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
-			<li><strong>Add Set &#8230;</strong> : Adds the selected Ibl Sets file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
-			<li><strong>Remove Set(s) ...</strong> : Removes selected Ibl Sets from the database.</li>
-			<li><strong>Update Set(s) Location(s) ...</strong> : Updates selected Ibl Sets files paths.</li>
+			<li><strong>Add Ibl Set &#8230;</strong> : Adds the selected Ibl Set file into the database assigning it to the selected Collections Outliner component collection or the Default Collection if none is selected.</li>
+			<li><strong>Remove Ibl Set(s) ...</strong> : Removes selected Ibl Sets from the database.</li>
+			<li><strong>Update Ibl Set(s) Location(s) ...</strong> : Updates selected Ibl Sets files paths.</li>
 		</ul>
 	Addons Functionalities :
 		<ul>
 			<li><strong>Edit In sIBLedit &#8230;</strong> : Sends selected Ibl Set to sIBLedit.</li>
 			<li><strong>Edit In Text Editor &#8230;</strong> : Edits selected Ibl Sets with system or custom user defined text editor.</li>
-			<li><strong>Open Set(s) Location(s) ...</strong> : Opens selected Ibl Sets folders.</li>
+			<li><strong>Open Ibl Set(s) Location(s) ...</strong> : Opens selected Ibl Sets folders.</li>
+			<li><strong>Preview Background Image &#8230;</strong> : Preview the Ibl Set background image in either the Internal Image Previewer or the application defined in the Preview component preferences.</li>
+			<li><strong>Preview Lighting Image &#8230;</strong> : Preview the Ibl Set lighting image in either the Internal Image Previewer or the application defined in the Preview component preferences.</li>
+			<li><strong>Preview Reflection Image &#8230;</strong> : Preview the Ibl Set reflection image in either the Internal Image Previewer or the application defined in the Preview component preferences.</li>
 		</ul>
 		<h3 style="text-align:center;">***</h3>
 		<p><strong style="font-size : 12pt;" id="core.collectionsOutliner">Collections Outliner</strong> ( core.collectionsOutliner )</p>
@@ -581,6 +586,34 @@
 			<li><strong>Check For New Releases Push Button</strong> : Checks for new releases on HDRLabs repository.</li>
 			<li><strong>Check For New Releases On Startup Check Box</strong> : sIBL_GUI will check for new releases on startup.</li>
 			<li><strong>Ignore Non Existing Templates Check Box</strong> : sIBL_GUI will ignore non existing template when checking for new releases, meaning that if a template for a new 3d package is available, it will be skipped.</li>
+		</ul>
+		<h3 style="text-align:center;">***</h3>
+		<p><strong style="font-size : 12pt;" id="addons.preview">Preview</strong> ( addons.preview )</p>
+		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
+			<tr>
+				<td><img src="resources/pictures/sIBL_GUI_Preview.jpg" title="sIBL_GUI_Preview" alt="sIBL_GUI_Preview" /></td>
+			</tr>
+		</table>
+		<p>The Preview component provides image viewing capability to sIBL_GUI through the use of the Internal Image Previewer or the application defined in the Preview component preferences.</p>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Custom Previewer Path Line Edit</strong> : User defined Image Viewer / Editor executable path.</li>
+		</ul>
+		<p>The Internal Image Previewer window provides basic informations about the current Image :</p>
+		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
+			<tr>
+				<td><img src="resources/pictures/sIBL_GUI_ImagePreviewer.jpg" title="sIBL_GUI_ImagePreviewer" alt="sIBL_GUI_ImagePreviewer" /></td>
+			</tr>
+		</table>
+		<p>Interactions :</p>
+		<ul>
+			<li><strong>Clic&#8217;n&#8217;dragging</strong> : Pans into the Image.</li>
+			<li><strong>Mouse Scrool Wheel</strong> : Zooms into the Image.</li>
+			<li><strong>Shortcut Key &#8220;+&#8221;</strong> : Zooms into the Image.</li>
+			<li><strong>Shortcut Key &#8220;-&#8221;</strong> : Zooms out of the Image.</li>
+			<li><strong>Zoom In Push Button</strong> : Zooms into the Image.</li>
+			<li><strong>Zoom Out Push Button</strong> : Zooms out of the Image.</li>
+			<li><strong>Background Color Combo Box</strong> : Switches the Image Previewer background color.</li>
 		</ul>
 		<h3 style="text-align:center;">***</h3>
 		<p><strong style="font-size : 12pt;" id="addons.rawEditingUtilities">Raw Editing Utilities</strong> ( addons.rawEditingUtilities )</p>
