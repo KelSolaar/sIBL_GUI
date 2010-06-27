@@ -6,6 +6,9 @@ p{font-size : 11pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous 
 
 h3. 3.0.9 - Stable
 
+* sIBL_GUI has now an Internal Image Previewer : You can quickly check your Ibl Sets images by right-clicking the Database Browser and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go : "http://www.hdrlabs.com/picturenaut/index.html":http://www.hdrlabs.com/picturenaut/index.html 
+* Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build : Third Party Images loading is now 10 to 20 times faster.  
+
 h3. 3.0.8 - Stable
 
 * sIBL_GUI For Windows now is natively built on Windows 7, this should fix the slow startup issues reported on Windows Vista / 7.
