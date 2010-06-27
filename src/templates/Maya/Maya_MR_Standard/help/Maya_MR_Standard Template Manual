@@ -28,7 +28,7 @@ h3. Additional Attributes
 
 * *Physical Sun* : The Sun is created with a mia_physicalsun shader.
 * *Create Ground* : A Plane is added to the Scene.
-* *Ground Shadow* Catcher : A mip_matteshadow Shader is assigned to the Ground.
+* *Ground Shadow Catcher* : A mip_matteshadow Shader is assigned to the Ground.
 * *Activate Final* Gather : Final Gathering is activated in the current Scene.
 * *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
 * *Activate Linear Workflow* : Connect a mia_exposure_simple shader in current / selected Camera(s).

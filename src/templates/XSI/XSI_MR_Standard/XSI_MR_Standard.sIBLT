@@ -2,13 +2,13 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.6.1 | String | Template Release
-Date = @Date | 16 May 2010 | String | Date
+Release = @Release | 1.6.2 | String | Template Release
+Date = @Date | 20 June 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | XSI | String | Software
-Version = @Version | 7.X | String | Version
+Version = @Version | 7.X - 2010 | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_XSI_Import.js | String | Output Script
 Comment = @Comment | This is XSI 7.X / 2K Mental Ray Template. | String | Comment
@@ -301,7 +301,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 					{
 						if (createLights)
 						{
-							sIBL_XSI_MR_getDynamilights(dynamicLights, feedbackRadius);
+							sIBL_XSI_MR_getDynamicLights(dynamicLights, feedbackRadius);
 						}
 					}
 					progressBar.Increment();
@@ -980,7 +980,7 @@ function sIBL_XSI_MR_update_dynamicsLights(dynamicLights, feedbackRadius)
     {
     		if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Dynamic Lights Creation !"))
     		{
-    			sIBL_XSI_MR_getDynamilights(dynamicLights, feedbackRadius);
+    			sIBL_XSI_MR_getDynamicLights(dynamicLights, feedbackRadius);
     		}
     }
     else
@@ -1076,14 +1076,14 @@ function sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius)
 	sIBL_XSI_MR_getLight( sIBLGroup, feedback, "Infinite", "sIBL_Sun", feedbackRadius/10, physicalSun, sunMultiplier, sunColor, sunU, sunV )
 }
 
-function sIBL_XSI_MR_getDynamilights(dynamicLights, feedbackRadius)
+function sIBL_XSI_MR_getDynamicLights(dynamicLights, feedbackRadius)
 {
 	var sIBLGroup = sIBL_XSI_MR_getSIBLGroup();
 	var feedback = Application.ActiveSceneRoot.FindChild("sIBL_Feedback");
 	var dynamicLights = dynamicLights.split("|");
 	for ( var i=0; i<dynamicLights.length; i+=8 )
 	{
-		sIBL_XSI_MR_getLight( sIBLGroup, feedback, "Spot", "sIBL_DKL_" + dynamicLights[i+1], feedbackRadius/15, false, dynamicLights[i+5], [dynamicLights[i+2], dynamicLights[i+3], dynamicLights[i+4]], dynamicLights[i+6], dynamicLights[i+7] )
+		sIBL_XSI_MR_getLight( sIBLGroup, feedback, "Spot", "sIBL_DKL_" + dynamicLights[i+1], feedbackRadius/15, false, parseFloat(dynamicLights[i+5]), [parseFloat(dynamicLights[i+2]), parseFloat(dynamicLights[i+3]), parseFloat(dynamicLights[i+4])], parseFloat(dynamicLights[i+6]), parseFloat(dynamicLights[i+7]) )
 	}
 }
 

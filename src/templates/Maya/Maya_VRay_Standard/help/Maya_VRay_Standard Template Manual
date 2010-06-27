@@ -27,9 +27,11 @@ h3. Common Attributes
 h3. Additional Attributes
 
 * *Create Ground* : A Plane is added to the Scene.
+* *Ground Shadow Catcher* : A VRayObjectProperties Node is assigned to the Ground.
 * *Hide Lights* : Hides all current Scene lights.
 * *Activate Linear Workflow* : Set the Output Gamma to 2.2.
 * *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
+* *Sun As VRaySun Light* : The Sun will use a VRaySun light.
 * *Activate Indirect Illumination* : Indirect Illumination is activated in the current Scene.
 * *Feedback Radius* : Sets the Feedback radius in Maya units.
 

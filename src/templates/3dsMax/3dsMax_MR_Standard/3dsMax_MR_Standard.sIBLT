@@ -2,13 +2,13 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.3 | String | Template Release
-Date = @Date | 29 May 2010 | String | Date
-Author = @Author | Dschaga / Jeff Hanna / Kel Solaar | String | Author
+Release = @Release | 1.0.4 | String | Template Release
+Date = @Date | 17 June 2010 | String | Date
+Author = @Author | Dschaga / Jeff Hanna / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
-Version = @Version | 2009+ | String | Version
+Version = @Version | 2K | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
 Comment = @Comment | This is 3dsmax 2K Mental Ray Template. | String | Comment
@@ -34,7 +34,9 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
+shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
+sunAsMrSun = @sunAsMrSun | 1 | Boolean | Sun As mrSun Light
 activateLinearWorkflow = @activateLinearWorkflow | 1 | Boolean | Activate Linear Workflow
 
 [Remote Connection]
@@ -54,29 +56,21 @@ sIBL_GUI
 */
 
 struct sIBL_datas ( backgroundFilePath, lightingFilePath, reflectionFilePath, sunU, sunV, sunColor, sunMultiplier, dynamicLights )
-struct sIBL_options ( createBackground, createLighting, createReflection,  createSun, createLights, createFeedBack, feedbackRadius, hideLights, createGround, activateLinearWorkflow )
+struct sIBL_options ( createBackground, createLighting, createReflection,  createSun, createLights, createFeedBack, feedbackRadius, hideLights, sunAsMrSun, createGround, shadowCatcher, activateLinearWorkflow )
+struct sIBL_sceneNodes ( datasGroup,  lightsGroup, feedback )
 	
-global IBL_SET_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti dynamicLights:"@dynamicLights"
-global LOADER_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius hideLights:@hideLights createGround:@createGround activateLinearWorkflow:@activateLinearWorkflow
+global sIBL_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti dynamicLights:"@dynamicLights"
+global sIBL_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius hideLights:@hideLights sunAsMrSun:@sunAsMrSun createGround:@createGround shadowCatcher:@shadowCatcher activateLinearWorkflow:@activateLinearWorkflow
+global sIBL_SCENE_NODES = sIBL_sceneNodes()
 
-fn sIBL_3dsmax_MR_deleteByName currentNode =
+fn sIBL_3dsmax_MR_hasProductionShadersSupport =
 (
-	local nodes = getNodeByName currentNode all:on
-
-	for currentNode in nodes do 
-		delete currentNode
+	if ( maxVersion() )[1]/1000 < 13 then
+		return False
+	else
+		return True
 )
-
-fn sIBL_3dsmax_MR_deleteChildren currentNode =
-(
-	if( getNodeByName currentNode != undefined ) then
-	(
-		for child in ( getNodeByName currentNode ).children do
-			if( not isDeleted child ) then 
-				delete child
-	)
-)
-
+		
 fn sIBL_3dsmax_MR_getDefaultControllers currentNode =
 (
 	currentNode.Transform.controller = prs ()
@@ -86,14 +80,8 @@ fn sIBL_3dsmax_MR_getDefaultControllers currentNode =
 
 fn sIBL_3dsmax_MR_environmentDeletion =
 (
-	-- sIBL_Lights Group Children Deletion.
-	sIBL_3dsmax_MR_deleteChildren "sIBL_Lights"
-
-	-- sIBL Group Children Deletion.
-	sIBL_3dsmax_MR_deleteChildren "sIBL_Datas"
-
-	-- sIBL Group Deletion.
-	sIBL_3dsmax_MR_deleteByName "sIBL_Datas"
+	-- sIBL Nodes Deletion.
+	delete $sIBL_*
 	
 	-- sIBL Environment Map  Deletion.
 	environmentMap = undefined
@@ -117,6 +105,8 @@ fn sIBL_3dsmax_MR_activateMentalRay =
 		if( ( maxVersion() )[1]/1000 >= 11 ) then
 			renderers.current.RestoreFinalGatherPreset 4
 	)
+	
+	renderers.current.FinalGatherEnable2 = True	
 )
 
 fn sIBL_3dsmax_MR_hideLights =
@@ -127,12 +117,12 @@ fn sIBL_3dsmax_MR_hideLights =
 fn sIBL_3dsmax_MR_getSIBLGroup = 
 (
 	local sIBL_Point = Point name:"sIBL_Point" centermarker:off axistripod:off cross:off Box:off
-	group sIBL_Point name:"sIBL_Datas"
+	sIBL_SCENE_NODES.datasGroup = group sIBL_Point name:"sIBL_Datas"
 )
 
 fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 (
-	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on
+	local feedbackSphere = Sphere radius:feedbackRadius segs:32 mapcoords:on backfacecull:on renderable:off
 	
 	sIBL_3dsmax_MR_getDefaultControllers feedbackSphere
 	
@@ -140,10 +130,7 @@ fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 	normalModifier_.flip = True
 	addModifier feedbackSphere normalModifier_
 	collapseStack feedbackSphere
-	
-	feedbackSphere.backfacecull = on
-	feedbackSphere.renderable = False
-	
+		
 	if( createBackground == 1 ) then
 	(
 		local feedbackShader = StandardMaterial name:"sIBL_FeedBackShader"
@@ -160,24 +147,21 @@ fn sIBL_3dsmax_MR_getFeedBack feedbackRadius createBackground texturePath =
 		showTextureMap feedbackShader True
 	)
 
-	feedbackSphere.parent = getNodeByName "sIBL_Datas"
+	feedbackSphere.parent = sIBL_SCENE_NODES.datasGroup
 	setTransformLockFlags feedbackSphere #{1,2,3,4,5}
 	
 	feedbackSphere.name = "sIBL_FeedBack"
-	
-	return feedbackSphere
+	sIBL_SCENE_NODES.feedback = feedbackSphere
 )
 
 fn sIBL_3dsmax_MR_getLightsGroup = 
 (
 	local sIBL_Point = Point name:"sIBL_Lights_Point" centermarker:off axistripod:off cross:off Box:off
-	local lightsGroup = group sIBL_Point name:"sIBL_Lights"
+	sIBL_SCENE_NODES.lightsGroup = group sIBL_Point name:"sIBL_Lights"
 	
-	sIBL_3dsmax_MR_getDefaultControllers lightsGroup
+	sIBL_3dsmax_MR_getDefaultControllers sIBL_SCENE_NODES.lightsGroup
 
-	lightsGroup.parent = getNodeByName "sIBL_Datas"
-		
-	return lightsGroup
+	sIBL_SCENE_NODES.lightsGroup.parent = sIBL_SCENE_NODES.datasGroup
 )
 
 fn sIBL_3dsmax_MR_createSkyLight =
@@ -185,16 +169,15 @@ fn sIBL_3dsmax_MR_createSkyLight =
 	local iblSkylight = Skylight()
 	iblSkylight.sky_mode = 0
 	
-	iblSkylight.parent = getNodeByName "sIBL_Datas"
+	iblSkylight.parent = sIBL_SCENE_NODES.datasGroup
 
 	iblSkylight.name = "sIBL_SkyLight"
 )
 
-fn sIBL_3dsmax_MR_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate =
+fn sIBL_3dsmax_MR_getLight lightType lightName lightColor intensity lightDistance uCoordinate vCoordinate =
 (
-	lightsGroup = getNodeByName "sIBL_Lights"
-	if( lightsGroup == undefined ) then
-		lightsGroup = sIBL_3dsmax_MR_getLightsGroup()
+	if( sIBL_SCENE_NODES.lightsGroup == undefined ) then
+		sIBL_3dsmax_MR_getLightsGroup()
 
 	lightColorTokens = filterstring lightColor ","
 
@@ -206,13 +189,21 @@ fn sIBL_3dsmax_MR_getLight lightName lightColor intensity lightDistance uCoordin
 	local zPos = lightDistance * ( sin( ( 0.5 - vCoordinate ) * 180 ) )
 	
 	local lightTarget = TargetObject transform:( matrix3 [1,0,0] [0,1,0] [0,0,1] [0,0,0] )
-	lightTarget.parent = lightsGroup
+	lightTarget.parent = sIBL_SCENE_NODES.lightsGroup
 	
-	local lightFalloff = lightDistance + 5	
-	local light = TargetDirectionallight rgb:( color ( lightColorTokens[1] as float ) ( lightColorTokens[2] as float ) ( lightColorTokens[3] as float ) ) multiplier:( intensity as float) castShadows:on hotspot:lightDistance falloff:lightFalloff pos:[ ( xPos as float ),  ( yPos as float ), ( zPos as float ) ] target:lightTarget
-	light.shadowGenerator = RaytraceShadow()
-	light.parent = lightsGroup
-
+	if( lightType == "TargetDirectionalLight" ) then
+	(
+		local lightFalloff = lightDistance + 5	
+		local light = TargetDirectionallight rgb:( color ( lightColorTokens[1] as float ) ( lightColorTokens[2] as float ) ( lightColorTokens[3] as float ) ) multiplier:( intensity as float) castShadows:on hotspot:lightDistance falloff:lightFalloff pos:[ ( xPos as float ),  ( yPos as float ), ( zPos as float ) ] target:lightTarget
+		light.shadowGenerator = RaytraceShadow()
+		light.parent = sIBL_SCENE_NODES.lightsGroup
+	)
+	else
+	(
+		local multiplier =  (intensity as float)*0.03
+		local light = mr_Sun skymult:multiplier pos:[ ( xPos as float ),  ( yPos as float ), ( zPos as float ) ] target:lightTarget
+	)
+	
 	lightTarget.name = lightName + "_Target"
 	light.name = lightName
 )
@@ -229,13 +220,18 @@ fn sIBL_3dsmax_MR_createDynamicLights dynamicLights lightDistance =
 		local uCoordinate = dynamicLightsTokens[i+6] as float
 		local vCoordinate = dynamicLightsTokens[i+7] as float
 		
-		sIBL_3dsmax_MR_getLight lightName lightColor intensity lightDistance uCoordinate vCoordinate
+		sIBL_3dsmax_MR_getLight "TargetDirectionalLight" lightName lightColor intensity lightDistance uCoordinate vCoordinate
 	)
 )
 
-fn sIBL_3dsmax_MR_createSun sunColor sunMultiplier lightDistance sunU sunV =
+fn sIBL_3dsmax_MR_createSun sunColor sunMultiplier lightDistance sunU sunV sunAsMrSun =
 (
-	sIBL_3dsmax_MR_getLight "sIBL_Sun" sunColor sunMultiplier lightDistance sunU sunV
+	local lightType = if( sunAsMrSun == 1 ) then
+		"mrSun"
+	else
+		"TargetDirectionalLight"
+	
+	sIBL_3dsmax_MR_getLight lightType "sIBL_Sun" sunColor sunMultiplier lightDistance sunU sunV
 )
 
 fn sIBL_3dsmax_MR_getEnvironmentBranch branchName filePath =
@@ -257,7 +253,10 @@ fn sIBL_3dsmax_MR_getEnvironmentBranch branchName filePath =
 
 fn sIBL_3dsmax_MR_setEnvironment createBackground createLighting createReflection backgroundFilePath lightingFilePath reflectionFilePath =
 (
-	local rayswitchShader = mr_Raytype_Switcher__advanced()
+	local rayswitchShader = if( not sIBL_3dsmax_MR_hasProductionShadersSupport() ) then 
+		mr_Raytype_Switcher__advanced()
+	else
+		Color_Override_Ray_Type_Switcher()
 	environmentMap = rayswitchShader
 	
 	if( createBackground == 1 ) then
@@ -285,43 +284,44 @@ fn sIBL_3dsmax_MR_setEnvironment createBackground createLighting createReflectio
 
 fn sIBL_3dsmax_MR_connectFeedBackToSIBLShaders createBackground createLighting createReflection =
 (
-	feedbackSphere = getNodeByName "sIBL_FeedBack"
-
 	if( createBackground == 1 ) then
 	(
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.eye.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] environmentMap.eye.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
 	)
 
 	if( createLighting == 1 ) then
 	(
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.finalgather.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] environmentMap.finalgather.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
 	)
 	
 	if( createReflection == 1 ) then
 	(
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.environment.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.reflection.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] environmentMap.refraction.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] environmentMap.environment.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] environmentMap.reflection.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] environmentMap.refraction.input_shader.coordinates[#U_Offset] "(Z_Rotation-(pi*2))*2/pi/4"
 	)
 )
 
 fn sIBL_3dsmax_MR_connectFeedBackToLights =
 (
-	lightsGroup = getNodeByName "sIBL_Lights"
-	if( lightsGroup != undefined ) then
-		feedbackSphere = getNodeByName "sIBL_FeedBack"
-		paramWire.connect feedbackSphere.rotation.controller[#Z_Rotation] lightsGroup.rotation.controller[#Z_Rotation] "Z_Rotation"
-		paramWire.connect feedbackSphere.transform.controller[#Scale] lightsGroup.transform.controller[#Scale] "Scale"
+	if( sIBL_SCENE_NODES.lightsGroup != undefined ) then
+	(
+		paramWire.connect sIBL_SCENE_NODES.feedback.rotation.controller[#Z_Rotation] sIBL_SCENE_NODES.lightsGroup.rotation.controller[#Z_Rotation] "Z_Rotation"
+		paramWire.connect sIBL_SCENE_NODES.feedback.transform.controller[#Scale] sIBL_SCENE_NODES.lightsGroup.transform.controller[#Scale] "Scale"
+	)
 )
 
-fn sIBL_3dsmax_MR_createGround currentScale =
+fn sIBL_3dsmax_MR_createGround currentScale shadowCatcher =
 (
 	local currentScale = currentScale * ( sqrt 2 )
 	local currentPlane = plane typeinCreationMethod:1 length:currentScale width:currentScale
 	currentPlane.backfacecull = on
-	currentPlane.parent = getNodeByName "sIBL_Datas"
+	currentPlane.parent = sIBL_SCENE_NODES.datasGroup
 	
-	local groundShader = StandardMaterial name:"sIBL_GroundShader"
+	local groundShader = if( shadowCatcher == 1 ) then
+		Matte_Shadow_Reflection__mi background_shader:environmentMap.eye ambient_intensity:1.0 ambient:(color 20 20 20) ao_samples:32 ao_distance:0.0 ao_dark:(color 40 40 40)
+	else
+		StandardMaterial name:"sIBL_GroundShader"
 	currentPlane.material = groundShader
 
 	currentPlane.name =  "sIBL_Ground"
@@ -340,16 +340,17 @@ fn sIBL_3dsmax_MR_activateLinearWorkflow createBackground =
 
 fn sIBL_3dsmax_MR_setup  =
 (
-	try
-	(
-		local rayswitchShader = mr_Raytype_Switcher__advanced()
-		rayswitchShader = undefined
-	)
-	catch
-	(
-		messageBox "sIBL_GUI | Mental Ray Productions Shaders Are Not Available !" title:"sIBL_GUI Error"
-		return ()
-	)
+	if( not sIBL_3dsmax_MR_hasProductionShadersSupport() ) then 
+		try
+		(
+			local rayswitchShader = mr_Raytype_Switcher__advanced()
+			rayswitchShader = undefined
+		)
+		catch
+		(
+			messageBox "sIBL_GUI | Mental Ray Productions Shaders Are Not Available !" title:"sIBL_GUI Error"
+			return ()
+		)
 
 	if( mental_ray_renderer != undefined ) then
 	(
@@ -359,35 +360,35 @@ fn sIBL_3dsmax_MR_setup  =
 
 		sIBL_3dsmax_MR_activateMentalRay()
 		
-		if( LOADER_OPTIONS.hideLights == 1 ) then
+		if( sIBL_OPTIONS.hideLights == 1 ) then
 			sIBL_3dsmax_MR_hideLights()
 	
 		sIBL_3dsmax_MR_getSIBLGroup()
 
-		if( LOADER_OPTIONS.createFeedBack == 1 ) then
-			sIBL_3dsmax_MR_getFeedBack LOADER_OPTIONS.feedbackRadius  LOADER_OPTIONS.createBackground IBL_SET_DATAS.backgroundFilePath
+		if( sIBL_OPTIONS.createFeedBack == 1 ) then
+			sIBL_3dsmax_MR_getFeedBack sIBL_OPTIONS.feedbackRadius  sIBL_OPTIONS.createBackground sIBL_DATAS.backgroundFilePath
 		
 		sIBL_3dsmax_MR_createSkyLight()
 
-		sIBL_3dsmax_MR_setEnvironment LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection IBL_SET_DATAS.backgroundFilePath IBL_SET_DATAS.lightingFilePath IBL_SET_DATAS.reflectionFilePath
+		sIBL_3dsmax_MR_setEnvironment sIBL_OPTIONS.createBackground sIBL_OPTIONS.createLighting sIBL_OPTIONS.createReflection sIBL_DATAS.backgroundFilePath sIBL_DATAS.lightingFilePath sIBL_DATAS.reflectionFilePath
 		
-		if( LOADER_OPTIONS.createFeedBack == 1 ) then
-			sIBL_3dsmax_MR_connectFeedBackToSIBLShaders  LOADER_OPTIONS.createBackground LOADER_OPTIONS.createLighting LOADER_OPTIONS.createReflection
+		if( sIBL_OPTIONS.createFeedBack == 1 ) then
+			sIBL_3dsmax_MR_connectFeedBackToSIBLShaders  sIBL_OPTIONS.createBackground sIBL_OPTIONS.createLighting sIBL_OPTIONS.createReflection
 
-		if( LOADER_OPTIONS.createSun == 1 and IBL_SET_DATAS.sunU != -1 and IBL_SET_DATAS.sunV != -1 ) then
-			sIBL_3dsmax_MR_createSun IBL_SET_DATAS.sunColor IBL_SET_DATAS.sunMultiplier LOADER_OPTIONS.feedbackRadius IBL_SET_DATAS.sunU IBL_SET_DATAS.sunV
+		if( sIBL_OPTIONS.createSun == 1 and sIBL_DATAS.sunU != -1 and sIBL_DATAS.sunV != -1 ) then
+			sIBL_3dsmax_MR_createSun sIBL_DATAS.sunColor sIBL_DATAS.sunMultiplier sIBL_OPTIONS.feedbackRadius sIBL_DATAS.sunU sIBL_DATAS.sunV sIBL_OPTIONS.sunAsMrSun
 	
-		if( LOADER_OPTIONS.createLights == 1 and IBL_SET_DATAS.dynamicLights != "-1" ) then
-			sIBL_3dsmax_MR_createDynamicLights IBL_SET_DATAS.dynamicLights LOADER_OPTIONS.feedbackRadius
+		if( sIBL_OPTIONS.createLights == 1 and sIBL_DATAS.dynamicLights != "-1" ) then
+			sIBL_3dsmax_MR_createDynamicLights sIBL_DATAS.dynamicLights sIBL_OPTIONS.feedbackRadius
 	
-		if( LOADER_OPTIONS.createFeedBack == 1 ) then
+		if( sIBL_OPTIONS.createFeedBack == 1 ) then
 			sIBL_3dsmax_MR_connectFeedBackToLights()
 
-		if( LOADER_OPTIONS.createGround == 1 ) then
-			sIBL_3dsmax_MR_createGround LOADER_OPTIONS.feedbackRadius
+		if( sIBL_OPTIONS.createGround == 1 ) then
+			sIBL_3dsmax_MR_createGround sIBL_OPTIONS.feedbackRadius sIBL_OPTIONS.shadowCatcher
 		
-		if( LOADER_OPTIONS.activateLinearWorkflow == 1 ) then
-			sIBL_3dsmax_MR_activateLinearWorkflow LOADER_OPTIONS.createBackground
+		if( sIBL_OPTIONS.activateLinearWorkflow == 1 ) then
+			sIBL_3dsmax_MR_activateLinearWorkflow sIBL_OPTIONS.createBackground
 		
 		print "sIBL_GUI | sIBL File Import Finished !"
 	)

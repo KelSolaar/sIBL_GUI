@@ -27,8 +27,10 @@ h3. Common Attributes
 h3. Additional Attributes
 
 * *Create Ground* : A Plane is added to the Scene.
+* *Ground Shadow Catcher* : A Matte_Shadow_Reflection__mi Shader is assigned to the Ground.
 * *Create FeedBack* : Create a viewport Visual Feedback with the current IBL LDR Background image.
-* *Activate Linear Workflow* : Connect a Utility_Gamma___Gain__mi shader to the current Render Settings Lens Shader slot.
+* *Sun As mrSun Light* : The Sun will use a mrSun light.
+* *Activate Linear Workflow* : Connect a Utility_Gamma___Gain__mi Shader to the current Render Settings Lens Shader slot.
 * *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
 * *Hide Lights* : Hides all current Scene lights.
 
