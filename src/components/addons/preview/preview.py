@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import platform
 import re
 import sys
 from PyQt4 import uic
@@ -200,8 +201,7 @@ class ImagePreviewer( object ):
 		# Reimplementing Widget Close Event Method.
 		self._ui.closeEvent = self.closeUi
 
-#		self._graphicsSceneBackgroundColors = ( ( "Dark", QColor( 32, 32, 32 ) ), ( "Average", QColor( 128, 128, 128 ) ), ( "Bright", QColor( 160, 160, 160 ) ) )
-		self._graphicsSceneBackgroundColor = QColor( 128, 128, 128 )
+		self._graphicsSceneBackgroundColors = ( ( "Dark", QColor( 32, 32, 32 ) ), ( "Average", QColor( 128, 128, 128 ) ), ( "Bright", QColor( 200, 200, 200 ) ) )
 		self._graphicsSceneMargin = 128
 		self._graphicsSceneWidth = 8192
 		self._graphicsSceneHeight = 6144
@@ -431,34 +431,64 @@ class ImagePreviewer( object ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiZoomOutIcon" ) )
 
 	@property
-	def graphicsSceneBackgroundColor( self ):
+	def ui( self ):
 		'''
-		This Method Is The Property For The _graphicsSceneBackgroundColor Attribute.
+		This Method Is The Property For The _ui Attribute.
 
-		@return: self._graphicsSceneBackgroundColor. ( QColor )
+		@return: self._ui. ( Object )
 		'''
 
-		return self._graphicsSceneBackgroundColor
+		return self._ui
 
-	@graphicsSceneBackgroundColor.setter
+	@ui.setter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def graphicsSceneBackgroundColor( self, value ):
+	def ui( self, value ):
 		'''
-		This Method Is The Setter Method For The _graphicsSceneBackgroundColor Attribute.
+		This Method Is The Setter Method For The _ui Attribute.
 		
-		@param value: Attribute Value. ( QColor )
+		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneBackgroundColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "ui" ) )
 
-	@graphicsSceneBackgroundColor.deleter
+	@ui.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def graphicsSceneBackgroundColor( self ):
+	def ui( self ):
 		'''
-		This Method Is The Deleter Method For The _graphicsSceneBackgroundColor Attribute.
+		This Method Is The Deleter Method For The _ui Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneBackgroundColor" ) )
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "ui" ) )
+
+	@property
+	def graphicsSceneBackgroundColors( self ):
+		'''
+		This Method Is The Property For The _graphicsSceneBackgroundColors Attribute.
+
+		@return: self._graphicsSceneBackgroundColors. ( QColors )
+		'''
+
+		return self._graphicsSceneBackgroundColors
+
+	@graphicsSceneBackgroundColors.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneBackgroundColors( self, value ):
+		'''
+		This Method Is The Setter Method For The _graphicsSceneBackgroundColors Attribute.
+		
+		@param value: Attribute Value. ( QColors )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "graphicsSceneBackgroundColors" ) )
+
+	@graphicsSceneBackgroundColors.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def graphicsSceneBackgroundColors( self ):
+		'''
+		This Method Is The Deleter Method For The _graphicsSceneBackgroundColors Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "graphicsSceneBackgroundColors" ) )
 
 	@property
 	def graphicsSceneMargin( self ):
@@ -670,36 +700,6 @@ class ImagePreviewer( object ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "keyZoomFactor" ) )
 
-	@property
-	def ui( self ):
-		'''
-		This Method Is The Property For The _ui Attribute.
-
-		@return: self._ui. ( Object )
-		'''
-
-		return self._ui
-
-	@ui.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def ui( self, value ):
-		'''
-		This Method Is The Setter Method For The _ui Attribute.
-		
-		@param value: Attribute Value. ( Object )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "ui" ) )
-
-	@ui.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def ui( self ):
-		'''
-		This Method Is The Deleter Method For The _ui Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "ui" ) )
-
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -709,17 +709,23 @@ class ImagePreviewer( object ):
 		This Method Initializes The Widget Ui.
 		'''
 
+		LOGGER.debug( "> Initializing '{0}' Ui.".format( self.__class__.__name__ ) )
+
 		self._ui.Zoom_In_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomInIcon ) ) )
 		self._ui.Zoom_Out_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomOutIcon ) ) )
 
+		self._ui.Background_Colors_comboBox.addItems( [color[0] for color in self._graphicsSceneBackgroundColors] )
+
 		for extension in UiConstants.nativeImageFormats.values() :
 			if re.search( extension, self._imagePath ) :
+				LOGGER.debug( "> Loading Native Format '{0}' Image.".format( self._imagePath ) )
 				image = QImage( self._imagePath )
 				bpp = image.depth()
 				break
 		else :
 			for extension in UiConstants.thirdPartyImageFormats.values() :
 				if re.search( extension, self._imagePath ) :
+					LOGGER.debug( "> Loading Third Party Format '{0}' Image.".format( self._imagePath ) )
 					image = Image( str( self._imagePath ) )
 					image = image.convertToQImage()
 					bpp = image._datas.bpp
@@ -727,6 +733,7 @@ class ImagePreviewer( object ):
 
 		self._ui.Image_Informations_label.setText( "{0} - {1} x {2} - {3} BPP".format( os.path.basename( self._imagePath ), image.width(), image.height(), bpp ) )
 
+		LOGGER.debug( "> Initialising Graphics View." )
 		graphicsView = QGraphicsView()
 		graphicsView.setHorizontalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
 		graphicsView.setVerticalScrollBarPolicy( Qt.ScrollBarAlwaysOff )
@@ -735,16 +742,17 @@ class ImagePreviewer( object ):
 		# Reimplementing QGraphics View wheelEvent Method.
 		graphicsView.wheelEvent = self.wheelEvent
 
+		LOGGER.debug( "> Initialising Graphics Scene." )
 		graphicsScene = QGraphicsScene( graphicsView )
 		graphicsScene.setItemIndexMethod( QGraphicsScene.NoIndex )
 		graphicsScene.setSceneRect( -( float( self._graphicsSceneWidth ) + image.width() / 2 ) / 2, -( float( self._graphicsSceneHeight ) + image.height() / 2 ) / 2, float( self._graphicsSceneWidth ) + image.width() / 2, float( self._graphicsSceneHeight ) + image.height() / 2 )
 
 		graphicsView.setScene( graphicsScene )
 
-		graphicsView.setBackgroundBrush( QBrush( self._graphicsSceneBackgroundColor ) )
+		graphicsView.setBackgroundBrush( QBrush( self._graphicsSceneBackgroundColors[0][1] ) )
 
+		LOGGER.debug( "> Initialising Graphics Item." )
 		graphicsItem = Image_QGraphicsItem( image )
-
 		graphicsScene.addItem( graphicsItem )
 
 		self._ui.Image_Previewer_frame_gridLayout.addWidget( graphicsView )
@@ -757,6 +765,7 @@ class ImagePreviewer( object ):
 		# Signals / Slots.
 		self._signalsSlotsCenter.connect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
 		self._signalsSlotsCenter.connect( self.ui.Zoom_Out_pushButton, SIGNAL( "clicked()" ), self.Zoom_Out_pushButton_OnClicked )
+		self._signalsSlotsCenter.connect( self.ui.Background_Colors_comboBox, SIGNAL( "activated( int )" ), self.Background_Colors_comboBox_OnActivated )
 
 	@core.executionTrace
 	def closeUi( self, event ):
@@ -785,6 +794,17 @@ class ImagePreviewer( object ):
 		'''
 
 		self.scaleView( 1 / self._keyZoomFactor )
+
+	@core.executionTrace
+	def Background_Colors_comboBox_OnActivated( self, index ):
+		'''
+		This Method Is Triggered When Background_Colors_comboBox Index Changes.
+		
+		@param index: ComboBox Activated Item Index. ( Integer )
+		'''
+
+		graphicsView = self._ui.findChild( QGraphicsView )
+		graphicsView.setBackgroundBrush( QBrush( self._graphicsSceneBackgroundColors[index][1] ) )
 
 	@core.executionTrace
 	def scaleView( self, scaleFactor ) :
@@ -1488,6 +1508,20 @@ class Preview( UiComponent ):
 				if os.path.exists( imagePath ) :
 					if customPreviewer :
 						previewCommand = None
+						imagePath = os.path.normpath( imagePath )
+						if platform.system() == "Windows" or platform.system() == "Microsoft":
+								LOGGER.info( "{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format( self.__class__.__name__, os.path.basename( customPreviewer ), imagePath ) )
+								previewCommand = "\"{0}\" \"{1}\"".format( customPreviewer, imagePath )
+						elif platform.system() == "Darwin" :
+								LOGGER.info( "{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format( self.__class__.__name__, os.path.basename( customPreviewer ), imagePath ) )
+								previewCommand = "open -a \"{0}\" \"{1}\"".format( customPreviewer, imagePath )
+						elif platform.system() == "Linux":
+								LOGGER.info( "{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format( self.__class__.__name__, os.path.basename( customPreviewer ), imagePath ) )
+								previewCommand = "\"{0}\" \"{1}\"".format( customPreviewer, imagePath )
+						if previewCommand :
+							LOGGER.debug( "> Current Image Preview Command : '{0}'.".format( previewCommand ) )
+							editProcess = QProcess()
+							editProcess.startDetached( previewCommand )
 					else :
 						if not len( self._imagePreviewers ) >= self._maximumImagePreviewersInstances :
 							self.launchImagePreviewer( imagePath )
@@ -1507,6 +1541,8 @@ class Preview( UiComponent ):
 		@param imagePath: Image Path. ( String )
 		'''
 
+		LOGGER.debug( "> Launching Image Previewer For '{0}' Image.".format( imagePath ) )
+
 		imagePreviewer = ImagePreviewer( self, imagePath )
 		self._imagePreviewers.append( imagePreviewer )
 
@@ -1517,6 +1553,8 @@ class Preview( UiComponent ):
 		
 		@param imagePreviewer: Image Previewer. ( ImagePreviewer )
 		'''
+
+		LOGGER.debug( "> Removing '{0}' Image Previewer.".format( imagePreviewer ) )
 
 		self._imagePreviewers.remove( imagePreviewer )
 

@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>sIBL_GUI_Image_Previewer_Form</class>
  <widget class="QWidget" name="sIBL_GUI_Image_Previewer_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>359</width>
+    <height>82</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>sIBL_GUI - Image Previewer</string>
   </property>
@@ -82,7 +90,7 @@
        </spacer>
       </item>
       <item row="0" column="3">
-       <widget class="QComboBox" name="Background_Color_comboBox"/>
+       <widget class="QComboBox" name="Background_Colors_comboBox"/>
       </item>
      </layout>
     </widget>

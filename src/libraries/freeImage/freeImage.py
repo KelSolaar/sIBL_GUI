@@ -957,7 +957,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook( name = "FreeImage_MultigridPoissonSolver" , affixe = "@8", argumentsType = None, returnValue = None ),
 
 	# Custom Functions.
-	LibraryHook( name = "FreeImage_HDRLabs_ConvertToLdr" , affixe = "@20", argumentsType = ( ctypes.c_double, ctypes.c_double ), returnValue = None ),
+	LibraryHook( name = "FreeImage_HDRLabs_ConvertToLdr" , affixe = "@12", argumentsType = ( FIBITMAP, ctypes.c_double ), returnValue = None ),
  )
 
 #***********************************************************************************************
