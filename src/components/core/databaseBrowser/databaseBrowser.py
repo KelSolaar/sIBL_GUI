@@ -1309,8 +1309,8 @@ class DatabaseBrowser( UiComponent ):
 			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
-				iblSetStandardItemItem = QStandardItem()
-				iblSetStandardItemItem.setData( iblSet.title, Qt.DisplayRole )
+				iblSetStandardItem = QStandardItem()
+				iblSetStandardItem.setData( iblSet.title, Qt.DisplayRole )
 
 				shotDateString = "<b>Shot Date : </b>{0}".format( self.getFormatedShotDate( iblSet.date, iblSet.time ) or Constants.nullObject )
 				toolTip = QString( """
@@ -1320,7 +1320,7 @@ class DatabaseBrowser( UiComponent ):
 								{3}<br>
 								<b>Comment : </b>{4}</p>
 								""".format( iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject ) )
-				iblSetStandardItemItem.setToolTip( toolTip )
+				iblSetStandardItem.setToolTip( toolTip )
 
 				iblIcon = QIcon()
 				if os.path.exists( iblSet.icon ) :
@@ -1337,14 +1337,14 @@ class DatabaseBrowser( UiComponent ):
 
 				if iblIcon.isNull() :
 					iblIcon = QIcon( os.path.join( self._uiResources, self.uiMissingIcon ) )
-				iblSetStandardItemItem.setIcon( iblIcon )
+				iblSetStandardItem.setIcon( iblIcon )
 
-				self._container.parameters.databaseReadOnly and iblSetStandardItemItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled )
+				self._container.parameters.databaseReadOnly and iblSetStandardItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled )
 
-				iblSetStandardItemItem._datas = iblSet
+				iblSetStandardItem._datas = iblSet
 
 				LOGGER.debug( "> Adding '{0}' To '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
-				self._model.appendRow( iblSetStandardItemItem )
+				self._model.appendRow( iblSetStandardItem )
 
 			except Exception as error :
 				LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model !".format( self.__class__.__name__, iblSet.name, "Database_Browser_listView" ) )
@@ -1378,6 +1378,8 @@ class DatabaseBrowser( UiComponent ):
 		iblSet = dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( standardItem._datas.id ), "id" )[0]
 		iblSet.title = str( currentTitle )
 		dbUtilities.common.commit( self._coreDb.dbSession )
+
+		self.refresh()
 
 	@core.executionTrace
 	def Database_Browser_listView_setView( self ):
@@ -1438,8 +1440,8 @@ class DatabaseBrowser( UiComponent ):
 
 		indexes = []
 		for i in range( self._model.rowCount() ) :
-			collectionStandardItem = self._model.item( i )
-			collectionStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
+			iblSetStandardItem = self._model.item( i )
+			iblSetStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( iblSetStandardItem ) )
 
 		for index in indexes :
 			self.ui.Database_Browser_listView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select )

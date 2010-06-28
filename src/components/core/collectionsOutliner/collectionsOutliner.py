@@ -405,6 +405,7 @@ class CollectionsOutliner( UiComponent ):
 		self._coreDatabaseBrowser = None
 
 		self._model = None
+		self._modelSelection = None
 
 		self._overallCollection = "Overall"
 		self._defaultCollection = "Default"
@@ -685,6 +686,35 @@ class CollectionsOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
 
 	@property
+	def modelSelection( self ):
+		'''
+		This Method Is The Property For The _modelSelection Attribute.
+
+		@return: self._modelSelection. ( Dictionary )
+		'''
+
+		return self._modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self, value ):
+		'''
+		This Method Is The Setter Method For The _modelSelection Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelection( self ):
+		'''
+		This Method Is The Deleter Method For The _modelSelection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
+
+	@property
 	def overallCollection( self ):
 		'''
 		This Method Is The Property For The _overallCollection Attribute.
@@ -949,6 +979,8 @@ class CollectionsOutliner( UiComponent ):
 
 		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
 
+		self.Collections_Outliner_treeView_storeModelSelection()
+
 		self._model.clear()
 
 		self._model.setHorizontalHeaderLabels( self._modelHeaders )
@@ -1046,6 +1078,8 @@ class CollectionsOutliner( UiComponent ):
 				collection.comment = str( currentText )
 				dbUtilities.common.commit( self._coreDb.dbSession )
 
+		self.Collections_Outliner_treeView_refreshModel()
+
 	@core.executionTrace
 	def Collections_Outliner_treeView_setView( self ):
 		'''
@@ -1070,6 +1104,7 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
+		self.Collections_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setDefaultViewState( self ):
@@ -1088,8 +1123,11 @@ class CollectionsOutliner( UiComponent ):
 	@core.executionTrace
 	def Collections_Outliner_treeView_refreshSetsCounts( self ):
 		'''
-		This Method Refreshes The _Collections_Outliner_treeView Sets Counts.
+		This Method Refreshes The Collections_Outliner_treeView Sets Counts.
 		'''
+
+		# Disconnecting Model "dataChanged()" Signal.
+		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.disconnect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
 
 		for i in range( self._model.rowCount() ) :
 			currentStandardItem = self._model.item( i )
@@ -1099,6 +1137,43 @@ class CollectionsOutliner( UiComponent ):
 				collectionStandardItem = currentStandardItem.child( j, 0 )
 				collectionSetsCountStandardItem = currentStandardItem.child( j, 1 )
 				collectionSetsCountStandardItem.setText( str( self._coreDb.dbSession.query( dbUtilities.types.DbSet ).filter_by( collection = collectionStandardItem._datas.id ).count() ) )
+
+		# Reconnecting Model "dataChanged()" Signal.
+		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.disconnect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Collections_Outliner_treeView_OnModelDataChanged )
+
+	@core.executionTrace
+	def Collections_Outliner_treeView_storeModelSelection( self ):
+		'''
+		This Method Stores Collections_Outliner_treeView Model Selection.
+		'''
+
+		LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Collections_Outliner_treeView" ) )
+
+		self._modelSelection = { "Overall":[], "Collections":[] }
+		for item in self.getSelectedItems() :
+			if item._type == "Overall" :
+				self._modelSelection["Overall"].append( item.text() )
+			elif item._type == "Collection" :
+				self._modelSelection["Collections"].append( item._datas.id )
+
+	@core.executionTrace
+	def Collections_Outliner_treeView_restoreModelSelection( self ):
+		'''
+		This Method Restores Collections_Outliner_treeView Model Selection.
+		'''
+
+		LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Collections_Outliner_treeView" ) )
+
+		indexes = []
+		for i in range( self._model.rowCount() ) :
+			overallCollectionStandardItem = self._model.item( i )
+			overallCollectionStandardItem.text() in self._modelSelection["Overall"] and indexes.append( self._model.indexFromItem( overallCollectionStandardItem ) )
+			for j in range( overallCollectionStandardItem.rowCount() ) :
+				collectionStandardItem = overallCollectionStandardItem.child( j, 0 )
+				collectionStandardItem._datas.id in self._modelSelection["Collections"] and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
+
+		for index in indexes :
+			self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setActions( self ):
