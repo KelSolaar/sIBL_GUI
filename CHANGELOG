@@ -10,6 +10,7 @@ h3. 3.0.9 - Stable
 * Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build : Third Party Images loading is now 10 to 20 times faster.  
 * Implemented Ibl Sets database display name edition : Double click an Ibl Set in the Database Browser to edit it's display name.  
 * "--databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
+* Fixed a code regression preventing "Templates Informations" widget display.  
 
 h3. 3.0.8 - Stable
 
