@@ -142,6 +142,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		self._modelHeaders = [ "Components", "Activated", "Categorie", "Rank", "Version" ]
 		self._treeWidgetIndentation = 15
+		self._treeViewInnerMargins = QMargins( 0, 0, 0, 12 )
 		self._Components_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations !<h4>* * *</h4></center>"
 
 	#***************************************************************************************
@@ -507,6 +508,35 @@ class ComponentsManagerUi( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetIndentation" ) )
 
 	@property
+	def treeViewInnerMargins( self ):
+		'''
+		This Method Is The Property For The _treeViewInnerMargins Attribute.
+
+		@return: self._treeViewInnerMargins. ( Integer )
+		'''
+
+		return self._treeViewInnerMargins
+
+	@treeViewInnerMargins.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def treeViewInnerMargins( self, value ):
+		'''
+		This Method Is The Setter Method For The _treeViewInnerMargins Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
+
+	@treeViewInnerMargins.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def treeViewInnerMargins( self ):
+		'''
+		This Method Is The Deleter Method For The _treeViewInnerMargins Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewInnerMargins" ) )
+
+	@property
 	def Components_Informations_textBrowser_defaultText( self ):
 		'''
 		This Method Is The Property For The _Components_Informations_textBrowser_defaultText Attribute.
@@ -578,6 +608,8 @@ class ComponentsManagerUi( UiComponent ):
 		self._model = QStandardItemModel()
 
 		self.Components_Manager_Ui_treeView_setModel()
+
+		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins( self._treeViewInnerMargins )
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Components_Manager_Ui_treeView_setActions()

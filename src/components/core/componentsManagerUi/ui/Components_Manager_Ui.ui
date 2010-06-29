@@ -2,25 +2,23 @@
 <ui version="4.0">
  <class>Components_Manager_Ui_DockWidget</class>
  <widget class="QDockWidget" name="Components_Manager_Ui_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>310</width>
-    <height>490</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Components Manager</string>
   </property>
   <widget class="QWidget" name="Components_Manager_Ui_dockWidgetContents">
-   <layout class="QGridLayout" name="Components_Manager_Ui_dockWidgetContents_gridLayout">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="Components_Manager_Ui_splitter">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTreeView" name="Components_Manager_Ui_treeView"/>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <layout class="QGridLayout" name="Components_Manager_Ui_gridLayout">
+        <item row="0" column="0">
+         <widget class="QTreeView" name="Components_Manager_Ui_treeView"/>
+        </item>
+       </layout>
+      </widget>
       <widget class="QGroupBox" name="Components_Informations_groupBox">
        <property name="title">
         <string>Components Informations</string>
