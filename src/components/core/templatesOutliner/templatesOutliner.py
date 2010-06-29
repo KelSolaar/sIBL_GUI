@@ -493,6 +493,7 @@ class TemplatesOutliner( UiComponent ):
 
 		self._modelHeaders = [ "Templates", "Release", "Software Version" ]
 		self._treeViewIndentation = 15
+		self._treeViewInnerMargins = QMargins( 0, 0, 0, 12 )
 		self._Template_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations !<h4>* * *</h4></center>"
 
 	#***************************************************************************************
@@ -995,6 +996,35 @@ class TemplatesOutliner( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewIndentation" ) )
 
 	@property
+	def treeViewInnerMargins( self ):
+		'''
+		This Method Is The Property For The _treeViewInnerMargins Attribute.
+
+		@return: self._treeViewInnerMargins. ( Integer )
+		'''
+
+		return self._treeViewInnerMargins
+
+	@treeViewInnerMargins.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def treeViewInnerMargins( self, value ):
+		'''
+		This Method Is The Setter Method For The _treeViewInnerMargins Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
+
+	@treeViewInnerMargins.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def treeViewInnerMargins( self ):
+		'''
+		This Method Is The Deleter Method For The _treeViewInnerMargins Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewInnerMargins" ) )
+
+	@property
 	def Template_Informations_textBrowser_defaultText( self ):
 		'''
 		This Method Is The Property For The _Template_Informations_textBrowser_defaultText Attribute.
@@ -1068,7 +1098,8 @@ class TemplatesOutliner( UiComponent ):
 		self.Templates_Outliner_treeView_setModel()
 
 		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView( self._container )
-		self.ui.Templates_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Templates_Outliner_treeView, 0, 0 )
+		self.ui.Templates_Outliner_gridLayout.setContentsMargins( self._treeViewInnerMargins )
+		self.ui.Templates_Outliner_gridLayout.addWidget( self.ui.Templates_Outliner_treeView, 0, 0 )
 
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
 		self.Templates_Outliner_treeView_setActions()
