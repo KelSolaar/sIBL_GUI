@@ -512,6 +512,8 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model = None
 		self._modelSelection = None
+		# Crash Preventing Code.
+		self._modelSelectionState = True
 
 		self._databaseBrowserWorkerThread = None
 
@@ -1096,6 +1098,36 @@ class DatabaseBrowser( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
 
+	# Crash Preventing Code.
+	@property
+	def modelSelectionState( self ):
+		'''
+		This Method Is The Property For The _modelSelectionState Attribute.
+
+		@return: self._modelSelectionState. ( Dictionary )
+		'''
+
+		return self._modelSelectionState
+
+	@modelSelectionState.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelectionState( self, value ):
+		'''
+		This Method Is The Setter Method For The _modelSelectionState Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		'''
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelectionState" ) )
+
+	@modelSelectionState.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def modelSelectionState( self ):
+		'''
+		This Method Is The Deleter Method For The _modelSelectionState Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelectionState" ) )
+
 	@property
 	def databaseBrowserWorkerThread( self ):
 		'''
@@ -1425,11 +1457,14 @@ class DatabaseBrowser( UiComponent ):
 		This Method Stores Database_Browser_listView Model Selection.
 		'''
 
-		LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+		# Crash Preventing Code.
+		if self._modelSelectionState :
 
-		self._modelSelection = []
-		for item in self.getSelectedItems() :
-			self._modelSelection.append( item._datas.id )
+			LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+
+			self._modelSelection = []
+			for item in self.getSelectedItems() :
+				self._modelSelection.append( item._datas.id )
 
 	@core.executionTrace
 	def Database_Browser_listView_restoreModelSelection( self ):
@@ -1437,18 +1472,21 @@ class DatabaseBrowser( UiComponent ):
 		This Method Restores Database_Browser_listView Model Selection.
 		'''
 
-		LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Database_Browser_listView" ) )
+		# Crash Preventing Code.
+		if self._modelSelectionState :
 
-		indexes = []
-		for i in range( self._model.rowCount() ) :
-			iblSetStandardItem = self._model.item( i )
-			iblSetStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( iblSetStandardItem ) )
+			LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Database_Browser_listView" ) )
 
-		selectionModel = self.ui.Database_Browser_listView.selectionModel()
-		if selectionModel :
-			selectionModel.reset()
-			for index in indexes :
-				selectionModel.setCurrentIndex( index, QItemSelectionModel.Select )
+			indexes = []
+			for i in range( self._model.rowCount() ) :
+				iblSetStandardItem = self._model.item( i )
+				iblSetStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( iblSetStandardItem ) )
+
+			selectionModel = self.ui.Database_Browser_listView.selectionModel()
+			if selectionModel :
+				selectionModel.reset()
+				for index in indexes :
+					selectionModel.setCurrentIndex( index, QItemSelectionModel.Select )
 
 	@core.executionTrace
 	def Database_Browser_listView_setItemSize( self ):
