@@ -11,6 +11,7 @@ h3. 3.0.9 - Stable
 * Implemented Ibl Sets database display name edition : Double click an Ibl Set in the Database Browser to edit it's display name.  
 * "--databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
 * Fixed a code regression preventing "Templates Informations" widget display.  
+* Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.  
 
 h3. 3.0.8 - Stable
 
