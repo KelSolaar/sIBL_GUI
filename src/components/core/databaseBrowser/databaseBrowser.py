@@ -437,12 +437,12 @@ class DatabaseBrowser_QListView( QListView ):
 					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
 						name = os.path.splitext( os.path.basename( path ) )[0]
 						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-							 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.extendedRefresh()
+							 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else :
 						if os.path.isdir( path ):
 							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 								 self._coreDatabaseBrowser.addDirectory( path )
-								 self._coreDatabaseBrowser.extendedRefresh()
+								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else :
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
 		else :
@@ -1310,7 +1310,7 @@ class DatabaseBrowser( UiComponent ):
 					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
 					if directory :
 						self.addDirectory( directory )
-						self.extendedRefresh()
+						self.Database_Browser_listView_extendedRefreshModel()
 
 			# Ibl Sets Table Integrity Checking.
 			erroneousIblSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
@@ -1321,7 +1321,7 @@ class DatabaseBrowser( UiComponent ):
 							self.updateSetLocation( iblSet )
 					else :
 						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' {2}".format( self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]] ) )
-				self.localRefresh()
+				self.Database_Browser_listView_localRefreshModel()
 		else :
 			LOGGER.info( "{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
@@ -1397,6 +1397,24 @@ class DatabaseBrowser( UiComponent ):
 		self.Database_Browser_listView_setModel()
 
 	@core.executionTrace
+	def Database_Browser_listView_localRefreshModel( self ):
+		'''
+		This Method Implements The Local Refresh Behavior.
+		'''
+
+		self.setCollectionsDisplaySets()
+		self.Database_Browser_listView_refreshModel()
+
+	@core.executionTrace
+	def Database_Browser_listView_extendedRefreshModel( self ):
+		'''
+		This Method Implements The Extended Refresh Behavior.
+		'''
+
+		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+		self.Database_Browser_listView_localRefreshModel()
+
+	@core.executionTrace
 	def Database_Browser_listView_OnModelDataChanged( self, startIndex, endIndex ):
 		'''
 		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
@@ -1413,7 +1431,7 @@ class DatabaseBrowser( UiComponent ):
 		iblSet.title = str( currentTitle )
 		dbUtilities.common.commit( self._coreDb.dbSession )
 
-		self.refresh()
+		self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_setView( self ):
@@ -1542,7 +1560,7 @@ class DatabaseBrowser( UiComponent ):
 		if directory :
 			LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 			self.addDirectory( directory )
-			self.extendedRefresh()
+			self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_addIblSetAction( self, checked ):
@@ -1555,7 +1573,7 @@ class DatabaseBrowser( UiComponent ):
 		iblSetPath = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Add Ibl Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format( self._extension ) ) ) )
 		if iblSetPath :
 			LOGGER.debug( "> Chosen Ibl Set Path : '{0}'.".format( iblSetPath ) )
-			self.addIblSet( os.path.basename( iblSetPath ).replace( ".{0}".format( self._extension ), "" ), iblSetPath ) and self.extendedRefresh()
+			self.addIblSet( os.path.basename( iblSetPath ).replace( ".{0}".format( self._extension ), "" ), iblSetPath ) and self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_removeIblSetsAction( self, checked ):
@@ -1566,7 +1584,7 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		self.removeIblSets()
-		self.extendedRefresh()
+		self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_updateIblSetsLocationsAction( self, checked ):
@@ -1584,7 +1602,7 @@ class DatabaseBrowser( UiComponent ):
 				needModelRefresh = True
 
 		if needModelRefresh :
-			self.localRefresh()
+			self.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
 	def Thumbnails_Size_horizontalSlider_OnChanged( self, value ):
@@ -1603,38 +1621,12 @@ class DatabaseBrowser( UiComponent ):
 		self._settings.setKey( self._settingsSection, "listViewIconSize", value )
 
 	@core.executionTrace
-	def refresh( self ):
-		'''
-		This Method Implements The Default Refresh Behavior.
-		'''
-
-		self.Database_Browser_listView_refreshModel()
-
-	@core.executionTrace
-	def localRefresh( self ):
-		'''
-		This Method Implements The Local Refresh Behavior.
-		'''
-
-		self.setCollectionsDisplaySets()
-		self.refresh()
-
-	@core.executionTrace
-	def extendedRefresh( self ):
-		'''
-		This Method Implements The Extended Refresh Behavior.
-		'''
-
-		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-		self.localRefresh()
-
-	@core.executionTrace
 	def databaseChanged( self ):
 		'''
 		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
 		'''
 
-		self.extendedRefresh()
+		self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
 	def setCollectionsDisplaySets( self ):

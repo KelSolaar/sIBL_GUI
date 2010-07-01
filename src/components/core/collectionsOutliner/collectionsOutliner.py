@@ -312,12 +312,12 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 						name = os.path.splitext( os.path.basename( path ) )[0]
 						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreDatabaseBrowser.addIblSet( name, path )
-							 self._coreDatabaseBrowser.extendedRefresh()
+							 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else :
 						if os.path.isdir( path ):
 							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 								 self._coreDatabaseBrowser.addDirectory( path )
-								 self._coreDatabaseBrowser.extendedRefresh()
+								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else :
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
 			else :
@@ -1246,7 +1246,7 @@ class CollectionsOutliner( UiComponent ):
 
 		self.removeCollections()
 		self.Collections_Outliner_treeView_refreshModel()
-		self._coreDatabaseBrowser.localRefresh()
+		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
@@ -1257,7 +1257,7 @@ class CollectionsOutliner( UiComponent ):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
-		self._coreDatabaseBrowser.localRefresh()
+		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
 	def addCollection( self ) :
