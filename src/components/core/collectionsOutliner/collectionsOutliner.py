@@ -1173,8 +1173,11 @@ class CollectionsOutliner( UiComponent ):
 				collectionStandardItem = overallCollectionStandardItem.child( j, 0 )
 				collectionStandardItem._datas.id in self._modelSelection["Collections"] and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
 
-		for index in indexes :
-			self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
+		selectionModel = self.ui.Collections_Outliner_treeView.selectionModel()
+		if selectionModel :
+			selectionModel.reset()
+			for index in indexes :
+				selectionModel.setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setActions( self ):

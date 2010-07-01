@@ -1346,8 +1346,11 @@ class TemplatesOutliner( UiComponent ):
 					templateStandardItem = softwareStandardItem.child( k, 0 )
 					templateStandardItem._datas.id in self._modelSelection["Templates"] and indexes.append( self._model.indexFromItem( templateStandardItem ) )
 
-		for index in indexes :
-			self.ui.Templates_Outliner_treeView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
+		selectionModel = self.ui.Templates_Outliner_treeView.selectionModel()
+		if selectionModel :
+			selectionModel.reset()
+			for index in indexes :
+				selectionModel.setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setActions( self ):

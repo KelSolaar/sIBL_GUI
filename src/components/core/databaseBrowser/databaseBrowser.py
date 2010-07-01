@@ -1444,8 +1444,11 @@ class DatabaseBrowser( UiComponent ):
 			iblSetStandardItem = self._model.item( i )
 			iblSetStandardItem._datas.id in self._modelSelection and indexes.append( self._model.indexFromItem( iblSetStandardItem ) )
 
-		for index in indexes :
-			self.ui.Database_Browser_listView.selectionModel().setCurrentIndex( index, QItemSelectionModel.Select )
+		selectionModel = self.ui.Database_Browser_listView.selectionModel()
+		if selectionModel :
+			selectionModel.reset()
+			for index in indexes :
+				selectionModel.setCurrentIndex( index, QItemSelectionModel.Select )
 
 	@core.executionTrace
 	def Database_Browser_listView_setItemSize( self ):
