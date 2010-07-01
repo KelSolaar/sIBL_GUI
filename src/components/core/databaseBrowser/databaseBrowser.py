@@ -1350,6 +1350,8 @@ class DatabaseBrowser( UiComponent ):
 				LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model !".format( self.__class__.__name__, iblSet.name, "Database_Browser_listView" ) )
 				foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Database_Browser_listView_setModel" ) )
 
+		self.Database_Browser_listView_restoreModelSelection()
+
 		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
@@ -1406,7 +1408,6 @@ class DatabaseBrowser( UiComponent ):
 		'''
 
 		self.Database_Browser_listView_setDefaultViewState()
-		self.Database_Browser_listView_restoreModelSelection()
 
 	@core.executionTrace
 	def Database_Browser_listView_setDefaultViewState( self ):

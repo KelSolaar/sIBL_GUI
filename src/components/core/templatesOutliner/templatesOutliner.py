@@ -1256,6 +1256,8 @@ class TemplatesOutliner( UiComponent ):
 								LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Template To '{2}' Model !".format( self.__class__.__name__, template.name, "Templates_Outliner_treeView" ) )
 								foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Templates_Outliner_treeView_setModel" ) )
 
+		self.Templates_Outliner_treeView_restoreModelSelection()
+
 		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
@@ -1293,7 +1295,6 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		self.Templates_Outliner_treeView_setDefaultViewState()
-		self.Templates_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setDefaultViewState( self ):

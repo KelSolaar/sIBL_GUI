@@ -1035,6 +1035,8 @@ class CollectionsOutliner( UiComponent ):
 		else :
 			LOGGER.info( "{0} | Database Has No User Defined Collections !".format( self.__class__.__name__ ) )
 
+		self.Collections_Outliner_treeView_restoreModelSelection()
+
 		self.emit( SIGNAL( "modelChanged()" ) )
 
 	@core.executionTrace
@@ -1104,7 +1106,6 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
-		self.Collections_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setDefaultViewState( self ):
