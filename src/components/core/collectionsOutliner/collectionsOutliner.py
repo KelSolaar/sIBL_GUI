@@ -333,8 +333,8 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 						for iblSet in iblSets :
 							iblSet._datas.collection = collectionStandardItem._datas.id
 						if dbUtilities.common.commit( self._coreDb.dbSession ) :
-							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+							self._coreDatabaseBrowser.extendedRefresh()
+							# self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 		else :
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
