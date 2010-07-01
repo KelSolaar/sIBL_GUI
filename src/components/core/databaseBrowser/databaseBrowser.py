@@ -1365,7 +1365,7 @@ class DatabaseBrowser( UiComponent ):
 	@core.executionTrace
 	def Database_Browser_listView_OnModelDataChanged( self, startIndex, endIndex ):
 		'''
-		This Method Defines The Behavior When The Database_Browser_listView Model Data Change.
+		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
 		
 		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
