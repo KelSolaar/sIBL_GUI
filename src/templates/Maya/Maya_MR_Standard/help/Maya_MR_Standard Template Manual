@@ -26,6 +26,7 @@ h3. Common Attributes
 
 h3. Additional Attributes
 
+* *Preserve Session Settings* : Preserve sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
 * *Physical Sun* : The Sun is created with a mia_physicalsun shader.
 * *Create Ground* : A Plane is added to the Scene.
 * *Ground Shadow Catcher* : A mip_matteshadow Shader is assigned to the Ground.

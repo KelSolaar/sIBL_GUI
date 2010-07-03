@@ -16,34 +16,34 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_S
 Comment = "Softimage Mental Ray Template : Fixed Dynamic Lights Type Checking Issues."
 
 [Maya_MR_Standard]
-Release = 1.7.4
+Release = 1.7.5
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standard/Stable/Maya_MR_Standard.zip"
-Comment = "Maya Mental Ray Template : Updates For sIBL_GUI 3.x.x."
+Comment = "Maya Mental Ray Template : Implemented sIBL_Feedback And sIBL_Ground Transformations Restore."
 
 [Maya_VRay_Standard]
-Release = 1.1.9
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Implemented Shadow Catching Ground And VRay Sun Light."
-
-[Maya_VRay_Dome_Light]
-Release = 1.1.9
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
-Comment = "VRay For Maya Dome Light Template : Implemented Shadow Catching Ground And VRay Sun Light."
-
-[Maya_Turtle_Standard]
 Release = 1.2.0
 Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
+Comment = "VRay For Maya Template : Implemented sIBL_Feedback And sIBL_Ground Transformations Restore."
+
+[Maya_VRay_Dome_Light]
+Release = 1.2.0
+Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
+Comment = "VRay For Maya Dome Light Template : Implemented sIBL_Feedback And sIBL_Ground Transformations Restore."
+
+[Maya_Turtle_Standard]
+Release = 1.2.1
+Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
-Comment = "Maya Turtle Template : Updates For sIBL_GUI 3.x.x."
+Comment = "Maya Turtle Template : Implemented sIBL_Feedback And sIBL_Ground Transformations Restore."
 
 [Maya_RfM_Standard]
-Release = 1.0.8
+Release = 1.0.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Standard/Stable/Maya_RfM_Standard.zip"
-Comment = "Renderman For Maya Template : Updates For sIBL_GUI 3.x.x."
+Comment = "Renderman For Maya Template : Implemented sIBL_Feedback And sIBL_Ground Transformations Restore."
 
 [3dsMax_MR_Standard]
 Release = 1.0.4

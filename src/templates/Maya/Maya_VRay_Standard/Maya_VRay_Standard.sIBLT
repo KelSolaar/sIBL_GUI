@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.9 | String | Template Release
-Date = @Date | 16 June 2010 | String | Date
+Release = @Release | 1.2.0 | String | Template Release
+Date = @Date | 03 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -38,6 +38,7 @@ createSun = @createSun | 1 | Boolean | Create Sun
 createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
+preserveSessionSettings = @preserveSessionSettings | 1 | Boolean | Preserve Session Settings
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
 sunAsVraySun = @sunAsVraySun | 1 | Boolean | Sun As VRaySun Light
@@ -81,6 +82,7 @@ int $createLighting = @createLighting;
 int $createReflection = @createReflection;
 int $createSun = @createSun;
 int $createLights = @createLights;
+int $preserveSessionSettings = @preserveSessionSettings;
 int $createFeedBack = @createFeedBack;
 float $feedbackRadius = @feedbackRadius;
 int $sunAsVraySun = @sunAsVraySun;
@@ -110,6 +112,7 @@ sIBL_Maya_VRay_setup($backgroundFilePath,
 		$createReflection,
 		$createSun,
 		$createLights,
+		$preserveSessionSettings,
 		$createFeedBack,
 		$createGround,
 		$shadowCatcher,
@@ -139,6 +142,7 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 			int $createReflection,
 			int $createSun,
 			int $createLights,
+			int $preserveSessionSettings,
 			int $createFeedBack,
 			int $createGround,
 			int $shadowCatcher,
@@ -149,6 +153,11 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 			int $activateLinearWorkflow)
 {
 	print("sIBL_GUI | Starting sIBL File Import !\n");
+
+	string $sessionPreservedAttributes[] = sIBL_Maya_VRay_getSessionPreservedAttributes();
+	string $sessionStoredAttributes[] = {};
+	if( $preserveSessionSettings )
+		$sessionStoredAttributes = sIBL_Maya_VRay_storeSessionAttributes($sessionPreservedAttributes);
 
 	sIBL_Maya_VRay_activateVRay();
 
@@ -204,7 +213,52 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 		if ($activateLinearWorkflow)
 			sIBL_Maya_VRay_activateLinearWorkflow();
 
+		if( $preserveSessionSettings )
+			sIBL_Maya_VRay_restoreSessionAttributes($sessionStoredAttributes);
+
 		print("sIBL_GUI | sIBL File Import Finished !\n");
+		}
+}
+
+global proc string[] sIBL_Maya_VRay_getSessionPreservedAttributes()
+{
+	string $sessionPreservedAttributes[] = { "sIBL_Feedback.rotateX",
+						"sIBL_Feedback.scaleX",
+						"sIBL_Feedback.scaleY",
+						"sIBL_Feedback.scaleZ",
+						"sIBL_Ground.translateX",
+						"sIBL_Ground.translateY",
+						"sIBL_Ground.translateZ",
+						"sIBL_Ground.rotateX",
+						"sIBL_Ground.rotateY",
+						"sIBL_Ground.rotateZ",
+						"sIBL_Ground.scaleX",
+						"sIBL_Ground.scaleY",
+						"sIBL_Ground.scaleZ",
+						"sIBL_Ground.scaleE"
+						};
+	return $sessionPreservedAttributes;
+}
+
+global proc string[] sIBL_Maya_VRay_storeSessionAttributes( string $sessionPreservedAttributes[] )
+{
+	string $sessionStoredAttributes[] = {};
+	for( $attribute in $sessionPreservedAttributes )
+		if( size( `ls $attribute` )  )
+		{
+			$sessionStoredAttributes[size($sessionStoredAttributes)] = $attribute;
+			$sessionStoredAttributes[size($sessionStoredAttributes)] =  `getAttr $attribute`;
+		}
+	return $sessionStoredAttributes;
+}
+
+global proc sIBL_Maya_VRay_restoreSessionAttributes( string $sessionStoredAttributes[] )
+{
+	for($i=0; $i<size($sessionStoredAttributes); $i+=2)
+		if( size( `ls $sessionStoredAttributes[$i]` )  )
+		{
+			float $value = $sessionStoredAttributes[$i+1];
+			setAttr $sessionStoredAttributes[$i] $value;
 		}
 }
 
@@ -217,9 +271,9 @@ global proc sIBL_Maya_VRay_hideLights()
 
 global proc sIBL_Maya_VRay_deleteType( string $type, string $filter)
 {
-		string $typesList[] = `ls -type $type $filter`;
-		if(size($typesList) != 0)
-			delete($typesList);
+	string $typesList[] = `ls -type $type $filter`;
+	if(size($typesList) != 0)
+		delete($typesList);
 }
 
 global proc sIBL_Maya_VRay_environmentDeletion()

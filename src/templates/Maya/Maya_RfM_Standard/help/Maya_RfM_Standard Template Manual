@@ -26,6 +26,7 @@ h3. Common Attributes
 
 h3. Additional Attributes
 
+* *Preserve Session Settings* : Preserve sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
 * *Create Ground* : A Plane is added to the Scene.
 * *Hide Lights* : Hides all current Scene lights.
 * *Activate Linear Workflow* : Set the Output Gamma to 2.2.

@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.7.4 | String | Template Release
-Date = @Date | 29 May 2010 | String | Date
+Release = @Release | 1.7.5 | String | Template Release
+Date = @Date | 03 July 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -38,6 +38,7 @@ createSun = @createSun | 1 | Boolean | Create Sun
 createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
+preserveSessionSettings = @preserveSessionSettings | 1 | Boolean | Preserve Session Settings
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
 feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
@@ -84,6 +85,7 @@ int $createLighting = @createLighting;
 int $createReflection = @createReflection;
 int $createSun = @createSun;
 int $createLights = @createLights;
+int $preserveSessionSettings = @preserveSessionSettings;
 int $createFeedBack = @createFeedBack;
 float $feedbackRadius = @feedbackRadius;
 int $createGround = @createGround;
@@ -116,6 +118,7 @@ sIBL_Maya_MR_setup($backgroundFilePath,
 		$createReflection,
 		$createSun,
 		$createLights,
+		$preserveSessionSettings,
 		$createFeedBack,
 		$createGround,
 		$shadowCatcher,
@@ -148,6 +151,7 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 			int $createReflection,
 			int $createSun,
 			int $createLights,
+			int $preserveSessionSettings,
 			int $createFeedBack,
 			int $createGround,
 			int $shadowCatcher,
@@ -161,6 +165,7 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 			int $showCamerasDialog)
 {
 	print("sIBL_GUI | Starting sIBL File Import !\n");
+	
 	string $camerasList[] = `ls -fl -type "camera"`;
 	int $breakExecution = 0;
 	if($showCamerasDialog)
@@ -189,6 +194,11 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 
 	if($breakExecution == 0)
 	{
+		string $sessionPreservedAttributes[] = sIBL_Maya_MR_getSessionPreservedAttributes();
+		string $sessionStoredAttributes[] = {};
+		if( $preserveSessionSettings )
+			$sessionStoredAttributes = sIBL_Maya_MR_storeSessionAttributes($sessionPreservedAttributes);
+
 		sIBL_Maya_MR_activateMentalRay();
 
 		sIBL_Maya_MR_environmentDeletion();
@@ -244,7 +254,10 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 
 			if ($activateLinearWorkflow)
 				sIBL_Maya_MR_activateLinearWorkflow($camerasList, $createBackground, $photographicTonemapper, $framebufferGamma);
-
+			
+			if( $preserveSessionSettings )
+				sIBL_Maya_MR_restoreSessionAttributes($sessionStoredAttributes);
+			
 			print("sIBL_GUI | sIBL File Import Finished !\n");
 		}
 	}
@@ -316,6 +329,48 @@ global proc sIBL_Maya_MR_setSelectedCameras()
 	setAttr -type "string" "sIBL_GUI_CamerasList_Container.camerasList" $containerValue;
 }
 
+global proc string[] sIBL_Maya_MR_getSessionPreservedAttributes()
+{
+	string $sessionPreservedAttributes[] = { "sIBL_Feedback.rotateX",
+						"sIBL_Feedback.scaleX",
+						"sIBL_Feedback.scaleY",
+						"sIBL_Feedback.scaleZ",
+						"sIBL_Ground.translateX",
+						"sIBL_Ground.translateY",
+						"sIBL_Ground.translateZ",
+						"sIBL_Ground.rotateX",
+						"sIBL_Ground.rotateY",
+						"sIBL_Ground.rotateZ",
+						"sIBL_Ground.scaleX",
+						"sIBL_Ground.scaleY",
+						"sIBL_Ground.scaleZ",
+						"sIBL_Ground.scaleE"
+						};
+	return $sessionPreservedAttributes;
+}
+
+global proc string[] sIBL_Maya_MR_storeSessionAttributes( string $sessionPreservedAttributes[] )
+{
+	string $sessionStoredAttributes[] = {};
+	for( $attribute in $sessionPreservedAttributes )
+		if( size( `ls $attribute` )  )
+		{
+			$sessionStoredAttributes[size($sessionStoredAttributes)] = $attribute;
+			$sessionStoredAttributes[size($sessionStoredAttributes)] =  `getAttr $attribute`;
+		}
+	return $sessionStoredAttributes;
+}
+
+global proc sIBL_Maya_MR_restoreSessionAttributes( string $sessionStoredAttributes[] )
+{
+	for($i=0; $i<size($sessionStoredAttributes); $i+=2)
+		if( size( `ls $sessionStoredAttributes[$i]` )  )
+		{
+			float $value = $sessionStoredAttributes[$i+1];
+			setAttr $sessionStoredAttributes[$i] $value;
+		}
+}
+
 global proc sIBL_Maya_MR_hideLights()
 {
 	SelectAllLights();
@@ -325,9 +380,9 @@ global proc sIBL_Maya_MR_hideLights()
 
 global proc sIBL_Maya_MR_deleteType( string $type, string $filter)
 {
-		string $typesList[] = `ls -type $type $filter`;
-		if(size($typesList) != 0)
-			delete($typesList);
+	string $typesList[] = `ls -type $type $filter`;
+	if(size($typesList) != 0)
+		delete($typesList);
 }
 
 global proc sIBL_Maya_MR_environmentDeletion()
