@@ -349,6 +349,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._layoutsActiveLabels = None
 		self._layoutMenu = None
 		self._miscMenu = None
+		self._workerThreads = []
 
 		# --- Initializing sIBL_GUI. ---
 		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
@@ -1136,6 +1137,36 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "miscMenu" ) )
 
+	@property
+	def workerThreads( self ):
+		'''
+		This Method Is The Property For The _workerThreads Attribute.
+
+		@return: self._workerThreads. ( List )
+		'''
+
+		return self._workerThreads
+
+	@workerThreads.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def workerThreads( self, value ):
+		'''
+		This Method Is The Setter Method For The _workerThreads Attribute.
+
+		@param value: Attribute Value. ( List )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "workerThreads" ) )
+
+	@workerThreads.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def workerThreads( self ):
+		'''
+		This Method Is The Deleter Method For The _workerThreads Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "workerThreads" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -1147,9 +1178,15 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		# Storing Current Layout
+		# Storing Current Layout.
 		self.storeStartupLayout()
 		self._settings.settings.sync()
+
+		# Stopping Worker Threads.
+		for workerThread in self._workerThreads :
+			if not workerThread.isFinished() :
+				LOGGER.debug( "> Stopping Worker Thread : '{0}'.".format( workerThread ) )
+				workerThread.exit()
 
 		foundations.common.closeHandler( LOGGER, self._loggingFileHandler )
 		foundations.common.closeHandler( LOGGER, self._loggingSessionHandler )
@@ -1534,9 +1571,6 @@ def sIBL_GUI_close() :
 	LOGGER.info( "{0} | Session Ended At : {1}".format( Constants.applicationName, time.strftime( '%X - %x' ) ) )
 	LOGGER.info( Constants.loggingSeparators )
 
-	# Closing Logging Handlers.
-	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
-	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
 	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
 
 	QApplication.exit()

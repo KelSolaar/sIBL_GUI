@@ -1252,6 +1252,7 @@ class DatabaseBrowser( UiComponent ):
 		if not self._container.parameters.databaseReadOnly :
 			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker( self )
 			self._databaseBrowserWorkerThread.start()
+			self._container.workerThreads.append( self._databaseBrowserWorkerThread )
 		else :
 			LOGGER.info( "{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 

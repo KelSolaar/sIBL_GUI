@@ -1114,6 +1114,7 @@ class TemplatesOutliner( UiComponent ):
 		if not self._container.parameters.databaseReadOnly :
 			self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker( self )
 			self._templatesOutlinerWorkerThread.start()
+			self._container.workerThreads.append( self._templatesOutlinerWorkerThread )
 		else :
 			LOGGER.info( "{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 

@@ -563,6 +563,7 @@ class SetsScanner( Component ):
 
 		if not self._container.parameters.databaseReadOnly :
 			self._setsScannerWorkerThread = SetsScanner_Worker( self )
+			self._container.workerThreads.append( self._setsScannerWorkerThread )
 
 			# Signals / Slots.
 			self._signalsSlotsCenter.connect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
