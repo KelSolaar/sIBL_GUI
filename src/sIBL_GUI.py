@@ -1534,7 +1534,12 @@ def sIBL_GUI_close() :
 	LOGGER.info( "{0} | Session Ended At : {1}".format( Constants.applicationName, time.strftime( '%X - %x' ) ) )
 	LOGGER.info( Constants.loggingSeparators )
 
-	foundations.common.exit( 0, LOGGER, [ RuntimeConstants.loggingConsoleHandler ] )
+	# Closing Logging Handlers.
+	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingSessionHandler )
+	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingFileHandler )
+	foundations.common.closeHandler( LOGGER, RuntimeConstants.loggingConsoleHandler )
+
+	QApplication.exit()
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler( ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError )
