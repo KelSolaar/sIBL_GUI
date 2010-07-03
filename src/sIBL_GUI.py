@@ -1214,6 +1214,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Sets The Application Visual Style.
 		'''
 
+		LOGGER.debug( "> Setting Application Visual Style." )
+
 		if platform.system() == "Windows" or platform.system() == "Microsoft" :
 			RuntimeConstants.application.setStyle( "Plastique" )
 			styleSheetFile = io.File( UiConstants.frameworkWindowsStylesheetFile )
@@ -1224,6 +1226,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			styleSheetFile = io.File( UiConstants.frameworkLinuxStylesheetFile )
 
 		if os.path.exists( styleSheetFile.file ):
+			LOGGER.debug( "> Reading Style Sheet File : '{0}'.".format( styleSheetFile.file ) )
 			styleSheetFile.read()
 			RuntimeConstants.application.setStyleSheet( QString( "".join( styleSheetFile.content ) ) )
 		else :
@@ -1235,8 +1238,11 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Initializes sIBL_GUI Toolbar.
 		'''
 
+		LOGGER.debug( "> Initializing Application Toolbar." )
+
 		self.toolBar.setIconSize( QSize( UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize ) )
 
+		LOGGER.debug( "> Adding Application Logo." )
 		logolabel = QLabel()
 		logolabel.setPixmap( QPixmap( UiConstants.frameworkLogoPicture ) )
 		self.toolBar.addWidget( logolabel )
@@ -1247,6 +1253,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		toolbarFont = QFont()
 		toolbarFont.setPointSize( 16 )
+
+		LOGGER.debug( "> Adding Active Labels." )
 
 		self._libraryActiveLabel = Active_QLabel( QPixmap( UiConstants.frameworkLibraryIcon ), QPixmap( UiConstants.frameworkLibraryHoverIcon ), QPixmap( UiConstants.frameworkLibraryActiveIcon ), True )
 		self.toolBar.addWidget( self._libraryActiveLabel )
@@ -1266,11 +1274,13 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		for layoutActiveLabel in self._layoutsActiveLabels :
 			self._signalsSlotsCenter.connect( layoutActiveLabel.object_, SIGNAL( "clicked()" ), lambda activeLabel = layoutActiveLabel.layout : self.activeLabel_OnClicked( activeLabel ) )
 
+		LOGGER.debug( "> Adding Central Widget Button." )
 		centralWidgetButton = Active_QLabel( QPixmap( UiConstants.frameworCentralWidgetIcon ), QPixmap( UiConstants.frameworCentralWidgetHoverIcon ), QPixmap( UiConstants.frameworCentralWidgetActiveIcon ) )
 		self.toolBar.addWidget( centralWidgetButton )
 
 		self._signalsSlotsCenter.connect( centralWidgetButton, SIGNAL( "clicked()" ), self.centralWidgetButton_OnClicked )
 
+		LOGGER.debug( "> Adding Layout Button." )
 		layoutbutton = Active_QLabel( QPixmap( UiConstants.frameworLayoutIcon ), QPixmap( UiConstants.frameworLayoutHoverIcon ), QPixmap( UiConstants.frameworLayoutActiveIcon ), parent = self )
 		self.toolBar.addWidget( layoutbutton )
 
@@ -1298,6 +1308,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		layoutbutton.setMenu( self._layoutMenu )
 
+		LOGGER.debug( "> Adding Miscellaneous Button." )
 		miscellaneousbutton = Active_QLabel( QPixmap( UiConstants.frameworMiscellaneousIcon ), QPixmap( UiConstants.frameworMiscellaneousHoverIcon ), QPixmap( UiConstants.frameworMiscellaneousActiveIcon ), parent = self )
 		self.toolBar.addWidget( miscellaneousbutton )
 
@@ -1326,6 +1337,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Is Triggered When An Active Label Is Clicked.
 		'''
 
+		LOGGER.debug( "> Clicked Active Label : '{0}'.".format( activeLabel ) )
+
 		self.restoreLayout( activeLabel )
 		for layoutActivelabel in self._layoutsActiveLabels :
 			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked( False )
@@ -1335,6 +1348,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 		This Method Sets The Central Widget Visibility.
 		'''
+
+		LOGGER.debug( "> Central Widget Button Clicked !" )
 
 		if self.centralwidget.isVisible() :
 			self.centralwidget.hide()
@@ -1347,6 +1362,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		This Method Sets The Layouts Active Labels Shortcuts.
 		'''
 
+		LOGGER.debug( "> Setting Layouts Active Labels Shortcuts." )
+
 		for layoutActiveLabel in self._layoutsActiveLabels :
 			action = QAction( layoutActiveLabel.name, self )
 			action.setShortcut( QKeySequence( layoutActiveLabel.shortcut ) )
@@ -1356,13 +1373,16 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	@core.executionTrace
 	def getLayoutsActiveLabel( self ):
 		'''
-		This Method Returns The Layouts Active Label Index.
+		This Method Returns The Current Layout Active Label Index.
 
 		@return: Layouts Active Label Index. ( Integer )
 		'''
 
+		LOGGER.debug( "> Retrieving Current Layout Active Label Index." )
+
 		for index in range( len( self._layoutsActiveLabels ) ):
 			if self._layoutsActiveLabels[index].object_.isChecked():
+				LOGGER.debug( "> Current Layout Active Label Index : '{0}'.".format( index ) )
 				return index
 
 	@core.executionTrace
@@ -1372,6 +1392,8 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		@param index: Layouts Active Label. ( Integer )
 		'''
+
+		LOGGER.debug( "> Setting Layouts Active Labels States." )
 
 		for index_ in range( len( self._layoutsActiveLabels ) ):
 			self._layoutsActiveLabels[index_].object_.setChecked( index == index_ and True or False )

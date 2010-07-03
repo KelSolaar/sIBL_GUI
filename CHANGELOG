@@ -2,8 +2,6 @@ h1=. sIBL_GUI - 3.0.9 - Stable
 
 h2=. Change Log
 
-p{font-size : 11pt;}=. *Critical Notice : Installing sIBL_GUI 3 over a previous sIBL_GUI 2 installation will corrupt sIBL_GUI 3 Database !*
-
 h3. 3.0.9 - Stable
 
 * sIBL_GUI has now an Internal Image Previewer : You can quickly check your Ibl Sets images by right-clicking the Database Browser and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go : "http://www.hdrlabs.com/picturenaut/index.html":http://www.hdrlabs.com/picturenaut/index.html 
@@ -12,6 +10,7 @@ h3. 3.0.9 - Stable
 * "--databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
 * Fixed a code regression preventing "Templates Informations" widget display.  
 * Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.  
+* Worker Threads are properly terminated on application exit.  
 
 h3. 3.0.8 - Stable
 
