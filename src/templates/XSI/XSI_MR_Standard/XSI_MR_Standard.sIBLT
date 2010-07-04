@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.6.2 | String | Template Release
-Date = @Date | 20 June 2010 | String | Date
+Release = @Release | 1.6.3 | String | Template Release
+Date = @Date | 04 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -38,7 +38,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
+feedbackRadius = @feedbackRadius | 100 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
@@ -1179,7 +1179,7 @@ function sIBL_XSI_MR_getGround(feedbackRadius, shadowCatcher)
 	var globalKinematics = ground.Kinematics.Global.Parameters;
 	var subComponentsList = ["sclx", "scly", "sclz"];
 	for (var i = 0; i < subComponentsList.length; i++)
-		globalKinematics(subComponentsList[i]).value = feedbackRadius/8;
+		globalKinematics(subComponentsList[i]).value = (feedbackRadius*Math.sqrt(2))/2;
 
 	ResetTransform(ground, siCtr, siSRT, siXYZ);
 	

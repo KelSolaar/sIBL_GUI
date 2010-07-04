@@ -3,7 +3,7 @@ Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.html | String | Help File
 Release = @Release | 1.0.9 | String | Template Release
-Date = @Date | 03 July 2010 | String | Date
+Date = @Date | 04 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -40,7 +40,7 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 [Additional Attributes]
 preserveSessionSettings = @preserveSessionSettings | 1 | Boolean | Preserve Session Settings
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 500 | Float | Feedback Radius
+feedbackRadius = @feedbackRadius | 100 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateRaytracing = @activateRaytracing | 1 | Boolean | Activate Raytracing
@@ -758,7 +758,7 @@ global proc sIBL_Maya_RfM_getGround(float $feedbackRadius)
 
 	string $scaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
 	for( $scaleAttribute in $scaleAttributesList )
-		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius/4);
+		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius*sqrt(2));
 
 	parent $ground[0] $sIBLGroup;
 
