@@ -101,7 +101,7 @@ echo Dmg Compilation - Begin
 echo ----------------------------------------------------------------
 rm -f ./sIBL_GUI.dmg
 #! hdiutil create ./sIBL_GUI.dmg -volname "sIBL_GUI" -fs HFS+ -srcfolder "./dist/sIBL_GUI.app"
-/usr/local/bin/./dmgcanvas ../../utilities/dmgCanvas/sIBL_GUI.dmgCanvas ./sIBL_GUI.dmg
+dropdmg -g sIBL_GUI -y sIBL_GUI ./dist/sIBL_GUI.app
 echo ----------------------------------------------------------------
 echo Dmg Compilation - End
 echo ----------------------------------------------------------------

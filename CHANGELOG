@@ -11,6 +11,7 @@ h3. 3.0.9 - Stable
 * Fixed a code regression preventing "Templates Informations" widget display.  
 * Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.  
 * Worker Threads are properly terminated on application exit.  
+* Switched Darwin Installer to DropDmg application : Dmg icons are laid out correctly now.
 
 h3. 3.0.8 - Stable
 
