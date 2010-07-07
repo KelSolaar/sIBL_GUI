@@ -151,7 +151,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 			hideLights,
 			physicalSun,
 			activateFinalGather,
-			activateTonemapping,
+			activateColorManagement,
 			showPassesDialog,
 			updateScene,
 			overrideTweaks)
@@ -290,7 +290,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 						{
 							if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Sun Creation !"))
 							{
-								sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius);
+								sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, physicalSun);
 							}
 						}
 					}
@@ -583,9 +583,9 @@ function sIBL_XSI_MR_getEnvironmentShaderBranch(pass, inputShader, imageSource, 
 	environmentShader.Parameters("name").value = name + "_Environment";
 }
 
-function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks)
+function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, passesList, overrideTweaks)
 {
-	var pass = selectedPassesList[0];
+	var pass = passesList[0];
 
 	var raytype = sIBL_XSI_MR_getMatchingObjectsByClassID("{8604221E-BCFA-11D1-90E9-0000F804EB21}", "sIBL_Raytype", true);
 	raytype = raytype(0);
@@ -688,10 +688,10 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 		}
 
 		// Connecting The Raytype Shader To Passes.
-		for (var i = 0; i < selectedPassesList.length; i++)
+		for (var i = 0; i < passesList.length; i++)
 		{
-			Application.LogMessage(selectedPassesList[i]) + + ".EnvironmentShaderStack";
-			SIConnectShaderToCnxPoint(raytype, selectedPassesList[i] + ".EnvironmentShaderStack", false);
+			Application.LogMessage(passesList[i]) + + ".EnvironmentShaderStack";
+			SIConnectShaderToCnxPoint(raytype, passesList[i] + ".EnvironmentShaderStack", false);
 		}
 	}
 	else
@@ -700,9 +700,9 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 	}
 }
 
-function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList)
+function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, passesList)
 {
-	var pass = selectedPassesList[0];
+	var pass = passesList[0];
 
 	var raytype = CreateShaderFromPreset("Shaders/Texture/Switch/Ray_Type.Preset", pass);
 	
@@ -757,9 +757,9 @@ function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, cre
 	}
 
 	// Connecting The Raytype Shader To Others Passes.
-	for (var i = 1; i < selectedPassesList.length; i++)
+	for (var i = 1; i < passesList.length; i++)
 	{
-		SIConnectShaderToCnxPoint(raytype, selectedPassesList[i] + ".EnvironmentShaderStack", false);
+		SIConnectShaderToCnxPoint(raytype, passesList[i] + ".EnvironmentShaderStack", false);
 	}
 
 	raytype.Parameters("name").value = "sIBL_Raytype";
@@ -947,6 +947,7 @@ function sIBL_XSI_MR_update_lightsConstraints( light, scale, uCoordinate, vCoord
 		}
 	}
 }
+
 function sIBL_XSI_MR_update_sun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, overrideTweaks)
 {
     var sun = sIBL_XSI_MR_getMatchingObjectsByClassID("{5FC0CCAE-3DC8-11D0-9449-00AA006D3165}", "sIBL_Sun", true);
@@ -955,7 +956,7 @@ function sIBL_XSI_MR_update_sun(sunU, sunV, sunColor, sunMultiplier, feedbackRad
     {
         if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Sun Creation !"))
         {
-            sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius);
+            sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, physicalSun);
         }
     }
     else
@@ -1068,7 +1069,7 @@ function sIBL_XSI_MR_getLight( parent, constraintParent, lightType, lightName, s
 	sIBL_XSI_MR_addToDisplayLayer("sIBL_Lighting_Layer", light);
 }
 
-function sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius)
+function sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, physicalSun)
 {
 	var sIBLGroup = sIBL_XSI_MR_getSIBLGroup();
 	var feedback = Application.ActiveSceneRoot.FindChild("sIBL_Feedback");
@@ -1103,9 +1104,9 @@ function sIBL_XSI_MR_bridgeControlsAndShaders( pass, slot )
 	}
 }
 
-function sIBL_XSI_MR_connectFeedBackToSIBLShaders( feedback, connectToBackground, connectToLighting, connectToReflection, selectedPassesList)
+function sIBL_XSI_MR_connectFeedBackToSIBLShaders( feedback, connectToBackground, connectToLighting, connectToReflection, passesList)
 {
-	var pass = selectedPassesList[0];
+	var pass = passesList[0];
 
 	if (connectToBackground)
 	{
@@ -1126,7 +1127,7 @@ function sIBL_XSI_MR_connectFeedBackToSIBLShaders( feedback, connectToBackground
 	}
 }
 
-function sIBL_XSI_MR_activateFinalGather(selectedPassesList)
+function sIBL_XSI_MR_activateFinalGather(passesList)
 {
 	var subComponentsList = ["red", "green", "blue"];
 		for (var i = 0; i < subComponentsList.length; i++)
@@ -1134,14 +1135,14 @@ function sIBL_XSI_MR_activateFinalGather(selectedPassesList)
 
 	SetValue("Views.ViewA.RenderRegion.mentalray.FGEnable,Views.ViewB.RenderRegion.mentalray.FGEnable,Views.ViewC.RenderRegion.mentalray.FGEnable,Views.ViewD.RenderRegion.mentalray.FGEnable", Array(true, true, true, true));
 
-	for (var i = 0; i < selectedPassesList.length; i++)
+	for (var i = 0; i < passesList.length; i++)
 	{
-		var pass = Dictionary.GetObject(selectedPassesList[i]);
+		var pass = Dictionary.GetObject(passesList[i]);
 		pass.Properties("mental ray").Parameters("FGEnable").value = true;
 	}
 }
 
-function sIBL_XSI_MR_activateColorManagement(createBackground, selectedPassesList)
+function sIBL_XSI_MR_activateColorManagement(createBackground, passesList)
 {
 	Application.Preferences.SetPreferenceValue("Display.color_management_source", 0);
 	Application.Preferences.SetPreferenceValue("Display.color_management_render_region", true);
@@ -1149,9 +1150,9 @@ function sIBL_XSI_MR_activateColorManagement(createBackground, selectedPassesLis
 	Application.Preferences.SetPreferenceValue("Display.color_management_shader_balls", true);
 	Application.Preferences.SetPreferenceValue("Display.color_management_ui_colors", true);
 	
-	for (var i = 0; i < selectedPassesList.length; i++)
+	for (var i = 0; i < passesList.length; i++)
 	{
-		var pass = Dictionary.GetObject(selectedPassesList[i]);
+		var pass = Dictionary.GetObject(passesList[i]);
 		pass.Parameters("UseDisplayGammaCorrection").value = true;
 	}
 
