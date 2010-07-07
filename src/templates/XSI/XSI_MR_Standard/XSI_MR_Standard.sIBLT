@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.6.3 | String | Template Release
+Release = @Release | 1.6.4 | String | Template Release
 Date = @Date | 04 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
@@ -1027,7 +1027,7 @@ function sIBL_XSI_MR_getLight( parent, constraintParent, lightType, lightName, s
 		light.Primitives("light").Parameters("LightShader").NestedObjects(0).Parameters("intensity").value = intensity;
 		var subComponentsList = ["red", "green", "blue"];
 		for (var i = 0; i < subComponentsList.length; i++)
-			light.Primitives("light").Parameters("LightShader").NestedObjects(0).Parameters("color").Parameters(subComponentsList[i]).value = color[0] / 255;
+			light.Primitives("light").Parameters("LightShader").NestedObjects(0).Parameters("color").Parameters(subComponentsList[i]).value = color[i] / 255;
 		light.Primitives("light").Parameters("LightShader").NestedObjects(0).Parameters("factor").value = 0;
 		light.Primitives("light").Parameters("LightShader").NestedObjects(0).Parameters("shadow").value = true;
 	}
