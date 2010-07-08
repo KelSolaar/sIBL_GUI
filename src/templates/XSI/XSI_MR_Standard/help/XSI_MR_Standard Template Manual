@@ -28,7 +28,7 @@ h3. Additional Attributes
 
 * *Override User Tweaks* : User tweaks on the Scene IBL Setup will be be overriden when updating the Scene.
 * *Update Scene* : Update the Scene IBL Setup with the new provided informations, this option works with the "Override User Tweaks" one, there is a lot of possibilities available, it's possible to mix different IBL with those 2 options.
-* *Passes Selection Dialog* : A Pass(es) selection dialog appears to choose wich Pass(es) will be affected by the IBL.
+* *Passes Selection Dialog* : A Pass(es) selection dialog appears to choose which Pass(es) will be affected by the IBL.
 * *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
 * *Feedback Radius* : Sets the Feedback radius in XSI units.
 * *Create Ground* : A Grid is added to the Scene.
