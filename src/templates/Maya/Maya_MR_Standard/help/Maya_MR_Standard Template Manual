@@ -18,25 +18,25 @@ h2(#Options). Options
 
 h3. Common Attributes
 
-* *Create Lights* : Create the sIBL Dynamics Lights.
-* *Create Background* : Create the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
-* *Create Reflection* : Create the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
-* *Create Lighting* : Create the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
-* *Create Sun* : Create the light used as Sun.
+* *Create Lights* : Creates the sIBL Dynamics Lights.
+* *Create Background* : Creates the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create Reflection* : Creates the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create Lighting* : Creates the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create Sun* : Creates the light used as Sun.
 
 h3. Additional Attributes
 
-* *Preserve Session Settings* : Preserve sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
-* *Physical Sun* : The Sun is created with a mia_physicalsun shader.
+* *Preserve Session Settings* : Preserves sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
+* *Camera Selection Dialog* : A Camera(s) selection dialog appears so you can choose wich Camera(s) will be affected by the IBL.
+* *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
+* *Feedback Radius* : Sets the Feedback radius in Maya units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Ground Shadow Catcher* : A mip_matteshadow Shader is assigned to the Ground.
+* *Hide Lights* : Hides all current Scene lights.
+* *Physical Sun* : The Sun is created with a mia_physicalsun shader.
 * *Activate Final* Gather : Final Gathering is activated in the current Scene.
-* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
 * *Activate Linear Workflow* : Connect a mia_exposure_simple shader in current / selected Camera(s).
 * *Use Framebuffer Gamma* : Sets the Render Globals Framebuffer Gamma to appropriate value. The mia_exposure_simple Gamma is set to 1.0.
-* *Camera Selection Dialog* : A Camera(s) selection dialog appears so you can choose wich Camera(s) will be affected by the IBL.
-* *Feedback Radius* : Sets the Feedback radius in Maya units.
-* *Hide Lights* : Hides all current Scene lights.
 
 h3. Scene Components
 
