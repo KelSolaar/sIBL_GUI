@@ -62,10 +62,10 @@ echo ----------------------------------------------------------------
 echo Release - End
 echo ----------------------------------------------------------------
 
-#! Maya_MR_Standard Textile Template Documentation Removal.
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
+#! Maya_MR_Standard Textile Template Documentation Removal.
 rm "./dist/sIBL_GUI.app/Contents/Resources/templates/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 
 #! Maya_RfM_Standard Textile Template Documentation Removal.
