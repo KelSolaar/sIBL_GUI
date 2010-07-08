@@ -209,7 +209,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 						progressBar.Visible = true;
 
 						// Scene Cleanup.
-						sIBL_XSI_MR_update_mib_Lookup_SphericalDeletion(overrideTweaks, createBackground, createLighting, createReflection, createSun, createLights, sunExists, dynamicLightsExists, createGround)
+						sIBL_XSI_MR_update_environmentDeletion(overrideTweaks, createBackground, createLighting, createReflection, createSun, createLights, sunExists, dynamicLightsExists, createGround)
 						progressBar.Increment();
 
 						// Environment Shaders Update.
@@ -263,11 +263,15 @@ function sIBL_XSI_MR_setup(backgroundFilePath,
 					sIBL_XSI_MR_scriptEditorVerbose(false);
 					sIBL_XSI_MR_autoInspectState(false);
 
-					progressBar.Step = 10;
+					progressBar.Step = 11;
 					progressBar.Visible = true;
 
 					// Scene Cleanup.
-					sIBL_XSI_MR_mib_Lookup_SphericalDeletion();
+					sIBL_XSI_MR_environmentDeletion();
+					progressBar.Increment();
+					
+					// Activating Renderer.
+					sIBL_XSI_MR_activateMentalRayRenderer();
 					progressBar.Increment();
 
 					// Lights Hide.
@@ -450,7 +454,7 @@ function sIBL_XSI_MR_hideLights()
 	}
 }
 
-function sIBL_XSI_MR_update_mib_Lookup_SphericalDeletion(overrideTweaks, createBackground, createLighting, createReflection, createSun, createLights, sunExists, dynamicLightsExists, createGround)
+function sIBL_XSI_MR_update_environmentDeletion(overrideTweaks, createBackground, createLighting, createReflection, createSun, createLights, sunExists, dynamicLightsExists, createGround)
 {
 	try
 	{
@@ -500,7 +504,7 @@ function sIBL_XSI_MR_update_mib_Lookup_SphericalDeletion(overrideTweaks, createB
 	}
 }
 
-function sIBL_XSI_MR_mib_Lookup_SphericalDeletion()
+function sIBL_XSI_MR_environmentDeletion()
 {
 	try
 	{
@@ -724,8 +728,11 @@ function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, cre
 	}
 	else
 	{
-		for (var i = 0; i < subComponentsList.length; i++)
-			raytype.Parameters("eye").Parameters(subComponentsList[i]).value = 0;
+		for (var i = 0; i < ports.length; i++)
+		{		
+			for (var j = 0; j < subComponentsList.length; j++)
+				raytype.Parameters(ports[i]).Parameters(subComponentsList[j]).value = 0;
+		}
 	}
 
 	ports = ["fg", "photon"];
@@ -1128,6 +1135,11 @@ function sIBL_XSI_MR_connectFeedBackToSIBLShaders( feedback, connectToBackground
 		SetExpr(pass + ".sIBL_Reflection_Mib_Lookup_Spherical.rotate", "(" + feedback + ".kine.global.roty / 2 )  * PI / 180 + ( 67.5 * PI / 180 )");
 		sIBL_XSI_MR_bridgeControlsAndShaders( pass, "Reflection" );
 	}
+}
+
+function sIBL_XSI_MR_activateMentalRayRenderer()
+{
+	SetValue("Passes.RenderOptions.Renderer", "mental ray");
 }
 
 function sIBL_XSI_MR_activateFinalGather(passesList)
