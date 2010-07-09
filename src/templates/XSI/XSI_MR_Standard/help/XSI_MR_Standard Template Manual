@@ -18,25 +18,25 @@ h2(#Options). Options
 
 h3. Common Attributes
 
-* *Create / Update Lights* : Create the sIBL Dynamics Lights.
-* *Create / Update Background* : Create / Update the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
-* *Create / Update Reflection* : Create / Update the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
-* *Create / Update Lighting* : Create / Update the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
-* *Create / Update Sun* : Create / Update the light used as Sun.
+* *Create / Update Lights* : Creates / Updates the sIBL Dynamics Lights.
+* *Create / Update Background* : Creates / Updates the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create / Update Reflection* : Creates / Updates the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create / Update Lighting* : Creates / Updates the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create / Update Sun* : Creates / Updates the light used as Sun.
 
 h3. Additional Attributes
 
-* *Physical Sun* : The Sun is created with a mia_Physical_Sun shader instead of the default soft_light one.
-* *Create Ground* : A Grid is added to the Scene.
-* *Ground Shadow Catcher* : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in XSI, the Background is made Transparent so it's possible to see behind the Ground Plane, object crossing through will be visible ).
-* *Activate Final Gather* : Ambiant Lighting ( Ambience ) of the scene is desactivated and Final Gathering is set for the current / selected Pass(es).
-* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Passes Selection Dialog* : A Pass(es) selection dialog appears to choose wich Pass(es) will be affected by the IBL.
 * *Override User Tweaks* : User tweaks on the Scene IBL Setup will be be overriden when updating the Scene.
 * *Update Scene* : Update the Scene IBL Setup with the new provided informations, this option works with the "Override User Tweaks" one, there is a lot of possibilities available, it's possible to mix different IBL with those 2 options.
-* *Activate Color Management* : Activate XSI 7.0 Color Management ( Preferences > Display > Color Management ).
+* *Passes Selection Dialog* : A Pass(es) selection dialog appears to choose which Pass(es) will be affected by the IBL.
+* *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
 * *Feedback Radius* : Sets the Feedback radius in XSI units.
+* *Create Ground* : A Grid is added to the Scene.
+* *Ground Shadow Catcher* : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in XSI, the Background is made Transparent so it's possible to see behind the Ground Plane, object crossing through will be visible ).
 * *Hide Lights* : Hides all current Scene lights.
+* *Physical Sun* : The Sun is created with a mia_Physical_Sun shader instead of the default soft_light one.
+* *Activate Final Gather* : Ambiant Lighting ( Ambience ) of the scene is desactivated and Final Gathering is set for the current / selected Pass(es).
+* *Activate Color Management* : Activates XSI 7.0 Color Management ( Preferences > Display > Color Management ).
 
 h3. Scene Components
 

@@ -18,23 +18,23 @@ h2(#Options). Options
 
 h3. Common Attributes
 
-* *Create Lights* : Create the sIBL Dynamics Lights.
-* *Create Background* : Create the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
-* *Create Reflection* : Create the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
-* *Create Lighting* : Create the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
-* *Create Sun* : Create the light used as Sun.
+* *Create Lights* : Creates the sIBL Dynamics Lights.
+* *Create Background* : Creates the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create Reflection* : Creates the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create Lighting* : Creates the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create Sun* : Creates the light used as Sun.
 
 h3. Additional Attributes
 
-* *Preserve Session Settings* : Preserve sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
+* *Preserve Session Settings* : Preserves sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
+* *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
+* *Feedback Radius* : Sets the Feedback radius in Maya units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Ground Shadow Catcher* : A VRayObjectProperties Node is assigned to the Ground.
 * *Hide Lights* : Hides all current Scene lights.
-* *Activate Linear Workflow* : Set the Output Gamma to 2.2.
-* *Create FeedBack* : Make the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Sun As VRaySun Light* : The Sun will use a VRaySun light.
+* *Activate Linear Workflow* : Sets the Output Gamma to 2.2.
 * *Activate Indirect Illumination* : Indirect Illumination is activated in the current Scene.
-* *Feedback Radius* : Sets the Feedback radius in Maya units.
+* *Sun As VRaySun Light* : The Sun will use a VRaySun light.
 
 h3. Scene Components
 

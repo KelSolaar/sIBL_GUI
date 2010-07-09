@@ -18,21 +18,21 @@ h2(#Options). Options
 
 h3. Common Attributes
 
-* *Create Lights* : Create the sIBL Dynamics Lights.
-* *Create Background* : Create the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
-* *Create Reflection* : Create the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
-* *Create Lighting* : Create the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
-* *Create Sun* : Create the light used as Sun.
+* *Create Lights* : Creates the sIBL Dynamics Lights.
+* *Create Background* : Creates the Background Environment Branch of the Raytype Shader ( Using the High Resolution LDR file of the current IBL Set ).
+* *Create Reflection* : Creates the Reflection Environment Branch of the Raytype Shader ( Using the Reflection HDR file of the current IBL Set ).
+* *Create Lighting* : Creates the Lighting Environment Branch of the Raytype Shader ( Using the Lighting HDR file of the current IBL Set ).
+* *Create Sun* : Creates the light used as Sun.
 
 h3. Additional Attributes
 
+* *Create FeedBack* : Creates a viewport Visual Feedback with the current IBL LDR Background image.
+* *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Ground Shadow Catcher* : A Matte_Shadow_Reflection__mi Shader is assigned to the Ground.
-* *Create FeedBack* : Create a viewport Visual Feedback with the current IBL LDR Background image.
+* *Hide Lights* : Hides all current Scene lights.
 * *Sun As mrSun Light* : The Sun will use a mrSun light.
 * *Activate Linear Workflow* : Connect a Utility_Gamma___Gain__mi Shader to the current Render Settings Lens Shader slot.
-* *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
-* *Hide Lights* : Hides all current Scene lights.
 
 h2(#ChangeLog). Change Log
 

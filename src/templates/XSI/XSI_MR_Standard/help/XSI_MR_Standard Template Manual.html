@@ -42,25 +42,25 @@
 		<h2 id="Options">Options</h2>
 		<h3>Common Attributes</h3>
 		<ul>
-			<li><strong>Create / Update Lights</strong> : Create the sIBL Dynamics Lights.</li>
-			<li><strong>Create / Update Background</strong> : Create / Update the Background Environment Branch of the Raytype Shader ( Using the High Resolution <span class="caps">LDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
-			<li><strong>Create / Update Reflection</strong> : Create / Update the Reflection Environment Branch of the Raytype Shader ( Using the Reflection <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
-			<li><strong>Create / Update Lighting</strong> : Create / Update the Lighting Environment Branch of the Raytype Shader ( Using the Lighting <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
-			<li><strong>Create / Update Sun</strong> : Create / Update the light used as Sun.</li>
+			<li><strong>Create / Update Lights</strong> : Creates / Updates the sIBL Dynamics Lights.</li>
+			<li><strong>Create / Update Background</strong> : Creates / Updates the Background Environment Branch of the Raytype Shader ( Using the High Resolution <span class="caps">LDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Reflection</strong> : Creates / Updates the Reflection Environment Branch of the Raytype Shader ( Using the Reflection <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Lighting</strong> : Creates / Updates the Lighting Environment Branch of the Raytype Shader ( Using the Lighting <span class="caps">HDR</span> file of the current <span class="caps">IBL</span> Set ).</li>
+			<li><strong>Create / Update Sun</strong> : Creates / Updates the light used as Sun.</li>
 		</ul>
 		<h3>Additional Attributes</h3>
 		<ul>
-			<li><strong>Physical Sun</strong> : The Sun is created with a mia_Physical_Sun shader instead of the default soft_light one.</li>
-			<li><strong>Create Ground</strong> : A Grid is added to the Scene.</li>
-			<li><strong>Ground Shadow Catcher</strong> : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in <span class="caps">XSI</span>, the Background is made Transparent so it&#8217;s possible to see behind the Ground Plane, object crossing through will be visible ).</li>
-			<li><strong>Activate Final Gather</strong> : Ambiant Lighting ( Ambience ) of the scene is desactivated and Final Gathering is set for the current / selected Pass(es).</li>
-			<li><strong>Create FeedBack</strong> : Make the Feedback visible and attach to it the current <span class="caps">IBL</span> <span class="caps">LDR</span> Background image so there is a visual feedback in the Viewport.</li>
-			<li><strong>Passes Selection Dialog</strong> : A Pass(es) selection dialog appears to choose wich Pass(es) will be affected by the <span class="caps">IBL</span>.</li>
 			<li><strong>Override User Tweaks</strong> : User tweaks on the Scene <span class="caps">IBL</span> Setup will be be overriden when updating the Scene.</li>
 			<li><strong>Update Scene</strong> : Update the Scene <span class="caps">IBL</span> Setup with the new provided informations, this option works with the &#8220;Override User Tweaks&#8221; one, there is a lot of possibilities available, it&#8217;s possible to mix different <span class="caps">IBL</span> with those 2 options.</li>
-			<li><strong>Activate Color Management</strong> : Activate <span class="caps">XSI</span> 7.0 Color Management ( Preferences > Display > Color Management ).</li>
+			<li><strong>Passes Selection Dialog</strong> : A Pass(es) selection dialog appears to choose which Pass(es) will be affected by the <span class="caps">IBL</span>.</li>
+			<li><strong>Create FeedBack</strong> : Makes the Feedback visible and attach to it the current <span class="caps">IBL</span> <span class="caps">LDR</span> Background image so there is a visual feedback in the Viewport.</li>
 			<li><strong>Feedback Radius</strong> : Sets the Feedback radius in <span class="caps">XSI</span> units.</li>
+			<li><strong>Create Ground</strong> : A Grid is added to the Scene.</li>
+			<li><strong>Ground Shadow Catcher</strong> : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in <span class="caps">XSI</span>, the Background is made Transparent so it&#8217;s possible to see behind the Ground Plane, object crossing through will be visible ).</li>
 			<li><strong>Hide Lights</strong> : Hides all current Scene lights.</li>
+			<li><strong>Physical Sun</strong> : The Sun is created with a mia_Physical_Sun shader instead of the default soft_light one.</li>
+			<li><strong>Activate Final Gather</strong> : Ambiant Lighting ( Ambience ) of the scene is desactivated and Final Gathering is set for the current / selected Pass(es).</li>
+			<li><strong>Activate Color Management</strong> : Activates <span class="caps">XSI</span> 7.0 Color Management ( Preferences > Display > Color Management ).</li>
 		</ul>
 		<h3>Scene Components</h3>
 		<h4>Smart_IBL_Controls</h4>
