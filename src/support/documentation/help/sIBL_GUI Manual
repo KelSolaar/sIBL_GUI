@@ -81,7 +81,7 @@ h2(#Installation). Installation
 
 h3(#WindowsPlatformInstallation). Windows Platform
 
-Installation on Windows is pretty straightforward, just launch "sIBL_GUI_Setup.exe".
+Installation on Windows is pretty straightforward, just launch "sIBL_GUI.exe".
 
 h3(#MacOsXPlatformInstallation). Mac Os X Platform
 
@@ -89,20 +89,13 @@ Download "sIBL_GUI.dmg". Open it and drag "sIBL_GUI.app" into the "Application" 
 
 h3(#LinuxPlatformInstallation). Linux Platform
 
-Some QT Libraries are needed in order to run sIBL_GUI under Linux :
+sIBL_GUI 3 is currently not build on Linux because of several issues. You can however grab the source code at Github.com : "http://github.com/KelSolaar/sIBL_GUI":http://github.com/KelSolaar/sIBL_GUI and launch sIBL_GUI.py file from a shell.
 
-* Debian Distributions ( Ubuntu ) : 
-
-bq. _sudo apt-get install libqt4-core_ 
-sudo _apt-get install libqt4-gui_
-
-* RPM Distributions ( Fedora ): 
-
-bq. _su root_ 
-yum _install qt_ 
-yum _install qt-x11_
-
-Uncompress the sIBL_GUI archive into the chosen destination folder, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from a file browser.
+You will need those dependencies :
+* *Python 2.6* : "http://www.python.org/":http://www.python.org/
+* *PyQt* : "http://www.riverbankcomputing.co.uk/":http://www.riverbankcomputing.co.uk/
+* *Qt* : "http://qt.nokia.com/":http://qt.nokia.com/
+* *SQLAlchemy* : "http://www.sqlalchemy.org/":http://www.sqlalchemy.org/
 
 h2(#Usage). Usage
 
@@ -148,7 +141,7 @@ Note : On Mac Os X, sIBL_GUI is launched from command line doing the following :
 
 h3(#IblSetsWizard). Ibl Sets Wizard
 
-The first time sIBL_GUI is started a wizard	asks to add Ibl Sets into the database :
+The first time sIBL_GUI is started a wizard asks to add Ibl Sets into the database :
 
 table(class#id){border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray}.
 |!resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg(sIBL_GUI_EmptyDatabaseWizard_A)!|
