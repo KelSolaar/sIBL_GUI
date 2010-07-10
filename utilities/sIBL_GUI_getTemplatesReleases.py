@@ -86,8 +86,8 @@ def getTemplatesReleases():
 	walker = Walker()
 	walker.root = TEMPLATES_PATH
 	templates = walker.walk( TEMPLATES_EXTENSION, "\._" )
-	for template, path in templates.items() :
-		parser = Parser( path )
+	for template in sorted( templates.keys() ) :
+		parser = Parser( templates[template] )
 		parser.read() and parser.parse()
 
 		LOGGER.info( "{0} | '{1}' : '{2}' !".format( getTemplatesReleases.__name__, template, foundations.parser.getAttributeCompound( "Release", parser.getValue( "Release", "Template", encode = True ) ).value ) )

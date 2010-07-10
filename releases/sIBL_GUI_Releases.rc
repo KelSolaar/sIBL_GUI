@@ -7,13 +7,13 @@ Type = "Stable"
 Release = 1.6.4
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/XSI_MR_Standard/Stable/XSI_MR_Standard.zip"
-Comment = "XSI Mental Ray Template : Reduced Default Feedback Radius."
+Comment = "XSI Mental Ray Template : Fixed Small Code Errors."
 
 [Softimage_MR_Standard]
 Release = 1.0.6
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_Standard/Stable/Softimage_MR_Standard.zip"
-Comment = "Softimage Mental Ray Template : Reduced Default Feedback Radius."
+Comment = "Softimage Mental Ray Template : Fixed Small Code Errors."
 
 [Maya_MR_Standard]
 Release = 1.7.5
