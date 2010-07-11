@@ -752,7 +752,7 @@ class Manager( object ) :
 			walker = Walker()
 			for path in self.paths.keys() :
 				walker.root = self.paths[path]
-				walker.walk( "\.{0}$".format( self._extension ), "\._" )
+				walker.walk( ( "\.{0}$".format( self._extension ), ), ( "\._", ) )
 				for component in walker.files.keys():
 					LOGGER.debug( "> Current Component : '{0}'.".format( component ) )
 					profile = self.getProfile( walker.files[component] )

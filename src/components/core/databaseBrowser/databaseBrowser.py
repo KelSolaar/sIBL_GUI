@@ -1672,7 +1672,7 @@ class DatabaseBrowser( UiComponent ):
 		LOGGER.debug( "> Initializing Directory '{0}' Walker.".format( directory ) )
 
 		walker = Walker( directory )
-		walker.walk( "\.{0}$".format( self._extension ), "\._" )
+		walker.walk( ( "\.{0}$".format( self._extension ), ), ( "\._", ) )
 		for iblSet, path in walker.files.items() :
 			self.addIblSet( iblSet, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() )
 

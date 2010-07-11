@@ -168,17 +168,17 @@ class Walker( object ):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler()
-	def walk( self, filterIn = None, filterOut = None ):
+	def walk( self, filtersIn = None, filtersOut = None ):
 		'''
 		This Method Gets Root Directory Files List As A Dictionary.
 
-		@param filterIn: Regex filterIn String. ( String )
-		@param filterIn: Regex filterOut String. ( String )
+		@param filtersIn: Regex filtersIn String. ( String )
+		@param filtersIn: Regex filtersOut String. ( String )
 		@return: Files List. ( Dictionary Or None )
 		'''
 
-		if filterIn :
-			LOGGER.debug( "> Current filterIn : '{0}'.".format( filterIn ) )
+		if filtersIn :
+			LOGGER.debug( "> Current filtersIn : '{0}'.".format( filtersIn ) )
 
 		if self._root :
 				self._files = {}
@@ -187,13 +187,26 @@ class Walker( object ):
 						LOGGER.debug( "> Current File : '{0}' In '{1}'.".format( item, self._root ) )
 						itemPath = os.path.join( root, item ).replace( "\\", "/" )
 						if os.path.isfile( itemPath ):
-							if filterIn :
-								if not re.search( filterIn, itemPath ):
-									LOGGER.debug( "> '{0}' File Skipped, Filter In '{1}' Not Matched !.".format( itemPath, filterIn ) )
+							if filtersIn :
+								filterMatched = False
+								for filter in filtersIn :
+									if not re.search( filter, itemPath ):
+										LOGGER.debug( "> '{0}' File Skipped, Filter In '{1}' Not Matched !.".format( itemPath, filter ) )
+									else :
+										filterMatched = True
+										break
+								if not filterMatched :
 									continue
-							if filterOut :
-								if re.search( filterOut, itemPath ) :
-									LOGGER.debug( "> '{0}' File Skipped, Filter Out '{1}' Matched !.".format( itemPath, filterOut ) )
+
+							if filtersOut :
+								filterMatched = False
+								for filter in filtersIn :
+									if re.search( filter, itemPath ) :
+										LOGGER.debug( "> '{0}' File Skipped, Filter Out '{1}' Matched !.".format( itemPath, filter ) )
+									else :
+										filterMatched = True
+										break
+								if filterMatched :
 									continue
 							fileTokens = os.path.splitext( item )
 							if fileTokens[0] in self._files:
