@@ -172,7 +172,8 @@ class Walker( object ):
 		'''
 		This Method Gets Root Directory Files List As A Dictionary.
 
-		@param filterIn: Regex filterIning String. ( String )
+		@param filterIn: Regex filterIn String. ( String )
+		@param filterIn: Regex filterOut String. ( String )
 		@return: Files List. ( Dictionary Or None )
 		'''
 
