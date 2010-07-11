@@ -329,7 +329,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._signalsSlotsCenter = QObject()
 		self._componentsManager = None
 		self._coreComponentsManagerUi = None
-		self._preferencesManager = None
+		self._corePreferencesManager = None
 		self._coreDb = None
 		self._coreDatabaseBrowser = None
 		self._coreCollectionsOutliner = None
@@ -384,12 +384,12 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.componentsManagerUi", Constants.applicationName )
 
 		# --- Activating Preferences Manager Component. ---
-		self._preferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
-		if self._preferencesManager :
+		self._corePreferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
+		if self._corePreferencesManager :
 			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
-			self._preferencesManager.activate( self )
-			self._preferencesManager.addWidget()
-			self._preferencesManager.initializeUi()
+			self._corePreferencesManager.activate( self )
+			self._corePreferencesManager.addWidget()
+			self._corePreferencesManager.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.preferencesManager", Constants.applicationName )
 
@@ -560,6 +560,36 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreComponentsManagerUi" ) )
+
+	@property
+	def corePreferencesManager( self ):
+		'''
+		This Method Is The Property For The _corePreferencesManager Attribute.
+
+		@return: self._corePreferencesManager. ( Object )
+		'''
+
+		return self._corePreferencesManager
+
+	@corePreferencesManager.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def corePreferencesManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "corePreferencesManager" ) )
+
+	@corePreferencesManager.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def corePreferencesManager( self ):
+		'''
+		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "corePreferencesManager" ) )
 
 	@property
 	def coreDb( self ):
@@ -1429,7 +1459,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self.centralwidget.setVisible( self._settings.getKey( "Layouts", "{0}_centralWidget".format( name ) ).toBool() )
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
-		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
+		self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		self.setLayoutsActiveLabel( self._settings.getKey( "Layouts", "{0}_activeLabel".format( name ) ).toInt()[0] )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
@@ -1442,7 +1472,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		LOGGER.debug( "> Restoring Startup Layout." )
 
 		self.restoreLayout( UiConstants.frameworkStartupLayout )
-		not self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
+		not self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
 
 	@core.executionTrace
 	def storeStartupLayout( self ):
