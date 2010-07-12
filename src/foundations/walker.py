@@ -200,14 +200,16 @@ class Walker( object ):
 
 							if filtersOut :
 								filterMatched = False
-								for filter in filtersIn :
+								for filter in filtersOut :
 									if re.search( filter, itemPath ) :
 										LOGGER.debug( "> '{0}' File Skipped, Filter Out '{1}' Matched !.".format( itemPath, filter ) )
-									else :
 										filterMatched = True
 										break
 								if filterMatched :
 									continue
+
+							LOGGER.debug( "> '{0}' File Filtered In !".format( itemPath ) )
+
 							fileTokens = os.path.splitext( item )
 							if fileTokens[0] in self._files:
 								itemName = itemPath.replace( self._root, "" ).replace( "/", "|" ).replace( item, "" ) + fileTokens[0]
