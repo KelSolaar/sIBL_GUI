@@ -955,10 +955,10 @@ function sIBL_XSI_MR_getLight(parent, constraintParent, lightType, lightName, sc
 	
 	if (physicalSun) 
 	{
-		physicalSunShader = CreateShaderFromPreset("Shaders/Light/mental images/mia_Physical_Sun.Preset", light + ".light", "");
+		physicalSunShader = CreateShaderFromProgID("mentalray.mia_physicalsun.1.0", light + ".light");
 		SIConnectShaderToCnxPoint(physicalSunShader, light + ".light.LightShader", false);
 		SIConnectShaderToCnxPoint(physicalSunShader, light + ".light.PhotonShader", false);
-		physicalSunShader.Parameters("mulitplier").value = intensity / 100;
+		physicalSunShader.Parameters("multiplier").value = intensity / 100;
 		
 		DisconnectAndDeleteOrUnnestShaders(light + ".light.soft_light", light + ".light");
 	}
@@ -1132,7 +1132,7 @@ function sIBL_XSI_MR_getGround(feedbackRadius, shadowCatcher)
 	{
 		var groundMaterial = SICreateMaterial("Shaders/Material/mental images/mip_Matte_Shadow.Preset", "sIBL_Ground_Material", null, null, false);
 		
-		var constantShader = CreateShaderFromPreset("$XSI_DSPRESETS/Shaders/Material/Constant.Preset", groundMaterial);
+		var constantShader = CreateShaderFromProgID("Softimage.material-constant.1.0", groundMaterial);
 		
 		var subComponentsList = ["red", "green", "blue"];
 		for (var i = 0; i < subComponentsList.length; i++) 
