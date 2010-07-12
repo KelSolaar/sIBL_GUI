@@ -1244,7 +1244,6 @@ class DatabaseBrowser( UiComponent ):
 		self.Database_Browser_listView_setModel()
 
 		self.ui.Database_Browser_listView.setContextMenuPolicy( Qt.ActionsContextMenu )
-
 		self.Database_Browser_listView_setActions()
 
 		self.Database_Browser_listView_setView()
@@ -1308,7 +1307,7 @@ class DatabaseBrowser( UiComponent ):
 			# Wizard If Sets Table Is Empty.
 			if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
 				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
+					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 					if directory :
 						self.addDirectory( directory )
 						self.Database_Browser_listView_extendedRefreshModel()
@@ -1557,7 +1556,7 @@ class DatabaseBrowser( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
+		directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 		if directory :
 			LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 			self.addDirectory( directory )

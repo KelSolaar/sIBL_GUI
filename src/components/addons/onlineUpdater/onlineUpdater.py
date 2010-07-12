@@ -1462,7 +1462,7 @@ class RemoteUpdater( object ):
 		elif reply == 1 :
 			return os.path.join( self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory )
 		elif reply == 2 :
-			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
+			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Choose Templates Directory :", self._container.container.lastBrowsedPath ) ) )
 
 	@core.executionTrace
 	def downloadManager_OnFinished( self ):

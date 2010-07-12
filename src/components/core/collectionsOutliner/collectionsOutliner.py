@@ -1217,7 +1217,7 @@ class CollectionsOutliner( UiComponent ):
 		collection = self.addCollection()
 		if collection :
 			self.Collections_Outliner_treeView_refreshModel()
-			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Directory :", self._container.lastBrowsedPath ) ) )
+			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 			if directory :
 				LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
