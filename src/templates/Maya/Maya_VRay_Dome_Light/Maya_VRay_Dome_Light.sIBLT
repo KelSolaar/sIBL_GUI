@@ -8,10 +8,10 @@ Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | Maya | String | Software
-Version = @Version | 2K | String | Version
+Version = @Version | 2009 To 2011 | String | Version
 Renderer = @Renderer |VRay | String | Renderer
 OutputScript = @OutputScript | sIBL_Maya_Import.mel | String | Output Script
-Comment = @Comment | This is Maya 2K VRay Dome Light Template. | String | Comment
+Comment = @Comment | This is Maya 2009 To 2011 VRay Dome Light Template. | String | Comment
 
 [sIBL File Attributes]
 Background|BGfile = @BGfile

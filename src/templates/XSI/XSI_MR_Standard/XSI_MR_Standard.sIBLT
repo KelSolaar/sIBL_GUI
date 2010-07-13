@@ -2,16 +2,16 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.6.4 | String | Template Release
-Date = @Date | 08 July 2010 | String | Date
+Release = @Release | 1.6.5 | String | Template Release
+Date = @Date | 13 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | XSI | String | Software
-Version = @Version | 7.X - 2010 | String | Version
+Version = @Version | 7.0 To 2010 | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_XSI_Import.js | String | Output Script
-Comment = @Comment | This is XSI 7.X / 2K Mental Ray Template. | String | Comment
+Comment = @Comment | This is XSI 7.0 To 2010 Mental Ray Template. | String | Comment
 
 [sIBL File Attributes]
 Background|BGfile = @BGfile
@@ -294,12 +294,13 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 			}
 		}
 	} 
-	catch (e) 
+	catch (error)
 	{
 		sIBL_XSI_MR_scriptEditorVerbose(true);
 		sIBL_XSI_MR_autoInspectState(true);
 		
 		Application.LogMessage("sIBL_GUI | sIBL File Import Failed !", siError);
+		throw (error)
 	}
 }
 
@@ -437,7 +438,7 @@ function sIBL_XSI_MR_update_environmentDeletion(overrideTweaks, createBackground
 			}
 		}
 	} 
-	catch (e) 
+	catch (error)
 	{
 	}
 }
@@ -456,7 +457,7 @@ function sIBL_XSI_MR_environmentDeletion()
 		// sIBL Raytype Shader Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{8604221E-BCFA-11D1-90E9-0000F804EB21}", "sIBL", false));
 		
-		// sIBL Clip Shaders Deletion.
+		// sIBL Clips Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{22C3E8F8-CCEA-11D2-B35B-00105A1E70DE}", "sIBL", false));
 		
 		// sIBL Environment Shaders Deletion.
@@ -482,9 +483,8 @@ function sIBL_XSI_MR_environmentDeletion()
 		
 		// sIBL Display Layers Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{479F2E10-3900-11D1-B0B3-00A024C79287}", "sIBL", false));
-		
 	} 
-	catch (e) 
+	catch (error)
 	{
 	}
 }
@@ -550,9 +550,7 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 			
 			var backgroundEnvironmentShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Background_Environment", true);
 			if (backgroundEnvironmentShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, backgroundSource, ports, "sIBL_Background");
-			}
 		}
 		else 
 		{
@@ -579,9 +577,7 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 			
 			var lightingEnvironmentShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Lighting_Environment", true);
 			if (lightingEnvironmentShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, lightingSource, ports, "sIBL_Lighting");
-			}
 		}
 		else 
 		{
@@ -611,9 +607,7 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 			
 			var reflectionEnvironmentShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Reflection_Environment", true);
 			if (reflectionEnvironmentShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, reflectionSource, ports, "sIBL_Reflection");
-			}
 		}
 		else 
 		{
