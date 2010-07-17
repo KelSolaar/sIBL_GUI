@@ -290,7 +290,7 @@ class SetsScanner_Worker( QThread ):
 		for folder in folders :
 			if os.path.exists( folder ):
 				walker = Walker( folder )
-				walker.walk( ( "\.{0}$".format( self._extension ), ), ( "^\._", ) )
+				walker.walk( ( "\.{0}$".format( self._extension ), ), ( "\._", ) )
 				for iblSet, path in walker.files.items() :
 					if not dbUtilities.common.filterSets( self._dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 						needModelRefresh = True

@@ -1570,7 +1570,7 @@ class TemplatesOutliner( UiComponent ):
 
 		walker = Walker()
 		walker.root = directory
-		templates = walker.walk( ( "\.{0}$".format( self._extension ), ), ( "^\._", ) )
+		templates = walker.walk( ( "\.{0}$".format( self._extension ), ), ( "\._", ) )
 		for template in templates :
 			self.addTemplate( template, templates[template], collectionId, noWarning )
 
