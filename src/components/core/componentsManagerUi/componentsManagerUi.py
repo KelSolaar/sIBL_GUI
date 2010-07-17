@@ -675,7 +675,7 @@ class ComponentsManagerUi( UiComponent ):
 		** Component : { _type : "Component", _datas : profile }
 		'''
 
-		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
 
 		self._model.clear()
 
@@ -689,7 +689,7 @@ class ComponentsManagerUi( UiComponent ):
 				pathStandardItem = QStandardItem( QString( path ) )
 				pathStandardItem._type = "Path"
 
-				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui" ) )
+				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui_treeView" ) )
 				self._model.appendRow( pathStandardItem )
 
 				for component in components :
