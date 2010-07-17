@@ -1326,7 +1326,7 @@ class CollectionsOutliner( UiComponent ):
 		'''
 		This Method Returns The Collections_Outliner_treeView Selected Items.
 		
-		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		'''
 

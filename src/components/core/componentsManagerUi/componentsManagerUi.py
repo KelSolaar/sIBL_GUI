@@ -974,7 +974,7 @@ class ComponentsManagerUi( UiComponent ):
 		'''
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
 		
-		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		'''
 

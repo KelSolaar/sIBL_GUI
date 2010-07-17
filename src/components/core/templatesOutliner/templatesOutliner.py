@@ -1672,7 +1672,7 @@ class TemplatesOutliner( UiComponent ):
 		'''
 		This Method Returns The Templates_Outliner_treeView Selected Items.
 		
-		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		'''
 
