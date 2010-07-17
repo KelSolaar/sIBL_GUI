@@ -606,7 +606,6 @@ class ComponentsManagerUi( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self._model = QStandardItemModel()
-
 		self.Components_Manager_Ui_treeView_setModel()
 
 		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins( self._treeViewInnerMargins )
