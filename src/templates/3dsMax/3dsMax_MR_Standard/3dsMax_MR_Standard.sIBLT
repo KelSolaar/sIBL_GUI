@@ -8,10 +8,10 @@ Author = @Author | Dschaga / Jeff Hanna / JHaywood / Kel Solaar | String | Autho
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
-Version = @Version | 2K | String | Version
+Version = @Version | 2009 To 2011 | String | Version
 Renderer = @Renderer | Mental Ray | String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
-Comment = @Comment | This is 3dsmax 2K Mental Ray Template. | String | Comment
+Comment = @Comment | This is 3dsmax 2009 To 2011 Mental Ray Template. | String | Comment
 
 [sIBL File Attributes]
 Sun|SUNu = @SUNu

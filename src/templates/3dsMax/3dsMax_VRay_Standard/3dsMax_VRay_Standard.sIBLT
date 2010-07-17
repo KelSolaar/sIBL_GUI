@@ -8,10 +8,10 @@ Author = @Author | Dschaga / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
 Software = @Software | 3dsMax  | String | Software
-Version = @Version | 2K | String | Version
+Version = @Version | 2009 To 2011 | String | Version
 Renderer = @Renderer | VRay| String | Renderer
 OutputScript = @OutputScript | sIBL_3dsmax_Import.ms | String | Output Script
-Comment = @Comment | This is 3dsmax 2K VRay Template. | String | Comment
+Comment = @Comment | This is 3dsmax 2009 To 2011 VRay Template. | String | Comment
 
 [sIBL File Attributes]
 Sun|SUNu = @SUNu

@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.6 | String | Template Release
-Date = @Date | 08 July 2010 | String | Date
+Release = @Release | 1.0.7 | String | Template Release
+Date = @Date | 13 July 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -203,7 +203,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					
 					progressBar.Step = 11;
 					progressBar.Visible = true;
-					
+
 					// Scene Cleanup.
 					sIBL_XSI_MR_environmentDeletion();
 					progressBar.Increment();
@@ -294,12 +294,13 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 			}
 		}
 	} 
-	catch (e) 
+	catch (error) 
 	{
 		sIBL_XSI_MR_scriptEditorVerbose(true);
 		sIBL_XSI_MR_autoInspectState(true);
 		
 		Application.LogMessage("sIBL_GUI | sIBL File Import Failed !", siError);
+		throw (error)
 	}
 }
 
@@ -437,7 +438,7 @@ function sIBL_XSI_MR_update_environmentDeletion(overrideTweaks, createBackground
 			}
 		}
 	} 
-	catch (e) 
+	catch (error) 
 	{
 	}
 }
@@ -453,39 +454,36 @@ function sIBL_XSI_MR_environmentDeletion()
 			Application.DeleteObj("B:sIBL");
 		}
 		
-		// sIBL Raytype Shader Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{8604221E-BCFA-11D1-90E9-0000F804EB21}", "sIBL", false));
-		
-		// sIBL Clip Shaders Deletion.
+		// sIBL Clips Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{22C3E8F8-CCEA-11D2-B35B-00105A1E70DE}", "sIBL", false));
-		
-		// sIBL Mib_Lookup_Spherical Shaders Deletion.
+
+		// sIBL Shaders Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{6495C5C1-FD18-474E-9703-AEA66631F7A7}", "sIBL", false));
 		
-		// sIBL Color Math Basic Shaders Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{6EE27300-A1E2-11D3-AE51-00A0C96E63E1}", "sIBL", false));
-		
-		// sIBL Color Math Exponent Shaders Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{00288F00-AC2F-11D3-AE56-00A0C96E63E1}", "sIBL", false));
-		
-		// sIBL Color Boolean Switch Shaders Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{85C16046-BCFA-11D1-90E9-0000F804EB21}", "sIBL", false));
-		
-		// sIBL Feedback Materials Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{4C4F7500-51EF-11D0-854E-00A02417D029}", "sIBL", false));
-		
-		// sIBL Feedback Constant Shaders Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{5B003A9D-868A-11D4-9330-00E0293D48C6}", "sIBL", false));
-		
-		// sIBL Ground mip_Matte_Shadow Deletion.
-		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{C08B33D2-52EB-4820-BA30-AAC7F75325F0}", "sIBL", false));
-		
+		// sIBL Environment Shader Stack Parameters Deletion.
+		sIBL_XSI_MR_passesEnvironmentShaderStackParametersDeletion()
+
 		// sIBL Display Layers Deletion.
 		DeleteObj(sIBL_XSI_MR_getMatchingObjectsByClassID("{479F2E10-3900-11D1-B0B3-00A024C79287}", "sIBL", false));
-		
 	} 
-	catch (e) 
+	catch (error) 
 	{
+	}
+}
+
+function sIBL_XSI_MR_passesEnvironmentShaderStackParametersDeletion()
+{
+	var passesList = new ActiveXObject("XSI.Collection");
+	passesList.SetAsText("Passes.List.*");	
+	var passParameters = [];
+	for (var i = 0; i < passesList.count; i++) 
+	{
+		environmentShaderStack = passesList.item(i).NestedObjects("EnvironmentShaderStack");
+		for (var j = environmentShaderStack.Parameters.Count - 1; j >= 0; j--)
+		{
+			if (environmentShaderStack.Parameters.item(j).Sources.Count == 0)
+				environmentShaderStack.Remove( j );
+		}	
 	}
 }
 
@@ -501,15 +499,14 @@ function sIBL_XSI_MR_getEnvironmentShaderBranch(pass, inputShader, imageSource, 
 	var color_Math_ExponentShader = CreateShaderFromProgID("Softimage.sib_color_math_exponent.1.0", pass);
 	SIConnectShaderToCnxPoint(colorMathBasicShader, color_Math_ExponentShader + ".input", false);
 	
-	var subComponentsList = ["red", "green", "blue"];
 	var colorMathBasicGammaShader = CreateShaderFromProgID("Softimage.sib_color_math_basic.1.0", pass);
+	var subComponentsList = ["red", "green", "blue"];
 	for (var i = 0; i < subComponentsList.length; i++) 
 		colorMathBasicGammaShader.Parameters("input1").Parameters(subComponentsList[i]).value = 1;
 	colorMathBasicGammaShader.Parameters("op").value = 3;
 	SIConnectShaderToCnxPoint(colorMathBasicGammaShader, color_Math_ExponentShader + ".factor", false);
 	
 	var colorSwitchShader = CreateShaderFromProgID("Softimage.sib_color_switch.1.0", pass);
-	
 	for (var i = 0; i < subComponentsList.length; i++) 
 		colorSwitchShader.Parameters("input2").Parameters(subComponentsList[i]).value = 0;
 	SIConnectShaderToCnxPoint(color_Math_ExponentShader, colorSwitchShader + ".input1", false);
@@ -528,7 +525,7 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 {
 	var pass = passesList[0];
 	
-	var raytype = sIBL_XSI_MR_getMatchingObjectsByClassID("{8604221E-BCFA-11D1-90E9-0000F804EB21}", "sIBL_Raytype", true);
+	var raytype = sIBL_XSI_MR_getMatchingObjectsByClassID("{6495C5C1-FD18-474E-9703-AEA66631F7A7}", "sIBL_Raytype", true);
 	raytype = raytype(0);
 	
 	var subComponentsList = ["red", "green", "blue"];
@@ -549,11 +546,9 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 				backgroundSource = Application.CreateImageClip2(backgroundFilePath, "sIBL_Background_Clip");
 			}
 			
-			var backgroundLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Background_Mib_Lookup_Spherical", true);
+			var backgroundLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{6495C5C1-FD18-474E-9703-AEA66631F7A7}", "sIBL_Background_Mib_Lookup_Spherical", true);
 			if (backgroundLookupSphericalShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, backgroundSource, ports, "sIBL_Background");
-			}
 		}
 		else 
 		{
@@ -578,11 +573,9 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 				lightingSource = Application.CreateImageClip2(lightingFilePath, "sIBL_Lighting_Clip");
 			}
 			
-			var lightingLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Lighting_Mib_Lookup_Spherical", true);
+			var lightingLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{6495C5C1-FD18-474E-9703-AEA66631F7A7}", "sIBL_Lighting_Mib_Lookup_Spherical", true);
 			if (lightingLookupSphericalShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, lightingSource, ports, "sIBL_Lighting");
-			}
 		}
 		else 
 		{
@@ -610,11 +603,9 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 				reflectionSource = Application.CreateImageClip2(reflectionFilePath, "sIBL_Reflection_Clip");
 			}
 			
-			var reflectionLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{AD97C8B1-E1AE-4E3B-ABF5-1754616A6B63}", "sIBL_Reflection_Mib_Lookup_Spherical", true);
+			var reflectionLookupSphericalShader = sIBL_XSI_MR_getMatchingObjectsByClassID("{6495C5C1-FD18-474E-9703-AEA66631F7A7}", "sIBL_Reflection_Mib_Lookup_Spherical", true);
 			if (reflectionLookupSphericalShader == 0) 
-			{
 				sIBL_XSI_MR_getEnvironmentShaderBranch(pass, raytype, reflectionSource, ports, "sIBL_Reflection");
-			}
 		}
 		else 
 		{
@@ -630,10 +621,7 @@ function sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting,
 		
 		// Connecting The Raytype Shader To Passes.
 		for (var i = 0; i < passesList.length; i++) 
-		{
-			Application.LogMessage(passesList[i]) + +".EnvironmentShaderStack";
-			SIConnectShaderToCnxPoint(raytype, passesList[i] + ".EnvironmentShaderStack", false);
-		}
+			SIConnectShaderToCnxPoint(raytype , passesList[i] + ".EnvironmentShaderStack", false);
 	}
 	else 
 	{
@@ -646,15 +634,11 @@ function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, cre
 	var pass = passesList[0];
 	
 	var raytype = CreateShaderFromProgID("Softimage.sib_color_rayswitch.1.0", pass);
-	
 	var subComponentsList = ["red", "green", "blue"];
-	
 	raytype.Parameters("enable_fg").value = 1;
 	for (var i = 0; i < subComponentsList.length; i++) 
 		raytype.Parameters("shadow").Parameters(subComponentsList[i]).value = 0;
-	
-	SIAddArrayElement(pass + ".EnvironmentShaderStack");
-	SIConnectShaderToCnxPoint(raytype + ".out", pass + ".Item", false);
+	SIConnectShaderToCnxPoint(raytype , pass + ".EnvironmentShaderStack", false);
 	
 	var ports = ["eye", "refraction"];
 	if (createBackground) 
@@ -703,10 +687,7 @@ function sIBL_XSI_MR_getEnvironmentShaders(createBackground, createLighting, cre
 	
 	// Connecting The Raytype Shader To Others Passes.
 	for (var i = 1; i < passesList.length; i++) 
-	{
-		SIAddArrayElement(passesList[i] + ".EnvironmentShaderStack");
-		SIConnectShaderToCnxPoint(raytype + ".out", passesList[i] + ".Item", false);
-	}
+		SIConnectShaderToCnxPoint(raytype , passesList[i] + ".EnvironmentShaderStack", false);
 	
 	raytype.Parameters("name").value = "sIBL_Raytype";
 }
@@ -911,9 +892,7 @@ function sIBL_XSI_MR_update_sun(sunU, sunV, sunColor, sunMultiplier, feedbackRad
 			Application.LogMessage("sIBL_GUI | No Sun Found, Skipping Sun Related Updates !", siWarning);
 		}
 	}
-}
-
-function sIBL_XSI_MR_update_dynamicsLights(dynamicLights, feedbackRadius)
+}function sIBL_XSI_MR_update_dynamicsLights(dynamicLights, feedbackRadius)
 {
 	var sceneDynamicLights = sIBL_XSI_MR_getMatchingObjectsByClassID("{5FC0CCAE-3DC8-11D0-9449-00AA006D3165}", "sIBL_DKL_", false);
 	
@@ -958,7 +937,7 @@ function sIBL_XSI_MR_getLight(parent, constraintParent, lightType, lightName, sc
 		physicalSunShader = CreateShaderFromProgID("mentalray.mia_physicalsun.1.0", light + ".light");
 		SIConnectShaderToCnxPoint(physicalSunShader, light + ".light.LightShader", false);
 		SIConnectShaderToCnxPoint(physicalSunShader, light + ".light.PhotonShader", false);
-		physicalSunShader.Parameters("multiplier").value = intensity / 100;
+		physicalSunShader.Parameters("multiplier").value = intensity / 6.5;
 		
 		DisconnectAndDeleteOrUnnestShaders(light + ".light.soft_light", light + ".light");
 	}

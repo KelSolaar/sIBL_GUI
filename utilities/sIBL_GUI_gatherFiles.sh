@@ -12,6 +12,15 @@ cp ./utilities/nsis/sIBL_GUI_Setup.exe ./releases/repository/sIBL_GUI/sIBL_GUI.e
 #! MacOsX Gathering.
 cp ./releases/Darwin/sIBL_GUI.dmg ./releases/repository/sIBL_GUI/sIBL_GUI.dmg
 
+#! Templates Cleanup.
+echo ----------------------------------------------------------------
+echo Cleanup - Begin
+echo ----------------------------------------------------------------
+python ./utilities/sIBL_GUI_recursiveRemove.py ./src/templates/ .DS_Store
+echo ----------------------------------------------------------------
+echo Cleanup - End
+echo ----------------------------------------------------------------
+
 #! Templates Gathering.
 mkdir ./releases/repository/sIBL_GUI/templates/
 cd ./src/templates/3dsMax/
