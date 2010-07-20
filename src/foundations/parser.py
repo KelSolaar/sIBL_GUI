@@ -337,7 +337,7 @@ class Parser( io.File ):
 		'''
 		This Method Process The File Content To Extract The Sections As A Dictionary.
 
-		@return: Current File Sections. ( Dictionary Or None )
+		@return: Parsing Success. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Reading Sections From : '{0}'.".format( self._file ) )
@@ -368,6 +368,10 @@ class Parser( io.File ):
 									lineTokens = line.split( self._splitter )
 									attributes[section + self._namespaceSplitter + lineTokens[0].strip()] = lineTokens[1].strip().strip( "\"" )
 						self._sections[section] = attributes
+
+				LOGGER.debug( "> '{0}' File Parsing Done !".format( self._file ) )
+				return True
+
 			else:
 				raise foundations.exceptions.FileStructureError( "'{0}' Structure Is Invalid : No Section Found At First Line !".format( self._file ) )
 
