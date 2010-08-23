@@ -114,12 +114,12 @@ def getVersionRank( version ):
 	return sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
 
 @core.executionTrace
-def getNormalisedPath( path ):
+def getNormalizedPath( path ):
 	'''
-	This Definition Normalises A Path, Escaping Slashes If Needeed On Windows.
+	This Definition Normalizes A Path, Escaping Slashes If Needed On Windows.
 
-	@param path: Path To Normalise. ( String )
-	@return: Normalised Path. ( String )
+	@param path: Path To Normalize. ( String )
+	@return: Normalized Path. ( String )
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":

@@ -1442,6 +1442,7 @@ class TemplatesOutliner( UiComponent ):
 		selectedTemplates = self.getSelectedTemplates()
 		if selectedTemplates :
 			for template in selectedTemplates :
+				LOGGER.info( "{0} | Opening '{1}' Template Help File : '{2}'.".format( self.__class__.__name__, template._datas.name, template._datas.helpFile ) )
 				QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
 
 	@core.executionTrace
