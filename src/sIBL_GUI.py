@@ -312,7 +312,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	#***	Initialization.
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception )
 	def __init__( self ) :
 		'''
 		This Method Initializes The Class.
