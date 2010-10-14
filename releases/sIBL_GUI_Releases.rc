@@ -4,16 +4,16 @@ Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows
 Type = "Stable"
 
 [XSI_MR_Standard]
-Release = 1.6.5
+Release = 1.6.6
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/XSI_MR_Standard/Stable/XSI_MR_Standard.zip"
-Comment = "XSI Mental Ray Template : Code Improvements."
+Comment = "XSI Mental Ray Template : Code Cleanup."
 
 [Softimage_MR_Standard]
-Release = 1.0.7
+Release = 1.0.8
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_Standard/Stable/Softimage_MR_Standard.zip"
-Comment = "Softimage Mental Ray Template : Fixed Issues Related To SI 2011 Api Changes."
+Comment = "Softimage Mental Ray Template : Code Cleanup."
 
 [Maya_MR_Standard]
 Release = 1.7.5
