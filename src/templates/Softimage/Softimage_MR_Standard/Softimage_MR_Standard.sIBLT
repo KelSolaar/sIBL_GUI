@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.7 | String | Template Release
-Date = @Date | 13 July 2010 | String | Date
+Release = @Release | 1.0.8 | String | Template Release
+Date = @Date | 15 October 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -1009,15 +1009,11 @@ function sIBL_XSI_MR_bridgeControlsAndShaders(pass, slot)
 {
 	AddExpr(pass + ".sIBL_" + slot + "_Color_Switch.switch", "1-(sIBL.Smart_IBL_Controls." + slot + "_Toggle)", true);
 	
-	var componentsList = ["Gamma", "Gain"];
-	var subComponentsList = ["red", "green", "blue"];
+	var componentsList = ["red", "green", "blue"];
 	for (var i = 0; i < componentsList.length; i++) 
 	{
-		for (var j = 0; j < subComponentsList.length; j++) 
-		{
-			AddExpr(pass + ".sIBL_" + slot + "_Color_Math_Basic.input2." + subComponentsList[j], "sIBL.Smart_IBL_Controls." + slot + "_Gain", true);
-			AddExpr(pass + ".sIBL_" + slot + "_Gamma_Color_Math_Basic.input2." + subComponentsList[j], "sIBL.Smart_IBL_Controls." + slot + "_Gamma", true);
-		}
+		AddExpr(pass + ".sIBL_" + slot + "_Color_Math_Basic.input2." + componentsList[i], "sIBL.Smart_IBL_Controls." + slot + "_Gain", true);
+		AddExpr(pass + ".sIBL_" + slot + "_Gamma_Color_Math_Basic.input2." + componentsList[i], "sIBL.Smart_IBL_Controls." + slot + "_Gamma", true);
 	}
 }
 
