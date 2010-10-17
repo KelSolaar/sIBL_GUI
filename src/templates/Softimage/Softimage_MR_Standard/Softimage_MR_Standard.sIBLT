@@ -251,7 +251,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					// Shaders / Feedback Connection.
 					var feedback = Application.ActiveSceneRoot.FindChild("sIBL_Feedback");
 					if (feedback != null) 
-						sIBL_XSI_MR_connectFeedBackToSIBLShaders(feedback, createBackground, createLighting, createReflection, selectedPassesList);
+						sIBL_XSI_MR_connectFeedBackToShaders(feedback, createBackground, createLighting, createReflection, selectedPassesList);
 					progressBar.Increment();
 					
 					// Ground Creation.
@@ -1017,7 +1017,7 @@ function sIBL_XSI_MR_bridgeControlsAndShaders(pass, slot)
 	}
 }
 
-function sIBL_XSI_MR_connectFeedBackToSIBLShaders(feedback, connectToBackground, connectToLighting, connectToReflection, passesList)
+function sIBL_XSI_MR_connectFeedBackToShaders(feedback, connectToBackground, connectToLighting, connectToReflection, passesList)
 {
 	var pass = passesList[0];
 	
