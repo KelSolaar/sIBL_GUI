@@ -3,7 +3,7 @@ Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
 Release = @Release | 1.6.6 | String | Template Release
-Date = @Date | 17 October 2010 | String | Date
+Date = @Date | 18 October 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -774,11 +774,11 @@ function sIBL_XSI_MR_getFeedbackGeometry(feedbackRadius, createFeedBack)
 	CreateProjection(feedback, siTxtUV, siTxtDefaultPlanarXY, null, "sIBL_Texture_Projection");
 	
 	var globalKinematics = feedback.Kinematics.Global.Parameters;
-	globalKinematics("sclx").value = -feedbackRadius;
+	globalKinematics("sclx").value = -globalKinematics("sclx").value;
+	ResetTransform(feedback, siCtr, siSRT, siXYZ);
+	globalKinematics("sclx").value = feedbackRadius;
 	globalKinematics("scly").value = feedbackRadius;
 	globalKinematics("sclz").value = feedbackRadius;
-	
-	//ResetTransform(feedback, siCtr, siSRT, siXYZ);
 	
 	ApplyTopoOp("Inverse", feedback, 3, siImmediateOperation);
 	
