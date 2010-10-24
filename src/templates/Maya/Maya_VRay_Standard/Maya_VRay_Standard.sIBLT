@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.2.0 | String | Template Release
-Date = @Date | 04 July 2010 | String | Date
+Release = @Release | 1.2.1 | String | Template Release
+Date = @Date | 24 October 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -316,7 +316,7 @@ global proc sIBL_Maya_VRay_environmentDeletion()
 global proc sIBL_Maya_VRay_getMainLocator()
 {
 	string $sIBLGroup = sIBL_Maya_VRay_getSIBLGroup();
-	string $sIBLLocator = `createNode annotationShape`;
+	string $sIBLLocator = `createNode "annotationShape"`;
 	
 	setAttr ($sIBLLocator + ".displayArrow") 0;
 	setAttr -lock true -keyable false ($sIBLLocator + ".displayArrow");
@@ -367,16 +367,16 @@ global proc sIBL_Maya_VRay_getMainLocator()
 
 global proc sIBL_Maya_VRay_getEnvironmentTexturesBranch(string $slot, string $filePath, string $prefix, int $useOverride)
 {
-	string $file = `createNode file`;	
-	string $gammaCorrect = `createNode gammaCorrect`;
+	string $file = `shadingNode -asTexture "file"`;	
+	string $gammaCorrect = `shadingNode -asUtility "gammaCorrect"`;
 
 	if($useOverride)
 	{
-		string $conditionNode = `createNode condition`;
+		string $conditionNode = `shadingNode -asUtility "condition"`;
 		setAttr ($conditionNode + ".secondTerm") 1;
 		connectAttr -f ($gammaCorrect + ".outValue") ($conditionNode + ".colorIfTrue");
 			
-		string $blendColors = `createNode blendColors`;
+		string $blendColors = `shadingNode -asUtility "blendColors"`;
 		setAttr ($blendColors + ".color1") -type double3 0 0 0 ;
 		setAttr ($blendColors + ".color2") -type double3 0 0 0 ;
 		setAttr ($blendColors + ".blender") 0;
@@ -394,7 +394,7 @@ global proc sIBL_Maya_VRay_getEnvironmentTexturesBranch(string $slot, string $fi
 	
 	connectAttr -f ($file + ".outColor") ($gammaCorrect + ".value");
 	
-	string $vCoordinaterayPlacement = `createNode VRayPlaceEnvTex`;
+	string $vCoordinaterayPlacement = `shadingNode -asUtility "VRayPlaceEnvTex"`;
 	setAttr ($vCoordinaterayPlacement + ".mappingType") 2;
 
 	connectAttr -f ($vCoordinaterayPlacement + ".outUV") ($file + ".uvCoord");
@@ -474,12 +474,12 @@ global proc sIBL_Maya_VRay_getFeedback(string $backgroundFilePath, float $feedba
 	string $feedback = sIBL_Maya_VRay_getFeedbackGeometry($feedbackRadius);
 	parent $feedback $sIBLGroup;
 
-	string $lambertShader = `shadingNode -asShader lambert`;
+	string $lambertShader = `shadingNode -asShader "lambert"`;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
 
-	string $file = `createNode file`;
+	string $file = `shadingNode -asTexture "file"`;
 	if (!`attributeExists "resolution" $file`)
 		addAttr -ln "resolution" -at long $file;
  	setAttr  ($file + ".resolution") 2048;
@@ -488,7 +488,7 @@ global proc sIBL_Maya_VRay_getFeedback(string $backgroundFilePath, float $feedba
 
 	connectAttr -f ($file + ".outColor") ($lambertShader + ".color");
 
-	string $place2dTexture = `createNode place2dTexture`;
+	string $place2dTexture = `shadingNode -asUtility "place2dTexture"`;
 
 	connectAttr -f ($place2dTexture + ".outUV") ($file + ".uvCoord");
 	connectAttr -f ($place2dTexture + ".outUvFilterSize") ($file + ".uvFilterSize");
@@ -562,7 +562,7 @@ global proc sIBL_Maya_VRay_getLight(string $ligthType, string $lightName, float 
 	
 	parent $light $sIBLGroup;
 
-	string $pointOnSurfaceInfo = `createNode pointOnSurfaceInfo`;
+	string $pointOnSurfaceInfo = `createNode "pointOnSurfaceInfo"`;
 	connectAttr -f ($feedback[0] + "Shape.worldSpace[0]") ($pointOnSurfaceInfo + ".inputSurface");
 	connectAttr -f ($pointOnSurfaceInfo + ".position") ($light + ".translate");
 
