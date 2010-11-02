@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.7.5 | String | Template Release
-Date = @Date | 04 July 2010 | String | Date
+Release = @Release | 1.7.6 | String | Template Release
+Date = @Date | 24 October 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -170,7 +170,7 @@ global proc sIBL_Maya_MR_setup(string $backgroundFilePath,
 	int $breakExecution = 0;
 	if($showCamerasDialog)
 	{
-		string $locator = `createNode locator`;
+		string $locator = `createNode "locator"`;
 		string $locatorTransform = sIBL_Maya_MR_getTransform($locator);
 		addAttr -ln "camerasList"  -dt "string"  $locatorTransform;
 		rename $locatorTransform "sIBL_GUI_CamerasList_Container";
@@ -446,7 +446,7 @@ global proc sIBL_Maya_MR_environmentDeletion()
 global proc sIBL_Maya_MR_getMainLocator()
 {
 	string $sIBLGroup = sIBL_Maya_MR_getSIBLGroup();
-	string $sIBLLocator = `createNode annotationShape`;
+	string $sIBLLocator = `createNode "annotationShape"`;
 	
 	setAttr ($sIBLLocator + ".displayArrow") 0;
 	setAttr -lock true -keyable false ($sIBLLocator + ".displayArrow");
@@ -497,15 +497,15 @@ global proc sIBL_Maya_MR_getMainLocator()
 
 global proc sIBL_Maya_MR_getEnvironmentShadersBranch(string $raySwitch, string $connectionEntries[], string $filePath, string $prefix, int $useOverride)
 {
-	string $gammaGain = `createNode mip_gamma_gain`;
+	string $gammaGain = `shadingNode -asUtility "mip_gamma_gain"`;
 	
 	if($useOverride)
 	{
-		string $conditionNode = `createNode condition`;
+		string $conditionNode = `shadingNode -asUtility "condition"`;
 		setAttr ($conditionNode + ".secondTerm") 1;
 		connectAttr -f ($gammaGain + ".outValue") ($conditionNode + ".colorIfTrue");
 			
-		string $colorAlphaNode = `createNode mib_color_alpha`;
+		string $colorAlphaNode = `shadingNode -asUtility "mib_color_alpha"`;
 		setAttr ($colorAlphaNode + ".factor") 0;
 		connectAttr -f ($colorAlphaNode + ".outValue") ($conditionNode + ".colorIfFalse");
 		
@@ -526,12 +526,12 @@ global proc sIBL_Maya_MR_getEnvironmentShadersBranch(string $raySwitch, string $
 		}
 	}
 
-	string $lookupSpherical = `createNode mib_lookup_spherical`;
+	string $lookupSpherical = `shadingNode -asShader "mib_lookup_spherical"`;
 
 	connectAttr -f ($lookupSpherical + ".outValue") ($gammaGain + ".input");
 	connectAttr -f ($lookupSpherical + ".outValueA") ($gammaGain + ".inputA");
 
-	string $mentalrayTexture = `createNode mentalrayTexture`;
+	string $mentalrayTexture = `shadingNode -asTexture "mentalrayTexture"`;
 
 	connectAttr -f ($mentalrayTexture + ".message") ($lookupSpherical + ".tex");
 	setAttr -type "string" ($mentalrayTexture + ".fileTextureName") $filePath;
@@ -543,7 +543,7 @@ global proc sIBL_Maya_MR_getEnvironmentShadersBranch(string $raySwitch, string $
 
 global proc sIBL_Maya_MR_getEnvironmentShaders(string $camerasList[], int $createBackground, int $createLighting, int $createReflection, string $backgroundFilePath, string $lightingFilePath, string $reflectionFilePath)
 {
-	string $raySwitch = `createNode mip_rayswitch`;
+	string $raySwitch = `shadingNode -asUtility "mip_rayswitch"`;
 
 	if ($createBackground)
 	{
@@ -622,12 +622,12 @@ global proc sIBL_Maya_MR_getFeedback(string $backgroundFilePath, float $feedback
 	string $feedback = sIBL_Maya_MR_getFeedbackGeometry($feedbackRadius);
 	parent $feedback $sIBLGroup;
 
-	string $lambertShader = `shadingNode -asShader lambert`;
+	string $lambertShader = `shadingNode -asShader "lambert"`;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
 
-	string $file = `createNode file`;
+	string $file = `shadingNode -asTexture "file"`;
 	if (!`attributeExists "resolution" $file`)
 		addAttr -ln "resolution" -at long $file;
  	setAttr  ($file + ".resolution") 2048;
@@ -636,7 +636,7 @@ global proc sIBL_Maya_MR_getFeedback(string $backgroundFilePath, float $feedback
 
 	connectAttr -f ($file + ".outColor") ($lambertShader + ".color");
 
-	string $place2dTexture = `createNode place2dTexture`;
+	string $place2dTexture = `shadingNode -asUtility "place2dTexture"`;
 
 	connectAttr -f ($place2dTexture + ".outUV") ($file + ".uvCoord");
 	connectAttr -f ($place2dTexture + ".outUvFilterSize") ($file + ".uvFilterSize");
@@ -686,7 +686,7 @@ global proc sIBL_Maya_MR_getLight( string $ligthType, int $physicalSun, string $
 
 	if($physicalSun)
 	{
-		string $physicalSunShader = `createNode mia_physicalsun`;
+		string $physicalSunShader = `shadingNode -asLight "mia_physicalsun"`;
 		string $lightShape[] = sIBL_Maya_MR_getShapes($light);
 		setAttr ($physicalSunShader + ".y_is_up") 1;
 		setAttr ($physicalSunShader + ".multiplier") ($intensity/10);
@@ -703,7 +703,7 @@ global proc sIBL_Maya_MR_getLight( string $ligthType, int $physicalSun, string $
 	setAttr ($light + ".useRayTraceShadows") 1;
 	parent $light $sIBLGroup;
 
-	string $pointOnSurfaceInfo = `createNode pointOnSurfaceInfo`;
+	string $pointOnSurfaceInfo = `createNode "pointOnSurfaceInfo"`;
 	connectAttr -f ($feedback[0] + "Shape.worldSpace[0]") ($pointOnSurfaceInfo + ".inputSurface");
 	connectAttr -f ($pointOnSurfaceInfo + ".position") ($light + ".translate");
 
@@ -791,13 +791,13 @@ global proc sIBL_Maya_MR_activateLinearWorkflow(string $camerasList[], int $crea
 	string $tonemapper;
 	if($photographicTonemapper)
 	{
-		$tonemapper = `createNode "mia_exposure_photographic"`;
+		$tonemapper = `shadingNode -asUtility "mia_exposure_photographic"`;
 		setAttr ($tonemapper + ".film_iso") 0;
 		setAttr ($tonemapper + ".burn_highlights") 0.25;
 	}
 	else
 	{
-		$tonemapper = `createNode "mia_exposure_simple"`;
+		$tonemapper = `shadingNode -asUtility "mia_exposure_simple"`;
 	}
 
 	for($camera in $camerasList)
@@ -842,11 +842,11 @@ global proc sIBL_Maya_MR_getGround(float $feedbackRadius, int $shadowCatcher)
 	{
 		if( `objExists "sIBL_Background_mip_gamma_gain"` )
 		{
-			string $mip_MSNode = `createNode "mip_matteshadow"`;
+			string $mip_MSNode = `shadingNode -asUtility "mip_matteshadow"`;
 			connectAttr -f sIBL_mip_rayswitch.outValue ( $mip_MSNode + ".background" );
 			setAttr ($mip_MSNode + ".catch_indirect") 1;
 
-			string $lambertShader = `shadingNode -asShader lambert`;
+			string $lambertShader = `shadingNode -asShader "lambert"`;
 			string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 			sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 			connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");

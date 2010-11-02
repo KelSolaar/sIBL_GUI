@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.7 | String | Template Release
-Date = @Date | 13 July 2010 | String | Date
+Release = @Release | 1.0.8 | String | Template Release
+Date = @Date | 18 October 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -230,7 +230,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					{
 						if (createSun) 
 						{
-							if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Sun Creation !")) 
+							if (sIBL_XSI_MR_objectExists("sIBL_Feedback")) 
 							{
 								sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, physicalSun);
 							}
@@ -251,7 +251,7 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					// Shaders / Feedback Connection.
 					var feedback = Application.ActiveSceneRoot.FindChild("sIBL_Feedback");
 					if (feedback != null) 
-						sIBL_XSI_MR_connectFeedBackToSIBLShaders(feedback, createBackground, createLighting, createReflection, selectedPassesList);
+						sIBL_XSI_MR_connectFeedBackToShaders(feedback, createBackground, createLighting, createReflection, selectedPassesList);
 					progressBar.Increment();
 					
 					// Ground Creation.
@@ -764,11 +764,11 @@ function sIBL_XSI_MR_getFeedbackGeometry(feedbackRadius, createFeedBack)
 	CreateProjection(feedback, siTxtUV, siTxtDefaultPlanarXY, null, "sIBL_Texture_Projection");
 	
 	var globalKinematics = feedback.Kinematics.Global.Parameters;
-	globalKinematics("sclx").value = -feedbackRadius;
+	globalKinematics("sclx").value = -globalKinematics("sclx").value;
+	ResetTransform(feedback, siCtr, siSRT, siXYZ);
+	globalKinematics("sclx").value = feedbackRadius;
 	globalKinematics("scly").value = feedbackRadius;
 	globalKinematics("sclz").value = feedbackRadius;
-	
-	//ResetTransform(feedback, siCtr, siSRT, siXYZ);
 	
 	ApplyTopoOp("Inverse", feedback, 3, siImmediateOperation);
 	
@@ -875,7 +875,7 @@ function sIBL_XSI_MR_update_sun(sunU, sunV, sunColor, sunMultiplier, feedbackRad
 	
 	if (sun == 0 && overrideTweaks) 
 	{
-		if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Sun Creation !")) 
+		if (sIBL_XSI_MR_objectExists("sIBL_Feedback")) 
 		{
 			sIBL_XSI_MR_getSun(sunU, sunV, sunColor, sunMultiplier, feedbackRadius, physicalSun);
 		}
@@ -898,7 +898,7 @@ function sIBL_XSI_MR_update_sun(sunU, sunV, sunColor, sunMultiplier, feedbackRad
 	
 	if (sceneDynamicLights == 0 && overrideTweaks) 
 	{
-		if (sIBL_XSI_MR_objectExists("sIBL_Feedback", "sIBL_GUI | No Feedback Found, Skipping Dynamic Lights Creation !")) 
+		if (sIBL_XSI_MR_objectExists("sIBL_Feedback")) 
 		{
 			sIBL_XSI_MR_getDynamicLights(dynamicLights, feedbackRadius);
 		}
@@ -953,7 +953,7 @@ function sIBL_XSI_MR_getLight(parent, constraintParent, lightType, lightName, sc
 	
 	var surfaceConstraint = ApplyCns("Surface", light, constraintParent);
 	
-	if (sIBL_XSI_MR_objectExists("sIBL_Lights_Target", "sIBL_GUI | No 'sIBL_Lights_Target' Found, Creating It !")) 
+	if (sIBL_XSI_MR_objectExists("sIBL_Lights_Target")) 
 	{
 		var lightTarget = Application.ActiveSceneRoot.FindChild("sIBL_Lights_Target");
 	}
@@ -1009,19 +1009,15 @@ function sIBL_XSI_MR_bridgeControlsAndShaders(pass, slot)
 {
 	AddExpr(pass + ".sIBL_" + slot + "_Color_Switch.switch", "1-(sIBL.Smart_IBL_Controls." + slot + "_Toggle)", true);
 	
-	var componentsList = ["Gamma", "Gain"];
-	var subComponentsList = ["red", "green", "blue"];
+	var componentsList = ["red", "green", "blue"];
 	for (var i = 0; i < componentsList.length; i++) 
 	{
-		for (var j = 0; j < subComponentsList.length; j++) 
-		{
-			AddExpr(pass + ".sIBL_" + slot + "_Color_Math_Basic.input2." + subComponentsList[j], "sIBL.Smart_IBL_Controls." + slot + "_Gain", true);
-			AddExpr(pass + ".sIBL_" + slot + "_Gamma_Color_Math_Basic.input2." + subComponentsList[j], "sIBL.Smart_IBL_Controls." + slot + "_Gamma", true);
-		}
+		AddExpr(pass + ".sIBL_" + slot + "_Color_Math_Basic.input2." + componentsList[i], "sIBL.Smart_IBL_Controls." + slot + "_Gain", true);
+		AddExpr(pass + ".sIBL_" + slot + "_Gamma_Color_Math_Basic.input2." + componentsList[i], "sIBL.Smart_IBL_Controls." + slot + "_Gamma", true);
 	}
 }
 
-function sIBL_XSI_MR_connectFeedBackToSIBLShaders(feedback, connectToBackground, connectToLighting, connectToReflection, passesList)
+function sIBL_XSI_MR_connectFeedBackToShaders(feedback, connectToBackground, connectToLighting, connectToReflection, passesList)
 {
 	var pass = passesList[0];
 	
@@ -1127,18 +1123,13 @@ function sIBL_XSI_MR_getGround(feedbackRadius, shadowCatcher)
 	sIBL_XSI_MR_addToDisplayLayer("sIBL_Ground_Layer", ground);
 }
 
-function sIBL_XSI_MR_objectExists(object, errorMessage)
+function sIBL_XSI_MR_objectExists(object)
 {
 	var seekedObject = Application.ActiveSceneRoot.FindChild(object);
 	if (seekedObject != null) 
-	{
 		return true
-	}
 	else 
-	{
-		Application.LogMessage(errorMessage, siWarning);
 		return false
-	}
 }
 
 function sIBL_XSI_MR_addToDisplayLayer(layerName, object)

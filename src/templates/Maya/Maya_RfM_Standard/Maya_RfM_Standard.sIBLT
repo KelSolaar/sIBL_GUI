@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.9 | String | Template Release
-Date = @Date | 04 July 2010 | String | Date
+Release = @Release | 1.1.0 | String | Template Release
+Date = @Date | 24 October 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -312,7 +312,7 @@ global proc sIBL_Maya_RfM_environmentDeletion()
 global proc sIBL_Maya_RfM_getMainLocator()
 {
 	string $sIBLGroup = sIBL_Maya_RfM_getSIBLGroup();
-	string $sIBLLocator = `createNode annotationShape`;
+	string $sIBLLocator = `createNode "annotationShape"`;
 	
 	setAttr ($sIBLLocator + ".displayArrow") 0;
 	setAttr -lock true -keyable false ($sIBLLocator + ".displayArrow");
@@ -392,21 +392,21 @@ global proc sIBL_Maya_RfM_getEnvironmentSphereBranch(float $radius, string $pref
 	for( $scaleAttribute in $scaleAttributesList )
 		setAttr ($environmentSphere[0] + "." + $scaleAttribute) $radius;
 
-	string $surfaceShader = `shadingNode -asShader surfaceShader`;
+	string $surfaceShader = `shadingNode -asShader "surfaceShader"`;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($surfaceShader + ".outColor") ($shadingEngine + ".surfaceShader");
 
-	string $file = `createNode file`;	
-	string $gammaNode = `createNode gammaCorrect`;
+	string $file = `shadingNode -asTexture "file"`;	
+	string $gammaNode = `shadingNode -asUtility "gammaCorrect"`;
 	
 	if($useOverride)
 	{
-		string $conditionNode = `createNode condition`;
+		string $conditionNode = `shadingNode -asUtility "condition"`;
 		setAttr ($conditionNode + ".secondTerm") 1;
 		connectAttr -f ($gammaNode + ".outValue") ($conditionNode + ".colorIfTrue");
 			
-		string $blendColors = `createNode blendColors`;
+		string $blendColors = `shadingNode -asUtility "blendColors"`;
 		setAttr ($blendColors + ".color1") -type double3 0 0 0 ;
 		setAttr ($blendColors + ".color2") -type double3 0 0 0 ;
 		setAttr ($blendColors + ".blender") 0;
@@ -430,7 +430,7 @@ global proc sIBL_Maya_RfM_getEnvironmentSphereBranch(float $radius, string $pref
 
 	connectAttr -f ($file + ".outColor") ($gammaNode + ".value");
 
-	string $place2dTexture = `createNode place2dTexture`;
+	string $place2dTexture = `shadingNode -asUtility "place2dTexture"`;
 
 	connectAttr -f ($place2dTexture + ".outUV") ($file + ".uvCoord");
 	connectAttr -f ($place2dTexture + ".outUvFilterSize") ($file + ".uvFilterSize");
@@ -578,12 +578,12 @@ global proc sIBL_Maya_RfM_getFeedback(string $backgroundFilePath, float $feedbac
 	string $feedback = sIBL_Maya_RfM_getFeedbackGeometry($feedbackRadius);
 	parent $feedback $sIBLGroup;
 
-	string $lambertShader = `shadingNode -asShader lambert`;
+	string $lambertShader = `shadingNode -asShader "lambert"`;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
 
-	string $file = `createNode file`;
+	string $file = `shadingNode -asTexture "file"`;
 	if (!`attributeExists "resolution" $file`)
 		addAttr -ln "resolution" -at long $file;
  	setAttr  ($file + ".resolution") 2048;
@@ -592,7 +592,7 @@ global proc sIBL_Maya_RfM_getFeedback(string $backgroundFilePath, float $feedbac
 
 	connectAttr -f ($file + ".outColor") ($lambertShader + ".color");
 
-	string $place2dTexture = `createNode place2dTexture`;
+	string $place2dTexture = `shadingNode -asUtility "place2dTexture"`;
 
 	connectAttr -f ($place2dTexture + ".outUV") ($file + ".uvCoord");
 	connectAttr -f ($place2dTexture + ".outUvFilterSize") ($file + ".uvFilterSize");
@@ -646,7 +646,7 @@ global proc sIBL_Maya_RfM_getLight( string $ligthType, string $lightName, float 
 	setAttr ($light + ".useRayTraceShadows") 1;
 	parent $light $sIBLGroup;
 
-	string $pointOnSurfaceInfo = `createNode pointOnSurfaceInfo`;
+	string $pointOnSurfaceInfo = `createNode "pointOnSurfaceInfo"`;
 	connectAttr -f ($feedback[0] + "Shape.worldSpace[0]") ($pointOnSurfaceInfo + ".inputSurface");
 	connectAttr -f ($pointOnSurfaceInfo + ".position") ($light + ".translate");
 
