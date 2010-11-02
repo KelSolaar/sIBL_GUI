@@ -333,6 +333,8 @@ class Db( Component ):
 		else :
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
 
+		LOGGER.info( "{0} | Session Database Location : '{1}'".format( self.__class__.__name__, self._dbName ) )
+
 		LOGGER.debug( "> Creating Database Engine." )
 		self._dbEngine = sqlalchemy.create_engine( "sqlite:///{0}".format( self._dbName ) )
 
