@@ -16,34 +16,34 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_S
 Comment = "Softimage Mental Ray Template : Code Cleanup."
 
 [Maya_MR_Standard]
-Release = 1.7.6
+Release = 1.7.7
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standard/Stable/Maya_MR_Standard.zip"
-Comment = "Maya Mental Ray Template : Rendering Nodes Are Created With 'shadingNode' Command."
+Comment = "Maya Mental Ray Template : Add Pre / Post Process Callbacks."
 
 [Maya_VRay_Standard]
-Release = 1.2.1
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Rendering Nodes Are Created With 'shadingNode' Command."
-
-[Maya_VRay_Dome_Light]
-Release = 1.2.1
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
-Comment = "VRay For Maya Dome Light Template : Rendering Nodes Are Created With 'shadingNode' Command."
-
-[Maya_Turtle_Standard]
 Release = 1.2.2
 Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
+Comment = "VRay For Maya Template : Add Pre / Post Process Callbacks."
+
+[Maya_VRay_Dome_Light]
+Release = 1.2.2
+Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
+Comment = "VRay For Maya Dome Light Template : Add Pre / Post Process Callbacks."
+
+[Maya_Turtle_Standard]
+Release = 1.2.3
+Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
-Comment = "Maya Turtle Template : Rendering Nodes Are Created With 'shadingNode' Command."
+Comment = "Maya Turtle Template : Add Pre / Post Process Callbacks."
 
 [Maya_RfM_Standard]
-Release = 1.1.0
+Release = 1.1.1
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Standard/Stable/Maya_RfM_Standard.zip"
-Comment = "Renderman For Maya Template : Rendering Nodes Are Created With 'shadingNode' Command."
+Comment = "Renderman For Maya Template : Add Pre / Post Process Callbacks."
 
 [3dsMax_MR_Standard]
 Release = 1.0.4
