@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.2.1 | String | Template Release
-Date = @Date | 24 October 2010 | String | Date
+Release = @Release | 1.2.2 | String | Template Release
+Date = @Date | 05 November 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -152,6 +152,18 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 			int $activateIndirectIllumination,
 			int $activateLinearWorkflow)
 {
+	if( `exists sIBL_Maya_preProcessCallback` )
+	{
+		print("sIBL_GUI | Executing Overall Preprocess Callback !\n");
+		sIBL_Maya_preProcessCallback();
+	}
+
+	if( `exists sIBL_Maya_VRay_preProcessCallback` )
+	{
+		print("sIBL_GUI | Executing Template Specific Preprocess Callback !\n");
+		sIBL_Maya_VRay_preProcessCallback();
+	}
+
 	print("sIBL_GUI | Starting sIBL File Import !\n");
 
 	string $sessionPreservedAttributes[] = sIBL_Maya_VRay_getSessionPreservedAttributes();
@@ -217,7 +229,19 @@ global proc sIBL_Maya_VRay_setup(string $backgroundFilePath,
 			sIBL_Maya_VRay_restoreSessionAttributes($sessionStoredAttributes);
 
 		print("sIBL_GUI | sIBL File Import Finished !\n");
+
+		if( `exists sIBL_Maya_postProcessCallback` )
+		{
+			print("sIBL_GUI | Executing Overall Postprocess Callback !\n");
+			sIBL_Maya_postProcessCallback();
 		}
+
+		if( `exists sIBL_Maya_VRay_postProcessCallback` )
+		{
+			print("sIBL_GUI | Executing Template Specific Postprocess Callback !\n");
+			sIBL_Maya_VRay_postProcessCallback();
+		}
+	}
 }
 
 global proc string[] sIBL_Maya_VRay_getSessionPreservedAttributes()
