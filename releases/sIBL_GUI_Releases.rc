@@ -34,7 +34,7 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome
 Comment = "VRay For Maya Dome Light Template : Add Pre / Post Process Callbacks."
 
 [Maya_Turtle_Standard]
-Release = 1.2.3
+Release = 1.2.2
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
 Comment = "Maya Turtle Template : Add Pre / Post Process Callbacks."
