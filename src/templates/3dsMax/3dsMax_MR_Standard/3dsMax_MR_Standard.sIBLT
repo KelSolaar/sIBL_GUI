@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.4 | String | Template Release
-Date = @Date | 17 June 2010 | String | Date
+Release = @Release | 1.0.5 | String | Template Release
+Date = @Date | 06 November 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -354,6 +354,18 @@ fn sIBL_3dsmax_MR_setup  =
 
 	if( mental_ray_renderer != undefined ) then
 	(
+		if( sIBL_3dsmax_preProcessCallback != undefined ) then
+		(
+			print "sIBL_GUI | Executing Overall Preprocess Callback !"
+			sIBL_3dsmax_preProcessCallback()
+		)
+
+		if( sIBL_3dsmax_MR_preProcessCallback != undefined ) then
+		(
+			print "sIBL_GUI | Executing Template Specific Preprocess Callback !"
+			sIBL_3dsmax_MR_preProcessCallback()
+		)
+
 		print "sIBL_GUI | Starting sIBL File Import !"
 
 		sIBL_3dsmax_MR_environmentDeletion()
@@ -391,6 +403,18 @@ fn sIBL_3dsmax_MR_setup  =
 			sIBL_3dsmax_MR_activateLinearWorkflow sIBL_OPTIONS.createBackground
 		
 		print "sIBL_GUI | sIBL File Import Finished !"
+		
+		if( sIBL_3dsmax_postProcessCallback != undefined ) then
+		(
+			print "sIBL_GUI | Executing Overall Postprocess Callback !"
+			sIBL_3dsmax_postProcessCallback()
+		)
+
+		if( sIBL_3dsmax_MR_postProcessCallback != undefined ) then
+		(
+			print "sIBL_GUI | Executing Template Specific Postprocess Callback !"
+			sIBL_3dsmax_MR_postProcessCallback()
+		)
 	)
 	else
 		messageBox "sIBL_GUI | Mental Ray Renderer Is Not Available !" title:"sIBL_GUI Error"
