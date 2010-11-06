@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_Turtle_Standard Template Manual.html | String | Help File
-Release = @Release | 1.2.2 | String | Template Release
+Release = @Release | 1.2.3 | String | Template Release
 Date = @Date | 05 November 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
