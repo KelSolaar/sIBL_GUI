@@ -87,7 +87,7 @@ def setVerbosityLevel( verbosityLevel ):
 	elif verbosityLevel == 4:
 		LOGGER.setLevel( logging.DEBUG )
 
-class StandardMessageHook:
+class StandardMessageHook( object ):
 	'''
 	This Is The StandardMessageHook Class.
 	'''
