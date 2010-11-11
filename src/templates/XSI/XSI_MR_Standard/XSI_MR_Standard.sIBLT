@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/XSI_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.6.6 | String | Template Release
-Date = @Date | 18 October 2010 | String | Date
+Release = @Release | 1.6.7 | String | Template Release
+Date = @Date | 07 November 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -100,6 +100,18 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 {
 	try 
 	{
+		if (sIBL_XSI_MR_commandExists("sIBL_XSI_preProcessCommand"))
+		{
+			LogMessage("sIBL_GUI | Executing Overall Preprocess Command !");
+			sIBL_XSI_preProcessCommand();
+		}
+
+		if (sIBL_XSI_MR_commandExists("sIBL_XSI_MR_preProcessCommand"))
+		{
+			print("sIBL_GUI | Executing Template Specific Preprocess Command !");
+			sIBL_XSI_MR_preProcessCommand();
+		}
+
 		// Storing Active Layer. 
 		var layer = ActiveProject.ActiveScene.ActiveLayer;
 		
@@ -281,6 +293,18 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					Application.LogMessage("sIBL_GUI | sIBL File Update Finished !");
 				else 
 					Application.LogMessage("sIBL_GUI | sIBL File Import Finished !");
+				
+				if (sIBL_XSI_MR_commandExists("sIBL_XSI_postProcessCommand"))
+				{
+					LogMessage("sIBL_GUI | Executing Overall Postprocess Command !");
+					sIBL_XSI_postProcessCommand();
+				}
+
+				if (sIBL_XSI_MR_commandExists("sIBL_XSI_MR_postProcessCommand"))
+				{
+					print("sIBL_GUI | Executing Template Specific Postprocess Command !");
+					sIBL_XSI_MR_postProcessCommand();
+				}
 			}
 			else 
 			{
@@ -1139,6 +1163,20 @@ function sIBL_XSI_MR_objectExists(object)
 		return true
 	else 
 		return false
+}
+
+function sIBL_XSI_MR_commandExists( command )
+{
+	var commands = Application.Commands;
+
+	var e = new Enumerator(commands)
+	for ( ; !e.atEnd(); e.moveNext() )
+	{
+		if (e.item() == command)
+			return true
+	}
+
+	return false
 }
 
 function sIBL_XSI_MR_addToDisplayLayer(layerName, object)

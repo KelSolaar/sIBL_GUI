@@ -28,7 +28,6 @@ h3. Additional Attributes
 
 * *Preserve Session Settings* : Preserves sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
 * *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Feedback Radius* : Sets the Feedback radius in Maya units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Hide Lights* : Hides all current Scene lights.
 * *Activate Linear Workflow* : Sets the Output Gamma to 2.2.

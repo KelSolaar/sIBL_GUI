@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.1 | String | Template Release
-Date = @Date | 05 November 2010 | String | Date
+Release = @Release | 1.1.2 | String | Template Release
+Date = @Date | 11 November 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -40,7 +40,6 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 [Additional Attributes]
 preserveSessionSettings = @preserveSessionSettings | 1 | Boolean | Preserve Session Settings
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 100 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 hideLights = @hideLights | 1 | Boolean | Hide Lights
 activateRaytracing = @activateRaytracing | 1 | Boolean | Activate Raytracing
@@ -83,7 +82,7 @@ int $createSun = @createSun;
 int $createLights = @createLights;
 int $preserveSessionSettings = @preserveSessionSettings;
 int $createFeedBack = @createFeedBack;
-float $feedbackRadius = @feedbackRadius;
+float $feedbackRadius = 100;
 int $createGround = @createGround;
 int $hideLights = @hideLights;
 int $activateRaytracing = @activateRaytracing;
@@ -170,6 +169,8 @@ global proc sIBL_Maya_RfM_setup(string $backgroundFilePath,
 	sIBL_Maya_RfM_activateRfM();
 
 	sIBL_Maya_RfM_environmentDeletion();
+
+	$feedbackRadius  = sIBL_Maya_RfM_getExtendedFeedbackRadius($feedbackRadius);
 
 	sIBL_Maya_RfM_getMainLocator();
 
@@ -280,6 +281,18 @@ global proc sIBL_Maya_RfM_restoreSessionAttributes( string $sessionStoredAttribu
 			float $value = $sessionStoredAttributes[$i+1];
 			setAttr $sessionStoredAttributes[$i] $value;
 		}
+}
+
+global proc float sIBL_Maya_RfM_getExtendedFeedbackRadius(float $feedbackRadius)
+{
+	float $sceneExtent = sIBL_Maya_RfM_getSceneExtent();
+	$sceneExtent = $sceneExtent * sqrt(2);
+	$sceneExtent = $sceneExtent + ($sceneExtent*10/100);
+
+	if($sceneExtent < $feedbackRadius)
+		return $feedbackRadius;
+	else
+		return sIBL_Maya_RfM_truncFloatNumber($sceneExtent, 10);
 }
 
 global proc sIBL_Maya_RfM_hideLights()
@@ -679,9 +692,7 @@ global proc sIBL_Maya_RfM_getLight( string $ligthType, string $lightName, float 
 
 	string $sIBL_Lights_Target_Locator = sIBL_Maya_RfM_getLigthsTargetLocator();
 
-	select $sIBL_Lights_Target_Locator;
-	select -tgl $light;
-	string $constraint[] = `aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0`;
+	string $constraint[] = `aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0 $sIBL_Lights_Target_Locator $light`;
 
 	sIBL_Maya_RfM_addToDisplayLayer("sIBL_Lighting_Layer", $light);
 
@@ -782,7 +793,7 @@ global proc sIBL_Maya_RfM_getGround(float $feedbackRadius)
 
 	string $scaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
 	for( $scaleAttribute in $scaleAttributesList )
-		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius*sqrt(2));
+		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius * sqrt(2));
 
 	parent $ground[0] $sIBLGroup;
 
@@ -801,24 +812,52 @@ global proc sIBL_Maya_RfM_activateRfM()
 	setAttr "renderManGlobals.rman__riattr___ShadingRate" 1;
 }
 
+global proc float sIBL_Maya_RfM_getSceneExtent()
+{
+	string $geometries[] = `ls -l -geometry`;
+	string $transforms[] = {};
+
+	for($geometry in $geometries)
+		$transforms[size($transforms)] = sIBL_Maya_MR_getTransform($geometry);
+	    
+	float $sceneExtent = 0;
+	for($transform in $transforms)
+	{
+		float $boundingBox[] = `xform -q -bb $transform`;
+			
+		for( $i=0; $i < size( $boundingBox ); $i++ )
+			if( abs($boundingBox[$i]) > $sceneExtent )
+				$sceneExtent = abs($boundingBox[$i]);
+	}
+	return $sceneExtent;
+}
+
+global proc float sIBL_Maya_RfM_truncFloatNumber(float $number, float $truncValue)
+{
+	if($truncValue != 0)
+		return `trunc ($number / $truncValue)` * $truncValue; 
+	else
+		return $number;
+}
+
 global proc string[] sIBL_Maya_RfM_getShapes(string $xform)
 {
-   string $shapes[];
-   $shapes[0] = $xform;
-   if ("transform" == `nodeType $xform`)
-      $shapes = `listRelatives -fullPath -shapes $xform`;
-   return $shapes;
+	string $shapes[];
+	$shapes[0] = $xform;
+	if ("transform" == `nodeType $xform`)
+		$shapes = `listRelatives -fullPath -shapes $xform`;
+	return $shapes;
 }
 
 global proc string sIBL_Maya_RfM_getTransform(string $shape)
 {
-   string $transform = "";
-   if ("transform" != `nodeType $shape`)
-   {
-      string $parents[] = `listRelatives -fullPath -parent $shape`;
-      $transform = $parents[0];
-   }
-   return $transform;
+	string $transform = "";
+	if ("transform" != `nodeType $shape`)
+	{
+		string $parents[] = `listRelatives -fullPath -parent $shape`;
+		$transform = $parents[0];
+	}
+	return $transform;
 }
 
 global proc int sIBL_Maya_RfM_objectExists(string $object, string $errorMessage)
