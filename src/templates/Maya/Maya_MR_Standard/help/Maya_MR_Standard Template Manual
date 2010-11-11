@@ -29,7 +29,6 @@ h3. Additional Attributes
 * *Preserve Session Settings* : Preserves sIBL session setup settings : previous sIBL_Feedback and sIBL_Ground transformations are restored.
 * *Camera Selection Dialog* : A Camera(s) selection dialog appears so you can choose wich Camera(s) will be affected by the IBL.
 * *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Feedback Radius* : Sets the Feedback radius in Maya units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Ground Shadow Catcher* : A mip_matteshadow Shader is assigned to the Ground.
 * *Hide Lights* : Hides all current Scene lights.

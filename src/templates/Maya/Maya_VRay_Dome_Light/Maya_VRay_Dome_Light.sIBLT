@@ -2,8 +2,8 @@
 Name = @Name | Dome Light | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Dome_Light Template Manual.html | String | Help File
-Release = @Release | 1.2.2 | String | Template Release
-Date = @Date | 05 November 2010 | String | Date
+Release = @Release | 1.2.3 | String | Template Release
+Date = @Date | 11 November 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -40,7 +40,6 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 [Additional Attributes]
 preserveSessionSettings = @preserveSessionSettings | 1 | Boolean | Preserve Session Settings
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 100 | Float | Feedback Radius
 sunAsVraySun = @sunAsVraySun | 1 | Boolean | Sun As VRaySun Light
 createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
@@ -83,7 +82,7 @@ int $createSun = @createSun;
 int $createLights = @createLights;
 int $preserveSessionSettings = @preserveSessionSettings;
 int $createFeedBack = @createFeedBack;
-float $feedbackRadius = @feedbackRadius;
+float $feedbackRadius = 100;
 int $sunAsVraySun = @sunAsVraySun;
 int $createGround = @createGround;
 int $shadowCatcher = @shadowCatcher;
@@ -170,6 +169,8 @@ global proc sIBL_Maya_VRay_DLight_setup(string $backgroundFilePath,
 	sIBL_Maya_VRay_DLight_activateVRay();
 
 	sIBL_Maya_VRay_DLight_environmentDeletion();
+	
+	$feedbackRadius  = sIBL_Maya_VRay_DLight_getExtendedFeedbackRadius($feedbackRadius);
 
 	sIBL_Maya_VRay_DLight_getMainLocator();
 
@@ -277,6 +278,18 @@ global proc sIBL_Maya_VRay_DLight_restoreSessionAttributes( string $sessionStore
 			float $value = $sessionStoredAttributes[$i+1];
 			setAttr $sessionStoredAttributes[$i] $value;
 		}
+}
+
+global proc float sIBL_Maya_VRay_DLight_getExtendedFeedbackRadius(float $feedbackRadius)
+{
+	float $sceneExtent = sIBL_Maya_VRay_DLight_getSceneExtent();
+	$sceneExtent = $sceneExtent * sqrt(2);
+	$sceneExtent = $sceneExtent + ($sceneExtent*10/100);
+
+	if($sceneExtent < $feedbackRadius)
+		return $feedbackRadius;
+	else
+		return sIBL_Maya_VRay_DLight_truncFloatNumber($sceneExtent, 10);
 }
 
 global proc sIBL_Maya_VRay_DLight_hideLights()
@@ -437,26 +450,33 @@ global proc sIBL_Maya_VRay_DLight_getEnvironment(int $createBackground, int $cre
 
 	if ($createLighting)
 	{
-
 		setAttr "vraySettings.cam_envtexGi" -type double3 0 0 0 ;
 
 		string $sIBLGroup = sIBL_Maya_VRay_DLight_getSIBLGroup();
 
-		string $vCoordinateRayDomeLight = `shadingNode -asLight "VRayLightDomeShape"`;
-		string $vCoordinateRayDomeLightShapes[] = sIBL_Maya_VRay_DLight_getShapes($vCoordinateRayDomeLight);
+		string $VRayDomeLight = `shadingNode -asLight "VRayLightDomeShape"`;
+		string $scaleAttributeList[] = { "sx", "sy", "sz" };
+		for( $attribute in $scaleAttributeList )
+			setAttr ($VRayDomeLight + "." + $attribute)  (2.0/3.0);
+
+		string $locksList[] = { "tx", "ty", "tz", "rx", "ry", "rz", "sx", "sy", "sz" };
+		for( $lock in $locksList )
+			setAttr -keyable false ($VRayDomeLight + "." + $lock);
+
+		string $VRayDomeLightShapes[] = sIBL_Maya_VRay_DLight_getShapes($VRayDomeLight);
 		string $VRayDomeLightAttributesList[] = {"domeSpherical", "useDomeTex", "invisible"};
 		for( $attribute in $VRayDomeLightAttributesList )
-			setAttr ($vCoordinateRayDomeLightShapes[0] + "." + $attribute) 1;
+			setAttr ($VRayDomeLightShapes[0] + "." + $attribute) 1;
 		string $VRayDomeLightAttributesList[] = {"affectReflections", "affectSpecular", "texAdaptive"};
 		for( $attribute in $VRayDomeLightAttributesList )
-			setAttr ($vCoordinateRayDomeLightShapes[0] + "." + $attribute) 0;
-		setAttr ($vCoordinateRayDomeLightShapes[0] + ".subdivs") 64;
+			setAttr ($VRayDomeLightShapes[0] + "." + $attribute) 0;
+		setAttr ($VRayDomeLightShapes[0] + ".subdivs") 128;
 
-		sIBL_Maya_VRay_DLight_getEnvironmentTexturesBranch(($vCoordinateRayDomeLightShapes[0]  + ".domeTex"), $lightingFilePath, "sIBL_Lighting", 1);
+		sIBL_Maya_VRay_DLight_getEnvironmentTexturesBranch(($VRayDomeLightShapes[0]  + ".domeTex"), $lightingFilePath, "sIBL_Lighting", 1);
 
-		parent $vCoordinateRayDomeLight $sIBLGroup;
+		parent $VRayDomeLight $sIBLGroup;
 
-		rename $vCoordinateRayDomeLight ("sIBL_VRay_DomeLight");
+		rename $VRayDomeLight ("sIBL_VRay_DomeLight");
 	}
 
 	if ($createReflection)
@@ -610,9 +630,7 @@ global proc sIBL_Maya_VRay_DLight_getLight(string $ligthType, string $lightName,
 
 	string $sIBL_Lights_Target_Locator = sIBL_Maya_VRay_DLight_getLigthsTargetLocator();
 
-	select $sIBL_Lights_Target_Locator;
-	select -tgl $light;
-	string $constraint[] = `aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0`;
+	string $constraint[] = `aimConstraint -offset 0 0 0 -weight 1 -aimVector 0 0 -1 -upVector 0 1 0 -worldUpType "vector" -worldUpVector 0 1 0 $sIBL_Lights_Target_Locator $light`;
 
 	sIBL_Maya_VRay_DLight_addToDisplayLayer("sIBL_Lighting_Layer", $light);
 
@@ -675,8 +693,10 @@ global proc sIBL_Maya_VRay_DLight_connectFeedBackToSIBLShaders(string $feedback,
 
 	if ($connectToLighting)
 	{
-		expression -name "sIBL_Lighting_Expression" -s ("sIBL_Lighting_VRayPlaceEnvTex.horRotation = -" + $feedback + ".rotateX + 90;\nsetAttr sIBL_VRay_DomeLightShape.locatorScale `getAttr " + $feedback + ".scaleX`;");
+		expression -name "sIBL_Lighting_Expression" -s ("sIBL_Lighting_VRayPlaceEnvTex.horRotation = -" + $feedback + ".rotateX + 90;\nsetAttr sIBL_VRay_DomeLightShape.locatorScale (`getAttr " + $feedback + ".scaleX`*60/100);");
 		sIBL_Maya_VRay_DLight_bridgeFeedbackControlsAndShaders("Lighting");
+		string $parentConstraint[] = `parentConstraint -mo $feedback "sIBL_VRay_DomeLight"`;
+		string $scaleConstraint[] = `scaleConstraint -mo $feedback "sIBL_VRay_DomeLight"`;
 	}
 
 	if ($connectToReflection)
@@ -702,7 +722,7 @@ global proc sIBL_Maya_VRay_DLight_getGround(float $feedbackRadius, int $shadowCa
 
 	string $scaleAttributesList[] = {"scaleX", "scaleY", "scaleZ"};
 	for( $scaleAttribute in $scaleAttributesList )
-		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius*sqrt(2));
+		setAttr ($ground[0] + "." + $scaleAttribute) ($feedbackRadius * sqrt(2));
 
 	parent $ground[0] $sIBLGroup;
 	
@@ -738,24 +758,52 @@ global proc sIBL_Maya_VRay_DLight_activateVRay()
 	vrayCreateVRaySettingsNode();
 }
 
+global proc float sIBL_Maya_VRay_DLight_getSceneExtent()
+{
+	string $geometries[] = `ls -l -geometry`;
+	string $transforms[] = {};
+
+	for($geometry in $geometries)
+		$transforms[size($transforms)] = sIBL_Maya_MR_getTransform($geometry);
+	    
+	float $sceneExtent = 0;
+	for($transform in $transforms)
+	{
+		float $boundingBox[] = `xform -q -bb $transform`;
+			
+		for( $i=0; $i < size( $boundingBox ); $i++ )
+			if( abs($boundingBox[$i]) > $sceneExtent )
+			$sceneExtent = abs($boundingBox[$i]);
+	}
+	return $sceneExtent;
+}
+
+global proc float sIBL_Maya_VRay_DLight_truncFloatNumber(float $number, float $truncValue)
+{
+	if($truncValue != 0)
+		return `trunc ($number / $truncValue)` * $truncValue; 
+	else
+		return $number;
+}
+
 global proc string[] sIBL_Maya_VRay_DLight_getShapes(string $xform)
 {
-   string $shapes[];
-   $shapes[0] = $xform;
-   if ("transform" == `nodeType $xform`)
-      $shapes = `listRelatives -fullPath -shapes $xform`;
-   return $shapes;
+	string $shapes[];
+	$shapes[0] = $xform;
+	if ("transform" == `nodeType $xform`)
+		$shapes = `listRelatives -fullPath -shapes $xform`;
+	return $shapes;
 }
 
 global proc string sIBL_Maya_VRay_DLight_getTransform(string $shape)
 {
-   string $transform = "";
-   if ("transform" != `nodeType $shape`)
-   {
-      string $parents[] = `listRelatives -fullPath -parent $shape`;
-      $transform = $parents[0];
-   }
-   return $transform;
+	string $transform = "";
+	if ("transform" != `nodeType $shape`)
+	{
+		string $parents[] = `listRelatives -fullPath -parent $shape`;
+		$transform = $parents[0];
+	}
+	return $transform;
 }
 
 global proc int sIBL_Maya_VRay_DLight_objectExists(string $object, string $errorMessage)
