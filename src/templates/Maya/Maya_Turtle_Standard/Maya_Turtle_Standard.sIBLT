@@ -783,7 +783,7 @@ global proc float sIBL_Maya_Turtle_getSceneExtent()
 			
 		for( $i=0; $i < size( $boundingBox ); $i++ )
 			if( abs($boundingBox[$i]) > $sceneExtent )
-			$sceneExtent = abs($boundingBox[$i]);
+				$sceneExtent = abs($boundingBox[$i]);
 	}
 	return $sceneExtent;
 }
