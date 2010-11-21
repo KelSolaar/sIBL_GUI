@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.5 | String | Template Release
-Date = @Date | 06 November 2010 | String | Date
+Release = @Release | 1.0.6 | String | Template Release
+Date = @Date | 21 November 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -83,10 +83,10 @@ fn sIBL_3dsmax_MR_environmentDeletion =
 	-- sIBL Nodes Deletion.
 	delete $sIBL_*
 	
-	-- sIBL Environment Map  Deletion.
+	-- sIBL Environment Map Deletion.
 	environmentMap = undefined
 
-	-- sIBL Lens Shader  Deletion.
+	-- sIBL Lens Shader Deletion.
 	if( classOf  renderers.current == mental_ray_renderer ) then
 		renderers.current.Camera_Lens_Shader = undefined
 	
@@ -239,6 +239,7 @@ fn sIBL_3dsmax_MR_getEnvironmentBranch branchName filePath =
 	local texture = Bitmaptexture()
 	texture.filename = filePath
 	texture.coordinates.mappingtype = 1
+	texture.coordinates.mapping = 0
 	texture.coordinates.U_Tiling = -1.0
 	
 	local gammaGain =  Utility_Gamma___Gain__mi()
@@ -418,7 +419,6 @@ fn sIBL_3dsmax_MR_setup  =
 	)
 	else
 		messageBox "sIBL_GUI | Mental Ray Renderer Is Not Available !" title:"sIBL_GUI Error"
-		
 )
 
 sIBL_3dsmax_MR_setup()

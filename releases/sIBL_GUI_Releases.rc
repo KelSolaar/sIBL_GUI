@@ -1,5 +1,5 @@
 [sIBL_GUI]
-Release = 3.1.0
+Release = 3.0.9
 Url = Windows | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Windows/Stable/sIBL_GUI.exe" | Mac Os X | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Darwin/Stable/sIBL_GUI.dmg" | Linux | "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Linux/Nightly/sIBL_GUI.tar.gz"
 Type = "Stable"
 
@@ -46,19 +46,19 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Stand
 Comment = "Renderman For Maya Template : Add Pre / Post Process Callbacks."
 
 [3dsMax_MR_Standard]
-Release = 1.0.5
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
-Comment = "3dsMax Mental Ray Template : Add Pre / Post Process Callbacks."
-
-[3dsMax_Scanline_Standard]
-Release = 0.9.9
-Type = "Nightly"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanline_Standard/Nightly/3dsMax_Scanline_Standard.zip"
-Comment = "3dsMax Scanline Template : Updates For sIBL_GUI 3.x.x."
-
-[3dsMax_VRay_Standard]
 Release = 1.0.6
 Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
+Comment = "3dsMax Mental Ray Template : Code Formatting."
+
+[3dsMax_Scanline_Standard]
+Release = 1.0.0
+Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanline_Standard/Stable/3dsMax_Scanline_Standard.zip"
+Comment = "3dsMax Scanline Template : Template First Complete Refactor, It Should Be In Line With Others 3dsMax Templates."
+
+[3dsMax_VRay_Standard]
+Release = 1.0.7
+Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Template : Add Pre / Post Process Callbacks."
+Comment = "3dsMax VRay Template : Code Formatting."
