@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.6 | String | Template Release
-Date = @Date | 06 November 2010 | String | Date
+Release = @Release | 1.0.7 | String | Template Release
+Date = @Date | 21 November 2010 | String | Date
 Author = @Author | Dschaga / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -75,7 +75,7 @@ fn sIBL_3dsmax_VRay_environmentDeletion =
 	-- sIBL Nodes Deletion.
 	delete $sIBL_*
 
-	-- sIBL Environment Map  Deletion.
+	-- sIBL Environment Map Deletion.
 	environmentMap = undefined
 	
 	freeSceneBitmaps()
@@ -221,8 +221,8 @@ fn sIBL_3dsmax_VRay_getClassicEnvironmentBranch branchName filePath =
 	local texture = Bitmaptexture()
 	texture.filename = filePath
 	texture.coordinates.UVW_Type = 0
-	texture.coordinates.mapping = 0
 	texture.coordinates.mappingtype = 1	
+	texture.coordinates.mapping = 0
 	texture.coordinates.U_Tile = True
 	texture.coordinates.U_Tiling = -1.0
 	texture.coordinates.U_Offset = 0
