@@ -44,6 +44,7 @@
 		<ul>
 			<li><a href="#UserPreferences">User Preferences</a> </li>
 			<li><a href="#CommandLineParameters">Command Line Parameters</a> </li>
+			<li><a href="#SharedDatabaseConfiguration">Shared Database Configuration</a> </li>
 			<li><a href="#IblSetsWizard">Ibl Sets Wizard</a> </li>
 			<li><a href="#Interface">Interface</a>
 		<ul>
@@ -83,6 +84,7 @@
 		</ul></li>
 		</ul></li>
 			<li><a href="#Api">Api</a></li>
+			<li><a href="#Faq">Faq</a></li>
 			<li><a href="#ChangeLog">Change Log</a></li>
 			<li><a href="#About">About</a></li>
 		</ul>
@@ -159,6 +161,30 @@
 			<li><strong>-o <span class="caps">LOADERSCRIPTSOUTPUTDIRECTORY</span>, &#8212;loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY</strong> : Loader scripts output directory.</li>
 		</ul>
 		<p>Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : &#8220;cd&#8221; into &#8220;sIBL_GUI.app&#8221; folder and enter &#8220;./Contents/MacOS/sIBL_GUI&#8221; followed by the parameters.</p>
+		<h3 id="SharedDatabaseConfiguration">Shared Database Configuration</h3>
+		<p>If you want to share the same Database between multiple installed versions of sIBL_GUI there are 2 solutions :</p>
+		<p><strong>Dirty Method</strong></p>
+		<p>Copy the Database file <strong>sIBL_Database.sqlite</strong> on every machine that have sIBL_GUI installed.</p>
+		<p>The file is located in one of those folders depending your OS :
+		<ul>
+			<li>C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI\database\ on Windows 7</li>
+			<li>C:\Documents and Settings\$USER\Application Data\HDRLabs\sIBL_GUI\database\ on Windows XP</li>
+			<li>/Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI/database/ on Mac Os X</li>
+			<li>/home/$USER/.HDRLabs/sIBL_GUI/database/ on Linux</li>
+		</ul></p>
+		<p><strong>Recommended Method</strong></p>
+		<p>It&#8217;s possible to share one Database file between multiple sIBL_GUI install. In order to do that you need to start sIBL_GUI with some command line parameters : </p>
+		<ul>
+			<li><strong>-d <span class="caps">DATABASEDIRECTORY</span>, &#8212;databaseDirectory=DATABASEDIRECTORY</strong> : This one is mandatory for what you want to do, it will tell sIBL_GUI to store / use the database on the provided path.</li>
+			<li><strong>-r, &#8212;databaseReadOnly</strong> : This one is optional, but <span class="caps">HIGHLY</span> recommended : It will hide / unexpose from the UI all methods that can write to the Database. That&#8217;s something important because the last thing you want is someone screwing the whole database by doing a mistake.</li>
+		</ul>
+		<p>Example Command Line :</p>
+		<blockquote>
+			<p>__C:\HDRLabs\sIBL_GUI\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r__</p>
+		</blockquote>
+		<p>When the Database is read only, the scanner that automatically add new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library folder won&#8217;t be added automatically.</p>
+		<p>It&#8217;s a good idea to put the Database with a real file system write lock in case someone launch a sIBL_GUI instance without the command line arguments.</p>
+		<p>That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.</p>
 		<h3 id="IblSetsWizard">Ibl Sets Wizard</h3>
 		<p>The first time sIBL_GUI is started a wizard asks to add Ibl Sets into the database :</p>
 		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
@@ -700,6 +726,8 @@
 		</ul>
 		<h2 id="Api">Api</h2>
 		<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html">sIBL_GUI &#8211; Api</a></p>
+		<h2 id="Faq">Faq</h2>
+		<p>A &#8220;Frequently Asked Questions&#8221; thread is available on HDRLabs forum : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491">Smart Ibl Loaders &#8211; Faq</a></p>
 		<h2 id="ChangeLog">Change Log</h2>
 	<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html">sIBL_GUI &#8211; Change Log</a></p>
 		<h2 id="About">About</h2>

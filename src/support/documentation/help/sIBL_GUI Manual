@@ -15,6 +15,7 @@ h2. Table Of Content
 * "Usage":#Usage
 ** "User Preferences":#UserPreferences 
 ** "Command Line Parameters":#CommandLineParameters 
+** "Shared Database Configuration":#SharedDatabaseConfiguration 
 ** "Ibl Sets Wizard":#IblSetsWizard 
 ** "Interface":#Interface
 *** "Toolbar":#Toolbar
@@ -45,6 +46,7 @@ h2. Table Of Content
 *** "Sets Scanner":#addons.setsScanner
 *** "sIBLedit Utilities":#addons.sIBLeditUtilities
 * "Api":#Api
+* "Faq":#Faq
 * "Change Log":#ChangeLog
 * "About":#About
 
@@ -138,6 +140,37 @@ sIBL_GUI accepts command line parameters :
 * *-o LOADERSCRIPTSOUTPUTDIRECTORY, --loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY* : Loader scripts output directory.
 
 Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : "cd" into "sIBL_GUI.app" folder and enter "./Contents/MacOS/sIBL_GUI" followed by the parameters.
+
+h3(#SharedDatabaseConfiguration). Shared Database Configuration
+
+If you want to share the same Database between multiple installed versions of sIBL_GUI there are 2 solutions :
+
+*Dirty Method*
+
+Copy the Database file *sIBL_Database.sqlite* on every machine that have sIBL_GUI installed.
+
+The file is located in one of those folders depending your OS :
+* C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI\database\ on Windows 7
+* C:\Documents and Settings\$USER\Application Data\HDRLabs\sIBL_GUI\database\ on Windows XP
+* /Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI/database/ on Mac Os X
+* /home/$USER/.HDRLabs/sIBL_GUI/database/ on Linux
+
+*Recommended Method*
+
+It's possible to share one Database file between multiple sIBL_GUI install. In order to do that you need to start sIBL_GUI with some command line parameters : 
+
+* *-d DATABASEDIRECTORY, --databaseDirectory=DATABASEDIRECTORY* : This one is mandatory for what you want to do, it will tell sIBL_GUI to store / use the database on the provided path.
+* *-r, --databaseReadOnly* : This one is optional, but HIGHLY recommended : It will hide / unexpose from the UI all methods that can write to the Database. That's something important because the last thing you want is someone screwing the whole database by doing a mistake.
+
+Example Command Line :
+
+bq. __C:\HDRLabs\sIBL_GUI\sIBL_GUI.exe -d "Z:/sIBL_Database/" -r__
+
+When the Database is read only, the scanner that automatically add new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library folder won't be added automatically.
+
+It's a good idea to put the Database with a real file system write lock in case someone launch a sIBL_GUI instance without the command line arguments.
+
+That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
 
 h3(#IblSetsWizard). Ibl Sets Wizard
 
@@ -662,6 +695,10 @@ Interactions :
 h2(#Api). Api
 
 "sIBL_GUI - Api":http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html
+
+h2(#Faq). Faq
+
+A "Frequently Asked Questions" thread is available on HDRLabs forum : "Smart Ibl Loaders - Faq":http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491
 
 h2(#ChangeLog). Change Log
 

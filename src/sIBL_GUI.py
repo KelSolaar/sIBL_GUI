@@ -312,7 +312,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	#***	Initialization.
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception )
 	def __init__( self ) :
 		'''
 		This Method Initializes The Class.
@@ -1553,6 +1553,10 @@ def sIBL_GUI_start():
 
 	if not setUserApplicationDatasDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
 		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName )
+
+	LOGGER.debug( "> Application Python Interpreter : '{0}'".format( sys.executable ) )
+	LOGGER.debug( "> Application Startup Location : '{0}'".format( os.getcwd() ) )
+	LOGGER.debug( "> Session User Application Datas Directory : '{0}'".format( RuntimeConstants.userApplicationDatasDirectory ) )
 
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile )

@@ -1018,7 +1018,7 @@ class CollectionsOutliner( UiComponent ):
 
 				try :
 					collectionStandardItem = QStandardItem( QString( collection.name ) )
-					iconPath = collection.name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon )  or os.path.join( self._uiResources, self._uiUserCollectionIcon )
+					iconPath = collection.name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon ) or os.path.join( self._uiResources, self._uiUserCollectionIcon )
 					collectionStandardItem.setIcon( QIcon( iconPath ) )
 					( collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly ) and collectionStandardItem.setFlags( readOnlyFlags )
 

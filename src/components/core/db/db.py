@@ -316,7 +316,7 @@ class Db( Component ):
 		messageBox.messageBox( "Warning", "Warning", "{0} Component Cannot Be Deactivated !".format( self.__class__.__name__ ) )
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, OSError, Exception )
 	def initialize( self ):
 		'''
 		This Method Initializes The Component.
@@ -332,6 +332,8 @@ class Db( Component ):
 				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close !".format( self._container.parameters.databaseDirectory, Constants.applicationName )
 		else :
 			self._dbName = os.path.join( self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile )
+
+		LOGGER.info( "{0} | Session Database Location : '{1}'".format( self.__class__.__name__, self._dbName ) )
 
 		LOGGER.debug( "> Creating Database Engine." )
 		self._dbEngine = sqlalchemy.create_engine( "sqlite:///{0}".format( self._dbName ) )
