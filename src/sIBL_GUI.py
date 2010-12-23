@@ -352,7 +352,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._workerThreads = []
 
 		# --- Initializing sIBL_GUI. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		# Visual Style Initialisation.
 		self.setVisualStyle()
@@ -363,7 +363,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.initializeToolbar()
 
 		# --- Initializing Component Manager. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDatasDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
@@ -376,7 +376,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface( "core.componentsManagerUi" )
 		if self._coreComponentsManagerUi :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
 			self._coreComponentsManagerUi.activate( self )
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
@@ -386,7 +386,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Preferences Manager Component. ---
 		self._corePreferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
 		if self._corePreferencesManager :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
 			self._corePreferencesManager.activate( self )
 			self._corePreferencesManager.addWidget()
 			self._corePreferencesManager.initializeUi()
@@ -396,7 +396,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface( "core.db" )
 		if self._coreDb :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
 			self._coreDb.activate( self )
 			self._coreDb.initialize()
 		else:
@@ -405,7 +405,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface( "core.collectionsOutliner" )
 		if self._coreCollectionsOutliner :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
 			self._coreCollectionsOutliner.activate( self )
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
@@ -415,7 +415,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface( "core.databaseBrowser" )
 		if self._coreDatabaseBrowser :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
 			self._coreDatabaseBrowser.activate( self )
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
@@ -425,7 +425,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface( "core.templatesOutliner" )
 		if self._coreTemplatesOutliner :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
 			self._coreTemplatesOutliner.activate( self )
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
@@ -439,7 +439,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 				profile = self._componentsManager.components[component]
 				interface = self._componentsManager.getInterface( component )
 				if not interface.activated:
-					RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
+					RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
 					interface.activate( self )
 					if profile.categorie == "default" :
 						interface.initialize()
@@ -449,8 +449,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		# Hiding Splashscreen.
 		LOGGER.debug( "> Hiding SplashScreen." )
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
-		RuntimeConstants.splashscreen.hide()
+		if RuntimeConstants.splashscreen :
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
+			RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents() :
@@ -1235,7 +1236,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param profile: Component Profile. ( Profile )	
 		'''
 
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, OSError )
@@ -1603,12 +1604,15 @@ def sIBL_GUI_start():
 	RuntimeConstants.application = QApplication( sys.argv )
 
 	# Initializing SplashScreen.
-	LOGGER.debug( "> Initializing SplashScreen." )
+	if RuntimeConstants.parameters.noSplashScreen :
+		LOGGER.debug( "> SplashScreen Skipped By 'noSplashScreen' Command Line Parameter." )
+	else:
+		LOGGER.debug( "> Initializing SplashScreen." )
 
-	RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
-	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture )
-	RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
-	RuntimeConstants.splashscreen.show()
+		RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
+		RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.show()
 
 	RuntimeConstants.ui = sIBL_GUI()
 	RuntimeConstants.ui.show()
@@ -1690,6 +1694,8 @@ def getCommandLineParameters( argv ):
 	parser.add_option( "-r", "--databaseReadOnly", action = "store_true", default = False, dest = "databaseReadOnly", help = "'Database Read Only'." )
 
 	parser.add_option( "-o", "--loaderScriptsOutputDirectory", action = "store", type = "string", dest = "loaderScriptsOutputDirectory", help = "'Loader Scripts Output Directory'." )
+
+	parser.add_option( "-s", "--noSplashScreen", action = "store_true", default = False, dest = "noSplashScreen", help = "'No Splash Screen'." )
 
 	parameters, args = parser.parse_args( argv )
 
