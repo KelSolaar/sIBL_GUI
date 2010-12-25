@@ -226,6 +226,7 @@ class TemplatesOutliner_Worker( QThread ):
 
 		@param value: Attribute Value. ( QTimer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
 
 	@timer.deleter
@@ -255,6 +256,7 @@ class TemplatesOutliner_Worker( QThread ):
 
 		@param value: Attribute Value. ( Float )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
 
 	@timerCycleMultiplier.deleter
@@ -547,6 +549,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
@@ -576,6 +579,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSoftwareAffixe" ) )
 
 	@uiSoftwareAffixe.deleter
@@ -605,6 +609,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiUnknownSoftwareIcon" ) )
 
 	@uiUnknownSoftwareIcon.deleter
@@ -634,6 +639,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
@@ -723,6 +729,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
@@ -752,6 +759,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -781,6 +789,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
 
 	@modelSelection.deleter
@@ -810,6 +819,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QThread )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "templatesOutlinerWorkerThread" ) )
 
 	@templatesOutlinerWorkerThread.deleter
@@ -839,6 +849,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "extension" ) )
 
 	@extension.deleter
@@ -868,6 +879,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "defaultCollections" ) )
 
 	@defaultCollections.deleter
@@ -897,6 +909,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "factoryCollection" ) )
 
 	@factoryCollection.deleter
@@ -926,6 +939,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "userCollection" ) )
 
 	@userCollection.deleter
@@ -955,6 +969,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( List )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelHeaders" ) )
 
 	@modelHeaders.deleter
@@ -984,6 +999,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewIndentation" ) )
 
 	@treeViewIndentation.deleter
@@ -1013,6 +1029,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
 
 	@treeViewInnerMargins.deleter
@@ -1042,6 +1059,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Template_Informations_textBrowser_defaultText" ) )
 
 	@Template_Informations_textBrowser_defaultText.deleter

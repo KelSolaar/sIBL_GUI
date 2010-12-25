@@ -680,6 +680,7 @@ class CollectionsOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -709,6 +710,7 @@ class CollectionsOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
 
 	@modelSelection.deleter

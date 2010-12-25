@@ -436,6 +436,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -525,6 +526,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
 
 	@treeViewInnerMargins.deleter

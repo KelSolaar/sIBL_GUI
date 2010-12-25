@@ -226,6 +226,7 @@ class DatabaseBrowser_Worker( QThread ):
 
 		@param value: Attribute Value. ( QTimer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
 
 	@timer.deleter
@@ -255,6 +256,7 @@ class DatabaseBrowser_Worker( QThread ):
 
 		@param value: Attribute Value. ( Float )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
 
 	@timerCycleMultiplier.deleter
@@ -660,6 +662,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLargestSizeIcon" ) )
 
 	@uiLargestSizeIcon.deleter
@@ -689,6 +692,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSmallestSizeIcon" ) )
 
 	@uiSmallestSizeIcon.deleter
@@ -1058,6 +1062,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -1087,6 +1092,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
 
 	@modelSelection.deleter
@@ -1117,6 +1123,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelectionState" ) )
 
 	@modelSelectionState.deleter
@@ -1146,6 +1153,7 @@ class DatabaseBrowser( UiComponent ):
 
 		@param value: Attribute Value. ( QThread )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "databaseBrowserWorkerThread" ) )
 
 	@databaseBrowserWorkerThread.deleter
