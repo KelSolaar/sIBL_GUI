@@ -1110,7 +1110,7 @@ class DatabaseBrowser( UiComponent ):
 		'''
 		This Method Is The Property For The _modelSelectionState Attribute.
 
-		@return: self._modelSelectionState. ( Dictionary )
+		@return: self._modelSelectionState. ( Boolean )
 		'''
 
 		return self._modelSelectionState
@@ -1121,10 +1121,12 @@ class DatabaseBrowser( UiComponent ):
 		'''
 		This Method Is The Setter Method For The _modelSelectionState Attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute Value. ( Boolean )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelectionState" ) )
+		if value :
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "modelSelectionState", value )
+		self._modelSelectionState = value
 
 	@modelSelectionState.deleter
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
