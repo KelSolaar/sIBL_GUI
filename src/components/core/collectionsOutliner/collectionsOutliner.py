@@ -334,13 +334,13 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 							iblSet._datas.collection = collectionStandardItem._datas.id
 						if dbUtilities.common.commit( self._coreDb.dbSession ) :
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser._modelSelectionState = False
+							self._coreDatabaseBrowser.modelSelectionState = False
 
 							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser._modelSelectionState = True
+							self._coreDatabaseBrowser.modelSelectionState = True
 		else :
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
