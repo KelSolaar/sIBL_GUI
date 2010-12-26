@@ -1435,7 +1435,8 @@ class TemplatesOutliner( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.removeTemplates() and self.Templates_Outliner_treeView_refreshModel()
+		self.removeTemplates()
+		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_importDefaultTemplatesAction( self, checked ):
@@ -1597,8 +1598,6 @@ class TemplatesOutliner( UiComponent ):
 	def removeTemplates( self ) :
 		'''
 		This Method Removes Templates From The Database.
-		
-		@return: Removal Success. ( Boolean )
 		'''
 
 		selectedItems = self.getSelectedItems()
@@ -1620,10 +1619,8 @@ class TemplatesOutliner( UiComponent ):
 
 		if selectedTemplates :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-				success = True
 				for template in selectedTemplates :
-					success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
-				return success
+					dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )

@@ -1301,8 +1301,6 @@ class CollectionsOutliner( UiComponent ):
 	def removeCollections( self ) :
 		'''
 		This Method Removes Collections From The Database.
-		
-		@return: Removal Success. ( Boolean )
 		'''
 
 		selectedCollections = self.getSelectedItems()
@@ -1317,11 +1315,9 @@ class CollectionsOutliner( UiComponent ):
 				for iblSet in iblSets :
 					LOGGER.info( "{0} | Moving '{1}' Ibl Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
 					iblSet.collection = self.getCollectionId( self._defaultCollection )
-				success = True
 				for collection in selectedCollections :
 					LOGGER.info( "{0} | Removing '{1}' Collection From Database !".format( self.__class__.__name__, collection.text() ) )
-					success *= dbUtilities.common.removeCollection( self._coreDb.dbSession, str( collection._datas.id ) )
-				return success
+					dbUtilities.common.removeCollection( self._coreDb.dbSession, str( collection._datas.id ) )
 
 	@core.executionTrace
 	def getSelectedItems( self, rowsRootOnly = True ):
