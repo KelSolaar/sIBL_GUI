@@ -1620,6 +1620,7 @@ class TemplatesOutliner( UiComponent ):
 		if selectedTemplates :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for template in selectedTemplates :
+					LOGGER.info( "{0} | Removing '{1}' Template From Database !".format( self.__class__.__name__, template.text() ) )
 					dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 
 	@core.executionTrace
