@@ -223,6 +223,7 @@ class sIBLeditUtilities( UiComponent ):
 
 		@param value: Attribute Value. ( QSettings )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settings" ) )
 
 	@settings.deleter
@@ -282,6 +283,7 @@ class sIBLeditUtilities( UiComponent ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "corePreferencesManager" ) )
 
 	@corePreferencesManager.deleter
@@ -311,6 +313,7 @@ class sIBLeditUtilities( UiComponent ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
 
 	@coreDatabaseBrowser.deleter
@@ -340,6 +343,7 @@ class sIBLeditUtilities( UiComponent ):
 
 		@param value: Attribute Value. ( QAction )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "editInSIBLEditAction" ) )
 
 	@editInSIBLEditAction.deleter

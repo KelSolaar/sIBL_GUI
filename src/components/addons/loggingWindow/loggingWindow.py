@@ -281,6 +281,7 @@ class LoggingWindow( UiComponent ):
 
 		@param value: Attribute Value. ( Float )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
 
 	@timerCycleMultiplier.deleter

@@ -936,6 +936,7 @@ class Preview( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter

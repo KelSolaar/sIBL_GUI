@@ -334,13 +334,13 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 							iblSet._datas.collection = collectionStandardItem._datas.id
 						if dbUtilities.common.commit( self._coreDb.dbSession ) :
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser._modelSelectionState = False
+							self._coreDatabaseBrowser.modelSelectionState = False
 
 							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
 
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser._modelSelectionState = True
+							self._coreDatabaseBrowser.modelSelectionState = True
 		else :
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
 
@@ -680,6 +680,7 @@ class CollectionsOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -709,6 +710,7 @@ class CollectionsOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
 
 	@modelSelection.deleter
@@ -1217,7 +1219,10 @@ class CollectionsOutliner( UiComponent ):
 		collection = self.addCollection()
 		if collection :
 			self.Collections_Outliner_treeView_refreshModel()
+			fileDialog = QFileDialog( self )
+			fileDialog.se
 			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
+#			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 			if directory :
 				LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
 				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
@@ -1299,8 +1304,6 @@ class CollectionsOutliner( UiComponent ):
 	def removeCollections( self ) :
 		'''
 		This Method Removes Collections From The Database.
-		
-		@return: Removal Success. ( Boolean )
 		'''
 
 		selectedCollections = self.getSelectedItems()
@@ -1315,11 +1318,9 @@ class CollectionsOutliner( UiComponent ):
 				for iblSet in iblSets :
 					LOGGER.info( "{0} | Moving '{1}' Ibl Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
 					iblSet.collection = self.getCollectionId( self._defaultCollection )
-				success = True
 				for collection in selectedCollections :
 					LOGGER.info( "{0} | Removing '{1}' Collection From Database !".format( self.__class__.__name__, collection.text() ) )
-					success *= dbUtilities.common.removeCollection( self._coreDb.dbSession, str( collection._datas.id ) )
-				return success
+					dbUtilities.common.removeCollection( self._coreDb.dbSession, str( collection._datas.id ) )
 
 	@core.executionTrace
 	def getSelectedItems( self, rowsRootOnly = True ):

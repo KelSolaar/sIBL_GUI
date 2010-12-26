@@ -226,6 +226,7 @@ class TemplatesOutliner_Worker( QThread ):
 
 		@param value: Attribute Value. ( QTimer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
 
 	@timer.deleter
@@ -255,6 +256,7 @@ class TemplatesOutliner_Worker( QThread ):
 
 		@param value: Attribute Value. ( Float )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
 
 	@timerCycleMultiplier.deleter
@@ -547,6 +549,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
@@ -576,6 +579,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSoftwareAffixe" ) )
 
 	@uiSoftwareAffixe.deleter
@@ -605,6 +609,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiUnknownSoftwareIcon" ) )
 
 	@uiUnknownSoftwareIcon.deleter
@@ -634,6 +639,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
 
 	@dockArea.deleter
@@ -723,6 +729,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
@@ -752,6 +759,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -781,6 +789,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
 
 	@modelSelection.deleter
@@ -810,6 +819,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( QThread )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "templatesOutlinerWorkerThread" ) )
 
 	@templatesOutlinerWorkerThread.deleter
@@ -839,6 +849,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "extension" ) )
 
 	@extension.deleter
@@ -868,6 +879,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "defaultCollections" ) )
 
 	@defaultCollections.deleter
@@ -897,6 +909,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "factoryCollection" ) )
 
 	@factoryCollection.deleter
@@ -926,6 +939,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "userCollection" ) )
 
 	@userCollection.deleter
@@ -955,6 +969,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( List )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelHeaders" ) )
 
 	@modelHeaders.deleter
@@ -984,6 +999,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewIndentation" ) )
 
 	@treeViewIndentation.deleter
@@ -1013,6 +1029,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
 
 	@treeViewInnerMargins.deleter
@@ -1042,6 +1059,7 @@ class TemplatesOutliner( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Template_Informations_textBrowser_defaultText" ) )
 
 	@Template_Informations_textBrowser_defaultText.deleter
@@ -1417,7 +1435,8 @@ class TemplatesOutliner( UiComponent ):
 		@param checked: Action Checked State. ( Boolean )
 		'''
 
-		self.removeTemplates() and self.Templates_Outliner_treeView_refreshModel()
+		self.removeTemplates()
+		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_importDefaultTemplatesAction( self, checked ):
@@ -1579,8 +1598,6 @@ class TemplatesOutliner( UiComponent ):
 	def removeTemplates( self ) :
 		'''
 		This Method Removes Templates From The Database.
-		
-		@return: Removal Success. ( Boolean )
 		'''
 
 		selectedItems = self.getSelectedItems()
@@ -1602,10 +1619,9 @@ class TemplatesOutliner( UiComponent ):
 
 		if selectedTemplates :
 			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-				success = True
 				for template in selectedTemplates :
-					success *= dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
-				return success
+					LOGGER.info( "{0} | Removing '{1}' Template From Database !".format( self.__class__.__name__, template.text() ) )
+					dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )

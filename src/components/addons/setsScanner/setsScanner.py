@@ -503,6 +503,7 @@ class SetsScanner( Component ):
 
 		@param value: Attribute Value. ( QThread )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "setsScannerWorkerThread" ) )
 
 	@setsScannerWorkerThread.deleter
