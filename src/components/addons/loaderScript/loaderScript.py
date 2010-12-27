@@ -644,7 +644,7 @@ class LoaderScript( UiComponent ):
 			templateParser = Parser( selectedTemplate._datas.path )
 			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 			connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
-			loaderScriptPath = strings.getNormalisedPath( os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript ) )
+			loaderScriptPath = strings.getNormalizedPath( os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript ) )
 			if connectionType.value == "Socket" :
 				try :
 					connection = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
@@ -728,13 +728,13 @@ class LoaderScript( UiComponent ):
 
 		if iblSet :
 			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Background|BGfile", iblSet._datas.backgroundImage ) )
-			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalisedPath( iblSet._datas.backgroundImage ) )
+			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound( "Background|BGfile", strings.getNormalizedPath( iblSet._datas.backgroundImage ) )
 
 			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Enviroment|EVfile", iblSet._datas.lightingImage ) )
-			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalisedPath( iblSet._datas.lightingImage ) )
+			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound( "Enviroment|EVfile", strings.getNormalizedPath( iblSet._datas.lightingImage ) )
 
 			LOGGER.debug( "> Adding '{0}' Override Key With Value : '{1}'.".format( "Reflection|REFfile", iblSet._datas.reflectionImage ) )
-			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalisedPath( iblSet._datas.reflectionImage ) )
+			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound( "Reflection|REFfile", strings.getNormalizedPath( iblSet._datas.reflectionImage ) )
 
 		return overrideKeys
 

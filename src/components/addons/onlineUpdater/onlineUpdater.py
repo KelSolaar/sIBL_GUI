@@ -360,6 +360,7 @@ class DownloadManager( QObject ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoPixmap" ) )
 
 	@uiLogoPixmap.deleter
@@ -907,6 +908,7 @@ class RemoteUpdater( object ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
@@ -936,6 +938,7 @@ class RemoteUpdater( object ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoPixmap" ) )
 
 	@uiLogoPixmap.deleter
@@ -965,6 +968,7 @@ class RemoteUpdater( object ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiTemplatesPixmap" ) )
 
 	@uiTemplatesPixmap.deleter
@@ -1144,6 +1148,7 @@ class RemoteUpdater( object ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "templatesTableWidgetHeaders" ) )
 
 	@templatesTableWidgetHeaders.deleter
@@ -1462,7 +1467,7 @@ class RemoteUpdater( object ):
 		elif reply == 1 :
 			return os.path.join( self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory )
 		elif reply == 2 :
-			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Add Directory :", self._container.container.lastBrowsedPath ) ) )
+			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Choose Templates Directory :", self._container.container.lastBrowsedPath ) ) )
 
 	@core.executionTrace
 	def downloadManager_OnFinished( self ):
@@ -1698,6 +1703,7 @@ class OnlineUpdater( UiComponent ):
 
 		@param value: Attribute Value. ( QSettings )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settings" ) )
 
 	@settings.deleter
@@ -1727,6 +1733,7 @@ class OnlineUpdater( UiComponent ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "corePreferencesManager" ) )
 
 	@corePreferencesManager.deleter

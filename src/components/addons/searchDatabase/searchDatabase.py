@@ -173,6 +173,7 @@ class SearchDatabase( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
 
 	@uiResources.deleter
@@ -202,6 +203,7 @@ class SearchDatabase( UiComponent ):
 
 		@param value: Attribute Value. ( String )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSearchIcon" ) )
 
 	@uiSearchIcon.deleter
@@ -671,13 +673,13 @@ class SearchDatabase( UiComponent ):
 			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.UserError )
 	def setSearchMatchingSets( self ):
 		'''
 		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser displaySets.
 		'''
 
 		previousDisplaySets = self._coreDatabaseBrowser.displaySets
-
 
 		pattern = str( self.ui.Search_Database_lineEdit.text() )
 		currentField = self._databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
@@ -687,9 +689,9 @@ class SearchDatabase( UiComponent ):
 		try :
 			re.compile( pattern )
 		except :
-			return
+			raise foundations.exceptions.ProgrammingError( "{0} | Error While Compiling '{1}' Regex Pattern!".format( self.__class__.__name__, pattern ) )
 
-		self._completer.setModel( QStringListModel( sorted( [fieldValue for fieldValue in set( [fieldValue[0] or "" for fieldValue in self._coreDb.dbSession.query( getattr( dbUtilities.types.DbSet, currentField ) ).all()] ) if re.search( pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 )] ) ) )
+		self._completer.setModel( QStringListModel( sorted( [fieldValue for fieldValue in set( [getattr( iblSet, currentField ) for iblSet in previousDisplaySets] ) if re.search( pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 )] ) ) )
 
 		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( dbUtilities.common.filterSets( self._coreDb.dbSession, "{0}".format( str( pattern ) ), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 ) )]
 

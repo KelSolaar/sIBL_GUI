@@ -73,7 +73,7 @@ LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
 core.setVerbosityLevel( 3 )
 
 TEMPLATES_PATH = "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates"
-TEMPLATES_EXTENSION = ".sIBLT"
+TEMPLATES_EXTENSION = "sIBLT"
 
 #***********************************************************************************************
 #***	Main Python Code
@@ -85,7 +85,7 @@ def getTemplatesReleases():
 
 	walker = Walker()
 	walker.root = TEMPLATES_PATH
-	templates = walker.walk( TEMPLATES_EXTENSION, "\._" )
+	templates = walker.walk( ( TEMPLATES_EXTENSION, ), ( "\._", ) )
 	for template in sorted( templates.keys() ) :
 		parser = Parser( templates[template] )
 		parser.read() and parser.parse()

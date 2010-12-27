@@ -340,6 +340,7 @@ class DatabaseBackup( Component ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
 
 	@coreDb.deleter
@@ -369,6 +370,7 @@ class DatabaseBackup( Component ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "databaseFile" ) )
 
 	@databaseFile.deleter
@@ -398,6 +400,7 @@ class DatabaseBackup( Component ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "destination" ) )
 
 	@destination.deleter
@@ -427,6 +430,7 @@ class DatabaseBackup( Component ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "backupDirectory" ) )
 
 	@backupDirectory.deleter
@@ -456,6 +460,7 @@ class DatabaseBackup( Component ):
 
 		@param value: Attribute Value. ( Object )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "count" ) )
 
 	@count.deleter

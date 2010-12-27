@@ -1,4 +1,4 @@
- #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #***********************************************************************************************
@@ -312,7 +312,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 	#***	Initialization.
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, Exception )
+	@foundations.exceptions.exceptionsHandler( ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception )
 	def __init__( self ) :
 		'''
 		This Method Initializes The Class.
@@ -329,7 +329,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._signalsSlotsCenter = QObject()
 		self._componentsManager = None
 		self._coreComponentsManagerUi = None
-		self._preferencesManager = None
+		self._corePreferencesManager = None
 		self._coreDb = None
 		self._coreDatabaseBrowser = None
 		self._coreCollectionsOutliner = None
@@ -352,7 +352,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self._workerThreads = []
 
 		# --- Initializing sIBL_GUI. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Interface.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		# Visual Style Initialisation.
 		self.setVisualStyle()
@@ -363,7 +363,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		self.initializeToolbar()
 
 		# --- Initializing Component Manager. ---
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing Components Manager.".format( self.__class__.__name__, Constants.releaseVersion ), 0.25 )
 
 		self._componentsManager = Manager( { "Core" : os.path.join( os.getcwd(), Constants.coreComponentsDirectory ), "Addons" : os.path.join( os.getcwd(), Constants.addonsComponentsDirectory ), "User" : os.path.join( self._userApplicationDatasDirectory, Constants.userComponentsDirectory ) } )
 		self._componentsManager.gatherComponents()
@@ -376,7 +376,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface( "core.componentsManagerUi" )
 		if self._coreComponentsManagerUi :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi" ) )
 			self._coreComponentsManagerUi.activate( self )
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
@@ -384,19 +384,19 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.componentsManagerUi", Constants.applicationName )
 
 		# --- Activating Preferences Manager Component. ---
-		self._preferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
-		if self._preferencesManager :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
-			self._preferencesManager.activate( self )
-			self._preferencesManager.addWidget()
-			self._preferencesManager.initializeUi()
+		self._corePreferencesManager = self._componentsManager.getInterface( "core.preferencesManager" )
+		if self._corePreferencesManager :
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager" ) )
+			self._corePreferencesManager.activate( self )
+			self._corePreferencesManager.addWidget()
+			self._corePreferencesManager.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format( "core.preferencesManager", Constants.applicationName )
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface( "core.db" )
 		if self._coreDb :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.db" ) )
 			self._coreDb.activate( self )
 			self._coreDb.initialize()
 		else:
@@ -405,7 +405,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface( "core.collectionsOutliner" )
 		if self._coreCollectionsOutliner :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner" ) )
 			self._coreCollectionsOutliner.activate( self )
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
@@ -415,7 +415,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface( "core.databaseBrowser" )
 		if self._coreDatabaseBrowser :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser" ) )
 			self._coreDatabaseBrowser.activate( self )
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
@@ -425,7 +425,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface( "core.templatesOutliner" )
 		if self._coreTemplatesOutliner :
-			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner" ) )
 			self._coreTemplatesOutliner.activate( self )
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
@@ -439,7 +439,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 				profile = self._componentsManager.components[component]
 				interface = self._componentsManager.getInterface( component )
 				if not interface.activated:
-					RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
+					RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Activating {2}.".format( self.__class__.__name__, Constants.releaseVersion, component ) )
 					interface.activate( self )
 					if profile.categorie == "default" :
 						interface.initialize()
@@ -449,8 +449,9 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		# Hiding Splashscreen.
 		LOGGER.debug( "> Hiding SplashScreen." )
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
-		RuntimeConstants.splashscreen.hide()
+		if RuntimeConstants.splashscreen :
+			RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initialization Done.".format( self.__class__.__name__, Constants.releaseVersion ) )
+			RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents() :
@@ -560,6 +561,36 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreComponentsManagerUi" ) )
+
+	@property
+	def corePreferencesManager( self ):
+		'''
+		This Method Is The Property For The _corePreferencesManager Attribute.
+
+		@return: self._corePreferencesManager. ( Object )
+		'''
+
+		return self._corePreferencesManager
+
+	@corePreferencesManager.setter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def corePreferencesManager( self, value ):
+		'''
+		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+
+		@param value: Attribute Value. ( Object )
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "corePreferencesManager" ) )
+
+	@corePreferencesManager.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def corePreferencesManager( self ):
+		'''
+		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "corePreferencesManager" ) )
 
 	@property
 	def coreDb( self ):
@@ -1205,7 +1236,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		@param profile: Component Profile. ( Profile )	
 		'''
 
-		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
+		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Instantiating {2} Component.".format( self.__class__.__name__, Constants.releaseVersion, profile.name ) )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, OSError )
@@ -1429,7 +1460,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 
 		self.centralwidget.setVisible( self._settings.getKey( "Layouts", "{0}_centralWidget".format( name ) ).toBool() )
 		self.restoreState( self._settings.getKey( "Layouts", "{0}_windowState".format( name ) ).toByteArray() )
-		self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
+		self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( name ) ).toByteArray() )
 		self.setLayoutsActiveLabel( self._settings.getKey( "Layouts", "{0}_activeLabel".format( name ) ).toInt()[0] )
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
@@ -1442,7 +1473,7 @@ class sIBL_GUI( Ui_Type, Ui_Setup ):
 		LOGGER.debug( "> Restoring Startup Layout." )
 
 		self.restoreLayout( UiConstants.frameworkStartupLayout )
-		not self._preferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
+		not self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry( self._settings.getKey( "Layouts", "{0}_geometry".format( UiConstants.frameworkStartupLayout ) ).toByteArray() )
 
 	@core.executionTrace
 	def storeStartupLayout( self ):
@@ -1524,6 +1555,10 @@ def sIBL_GUI_start():
 	if not setUserApplicationDatasDirectory( RuntimeConstants.userApplicationDatasDirectory ) :
 		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format( RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName )
 
+	LOGGER.debug( "> Application Python Interpreter : '{0}'".format( sys.executable ) )
+	LOGGER.debug( "> Application Startup Location : '{0}'".format( os.getcwd() ) )
+	LOGGER.debug( "> Session User Application Datas Directory : '{0}'".format( RuntimeConstants.userApplicationDatasDirectory ) )
+
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join( RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile )
 
@@ -1569,12 +1604,15 @@ def sIBL_GUI_start():
 	RuntimeConstants.application = QApplication( sys.argv )
 
 	# Initializing SplashScreen.
-	LOGGER.debug( "> Initializing SplashScreen." )
+	if RuntimeConstants.parameters.noSplashScreen :
+		LOGGER.debug( "> SplashScreen Skipped By 'noSplashScreen' Command Line Parameter." )
+	else:
+		LOGGER.debug( "> Initializing SplashScreen." )
 
-	RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
-	RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture )
-	RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
-	RuntimeConstants.splashscreen.show()
+		RuntimeConstants.splashscreenPicture = QPixmap( UiConstants.frameworkSplashScreenPicture )
+		RuntimeConstants.splashscreen = Delayed_QSplashScreen( RuntimeConstants.splashscreenPicture )
+		RuntimeConstants.splashscreen.setMessage( "{0} - {1} | Initializing {0}.".format( Constants.applicationName, Constants.releaseVersion ) )
+		RuntimeConstants.splashscreen.show()
 
 	RuntimeConstants.ui = sIBL_GUI()
 	RuntimeConstants.ui.show()
@@ -1656,6 +1694,8 @@ def getCommandLineParameters( argv ):
 	parser.add_option( "-r", "--databaseReadOnly", action = "store_true", default = False, dest = "databaseReadOnly", help = "'Database Read Only'." )
 
 	parser.add_option( "-o", "--loaderScriptsOutputDirectory", action = "store", type = "string", dest = "loaderScriptsOutputDirectory", help = "'Loader Scripts Output Directory'." )
+
+	parser.add_option( "-s", "--noSplashScreen", action = "store_true", default = False, dest = "noSplashScreen", help = "'No Splash Screen'." )
 
 	parameters, args = parser.parse_args( argv )
 

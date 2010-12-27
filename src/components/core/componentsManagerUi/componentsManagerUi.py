@@ -436,6 +436,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
 
 	@model.deleter
@@ -525,6 +526,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		@param value: Attribute Value. ( Integer )
 		'''
+
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
 
 	@treeViewInnerMargins.deleter
@@ -606,7 +608,6 @@ class ComponentsManagerUi( UiComponent ):
 		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		self._model = QStandardItemModel()
-
 		self.Components_Manager_Ui_treeView_setModel()
 
 		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins( self._treeViewInnerMargins )
@@ -675,7 +676,7 @@ class ComponentsManagerUi( UiComponent ):
 		** Component : { _type : "Component", _datas : profile }
 		'''
 
-		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui" ) )
+		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
 
 		self._model.clear()
 
@@ -689,7 +690,7 @@ class ComponentsManagerUi( UiComponent ):
 				pathStandardItem = QStandardItem( QString( path ) )
 				pathStandardItem._type = "Path"
 
-				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui" ) )
+				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui_treeView" ) )
 				self._model.appendRow( pathStandardItem )
 
 				for component in components :
@@ -975,7 +976,7 @@ class ComponentsManagerUi( UiComponent ):
 		'''
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
 		
-		@param rowsRootOnly:  Return Rows Roots Only. ( Boolean )
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		'''
 

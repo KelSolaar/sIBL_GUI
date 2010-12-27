@@ -44,6 +44,7 @@
 		<ul>
 			<li><a href="#UserPreferences">User Preferences</a> </li>
 			<li><a href="#CommandLineParameters">Command Line Parameters</a> </li>
+			<li><a href="#SharedDatabaseConfiguration">Shared Database Configuration</a> </li>
 			<li><a href="#IblSetsWizard">Ibl Sets Wizard</a> </li>
 			<li><a href="#Interface">Interface</a>
 		<ul>
@@ -83,6 +84,7 @@
 		</ul></li>
 		</ul></li>
 			<li><a href="#Api">Api</a></li>
+			<li><a href="#Faq">Faq</a></li>
 			<li><a href="#ChangeLog">Change Log</a></li>
 			<li><a href="#About">About</a></li>
 		</ul>
@@ -104,24 +106,18 @@
 		<p>The source code is available on <a href="http://github.com/">github</a> : <a href="http://github.com/KelSolaar">http://github.com/KelSolaar</a></p>
 		<h2 id="Installation">Installation</h2>
 		<h3 id="WindowsPlatformInstallation">Windows Platform</h3>
-		<p>Installation on Windows is pretty straightforward, just launch &#8220;sIBL_GUI_Setup.exe&#8221;.</p>
+		<p>Installation on Windows is pretty straightforward, just launch &#8220;sIBL_GUI.exe&#8221;.</p>
 		<h3 id="MacOsXPlatformInstallation">Mac Os X Platform</h3>
 		<p>Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI.app&#8221; into the &#8220;Application&#8221; folder.</p>
 		<h3 id="LinuxPlatformInstallation">Linux Platform</h3>
-		<p>Some QT Libraries are needed in order to run sIBL_GUI under Linux :</p>
+		<p>sIBL_GUI 3 is currently not build on Linux because of several issues. You can however grab the source code at Github.com : <a href="http://github.com/KelSolaar/sIBL_GUI">http://github.com/KelSolaar/sIBL_GUI</a> and launch sIBL_GUI.py file from a shell.</p>
+		<p>You will need those dependencies :
 		<ul>
-			<li>Debian Distributions ( Ubuntu ) : </li>
-		</ul>
-		<blockquote>
-			<p><em>sudo apt-get install libqt4-core</em> <br />sudo <em>apt-get install libqt4-gui</em></p>
-		</blockquote>
-		<ul>
-			<li><span class="caps">RPM</span> Distributions ( Fedora ): </li>
-		</ul>
-		<blockquote>
-			<p><em>su root</em> <br />yum <em>install qt</em> <br />yum <em>install qt-x11</em></p>
-		</blockquote>
-		<p>Uncompress the sIBL_GUI archive into the chosen destination folder, CD to that folder, chmod +x sIBL_GUI then start sIBL_GUI with ./sIBL_GUI from a shell or directly by double clicking sIBL_GUI from a file browser.</p>
+			<li><strong>Python 2.6</strong> : <a href="http://www.python.org/">http://www.python.org/</a></li>
+			<li><strong>PyQt</strong> : <a href="http://www.riverbankcomputing.co.uk/">http://www.riverbankcomputing.co.uk/</a></li>
+			<li><strong>Qt</strong> : <a href="http://qt.nokia.com/">http://qt.nokia.com/</a></li>
+			<li><strong>SQLAlchemy</strong> : <a href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a></li>
+		</ul></p>
 		<h2 id="Usage">Usage</h2>
 		<h3 id="UserPreferences">User Preferences</h3>
 		<p>sIBL_GUI preferences are stored per user in their home directory :</p>
@@ -163,10 +159,35 @@
 			<li><strong>-d <span class="caps">DATABASEDIRECTORY</span>, &#8212;databaseDirectory=DATABASEDIRECTORY</strong> : Database directory.</li>
 			<li><strong>-r, &#8212;databaseReadOnly</strong> : Database is read only, database write access methods are not exposed into the interface.</li>
 			<li><strong>-o <span class="caps">LOADERSCRIPTSOUTPUTDIRECTORY</span>, &#8212;loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY</strong> : Loader scripts output directory.</li>
+			<li><strong>-s, &#8212;noSplashScreen</strong> : The SplashScreen is not displayed during application startup.</li>
 		</ul>
 		<p>Note : On Mac Os X, sIBL_GUI is launched from command line doing the following : &#8220;cd&#8221; into &#8220;sIBL_GUI.app&#8221; folder and enter &#8220;./Contents/MacOS/sIBL_GUI&#8221; followed by the parameters.</p>
+		<h3 id="SharedDatabaseConfiguration">Shared Database Configuration</h3>
+		<p>If you want to share the same Database between multiple installed versions of sIBL_GUI there are 2 solutions :</p>
+		<p><strong>Dirty Method</strong></p>
+		<p>Copy the Database file <strong>sIBL_Database.sqlite</strong> on every machine that have sIBL_GUI installed.</p>
+		<p>The file is located in one of those folders depending your OS :
+		<ul>
+			<li>C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI\database\ on Windows 7</li>
+			<li>C:\Documents and Settings\$USER\Application Data\HDRLabs\sIBL_GUI\database\ on Windows XP</li>
+			<li>/Users/$USER/Library/Preferences/HDRLabs/sIBL_GUI/database/ on Mac Os X</li>
+			<li>/home/$USER/.HDRLabs/sIBL_GUI/database/ on Linux</li>
+		</ul></p>
+		<p><strong>Recommended Method</strong></p>
+		<p>It&#8217;s possible to share one Database file between multiple sIBL_GUI install. In order to do that you need to start sIBL_GUI with some command line parameters : </p>
+		<ul>
+			<li><strong>-d <span class="caps">DATABASEDIRECTORY</span>, &#8212;databaseDirectory=DATABASEDIRECTORY</strong> : This one is mandatory for what you want to do, it will tell sIBL_GUI to store / use the database on the provided path.</li>
+			<li><strong>-r, &#8212;databaseReadOnly</strong> : This one is optional, but <span class="caps">HIGHLY</span> recommended : It will hide / unexpose from the UI all methods that can write to the Database. That&#8217;s something important because the last thing you want is someone screwing the whole database by doing a mistake.</li>
+		</ul>
+		<p>Example Command Line :</p>
+		<blockquote>
+			<p>__C:\HDRLabs\sIBL_GUI\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r__</p>
+		</blockquote>
+		<p>When the Database is read only, the scanner that automatically add new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library folder won&#8217;t be added automatically.</p>
+		<p>It&#8217;s a good idea to put the Database with a real file system write lock in case someone launch a sIBL_GUI instance without the command line arguments.</p>
+		<p>That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.</p>
 		<h3 id="IblSetsWizard">Ibl Sets Wizard</h3>
-		<p>The first time sIBL_GUI is started a wizard	asks to add Ibl Sets into the database :</p>
+		<p>The first time sIBL_GUI is started a wizard asks to add Ibl Sets into the database :</p>
 		<table style="border-collapse : collapse; border-width : 1px; border-style : solid; border-color : gray;" class="class" id="id">
 			<tr>
 				<td><img src="resources/pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg" title="sIBL_GUI_EmptyDatabaseWizard_A" alt="sIBL_GUI_EmptyDatabaseWizard_A" /></td>
@@ -706,6 +727,8 @@
 		</ul>
 		<h2 id="Api">Api</h2>
 		<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html">sIBL_GUI &#8211; Api</a></p>
+		<h2 id="Faq">Faq</h2>
+		<p>A &#8220;Frequently Asked Questions&#8221; thread is available on HDRLabs forum : <a href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491">Smart Ibl Loaders &#8211; Faq</a></p>
 		<h2 id="ChangeLog">Change Log</h2>
 	<p><a href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html">sIBL_GUI &#8211; Change Log</a></p>
 		<h2 id="About">About</h2>

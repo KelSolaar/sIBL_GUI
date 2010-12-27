@@ -55,9 +55,9 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import collections
 import logging
 import re
+from collections import OrderedDict
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -333,25 +333,32 @@ class Parser( io.File ):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.FileStructureError )
-	def parse( self, rawSections = None ):
+	def parse( self, orderedDictionary = True, rawSections = None ):
 		'''
 		This Method Process The File Content To Extract The Sections As A Dictionary.
 
-		@return: Current File Sections. ( Dictionary Or None )
+		@param orderedDictionary: Parser Data Is Stored In Ordered Dictionaries. ( Boolean )
+		@param rawSections: Section Is Not Parsed. ( Boolean )
+		@return: Parsing Success. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Reading Sections From : '{0}'.".format( self._file ) )
 		if self._content :
 			if re.search( "^\[.*\]", self._content[0] ) :
-				self._sections = {}
-				self._comments = {}
+				if not orderedDictionary :
+					self._sections = self._comments = {}
+				else :
+					self._sections = self._comments = OrderedDict()
 				rawSections = rawSections or []
 				commentId = 0
 				for line in self._content:
 					if re.search( "^\[.*\]", line ):
 						section = re.search( "(?<=^\[)(.*)(?=\])", line )
 						section = section.group( 0 )
-						attributes = {}
+						if not orderedDictionary :
+							attributes = {}
+						else :
+							attributes = OrderedDict()
 						rawContent = []
 					else:
 						if section in rawSections :
@@ -368,6 +375,10 @@ class Parser( io.File ):
 									lineTokens = line.split( self._splitter )
 									attributes[section + self._namespaceSplitter + lineTokens[0].strip()] = lineTokens[1].strip().strip( "\"" )
 						self._sections[section] = attributes
+
+				LOGGER.debug( "> '{0}' File Parsing Done !".format( self._file ) )
+				return True
+
 			else:
 				raise foundations.exceptions.FileStructureError( "'{0}' Structure Is Invalid : No Section Found At First Line !".format( self._file ) )
 

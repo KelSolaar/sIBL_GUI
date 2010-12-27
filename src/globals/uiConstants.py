@@ -77,8 +77,6 @@ class UiConstants():
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
 
-	frameworkMenuArrowIcon = "./resources/Menu_Arrow.png"
-
 	frameworkDefaultToolbarIconSize = 32
 
 	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
