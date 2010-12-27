@@ -61,4 +61,4 @@ Comment = "3dsMax Scanline Template : Template First Complete Refactor, It Shoul
 Release = 1.0.7
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Template : Code Formatting."
+Comment = "3dsMax VRay Template : Update Shadow Catching Ground Alpha."
