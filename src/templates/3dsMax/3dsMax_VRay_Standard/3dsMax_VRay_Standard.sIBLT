@@ -2,7 +2,7 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_VRay_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.7 | String | Template Release
+Release = @Release | 1.0.8 | String | Template Release
 Date = @Date | 27 December 2010 | String | Date
 Author = @Author | Dschaga / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
