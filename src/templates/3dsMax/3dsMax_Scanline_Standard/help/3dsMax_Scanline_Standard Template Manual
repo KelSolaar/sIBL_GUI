@@ -27,7 +27,6 @@ h3. Common Attributes
 h3. Additional Attributes
 
 * *Create FeedBack* : Creates a viewport Visual Feedback with the current IBL LDR Background image.
-* *Feedback Radius* : Sets the Feedback radius in 3dsMax units.
 * *Create Ground* : A Plane is added to the Scene.
 * *Hide Lights* : Hides all current Scene lights.
 * *Activate Linear Workflow* : Connect a Logarithmic Exposure Control in Environment And Effects.
