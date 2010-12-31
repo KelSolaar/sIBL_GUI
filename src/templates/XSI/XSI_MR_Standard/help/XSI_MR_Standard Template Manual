@@ -30,7 +30,6 @@ h3. Additional Attributes
 * *Update Scene* : Update the Scene IBL Setup with the new provided informations, this option works with the "Override User Tweaks" one, there is a lot of possibilities available, it's possible to mix different IBL with those 2 options.
 * *Passes Selection Dialog* : A Pass(es) selection dialog appears to choose which Pass(es) will be affected by the IBL.
 * *Create FeedBack* : Makes the Feedback visible and attach to it the current IBL LDR Background image so there is a visual feedback in the Viewport.
-* *Feedback Radius* : Sets the Feedback radius in XSI units.
 * *Create Ground* : A Grid is added to the Scene.
 * *Ground Shadow Catcher* : A mip_Matte_Shadow Shader is assigned to the Ground ( Unlike Maya, in XSI, the Background is made Transparent so it's possible to see behind the Ground Plane, object crossing through will be visible ).
 * *Hide Lights* : Hides all current Scene lights.

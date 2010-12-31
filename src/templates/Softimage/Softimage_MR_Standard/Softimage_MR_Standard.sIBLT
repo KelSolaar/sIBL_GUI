@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Softimage_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.9 | String | Template Release
-Date = @Date | 07 November 2010 | String | Date
+Release = @Release | 1.1.0 | String | Template Release
+Date = @Date | 31 December 2010 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -38,7 +38,6 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 100 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
@@ -83,7 +82,7 @@ var createReflection = @createReflection;
 var createSun = @createSun;
 var createLights = @createLights;
 var createFeedBack = @createFeedBack;
-var feedbackRadius = @feedbackRadius;
+var feedbackRadius = 100;
 var createGround = @createGround;
 var shadowCatcher = @shadowCatcher;
 var hideLights = @hideLights;
@@ -161,6 +160,9 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 						// Scene Cleanup.
 						sIBL_XSI_MR_update_environmentDeletion(overrideTweaks, createBackground, createLighting, createReflection, createSun, createLights, sunExists, dynamicLightsExists, createGround)
 						progressBar.Increment();
+
+						// Defines Updated sIBL_Feedback Radius From Scene Extent.
+						feedbackRadius = sIBL_XSI_MR_update_getExtendedFeedbackRadius(feedbackRadius);
 						
 						// Environment Shaders Update.
 						sIBL_XSI_MR_update_environmentShaders(createBackground, createLighting, createReflection, backgroundFilePath, lightingFilePath, reflectionFilePath, selectedPassesList, overrideTweaks);
@@ -219,6 +221,9 @@ function sIBL_XSI_MR_setup(backgroundFilePath, lightingFilePath, lightingMultipl
 					// Scene Cleanup.
 					sIBL_XSI_MR_environmentDeletion();
 					progressBar.Increment();
+					
+					// Defines sIBL_Feedback Radius From Scene Extent.
+					feedbackRadius = sIBL_XSI_MR_getExtendedFeedbackRadius(feedbackRadius);
 					
 					// Activating Renderer.
 					sIBL_XSI_MR_activateMentalRayRenderer();
@@ -1190,6 +1195,47 @@ function sIBL_XSI_MR_addToDisplayLayer(layerName, object)
 		MoveToLayer("Layers." + layerName, object);
 }
 
+function sIBL_XSI_MR_getSceneExtent()
+{
+	var meshes = sIBL_XSI_MR_getMatchingObjectsByClassID("{400CCE36-4400-11D0-BDDD-00A0241981E2}", ".*", false)
+	var surfaces = sIBL_XSI_MR_getMatchingObjectsByClassID("{28DEC312-62B3-11D1-B79B-00A0243E3694}", ".*", false)
+	var pointClouds = sIBL_XSI_MR_getMatchingObjectsByClassID("{2194FFE3-A0B2-4CAB-A3E8-FC8EDC9F159A}", ".*", false)
+	
+	var objects = sIBL_XSI_MR_extendCollection(meshes, surfaces);
+	objects = sIBL_XSI_MR_extendCollection(objects, pointClouds);
+	
+	var parents = new ActiveXObject("XSI.Collection");
+	for (var i = 0; i < objects.Count; i++)
+		parents.add(objects(i).Parent);
+
+	var sceneBoundingBox = GetBBox(parents);
+	sceneBoundingBox = [sceneBoundingBox.value( "LowerBoundX" ), sceneBoundingBox.value( "LowerBoundY" ), sceneBoundingBox.value( "LowerBoundZ" ), sceneBoundingBox.value( "UpperBoundX" ), sceneBoundingBox.value( "UpperBoundY" ), sceneBoundingBox.value( "UpperBoundZ" )];
+	var sceneExtent = 0
+	for (var i = 0; i < sceneBoundingBox.length; i++) 
+		if( Math.abs(sceneBoundingBox[i]) > sceneExtent )
+			sceneExtent = Math.abs(sceneBoundingBox[i]);
+	return sceneExtent;
+}
+
+function sIBL_XSI_MR_truncFloatNumber(number, truncValue)
+{
+	if(truncValue != 0)
+		return Math.round(number / truncValue) * truncValue; 
+	else
+		return number;
+}
+
+function sIBL_XSI_MR_getExtendedFeedbackRadius(feedbackRadius)
+{
+	var sceneExtent = sIBL_XSI_MR_getSceneExtent();
+	sceneExtent = (sceneExtent + (sceneExtent*50/100))/4;
+	
+	if(sceneExtent < feedbackRadius)
+		return feedbackRadius;
+	else 
+		return sIBL_XSI_MR_truncFloatNumber(sceneExtent,10);
+}
+
 function sIBL_XSI_MR_scriptEditorVerbose(verboseState)
 {
 	Application.Preferences.SetPreferenceValue("scripting.cmdlog", verboseState);
@@ -1266,6 +1312,13 @@ function sIBL_XSI_MR_getStringArrayAsCollection(currentStringArray)
 	stringArrayAsCollection.SetAsText(currentStringArray);
 	
 	return stringArrayAsCollection;
+}
+
+function sIBL_XSI_MR_extendCollection(initialCollection, extensionCollection)
+{
+	for (var i = 0; i < extensionCollection.Count; i++) 
+		initialCollection.Add(extensionCollection(i));
+	return initialCollection;
 }
 
 function sIBL_XSI_MR_getMatchingObjectsByClassID(classID, pattern, matchExact)

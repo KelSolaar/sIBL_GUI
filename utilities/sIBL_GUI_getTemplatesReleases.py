@@ -49,7 +49,6 @@
 import logging
 import os
 import sys
-import textile
 
 #***********************************************************************************************
 #***	Internal Imports
