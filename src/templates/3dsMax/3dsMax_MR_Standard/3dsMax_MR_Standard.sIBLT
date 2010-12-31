@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/3dsMax_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.0.6 | String | Template Release
-Date = @Date | 21 November 2010 | String | Date
+Release = @Release | 1.0.7 | String | Template Release
+Date = @Date | 31 December 2010 | String | Date
 Author = @Author | Dschaga / Jeff Hanna / JHaywood / Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -32,7 +32,6 @@ createLights = @createLights | 1 | Boolean | Create Dynamic Lights
 
 [Additional Attributes]
 createFeedBack = @createFeedBack | 1 | Boolean | Create Feedback
-feedbackRadius = @feedbackRadius | 1000 | Float | Feedback Radius
 createGround = @createGround | 1 | Boolean | Create Ground
 shadowCatcher = @shadowCatcher | 1 | Boolean | Ground Shadow Catcher
 hideLights = @hideLights | 1 | Boolean | Hide Lights
@@ -60,8 +59,43 @@ struct sIBL_options ( createBackground, createLighting, createReflection,  creat
 struct sIBL_sceneNodes ( datasGroup,  lightsGroup, feedback )
 	
 global sIBL_DATAS =  sIBL_datas backgroundFilePath:"@BGfile" lightingFilePath:"@EVfile" reflectionFilePath:"@REFfile" sunU:@SUNu sunV:@SUNv sunColor:"@SUNcolor" sunMultiplier:@SUNmulti dynamicLights:"@dynamicLights"
-global sIBL_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:@feedbackRadius hideLights:@hideLights sunAsMrSun:@sunAsMrSun createGround:@createGround shadowCatcher:@shadowCatcher activateLinearWorkflow:@activateLinearWorkflow
+global sIBL_OPTIONS = sIBL_options createBackground:@createBackground createLighting:@createLighting createReflection:@createReflection createSun:@createSun createLights:@createLights createFeedBack:@createFeedBack feedbackRadius:1000 hideLights:@hideLights sunAsMrSun:@sunAsMrSun createGround:@createGround shadowCatcher:@shadowCatcher activateLinearWorkflow:@activateLinearWorkflow
 global sIBL_SCENE_NODES = sIBL_sceneNodes()
+
+fn sIBL_3dsmax_MR_getSceneExtent =
+(
+	sceneExtent = 0
+	for object_ in Geometry do
+	(
+		bBox = nodeGetBoundingBox object_ (Matrix3 1)
+		for i = 1 to bBox.count  do
+		(
+			toArray = #(abs(bBox[i].x), abs(bBox[i].y), abs(bBox[i].z))
+			if amax(toArray) > sceneExtent then sceneExtent = amax(toArray)
+		)
+	)
+
+	return sceneExtent
+)
+
+fn sIBL_3dsmax_MR_truncFloatNumber number truncValue =
+(
+	if truncValue != 0 then
+		return floor(number / truncValue) * truncValue
+	else 
+		return number
+)
+
+fn sIBL_3dsmax_MR_getExtendedFeedbackRadius feedbackRadius =
+(
+	sceneExtent = sIBL_3dsmax_MR_getSceneExtent()
+	sceneExtent = sceneExtent + (sceneExtent*50/100)
+
+	if sceneExtent < feedbackRadius then
+		return feedbackRadius
+	else
+		return sIBL_3dsmax_MR_truncFloatNumber sceneExtent 10
+)
 
 fn sIBL_3dsmax_MR_hasProductionShadersSupport =
 (
@@ -370,7 +404,9 @@ fn sIBL_3dsmax_MR_setup  =
 		print "sIBL_GUI | Starting sIBL File Import !"
 
 		sIBL_3dsmax_MR_environmentDeletion()
-
+		
+		sIBL_OPTIONS.feedbackRadius = sIBL_3dsmax_MR_getExtendedFeedbackRadius sIBL_OPTIONS.feedbackRadius
+		
 		sIBL_3dsmax_MR_activateMentalRay()
 		
 		if( sIBL_OPTIONS.hideLights == 1 ) then
