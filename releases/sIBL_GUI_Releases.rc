@@ -46,19 +46,19 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Stand
 Comment = "Renderman For Maya Template : Add Pre / Post Process Callbacks."
 
 [3dsMax_MR_Standard]
-Release = 1.0.6
+Release = 1.0.7
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_MR_Standard/Stable/3dsMax_MR_Standard.zip"
-Comment = "3dsMax Mental Ray Template : Code Formatting."
+Comment = "3dsMax Mental Ray Template : Implement Automatic Visual Feedback Size."
 
 [3dsMax_Scanline_Standard]
-Release = 1.0.0
+Release = 1.0.1
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_Scanline_Standard/Stable/3dsMax_Scanline_Standard.zip"
-Comment = "3dsMax Scanline Template : Template First Complete Refactor, It Should Be In Line With Others 3dsMax Templates."
+Comment = "3dsMax Scanline Template : Implement Automatic Visual Feedback Size."
 
 [3dsMax_VRay_Standard]
-Release = 1.0.8
+Release = 1.0.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/3dsMax_VRay_Standard/Stable/3dsMax_VRay_Standard.zip"
-Comment = "3dsMax VRay Template : Update Shadow Catching Ground Alpha."
+Comment = "3dsMax VRay Template : Implement Automatic Visual Feedback Size."
