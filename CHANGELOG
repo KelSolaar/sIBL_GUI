@@ -3,6 +3,9 @@ h1=. sIBL_GUI - 3.1.0 - Stable
 h2=. Change Log
 
 h3. 3.1.0 - Stable
+* sIBL_GUI now uses Python 2.7.1, allowing usage of OrderedDict, Templates attributes are now displayed in correct order.
+* Added "-s", "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
+* Fixed an inconsistency related to the comments in the file parser. 
 
 h3. 3.0.9 - Stable
 

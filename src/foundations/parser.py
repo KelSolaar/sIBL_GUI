@@ -369,7 +369,7 @@ class Parser( io.File ):
 								continue
 							else :
 								if line.startswith( self._commentLimiter ):
-									self._comments[section + self._namespaceSplitter + "#_" + str( commentId )] = line.strip( "-;" )
+									self._comments[section + self._namespaceSplitter + "#" + str( commentId )] = {"id" : commentId, "content" : line.strip( self._commentLimiter )}
 									commentId += 1
 								elif self._splitter in line:
 									lineTokens = line.split( self._splitter )
