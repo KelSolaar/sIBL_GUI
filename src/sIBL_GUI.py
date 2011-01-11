@@ -3,7 +3,7 @@
 
 #***********************************************************************************************
 #
-# Copyright (C) 2008 - 2011 - Thomas Mansencal - kelsolaar_fool@hotmail.com
+# Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
 #
 #***********************************************************************************************
 #
@@ -29,7 +29,7 @@
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs :
 # Christian Bloch - blochi@edenfx.com
-# Thomas Mansencal - kelsolaar_fool@hotmail.com
+# Thomas Mansencal - thomas.mansencal@gmail.com
 #
 #***********************************************************************************************
 
@@ -1665,7 +1665,7 @@ def getHeaderMessage():
 
 	message = []
 
-	message.append( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - kelsolaar_fool@hotmail.com".format( Constants.applicationName ) )
+	message.append( "{0} | Copyright ( C ) 2008 - 2010 Thomas Mansencal - thomas.mansencal@gmail.com".format( Constants.applicationName ) )
 	message.append( "{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format( Constants.applicationName ) )
 	message.append( "{0} | http://www.gnu.org/licenses/ ".format( Constants.applicationName ) )
 	message.append( "{0} | Version : {1}".format( Constants.applicationName, Constants.releaseVersion ) )
