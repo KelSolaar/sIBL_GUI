@@ -2,8 +2,8 @@
 Name = @Name | Dome Light | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Dome_Light Template Manual.html | String | Help File
-Release = @Release | 1.2.3 | String | Template Release
-Date = @Date | 11 November 2010 | String | Date
+Release = @Release | 1.2.4 | String | Template Release
+Date = @Date | 11 January 2011 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | kelsolaar_fool@hotmail.com | String | Email
 Url = @Url | http://my.opera.com/KelSolaar/blog/ | String | Url
@@ -764,7 +764,7 @@ global proc float sIBL_Maya_VRay_DLight_getSceneExtent()
 	string $transforms[] = {};
 
 	for($geometry in $geometries)
-		$transforms[size($transforms)] = sIBL_Maya_MR_getTransform($geometry);
+		$transforms[size($transforms)] = sIBL_Maya_VRay_DLight_getTransform($geometry);
 	    
 	float $sceneExtent = 0;
 	for($transform in $transforms)
