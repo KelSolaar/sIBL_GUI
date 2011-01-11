@@ -3,7 +3,7 @@
 
 #***********************************************************************************************
 #
-# Copyright (C) 2008 - 2011 - Thomas Mansencal - kelsolaar_fool@hotmail.com
+# Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
 #
 #***********************************************************************************************
 #
@@ -29,7 +29,7 @@
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs :
 # Christian Bloch - blochi@edenfx.com
-# Thomas Mansencal - kelsolaar_fool@hotmail.com
+# Thomas Mansencal - thomas.mansencal@gmail.com
 #
 #***********************************************************************************************
 
@@ -110,7 +110,7 @@ ABOUT_MESSAGE = """
 		<br/>
 		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#000000;">blochi@edenfx.com</span></a>
 		<br/>
-		Thomas Mansencal - <a href="mailto:kelsolaar_fool@hotmail.com"><span style=" text-decoration: underline; color:#000000;">kelsolaar_fool@hotmail.com</span></a>
+		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#000000;">thomas.mansencal@gmail.com</span></a>
 		</p>
 		<p>
 		sIBL_GUI by Thomas Mansencal - 2008 - 2010
