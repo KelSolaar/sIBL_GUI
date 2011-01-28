@@ -129,6 +129,7 @@ class LoaderScript( UiComponent ):
 		self._overrideKeys = {}
 
 		self._defaultStringSeparator = "|"
+		self._unnamedLightName = "Unnamed_Light"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -529,6 +530,38 @@ class LoaderScript( UiComponent ):
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultStringSeparator" ) )
 
+	@property
+	def unnamedLightName( self ):
+		'''
+		This Method Is The Property For The _unnamedLightName Attribute.
+
+		@return: self._unnamedLightName. ( String )
+		'''
+
+		return self._unnamedLightName
+
+	@unnamedLightName.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def unnamedLightName( self, value ):
+		'''
+		This Method Is The Setter Method For The _unnamedLightName Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		if value :
+			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "unnamedLightName", value )
+		self._unnamedLightName = value
+
+	@unnamedLightName.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def unnamedLightName( self ):
+		'''
+		This Method Is The Deleter Method For The _unnamedLightName Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "unnamedLightName" ) )
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -837,7 +870,8 @@ class LoaderScript( UiComponent ):
 			for section in iblSetSections :
 				if re.search( "Light[0-9]*", section ) :
 					dynamicLights.append( section )
-					dynamicLights.append( iblSetParser.getValue( "LIGHTname", section ) )
+					lightName = iblSetParser.getValue( "LIGHTname", section )
+					dynamicLights.append( lightName and lightName or self._unnamedLightName )
 					lightColorTokens = iblSetParser.getValue( "LIGHTcolor", section ).split( "," )
 					for color in lightColorTokens:
 						dynamicLights.append( color )
