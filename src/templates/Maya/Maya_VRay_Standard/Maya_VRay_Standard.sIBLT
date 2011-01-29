@@ -431,16 +431,16 @@ global proc sIBL_Maya_VRay_getEnvironmentTexturesBranch(string $slot, string $fi
 	
 	connectAttr -f ($file + ".outColor") ($gammaCorrect + ".value");
 	
-	string $vCoordinaterayPlacement = `shadingNode -asUtility "VRayPlaceEnvTex"`;
-	setAttr ($vCoordinaterayPlacement + ".mappingType") 2;
+	string $vrayPlacement = `shadingNode -asUtility "VRayPlaceEnvTex"`;
+	setAttr ($vrayPlacement + ".mappingType") 2;
 
-	connectAttr -f ($vCoordinaterayPlacement + ".outUV") ($file + ".uvCoord");
+	connectAttr -f ($vrayPlacement + ".outUV") ($file + ".uvCoord");
 
 	setAttr -type "string" ($file + ".fileTextureName") $filePath;
 
 	rename $file ($prefix + "_" + `nodeType $file`);
 	rename $gammaCorrect ($prefix + "_" + `nodeType $gammaCorrect`);
-	rename $vCoordinaterayPlacement ($prefix + "_" + `nodeType $vCoordinaterayPlacement`);
+	rename $vrayPlacement ($prefix + "_" + `nodeType $vrayPlacement`);
 }
 
 global proc sIBL_Maya_VRay_getEnvironment(int $createBackground, int $createLighting, int $createReflection, string $backgroundFilePath, string $lightingFilePath, string $reflectionFilePath)
