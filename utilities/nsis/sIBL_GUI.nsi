@@ -4,7 +4,7 @@ Name sIBL_GUI
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 3.1.0
 !define COMPANY "HDRLabs"
-!define URL http://my.opera.com/KelSolaar/blog/
+!define URL http://www.thomasmansencal.com/blog/
 
 # MUI Symbol Definitions
 !define MUI_ICON "Z:\sIBL_GUI\src\resources\Icon_Light_48.ico"

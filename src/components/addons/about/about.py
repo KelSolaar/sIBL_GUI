@@ -113,11 +113,11 @@ ABOUT_MESSAGE = """
 		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#000000;">thomas.mansencal@gmail.com</span></a>
 		</p>
 		<p>
-		sIBL_GUI by Thomas Mansencal - 2008 - 2010
+		sIBL_GUI by Thomas Mansencal - 2008 - 2011
 		<br/>
 		This Software Is Released Under Terms Of GNU GPL V3 License : <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
 		<br/>
-		<a href="http://my.opera.com/KelSolaar/"><span style=" text-decoration: underline; color:#000000;">http://my.opera.com/KelSolaar/</span></a>
+		<a href="http://www.thomasmansencal.com/"><span style=" text-decoration: underline; color:#000000;">http://www.thomasmansencal.com/</span></a>
 		</p>
 		<p>
 		*
