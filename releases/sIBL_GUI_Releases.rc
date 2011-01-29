@@ -22,28 +22,28 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standa
 Comment = "Maya Mental Ray Template : Implement Automatic Visual Feedback Size."
 
 [Maya_VRay_Standard]
-Release = 1.2.3
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Implement Automatic Visual Feedback Size."
-
-[Maya_VRay_Dome_Light]
-Release = 1.2.3
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
-Comment = "VRay For Maya Dome Light Template : Implement Automatic Visual Feedback Size."
-
-[Maya_Turtle_Standard]
 Release = 1.2.4
 Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
+Comment = "VRay For Maya Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
+
+[Maya_VRay_Dome_Light]
+Release = 1.2.4
+Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
+Comment = "VRay For Maya Dome Light Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
+
+[Maya_Turtle_Standard]
+Release = 1.2.5
+Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
-Comment = "Maya Turtle Template : Implement Automatic Visual Feedback Size."
+Comment = "Maya Turtle Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
 
 [Maya_RfM_Standard]
-Release = 1.1.2
+Release = 1.1.3
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Standard/Stable/Maya_RfM_Standard.zip"
-Comment = "Renderman For Maya Template : Add Pre / Post Process Callbacks."
+Comment = "Renderman For Maya Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
 
 [3dsMax_MR_Standard]
 Release = 1.0.7
