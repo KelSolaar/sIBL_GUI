@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_RfM_Standard Template Manual.html | String | Help File
-Release = @Release | 1.1.3 | String | Template Release
-Date = @Date | 11 January 2011 | String | Date
+Release = @Release | 1.1.4 | String | Template Release
+Date = @Date | 30 January 2011 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | thomas.mansencal@gmail.com | String | Email
 Url = @Url | http://thomasmansencal.com/ | String | Url
@@ -335,6 +335,9 @@ global proc sIBL_Maya_RfM_environmentDeletion()
 	
 	// sIBL gammaCorrect Nodes Deletion.
 	sIBL_Maya_RfM_deleteType("gammaCorrect", "sIBL*");	
+
+	// sIBL blendColors Nodes Deletion.
+	sIBL_Maya_RfM_deleteType("blendColors", "sIBL*");	
 	
 	// sIBL RenderManEnvLightShape Deletion.
 	sIBL_Maya_RfM_deleteType("RenderManEnvLightShape", "sIBL*");

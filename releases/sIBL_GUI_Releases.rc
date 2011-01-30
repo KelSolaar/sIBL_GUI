@@ -40,10 +40,10 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_St
 Comment = "Maya Turtle Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
 
 [Maya_RfM_Standard]
-Release = 1.1.3
+Release = 1.1.4
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_RfM_Standard/Stable/Maya_RfM_Standard.zip"
-Comment = "Renderman For Maya Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
+Comment = "Renderman For Maya Template : Ensure 'blendColors' Nodes Are Properly Deleted."
 
 [3dsMax_MR_Standard]
 Release = 1.0.7
