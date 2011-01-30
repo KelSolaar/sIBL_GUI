@@ -883,12 +883,14 @@ global proc string sIBL_Maya_RfM_getObject(string $object)
 	return $list[0];
 }
 
-global proc sIBL_Maya_RfM_addToDisplayLayer( string $layerName, string $object)
+global proc string sIBL_Maya_RfM_addToDisplayLayer( string $layerName, string $object)
 {
 	string $layer = sIBL_Maya_RfM_getObject($layerName);
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+	
+	return $layer;
 }
 
 global proc string[] sIBL_Maya_RfM_filterNonExistingNodes(string $nodes[])

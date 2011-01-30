@@ -2,8 +2,8 @@
 Name = @Name | Dome Light | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_VRay_Dome_Light Template Manual.html | String | Help File
-Release = @Release | 1.2.4 | String | Template Release
-Date = @Date | 11 January 2011 | String | Date
+Release = @Release | 1.2.5 | String | Template Release
+Date = @Date | 30 January 2011 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | thomas.mansencal@gmail.com | String | Email
 Url = @Url | http://thomasmansencal.com/ | String | Url
@@ -826,12 +826,14 @@ global proc string sIBL_Maya_VRay_DLight_getObject(string $object)
 	return $list[0];
 }
 
-global proc sIBL_Maya_VRay_DLight_addToDisplayLayer( string $layerName, string $object)
+global proc string sIBL_Maya_VRay_DLight_addToDisplayLayer( string $layerName, string $object)
 {
 	string $layer = sIBL_Maya_VRay_DLight_getObject($layerName);
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+	
+	return $layer;
 }
 
 global proc string[] sIBL_Maya_VRay_DLight_filterNonExistingNodes(string $nodes[])

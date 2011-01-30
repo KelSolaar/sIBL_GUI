@@ -16,28 +16,28 @@ Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Softimage_MR_S
 Comment = "Softimage Mental Ray Template : Implement Automatic Visual Feedback Size."
 
 [Maya_MR_Standard]
-Release = 1.7.8
+Release = 1.7.9
 Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_MR_Standard/Stable/Maya_MR_Standard.zip"
-Comment = "Maya Mental Ray Template : Implement Automatic Visual Feedback Size."
+Comment = "Maya Mental Ray Template : Code refactoring."
 
 [Maya_VRay_Standard]
-Release = 1.2.4
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
-Comment = "VRay For Maya Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
-
-[Maya_VRay_Dome_Light]
-Release = 1.2.4
-Type = "Stable"
-Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
-Comment = "VRay For Maya Dome Light Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
-
-[Maya_Turtle_Standard]
 Release = 1.2.5
 Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Standard/Stable/Maya_VRay_Standard.zip"
+Comment = "VRay For Maya Template : Code refactoring."
+
+[Maya_VRay_Dome_Light]
+Release = 1.2.5
+Type = "Stable"
+Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_VRay_Dome_Light/Stable/Maya_VRay_Dome_Light.zip"
+Comment = "VRay For Maya Dome Light Template : Code refactoring."
+
+[Maya_Turtle_Standard]
+Release = 1.2.6
+Type = "Stable"
 Url = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Templates/Maya_Turtle_Standard/Stable/Maya_Turtle_Standard.zip"
-Comment = "Maya Turtle Template : Fix Call To Non Existing 'sIBL_Maya_MR_getTransform' Procedure."
+Comment = "Maya Turtle Template : Code refactoring."
 
 [Maya_RfM_Standard]
 Release = 1.1.4
