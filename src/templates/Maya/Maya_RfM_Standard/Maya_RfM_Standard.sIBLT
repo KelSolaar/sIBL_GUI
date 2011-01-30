@@ -605,7 +605,9 @@ global proc string sIBL_Maya_RfM_getFeedbackGeometry(float $feedbackRadius)
 		setAttr -lock true -keyable false ($feedback[0] + "." + $lock);
 
 	string $feedBackShapes[] = sIBL_Maya_RfM_getShapes($feedback[0]);
-	setAttr ($feedBackShapes[0] + ".opposite") 0;
+	string $renderStats[] = { "doubleSided", "opposite" };
+	for( $stat in $renderStats )
+		setAttr ($feedBackShapes[0] + "." + $stat) false;
 
 	sIBL_Maya_RfM_addToDisplayLayer("sIBL_FeedBack_Layer", $feedback[0]);
 
@@ -619,6 +621,7 @@ global proc sIBL_Maya_RfM_getFeedback(string $backgroundFilePath, float $feedbac
 	parent $feedback $sIBLGroup;
 
 	string $lambertShader = `shadingNode -asShader "lambert"`;
+	setAttr ($lambertShader + ".transparency") -type double3 0.5 0.5 0.5 ;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
@@ -700,8 +703,8 @@ global proc sIBL_Maya_RfM_getLight( string $ligthType, string $lightName, float 
 	sIBL_Maya_RfM_addToDisplayLayer("sIBL_Lighting_Layer", $light);
 
 	rename $light $lightName;
-	rename $pointOnSurfaceInfo ($lightName + "_PointOnSurfaceInfo");
-	rename $constraint[0] ($lightName + "_AimConstraint");
+	rename $pointOnSurfaceInfo ($lightName + "_" + `nodeType $pointOnSurfaceInfo`);
+	rename $constraint[0] ($lightName + "_" + `nodeType $constraint[0]`);
 }
 
 global proc sIBL_Maya_RfM_getSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius )
