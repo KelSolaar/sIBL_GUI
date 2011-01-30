@@ -842,7 +842,6 @@ global proc string sIBL_Maya_Turtle_addToDisplayLayer( string $layerName, string
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
-	
 	return $layer;
 }
 

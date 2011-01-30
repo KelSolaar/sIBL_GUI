@@ -889,7 +889,6 @@ global proc string sIBL_Maya_RfM_addToDisplayLayer( string $layerName, string $o
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
-	
 	return $layer;
 }
 

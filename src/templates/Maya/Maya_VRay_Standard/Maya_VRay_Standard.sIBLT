@@ -814,7 +814,6 @@ global proc string sIBL_Maya_VRay_addToDisplayLayer( string $layerName, string $
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
-	
 	return $layer;
 }
 
