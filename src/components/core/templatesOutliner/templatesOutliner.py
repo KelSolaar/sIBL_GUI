@@ -107,7 +107,6 @@ class TemplatesOutliner_Worker( QThread ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._dbSession = self._container.coreDb.dbSessionMaker()
 
@@ -146,36 +145,6 @@ class TemplatesOutliner_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def dbSession( self ):
@@ -281,7 +250,7 @@ class TemplatesOutliner_Worker( QThread ):
 		self._timer.moveToThread( self )
 		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
-		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateTemplates, Qt.DirectConnection )
+		self._timer.timeout.connect( self.updateTemplates, Qt.DirectConnection )
 
 		self.exec_()
 
@@ -478,7 +447,6 @@ class TemplatesOutliner( UiComponent ):
 		self._dockArea = 1
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 
@@ -680,36 +648,6 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDb( self ):
@@ -1087,7 +1025,6 @@ class TemplatesOutliner( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 
@@ -1137,10 +1074,10 @@ class TemplatesOutliner( UiComponent ):
 			LOGGER.info( "{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Templates_Outliner_treeView_OnSelectionChanged )
-		self._signalsSlotsCenter.connect( self.ui.Template_Informations_textBrowser, SIGNAL( "anchorClicked( const QUrl & )" ), self.Template_Informations_textBrowser_OnAnchorClicked )
-		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Templates_Outliner_treeView_refreshView )
-		not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.connect( self._templatesOutlinerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect( self.Templates_Outliner_treeView_OnSelectionChanged )
+		self.ui.Template_Informations_textBrowser.anchorClicked.connect( self.Template_Informations_textBrowser_OnAnchorClicked )
+		self.modelChanged.connect( self.Templates_Outliner_treeView_refreshView )
+		not self._container.parameters.databaseReadOnly and self._templatesOutlinerWorkerThread.databaseChanged.connect( self.databaseChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
