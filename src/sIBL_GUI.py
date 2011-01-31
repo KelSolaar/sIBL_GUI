@@ -326,7 +326,6 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.setupUi(self)
 
 		# --- Setting Class Attributes. ---
-		self._signalsSlotsCenter = QObject()
 		self._componentsManager = None
 		self._coreComponentsManagerUi = None
 		self._corePreferencesManager = None
@@ -472,36 +471,6 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
-	@property
-	def signalsSlotsCenter(self):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def signalsSlotsCenter(self, value):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("signalsSlotsCenter"))
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def signalsSlotsCenter(self):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("signalsSlotsCenter"))
-
 	@property
 	def componentsManager(self):
 		'''
@@ -1309,7 +1278,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
 		self.toolBar.addWidget(centralWidgetButton)
 
-		self._signalsSlotsCenter.connect(centralWidgetButton, SIGNAL("clicked()"), self.centralWidgetButton_OnClicked)
+		centralWidgetButton.clicked.connect(lambda : self.centralWidgetButton_OnClicked())
 
 		LOGGER.debug("> Adding Layout Button.")
 		layoutbutton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
