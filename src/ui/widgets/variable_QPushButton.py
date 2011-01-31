@@ -69,15 +69,15 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Variable_QPushButton( QPushButton ) :
+class Variable_QPushButton(QPushButton) :
 
 	@core.executionTrace
-	def __init__( self, state, colors, labels, parent = None ) :
+	def __init__(self, state, colors, labels, parent=None) :
 		'''
 		This Method Initializes The Class.
 
@@ -87,13 +87,11 @@ class Variable_QPushButton( QPushButton ) :
 		@param parent: Widget Parent. ( QObject )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		QPushButton.__init__( self, parent )
+		QPushButton.__init__(self, parent)
 
 		# --- Setting Class Attributes. ---
-		self._signalsSlotsCenter = QObject()
-
 		self._state = None
 		self.state = state
 
@@ -107,50 +105,20 @@ class Variable_QPushButton( QPushButton ) :
 		self.parent = parent
 
 		# Initializing The Button
-		self.setCheckable( True )
+		self.setCheckable(True)
 		if self._state :
 			self.setTrueState()
 		else :
 			self.setFalseState()
 
-		# Variable_QPushButton Signals / Slots.
-		self._signalsSlotsCenter.connect( self, SIGNAL( "clicked()" ), self.variable_QPushButton_OnClicked )
+		# Signals / Slots.
+		self.clicked.connect(lambda : self.variable_QPushButton_OnClicked())
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
-	def state( self ):
+	def state(self):
 		'''
 		This Method Is The Property For The _state Attribute.
 
@@ -160,8 +128,8 @@ class Variable_QPushButton( QPushButton ) :
 		return self._state
 
 	@state.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def state( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def state(self, value):
 		'''
 		This Method Is The Setter Method For The _state Attribute.
 
@@ -169,20 +137,20 @@ class Variable_QPushButton( QPushButton ) :
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
 		self._state = value
 
 	@state.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def state( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def state(self):
 		'''
 		This Method Is The Deleter Method For The _state Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "state" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("state"))
 
 	@property
-	def colors( self ):
+	def colors(self):
 		'''
 		This Method Is The Property For The _colors Attribute.
 
@@ -192,31 +160,31 @@ class Variable_QPushButton( QPushButton ) :
 		return self._colors
 
 	@colors.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def colors( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def colors(self, value):
 		'''
 		This Method Is The Setter Method For The _colors Attribute.
 
 		@param value: Attribute Value. ( Tuple )
 		'''
 		if value :
-			assert type( value ) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format( "colors", value )
-			assert len( value ) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format( "colors", value )
-			for index in range( len( value ) ) :
-				assert type( value[index] ) is QColor, "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'QColor' !".format( "colors", index, value )
+			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("colors", value)
+			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("colors", value)
+			for index in range(len(value)) :
+				assert type(value[index]) is QColor, "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'QColor' !".format("colors", index, value)
 		self._colors = value
 
 	@colors.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def colors( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def colors(self):
 		'''
 		This Method Is The Deleter Method For The _colors Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "colors" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("colors"))
 
 	@property
-	def labels( self ):
+	def labels(self):
 		'''
 		This Method Is The Property For The _labels Attribute.
 
@@ -226,31 +194,31 @@ class Variable_QPushButton( QPushButton ) :
 		return self._labels
 
 	@labels.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def labels( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def labels(self, value):
 		'''
 		This Method Is The Setter Method For The _labels Attribute.
 
 		@param value: Attribute Value. ( Tuple )
 		'''
 		if value :
-			assert type( value ) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format( "labels", value )
-			assert len( value ) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format( "labels", value )
-			for index in range( len( value ) ) :
-				assert type( value[index] ) in ( str, unicode ), "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'str' or 'unicode' !".format( "labels", index, value )
+			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("labels", value)
+			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("labels", value)
+			for index in range(len(value)) :
+				assert type(value[index]) in (str, unicode), "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'str' or 'unicode' !".format("labels", index, value)
 		self._labels = value
 
 	@labels.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def labels( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def labels(self):
 		'''
 		This Method Is The Deleter Method For The _labels Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "labels" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("labels"))
 
 	@property
-	def parent( self ):
+	def parent(self):
 		'''
 		This Method Is The Property For The _parent Attribute.
 
@@ -260,7 +228,7 @@ class Variable_QPushButton( QPushButton ) :
 		return self._parent
 
 	@parent.setter
-	def parent( self, value ):
+	def parent(self, value):
 		'''
 		This Method Is The Setter Method For The _parent Attribute.
 
@@ -270,19 +238,19 @@ class Variable_QPushButton( QPushButton ) :
 		self._parent = value
 
 	@parent.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def parent( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def parent(self):
 		'''
 		This Method Is The Deleter Method For The _parent Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "parent" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("parent"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def variable_QPushButton_OnClicked( self ) :
+	def variable_QPushButton_OnClicked(self) :
 		'''
 		This Method Is Called When A Variable QPushButton Is Clicked.
 		'''
@@ -293,37 +261,37 @@ class Variable_QPushButton( QPushButton ) :
 			self.setTrueState()
 
 	@core.executionTrace
-	def setTrueState( self ) :
+	def setTrueState(self) :
 		'''
 		This Method Sets The Variable Button True State.
 		'''
 
-		LOGGER.debug( "> Setting Variable QPushButton() To 'True' State." )
+		LOGGER.debug("> Setting Variable QPushButton() To 'True' State.")
 		self._state = True
 
 		palette = QPalette()
-		palette.setColor( QPalette.Button, self._colors[0] )
-		self.setPalette( palette )
+		palette.setColor(QPalette.Button, self._colors[0])
+		self.setPalette(palette)
 
-		self.setChecked( True )
-		self.setText( self._labels[0] )
+		self.setChecked(True)
+		self.setText(self._labels[0])
 
 	@core.executionTrace
-	def setFalseState( self ) :
+	def setFalseState(self) :
 		'''
 		This Method Sets The Variable QPushButton True State.
 		'''
 
-		LOGGER.debug( "> Setting Variable QPushButton() To 'False' State." )
+		LOGGER.debug("> Setting Variable QPushButton() To 'False' State.")
 
 		self._state = False
 
 		palette = QPalette()
-		palette.setColor( QPalette.Button, self._colors[1] )
-		self.setPalette( palette )
+		palette.setColor(QPalette.Button, self._colors[1])
+		self.setPalette(palette)
 
-		self.setChecked( False )
-		self.setText( self._labels[1] )
+		self.setChecked(False)
+		self.setText(self._labels[1])
 
 #***********************************************************************************************
 #***	Python End
