@@ -435,11 +435,11 @@ class TemplatesOutliner_QTreeView( QTreeView ):
 					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
 					if re.search( "\.{0}$".format( self._coreTemplatesOutliner.extension ), str( url.path() ) ) :
 						name = os.path.splitext( os.path.basename( path ) )[0]
-						if messageBox.messageBox( "Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						if messageBox.messageBox( "Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreTemplatesOutliner.addTemplate( name, path ) and self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 					else :
 						if os.path.isdir( path ):
-							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 								 self._coreTemplatesOutliner.addDirectory( path )
 								 self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 						else :
@@ -456,7 +456,7 @@ class TemplatesOutliner( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -466,7 +466,7 @@ class TemplatesOutliner( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -1447,7 +1447,7 @@ class TemplatesOutliner( UiComponent ):
 		'''
 
 		for collection, path in self._defaultCollections.items() :
-			os.path.exists( path ) and self.addDirectory( path, self.getCollection( collection ).id, noWarning = True )
+			os.path.exists( path ) and self.addDirectory( path, self.getCollection( collection ).id, noWarning=True )
 		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
@@ -1462,7 +1462,7 @@ class TemplatesOutliner( UiComponent ):
 		if selectedTemplates :
 			for template in selectedTemplates :
 				LOGGER.info( "{0} | Opening '{1}' Template Help File : '{2}'.".format( self.__class__.__name__, template._datas.name, template._datas.helpFile ) )
-				QDesktopServices.openUrl( QUrl( "file://{0}".format( template._datas.helpFile ) ) )
+				QDesktopServices.openUrl( QUrl( strings.getFormatedLocalUrl( template._datas.helpFile ) ) )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_filterTemplatesVersionsAction( self, checked ):
@@ -1478,7 +1478,7 @@ class TemplatesOutliner( UiComponent ):
 			matchingTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( template.name ), "name" )
 			if len( matchingTemplates ) != 1 :
 				needModelRefresh = True
-				for id in sorted( [( dbTemplate.id, dbTemplate.release ) for dbTemplate in matchingTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )[1:] :
+				for id in sorted( [( dbTemplate.id, dbTemplate.release ) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:( strings.getVersionRank( x[1] ) ) )[1:] :
 					dbUtilities.common.removeTemplate( self._coreDb.dbSession, id[0] )
 
 		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
@@ -1544,7 +1544,7 @@ class TemplatesOutliner( UiComponent ):
 		@param url: Url To Explore. ( QUrl )
 		'''
 
-		QDesktopServices.openUrl( url )
+		QDesktopServices.openUrl( QUrl( strings.getFormatedLocalUrl( url.path() ) ) )
 
 	@core.executionTrace
 	def databaseChanged( self ):
@@ -1556,7 +1556,7 @@ class TemplatesOutliner( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def addTemplate( self, name, path, collectionId = None, noWarning = False ):
+	def addTemplate( self, name, path, collectionId=None, noWarning=False ):
 		'''
 		This Method Adds A Template To The Database.
 		
@@ -1577,7 +1577,7 @@ class TemplatesOutliner( UiComponent ):
 			noWarning or messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Template Path Already Exists In Database !".format( self.__class__.__name__, path ) )
 
 	@core.executionTrace
-	def addDirectory( self, directory, collectionId = None, noWarning = False ):
+	def addDirectory( self, directory, collectionId=None, noWarning=False ):
 		'''
 		This Method Imports Provided Directory Templates Into Provided Collection.
 		
@@ -1618,7 +1618,7 @@ class TemplatesOutliner( UiComponent ):
 		selectedSoftwares and messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s) !".format( self.__class__.__name__, ", ".join( selectedSoftwares ) ) )
 
 		if selectedTemplates :
-			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s) ?".format( ", ".join( [str( template.text() ) for template in selectedTemplates] ) ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for template in selectedTemplates :
 					LOGGER.info( "{0} | Removing '{1}' Template From Database !".format( self.__class__.__name__, template.text() ) )
 					dbUtilities.common.removeTemplate( self._coreDb.dbSession, str( template._datas.id ) )
@@ -1685,7 +1685,7 @@ class TemplatesOutliner( UiComponent ):
 		return self.defaultCollections[self._factoryCollection] in path and [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._factoryCollection ), "name" ) ).intersection( templatesCollections )][0].id or [collection for collection in set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( self._userCollection ), "name" ) ).intersection( templatesCollections )][0].id
 
 	@core.executionTrace
-	def getSelectedItems( self, rowsRootOnly = True ):
+	def getSelectedItems( self, rowsRootOnly=True ):
 		'''
 		This Method Returns The Templates_Outliner_treeView Selected Items.
 		

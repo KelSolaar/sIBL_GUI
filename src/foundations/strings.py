@@ -127,6 +127,22 @@ def getNormalizedPath( path ):
 	else :
 		return os.path.normpath( path )
 
+@core.executionTrace
+def getFormatedLocalUrl( url ):
+	'''
+	This Definition Gets A Formated Local Url.
+
+	@param url: Url To Format. ( String )	
+	@return: Formated Url. ( String )
+	'''
+
+	prefix = "file:///"
+	if platform.system() == "Windows" or platform.system() == "Microsoft" and url.startswith( "//" ):
+		prefix = "file:"
+		url = url.replace( "/", "\\" )
+
+	return "{0}{1}".format( prefix, url )
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
