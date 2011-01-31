@@ -1278,7 +1278,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
 		self.toolBar.addWidget(centralWidgetButton)
 
-		centralWidgetButton.clicked.connect(lambda : self.centralWidgetButton_OnClicked())
+		centralWidgetButton.clicked.connect(self.centralWidgetButton_OnClicked)
 
 		LOGGER.debug("> Adding Layout Button.")
 		layoutbutton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
@@ -1322,8 +1322,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._miscMenu.addSeparator()
 
 		# Signals / Slots.
-		helpDisplayMiscAction.triggered.connect(lambda: self.helpDisplayMiscAction_OnTriggered())
-		apiDisplayMiscAction.triggered.connect(lambda: self.apiDisplayMiscAction_OnTriggered())
+		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction_OnTriggered)
+		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction_OnTriggered)
 
 		miscellaneousbutton.setMenu(self._miscMenu)
 
@@ -1455,18 +1455,22 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.storeLayout(UiConstants.frameworkStartupLayout)
 
 	@core.executionTrace
-	def helpDisplayMiscAction_OnTriggered(self):
+	def helpDisplayMiscAction_OnTriggered(self, checked):
 		'''
 		This Method Is Triggered By helpDisplayMiscAction.
+
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		LOGGER.debug("> Opening URL : '{0}'.".format(UiConstants.frameworkHelpFile))
 		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
 
 	@core.executionTrace
-	def apiDisplayMiscAction_OnTriggered(self):
+	def apiDisplayMiscAction_OnTriggered(self, checked):
 		'''
 		This Method Is Triggered By apiDisplayMiscAction.
+
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		LOGGER.debug("> Opening URL : '{0}'.".format(UiConstants.frameworkApiFile))

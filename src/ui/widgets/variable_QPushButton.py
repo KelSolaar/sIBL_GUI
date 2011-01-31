@@ -112,7 +112,7 @@ class Variable_QPushButton(QPushButton) :
 			self.setFalseState()
 
 		# Signals / Slots.
-		self.clicked.connect(lambda : self.variable_QPushButton_OnClicked())
+		self.clicked.connect(self.variable_QPushButton_OnClicked)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -250,9 +250,11 @@ class Variable_QPushButton(QPushButton) :
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def variable_QPushButton_OnClicked(self) :
+	def variable_QPushButton_OnClicked(self, checked) :
 		'''
 		This Method Is Called When A Variable QPushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		if self._state :
