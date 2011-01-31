@@ -84,7 +84,7 @@ class PreferencesManager( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -94,7 +94,7 @@ class PreferencesManager( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -103,7 +103,6 @@ class PreferencesManager( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 
 	#***************************************************************************************
@@ -200,36 +199,6 @@ class PreferencesManager( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def settings( self ):
 		'''
 		This Method Is The Property For The _settings Attribute.
@@ -274,7 +243,6 @@ class PreferencesManager( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._settings = self._container.settings
 
@@ -301,8 +269,8 @@ class PreferencesManager( UiComponent ):
 		self.Restore_Geometry_On_Layout_Change_checkBox_setUi()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Verbose_Level_comboBox, SIGNAL( "activated( int )" ), self.Verbose_Level_comboBox_OnActivated )
-		self._signalsSlotsCenter.connect( self.ui.Restore_Geometry_On_Layout_Change_checkBox, SIGNAL( "stateChanged( int )" ), self.Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged )
+		self.ui.Verbose_Level_comboBox.activated.connect( self.Verbose_Level_comboBox_OnActivated )
+		self.ui.Restore_Geometry_On_Layout_Change_checkBox.stateChanged.connect( self.Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
