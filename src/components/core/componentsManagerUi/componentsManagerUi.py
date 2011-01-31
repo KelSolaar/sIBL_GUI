@@ -590,7 +590,7 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Manager_Ui_splitter.setSizes( [ 16777215, 1 ] )
 
 		# Signals / Slots.
-		self.ui.Components_Manager_Ui_treeView.selectionModel().connect( self.Components_Manager_Ui_treeView_OnSelectionChanged )
+		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect( self.Components_Manager_Ui_treeView_OnSelectionChanged )
 		self.modelChanged.connect( self.Components_Manager_Ui_treeView_refreshView )
 
 	@core.executionTrace
