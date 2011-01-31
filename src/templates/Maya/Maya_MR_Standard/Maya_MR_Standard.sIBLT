@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_MR_Standard Template Manual.html | String | Help File
-Release = @Release | 1.7.8 | String | Template Release
-Date = @Date | 11 November 2010 | String | Date
+Release = @Release | 1.7.9 | String | Template Release
+Date = @Date | 30 January 2010 | String | Date
 Author = @Author | Kel Solaar / Brainspoon | String | Author
 Email = @Email | thomas.mansencal@gmail.com | String | Email
 Url = @Url | http://thomasmansencal.com/ | String | Url
@@ -645,7 +645,9 @@ global proc string sIBL_Maya_MR_getFeedbackGeometry(float $feedbackRadius)
 		setAttr -lock true -keyable false ($feedback[0] + "." + $lock);	
 	
 	string $feedBackShapes[] = sIBL_Maya_MR_getShapes($feedback[0]);
-	setAttr ($feedBackShapes[0] + ".opposite") 0;
+	string $renderStats[] = { "doubleSided", "opposite" };
+	for( $stat in $renderStats )
+		setAttr ($feedBackShapes[0] + "." + $stat) false;
 
 	sIBL_Maya_MR_addToDisplayLayer("sIBL_FeedBack_Layer", $feedback[0]);
 
@@ -659,6 +661,7 @@ global proc sIBL_Maya_MR_getFeedback(string $backgroundFilePath, float $feedback
 	parent $feedback $sIBLGroup;
 
 	string $lambertShader = `shadingNode -asShader "lambert"`;
+	setAttr ($lambertShader + ".transparency") -type double3 0.5 0.5 0.5 ;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
@@ -753,8 +756,8 @@ global proc sIBL_Maya_MR_getLight( string $ligthType, int $physicalSun, string $
 	sIBL_Maya_MR_addToDisplayLayer("sIBL_Lighting_Layer", $light);
 
 	rename $light $lightName;
-	rename $pointOnSurfaceInfo ($lightName + "_PointOnSurfaceInfo");
-	rename $constraint[0] ($lightName + "_AimConstraint");
+	rename $pointOnSurfaceInfo ($lightName + "_" + `nodeType $pointOnSurfaceInfo`);
+	rename $constraint[0] ($lightName + "_" + `nodeType $constraint[0]`);
 }
 
 global proc sIBL_Maya_MR_getSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius, int $physicalSun)
@@ -779,14 +782,14 @@ global proc sIBL_Maya_MR_getDynamicLights(string $compactedDynamicLights, float 
 
 global proc sIBL_Maya_MR_bridgeFeedbackControlsAndShaders( string $componentsList[], string $target )
 {
-		connectAttr -f ( "sIBL_Controls.toggle" + $target )  ( "sIBL_" + $target + "_condition.firstTerm") ;
-		string $lowerCaseTarget = `tolower $target`;
-
-		for( $component in $componentsList)
-		{			
-			string $lowerCaseComponent = `tolower $component`;
-			connectAttr -f ( "sIBL_Controls." + $lowerCaseTarget + $component )  ("sIBL_" + $target + "_mip_gamma_gain." + $lowerCaseComponent);
-		}
+	connectAttr -f ( "sIBL_Controls.toggle" + $target )  ( "sIBL_" + $target + "_condition.firstTerm") ;
+	string $lowerCaseTarget = `tolower $target`;
+	
+	for( $component in $componentsList)
+	{			
+		string $lowerCaseComponent = `tolower $component`;
+		connectAttr -f ( "sIBL_Controls." + $lowerCaseTarget + $component )  ("sIBL_" + $target + "_mip_gamma_gain." + $lowerCaseComponent);
+	}
 }
 
 global proc sIBL_Maya_MR_connectFeedBackToSIBLShaders(string $feedback, int $connectToBackground, int $connectToLighting, int $connectToReflection)
@@ -983,12 +986,13 @@ global proc string sIBL_Maya_MR_getObject(string $object)
 	return $list[0];
 }
 
-global proc sIBL_Maya_MR_addToDisplayLayer(string $layerName, string $object)
+global proc string sIBL_Maya_MR_addToDisplayLayer(string $layerName, string $object)
 {
 	string $layer = sIBL_Maya_MR_getObject($layerName);
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+	return $layer;
 }
 
 global proc string[] sIBL_Maya_MR_filterNonExistingNodes(string $nodes[])

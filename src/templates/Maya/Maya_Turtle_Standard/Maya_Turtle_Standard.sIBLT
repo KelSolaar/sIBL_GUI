@@ -2,8 +2,8 @@
 Name = @Name | Standard | String | Template Name
 Path = @Path | | String | Template Path
 HelpFile = @HelpFile | help/Maya_Turtle_Standard Template Manual.html | String | Help File
-Release = @Release | 1.2.5 | String | Template Release
-Date = @Date | 11 January 2011 | String | Date
+Release = @Release | 1.2.6 | String | Template Release
+Date = @Date | 30 January 2011 | String | Date
 Author = @Author | Kel Solaar | String | Author
 Email = @Email | thomas.mansencal@gmail.com | String | Email
 Url = @Url | http://thomasmansencal.com/ | String | Url
@@ -530,14 +530,6 @@ global proc string sIBL_Maya_Turtle_getFeedbackGeometry(float $feedbackRadius)
  	string $feedback[] = `sphere -name "sIBL_Feedback"`;
 	rebuildSurface -ch 1 -rpo 1 -rt 0 -end 1 -kr 0 -kcp 0 -kc 0 -su 4 -du 3 -sv 8 -dv 3 -tol 0.01 -fr 0  -dir 2 $feedback;
 
-	string $feedBackShapes[] = sIBL_Maya_Turtle_getShapes($feedback[0]);
-	select -r $feedBackShapes[0];
-	ilrAttributesOnSelection("ilrRenderStatsAttributes", 1);
-
-	string $renderStats[] = { "castsShadows", "receiveShadows", "motionBlur", "primaryVisibility", "smoothShading", "visibleInReflections", "visibleInRefractions", "opposite", "ilrVisibleInFG", "ilrSmoothGI", "ilrCastGI", "ilrReceiveGI", "ilrReceiveOcclusion", "ilrCastOcclusion", "ilrSelfOcclusion" };
-	for( $stat in $renderStats )
-			setAttr ($feedBackShapes[0] + "." + $stat) false;
-
 	delete -ch;
 
 	setAttr ($feedback[0] + ".scaleZ") (-1);
@@ -554,8 +546,12 @@ global proc string sIBL_Maya_Turtle_getFeedbackGeometry(float $feedbackRadius)
 		setAttr -lock true -keyable false ($feedback[0] + "." + $lock);
 
 	string $feedBackShapes[] = sIBL_Maya_Turtle_getShapes($feedback[0]);
-	setAttr ($feedBackShapes[0] + ".opposite") 0;
-
+	select -r $feedBackShapes[0];
+	ilrAttributesOnSelection("ilrRenderStatsAttributes", 1);
+	string $renderStats[] = { "castsShadows", "receiveShadows", "motionBlur", "primaryVisibility", "smoothShading", "visibleInReflections", "visibleInRefractions", "doubleSided", "opposite", "ilrVisibleInFG", "ilrSmoothGI", "ilrCastGI", "ilrReceiveGI", "ilrReceiveOcclusion", "ilrCastOcclusion", "ilrSelfOcclusion" };
+	for( $stat in $renderStats )
+			setAttr ($feedBackShapes[0] + "." + $stat) false;	
+	
 	sIBL_Maya_Turtle_addToDisplayLayer("sIBL_FeedBack_Layer", $feedback[0]);
 
 	return $feedback[0];
@@ -568,6 +564,7 @@ global proc sIBL_Maya_Turtle_getFeedback(string $backgroundFilePath, float $feed
 	parent $feedback $sIBLGroup;
 
 	string $lambertShader = `shadingNode -asShader "lambert"`;
+	setAttr ($lambertShader + ".transparency") -type double3 0.5 0.5 0.5 ;
 	string $shadingEngine = `sets -renderable true -noSurfaceShader true -empty`;
 	sets -renderable true -noSurfaceShader true -empty -name $shadingEngine;
 	connectAttr -f ($lambertShader + ".outColor") ($shadingEngine + ".surfaceShader");
@@ -649,8 +646,8 @@ global proc sIBL_Maya_Turtle_getLight( string $ligthType, string $lightName, flo
 	sIBL_Maya_Turtle_addToDisplayLayer("sIBL_Lighting_Layer", $light);
 
 	rename $light $lightName;
-	rename $pointOnSurfaceInfo ($lightName + "_PointOnSurfaceInfo");
-	rename $constraint[0] ($lightName + "_AimConstraint");
+	rename $pointOnSurfaceInfo ($lightName + "_" + `nodeType $pointOnSurfaceInfo`);
+	rename $constraint[0] ($lightName + "_" + `nodeType $constraint[0]`);
 }
 
 global proc sIBL_Maya_Turtle_getSun(float $sunU, float $sunV, float $sunColor[], float $sunMultiplier, float $feedbackRadius )
@@ -675,20 +672,20 @@ global proc sIBL_Maya_Turtle_getDynamicLights(string $compactedDynamicLights, fl
 
 global proc sIBL_Maya_Turtle_bridgeFeedbackControlsAndShaders( string $target )
 {
-		connectAttr -f ( "sIBL_Controls.toggle" + $target )  ( "sIBL_" + $target + "_condition.firstTerm") ;
-		string $lowerCaseTarget = `tolower $target`;
-		
-		string $gammaSubComponentsList[] = {"X", "Y", "Z"};
-		for ($gammaSubComponent in $gammaSubComponentsList) 
-		{
-			connectAttr -f ("sIBL_Controls." + $lowerCaseTarget + "Gamma") ("sIBL_" + $target + "_gammaCorrect.gamma" + $gammaSubComponent);
-		}
-		
-		string $gainSubComponentsList[] = {"R", "G", "B"};
-		for ($gainSubComponent in $gainSubComponentsList) 
-		{
-			connectAttr -f ("sIBL_Controls." + $lowerCaseTarget + "Gain") ("sIBL_" + $target + "_file.colorGain" + $gainSubComponent);
-		}
+	connectAttr -f ( "sIBL_Controls.toggle" + $target )  ( "sIBL_" + $target + "_condition.firstTerm") ;
+	string $lowerCaseTarget = `tolower $target`;
+	
+	string $gammaSubComponentsList[] = {"X", "Y", "Z"};
+	for ($gammaSubComponent in $gammaSubComponentsList) 
+	{
+		connectAttr -f ("sIBL_Controls." + $lowerCaseTarget + "Gamma") ("sIBL_" + $target + "_gammaCorrect.gamma" + $gammaSubComponent);
+	}
+	
+	string $gainSubComponentsList[] = {"R", "G", "B"};
+	for ($gainSubComponent in $gainSubComponentsList) 
+	{
+		connectAttr -f ("sIBL_Controls." + $lowerCaseTarget + "Gain") ("sIBL_" + $target + "_file.colorGain" + $gainSubComponent);
+	}
 }
 
 global proc sIBL_Maya_Turtle_connectFeedBackToSIBLShaders(string $feedback, int $connectToBackground, int $connectToLighting, int $connectToReflection)
@@ -836,12 +833,13 @@ global proc string sIBL_Maya_Turtle_getObject(string $object)
 	return $list[0];
 }
 
-global proc sIBL_Maya_Turtle_addToDisplayLayer( string $layerName, string $object)
+global proc string sIBL_Maya_Turtle_addToDisplayLayer( string $layerName, string $object)
 {
 	string $layer = sIBL_Maya_Turtle_getObject($layerName);
 	if( $layer == "" )
 		$layer = `createDisplayLayer -name $layerName`;
 	editDisplayLayerMembers -noRecurse $layer $object;
+	return $layer;
 }
 
 global proc string[] sIBL_Maya_Turtle_filterNonExistingNodes(string $nodes[])
