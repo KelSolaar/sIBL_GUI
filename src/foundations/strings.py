@@ -131,10 +131,10 @@ def getNormalizedPath( path ):
 @core.executionTrace
 def isEmail( datas ):
 	'''
-	This Definition Check If Provided Data Is An Email.
+	This Definition Check If Provided Datas String Is An Email.
 
 	@param datas: Datas To Check. ( String )	
-	@return: Is String Email. ( Boolean )
+	@return: Is Email. ( Boolean )
 	'''
 
 	if re.match( "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas ) :
@@ -145,10 +145,10 @@ def isEmail( datas ):
 @core.executionTrace
 def isWebsite( datas ):
 	'''
-	This Definition Check If Provided Data Is A Website.
+	This Definition Check If Provided Datas String Is A Website.
 
 	@param datas: Datas To Check. ( String )	
-	@return: Is String Website. ( Boolean )
+	@return: Is Website. ( Boolean )
 	'''
 
 	if re.match( "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas ) :
@@ -170,6 +170,7 @@ def getFormatedUrl( url ):
 		prefix = "file:"
 		url = url.replace( "/", "\\" )
 	return "{0}{1}".format( prefix, url )
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
