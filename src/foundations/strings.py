@@ -68,13 +68,13 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def getNiceName( name ) :
+def getNiceName(name) :
 	'''
 	This Definition Converts A String To Nice String : currentLogText -> Current Log Text.
 
@@ -83,26 +83,26 @@ def getNiceName( name ) :
 	'''
 
 	niceName = ""
-	for index in range( len( name ) ) :
+	for index in range(len(name)) :
 		if index == 0:
 			niceName += name[ index ].upper()
 		else :
 			if name[ index ].upper() == name[ index ]:
-				if index + 1 < len( name ) :
+				if index + 1 < len(name) :
 					if  name[ index + 1 ].upper() != name[ index + 1 ]:
 						niceName += " " + name[ index ]
 					else :
-						LOGGER.debug( "> '{0}' To '{1}'.".format( name, name ) )
+						LOGGER.debug("> '{0}' To '{1}'.".format(name, name))
 						return name
 				else:
 					niceName += name[ index ]
 			else:
 				niceName += name[ index ]
-	LOGGER.debug( "> '{0}' To '{1}'.".format( name, niceName ) )
+	LOGGER.debug("> '{0}' To '{1}'.".format(name, niceName))
 	return niceName
 
 @core.executionTrace
-def getVersionRank( version ):
+def getVersionRank(version):
 	'''
 	This Definition Converts A Version String To It's Rank.
 
@@ -110,11 +110,11 @@ def getVersionRank( version ):
 	@return: Rank. ( Integer )
 	'''
 
-	tokens = version.split( "." )
-	return sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
+	tokens = version.split(".")
+	return sum([int(10 ** (i - 1)) * int(tokens[-i]) for i in range(len(tokens), 0, -1)])
 
 @core.executionTrace
-def getNormalizedPath( path ):
+def getNormalizedPath(path):
 	'''
 	This Definition Normalizes A Path, Escaping Slashes If Needed On Windows.
 
@@ -123,12 +123,12 @@ def getNormalizedPath( path ):
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		return os.path.normpath( path ).replace( "\\", "\\\\" )
+		return os.path.normpath(path).replace("\\", "\\\\")
 	else :
-		return os.path.normpath( path )
+		return os.path.normpath(path)
 
 @core.executionTrace
-def getFormatedLocalUrl( url ):
+def getFormatedLocalUrl(url):
 	'''
 	This Definition Gets A Formated Local Url.
 
@@ -137,12 +137,13 @@ def getFormatedLocalUrl( url ):
 	'''
 
 	prefix = "file:///"
-	if platform.system() == "Windows" or platform.system() == "Microsoft" and url.startswith( "//" ):
+	if platform.system() == "Windows" or platform.system() == "Microsoft" and url.startswith("//"):
 		prefix = "file:"
-		url = url.replace( "/", "\\" )
+		url = url.replace("/", "\\")
 
-	return "{0}{1}".format( prefix, url )
+	return "{0}{1}".format(prefix, url)
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+
