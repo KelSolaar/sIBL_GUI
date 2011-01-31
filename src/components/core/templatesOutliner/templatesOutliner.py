@@ -1399,7 +1399,7 @@ class TemplatesOutliner( UiComponent ):
 		if selectedTemplates :
 			for template in selectedTemplates :
 				LOGGER.info( "{0} | Opening '{1}' Template Help File : '{2}'.".format( self.__class__.__name__, template._datas.name, template._datas.helpFile ) )
-				QDesktopServices.openUrl( QUrl( strings.getFormatedLocalUrl( template._datas.helpFile ) ) )
+				QDesktopServices.openUrl( QUrl( strings.getFormatedUrl( template._datas.helpFile ) ) )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_filterTemplatesVersionsAction( self, checked ):
@@ -1481,7 +1481,9 @@ class TemplatesOutliner( UiComponent ):
 		@param url: Url To Explore. ( QUrl )
 		'''
 
-		QDesktopServices.openUrl( QUrl( strings.getFormatedLocalUrl( url.path() ) ) )
+		if not strings.isEmail( url.path() ) and not strings.isWebsite( url.toString() ) :
+			url = strings.getFormatedUrl( url.path() )
+		QDesktopServices.openUrl( QUrl( url ) )
 
 	@core.executionTrace
 	def databaseChanged( self ):
@@ -1648,3 +1650,4 @@ class TemplatesOutliner( UiComponent ):
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+
