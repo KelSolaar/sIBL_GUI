@@ -179,29 +179,6 @@ def setWindowDefaultIcon( window ):
 	elif platform.system() == "Linux":
 		pass
 
-@core.executionTrace
-def decodeMimeDatas( byteArray ):
-	'''
-	This Definition Decodes Qt Mime Datas.
-
-	@return: Decoded Mime Datas. ( List )
-	'''
-
-	datas = []
-	item = {}
-	stream = QDataStream( byteArray )
-	while not stream.atEnd():
-		row = stream.readInt32()
-		column = stream.readInt32()
-		map_items = stream.readInt32()
-		for i in range( map_items ):
-			key = stream.readInt32()
-			value = QVariant()
-			stream >> value
-			item[Qt.ItemDataRole( key )] = value
-		datas.append( item )
-	return datas
-
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

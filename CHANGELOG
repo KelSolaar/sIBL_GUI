@@ -7,6 +7,7 @@ h3. 3.1.0 - Stable
 * Added "-s", "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
 * Fixed an inconsistency related to the comments in the file parser. 
 * Added support for Templates enums : "lightType = @lightType | Area;Directional;Spot | Enum | Light Type"
+* Help files stored on network are now properly opened on Windows.
 
 h3. 3.0.9 - Stable
 
