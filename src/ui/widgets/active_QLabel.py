@@ -69,20 +69,21 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger(Constants.logger)
+LOGGER = logging.getLogger( Constants.logger )
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Active_QLabel(QLabel):
+class Active_QLabel( QLabel ):
 	'''
 	This Class Is The Active_QLabel Class.
 	'''
 
+	# Custom Signals Definitions.
 	clicked = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, defaultPixmap, hoverPixmap, activePixmap, checkable=False, checked=False, parent=None) :
+	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, checkable=False, checked=False, parent=None ) :
 		'''
 		This Method Initializes The Class.
 
@@ -94,9 +95,9 @@ class Active_QLabel(QLabel):
 		@param parent: Widget Parent. ( QObject )
 		'''
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		QLabel.__init__(self, parent)
+		QLabel.__init__( self, parent )
 
 		# --- Setting Class Attributes. ---
 		self._defaultPixmap = defaultPixmap
@@ -113,13 +114,13 @@ class Active_QLabel(QLabel):
 
 		self._menu = None
 
-		self._checked and self.setPixmap(self._activePixmap) or self.setPixmap(self._defaultPixmap)
+		self._checked and self.setPixmap( self._activePixmap ) or self.setPixmap( self._defaultPixmap )
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def defaultPixmap(self):
+	def defaultPixmap( self ):
 		'''
 		This Method Is The Property For The _defaultPixmap Attribute.
 
@@ -129,8 +130,8 @@ class Active_QLabel(QLabel):
 		return self._defaultPixmap
 
 	@defaultPixmap.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def defaultPixmap(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def defaultPixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _defaultPixmap Attribute.
 
@@ -138,20 +139,20 @@ class Active_QLabel(QLabel):
 		'''
 
 		if value :
-			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._defaultPixmap = value
 
 	@defaultPixmap.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def defaultPixmap(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def defaultPixmap( self ):
 		'''
 		This Method Is The Deleter Method For The _defaultPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("defaultPixmap"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultPixmap" ) )
 
 	@property
-	def hoverPixmap(self):
+	def hoverPixmap( self ):
 		'''
 		This Method Is The Property For The _hoverPixmap Attribute.
 
@@ -161,8 +162,8 @@ class Active_QLabel(QLabel):
 		return self._hoverPixmap
 
 	@hoverPixmap.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def hoverPixmap(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def hoverPixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _hoverPixmap Attribute.
 
@@ -170,20 +171,20 @@ class Active_QLabel(QLabel):
 		'''
 
 		if value :
-			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._hoverPixmap = value
 
 	@hoverPixmap.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def hoverPixmap(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def hoverPixmap( self ):
 		'''
 		This Method Is The Deleter Method For The _hoverPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("hoverPixmap"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "hoverPixmap" ) )
 
 	@property
-	def activePixmap(self):
+	def activePixmap( self ):
 		'''
 		This Method Is The Property For The _activePixmap Attribute.
 
@@ -193,8 +194,8 @@ class Active_QLabel(QLabel):
 		return self._activePixmap
 
 	@activePixmap.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def activePixmap(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def activePixmap( self, value ):
 		'''
 		This Method Is The Setter Method For The _activePixmap Attribute.
 
@@ -202,20 +203,20 @@ class Active_QLabel(QLabel):
 		'''
 
 		if value :
-			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
+			assert type( value ) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format( "checked", value )
 		self._activePixmap = value
 
 	@activePixmap.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def activePixmap(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def activePixmap( self ):
 		'''
 		This Method Is The Deleter Method For The _activePixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("activePixmap"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activePixmap" ) )
 
 	@property
-	def checkable(self):
+	def checkable( self ):
 		'''
 		This Method Is The Property For The _checkable Attribute.
 
@@ -225,8 +226,8 @@ class Active_QLabel(QLabel):
 		return self._checkable
 
 	@checkable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def checkable(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def checkable( self, value ):
 		'''
 		This Method Is The Setter Method For The _checkable Attribute.
 
@@ -234,20 +235,20 @@ class Active_QLabel(QLabel):
 		'''
 
 		if value :
-			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("checkable", value)
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "checkable", value )
 		self._checkable = value
 
 	@checkable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def checkable(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def checkable( self ):
 		'''
 		This Method Is The Deleter Method For The _checkable Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("checkable"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "checkable" ) )
 
 	@property
-	def checked(self):
+	def checked( self ):
 		'''
 		This Method Is The Property For The _checked Attribute.
 
@@ -257,8 +258,8 @@ class Active_QLabel(QLabel):
 		return self._checked
 
 	@checked.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def checked(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def checked( self, value ):
 		'''
 		This Method Is The Setter Method For The _checked Attribute.
 
@@ -266,20 +267,20 @@ class Active_QLabel(QLabel):
 		'''
 
 		if value :
-			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("checked", value)
+			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "checked", value )
 		self._checked = value
 
 	@checked.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def checked(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def checked( self ):
 		'''
 		This Method Is The Deleter Method For The _checked Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("checked"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "checked" ) )
 
 	@property
-	def parent(self):
+	def parent( self ):
 		'''
 		This Method Is The Property For The _parent Attribute.
 
@@ -289,7 +290,7 @@ class Active_QLabel(QLabel):
 		return self._parent
 
 	@parent.setter
-	def parent(self, value):
+	def parent( self, value ):
 		'''
 		This Method Is The Setter Method For The _parent Attribute.
 
@@ -299,16 +300,16 @@ class Active_QLabel(QLabel):
 		self._parent = value
 
 	@parent.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def parent(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def parent( self ):
 		'''
 		This Method Is The Deleter Method For The _parent Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("parent"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "parent" ) )
 
 	@property
-	def menu(self):
+	def menu( self ):
 		'''
 		This Method Is The Property For The _menu Attribute.
 
@@ -318,30 +319,30 @@ class Active_QLabel(QLabel):
 		return self._menu
 
 	@menu.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def menu(self, value):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def menu( self, value ):
 		'''
 		This Method Is The Setter Method For The _menu Attribute.
 
 		@param value: Attribute Value. ( QMenu )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("menu "))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "menu " ) )
 
 	@menu.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def menu(self):
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def menu( self ):
 		'''
 		This Method Is The Deleter Method For The _menu Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("menu"))
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "menu" ) )
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def setChecked(self, state):
+	def setChecked( self, state ):
 		'''
 		This Method Sets The Widget Checked State.
 		
@@ -350,13 +351,13 @@ class Active_QLabel(QLabel):
 
 		if state :
 			self._checked = True
-			self.setPixmap(self._activePixmap)
+			self.setPixmap( self._activePixmap )
 		else :
 			self._checked = False
-			self.setPixmap(self._defaultPixmap)
+			self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
-	def isChecked(self):
+	def isChecked( self ):
 		'''
 		This Method Returns The Widget Checked State.
 		
@@ -366,7 +367,7 @@ class Active_QLabel(QLabel):
 		return self._checked
 
 	@core.executionTrace
-	def setMenu(self, menu):
+	def setMenu( self, menu ):
 		'''
 		This Method Sets The Widget Menu.
 		
@@ -377,10 +378,10 @@ class Active_QLabel(QLabel):
 
 		# Propagating Actions To Parent.
 		for action in self._menu.actions():
-			not action.shortcut().isEmpty() and self._parent.addAction(action)
+			not action.shortcut().isEmpty() and self._parent.addAction( action )
 
 	@core.executionTrace
-	def enterEvent(self, event):
+	def enterEvent( self, event ):
 		'''
 		This Method Defines The Mouse Enter Event.
 		
@@ -388,12 +389,12 @@ class Active_QLabel(QLabel):
 		'''
 
 		if self._checkable :
-			not self._checked and self.setPixmap(self._hoverPixmap)
+			not self._checked and self.setPixmap( self._hoverPixmap )
 		else :
-			self.setPixmap(self._hoverPixmap)
+			self.setPixmap( self._hoverPixmap )
 
 	@core.executionTrace
-	def leaveEvent(self, event):
+	def leaveEvent( self, event ):
 		'''
 		This Method Defines The Mouse Leave Event.
 		
@@ -401,35 +402,35 @@ class Active_QLabel(QLabel):
 		'''
 
 		if self._checkable :
-			not self._checked and self.setPixmap(self._defaultPixmap)
+			not self._checked and self.setPixmap( self._defaultPixmap )
 		else :
-			self.setPixmap(self._defaultPixmap)
+			self.setPixmap( self._defaultPixmap )
 
 	@core.executionTrace
-	def mousePressEvent(self, event):
+	def mousePressEvent( self, event ):
 		'''
 		This Method Defines The Mouse Press Event.
 		
 		@param event: QEvent. ( QEvent )
 		'''
 
-		self.emit(SIGNAL("clicked()"))
+		self.emit( SIGNAL( "clicked()" ) )
 
 		if self._checkable :
-			self.setChecked(True)
+			self.setChecked( True )
 		else :
-			self.setPixmap(self._activePixmap)
-			self._menu and self._menu.exec_(QCursor.pos())
+			self.setPixmap( self._activePixmap )
+			self._menu and self._menu.exec_( QCursor.pos() )
 
 	@core.executionTrace
-	def mouseReleaseEvent(self, event):
+	def mouseReleaseEvent( self, event ):
 		'''
 		This Method Defines The Mouse Release Event.
 		
 		@param event: QEvent. ( QEvent )
 		'''
 
-		not self._checkable and	self.setPixmap(self._defaultPixmap)
+		not self._checkable and	self.setPixmap( self._defaultPixmap )
 
 #***********************************************************************************************
 #***	Python End
