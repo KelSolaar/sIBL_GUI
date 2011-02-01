@@ -105,7 +105,6 @@ class SetsScanner_Worker( QThread ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._dbSession = self._container.coreDb.dbSessionMaker()
 
@@ -143,36 +142,6 @@ class SetsScanner_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def dbSession( self ):
@@ -310,7 +279,7 @@ class SetsScanner( Component ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None ):
+	def __init__( self, name=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -319,13 +288,12 @@ class SetsScanner( Component ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		Component.__init__( self, name = name )
+		Component.__init__( self, name=name )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
@@ -364,36 +332,6 @@ class SetsScanner( Component ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDb( self ):
@@ -529,7 +467,6 @@ class SetsScanner( Component ):
 		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
@@ -546,7 +483,6 @@ class SetsScanner( Component ):
 		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
@@ -567,7 +503,7 @@ class SetsScanner( Component ):
 			self._container.workerThreads.append( self._setsScannerWorkerThread )
 
 			# Signals / Slots.
-			self._signalsSlotsCenter.connect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+			self._setsScannerWorkerThread.databaseChanged.connect( self.databaseChanged )
 		else :
 			LOGGER.info( "{0} | Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
 
@@ -581,7 +517,7 @@ class SetsScanner( Component ):
 
 		if not self._container.parameters.databaseReadOnly :
 			# Signals / Slots.
-			not self._container.parameters.databaseReadOnly and self._signalsSlotsCenter.disconnect( self._setsScannerWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
+			not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect( self.databaseChanged )
 
 			self._setsScannerWorkerThread = None
 
@@ -602,7 +538,7 @@ class SetsScanner( Component ):
 		'''
 
 		if self._setsScannerWorkerThread.newIblSets :
-			if messageBox.messageBox( "Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format( ", ".join( self._setsScannerWorkerThread.newIblSets.keys() ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format( ", ".join( self._setsScannerWorkerThread.newIblSets.keys() ) ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for iblSet, path in self._setsScannerWorkerThread.newIblSets.items():
 					LOGGER.info( "{0} | Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, iblSet ) )
 					if not dbUtilities.common.addSet( self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
