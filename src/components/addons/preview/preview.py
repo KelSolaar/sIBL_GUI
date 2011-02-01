@@ -182,8 +182,6 @@ class ImagePreviewer( object ):
 		self._container = container
 		self._imagePath = imagePath
 
-		self._signalsSlotsCenter = QObject()
-
 		self._uiPath = "ui/Image_Previewer.ui"
 		self._uiPath = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = "resources"
@@ -277,36 +275,6 @@ class ImagePreviewer( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "imagePath" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def uiPath( self ):
@@ -761,9 +729,9 @@ class ImagePreviewer( object ):
 		self._ui.resize( width, height )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Zoom_Out_pushButton, SIGNAL( "clicked()" ), self.Zoom_Out_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Background_Colors_comboBox, SIGNAL( "activated( int )" ), self.Background_Colors_comboBox_OnActivated )
+		self.ui.Zoom_In_pushButton.clicked.connect( self.Zoom_In_pushButton_OnClicked )
+		self.ui.Zoom_Out_pushButton.clicked.connect( self.Zoom_Out_pushButton_OnClicked )
+		self.ui.Background_Colors_comboBox.activated.connect( self.Background_Colors_comboBox_OnActivated )
 
 	@core.executionTrace
 	def closeUi( self, event ):
@@ -779,17 +747,21 @@ class ImagePreviewer( object ):
 		self._container.imagePreviewers.remove( self )
 
 	@core.executionTrace
-	def Zoom_In_pushButton_OnClicked( self ):
+	def Zoom_In_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.scaleView( self._keyZoomFactor )
 
 	@core.executionTrace
-	def Zoom_Out_pushButton_OnClicked( self ):
+	def Zoom_Out_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
+
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.scaleView( 1 / self._keyZoomFactor )
@@ -852,7 +824,7 @@ class Preview( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -862,7 +834,7 @@ class Preview( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -871,7 +843,6 @@ class Preview( UiComponent ):
 		self._uiResources = "resources"
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -977,36 +948,6 @@ class Preview( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -1294,7 +1235,6 @@ class Preview( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 		self._settingsSection = self.name
 
@@ -1316,7 +1256,6 @@ class Preview( UiComponent ):
 		self.uiFile = None
 		self._uiResources = os.path.basename( self._uiResources )
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -1341,8 +1280,8 @@ class Preview( UiComponent ):
 		self.addActions_()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Custom_Previewer_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Previewer_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Custom_Previewer_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Previewer_Path_lineEdit_OnEditFinished )
+		self.ui.Custom_Previewer_Path_toolButton.clicked.connect( self.Custom_Previewer_Path_toolButton_OnClicked )
+		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.connect( self.Custom_Previewer_Path_lineEdit_OnEditFinished )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -1355,8 +1294,8 @@ class Preview( UiComponent ):
 		self.removeActions_()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self.ui.Custom_Previewer_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Previewer_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Custom_Previewer_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Previewer_Path_lineEdit_OnEditFinished )
+		self.ui.Custom_Previewer_Path_toolButton.clicked.disconnect( self.Custom_Previewer_Path_toolButton_OnClicked )
+		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.disconnect( self.Custom_Previewer_Path_lineEdit_OnEditFinished )
 
 	@core.executionTrace
 	def addWidget( self ):
@@ -1460,9 +1399,11 @@ class Preview( UiComponent ):
 		self.ui.Custom_Previewer_Path_lineEdit.setText( customPreviewer.toString() )
 
 	@core.executionTrace
-	def Custom_Previewer_Path_toolButton_OnClicked( self ) :
+	def Custom_Previewer_Path_toolButton_OnClicked( self, checked ) :
 		'''
 		This Method Is Called When Custom_Previewer_Path_toolButton Is Clicked.
+
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		customPreviewerExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom Previewer Executable :", self._container.lastBrowsedPath ) )
