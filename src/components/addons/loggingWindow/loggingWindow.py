@@ -103,7 +103,6 @@ class LoggingWindow( UiComponent ):
 		self._dockArea = 8
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._timer = None
 		self._timerCycleMultiplier = 1.5
@@ -204,36 +203,6 @@ class LoggingWindow( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def timer( self ):
 		'''
 		This Method Is The Property For The _timer Attribute.
@@ -308,7 +277,6 @@ class LoggingWindow( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._activate()
 
@@ -322,7 +290,6 @@ class LoggingWindow( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._deactivate()
 
