@@ -84,7 +84,7 @@ class LoggingWindow( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -94,7 +94,7 @@ class LoggingWindow( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -343,7 +343,7 @@ class LoggingWindow( UiComponent ):
 		self.setLoggingTextEdit()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateLoggingTextEdit )
+		self._timer.timeout.connect( self.updateLoggingTextEdit )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -354,7 +354,7 @@ class LoggingWindow( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self._timer, SIGNAL( "timeout()" ), self.updateLoggingTextEdit )
+		self._timer.timeout.disconnect( self.updateLoggingTextEdit )
 
 		self._timer.stop()
 		self._timer = None
