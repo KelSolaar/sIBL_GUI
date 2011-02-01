@@ -93,7 +93,7 @@ class LoaderScript( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -103,7 +103,7 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -112,7 +112,6 @@ class LoaderScript( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
@@ -223,36 +222,6 @@ class LoaderScript( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDatabaseBrowser( self ):
@@ -578,7 +547,6 @@ class LoaderScript( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
@@ -598,7 +566,6 @@ class LoaderScript( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._coreTemplatesOutliner = None
@@ -618,9 +585,9 @@ class LoaderScript( UiComponent ):
 		self.ui.Remote_Connection_groupBox.hide()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
+		self.ui.Output_Loader_Script_pushButton.clicked.connect( self.Output_Loader_Script_pushButton_OnClicked )
+		self.ui.Send_To_Software_pushButton.clicked.connect( self.Send_To_Software_pushButton_OnClicked )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect( self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -631,9 +598,9 @@ class LoaderScript( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self.ui.Output_Loader_Script_pushButton, SIGNAL( "clicked()" ), self.Output_Loader_Script_pushButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Send_To_Software_pushButton, SIGNAL( "clicked()" ), self.Send_To_Software_pushButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
+		self.ui.Output_Loader_Script_pushButton.clicked.disconnect( self.Output_Loader_Script_pushButton_OnClicked )
+		self.ui.Send_To_Software_pushButton.clicked.disconnect( self.Send_To_Software_pushButton_OnClicked )
+		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect( self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged )
 
 	@core.executionTrace
 	def addWidget( self ):
@@ -657,25 +624,29 @@ class LoaderScript( UiComponent ):
 		self.ui.setParent( None )
 
 	@core.executionTrace
-	def Output_Loader_Script_pushButton_OnClicked( self ):
+	def Output_Loader_Script_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Output_Loader_Script_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.outputLoaderScript()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError )
-	def Send_To_Software_pushButton_OnClicked( self ) :
+	def Send_To_Software_pushButton_OnClicked( self, checked ) :
 		'''
-		This Method Remotes Connect To Target Software.
+		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		if self.outputLoaderScript() :
 			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
 			LOGGER.info( "{0} | Starting Remote Connection !".format( self.__class__.__name__ ) )
 			templateParser = Parser( selectedTemplate._datas.path )
-			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+			templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
 			connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
 			loaderScriptPath = strings.getNormalizedPath( os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript ) )
 			if connectionType.value == "Socket" :
@@ -720,7 +691,7 @@ class LoaderScript( UiComponent ):
 
 			if os.path.exists( template._datas.path ) :
 				templateParser = Parser( template._datas.path )
-				templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+				templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
 
 				if self._templateRemoteConnectionSection in templateParser.sections :
 					LOGGER.debug( "> {0}' Section Found.".format( self._templateRemoteConnectionSection ) )
@@ -842,11 +813,11 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Parsing Template File : '{0}'.".format( template ) )
 		templateParser = Parser( template )
-		templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
+		templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
 		templateSections = dict.copy( templateParser.sections )
 
 		for attribute, value in dict.copy( templateSections[self._templateIblAttributesSection] ).items():
-			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace( attribute, rootOnly = True )] = value
+			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace( attribute, rootOnly=True )] = value
 			del templateSections[self._templateIblAttributesSection][attribute]
 
 		LOGGER.debug( "> Binding Templates File Attributes." )

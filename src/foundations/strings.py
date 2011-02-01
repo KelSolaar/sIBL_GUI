@@ -58,6 +58,7 @@
 import logging
 import os
 import platform
+import re
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -128,7 +129,35 @@ def getNormalizedPath( path ):
 		return os.path.normpath( path )
 
 @core.executionTrace
-def getFormatedLocalUrl( url ):
+def isEmail( datas ):
+	'''
+	This Definition Check If Provided Datas String Is An Email.
+
+	@param datas: Datas To Check. ( String )	
+	@return: Is Email. ( Boolean )
+	'''
+
+	if re.match( "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas ) :
+		return True
+	else :
+		return False
+
+@core.executionTrace
+def isWebsite( datas ):
+	'''
+	This Definition Check If Provided Datas String Is A Website.
+
+	@param datas: Datas To Check. ( String )	
+	@return: Is Website. ( Boolean )
+	'''
+
+	if re.match( "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas ) :
+		return True
+	else :
+		return False
+
+@core.executionTrace
+def getFormatedUrl( url ):
 	'''
 	This Definition Gets A Formated Local Url.
 
@@ -140,9 +169,9 @@ def getFormatedLocalUrl( url ):
 	if platform.system() == "Windows" or platform.system() == "Microsoft" and url.startswith( "//" ):
 		prefix = "file:"
 		url = url.replace( "/", "\\" )
-
 	return "{0}{1}".format( prefix, url )
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+

@@ -79,8 +79,11 @@ class Active_QLabel( QLabel ):
 	This Class Is The Active_QLabel Class.
 	'''
 
+	# Custom Signals Definitions.
+	clicked = pyqtSignal()
+
 	@core.executionTrace
-	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, checkable = False, checked = False, parent = None ) :
+	def __init__( self, defaultPixmap, hoverPixmap, activePixmap, checkable=False, checked=False, parent=None ) :
 		'''
 		This Method Initializes The Class.
 

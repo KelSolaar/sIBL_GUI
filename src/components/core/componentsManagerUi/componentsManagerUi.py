@@ -112,7 +112,7 @@ class ComponentsManagerUi( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -122,7 +122,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -135,7 +135,6 @@ class ComponentsManagerUi( UiComponent ):
 		self._dockArea = 1
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 
 		self._model = None
@@ -359,36 +358,6 @@ class ComponentsManagerUi( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def settings( self ):
 		'''
 		This Method Is The Property For The _settings Attribute.
@@ -584,7 +553,6 @@ class ComponentsManagerUi( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._settings = self._container.settings
 
@@ -622,8 +590,8 @@ class ComponentsManagerUi( UiComponent ):
 		self.ui.Components_Manager_Ui_splitter.setSizes( [ 16777215, 1 ] )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Components_Manager_Ui_treeView.selectionModel(), SIGNAL( "selectionChanged( const QItemSelection &, const QItemSelection & )" ), self.Components_Manager_Ui_treeView_OnSelectionChanged )
-		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Components_Manager_Ui_treeView_refreshView )
+		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect( self.Components_Manager_Ui_treeView_OnSelectionChanged )
+		self.modelChanged.connect( self.Components_Manager_Ui_treeView_refreshView )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -972,7 +940,7 @@ class ComponentsManagerUi( UiComponent ):
 		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
 
 	@core.executionTrace
-	def getSelectedItems( self, rowsRootOnly = True ):
+	def getSelectedItems( self, rowsRootOnly=True ):
 		'''
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
 		

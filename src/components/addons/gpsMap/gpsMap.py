@@ -86,7 +86,7 @@ class Map( QWebView ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, parent = None ):
+	def __init__( self, parent=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -159,7 +159,7 @@ class GpsMap( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -169,7 +169,7 @@ class GpsMap( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -183,7 +183,6 @@ class GpsMap( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDatabaseBrowser = None
 
@@ -434,36 +433,6 @@ class GpsMap( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def coreDatabaseBrowser( self ):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
@@ -570,7 +539,6 @@ class GpsMap( UiComponent ):
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 
@@ -588,7 +556,6 @@ class GpsMap( UiComponent ):
 		self._uiResources = os.path.basename( self._uiResources )
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 
@@ -614,11 +581,11 @@ class GpsMap( UiComponent ):
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget( self._map )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel(), SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
-		self._signalsSlotsCenter.connect( self._map, SIGNAL( "loadFinished( bool )" ), self.map_OnLoadFinished )
-		self._signalsSlotsCenter.connect( self.ui.Map_Type_comboBox, SIGNAL( "activated( int )" ), self.Map_Type_comboBox_OnActivated )
-		self._signalsSlotsCenter.connect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Zoom_Out_pushButton, SIGNAL( "clicked()" ), self.Zoom_Out_pushButton_OnClicked )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect( self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
+		self._map.loadFinished.connect( self.map_OnLoadFinished )
+		self.ui.Map_Type_comboBox.activated.connect( self.Map_Type_comboBox_OnActivated )
+		self.ui.Zoom_In_pushButton.clicked.connect( self.Zoom_In_pushButton_OnClicked )
+		self.ui.Zoom_Out_pushButton.clicked.connect( self.Zoom_Out_pushButton_OnClicked )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -627,11 +594,11 @@ class GpsMap( UiComponent ):
 		'''
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel(), SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
-		self._signalsSlotsCenter.disconnect( self._map, SIGNAL( "loadFinished( bool )" ), self.map_OnLoadFinished )
-		self._signalsSlotsCenter.disconnect( self.ui.Map_Type_comboBox, SIGNAL( "activated( int )" ), self.Map_Type_comboBox_OnActivated )
-		self._signalsSlotsCenter.disconnect( self.ui.Zoom_In_pushButton, SIGNAL( "clicked()" ), self.Zoom_In_pushButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Zoom_Out_pushButton, SIGNAL( "clicked()" ), self.Zoom_Out_pushButton_OnClicked )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect( self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
+		self._map.loadFinished.disconnect( self.map_OnLoadFinished )
+		self.ui.Map_Type_comboBox.activated.disconnect( self.Map_Type_comboBox_OnActivated )
+		self.ui.Zoom_In_pushButton.clicked.disconnect( self.Zoom_In_pushButton_OnClicked )
+		self.ui.Zoom_Out_pushButton.clicked.disconnect( self.Zoom_Out_pushButton_OnClicked )
 
 		self._map = None
 
@@ -678,17 +645,21 @@ class GpsMap( UiComponent ):
 		self._map.setMapType( self._mapTypeIds[index][1] )
 
 	@core.executionTrace
-	def Zoom_In_pushButton_OnClicked( self ):
+	def Zoom_In_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self._map.setZoom( "In" )
 
 	@core.executionTrace
-	def Zoom_Out_pushButton_OnClicked( self ):
+	def Zoom_Out_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self._map.setZoom( "Out" )

@@ -114,8 +114,11 @@ class DownloadManager( QObject ):
 	This Is The DownloadManager Class.
 	'''
 
+	# Custom Signals Definitions.
+	downloadFinished = pyqtSignal()
+
 	@core.executionTrace
-	def __init__( self, container, networkAccessManager, downloadFolder, requests = None ):
+	def __init__( self, container, networkAccessManager, downloadFolder, requests=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -131,7 +134,6 @@ class DownloadManager( QObject ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._networkAccessManager = networkAccessManager
 		self._downloadFolder = downloadFolder
 
@@ -191,36 +193,6 @@ class DownloadManager( QObject ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def networkAccessManager( self ):
@@ -602,7 +574,7 @@ class DownloadManager( QObject ):
 		self._ui.closeEvent = self.closeEvent
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._ui.Cancel_Close_pushButton, SIGNAL( "clicked()" ), self.Cancel_Close_pushButton_OnClicked )
+		self._ui.Cancel_Close_pushButton.clicked.connect( self.Cancel_Close_pushButton_OnClicked )
 
 	@core.executionTrace
 	def closeEvent( self, closeEvent ):
@@ -616,9 +588,11 @@ class DownloadManager( QObject ):
 		closeEvent.accept()
 
 	@core.executionTrace
-	def Cancel_Close_pushButton_OnClicked( self ):
+	def Cancel_Close_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Triggers The DownloadManager Close.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self._ui.close()
@@ -647,9 +621,9 @@ class DownloadManager( QObject ):
 				return
 
 			# Signals / Slots.
-			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "downloadProgress( qint64, qint64 )" ), self.downloadProgress )
-			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "finished()" ), self.downloadFinished )
-			self._signalsSlotsCenter.connect( self._currentRequest, SIGNAL( "readyRead()" ), self.requestReady )
+			self._currentRequest.downloadProgress.connect( self.downloadProgress )
+			self._currentRequest.finished.connect( self.downloadComplete )
+			self._currentRequest.readyRead.connect( self.requestReady )
 
 	@core.executionTrace
 	def downloadProgress( self, bytesReceived, bytesTotal ):
@@ -677,12 +651,12 @@ class DownloadManager( QObject ):
 		self._currentFile.write( self._currentRequest.readAll() )
 
 	@core.executionTrace
-	def downloadFinished( self ):
+	def downloadComplete( self ):
 		'''
-		This Method Is Triggered When The Request Download Is Finished.
+		This Method Is Triggered When The Request Download Is Complete.
 		'''
 
-		LOGGER.debug( "> '{0}' Download Finished.".format( self._currentFile ) )
+		LOGGER.debug( "> '{0}' Download Complete.".format( self._currentFile ) )
 
 		self._currentFile.close()
 		self._downloads.append( self._currentFilePath )
@@ -695,7 +669,7 @@ class DownloadManager( QObject ):
 			self.downloadNext()
 		else :
 			self._downloadStatus = True
-			self._ui.Current_File_label.setText( "Downloads Finished !" )
+			self._ui.Current_File_label.setText( "Downloads Complete !" )
 			self._ui.Cancel_Close_pushButton.setText( "Close" )
 			self.emit( SIGNAL( "downloadFinished()" ) )
 
@@ -723,7 +697,7 @@ class RemoteUpdater( object ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, container, releases = None ):
+	def __init__( self, container, releases=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -734,7 +708,6 @@ class RemoteUpdater( object ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._releases = None
 		self.releases = releases
 		self._uiPath = "ui/Remote_Updater.ui"
@@ -797,36 +770,6 @@ class RemoteUpdater( object ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def releases( self ):
@@ -1384,15 +1327,17 @@ class RemoteUpdater( object ):
 			self._ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self._ui.Get_sIBL_GUI_pushButton, SIGNAL( "clicked()" ), self.Get_sIBL_GUI_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self._ui.Get_Latest_Templates_pushButton, SIGNAL( "clicked()" ), self.Get_Latest_Templates_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self._ui.Open_Repository_pushButton, SIGNAL( "clicked()" ), self.Open_Repository_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self._ui.Close_pushButton, SIGNAL( "clicked()" ), self.Close_pushButton_OnClicked )
+		self._ui.Get_sIBL_GUI_pushButton.clicked.connect( self.Get_sIBL_GUI_pushButton_OnClicked )
+		self._ui.Get_Latest_Templates_pushButton.clicked.connect( self.Get_Latest_Templates_pushButton_OnClicked )
+		self._ui.Open_Repository_pushButton.clicked.connect( self.Open_Repository_pushButton_OnClicked )
+		self._ui.Close_pushButton.clicked.connect( self.Close_pushButton_OnClicked )
 
 	@core.executionTrace
-	def Get_sIBL_GUI_pushButton_OnClicked( self ):
+	def Get_sIBL_GUI_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 		urlTokens = self.releases[Constants.applicationName].url.split( self._splitter )
 		builds = dict( [( urlTokens[i].strip(), urlTokens[i + 1].strip( " \"" ) ) for i in range( 0, len( urlTokens ), 2 )] )
@@ -1405,13 +1350,15 @@ class RemoteUpdater( object ):
 			url = builds["Linux"]
 
 		self._downloadManager = DownloadManager( self, self._networkAccessManager, self._container.ioDirectory, [url] )
-		self._signalsSlotsCenter.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+		self._downloadManager.downloadFinished.connect( self.downloadManager_OnComplete )
 		self._downloadManager.startDownload()
 
 	@core.executionTrace
-	def Get_Latest_Templates_pushButton_OnClicked( self ):
+	def Get_Latest_Templates_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		requests = []
@@ -1423,22 +1370,26 @@ class RemoteUpdater( object ):
 			if downloadFolder :
 				LOGGER.debug( "> Templates Download Folder : '{0}'.".format( downloadFolder ) )
 				self._downloadManager = DownloadManager( self, self._networkAccessManager, downloadFolder, [request.url for request in requests] )
-				self._signalsSlotsCenter.connect( self._downloadManager, SIGNAL( "downloadFinished()" ), self.downloadManager_OnFinished )
+				self._downloadManager.downloadFinished.connect( self.downloadManager_OnComplete )
 				self._downloadManager.startDownload()
 
 	@core.executionTrace
-	def Open_Repository_pushButton_OnClicked( self ):
+	def Open_Repository_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		LOGGER.debug( "> Opening URL : '{0}'.".format( self._repositoryUrl ) )
 		QDesktopServices.openUrl( QUrl( QString( self._repositoryUrl ) ) )
 
 	@core.executionTrace
-	def Close_pushButton_OnClicked( self ):
+	def Close_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Closes The RemoteUpdater.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		LOGGER.info( "{0} | Closing '{1}' Updater !".format( self.__class__.__name__, Constants.applicationName ) )
@@ -1470,7 +1421,7 @@ class RemoteUpdater( object ):
 			return self._container.container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self._ui, "Choose Templates Directory :", self._container.container.lastBrowsedPath ) ) )
 
 	@core.executionTrace
-	def downloadManager_OnFinished( self ):
+	def downloadManager_OnComplete( self ):
 		'''
 		This Method Is Triggered When The Download Manager Finishes.
 		'''
@@ -1483,7 +1434,7 @@ class RemoteUpdater( object ):
 					os.remove( download )
 				else :
 					messageBox.messageBox( "Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File !".format( self.__class__.__name__, os.path.basename( download ) ) )
-				self._container.coreTemplatesOutliner.addDirectory( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id, noWarning = True )
+				self._container.coreTemplatesOutliner.addDirectory( os.path.dirname( download ), self._container.coreTemplatesOutliner.getCollection( self._container.coreTemplatesOutliner.userCollection ).id, noWarning=True )
 				needModelRefresh = True
 			else :
 				if self._container.addonsLocationsBrowser.activated :
@@ -1515,7 +1466,7 @@ class OnlineUpdater( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -1525,7 +1476,7 @@ class OnlineUpdater( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -1533,7 +1484,6 @@ class OnlineUpdater( UiComponent ):
 		self._uiPath = "ui/Online_Updater.ui"
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -1624,36 +1574,6 @@ class OnlineUpdater( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -2060,7 +1980,6 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 		self._settingsSection = self.name
 
@@ -2088,7 +2007,6 @@ class OnlineUpdater( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -2117,9 +2035,9 @@ class OnlineUpdater( UiComponent ):
 		self.Ignore_Non_Existing_Templates_checkBox_setUi()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged( int )" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
-		self._signalsSlotsCenter.connect( self.ui.Ignore_Non_Existing_Templates_checkBox, SIGNAL( "stateChanged( int )" ), self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
+		self.ui.Check_For_New_Releases_pushButton.clicked.connect( self.Check_For_New_Releases_pushButton_OnClicked )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect( self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect( self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -2130,9 +2048,9 @@ class OnlineUpdater( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_pushButton, SIGNAL( "clicked()" ), self.Check_For_New_Releases_pushButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Check_For_New_Releases_On_Startup_checkBox, SIGNAL( "stateChanged()" ), self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
-		self._signalsSlotsCenter.disconnect( self.ui.Ignore_Non_Existing_Templates_checkBox, SIGNAL( "stateChanged( int )" ), self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
+		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect( self.Check_For_New_Releases_pushButton_OnClicked )
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect( self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged )
+		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect( self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged )
 
 	@core.executionTrace
 	def Check_For_New_Releases_On_Startup_checkBox_setUi( self ) :
@@ -2214,9 +2132,11 @@ class OnlineUpdater( UiComponent ):
 		self.ui.Online_Updater_groupBox.setParent( None )
 
 	@core.executionTrace
-	def Check_For_New_Releases_pushButton_OnClicked( self ):
+	def Check_For_New_Releases_pushButton_OnClicked( self, checked ):
 		'''
 		This Method Is Triggered When Check_For_New_Releases_pushButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self._reportUpdateStatus = True
@@ -2224,7 +2144,7 @@ class OnlineUpdater( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.NetworkError )
-	def releaseReply_OnDownloadFinished( self ):
+	def releaseReply_OnDownloadComplete( self ):
 		'''
 		This Method Is Triggered When The Release Reply Finishes.
 		'''
@@ -2243,34 +2163,34 @@ class OnlineUpdater( UiComponent ):
 			for remoteObject in parser.sections :
 				if remoteObject != Constants.applicationName :
 						dbTemplates = dbUtilities.common.filterTemplates( self._coreDb.dbSession, "^{0}$".format( remoteObject ), "name" )
-						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse = True, key = lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
+						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted( [( dbTemplate, dbTemplate.release ) for dbTemplate in dbTemplates], reverse=True, key=lambda x:( strings.getVersionRank( x[1] ) ) )][0] or None
 						if not self._container.parameters.databaseReadOnly :
 							if dbTemplate :
 								if dbTemplate.release != parser.getValue( "Release", remoteObject ) :
-									releases[remoteObject] = ReleaseObject( name = remoteObject,
-																		repositoryVersion = parser.getValue( "Release", remoteObject ),
-																		localVersion = dbTemplate.release,
-																		type = parser.getValue( "Type", remoteObject ),
-																		url = parser.getValue( "Url", remoteObject ),
-																		comment = parser.getValue( "Comment", remoteObject ) )
+									releases[remoteObject] = ReleaseObject( name=remoteObject,
+																		repositoryVersion=parser.getValue( "Release", remoteObject ),
+																		localVersion=dbTemplate.release,
+																		type=parser.getValue( "Type", remoteObject ),
+																		url=parser.getValue( "Url", remoteObject ),
+																		comment=parser.getValue( "Comment", remoteObject ) )
 							else :
 								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked() :
-									releases[remoteObject] = ReleaseObject( name = remoteObject,
-																		repositoryVersion = parser.getValue( "Release", remoteObject ),
-																		localVersion = None,
-																		type = parser.getValue( "Type", remoteObject ),
-																		url = parser.getValue( "Url", remoteObject ),
-																		comment = parser.getValue( "Comment", remoteObject ) )
+									releases[remoteObject] = ReleaseObject( name=remoteObject,
+																		repositoryVersion=parser.getValue( "Release", remoteObject ),
+																		localVersion=None,
+																		type=parser.getValue( "Type", remoteObject ),
+																		url=parser.getValue( "Url", remoteObject ),
+																		comment=parser.getValue( "Comment", remoteObject ) )
 						else :
 							LOGGER.info( "{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value !".format( self.__class__.__name__, remoteObject, "databaseReadOnly" ) )
 				else :
 					if Constants.releaseVersion != parser.getValue( "Release", remoteObject ) :
-						releases[remoteObject] = ReleaseObject( name = remoteObject,
-															repositoryVersion = parser.getValue( "Release", remoteObject ),
-															localVersion = Constants.releaseVersion,
-															url = parser.getValue( "Url", remoteObject ),
-															type = parser.getValue( "Type", remoteObject ),
-															comment = None )
+						releases[remoteObject] = ReleaseObject( name=remoteObject,
+															repositoryVersion=parser.getValue( "Release", remoteObject ),
+															localVersion=Constants.releaseVersion,
+															url=parser.getValue( "Url", remoteObject ),
+															type=parser.getValue( "Type", remoteObject ),
+															comment=None )
 			if releases :
 				LOGGER.debug( "> Initialising Remote Updater." )
 				self._remoteUpdater = RemoteUpdater( self, releases )
@@ -2296,7 +2216,7 @@ class OnlineUpdater( UiComponent ):
 		LOGGER.debug( "> Downloading '{0}' Releases File.".format( url.path() ) )
 
 		self._releaseReply = self._networkAccessManager.get( QNetworkRequest( url ) )
-		self._signalsSlotsCenter.connect( self._releaseReply, SIGNAL( "finished()" ), self.releaseReply_OnDownloadFinished )
+		self._releaseReply.finished.connect( self.releaseReply_OnDownloadComplete )
 
 #***********************************************************************************************
 #***	Python End

@@ -108,7 +108,6 @@ class DatabaseBrowser_Worker( QThread ):
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._dbSession = self._container.coreDb.dbSessionMaker()
 
@@ -147,36 +146,6 @@ class DatabaseBrowser_Worker( QThread ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def dbSession( self ):
@@ -281,7 +250,7 @@ class DatabaseBrowser_Worker( QThread ):
 		self._timer.moveToThread( self )
 		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
 
-		self._signalsSlotsCenter.connect( self._timer, SIGNAL( "timeout()" ), self.updateSets, Qt.DirectConnection )
+		self._timer.timeout.connect( self.updateSets, Qt.DirectConnection )
 
 		self.exec_()
 
@@ -438,11 +407,11 @@ class DatabaseBrowser_QListView( QListView ):
 					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
 					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
 						name = os.path.splitext( os.path.basename( path ) )[0]
-						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else :
 						if os.path.isdir( path ):
-							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 								 self._coreDatabaseBrowser.addDirectory( path )
 								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else :
@@ -473,7 +442,7 @@ class DatabaseBrowser( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -483,7 +452,7 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -503,7 +472,6 @@ class DatabaseBrowser( UiComponent ):
 		self._listViewIconSize = 128
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -864,36 +832,6 @@ class DatabaseBrowser( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
 
 	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
-
-	@property
 	def settings( self ):
 		'''
 		This Method Is The Property For The _settings Attribute.
@@ -1215,7 +1153,6 @@ class DatabaseBrowser( UiComponent ):
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 		self._settingsSection = self.name
 
@@ -1270,12 +1207,12 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Smallest_Size_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSmallestSizeIcon ) ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Thumbnails_Size_horizontalSlider, SIGNAL( "valueChanged( int )" ), self.Thumbnails_Size_horizontalSlider_OnChanged )
-		self._signalsSlotsCenter.connect( self.ui.Database_Browser_listView, SIGNAL( "doubleClicked( const QModelIndex & )" ), self.ui.Database_Browser_listView.QListView_OnDoubleClicked )
-		self._signalsSlotsCenter.connect( self, SIGNAL( "modelChanged()" ), self.Database_Browser_listView_refreshView )
+		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect( self.Thumbnails_Size_horizontalSlider_OnChanged )
+		self.ui.Database_Browser_listView.doubleClicked.connect( self.ui.Database_Browser_listView.QListView_OnDoubleClicked )
+		self.modelChanged.connect( self.Database_Browser_listView_refreshView )
 		if not self._container.parameters.databaseReadOnly :
-			self._signalsSlotsCenter.connect( self._databaseBrowserWorkerThread, SIGNAL( "databaseChanged()" ), self.databaseChanged )
-			self._signalsSlotsCenter.connect( self._model, SIGNAL( "dataChanged( const QModelIndex &, const QModelIndex &)" ), self.Database_Browser_listView_OnModelDataChanged )
+			self._databaseBrowserWorkerThread.databaseChanged.connect( self.databaseChanged )
+			self._model.dataChanged.connect( self.Database_Browser_listView_OnModelDataChanged )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
@@ -1316,7 +1253,7 @@ class DatabaseBrowser( UiComponent ):
 		if not self._container.parameters.databaseReadOnly :
 			# Wizard If Sets Table Is Empty.
 			if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
-				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 					if directory :
 						self.addDirectory( directory )
@@ -1347,7 +1284,7 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.title ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
+		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.title ) for displaySet in self._displaySets], key=lambda x:( x[1] ) )] :
 			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
@@ -1455,7 +1392,7 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Database_Browser_listView.setViewMode( QListView.IconMode )
 		self.ui.Database_Browser_listView.setResizeMode( QListView.Adjust )
 		self.ui.Database_Browser_listView.setSelectionMode( QAbstractItemView.ExtendedSelection )
-#		self.ui.Database_Browser_listView.setAcceptDrops( False )
+		# self.ui.Database_Browser_listView.setAcceptDrops( False )
 
 		self.Database_Browser_listView_setItemSize()
 
@@ -1648,7 +1585,7 @@ class DatabaseBrowser( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def addIblSet( self, name, path, collectionId = None, noWarning = False ):
+	def addIblSet( self, name, path, collectionId=None, noWarning=False ):
 		'''
 		This Method Adds An Ibl Set To The Database.
 		
@@ -1669,7 +1606,7 @@ class DatabaseBrowser( UiComponent ):
 			noWarning or messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
 	@core.executionTrace
-	def addDirectory( self, directory, collectionId = None, noWarning = False ):
+	def addDirectory( self, directory, collectionId=None, noWarning=False ):
 		'''
 		This Method Adds A Sets Directory Content To The Database.
 		
@@ -1695,7 +1632,7 @@ class DatabaseBrowser( UiComponent ):
 
 		selectedIblSets = self.getSelectedItems()
 		if selectedIblSets :
-			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format( ", ".join( [str( iblSet.text() ) for iblSet in selectedIblSets] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format( ", ".join( [str( iblSet.text() ) for iblSet in selectedIblSets] ) ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for iblSet in selectedIblSets :
 					LOGGER.info( "{0} | Removing '{1}' Ibl Set From Database !".format( self.__class__.__name__, iblSet.text() ) )
 					dbUtilities.common.removeSet( self._coreDb.dbSession, iblSet._datas.id )

@@ -75,13 +75,13 @@ from globals.runtimeConstants import RuntimeConstants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def uiExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiExtendedExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui Extended Exception Handler.
 	
@@ -91,11 +91,11 @@ def uiExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.messageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
+	messageBox.messageBox("Error", "Exception", "Exception In '{0}' : {1}".format(origin, exception))
+	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
-def uiStandaloneExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui Standalone Extended Exception Handler.
 	
@@ -105,11 +105,11 @@ def uiStandaloneExtendedExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.standaloneMessageBox( "Error", "Exception", "Exception In '{0}' : {1}".format( origin, exception ) )
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
+	messageBox.standaloneMessageBox("Error", "Exception", "Exception In '{0}' : {1}".format(origin, exception))
+	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
-def uiBasicExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiBasicExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui Basic Exception Handler.
 	
@@ -119,11 +119,11 @@ def uiBasicExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.messageBox( "Error", "Exception", "{0}".format( exception ) )
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
+	messageBox.messageBox("Error", "Exception", "{0}".format(exception))
+	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
-def uiStandaloneBasicExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui Standalone Basic Exception Handler.
 	
@@ -133,11 +133,11 @@ def uiStandaloneBasicExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.standaloneMessageBox( "Error", "Exception", "{0}".format( exception ) )
-	foundations.exceptions.defaultExceptionsHandler( exception, origin, *args, **kwargs )
+	messageBox.standaloneMessageBox("Error", "Exception", "{0}".format(exception))
+	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
-def uiSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui System Exit Exception Handler.
 	
@@ -147,11 +147,11 @@ def uiSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	uiExtendedExceptionHandler( exception, origin, *args, **kwargs )
-	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+	uiExtendedExceptionHandler(exception, origin, *args, **kwargs)
+	foundations.common.exit(1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ])
 
 @core.executionTrace
-def uiStandaloneSystemExitExceptionHandler( exception, origin, *args, **kwargs ) :
+def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs) :
 	'''
 	This Definition Provides A Ui Standalone System Exit Exception Handler.
 	
@@ -161,11 +161,11 @@ def uiStandaloneSystemExitExceptionHandler( exception, origin, *args, **kwargs )
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	uiStandaloneExtendedExceptionHandler( exception, origin, *args, **kwargs )
-	foundations.common.exit( 1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ] )
+	uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs)
+	foundations.common.exit(1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ])
 
 @core.executionTrace
-def setWindowDefaultIcon( window ):
+def setWindowDefaultIcon(window):
 	'''
 	This Method Sets The Application Icon To The Provided Window.
 
@@ -173,12 +173,13 @@ def setWindowDefaultIcon( window ):
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationWindowsIcon ) ) )
+		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationWindowsIcon)))
 	elif platform.system() == "Darwin" :
-		window.setWindowIcon( QIcon( os.path.join( os.getcwd(), UiConstants.frameworkApplicationDarwinIcon ) ) )
+		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationDarwinIcon)))
 	elif platform.system() == "Linux":
 		pass
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+
