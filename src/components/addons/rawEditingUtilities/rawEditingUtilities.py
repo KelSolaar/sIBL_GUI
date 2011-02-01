@@ -87,7 +87,7 @@ class RawEditingUtilities( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -97,7 +97,7 @@ class RawEditingUtilities( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -105,7 +105,6 @@ class RawEditingUtilities( UiComponent ):
 		self._uiPath = "ui/Raw_Editing_Utilities.ui"
 
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -180,36 +179,6 @@ class RawEditingUtilities( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def settings( self ):
@@ -466,7 +435,6 @@ class RawEditingUtilities( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 		self._settings = self._container.settings
 		self._settingsSection = self.name
 
@@ -486,7 +454,6 @@ class RawEditingUtilities( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
-		self._signalsSlotsCenter = None
 		self._settings = None
 		self._settingsSection = None
 
@@ -509,8 +476,8 @@ class RawEditingUtilities( UiComponent ):
 		self.addActions_()
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
+		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect( self.Custom_Text_Editor_Path_toolButton_OnClicked )
+		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect( self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -521,8 +488,8 @@ class RawEditingUtilities( UiComponent ):
 		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self.ui.Custom_Text_Editor_Path_toolButton, SIGNAL( "clicked()" ), self.Custom_Text_Editor_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Custom_Text_Editor_Path_lineEdit, SIGNAL( "editingFinished()" ), self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
+		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect( self.Custom_Text_Editor_Path_toolButton_OnClicked )
+		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect( self.Custom_Text_Editor_Path_lineEdit_OnEditFinished )
 
 		self.removeActions_()
 
@@ -617,9 +584,11 @@ class RawEditingUtilities( UiComponent ):
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText( customTextEditor.toString() )
 
 	@core.executionTrace
-	def Custom_Text_Editor_Path_toolButton_OnClicked( self ) :
+	def Custom_Text_Editor_Path_toolButton_OnClicked( self, checked ) :
 		'''
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		customTextEditorExecutable = self._container.storeLastBrowsedPath( QFileDialog.getOpenFileName( self, "Custom Text Editor Executable :", self._container.lastBrowsedPath ) )
