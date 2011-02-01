@@ -88,7 +88,7 @@ class RewiringTool( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__( self, name=None, uiFile=None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -98,7 +98,7 @@ class RewiringTool( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__( self, name=name, uiFile=uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -107,7 +107,6 @@ class RewiringTool( UiComponent ):
 		self._dockArea = 2
 
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 
@@ -214,36 +213,6 @@ class RewiringTool( UiComponent ):
 		'''
 
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
-
-	@property
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Property For The _signalsSlotsCenter Attribute.
-
-		@return: self._signalsSlotsCenter. ( QObject )
-		'''
-
-		return self._signalsSlotsCenter
-
-	@signalsSlotsCenter.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self, value ):
-		'''
-		This Method Is The Setter Method For The _signalsSlotsCenter Attribute.
-
-		@param value: Attribute Value. ( QObject )
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "signalsSlotsCenter" ) )
-
-	@signalsSlotsCenter.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def signalsSlotsCenter( self ):
-		'''
-		This Method Is The Deleter Method For The _signalsSlotsCenter Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "signalsSlotsCenter" ) )
 
 	@property
 	def coreDatabaseBrowser( self ):
@@ -410,7 +379,6 @@ class RewiringTool( UiComponent ):
 
 		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
 		self._container = container
-		self._signalsSlotsCenter = QObject()
 
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
@@ -427,7 +395,6 @@ class RewiringTool( UiComponent ):
 
 		self.uiFile = None
 		self._container = None
-		self._signalsSlotsCenter = None
 
 		self._coreDatabaseBrowser = None
 		self._addonsLoaderScript = None
@@ -456,12 +423,12 @@ class RewiringTool( UiComponent ):
 			self._reWireComboBoxesWidgets[index].setCurrentIndex( index )
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.connect( self.ui.Background_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.connect( self.ui.Lighting_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.connect( self.ui.Reflection_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.connect( self.ui.Background_Path_toolButton, SIGNAL( "clicked()" ), self.Background_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Lighting_Path_toolButton, SIGNAL( "clicked()" ), self.Lighting_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.connect( self.ui.Reflection_Path_toolButton, SIGNAL( "clicked()" ), self.Reflection_Path_toolButton_OnClicked )
+		self.ui.Background_comboBox.activated.connect( self.setReWireWidgetFramesVisibility )
+		self.ui.Lighting_comboBox.activated.connect( self.setReWireWidgetFramesVisibility )
+		self.ui.Reflection_comboBox.activated.connect( self.setReWireWidgetFramesVisibility )
+		self.ui.Background_Path_toolButton.clicked.connect( self.Background_Path_toolButton_OnClicked )
+		self.ui.Lighting_Path_toolButton.clicked.connect( self.Lighting_Path_toolButton_OnClicked )
+		self.ui.Reflection_Path_toolButton.clicked.connect( self.Reflection_Path_toolButton_OnClicked )
 
 	@core.executionTrace
 	def uninitializeUi( self ):
@@ -476,12 +443,12 @@ class RewiringTool( UiComponent ):
 		self._reWireLineEditWidgets = None
 
 		# Signals / Slots.
-		self._signalsSlotsCenter.disconnect( self.ui.Background_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.disconnect( self.ui.Lighting_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.disconnect( self.ui.Reflection_comboBox, SIGNAL( "activated( int )" ), self.setReWireWidgetFramesVisibility )
-		self._signalsSlotsCenter.disconnect( self.ui.Background_Path_toolButton, SIGNAL( "clicked()" ), self.Background_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Lighting_Path_toolButton, SIGNAL( "clicked()" ), self.Lighting_Path_toolButton_OnClicked )
-		self._signalsSlotsCenter.disconnect( self.ui.Reflection_Path_toolButton, SIGNAL( "clicked()" ), self.Reflection_Path_toolButton_OnClicked )
+		self.ui.Background_comboBox.activated.disconnect( self.setReWireWidgetFramesVisibility )
+		self.ui.Lighting_comboBox.activated.disconnect( self.setReWireWidgetFramesVisibility )
+		self.ui.Reflection_comboBox.activated.disconnect( self.setReWireWidgetFramesVisibility )
+		self.ui.Background_Path_toolButton.clicked.disconnect( self.Background_Path_toolButton_OnClicked )
+		self.ui.Lighting_Path_toolButton.clicked.disconnect( self.Lighting_Path_toolButton_OnClicked )
+		self.ui.Reflection_Path_toolButton.clicked.disconnect( self.Reflection_Path_toolButton_OnClicked )
 
 	@core.executionTrace
 	def addWidget( self ):
@@ -539,25 +506,31 @@ class RewiringTool( UiComponent ):
 				self.ui.Reflection_Path_lineEdit.setText( QString( customFile ) )
 
 	@core.executionTrace
-	def Background_Path_toolButton_OnClicked( self ) :
+	def Background_Path_toolButton_OnClicked( self, checked ) :
 		'''
 		This Method Is Called When Background ToolButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath( "Background" )
 
 	@core.executionTrace
-	def Lighting_Path_toolButton_OnClicked( self ) :
+	def Lighting_Path_toolButton_OnClicked( self, checked ) :
 		'''
 		This Method Is Called When Lighting ToolButton Is Clicked.
+		
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath( "Lighting" )
 
 	@core.executionTrace
-	def Reflection_Path_toolButton_OnClicked( self ) :
+	def Reflection_Path_toolButton_OnClicked( self, checked ) :
 		'''
 		This Method Is Called When Reflection ToolButton Is Clicked.
+
+		@param checked : Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath( "Reflection" )
