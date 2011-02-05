@@ -3,9 +3,10 @@ h1=. sIBL_GUI - 3.1.0 - Stable
 h2=. Change Log
 
 h3. 3.1.0 - Stable
+
 * sIBL_GUI now uses Python 2.7.1, allowing usage of OrderedDict, Templates attributes are now displayed in correct order.
 * Replaced Google Maps by Bing Maps : Google Maps support is broken at the moment on Qt Webkit.
-* Added "-s", "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
+* Added "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
 * Added support for Templates enums : "lightType = @lightType | Area;Directional;Spot | Enum | Light Type".
 * Fixed an inconsistency related to the comments in the file parser. 
 * Help files stored on network are now properly opened on Windows.
