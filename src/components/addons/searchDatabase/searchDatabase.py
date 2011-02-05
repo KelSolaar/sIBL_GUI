@@ -660,7 +660,7 @@ class SearchDatabase( UiComponent ):
 
 		self._completer.setModel( QStringListModel( sorted( [fieldValue for fieldValue in set( [getattr( iblSet, currentField ) for iblSet in previousDisplaySets] ) if re.search( pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 )] ) ) )
 
-		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( dbUtilities.common.filterSets( self._coreDb.dbSession, "{0}".format( str( pattern ) ), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 ) )]
+		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( dbUtilities.common.filterIblSets( self._coreDb.dbSession, "{0}".format( str( pattern ) ), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 ) )]
 
 		LOGGER.debug( "> Pattern Filtered Ibl Set(s) : '{0}'".format( ", ".join( [iblSet.name for iblSet in displaySets] ) ) )
 

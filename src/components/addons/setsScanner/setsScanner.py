@@ -253,7 +253,7 @@ class SetsScanner_Worker( QThread ):
 		LOGGER.info( "{0} | Scanning Sets Directories For New Sets !".format( self.__class__.__name__ ) )
 
 		self._newIblSets = {}
-		paths = [path[0] for path in self._dbSession.query( dbUtilities.types.DbSet.path ).all()]
+		paths = [path[0] for path in self._dbSession.query( dbUtilities.types.DbIblSet.path ).all()]
 		folders = set( [os.path.normpath( os.path.join( os.path.dirname( path ), ".." ) ) for path in paths] )
 		needModelRefresh = False
 		for folder in folders :
@@ -261,7 +261,7 @@ class SetsScanner_Worker( QThread ):
 				walker = Walker( folder )
 				walker.walk( ( "\.{0}$".format( self._extension ), ), ( "\._", ) )
 				for iblSet, path in walker.files.items() :
-					if not dbUtilities.common.filterSets( self._dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
+					if not dbUtilities.common.filterIblSets( self._dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 						needModelRefresh = True
 						self._newIblSets[iblSet] = path
 			else:
@@ -541,7 +541,7 @@ class SetsScanner( Component ):
 			if messageBox.messageBox( "Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format( ", ".join( self._setsScannerWorkerThread.newIblSets.keys() ) ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for iblSet, path in self._setsScannerWorkerThread.newIblSets.items():
 					LOGGER.info( "{0} | Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, iblSet ) )
-					if not dbUtilities.common.addSet( self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
+					if not dbUtilities.common.addIblSet( self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId( self._coreCollectionsOutliner._defaultCollection ) ) :
 						LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, iblSet ) )
 
 				self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
