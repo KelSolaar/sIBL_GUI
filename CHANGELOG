@@ -8,6 +8,8 @@ h3. 3.1.0 - Stable
 * Added "-s", "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
 * Fixed an inconsistency related to the comments in the file parser. 
 * Help files stored on network are now properly opened on Windows.
+* Modified Ibl Sets should refresh properly within the current session.
+* Added a new fancy splashscreen image.
 
 h3. 3.0.9 - Stable
 
