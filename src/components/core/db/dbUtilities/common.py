@@ -123,9 +123,9 @@ def addItem( session, item ):
 	return commit( session )
 
 @core.executionTrace
-def addFileItem( type, session, name, path, collection ):
+def addStandardItem( session, type, name, path, collection ):
 	'''
-	This Definition Adds A New Item To The Database.
+	This Definition Adds A New Standard Item To The Database.
 
 	@param type: Item Type. ( Object )
 	@param session: Database Session. ( Session )
@@ -137,13 +137,13 @@ def addFileItem( type, session, name, path, collection ):
 
 	LOGGER.debug( "> Adding : '{0}' '{1}' To Database.".format( name, type.__name__ ) )
 
-	if not filterItems( session.query( type ), session, "^{0}$".format( re.escape( path ) ), "path" ) :
+	if not filterItems( session, session.query( type ), "^{0}$".format( re.escape( path ) ), "path" ) :
 		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
 		dbItem = type( name = name, path = path, collection = collection, osStats = osStats )
 		if dbItem.setContent() :
 			return addItem( session, dbItem )
 	else:
-		LOGGER.warning( "!> {0} | '{1}' '{2}' Path Already Exists In Database !".format( core.getModule( addFileItem ).__name__, path, type.__name__ ) )
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Path Already Exists In Database !".format( core.getModule( addStandardItem ).__name__, path, type.__name__ ) )
 		return False
 
 @core.executionTrace
@@ -164,12 +164,67 @@ def removeItem( session, item ):
 	return commit( session )
 
 @core.executionTrace
-def filterItems( items, session, pattern, field, flags = 0 ):
+def removeStandardItem( session, type, id ):
+	'''
+	This Definition Remove A Standard Item From The Database.
+
+	@param session: Database Session. ( Session )
+	@param type: Item Type. ( Object )
+	@param id: Item Id. ( String )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Removing Item Type '{0}' With Id '{1}' From Database.".format( type.__name__, id ) )
+
+	item = session.query( type ).filter_by( id = id ).one()
+	return removeItem( session, item )
+
+@core.executionTrace
+def updateItemContent( session, item ):
+	'''
+	This Definition Update An Item Content.
+
+	@param session: Database Session. ( Session )
+	@param item: Item To Set Content. ( DbIblSet )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Updating '{0}' '{1}' Content.".format( item.name, item.__class__.__name__ ) )
+
+	item.osStats = ",".join( [str( stat ) for stat in os.stat( item.path )] )
+	if item.setContent() :
+		return commit( session )
+	else :
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Content Update Failed !".format( core.getModule( updateItemContent ).__name__, item.name, item.__class__.__name__ ) )
+		return False
+
+@core.executionTrace
+def updateItemLocation( session, item, path ):
+	'''
+	This Definition Updates An Item Location.
+
+	@param session: Database Session. ( Session )
+	@param item: Item To Update. ( Object )
+	@param path: Item Path. ( Path )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Updating '{0}' '{1}' Location.".format( item, item.__class__.__name__ ) )
+
+	if not filterItems( session, session.query( item.__class__ ), "^{0}$".format( re.escape( path ) ), "path" ) :
+		item.path = path
+		return updateItemContent( session, item )
+	else:
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Path Already Exists In Database !".format( core.getModule( updateItemLocation ).__name__, path, item.__class__.__name__ ) )
+		return False
+
+@core.executionTrace
+def filterItems( session, items, pattern, field, flags = 0 ):
 	'''
 	This Definition Filters Items From The Database.
 
-	@param items: Database Items. ( List )
 	@param session: Database Session. ( Session )
+	@param items: Database Items. ( List )
 	@param pattern: Filtering Pattern. ( String )
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
@@ -202,7 +257,7 @@ def filterIblSets( session, pattern, field, flags = 0 ):
 	@return: Filtered Ibl Sets. ( List )
 	'''
 
-	return filterItems( getIblSets( session ), session, pattern, field, flags )
+	return filterItems( session, getIblSets( session ), pattern, field, flags )
 
 @core.executionTrace
 def addIblSet( session, name, path, collection ):
@@ -216,7 +271,7 @@ def addIblSet( session, name, path, collection ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	return addFileItem( dbUtilities.types.DbIblSet, session, name, path, collection )
+	return addStandardItem( session, dbUtilities.types.DbIblSet, name, path, collection )
 
 @core.executionTrace
 def removeIblSet( session, id ):
@@ -228,10 +283,7 @@ def removeIblSet( session, id ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Ibl Set With Id '{0}' From Database.".format( id ) )
-
-	DbIblSet = session.query( dbUtilities.types.DbIblSet ).filter_by( id = id ).one()
-	return removeItem( session, DbIblSet )
+	return removeStandardItem( session, dbUtilities.types.DbIblSet, id )
 
 @core.executionTrace
 def updateIblSetContent( session, iblSet ):
@@ -243,14 +295,7 @@ def updateIblSetContent( session, iblSet ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Ibl Set Content.".format( iblSet ) )
-
-	iblSet.osStats = ",".join( [str( stat ) for stat in os.stat( iblSet.path )] )
-	if iblSet.setContent() :
-		return commit( session )
-	else :
-		LOGGER.warning( "!> {0} | '{1}' Ibl Set Content Update Failed !".format( core.getModule( updateIblSetContent ).__name__, iblSet.name ) )
-		return False
+	return updateItemContent( session, iblSet )
 
 @core.executionTrace
 def updateIblSetLocation( session, iblSet, path ):
@@ -263,14 +308,7 @@ def updateIblSetLocation( session, iblSet, path ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Ibl Set Location.".format( iblSet ) )
-
-	if not filterIblSets( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		iblSet.path = path
-		return updateIblSetContent( session, iblSet )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Ibl Set Path Already Exists In Database !".format( core.getModule( updateIblSetLocation ).__name__, path ) )
-		return False
+	return updateItemLocation( session, iblSet, path )
 
 @core.executionTrace
 def checkIblSetsTableIntegrity( session ):
@@ -323,7 +361,7 @@ def filterCollections( session, pattern, field, flags = 0 ):
 	@return: Filtered Collections. ( List )
 	'''
 
-	return filterItems( getCollections( session ), session, pattern, field, flags )
+	return filterItems( session, getCollections( session ), pattern, field, flags )
 
 @core.executionTrace
 def addCollection( session, collection, type, comment ):
@@ -356,10 +394,7 @@ def removeCollection( session, id ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Collection With Id '{0}' From Database.".format( id ) )
-
-	dbCollection = session.query( dbUtilities.types.DbCollection ).filter_by( id = id ).one()
-	return removeItem( session, dbCollection )
+	return removeStandardItem( session, dbUtilities.types.DbCollection, id )
 
 @core.executionTrace
 def getCollectionsSets( session, ids ):
@@ -402,7 +437,7 @@ def filterTemplates( session, pattern, field, flags = 0 ):
 	@return: Filtered Templates. ( List )
 	'''
 
-	return filterItems( getTemplates( session ), session, pattern, field, flags )
+	return filterItems( session, getTemplates( session ), pattern, field, flags )
 
 @core.executionTrace
 def addTemplate( session, name, path, collection ):
@@ -416,7 +451,7 @@ def addTemplate( session, name, path, collection ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	return addFileItem( dbUtilities.types.DbTemplate, session, name, path, collection )
+	return addStandardItem( session, dbUtilities.types.DbTemplate, name, path, collection )
 
 @core.executionTrace
 def removeTemplate( session, id ):
@@ -428,10 +463,7 @@ def removeTemplate( session, id ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Template With Id '{0}' From Database.".format( id ) )
-
-	dbTemplate = session.query( dbUtilities.types.DbTemplate ).filter_by( id = id ).one()
-	return removeItem( session, dbTemplate )
+	return removeStandardItem( session, dbUtilities.types.DbTemplate, id )
 
 @core.executionTrace
 def updateTemplateContent( session, template ):
@@ -443,14 +475,7 @@ def updateTemplateContent( session, template ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Template Content.".format( template ) )
-
-	template.osStats = ",".join( [str( stat ) for stat in os.stat( template.path )] )
-	if template.setContent() :
-		return commit( session )
-	else :
-		LOGGER.warning( "!> {0} | '{1}' Template Content Update Failed !".format( core.getModule( updateTemplateContent ).__name__, template.name ) )
-		return False
+	return updateItemContent( session, template )
 
 @core.executionTrace
 def updateTemplateLocation( session, template, path ):
@@ -463,14 +488,7 @@ def updateTemplateLocation( session, template, path ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Template Location.".format( template ) )
-
-	if not filterTemplates( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		template.path = path
-		return updateTemplateContent( session, template )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( core.getModule( updateTemplateLocation ).__name__, path ) )
-		return False
+	return updateItemLocation( session, template, path )
 
 @core.executionTrace
 def checkTemplatesTableIntegrity( session ):
@@ -496,3 +514,4 @@ def checkTemplatesTableIntegrity( session ):
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+
