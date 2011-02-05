@@ -998,7 +998,7 @@ class CollectionsOutliner(UiComponent):
 		overallCollectionStandardItem = QStandardItem(QString(self._overallCollection))
 		overallCollectionStandardItem.setFlags(readOnlyFlags)
 
-		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getSets(self._coreDb.dbSession).count())))
+		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count())))
 		overallCollectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 		overallCollectionSetsCountStandardItem.setFlags(readOnlyFlags)
 
@@ -1022,7 +1022,7 @@ class CollectionsOutliner(UiComponent):
 					collectionStandardItem.setIcon(QIcon(iconPath))
 					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 
-					collectionSetsCountStandardItem = QStandardItem(QString(str(self._coreDb.dbSession.query(dbUtilities.types.DbSet).filter_by(collection=collection.id).count())))
+					collectionSetsCountStandardItem = QStandardItem(QString(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collection.id).count())))
 					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 					collectionSetsCountStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
@@ -1139,11 +1139,11 @@ class CollectionsOutliner(UiComponent):
 		for i in range(self._model.rowCount()) :
 			currentStandardItem = self._model.item(i)
 			if currentStandardItem.text() == self._overallCollection :
-				self._model.itemFromIndex(self._model.sibling(i, 1, self._model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getSets(self._coreDb.dbSession).count()))
+				self._model.itemFromIndex(self._model.sibling(i, 1, self._model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count()))
 			for j in range(currentStandardItem.rowCount()):
 				collectionStandardItem = currentStandardItem.child(j, 0)
 				collectionSetsCountStandardItem = currentStandardItem.child(j, 1)
-				collectionSetsCountStandardItem.setText(str(self._coreDb.dbSession.query(dbUtilities.types.DbSet).filter_by(collection=collectionStandardItem._datas.id).count()))
+				collectionSetsCountStandardItem.setText(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting Model "dataChanged()" Signal.
 		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)

@@ -261,14 +261,14 @@ class DatabaseBrowser_Worker( QThread ):
 		'''
 
 		needModelRefresh = False
-		for iblSet in dbUtilities.common.getSets( self._dbSession ) :
+		for iblSet in dbUtilities.common.getIblSets( self._dbSession ) :
 			if iblSet.path :
 				if os.path.exists( iblSet.path ) :
 					storedStats = iblSet.osStats.split( "," )
 					osStats = os.stat( iblSet.path )
 					if str( osStats[8] ) != str( storedStats[8] ):
 						LOGGER.info( "{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated !".format( self.__class__.__name__, iblSet.name ) )
-						if dbUtilities.common.updateSetContent( self._dbSession, iblSet ) :
+						if dbUtilities.common.updateIblSetContent( self._dbSession, iblSet ) :
 							LOGGER.info( "{0} | '{1}' Ibl Set Has Been Updated !".format( self.__class__.__name__, iblSet.name ) )
 							needModelRefresh = True
 
@@ -407,11 +407,11 @@ class DatabaseBrowser_QListView( QListView ):
 					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
 					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
 						name = os.path.splitext( os.path.basename( path ) )[0]
-						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
+						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 							 self._coreDatabaseBrowser.addIblSet( name, path ) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else :
 						if os.path.isdir( path ):
-							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
+							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 								 self._coreDatabaseBrowser.addDirectory( path )
 								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else :
@@ -442,7 +442,7 @@ class DatabaseBrowser( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__( self, name = None, uiFile = None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -452,7 +452,7 @@ class DatabaseBrowser( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__( self, name = name, uiFile = uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -1181,7 +1181,7 @@ class DatabaseBrowser( UiComponent ):
 		self.ui.Database_Browser_listView = DatabaseBrowser_QListView( self._container )
 		self.ui.Database_Browser_Widget_gridLayout.addWidget( self.ui.Database_Browser_listView, 0, 0 )
 
-		self._displaySets = dbUtilities.common.getSets( self._coreDb.dbSession )
+		self._displaySets = dbUtilities.common.getIblSets( self._coreDb.dbSession )
 
 		listViewIconSize = self._settings.getKey( self._settingsSection, "listViewIconSize" )
 		self._listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self._listViewIconSize
@@ -1252,20 +1252,20 @@ class DatabaseBrowser( UiComponent ):
 
 		if not self._container.parameters.databaseReadOnly :
 			# Wizard If Sets Table Is Empty.
-			if not dbUtilities.common.getSets( self._coreDb.dbSession ).count() :
-				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if not dbUtilities.common.getIblSets( self._coreDb.dbSession ).count() :
+				if messageBox.messageBox( "Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 					directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
 					if directory :
 						self.addDirectory( directory )
 						self.Database_Browser_listView_extendedRefreshModel()
 
 			# Ibl Sets Table Integrity Checking.
-			erroneousIblSets = dbUtilities.common.checkSetsTableIntegrity( self._coreDb.dbSession )
+			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity( self._coreDb.dbSession )
 			if erroneousIblSets :
 				for iblSet in erroneousIblSets :
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION" :
 						if messageBox.messageBox( "Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location ?".format( self.__class__.__name__, iblSet.name ), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No ) == 16384 :
-							self.updateSetLocation( iblSet )
+							self.updateIblSetLocation( iblSet )
 					else :
 						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' {2}".format( self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]] ) )
 				self.Database_Browser_listView_localRefreshModel()
@@ -1284,7 +1284,7 @@ class DatabaseBrowser( UiComponent ):
 
 		self._model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.title ) for displaySet in self._displaySets], key=lambda x:( x[1] ) )] :
+		for iblSet in [iblSet[0] for iblSet in sorted( [( displaySet, displaySet.title ) for displaySet in self._displaySets], key = lambda x:( x[1] ) )] :
 			LOGGER.debug( "> Preparing '{0}' Ibl Set For '{1}' Model.".format( iblSet.name, "Database_Browser_listView" ) )
 
 			try :
@@ -1374,7 +1374,7 @@ class DatabaseBrowser( UiComponent ):
 		currentTitle = standardItem.text()
 
 		LOGGER.debug( "> Updating Ibl Set '{0}' Title To '{1}'.".format( standardItem._datas.title, currentTitle ) )
-		iblSet = dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( standardItem._datas.id ), "id" )[0]
+		iblSet = dbUtilities.common.filterIblSets( self._coreDb.dbSession, "^{0}$".format( standardItem._datas.id ), "id" )[0]
 		iblSet.title = str( currentTitle )
 		dbUtilities.common.commit( self._coreDb.dbSession )
 
@@ -1545,7 +1545,7 @@ class DatabaseBrowser( UiComponent ):
 		selectedIblSets = self.getSelectedItems()
 		if selectedIblSets :
 			for iblSet in selectedIblSets :
-				self.updateSetLocation( iblSet._datas )
+				self.updateIblSetLocation( iblSet._datas )
 				needModelRefresh = True
 
 		if needModelRefresh :
@@ -1573,6 +1573,8 @@ class DatabaseBrowser( UiComponent ):
 		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
 		'''
 
+		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
+		self._coreDb.dbSession.expire_all()
 		self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
@@ -1585,7 +1587,7 @@ class DatabaseBrowser( UiComponent ):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def addIblSet( self, name, path, collectionId=None, noWarning=False ):
+	def addIblSet( self, name, path, collectionId = None, noWarning = False ):
 		'''
 		This Method Adds An Ibl Set To The Database.
 		
@@ -1596,9 +1598,9 @@ class DatabaseBrowser( UiComponent ):
 		@return: Ibl Set Database Addition Success. ( Boolean )		
 		'''
 
-		if not dbUtilities.common.filterSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
+		if not dbUtilities.common.filterIblSets( self._coreDb.dbSession, "^{0}$".format( re.escape( path ) ), "path" ) :
 			LOGGER.info( "{0} | Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, name ) )
-			if dbUtilities.common.addSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
+			if dbUtilities.common.addIblSet( self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId() ) :
 				return True
 			else :
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format( self.__class__.__name__, name )
@@ -1606,7 +1608,7 @@ class DatabaseBrowser( UiComponent ):
 			noWarning or messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database !".format( self.__class__.__name__, name ) )
 
 	@core.executionTrace
-	def addDirectory( self, directory, collectionId=None, noWarning=False ):
+	def addDirectory( self, directory, collectionId = None, noWarning = False ):
 		'''
 		This Method Adds A Sets Directory Content To The Database.
 		
@@ -1632,25 +1634,25 @@ class DatabaseBrowser( UiComponent ):
 
 		selectedIblSets = self.getSelectedItems()
 		if selectedIblSets :
-			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format( ", ".join( [str( iblSet.text() ) for iblSet in selectedIblSets] ) ), buttons=QMessageBox.Yes | QMessageBox.No ) == 16384 :
+			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format( ", ".join( [str( iblSet.text() ) for iblSet in selectedIblSets] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
 				for iblSet in selectedIblSets :
 					LOGGER.info( "{0} | Removing '{1}' Ibl Set From Database !".format( self.__class__.__name__, iblSet.text() ) )
-					dbUtilities.common.removeSet( self._coreDb.dbSession, iblSet._datas.id )
+					dbUtilities.common.removeIblSet( self._coreDb.dbSession, iblSet._datas.id )
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError )
-	def updateSetLocation( self, iblSet ):
+	def updateIblSetLocation( self, iblSet ):
 		'''
 		This Method Updates An Ibl Set Location.
 		
-		@param iblSet: Ibl Set To Update. ( DbSet )
+		@param iblSet: Ibl Set To Update. ( DbIblSet )
 		@return: Update Success. ( Boolean )
 		'''
 
 		file = self._container.storeLastBrowsedPath( ( QFileDialog.getOpenFileName( self, "Updating '{0}' Ibl Set Location :".format( iblSet.name ), self._container.lastBrowsedPath, "Ibls Files (*.{0})".format( self._extension ) ) ) )
 		if file :
 			LOGGER.info( "{0} | Updating '{1}' Ibl Set With New Location : '{2}' !".format( self.__class__.__name__, iblSet.name, file ) )
-			if not dbUtilities.common.updateSetLocation( self._coreDb.dbSession, iblSet, file ) :
+			if not dbUtilities.common.updateIblSetLocation( self._coreDb.dbSession, iblSet, file ) :
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set !".format( self.__class__.__name__, iblSet.name )
 			else :
 				return True

@@ -8,7 +8,7 @@ echo Build - Begin
 echo ----------------------------------------------------------------
 rmdir /S /Q "Z:\sIBL_GUI\releases\Windows\build\
 rmdir /S /Q "Z:\sIBL_GUI\releases\Windows\dist\
-python c:\pyinstaller\Makespec.py --noconsole --icon "Z:\sIBL_GUI\src\resources\Icon_Light_48.ico" Z:\sIBL_GUI\src\sIBL_GUI.py -o Z:\sIBL_GUI\releases\Windows
+python c:\pyinstaller\Makespec.py --noconsole --icon "Z:\sIBL_GUI\src\resources\Icon_Light.ico" Z:\sIBL_GUI\src\sIBL_GUI.py -o Z:\sIBL_GUI\releases\Windows
 python c:\pyinstaller\Build.py Z:\sIBL_GUI\releases\Windows\sIBL_GUI.spec
 echo ----------------------------------------------------------------
 echo Build - End
@@ -26,7 +26,7 @@ xcopy /c /y "Z:\sIBL_GUI\src\ui\sIBL_GUI_Layouts.rc" "Z:\sIBL_GUI\releases\Windo
 xcopy /c /y "Z:\sIBL_GUI\src\ui\Windows_styleSheet.qss" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Z:\sIBL_GUI\src\ui\Darwin_styleSheet.qss" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
 xcopy /c /y "Z:\sIBL_GUI\src\ui\Linux_styleSheet.qss" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\ui\"
-xcopy /c /y "Z:\sIBL_GUI\src\resources\Icon_Light_48.ico" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
+xcopy /c /y "Z:\sIBL_GUI\src\resources\Icon_Light.ico" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Z:\sIBL_GUI\src\resources\sIBL_GUI_SpashScreen.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Z:\sIBL_GUI\src\resources\sIBL_GUI_Logo.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"
 xcopy /c /y "Z:\sIBL_GUI\src\resources\Central_Widget.png" "Z:\sIBL_GUI\releases\Windows\sIBL_GUI\resources\"

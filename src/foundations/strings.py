@@ -129,6 +129,28 @@ def getNormalizedPath( path ):
 		return os.path.normpath( path )
 
 @core.executionTrace
+def toUnixPath( path ):
+	'''
+	This Definition Converts A Path To Unix Standard.
+
+	@param url: Path To Convert. ( String )	
+	@return: Converted Path. ( String )
+	'''
+
+	return path.replace( "\\", "/" )
+
+@core.executionTrace
+def toWindowsPath( path ):
+	'''
+	This Definition Converts A Path To Windows Standard.
+
+	@param url: Path To Convert. ( String )	
+	@return: Converted Path. ( String )
+	'''
+
+	return path.replace( "/", "\\", )
+
+@core.executionTrace
 def isEmail( datas ):
 	'''
 	This Definition Check If Provided Datas String Is An Email.

@@ -81,9 +81,9 @@ LOGGER = logging.getLogger( Constants.logger )
 #***********************************************************************************************
 DbBase = sqlalchemy.ext.declarative.declarative_base()
 
-class DbSet( DbBase ):
+class DbIblSet( DbBase ):
 	'''
-	This Class Is The DbSet Class.
+	This Class Is The DbIblSet Class.
 	'''
 
 	__tablename__ = "Sets"
@@ -157,9 +157,9 @@ class DbSet( DbBase ):
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.FileStructureError )
 	def setContent( self ):
 		'''
-		This Method Initializes The DbSet Attributes.
+		This Method Initializes The DbIblSet Attributes.
 		
-		@return: DbSet Initialization Success. ( Boolean )
+		@return: DbIblSet Initialization Success. ( Boolean )
 		'''
 
 		parser = Parser( self.path )

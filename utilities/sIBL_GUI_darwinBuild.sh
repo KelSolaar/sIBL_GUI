@@ -4,7 +4,7 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI - Mac Os X - Overall Build
 echo ----------------------------------------------------------------
 
-alias python=/Library/Frameworks/Python.framework/Versions/2.6/bin/python
+alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 
 #! Darwin Build.
 echo ----------------------------------------------------------------
@@ -27,8 +27,8 @@ cp  ../../src/ui/sIBL_GUI_Layouts.rc ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Windows_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Darwin_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
 cp  ../../src/ui/Linux_styleSheet.qss ./dist/sIBL_GUI.app/Contents/Resources/ui
+cp  ../../src/resources/Icon_Light_512.icns ./dist/sIBL_GUI.app/Contents/Resources/
 mkdir -p ./dist/sIBL_GUI.app/Contents/Resources/resources
-cp  ../../src/resources/Icon_Light_512.icns ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_SpashScreen.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/sIBL_GUI_Logo.png ./dist/sIBL_GUI.app/Contents/Resources/resources
 cp  ../../src/resources/Central_Widget.png ./dist/sIBL_GUI.app/Contents/Resources/resources

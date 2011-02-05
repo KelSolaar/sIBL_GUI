@@ -76,11 +76,11 @@ from globals.constants import Constants
 LOGGER = logging.getLogger( Constants.logger )
 
 DB_EXCEPTIONS = {
-			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Set's Ibl File Is Missing !",
-			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Set's Icon Is Missing !",
-			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Set's Background Image Is Missing !",
-			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Set's Lighting Image Is Missing !",
-			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Set's Reflection Image Is Missing !",
+			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's Ibl File Is Missing !",
+			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's Icon Is Missing !",
+			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's Background Image Is Missing !",
+			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's Lighting Image Is Missing !",
+			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's Reflection Image Is Missing !",
 			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template File Is Missing !",
 			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template Help File Is Missing !"
 		}
@@ -123,6 +123,30 @@ def addItem( session, item ):
 	return commit( session )
 
 @core.executionTrace
+def addStandardItem( session, type, name, path, collection ):
+	'''
+	This Definition Adds A New Standard Item To The Database.
+
+	@param type: Item Type. ( Object )
+	@param session: Database Session. ( Session )
+	@param name: Item Name. ( String )
+	@param path: Item Path. ( String )
+	@param collection: Collection Id. ( String )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Adding : '{0}' '{1}' To Database.".format( name, type.__name__ ) )
+
+	if not filterItems( session, session.query( type ), "^{0}$".format( re.escape( path ) ), "path" ) :
+		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
+		dbItem = type( name = name, path = path, collection = collection, osStats = osStats )
+		if dbItem.setContent() :
+			return addItem( session, dbItem )
+	else:
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Path Already Exists In Database !".format( core.getModule( addStandardItem ).__name__, path, type.__name__ ) )
+		return False
+
+@core.executionTrace
 @foundations.exceptions.exceptionsHandler( None, False, Exception )
 def removeItem( session, item ):
 	'''
@@ -140,18 +164,89 @@ def removeItem( session, item ):
 	return commit( session )
 
 @core.executionTrace
-def getSets( session ):
+def removeStandardItem( session, type, id ):
 	'''
-	This Definition Gets The Sets From The Database.
+	This Definition Remove A Standard Item From The Database.
 
 	@param session: Database Session. ( Session )
-	@return: Database Sets. ( List )
+	@param type: Item Type. ( Object )
+	@param id: Item Id. ( String )
+	@return: Database Commit Success. ( Boolean )
 	'''
 
-	return session.query( dbUtilities.types.DbSet )
+	LOGGER.debug( "> Removing Item Type '{0}' With Id '{1}' From Database.".format( type.__name__, id ) )
+
+	item = session.query( type ).filter_by( id = id ).one()
+	return removeItem( session, item )
 
 @core.executionTrace
-def filterSets( session, pattern, field, flags = 0 ):
+def updateItemContent( session, item ):
+	'''
+	This Definition Update An Item Content.
+
+	@param session: Database Session. ( Session )
+	@param item: Item To Set Content. ( DbIblSet )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Updating '{0}' '{1}' Content.".format( item.name, item.__class__.__name__ ) )
+
+	item.osStats = ",".join( [str( stat ) for stat in os.stat( item.path )] )
+	if item.setContent() :
+		return commit( session )
+	else :
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Content Update Failed !".format( core.getModule( updateItemContent ).__name__, item.name, item.__class__.__name__ ) )
+		return False
+
+@core.executionTrace
+def updateItemLocation( session, item, path ):
+	'''
+	This Definition Updates An Item Location.
+
+	@param session: Database Session. ( Session )
+	@param item: Item To Update. ( Object )
+	@param path: Item Path. ( Path )
+	@return: Database Commit Success. ( Boolean )
+	'''
+
+	LOGGER.debug( "> Updating '{0}' '{1}' Location.".format( item, item.__class__.__name__ ) )
+
+	if not filterItems( session, session.query( item.__class__ ), "^{0}$".format( re.escape( path ) ), "path" ) :
+		item.path = path
+		return updateItemContent( session, item )
+	else:
+		LOGGER.warning( "!> {0} | '{1}' '{2}' Path Already Exists In Database !".format( core.getModule( updateItemLocation ).__name__, path, item.__class__.__name__ ) )
+		return False
+
+@core.executionTrace
+def filterItems( session, items, pattern, field, flags = 0 ):
+	'''
+	This Definition Filters Items From The Database.
+
+	@param session: Database Session. ( Session )
+	@param items: Database Items. ( List )
+	@param pattern: Filtering Pattern. ( String )
+	@param field: Database Field To Search Into. ( String )
+	@param flags: Flags Passed To The Regex Engine. ( Integer )
+	@return: Filtered Items. ( List )
+	'''
+
+	if items :
+		return [item for item in items if re.search( pattern, str( item.__dict__[field] ), flags ) ]
+
+@core.executionTrace
+def getIblSets( session ):
+	'''
+	This Definition Gets The Ibl Sets From The Database.
+
+	@param session: Database Session. ( Session )
+	@return: Database Ibl Sets. ( List )
+	'''
+
+	return session.query( dbUtilities.types.DbIblSet )
+
+@core.executionTrace
+def filterIblSets( session, pattern, field, flags = 0 ):
 	'''
 	This Definition Filters The Sets From The Database.
 
@@ -159,90 +254,89 @@ def filterSets( session, pattern, field, flags = 0 ):
 	@param pattern: Filtering Pattern. ( String )
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
-	@return: Filtered Sets. ( List )
+	@return: Filtered Ibl Sets. ( List )
 	'''
 
-	sets = getSets( session )
-	if sets :
-		filteredSets = [set for set in sets if re.search( pattern, str( set.__dict__[field] ), flags ) ]
-		return filteredSets
+	return filterItems( session, getIblSets( session ), pattern, field, flags )
 
 @core.executionTrace
-def addSet( session, name, path, collection ):
+def addIblSet( session, name, path, collection ):
 	'''
-	This Definition Adds A New Set To The Database.
+	This Definition Adds A New Ibl Set To The Database.
 
 	@param session: Database Session. ( Session )
-	@param name: Set Name. ( String )
-	@param path: Set Path. ( String )
+	@param name: Ibl Set Name. ( String )
+	@param path: Ibl Set Path. ( String )
 	@param collection: Collection Id. ( String )
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Adding : '{0}' Set To Database.".format( name ) )
-
-	if not filterSets( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
-		dbItem = dbUtilities.types.DbSet( name = name, path = path, collection = collection, osStats = osStats )
-		if dbItem.setContent() :
-			return addItem( session, dbItem )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( core.getModule( addSet ).__name__, path ) )
-		return False
+	return addStandardItem( session, dbUtilities.types.DbIblSet, name, path, collection )
 
 @core.executionTrace
-def removeSet( session, id ):
+def removeIblSet( session, id ):
 	'''
-	This Definition Remove A Set From The Database.
+	This Definition Remove An Ibl Set From The Database.
 
 	@param session: Database Session. ( Session )
-	@param id: Set Id. ( String )
+	@param id: Ibl Set Id. ( String )
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Set With Id '{0}' From Database.".format( id ) )
-
-	dbSet = session.query( dbUtilities.types.DbSet ).filter_by( id = id ).one()
-	return removeItem( session, dbSet )
+	return removeStandardItem( session, dbUtilities.types.DbIblSet, id )
 
 @core.executionTrace
-def updateSetContent( session, set ):
+def updateIblSetContent( session, iblSet ):
 	'''
-	This Definition Update A Set Content.
+	This Definition Update An Ibl Set Content.
 
 	@param session: Database Session. ( Session )
-	@param set: Set To Set Content. ( DbSet )
+	@param iblSet: Ibl Set To Set Content. ( DbIblSet )
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Set Content.".format( set ) )
-
-	set.osStats = ",".join( [str( stat ) for stat in os.stat( set.path )] )
-	if set.setContent() :
-		return commit( session )
-	else :
-		LOGGER.warning( "!> {0} | '{1}' Set Content Update Failed !".format( core.getModule( updateSetContent ).__name__, set.name ) )
-		return False
+	return updateItemContent( session, iblSet )
 
 @core.executionTrace
-def updateSetLocation( session, set, path ):
+def updateIblSetLocation( session, iblSet, path ):
 	'''
-	This Definition Updates A Set Location.
+	This Definition Updates An Ibl Set Location.
 
 	@param session: Database Session. ( Session )
-	@param set: Set To Update. ( DbSet )
-	@param path: Set Path. ( Path )
+	@param iblSet: Ibl Set To Update. ( DbIblSet )
+	@param path: Ibl Set Path. ( Path )
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Set Location.".format( set ) )
+	return updateItemLocation( session, iblSet, path )
 
-	if not filterSets( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		set.path = path
-		return updateSetContent( session, set )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Set Path Already Exists In Database !".format( core.getModule( updateSetLocation ).__name__, path ) )
-		return False
+@core.executionTrace
+def checkIblSetsTableIntegrity( session ):
+	'''
+	This Definition Checks Sets Table Integrity.
+
+	@param session: Database Session. ( Session )
+	@return: Ibl Sets Table Erroneous Items. ( Dictionary )
+	'''
+
+	LOGGER.debug( "> Checking 'Sets' Database Table Integrity." )
+
+	erroneousSets = {}
+	if getIblSets( session ) :
+		for iblSet in getIblSets( session ) :
+			if not os.path.exists( iblSet.path ) :
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
+				continue
+			if not os.path.exists( iblSet.icon ) :
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
+			if iblSet.backgroundImage and not os.path.exists( os.path.join( os.path.dirname( iblSet.path ), iblSet.backgroundImage ) ) :
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
+			if iblSet.lightingImage and not os.path.exists( os.path.join( os.path.dirname( iblSet.path ), iblSet.lightingImage ) ) :
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
+			if  iblSet.reflectionImage and not os.path.exists( os.path.join( os.path.dirname( iblSet.path ), iblSet.reflectionImage ) ) :
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
+
+	if erroneousSets : return erroneousSets
 
 @core.executionTrace
 def getCollections( session ):
@@ -267,10 +361,7 @@ def filterCollections( session, pattern, field, flags = 0 ):
 	@return: Filtered Collections. ( List )
 	'''
 
-	collections = getCollections( session )
-	if collections :
-		filteredCollections = [collection for collection in collections if re.search( pattern, str( collection.__dict__[field] ), flags ) ]
-		return filteredCollections
+	return filterItems( session, getCollections( session ), pattern, field, flags )
 
 @core.executionTrace
 def addCollection( session, collection, type, comment ):
@@ -303,10 +394,7 @@ def removeCollection( session, id ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Collection With Id '{0}' From Database.".format( id ) )
-
-	dbCollection = session.query( dbUtilities.types.DbCollection ).filter_by( id = id ).one()
-	return removeItem( session, dbCollection )
+	return removeStandardItem( session, dbUtilities.types.DbCollection, id )
 
 @core.executionTrace
 def getCollectionsSets( session, ids ):
@@ -315,44 +403,16 @@ def getCollectionsSets( session, ids ):
 
 	@param session: Database Session. ( Session )
 	@param ids: Collections Ids. ( List )
-	@return: Sets List. ( List )
+	@return: Ibl Sets List. ( List )
 	'''
 
-	sets = []
+	iblSets = []
 	for id in ids :
-		collectionSets = filterSets( session, str( id ), "collection" )
+		collectionSets = filterIblSets( session, str( id ), "collection" )
 		if collectionSets :
-			for set in filterSets( session, str( id ), "collection" ) :
-				sets.append( set )
-	return sets
-
-@core.executionTrace
-def checkSetsTableIntegrity( session ):
-	'''
-	This Definition Checks Sets Table Integrity.
-
-	@param session: Database Session. ( Session )
-	@return: Sets Table Erroneous Items. ( Dictionary )
-	'''
-
-	LOGGER.debug( "> Checking 'Sets' Database Table Integrity." )
-
-	erroneousSets = {}
-	if getSets( session ) :
-		for set in getSets( session ) :
-			if not os.path.exists( set.path ) :
-				erroneousSets[set] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
-				continue
-			if not os.path.exists( set.icon ) :
-				erroneousSets[set] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
-			if set.backgroundImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.backgroundImage ) ) :
-				erroneousSets[set] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
-			if set.lightingImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.lightingImage ) ) :
-				erroneousSets[set] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
-			if  set.reflectionImage and not os.path.exists( os.path.join( os.path.dirname( set.path ), set.reflectionImage ) ) :
-				erroneousSets[set] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
-
-	if erroneousSets : return erroneousSets
+			for iblSet in filterIblSets( session, str( id ), "collection" ) :
+				iblSets.append( iblSet )
+	return iblSets
 
 @core.executionTrace
 def getTemplates( session ):
@@ -377,10 +437,7 @@ def filterTemplates( session, pattern, field, flags = 0 ):
 	@return: Filtered Templates. ( List )
 	'''
 
-	templates = getTemplates( session )
-	if templates :
-		filteredTemplates = [template for template in templates if re.search( pattern, str( template.__dict__[field] ), flags ) ]
-		return filteredTemplates
+	return filterItems( session, getTemplates( session ), pattern, field, flags )
 
 @core.executionTrace
 def addTemplate( session, name, path, collection ):
@@ -394,16 +451,7 @@ def addTemplate( session, name, path, collection ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Adding : '{0}' Template To Database.".format( name ) )
-
-	if not filterTemplates( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		osStats = ",".join( [str( stat ) for stat in os.stat( path )] )
-		dbItem = dbUtilities.types.DbTemplate( name = name, path = path, collection = collection, osStats = osStats )
-		if dbItem.setContent() :
-			return addItem( session, dbItem )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( core.getModule( addTemplate ).__name__, path ) )
-		return False
+	return addStandardItem( session, dbUtilities.types.DbTemplate, name, path, collection )
 
 @core.executionTrace
 def removeTemplate( session, id ):
@@ -415,10 +463,7 @@ def removeTemplate( session, id ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Removing Template With Id '{0}' From Database.".format( id ) )
-
-	dbTemplate = session.query( dbUtilities.types.DbTemplate ).filter_by( id = id ).one()
-	return removeItem( session, dbTemplate )
+	return removeStandardItem( session, dbUtilities.types.DbTemplate, id )
 
 @core.executionTrace
 def updateTemplateContent( session, template ):
@@ -430,14 +475,7 @@ def updateTemplateContent( session, template ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Template Content.".format( template ) )
-
-	template.osStats = ",".join( [str( stat ) for stat in os.stat( template.path )] )
-	if template.setContent() :
-		return commit( session )
-	else :
-		LOGGER.warning( "!> {0} | '{1}' Template Content Update Failed !".format( core.getModule( updateTemplateContent ).__name__, template.name ) )
-		return False
+	return updateItemContent( session, template )
 
 @core.executionTrace
 def updateTemplateLocation( session, template, path ):
@@ -450,14 +488,7 @@ def updateTemplateLocation( session, template, path ):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug( "> Updating '{0}' Template Location.".format( template ) )
-
-	if not filterTemplates( session, "^{0}$".format( re.escape( path ) ), "path" ) :
-		template.path = path
-		return updateTemplateContent( session, template )
-	else:
-		LOGGER.warning( "!> {0} | '{1}' Template Path Already Exists In Database !".format( core.getModule( updateTemplateLocation ).__name__, path ) )
-		return False
+	return updateItemLocation( session, template, path )
 
 @core.executionTrace
 def checkTemplatesTableIntegrity( session ):
@@ -483,3 +514,4 @@ def checkTemplatesTableIntegrity( session ):
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
+

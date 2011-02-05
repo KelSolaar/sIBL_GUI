@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path = [os.path.join( os.environ['RESOURCEPATH'], 'lib', 'python2.6', 'lib-dynload' )] + sys.path
+sys.path = [os.path.join( os.environ['RESOURCEPATH'], 'lib', 'python2.7', 'lib-dynload' )] + sys.path
 
 def _get_argvemulator():
     """argvemulator - create sys.argv from OSA events. Used by applets that

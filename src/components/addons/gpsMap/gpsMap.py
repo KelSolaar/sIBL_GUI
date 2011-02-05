@@ -68,6 +68,7 @@ from PyQt4.QtWebKit import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -96,18 +97,19 @@ class Map( QWebView ):
 		QWebView.__init__( self, parent )
 
 	@core.executionTrace
-	def addMarker( self, coordinates, title, content ):
+	def addMarker( self, coordinates, title, icon, content ):
 		'''
 		This Method Adds A Marker To The Map.
 		
 		@param coordinates: Marker Coordinates. ( Tuple )
 		@param title: Marker Title. ( String )
+		@param icon: Marker Icon. ( String )
 		@param content: Marker Popup Window Content. ( String )
 		'''
 
 		LOGGER.debug( "> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format( title, coordinates ) )
 
-		self.page().mainFrame().evaluateJavaScript( "addMarker( new google.maps.LatLng({0},{1}),\"{2}\",\"{3}\")".format( coordinates[0], coordinates[1], title, content ) )
+		self.page().mainFrame().evaluateJavaScript( "addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format( coordinates[0], coordinates[1], title, icon, content ) )
 
 	@core.executionTrace
 	def removeMarkers( self ):
@@ -178,7 +180,7 @@ class GpsMap( UiComponent ):
 		self._uiResources = "resources"
 		self._uiZoomInIcon = "Zoom_In.png"
 		self._uiZoomOutIcon = "Zoom_Out.png"
-		self._gpsMapHtmlFile = "Google_Maps.html"
+		self._gpsMapHtmlFile = "Bing_Maps.html"
 		self._gpsMapBaseSize = QSize( 160, 100 )
 		self._dockArea = 2
 
@@ -187,7 +189,7 @@ class GpsMap( UiComponent ):
 		self._coreDatabaseBrowser = None
 
 		self._map = None
-		self._mapTypeIds = ( ( "Roadmap", "MapTypeId.ROADMAP" ), ( "Satellite", "MapTypeId.SATELLITE" ), ( "Hybrid", "MapTypeId.HYBRID" ), ( "Terrain", "MapTypeId.TERRAIN" ) )
+		self._mapTypeIds = ( ( "Auto", "MapTypeId.auto" ), ( "Aerial", "MapTypeId.aerial" ), ( "Road", "MapTypeId.road" ) )
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -577,7 +579,8 @@ class GpsMap( UiComponent ):
 		self._map = Map()
 		self._map.setMinimumSize( self._gpsMapBaseSize )
 		self._map.load( QUrl.fromLocalFile( os.path.normpath( os.path.join( self._uiResources, self._gpsMapHtmlFile ) ) ) )
-
+		self._map.page().mainFrame().setScrollBarPolicy( Qt.Horizontal, Qt.ScrollBarAlwaysOff )
+		self._map.page().mainFrame().setScrollBarPolicy( Qt.Vertical, Qt.ScrollBarAlwaysOff )
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget( self._map )
 
 		# Signals / Slots.
@@ -688,8 +691,8 @@ class GpsMap( UiComponent ):
 			if iblSet._datas.latitude and iblSet._datas.longitude :
 				LOGGER.debug( "> Ibl Set '{0}' Provides GEO Coordinates.".format( iblSet._datas.name ) )
 				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( iblSet._datas.date, iblSet._datas.time ) or Constants.nullObject )
-				content = "<p><b>{0}</b></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}<br><b>Url : </b><a href={5}>{5}</a></p>".format( iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment, iblSet._datas.link )
-				self._map.addMarker( ( iblSet._datas.latitude, iblSet._datas.longitude ), iblSet._datas.title, content )
+				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format( iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment )
+				self._map.addMarker( ( iblSet._datas.latitude, iblSet._datas.longitude ), iblSet._datas.title, strings.toUnixPath( iblSet._datas.icon ), content )
 		self._map.setCenter()
 
 #***********************************************************************************************

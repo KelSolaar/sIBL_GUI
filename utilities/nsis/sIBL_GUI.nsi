@@ -7,13 +7,13 @@ Name sIBL_GUI
 !define URL http://www.thomasmansencal.com/blog/
 
 # MUI Symbol Definitions
-!define MUI_ICON "Z:\sIBL_GUI\src\resources\Icon_Light_48.ico"
+!define MUI_ICON "Z:\sIBL_GUI\src\resources\Icon_Light.ico"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER sIBL_GUI
-!define MUI_UNICON "Z:\sIBL_GUI\src\resources\Icon_Light_48.ico"
+!define MUI_UNICON "Z:\sIBL_GUI\src\resources\Icon_Light.ico"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
