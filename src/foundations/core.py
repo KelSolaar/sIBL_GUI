@@ -69,7 +69,7 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Logging Classes And Definitions
 #***********************************************************************************************
-def setVerbosityLevel( verbosityLevel ):
+def setVerbosityLevel(verbosityLevel):
 	'''
 	This Definition Provides Overall Verbosity Levels Through An Integer.
 
@@ -77,22 +77,22 @@ def setVerbosityLevel( verbosityLevel ):
 	'''
 
 	if verbosityLevel == 0:
-		LOGGER.setLevel( logging.CRITICAL )
+		LOGGER.setLevel(logging.CRITICAL)
 	elif verbosityLevel == 1:
-		LOGGER.setLevel( logging.ERROR )
+		LOGGER.setLevel(logging.ERROR)
 	elif verbosityLevel == 2:
-		LOGGER.setLevel( logging.WARNING )
+		LOGGER.setLevel(logging.WARNING)
 	elif verbosityLevel == 3:
-		LOGGER.setLevel( logging.INFO )
+		LOGGER.setLevel(logging.INFO)
 	elif verbosityLevel == 4:
-		LOGGER.setLevel( logging.DEBUG )
+		LOGGER.setLevel(logging.DEBUG)
 
-class StandardMessageHook( object ):
+class StandardMessageHook(object):
 	'''
 	This Is The StandardMessageHook Class.
 	'''
 
-	def __init__( self, logger ):
+	def __init__(self, logger):
 		'''
 		This Method Initializes The Class.
 
@@ -105,7 +105,7 @@ class StandardMessageHook( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def logger( self ):
+	def logger(self):
 		'''
 		This Method Is The Property For The _logger Attribute.
 
@@ -115,27 +115,27 @@ class StandardMessageHook( object ):
 		return self._logger
 
 	@logger.setter
-	def logger( self, value ):
+	def logger(self, value):
 		'''
 		This Method Is The Setter Method For The _logger Attribute.
 		
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "logger" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("logger"))
 
 	@logger.deleter
-	def logger( self ):
+	def logger(self):
 		'''
 		This Method Is The Deleter Method For The _logger Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "logger" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("logger"))
 
  	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-  	def write( self, message ):
+  	def write(self, message):
 		'''
 		This Method Logs The Current StdOut Message.
 		
@@ -143,17 +143,17 @@ class StandardMessageHook( object ):
 		'''
 
 		for handler in self._logger.__dict__["handlers"] :
-			handler.stream.write( message )
+			handler.stream.write(message)
 
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
-LOGGING_FORMATTER = logging.Formatter( "%(levelname)-8s : %(message)s" )
+LOGGING_FORMATTER = logging.Formatter("%(levelname)-8s : %(message)s")
 LOGGING_STANDARD_FORMATTER = logging.Formatter()
 
-IGNORED_CODE_LAYERS = ( "getFrame",
+IGNORED_CODE_LAYERS = ("getFrame",
 					"getCodeLayerName",
 					"getObjectName",
 					"executionTrace",
@@ -165,7 +165,7 @@ UNDEFINED_CODE_LAYER = "UndefinedCodeLayer"
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-def getFrame( index ):
+def getFrame(index):
 	'''
 	This Definition Returns The Requested Frame.
 
@@ -173,7 +173,7 @@ def getFrame( index ):
 	@return: Frame. ( Frame )
 	'''
 
-	return sys._getframe( index )
+	return sys._getframe(index)
 
 def getCodeLayerName():
 	'''
@@ -182,13 +182,13 @@ def getCodeLayerName():
 	@return: Code Layer Name. ( String )
 	'''
 
-	for frameIndex in range( len( inspect.stack() ) ) :
-		frame = getFrame( frameIndex )
+	for frameIndex in range(len(inspect.stack())) :
+		frame = getFrame(frameIndex)
 		if frame.f_code.co_name not in IGNORED_CODE_LAYERS :
 			return frame.f_code.co_name
 	return UNDEFINED_CODE_LAYER
 
-def getModule( object_ ):
+def getModule(object_):
 	'''
 	This Definition Returns The Frame Module Name.
 
@@ -196,9 +196,9 @@ def getModule( object_ ):
 	@return: Frame Module. ( Module )
 	'''
 
-	return inspect.getmodule( object_ )
+	return inspect.getmodule(object_)
 
-def getObjectName( object_ ):
+def getObjectName(object_):
 	'''
 	This Definition Returns The Object Name Related To The Provided Frame.
 
@@ -206,13 +206,13 @@ def getObjectName( object_ ):
 	@return: Object Name. ( String )
 	'''
 
-	moduleName = getModule( inspect.getmodule( object_ ) ).__name__
+	moduleName = getModule(inspect.getmodule(object_)).__name__
 	codeLayerName = getCodeLayerName()
-	codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format( codeLayerName ) or ""
+	codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format(codeLayerName) or ""
 
-	return hasattr( object_, "__name__" ) and "{0} | {1}{2}()".format( moduleName, codeLayerName, object_.__name__ ) or "Undefined"
+	return hasattr(object_, "__name__") and "{0} | {1}{2}()".format(moduleName, codeLayerName, object_.__name__) or "Undefined"
 
-def executionTrace( object_ ):
+def executionTrace(object_):
 	'''
 	This Decorator Is Used For Function Tracing.
 
@@ -220,10 +220,10 @@ def executionTrace( object_ ):
 	@return: Object. ( Object )
 	'''
 
-	origin = getObjectName( object_ )
+	origin = getObjectName(object_)
 
-	@functools.wraps( object_ )
-	def function( *args, **kwargs ):
+	@functools.wraps(object_)
+	def function(*args, **kwargs):
 		'''
 		This Decorator Is Used For Function Tracing.
 		
@@ -232,30 +232,30 @@ def executionTrace( object_ ):
 		@return: Object. ( Object )
 		'''
 
-		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug( "--->>> '{0}' <<<---".format( origin ) )
+		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug("--->>> '{0}' <<<---".format(origin))
 
-		value = object_( *args, **kwargs )
+		value = object_(*args, **kwargs)
 
-		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug( "---<<< '{0}' >>>---".format( origin ) )
+		LOGGER and LOGGER.__dict__["handlers"] != {} and LOGGER.debug("---<<< '{0}' >>>---".format(origin))
 
 		return value
 
 	return function
 
-class Structure( object ):
+class Structure(object):
 	'''
 	This Is The Structure Class.
 	'''
 
 	@executionTrace
-	def __init__( self, **kwargs ):
+	def __init__(self, **kwargs):
 		'''
 		This Method Initializes The Class.
 
 		@param kwargs: Key / Value Pairs. ( Key / Value Pairs )
 		'''
 
-		self.__dict__.update( kwargs )
+		self.__dict__.update(kwargs)
 
 #***********************************************************************************************
 #***	Python End

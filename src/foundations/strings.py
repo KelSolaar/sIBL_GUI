@@ -69,13 +69,13 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def getNiceName( name ) :
+def getNiceName(name) :
 	'''
 	This Definition Converts A String To Nice String : currentLogText -> Current Log Text.
 
@@ -84,26 +84,26 @@ def getNiceName( name ) :
 	'''
 
 	niceName = ""
-	for index in range( len( name ) ) :
+	for index in range(len(name)) :
 		if index == 0:
 			niceName += name[ index ].upper()
 		else :
 			if name[ index ].upper() == name[ index ]:
-				if index + 1 < len( name ) :
+				if index + 1 < len(name) :
 					if  name[ index + 1 ].upper() != name[ index + 1 ]:
 						niceName += " " + name[ index ]
 					else :
-						LOGGER.debug( "> '{0}' To '{1}'.".format( name, name ) )
+						LOGGER.debug("> '{0}' To '{1}'.".format(name, name))
 						return name
 				else:
 					niceName += name[ index ]
 			else:
 				niceName += name[ index ]
-	LOGGER.debug( "> '{0}' To '{1}'.".format( name, niceName ) )
+	LOGGER.debug("> '{0}' To '{1}'.".format(name, niceName))
 	return niceName
 
 @core.executionTrace
-def getVersionRank( version ):
+def getVersionRank(version):
 	'''
 	This Definition Converts A Version String To It's Rank.
 
@@ -111,13 +111,13 @@ def getVersionRank( version ):
 	@return: Rank. ( Integer )
 	'''
 
-	tokens = version.split( "." )
-	rank = sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
-	LOGGER.debug( "> Rank : '{0}'.".format( rank ) )
+	tokens = version.split(".")
+	rank = sum([int(10 ** (i - 1)) * int(tokens[-i]) for i in range(len(tokens), 0, -1)])
+	LOGGER.debug("> Rank : '{0}'.".format(rank))
 	return rank
 
 @core.executionTrace
-def getNormalizedPath( path ):
+def getNormalizedPath(path):
 	'''
 	This Definition Normalizes A Path, Escaping Slashes If Needed On Windows.
 
@@ -126,16 +126,16 @@ def getNormalizedPath( path ):
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		path = os.path.normpath( path ).replace( "\\", "\\\\" )
-		LOGGER.debug( "> Path : '{0}', Normalized Path.".format( path ) )
+		path = os.path.normpath(path).replace("\\", "\\\\")
+		LOGGER.debug("> Path : '{0}', Normalized Path.".format(path))
 		return path
 	else :
-		path = os.path.normpath( path )
-		LOGGER.debug( "> Path : '{0}', Normalized Path.".format( path ) )
+		path = os.path.normpath(path)
+		LOGGER.debug("> Path : '{0}', Normalized Path.".format(path))
 		return path
 
 @core.executionTrace
-def toUnixPath( path ):
+def toUnixPath(path):
 	'''
 	This Definition Converts A Path To Unix Standard.
 
@@ -143,24 +143,24 @@ def toUnixPath( path ):
 	@return: Converted Path. ( String )
 	'''
 
-	path = path.replace( "\\", "/" )
-	LOGGER.debug( "> Path : '{0}', Unix Path.".format( path ) )
+	path = path.replace("\\", "/")
+	LOGGER.debug("> Path : '{0}', Unix Path.".format(path))
 	return path
 
 @core.executionTrace
-def toWindowsPath( path ):
+def toWindowsPath(path):
 	'''
 	This Definition Converts A Path To Windows Standard.
 
 	@param url: Path To Convert. ( String )	
 	@return: Converted Path. ( String )
 	'''
-	path = path.replace( "/", "\\" )
-	LOGGER.debug( "> Path : '{0}', Windows Path.".format( path ) )
+	path = path.replace("/", "\\")
+	LOGGER.debug("> Path : '{0}', Windows Path.".format(path))
 	return path
 
 @core.executionTrace
-def isEmail( datas ):
+def isEmail(datas):
 	'''
 	This Definition Check If Provided Datas String Is An Email.
 
@@ -168,15 +168,15 @@ def isEmail( datas ):
 	@return: Is Email. ( Boolean )
 	'''
 
-	if re.match( "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas ) :
-		LOGGER.debug( "> {0}' Is Matched As Email.".format( datas ) )
+	if re.match("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas) :
+		LOGGER.debug("> {0}' Is Matched As Email.".format(datas))
 		return True
 	else :
-		LOGGER.debug( "> {0}' Is Not Matched As Email.".format( datas ) )
+		LOGGER.debug("> {0}' Is Not Matched As Email.".format(datas))
 		return False
 
 @core.executionTrace
-def isWebsite( datas ):
+def isWebsite(datas):
 	'''
 	This Definition Check If Provided Datas String Is A Website.
 
@@ -184,14 +184,13 @@ def isWebsite( datas ):
 	@return: Is Website. ( Boolean )
 	'''
 
-	if re.match( "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas ) :
-		LOGGER.debug( "> {0}' Is Matched As Website.".format( datas ) )
+	if re.match("(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas) :
+		LOGGER.debug("> {0}' Is Matched As Website.".format(datas))
 		return True
 	else :
-		LOGGER.debug( "> {0}' Is Not Matched As Website.".format( datas ) )
+		LOGGER.debug("> {0}' Is Not Matched As Website.".format(datas))
 		return False
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-

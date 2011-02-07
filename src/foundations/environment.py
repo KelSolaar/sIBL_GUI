@@ -69,25 +69,25 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Environment( object ):
+class Environment(object):
 	'''
 	This Class Provides Methods To Manipulate Environment Variables.
 	'''
 
 	@core.executionTrace
-	def __init__( self, variable = None ):
+	def __init__(self, variable=None):
 		'''
 		This Method Initializes The Class.
 
 		@param variable: Variable To Manipulate. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
 		self._variable = None
@@ -97,7 +97,7 @@ class Environment( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def variable( self ):
+	def variable(self):
 		'''
 		This Method Is The Property For The _variable Attribute.
 		
@@ -107,8 +107,8 @@ class Environment( object ):
 		return self._variable
 
 	@variable.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def variable( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def variable(self, value):
 		'''
 		This Method Is The Setter Method For The _variable Attribute.
 		
@@ -116,24 +116,24 @@ class Environment( object ):
 		'''
 
 		if value :
-			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "variable", value )
-			assert not re.search( "\W", value ), "'{0}' Attribute : '{1}' Contains Non AlphaNumerics Characters !".format( "variable", value )
+			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("variable", value)
+			assert not re.search("\W", value), "'{0}' Attribute : '{1}' Contains Non AlphaNumerics Characters !".format("variable", value)
 		self._variable = value
 
 	@variable.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def variable( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def variable(self):
 		'''
 		This Method Is The Deleter Method For The _variable Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "variable" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("variable"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def getPath( self ):
+	def getPath(self):
 		'''
 		This Method Gets The Chosen Environment Variable Path As A String.
 
@@ -141,11 +141,11 @@ class Environment( object ):
 		'''
 
 		if self._variable :
-			LOGGER.debug( "> Current Environment Variable : '{0}'.".format( self._variable ) )
-			LOGGER.debug( "> Available System Environment Variables : '{0}'".format( os.environ.keys() ) )
+			LOGGER.debug("> Current Environment Variable : '{0}'.".format(self._variable))
+			LOGGER.debug("> Available System Environment Variables : '{0}'".format(os.environ.keys()))
 
 			for param in os.environ.keys():
-				if( self._variable == param ): return os.environ[param]
+				if(self._variable == param): return os.environ[param]
 
 #***********************************************************************************************
 #***	Python End

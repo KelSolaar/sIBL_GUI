@@ -70,13 +70,13 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def messageBox( type, title, message, icon = None, buttons = QMessageBox.Ok ):
+def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	'''
 	This Definition Provides A Fast GUI Message Box.
 
@@ -87,53 +87,53 @@ def messageBox( type, title, message, icon = None, buttons = QMessageBox.Ok ):
 	@return: User Choice. ( Integer )
 	'''
 
-	LOGGER.debug( "> Launching sIBL_message()." )
-	LOGGER.debug( "> Message Type : '{0}'.".format( type ) )
-	LOGGER.debug( "> Title : '{0}'.".format( title ) )
-	LOGGER.debug( "> Message : '{0}'.".format( message ) )
+	LOGGER.debug("> Launching sIBL_message().")
+	LOGGER.debug("> Message Type : '{0}'.".format(type))
+	LOGGER.debug("> Title : '{0}'.".format(title))
+	LOGGER.debug("> Message : '{0}'.".format(message))
 
 	messageBox = QMessageBox()
-	messageBox.setWindowTitle( "{0} | {1}".format( Constants.applicationName, title ) )
-	messageBox.setText( message )
+	messageBox.setWindowTitle("{0} | {1}".format(Constants.applicationName, title))
+	messageBox.setText(message)
 
 	if type == "Critical" :
 		if icon :
-			messageBox.setIcon( icon )
+			messageBox.setIcon(icon)
 		else :
-			messageBox.setIcon( QMessageBox.Critical )
-		LOGGER.critical( "!> {0}".format( message ) )
+			messageBox.setIcon(QMessageBox.Critical)
+		LOGGER.critical("!> {0}".format(message))
 	elif type == "Error" :
 		if icon :
-			messageBox.setIcon( icon )
+			messageBox.setIcon(icon)
 		else :
-			messageBox.setIcon( QMessageBox.Critical )
-		LOGGER.error( "!> {0}".format( message ) )
+			messageBox.setIcon(QMessageBox.Critical)
+		LOGGER.error("!> {0}".format(message))
 	elif type == "Warning" :
 		if icon :
-			messageBox.setIcon( icon )
+			messageBox.setIcon(icon)
 		else :
-			messageBox.setIcon( QMessageBox.Warning )
-		LOGGER.warning( "{0}".format( message ) )
+			messageBox.setIcon(QMessageBox.Warning)
+		LOGGER.warning("{0}".format(message))
 	elif type == "Information" :
 		if icon :
-			messageBox.setIcon( icon )
+			messageBox.setIcon(icon)
 		else :
-			messageBox.setIcon( QMessageBox.Information )
-		LOGGER.info( "{0}".format( message ) )
+			messageBox.setIcon(QMessageBox.Information)
+		LOGGER.info("{0}".format(message))
 	elif type == "Question" :
 		if icon :
-			messageBox.setIcon( icon )
+			messageBox.setIcon(icon)
 		else :
-			messageBox.setIcon( QMessageBox.Question )
-		LOGGER.info( "{0}".format( message ) )
+			messageBox.setIcon(QMessageBox.Question)
+		LOGGER.info("{0}".format(message))
 
-	messageBox.setStandardButtons( buttons )
+	messageBox.setStandardButtons(buttons)
 
-	messageBox.setWindowFlags( Qt.WindowStaysOnTopHint )
+	messageBox.setWindowFlags(Qt.WindowStaysOnTopHint)
 	return messageBox.exec_()
 
 @core.executionTrace
-def standaloneMessageBox( type, caption, message, icon = None, buttons = QMessageBox.Ok ):
+def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.Ok):
 	'''
 	This Definition Provides A Standalone Message Box.
 	
@@ -144,8 +144,8 @@ def standaloneMessageBox( type, caption, message, icon = None, buttons = QMessag
 	@param buttons: Custom Buttons. ( QConstant )
 	'''
 
-	application = QApplication( sys.argv )
-	messageBox( type, caption, message, icon, buttons )
+	application = QApplication(sys.argv)
+	messageBox(type, caption, message, icon, buttons)
 
 #***********************************************************************************************
 #***	Python End

@@ -71,25 +71,25 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Pkzip( object ):
+class Pkzip(object):
 	'''
 	This Class Provides Methods To Manipulate Zip Files.
 	'''
 
 	@core.executionTrace
-	def __init__( self, archive = None ):
+	def __init__(self, archive=None):
 		'''
 		This Method Initializes The Class.
 
 		@param archive: Variable To Manipulate. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
 		self._archive = None
@@ -99,7 +99,7 @@ class Pkzip( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def archive( self ):
+	def archive(self):
 		'''
 		This Method Is The Property For The _archive Attribute.
 		
@@ -109,8 +109,8 @@ class Pkzip( object ):
 		return self._archive
 
 	@archive.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def archive( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def archive(self, value):
 		'''
 		This Method Is The Setter Method For The _archive Attribute.
 		
@@ -118,50 +118,50 @@ class Pkzip( object ):
 		'''
 
 		if value :
-			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "archive", value )
-			assert os.path.exists( value ), "'{0}' Attribute : '{1}' File Doesn't Exists !".format( "archive", value )
+			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("archive", value)
+			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("archive", value)
 		self._archive = value
 
 	@archive.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def archive( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def archive(self):
 		'''
 		This Method Is The Deleter Method For The _archive Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "archive" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("archive"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, OSError )
-	def extract( self, target ):
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	def extract(self, target):
 		'''
 		This Method Extracts The Archive File To The Provided Folder.
 		'''
 
-		archive = zipfile.ZipFile( self._archive )
+		archive = zipfile.ZipFile(self._archive)
 		content = archive.namelist()
 
-		folders = [item for item in content if item.endswith( "/" )]
-		files = [item for item in content if not item.endswith( "/" )]
+		folders = [item for item in content if item.endswith("/")]
+		files = [item for item in content if not item.endswith("/")]
 
 		folders.sort()
 		folders.reverse()
 
 		for folder in folders :
-			not os.path.isdir( os.path.join( target, folder ) ) and io.setLocalDirectory( os.path.join( target, folder ) )
+			not os.path.isdir(os.path.join(target, folder)) and io.setLocalDirectory(os.path.join(target, folder))
 
 		for file in files :
-			LOGGER.info( "{0} | Extracting '{1}' File !".format( self.__class__.__name__, file ) )
-			with open( os.path.join( target, file ), "w" ) as output:
-				buffer = StringIO( archive.read( file ) )
+			LOGGER.info("{0} | Extracting '{1}' File !".format(self.__class__.__name__, file))
+			with open(os.path.join(target, file), "w") as output:
+				buffer = StringIO(archive.read(file))
 				bufferSize = 2 ** 20
-				datas = buffer.read( bufferSize )
+				datas = buffer.read(bufferSize)
 				while datas:
-					output.write( datas )
-					datas = buffer.read( bufferSize )
+					output.write(datas)
+					datas = buffer.read(bufferSize)
 
 #***********************************************************************************************
 #***	Python End

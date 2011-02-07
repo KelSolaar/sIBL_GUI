@@ -78,29 +78,29 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class CollectionsOutliner_QTreeView( QTreeView ):
+class CollectionsOutliner_QTreeView(QTreeView):
 	'''
 	This Class Is The CollectionsOutliner_QTreeView Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, container ):
+	def __init__(self, container):
 		'''
 		This Method Initializes The Class.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		QTreeView.__init__( self, container )
+		QTreeView.__init__(self, container)
 
-		self.setAcceptDrops( True )
+		self.setAcceptDrops(True)
 
 		# --- Setting Class Attributes. ---
 		self._container = container
@@ -115,7 +115,7 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -125,27 +125,27 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def coreDb( self ):
+	def coreDb(self):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
 
@@ -155,27 +155,27 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		return self._coreDb
 
 	@coreDb.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDb Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
 
 	@coreDb.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self):
 		'''
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
 
 	@property
-	def coreDatabaseBrowser( self ):
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
@@ -185,27 +185,27 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
 
 	@property
-	def coreCollectionsOutliner( self ):
+	def coreCollectionsOutliner(self):
 		'''
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
@@ -215,27 +215,27 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		return self._coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreCollectionsOutliner( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreCollectionsOutliner(self, value):
 		'''
 		This Method Is The Setter Method For The _coreCollectionsOutliner Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreCollectionsOutliner" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreCollectionsOutliner( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreCollectionsOutliner(self):
 		'''
 		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreCollectionsOutliner"))
 
 	@property
-	def previousCollection( self ):
+	def previousCollection(self):
 		'''
 		This Method Is The Property For The _previousCollection Attribute.
 
@@ -245,47 +245,47 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		return self._previousCollection
 
 	@previousCollection.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def previousCollection( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def previousCollection(self, value):
 		'''
 		This Method Is The Setter Method For The _previousCollection Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "previousCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("previousCollection"))
 
 	@previousCollection.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def previousCollection( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def previousCollection(self):
 		'''
 		This Method Is The Deleter Method For The _previousCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "previousCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("previousCollection"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def dragEnterEvent( self, event ):
+	def dragEnterEvent(self, event):
 		'''
 		This Method Defines The Drag Enter Event Behavior.
 		
 		@param event: QEvent. ( QEvent )
 		'''
 
-		if event.mimeData().hasFormat( "application/x-qabstractitemmodeldatalist" ):
-			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "application/x-qabstractitemmodeldatalist" ) )
+		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
+			LOGGER.debug("> '{0}' Drag Event Type Accepted !".format("application/x-qabstractitemmodeldatalist"))
 			event.accept()
-		elif event.mimeData().hasFormat( "text/uri-list" ):
-			LOGGER.debug( "> '{0}' Drag Event Type Accepted !".format( "text/uri-list" ) )
+		elif event.mimeData().hasFormat("text/uri-list"):
+			LOGGER.debug("> '{0}' Drag Event Type Accepted !".format("text/uri-list"))
 			event.accept()
 		else:
 			event.ignore()
 
 	@core.executionTrace
-	def dragMoveEvent( self, event ):
+	def dragMoveEvent(self, event):
 		'''
 		This Method Defines The Drag Move Event Behavior.
 		
@@ -295,8 +295,8 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
-	def dropEvent( self, event ):
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	def dropEvent(self, event):
 		'''
 		This Method Defines The Drop Event Behavior.
 		
@@ -305,58 +305,58 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 
 		if not self._container.parameters.databaseReadOnly :
 			if event.mimeData().hasUrls() :
-				LOGGER.debug( "> Drag Event Urls List : '{0}' !".format( event.mimeData().urls() ) )
+				LOGGER.debug("> Drag Event Urls List : '{0}' !".format(event.mimeData().urls()))
 				for url in event.mimeData().urls() :
-					path = ( platform.system() == "Windows" or platform.system() == "Microsoft" ) and re.search( "^\/[A-Z]:", str( url.path() ) ) and str( url.path() )[1:] or str( url.path() )
-					if re.search( "\.{0}$".format( self._coreDatabaseBrowser.extension ), str( url.path() ) ) :
-						name = os.path.splitext( os.path.basename( path ) )[0]
-						if messageBox.messageBox( "Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format( name ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-							 self._coreDatabaseBrowser.addIblSet( name, path )
+					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())) :
+						name = os.path.splitext(os.path.basename(path))[0]
+						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+							 self._coreDatabaseBrowser.addIblSet(name, path)
 							 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else :
-						if os.path.isdir( path ):
-							if messageBox.messageBox( "Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format( path ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-								 self._coreDatabaseBrowser.addDirectory( path )
+						if os.path.isdir(path):
+							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+								 self._coreDatabaseBrowser.addDirectory(path)
 								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else :
-							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format( self.__class__.__name__, path )
+							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
 			else :
-				indexAt = self.indexAt( event.pos() )
-				itemAt = self.model().itemFromIndex( indexAt )
+				indexAt = self.indexAt(event.pos())
+				itemAt = self.model().itemFromIndex(indexAt)
 
 				if itemAt :
-					LOGGER.debug( "> Item At Drop Position : '{0}'.".format( itemAt ) )
-					collectionStandardItem = self.model().itemFromIndex( self.model().sibling( indexAt.row(), 0, indexAt ) )
+					LOGGER.debug("> Item At Drop Position : '{0}'.".format(itemAt))
+					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
 					if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection :
 						iblSets = self._coreDatabaseBrowser.getSelectedItems()
-						LOGGER.debug( "> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format( ", ".join( [iblSet._datas.name for iblSet in iblSets] ), collectionStandardItem._datas.name ) )
+						LOGGER.debug("> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format(", ".join([iblSet._datas.name for iblSet in iblSets]), collectionStandardItem._datas.name))
 						for iblSet in iblSets :
 							iblSet._datas.collection = collectionStandardItem._datas.id
-						if dbUtilities.common.commit( self._coreDb.dbSession ) :
+						if dbUtilities.common.commit(self._coreDb.dbSession) :
 							# Crash Preventing Code.
 							self._coreDatabaseBrowser.modelSelectionState = False
 
 							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 							# Crash Preventing Code.
 							self._coreDatabaseBrowser.modelSelectionState = True
 		else :
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
 
 	@core.executionTrace
-	def QTreeView_OnClicked( self, index ):
+	def QTreeView_OnClicked(self, index):
 		'''
 		This Method Defines The Behavior When The Model Is Clicked.
 		
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		'''
 
-		self._previousCollection = self.model().itemFromIndex( self.model().sibling( index.row(), 0, index ) ).text()
+		self._previousCollection = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index)).text()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError )
-	def QTreeView_OnDoubleClicked( self, index ):
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	def QTreeView_OnDoubleClicked(self, index):
 		'''
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
 		
@@ -364,17 +364,17 @@ class CollectionsOutliner_QTreeView( QTreeView ):
 		'''
 
 		if not self._container.parameters.databaseReadOnly :
-			collectionStandardItem = self.model().itemFromIndex( self.model().sibling( index.row(), 0, index ) )
+			collectionStandardItem = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index))
 
 			if collectionStandardItem.text() != self._coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self._coreCollectionsOutliner.overallCollection :
-				if self.model().itemFromIndex( index ).column() == self._coreCollectionsOutliner.modelHeaders.index( self._coreCollectionsOutliner.setsCountLabel ) :
-					messageBox.messageBox( "Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only !".format( self.__class__.__name__ ) )
+				if self.model().itemFromIndex(index).column() == self._coreCollectionsOutliner.modelHeaders.index(self._coreCollectionsOutliner.setsCountLabel) :
+					messageBox.messageBox("Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only !".format(self.__class__.__name__))
 			else :
-				messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only !".format( self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection ) )
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only !".format(self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection))
 		else :
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format( self.__class__.__name__ )
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
 
-class CollectionsOutliner( UiComponent ):
+class CollectionsOutliner(UiComponent):
 	'''
 	This Class Is The CollectionsOutliner Class.
 	'''
@@ -383,7 +383,7 @@ class CollectionsOutliner( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -391,9 +391,9 @@ class CollectionsOutliner( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -422,7 +422,7 @@ class CollectionsOutliner( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -432,27 +432,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def uiResources( self ):
+	def uiResources(self):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
 
@@ -462,27 +462,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self, value):
 		'''
 		This Method Is The Setter Method For The _uiResources Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
 
 	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self):
 		'''
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
 
 	@property
-	def uiDefaultCollectionIcon( self ):
+	def uiDefaultCollectionIcon(self):
 		'''
 		This Method Is The Property For The _uiDefaultCollectionIcon Attribute.
 
@@ -492,27 +492,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiDefaultCollectionIcon
 
 	@uiDefaultCollectionIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDefaultCollectionIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDefaultCollectionIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiDefaultCollectionIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDefaultCollectionIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiDefaultCollectionIcon"))
 
 	@uiDefaultCollectionIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDefaultCollectionIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDefaultCollectionIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiDefaultCollectionIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDefaultCollectionIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiDefaultCollectionIcon"))
 
 	@property
-	def uiUserCollectionIcon( self ):
+	def uiUserCollectionIcon(self):
 		'''
 		This Method Is The Property For The _uiUserCollectionIcon Attribute.
 
@@ -522,27 +522,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._uiUserCollectionIcon
 
 	@uiUserCollectionIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiUserCollectionIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiUserCollectionIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiUserCollectionIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiUserCollectionIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiUserCollectionIcon"))
 
 	@uiUserCollectionIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiUserCollectionIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiUserCollectionIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiUserCollectionIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiUserCollectionIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiUserCollectionIcon"))
 
 	@property
-	def dockArea( self ):
+	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
 
@@ -552,27 +552,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
 		'''
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
 		'''
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -582,27 +582,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def coreDb( self ):
+	def coreDb(self):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
 
@@ -612,27 +612,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._coreDb
 
 	@coreDb.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDb Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
 
 	@coreDb.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self):
 		'''
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
 
 	@property
-	def coreDatabaseBrowser( self ):
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
@@ -642,27 +642,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
 
 	@property
-	def model( self ):
+	def model(self):
 		'''
 		This Method Is The Property For The _model Attribute.
 
@@ -672,27 +672,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._model
 
 	@model.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def model( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self, value):
 		'''
 		This Method Is The Setter Method For The _model Attribute.
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("model"))
 
 	@model.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def model( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self):
 		'''
 		This Method Is The Deleter Method For The _model Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("model"))
 
 	@property
-	def modelSelection( self ):
+	def modelSelection(self):
 		'''
 		This Method Is The Property For The _modelSelection Attribute.
 
@@ -702,27 +702,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._modelSelection
 
 	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelSelection( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self, value):
 		'''
 		This Method Is The Setter Method For The _modelSelection Attribute.
 
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelSelection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("modelSelection"))
 
 	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelSelection( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self):
 		'''
 		This Method Is The Deleter Method For The _modelSelection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelSelection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("modelSelection"))
 
 	@property
-	def overallCollection( self ):
+	def overallCollection(self):
 		'''
 		This Method Is The Property For The _overallCollection Attribute.
 
@@ -732,27 +732,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._overallCollection
 
 	@overallCollection.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def overallCollection( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def overallCollection(self, value):
 		'''
 		This Method Is The Setter Method For The _overallCollection Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "overallCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("overallCollection"))
 
 	@overallCollection.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def overallCollection( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def overallCollection(self):
 		'''
 		This Method Is The Deleter Method For The _overallCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "overallCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("overallCollection"))
 
 	@property
-	def defaultCollection( self ):
+	def defaultCollection(self):
 		'''
 		This Method Is The Property For The _defaultCollection Attribute.
 
@@ -762,27 +762,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._defaultCollection
 
 	@defaultCollection.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def defaultCollection( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultCollection(self, value):
 		'''
 		This Method Is The Setter Method For The _defaultCollection Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "defaultCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("defaultCollection"))
 
 	@defaultCollection.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def defaultCollection( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultCollection(self):
 		'''
 		This Method Is The Deleter Method For The _defaultCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultCollection" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("defaultCollection"))
 
 	@property
-	def setsCountLabel( self ):
+	def setsCountLabel(self):
 		'''
 		This Method Is The Property For The _setsCountLabel Attribute.
 
@@ -792,27 +792,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._setsCountLabel
 
 	@setsCountLabel.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def setsCountLabel( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def setsCountLabel(self, value):
 		'''
 		This Method Is The Setter Method For The _setsCountLabel Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "setsCountLabel" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("setsCountLabel"))
 
 	@setsCountLabel.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def setsCountLabel( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def setsCountLabel(self):
 		'''
 		This Method Is The Deleter Method For The _setsCountLabel Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "setsCountLabel" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("setsCountLabel"))
 
 	@property
-	def modelHeaders( self ):
+	def modelHeaders(self):
 		'''
 		This Method Is The Property For The _modelHeaders Attribute.
 
@@ -822,27 +822,27 @@ class CollectionsOutliner( UiComponent ):
 		return self._modelHeaders
 
 	@modelHeaders.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelHeaders( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelHeaders(self, value):
 		'''
 		This Method Is The Setter Method For The _modelHeaders Attribute.
 
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelHeaders" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("modelHeaders"))
 
 	@modelHeaders.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelHeaders( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelHeaders(self):
 		'''
 		This Method Is The Deleter Method For The _modelHeaders Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelHeaders" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("modelHeaders"))
 
 	@property
-	def treeViewIndentation( self ):
+	def treeViewIndentation(self):
 		'''
 		This Method Is The Property For The _treeViewIndentation Attribute.
 
@@ -852,40 +852,40 @@ class CollectionsOutliner( UiComponent ):
 		return self._treeViewIndentation
 
 	@treeViewIndentation.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeViewIndentation( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeViewIndentation(self, value):
 		'''
 		This Method Is The Setter Method For The _treeViewIndentation Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewIndentation" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("treeViewIndentation"))
 
 	@treeViewIndentation.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeViewIndentation( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeViewIndentation(self):
 		'''
 		This Method Is The Deleter Method For The _treeViewIndentation Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewIndentation" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("treeViewIndentation"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 		self._container = container
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
@@ -894,84 +894,84 @@ class CollectionsOutliner( UiComponent ):
 		self._activate()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def deactivate( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Cannot Be Deactivated !".format( self._name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated !".format(self._name))
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info( "{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
+		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 		self._model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 
-		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView( self._container )
-		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget( self.ui.Collections_Outliner_treeView, 0, 0 )
+		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self._container)
+		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
 
-		self.ui.Collections_Outliner_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
+		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Collections_Outliner_treeView_setActions()
 
 		self.Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
-		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect( self.Collections_Outliner_treeView_OnModelSelectionChanged )
-		self.ui.Collections_Outliner_treeView.clicked.connect( self.ui.Collections_Outliner_treeView.QTreeView_OnClicked )
-		self.ui.Collections_Outliner_treeView.doubleClicked.connect( self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked )
-		self.modelChanged.connect( self.Collections_Outliner_treeView_refreshView )
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect( self.Collections_Outliner_treeView_OnModelDataChanged )
+		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.Collections_Outliner_treeView_OnModelSelectionChanged)
+		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnClicked)
+		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked)
+		self.modelChanged.connect(self.Collections_Outliner_treeView_refreshView)
+		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uninitializeUi( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Ui Cannot Be Uninitialized !".format( self.name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized !".format(self.name))
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget( Qt.DockWidgetArea( self._dockArea ), self.ui )
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def removeWidget( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Widget Cannot Be Removed !".format( self.name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed !".format(self.name))
 
 	@core.executionTrace
-	def onStartup( self ):
+	def onStartup(self):
 		'''
 		This Method Is Called On Framework Startup.
 		'''
 
-		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
 		if not self._container.parameters.databaseReadOnly :
 			 self.addDefaultCollection()
 		else :
-			LOGGER.info( "{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
+			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setModel( self ):
+	def Collections_Outliner_treeView_setModel(self):
 		'''
 		This Method Sets The Collections_Outliner_treeView Model.
 
@@ -983,80 +983,80 @@ class CollectionsOutliner( UiComponent ):
 		** Collection : { _type : "Collection", _datas : dbUtilities.types.DbCollection }
 		'''
 
-		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Setting Up '{0}' Model !".format("Collections_Outliner_treeView"))
 
 		self.Collections_Outliner_treeView_storeModelSelection()
 
 		self._model.clear()
 
-		self._model.setHorizontalHeaderLabels( self._modelHeaders )
-		self._model.setColumnCount( len( self._modelHeaders ) )
+		self._model.setHorizontalHeaderLabels(self._modelHeaders)
+		self._model.setColumnCount(len(self._modelHeaders))
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
 
-		LOGGER.debug( "> Preparing '{0}' Collection For '{1}' Model.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(self._overallCollection, "Collections_Outliner_treeView"))
 
-		overallCollectionStandardItem = QStandardItem( QString( self._overallCollection ) )
-		overallCollectionStandardItem.setFlags( readOnlyFlags )
+		overallCollectionStandardItem = QStandardItem(QString(self._overallCollection))
+		overallCollectionStandardItem.setFlags(readOnlyFlags)
 
-		overallCollectionSetsCountStandardItem = QStandardItem( QString( str( dbUtilities.common.getIblSets( self._coreDb.dbSession ).count() ) ) )
-		overallCollectionSetsCountStandardItem.setTextAlignment( Qt.AlignCenter )
-		overallCollectionSetsCountStandardItem.setFlags( readOnlyFlags )
+		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count())))
+		overallCollectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
+		overallCollectionSetsCountStandardItem.setFlags(readOnlyFlags)
 
 		overallCollectionCommentsStandardItem = QStandardItem()
-		overallCollectionCommentsStandardItem.setFlags( readOnlyFlags )
+		overallCollectionCommentsStandardItem.setFlags(readOnlyFlags)
 
 		overallCollectionStandardItem._type = "Overall"
 
-		LOGGER.debug( "> Adding '{0}' Collection To '{1}'.".format( self._overallCollection, "Collections_Outliner_treeView" ) )
-		self._model.appendRow( [overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem] )
+		LOGGER.debug("> Adding '{0}' Collection To '{1}'.".format(self._overallCollection, "Collections_Outliner_treeView"))
+		self._model.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
 
-		collections = dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" )
+		collections = dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")
 
 		if collections :
 			for collection in collections :
-				LOGGER.debug( "> Preparing '{0}' Collection For '{1}' Model.".format( collection.name, "Collections_Outliner_treeView" ) )
+				LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(collection.name, "Collections_Outliner_treeView"))
 
 				try :
-					collectionStandardItem = QStandardItem( QString( collection.name ) )
-					iconPath = collection.name == self.defaultCollection and os.path.join( self._uiResources, self._uiDefaultCollectionIcon ) or os.path.join( self._uiResources, self._uiUserCollectionIcon )
-					collectionStandardItem.setIcon( QIcon( iconPath ) )
-					( collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly ) and collectionStandardItem.setFlags( readOnlyFlags )
+					collectionStandardItem = QStandardItem(QString(collection.name))
+					iconPath = collection.name == self.defaultCollection and os.path.join(self._uiResources, self._uiDefaultCollectionIcon) or os.path.join(self._uiResources, self._uiUserCollectionIcon)
+					collectionStandardItem.setIcon(QIcon(iconPath))
+					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 
-					collectionSetsCountStandardItem = QStandardItem( QString( str( self._coreDb.dbSession.query( dbUtilities.types.DbIblSet ).filter_by( collection = collection.id ).count() ) ) )
-					collectionSetsCountStandardItem.setTextAlignment( Qt.AlignCenter )
-					collectionSetsCountStandardItem.setFlags( Qt.ItemIsSelectable | Qt.ItemIsEnabled )
+					collectionSetsCountStandardItem = QStandardItem(QString(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collection.id).count())))
+					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
+					collectionSetsCountStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
-					collectionCommentsStandardItem = QStandardItem( QString( collection.comment ) )
-					( collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly ) and collectionCommentsStandardItem.setFlags( readOnlyFlags )
+					collectionCommentsStandardItem = QStandardItem(QString(collection.comment))
+					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
 
 					collectionStandardItem._datas = collection
 					collectionStandardItem._type = "Collection"
 
-					LOGGER.debug( "> Adding '{0}' Collection To '{1}' Model.".format( collection.name, "Collections_Outliner_treeView" ) )
-					overallCollectionStandardItem.appendRow( [collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem] )
+					LOGGER.debug("> Adding '{0}' Collection To '{1}' Model.".format(collection.name, "Collections_Outliner_treeView"))
+					overallCollectionStandardItem.appendRow([collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem])
 
 				except Exception as error :
-					LOGGER.error( "!>{0} | Exception Raised While Adding '{1}' Collection To '{2}' Model !".format( self.__class__.__name__, collection.name, "Collections_Outliner_treeView" ) )
-					foundations.exceptions.defaultExceptionsHandler( error, "{0} | {1}.{2}()".format( core.getModule( self ).__name__, self.__class__.__name__, "Collections_Outliner_treeView" ) )
+					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Collection To '{2}' Model !".format(self.__class__.__name__, collection.name, "Collections_Outliner_treeView"))
+					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Collections_Outliner_treeView"))
 		else :
-			LOGGER.info( "{0} | Database Has No User Defined Collections !".format( self.__class__.__name__ ) )
+			LOGGER.info("{0} | Database Has No User Defined Collections !".format(self.__class__.__name__))
 
 		self.Collections_Outliner_treeView_restoreModelSelection()
 
-		self.emit( SIGNAL( "modelChanged()" ) )
+		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshModel( self ):
+	def Collections_Outliner_treeView_refreshModel(self):
 		'''
 		This Method Refreshes The Collections_Outliner_treeView Model.
 		'''
 
-		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Refreshing '{0}' Model !".format("Collections_Outliner_treeView"))
 
 		self.Collections_Outliner_treeView_setModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_OnModelDataChanged( self, startIndex, endIndex ):
+	def Collections_Outliner_treeView_OnModelDataChanged(self, startIndex, endIndex):
 		'''
 		This Method Defines The Behavior When The Collections_Outliner_treeView Model Data Change.
 		
@@ -1064,49 +1064,49 @@ class CollectionsOutliner( UiComponent ):
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
 		'''
 
-		standardItem = self._model.itemFromIndex( startIndex )
+		standardItem = self._model.itemFromIndex(startIndex)
 		currentText = standardItem.text()
 
-		collectionStandardItem = self._model.itemFromIndex( self._model.sibling( startIndex.row(), 0, startIndex ) )
+		collectionStandardItem = self._model.itemFromIndex(self._model.sibling(startIndex.row(), 0, startIndex))
 
 		identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
-		collections = [collection for collection in dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" )]
+		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
 		if identity and collections :
 			if startIndex.column() == 0 :
 				if currentText not in [collection.name for collection in collections]:
-					LOGGER.debug( "> Updating Collection '{0}' Name To '{1}'.".format( identity, currentText ) )
-					collection = dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( identity ), "id" )[0]
-					collection.name = str( currentText )
-					dbUtilities.common.commit( self._coreDb.dbSession )
+					LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
+					collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+					collection.name = str(currentText)
+					dbUtilities.common.commit(self._coreDb.dbSession)
 				else :
-					messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database !".format( self.__class__.__name__, currentText ) )
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database !".format(self.__class__.__name__, currentText))
 			elif startIndex.column() == 2 :
-				LOGGER.debug( "> Updating Collection '{0}' Comment To '{1}'.".format( identity, currentText ) )
-				collection = dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( identity ), "id" )[0]
-				collection.comment = str( currentText )
-				dbUtilities.common.commit( self._coreDb.dbSession )
+				LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
+				collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+				collection.comment = str(currentText)
+				dbUtilities.common.commit(self._coreDb.dbSession)
 
 		self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setView( self ):
+	def Collections_Outliner_treeView_setView(self):
 		'''
 		This Method Sets The Collections_Outliner_treeView View.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Widget !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Initializing '{0}' Widget !".format("Collections_Outliner_treeView"))
 
-		self.ui.Collections_Outliner_treeView.setAutoScroll( False )
-		self.ui.Collections_Outliner_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
-		self.ui.Collections_Outliner_treeView.setIndentation( self._treeViewIndentation )
-		self.ui.Collections_Outliner_treeView.setSortingEnabled( True )
+		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
+		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.ui.Collections_Outliner_treeView.setIndentation(self._treeViewIndentation)
+		self.ui.Collections_Outliner_treeView.setSortingEnabled(True)
 
-		self.ui.Collections_Outliner_treeView.setModel( self._model )
+		self.ui.Collections_Outliner_treeView.setModel(self._model)
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshView( self ):
+	def Collections_Outliner_treeView_refreshView(self):
 		'''
 		This Method Refreshes The Collections_Outliner_treeView View.
 		'''
@@ -1114,100 +1114,100 @@ class CollectionsOutliner( UiComponent ):
 		self.Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setDefaultViewState( self ):
+	def Collections_Outliner_treeView_setDefaultViewState(self):
 		'''
 		This Method Sets Collections_Outliner_treeView Default View State.
 		'''
 
-		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Setting '{0}' Default View State !".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.expandAll()
-		for column in range( len( self._modelHeaders ) ) :
-			self.ui.Collections_Outliner_treeView.resizeColumnToContents( column )
+		for column in range(len(self._modelHeaders)) :
+			self.ui.Collections_Outliner_treeView.resizeColumnToContents(column)
 
-		self.ui.Collections_Outliner_treeView.sortByColumn( 0, Qt.AscendingOrder )
+		self.ui.Collections_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshSetsCounts( self ):
+	def Collections_Outliner_treeView_refreshSetsCounts(self):
 		'''
 		This Method Refreshes The Collections_Outliner_treeView Sets Counts.
 		'''
 
 		# Disconnecting Model "dataChanged()" Signal.
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.disconnect( self.Collections_Outliner_treeView_OnModelDataChanged )
+		not self._container.parameters.databaseReadOnly and self._model.dataChanged.disconnect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
-		for i in range( self._model.rowCount() ) :
-			currentStandardItem = self._model.item( i )
+		for i in range(self._model.rowCount()) :
+			currentStandardItem = self._model.item(i)
 			if currentStandardItem.text() == self._overallCollection :
-				self._model.itemFromIndex( self._model.sibling( i, 1, self._model.indexFromItem( currentStandardItem ) ) ).setText( str( dbUtilities.common.getIblSets( self._coreDb.dbSession ).count() ) )
-			for j in range( currentStandardItem.rowCount() ):
-				collectionStandardItem = currentStandardItem.child( j, 0 )
-				collectionSetsCountStandardItem = currentStandardItem.child( j, 1 )
-				collectionSetsCountStandardItem.setText( str( self._coreDb.dbSession.query( dbUtilities.types.DbIblSet ).filter_by( collection = collectionStandardItem._datas.id ).count() ) )
+				self._model.itemFromIndex(self._model.sibling(i, 1, self._model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count()))
+			for j in range(currentStandardItem.rowCount()):
+				collectionStandardItem = currentStandardItem.child(j, 0)
+				collectionSetsCountStandardItem = currentStandardItem.child(j, 1)
+				collectionSetsCountStandardItem.setText(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting Model "dataChanged()" Signal.
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect( self.Collections_Outliner_treeView_OnModelDataChanged )
+		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_storeModelSelection( self ):
+	def Collections_Outliner_treeView_storeModelSelection(self):
 		'''
 		This Method Stores Collections_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug( "> Storing '{0}' Model Selection !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Storing '{0}' Model Selection !".format("Collections_Outliner_treeView"))
 
 		self._modelSelection = { "Overall":[], "Collections":[] }
 		for item in self.getSelectedItems() :
 			if item._type == "Overall" :
-				self._modelSelection["Overall"].append( item.text() )
+				self._modelSelection["Overall"].append(item.text())
 			elif item._type == "Collection" :
-				self._modelSelection["Collections"].append( item._datas.id )
+				self._modelSelection["Collections"].append(item._datas.id)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_restoreModelSelection( self ):
+	def Collections_Outliner_treeView_restoreModelSelection(self):
 		'''
 		This Method Restores Collections_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug( "> Restoring '{0}' Model Selection !".format( "Collections_Outliner_treeView" ) )
+		LOGGER.debug("> Restoring '{0}' Model Selection !".format("Collections_Outliner_treeView"))
 
 		indexes = []
-		for i in range( self._model.rowCount() ) :
-			overallCollectionStandardItem = self._model.item( i )
-			overallCollectionStandardItem.text() in self._modelSelection["Overall"] and indexes.append( self._model.indexFromItem( overallCollectionStandardItem ) )
-			for j in range( overallCollectionStandardItem.rowCount() ) :
-				collectionStandardItem = overallCollectionStandardItem.child( j, 0 )
-				collectionStandardItem._datas.id in self._modelSelection["Collections"] and indexes.append( self._model.indexFromItem( collectionStandardItem ) )
+		for i in range(self._model.rowCount()) :
+			overallCollectionStandardItem = self._model.item(i)
+			overallCollectionStandardItem.text() in self._modelSelection["Overall"] and indexes.append(self._model.indexFromItem(overallCollectionStandardItem))
+			for j in range(overallCollectionStandardItem.rowCount()) :
+				collectionStandardItem = overallCollectionStandardItem.child(j, 0)
+				collectionStandardItem._datas.id in self._modelSelection["Collections"] and indexes.append(self._model.indexFromItem(collectionStandardItem))
 
 		selectionModel = self.ui.Collections_Outliner_treeView.selectionModel()
 		if selectionModel :
 			selectionModel.reset()
 			for index in indexes :
-				selectionModel.setCurrentIndex( index, QItemSelectionModel.Select | QItemSelectionModel.Rows )
+				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setActions( self ):
+	def Collections_Outliner_treeView_setActions(self):
 		'''
 		This Method Sets The Collections Outliner Actions.
 		'''
 
 		if not self._container.parameters.databaseReadOnly :
-			addContentAction = QAction( "Add Content ...", self.ui.Collections_Outliner_treeView )
-			addContentAction.triggered.connect( self.Collections_Outliner_treeView_addContentAction )
-			self.ui.Collections_Outliner_treeView.addAction( addContentAction )
+			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
+			addContentAction.triggered.connect(self.Collections_Outliner_treeView_addContentAction)
+			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
 
-			addCollectionAction = QAction( "Add Collection ...", self.ui.Collections_Outliner_treeView )
-			addCollectionAction.triggered.connect( self.Collections_Outliner_treeView_addCollectionAction )
-			self.ui.Collections_Outliner_treeView.addAction( addCollectionAction )
+			addCollectionAction = QAction("Add Collection ...", self.ui.Collections_Outliner_treeView)
+			addCollectionAction.triggered.connect(self.Collections_Outliner_treeView_addCollectionAction)
+			self.ui.Collections_Outliner_treeView.addAction(addCollectionAction)
 
-			removeCollectionsAction = QAction( "Remove Collection(s) ...", self.ui.Collections_Outliner_treeView )
-			removeCollectionsAction.triggered.connect( self.Collections_Outliner_treeView_removeCollectionsAction )
-			self.ui.Collections_Outliner_treeView.addAction( removeCollectionsAction )
+			removeCollectionsAction = QAction("Remove Collection(s) ...", self.ui.Collections_Outliner_treeView)
+			removeCollectionsAction.triggered.connect(self.Collections_Outliner_treeView_removeCollectionsAction)
+			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
 		else :
-			LOGGER.info( "{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format( self.__class__.__name__, "databaseReadOnly" ) )
+			LOGGER.info("{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addContentAction( self, checked ):
+	def Collections_Outliner_treeView_addContentAction(self, checked):
 		'''
 		This Method Is Triggered By addContentAction.
 
@@ -1217,16 +1217,16 @@ class CollectionsOutliner( UiComponent ):
 		collection = self.addCollection()
 		if collection :
 			self.Collections_Outliner_treeView_refreshModel()
-			fileDialog = QFileDialog( self )
-			directory = self._container.storeLastBrowsedPath( ( QFileDialog.getExistingDirectory( self, "Add Content :", self._container.lastBrowsedPath ) ) )
+			fileDialog = QFileDialog(self)
+			directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content :", self._container.lastBrowsedPath)))
 			if directory :
-				LOGGER.debug( "> Chosen Directory Path : '{0}'.".format( directory ) )
-				self.coreDatabaseBrowser.addDirectory( directory, self.getCollectionId( collection ) )
-				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex( self._model.indexFromItem( self._model.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0] ), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows )
+				LOGGER.debug("> Chosen Directory Path : '{0}'.".format(directory))
+				self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
+				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self._model.indexFromItem(self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 				self.Collections_Outliner_treeView_refreshSetsCounts()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addCollectionAction( self, checked ):
+	def Collections_Outliner_treeView_addCollectionAction(self, checked):
 		'''
 		This Method Is Triggered By addCollectionAction.
 
@@ -1238,7 +1238,7 @@ class CollectionsOutliner( UiComponent ):
 			self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_removeCollectionsAction( self, checked ):
+	def Collections_Outliner_treeView_removeCollectionsAction(self, checked):
 		'''
 		This Method Is Triggered By removeCollectionsAction.
 
@@ -1250,7 +1250,7 @@ class CollectionsOutliner( UiComponent ):
 		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
+	def Collections_Outliner_treeView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
 		'''
 		This Method Triggers The Database_Browser_listView Refresh Depending On The Collections Outliner Selected Items.
 		
@@ -1261,7 +1261,7 @@ class CollectionsOutliner( UiComponent ):
 		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
-	def addCollection( self ) :
+	def addCollection(self) :
 		'''
 		This Method Adds A Collection To The Database.
 		
@@ -1269,57 +1269,57 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		dialogMessage = "Enter Your Collection Name !"
-		collectionInformations = QInputDialog.getText( self, "Add Collection", dialogMessage )
+		collectionInformations = QInputDialog.getText(self, "Add Collection", dialogMessage)
 		if collectionInformations[1] :
-			LOGGER.debug( "> Chosen Collection Name : '{0}'.".format( collectionInformations[1] ) )
-			collectionInformations = str( collectionInformations[0] ).split( "," )
+			LOGGER.debug("> Chosen Collection Name : '{0}'.".format(collectionInformations[1]))
+			collectionInformations = str(collectionInformations[0]).split(",")
 			collection = collectionInformations[0].strip()
-			comment = len( collectionInformations ) == 1 and "Double Click To Set A Comment !" or collectionInformations[1].strip()
-			if not set( dbUtilities.common.filterCollections( self._coreDb.dbSession, "^{0}$".format( collection ), "name" ) ).intersection( dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" ) ):
-				LOGGER.info( "{0} | Adding '{1}' Collection To Database !".format( self.__class__.__name__, collection ) )
-				return dbUtilities.common.addCollection( self._coreDb.dbSession, collection, "Sets", comment ) and collection
+			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment !" or collectionInformations[1].strip()
+			if not set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")):
+				LOGGER.info("{0} | Adding '{1}' Collection To Database !".format(self.__class__.__name__, collection))
+				return dbUtilities.common.addCollection(self._coreDb.dbSession, collection, "Sets", comment) and collection
 			else :
-				messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database !".format( self.__class__.__name__, collection ) )
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database !".format(self.__class__.__name__, collection))
 
 	@core.executionTrace
-	def addDefaultCollection( self ) :
+	def addDefaultCollection(self) :
 		'''
 		This Method Adds A Default Collection To The Database.
 		
 		@return: Addition Success. ( Boolean )
 		'''
 
-		collections = [collection for collection in dbUtilities.common.filterCollections( self._coreDb.dbSession, "Sets", "type" )]
+		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
 
 		if not collections :
-			LOGGER.info( "{0} | Adding '{1}' Collection To Database !".format( self.__class__.__name__, self._defaultCollection ) )
-			dbUtilities.common.addCollection( self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection" )
+			LOGGER.info("{0} | Adding '{1}' Collection To Database !".format(self.__class__.__name__, self._defaultCollection))
+			dbUtilities.common.addCollection(self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection")
 			self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def removeCollections( self ) :
+	def removeCollections(self) :
 		'''
 		This Method Removes Collections From The Database.
 		'''
 
 		selectedCollections = self.getSelectedItems()
 
-		if self._overallCollection in [str( collection.text() ) for collection in selectedCollections] or self._defaultCollection in [str( collection.text() ) for collection in selectedCollections]:
-			messageBox.messageBox( "Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection !".format( self.__class__.__name__, self._overallCollection, self._defaultCollection ) )
+		if self._overallCollection in [str(collection.text()) for collection in selectedCollections] or self._defaultCollection in [str(collection.text()) for collection in selectedCollections]:
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection !".format(self.__class__.__name__, self._overallCollection, self._defaultCollection))
 
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self._defaultCollection]
 		if selectedCollections :
-			if messageBox.messageBox( "Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format( ", ".join( [str( collection.text() ) for collection in selectedCollections] ) ), buttons = QMessageBox.Yes | QMessageBox.No ) == 16384 :
-				iblSets = dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, self.getSelectedCollectionsIds() )
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format(", ".join([str(collection.text()) for collection in selectedCollections])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+				iblSets = dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, self.getSelectedCollectionsIds())
 				for iblSet in iblSets :
-					LOGGER.info( "{0} | Moving '{1}' Ibl Set To Default Collection !".format( self.__class__.__name__, iblSet.name ) )
-					iblSet.collection = self.getCollectionId( self._defaultCollection )
+					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection !".format(self.__class__.__name__, iblSet.name))
+					iblSet.collection = self.getCollectionId(self._defaultCollection)
 				for collection in selectedCollections :
-					LOGGER.info( "{0} | Removing '{1}' Collection From Database !".format( self.__class__.__name__, collection.text() ) )
-					dbUtilities.common.removeCollection( self._coreDb.dbSession, str( collection._datas.id ) )
+					LOGGER.info("{0} | Removing '{1}' Collection From Database !".format(self.__class__.__name__, collection.text()))
+					dbUtilities.common.removeCollection(self._coreDb.dbSession, str(collection._datas.id))
 
 	@core.executionTrace
-	def getSelectedItems( self, rowsRootOnly = True ):
+	def getSelectedItems(self, rowsRootOnly=True):
 		'''
 		This Method Returns The Collections_Outliner_treeView Selected Items.
 		
@@ -1329,10 +1329,10 @@ class CollectionsOutliner( UiComponent ):
 
 		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set( [self._model.itemFromIndex( self._model.sibling( index.row(), 0, index ) ) for index in selectedIndexes] )] or [self._model.itemFromIndex( index ) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set([self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self._model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace
-	def getSelectedCollections( self ):
+	def getSelectedCollections(self):
 		'''
 		This Method Gets Selected Collections.
 	
@@ -1343,7 +1343,7 @@ class CollectionsOutliner( UiComponent ):
 		return selectedCollections and selectedCollections or None
 
 	@core.executionTrace
-	def getSelectedCollectionsIds( self ):
+	def getSelectedCollectionsIds(self):
 		'''
 		This Method Gets Selected Collections Ids.
 	
@@ -1355,12 +1355,12 @@ class CollectionsOutliner( UiComponent ):
 		ids = []
 		if selectedCollections :
 			ids = [collection._datas.id for collection in selectedCollections]
-			return ids == [] and ids.append( self.getCollectionId( self._defaultCollection ) ) or ids
+			return ids == [] and ids.append(self.getCollectionId(self._defaultCollection)) or ids
 		else :
 			return ids
 
 	@core.executionTrace
-	def getCollectionId( self, collection ):
+	def getCollectionId(self, collection):
 		'''
 		This Method Returns The Provided Collection Id.
 
@@ -1368,10 +1368,10 @@ class CollectionsOutliner( UiComponent ):
 		@return: Provided Collection Id. ( Integer )
 		'''
 
-		return self._model.findItems( collection, Qt.MatchExactly | Qt.MatchRecursive, 0 )[0]._datas.id
+		return self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
 
 	@core.executionTrace
-	def getCollectionsSets( self ):
+	def getCollectionsSets(self):
 		'''
 		This Method Gets The Sets Associated To Selected Collections.
 		
@@ -1379,13 +1379,13 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		selectedCollections = self.getSelectedCollections()
-		allIds = [collection._datas.id for collection in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) if collection._type == "Collection"]
-		ids = selectedCollections and ( self._overallCollection in [collection.text() for collection in selectedCollections] and allIds or self.getSelectedCollectionsIds() ) or allIds
+		allIds = [collection._datas.id for collection in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
+		ids = selectedCollections and (self._overallCollection in [collection.text() for collection in selectedCollections] and allIds or self.getSelectedCollectionsIds()) or allIds
 
-		return dbUtilities.common.getCollectionsSets( self._coreDb.dbSession, ids )
+		return dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, ids)
 
 	@core.executionTrace
-	def getUniqueCollectionId( self ):
+	def getUniqueCollectionId(self):
 		'''
 		This Method Returns A Unique Collection Id ( Either First Selected Collection Or Default One).
 
@@ -1393,10 +1393,10 @@ class CollectionsOutliner( UiComponent ):
 		'''
 
 		selectedCollectionsIds = self.getSelectedCollectionsIds()
-		if not len( selectedCollectionsIds ):
-			return self.getCollectionId( self._defaultCollection )
+		if not len(selectedCollectionsIds):
+			return self.getCollectionId(self._defaultCollection)
 		else :
-			len( selectedCollectionsIds ) > 1 and LOGGER.warning( "!> {0} | Multiple Collection Selected, Using '{1}' Id !".format( self.__class__.__name__, selectedCollectionsIds[0] ) )
+			len(selectedCollectionsIds) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id !".format(self.__class__.__name__, selectedCollectionsIds[0]))
 			return selectedCollectionsIds[0]
 
 #***********************************************************************************************

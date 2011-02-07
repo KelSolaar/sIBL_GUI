@@ -76,13 +76,13 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def componentActivationErrorHandler( exception, origin, *args, **kwargs ):
+def componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	'''
 	This Definition Provides An Exception Handler For Component Activation.
 	
@@ -90,10 +90,10 @@ def componentActivationErrorHandler( exception, origin, *args, **kwargs ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	ui.common.uiBasicExceptionHandler( Exception( "{0} | An Exception Occurred While Activating '{1}' Component :\n{2}".format( core.getModule( componentActivationErrorHandler ).__name__, args[1].name, traceback.format_exc() ) ), origin, *args, **kwargs )
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Activating '{1}' Component :\n{2}".format(core.getModule(componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
-def componentDeactivationErrorHandler( exception, origin, *args, **kwargs ):
+def componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	'''
 	This Definition Provides An Exception Handler For Component Deactivation.
 	
@@ -101,9 +101,9 @@ def componentDeactivationErrorHandler( exception, origin, *args, **kwargs ):
 	@param origin: Function / Method Raising The Exception. ( String )
 	'''
 
-	ui.common.uiBasicExceptionHandler( Exception( "{0} | An Exception Occurred While Deactivating '{1}' Component :\n{2}".format( core.getModule( componentActivationErrorHandler ).__name__, args[1].name, traceback.format_exc() ) ), origin, *args, **kwargs )
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Deactivating '{1}' Component :\n{2}".format(core.getModule(componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
-class ComponentsManagerUi( UiComponent ):
+class ComponentsManagerUi(UiComponent):
 	'''
 	This Class Is The ComponentsManagerUi Class.
 	'''
@@ -112,7 +112,7 @@ class ComponentsManagerUi( UiComponent ):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -120,9 +120,9 @@ class ComponentsManagerUi( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
@@ -141,14 +141,14 @@ class ComponentsManagerUi( UiComponent ):
 
 		self._modelHeaders = [ "Components", "Activated", "Categorie", "Rank", "Version" ]
 		self._treeWidgetIndentation = 15
-		self._treeViewInnerMargins = QMargins( 0, 0, 0, 12 )
+		self._treeViewInnerMargins = QMargins(0, 0, 0, 12)
 		self._Components_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations !<h4>* * *</h4></center>"
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -158,27 +158,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def uiResources( self ):
+	def uiResources(self):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
 
@@ -188,27 +188,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self, value):
 		'''
 		This Method Is The Setter Method For The _uiResources Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
 
 	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self):
 		'''
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
 
 	@property
-	def uiActivatedIcon( self ):
+	def uiActivatedIcon(self):
 		'''
 		This Method Is The Property For The _uiActivatedIcon Attribute.
 
@@ -218,27 +218,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._uiActivatedIcon
 
 	@uiActivatedIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiActivatedIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiActivatedIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiActivatedIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiActivatedIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiActivatedIcon"))
 
 	@uiActivatedIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiActivatedIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiActivatedIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiActivatedIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiActivatedIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiActivatedIcon"))
 
 	@property
-	def uiDeactivatedIcon( self ):
+	def uiDeactivatedIcon(self):
 		'''
 		This Method Is The Property For The _uiDeactivatedIcon Attribute.
 
@@ -248,27 +248,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._uiDeactivatedIcon
 
 	@uiDeactivatedIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDeactivatedIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDeactivatedIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiDeactivatedIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiDeactivatedIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiDeactivatedIcon"))
 
 	@uiDeactivatedIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiDeactivatedIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDeactivatedIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiDeactivatedIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiDeactivatedIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiDeactivatedIcon"))
 
 	@property
-	def uiCategorieAffixe( self ):
+	def uiCategorieAffixe(self):
 		'''
 		This Method Is The Property For The _uiCategorieAffixe Attribute.
 
@@ -278,27 +278,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._uiCategorieAffixe
 
 	@uiCategorieAffixe.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiCategorieAffixe( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiCategorieAffixe(self, value):
 		'''
 		This Method Is The Setter Method For The _uiCategorieAffixe Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiCategorieAffixe" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiCategorieAffixe"))
 
 	@uiCategorieAffixe.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiCategorieAffixe( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiCategorieAffixe(self):
 		'''
 		This Method Is The Deleter Method For The _uiCategorieAffixe Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiCategorieAffixe" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiCategorieAffixe"))
 
 	@property
-	def dockArea( self ):
+	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
 
@@ -308,27 +308,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
 		'''
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
 		'''
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -338,27 +338,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def settings( self ):
+	def settings(self):
 		'''
 		This Method Is The Property For The _settings Attribute.
 
@@ -368,27 +368,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._settings
 
 	@settings.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def settings( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self, value):
 		'''
 		This Method Is The Setter Method For The _settings Attribute.
 
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "settings" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
 
 	@settings.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def settings( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self):
 		'''
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "settings" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
 
 	@property
-	def model( self ):
+	def model(self):
 		'''
 		This Method Is The Property For The _model Attribute.
 
@@ -398,27 +398,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._model
 
 	@model.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def model( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self, value):
 		'''
 		This Method Is The Setter Method For The _model Attribute.
 
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "model" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("model"))
 
 	@model.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def model( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self):
 		'''
 		This Method Is The Deleter Method For The _model Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "model" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("model"))
 
 	@property
-	def modelHeaders( self ):
+	def modelHeaders(self):
 		'''
 		This Method Is The Property For The _modelHeaders Attribute.
 
@@ -428,27 +428,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._modelHeaders
 
 	@modelHeaders.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelHeaders( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelHeaders(self, value):
 		'''
 		This Method Is The Setter Method For The _modelHeaders Attribute.
 
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "modelHeaders" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("modelHeaders"))
 
 	@modelHeaders.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def modelHeaders( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelHeaders(self):
 		'''
 		This Method Is The Deleter Method For The _modelHeaders Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "modelHeaders" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("modelHeaders"))
 
 	@property
-	def treeWidgetIndentation( self ):
+	def treeWidgetIndentation(self):
 		'''
 		This Method Is The Property For The _treeWidgetIndentation Attribute.
 
@@ -458,27 +458,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._treeWidgetIndentation
 
 	@treeWidgetIndentation.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetIndentation( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeWidgetIndentation(self, value):
 		'''
 		This Method Is The Setter Method For The _treeWidgetIndentation Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeWidgetIndentation" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("treeWidgetIndentation"))
 
 	@treeWidgetIndentation.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeWidgetIndentation( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeWidgetIndentation(self):
 		'''
 		This Method Is The Deleter Method For The _treeWidgetIndentation Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeWidgetIndentation" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("treeWidgetIndentation"))
 
 	@property
-	def treeViewInnerMargins( self ):
+	def treeViewInnerMargins(self):
 		'''
 		This Method Is The Property For The _treeViewInnerMargins Attribute.
 
@@ -488,27 +488,27 @@ class ComponentsManagerUi( UiComponent ):
 		return self._treeViewInnerMargins
 
 	@treeViewInnerMargins.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeViewInnerMargins( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeViewInnerMargins(self, value):
 		'''
 		This Method Is The Setter Method For The _treeViewInnerMargins Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "treeViewInnerMargins" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("treeViewInnerMargins"))
 
 	@treeViewInnerMargins.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def treeViewInnerMargins( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def treeViewInnerMargins(self):
 		'''
 		This Method Is The Deleter Method For The _treeViewInnerMargins Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "treeViewInnerMargins" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("treeViewInnerMargins"))
 
 	@property
-	def Components_Informations_textBrowser_defaultText( self ):
+	def Components_Informations_textBrowser_defaultText(self):
 		'''
 		This Method Is The Property For The _Components_Informations_textBrowser_defaultText Attribute.
 
@@ -518,40 +518,40 @@ class ComponentsManagerUi( UiComponent ):
 		return self._Components_Informations_textBrowser_defaultText
 
 	@Components_Informations_textBrowser_defaultText.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def Components_Informations_textBrowser_defaultText( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def Components_Informations_textBrowser_defaultText(self, value):
 		'''
 		This Method Is The Setter Method For The _Components_Informations_textBrowser_defaultText Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "Components_Informations_textBrowser_defaultText" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("Components_Informations_textBrowser_defaultText"))
 
 	@Components_Informations_textBrowser_defaultText.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def Components_Informations_textBrowser_defaultText( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def Components_Informations_textBrowser_defaultText(self):
 		'''
 		This Method Is The Deleter Method For The _Components_Informations_textBrowser_defaultText Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "Components_Informations_textBrowser_defaultText" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("Components_Informations_textBrowser_defaultText"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 		self._container = container
 
 		self._settings = self._container.settings
@@ -559,80 +559,80 @@ class ComponentsManagerUi( UiComponent ):
 		self._activate()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def deactivate( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Cannot Be Deactivated !".format( self._name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated !".format(self._name))
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self._model = QStandardItemModel()
 		self.Components_Manager_Ui_treeView_setModel()
 
-		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins( self._treeViewInnerMargins )
+		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self._treeViewInnerMargins)
 
-		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy( Qt.ActionsContextMenu )
+		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Components_Manager_Ui_treeView_setActions()
 
 		self.Components_Manager_Ui_treeView_setView()
 
-		self.ui.Components_Informations_textBrowser.setText( self._Components_Informations_textBrowser_defaultText )
+		self.ui.Components_Informations_textBrowser.setText(self._Components_Informations_textBrowser_defaultText)
 
-		self.ui.Components_Manager_Ui_splitter.setSizes( [ 16777215, 1 ] )
+		self.ui.Components_Manager_Ui_splitter.setSizes([ 16777215, 1 ])
 
 		# Signals / Slots.
-		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect( self.Components_Manager_Ui_treeView_OnSelectionChanged )
-		self.modelChanged.connect( self.Components_Manager_Ui_treeView_refreshView )
+		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.Components_Manager_Ui_treeView_OnSelectionChanged)
+		self.modelChanged.connect(self.Components_Manager_Ui_treeView_refreshView)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uninitializeUi( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Ui Cannot Be Uninitialized !".format( self.name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized !".format(self.name))
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget( Qt.DockWidgetArea( self._dockArea ), self.ui )
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def removeWidget( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Component Widget Cannot Be Removed !".format( self.name ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed !".format(self.name))
 
 	@core.executionTrace
-	def onStartup( self ):
+	def onStartup(self):
 		'''
 		This Method Is Called On Framework Startup.
 		'''
 
-		LOGGER.debug( "> Calling '{0}' Component Framework Startup Method.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
 		self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setModel( self ):
+	def Components_Manager_Ui_treeView_setModel(self):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView Model.
 		
@@ -644,80 +644,80 @@ class ComponentsManagerUi( UiComponent ):
 		** Component : { _type : "Component", _datas : profile }
 		'''
 
-		LOGGER.debug( "> Setting Up '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
+		LOGGER.debug("> Setting Up '{0}' Model !".format("Components_Manager_Ui_treeView"))
 
 		self._model.clear()
 
-		self._model.setHorizontalHeaderLabels( self._modelHeaders )
-		self._model.setColumnCount( len( self._modelHeaders ) )
+		self._model.setHorizontalHeaderLabels(self._modelHeaders)
+		self._model.setColumnCount(len(self._modelHeaders))
 
 		for path in self._container.componentsManager.paths :
-			components = [component for component in self._container.componentsManager.components if os.path.normpath( self._container.componentsManager.paths[path] ) in os.path.normpath( self._container.componentsManager.components[component].path )]
+			components = [component for component in self._container.componentsManager.components if os.path.normpath(self._container.componentsManager.paths[path]) in os.path.normpath(self._container.componentsManager.components[component].path)]
 
 			if components :
-				pathStandardItem = QStandardItem( QString( path ) )
+				pathStandardItem = QStandardItem(QString(path))
 				pathStandardItem._type = "Path"
 
-				LOGGER.debug( "> Adding '{0}' Path To '{1}' Model.".format( path, "Components_Manager_Ui_treeView" ) )
-				self._model.appendRow( pathStandardItem )
+				LOGGER.debug("> Adding '{0}' Path To '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
+				self._model.appendRow(pathStandardItem)
 
 				for component in components :
-					componentStandardItem = QStandardItem( QString( strings.getNiceName( self._container.componentsManager.components[component].module ) ) )
-					iconPath = os.path.join( self._uiResources, "{0}{1}".format( strings.getNiceName( self._container.componentsManager.components[component].categorie ), self._uiCategorieAffixe ) )
-					componentStandardItem.setIcon( QIcon( iconPath ) )
+					componentStandardItem = QStandardItem(QString(strings.getNiceName(self._container.componentsManager.components[component].module)))
+					iconPath = os.path.join(self._uiResources, "{0}{1}".format(strings.getNiceName(self._container.componentsManager.components[component].categorie), self._uiCategorieAffixe))
+					componentStandardItem.setIcon(QIcon(iconPath))
 
-					componentActivationStandardItem = QStandardItem( QString( str( self._container.componentsManager.components[component].interface.activated ) ) )
-					iconPath = self._container.componentsManager.components[component].interface.activated and os.path.join( self._uiResources, self._uiActivatedIcon ) or os.path.join( self._uiResources, self._uiDeactivatedIcon )
-					componentActivationStandardItem.setIcon( QIcon( iconPath ) )
+					componentActivationStandardItem = QStandardItem(QString(str(self._container.componentsManager.components[component].interface.activated)))
+					iconPath = self._container.componentsManager.components[component].interface.activated and os.path.join(self._uiResources, self._uiActivatedIcon) or os.path.join(self._uiResources, self._uiDeactivatedIcon)
+					componentActivationStandardItem.setIcon(QIcon(iconPath))
 
-					componentCategorieStandardItem = QStandardItem( QString( self._container.componentsManager.components[component].categorie and strings.getNiceName( self._container.componentsManager.components[component].categorie ) or "" ) )
-					componentCategorieStandardItem.setTextAlignment( Qt.AlignCenter )
+					componentCategorieStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].categorie and strings.getNiceName(self._container.componentsManager.components[component].categorie) or ""))
+					componentCategorieStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentRankStandardItem = QStandardItem( QString( self._container.componentsManager.components[component].rank or "" ) )
-					componentRankStandardItem.setTextAlignment( Qt.AlignCenter )
+					componentRankStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].rank or ""))
+					componentRankStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentVersionStandardItem = QStandardItem( QString( self._container.componentsManager.components[component].version or "" ) )
-					componentVersionStandardItem.setTextAlignment( Qt.AlignCenter )
+					componentVersionStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].version or ""))
+					componentVersionStandardItem.setTextAlignment(Qt.AlignCenter)
 
 					componentStandardItem._datas = self._container.componentsManager.components[component]
 					componentStandardItem._type = "Component"
 
-					LOGGER.debug( "> Adding '{0}' Component To '{1}'.".format( component, "Components_Manager_Ui_treeView" ) )
-					pathStandardItem.appendRow( [componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem] )
+					LOGGER.debug("> Adding '{0}' Component To '{1}'.".format(component, "Components_Manager_Ui_treeView"))
+					pathStandardItem.appendRow([componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem])
 
-		self.emit( SIGNAL( "modelChanged()" ) )
+		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshModel( self ):
+	def Components_Manager_Ui_treeView_refreshModel(self):
 		'''
 		This Method Refreshes The Components_Manager_Ui_treeView Model.
 		'''
 
-		LOGGER.debug( "> Refreshing '{0}' Model !".format( "Components_Manager_Ui_treeView" ) )
+		LOGGER.debug("> Refreshing '{0}' Model !".format("Components_Manager_Ui_treeView"))
 
 		self.Components_Manager_Ui_treeView_setModel()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setView( self ):
+	def Components_Manager_Ui_treeView_setView(self):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView View.
 		'''
 
-		LOGGER.debug( "> Refreshing '{0}' Ui !".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Refreshing '{0}' Ui !".format(self.__class__.__name__))
 
-		self.ui.Components_Manager_Ui_treeView.setAutoScroll( False )
-		self.ui.Components_Manager_Ui_treeView.setEditTriggers( QAbstractItemView.NoEditTriggers )
-		self.ui.Components_Manager_Ui_treeView.setDragDropMode( QAbstractItemView.NoDragDrop )
-		self.ui.Components_Manager_Ui_treeView.setSelectionMode( QAbstractItemView.ExtendedSelection )
-		self.ui.Components_Manager_Ui_treeView.setIndentation( self._treeWidgetIndentation )
-		self.ui.Components_Manager_Ui_treeView.setSortingEnabled( True )
+		self.ui.Components_Manager_Ui_treeView.setAutoScroll(False)
+		self.ui.Components_Manager_Ui_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+		self.ui.Components_Manager_Ui_treeView.setDragDropMode(QAbstractItemView.NoDragDrop)
+		self.ui.Components_Manager_Ui_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.ui.Components_Manager_Ui_treeView.setIndentation(self._treeWidgetIndentation)
+		self.ui.Components_Manager_Ui_treeView.setSortingEnabled(True)
 
-		self.ui.Components_Manager_Ui_treeView.setModel( self._model )
+		self.ui.Components_Manager_Ui_treeView.setModel(self._model)
 
 		self.Components_Manager_Ui_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshView( self ):
+	def Components_Manager_Ui_treeView_refreshView(self):
 		'''
 		This Method Refreshes The Components_Manager_Ui_treeView View.
 		'''
@@ -725,61 +725,61 @@ class ComponentsManagerUi( UiComponent ):
 		self.Components_Manager_Ui_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setDefaultViewState( self ):
+	def Components_Manager_Ui_treeView_setDefaultViewState(self):
 		'''
 		This Method Sets Components_Manager_Ui_treeView Default View State.
 		'''
 
-		LOGGER.debug( "> Setting '{0}' Default View State !".format( "Components_Manager_Ui_treeView" ) )
+		LOGGER.debug("> Setting '{0}' Default View State !".format("Components_Manager_Ui_treeView"))
 
 		self.ui.Components_Manager_Ui_treeView.expandAll()
-		for column in range( len( self._modelHeaders ) ) :
-			self.ui.Components_Manager_Ui_treeView.resizeColumnToContents( column )
+		for column in range(len(self._modelHeaders)) :
+			self.ui.Components_Manager_Ui_treeView.resizeColumnToContents(column)
 
-		self.ui.Components_Manager_Ui_treeView.sortByColumn( 0, Qt.AscendingOrder )
+		self.ui.Components_Manager_Ui_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshActivationsStatus( self ):
+	def Components_Manager_Ui_treeView_refreshActivationsStatus(self):
 		'''
 		This Method Refreshes The Components_Manager_Ui_treeView Activations Status.
 		'''
 
-		for i in range( self._model.rowCount() ) :
-			for j in range( self._model.item( i ).rowCount() ):
-				componentStandardItem = self._model.item( i ).child( j, 0 )
-				componentActivationStandardItem = self._model.item( i ).child( j, 1 )
-				componentActivationStandardItem.setText( str( componentStandardItem._datas.interface.activated ) )
-				iconPath = componentStandardItem._datas.interface.activated and os.path.join( self._uiResources, self._uiActivatedIcon ) or os.path.join( self._uiResources, self._uiDeactivatedIcon )
-				componentActivationStandardItem.setIcon( QIcon( iconPath ) )
+		for i in range(self._model.rowCount()) :
+			for j in range(self._model.item(i).rowCount()):
+				componentStandardItem = self._model.item(i).child(j, 0)
+				componentActivationStandardItem = self._model.item(i).child(j, 1)
+				componentActivationStandardItem.setText(str(componentStandardItem._datas.interface.activated))
+				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self._uiResources, self._uiActivatedIcon) or os.path.join(self._uiResources, self._uiDeactivatedIcon)
+				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setActions( self ):
+	def Components_Manager_Ui_treeView_setActions(self):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView Actions.
 		'''
 
-		activateComponentsAction = QAction( "Activate Component(s)", self.ui.Components_Manager_Ui_treeView )
-		activateComponentsAction.triggered.connect( self.Components_Manager_Ui_treeView_activateComponentsAction )
-		self.ui.Components_Manager_Ui_treeView.addAction( activateComponentsAction )
+		activateComponentsAction = QAction("Activate Component(s)", self.ui.Components_Manager_Ui_treeView)
+		activateComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_activateComponentsAction)
+		self.ui.Components_Manager_Ui_treeView.addAction(activateComponentsAction)
 
-		deactivateComponentsAction = QAction( "Deactivate Component(s)", self.ui.Components_Manager_Ui_treeView )
-		deactivateComponentsAction.triggered.connect( self.Components_Manager_Ui_treeView_deactivateComponentsAction )
-		self.ui.Components_Manager_Ui_treeView.addAction( deactivateComponentsAction )
+		deactivateComponentsAction = QAction("Deactivate Component(s)", self.ui.Components_Manager_Ui_treeView)
+		deactivateComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_deactivateComponentsAction)
+		self.ui.Components_Manager_Ui_treeView.addAction(deactivateComponentsAction)
 
-		separatorAction = QAction( self.ui.Components_Manager_Ui_treeView )
-		separatorAction.setSeparator( True )
-		self.ui.Components_Manager_Ui_treeView.addAction( separatorAction )
+		separatorAction = QAction(self.ui.Components_Manager_Ui_treeView)
+		separatorAction.setSeparator(True)
+		self.ui.Components_Manager_Ui_treeView.addAction(separatorAction)
 
-		reloadComponentsAction = QAction( "Reload Component(s)", self.ui.Components_Manager_Ui_treeView )
-		reloadComponentsAction.triggered.connect( self.Components_Manager_Ui_treeView_reloadComponentsAction )
-		self.ui.Components_Manager_Ui_treeView.addAction( reloadComponentsAction )
+		reloadComponentsAction = QAction("Reload Component(s)", self.ui.Components_Manager_Ui_treeView)
+		reloadComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_reloadComponentsAction)
+		self.ui.Components_Manager_Ui_treeView.addAction(reloadComponentsAction)
 
-		separatorAction = QAction( self.ui.Components_Manager_Ui_treeView )
-		separatorAction.setSeparator( True )
-		self.ui.Components_Manager_Ui_treeView.addAction( separatorAction )
+		separatorAction = QAction(self.ui.Components_Manager_Ui_treeView)
+		separatorAction.setSeparator(True)
+		self.ui.Components_Manager_Ui_treeView.addAction(separatorAction)
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_activateComponentsAction( self, checked ):
+	def Components_Manager_Ui_treeView_activateComponentsAction(self, checked):
 		'''
 		This Method Is Triggered By activateComponentsAction.
 
@@ -792,15 +792,15 @@ class ComponentsManagerUi( UiComponent ):
 			for component in selectedComponents :
 				if component._type == "Component" :
 					if not component._datas.interface.activated :
-						self.activateComponent( component._datas )
+						self.activateComponent(component._datas)
 					else :
-						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format( self.__class__.__name__, component._datas.name ) )
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 			self.storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_deactivateComponentsAction( self, checked ):
+	def Components_Manager_Ui_treeView_deactivateComponentsAction(self, checked):
 		'''
 		This Method Is Triggered By deactivateComponentsAction.
 
@@ -814,17 +814,17 @@ class ComponentsManagerUi( UiComponent ):
 				if component._type == "Component" :
 					if component._datas.interface.activated :
 						if component._datas.interface.deactivatable :
-							self.deactivateComponent( component._datas )
+							self.deactivateComponent(component._datas)
 						else :
-							messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format( self.__class__.__name__, component._datas.name ) )
+							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format(self.__class__.__name__, component._datas.name))
 					else :
-						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated !".format( self.__class__.__name__, component._datas.name ) )
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated !".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 			self.storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_reloadComponentsAction( self, checked ):
+	def Components_Manager_Ui_treeView_reloadComponentsAction(self, checked):
 		'''
 		This Method Is Triggered By reloadComponentsAction.
 
@@ -837,16 +837,16 @@ class ComponentsManagerUi( UiComponent ):
 				if component._type == "Component" :
 					if component._datas.interface.deactivatable :
 						if component._datas.interface.activated :
-							self.deactivateComponent( component._datas )
-						self._container.componentsManager.reloadComponent( component._datas.name )
+							self.deactivateComponent(component._datas)
+						self._container.componentsManager.reloadComponent(component._datas.name)
 						if not component._datas.interface.activated :
-							self.activateComponent( component._datas )
+							self.activateComponent(component._datas)
 					else :
-						messageBox.messageBox( "Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format( self.__class__.__name__, component._datas.name ) )
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format(self.__class__.__name__, component._datas.name))
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_OnSelectionChanged( self, selectedItems, deselectedItems ):
+	def Components_Manager_Ui_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
 		'''
 		This Method Sets The Additional_Informations_textEdit Widget.
 		
@@ -854,7 +854,7 @@ class ComponentsManagerUi( UiComponent ):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Widget.".format( "Additional_Informations_textEdit" ) )
+		LOGGER.debug("> Initializing '{0}' Widget.".format("Additional_Informations_textEdit"))
 
 		content = []
 		subContent = """
@@ -876,31 +876,31 @@ class ComponentsManagerUi( UiComponent ):
 		selectedItems = self.getSelectedItems()
 		for item in selectedItems :
 			if item._type == "Component" :
-				content.append( subContent.format( item._datas.name,
-												strings.getNiceName( item._datas.categorie ),
+				content.append(subContent.format(item._datas.name,
+												strings.getNiceName(item._datas.categorie),
 												item._datas.author,
 												item._datas.email,
 												item._datas.url,
 												item._datas.description
-												) )
+												))
 			else:
-				len( selectedItems ) == 1 and content.append( self._Components_Informations_textBrowser_defaultText )
+				len(selectedItems) == 1 and content.append(self._Components_Informations_textBrowser_defaultText)
 
-		separator = len( content ) == 1 and "" or "<p><center>* * *<center/></p>"
-		self.ui.Components_Informations_textBrowser.setText( separator.join( content ) )
+		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
+		self.ui.Components_Informations_textBrowser.setText(separator.join(content))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError )
-	def activateComponent( self, component ):
+	@foundations.exceptions.exceptionsHandler(componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
+	def activateComponent(self, component):
 		'''
 		This Method Activates The Provided Component.
 		
 		@param component: Component. ( Profile )
 		'''
 
-		LOGGER.debug( "> Attempting '{0}' Component Activation.".format( component.name ) )
+		LOGGER.debug("> Attempting '{0}' Component Activation.".format(component.name))
 
-		component.interface.activate( self._container )
+		component.interface.activate(self._container)
 		if component.categorie == "default" :
 			component.interface.initialize()
 		elif component.categorie == "ui" :
@@ -908,15 +908,15 @@ class ComponentsManagerUi( UiComponent ):
 			component.interface.initializeUi()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError )
-	def deactivateComponent( self, component ):
+	@foundations.exceptions.exceptionsHandler(componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
+	def deactivateComponent(self, component):
 		'''
 		This Method Deactivates The Provided Component.
 		
 		@param component: Component. ( Profile )
 		'''
 
-		LOGGER.debug( "> Attempting '{0}' Component Deactivation.".format( component.name ) )
+		LOGGER.debug("> Attempting '{0}' Component Deactivation.".format(component.name))
 
 		if component.categorie == "default" :
 			component.interface.uninitialize()
@@ -926,21 +926,21 @@ class ComponentsManagerUi( UiComponent ):
 		component.interface.deactivate()
 
 	@core.executionTrace
-	def storeDeactivatedComponents( self ):
+	def storeDeactivatedComponents(self):
 		'''
 		This Method Stores Deactivated Components In The Settings File.
 		'''
 
 		deactivatedComponents = []
-		for component in self._model.findItems( ".*", Qt.MatchRegExp | Qt.MatchRecursive, 0 ) :
+		for component in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) :
 			if component._type == "Component" :
-				component._datas.interface.activated or deactivatedComponents.append( component._datas.name )
+				component._datas.interface.activated or deactivatedComponents.append(component._datas.name)
 
-		LOGGER.debug( "> Storing '{0}' Deactivated Components.".format( ", ".join( deactivatedComponents ) ) )
-		self._settings.setKey( "Settings", "deactivatedComponents", ",".join( deactivatedComponents ) )
+		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))
+		self._settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
 
 	@core.executionTrace
-	def getSelectedItems( self, rowsRootOnly=True ):
+	def getSelectedItems(self, rowsRootOnly=True):
 		'''
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
 		
@@ -950,7 +950,7 @@ class ComponentsManagerUi( UiComponent ):
 
 		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set( [self._model.itemFromIndex( self._model.sibling( index.row(), 0, index ) ) for index in selectedIndexes] )] or [self._model.itemFromIndex( index ) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set([self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self._model.itemFromIndex(index) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End

@@ -67,25 +67,25 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Component( object ):
+class Component(object):
 	'''
 	This Class Is The Component Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None ):
+	def __init__(self, name=None):
 		'''
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
 		self._name = None
@@ -98,7 +98,7 @@ class Component( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def name( self ):
+	def name(self):
 		'''
 		This Method Is The Property For The _name Attribute.
 
@@ -108,8 +108,8 @@ class Component( object ):
 		return self._name
 
 	@name.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def name( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def name(self, value):
 		'''
 		This Method Is The Setter Method For The _name Attribute.
 		
@@ -117,20 +117,20 @@ class Component( object ):
 		'''
 
 		if value :
-			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "name", value )
+			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("name", value)
 		self._name = value
 
 	@name.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def name( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def name(self):
 		'''
 		This Method Is The Deleter Method For The _name Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "name" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("name"))
 
 	@property
-	def activated( self ):
+	def activated(self):
 		'''
 		This Method Is The Property For The _activated Attribute.
 
@@ -140,8 +140,8 @@ class Component( object ):
 		return self._activated
 
 	@activated.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def activated( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def activated(self, value):
 		'''
 		This Method Is The Setter Method For The _activated Attribute.
 		
@@ -149,20 +149,20 @@ class Component( object ):
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "activated", value )
+			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
 		self._activated = value
 
 	@activated.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def activated( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def activated(self):
 		'''
 		This Method Is The Deleter Method For The _activated Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "activated" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("activated"))
 
 	@property
-	def deactivatable( self ):
+	def deactivatable(self):
 		'''
 		This Method Is The Property For The _deactivatable Attribute.
 
@@ -172,8 +172,8 @@ class Component( object ):
 		return self._deactivatable
 
 	@deactivatable.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def deactivatable( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def deactivatable(self, value):
 		'''
 		This Method Is The Setter Method For The _deactivatable Attribute.
 		
@@ -181,23 +181,23 @@ class Component( object ):
 		'''
 
 		if value :
-			assert type( value ) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format( "deactivatable", value )
+			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("deactivatable", value)
 		self._deactivatable = value
 
 	@deactivatable.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def deactivatable( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def deactivatable(self):
 		'''
 		This Method Is The Deleter Method For The _deactivatable Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "deactivatable" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("deactivatable"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def _activate( self ):
+	def _activate(self):
 		'''
 		This Method Sets Activation State.
 		'''
@@ -205,7 +205,7 @@ class Component( object ):
 		self._activated = True
 
 	@core.executionTrace
-	def _deactivate( self ):
+	def _deactivate(self):
 		'''
 		This Method UnSets Activation State.
 		'''

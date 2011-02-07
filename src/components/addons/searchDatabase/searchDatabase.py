@@ -76,18 +76,18 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class SearchDatabase( UiComponent ):
+class SearchDatabase(UiComponent):
 	'''
 	This Class Is The SearchDatabase Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -95,9 +95,9 @@ class SearchDatabase( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -115,17 +115,17 @@ class SearchDatabase( UiComponent ):
 		self._completer = None
 		self._completerVisibleItemsCount = 16
 
-		self._databaseFields = [( "In Names", "title" ),
-								( "In Authors", "author" ),
-								( "In Links", "link" ),
-								( "In Locations", "location" ),
-								( "In Comments", "comment" ) ]
+		self._databaseFields = [("In Names", "title"),
+								("In Authors", "author"),
+								("In Links", "link"),
+								("In Locations", "location"),
+								("In Comments", "comment") ]
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -135,27 +135,27 @@ class SearchDatabase( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def uiResources( self ):
+	def uiResources(self):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
 
@@ -165,27 +165,27 @@ class SearchDatabase( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self, value):
 		'''
 		This Method Is The Setter Method For The _uiResources Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
 
 	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self):
 		'''
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
 
 	@property
-	def uiSearchIcon( self ):
+	def uiSearchIcon(self):
 		'''
 		This Method Is The Property For The _uiLargestSizeIcon Attribute.
 
@@ -195,27 +195,27 @@ class SearchDatabase( UiComponent ):
 		return self._uiLargestSizeIcon
 
 	@uiSearchIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiSearchIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiSearchIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiSearchIcon"))
 
 	@uiSearchIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiSearchIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiSearchIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiSearchIcon"))
 
 	@property
-	def dockArea( self ):
+	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
 
@@ -225,27 +225,27 @@ class SearchDatabase( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
 		'''
 		This Method Is The Setter Method For The _dockArea Attribute.
 		
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
 		'''
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -255,27 +255,27 @@ class SearchDatabase( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def coreDb( self ):
+	def coreDb(self):
 		'''
 		This Method Is The Property For The _coreDb Attribute.
 
@@ -285,27 +285,27 @@ class SearchDatabase( UiComponent ):
 		return self._coreDb
 
 	@coreDb.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDb Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
 
 	@coreDb.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDb( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDb(self):
 		'''
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDb" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
 
 	@property
-	def coreDatabaseBrowser( self ):
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
@@ -315,27 +315,27 @@ class SearchDatabase( UiComponent ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 		
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
 
 	@property
-	def coreCollectionsOutliner( self ):
+	def coreCollectionsOutliner(self):
 		'''
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
@@ -345,27 +345,27 @@ class SearchDatabase( UiComponent ):
 		return self._coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreCollectionsOutliner( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreCollectionsOutliner(self, value):
 		'''
 		This Method Is The Setter Method For The _coreCollectionsOutliner Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreCollectionsOutliner" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreCollectionsOutliner( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreCollectionsOutliner(self):
 		'''
 		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreCollectionsOutliner" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreCollectionsOutliner"))
 
 	@property
-	def completer( self ):
+	def completer(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -375,27 +375,27 @@ class SearchDatabase( UiComponent ):
 		return self._container
 
 	@completer.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def completer( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completer(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QCompleter )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "completer" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("completer"))
 
 	@completer.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def completer( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completer(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "completer" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completer"))
 
 	@property
-	def completerVisibleItemsCount( self ):
+	def completerVisibleItemsCount(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -405,27 +405,27 @@ class SearchDatabase( UiComponent ):
 		return self._container
 
 	@completerVisibleItemsCount.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def completerVisibleItemsCount( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completerVisibleItemsCount(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "completerVisibleItemsCount" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("completerVisibleItemsCount"))
 
 	@completerVisibleItemsCount.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def completerVisibleItemsCount( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completerVisibleItemsCount(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "completerVisibleItemsCount" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completerVisibleItemsCount"))
 
 	@property
-	def databaseFields( self ):
+	def databaseFields(self):
 		'''
 		This Method Is The Property For The _databaseFields Attribute.
 
@@ -435,41 +435,41 @@ class SearchDatabase( UiComponent ):
 		return self._databaseFields
 
 	@databaseFields.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def databaseFields( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def databaseFields(self, value):
 		'''
 		This Method Is The Setter Method For The _databaseFields Attribute.
 
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "databaseFields" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("databaseFields"))
 
 	@databaseFields.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def databaseFields( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def databaseFields(self):
 		'''
 		This Method Is The Deleter Method For The _databaseFields Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "databaseFields" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("databaseFields"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 		self._container = container
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
@@ -479,15 +479,15 @@ class SearchDatabase( UiComponent ):
 		self._activate()
 
 	@core.executionTrace
-	def deactivate( self ):
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._uiResources = os.path.basename( self._uiResources )
+		self._uiResources = os.path.basename(self._uiResources)
 		self._container = None
 
 		self._coreDb = None
@@ -497,69 +497,69 @@ class SearchDatabase( UiComponent ):
 		self._deactivate()
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Search_Database_label.setPixmap( QPixmap( os.path.join( self._uiResources, self._uiSearchIcon ) ) )
-		self.ui.Search_Database_comboBox.addItems( [databaseField[0] for databaseField in self._databaseFields] )
+		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchIcon)))
+		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self._databaseFields])
 
 		self._completer = QCompleter()
-		self._completer.setCaseSensitivity( Qt.CaseInsensitive )
-		self._completer.setCompletionMode( QCompleter.UnfilteredPopupCompletion )
-		self._completer.setMaxVisibleItems( self._completerVisibleItemsCount )
-		self.ui.Search_Database_lineEdit.setCompleter( self._completer )
+		self._completer.setCaseSensitivity(Qt.CaseInsensitive)
+		self._completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
+		self._completer.setMaxVisibleItems(self._completerVisibleItemsCount)
+		self.ui.Search_Database_lineEdit.setCompleter(self._completer)
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.connect( self.Search_Database_lineEdit_OnTextChanged )
-		self.ui.Search_Database_comboBox.activated.connect( self.Search_Database_comboBox_OnActivated )
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect( self.Case_Insensitive_Matching_checkBox_OnStateChanged )
-		self.ui.Time_Low_timeEdit.timeChanged.connect( self.Time_Low_timeEdit_OnTimeChanged )
-		self.ui.Time_High_timeEdit.timeChanged.connect( self.Time_High_timeEdit_OnTimeChanged )
+		self.ui.Search_Database_lineEdit.textChanged.connect(self.Search_Database_lineEdit_OnTextChanged)
+		self.ui.Search_Database_comboBox.activated.connect(self.Search_Database_comboBox_OnActivated)
+		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
+		self.ui.Time_Low_timeEdit.timeChanged.connect(self.Time_Low_timeEdit_OnTimeChanged)
+		self.ui.Time_High_timeEdit.timeChanged.connect(self.Time_High_timeEdit_OnTimeChanged)
 
 	@core.executionTrace
-	def uninitializeUi( self ):
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self._completer = None
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.disconnect( self.Search_Database_lineEdit_OnTextChanged )
-		self.ui.Search_Database_comboBox.activated.disconnect( self.Search_Database_comboBox_OnActivated )
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect( self.Case_Insensitive_Matching_checkBox_OnStateChanged )
-		self.ui.Time_Low_timeEdit.timeChanged.disconnect( self.Time_Low_timeEdit_OnTimeChanged )
-		self.ui.Time_High_timeEdit.timeChanged.disconnect( self.Time_High_timeEdit_OnTimeChanged )
+		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.Search_Database_lineEdit_OnTextChanged)
+		self.ui.Search_Database_comboBox.activated.disconnect(self.Search_Database_comboBox_OnActivated)
+		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
+		self.ui.Time_Low_timeEdit.timeChanged.disconnect(self.Time_Low_timeEdit_OnTimeChanged)
+		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.Time_High_timeEdit_OnTimeChanged)
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget( Qt.DockWidgetArea( self._dockArea ), self.ui )
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
-	def removeWidget( self ):
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		LOGGER.debug( "> Removing '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget( self.ui )
-		self.ui.setParent( None )
+		self._container.removeDockWidget(self.ui)
+		self.ui.setParent(None)
 
 	@core.executionTrace
-	def Search_Database_lineEdit_OnTextChanged( self, text ):
+	def Search_Database_lineEdit_OnTextChanged(self, text):
 		'''
 		This Method Is Triggered When Search_Database_lineEdit Text Changes.
 		
@@ -569,7 +569,7 @@ class SearchDatabase( UiComponent ):
 		self.setSearchMatchingSets()
 
 	@core.executionTrace
-	def Search_Database_comboBox_OnActivated( self, index ):
+	def Search_Database_comboBox_OnActivated(self, index):
 		'''
 		This Method Is Triggered When Search_Database_comboBox Index Changes.
 		
@@ -579,7 +579,7 @@ class SearchDatabase( UiComponent ):
 		self.setSearchMatchingSets()
 
 	@core.executionTrace
-	def Case_Insensitive_Matching_checkBox_OnStateChanged( self, state ):
+	def Case_Insensitive_Matching_checkBox_OnStateChanged(self, state):
 		'''
 		This Method Is Triggered When Case_Insensitive_Matching_checkBox State Changes.
 		
@@ -589,29 +589,29 @@ class SearchDatabase( UiComponent ):
 		self.setSearchMatchingSets()
 
 	@core.executionTrace
-	def Time_Low_timeEdit_OnTimeChanged( self, time ):
+	def Time_Low_timeEdit_OnTimeChanged(self, time):
 		'''
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
 		
 		@param time: Current Time. ( QTime )
 		'''
 
-		self.ui.Time_Low_timeEdit.time() >= self.ui.Time_High_timeEdit.time() and self.ui.Time_Low_timeEdit.setTime( self.ui.Time_High_timeEdit.time().addSecs( -60 ) )
+		self.ui.Time_Low_timeEdit.time() >= self.ui.Time_High_timeEdit.time() and self.ui.Time_Low_timeEdit.setTime(self.ui.Time_High_timeEdit.time().addSecs(-60))
 		self.setTimeMatchingSets()
 
 	@core.executionTrace
-	def Time_High_timeEdit_OnTimeChanged( self, time ):
+	def Time_High_timeEdit_OnTimeChanged(self, time):
 		'''
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
 		
 		@param time: Current Time. ( QTime )
 		'''
 
-		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime( self.ui.Time_Low_timeEdit.time().addSecs( 60 ) )
+		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime(self.ui.Time_Low_timeEdit.time().addSecs(60))
 		self.setTimeMatchingSets()
 
 	@core.executionTrace
-	def setTimeMatchingSets( self ):
+	def setTimeMatchingSets(self):
 		'''
 		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser displaySets.
 		'''
@@ -623,46 +623,46 @@ class SearchDatabase( UiComponent ):
 		timeLow = self.ui.Time_Low_timeEdit.time()
 		timeHigh = self.ui.Time_High_timeEdit.time()
 
-		LOGGER.debug( "> Filtering Sets By Time Range From '{0}' To '{1}'.".format( timeLow, timeHigh ) )
+		LOGGER.debug("> Filtering Sets By Time Range From '{0}' To '{1}'.".format(timeLow, timeHigh))
 
 		filteredSets = []
 		for iblSet in iblSets :
 			if iblSet.time :
-				timeTokens = iblSet.time.split( ":" )
-				int( timeTokens[0] ) * 60 + int( timeTokens[1] ) >= timeLow.hour()* 60 + timeLow.minute() and int( timeTokens[0] ) * 60 + int( timeTokens[1] ) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append( iblSet )
+				timeTokens = iblSet.time.split(":")
+				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
-		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( filteredSets )]
+		displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(filteredSets)]
 
-		LOGGER.debug( "> Time Range Filtered Ibl Set(s) : '{0}'".format( ", ".join( [iblSet.name for iblSet in displaySets] ) ) )
+		LOGGER.debug("> Time Range Filtered Ibl Set(s) : '{0}'".format(", ".join([iblSet.name for iblSet in displaySets])))
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets
 			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.UserError )
-	def setSearchMatchingSets( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
+	def setSearchMatchingSets(self):
 		'''
 		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser displaySets.
 		'''
 
 		previousDisplaySets = self._coreDatabaseBrowser.displaySets
 
-		pattern = str( self.ui.Search_Database_lineEdit.text() )
+		pattern = str(self.ui.Search_Database_lineEdit.text())
 		currentField = self._databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
 
-		LOGGER.debug( "> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format( pattern, currentField ) )
+		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
 		try :
-			re.compile( pattern )
+			re.compile(pattern)
 		except :
-			raise foundations.exceptions.ProgrammingError( "{0} | Error While Compiling '{1}' Regex Pattern!".format( self.__class__.__name__, pattern ) )
+			raise foundations.exceptions.ProgrammingError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
-		self._completer.setModel( QStringListModel( sorted( [fieldValue for fieldValue in set( [getattr( iblSet, currentField ) for iblSet in previousDisplaySets] ) if re.search( pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 )] ) ) )
+		self._completer.setModel(QStringListModel(sorted([fieldValue for fieldValue in set([getattr(iblSet, currentField) for iblSet in previousDisplaySets]) if re.search(pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0)])))
 
-		displaySets = [displaySet for displaySet in set( self._coreCollectionsOutliner.getCollectionsSets() ).intersection( dbUtilities.common.filterIblSets( self._coreDb.dbSession, "{0}".format( str( pattern ) ), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0 ) )]
+		displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self._coreDb.dbSession, "{0}".format(str(pattern)), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0))]
 
-		LOGGER.debug( "> Pattern Filtered Ibl Set(s) : '{0}'".format( ", ".join( [iblSet.name for iblSet in displaySets] ) ) )
+		LOGGER.debug("> Pattern Filtered Ibl Set(s) : '{0}'".format(", ".join([iblSet.name for iblSet in displaySets])))
 
 		if previousDisplaySets != displaySets :
 			self._coreDatabaseBrowser.displaySets = displaySets

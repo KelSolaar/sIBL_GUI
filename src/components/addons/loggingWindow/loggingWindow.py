@@ -73,18 +73,18 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class LoggingWindow( UiComponent ):
+class LoggingWindow(UiComponent):
 	'''
 	This Class Is The LoggingWindow Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -92,9 +92,9 @@ class LoggingWindow( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -113,7 +113,7 @@ class LoggingWindow( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -123,27 +123,27 @@ class LoggingWindow( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def dockArea( self ):
+	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
 
@@ -153,27 +153,27 @@ class LoggingWindow( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
 		'''
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
 		'''
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -183,27 +183,27 @@ class LoggingWindow( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def timer( self ):
+	def timer(self):
 		'''
 		This Method Is The Property For The _timer Attribute.
 
@@ -213,27 +213,27 @@ class LoggingWindow( UiComponent ):
 		return self._timer
 
 	@timer.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timer(self, value):
 		'''
 		This Method Is The Setter Method For The _timer Attribute.
 
 		@param value: Attribute Value. ( QTimer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timer" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("timer"))
 
 	@timer.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timer( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timer(self):
 		'''
 		This Method Is The Deleter Method For The _timer Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timer" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("timer"))
 
 	@property
-	def timerCycleMultiplier( self ):
+	def timerCycleMultiplier(self):
 		'''
 		This Method Is The Property For The _timerCycleMultiplier Attribute.
 
@@ -243,50 +243,50 @@ class LoggingWindow( UiComponent ):
 		return self._timerCycleMultiplier
 
 	@timerCycleMultiplier.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timerCycleMultiplier(self, value):
 		'''
 		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
 
 		@param value: Attribute Value. ( Float )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "timerCycleMultiplier" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("timerCycleMultiplier"))
 
 	@timerCycleMultiplier.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def timerCycleMultiplier( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timerCycleMultiplier(self):
 		'''
 		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "timerCycleMultiplier" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("timerCycleMultiplier"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
 		self._container = container
 
 		self._activate()
 
 	@core.executionTrace
-	def deactivate( self ):
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self._container = None
@@ -294,76 +294,76 @@ class LoggingWindow( UiComponent ):
 		self._deactivate()
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._timer = QTimer( self )
-		self._timer.start( Constants.defaultTimerCycle * self._timerCycleMultiplier )
+		self._timer = QTimer(self)
+		self._timer.start(Constants.defaultTimerCycle * self._timerCycleMultiplier)
 
-		self.ui.Logging_textEdit.setReadOnly( True )
-		self.ui.Logging_textEdit.setWordWrapMode( QTextOption.NoWrap )
-		self.ui.Logging_textEdit.setFontFamily( "Courier" )
+		self.ui.Logging_textEdit.setReadOnly(True)
+		self.ui.Logging_textEdit.setWordWrapMode(QTextOption.NoWrap)
+		self.ui.Logging_textEdit.setFontFamily("Courier")
 		self.setLoggingTextEdit()
 
 		# Signals / Slots.
-		self._timer.timeout.connect( self.updateLoggingTextEdit )
+		self._timer.timeout.connect(self.updateLoggingTextEdit)
 
 	@core.executionTrace
-	def uninitializeUi( self ):
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self._timer.timeout.disconnect( self.updateLoggingTextEdit )
+		self._timer.timeout.disconnect(self.updateLoggingTextEdit)
 
 		self._timer.stop()
 		self._timer = None
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget( Qt.DockWidgetArea( self._dockArea ), self.ui )
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
-	def removeWidget( self ):
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		LOGGER.debug( "> Removing '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget( self.ui )
-		self.ui.setParent( None )
+		self._container.removeDockWidget(self.ui)
+		self.ui.setParent(None)
 
 	# @core.executionTrace
-	def setLoggingTextEdit( self ) :
+	def setLoggingTextEdit(self) :
 		'''
 		This Method Sets The Logging TextEdit.
 		'''
 
-		self.ui.Logging_textEdit.setPlainText( QString( "".join( self._container.loggingSessionHandlerStream.stream ) ) )
-		self.ui.Logging_textEdit.moveCursor( QTextCursor.End )
+		self.ui.Logging_textEdit.setPlainText(QString("".join(self._container.loggingSessionHandlerStream.stream)))
+		self.ui.Logging_textEdit.moveCursor(QTextCursor.End)
 		self.ui.Logging_textEdit.ensureCursorVisible()
 
 	# @core.executionTrace
-	def updateLoggingTextEdit( self ) :
+	def updateLoggingTextEdit(self) :
 		'''
 		This Method Updates The Logging TextEdit.
 		'''
 
-		memoryHandlerStack = len( self._container.loggingSessionHandlerStream.stream )
+		memoryHandlerStack = len(self._container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStack != self._memoryHandlerStack :
 			self.setLoggingTextEdit()
 			self._memoryHandlerStack = memoryHandlerStack
