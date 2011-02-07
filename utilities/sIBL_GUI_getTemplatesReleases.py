@@ -63,13 +63,13 @@ from foundations.parser import Parser
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler( sys.stdout )
-LOGGING_CONSOLE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
+LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
+LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_FORMATTER)
+LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
-core.setVerbosityLevel( 3 )
+core.setVerbosityLevel(3)
 
 TEMPLATES_PATH = "/Users/KelSolaar/Documents/Developement/sIBL_GUI/src/templates"
 TEMPLATES_EXTENSION = "sIBLT"
@@ -84,12 +84,12 @@ def getTemplatesReleases():
 
 	walker = Walker()
 	walker.root = TEMPLATES_PATH
-	templates = walker.walk( ( TEMPLATES_EXTENSION, ), ( "\._", ) )
-	for template in sorted( templates.keys() ) :
-		parser = Parser( templates[template] )
+	templates = walker.walk((TEMPLATES_EXTENSION,), ("\._",))
+	for template in sorted(templates.keys()) :
+		parser = Parser(templates[template])
 		parser.read() and parser.parse()
 
-		LOGGER.info( "{0} | '{1}' : '{2}' !".format( getTemplatesReleases.__name__, template, foundations.parser.getAttributeCompound( "Release", parser.getValue( "Release", "Template", encode = True ) ).value ) )
+		LOGGER.info("{0} | '{1}' : '{2}' !".format(getTemplatesReleases.__name__, template, foundations.parser.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value))
 
 if __name__ == '__main__':
 	getTemplatesReleases()

@@ -61,18 +61,18 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler( sys.stdout )
-LOGGING_CONSOLE_HANDLER.setFormatter( core.LOGGING_FORMATTER )
-LOGGER.addHandler( LOGGING_CONSOLE_HANDLER )
+LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
+LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_FORMATTER)
+LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
-core.setVerbosityLevel( 3 )
+core.setVerbosityLevel(3)
 
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def textileToHtml( fileIn, fileOut, title ):
+def textileToHtml(fileIn, fileOut, title):
 	'''
 	This Definition Outputs A Textile File To HTML.
 		
@@ -81,14 +81,14 @@ def textileToHtml( fileIn, fileOut, title ):
 	@param title: HTML File Title. ( String )
 	'''
 
-	LOGGER.info( "{0} | Converting '{1}' Textile File To HTML !".format( textileToHtml.__name__, fileIn ) )
-	file = File( fileIn )
+	LOGGER.info("{0} | Converting '{1}' Textile File To HTML !".format(textileToHtml.__name__, fileIn))
+	file = File(fileIn)
 	file.read()
 
 	output = []
-	output.append( "<html>\n\t<head>\n" )
-	output.append( "\t\t<title>{0}</title>\n".format( title ) )
-	output.append( 
+	output.append("<html>\n\t<head>\n")
+	output.append("\t\t<title>{0}</title>\n".format(title))
+	output.append(
 			"""\t\t<style type="text/css">
 	            body {
 	                text-align: justify;
@@ -113,18 +113,18 @@ def textileToHtml( fileIn, fileOut, title ):
 	                text-decoration: underline;
 	                color: rgb(50, 85, 125);
 	            }
-	        </style>\n""" )
-	output.append( "\t</head>\n\t<body>\n\t" )
-	output.append( "\n\t".join( [line for line in textile.textile( "".join( file.content ) ).split( "\n" ) if line] ) )
-	output.append( "\t\t</span>\n" )
-	output.append( "\t</body>\n</html>" )
+	        </style>\n""")
+	output.append("\t</head>\n\t<body>\n\t")
+	output.append("\n\t".join([line for line in textile.textile("".join(file.content)).split("\n") if line]))
+	output.append("\t\t</span>\n")
+	output.append("\t</body>\n</html>")
 
-	file = File( fileOut )
+	file = File(fileOut)
 	file.content = output
 	file.write()
 
 if __name__ == '__main__':
-	textileToHtml( sys.argv[1], sys.argv[2], sys.argv[3] )
+	textileToHtml(sys.argv[1], sys.argv[2], sys.argv[3])
 
 #***********************************************************************************************
 #***	Python End
