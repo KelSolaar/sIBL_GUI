@@ -148,7 +148,7 @@ def toWindowsPath( path ):
 	@return: Converted Path. ( String )
 	'''
 
-	return path.replace( "/", "\\", )
+	return path.replace( "/", "\\" )
 
 @core.executionTrace
 def isEmail( datas ):
@@ -177,21 +177,6 @@ def isWebsite( datas ):
 		return True
 	else :
 		return False
-
-@core.executionTrace
-def getFormatedUrl( url ):
-	'''
-	This Definition Gets A Formated Local Url.
-
-	@param url: Url To Format. ( String )	
-	@return: Formated Url. ( String )
-	'''
-
-	prefix = "file:///"
-	if platform.system() == "Windows" or platform.system() == "Microsoft" and url.startswith( "//" ):
-		prefix = "file:"
-		url = url.replace( "/", "\\" )
-	return "{0}{1}".format( prefix, url )
 
 #***********************************************************************************************
 #***	Python End
