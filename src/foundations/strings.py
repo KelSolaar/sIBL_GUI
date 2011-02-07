@@ -112,7 +112,9 @@ def getVersionRank( version ):
 	'''
 
 	tokens = version.split( "." )
-	return sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
+	rank = sum( [int( 10 ** ( i - 1 ) ) * int( tokens[-i] ) for i in range( len( tokens ), 0, -1 )] )
+	LOGGER.debug( "> Rank : '{0}'.".format( rank ) )
+	return rank
 
 @core.executionTrace
 def getNormalizedPath( path ):
@@ -124,9 +126,13 @@ def getNormalizedPath( path ):
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		return os.path.normpath( path ).replace( "\\", "\\\\" )
+		path = os.path.normpath( path ).replace( "\\", "\\\\" )
+		LOGGER.debug( "> Path : '{0}', Normalized Path.".format( path ) )
+		return path
 	else :
-		return os.path.normpath( path )
+		path = os.path.normpath( path )
+		LOGGER.debug( "> Path : '{0}', Normalized Path.".format( path ) )
+		return path
 
 @core.executionTrace
 def toUnixPath( path ):
@@ -137,7 +143,9 @@ def toUnixPath( path ):
 	@return: Converted Path. ( String )
 	'''
 
-	return path.replace( "\\", "/" )
+	path = path.replace( "\\", "/" )
+	LOGGER.debug( "> Path : '{0}', Unix Path.".format( path ) )
+	return path
 
 @core.executionTrace
 def toWindowsPath( path ):
@@ -147,8 +155,9 @@ def toWindowsPath( path ):
 	@param url: Path To Convert. ( String )	
 	@return: Converted Path. ( String )
 	'''
-
-	return path.replace( "/", "\\" )
+	path = path.replace( "/", "\\" )
+	LOGGER.debug( "> Path : '{0}', Windows Path.".format( path ) )
+	return path
 
 @core.executionTrace
 def isEmail( datas ):
@@ -160,8 +169,10 @@ def isEmail( datas ):
 	'''
 
 	if re.match( "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas ) :
+		LOGGER.debug( "> {0}' Is Matched As Email.".format( datas ) )
 		return True
 	else :
+		LOGGER.debug( "> {0}' Is Not Matched As Email.".format( datas ) )
 		return False
 
 @core.executionTrace
@@ -174,8 +185,10 @@ def isWebsite( datas ):
 	'''
 
 	if re.match( "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas ) :
+		LOGGER.debug( "> {0}' Is Matched As Website.".format( datas ) )
 		return True
 	else :
+		LOGGER.debug( "> {0}' Is Not Matched As Website.".format( datas ) )
 		return False
 
 #***********************************************************************************************
