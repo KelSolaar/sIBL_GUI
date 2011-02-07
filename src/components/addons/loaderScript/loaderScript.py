@@ -93,7 +93,7 @@ class LoaderScript( UiComponent ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__( self, name = None, uiFile = None ):
 		'''
 		This Method Initializes The Class.
 		
@@ -103,7 +103,7 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__( self, name = name, uiFile = uiFile )
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -128,6 +128,7 @@ class LoaderScript( UiComponent ):
 		self._overrideKeys = {}
 
 		self._defaultStringSeparator = "|"
+		self._commentMarker = "#"
 		self._unnamedLightName = "Unnamed_Light"
 
 	#***************************************************************************************
@@ -500,6 +501,39 @@ class LoaderScript( UiComponent ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "defaultStringSeparator" ) )
 
 	@property
+	def commentMarker( self ):
+		'''
+		This Method Is The Property For The _commentMarker Attribute.
+
+		@return: self._commentMarker. ( String )
+		'''
+
+		return self._commentMarker
+
+	@commentMarker.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def commentMarker( self, value ):
+		'''
+		This Method Is The Setter Method For The _commentMarker Attribute.
+	
+		@param value: Attribute Value. ( String )
+		'''
+
+		if value :
+			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "commentMarker", value )
+			assert not re.search( "\w", value ), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format( "commentMarker", value )
+		self._commentMarker = value
+
+	@commentMarker.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def commentMarker( self ):
+		'''
+		This Method Is The Deleter Method For The _commentMarker Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "commentMarker" ) )
+
+	@property
 	def unnamedLightName( self ):
 		'''
 		This Method Is The Property For The _unnamedLightName Attribute.
@@ -646,7 +680,7 @@ class LoaderScript( UiComponent ):
 			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
 			LOGGER.info( "{0} | Starting Remote Connection !".format( self.__class__.__name__ ) )
 			templateParser = Parser( selectedTemplate._datas.path )
-			templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
+			templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 			connectionType = foundations.parser.getAttributeCompound( "ConnectionType", templateParser.getValue( "ConnectionType", self._templateRemoteConnectionSection ) )
 			loaderScriptPath = strings.getNormalizedPath( os.path.join( self._ioDirectory, selectedTemplate._datas.outputScript ) )
 			if connectionType.value == "Socket" :
@@ -691,7 +725,7 @@ class LoaderScript( UiComponent ):
 
 			if os.path.exists( template._datas.path ) :
 				templateParser = Parser( template._datas.path )
-				templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
+				templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 
 				if self._templateRemoteConnectionSection in templateParser.sections :
 					LOGGER.debug( "> {0}' Section Found.".format( self._templateRemoteConnectionSection ) )
@@ -813,15 +847,15 @@ class LoaderScript( UiComponent ):
 
 		LOGGER.debug( "> Parsing Template File : '{0}'.".format( template ) )
 		templateParser = Parser( template )
-		templateParser.read() and templateParser.parse( rawSections=( self._templateScriptSection ) )
+		templateParser.read() and templateParser.parse( rawSections = ( self._templateScriptSection ) )
 		templateSections = dict.copy( templateParser.sections )
 
 		for attribute, value in dict.copy( templateSections[self._templateIblAttributesSection] ).items():
-			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace( attribute, rootOnly=True )] = value
+			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace( attribute, rootOnly = True )] = value
 			del templateSections[self._templateIblAttributesSection][attribute]
 
 		LOGGER.debug( "> Binding Templates File Attributes." )
-		bindedAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in templateSections.keys() if section not in ( self._templateScriptSection ) for attribute, value in templateSections[section].items() ] )
+		bindedAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in templateSections.keys() if section not in ( self._templateScriptSection ) for attribute, value in templateSections[section].items() if not foundations.parser.removeNamespace( section ).startswith( self._commentMarker ) ] )
 
 		LOGGER.debug( "> Parsing Ibl Set File : '{0}'.".format( iblSet ) )
 		iblSetParser = Parser( iblSet )
@@ -829,7 +863,7 @@ class LoaderScript( UiComponent ):
 		iblSetSections = dict.copy( iblSetParser.sections )
 
 		LOGGER.debug( "> Flattening Ibl Set File Attributes." )
-		flattenedIblAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items() ] )
+		flattenedIblAttributes = dict( [( attribute, foundations.parser.getAttributeCompound( attribute, value ) ) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items() if not foundations.parser.removeNamespace( section ).startswith( self._commentMarker ) ] )
 
 		for attribute in flattenedIblAttributes :
 			if attribute in bindedAttributes.keys() :

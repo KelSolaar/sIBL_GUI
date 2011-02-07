@@ -5,6 +5,7 @@ h2=. Change Log
 h3. 3.1.1 - Stable
 
 * Fixed "Add Content" broken context menu entry of "Collection Outliner" component.
+* Fixed a code regression preventing export of Ibl Sets with comments.
 
 h3. 3.1.0 - Stable
 

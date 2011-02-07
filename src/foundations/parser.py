@@ -3,7 +3,7 @@
 
 #***********************************************************************************************
 #
-# Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
+# Copyright (C) 2010 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
 #
 #***********************************************************************************************
 #
@@ -99,7 +99,7 @@ class Parser( io.File ):
 	'''
 
 	@core.executionTrace
-	def __init__( self, file = None, splitter = "=", namespaceSplitter = "|", commentLimiter = ";", rawSectionContentIdentifier = "_rawSectionContent" ):
+	def __init__( self, file = None, splitter = "=", namespaceSplitter = "|", commentLimiter = ";", commentMarker = "#", rawSectionContentIdentifier = "_rawSectionContent" ):
 		'''
 		This Method Initializes The Class.
 
@@ -121,6 +121,8 @@ class Parser( io.File ):
 		self.namespaceSplitter = namespaceSplitter
 		self._commentLimiter = None
 		self.commentLimiter = commentLimiter
+		self._commentMarker = None
+		self.commentMarker = commentMarker
 		self._rawSectionContentIdentifier = None
 		self.rawSectionContentIdentifier = rawSectionContentIdentifier
 
@@ -232,6 +234,39 @@ class Parser( io.File ):
 		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "commentLimiter" ) )
 
 	@property
+	def commentMarker( self ):
+		'''
+		This Method Is The Property For The _commentMarker Attribute.
+
+		@return: self._commentMarker. ( String )
+		'''
+
+		return self._commentMarker
+
+	@commentMarker.setter
+	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
+	def commentMarker( self, value ):
+		'''
+		This Method Is The Setter Method For The _commentMarker Attribute.
+	
+		@param value: Attribute Value. ( String )
+		'''
+
+		if value :
+			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "commentMarker", value )
+			assert not re.search( "\w", value ), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format( "commentMarker", value )
+		self._commentMarker = value
+
+	@commentMarker.deleter
+	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
+	def commentMarker( self ):
+		'''
+		This Method Is The Deleter Method For The _commentMarker Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "commentMarker" ) )
+
+	@property
 	def rawSectionContentIdentifier( self ):
 		'''
 		This Method Is The Property For The _rawSectionContentIdentifier Attribute.
@@ -333,12 +368,13 @@ class Parser( io.File ):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.FileStructureError )
-	def parse( self, orderedDictionary = True, rawSections = None ):
+	def parse( self, orderedDictionary = True, rawSections = None, stripComments = True ):
 		'''
 		This Method Process The File Content To Extract The Sections As A Dictionary.
 
 		@param orderedDictionary: Parser Data Is Stored In Ordered Dictionaries. ( Boolean )
 		@param rawSections: Section Is Not Parsed. ( Boolean )
+		@param stripComments: Comments Are Stripped. ( Boolean )
 		@return: Parsing Success. ( Boolean )
 		'''
 
@@ -368,14 +404,15 @@ class Parser( io.File ):
 							if re.search( "^ *\n", line ) or re.search( "^ *\r\n", line ) :
 								continue
 							else :
-								if line.startswith( self._commentLimiter ):
-									self._comments[section + self._namespaceSplitter + "#" + str( commentId )] = {"id" : commentId, "content" : line.strip( self._commentLimiter )}
+								if line.startswith( self._commentLimiter ) and not stripComments:
+									self._comments[section + self._namespaceSplitter + self._commentMarker + str( commentId )] = {"id" : commentId, "content" : line.strip( self._commentLimiter )}
 									commentId += 1
 								elif self._splitter in line:
 									lineTokens = line.split( self._splitter )
 									attributes[section + self._namespaceSplitter + lineTokens[0].strip()] = lineTokens[1].strip().strip( "\"" )
 						self._sections[section] = attributes
 
+				LOGGER.debug( "> Sections : '{0}'.".format( self._sections ) )
 				LOGGER.debug( "> '{0}' File Parsing Done !".format( self._file ) )
 				return True
 
@@ -431,7 +468,9 @@ class Parser( io.File ):
 		LOGGER.debug( "> Getting Section '{0}' Attributes.".format( section ) )
 
 		if self.sectionsExists( section ) :
-			return useNamespace and self._sections[section] or dict( [( removeNamespace( attribute ), self._sections[section][attribute] ) for attribute in self._sections[section].keys()] )
+			attributes = useNamespace and self._sections[section] or dict( [( removeNamespace( attribute ), self._sections[section][attribute] ) for attribute in self._sections[section].keys()] )
+			LOGGER.debug( "> Attributes : '{0}'.".format( attributes ) )
+			return attributes
 		else :
 			if raise_ :
 				raise KeyError( "'{0}' Section Doesn't Exists In '{1}' Sections !".format( section, self._file ) )
@@ -455,8 +494,7 @@ class Parser( io.File ):
 				value = self._sections[section][attribute]
 			elif setNamespace( section, attribute ) in self._sections[section].keys():
 				value = self._sections[section][setNamespace( section, attribute )]
-				LOGGER.debug( "> '{0}' Attribute Value : '{1}'.".format( attribute, value ) )
-
+			LOGGER.debug( "> Attribute : '{0}', Value : '{1}'.".format( attribute, value ) )
 			value = encode and unicode( value, Constants.encodingFormat, Constants.encodingError ) or value
 			return value
 
@@ -471,7 +509,9 @@ def setNamespace( section, attribute, namespaceSplitter = "|" ):
 	@return: Namespaced Attribute. ( String )
 	'''
 
-	return str( section + namespaceSplitter + attribute )
+	longName = str( section + namespaceSplitter + attribute )
+	LOGGER.debug( "> Section : '{0}', Attribute : '{1}', Long Name : '{2}'.".format( section, attribute, longName ) )
+	return longName
 
 @core.executionTrace
 def getNamespace( attribute, namespaceSplitter = "|" ):
@@ -485,9 +525,12 @@ def getNamespace( attribute, namespaceSplitter = "|" ):
 
 	attributeTokens = attribute.split( namespaceSplitter )
 	if len( attributeTokens ) == 1:
+		LOGGER.debug( "> Attribute : '{0}', Namespace : '{1}'.".format( attribute, Constants.nullObject ) )
 		return None
 	else :
-		return attributeTokens[0:-1]
+		namespace = attributeTokens[0:-1]
+		LOGGER.debug( "> Attribute : '{0}', Namespace : '{1}'.".format( attribute, namespace ) )
+		return namespace
 
 @core.executionTrace
 def removeNamespace( attribute, namespaceSplitter = "|", rootOnly = False ):
@@ -501,7 +544,9 @@ def removeNamespace( attribute, namespaceSplitter = "|", rootOnly = False ):
 	'''
 
 	attributeTokens = attribute.split( namespaceSplitter )
-	return rootOnly and namespaceSplitter.join( attributeTokens[1:] ) or attributeTokens[len( attributeTokens ) - 1]
+	strippedAttribute = rootOnly and namespaceSplitter.join( attributeTokens[1:] ) or attributeTokens[len( attributeTokens ) - 1]
+	LOGGER.debug( "> Attribute : '{0}', Stripped Attribute : '{1}'.".format( attribute, strippedAttribute ) )
+	return strippedAttribute
 
 @core.executionTrace
 def getAttributeCompound( attribute, value, splitter = "|", bindingIdentifier = "@" ):
@@ -514,6 +559,8 @@ def getAttributeCompound( attribute, value, splitter = "|", bindingIdentifier = 
 	@param bindingIdentifier: Binding Identifier. ( String )
 	@return: Attribute Compound. ( AttributeObject )
 	'''
+
+	LOGGER.debug( "> Attribute : '{0}', Value : '{1}'.".format( attribute, value ) )
 
 	if not value :
 		return AttributeCompound( name = attribute, value = None, link = None, type = None, alias = None )
