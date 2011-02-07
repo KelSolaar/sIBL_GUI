@@ -1399,7 +1399,7 @@ class TemplatesOutliner( UiComponent ):
 		if selectedTemplates :
 			for template in selectedTemplates :
 				LOGGER.info( "{0} | Opening '{1}' Template Help File : '{2}'.".format( self.__class__.__name__, template._datas.name, template._datas.helpFile ) )
-				QDesktopServices.openUrl( QUrl( strings.getFormatedUrl( template._datas.helpFile ) ) )
+				QDesktopServices.openUrl( QUrl.fromLocalFile( template._datas.helpFile ) )
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_filterTemplatesVersionsAction( self, checked ):
@@ -1448,7 +1448,7 @@ class TemplatesOutliner( UiComponent ):
 					<b>Comment :</b> {6}
 					</p>
 					<p>
-					<b>Help File :</b> <a href="file://{7}"><span style=" text-decoration: underline; color:#000000;">Template Manual</span></a>
+					<b>Help File :</b> <a href="{7}"><span style=" text-decoration: underline; color:#000000;">Template Manual</span></a>
 					</p>
 					</p>
 					"""
@@ -1464,7 +1464,7 @@ class TemplatesOutliner( UiComponent ):
 									template._datas.url,
 									template._datas.outputScript,
 									template._datas.comment,
-									template._datas.helpFile
+									QUrl.fromLocalFile( template._datas.helpFile ).toString()
 									) )
 		else :
 			content.append( self._Template_Informations_textBrowser_defaultText )
@@ -1481,9 +1481,7 @@ class TemplatesOutliner( UiComponent ):
 		@param url: Url To Explore. ( QUrl )
 		'''
 
-		if not strings.isEmail( url.path() ) and not strings.isWebsite( url.toString() ) :
-			url = strings.getFormatedUrl( url.path() )
-		QDesktopServices.openUrl( QUrl( url ) )
+		QDesktopServices.openUrl( url )
 
 	@core.executionTrace
 	def databaseChanged( self ):
