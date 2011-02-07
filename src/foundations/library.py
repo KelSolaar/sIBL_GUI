@@ -70,30 +70,30 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class LibraryHook( core.Structure ):
+class LibraryHook(core.Structure):
 	'''
 	This Is The LibraryHook Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, **kwargs ):
+	def __init__(self, **kwargs):
 		'''
 		This Method Initializes The Class.
 
 		@param kwargs: name, affixe, argumentsType, returnValue. ( Key / Value Pairs )
 		'''
 
-		core.Structure.__init__( self, **kwargs )
+		core.Structure.__init__(self, **kwargs)
 
 		# --- Setting Class Attributes. ---
-		self.__dict__.update( kwargs )
+		self.__dict__.update(kwargs)
 
-class Library( object ):
+class Library(object):
 	'''
 	This Class Provides Methods To Bind A C / C++ Library.
 	'''
@@ -102,12 +102,12 @@ class Library( object ):
 	_libraryInstantiated = False
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft" :
-		_callback = ctypes.WINFUNCTYPE( ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p )
+		_callback = ctypes.WINFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
 	else:
-		_callback = ctypes.CFUNCTYPE( ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p )
+		_callback = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
 
 	@core.executionTrace
-	def __new__( self, *args, **kwargs ):
+	def __new__(self, *args, **kwargs):
 		'''
 		This Method Is The Constructor Of The Class.
 		
@@ -116,12 +116,12 @@ class Library( object ):
 		'''
 
 		if not self._libraryInstance :
-			self._libraryInstance = object.__new__( self )
+			self._libraryInstance = object.__new__(self)
 		return self._libraryInstance
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.LibraryInitializationError )
-	def __init__( self, libraryPath, functions ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryInitializationError)
+	def __init__(self, libraryPath, functions):
 		'''
 		This Method Initializes The Class.
 		
@@ -132,7 +132,7 @@ class Library( object ):
 		if self._libraryInstantiated :
 			return
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		self._libraryInstantiated = True
 
@@ -151,9 +151,9 @@ class Library( object ):
 			loadingFunction = ctypes.cdll
 
 		if self.libraryPath :
-			self._library = loadingFunction.LoadLibrary( libraryPath )
+			self._library = loadingFunction.LoadLibrary(libraryPath)
 		else :
-			raise foundations.exceptions.LibraryInitializationError, "'{0}' Library Not Found !".format( self.__class__.__name__ )
+			raise foundations.exceptions.LibraryInitializationError, "'{0}' Library Not Found !".format(self.__class__.__name__)
 
 		self.bindLibrary()
 
@@ -161,7 +161,7 @@ class Library( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def libraryPath( self ):
+	def libraryPath(self):
 		'''
 		This Method Is The Property For The _libraryPath Attribute.
 		
@@ -171,8 +171,8 @@ class Library( object ):
 		return self._libraryPath
 
 	@libraryPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def libraryPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def libraryPath(self, value):
 		'''
 		This Method Is The Setter Method For The _libraryPath Attribute.
 		
@@ -180,21 +180,21 @@ class Library( object ):
 		'''
 
 		if value :
-			assert type( value ) in ( str, unicode ), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format( "libraryPath", value )
-			assert os.path.exists( value ), "'{0}' Attribute : '{1}' File Doesn't Exists !".format( "libraryPath", value )
+			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("libraryPath", value)
+			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("libraryPath", value)
 		self._libraryPath = value
 
 	@libraryPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def libraryPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def libraryPath(self):
 		'''
 		This Method Is The Deleter Method For The _libraryPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "libraryPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("libraryPath"))
 
 	@property
-	def functions( self ):
+	def functions(self):
 		'''
 		This Method Is The Property For The _functions Attribute.
 		
@@ -204,8 +204,8 @@ class Library( object ):
 		return self._functions
 
 	@functions.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def functions( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def functions(self, value):
 		'''
 		This Method Is The Setter Method For The _functions Attribute.
 		
@@ -213,20 +213,20 @@ class Library( object ):
 		'''
 
 		if value :
-			assert type( value ) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format( "functions", value )
+			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("functions", value)
 		self._functions = value
 
 	@functions.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def functions( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def functions(self):
 		'''
 		This Method Is The Deleter Method For The _functions Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "functions" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("functions"))
 
 	@property
-	def library( self ):
+	def library(self):
 		'''
 		This Method Is The Property For The _library Attribute.
 		
@@ -236,8 +236,8 @@ class Library( object ):
 		return self._library
 
 	@library.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def library( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def library(self, value):
 		'''
 		This Method Is The Setter Method For The _library Attribute.
 		
@@ -247,45 +247,45 @@ class Library( object ):
 		self._library = value
 
 	@library.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def library( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def library(self):
 		'''
 		This Method Is The Deleter Method For The _library Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "library" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("library"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler( None, False, AttributeError )
-	def bindLibrary( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, AttributeError)
+	def bindLibrary(self):
 		'''
 		This Method Bind The Library.
 		'''
 
 		for function in self._functions:
-			self.bindFunction( function )
+			self.bindFunction(function)
 
 	@core.executionTrace
-	def bindFunction( self, function ):
+	def bindFunction(self, function):
 		'''
 		This Method Bind A Function.
 		
 		@param function: Function To Bind. ( Tuple )
 		'''
 
-		LOGGER.debug( "> Binding '{0}' Library '{1}' Function.".format( self.__class__.__name__, function.name ) )
+		LOGGER.debug("> Binding '{0}' Library '{1}' Function.".format(self.__class__.__name__, function.name))
 
 		returnType = function.returnValue
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft" :
-			functionObject = getattr( self._library, '_{0}{1}'.format( function.name, function.affixe ) )
+			functionObject = getattr(self._library, '_{0}{1}'.format(function.name, function.affixe))
 		else:
-			functionObject = getattr( self._library, function.name )
+			functionObject = getattr(self._library, function.name)
 
-		setattr( self, function.name, functionObject )
+		setattr(self, function.name, functionObject)
 
 		if returnType :
 			functionObject.restype = returnType

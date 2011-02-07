@@ -53,7 +53,7 @@ import sys
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def recursiveRemove( rootDirectory, pattern ):
+def recursiveRemove(rootDirectory, pattern):
 	'''
 	This Definition Recursively Deletes The Matching Items.
 		
@@ -61,27 +61,27 @@ def recursiveRemove( rootDirectory, pattern ):
 	@param pattern: Pattern To Match. ( String )
 	'''
 
-	if os.path.exists( rootDirectory ):
-		for root, dirs, files in os.walk( rootDirectory ):
+	if os.path.exists(rootDirectory):
+		for root, dirs, files in os.walk(rootDirectory):
 			for item in files:
-				itemPath = os.path.join( root, item ).replace( "\\", "/" )
-				if pattern in str( item )  :
-					remove( itemPath )
+				itemPath = os.path.join(root, item).replace("\\", "/")
+				if pattern in str(item)  :
+					remove(itemPath)
 
-def remove( item ):
+def remove(item):
 	'''
 	This Definition Deletes Provided Item.
 	@param item: Item To Delete. ( String )
 	'''
 
-	print( "remove | Removing : '%s'" % item )
+	print("remove | Removing : '%s'" % item)
 	try :
-		os.remove( item )
+		os.remove(item)
 	except:
-		print( "remove | '%s' Remove Failed !" % item )
+		print("remove | '%s' Remove Failed !" % item)
 
 if __name__ == '__main__':
-	recursiveRemove( sys.argv[1], sys.argv[2] )
+	recursiveRemove(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
 #***	Python End

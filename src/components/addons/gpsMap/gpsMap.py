@@ -76,28 +76,28 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Map( QWebView ):
+class Map(QWebView):
 	'''
 	This Class Is The QWebView Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, parent=None ):
+	def __init__(self, parent=None):
 		'''
 		This Method Initializes The Class.
 		
 		@param parent: Widget Parent. ( QObject )
 		'''
 
-		QWebView.__init__( self, parent )
+		QWebView.__init__(self, parent)
 
 	@core.executionTrace
-	def addMarker( self, coordinates, title, icon, content ):
+	def addMarker(self, coordinates, title, icon, content):
 		'''
 		This Method Adds A Marker To The Map.
 		
@@ -107,61 +107,61 @@ class Map( QWebView ):
 		@param content: Marker Popup Window Content. ( String )
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format( title, coordinates ) )
+		LOGGER.debug("> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format(title, coordinates))
 
-		self.page().mainFrame().evaluateJavaScript( "addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format( coordinates[0], coordinates[1], title, icon, content ) )
+		self.page().mainFrame().evaluateJavaScript("addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(coordinates[0], coordinates[1], title, icon, content))
 
 	@core.executionTrace
-	def removeMarkers( self ):
+	def removeMarkers(self):
 		'''
 		This Method Removes The Map Markers.
 		'''
 
-		LOGGER.debug( "> Removing GPS Map Markers." )
+		LOGGER.debug("> Removing GPS Map Markers.")
 
-		self.page().mainFrame().evaluateJavaScript( "removeMarkers()" )
+		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
 
 	@core.executionTrace
-	def setCenter( self ):
+	def setCenter(self):
 		'''
 		This Method Center The Map.
 		'''
 
-		LOGGER.debug( "> Centering GPS Map." )
+		LOGGER.debug("> Centering GPS Map.")
 
-		self.page().mainFrame().evaluateJavaScript( "setCenter()" )
+		self.page().mainFrame().evaluateJavaScript("setCenter()")
 
 	@core.executionTrace
-	def setMapType( self, mapTypeId ):
+	def setMapType(self, mapTypeId):
 		'''
 		This Method Sets The Map Type.
 		
 		@param mapTypeId: GPS Map Type. ( String )
 		'''
 
-		LOGGER.debug( "> Setting GPS Map Type To '{0}'.".format( mapTypeId ) )
+		LOGGER.debug("> Setting GPS Map Type To '{0}'.".format(mapTypeId))
 
-		self.page().mainFrame().evaluateJavaScript( "setMapType(\"{0}\")".format( mapTypeId ) )
+		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
 
 	@core.executionTrace
-	def setZoom( self, type ):
+	def setZoom(self, type):
 		'''
 		This Method Sets The Map Zoom.
 		
 		@param type: Zoom Type. ( String )
 		'''
 
-		LOGGER.debug( "> Zooming '{0}' GPS Map.".format( type ) )
+		LOGGER.debug("> Zooming '{0}' GPS Map.".format(type))
 
-		self.page().mainFrame().evaluateJavaScript( "setZoom(\"{0}\")".format( type ) )
+		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
 
-class GpsMap( UiComponent ):
+class GpsMap(UiComponent):
 	'''
 	This Class Is The GpsMap Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, name=None, uiFile=None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -169,9 +169,9 @@ class GpsMap( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name=name, uiFile=uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -181,7 +181,7 @@ class GpsMap( UiComponent ):
 		self._uiZoomInIcon = "Zoom_In.png"
 		self._uiZoomOutIcon = "Zoom_Out.png"
 		self._gpsMapHtmlFile = "Bing_Maps.html"
-		self._gpsMapBaseSize = QSize( 160, 100 )
+		self._gpsMapBaseSize = QSize(160, 100)
 		self._dockArea = 2
 
 		self._container = None
@@ -189,13 +189,13 @@ class GpsMap( UiComponent ):
 		self._coreDatabaseBrowser = None
 
 		self._map = None
-		self._mapTypeIds = ( ( "Auto", "MapTypeId.auto" ), ( "Aerial", "MapTypeId.aerial" ), ( "Road", "MapTypeId.road" ) )
+		self._mapTypeIds = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
 
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -205,27 +205,27 @@ class GpsMap( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def uiResources( self ):
+	def uiResources(self):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
 
@@ -235,27 +235,27 @@ class GpsMap( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self, value):
 		'''
 		This Method Is The Setter Method For The _uiResources Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
 
 	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self):
 		'''
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
 
 	@property
-	def uiZoomInIcon( self ):
+	def uiZoomInIcon(self):
 		'''
 		This Method Is The Property For The _uiZoomInIcon Attribute.
 
@@ -265,27 +265,27 @@ class GpsMap( UiComponent ):
 		return self._uiZoomInIcon
 
 	@uiZoomInIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiZoomInIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomInIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiZoomInIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiZoomInIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomInIcon"))
 
 	@uiZoomInIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiZoomInIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomInIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiZoomInIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiZoomInIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomInIcon"))
 
 	@property
-	def uiZoomOutIcon( self ):
+	def uiZoomOutIcon(self):
 		'''
 		This Method Is The Property For The _uiZoomOutIcon Attribute.
 
@@ -295,27 +295,27 @@ class GpsMap( UiComponent ):
 		return self._uiZoomOutIcon
 
 	@uiZoomOutIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiZoomOutIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomOutIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiZoomOutIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiZoomOutIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomOutIcon"))
 
 	@uiZoomOutIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiZoomOutIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomOutIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiZoomOutIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiZoomOutIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomOutIcon"))
 
 	@property
-	def gpsMapHtmlFile( self ):
+	def gpsMapHtmlFile(self):
 		'''
 		This Method Is The Property For The _gpsMapHtmlFile Attribute.
 
@@ -325,27 +325,27 @@ class GpsMap( UiComponent ):
 		return self._gpsMapHtmlFile
 
 	@gpsMapHtmlFile.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def gpsMapHtmlFile( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def gpsMapHtmlFile(self, value):
 		'''
 		This Method Is The Setter Method For The _gpsMapHtmlFile Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "gpsMapHtmlFile" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("gpsMapHtmlFile"))
 
 	@gpsMapHtmlFile.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def gpsMapHtmlFile( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def gpsMapHtmlFile(self):
 		'''
 		This Method Is The Deleter Method For The _gpsMapHtmlFile Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "gpsMapHtmlFile" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("gpsMapHtmlFile"))
 
 	@property
-	def gpsMapBaseSize( self ):
+	def gpsMapBaseSize(self):
 		'''
 		This Method Is The Property For The _gpsMapBaseSize Attribute.
 
@@ -355,27 +355,27 @@ class GpsMap( UiComponent ):
 		return self._gpsMapBaseSize
 
 	@gpsMapBaseSize.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def gpsMapBaseSize( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def gpsMapBaseSize(self, value):
 		'''
 		This Method Is The Setter Method For The _gpsMapBaseSize Attribute.
 
 		@param value: Attribute Value. ( QSize() )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "gpsMapBaseSize" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("gpsMapBaseSize"))
 
 	@gpsMapBaseSize.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def gpsMapBaseSize( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def gpsMapBaseSize(self):
 		'''
 		This Method Is The Deleter Method For The _gpsMapBaseSize Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "gpsMapBaseSize" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("gpsMapBaseSize"))
 
 	@property
-	def dockArea( self ):
+	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
 
@@ -385,27 +385,27 @@ class GpsMap( UiComponent ):
 		return self._dockArea
 
 	@dockArea.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
 		'''
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
 
 	@dockArea.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def dockArea( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
 		'''
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "dockArea" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -415,27 +415,27 @@ class GpsMap( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def coreDatabaseBrowser( self ):
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
@@ -445,27 +445,27 @@ class GpsMap( UiComponent ):
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self, value):
 		'''
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def coreDatabaseBrowser( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreDatabaseBrowser(self):
 		'''
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "coreDatabaseBrowser" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
 
 	@property
-	def map( self ):
+	def map(self):
 		'''
 		This Method Is The Property For The _map Attribute.
 
@@ -475,27 +475,27 @@ class GpsMap( UiComponent ):
 		return self._map
 
 	@map.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def map( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def map(self, value):
 		'''
 		This Method Is The Setter Method For The _map Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "map" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("map"))
 
 	@map.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def map( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def map(self):
 		'''
 		This Method Is The Deleter Method For The _map Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "map" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("map"))
 
 	@property
-	def mapTypeIds( self ):
+	def mapTypeIds(self):
 		'''
 		This Method Is The Property For The _mapTypeIds Attribute.
 
@@ -505,40 +505,40 @@ class GpsMap( UiComponent ):
 		return self._mapTypeIds
 
 	@mapTypeIds.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def mapTypeIds( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def mapTypeIds(self, value):
 		'''
 		This Method Is The Setter Method For The _mapTypeIds Attribute.
 
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "mapTypeIds" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("mapTypeIds"))
 
 	@mapTypeIds.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def mapTypeIds( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def mapTypeIds(self):
 		'''
 		This Method Is The Deleter Method For The _mapTypeIds Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "mapTypeIds" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("mapTypeIds"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 
 		self._container = container
 
@@ -547,15 +547,15 @@ class GpsMap( UiComponent ):
 		self._activate()
 
 	@core.executionTrace
-	def deactivate( self ):
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._uiResources = os.path.basename( self._uiResources )
+		self._uiResources = os.path.basename(self._uiResources)
 
 		self._container = None
 
@@ -564,70 +564,70 @@ class GpsMap( UiComponent ):
 		self._deactivate()
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Zoom_In_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomInIcon ) ) )
-		self.ui.Zoom_Out_pushButton.setIcon( QIcon( os.path.join( self._uiResources, self._uiZoomOutIcon ) ) )
+		self.ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInIcon)))
+		self.ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutIcon)))
 
-		self.ui.Map_Type_comboBox.addItems( [mapType[0] for mapType in self._mapTypeIds] )
+		self.ui.Map_Type_comboBox.addItems([mapType[0] for mapType in self._mapTypeIds])
 
 		self._map = Map()
-		self._map.setMinimumSize( self._gpsMapBaseSize )
-		self._map.load( QUrl.fromLocalFile( os.path.normpath( os.path.join( self._uiResources, self._gpsMapHtmlFile ) ) ) )
-		self._map.page().mainFrame().setScrollBarPolicy( Qt.Horizontal, Qt.ScrollBarAlwaysOff )
-		self._map.page().mainFrame().setScrollBarPolicy( Qt.Vertical, Qt.ScrollBarAlwaysOff )
-		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget( self._map )
+		self._map.setMinimumSize(self._gpsMapBaseSize)
+		self._map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self._uiResources, self._gpsMapHtmlFile))))
+		self._map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
+		self._map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
+		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self._map)
 
 		# Signals / Slots.
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect( self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
-		self._map.loadFinished.connect( self.map_OnLoadFinished )
-		self.ui.Map_Type_comboBox.activated.connect( self.Map_Type_comboBox_OnActivated )
-		self.ui.Zoom_In_pushButton.clicked.connect( self.Zoom_In_pushButton_OnClicked )
-		self.ui.Zoom_Out_pushButton.clicked.connect( self.Zoom_Out_pushButton_OnClicked )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
+		self._map.loadFinished.connect(self.map_OnLoadFinished)
+		self.ui.Map_Type_comboBox.activated.connect(self.Map_Type_comboBox_OnActivated)
+		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
+		self.ui.Zoom_Out_pushButton.clicked.connect(self.Zoom_Out_pushButton_OnClicked)
 
 	@core.executionTrace
-	def uninitializeUi( self ):
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
 		# Signals / Slots.
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect( self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged )
-		self._map.loadFinished.disconnect( self.map_OnLoadFinished )
-		self.ui.Map_Type_comboBox.activated.disconnect( self.Map_Type_comboBox_OnActivated )
-		self.ui.Zoom_In_pushButton.clicked.disconnect( self.Zoom_In_pushButton_OnClicked )
-		self.ui.Zoom_Out_pushButton.clicked.disconnect( self.Zoom_Out_pushButton_OnClicked )
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
+		self._map.loadFinished.disconnect(self.map_OnLoadFinished)
+		self.ui.Map_Type_comboBox.activated.disconnect(self.Map_Type_comboBox_OnActivated)
+		self.ui.Zoom_In_pushButton.clicked.disconnect(self.Zoom_In_pushButton_OnClicked)
+		self.ui.Zoom_Out_pushButton.clicked.disconnect(self.Zoom_Out_pushButton_OnClicked)
 
 		self._map = None
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget( Qt.DockWidgetArea( self._dockArea ), self.ui )
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
-	def removeWidget( self ):
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		LOGGER.debug( "> Removing '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget( self.ui )
-		self.ui.setParent( None )
+		self._container.removeDockWidget(self.ui)
+		self.ui.setParent(None)
 
 	@core.executionTrace
-	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged( self, selectedItems, deselectedItems ):
+	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
 		'''
 		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Selection Has Changed.
 		
@@ -638,37 +638,37 @@ class GpsMap( UiComponent ):
 		self.setMarkers()
 
 	@core.executionTrace
-	def Map_Type_comboBox_OnActivated( self, index ):
+	def Map_Type_comboBox_OnActivated(self, index):
 		'''
 		This Method Is Triggered When Map_Type_comboBox Index Changes.
 		
 		@param index: ComboBox Activated Item Index. ( Integer )
 		'''
 
-		self._map.setMapType( self._mapTypeIds[index][1] )
+		self._map.setMapType(self._mapTypeIds[index][1])
 
 	@core.executionTrace
-	def Zoom_In_pushButton_OnClicked( self, checked ):
+	def Zoom_In_pushButton_OnClicked(self, checked):
 		'''
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
 		
 		@param checked : Checked State. ( Boolean )
 		'''
 
-		self._map.setZoom( "In" )
+		self._map.setZoom("In")
 
 	@core.executionTrace
-	def Zoom_Out_pushButton_OnClicked( self, checked ):
+	def Zoom_Out_pushButton_OnClicked(self, checked):
 		'''
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
 		
 		@param checked : Checked State. ( Boolean )
 		'''
 
-		self._map.setZoom( "Out" )
+		self._map.setZoom("Out")
 
 	@core.executionTrace
-	def map_OnLoadFinished( self, state ):
+	def map_OnLoadFinished(self, state):
 		'''
 		This Method Is Triggered When The GPS Map Finishes Loading.
 		
@@ -678,7 +678,7 @@ class GpsMap( UiComponent ):
 		self.setMarkers()
 
 	@core.executionTrace
-	def setMarkers( self ):
+	def setMarkers(self):
 		'''
 		This Method Triggers The GPS Map Markers.
 		'''
@@ -687,12 +687,12 @@ class GpsMap( UiComponent ):
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets :
-			LOGGER.debug( "> Current Ibl Set : '{0}'.".format( iblSet._datas.name ) )
+			LOGGER.debug("> Current Ibl Set : '{0}'.".format(iblSet._datas.name))
 			if iblSet._datas.latitude and iblSet._datas.longitude :
-				LOGGER.debug( "> Ibl Set '{0}' Provides GEO Coordinates.".format( iblSet._datas.name ) )
-				shotDateString = "<b>Shot Date : </b>{0}".format( self._coreDatabaseBrowser.getFormatedShotDate( iblSet._datas.date, iblSet._datas.time ) or Constants.nullObject )
-				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format( iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment )
-				self._map.addMarker( ( iblSet._datas.latitude, iblSet._datas.longitude ), iblSet._datas.title, strings.toUnixPath( iblSet._datas.icon ), content )
+				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
+				shotDateString = "<b>Shot Date : </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
+				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
+				self._map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toUnixPath(iblSet._datas.icon), content)
 		self._map.setCenter()
 
 #***********************************************************************************************

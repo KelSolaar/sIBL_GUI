@@ -73,7 +73,7 @@ from manager.uiComponent import UiComponent
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 ABOUT_MESSAGE = """
 		<center>
@@ -136,13 +136,13 @@ ABOUT_MESSAGE = """
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class About( UiComponent ):
+class About(UiComponent):
 	'''
 	This Class Is The About Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, name = None, uiFile = None ):
+	def __init__(self, name=None, uiFile=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -150,9 +150,9 @@ class About( UiComponent ):
 		@param uiFile: Ui File. ( String )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		UiComponent.__init__( self, name = name, uiFile = uiFile )
+		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
@@ -169,7 +169,7 @@ class About( UiComponent ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiPath( self ):
+	def uiPath(self):
 		'''
 		This Method Is The Property For The _uiPath Attribute.
 
@@ -179,27 +179,27 @@ class About( UiComponent ):
 		return self._uiPath
 
 	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self, value):
 		'''
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
 
 	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiPath( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPath(self):
 		'''
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiPath" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
 
 	@property
-	def uiResources( self ):
+	def uiResources(self):
 		'''
 		This Method Is The Property For The _uiResources Attribute.
 
@@ -209,27 +209,27 @@ class About( UiComponent ):
 		return self._uiResources
 
 	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self, value):
 		'''
 		This Method Is The Setter Method For The _uiResources Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
 
 	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiResources( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiResources(self):
 		'''
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiResources" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
 
 	@property
-	def uiLogoIcon( self ):
+	def uiLogoIcon(self):
 		'''
 		This Method Is The Property For The _uiLogoIcon Attribute.
 
@@ -239,27 +239,27 @@ class About( UiComponent ):
 		return self._uiLogoIcon
 
 	@uiLogoIcon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiLogoIcon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiLogoIcon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiLogoIcon"))
 
 	@uiLogoIcon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiLogoIcon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiLogoIcon(self):
 		'''
 		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiLogoIcon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiLogoIcon"))
 
 	@property
-	def uiGpl3Icon( self ):
+	def uiGpl3Icon(self):
 		'''
 		This Method Is The Property For The _uiGpl3Icon Attribute.
 
@@ -269,27 +269,27 @@ class About( UiComponent ):
 		return self._uiGpl3Icon
 
 	@uiGpl3Icon.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiGpl3Icon( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiGpl3Icon(self, value):
 		'''
 		This Method Is The Setter Method For The _uiGpl3Icon Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "uiGpl3Icon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiGpl3Icon"))
 
 	@uiGpl3Icon.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def uiGpl3Icon( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiGpl3Icon(self):
 		'''
 		This Method Is The Deleter Method For The _uiGpl3Icon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "uiGpl3Icon" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiGpl3Icon"))
 
 	@property
-	def container( self ):
+	def container(self):
 		'''
 		This Method Is The Property For The _container Attribute.
 
@@ -299,27 +299,27 @@ class About( UiComponent ):
 		return self._container
 
 	@container.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
 		'''
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
 
 	@container.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def container( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
 		'''
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "container" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
 
 	@property
-	def miscMenu( self ):
+	def miscMenu(self):
 		'''
 		This Method Is The Property For The _miscMenu Attribute.
 
@@ -329,40 +329,40 @@ class About( UiComponent ):
 		return self._miscMenu
 
 	@miscMenu.setter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def miscMenu( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def miscMenu(self, value):
 		'''
 		This Method Is The Setter Method For The _miscMenu Attribute.
 
 		@param value: Attribute Value. ( QMenu )
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Read Only !".format( "miscMenu" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("miscMenu"))
 
 	@miscMenu.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def miscMenu( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def miscMenu(self):
 		'''
 		This Method Is The Deleter Method For The _miscMenu Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "miscMenu" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("miscMenu"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def activate( self, container ):
+	def activate(self, container):
 		'''
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
 		'''
 
-		LOGGER.debug( "> Activating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiPath )
-		self._uiResources = os.path.join( os.path.dirname( core.getModule( self ).__file__ ), self._uiResources )
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 		self._container = container
 		self._miscMenu = self._container.miscMenu
 
@@ -371,80 +371,80 @@ class About( UiComponent ):
 		self._activate()
 
 	@core.executionTrace
-	def deactivate( self ):
+	def deactivate(self):
 		'''
 		This Method Deactivates The Component.
 		'''
 
-		LOGGER.debug( "> Deactivating '{0}' Component.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.removeActions_()
 
 		self.uiFile = None
-		self._uiResources = os.path.basename( self._uiResources )
+		self._uiResources = os.path.basename(self._uiResources)
 		self._container = None
 		self._miscMenu = None
 
 		self._deactivate()
 
 	@core.executionTrace
-	def initializeUi( self ):
+	def initializeUi(self):
 		'''
 		This Method Initializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Initializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def uninitializeUi( self ):
+	def uninitializeUi(self):
 		'''
 		This Method Uninitializes The Component Ui.
 		'''
 
-		LOGGER.debug( "> Uninitializing '{0}' Component Ui.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def addWidget( self ):
+	def addWidget(self):
 		'''
 		This Method Adds The Component Widget To The Container.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def removeWidget( self ):
+	def removeWidget(self):
 		'''
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		LOGGER.debug( "> Removing '{0}' Component Widget.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def addActions_( self ):
+	def addActions_(self):
 		'''
 		This Method Adds Actions.
 		'''
 
-		LOGGER.debug( "> Adding '{0}' Component Actions.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._aboutMiscAction = QAction( "About {0} ...".format( Constants.applicationName ), self )
-		self._aboutMiscAction.triggered.connect( self.miscMenu_aboutMiscAction )
-		self._miscMenu.addAction( self._aboutMiscAction )
+		self._aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
+		self._aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction)
+		self._miscMenu.addAction(self._aboutMiscAction)
 
 	@core.executionTrace
-	def removeActions_( self ):
+	def removeActions_(self):
 		'''
 		This Method Removes Actions.
 		'''
 
-		LOGGER.debug( "> Removing '{0}' Component Actions.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._miscMenu.removeAction( self._aboutMiscAction )
+		self._miscMenu.removeAction(self._aboutMiscAction)
 
 		self._aboutMiscAction = None
 
 	@core.executionTrace
-	def miscMenu_aboutMiscAction( self, checked ):
+	def miscMenu_aboutMiscAction(self, checked):
 		'''
 		This Method Is Triggered By aboutMiscAction.
 
@@ -452,16 +452,16 @@ class About( UiComponent ):
 		'''
 
 
-		LOGGER.debug( "> Initializing '{0}' Window.".format( "About" ) )
+		LOGGER.debug("> Initializing '{0}' Window.".format("About"))
 
-		ui.common.setWindowDefaultIcon( self.ui )
+		ui.common.setWindowDefaultIcon(self.ui)
 
-		aboutMessage = ABOUT_MESSAGE.format( os.path.join( self._uiResources, self._uiLogoIcon ),
-					Constants.releaseVersion.replace( ".", " . " ),
-					os.path.join( self._uiResources, self._uiGpl3Icon )
+		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self._uiResources, self._uiLogoIcon),
+					Constants.releaseVersion.replace(".", " . "),
+					os.path.join(self._uiResources, self._uiGpl3Icon)
 					)
 
-		self.ui.About_label.setText( aboutMessage )
+		self.ui.About_label.setText(aboutMessage)
 
 		self.ui.show()
 

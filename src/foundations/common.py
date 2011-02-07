@@ -72,7 +72,7 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -86,15 +86,15 @@ def getSystemApplicationDatasDirectory():
 	'''
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft" :
-		environmentVariable = Environment( "APPDATA" )
+		environmentVariable = Environment("APPDATA")
 		return environmentVariable.getPath()
 
 	elif platform.system() == "Darwin" :
-		environmentVariable = Environment( "HOME" )
-		return os.path.join( environmentVariable.getPath(), "Library/Preferences" )
+		environmentVariable = Environment("HOME")
+		return os.path.join(environmentVariable.getPath(), "Library/Preferences")
 
 	elif platform.system() == "Linux" :
-		environmentVariable = Environment( "HOME" )
+		environmentVariable = Environment("HOME")
 		return environmentVariable.getPath()
 
 @core.executionTrace
@@ -105,10 +105,10 @@ def getUserApplicationDatasDirectory():
 	@return: User Application Directory. ( String )
 	'''
 
-	return os.path.join( getSystemApplicationDatasDirectory(), Constants.providerDirectory, Constants.applicationDirectory )
+	return os.path.join(getSystemApplicationDatasDirectory(), Constants.providerDirectory, Constants.applicationDirectory)
 
 @core.executionTrace
-def closeHandler( logger, handler ):
+def closeHandler(logger, handler):
 	'''
 	This Definition Shuts Down The Provided Handler.
 
@@ -116,11 +116,11 @@ def closeHandler( logger, handler ):
 	@param handler: Current Handler. ( Object )
 	'''
 
-	len( logger.__dict__["handlers"] ) and LOGGER.debug( "> Stopping Handler : '{0}'.".format( handler ) )
-	logger.removeHandler( handler )
+	len(logger.__dict__["handlers"]) and LOGGER.debug("> Stopping Handler : '{0}'.".format(handler))
+	logger.removeHandler(handler)
 
 @core.executionTrace
-def exit( exitCode, logger, handlers ):
+def exit(exitCode, logger, handlers):
 	'''
 	This Definition Shuts Down The Logging And Exit The Current Process.
 
@@ -129,26 +129,26 @@ def exit( exitCode, logger, handlers ):
 	@param handlers: Handlers. ( Object )
 	'''
 
-	LOGGER.debug( "> {0} | Exiting Current Process !".format( core.getModule( exit ).__name__ ) )
+	LOGGER.debug("> {0} | Exiting Current Process !".format(core.getModule(exit).__name__))
 
-	LOGGER.debug( "> Stopping Logging Handlers And Logger, Then Exiting." )
+	LOGGER.debug("> Stopping Logging Handlers And Logger, Then Exiting.")
 
 	for handler in handlers :
-		handler and closeHandler( logger, handler )
+		handler and closeHandler(logger, handler)
 
-	sys.exit( exitCode )
+	sys.exit(exitCode)
 
 @core.executionTrace
-def wait( waitTime ):
+def wait(waitTime):
 	'''
 	This Definition Is A Wait Timer.
 
 	@param waitTime: Current Sleep Time In Seconds. ( Integer )
 	'''
 
-	LOGGER.debug( "> Waiting '{0}' Seconds !".format( waitTime ) )
+	LOGGER.debug("> Waiting '{0}' Seconds !".format(waitTime))
 
-	time.sleep( waitTime )
+	time.sleep(waitTime)
 
 #***********************************************************************************************
 #***	Python End

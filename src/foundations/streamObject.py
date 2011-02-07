@@ -55,12 +55,12 @@
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class StreamObject( object ):
+class StreamObject(object):
 	'''
 	This Class Is The StreamObject Class.
 	'''
 
-	def __init__( self, stream = None ):
+	def __init__(self, stream=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -73,7 +73,7 @@ class StreamObject( object ):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def stream( self ):
+	def stream(self):
 		'''
 		This Method Is The Property For The _stream Attribute.
 		
@@ -83,7 +83,7 @@ class StreamObject( object ):
 		return self._stream
 
 	@stream.setter
-	def stream( self, value ):
+	def stream(self, value):
 		'''
 		This Method Is The Setter Method For The _stream Attribute.
 		
@@ -91,30 +91,30 @@ class StreamObject( object ):
 		'''
 
 		if value :
-			assert type( value ) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format( "stream", value )
+			assert type(value) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format("stream", value)
 		self._stream = value
 
 	@stream.deleter
-	def stream( self ):
+	def stream(self):
 		'''
 		This Method Is The Deleter Method For The _stream Attribute.
 		'''
 
-		raise Exception( "'{0}' Attribute Is Not Deletable !".format( "stream" ) )
+		raise Exception("'{0}' Attribute Is Not Deletable !".format("stream"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-	def write( self, message ):
+	def write(self, message):
 		'''
 		This Method Provides Write Ability To The Class.
 
 		@param message: Current Message. ( String )
 		'''
 
-		self._stream.append( message )
+		self._stream.append(message)
 
-	def flush( self ):
+	def flush(self):
 		'''
 		This Method Flushes The Current Stream.
 		'''

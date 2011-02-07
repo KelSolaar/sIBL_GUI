@@ -67,7 +67,7 @@ class Constants():
 	'''
 
 	applicationName = "sIBL_GUI"
-	releaseVersion = "3.1.0"
+	releaseVersion = "3.1.1"
 
 	logger = "sIBL_GUI_Logger"
 	verbosityLevel = 3
@@ -90,7 +90,7 @@ class Constants():
 	templatesDirectory = "templates"
 	ioDirectory = "io"
 
-	preferencesDirectories = ( databaseDirectory,
+	preferencesDirectories = (databaseDirectory,
 								settingsDirectory,
 								userComponentsDirectory,
 								loggingDirectory,
@@ -106,11 +106,11 @@ class Constants():
 
 	librariesDirectory = "libraries"
 	if platform.system() == "Windows" or platform.system() == "Microsoft" :
-		freeImageLibrary = os.path.join( librariesDirectory, "freeImage/resources/FreeImage.dll" )
+		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
 	elif platform.system() == "Darwin" :
-		freeImageLibrary = os.path.join( librariesDirectory, "freeImage/resources/libfreeimage.dylib" )
+		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.dylib")
 	elif platform.system() == "Linux" :
-		freeImageLibrary = os.path.join( librariesDirectory, "freeImage/resources/libfreeimage.so" )
+		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
 
 	defaultTimerCycle = 250
 	nullObject = "None"

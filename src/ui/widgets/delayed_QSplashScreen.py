@@ -70,18 +70,18 @@ from globals.constants import Constants
 #***********************************************************************************************
 #***	Global Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger( Constants.logger )
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Delayed_QSplashScreen( QSplashScreen ) :
+class Delayed_QSplashScreen(QSplashScreen) :
 	'''
 	This Class Is The sIBL_SplashScreen Class.
 	'''
 
 	@core.executionTrace
-	def __init__( self, picture, waitTime = None ) :
+	def __init__(self, picture, waitTime=None) :
 		'''
 		This Method Initializes The Class.
 
@@ -89,11 +89,11 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		@param waitTime Wait Time. ( Integer )
 		'''
 
-		LOGGER.debug( "> Initializing '{0}()' Class.".format( self.__class__.__name__ ) )
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		QSplashScreen.__init__( self, picture )
+		QSplashScreen.__init__(self, picture)
 
-		self.setWindowFlags( self.windowFlags() | Qt.WindowStaysOnTopHint )
+		self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 
 		# --- Setting Class Attributes. ---
 		self._waitTime = None
@@ -103,7 +103,7 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def waitTime( self ):
+	def waitTime(self):
 		'''
 		This Method Is The Property For The _waitTime Attribute.
 
@@ -113,8 +113,8 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		return self._waitTime
 
 	@waitTime.setter
-	@foundations.exceptions.exceptionsHandler( None, False, AssertionError )
-	def waitTime( self, value ):
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def waitTime(self, value):
 		'''
 		This Method Is The Setter Method For The _waitTime Attribute.
 		
@@ -122,36 +122,36 @@ class Delayed_QSplashScreen( QSplashScreen ) :
 		'''
 
 		if value :
-			assert type( value ) in ( int, float ), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format( "waitTime", value )
-			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format( "waitTime", value )
+			assert type(value) in (int, float), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format("waitTime", value)
+			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("waitTime", value)
 		self._waitTime = value
 
 	@waitTime.deleter
-	@foundations.exceptions.exceptionsHandler( None, False, foundations.exceptions.ProgrammingError )
-	def waitTime( self ):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def waitTime(self):
 		'''
 		This Method Is The Deleter Method For The _waitTime Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError( "'{0}' Attribute Is Not Deletable !".format( "waitTime" ) )
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("waitTime"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def setMessage( self, message, waitTime = None ):
+	def setMessage(self, message, waitTime=None):
 		'''
 		This Method Initializes The Class.
 
 		@param message: Message To Display On The Splashscreen. ( String )
 		'''
 
-		self.showMessage( message )
+		self.showMessage(message)
 
 		if self._waitTime :
 			waitTime = self._waitTime
 
-		waitTime and foundations.common.wait( waitTime )
+		waitTime and foundations.common.wait(waitTime)
 
 #***********************************************************************************************
 #***	Python End
