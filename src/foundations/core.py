@@ -132,10 +132,10 @@ class StandardMessageHook(object):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("logger"))
 
- 	#***************************************************************************************
+	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-  	def write(self, message):
+	def write(self, message):
 		'''
 		This Method Logs The Current StdOut Message.
 		
@@ -161,6 +161,7 @@ IGNORED_CODE_LAYERS = ("getFrame",
 					)
 
 UNDEFINED_CODE_LAYER = "UndefinedCodeLayer"
+UNDEFINED_OBJECT = "UndefinedObject"
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -210,7 +211,7 @@ def getObjectName(object_):
 	codeLayerName = getCodeLayerName()
 	codeLayerName = codeLayerName != UNDEFINED_CODE_LAYER and codeLayerName != "<module>" and "{0}.".format(codeLayerName) or ""
 
-	return hasattr(object_, "__name__") and "{0} | {1}{2}()".format(moduleName, codeLayerName, object_.__name__) or "Undefined"
+	return hasattr(object_, "__name__") and "{0} | {1}{2}()".format(moduleName, codeLayerName, object_.__name__) or UNDEFINED_OBJECT
 
 def executionTrace(object_):
 	'''
