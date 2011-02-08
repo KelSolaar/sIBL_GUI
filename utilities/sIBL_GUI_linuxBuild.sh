@@ -28,7 +28,7 @@ cp ../src/ui/Windows_styleSheet.qss ../releases/Linux/sIBL_GUI/ui/
 cp ../src/ui/Darwin_styleSheet.qss ../releases/Linux/sIBL_GUI/ui/
 cp ../src/ui/Linux_styleSheet.qss ../releases/Linux/sIBL_GUI/ui/
 mkdir ../releases/Linux/sIBL_GUI/resources/
-cp ../src/resources/Icon_Light_48.ico ../releases/Linux/sIBL_GUI/resources/
+cp ../src/resources/Icon_Light.ico ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/sIBL_GUI_SpashScreen.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/sIBL_GUI_Logo.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Central_Widget.png ../releases/Linux/sIBL_GUI/resources/
