@@ -105,8 +105,6 @@ class UiConstants():
 
 	frameworkStartupLayout = "startupCentric"
 
-	componentsDirectory = "components"
-
 	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
 	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 
