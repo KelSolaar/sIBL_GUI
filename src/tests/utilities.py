@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	tests.py
+***	utilities.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Tests Suite Module.
+***		Tests Utilities Module.
 ***
 ***	Others :
 ***
@@ -55,38 +55,29 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import unittest
+import logging
+import sys
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import testsGlobals.testsConstants
-import testsGlobals.testsRuntimeConstants
-import testsGlobals.testsUiConstants
-import testsFoundations.testsIo
+import foundations.core as core
+from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase,
-				testsFoundations.testsIo.FileTestCase)
+LOGGER = logging.getLogger(Constants.logger)
+
+# Starting The Console Handler.
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
+RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_FORMATTER)
+LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-def testsSuite():
-	testsSuite = unittest.TestSuite()
-
-	for testCase in TESTS_CASES:
-		testsSuite.addTest(unittest.makeSuite(testCase))
-
-	return testsSuite
-
-if __name__ == '__main__':
-	import utilities
-	unittest.TextTestRunner(verbosity=2).run(testsSuite())
 
 #***********************************************************************************************
 #***	Python End
