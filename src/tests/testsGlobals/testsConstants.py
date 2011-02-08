@@ -41,7 +41,7 @@
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***      	sIBL_GUI Constants Tests Module.
+***		Constants Tests Module.
 ***
 ***	Others :
 ***
@@ -79,7 +79,7 @@ class ConstantsTestCase(unittest.TestCase):
 		This Method Tests Presence Of Required Attributes.
 		'''
 
-		RequiredAttributes = ("applicationName",
+		requiredAttributes = ("applicationName",
 								"releaseVersion",
 								"logger",
 								"verbosityLevel",
@@ -102,7 +102,7 @@ class ConstantsTestCase(unittest.TestCase):
 								"defaultTimerCycle",
 								"nullObject")
 
-		for attribute in RequiredAttributes :
+		for attribute in requiredAttributes :
 			self.assertIn(attribute, Constants.__dict__)
 
 	def testApplicationNameAttribute(self):

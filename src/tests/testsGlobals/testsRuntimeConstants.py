@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	tests.py
+***	testsRuntimeConstants.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Framework Tests Module.
+***		Runtime Constants Tests Module.
 ***
 ***	Others :
 ***
@@ -60,30 +60,45 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import testsGlobals.testsConstants
-import testsGlobals.testsRuntimeConstants
-import testsGlobals.testsUiConstants
+from globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-def testsSuite():
-	testsSuite = unittest.TestSuite()
+class RuntimeConstantsTestCase(unittest.TestCase):
+	'''
+	This Class Is The RuntimeConstantsTestCase Class.
+	'''
 
-	for testCase in TESTS_CASES:
-		testsSuite.addTest(unittest.makeSuite(testCase))
+	def testRequiredAttributes(self):
+		'''
+		This Method Tests Presence Of Required Attributes.
+		'''
 
-	return testsSuite
+		requiredAttributes = ("parameters",
+								"args",
+								"loggingConsoleHandler",
+								"loggingFileHandler",
+								"loggingSessionHandler",
+								"loggingSessionHandlerStream",
+								"verbosityLevel",
+								"loggingFile",
+								"application",
+								"userApplicationDatasDirectory",
+								"uiFile",
+								"ui",
+								"settingsFile",
+								"settings")
+
+		for attribute in requiredAttributes :
+			self.assertIn(attribute, RuntimeConstants.__dict__)
 
 if __name__ == '__main__':
-	unittest.TextTestRunner(verbosity=2).run(testsSuite())
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End

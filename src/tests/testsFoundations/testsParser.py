@@ -41,7 +41,7 @@
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***      	sIBL_GUI Parser Tests Module.
+***		Parser Tests Module.
 ***
 ***	Others :
 ***
