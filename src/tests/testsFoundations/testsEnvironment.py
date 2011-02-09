@@ -86,6 +86,17 @@ class EnvironmentTestCase(unittest.TestCase):
 		for attribute in requiredAttributes :
 			self.assertIn(attribute, environment.__dict__)
 
+	def testRequiredMethods(self):
+		'''
+		This Method Tests Presence Of Required Methods.
+		'''
+
+		environment = Environment()
+		requiredMethods = ("getPath",)
+
+		for method in requiredMethods :
+			self.assertIn(method, dir(environment))
+
 	def testGetPath(self):
 		'''
 		This Method Tests The "Environment" Class "getPath" Method.

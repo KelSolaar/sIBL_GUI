@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	tests.py
+***	testsCore.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Tests Suite Module.
+***		Core Tests Module.
 ***
 ***	Others :
 ***
@@ -55,56 +55,122 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import inspect
+import logging
+import types
 import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import testsFoundations.testsCommon
-import testsFoundations.testsCore
-import testsFoundations.testsEnvironment
-import testsFoundations.testsIo
-import testsFoundations.testsParser
-import testsGlobals.testsConstants
-import testsGlobals.testsRuntimeConstants
-import testsGlobals.testsUiConstants
+import foundations.core as core
+from globals.constants import Constants
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCore.StandardMessageHookTestCase,
-				testsFoundations.testsCore.SetVerbosityLevelTestCase,
-				testsFoundations.testsCore.GetFrameTestCase,
-				testsFoundations.testsCore.GetCodeLayerNameTestCase,
-				testsFoundations.testsCore.GetModuleTestCase,
-				testsFoundations.testsCore.GetObjectNameTestCase,
-				testsFoundations.testsEnvironment.EnvironmentTestCase,
-				testsFoundations.testsIo.FileTestCase,
-				testsFoundations.testsParser.ParserTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.RemoveNamespaceTestCase,
-				testsFoundations.testsParser.GetAttributeCompoundTestCase,
-				testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-def testsSuite():
-	testsSuite = unittest.TestSuite()
+class StandardMessageHookTestCase(unittest.TestCase):
+	'''
+	This Class Is The StandardMessageHookTestCase Class.
+	'''
 
-	for testCase in TESTS_CASES:
-		testsSuite.addTest(unittest.makeSuite(testCase))
+	def testRequiredAttributes(self):
+		'''
+		This Method Tests Presence Of Required Attributes.
+		'''
 
-	return testsSuite
+		hook = core.StandardMessageHook(None)
+		requiredAttributes = ("_logger",)
 
-if __name__ == '__main__':
-	import utilities
-	unittest.TextTestRunner(verbosity=2).run(testsSuite())
+		for attribute in requiredAttributes :
+			self.assertIn(attribute, hook.__dict__)
+
+	def testRequiredMethods(self):
+		'''
+		This Method Tests Presence Of Required Methods.
+		'''
+
+		hook = core.StandardMessageHook(None)
+		requiredMethods = ("write",)
+
+		for method in requiredMethods :
+			self.assertIn(method, dir(hook))
+
+class SetVerbosityLevelTestCase(unittest.TestCase):
+	'''
+	This Class Is The SetVerbosityLevelTestCase Class.
+	'''
+
+	def testSetVerbosityLevel(self):
+		'''
+		This Method Tests The "setVerbosityLevel" definition.
+		'''
+
+		LOGGER = logging.getLogger(Constants.logger)
+		levels = {logging.CRITICAL:0, logging.ERROR:1, logging.WARNING:2, logging.INFO:3, logging.DEBUG:4  }
+		for level, value in levels.items() :
+			core.setVerbosityLevel(value)
+			self.assertEqual(level, LOGGER.level)
+
+class GetFrameTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetFrameTestCase Class.
+	'''
+
+	def testGetFrame(self):
+		'''
+		This Method Tests The "getFrame" definition.
+		'''
+
+		self.assertIsInstance(core.getFrame(0), inspect.currentframe().__class__)
+
+class GetCodeLayerNameTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetCodeLayerNameTestCase Class.
+	'''
+
+	def testGetCodeLayerName(self):
+		'''
+		This Method Tests The "getCodeLayerName" definition.
+		'''
+
+		codeLayerName = core.getCodeLayerName()
+		self.assertIsInstance(codeLayerName, str)
+		self.assertEqual(codeLayerName, inspect.currentframe().f_code.co_name)
+
+class GetModuleTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetCodeLayerNameTestCase Class.
+	'''
+
+	def testGetModule(self):
+		'''
+		This Method Tests The "getModule" definition.
+		'''
+
+		self.assertEqual(type(core.getModule(object)), types.ModuleType)
+		self.assertEqual(core.getModule(object), inspect.getmodule(object))
+
+class GetObjectNameTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetObjectNameTestCase Class.
+	'''
+
+	def testGetObjectName(self):
+		'''
+		This Method Tests The "getObjectName" definition.
+		'''
+
+		objectName = core.getObjectName(object)
+		self.assertIsInstance(objectName, str)
+		self.assertEqual(objectName, "__builtin__ | testGetObjectName.object()")
+
+if __name__ == "__main__":
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End
