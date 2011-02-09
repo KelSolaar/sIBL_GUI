@@ -61,6 +61,7 @@ import unittest
 #***	Internal Imports
 #***********************************************************************************************
 import testsFoundations.testsCommon
+import testsFoundations.testsCore
 import testsFoundations.testsEnvironment
 import testsFoundations.testsIo
 import testsFoundations.testsParser
@@ -73,6 +74,12 @@ import testsGlobals.testsUiConstants
 #***********************************************************************************************
 TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
 				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
+				testsFoundations.testsCore.StandardMessageHookTestCase,
+				testsFoundations.testsCore.SetVerbosityLevelTestCase,
+				testsFoundations.testsCore.GetFrameTestCase,
+				testsFoundations.testsCore.GetCodeLayerNameTestCase,
+				testsFoundations.testsCore.GetModuleTestCase,
+				testsFoundations.testsCore.GetObjectNameTestCase,
 				testsFoundations.testsEnvironment.EnvironmentTestCase,
 				testsFoundations.testsIo.FileTestCase,
 				testsFoundations.testsParser.ParserTestCase,
