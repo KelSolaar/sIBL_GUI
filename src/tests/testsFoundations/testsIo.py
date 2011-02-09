@@ -61,13 +61,13 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import foundations.io as io
+from foundations.io import File
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), "resources")
-BASIC_IBL_TEST_FILE = os.path.join(RESOURCES_DIRECTORY, "standard.ibl")
+TEST_FILE = os.path.join(RESOURCES_DIRECTORY, "loremIpsum.txt")
 FILE_CONTENT = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n",
 			"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n",
 			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n",
@@ -86,48 +86,49 @@ class FileTestCase(unittest.TestCase):
 		This Method Tests Presence Of Required Attributes.
 		'''
 
-		ioFile = io.File(BASIC_IBL_TEST_FILE)
+		ioFile = File(TEST_FILE)
 		requiredAttributes = ("_file",
 								"_content")
 
 		for attribute in requiredAttributes :
 			self.assertIn(attribute, ioFile.__dict__)
 
-	def testFileRead(self):
+	def testRead(self):
 		'''
-		This Method Tests The "File" Class Read Method.
+		This Method Tests The "File" Class "read" Method.
 		'''
 
-		ioFile = io.File(BASIC_IBL_TEST_FILE)
+		ioFile = File(TEST_FILE)
 		readSuccess = ioFile.read()
 		self.assertTrue(readSuccess)
 		self.assertIsInstance(ioFile.content, list)
+		self.assertListEqual(ioFile.content, FILE_CONTENT)
 
-	def testFileWrite(self):
+	def testWrite(self):
 		'''
-		This Method Tests The "File" Class Write Method.
+		This Method Tests The "File" Class "write" Method.
 		'''
 
-		ioFile = io.File(tempfile.mkstemp()[1])
+		ioFile = File(tempfile.mkstemp()[1])
 		ioFile.content = FILE_CONTENT
 		writeSuccess = ioFile.write()
 		self.assertTrue(writeSuccess)
 		ioFile.read()
-		self.assertEqual(ioFile.content, FILE_CONTENT)
+		self.assertListEqual(ioFile.content, FILE_CONTENT)
 		os.remove(ioFile.file)
 
-	def testFileAppend(self):
+	def testAppend(self):
 		'''
-		This Method Tests The "File" Class Append Method.
+		This Method Tests The "File" Class "append" Method.
 		'''
 
-		ioFile = io.File(tempfile.mkstemp()[1])
+		ioFile = File(tempfile.mkstemp()[1])
 		ioFile.content = FILE_CONTENT
 		ioFile.write()
 		append = ioFile.append()
 		self.assertTrue(append)
 		ioFile.read()
-		self.assertEqual(ioFile.content, FILE_CONTENT + FILE_CONTENT)
+		self.assertListEqual(ioFile.content, FILE_CONTENT + FILE_CONTENT)
 		os.remove(ioFile.file)
 
 if __name__ == "__main__":

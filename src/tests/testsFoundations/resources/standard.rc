@@ -1,0 +1,14 @@
+[Component]
+; Component Comment For Tests Purpose.
+Name = core.db
+Module = db
+Object = Db
+Rank = 5
+Version = 1.0
+
+[Informations]
+; Informations Comment For Tests Purpose.
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Database Core Component.

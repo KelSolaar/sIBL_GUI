@@ -64,6 +64,7 @@ import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
 import testsFoundations.testsIo
+import testsFoundations.testsParser
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -71,7 +72,12 @@ import testsFoundations.testsIo
 TESTS_CASES = (testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
 				testsGlobals.testsUiConstants.UiConstantsTestCase,
-				testsFoundations.testsIo.FileTestCase)
+				testsFoundations.testsIo.FileTestCase,
+				testsFoundations.testsParser.ParserTestCase,
+				testsFoundations.testsParser.SetNamespaceTestCase,
+				testsFoundations.testsParser.SetNamespaceTestCase,
+				testsFoundations.testsParser.RemoveNamespaceTestCase,
+				testsFoundations.testsParser.GetAttributeCompoundTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
