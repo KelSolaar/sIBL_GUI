@@ -382,9 +382,11 @@ class Parser(io.File):
 		if self._content :
 			if re.search("^\[.*\]", self._content[0]) :
 				if not orderedDictionary :
-					self._sections = self._comments = {}
+					self._sections = {}
+					self._comments = {}
 				else :
-					self._sections = self._comments = OrderedDict()
+					self._sections = OrderedDict()
+					self._comments = OrderedDict()
 				rawSections = rawSections or []
 				commentId = 0
 				for line in self._content:
@@ -405,7 +407,7 @@ class Parser(io.File):
 								continue
 							else :
 								if line.startswith(self._commentLimiter) and not stripComments:
-									self._comments[section + self._namespaceSplitter + self._commentMarker + str(commentId)] = {"id" : commentId, "content" : line.strip(self._commentLimiter)}
+									self._comments[section + self._namespaceSplitter + self._commentMarker + str(commentId)] = {"id" : commentId, "content" : line.strip().strip(self._commentLimiter)}
 									commentId += 1
 								elif self._splitter in line:
 									lineTokens = line.split(self._splitter)
