@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	environment.py
+***	testsCommon.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Environment Module.
+***		Common Tests Module.
 ***
 ***	Others :
 ***
@@ -55,97 +55,52 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import logging
 import os
-import re
+import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import core
-import foundations.exceptions
-from globals.constants import Constants
+import foundations.common
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Environment(object):
+class GetSystemApplicationDatasDirectoryTestCase(unittest.TestCase):
 	'''
-	This Class Provides Methods To Manipulate Environment Variables.
+	This Class Is The GetSystemApplicationDatasDirectoryTestCase Class.
 	'''
 
-	@core.executionTrace
-	def __init__(self, variable=None):
+	def testGetSystemApplicationDatasDirectory(self):
 		'''
-		This Method Initializes The Class.
-
-		@param variable: Variable To Manipulate. ( String )
+		This Method Tests The "getSystemApplicationDatasDirectory" definition.
 		'''
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		path = foundations.common.getSystemApplicationDatasDirectory()
+		self.assertIsInstance(path, str)
+		self.assertTrue(os.path.exists(path))
 
-		# --- Setting Class Attributes. ---
-		self._variable = None
-		self.variable = variable
+class GetUserApplicationDatasDirectoryTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetUserApplicationDatasDirectory Class.
+	'''
 
-	#***************************************************************************************
-	#***	Attributes Properties
-	#***************************************************************************************
-	@property
-	def variable(self):
+	def testGetUserApplicationDatasDirectory(self):
 		'''
-		This Method Is The Property For The _variable Attribute.
-		
-		@return: self._variable. ( String )
+		This Method Tests The "getUserApplicationDatasDirectory" definition.
 		'''
 
-		return self._variable
+		path = foundations.common.getUserApplicationDatasDirectory()
+		self.assertIsInstance(path, str)
+		self.assertTrue(os.path.exists(path))
 
-	@variable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def variable(self, value):
-		'''
-		This Method Is The Setter Method For The _variable Attribute.
-		
-		@param value: Attribute Value. ( String )
-		'''
-
-		if value :
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("variable", value)
-			assert not re.search("\W", value), "'{0}' Attribute : '{1}' Contains Non AlphaNumerics Characters !".format("variable", value)
-		self._variable = value
-
-	@variable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def variable(self):
-		'''
-		This Method Is The Deleter Method For The _variable Attribute.
-		'''
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("variable"))
-
-	#***************************************************************************************
-	#***	Class Methods
-	#***************************************************************************************
-	@core.executionTrace
-	def getPath(self):
-		'''
-		This Method Gets The Chosen Environment Variable Path As A String.
-
-		@return: Variable Path. ( String )
-		'''
-
-		if self._variable :
-			LOGGER.debug("> Current Environment Variable : '{0}'.".format(self._variable))
-			LOGGER.debug("> Available System Environment Variables : '{0}'".format(os.environ.keys()))
-
-			if self._variable in os.environ.keys():
-				return os.environ[self._variable]
+if __name__ == "__main__":
+	import tests.utilities
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End

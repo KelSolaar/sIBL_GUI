@@ -60,24 +60,29 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import testsFoundations.testsCommon
+import testsFoundations.testsEnvironment
+import testsFoundations.testsIo
+import testsFoundations.testsParser
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
-import testsFoundations.testsIo
-import testsFoundations.testsParser
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase,
+TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
+				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
+				testsFoundations.testsEnvironment.EnvironmentTestCase,
 				testsFoundations.testsIo.FileTestCase,
 				testsFoundations.testsParser.ParserTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.RemoveNamespaceTestCase,
-				testsFoundations.testsParser.GetAttributeCompoundTestCase)
+				testsFoundations.testsParser.GetAttributeCompoundTestCase,
+				testsGlobals.testsConstants.ConstantsTestCase,
+				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
+				testsGlobals.testsUiConstants.UiConstantsTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
