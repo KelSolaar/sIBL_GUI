@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	testsEnvironments.py
+***	testsCommon.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Environments Tests Module.
+***		Common Tests Module.
 ***
 ***	Others :
 ***
@@ -55,13 +55,13 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import platform
+import os
 import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-from foundations.environment import Environment
+import foundations.common
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -70,35 +70,33 @@ from foundations.environment import Environment
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class EnvironmentTestCase(unittest.TestCase):
+class GetSystemApplicationDatasDirectoryTestCase(unittest.TestCase):
 	'''
-	This Class Is The EnvironmentTestCase Class.
+	This Class Is The GetSystemApplicationDatasDirectoryTestCase Class.
 	'''
 
-	def testRequiredAttributes(self):
+	def testGetSystemApplicationDatasDirectory(self):
 		'''
-		This Method Tests Presence Of Required Attributes.
-		'''
-
-		environment = Environment()
-		requiredAttributes = ("_variable",)
-
-		for attribute in requiredAttributes :
-			self.assertIn(attribute, environment.__dict__)
-
-	def testGetPath(self):
-		'''
-		This Method Tests The "Environment" Class "getPath" Method.
+		This Method Tests The "getSystemApplicationDatasDirectory" definition.
 		'''
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft" :
-			environment = Environment("APPDATA")
-		elif platform.system() == "Darwin" :
-			environment = Environment("HOME")
-		elif platform.system() == "Linux" :
-			environment = Environment("HOME")
-		self.assertTrue(environment.getPath())
-		self.assertIsInstance(environment.getPath(), str)
+		path = foundations.common.getSystemApplicationDatasDirectory()
+		self.assertIsInstance(path, str)
+		self.assertTrue(os.path.exists(path))
+
+class GetUserApplicationDatasDirectoryTestCase(unittest.TestCase):
+	'''
+	This Class Is The GetUserApplicationDatasDirectory Class.
+	'''
+
+	def testGetUserApplicationDatasDirectory(self):
+		'''
+		This Method Tests The "getUserApplicationDatasDirectory" definition.
+		'''
+
+		path = foundations.common.getUserApplicationDatasDirectory()
+		self.assertIsInstance(path, str)
+		self.assertTrue(os.path.exists(path))
 
 if __name__ == "__main__":
 	import tests.utilities

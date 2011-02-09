@@ -60,6 +60,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import testsFoundations.testsCommon
 import testsFoundations.testsEnvironment
 import testsFoundations.testsIo
 import testsFoundations.testsParser
@@ -70,7 +71,9 @@ import testsGlobals.testsUiConstants
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsFoundations.testsEnvironment.EnvironmentTestCase,
+TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
+				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
+				testsFoundations.testsEnvironment.EnvironmentTestCase,
 				testsFoundations.testsIo.FileTestCase,
 				testsFoundations.testsParser.ParserTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
