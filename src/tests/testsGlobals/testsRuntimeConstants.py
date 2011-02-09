@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	uiConstants.py
+***	testsRuntimeConstants.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		uiConstants Module.
+***		Runtime Constants Tests Module.
 ***
 ***	Others :
 ***
@@ -55,72 +55,51 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import platform
+import unittest
+
+#***********************************************************************************************
+#***	Internal Imports
+#***********************************************************************************************
+from globals.runtimeConstants import RuntimeConstants
+
+#***********************************************************************************************
+#***	Overall Variables
+#***********************************************************************************************
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class UiConstants():
+class RuntimeConstantsTestCase(unittest.TestCase):
 	'''
-	This Class Is The UiConstants Class.
+	This Class Is The RuntimeConstantsTestCase Class.
 	'''
 
-	frameworkUiFile = "./ui/sIBL_GUI.ui"
-	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
-	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
-	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
-	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
+	def testRequiredAttributes(self):
+		'''
+		This Method Tests Presence Of Required Attributes.
+		'''
 
-	frameworkApplicationWindowsIcon = "./resources/Icon_Light_48.ico"
-	frameworkApplicationDarwinIcon = "./resources/Icon_Light_48.icns"
+		requiredAttributes = ("parameters",
+								"args",
+								"loggingConsoleHandler",
+								"loggingFileHandler",
+								"loggingSessionHandler",
+								"loggingSessionHandlerStream",
+								"verbosityLevel",
+								"loggingFile",
+								"application",
+								"userApplicationDatasDirectory",
+								"uiFile",
+								"ui",
+								"settingsFile",
+								"settings")
 
-	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
-	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
+		for attribute in requiredAttributes :
+			self.assertIn(attribute, RuntimeConstants.__dict__)
 
-	frameworkDefaultToolbarIconSize = 32
-
-	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
-	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
-	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
-
-	frameworLayoutIcon = "./resources/Layout.png"
-	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
-	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
-
-	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"
-	frameworMiscellaneousHoverIcon = "./resources/Miscellaneous_Hover.png"
-	frameworMiscellaneousActiveIcon = "./resources/Miscellaneous_Active.png"
-
-	frameworkLibraryIcon = "./resources/Library.png"
-	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
-	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
-
-	frameworkExportIcon = "./resources/Export.png"
-	frameworkExportHoverIcon = "./resources/Export_Hover.png"
-	frameworkExportActiveIcon = "./resources/Export_Active.png"
-
-	frameworkPreferencesIcon = "./resources/Preferences.png"
-	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
-	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
-
-	frameworkStartupLayout = "startupCentric"
-
-	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
-	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
-
-	nativeImageFormats = { 	"Bmp" : "\.[bB][mM][pP]",
-							"Jpeg" : "\.[jJ][pP][eE][gG]",
-							"Jpg" : "\.[jJ][pP][gG]",
-							"Png" : "\.[pP][nN][gG]" }
-
-	thirdPartyImageFormats = { 	"Exr" : ("\.[eE][xX][rR]"),
-								"Hdr" : ("\.[hH][dD][rR]"),
-								"Tif" : ("\.[tT][iI][fF]"),
-								"Tiff" : ("\.[tT][iI][fF][fF]"),
-								"Tga" : ("\.[tT][gG][aA]")
-								 }
+if __name__ == '__main__':
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-

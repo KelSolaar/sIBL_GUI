@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	uiConstants.py
+***	utilities.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		uiConstants Module.
+***		Tests Utilities Module.
 ***
 ***	Others :
 ***
@@ -55,72 +55,30 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import platform
+import logging
+import sys
+
+#***********************************************************************************************
+#***	Internal Imports
+#***********************************************************************************************
+import foundations.core as core
+from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
+
+#***********************************************************************************************
+#***	Overall Variables
+#***********************************************************************************************
+LOGGER = logging.getLogger(Constants.logger)
+
+# Starting The Console Handler.
+RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
+RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_FORMATTER)
+LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class UiConstants():
-	'''
-	This Class Is The UiConstants Class.
-	'''
-
-	frameworkUiFile = "./ui/sIBL_GUI.ui"
-	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
-	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
-	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
-	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
-
-	frameworkApplicationWindowsIcon = "./resources/Icon_Light_48.ico"
-	frameworkApplicationDarwinIcon = "./resources/Icon_Light_48.icns"
-
-	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
-	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
-
-	frameworkDefaultToolbarIconSize = 32
-
-	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
-	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
-	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
-
-	frameworLayoutIcon = "./resources/Layout.png"
-	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
-	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
-
-	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"
-	frameworMiscellaneousHoverIcon = "./resources/Miscellaneous_Hover.png"
-	frameworMiscellaneousActiveIcon = "./resources/Miscellaneous_Active.png"
-
-	frameworkLibraryIcon = "./resources/Library.png"
-	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
-	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
-
-	frameworkExportIcon = "./resources/Export.png"
-	frameworkExportHoverIcon = "./resources/Export_Hover.png"
-	frameworkExportActiveIcon = "./resources/Export_Active.png"
-
-	frameworkPreferencesIcon = "./resources/Preferences.png"
-	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
-	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
-
-	frameworkStartupLayout = "startupCentric"
-
-	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
-	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
-
-	nativeImageFormats = { 	"Bmp" : "\.[bB][mM][pP]",
-							"Jpeg" : "\.[jJ][pP][eE][gG]",
-							"Jpg" : "\.[jJ][pP][gG]",
-							"Png" : "\.[pP][nN][gG]" }
-
-	thirdPartyImageFormats = { 	"Exr" : ("\.[eE][xX][rR]"),
-								"Hdr" : ("\.[hH][dD][rR]"),
-								"Tif" : ("\.[tT][iI][fF]"),
-								"Tiff" : ("\.[tT][iI][fF][fF]"),
-								"Tga" : ("\.[tT][gG][aA]")
-								 }
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 #***********************************************************************************************
 #
 # Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
@@ -35,13 +34,13 @@
 
 '''
 ************************************************************************************************
-***	uiConstants.py
+***	testsIo.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		uiConstants Module.
+***		Io Tests Module.
 ***
 ***	Others :
 ***
@@ -55,72 +54,87 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import platform
+import os
+import tempfile
+import unittest
+
+#***********************************************************************************************
+#***	Internal Imports
+#***********************************************************************************************
+from foundations.io import File
+
+#***********************************************************************************************
+#***	Overall Variables
+#***********************************************************************************************
+RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), "resources")
+TEST_FILE = os.path.join(RESOURCES_DIRECTORY, "loremIpsum.txt")
+FILE_CONTENT = ["Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n",
+			"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n",
+			"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n",
+			"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"]
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class UiConstants():
+class FileTestCase(unittest.TestCase):
 	'''
-	This Class Is The UiConstants Class.
+	This Class Is The FileTestCase Class.
 	'''
 
-	frameworkUiFile = "./ui/sIBL_GUI.ui"
-	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
-	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
-	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
-	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
+	def testRequiredAttributes(self):
+		'''
+		This Method Tests Presence Of Required Attributes.
+		'''
 
-	frameworkApplicationWindowsIcon = "./resources/Icon_Light_48.ico"
-	frameworkApplicationDarwinIcon = "./resources/Icon_Light_48.icns"
+		ioFile = File(TEST_FILE)
+		requiredAttributes = ("_file",
+								"_content")
 
-	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
-	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
+		for attribute in requiredAttributes :
+			self.assertIn(attribute, ioFile.__dict__)
 
-	frameworkDefaultToolbarIconSize = 32
+	def testRead(self):
+		'''
+		This Method Tests The "File" Class "read" Method.
+		'''
 
-	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
-	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
-	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
+		ioFile = File(TEST_FILE)
+		readSuccess = ioFile.read()
+		self.assertTrue(readSuccess)
+		self.assertIsInstance(ioFile.content, list)
+		self.assertListEqual(ioFile.content, FILE_CONTENT)
 
-	frameworLayoutIcon = "./resources/Layout.png"
-	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
-	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
+	def testWrite(self):
+		'''
+		This Method Tests The "File" Class "write" Method.
+		'''
 
-	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"
-	frameworMiscellaneousHoverIcon = "./resources/Miscellaneous_Hover.png"
-	frameworMiscellaneousActiveIcon = "./resources/Miscellaneous_Active.png"
+		ioFile = File(tempfile.mkstemp()[1])
+		ioFile.content = FILE_CONTENT
+		writeSuccess = ioFile.write()
+		self.assertTrue(writeSuccess)
+		ioFile.read()
+		self.assertListEqual(ioFile.content, FILE_CONTENT)
+		os.remove(ioFile.file)
 
-	frameworkLibraryIcon = "./resources/Library.png"
-	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
-	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
+	def testAppend(self):
+		'''
+		This Method Tests The "File" Class "append" Method.
+		'''
 
-	frameworkExportIcon = "./resources/Export.png"
-	frameworkExportHoverIcon = "./resources/Export_Hover.png"
-	frameworkExportActiveIcon = "./resources/Export_Active.png"
+		ioFile = File(tempfile.mkstemp()[1])
+		ioFile.content = FILE_CONTENT
+		ioFile.write()
+		append = ioFile.append()
+		self.assertTrue(append)
+		ioFile.read()
+		self.assertListEqual(ioFile.content, FILE_CONTENT + FILE_CONTENT)
+		os.remove(ioFile.file)
 
-	frameworkPreferencesIcon = "./resources/Preferences.png"
-	frameworkPreferencesHoverIcon = "./resources/Preferences_Hover.png"
-	frameworkPreferencesActiveIcon = "./resources/Preferences_Active.png"
-
-	frameworkStartupLayout = "startupCentric"
-
-	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
-	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
-
-	nativeImageFormats = { 	"Bmp" : "\.[bB][mM][pP]",
-							"Jpeg" : "\.[jJ][pP][eE][gG]",
-							"Jpg" : "\.[jJ][pP][gG]",
-							"Png" : "\.[pP][nN][gG]" }
-
-	thirdPartyImageFormats = { 	"Exr" : ("\.[eE][xX][rR]"),
-								"Hdr" : ("\.[hH][dD][rR]"),
-								"Tif" : ("\.[tT][iI][fF]"),
-								"Tiff" : ("\.[tT][iI][fF][fF]"),
-								"Tga" : ("\.[tT][gG][aA]")
-								 }
+if __name__ == "__main__":
+	import tests.utilities
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
-

@@ -382,9 +382,11 @@ class Parser(io.File):
 		if self._content :
 			if re.search("^\[.*\]", self._content[0]) :
 				if not orderedDictionary :
-					self._sections = self._comments = {}
+					self._sections = {}
+					self._comments = {}
 				else :
-					self._sections = self._comments = OrderedDict()
+					self._sections = OrderedDict()
+					self._comments = OrderedDict()
 				rawSections = rawSections or []
 				commentId = 0
 				for line in self._content:
@@ -405,7 +407,7 @@ class Parser(io.File):
 								continue
 							else :
 								if line.startswith(self._commentLimiter) and not stripComments:
-									self._comments[section + self._namespaceSplitter + self._commentMarker + str(commentId)] = {"id" : commentId, "content" : line.strip(self._commentLimiter)}
+									self._comments[section + self._namespaceSplitter + self._commentMarker + str(commentId)] = {"id" : commentId, "content" : line.strip().strip(self._commentLimiter)}
 									commentId += 1
 								elif self._splitter in line:
 									lineTokens = line.split(self._splitter)
@@ -446,7 +448,7 @@ class Parser(io.File):
 		@return: Attribute Existence. ( Boolean )
 		'''
 
-		if removeNamespace(attribute) in self.getAttributes(section, False) :
+		if removeNamespace(attribute) in self.getAttributes(section, True, False) :
 			LOGGER.debug("> '{0}' Attribute Exists In '{1}' Section.".format(attribute, section))
 			return True
 		else :
@@ -455,7 +457,7 @@ class Parser(io.File):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, KeyError)
-	def getAttributes(self, section, useNamespace=True, raise_=True):
+	def getAttributes(self, section, orderedDictionary=True, useNamespace=True, raise_=True):
 		'''
 		This Method Returns The Section / Files Attributes.
 
@@ -468,7 +470,8 @@ class Parser(io.File):
 		LOGGER.debug("> Getting Section '{0}' Attributes.".format(section))
 
 		if self.sectionsExists(section) :
-			attributes = useNamespace and self._sections[section] or dict([(removeNamespace(attribute), self._sections[section][attribute]) for attribute in self._sections[section].keys()])
+			dictionary = orderedDictionary and OrderedDict or dict
+			attributes = useNamespace and self._sections[section] or dictionary([(removeNamespace(attribute), self._sections[section][attribute]) for attribute in self._sections[section].keys()])
 			LOGGER.debug("> Attributes : '{0}'.".format(attributes))
 			return attributes
 		else :
@@ -549,9 +552,9 @@ def removeNamespace(attribute, namespaceSplitter="|", rootOnly=False):
 	return strippedAttribute
 
 @core.executionTrace
-def getAttributeCompound(attribute, value, splitter="|", bindingIdentifier="@"):
+def getAttributeCompound(attribute, value=None, splitter="|", bindingIdentifier="@"):
 	'''
-	This Definition Get An Attribute Compound.
+	This Definition Gets An Attribute Compound.
 
 	@param attribute: Attribute. ( String )
 	@param value: Attribute Value. ( Object )
@@ -562,16 +565,14 @@ def getAttributeCompound(attribute, value, splitter="|", bindingIdentifier="@"):
 
 	LOGGER.debug("> Attribute : '{0}', Value : '{1}'.".format(attribute, value))
 
-	if not value :
-		return AttributeCompound(name=attribute, value=None, link=None, type=None, alias=None)
-
-	if splitter in value :
-		valueTokens = value.split(splitter)
-		if len(valueTokens) >= 3 and re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), valueTokens[0]):
-			return AttributeCompound(name=attribute, value=valueTokens[1].strip(), link=valueTokens[0].strip(), type=valueTokens[2].strip(), alias=len(valueTokens) == 4 and valueTokens[3].strip() or None)
-	else :
-		if re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), value) :
-			return AttributeCompound(name=attribute, value=None, link=value, type=None, alias=None)
+	if value :
+		if splitter in value :
+			valueTokens = value.split(splitter)
+			if len(valueTokens) >= 3 and re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), valueTokens[0]):
+				return AttributeCompound(name=attribute, value=valueTokens[1].strip(), link=valueTokens[0].strip(), type=valueTokens[2].strip(), alias=len(valueTokens) == 4 and valueTokens[3].strip() or None)
+		else :
+			if re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), value) :
+				return AttributeCompound(name=attribute, value=None, link=value, type=None, alias=None)
 
 	return AttributeCompound(name=attribute, value=value, link=None, type=None, alias=None)
 
