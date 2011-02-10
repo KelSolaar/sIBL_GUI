@@ -125,7 +125,7 @@ class Library(object):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryInitializationError)
-	def __init__(self, libraryPath, functions):
+	def __init__(self, libraryPath, functions=None):
 		'''
 		This Method Initializes The Class.
 		
@@ -143,7 +143,6 @@ class Library(object):
 
 		self._libraryPath = None
 		self.libraryPath = libraryPath
-
 		self._functions = None
 		self.functions = functions
 
@@ -293,16 +292,6 @@ class Library(object):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, AttributeError)
-	def bindLibrary(self):
-		'''
-		This Method Bind The Library.
-		'''
-
-		for function in self._functions:
-			self.bindFunction(function)
-
-	@core.executionTrace
 	def bindFunction(self, function):
 		'''
 		This Method Bind A Function.
@@ -323,6 +312,17 @@ class Library(object):
 
 		if returnType :
 			functionObject.restype = returnType
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, AttributeError)
+	def bindLibrary(self):
+		'''
+		This Method Bind The Library.
+		'''
+
+		if self._functions :
+			for function in self._functions:
+				self.bindFunction(function)
 
 #***********************************************************************************************
 #***	Python End

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 #***********************************************************************************************
 #
 # Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
@@ -35,13 +34,13 @@
 
 '''
 ************************************************************************************************
-***	testsExceptions.py
+***	testsLibrary.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Exceptions Tests Module.
+***		Library Tests Module.
 ***
 ***	Others :
 ***
@@ -55,40 +54,41 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import ctypes
+import os
+import platform
 import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import foundations.exceptions
+from foundations.library import Library, LibraryHook
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-EXCEPTIONS = (foundations.exceptions.AttributeStructureError,
-				foundations.exceptions.ComponentActivationError,
-				foundations.exceptions.ComponentDeactivationError,
-				foundations.exceptions.DatabaseOperationError,
-				foundations.exceptions.DirectoryExistsError,
-				foundations.exceptions.FileExistsError,
-				foundations.exceptions.FileStructureError,
-				foundations.exceptions.LibraryExecutionError,
-				foundations.exceptions.LibraryInitializationError,
-				foundations.exceptions.LibraryInstantiationError,
-				foundations.exceptions.NetworkError,
-				foundations.exceptions.ObjectExistsError,
-				foundations.exceptions.ObjectTypeError,
-				foundations.exceptions.ProgrammingError,
-				foundations.exceptions.SocketConnectionError,
-				foundations.exceptions.UserError)
+LIBRARIES_DIRECTORY = "libraries"
+if platform.system() == "Windows" or platform.system() == "Microsoft" :
+	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/FreeImage.dll")
+elif platform.system() == "Darwin" :
+	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/libfreeimage.dylib")
+elif platform.system() == "Linux" :
+	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/libfreeimage.so")
 
+
+LIBRARIES = {"freeImage":os.path.normpath(os.path.join(os.path.dirname(__file__), "../../", FREEIMAGE_LIBRARY))}
+
+LIBRARIES_FUNCTIONS = {"freeImage":(LibraryHook(name="FreeImage_GetVersion" , affixe="@0", argumentsType=None, returnValue=ctypes.c_char_p),
+								LibraryHook(name="FreeImage_GetCopyrightMessage" , affixe="@0", argumentsType=None, returnValue=ctypes.c_char_p))}
+
+LIBRARIES_TESTS_CASES = {"freeImage":{"FreeImage_GetVersion":"3.13.1",
+							"FreeImage_GetCopyrightMessage":"This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details"}}
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-
-class ExceptionsTestCase(unittest.TestCase):
+class LibraryTestCase(unittest.TestCase):
 	'''
-	This Class Is The ExceptionsTestCase Class.
+	This Class Is The LibraryTestCase Class.
 	'''
 
 	def testRequiredAttributes(self):
@@ -96,26 +96,71 @@ class ExceptionsTestCase(unittest.TestCase):
 		This Method Tests Presence Of Required Attributes.
 		'''
 
-		requiredAttributes = ("value",)
-		for exception in EXCEPTIONS :
-			exceptionInstance = exception(None)
-			for attribute in requiredAttributes :
-				self.assertIn(attribute, exceptionInstance.__dict__)
+		library = Library(LIBRARIES["freeImage"], LIBRARIES_FUNCTIONS["freeImage"])
+		requiredAttributes = ("_libraryInstantiated",
+								"_libraryPath",
+								"_functions",
+								"_library")
+		for attribute in requiredAttributes :
+			self.assertIn(attribute, library.__dict__)
 
-	def test__str__(self):
+		requiredClassAttributes = ("_librariesInstances",
+								"_callback",
+								)
+		for classAttribute in requiredClassAttributes:
+			self.assertIn(classAttribute, dir(library))
+
+	def testRequiredMethods(self):
 		'''
-		This Method Tests The "Exceptions" Class "__str__" Method.
+		This Method Tests Presence Of Required Methods.
 		'''
 
-		for exception in EXCEPTIONS :
-			exceptionInstance = exception("{0} Exception Raised !".format(exception.__class__))
-			self.assertIsInstance(exceptionInstance.__str__(), str)
-			exceptionInstance = exception([exception.__class__, "Exception Raised !"])
-			self.assertIsInstance(exceptionInstance.__str__(), str)
-			exceptionInstance = exception(0)
-			self.assertIsInstance(exceptionInstance.__str__(), str)
+		library = Library(LIBRARIES["freeImage"], LIBRARIES_FUNCTIONS["freeImage"])
+		requiredMethods = ("bindLibrary",
+							"bindFunction")
+
+		for method in requiredMethods:
+			self.assertIn(method, dir(library))
+
+	def testBindFunction(self):
+		'''
+		This Method Tests The "Library" Class "bindFunction" Method.
+		'''
+
+		for name, path in LIBRARIES.items():
+			library = Library(path)
+			library.functions = LIBRARIES_FUNCTIONS[name]
+			for function in LIBRARIES_FUNCTIONS[name]:
+				hasattr(library, function.name) and delattr(library, function.name)
+				library.bindFunction(function)
+				self.assertTrue(hasattr(library, function.name))
+
+	def testBindLibrary(self):
+		'''
+		This Method Tests The "Library" Class "bindLibrary" Method.
+		'''
+
+		for name, path in LIBRARIES.items():
+			library = Library(path)
+			library.functions = LIBRARIES_FUNCTIONS[name]
+			for function in LIBRARIES_FUNCTIONS[name]:
+				hasattr(library, function.name) and delattr(library, function.name)
+			library.bindLibrary()
+			for function in LIBRARIES_FUNCTIONS[name]:
+				self.assertTrue(hasattr(library, function.name))
+
+	def testLibrary(self):
+		'''
+		This Method Tests The "Library" Class Binding.
+		'''
+
+		for name, path in LIBRARIES.items():
+			library = Library(path, LIBRARIES_FUNCTIONS[name])
+			for function, value in LIBRARIES_TESTS_CASES[name].items():
+				self.assertEqual(getattr(library, function)(), value)
 
 if __name__ == "__main__":
+	import tests.utilities
 	unittest.main()
 
 #***********************************************************************************************

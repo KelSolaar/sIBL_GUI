@@ -65,6 +65,7 @@ import testsFoundations.testsCore
 import testsFoundations.testsEnvironment
 import testsFoundations.testsExceptions
 import testsFoundations.testsIo
+import testsFoundations.testsLibrary
 import testsFoundations.testsParser
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
@@ -83,6 +84,7 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsCore.GetObjectNameTestCase,
 				testsFoundations.testsEnvironment.EnvironmentTestCase,
 				testsFoundations.testsExceptions.ExceptionsTestCase,
+				testsFoundations.testsLibrary.LibraryTestCase,
 				testsFoundations.testsIo.FileTestCase,
 				testsFoundations.testsParser.ParserTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
