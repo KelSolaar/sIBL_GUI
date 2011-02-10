@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	tests.py
+***	testsExceptions.py
 ***
 ***	Platform :
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description :
-***		Tests Suite Module.
+***		Exceptions Tests Module.
 ***
 ***	Others :
 ***
@@ -60,53 +60,62 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import testsFoundations.testsCommon
-import testsFoundations.testsCore
-import testsFoundations.testsEnvironment
-import testsFoundations.testsExceptions
-import testsFoundations.testsIo
-import testsFoundations.testsParser
-import testsGlobals.testsConstants
-import testsGlobals.testsRuntimeConstants
-import testsGlobals.testsUiConstants
+import foundations.exceptions
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCore.StandardMessageHookTestCase,
-				testsFoundations.testsCore.SetVerbosityLevelTestCase,
-				testsFoundations.testsCore.GetFrameTestCase,
-				testsFoundations.testsCore.GetCodeLayerNameTestCase,
-				testsFoundations.testsCore.GetModuleTestCase,
-				testsFoundations.testsCore.GetObjectNameTestCase,
-				testsFoundations.testsEnvironment.EnvironmentTestCase,
-				testsFoundations.testsExceptions.ExceptionsTestCase,
-				testsFoundations.testsIo.FileTestCase,
-				testsFoundations.testsParser.ParserTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.RemoveNamespaceTestCase,
-				testsFoundations.testsParser.GetAttributeCompoundTestCase,
-				testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase)
+EXCEPTIONS = (foundations.exceptions.AttributeStructureError,
+				foundations.exceptions.ComponentActivationError,
+				foundations.exceptions.ComponentDeactivationError,
+				foundations.exceptions.DatabaseOperationError,
+				foundations.exceptions.DirectoryExistsError,
+				foundations.exceptions.FileExistsError,
+				foundations.exceptions.FileStructureError,
+				foundations.exceptions.LibraryExecutionError,
+				foundations.exceptions.LibraryInitializationError,
+				foundations.exceptions.NetworkError,
+				foundations.exceptions.ObjectExistsError,
+				foundations.exceptions.ObjectTypeError,
+				foundations.exceptions.ProgrammingError,
+				foundations.exceptions.SocketConnectionError,
+				foundations.exceptions.UserError)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-def testsSuite():
-	testsSuite = unittest.TestSuite()
 
-	for testCase in TESTS_CASES:
-		testsSuite.addTest(unittest.makeSuite(testCase))
+class ExceptionsTestCase(unittest.TestCase):
+	'''
+	This Class Is The ExceptionsTestCase Class.
+	'''
 
-	return testsSuite
+	def testRequiredAttributes(self):
+		'''
+		This Method Tests Presence Of Required Attributes.
+		'''
 
-if __name__ == '__main__':
-	import utilities
-	unittest.TextTestRunner(verbosity=2).run(testsSuite())
+		requiredAttributes = ("value",)
+		for exception in EXCEPTIONS :
+			exceptionInstance = exception(None)
+			for attribute in requiredAttributes :
+				self.assertIn(attribute, exceptionInstance.__dict__)
+
+	def test__str__(self):
+		'''
+		This Method Tests The Exceptions Class "__str__" Method.
+		'''
+
+		for exception in EXCEPTIONS :
+			exceptionInstance = exception("{0} Exception Raised !".format(exception.__class__))
+			self.assertIsInstance(exceptionInstance.__str__(), str)
+			exceptionInstance = exception([exception.__class__, "Exception Raised !"])
+			self.assertIsInstance(exceptionInstance.__str__(), str)
+			exceptionInstance = exception(0)
+			self.assertIsInstance(exceptionInstance.__str__(), str)
+
+if __name__ == "__main__":
+	unittest.main()
 
 #***********************************************************************************************
 #***	Python End

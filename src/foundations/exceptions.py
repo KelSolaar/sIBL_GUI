@@ -173,7 +173,7 @@ class FileStructureError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class AttributeStructureError(Exception):
 	'''
@@ -201,7 +201,7 @@ class AttributeStructureError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class DirectoryExistsError(Exception):
 	'''
@@ -230,7 +230,7 @@ class DirectoryExistsError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class FileExistsError(Exception):
 	'''
@@ -259,7 +259,7 @@ class FileExistsError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class ObjectTypeError(Exception):
 	'''
@@ -287,7 +287,7 @@ class ObjectTypeError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class ObjectExistsError(Exception):
 	'''
@@ -315,7 +315,7 @@ class ObjectExistsError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class DatabaseOperationError(Exception):
 	'''
@@ -343,7 +343,7 @@ class DatabaseOperationError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class ProgrammingError(Exception):
 	'''
@@ -371,7 +371,7 @@ class ProgrammingError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class UserError(Exception):
 	'''
@@ -399,7 +399,7 @@ class UserError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class NetworkError(Exception):
 	'''
@@ -427,7 +427,7 @@ class NetworkError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class SocketConnectionError(Exception):
 	'''
@@ -455,7 +455,7 @@ class SocketConnectionError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class ComponentActivationError(Exception):
 	'''
@@ -483,7 +483,7 @@ class ComponentActivationError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class ComponentDeactivationError(Exception):
 	'''
@@ -511,7 +511,7 @@ class ComponentDeactivationError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class LibraryInitializationError(Exception):
 	'''
@@ -539,7 +539,7 @@ class LibraryInitializationError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 
 class LibraryExecutionError(Exception):
 	'''
@@ -567,7 +567,7 @@ class LibraryExecutionError(Exception):
 		@return: Exception Representation. ( String )
 		'''
 
-		return self.value
+		return str(self.value)
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
