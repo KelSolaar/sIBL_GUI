@@ -86,6 +86,7 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsExceptions.ExceptionsTestCase,
 				testsFoundations.testsLibrary.LibraryTestCase,
 				testsFoundations.testsIo.FileTestCase,
+				testsFoundations.testsIo.SetLocalDirectoryTestCase,
 				testsFoundations.testsParser.ParserTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,

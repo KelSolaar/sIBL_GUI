@@ -61,6 +61,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import foundations.io
 from foundations.io import File
 
 #***********************************************************************************************
@@ -143,6 +144,22 @@ class FileTestCase(unittest.TestCase):
 		ioFile.read()
 		self.assertListEqual(ioFile.content, FILE_CONTENT + FILE_CONTENT)
 		os.remove(ioFile.file)
+
+class SetLocalDirectoryTestCase(unittest.TestCase):
+	'''
+	This Class Is The SetLocalDirectoryTestCase Class.
+	'''
+
+	def testSetLocalDirectory(self):
+		'''
+		This Method Tests The "setLocalDirectory" Definition.
+		'''
+
+		tempDirectory = tempfile.gettempdir()
+		directoriesTree = "tests/io/setLocalDirectory"
+		directory = os.path.join(tempDirectory, directoriesTree)
+		foundations.io.setLocalDirectory(directory)
+		self.assertTrue(os.path.exists(directory))
 
 if __name__ == "__main__":
 	import tests.utilities
