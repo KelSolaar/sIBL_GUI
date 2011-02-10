@@ -1456,9 +1456,8 @@ class RemoteUpdater(object):
 
 		pkzip = Pkzip()
 		pkzip.archive = file
-		pkzip.extract(os.path.dirname(file))
 
-		return True
+		return pkzip.extract(os.path.dirname(file))
 
 class OnlineUpdater(UiComponent):
 	'''

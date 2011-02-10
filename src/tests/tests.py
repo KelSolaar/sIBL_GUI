@@ -67,6 +67,7 @@ import testsFoundations.testsExceptions
 import testsFoundations.testsIo
 import testsFoundations.testsLibrary
 import testsFoundations.testsParser
+import testsFoundations.testsPkzip
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
@@ -92,6 +93,7 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.RemoveNamespaceTestCase,
 				testsFoundations.testsParser.GetAttributeCompoundTestCase,
+				testsFoundations.testsPkzip.PkzipTestCase,
 				testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
 				testsGlobals.testsUiConstants.UiConstantsTestCase)

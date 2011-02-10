@@ -55,6 +55,7 @@
 #***	External Imports
 #***********************************************************************************************
 import os
+import shutil
 import tempfile
 import unittest
 
@@ -155,11 +156,12 @@ class SetLocalDirectoryTestCase(unittest.TestCase):
 		This Method Tests The "setLocalDirectory" Definition.
 		'''
 
-		tempDirectory = tempfile.gettempdir()
+		tempDirectory = tempfile.mkdtemp()
 		directoriesTree = "tests/io/setLocalDirectory"
 		directory = os.path.join(tempDirectory, directoriesTree)
 		foundations.io.setLocalDirectory(directory)
 		self.assertTrue(os.path.exists(directory))
+		shutil.rmtree(tempDirectory)
 
 if __name__ == "__main__":
 	import tests.utilities

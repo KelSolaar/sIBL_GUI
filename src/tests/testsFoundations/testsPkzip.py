@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 #***********************************************************************************************
 #
 # Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
@@ -35,13 +34,13 @@
 
 '''
 ************************************************************************************************
-***	pkzip.py
+***	testsPkzip.py
 ***
 ***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description:
-***		Zip File Manipulation Module.
+***		Pkzip Tests Module.
 ***
 ***	Others:
 ***
@@ -55,116 +54,73 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-from cStringIO import StringIO
-import logging
 import os
-import zipfile
+import shutil
+import tempfile
+import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import core
-import io
-import foundations.exceptions
-from globals.constants import Constants
+from foundations.pkzip import Pkzip
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-LOGGER = logging.getLogger(Constants.logger)
+RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), "resources")
+TEST_FILE = os.path.join(RESOURCES_DIRECTORY, "standard.zip")
+TREE_HIERARCHY = ("level_0", "loremIpsum.txt", "standard.ibl", "standard.rc", "standard.sIBLT",
+					"level_0/standard.ibl", "level_0/level_1",
+					"level_0/level_1/loremIpsum.txt", "level_0/level_1/standard.rc", "level_0/level_1/level_2/",
+					"level_0/level_1/level_2/standard.sIBLT")
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Pkzip(object):
+class PkzipTestCase(unittest.TestCase):
 	'''
-	This Class Provides Methods To Manipulate Zip Files.
+	This Class Is The PkzipTestCase Class.
 	'''
 
-	@core.executionTrace
-	def __init__(self, archive=None):
+	def testRequiredAttributes(self):
 		'''
-		This Method Initializes The Class.
-
-		@param archive: Variable To Manipulate. ( String )
+		This Method Tests Presence Of Required Attributes.
 		'''
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		zipFile = Pkzip(TEST_FILE)
+		requiredAttributes = ("_archive",)
 
-		# --- Setting Class Attributes. ---
-		self._archive = None
-		self.archive = archive
+		for attribute in requiredAttributes:
+			self.assertIn(attribute, zipFile.__dict__)
 
-	#***************************************************************************************
-	#***	Attributes Properties
-	#***************************************************************************************
-	@property
-	def archive(self):
+	def testRequiredMethods(self):
 		'''
-		This Method Is The Property For The _archive Attribute.
-		
-		@return: self._archive. ( String )
+		This Method Tests Presence Of Required Methods.
 		'''
 
-		return self._archive
+		zipFile = Pkzip(TEST_FILE)
+		requiredMethods = ("extract",)
 
-	@archive.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def archive(self, value):
-		'''
-		This Method Is The Setter Method For The _archive Attribute.
-		
-		@param value: Attribute Value. ( String )
-		'''
+		for method in requiredMethods:
+			self.assertIn(method, dir(zipFile))
 
-		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("archive", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("archive", value)
-		self._archive = value
-
-	@archive.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def archive(self):
+	def testRead(self):
 		'''
-		This Method Is The Deleter Method For The _archive Attribute.
+		This Method Tests The "Pkzip" Class "extract" Method.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("archive"))
+		zipFile = Pkzip(TEST_FILE)
+		tempDirectory = tempfile.mkdtemp()
+		extractionSuccess = zipFile.extract(tempDirectory)
+		self.assertTrue(extractionSuccess)
+		for item in TREE_HIERARCHY:
+			self.assertTrue(os.path.exists(os.path.join(tempDirectory, item)))
+		shutil.rmtree(tempDirectory)
 
-	#***************************************************************************************
-	#***	Class Methods
-	#***************************************************************************************
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, OSError)
-	def extract(self, target):
-		'''
-		This Method Extracts The Archive File To The Provided Folder.
-		
-		@return: Extraction Success. ( Boolean )
-		'''
+if __name__ == "__main__":
+	import tests.utilities
+	unittest.main()
 
-		archive = zipfile.ZipFile(self._archive)
-		content = archive.namelist()
-
-		folders = [item for item in content if item.endswith("/")]
-		files = [item for item in content if not item.endswith("/")]
-
-		folders.sort()
-		folders.reverse()
-
-		for folder in folders:
-			not os.path.isdir(os.path.join(target, folder)) and io.setLocalDirectory(os.path.join(target, folder))
-
-		for file in files:
-			LOGGER.info("{0} | Extracting '{1}' File !".format(self.__class__.__name__, file))
-			with open(os.path.join(target, file), "w") as output:
-				buffer = StringIO(archive.read(file))
-				bufferSize = 2 ** 20
-				datas = buffer.read(bufferSize)
-				while datas:
-					output.write(datas)
-					datas = buffer.read(bufferSize)
-		return True
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
