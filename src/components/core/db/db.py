@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	db.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Database Backup Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -325,12 +325,12 @@ class Db(Component):
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		LOGGER.debug("> Initializing '{0}' SQLite Database.".format(Constants.databaseFile))
-		if self._container.parameters.databaseDirectory :
-			if os.path.exists(self._container.parameters.databaseDirectory) :
+		if self._container.parameters.databaseDirectory:
+			if os.path.exists(self._container.parameters.databaseDirectory):
 				self._dbName = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseFile)
-			else :
+			else:
 				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close !".format(self._container.parameters.databaseDirectory, Constants.applicationName)
-		else :
+		else:
 			self._dbName = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 
 		LOGGER.info("{0} | Session Database Location : '{1}'".format(self.__class__.__name__, self._dbName))

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	library.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		C / C++ Binding Library Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -100,7 +100,7 @@ class Library(object):
 
 	_librariesInstances = {}
 
-	if platform.system() == "Windows" or platform.system() == "Microsoft" :
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
 		_callback = ctypes.WINFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
 	else:
 		_callback = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
@@ -116,11 +116,11 @@ class Library(object):
 		'''
 
 		libraryPath = args[0]
-		if os.path.exists(libraryPath) :
-			if not args[0] in self._librariesInstances.keys() :
+		if os.path.exists(libraryPath):
+			if not args[0] in self._librariesInstances.keys():
 				self._librariesInstances[args[0]] = object.__new__(self)
 			return self._librariesInstances[args[0]]
-		else :
+		else:
 			raise foundations.exceptions.LibraryInstantiationError("'{0}' Library Path Doesn't Exists !".format(libraryPath))
 
 	@core.executionTrace
@@ -133,7 +133,7 @@ class Library(object):
 		@param functions: Binding Functions List. ( Tuple )
 		'''
 
-		if hasattr(self._librariesInstances[libraryPath], "_libraryInstantiated") :
+		if hasattr(self._librariesInstances[libraryPath], "_libraryInstantiated"):
 			return
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
@@ -148,14 +148,14 @@ class Library(object):
 
 		self._library = None
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			loadingFunction = ctypes.windll
 		else:
 			loadingFunction = ctypes.cdll
 
-		if self.libraryPath :
+		if self.libraryPath:
 			self._library = loadingFunction.LoadLibrary(libraryPath)
-		else :
+		else:
 			raise foundations.exceptions.LibraryInitializationError, "'{0}' Library Not Found !".format(self.__class__.__name__)
 
 		self.bindLibrary()
@@ -212,7 +212,7 @@ class Library(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("libraryPath", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("libraryPath", value)
 		self._libraryPath = value
@@ -245,7 +245,7 @@ class Library(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("functions", value)
 		self._functions = value
 
@@ -303,14 +303,14 @@ class Library(object):
 
 		returnType = function.returnValue
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			functionObject = getattr(self._library, "{0}".format(function.name, function.affixe))
 		else:
 			functionObject = getattr(self._library, function.name)
 
 		setattr(self, function.name, functionObject)
 
-		if returnType :
+		if returnType:
 			functionObject.restype = returnType
 
 	@core.executionTrace
@@ -320,7 +320,7 @@ class Library(object):
 		This Method Bind The Library.
 		'''
 
-		if self._functions :
+		if self._functions:
 			for function in self._functions:
 				self.bindFunction(function)
 

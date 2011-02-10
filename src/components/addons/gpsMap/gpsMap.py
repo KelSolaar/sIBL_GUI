@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	gpsMap.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		GPS Map Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -686,9 +686,9 @@ class GpsMap(UiComponent):
 		self._map.removeMarkers()
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
-		for iblSet in selectedIblSets :
+		for iblSet in selectedIblSets:
 			LOGGER.debug("> Current Ibl Set : '{0}'.".format(iblSet._datas.name))
-			if iblSet._datas.latitude and iblSet._datas.longitude :
+			if iblSet._datas.latitude and iblSet._datas.longitude:
 				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
 				shotDateString = "<b>Shot Date : </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
 				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	componentsManagerUi.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Components Manager Ui Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -636,10 +636,10 @@ class ComponentsManagerUi(UiComponent):
 		'''
 		This Method Sets The Components_Manager_Ui_treeView Model.
 		
-		Columns :
+		Columns:
 		Collections | Activated | Categorie | Rank | Version
 		
-		Rows :
+		Rows:
 		* Path : { _type : "Path" }
 		** Component : { _type : "Component", _datas : profile }
 		'''
@@ -651,17 +651,17 @@ class ComponentsManagerUi(UiComponent):
 		self._model.setHorizontalHeaderLabels(self._modelHeaders)
 		self._model.setColumnCount(len(self._modelHeaders))
 
-		for path in self._container.componentsManager.paths :
+		for path in self._container.componentsManager.paths:
 			components = [component for component in self._container.componentsManager.components if os.path.normpath(self._container.componentsManager.paths[path]) in os.path.normpath(self._container.componentsManager.components[component].path)]
 
-			if components :
+			if components:
 				pathStandardItem = QStandardItem(QString(path))
 				pathStandardItem._type = "Path"
 
 				LOGGER.debug("> Adding '{0}' Path To '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
 				self._model.appendRow(pathStandardItem)
 
-				for component in components :
+				for component in components:
 					componentStandardItem = QStandardItem(QString(strings.getNiceName(self._container.componentsManager.components[component].module)))
 					iconPath = os.path.join(self._uiResources, "{0}{1}".format(strings.getNiceName(self._container.componentsManager.components[component].categorie), self._uiCategorieAffixe))
 					componentStandardItem.setIcon(QIcon(iconPath))
@@ -733,7 +733,7 @@ class ComponentsManagerUi(UiComponent):
 		LOGGER.debug("> Setting '{0}' Default View State !".format("Components_Manager_Ui_treeView"))
 
 		self.ui.Components_Manager_Ui_treeView.expandAll()
-		for column in range(len(self._modelHeaders)) :
+		for column in range(len(self._modelHeaders)):
 			self.ui.Components_Manager_Ui_treeView.resizeColumnToContents(column)
 
 		self.ui.Components_Manager_Ui_treeView.sortByColumn(0, Qt.AscendingOrder)
@@ -744,7 +744,7 @@ class ComponentsManagerUi(UiComponent):
 		This Method Refreshes The Components_Manager_Ui_treeView Activations Status.
 		'''
 
-		for i in range(self._model.rowCount()) :
+		for i in range(self._model.rowCount()):
 			for j in range(self._model.item(i).rowCount()):
 				componentStandardItem = self._model.item(i).child(j, 0)
 				componentActivationStandardItem = self._model.item(i).child(j, 1)
@@ -788,12 +788,12 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedComponents = self.getSelectedItems()
 
-		if selectedComponents :
-			for component in selectedComponents :
-				if component._type == "Component" :
-					if not component._datas.interface.activated :
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if not component._datas.interface.activated:
 						self.activateComponent(component._datas)
-					else :
+					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated !".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
@@ -809,15 +809,15 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedComponents = self.getSelectedItems()
 
-		if selectedComponents :
-			for component in selectedComponents :
-				if component._type == "Component" :
-					if component._datas.interface.activated :
-						if component._datas.interface.deactivatable :
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if component._datas.interface.activated:
+						if component._datas.interface.deactivatable:
 							self.deactivateComponent(component._datas)
-						else :
+						else:
 							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated !".format(self.__class__.__name__, component._datas.name))
-					else :
+					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated !".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
@@ -832,16 +832,16 @@ class ComponentsManagerUi(UiComponent):
 		'''
 
 		selectedComponents = self.getSelectedItems()
-		if selectedComponents :
-			for component in selectedComponents :
-				if component._type == "Component" :
-					if component._datas.interface.deactivatable :
-						if component._datas.interface.activated :
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if component._datas.interface.deactivatable:
+						if component._datas.interface.activated:
 							self.deactivateComponent(component._datas)
 						self._container.componentsManager.reloadComponent(component._datas.name)
-						if not component._datas.interface.activated :
+						if not component._datas.interface.activated:
 							self.activateComponent(component._datas)
-					else :
+					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded !".format(self.__class__.__name__, component._datas.name))
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
@@ -874,8 +874,8 @@ class ComponentsManagerUi(UiComponent):
 					"""
 
 		selectedItems = self.getSelectedItems()
-		for item in selectedItems :
-			if item._type == "Component" :
+		for item in selectedItems:
+			if item._type == "Component":
 				content.append(subContent.format(item._datas.name,
 												strings.getNiceName(item._datas.categorie),
 												item._datas.author,
@@ -901,9 +901,9 @@ class ComponentsManagerUi(UiComponent):
 		LOGGER.debug("> Attempting '{0}' Component Activation.".format(component.name))
 
 		component.interface.activate(self._container)
-		if component.categorie == "default" :
+		if component.categorie == "default":
 			component.interface.initialize()
-		elif component.categorie == "ui" :
+		elif component.categorie == "ui":
 			component.interface.addWidget()
 			component.interface.initializeUi()
 
@@ -918,9 +918,9 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Attempting '{0}' Component Deactivation.".format(component.name))
 
-		if component.categorie == "default" :
+		if component.categorie == "default":
 			component.interface.uninitialize()
-		elif component.categorie == "ui" :
+		elif component.categorie == "ui":
 			component.interface.uninitializeUi()
 			component.interface.removeWidget()
 		component.interface.deactivate()
@@ -932,8 +932,8 @@ class ComponentsManagerUi(UiComponent):
 		'''
 
 		deactivatedComponents = []
-		for component in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) :
-			if component._type == "Component" :
+		for component in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0):
+			if component._type == "Component":
 				component._datas.interface.activated or deactivatedComponents.append(component._datas.name)
 
 		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))

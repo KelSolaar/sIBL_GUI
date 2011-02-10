@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	active_QLabel.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Custom Active QLabel.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -83,7 +83,7 @@ class Active_QLabel(QLabel):
 	clicked = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, defaultPixmap, hoverPixmap, activePixmap, checkable=False, checked=False, parent=None) :
+	def __init__(self, defaultPixmap, hoverPixmap, activePixmap, checkable=False, checked=False, parent=None):
 		'''
 		This Method Initializes The Class.
 
@@ -138,7 +138,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( QPixmap )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
 		self._defaultPixmap = value
 
@@ -170,7 +170,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( QPixmap )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
 		self._hoverPixmap = value
 
@@ -202,7 +202,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( QPixmap )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute : '{1}' Type Is Not 'QPixmap' !".format("checked", value)
 		self._activePixmap = value
 
@@ -234,7 +234,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("checkable", value)
 		self._checkable = value
 
@@ -266,7 +266,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("checked", value)
 		self._checked = value
 
@@ -349,10 +349,10 @@ class Active_QLabel(QLabel):
 		@param state: New Check State. ( Boolean )
 		'''
 
-		if state :
+		if state:
 			self._checked = True
 			self.setPixmap(self._activePixmap)
-		else :
+		else:
 			self._checked = False
 			self.setPixmap(self._defaultPixmap)
 
@@ -388,9 +388,9 @@ class Active_QLabel(QLabel):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		if self._checkable :
+		if self._checkable:
 			not self._checked and self.setPixmap(self._hoverPixmap)
-		else :
+		else:
 			self.setPixmap(self._hoverPixmap)
 
 	@core.executionTrace
@@ -401,9 +401,9 @@ class Active_QLabel(QLabel):
 		@param event: QEvent. ( QEvent )
 		'''
 
-		if self._checkable :
+		if self._checkable:
 			not self._checked and self.setPixmap(self._defaultPixmap)
-		else :
+		else:
 			self.setPixmap(self._defaultPixmap)
 
 	@core.executionTrace
@@ -416,9 +416,9 @@ class Active_QLabel(QLabel):
 
 		self.emit(SIGNAL("clicked()"))
 
-		if self._checkable :
+		if self._checkable:
 			self.setChecked(True)
-		else :
+		else:
 			self.setPixmap(self._activePixmap)
 			self._menu and self._menu.exec_(QCursor.pos())
 

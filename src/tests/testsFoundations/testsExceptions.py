@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsExceptions.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Exceptions Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -97,9 +97,9 @@ class ExceptionsTestCase(unittest.TestCase):
 		'''
 
 		requiredAttributes = ("value",)
-		for exception in EXCEPTIONS :
+		for exception in EXCEPTIONS:
 			exceptionInstance = exception(None)
-			for attribute in requiredAttributes :
+			for attribute in requiredAttributes:
 				self.assertIn(attribute, exceptionInstance.__dict__)
 
 	def test__str__(self):
@@ -107,7 +107,7 @@ class ExceptionsTestCase(unittest.TestCase):
 		This Method Tests The "Exceptions" Class "__str__" Method.
 		'''
 
-		for exception in EXCEPTIONS :
+		for exception in EXCEPTIONS:
 			exceptionInstance = exception("{0} Exception Raised !".format(exception.__class__))
 			self.assertIsInstance(exceptionInstance.__str__(), str)
 			exceptionInstance = exception([exception.__class__, "Exception Raised !"])

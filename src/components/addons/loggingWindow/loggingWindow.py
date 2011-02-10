@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	loggingWindow.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Logging Window Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -348,7 +348,7 @@ class LoggingWindow(UiComponent):
 		self.ui.setParent(None)
 
 	# @core.executionTrace
-	def setLoggingTextEdit(self) :
+	def setLoggingTextEdit(self):
 		'''
 		This Method Sets The Logging TextEdit.
 		'''
@@ -358,13 +358,13 @@ class LoggingWindow(UiComponent):
 		self.ui.Logging_textEdit.ensureCursorVisible()
 
 	# @core.executionTrace
-	def updateLoggingTextEdit(self) :
+	def updateLoggingTextEdit(self):
 		'''
 		This Method Updates The Logging TextEdit.
 		'''
 
 		memoryHandlerStack = len(self._container.loggingSessionHandlerStream.stream)
-		if memoryHandlerStack != self._memoryHandlerStack :
+		if memoryHandlerStack != self._memoryHandlerStack:
 			self.setLoggingTextEdit()
 			self._memoryHandlerStack = memoryHandlerStack
 

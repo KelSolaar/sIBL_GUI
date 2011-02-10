@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	rawEditingUtilities.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Raw Editing Utilities Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -522,7 +522,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._editSetInTextEditorAction = QAction("Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
 			self._editSetInTextEditorAction.triggered.connect(self.Database_Browser_listView_editSetInTextEditorAction)
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editSetInTextEditorAction)
@@ -530,7 +530,7 @@ class RawEditingUtilities(UiComponent):
 			self._editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 			self._editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editSetInTextEditorAction)
 			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._editTemplateInTextEditorAction)
-		else :
+		else:
 			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
@@ -541,7 +541,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editSetInTextEditorAction)
 			self._editSetInTextEditorAction = None
 
@@ -569,12 +569,12 @@ class RawEditingUtilities(UiComponent):
 		'''
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
-		if selectedTemplates :
-			for template in selectedTemplates :
+		if selectedTemplates:
+			for template in selectedTemplates:
 				os.path.exists(template._datas.path) and self.editProvidedfile(template._datas.path)
 
 	@core.executionTrace
-	def Custom_Text_Editor_Path_lineEdit_setUi(self) :
+	def Custom_Text_Editor_Path_lineEdit_setUi(self):
 		'''
 		This Method Fills The Custom_Text_Editor_Path_lineEdit.
 		'''
@@ -584,7 +584,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
-	def Custom_Text_Editor_Path_toolButton_OnClicked(self, checked) :
+	def Custom_Text_Editor_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
 		
@@ -599,7 +599,7 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Custom_Text_Editor_Path_lineEdit_OnEditFinished(self) :
+	def Custom_Text_Editor_Path_lineEdit_OnEditFinished(self):
 		'''
 		This Method Is Called When Custom_Text_Editor_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		'''
@@ -609,7 +609,7 @@ class RawEditingUtilities(UiComponent):
 			self.Custom_Text_Editor_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File !".format(self.__class__.__name__)
-		else :
+		else:
 			self._settings.setKey(self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
@@ -625,46 +625,46 @@ class RawEditingUtilities(UiComponent):
 
 		file = os.path.normpath(file)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			if customTextEditor :
+			if customTextEditor:
 				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
 				editCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
 				LOGGER.info("{0} | Launching 'notepad.exe' With '{1}'.".format(self.__class__.__name__, file))
 				editCommand = "notepad.exe \"{0}\"".format(file)
-		elif platform.system() == "Darwin" :
-			if customTextEditor :
+		elif platform.system() == "Darwin":
+			if customTextEditor:
 				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
 				editCommand = "open -a \"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
 				LOGGER.info("{0} | Launching Default Text Editor With '{1}'.".format(self.__class__.__name__, file))
 				editCommand = "open -e \"{0}\"".format(file)
 		elif platform.system() == "Linux":
-			if customTextEditor :
+			if customTextEditor:
 				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
 				editCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
-			else :
+			else:
 				environmentVariable = Environment("PATH")
 				paths = environmentVariable.getPath().split(":")
 
 				editorFound = False
-				for editor in self._linuxTextEditors :
-					if not editorFound :
-						try :
-							for path in paths :
-								if os.path.exists(os.path.join(path, editor)) :
+				for editor in self._linuxTextEditors:
+					if not editorFound:
+						try:
+							for path in paths:
+								if os.path.exists(os.path.join(path, editor)):
 									LOGGER.info("{0} | Launching '{1}' Text Editor With '{2}'.".format(self.__class__.__name__, editor, file))
 									editCommand = "\"{0}\" \"{1}\"".format(editor, file)
 									editorFound = True
 									raise StopIteration
 						except StopIteration:
 							pass
-					else :
+					else:
 						break
-		if editCommand :
+		if editCommand:
 			LOGGER.debug("> Current Edit Command : '{0}'.".format(editCommand))
 			editProcess = QProcess()
 			editProcess.startDetached(editCommand)
-		else :
+		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Text Editor Executable In The Preferences !".format(self.__class__.__name__))
 
 #***********************************************************************************************

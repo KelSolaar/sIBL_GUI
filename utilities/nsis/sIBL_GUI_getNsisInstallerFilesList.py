@@ -88,7 +88,7 @@ stack_of_visited.reverse()
 for (my_files, my_dir) in stack_of_visited:
 		for f in my_files:
 			print >> uh, uninst_file_tpl % (my_dir + os.sep + f)
-		if my_dir :
+		if my_dir:
 			print >> uh, uninst_dir_tpl % my_dir
 			print >> uh, "  "
 

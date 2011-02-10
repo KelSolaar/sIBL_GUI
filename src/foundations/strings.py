@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	strings.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Strings Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -75,7 +75,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def getNiceName(name) :
+def getNiceName(name):
 	'''
 	This Definition Converts A String To Nice String : currentLogText -> Current Log Text.
 
@@ -84,15 +84,15 @@ def getNiceName(name) :
 	'''
 
 	niceName = ""
-	for index in range(len(name)) :
+	for index in range(len(name)):
 		if index == 0:
 			niceName += name[ index ].upper()
-		else :
+		else:
 			if name[ index ].upper() == name[ index ]:
-				if index + 1 < len(name) :
+				if index + 1 < len(name):
 					if  name[ index + 1 ].upper() != name[ index + 1 ]:
 						niceName += " " + name[ index ]
-					else :
+					else:
 						LOGGER.debug("> '{0}' To '{1}'.".format(name, name))
 						return name
 				else:
@@ -129,7 +129,7 @@ def getNormalizedPath(path):
 		path = os.path.normpath(path).replace("\\", "\\\\")
 		LOGGER.debug("> Path : '{0}', Normalized Path.".format(path))
 		return path
-	else :
+	else:
 		path = os.path.normpath(path)
 		LOGGER.debug("> Path : '{0}', Normalized Path.".format(path))
 		return path
@@ -168,10 +168,10 @@ def isEmail(datas):
 	@return: Is Email. ( Boolean )
 	'''
 
-	if re.match("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas) :
+	if re.match("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}", datas):
 		LOGGER.debug("> {0}' Is Matched As Email.".format(datas))
 		return True
-	else :
+	else:
 		LOGGER.debug("> {0}' Is Not Matched As Email.".format(datas))
 		return False
 
@@ -184,10 +184,10 @@ def isWebsite(datas):
 	@return: Is Website. ( Boolean )
 	'''
 
-	if re.match("(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas) :
+	if re.match("(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?", datas):
 		LOGGER.debug("> {0}' Is Matched As Website.".format(datas))
 		return True
-	else :
+	else:
 		LOGGER.debug("> {0}' Is Not Matched As Website.".format(datas))
 		return False
 

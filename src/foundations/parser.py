@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	Parser.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***      	sIBL Input And Output Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -151,7 +151,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("splitter", value)
 			assert len(value) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format("splitter", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("splitter", value)
@@ -185,7 +185,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("namespaceSplitter", value)
 			assert len(value) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format("namespaceSplitter", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("namespaceSplitter", value)
@@ -219,7 +219,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("commentLimiter", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("commentLimiter", value)
 		self._commentLimiter = value
@@ -252,7 +252,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("commentMarker", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("commentMarker", value)
 		self._commentMarker = value
@@ -285,7 +285,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("rawSectionContentIdentifier", value)
 		self._rawSectionContentIdentifier = value
 
@@ -317,7 +317,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("sections", value)
 		self._sections = value
 
@@ -350,7 +350,7 @@ class Parser(io.File):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("comments", value)
 		self._comments = value
 
@@ -379,12 +379,12 @@ class Parser(io.File):
 		'''
 
 		LOGGER.debug("> Reading Sections From : '{0}'.".format(self._file))
-		if self._content :
-			if re.search("^\[.*\]", self._content[0]) :
-				if not orderedDictionary :
+		if self._content:
+			if re.search("^\[.*\]", self._content[0]):
+				if not orderedDictionary:
 					self._sections = {}
 					self._comments = {}
-				else :
+				else:
 					self._sections = OrderedDict()
 					self._comments = OrderedDict()
 				rawSections = rawSections or []
@@ -393,19 +393,19 @@ class Parser(io.File):
 					if re.search("^\[.*\]", line):
 						section = re.search("(?<=^\[)(.*)(?=\])", line)
 						section = section.group(0)
-						if not orderedDictionary :
+						if not orderedDictionary:
 							attributes = {}
-						else :
+						else:
 							attributes = OrderedDict()
 						rawContent = []
 					else:
-						if section in rawSections :
+						if section in rawSections:
 							rawContent.append(line)
 							attributes[section + self._namespaceSplitter + self._rawSectionContentIdentifier] = rawContent
-						else :
-							if re.search("^ *\n", line) or re.search("^ *\r\n", line) :
+						else:
+							if re.search("^ *\n", line) or re.search("^ *\r\n", line):
 								continue
-							else :
+							else:
 								if line.startswith(self._commentLimiter) and not stripComments:
 									self._comments[section + self._namespaceSplitter + self._commentMarker + str(commentId)] = {"id" : commentId, "content" : line.strip().strip(self._commentLimiter)}
 									commentId += 1
@@ -430,10 +430,10 @@ class Parser(io.File):
 		@return: Section Existence. ( Boolean )
 		'''
 
-		if section in self._sections.keys() :
+		if section in self._sections.keys():
 			LOGGER.debug("> '{0}' Section Exists In '{1}'.".format(section, self))
 			return True
-		else :
+		else:
 			LOGGER.debug("> '{0}' Section Doesn't Exists In '{1}'.".format(section, self))
 			return False
 
@@ -448,10 +448,10 @@ class Parser(io.File):
 		@return: Attribute Existence. ( Boolean )
 		'''
 
-		if removeNamespace(attribute) in self.getAttributes(section, True, False) :
+		if removeNamespace(attribute) in self.getAttributes(section, True, False):
 			LOGGER.debug("> '{0}' Attribute Exists In '{1}' Section.".format(attribute, section))
 			return True
-		else :
+		else:
 			LOGGER.debug("> '{0}' Attribute Doesn't Exists In '{1}' Section.".format(attribute, section))
 			return False
 
@@ -469,15 +469,15 @@ class Parser(io.File):
 
 		LOGGER.debug("> Getting Section '{0}' Attributes.".format(section))
 
-		if self.sectionsExists(section) :
+		if self.sectionsExists(section):
 			dictionary = orderedDictionary and OrderedDict or dict
 			attributes = useNamespace and self._sections[section] or dictionary([(removeNamespace(attribute), self._sections[section][attribute]) for attribute in self._sections[section].keys()])
 			LOGGER.debug("> Attributes : '{0}'.".format(attributes))
 			return attributes
-		else :
-			if raise_ :
+		else:
+			if raise_:
 				raise KeyError("'{0}' Section Doesn't Exists In '{1}' Sections !".format(section, self._file))
-			else :
+			else:
 				LOGGER.warning("!> {0} | '{1}' Section Doesn't Exists In '{2}' Sections !".format(self.__class__.__name__, section, self._file))
 
 	@core.executionTrace
@@ -493,7 +493,7 @@ class Parser(io.File):
 		'''
 
 		if self.attributeExists(attribute, section):
-			if attribute in self._sections[section].keys() :
+			if attribute in self._sections[section].keys():
 				value = self._sections[section][attribute]
 			elif setNamespace(section, attribute) in self._sections[section].keys():
 				value = self._sections[section][setNamespace(section, attribute)]
@@ -530,7 +530,7 @@ def getNamespace(attribute, namespaceSplitter="|"):
 	if len(attributeTokens) == 1:
 		LOGGER.debug("> Attribute : '{0}', Namespace : '{1}'.".format(attribute, Constants.nullObject))
 		return None
-	else :
+	else:
 		namespace = attributeTokens[0:-1]
 		LOGGER.debug("> Attribute : '{0}', Namespace : '{1}'.".format(attribute, namespace))
 		return namespace
@@ -565,13 +565,13 @@ def getAttributeCompound(attribute, value=None, splitter="|", bindingIdentifier=
 
 	LOGGER.debug("> Attribute : '{0}', Value : '{1}'.".format(attribute, value))
 
-	if value :
-		if splitter in value :
+	if value:
+		if splitter in value:
 			valueTokens = value.split(splitter)
 			if len(valueTokens) >= 3 and re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), valueTokens[0]):
 				return AttributeCompound(name=attribute, value=valueTokens[1].strip(), link=valueTokens[0].strip(), type=valueTokens[2].strip(), alias=len(valueTokens) == 4 and valueTokens[3].strip() or None)
-		else :
-			if re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), value) :
+		else:
+			if re.search("{0}[a-zA-Z0-9_]*".format(bindingIdentifier), value):
 				return AttributeCompound(name=attribute, value=None, link=value, type=None, alias=None)
 
 	return AttributeCompound(name=attribute, value=value, link=None, type=None, alias=None)

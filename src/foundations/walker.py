@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	Walker.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Walker Module
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -117,7 +117,7 @@ class Walker(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("root", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' Directory Doesn't Exists !".format("root", value)
 		self._root = value
@@ -150,7 +150,7 @@ class Walker(object):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("files", value)
 		self._files = value
 
@@ -177,35 +177,35 @@ class Walker(object):
 		@return: Files List. ( Dictionary Or None )
 		'''
 
-		if filtersIn :
+		if filtersIn:
 			LOGGER.debug("> Current filtersIn : '{0}'.".format(filtersIn))
 
-		if self._root :
+		if self._root:
 				self._files = {}
 				for root, dirs, files in os.walk(self._root, topdown=False):
 					for item in files:
 						LOGGER.debug("> Current File : '{0}' In '{1}'.".format(item, self._root))
 						itemPath = os.path.join(root, item).replace("\\", "/")
 						if os.path.isfile(itemPath):
-							if filtersIn :
+							if filtersIn:
 								filterMatched = False
-								for filter in filtersIn :
+								for filter in filtersIn:
 									if not re.search(filter, itemPath):
 										LOGGER.debug("> '{0}' File Skipped, Filter In '{1}' Not Matched !.".format(itemPath, filter))
-									else :
+									else:
 										filterMatched = True
 										break
-								if not filterMatched :
+								if not filterMatched:
 									continue
 
-							if filtersOut :
+							if filtersOut:
 								filterMatched = False
-								for filter in filtersOut :
-									if re.search(filter, itemPath) :
+								for filter in filtersOut:
+									if re.search(filter, itemPath):
 										LOGGER.debug("> '{0}' File Skipped, Filter Out '{1}' Matched !.".format(itemPath, filter))
 										filterMatched = True
 										break
-								if filterMatched :
+								if filterMatched:
 									continue
 
 							LOGGER.debug("> '{0}' File Filtered In !".format(itemPath))

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsRuntimeConstants.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Runtime Constants Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -94,7 +94,7 @@ class RuntimeConstantsTestCase(unittest.TestCase):
 								"settingsFile",
 								"settings")
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, RuntimeConstants.__dict__)
 
 if __name__ == '__main__':

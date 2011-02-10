@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsCore.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Core Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -86,7 +86,7 @@ class StandardMessageHookTestCase(unittest.TestCase):
 		hook = core.StandardMessageHook(None)
 		requiredAttributes = ("_logger",)
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, hook.__dict__)
 
 	def testRequiredMethods(self):
@@ -97,7 +97,7 @@ class StandardMessageHookTestCase(unittest.TestCase):
 		hook = core.StandardMessageHook(None)
 		requiredMethods = ("write",)
 
-		for method in requiredMethods :
+		for method in requiredMethods:
 			self.assertIn(method, dir(hook))
 
 class SetVerbosityLevelTestCase(unittest.TestCase):
@@ -112,7 +112,7 @@ class SetVerbosityLevelTestCase(unittest.TestCase):
 
 		LOGGER = logging.getLogger(Constants.logger)
 		levels = {logging.CRITICAL:0, logging.ERROR:1, logging.WARNING:2, logging.INFO:3, logging.DEBUG:4  }
-		for level, value in levels.items() :
+		for level, value in levels.items():
 			core.setVerbosityLevel(value)
 			self.assertEqual(level, LOGGER.level)
 

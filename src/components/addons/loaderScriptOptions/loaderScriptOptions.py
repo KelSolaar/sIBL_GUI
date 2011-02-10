@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	loaderScriptOptions.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Loader Script Options Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -536,7 +536,7 @@ class LoaderScriptOptions(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("enumSplitter", value)
 			assert len(value) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format("enumSplitter", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("enumSplitter", value)
@@ -643,10 +643,10 @@ class LoaderScriptOptions(UiComponent):
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
-		if template :
+		if template:
 			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self._templateCommonAttributesSection, self._templateAdditionalAttributesSection))
 
-			if os.path.exists(template._datas.path) :
+			if os.path.exists(template._datas.path):
 				templateParser = Parser(template._datas.path)
 				templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 
@@ -654,7 +654,7 @@ class LoaderScriptOptions(UiComponent):
 				self.setOptionsToolBox(templateParser.sections[self._templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
-	def setOptionsToolBox(self, section, tableWidget) :
+	def setOptionsToolBox(self, section, tableWidget):
 		'''
 		This Method Defines And Sets Options TableWidgets.
 
@@ -680,34 +680,34 @@ class LoaderScriptOptions(UiComponent):
 		tableWidget.setPalette(palette)
 
 		verticalHeaderLabels = []
-		for row, attribute in enumerate(section.keys()) :
+		for row, attribute in enumerate(section.keys()):
 			LOGGER.debug("> Current Attribute : '{0}'.".format(attribute))
 			attributeCompound = foundations.parser.getAttributeCompound(attribute, section[attribute])
-			if attributeCompound.name :
+			if attributeCompound.name:
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
 				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
 
 			LOGGER.debug("> Attribute Type : '{0}'.".format("Boolean"))
-			if attributeCompound.type == "Boolean" :
+			if attributeCompound.type == "Boolean":
 				state = int(attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self._uiLightGrayColor, self._uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
 				item._datas = attributeCompound
 				tableWidget.setCellWidget(row, 0, item)
-			elif attributeCompound.type == "Float" :
+			elif attributeCompound.type == "Float":
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
 				item.setValue(float (attributeCompound.value))
 				item._datas = attributeCompound
 				tableWidget.setCellWidget(row, 0, item)
-			elif attributeCompound.type == "Enum" :
+			elif attributeCompound.type == "Enum":
 				item = QComboBox()
 				item.addItems(attributeCompound.value.split(self._enumSplitter))
 				item._datas = attributeCompound
 				tableWidget.setCellWidget(row, 0, item)
-			else :
+			else:
 				item = QTableWidgetItem(QString(attributeCompound.value))
 				item.setTextAlignment(Qt.AlignCenter)
 				item._datas = attributeCompound
@@ -726,13 +726,13 @@ class LoaderScriptOptions(UiComponent):
 
 		LOGGER.debug("> Updating Override Keys With '{0}' Attributes.".format(tableWidget.objectName()))
 
-		for row in range(tableWidget.rowCount()) :
+		for row in range(tableWidget.rowCount()):
 			widget = tableWidget.cellWidget(row, 0)
-			if type(widget) is Variable_QPushButton :
+			if type(widget) is Variable_QPushButton:
 				value = tableWidget.cellWidget(row, 0).text() == "True" and "1" or "0"
-			elif type(widget) is QDoubleSpinBox :
+			elif type(widget) is QDoubleSpinBox:
 				value = str(tableWidget.cellWidget(row, 0).value())
-			elif type(widget) is QComboBox :
+			elif type(widget) is QComboBox:
 				value = str(tableWidget.cellWidget(row, 0).currentText())
 			else:
 				value = str(tableWidget.cellWidget(row, 0).text())

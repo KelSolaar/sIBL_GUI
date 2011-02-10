@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	databaseBrowser.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Database Browser Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -261,14 +261,14 @@ class DatabaseBrowser_Worker(QThread):
 		'''
 
 		needModelRefresh = False
-		for iblSet in dbUtilities.common.getIblSets(self._dbSession) :
-			if iblSet.path :
-				if os.path.exists(iblSet.path) :
+		for iblSet in dbUtilities.common.getIblSets(self._dbSession):
+			if iblSet.path:
+				if os.path.exists(iblSet.path):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
 						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated !".format(self.__class__.__name__, iblSet.name))
-						if dbUtilities.common.updateIblSetContent(self._dbSession, iblSet) :
+						if dbUtilities.common.updateIblSetContent(self._dbSession, iblSet):
 							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated !".format(self.__class__.__name__, iblSet.name))
 							needModelRefresh = True
 
@@ -400,23 +400,23 @@ class DatabaseBrowser_QListView(QListView):
 		@param event: QEvent. ( QEvent )		
 		'''
 
-		if not self._container.parameters.databaseReadOnly :
-			if event.mimeData().hasUrls() :
+		if not self._container.parameters.databaseReadOnly:
+			if event.mimeData().hasUrls():
 				LOGGER.debug("> Drag Event Urls List : '{0}' !".format(event.mimeData().urls()))
-				for url in event.mimeData().urls() :
+				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())) :
+					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
 						name = os.path.splitext(os.path.basename(path))[0]
-						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							 self._coreDatabaseBrowser.addIblSet(name, path) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
-					else :
+					else:
 						if os.path.isdir(path):
-							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								 self._coreDatabaseBrowser.addDirectory(path)
 								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
-						else :
+						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
-		else :
+		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
 
 	@core.executionTrace
@@ -428,9 +428,9 @@ class DatabaseBrowser_QListView(QListView):
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		'''
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			pass
-		else :
+		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
 
 class DatabaseBrowser(UiComponent):
@@ -464,9 +464,9 @@ class DatabaseBrowser(UiComponent):
 		self._uiLargestSizeIcon = "Largest_Size.png"
 		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
-		if platform.system() == "Linux" :
+		if platform.system() == "Linux":
 			self._listViewSpacing = 14
-		else :
+		else:
 			self._listViewSpacing = 16
 		self._listViewMargin = 24
 		self._listViewIconSize = 128
@@ -721,7 +721,7 @@ class DatabaseBrowser(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format("listViewSpacing", value)
 			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("listViewSpacing", value)
 		self._listViewSpacing = value
@@ -754,7 +754,7 @@ class DatabaseBrowser(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format("listViewMargin", value)
 			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("listViewMargin", value)
 		self._listViewMargin = value
@@ -787,7 +787,7 @@ class DatabaseBrowser(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format("listViewIconSize", value)
 			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("listViewIconSize", value)
 		self._listViewIconSize = value
@@ -1062,7 +1062,7 @@ class DatabaseBrowser(UiComponent):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("modelSelectionState", value)
 		self._modelSelectionState = value
 
@@ -1124,7 +1124,7 @@ class DatabaseBrowser(UiComponent):
 		@param value: Attribute Value. ( List )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format("content", value)
 		self._displaySets = value
 
@@ -1195,11 +1195,11 @@ class DatabaseBrowser(UiComponent):
 
 		self.Database_Browser_listView_setView()
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
 			self._databaseBrowserWorkerThread.start()
 			self._container.workerThreads.append(self._databaseBrowserWorkerThread)
-		else :
+		else:
 			LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 		self.ui.Thumbnails_Size_horizontalSlider.setValue(self._listViewIconSize)
@@ -1210,7 +1210,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.Thumbnails_Size_horizontalSlider_OnChanged)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView.QListView_OnDoubleClicked)
 		self.modelChanged.connect(self.Database_Browser_listView_refreshView)
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
 			self._model.dataChanged.connect(self.Database_Browser_listView_OnModelDataChanged)
 
@@ -1250,26 +1250,26 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			# Wizard If Sets Table Is Empty.
-			if not dbUtilities.common.getIblSets(self._coreDb.dbSession).count() :
-				if messageBox.messageBox("Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+			if not dbUtilities.common.getIblSets(self._coreDb.dbSession).count():
+				if messageBox.messageBox("Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets ?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 					directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content :", self._container.lastBrowsedPath)))
-					if directory :
+					if directory:
 						self.addDirectory(directory)
 						self.Database_Browser_listView_extendedRefreshModel()
 
 			# Ibl Sets Table Integrity Checking.
 			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity(self._coreDb.dbSession)
-			if erroneousIblSets :
-				for iblSet in erroneousIblSets :
-					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION" :
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location ?".format(self.__class__.__name__, iblSet.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384 :
+			if erroneousIblSets:
+				for iblSet in erroneousIblSets:
+					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location ?".format(self.__class__.__name__, iblSet.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateIblSetLocation(iblSet)
-					else :
+					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 				self.Database_Browser_listView_localRefreshModel()
-		else :
+		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
@@ -1284,10 +1284,10 @@ class DatabaseBrowser(UiComponent):
 
 		self._model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted([(displaySet, displaySet.title) for displaySet in self._displaySets], key=lambda x:(x[1]))] :
+		for iblSet in [iblSet[0] for iblSet in sorted([(displaySet, displaySet.title) for displaySet in self._displaySets], key=lambda x:(x[1]))]:
 			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 
-			try :
+			try:
 				iblSetStandardItem = QStandardItem()
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
 
@@ -1302,19 +1302,19 @@ class DatabaseBrowser(UiComponent):
 				iblSetStandardItem.setToolTip(toolTip)
 
 				iblIcon = QIcon()
-				if os.path.exists(iblSet.icon) :
-					for extension in UiConstants.nativeImageFormats.values() :
-						if re.search(extension, iblSet.icon) :
+				if os.path.exists(iblSet.icon):
+					for extension in UiConstants.nativeImageFormats.values():
+						if re.search(extension, iblSet.icon):
 							iblIcon = QIcon(iblSet.icon)
 							break
-					else :
-						for extension in UiConstants.thirdPartyImageFormats.values() :
-							if re.search(extension, iblSet.icon) :
+					else:
+						for extension in UiConstants.thirdPartyImageFormats.values():
+							if re.search(extension, iblSet.icon):
 								image = Image(str(iblSet.icon))
 								iblIcon = QIcon(QPixmap(image.convertToQImage()))
 								break
 
-				if iblIcon.isNull() :
+				if iblIcon.isNull():
 					iblIcon = QIcon(os.path.join(self._uiResources, self.uiMissingIcon))
 				iblSetStandardItem.setIcon(iblIcon)
 
@@ -1325,7 +1325,7 @@ class DatabaseBrowser(UiComponent):
 				LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 				self._model.appendRow(iblSetStandardItem)
 
-			except Exception as error :
+			except Exception as error:
 				LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model !".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
 				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Database_Browser_listView_setModel"))
 
@@ -1423,12 +1423,12 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		# Crash Preventing Code.
-		if self._modelSelectionState :
+		if self._modelSelectionState:
 
 			LOGGER.debug("> Storing '{0}' Model Selection !".format("Database_Browser_listView"))
 
 			self._modelSelection = []
-			for item in self.getSelectedItems() :
+			for item in self.getSelectedItems():
 				self._modelSelection.append(item._datas.id)
 
 	@core.executionTrace
@@ -1438,19 +1438,19 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		# Crash Preventing Code.
-		if self._modelSelectionState :
+		if self._modelSelectionState:
 
 			LOGGER.debug("> Restoring '{0}' Model Selection !".format("Database_Browser_listView"))
 
 			indexes = []
-			for i in range(self._model.rowCount()) :
+			for i in range(self._model.rowCount()):
 				iblSetStandardItem = self._model.item(i)
 				iblSetStandardItem._datas.id in self._modelSelection and indexes.append(self._model.indexFromItem(iblSetStandardItem))
 
 			selectionModel = self.ui.Database_Browser_listView.selectionModel()
-			if selectionModel :
+			if selectionModel:
 				selectionModel.reset()
-				for index in indexes :
+				for index in indexes:
 					selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
 
 	@core.executionTrace
@@ -1472,7 +1472,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Sets The Database Browser Actions.
 		'''
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
 			addContentAction.triggered.connect(self.Database_Browser_listView_addContentAction)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
@@ -1492,7 +1492,7 @@ class DatabaseBrowser(UiComponent):
 			separatorAction = QAction(self.ui.Database_Browser_listView)
 			separatorAction.setSeparator(True)
 			self.ui.Database_Browser_listView.addAction(separatorAction)
-		else :
+		else:
 			LOGGER.info("{0} | Ibl Sets Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
@@ -1504,7 +1504,7 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content :", self._container.lastBrowsedPath)))
-		if directory :
+		if directory:
 			LOGGER.debug("> Chosen Directory Path : '{0}'.".format(directory))
 			self.addDirectory(directory)
 			self.Database_Browser_listView_extendedRefreshModel()
@@ -1518,7 +1518,7 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		iblSetPath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format(self._extension))))
-		if iblSetPath :
+		if iblSetPath:
 			LOGGER.debug("> Chosen Ibl Set Path : '{0}'.".format(iblSetPath))
 			self.addIblSet(os.path.basename(iblSetPath).replace(".{0}".format(self._extension), ""), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
 
@@ -1543,12 +1543,12 @@ class DatabaseBrowser(UiComponent):
 
 		needModelRefresh = False
 		selectedIblSets = self.getSelectedItems()
-		if selectedIblSets :
-			for iblSet in selectedIblSets :
+		if selectedIblSets:
+			for iblSet in selectedIblSets:
 				self.updateIblSetLocation(iblSet._datas)
 				needModelRefresh = True
 
-		if needModelRefresh :
+		if needModelRefresh:
 			self.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
@@ -1598,11 +1598,11 @@ class DatabaseBrowser(UiComponent):
 		@return: Ibl Set Database Addition Success. ( Boolean )		
 		'''
 
-		if not dbUtilities.common.filterIblSets(self._coreDb.dbSession, "^{0}$".format(re.escape(path)), "path") :
+		if not dbUtilities.common.filterIblSets(self._coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set To Database !".format(self.__class__.__name__, name))
-			if dbUtilities.common.addIblSet(self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId()) :
+			if dbUtilities.common.addIblSet(self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId()):
 				return True
-			else :
+			else:
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format(self.__class__.__name__, name)
 		else:
 			noWarning or messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database !".format(self.__class__.__name__, name))
@@ -1621,7 +1621,7 @@ class DatabaseBrowser(UiComponent):
 
 		walker = Walker(directory)
 		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
-		for iblSet, path in walker.files.items() :
+		for iblSet, path in walker.files.items():
 			self.addIblSet(iblSet, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId())
 
 	@core.executionTrace
@@ -1633,9 +1633,9 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		selectedIblSets = self.getSelectedItems()
-		if selectedIblSets :
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format(", ".join([str(iblSet.text()) for iblSet in selectedIblSets])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
-				for iblSet in selectedIblSets :
+		if selectedIblSets:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format(", ".join([str(iblSet.text()) for iblSet in selectedIblSets])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				for iblSet in selectedIblSets:
 					LOGGER.info("{0} | Removing '{1}' Ibl Set From Database !".format(self.__class__.__name__, iblSet.text()))
 					dbUtilities.common.removeIblSet(self._coreDb.dbSession, iblSet._datas.id)
 
@@ -1650,11 +1650,11 @@ class DatabaseBrowser(UiComponent):
 		'''
 
 		file = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location :".format(iblSet.name), self._container.lastBrowsedPath, "Ibls Files (*.{0})".format(self._extension))))
-		if file :
+		if file:
 			LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location : '{2}' !".format(self.__class__.__name__, iblSet.name, file))
-			if not dbUtilities.common.updateIblSetLocation(self._coreDb.dbSession, iblSet, file) :
+			if not dbUtilities.common.updateIblSetLocation(self._coreDb.dbSession, iblSet, file):
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set !".format(self.__class__.__name__, iblSet.name)
-			else :
+			else:
 				return True
 
 	@core.executionTrace
@@ -1680,14 +1680,14 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1} Time'.".format(date, time))
 
-		if date and time and date != Constants.nullObject and time != Constants.nullObject :
+		if date and time and date != Constants.nullObject and time != Constants.nullObject:
 			shotTime = time.split(":")
 			shotTime = shotTime[0] + "H" + shotTime[1]
 			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
 			LOGGER.debug("> Formatted Shot Date : '{0}'.".format(shotDate))
 			return shotDate
-		else :
+		else:
 			return Constants.nullObject
 
 #***********************************************************************************************

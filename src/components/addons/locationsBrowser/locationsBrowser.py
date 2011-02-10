@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	LocationsBrowser.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Locations Browser Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -611,7 +611,7 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
 
 		# LoaderScript Addon Component Specific Code.
-		if self._addonsLoaderScript.activated :
+		if self._addonsLoaderScript.activated:
 			self._Open_Output_Folder_pushButton = QPushButton("Open Output Folder")
 			self._addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self._Open_Output_Folder_pushButton)
 
@@ -631,7 +631,7 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
 
 		# LoaderScript Addon Component Specific Code.
-		if self._addonsLoaderScript.activated :
+		if self._addonsLoaderScript.activated:
 			# Signals / Slots.
 			self._Open_Output_Folder_pushButton.clicked.disconnect(self.Open_Output_Folder_pushButton_OnClicked)
 
@@ -705,7 +705,7 @@ class LocationsBrowser(UiComponent):
 		'''
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
-		for iblSet in selectedIblSets :
+		for iblSet in selectedIblSets:
 			iblSetPath = iblSet._datas.path
 			iblSetPath = iblSetPath and os.path.exists(iblSetPath) and os.path.dirname(iblSetPath)
 			iblSetPath and self.exploreProvidedFolder(iblSetPath)
@@ -719,7 +719,7 @@ class LocationsBrowser(UiComponent):
 		'''
 
 		selectedComponent = self._coreComponentsManagerUi.getSelectedItems()
-		for component in selectedComponent :
+		for component in selectedComponent:
 			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreProvidedFolder(component._datas.path)
 
 	@core.executionTrace
@@ -731,12 +731,12 @@ class LocationsBrowser(UiComponent):
 		'''
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
-		if selectedTemplates :
-			for template in selectedTemplates :
+		if selectedTemplates:
+			for template in selectedTemplates:
 				os.path.exists(template._datas.path) and self.exploreProvidedFolder(os.path.dirname(template._datas.path))
 
 	@core.executionTrace
-	def Custom_File_Browser_Path_lineEdit_setUi(self) :
+	def Custom_File_Browser_Path_lineEdit_setUi(self):
 		'''
 		This Method Fills The Custom_File_Browser_Path_lineEdit.
 		'''
@@ -746,7 +746,7 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
-	def Custom_File_Browser_Path_toolButton_OnClicked(self, checked) :
+	def Custom_File_Browser_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
 		
@@ -761,7 +761,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Custom_File_Browser_Path_lineEdit_OnEditFinished(self) :
+	def Custom_File_Browser_Path_lineEdit_OnEditFinished(self):
 		'''
 		This Method Is Called When Custom_File_Browser_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		'''
@@ -771,28 +771,28 @@ class LocationsBrowser(UiComponent):
 			self.Custom_File_Browser_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File !".format(self.__class__.__name__)
-		else :
+		else:
 			self._settings.setKey(self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def Open_Output_Folder_pushButton_OnClicked(self, checked) :
+	def Open_Output_Folder_pushButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
 		
 		@param checked : Checked State. ( Boolean )
 		'''
 
-		if self._container.parameters.loaderScriptsOutputDirectory :
-			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory) :
+		if self._container.parameters.loaderScriptsOutputDirectory:
+			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
 				self.exploreProvidedFolder(self._container.parameters.loaderScriptsOutputDirectory)
-			else :
+			else:
 				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
-		else :
+		else:
 			self.exploreProvidedFolder(self._addonsLoaderScript.ioDirectory)
 
 	@core.executionTrace
-	def exploreProvidedFolder(self, folder) :
+	def exploreProvidedFolder(self, folder):
 		'''
 		This Method Provides Folder Exploring Capability.
 
@@ -804,47 +804,47 @@ class LocationsBrowser(UiComponent):
 
 		folder = os.path.normpath(folder)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			if customFileBrowser :
+			if customFileBrowser:
 				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
 				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, folder)
 			else:
 				LOGGER.info("{0} | Launching 'explorer.exe' With '{1}'.".format(self.__class__.__name__, folder))
 				browserCommand = "explorer.exe \"{0}\"".format(folder)
-		elif platform.system() == "Darwin" :
-			if customFileBrowser :
+		elif platform.system() == "Darwin":
+			if customFileBrowser:
 				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
 				browserCommand = "open -a \"{0}\" \"{1}\"".format(customFileBrowser, folder)
 			else:
 				LOGGER.info("{0} | Launching 'Finder' With '{1}'.".format(self.__class__.__name__, folder))
 				browserCommand = "open \"{0}\"".format(folder)
 		elif platform.system() == "Linux":
-			if customFileBrowser :
+			if customFileBrowser:
 				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
 				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, folder)
-			else :
+			else:
 				environmentVariable = Environment("PATH")
 				paths = environmentVariable.getPath().split(":")
 
 				browserFound = False
-				for browser in self._linuxBrowsers :
-					if not browserFound :
-						try :
-							for path in paths :
-								if os.path.exists(os.path.join(path, browser)) :
+				for browser in self._linuxBrowsers:
+					if not browserFound:
+						try:
+							for path in paths:
+								if os.path.exists(os.path.join(path, browser)):
 									LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, folder))
 									browserCommand = "\"{0}\" \"{1}\"".format(browser, folder)
 									browserFound = True
 									raise StopIteration
 						except StopIteration:
 							pass
-					else :
+					else:
 						break
 
-		if browserCommand :
+		if browserCommand:
 			LOGGER.debug("> Current Browser Command : '{0}'.".format(browserCommand))
 			browserProcess = QProcess()
 			browserProcess.startDetached(browserCommand)
-		else :
+		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Browser Executable In The Preferences !".format(self.__class__.__name__))
 
 #***********************************************************************************************

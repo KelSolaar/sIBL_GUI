@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsParser.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Parser Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -146,7 +146,7 @@ class ParserTestCase(unittest.TestCase):
 								"_sections",
 								"_comments")
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, parser.__dict__)
 
 	def testRequiredMethods(self):
@@ -161,7 +161,7 @@ class ParserTestCase(unittest.TestCase):
 							"getAttributes",
 							"getValue")
 
-		for method in requiredMethods :
+		for method in requiredMethods:
 			self.assertIn(method, dir(parser))
 
 	def testParse(self):
@@ -192,7 +192,7 @@ class ParserTestCase(unittest.TestCase):
 			parser.parse()
 			self.assertListEqual(parser.sections.keys(), SECTIONS_AND_ATTRIBUTES[type].keys())
 			parser.parse(orderedDictionary=False)
-			for section in SECTIONS_AND_ATTRIBUTES[type] :
+			for section in SECTIONS_AND_ATTRIBUTES[type]:
 				self.assertIn(section, parser.sections.keys())
 
 	def testRawSections(self):
@@ -216,7 +216,7 @@ class ParserTestCase(unittest.TestCase):
 			parser.parse()
 			self.assertFalse(parser.comments)
 			parser.parse(stripComments=False)
-			for comment, value in RANDOM_COMMENTS[type].items() :
+			for comment, value in RANDOM_COMMENTS[type].items():
 				self.assertIn(comment, parser.comments)
 				self.assertEqual(value["id"], parser.comments[comment]["id"])
 
@@ -242,7 +242,7 @@ class ParserTestCase(unittest.TestCase):
 			parser = Parser(file)
 			parser.read()
 			parser.parse(False)
-			for attribute in RANDOM_ATTRIBUTES[type].keys() :
+			for attribute in RANDOM_ATTRIBUTES[type].keys():
 				self.assertTrue(parser.attributeExists(attribute, foundations.parser.getNamespace(attribute)[0]))
 				self.assertFalse(parser.attributeExists("Unknown", foundations.parser.getNamespace(attribute)[0]))
 
@@ -255,8 +255,8 @@ class ParserTestCase(unittest.TestCase):
 			parser = Parser(file)
 			parser.read()
 			parser.parse()
-			for section in SECTIONS_AND_ATTRIBUTES[type] :
-				if SECTIONS_AND_ATTRIBUTES[type][section] :
+			for section in SECTIONS_AND_ATTRIBUTES[type]:
+				if SECTIONS_AND_ATTRIBUTES[type][section]:
 					self.assertListEqual(parser.getAttributes(section, True, False).keys(), SECTIONS_AND_ATTRIBUTES[type][section]["stripped"])
 					self.assertListEqual(parser.getAttributes(section).keys(), SECTIONS_AND_ATTRIBUTES[type][section]["namespaced"])
 
@@ -269,7 +269,7 @@ class ParserTestCase(unittest.TestCase):
 			parser = Parser(file)
 			parser.read()
 			parser.parse(False)
-			for attribute, value in RANDOM_ATTRIBUTES[type].items() :
+			for attribute, value in RANDOM_ATTRIBUTES[type].items():
 				self.assertIsInstance(parser.getValue(attribute, foundations.parser.getNamespace(attribute)[0]), str)
 				self.assertIsInstance(parser.getValue(attribute, foundations.parser.getNamespace(attribute)[0], encode=True), unicode)
 				self.assertEqual(parser.getValue(attribute, foundations.parser.getNamespace(attribute)[0]), value)

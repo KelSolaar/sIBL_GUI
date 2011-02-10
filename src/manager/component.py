@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	component.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -116,7 +116,7 @@ class Component(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("name", value)
 		self._name = value
 
@@ -148,7 +148,7 @@ class Component(object):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
 		self._activated = value
 
@@ -180,7 +180,7 @@ class Component(object):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("deactivatable", value)
 		self._deactivatable = value
 

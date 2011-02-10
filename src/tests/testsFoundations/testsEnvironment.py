@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsEnvironments.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Environments Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -83,7 +83,7 @@ class EnvironmentTestCase(unittest.TestCase):
 		environment = Environment()
 		requiredAttributes = ("_variable",)
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, environment.__dict__)
 
 	def testRequiredMethods(self):
@@ -94,7 +94,7 @@ class EnvironmentTestCase(unittest.TestCase):
 		environment = Environment()
 		requiredMethods = ("getPath",)
 
-		for method in requiredMethods :
+		for method in requiredMethods:
 			self.assertIn(method, dir(environment))
 
 	def testGetPath(self):
@@ -102,11 +102,11 @@ class EnvironmentTestCase(unittest.TestCase):
 		This Method Tests The "Environment" Class "getPath" Method.
 		'''
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			environment = Environment("APPDATA")
-		elif platform.system() == "Darwin" :
+		elif platform.system() == "Darwin":
 			environment = Environment("HOME")
-		elif platform.system() == "Linux" :
+		elif platform.system() == "Linux":
 			environment = Environment("HOME")
 		self.assertTrue(environment.getPath())
 		self.assertIsInstance(environment.getPath(), str)

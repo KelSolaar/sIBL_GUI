@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	freeImage.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		FreeImage libraryPath Manipulation Module.
 ***
-***	Others :
+***	Others:
 ***		Portions Of The Code From FreeImagePy By Michele Petrazzo : http://freeimagepy.sourceforge.net/.
 ************************************************************************************************
 '''
@@ -80,7 +80,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 FREEIMAGE_LIBRARY_PATH = os.path.join(os.getcwd(), Constants.freeImageLibrary)
 
-if platform.system() == "Windows" or platform.system() == "Microsoft" :
+if platform.system() == "Windows" or platform.system() == "Microsoft":
 	DLL_CALLCONV = ctypes.WINFUNCTYPE
 else:
 	DLL_CALLCONV = ctypes.CFUNCTYPE
@@ -102,17 +102,17 @@ BYTE_P = ctypes.POINTER(BYTE)
 '''
 System Endian.
 '''
-if sys.byteorder == "big" :
+if sys.byteorder == "big":
 	FREEIMAGE_BIGENDIAN = 1
-else :
+else:
 	FREEIMAGE_BIGENDIAN = 0
 
 FREEIMAGE_COLORORDER_BGR = 0
 FREEIMAGE_COLORORDER_RGB = 1
 
-if FREEIMAGE_BIGENDIAN :
+if FREEIMAGE_BIGENDIAN:
 	FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_RGB
-else :
+else:
 	FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_BGR
 
 class RGBQUAD(ctypes.Structure):
@@ -121,7 +121,7 @@ class RGBQUAD(ctypes.Structure):
 	'''
 
 	_fields_ = []
-	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		_fields_ += [("rgbBlue", BYTE),
 					 ("rgbGreen", BYTE),
 					 ("rgbRed", BYTE)]
@@ -138,7 +138,7 @@ class RGBTRIPLE(ctypes.Structure):
 	'''
 
 	_fields_ = []
-	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		_fields_ += [("rgbBlue", BYTE),
 					("rgbGreen", BYTE),
 					("rgbRed", BYTE)]
@@ -228,7 +228,7 @@ class FICOMPLEX(ctypes.Structure):
 '''
 Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
 '''
-if FREEIMAGE_BIGENDIAN :
+if FREEIMAGE_BIGENDIAN:
 	# Little Endian ( x86 / MS Windows, Linux ) : BGR(A) Order.
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		FI_RGBA_RED			 = 2
@@ -257,8 +257,8 @@ if FREEIMAGE_BIGENDIAN :
 		FI_RGBA_GREEN_SHIFT	 = 16
 		FI_RGBA_BLUE_SHIFT	 = 8
 		FI_RGBA_ALPHA_SHIFT	 = 0
-else :
-	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR :
+else:
+	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		# Big Endian ( PPC / none ) : BGR(A) Order.
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
@@ -272,7 +272,7 @@ else :
 		FI_RGBA_GREEN_SHIFT	 = 16
 		FI_RGBA_BLUE_SHIFT	 = 24
 		FI_RGBA_ALPHA_SHIFT	 = 0
-	else :
+	else:
 		#Big Endian ( PPC / Linux, MaxOSX ) : RGB(A) Order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
@@ -513,7 +513,7 @@ class FREE_IMAGE_MDMODEL(object):
 	FIMD_ANIMATION		 = 9
 	FIMD_CUSTOM			 = 10
 
-class FIMETADATA(ctypes.Structure) :
+class FIMETADATA(ctypes.Structure):
 	'''
 	This Class Is A Handle To A Metadata Model.
 	'''
@@ -1004,7 +1004,7 @@ class Image(object):
 
 		self._bitmap = None
 
-		if imagePath :
+		if imagePath:
 			self.load()
 
 	#***************************************************************************************
@@ -1089,7 +1089,7 @@ class Image(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is str, "'{0}' Attribute : '{1}' Type Is Not 'str' !".format("imagePath", value)
 		self._imagePath = value
 
@@ -1153,10 +1153,10 @@ class Image(object):
 		'''
 
 		imagePath = imagePath or self._imagePath
-		if imagePath :
+		if imagePath:
 			imagePath = ctypes.c_char_p(imagePath)
 			fileFormat = self._library.FreeImage_GetFileType(imagePath, False)
-			if fileFormat == -1 :
+			if fileFormat == -1:
 				fileFormat = self._library.FreeImage_GetFIFFromFilename(imagePath)
 			return fileFormat
 
@@ -1168,13 +1168,13 @@ class Image(object):
 		
 		@param imagePath: Image Path. ( String )
 		'''
-		if self._imagePath :
+		if self._imagePath:
 			imageFormat = self.getImageFormat(self._imagePath)
-			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN :
-				if self._library.FreeImage_FIFSupportsReading(imageFormat) :
+			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
+				if self._library.FreeImage_FIFSupportsReading(imageFormat):
 					self._bitmap = self._library.FreeImage_Load(imageFormat, self._imagePath, FI_DEFAULT_NULL)
 					self._bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded !".format(self._imagePath))
-				else :
+				else:
 					raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported !".format(imageFormat)
 
 	@core.executionTrace
@@ -1196,11 +1196,11 @@ class Image(object):
 		@param flags: Save Flags. ( Integer )
 		'''
 
-		if self._library.FreeImage_FIFSupportsWriting(imageFormat) :
-			if imagePath :
+		if self._library.FreeImage_FIFSupportsWriting(imageFormat):
+			if imagePath:
 				success = self._library.FreeImage_Save(imageFormat, self._bitmap, ctypes.c_char_p(imagePath), flags)
 				success and	LOGGER.debug("> '{0}' Image Has Been Saved !".format(imagePath))
-		else :
+		else:
 			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported !".format(imageFormat)
 
 	@core.executionTrace
@@ -1238,7 +1238,7 @@ class Image(object):
 		bpp = self._library.FreeImage_GetBPP(self._bitmap)
 		(self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBF or self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBAF) and self.convertToLdr(2.2)
 
-		if self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_BITMAP :
+		if self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_BITMAP:
 			LOGGER.debug("> Converting '{0}' Image Bitmap To QImage !".format(self._imagePath))
 
 			from PyQt4.QtGui import QImage
@@ -1251,10 +1251,10 @@ class Image(object):
 
 			# Deprecated Memory Access Method.
 			# bits = QByteArray()
-			# for y in range( height ) :
+			# for y in range( height ):
 			# 	bitsAdress = self._library.FreeImage_GetScanLine( self._bitmap, y )
 			# 	bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
-			# 	for x in range( width ) :
+			# 	for x in range( width ):
 			# 		bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
 			#image = QImage( bits, width, height, QImage.Format_RGB32 )
 
@@ -1282,7 +1282,7 @@ class Image(object):
 			LOGGER.debug("> '{0}' Image Bitmap Conversion To QImage Done !".format(self._imagePath))
 
 			return image
-		else :
+		else:
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format(FREE_IMAGE_TYPE.FIT_BITMAP)
 
 #***********************************************************************************************

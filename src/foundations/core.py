@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	core.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Core Module
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -141,7 +141,7 @@ class StandardMessageHook(object):
 		@param message: Message. ( String )
 		'''
 
-		for handler in self._logger.__dict__["handlers"] :
+		for handler in self._logger.__dict__["handlers"]:
 			handler.stream.write(message)
 
 #***********************************************************************************************
@@ -182,9 +182,9 @@ def getCodeLayerName():
 	@return: Code Layer Name. ( String )
 	'''
 
-	for frameIndex in range(len(inspect.stack())) :
+	for frameIndex in range(len(inspect.stack())):
 		frame = getFrame(frameIndex)
-		if frame.f_code.co_name not in IGNORED_CODE_LAYERS :
+		if frame.f_code.co_name not in IGNORED_CODE_LAYERS:
 			return frame.f_code.co_name
 	return UNDEFINED_CODE_LAYER
 

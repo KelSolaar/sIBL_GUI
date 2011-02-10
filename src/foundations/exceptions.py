@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	exceptions.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Exceptions Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -110,18 +110,18 @@ def exceptionsHandler(handler=None, raise_=False, *args):
 
 			try:
 				return object_(*args, **kwargs)
-			except exceptions as exception :
+			except exceptions as exception:
 				handler(exception , origin, *args, **kwargs)
 			except Exception as exception:
 				handler(exception , origin, *args, **kwargs)
 			finally:
-				if raise_ and exception :
+				if raise_ and exception:
 					raise exception
 		return function
 	return wrapper
 
 @core.executionTrace
-def defaultExceptionsHandler(exception, origin, *args, **kwargs) :
+def defaultExceptionsHandler(exception, origin, *args, **kwargs):
 	'''
 	This Definition Provides An Exception Handler.
 	
@@ -141,8 +141,8 @@ def defaultExceptionsHandler(exception, origin, *args, **kwargs) :
 	LOGGER.error("!> {0}".format(Constants.loggingSeparators))
 
 	traceback_ = traceback.format_exc().splitlines()
-	if len(traceback_) > 1 :
-		for line in traceback_ :
+	if len(traceback_) > 1:
+		for line in traceback_:
 			LOGGER.error("!> {0}".format(line))
 
 		LOGGER.error("!> {0}".format(Constants.loggingSeparators))
@@ -153,7 +153,7 @@ class FileStructureError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -166,7 +166,7 @@ class FileStructureError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -181,7 +181,7 @@ class AttributeStructureError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -194,7 +194,7 @@ class AttributeStructureError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -209,7 +209,7 @@ class DirectoryExistsError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -223,7 +223,7 @@ class DirectoryExistsError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -238,7 +238,7 @@ class FileExistsError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -252,7 +252,7 @@ class FileExistsError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -267,7 +267,7 @@ class ObjectTypeError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -280,7 +280,7 @@ class ObjectTypeError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -295,7 +295,7 @@ class ObjectExistsError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -308,7 +308,7 @@ class ObjectExistsError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -323,7 +323,7 @@ class DatabaseOperationError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -336,7 +336,7 @@ class DatabaseOperationError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -351,7 +351,7 @@ class ProgrammingError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -364,7 +364,7 @@ class ProgrammingError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -379,7 +379,7 @@ class UserError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -392,7 +392,7 @@ class UserError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -407,7 +407,7 @@ class NetworkError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -420,7 +420,7 @@ class NetworkError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -435,7 +435,7 @@ class SocketConnectionError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -448,7 +448,7 @@ class SocketConnectionError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -463,7 +463,7 @@ class ComponentActivationError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -476,7 +476,7 @@ class ComponentActivationError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -491,7 +491,7 @@ class ComponentDeactivationError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -504,7 +504,7 @@ class ComponentDeactivationError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -519,7 +519,7 @@ class LibraryInstantiationError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -532,7 +532,7 @@ class LibraryInstantiationError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -547,7 +547,7 @@ class LibraryInitializationError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -560,7 +560,7 @@ class LibraryInitializationError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		
@@ -575,7 +575,7 @@ class LibraryExecutionError(Exception):
 	'''
 
 	@core.executionTrace
-	def __init__(self, value) :
+	def __init__(self, value):
 		'''
 		This Method Initializes The Class.
 
@@ -588,7 +588,7 @@ class LibraryExecutionError(Exception):
 		self.value = value
 
 	@core.executionTrace
-	def __str__(self) :
+	def __str__(self):
 		'''
 		This Method Returns The Exception Representation.
 		

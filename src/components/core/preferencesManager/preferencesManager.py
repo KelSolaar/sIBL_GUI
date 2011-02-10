@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	preferencesManager.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Preferences Manager Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -301,7 +301,7 @@ class PreferencesManager(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed !".format(self.name))
 
 	@core.executionTrace
-	def Verbose_Level_comboBox_OnActivated_setUi(self) :
+	def Verbose_Level_comboBox_OnActivated_setUi(self):
 		'''
 		This Method Fills The Verbose Level ComboBox.
 		'''
@@ -313,7 +313,7 @@ class PreferencesManager(UiComponent):
 		self.ui.Verbose_Level_comboBox.setCurrentIndex(self._container.verbosityLevel)
 
 	@core.executionTrace
-	def Verbose_Level_comboBox_OnActivated(self, index) :
+	def Verbose_Level_comboBox_OnActivated(self, index):
 		'''
 		This Method Is Called When The Verbose Level ComboBox Is Triggered.
 		
@@ -326,7 +326,7 @@ class PreferencesManager(UiComponent):
 		self._settings.setKey("Settings", "verbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex())
 
 	@core.executionTrace
-	def Restore_Geometry_On_Layout_Change_checkBox_setUi(self) :
+	def Restore_Geometry_On_Layout_Change_checkBox_setUi(self):
 		'''
 		This Method Sets The Restore_Geometry_On_Layout_Change_checkBox.
 		'''
@@ -339,7 +339,7 @@ class PreferencesManager(UiComponent):
 		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState(restoreGeometryOnLayoutChange.toInt()[0])
 
 	@core.executionTrace
-	def Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged(self, state) :
+	def Restore_Geometry_On_Layout_Change_checkBox_OnStateChanged(self, state):
 		'''
 		This Method Is Called When Restore_Geometry_On_Layout_Change_checkBox State Changes.
 		

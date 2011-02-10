@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	uiComponent.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Ui Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -130,7 +130,7 @@ class UiComponent(QWidget):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("name", value)
 		self._name = value
 
@@ -162,7 +162,7 @@ class UiComponent(QWidget):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
 		self._activated = value
 
@@ -194,7 +194,7 @@ class UiComponent(QWidget):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("deactivatable", value)
 		self._deactivatable = value
 
@@ -226,7 +226,7 @@ class UiComponent(QWidget):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("uiFile", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' ui File Doesn't Exists !".format("uiFile", value)
 		self._uiFile = value
@@ -297,12 +297,12 @@ class UiComponent(QWidget):
 		This Method Loads The Ui File.
 		'''
 
-		if self._uiFile :
+		if self._uiFile:
 			self._ui = uic.loadUi(self._uiFile)
-			if "." in sys.path :
+			if "." in sys.path:
 				sys.path.remove(".")
 			return True
-		else :
+		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Ui File Doesn't Exists !".format(self._name)
 
 #***********************************************************************************************

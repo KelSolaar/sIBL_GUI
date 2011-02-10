@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	SetsScanner.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Sets Scanner Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -256,12 +256,12 @@ class SetsScanner_Worker(QThread):
 		paths = [path[0] for path in self._dbSession.query(dbUtilities.types.DbIblSet.path).all()]
 		folders = set([os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths])
 		needModelRefresh = False
-		for folder in folders :
+		for folder in folders:
 			if os.path.exists(folder):
 				walker = Walker(folder)
 				walker.walk(("\.{0}$".format(self._extension),), ("\._",))
-				for iblSet, path in walker.files.items() :
-					if not dbUtilities.common.filterIblSets(self._dbSession, "^{0}$".format(re.escape(path)), "path") :
+				for iblSet, path in walker.files.items():
+					if not dbUtilities.common.filterIblSets(self._dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
 						self._newIblSets[iblSet] = path
 			else:
@@ -498,13 +498,13 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._setsScannerWorkerThread = SetsScanner_Worker(self)
 			self._container.workerThreads.append(self._setsScannerWorkerThread)
 
 			# Signals / Slots.
 			self._setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
-		else :
+		else:
 			LOGGER.info("{0} | Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
@@ -515,7 +515,7 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			# Signals / Slots.
 			not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
 
@@ -537,11 +537,11 @@ class SetsScanner(Component):
 		This Method Is Triggered By The SetsScanner_Worker When The Database Has Changed.
 		'''
 
-		if self._setsScannerWorkerThread.newIblSets :
-			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format(", ".join(self._setsScannerWorkerThread.newIblSets.keys())), buttons=QMessageBox.Yes | QMessageBox.No) == 16384 :
+		if self._setsScannerWorkerThread.newIblSets:
+			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format(", ".join(self._setsScannerWorkerThread.newIblSets.keys())), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet, path in self._setsScannerWorkerThread.newIblSets.items():
 					LOGGER.info("{0} | Adding '{1}' Ibl Set To Database !".format(self.__class__.__name__, iblSet))
-					if not dbUtilities.common.addIblSet(self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId(self._coreCollectionsOutliner._defaultCollection)) :
+					if not dbUtilities.common.addIblSet(self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId(self._coreCollectionsOutliner._defaultCollection)):
 						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database !".format(self.__class__.__name__, iblSet))
 
 				self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()

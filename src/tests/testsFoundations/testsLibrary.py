@@ -26,7 +26,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -36,13 +36,13 @@
 ************************************************************************************************
 ***	testsLibrary.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Library Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -68,11 +68,11 @@ from foundations.library import Library, LibraryHook
 #***	Overall Variables
 #***********************************************************************************************
 LIBRARIES_DIRECTORY = "libraries"
-if platform.system() == "Windows" or platform.system() == "Microsoft" :
+if platform.system() == "Windows" or platform.system() == "Microsoft":
 	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/FreeImage.dll")
-elif platform.system() == "Darwin" :
+elif platform.system() == "Darwin":
 	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/libfreeimage.dylib")
-elif platform.system() == "Linux" :
+elif platform.system() == "Linux":
 	FREEIMAGE_LIBRARY = os.path.join(LIBRARIES_DIRECTORY, "freeImage/resources/libfreeimage.so")
 
 
@@ -101,7 +101,7 @@ class LibraryTestCase(unittest.TestCase):
 								"_libraryPath",
 								"_functions",
 								"_library")
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, library.__dict__)
 
 		requiredClassAttributes = ("_librariesInstances",

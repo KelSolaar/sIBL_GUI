@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	onlineUpdater.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Online Updater Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -154,7 +154,7 @@ class DownloadManager(QObject):
 		self._downloadStatus = None
 
 		self._ui = uic.loadUi(self._uiPath)
-		if "." in sys.path :
+		if "." in sys.path:
 			sys.path.remove(".")
 
 		self.initializeUi()
@@ -363,7 +363,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format("requests", value)
 		self._requests = value
 
@@ -603,19 +603,19 @@ class DownloadManager(QObject):
 		This Method Downloads The Next Request.
 		'''
 
-		if self._requests :
+		if self._requests:
 			self._ui.Download_progressBar.show()
 
 			self._currentRequest = self._networkAccessManager.get(QNetworkRequest(QUrl(self._requests.pop())))
 
 			self._currentFilePath = os.path.join(self._downloadFolder, os.path.basename(str(self._currentRequest.url().path())))
-			if os.path.exists(self._currentFilePath) :
+			if os.path.exists(self._currentFilePath):
 				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update !".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
 				os.remove(self._currentFilePath)
 
 			self._currentFile = QFile(self._currentFilePath)
 
-			if not self._currentFile.open(QIODevice.WriteOnly) :
+			if not self._currentFile.open(QIODevice.WriteOnly):
 				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download !".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
 				self.downloadNext()
 				return
@@ -664,10 +664,10 @@ class DownloadManager(QObject):
 		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
 
-		if self._requests :
+		if self._requests:
 			LOGGER.debug("> Proceeding To Next Download Request.")
 			self.downloadNext()
-		else :
+		else:
 			self._downloadStatus = True
 			self._ui.Current_File_label.setText("Downloads Complete !")
 			self._ui.Cancel_Close_pushButton.setText("Close")
@@ -731,7 +731,7 @@ class RemoteUpdater(object):
 		self._networkAccessManager = self._container.networkAccessManager
 
 		self._ui = uic.loadUi(self._uiPath)
-		if "." in sys.path :
+		if "." in sys.path:
 			sys.path.remove(".")
 
 		self.initializeUi()
@@ -790,7 +790,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("releases", value)
 		self._releases = value
 
@@ -1265,23 +1265,23 @@ class RemoteUpdater(object):
 
 		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
 
-		if Constants.applicationName not in self._releases :
+		if Constants.applicationName not in self._releases:
 			self._ui.sIBL_GUI_groupBox.hide()
 			self._ui.Get_sIBL_GUI_pushButton.hide()
-		else :
+		else:
 			self._ui.Logo_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLogoPixmap)))
 			self._ui.Your_Version_label.setText(self._releases[Constants.applicationName].localVersion)
 			self._ui.Latest_Version_label.setText(self._releases[Constants.applicationName].repositoryVersion)
 			self._ui.Change_Log_webView.load(QUrl.fromEncoded(QByteArray(self._applicationChangeLogUrl)))
 
 		templatesReleases = dict(self._releases)
-		if Constants.applicationName in self._releases :
+		if Constants.applicationName in self._releases:
 			templatesReleases.pop(Constants.applicationName)
 
-		if not templatesReleases :
+		if not templatesReleases:
 			self._ui.Templates_groupBox.hide()
 			self._ui.Get_Latest_Templates_pushButton.hide()
-		else :
+		else:
 			self._ui.Templates_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiTemplatesPixmap)))
 			self._ui.Templates_tableWidget.clear()
 			self._ui.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -1298,7 +1298,7 @@ class RemoteUpdater(object):
 			self._ui.Templates_tableWidget.setPalette(palette)
 
 			verticalHeaderLabels = []
-			for row, release in enumerate(templatesReleases) :
+			for row, release in enumerate(templatesReleases):
 					verticalHeaderLabels.append(release)
 
 					tableWidgetItem = QTableWidgetItem()
@@ -1344,7 +1344,7 @@ class RemoteUpdater(object):
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			url = builds["Windows"]
-		elif platform.system() == "Darwin" :
+		elif platform.system() == "Darwin":
 			url = builds["Mac Os X"]
 		elif platform.system() == "Linux":
 			url = builds["Linux"]
@@ -1362,12 +1362,12 @@ class RemoteUpdater(object):
 		'''
 
 		requests = []
-		for row in range(self._ui.Templates_tableWidget.rowCount()) :
-			if self._ui.Templates_tableWidget.cellWidget(row, 1).state :
+		for row in range(self._ui.Templates_tableWidget.rowCount()):
+			if self._ui.Templates_tableWidget.cellWidget(row, 1).state:
 				requests.append(self._ui.Templates_tableWidget.item(row, 0)._datas)
-		if requests :
+		if requests:
 			downloadFolder = self.getTemplatesDownloadFolder()
-			if downloadFolder :
+			if downloadFolder:
 				LOGGER.debug("> Templates Download Folder : '{0}'.".format(downloadFolder))
 				self._downloadManager = DownloadManager(self, self._networkAccessManager, downloadFolder, [request.url for request in requests])
 				self._downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
@@ -1413,11 +1413,11 @@ class RemoteUpdater(object):
 		messageBox.addButton(QString("Cancel"), QMessageBox.AcceptRole)
 		reply = messageBox.exec_()
 
-		if reply == 0 :
+		if reply == 0:
 			return os.path.join(os.getcwd(), Constants.templatesDirectory)
-		elif reply == 1 :
+		elif reply == 1:
 			return os.path.join(self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
-		elif reply == 2 :
+		elif reply == 2:
 			return self._container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self._ui, "Choose Templates Directory :", self._container.container.lastBrowsedPath)))
 
 	@core.executionTrace
@@ -1427,17 +1427,17 @@ class RemoteUpdater(object):
 		'''
 
 		needModelRefresh = False
-		for download in self._downloadManager.downloads :
-			if download.endswith(".zip") :
-				if self.extractZipFile(download) :
+		for download in self._downloadManager.downloads:
+			if download.endswith(".zip"):
+				if self.extractZipFile(download):
 					LOGGER.info("{0} | Removing '{1}' Archive !".format(self.__class__.__name__, download))
 					os.remove(download)
-				else :
+				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File !".format(self.__class__.__name__, os.path.basename(download)))
 				self._container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self._container.coreTemplatesOutliner.getCollection(self._container.coreTemplatesOutliner.userCollection).id, noWarning=True)
 				needModelRefresh = True
-			else :
-				if self._container.addonsLocationsBrowser.activated :
+			else:
+				if self._container.addonsLocationsBrowser.activated:
 					self._container.addonsLocationsBrowser.exploreProvidedFolder(os.path.dirname(download))
 
 		needModelRefresh and self._container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
@@ -2053,7 +2053,7 @@ class OnlineUpdater(UiComponent):
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged)
 
 	@core.executionTrace
-	def Check_For_New_Releases_On_Startup_checkBox_setUi(self) :
+	def Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		'''
 		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
 		'''
@@ -2066,7 +2066,7 @@ class OnlineUpdater(UiComponent):
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
 
 	@core.executionTrace
-	def Check_For_New_Releases_On_Startup_checkBox_OnStateChanged(self, state) :
+	def Check_For_New_Releases_On_Startup_checkBox_OnStateChanged(self, state):
 		'''
 		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
 		
@@ -2077,7 +2077,7 @@ class OnlineUpdater(UiComponent):
 		self._settings.setKey(self._settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
-	def Ignore_Non_Existing_Templates_checkBox_setUi(self) :
+	def Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		'''
 		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
 		'''
@@ -2090,7 +2090,7 @@ class OnlineUpdater(UiComponent):
 		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
 
 	@core.executionTrace
-	def Ignore_Non_Existing_Templates_checkBox_OnStateChanged(self, state) :
+	def Ignore_Non_Existing_Templates_checkBox_OnStateChanged(self, state):
 		'''
 		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
 		
@@ -2151,7 +2151,7 @@ class OnlineUpdater(UiComponent):
 
 		if not self._releaseReply.error():
 			content = []
-			while not self._releaseReply.atEnd () :
+			while not self._releaseReply.atEnd ():
 				content.append(str(self._releaseReply.readLine()))
 
 			LOGGER.debug("> Parsing Releases File Content.")
@@ -2160,41 +2160,41 @@ class OnlineUpdater(UiComponent):
 			parser.parse()
 
 			releases = {}
-			for remoteObject in parser.sections :
-				if remoteObject != Constants.applicationName :
+			for remoteObject in parser.sections:
+				if remoteObject != Constants.applicationName:
 						dbTemplates = dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(remoteObject), "name")
 						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted([(dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
-						if not self._container.parameters.databaseReadOnly :
-							if dbTemplate :
-								if dbTemplate.release != parser.getValue("Release", remoteObject) :
+						if not self._container.parameters.databaseReadOnly:
+							if dbTemplate:
+								if dbTemplate.release != parser.getValue("Release", remoteObject):
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
 																		repositoryVersion=parser.getValue("Release", remoteObject),
 																		localVersion=dbTemplate.release,
 																		type=parser.getValue("Type", remoteObject),
 																		url=parser.getValue("Url", remoteObject),
 																		comment=parser.getValue("Comment", remoteObject))
-							else :
-								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked() :
+							else:
+								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked():
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
 																		repositoryVersion=parser.getValue("Release", remoteObject),
 																		localVersion=None,
 																		type=parser.getValue("Type", remoteObject),
 																		url=parser.getValue("Url", remoteObject),
 																		comment=parser.getValue("Comment", remoteObject))
-						else :
+						else:
 							LOGGER.info("{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value !".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
-				else :
-					if Constants.releaseVersion != parser.getValue("Release", remoteObject) :
+				else:
+					if Constants.releaseVersion != parser.getValue("Release", remoteObject):
 						releases[remoteObject] = ReleaseObject(name=remoteObject,
 															repositoryVersion=parser.getValue("Release", remoteObject),
 															localVersion=Constants.releaseVersion,
 															url=parser.getValue("Url", remoteObject),
 															type=parser.getValue("Type", remoteObject),
 															comment=None)
-			if releases :
+			if releases:
 				LOGGER.debug("> Initialising Remote Updater.")
 				self._remoteUpdater = RemoteUpdater(self, releases)
-			else :
+			else:
 				self._reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date !".format(self.__class__.__name__, Constants.applicationName))
 		else:
 			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code : '{0}'.".format(self._releaseReply.error()))

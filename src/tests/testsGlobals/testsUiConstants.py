@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	testsUiConstants.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Ui UiConstants Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -94,7 +94,7 @@ class UiConstantsTestCase(unittest.TestCase):
 								"nativeImageFormats",
 								"thirdPartyImageFormats",)
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, UiConstants.__dict__)
 
 	def testFrameworkUiFileAttribute(self):
@@ -185,7 +185,7 @@ def testNativeImageFormatsAttribute(self):
 		'''
 
 		self.assertIsInstance(UiConstants.nativeImageFormats, dict)
-		for key, value in UiConstants.nativeImageFormats :
+		for key, value in UiConstants.nativeImageFormats:
 			self.assertIsInstance(key, str)
 			self.assertIsInstance(value, str)
 			self.assertTrue(re.compile(value))
@@ -196,7 +196,7 @@ def testThirdPartyImageFormatsAttribute(self):
 		'''
 
 		self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
-		for key, value in UiConstants.thirdPartyImageFormats :
+		for key, value in UiConstants.thirdPartyImageFormats:
 			self.assertIsInstance(key, str)
 			self.assertIsInstance(value, str)
 			self.assertTrue(re.compile(value))

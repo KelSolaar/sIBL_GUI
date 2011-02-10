@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	rewiringTool.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Rewiring Tool Addons Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -480,7 +480,7 @@ class RewiringTool(UiComponent):
 		'''
 
 		for index in range(len(self._reWireComboBoxesWidgets)):
-			if self._reWireComboBoxesWidgets[index].currentText() == "Custom Image" :
+			if self._reWireComboBoxesWidgets[index].currentText() == "Custom Image":
 				LOGGER.debug("> Showing ReWire Frame '{0}'.".format(self._reWireFramesWidgets[index]))
 				self._reWireFramesWidgets[index].show()
 			else:
@@ -506,7 +506,7 @@ class RewiringTool(UiComponent):
 				self.ui.Reflection_Path_lineEdit.setText(QString(customFile))
 
 	@core.executionTrace
-	def Background_Path_toolButton_OnClicked(self, checked) :
+	def Background_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Background ToolButton Is Clicked.
 		
@@ -516,7 +516,7 @@ class RewiringTool(UiComponent):
 		self.setReWireCustomPath("Background")
 
 	@core.executionTrace
-	def Lighting_Path_toolButton_OnClicked(self, checked) :
+	def Lighting_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Lighting ToolButton Is Clicked.
 		
@@ -526,7 +526,7 @@ class RewiringTool(UiComponent):
 		self.setReWireCustomPath("Lighting")
 
 	@core.executionTrace
-	def Reflection_Path_toolButton_OnClicked(self, checked) :
+	def Reflection_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Reflection ToolButton Is Clicked.
 
@@ -546,11 +546,11 @@ class RewiringTool(UiComponent):
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
-		if iblSet :
-			if os.path.exists(iblSet._datas.path) :
+		if iblSet:
+			if os.path.exists(iblSet._datas.path):
 				for index, comboBox in enumerate(self._reWireComboBoxesWidgets):
 					parameter = self._rewiringParameters[comboBox.currentIndex()]
-					if comboBox.currentText() == "Custom Image" :
+					if comboBox.currentText() == "Custom Image":
 						LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format(comboBox._datas, str(self._reWireLineEditWidgets[index].text())))
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self._reWireLineEditWidgets[index].text())))
 					else:

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	sIBLeditUtilities.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		sIBLedit Utilities Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -423,11 +423,11 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._editInSIBLEditAction = QAction("Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
 			self._editInSIBLEditAction.triggered.connect(self.Database_Browser_listView_editInSIBLEditAction)
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editInSIBLEditAction)
-		else :
+		else:
 			LOGGER.info("{0} | sIBLedit Link Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
@@ -438,7 +438,7 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editInSIBLEditAction)
 			self._editInSIBLEditAction = None
 
@@ -454,19 +454,19 @@ class sIBLeditUtilities(UiComponent):
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSet and os.path.exists(selectedIblSet[0]._datas.path) and selectedIblSet[0] or None
 
-		if sIBLedit :
-			if selectedIblSet :
+		if sIBLedit:
+			if selectedIblSet:
 				LOGGER.info("{0} | Launching 'sIBLedit' With '{1}'.".format(self.__class__.__name__, selectedIblSet._datas.path))
 				editCommand = "\"{0}\" \"{1}\"".format(sIBLedit, selectedIblSet._datas.path)
 
 				LOGGER.debug("> Current Edit Command : '{0}'.".format(editCommand))
 				editProcess = QProcess()
 				editProcess.startDetached(editCommand)
-		else :
+		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences !".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def sIBLedit_Path_lineEdit_setUi(self) :
+	def sIBLedit_Path_lineEdit_setUi(self):
 		'''
 		This Method Fills The sIBLedit_Path_lineEdit.
 		'''
@@ -476,7 +476,7 @@ class sIBLeditUtilities(UiComponent):
 		self.ui.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
 	@core.executionTrace
-	def sIBLedit_Path_toolButton_OnClicked(self, checked) :
+	def sIBLedit_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
 		
@@ -491,7 +491,7 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def sIBLedit_Path_lineEdit_OnEditFinished(self) :
+	def sIBLedit_Path_lineEdit_OnEditFinished(self):
 		'''
 		This Method Is Called When sIBLedit_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		'''
@@ -501,7 +501,7 @@ class sIBLeditUtilities(UiComponent):
 			self.sIBLedit_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File !".format(self.__class__.__name__)
-		else :
+		else:
 			self._settings.setKey(self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
 #***********************************************************************************************

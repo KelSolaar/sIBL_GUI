@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	environment.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Environment Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -115,7 +115,7 @@ class Environment(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("variable", value)
 			assert not re.search("\W", value), "'{0}' Attribute : '{1}' Contains Non AlphaNumerics Characters !".format("variable", value)
 		self._variable = value
@@ -140,7 +140,7 @@ class Environment(object):
 		@return: Variable Path. ( String )
 		'''
 
-		if self._variable :
+		if self._variable:
 			LOGGER.debug("> Current Environment Variable : '{0}'.".format(self._variable))
 			LOGGER.debug("> Available System Environment Variables : '{0}'".format(os.environ.keys()))
 
