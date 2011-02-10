@@ -98,8 +98,7 @@ class Library(object):
 	This Class Provides Methods To Bind A C / C++ Library.
 	'''
 
-	_libraryInstance = None
-	_libraryInstantiated = False
+	_librariesInstances = {}
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft" :
 		_callback = ctypes.WINFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
@@ -107,6 +106,7 @@ class Library(object):
 		_callback = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryInstantiationError)
 	def __new__(self, *args, **kwargs):
 		'''
 		This Method Is The Constructor Of The Class.
@@ -115,9 +115,13 @@ class Library(object):
 		@param **kwargs: Arguments. ( * )
 		'''
 
-		if not self._libraryInstance :
-			self._libraryInstance = object.__new__(self)
-		return self._libraryInstance
+		libraryPath = args[0]
+		if os.path.exists(libraryPath) :
+			if not args[0] in self._librariesInstances.keys() :
+				self._librariesInstances[args[0]] = object.__new__(self)
+			return self._librariesInstances[args[0]]
+		else :
+			raise foundations.exceptions.LibraryInstantiationError("'{0}' Library Path Doesn't Exists !".format(libraryPath))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryInitializationError)
@@ -129,14 +133,14 @@ class Library(object):
 		@param functions: Binding Functions List. ( Tuple )
 		'''
 
-		if self._libraryInstantiated :
+		if hasattr(self._librariesInstances[libraryPath], "_libraryInstantiated") :
 			return
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
+		# --- Setting Class Attributes. ---
 		self._libraryInstantiated = True
 
-		# --- Setting Class Attributes. ---
 		self._libraryPath = None
 		self.libraryPath = libraryPath
 
@@ -160,6 +164,36 @@ class Library(object):
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
+	@property
+	def libraryInstantiated(self):
+		'''
+		This Method Is The Property For The _libraryInstantiated Attribute.
+		
+		@return: self._libraryInstantiated. ( String )
+		'''
+
+		return self._libraryInstantiated
+
+	@libraryInstantiated.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def libraryInstantiated(self, value):
+		'''
+		This Method Is The Setter Method For The _libraryInstantiated Attribute.
+		
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Settable !".format("libraryInstantiated"))
+
+	@libraryInstantiated.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def libraryInstantiated(self):
+		'''
+		This Method Is The Deleter Method For The _libraryInstantiated Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("libraryInstantiated"))
+
 	@property
 	def libraryPath(self):
 		'''
@@ -281,7 +315,7 @@ class Library(object):
 		returnType = function.returnValue
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft" :
-			functionObject = getattr(self._library, '_{0}{1}'.format(function.name, function.affixe))
+			functionObject = getattr(self._library, "{0}".format(function.name, function.affixe))
 		else:
 			functionObject = getattr(self._library, function.name)
 

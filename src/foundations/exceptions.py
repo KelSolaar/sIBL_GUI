@@ -459,7 +459,7 @@ class SocketConnectionError(Exception):
 
 class ComponentActivationError(Exception):
 	'''
-	This Class Is Used For Component Activation Error.
+	This Class Is Used For Component Activation Errors.
 	'''
 
 	@core.executionTrace
@@ -487,7 +487,35 @@ class ComponentActivationError(Exception):
 
 class ComponentDeactivationError(Exception):
 	'''
-	This Class Is Used For Component Deactivation Error.
+	This Class Is Used For Component Deactivation Errors.
+	'''
+
+	@core.executionTrace
+	def __init__(self, value) :
+		'''
+		This Method Initializes The Class.
+
+		@param value: Error Value Or Message. ( String )
+		'''
+
+		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+
+		# --- Setting Class Attributes. ---
+		self.value = value
+
+	@core.executionTrace
+	def __str__(self) :
+		'''
+		This Method Returns The Exception Representation.
+		
+		@return: Exception Representation. ( String )
+		'''
+
+		return str(self.value)
+
+class LibraryInstantiationError(Exception):
+	'''
+	This Class Is Used For Library Instantiation Errors.
 	'''
 
 	@core.executionTrace
@@ -515,7 +543,7 @@ class ComponentDeactivationError(Exception):
 
 class LibraryInitializationError(Exception):
 	'''
-	This Class Is Used For Library Initialization Error.
+	This Class Is Used For Library Initialization Errors.
 	'''
 
 	@core.executionTrace
@@ -543,7 +571,7 @@ class LibraryInitializationError(Exception):
 
 class LibraryExecutionError(Exception):
 	'''
-	This Class Is Used For Library Execution Error.
+	This Class Is Used For Library Execution Errors.
 	'''
 
 	@core.executionTrace
