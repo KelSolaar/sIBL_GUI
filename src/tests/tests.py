@@ -68,6 +68,7 @@ import testsFoundations.testsIo
 import testsFoundations.testsLibrary
 import testsFoundations.testsParser
 import testsFoundations.testsPkzip
+import testsFoundations.testsStrings
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
@@ -94,6 +95,13 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsParser.RemoveNamespaceTestCase,
 				testsFoundations.testsParser.GetAttributeCompoundTestCase,
 				testsFoundations.testsPkzip.PkzipTestCase,
+				testsFoundations.testsStrings.GetNiceNameTestCase,
+				testsFoundations.testsStrings.GetVersionRankTestCase,
+				testsFoundations.testsStrings.ToForwardSlashesTestCase,
+				testsFoundations.testsStrings.ToBackwardSlashesTestCase,
+				testsFoundations.testsStrings.GetNormalizedPathTestCase,
+				testsFoundations.testsStrings.IsEmailTestCase,
+				testsFoundations.testsStrings.IsWebsiteTestCase,
 				testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
 				testsGlobals.testsUiConstants.UiConstantsTestCase)

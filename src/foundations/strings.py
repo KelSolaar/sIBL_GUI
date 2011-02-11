@@ -117,6 +117,32 @@ def getVersionRank(version):
 	return rank
 
 @core.executionTrace
+def toForwardSlashes(datas):
+	'''
+	This Definition Converts Backward Slashes To Forward Slashes.
+
+	@param datas: Datas To Convert. ( String )	
+	@return: Converted Path. ( String )
+	'''
+
+	datas = datas.replace("\\", "/")
+	LOGGER.debug("> Datas : '{0}' To Forward Slashes.".format(datas))
+	return datas
+
+@core.executionTrace
+def toBackwardSlashes(datas):
+	'''
+	This Definition Converts Forward Slashes To Backward Slashes.
+
+	@param datas: Datas To Convert. ( String )	
+	@return: Converted Path. ( String )
+	'''
+
+	datas = datas.replace("/", "\\")
+	LOGGER.debug("> Datas : '{0}' To Backward Slashes.".format(datas))
+	return datas
+
+@core.executionTrace
 def getNormalizedPath(path):
 	'''
 	This Definition Normalizes A Path, Escaping Slashes If Needed On Windows.
@@ -133,31 +159,6 @@ def getNormalizedPath(path):
 		path = os.path.normpath(path)
 		LOGGER.debug("> Path : '{0}', Normalized Path.".format(path))
 		return path
-
-@core.executionTrace
-def toUnixPath(path):
-	'''
-	This Definition Converts A Path To Unix Standard.
-
-	@param url: Path To Convert. ( String )	
-	@return: Converted Path. ( String )
-	'''
-
-	path = path.replace("\\", "/")
-	LOGGER.debug("> Path : '{0}', Unix Path.".format(path))
-	return path
-
-@core.executionTrace
-def toWindowsPath(path):
-	'''
-	This Definition Converts A Path To Windows Standard.
-
-	@param url: Path To Convert. ( String )	
-	@return: Converted Path. ( String )
-	'''
-	path = path.replace("/", "\\")
-	LOGGER.debug("> Path : '{0}', Windows Path.".format(path))
-	return path
 
 @core.executionTrace
 def isEmail(datas):

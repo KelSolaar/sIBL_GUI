@@ -692,7 +692,7 @@ class GpsMap(UiComponent):
 				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
 				shotDateString = "<b>Shot Date : </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
 				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
-				self._map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toUnixPath(iblSet._datas.icon), content)
+				self._map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toForwardSlashes(iblSet._datas.icon), content)
 		self._map.setCenter()
 
 #***********************************************************************************************

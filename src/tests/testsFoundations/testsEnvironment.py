@@ -35,13 +35,13 @@
 
 '''
 ************************************************************************************************
-***	testsEnvironments.py
+***	testsEnvironment.py
 ***
 ***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
 ***	Description:
-***		Environments Tests Module.
+***		Environment Tests Module.
 ***
 ***	Others:
 ***
