@@ -102,6 +102,20 @@ class GetVersionRankTestCase(unittest.TestCase):
 		self.assertEqual(foundations.strings.getVersionRank("1.1.0"), 110)
 		self.assertEqual(foundations.strings.getVersionRank("1.2.3.4.5"), 12345)
 
+class ReplaceTestCase(unittest.TestCase):
+	'''
+	This Class Is The ReplaceTestCase Class.
+	'''
+
+	def testReplace(self):
+		'''
+		This Method Tests The "replace" Definition.
+		'''
+
+		self.assertIsInstance(foundations.strings.replace("To@Forward|Slashes@Test|Case", {}), str)
+		self.assertEqual(foundations.strings.replace("To@Forward|Slashes@Test|Case", {"@":"|", "|":":"}), "To:Forward:Slashes:Test:Case")
+		self.assertEqual(foundations.strings.replace("To@Forward@Slashes@Test@Case", {"@":"|", "|":"@", "@":"|" }), "To@Forward@Slashes@Test@Case")
+
 class ToForwardSlashesTestCase(unittest.TestCase):
 	'''
 	This Class Is The ToForwardSlashesTestCase Class.

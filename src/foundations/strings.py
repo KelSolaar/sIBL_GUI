@@ -117,6 +117,19 @@ def getVersionRank(version):
 	return rank
 
 @core.executionTrace
+def replace(string, datas):
+	'''
+	This Definition Replaces The Datas Occurences In The String.
+	@param string: String To Manipulate. ( String )
+	@param datas: Replacement Occurences. ( Dictionary )
+	@return: Manipulated String. ( String )
+	'''
+
+	for old, new in datas.items():
+		string = string.replace(old, new)
+	return string
+
+@core.executionTrace
 def toForwardSlashes(datas):
 	'''
 	This Definition Converts Backward Slashes To Forward Slashes.
