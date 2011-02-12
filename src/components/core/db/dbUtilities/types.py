@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	types.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Database Types Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -165,7 +165,7 @@ class DbIblSet(DbBase):
 		parser = Parser(self.path)
 		parser.read() and parser.parse()
 
-		if parser.sections :
+		if parser.sections:
 			self.title = parser.getValue("Name", "Header", encode=True)
 			self.author = parser.getValue("Author", "Header", encode=True)
 			self.link = parser.getValue("Link", "Header", encode=True)
@@ -182,7 +182,7 @@ class DbIblSet(DbBase):
 
 			return True
 
-		else :
+		else:
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(self.path))
 
 class DbTemplate(DbBase):
@@ -266,7 +266,7 @@ class DbTemplate(DbBase):
 		parser = Parser(self.path)
 		parser.read() and parser.parse(rawSections=("Script"))
 
-		if parser.sections :
+		if parser.sections:
 			self.helpFile = foundations.parser.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value and os.path.join(os.path.dirname(self.path), foundations.parser.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value) or None
 			self.title = foundations.parser.getAttributeCompound("Name", parser.getValue("Name", "Template", encode=True)).value
 			self.author = foundations.parser.getAttributeCompound("Author", parser.getValue("Author", "Template", encode=True)).value
@@ -282,7 +282,7 @@ class DbTemplate(DbBase):
 
 			return True
 
-		else :
+		else:
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(self.path))
 
 class DbCollection(DbBase):

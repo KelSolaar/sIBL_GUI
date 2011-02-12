@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	common.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Common Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -85,15 +85,15 @@ def getSystemApplicationDatasDirectory():
 	@return: User Application Datas Directory. ( String )
 	'''
 
-	if platform.system() == "Windows" or platform.system() == "Microsoft" :
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
 		environmentVariable = Environment("APPDATA")
 		return environmentVariable.getPath()
 
-	elif platform.system() == "Darwin" :
+	elif platform.system() == "Darwin":
 		environmentVariable = Environment("HOME")
 		return os.path.join(environmentVariable.getPath(), "Library/Preferences")
 
-	elif platform.system() == "Linux" :
+	elif platform.system() == "Linux":
 		environmentVariable = Environment("HOME")
 		return environmentVariable.getPath()
 
@@ -133,7 +133,7 @@ def exit(exitCode, logger, handlers):
 
 	LOGGER.debug("> Stopping Logging Handlers And Logger, Then Exiting.")
 
-	for handler in handlers :
+	for handler in handlers:
 		handler and closeHandler(logger, handler)
 
 	sys.exit(exitCode)

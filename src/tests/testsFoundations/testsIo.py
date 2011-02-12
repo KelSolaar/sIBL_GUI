@@ -26,7 +26,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -36,13 +36,13 @@
 ************************************************************************************************
 ***	testsIo.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Io Tests Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -55,12 +55,14 @@
 #***	External Imports
 #***********************************************************************************************
 import os
+import shutil
 import tempfile
 import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import foundations.io
 from foundations.io import File
 
 #***********************************************************************************************
@@ -90,7 +92,7 @@ class FileTestCase(unittest.TestCase):
 		requiredAttributes = ("_file",
 								"_content")
 
-		for attribute in requiredAttributes :
+		for attribute in requiredAttributes:
 			self.assertIn(attribute, ioFile.__dict__)
 
 	def testRequiredMethods(self):
@@ -103,7 +105,7 @@ class FileTestCase(unittest.TestCase):
 							"write",
 							"append")
 
-		for method in requiredMethods :
+		for method in requiredMethods:
 			self.assertIn(method, dir(ioFile))
 
 	def testRead(self):
@@ -143,6 +145,23 @@ class FileTestCase(unittest.TestCase):
 		ioFile.read()
 		self.assertListEqual(ioFile.content, FILE_CONTENT + FILE_CONTENT)
 		os.remove(ioFile.file)
+
+class SetLocalDirectoryTestCase(unittest.TestCase):
+	'''
+	This Class Is The SetLocalDirectoryTestCase Class.
+	'''
+
+	def testSetLocalDirectory(self):
+		'''
+		This Method Tests The "setLocalDirectory" Definition.
+		'''
+
+		tempDirectory = tempfile.mkdtemp()
+		directoriesTree = "tests/io/setLocalDirectory"
+		directory = os.path.join(tempDirectory, directoriesTree)
+		foundations.io.setLocalDirectory(directory)
+		self.assertTrue(os.path.exists(directory))
+		shutil.rmtree(tempDirectory)
 
 if __name__ == "__main__":
 	import tests.utilities

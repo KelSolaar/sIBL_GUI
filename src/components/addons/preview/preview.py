@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	preview.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Preview Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -84,13 +84,13 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Image_QGraphicsItem(QGraphicsItem) :
+class Image_QGraphicsItem(QGraphicsItem):
 	'''
 	This Class Is The Image_QGraphicsItem Class.
 	'''
 
 	@core.executionTrace
-	def __init__(self, image) :
+	def __init__(self, image):
 		'''
 		This Method Initializes The Class.
 		
@@ -126,7 +126,7 @@ class Image_QGraphicsItem(QGraphicsItem) :
 		@param value: Attribute Value. ( QImage )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is QImage, "'{0}' Attribute : '{1}' Type Is Not 'QImage' !".format("image", value)
 		self._imagePath = value
 
@@ -143,7 +143,7 @@ class Image_QGraphicsItem(QGraphicsItem) :
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def boundingRect(self) :
+	def boundingRect(self):
 		'''
 		This Method Sets The Bounding Rectangle.
 		'''
@@ -151,7 +151,7 @@ class Image_QGraphicsItem(QGraphicsItem) :
 		return QRectF(-(self._image.width()) / 2, -(self._image.height()) / 2, self._image.width(), self._image.height())
 
 	@core.executionTrace
-	def paint(self, painter, options, widget) :
+	def paint(self, painter, options, widget):
 		'''
 		This Method Paints The Image.
 
@@ -190,7 +190,7 @@ class ImagePreviewer(object):
 		self._uiZoomOutIcon = "Zoom_Out.png"
 
 		self._ui = uic.loadUi(self._uiPath)
-		if "." in sys.path :
+		if "." in sys.path:
 			sys.path.remove(".")
 		# Ensure The Ui Object Is Destroyed On Close To Avoid Memory Leaks.
 		self._ui.setAttribute(Qt.WA_DeleteOnClose)
@@ -262,7 +262,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode, QString), "'{0}' Attribute : '{1}' Type Is Not 'str', 'unicode' or 'QString' !".format("imagePath", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' Image File Doesn't Exists !".format("imagePath", value)
 		self._imagePath = value
@@ -682,15 +682,15 @@ class ImagePreviewer(object):
 
 		self._ui.Background_Colors_comboBox.addItems([color[0] for color in self._graphicsSceneBackgroundColors])
 
-		for extension in UiConstants.nativeImageFormats.values() :
-			if re.search(extension, self._imagePath) :
+		for extension in UiConstants.nativeImageFormats.values():
+			if re.search(extension, self._imagePath):
 				LOGGER.debug("> Loading Native Format '{0}' Image.".format(self._imagePath))
 				image = QImage(self._imagePath)
 				bpp = image.depth()
 				break
-		else :
-			for extension in UiConstants.thirdPartyImageFormats.values() :
-				if re.search(extension, self._imagePath) :
+		else:
+			for extension in UiConstants.thirdPartyImageFormats.values():
+				if re.search(extension, self._imagePath):
 					LOGGER.debug("> Loading Third Party Format '{0}' Image.".format(self._imagePath))
 					image = Image(str(self._imagePath))
 					image = image.convertToQImage()
@@ -778,7 +778,7 @@ class ImagePreviewer(object):
 		graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColors[index][1]))
 
 	@core.executionTrace
-	def scaleView(self, scaleFactor) :
+	def scaleView(self, scaleFactor):
 		'''
 		This Method Scales The QGraphicsView.
 
@@ -787,13 +787,13 @@ class ImagePreviewer(object):
 
 		graphicsView = self._ui.findChild(QGraphicsView)
 		factor = graphicsView.matrix().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width()
-		if factor < self._minimumZoomFactor or factor > self._maximumZoomFactor :
+		if factor < self._minimumZoomFactor or factor > self._maximumZoomFactor:
 			return
 
 		graphicsView.scale(scaleFactor, scaleFactor)
 
 	@core.executionTrace
-	def wheelEvent(self, event) :
+	def wheelEvent(self, event):
 		'''
 		This Method Redefines wheelEvent.
 
@@ -803,7 +803,7 @@ class ImagePreviewer(object):
 		self.scaleView(pow(1.5, event.delta() / self._wheelZoomFactor))
 
 	@core.executionTrace
-	def keyPressEvent(self, event) :
+	def keyPressEvent(self, event):
 		'''
 		This Method Redefines keyPressEvent.
 
@@ -1262,7 +1262,7 @@ class Preview(UiComponent):
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
 
-		for imagePreviewer in self._imagePreviewers[:] :
+		for imagePreviewer in self._imagePreviewers[:]:
 			imagePreviewer.ui.close()
 
 		self._deactivate()
@@ -1389,7 +1389,7 @@ class Preview(UiComponent):
 		self.showImagePreview("Reflection")
 
 	@core.executionTrace
-	def Custom_Previewer_Path_lineEdit_setUi(self) :
+	def Custom_Previewer_Path_lineEdit_setUi(self):
 		'''
 		This Method Fills The Custom_Previewer_Path_lineEdit.
 		'''
@@ -1399,7 +1399,7 @@ class Preview(UiComponent):
 		self.ui.Custom_Previewer_Path_lineEdit.setText(customPreviewer.toString())
 
 	@core.executionTrace
-	def Custom_Previewer_Path_toolButton_OnClicked(self, checked) :
+	def Custom_Previewer_Path_toolButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When Custom_Previewer_Path_toolButton Is Clicked.
 
@@ -1414,7 +1414,7 @@ class Preview(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Custom_Previewer_Path_lineEdit_OnEditFinished(self) :
+	def Custom_Previewer_Path_lineEdit_OnEditFinished(self):
 		'''
 		This Method Is Called When Custom_Previewer_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		'''
@@ -1424,7 +1424,7 @@ class Preview(UiComponent):
 			self.Custom_Previewer_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Previewer Executable File !".format(self.__class__.__name__)
-		else :
+		else:
 			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
@@ -1439,39 +1439,39 @@ class Preview(UiComponent):
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
-			if imageType == "Background" :
+			if imageType == "Background":
 				imagePath = getattr(iblSet._datas, "backgroundImage")
-			elif imageType == "Lighting" :
+			elif imageType == "Lighting":
 				imagePath = getattr(iblSet._datas, "lightingImage")
-			elif imageType == "Reflection" :
+			elif imageType == "Reflection":
 				imagePath = getattr(iblSet._datas, "reflectionImage")
-			if imagePath :
-				if os.path.exists(imagePath) :
-					if customPreviewer :
+			if imagePath:
+				if os.path.exists(imagePath):
+					if customPreviewer:
 						previewCommand = None
 						imagePath = os.path.normpath(imagePath)
 						if platform.system() == "Windows" or platform.system() == "Microsoft":
 								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
 								previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, imagePath)
-						elif platform.system() == "Darwin" :
+						elif platform.system() == "Darwin":
 								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
 								previewCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, imagePath)
 						elif platform.system() == "Linux":
 								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
 								previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, imagePath)
-						if previewCommand :
+						if previewCommand:
 							LOGGER.debug("> Current Image Preview Command : '{0}'.".format(previewCommand))
 							editProcess = QProcess()
 							editProcess.startDetached(previewCommand)
-					else :
-						if not len(self._imagePreviewers) >= self._maximumImagePreviewersInstances :
+					else:
+						if not len(self._imagePreviewers) >= self._maximumImagePreviewersInstances:
 							self.launchImagePreviewer(imagePath)
 						else:
 							messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time !".format(self.__class__.__name__, self._maximumImagePreviewersInstances))
 							break
-				else :
+				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped !".format(self.__class__.__name__, imagePath))
-			else :
+			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped !".format(self.__class__.__name__, iblSet._datas.title, imageType))
 
 	@core.executionTrace

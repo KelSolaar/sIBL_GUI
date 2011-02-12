@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	DatabaseBackup.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Database Backup Component Module.
 ***
-***	Others :
+***	Others:
 ***		Code Extracted From rotatingbackup.py Written By leo.ss.pku@gmail.com
 ************************************************************************************************
 '''
@@ -122,7 +122,7 @@ class RotatingBackup(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("source", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("source", value)
 		self._source = value
@@ -155,7 +155,7 @@ class RotatingBackup(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("destination", value)
 		self._destination = value
 
@@ -187,7 +187,7 @@ class RotatingBackup(object):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (int, float), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format("count", value)
 			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("count", value)
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("count"))
@@ -212,7 +212,7 @@ class RotatingBackup(object):
 
 		LOGGER.debug("> Storing '{0}' File Backup.".format(self._source))
 
-		if self._source and self._destination :
+		if self._source and self._destination:
 			os.path.exists(self._destination) or os.mkdir(self._destination)
 			destination = os.path.join(self._destination, os.path.basename(self._source))
 			for i in range(self._count - 1, 0, -1):
@@ -534,12 +534,12 @@ class DatabaseBackup(Component):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly :
+		if not self._container.parameters.databaseReadOnly:
 			self._databaseFile = self._coreDb.dbName
 			self._destination = os.path.join(os.path.dirname(self._coreDb.dbName), self._backupDirectory)
 
 			self.rotatingBackup()
-		else :
+		else:
 			LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace

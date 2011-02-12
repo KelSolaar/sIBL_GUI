@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	pkzip.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Zip File Manipulation Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -117,7 +117,7 @@ class Pkzip(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("archive", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("archive", value)
 		self._archive = value
@@ -139,6 +139,8 @@ class Pkzip(object):
 	def extract(self, target):
 		'''
 		This Method Extracts The Archive File To The Provided Folder.
+		
+		@return: Extraction Success. ( Boolean )
 		'''
 
 		archive = zipfile.ZipFile(self._archive)
@@ -150,10 +152,10 @@ class Pkzip(object):
 		folders.sort()
 		folders.reverse()
 
-		for folder in folders :
+		for folder in folders:
 			not os.path.isdir(os.path.join(target, folder)) and io.setLocalDirectory(os.path.join(target, folder))
 
-		for file in files :
+		for file in files:
 			LOGGER.info("{0} | Extracting '{1}' File !".format(self.__class__.__name__, file))
 			with open(os.path.join(target, file), "w") as output:
 				buffer = StringIO(archive.read(file))
@@ -162,7 +164,7 @@ class Pkzip(object):
 				while datas:
 					output.write(datas)
 					datas = buffer.read(bufferSize)
-
+		return True
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	messageBox.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Message Box Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -96,34 +96,34 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	messageBox.setWindowTitle("{0} | {1}".format(Constants.applicationName, title))
 	messageBox.setText(message)
 
-	if type == "Critical" :
-		if icon :
+	if type == "Critical":
+		if icon:
 			messageBox.setIcon(icon)
-		else :
+		else:
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.critical("!> {0}".format(message))
-	elif type == "Error" :
-		if icon :
+	elif type == "Error":
+		if icon:
 			messageBox.setIcon(icon)
-		else :
+		else:
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.error("!> {0}".format(message))
-	elif type == "Warning" :
-		if icon :
+	elif type == "Warning":
+		if icon:
 			messageBox.setIcon(icon)
-		else :
+		else:
 			messageBox.setIcon(QMessageBox.Warning)
 		LOGGER.warning("{0}".format(message))
-	elif type == "Information" :
-		if icon :
+	elif type == "Information":
+		if icon:
 			messageBox.setIcon(icon)
-		else :
+		else:
 			messageBox.setIcon(QMessageBox.Information)
 		LOGGER.info("{0}".format(message))
-	elif type == "Question" :
-		if icon :
+	elif type == "Question":
+		if icon:
 			messageBox.setIcon(icon)
-		else :
+		else:
 			messageBox.setIcon(QMessageBox.Question)
 		LOGGER.info("{0}".format(message))
 

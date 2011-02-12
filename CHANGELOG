@@ -35,7 +35,7 @@ h3. 3.0.9 - Stable
 h3. 3.0.8 - Stable
 
 * sIBL_GUI For Windows now is natively built on Windows 7, this should fix the slow startup issues reported on Windows Vista / 7.
-* Implemented dragNdrop in various components ( Network paths are currently not supported on Windows Vista / 7 ) :
+* Implemented dragNdrop in various components ( Network paths are currently not supported on Windows Vista / 7 ):
 ** Database Browser Component : You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
 ** Collections Outliner Component : You can also dragNdrop folders or Ibl Sets files directly from the Os.
 ** Templates Outliner Component : You can dragNdrop Templates folders or Templates files directly from the Os.

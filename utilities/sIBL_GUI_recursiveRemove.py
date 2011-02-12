@@ -29,13 +29,13 @@
 ************************************************************************************************
 ***	sIBL_GUI_recursiveRemove.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows
 ***
-***	Description :
+***	Description:
 ***		Recursion Delete.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -65,7 +65,7 @@ def recursiveRemove(rootDirectory, pattern):
 		for root, dirs, files in os.walk(rootDirectory):
 			for item in files:
 				itemPath = os.path.join(root, item).replace("\\", "/")
-				if pattern in str(item)  :
+				if pattern in str(item) :
 					remove(itemPath)
 
 def remove(item):
@@ -75,7 +75,7 @@ def remove(item):
 	'''
 
 	print("remove | Removing : '%s'" % item)
-	try :
+	try:
 		os.remove(item)
 	except:
 		print("remove | '%s' Remove Failed !" % item)

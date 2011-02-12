@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	common.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Common Database Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -98,7 +98,7 @@ def commit(session):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	try :
+	try:
 		session.commit()
 		return True
 	except Exception as error:
@@ -137,10 +137,10 @@ def addStandardItem(session, type, name, path, collection):
 
 	LOGGER.debug("> Adding : '{0}' '{1}' To Database.".format(name, type.__name__))
 
-	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path") :
+	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
 		osStats = ",".join([str(stat) for stat in os.stat(path)])
 		dbItem = type(name=name, path=path, collection=collection, osStats=osStats)
-		if dbItem.setContent() :
+		if dbItem.setContent():
 			return addItem(session, dbItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' Path Already Exists In Database !".format(core.getModule(addStandardItem).__name__, path, type.__name__))
@@ -192,9 +192,9 @@ def updateItemContent(session, item):
 	LOGGER.debug("> Updating '{0}' '{1}' Content.".format(item.name, item.__class__.__name__))
 
 	item.osStats = ",".join([str(stat) for stat in os.stat(item.path)])
-	if item.setContent() :
+	if item.setContent():
 		return commit(session)
-	else :
+	else:
 		LOGGER.warning("!> {0} | '{1}' '{2}' Content Update Failed !".format(core.getModule(updateItemContent).__name__, item.name, item.__class__.__name__))
 		return False
 
@@ -211,7 +211,7 @@ def updateItemLocation(session, item, path):
 
 	LOGGER.debug("> Updating '{0}' '{1}' Location.".format(item, item.__class__.__name__))
 
-	if not filterItems(session, session.query(item.__class__), "^{0}$".format(re.escape(path)), "path") :
+	if not filterItems(session, session.query(item.__class__), "^{0}$".format(re.escape(path)), "path"):
 		item.path = path
 		return updateItemContent(session, item)
 	else:
@@ -231,7 +231,7 @@ def filterItems(session, items, pattern, field, flags=0):
 	@return: Filtered Items. ( List )
 	'''
 
-	if items :
+	if items:
 		return [item for item in items if re.search(pattern, str(item.__dict__[field]), flags) ]
 
 @core.executionTrace
@@ -322,18 +322,18 @@ def checkIblSetsTableIntegrity(session):
 	LOGGER.debug("> Checking 'Sets' Database Table Integrity.")
 
 	erroneousSets = {}
-	if getIblSets(session) :
-		for iblSet in getIblSets(session) :
-			if not os.path.exists(iblSet.path) :
+	if getIblSets(session):
+		for iblSet in getIblSets(session):
+			if not os.path.exists(iblSet.path):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_FILE_EXCEPTION"
 				continue
-			if not os.path.exists(iblSet.icon) :
+			if not os.path.exists(iblSet.icon):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
-			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.backgroundImage)) :
+			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.backgroundImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
-			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.lightingImage)) :
+			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.lightingImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
-			if  iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)) :
+			if  iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
 	if erroneousSets : return erroneousSets
@@ -377,7 +377,7 @@ def addCollection(session, collection, type, comment):
 
 	LOGGER.debug("> Adding : '{0}' Collection Of Type '{1}' To Database.".format(collection, type))
 
-	if not filterCollections(session, "^{0}$".format(collection), "name") :
+	if not filterCollections(session, "^{0}$".format(collection), "name"):
 		dbItem = dbUtilities.types.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, dbItem)
 	else:
@@ -407,10 +407,10 @@ def getCollectionsSets(session, ids):
 	'''
 
 	iblSets = []
-	for id in ids :
+	for id in ids:
 		collectionSets = filterIblSets(session, str(id), "collection")
-		if collectionSets :
-			for iblSet in filterIblSets(session, str(id), "collection") :
+		if collectionSets:
+			for iblSet in filterIblSets(session, str(id), "collection"):
 				iblSets.append(iblSet)
 	return iblSets
 
@@ -502,12 +502,12 @@ def checkTemplatesTableIntegrity(session):
 	LOGGER.debug("> Checking 'Templates' Database Table Integrity.")
 
 	erroneousTemplates = {}
-	if getTemplates(session) :
-		for template in getTemplates(session) :
-			if not os.path.exists(template.path) :
+	if getTemplates(session):
+		for template in getTemplates(session):
+			if not os.path.exists(template.path):
 				erroneousTemplates[template] = "INEXISTING_TEMPLATE_FILE_EXCEPTION"
 				continue
-			if not os.path.exists(template.helpFile) :
+			if not os.path.exists(template.helpFile):
 				erroneousTemplates[template] = "INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION"
 	return erroneousTemplates
 

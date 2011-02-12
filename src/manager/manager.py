@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	manager.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Manager Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -80,7 +80,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Profile(object) :
+class Profile(object):
 	'''
 	This Class Is The Profile Class.
 	'''
@@ -137,7 +137,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("name", value)
 		self._name = value
 
@@ -169,7 +169,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("path", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' Directory Doesn't Exists !".format("path", value)
 		self._path = value
@@ -202,7 +202,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("object_", value)
 		self._object_ = value
 
@@ -234,7 +234,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("rank", value)
 		self._rank = value
 
@@ -266,7 +266,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( Module )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is type(sys), "'{0}' Attribute : '{1}' Type Is Not 'module' !".format("import", value)
 		self._import = value
 
@@ -327,7 +327,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("categorie", value)
 		self._categorie = value
 
@@ -359,7 +359,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("module", value)
 		self._module = value
 
@@ -391,7 +391,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("version", value)
 		self._version = value
 
@@ -423,7 +423,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("author", value)
 		self._author = value
 
@@ -455,7 +455,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("email", value)
 		self._email = value
 
@@ -487,7 +487,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("url", value)
 		self._url = value
 
@@ -519,7 +519,7 @@ class Profile(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("description", value)
 		self._description = value
 
@@ -532,7 +532,7 @@ class Profile(object) :
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("description"))
 
-class Manager(object) :
+class Manager(object):
 	'''
 	This Class Is The Manager Class.
 	'''
@@ -578,7 +578,7 @@ class Manager(object) :
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("paths", value)
 			for path in value.values() : assert os.path.exists(path), "'{0}' Attribute : '{1}' Directory Doesn't Exists !".format("paths", path)
 		self._paths = value
@@ -611,7 +611,7 @@ class Manager(object) :
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("extension", value)
 		self._extension = value
 
@@ -643,7 +643,7 @@ class Manager(object) :
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("categories", value)
 		self._categories = value
 
@@ -704,24 +704,24 @@ class Manager(object) :
 		parser = Parser(file)
 		parser.read() and parser.parse()
 
-		if parser.sections :
+		if parser.sections:
 			profile = Profile()
 			profile.path = os.path.dirname(file)
 			profile.name = parser.attributeExists("Name", "Component") and parser.getValue("Name", "Component") or None
-			if not profile.name :
+			if not profile.name:
 				raise foundations.exceptions.FileStructureError("'{0}' No '{1}' Attribute Found, File Structure Seems Invalid !".format(file, "Name"))
 			profile.path = os.path.dirname(file)
 			profile.module = parser.attributeExists("Module", "Component") and parser.getValue("Module", "Component") or None
-			if not profile.module :
+			if not profile.module:
 				raise foundations.exceptions.FileStructureError("'{0}' No '{1}' Attribute Found, File Structure Seems Invalid !".format(file, "Module"))
 			profile.object_ = parser.attributeExists("Object", "Component") and parser.getValue("Object", "Component") or None
-			if not profile.object_ :
+			if not profile.object_:
 				raise foundations.exceptions.FileStructureError("'{0}' No '{1}' Attribute Found, File Structure Seems Invalid !".format(file, "Object"))
 			profile.rank = parser.attributeExists("Rank", "Component") and parser.getValue("Rank", "Component") or None
-			if not profile.rank :
+			if not profile.rank:
 				raise foundations.exceptions.FileStructureError("'{0}' No '{1}' Attribute Found, File Structure Seems Invalid !".format(file, "Rank"))
 			profile.version = parser.attributeExists("Version", "Component") and parser.getValue("Version", "Component") or None
-			if not profile.version :
+			if not profile.version:
 				raise foundations.exceptions.FileStructureError("'{0}' No '{1}' Attribute Found, File Structure Seems Invalid !".format(file, "Version"))
 			profile.author = parser.attributeExists("Author", "Informations") and parser.getValue("Author", "Informations") or None
 			profile.email = parser.attributeExists("Email", "Informations") and parser.getValue("Email", "Informations") or None
@@ -729,7 +729,7 @@ class Manager(object) :
 			profile.description = parser.attributeExists("Description", "Informations") and parser.getValue("Description", "Informations") or None
 
 			return profile
-		else :
+		else:
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(file))
 
 	@core.executionTrace
@@ -747,19 +747,19 @@ class Manager(object) :
 		This Method Gather The Components.
 		'''
 
-		if self.paths :
+		if self.paths:
 			self._components = {}
 			walker = Walker()
-			for path in self.paths.keys() :
+			for path in self.paths.keys():
 				walker.root = self.paths[path]
 				walker.walk(("\.{0}$".format(self._extension),), ("\._",))
 				for component in walker.files.keys():
 					LOGGER.debug("> Current Component : '{0}'.".format(component))
 					profile = self.getProfile(walker.files[component])
-					if profile :
-						if os.path.isfile(os.path.join(profile.path, profile.module) + ".py") :
+					if profile:
+						if os.path.isfile(os.path.join(profile.path, profile.module) + ".py"):
 							self._components[profile.name] = profile
-						else :
+						else:
 							LOGGER.warning("!> {0} | '{1}' Has No Associated Module And Has Been Rejected !".format(self.__class__.__name__, component))
 							continue
 					else:
@@ -778,7 +778,7 @@ class Manager(object) :
 
 		assert self._components, "'{0}' Manager Has No Components !".format(self)
 
-		for component in self.getComponents() :
+		for component in self.getComponents():
 			profile = self._components[component]
 			callback and callback(profile)
 
@@ -787,11 +787,11 @@ class Manager(object) :
 			sys.path.append(profile.path)
 			profile.import_ = __import__(profile.module)
 			object_ = profile.object_ in profile._import.__dict__ and getattr(profile.import_, profile.object_) or None
-			if object_ and inspect.isclass(object_) :
-				for categorie, type in self._categories.items() :
+			if object_ and inspect.isclass(object_):
+				for categorie, type in self._categories.items():
 					profile.categorie = categorie
 					profile.interface = issubclass(object_, type) and object_ is not type and object_(name=profile.name) or None
-					if profile.interface :
+					if profile.interface:
 						LOGGER.info("{0} | '{1}' Component Has Been Instantiated !".format(self.__class__.__name__, profile.name))
 						break
 			else:
@@ -809,9 +809,9 @@ class Manager(object) :
 		import_ = __import__(profile.module)
 		reload(import_)
 		object_ = profile.object_ in dir(import_) and getattr(import_, profile.object_) or None
-		if object_ and inspect.isclass(object_) :
+		if object_ and inspect.isclass(object_):
 			interface = issubclass(object_, self._categories[profile.categorie]) and object_ is not self._categories[profile.categorie] and object_(name=profile.name) or None
-			if interface :
+			if interface:
 				LOGGER.info("{0} | '{1}' Component Has Been Reloaded !".format(self.__class__.__name__, profile.name))
 				profile.import_ = import_
 				profile.interface = interface
@@ -829,10 +829,10 @@ class Manager(object) :
 
 		assert self._components is not None, "'{0}' Manager Has No Components !".format(self)
 		matchingItems = []
-		for component in self._components.values() :
-			if categorie :
+		for component in self._components.values():
+			if categorie:
 				if component.categorie != categorie : continue
-			if re.search(pattern, component.name) :
+			if re.search(pattern, component.name):
 				matchingItems.append(component)
 		return matchingItems
 

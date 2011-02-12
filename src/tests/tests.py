@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	tests.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Tests Suite Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -63,8 +63,12 @@ import unittest
 import testsFoundations.testsCommon
 import testsFoundations.testsCore
 import testsFoundations.testsEnvironment
+import testsFoundations.testsExceptions
 import testsFoundations.testsIo
+import testsFoundations.testsLibrary
 import testsFoundations.testsParser
+import testsFoundations.testsPkzip
+import testsFoundations.testsStrings
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
@@ -81,12 +85,23 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsCore.GetModuleTestCase,
 				testsFoundations.testsCore.GetObjectNameTestCase,
 				testsFoundations.testsEnvironment.EnvironmentTestCase,
+				testsFoundations.testsExceptions.ExceptionsTestCase,
+				testsFoundations.testsLibrary.LibraryTestCase,
 				testsFoundations.testsIo.FileTestCase,
+				testsFoundations.testsIo.SetLocalDirectoryTestCase,
 				testsFoundations.testsParser.ParserTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.SetNamespaceTestCase,
 				testsFoundations.testsParser.RemoveNamespaceTestCase,
 				testsFoundations.testsParser.GetAttributeCompoundTestCase,
+				testsFoundations.testsPkzip.PkzipTestCase,
+				testsFoundations.testsStrings.GetNiceNameTestCase,
+				testsFoundations.testsStrings.GetVersionRankTestCase,
+				testsFoundations.testsStrings.ToForwardSlashesTestCase,
+				testsFoundations.testsStrings.ToBackwardSlashesTestCase,
+				testsFoundations.testsStrings.GetNormalizedPathTestCase,
+				testsFoundations.testsStrings.IsEmailTestCase,
+				testsFoundations.testsStrings.IsWebsiteTestCase,
 				testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
 				testsGlobals.testsUiConstants.UiConstantsTestCase)

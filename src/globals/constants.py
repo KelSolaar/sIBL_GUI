@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	constants.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Constants Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -78,9 +78,9 @@ class Constants():
 	encodingError = "ignore"
 
 	applicationDirectory = "sIBL_GUI"
-	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin" :
+	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
 		providerDirectory = "HDRLabs"
-	elif platform.system() == "Linux" :
+	elif platform.system() == "Linux":
 		providerDirectory = ".HDRLabs"
 
 	databaseDirectory = "database"
@@ -105,11 +105,11 @@ class Constants():
 	loggingFile = "sIBL_Logging.log"
 
 	librariesDirectory = "libraries"
-	if platform.system() == "Windows" or platform.system() == "Microsoft" :
+	if platform.system() == "Windows" or platform.system() == "Microsoft":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
-	elif platform.system() == "Darwin" :
+	elif platform.system() == "Darwin":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.dylib")
-	elif platform.system() == "Linux" :
+	elif platform.system() == "Linux":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
 
 	defaultTimerCycle = 250

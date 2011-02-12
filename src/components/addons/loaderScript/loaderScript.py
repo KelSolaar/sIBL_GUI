@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	loaderScript.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Loader Script Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -452,7 +452,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("sections", value)
 		self._overrideKeys = value
 
@@ -484,7 +484,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("defaultStringSeparator", value)
 			assert len(value) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format("defaultStringSeparator", value)
 			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("defaultStringSeparator", value)
@@ -518,7 +518,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("unnamedLightName", value)
 		self._unnamedLightName = value
 
@@ -635,22 +635,22 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
-	def Send_To_Software_pushButton_OnClicked(self, checked) :
+	def Send_To_Software_pushButton_OnClicked(self, checked):
 		'''
 		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
 		
 		@param checked : Checked State. ( Boolean )
 		'''
 
-		if self.outputLoaderScript() :
+		if self.outputLoaderScript():
 			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
 			LOGGER.info("{0} | Starting Remote Connection !".format(self.__class__.__name__))
 			templateParser = Parser(selectedTemplate._datas.path)
 			templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
 			loaderScriptPath = strings.getNormalizedPath(os.path.join(self._ioDirectory, selectedTemplate._datas.outputScript))
-			if connectionType.value == "Socket" :
-				try :
+			if connectionType.value == "Socket":
+				try:
 					connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
 					socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self._templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
@@ -662,9 +662,9 @@ class LoaderScript(UiComponent):
 					LOGGER.info("{0} | Ending Remote Connection !".format(self.__class__.__name__))
 				except Exception as error:
 					raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error : '{1}' !".format(self.__class__.__name__, error)
-			elif connectionType.value == "Win32" :
+			elif connectionType.value == "Win32":
 				if platform.system() == "Windows" or platform.system() == "Microsoft":
-					try :
+					try:
 						import win32com.client
 						connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self._templateRemoteConnectionSection)).value)
 						connection._FlagAsMethod(self._win32ExecutionMethod)
@@ -686,28 +686,28 @@ class LoaderScript(UiComponent):
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
-		if template :
+		if template:
 			LOGGER.debug("> Parsing '{0}' Template For '{1}' Section.".format(template._datas.name, self._templateRemoteConnectionSection))
 
-			if os.path.exists(template._datas.path) :
+			if os.path.exists(template._datas.path):
 				templateParser = Parser(template._datas.path)
 				templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 
-				if self._templateRemoteConnectionSection in templateParser.sections :
+				if self._templateRemoteConnectionSection in templateParser.sections:
 					LOGGER.debug("> {0}' Section Found.".format(self._templateRemoteConnectionSection))
 					self.ui.Remote_Connection_groupBox.show()
 					connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
-					if connectionType.value == "Socket" :
+					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote Connection Type : 'Socket'.")
 						self.ui.Software_Port_spinBox.setValue(int(foundations.parser.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self._templateRemoteConnectionSection)).value))
 						self.ui.Address_lineEdit.setText(QString(foundations.parser.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self._templateRemoteConnectionSection)).value))
 						self.ui.Remote_Connection_Options_frame.show()
-					elif connectionType.value == "Win32" :
+					elif connectionType.value == "Win32":
 						LOGGER.debug("> Remote Connection : 'Win32'.")
 						self.ui.Remote_Connection_Options_frame.hide()
-				else :
+				else:
 					self.ui.Remote_Connection_groupBox.hide()
-		else :
+		else:
 			self.ui.Remote_Connection_groupBox.hide()
 
 	@core.executionTrace
@@ -723,14 +723,14 @@ class LoaderScript(UiComponent):
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
-		if template :
+		if template:
 			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Template|Path", template._datas.path))
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 
-		if iblSet :
+		if iblSet:
 			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
 
@@ -744,7 +744,7 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception)
-	def outputLoaderScript(self) :
+	def outputLoaderScript(self):
 		'''
 		This Method Output The Loader Script.
 		
@@ -759,44 +759,44 @@ class LoaderScript(UiComponent):
 
 		template = selectedTemplates and selectedTemplates[0] or None
 
-		if not template :
+		if not template:
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Template !".format(self.__class__.__name__)
 
-		if not os.path.exists(template._datas.path) :
+		if not os.path.exists(template._datas.path):
 			raise OSError, "{0} | '{1}' Template File Doesn't Exists !".format(self.__class__.__name__, template._datas.name)
 
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
-		if not iblSet :
+		if not iblSet:
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set !".format(self.__class__.__name__)
 
-		if not os.path.exists(iblSet._datas.path) :
+		if not os.path.exists(iblSet._datas.path):
 			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists !".format(self.__class__.__name__, iblSet._datas.name)
 
 		self._overrideKeys = self.getDefaultOverrideKeys()
 
-		for component in self._container.componentsManager.getComponents() :
+		for component in self._container.componentsManager.getComponents():
 			profile = self._container._componentsManager.components[component]
 			interface = self._container.componentsManager.getInterface(component)
-			if interface.activated and profile.name != self.name :
+			if interface.activated and profile.name != self.name:
 				hasattr(interface, "getOverrideKeys") and interface.getOverrideKeys()
 
-		if self._container.parameters.loaderScriptsOutputDirectory :
-			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory) :
+		if self._container.parameters.loaderScriptsOutputDirectory:
+			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
 				loaderScript = File(os.path.join(self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript))
-			else :
+			else:
 				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
-		else :
+		else:
 			loaderScript = File(os.path.join(self._ioDirectory, template._datas.outputScript))
 
 		LOGGER.debug("> Loader Script Output File Path : '{0}'.".format(loaderScript.file))
 
 		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self._overrideKeys)
-		if loaderScript.content and loaderScript.write() :
+		if loaderScript.content and loaderScript.write():
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done !".format(self.__class__.__name__, template._datas.outputScript))
 			return True
-		else :
+		else:
 			raise Exception, "{0} | '{1}' Output Failed !".format(self.__class__.__name__, template._datas.outputScript)
 
 	@core.executionTrace
@@ -831,15 +831,15 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Flattening Ibl Set File Attributes.")
 		flattenedIblAttributes = dict([(attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()])
 
-		for attribute in flattenedIblAttributes :
-			if attribute in bindedAttributes.keys() :
+		for attribute in flattenedIblAttributes:
+			if attribute in bindedAttributes.keys():
 				bindedAttributes[attribute].value = flattenedIblAttributes[attribute].value
 
-		if "Lights|DynamicLights" in bindedAttributes.keys() :
+		if "Lights|DynamicLights" in bindedAttributes.keys():
 			LOGGER.debug("> Building '{0}' Custom Attribute.".format("Lights|DynamicLights"))
 			dynamicLights = []
-			for section in iblSetSections :
-				if re.search("Light[0-9]*", section) :
+			for section in iblSetSections:
+				if re.search("Light[0-9]*", section):
 					dynamicLights.append(section)
 					lightName = iblSetParser.getValue("LIGHTname", section)
 					dynamicLights.append(lightName and lightName or self._unnamedLightName)
@@ -854,20 +854,20 @@ class LoaderScript(UiComponent):
 			bindedAttributes["Lights|DynamicLights"].value = self._defaultStringSeparator.join(dynamicLights)
 
 		LOGGER.debug("> Updating Attributes With Override Keys.")
-		for attribute in overrideKeys :
-			if attribute in bindedAttributes.keys() :
+		for attribute in overrideKeys:
+			if attribute in bindedAttributes.keys():
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
 		LOGGER.debug("> Updating Loader Script Content.")
 		loaderScript = templateParser.sections[self._templateScriptSection][foundations.parser.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
 
 		bindedLoaderScript = []
-		for line in loaderScript :
+		for line in loaderScript:
 			bindingParameters = re.findall("{0}".format(self._bindingIdentifierPattern), line)
 			if bindingParameters:
-				for parameter in bindingParameters :
-					for attribute in bindedAttributes.values() :
-						if parameter == attribute.link :
+				for parameter in bindingParameters:
+					for attribute in bindedAttributes.values():
+						if parameter == attribute.link:
 							LOGGER.debug("> Updating Loader Script Parameter '{0}' With Value : '{1}'.".format(parameter, attribute.value))
 							line = line.replace(parameter, attribute.value and attribute.value or "-1")
 			bindedLoaderScript.append(line)

@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	IO.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		IO Classes And Definitions Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -117,7 +117,7 @@ class File(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("file", value)
 		self._file = value
 
@@ -149,7 +149,7 @@ class File(object):
 		@param value: Attribute Value. ( List )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format("content", value)
 		self._content = value
 
@@ -226,7 +226,7 @@ def setLocalDirectory(path):
 	@return: Directory Creation Success. ( Boolean )
 	'''
 
-	if not os.path.exists(path) :
+	if not os.path.exists(path):
 		LOGGER.debug("> Creating Directory : '{0}'.".format(path))
 		os.makedirs(path)
 		return True

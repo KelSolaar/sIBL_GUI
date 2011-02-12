@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	searchDatabase.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Search Database Component Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -626,8 +626,8 @@ class SearchDatabase(UiComponent):
 		LOGGER.debug("> Filtering Sets By Time Range From '{0}' To '{1}'.".format(timeLow, timeHigh))
 
 		filteredSets = []
-		for iblSet in iblSets :
-			if iblSet.time :
+		for iblSet in iblSets:
+			if iblSet.time:
 				timeTokens = iblSet.time.split(":")
 				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
@@ -635,7 +635,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Time Range Filtered Ibl Set(s) : '{0}'".format(", ".join([iblSet.name for iblSet in displaySets])))
 
-		if previousDisplaySets != displaySets :
+		if previousDisplaySets != displaySets:
 			self._coreDatabaseBrowser.displaySets = displaySets
 			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
@@ -653,9 +653,9 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
-		try :
+		try:
 			re.compile(pattern)
-		except :
+		except:
 			raise foundations.exceptions.ProgrammingError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
 		self._completer.setModel(QStringListModel(sorted([fieldValue for fieldValue in set([getattr(iblSet, currentField) for iblSet in previousDisplaySets]) if re.search(pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0)])))
@@ -664,7 +664,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Pattern Filtered Ibl Set(s) : '{0}'".format(", ".join([iblSet.name for iblSet in displaySets])))
 
-		if previousDisplaySets != displaySets :
+		if previousDisplaySets != displaySets:
 			self._coreDatabaseBrowser.displaySets = displaySets
 			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 

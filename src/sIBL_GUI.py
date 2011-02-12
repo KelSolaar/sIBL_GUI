@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	sIBL_GUI.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***      	sIBL_GUI Framework Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -90,7 +90,7 @@ from manager.manager import Manager
 LOGGER = logging.getLogger(Constants.logger)
 
 # Starting The Console Handler.
-if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platform.system() == "Microsoft") :
+if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platform.system() == "Microsoft"):
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
 	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_FORMATTER)
 	LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
@@ -98,7 +98,7 @@ if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platfor
 RuntimeConstants.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
 if os.path.exists(RuntimeConstants.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeConstants.uiFile)
-else :
+else:
 	ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' Ui File Is Not Available, {1} Will Now Close !".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
@@ -147,7 +147,7 @@ class Preferences():
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("preferencesFile", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("preferencesFile", value)
 		self._preferencesFile = value
@@ -195,7 +195,7 @@ class Preferences():
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def setDefaultPreferences(self) :
+	def setDefaultPreferences(self):
 		'''
 		This Method Defines The Default Settings File Content.
 		'''
@@ -251,7 +251,7 @@ class Preferences():
 		self._settings.endGroup()
 
 	@core.executionTrace
-	def setKey(self, section, key, value) :
+	def setKey(self, section, key, value):
 		'''
 		This Method Stores Provided Key In Settings File.
 	
@@ -267,7 +267,7 @@ class Preferences():
 		self._settings.endGroup()
 
 	@core.executionTrace
-	def getKey(self, section, key) :
+	def getKey(self, section, key):
 		'''
 		This Method Gets Key Value From Settings File.
 	
@@ -313,7 +313,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	#***************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
-	def __init__(self) :
+	def __init__(self):
 		'''
 		This Method Initializes The Class.
 		'''
@@ -367,14 +367,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._componentsManager = Manager({ "Core" : os.path.join(os.getcwd(), Constants.coreComponentsDirectory), "Addons" : os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), "User" : os.path.join(self._userApplicationDatasDirectory, Constants.userComponentsDirectory) })
 		self._componentsManager.gatherComponents()
 
-		if not self._componentsManager.components :
+		if not self._componentsManager.components:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close !".format(self._componentsManager, Constants.applicationName)
 
 		self._componentsManager.instantiateComponents(self.componentsInstantiationCallback)
 
 		# --- Activating Component Manager Ui. ---
 		self._coreComponentsManagerUi = self._componentsManager.getInterface("core.componentsManagerUi")
-		if self._coreComponentsManagerUi :
+		if self._coreComponentsManagerUi:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"))
 			self._coreComponentsManagerUi.activate(self)
 			self._coreComponentsManagerUi.addWidget()
@@ -384,7 +384,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Preferences Manager Component. ---
 		self._corePreferencesManager = self._componentsManager.getInterface("core.preferencesManager")
-		if self._corePreferencesManager :
+		if self._corePreferencesManager:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager"))
 			self._corePreferencesManager.activate(self)
 			self._corePreferencesManager.addWidget()
@@ -394,7 +394,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface("core.db")
-		if self._coreDb :
+		if self._coreDb:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.db"))
 			self._coreDb.activate(self)
 			self._coreDb.initialize()
@@ -403,7 +403,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface("core.collectionsOutliner")
-		if self._coreCollectionsOutliner :
+		if self._coreCollectionsOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner"))
 			self._coreCollectionsOutliner.activate(self)
 			self._coreCollectionsOutliner.addWidget()
@@ -413,7 +413,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface("core.databaseBrowser")
-		if self._coreDatabaseBrowser :
+		if self._coreDatabaseBrowser:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser"))
 			self._coreDatabaseBrowser.activate(self)
 			self._coreDatabaseBrowser.addWidget()
@@ -423,7 +423,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface("core.templatesOutliner")
-		if self._coreTemplatesOutliner :
+		if self._coreTemplatesOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner"))
 			self._coreTemplatesOutliner.activate(self)
 			self._coreTemplatesOutliner.addWidget()
@@ -433,34 +433,34 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey("Settings", "deactivatedComponents").toString().split(",")
-		for component in self._componentsManager.getComponents() :
-			if component not in deactivatedComponents :
+		for component in self._componentsManager.getComponents():
+			if component not in deactivatedComponents:
 				profile = self._componentsManager.components[component]
 				interface = self._componentsManager.getInterface(component)
 				if not interface.activated:
 					RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, component))
 					interface.activate(self)
-					if profile.categorie == "default" :
+					if profile.categorie == "default":
 						interface.initialize()
-					elif profile.categorie == "ui" :
+					elif profile.categorie == "ui":
 						interface.addWidget()
 						interface.initializeUi()
 
 		# Hiding Splashscreen.
 		LOGGER.debug("> Hiding SplashScreen.")
-		if RuntimeConstants.splashscreen :
+		if RuntimeConstants.splashscreen:
 			RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initialization Done.".format(self.__class__.__name__, Constants.releaseVersion))
 			RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
-		for component in self._componentsManager.getComponents() :
+		for component in self._componentsManager.getComponents():
 			interface = self._componentsManager.getInterface(component)
 			if interface.activated:
 				hasattr(interface, "onStartup") and interface.onStartup()
 
 		# Layouts Helper Snippet.
 		# visibleComponents = ()
-		# for component in self._componentsManager.getComponents() :
+		# for component in self._componentsManager.getComponents():
 		#	 interface = self._componentsManager.getInterface( component )
 		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
@@ -700,7 +700,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( String )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("lastBrowsedPath", value)
 			assert os.path.exists(value), "'{0}' Attribute : '{1}' Directory Doesn't Exists !".format("lastBrowsedPath", value)
 		self._lastBrowsedPath = value
@@ -913,7 +913,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format("verbosityLevel", value)
 			assert value >= 0 and value <= 4, "'{0}' Attribute : Value Need To Be Exactly Beetween 0 and 4 !".format("verbosityLevel")
 		self._verbosityLevel = value
@@ -1171,7 +1171,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def closeEvent(self, event) :
+	def closeEvent(self, event):
 		'''
 		This Method Is Called When Close Event Is Fired.
 
@@ -1183,8 +1183,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._settings.settings.sync()
 
 		# Stopping Worker Threads.
-		for workerThread in self._workerThreads :
-			if not workerThread.isFinished() :
+		for workerThread in self._workerThreads:
+			if not workerThread.isFinished():
 				LOGGER.debug("> Stopping Worker Thread : '{0}'.".format(workerThread))
 				workerThread.exit()
 
@@ -1216,12 +1216,12 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Setting Application Visual Style.")
 
-		if platform.system() == "Windows" or platform.system() == "Microsoft" :
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			RuntimeConstants.application.setStyle("Plastique")
 			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
-		elif platform.system() == "Darwin" :
+		elif platform.system() == "Darwin":
 			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
-		elif platform.system() == "Linux" :
+		elif platform.system() == "Linux":
 			RuntimeConstants.application.setStyle("Plastique")
 			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
 
@@ -1229,7 +1229,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			LOGGER.debug("> Reading Style Sheet File : '{0}'.".format(styleSheetFile.file))
 			styleSheetFile.read()
 			RuntimeConstants.application.setStyleSheet(QString("".join(styleSheetFile.content)))
-		else :
+		else:
 			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format(self.__class__.__name__, styleSheetFile.file)
 
 	@core.executionTrace
@@ -1271,7 +1271,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 									)
 
 		# Signals / Slots.
-		for layoutActiveLabel in self._layoutsActiveLabels :
+		for layoutActiveLabel in self._layoutsActiveLabels:
 			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout : self.activeLabel_OnClicked(activeLabel))
 
 		LOGGER.debug("> Adding Central Widget Button.")
@@ -1288,7 +1288,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
 
-		for layout in userLayouts :
+		for layout in userLayouts:
 			action = QAction("Restore Layout {0}".format(layout[0]), self)
 			action.setShortcut(QKeySequence(layout[1]))
 			self._layoutMenu.addAction(action)
@@ -1298,7 +1298,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self._layoutMenu.addSeparator()
 
-		for layout in userLayouts :
+		for layout in userLayouts:
 			action = QAction("Store Layout {0}".format(layout[0]), self)
 			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
 			self._layoutMenu.addAction(action)
@@ -1340,7 +1340,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Clicked Active Label : '{0}'.".format(activeLabel))
 
 		self.restoreLayout(activeLabel)
-		for layoutActivelabel in self._layoutsActiveLabels :
+		for layoutActivelabel in self._layoutsActiveLabels:
 			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
 
 	@core.executionTrace
@@ -1351,9 +1351,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Central Widget Button Clicked !")
 
-		if self.centralwidget.isVisible() :
+		if self.centralwidget.isVisible():
 			self.centralwidget.hide()
-		else :
+		else:
 			self.centralwidget.show()
 
 	@core.executionTrace
@@ -1364,7 +1364,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Setting Layouts Active Labels Shortcuts.")
 
-		for layoutActiveLabel in self._layoutsActiveLabels :
+		for layoutActiveLabel in self._layoutsActiveLabels:
 			action = QAction(layoutActiveLabel.name, self)
 			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
 			self.addAction(action)
@@ -1424,7 +1424,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Restoring Layout '{0}'.".format(name))
 
 		visibleComponents = [ "core.databaseBrowser" ]
-		for component, profile in self._componentsManager.components.items() :
+		for component, profile in self._componentsManager.components.items():
 			profile.categorie == "ui" and component not in visibleComponents and self._componentsManager.getInterface(component).ui and self._componentsManager.getInterface(component).ui.hide()
 
 		self.centralwidget.setVisible(self._settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
@@ -1507,8 +1507,8 @@ def sIBL_GUI_start():
 	# Command Line Parameters Handling.
 	RuntimeConstants.parameters, RuntimeConstants.args = getCommandLineParameters(sys.argv)
 
-	if RuntimeConstants.parameters.about :
-		for line in getHeaderMessage() :
+	if RuntimeConstants.parameters.about:
+		for line in getHeaderMessage():
 			sys.stdout.write("{0}\n".format(line))
 		foundations.common.exit(1, LOGGER, [])
 
@@ -1520,12 +1520,12 @@ def sIBL_GUI_start():
 	LOGGER.setLevel(logging.DEBUG)
 
 	# Setting User Application Datas Directory.
-	if RuntimeConstants.parameters.userApplicationDatasDirectory :
+	if RuntimeConstants.parameters.userApplicationDatasDirectory:
 		RuntimeConstants.userApplicationDatasDirectory = RuntimeConstants.parameters.userApplicationDatasDirectory
-	else :
+	else:
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
-	if not setUserApplicationDatasDirectory(RuntimeConstants.userApplicationDatasDirectory) :
+	if not setUserApplicationDatasDirectory(RuntimeConstants.userApplicationDatasDirectory):
 		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format(RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName)
 
 	LOGGER.debug("> Application Python Interpreter : '{0}'".format(sys.executable))
@@ -1535,16 +1535,16 @@ def sIBL_GUI_start():
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile)
 
-	try :
+	try:
 		os.path.exists(RuntimeConstants.loggingFile) and os.remove(RuntimeConstants.loggingFile)
-	except :
+	except:
 		raise OSError, "{0} Logging File Is Currently Locked, {1} Will Now Close !".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
-	try :
+	try:
 		RuntimeConstants.loggingFileHandler = logging.FileHandler(RuntimeConstants.loggingFile)
 		RuntimeConstants.loggingFileHandler.setFormatter(core.LOGGING_FORMATTER)
 		LOGGER.addHandler(RuntimeConstants.loggingFileHandler)
-	except :
+	except:
 		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close !".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
 	# Retrieving Framework Verbose Level From Settings File.
@@ -1568,7 +1568,7 @@ def sIBL_GUI_start():
 	LOGGER.addHandler(RuntimeConstants.loggingSessionHandler)
 
 	LOGGER.info(Constants.loggingSeparators)
-	for line in getHeaderMessage() :
+	for line in getHeaderMessage():
 		LOGGER.info(line)
 	LOGGER.info("{0} | Session Started At : {1}".format(Constants.applicationName, time.strftime('%X - %x')))
 	LOGGER.info(Constants.loggingSeparators)
@@ -1577,7 +1577,7 @@ def sIBL_GUI_start():
 	RuntimeConstants.application = QApplication(sys.argv)
 
 	# Initializing SplashScreen.
-	if RuntimeConstants.parameters.noSplashScreen :
+	if RuntimeConstants.parameters.noSplashScreen:
 		LOGGER.debug("> SplashScreen Skipped By 'noSplashScreen' Command Line Parameter.")
 	else:
 		LOGGER.debug("> Initializing SplashScreen.")
@@ -1594,7 +1594,7 @@ def sIBL_GUI_start():
 	sys.exit(RuntimeConstants.application.exec_())
 
 @core.executionTrace
-def sIBL_GUI_close() :
+def sIBL_GUI_close():
 	'''
 	This Definition Is Called When sIBL_GUI Closes.
 	'''
@@ -1620,12 +1620,12 @@ def setUserApplicationDatasDirectory(path):
 	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
 
 	LOGGER.debug("> Current Application Datas Directory '{0}'.".format(userApplicationDatasDirectory))
-	if io.setLocalDirectory(userApplicationDatasDirectory) :
-		for directory in Constants.preferencesDirectories :
-			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)) :
+	if io.setLocalDirectory(userApplicationDatasDirectory):
+		for directory in Constants.preferencesDirectories:
+			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)):
 				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
 		return True
-	else :
+	else:
 		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format(userApplicationDatasDirectory, Constants.applicationName)
 
 @core.executionTrace

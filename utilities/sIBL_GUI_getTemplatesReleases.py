@@ -29,13 +29,13 @@
 ************************************************************************************************
 ***	sIBL_GUI_getTemplatesReleases.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows
 ***
-***	Description :
+***	Description:
 ***		Get Templates Releases.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -85,7 +85,7 @@ def getTemplatesReleases():
 	walker = Walker()
 	walker.root = TEMPLATES_PATH
 	templates = walker.walk((TEMPLATES_EXTENSION,), ("\._",))
-	for template in sorted(templates.keys()) :
+	for template in sorted(templates.keys()):
 		parser = Parser(templates[template])
 		parser.read() and parser.parse()
 

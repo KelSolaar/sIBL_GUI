@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	variable_QPushButton.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Custom Variable QPushButton Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -74,10 +74,10 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Variable_QPushButton(QPushButton) :
+class Variable_QPushButton(QPushButton):
 
 	@core.executionTrace
-	def __init__(self, state, colors, labels, parent=None) :
+	def __init__(self, state, colors, labels, parent=None):
 		'''
 		This Method Initializes The Class.
 
@@ -106,9 +106,9 @@ class Variable_QPushButton(QPushButton) :
 
 		# Initializing The Button
 		self.setCheckable(True)
-		if self._state :
+		if self._state:
 			self.setTrueState()
-		else :
+		else:
 			self.setFalseState()
 
 		# Signals / Slots.
@@ -136,7 +136,7 @@ class Variable_QPushButton(QPushButton) :
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		if value :
+		if value:
 			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
 		self._state = value
 
@@ -167,10 +167,10 @@ class Variable_QPushButton(QPushButton) :
 
 		@param value: Attribute Value. ( Tuple )
 		'''
-		if value :
+		if value:
 			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("colors", value)
 			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("colors", value)
-			for index in range(len(value)) :
+			for index in range(len(value)):
 				assert type(value[index]) is QColor, "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'QColor' !".format("colors", index, value)
 		self._colors = value
 
@@ -201,10 +201,10 @@ class Variable_QPushButton(QPushButton) :
 
 		@param value: Attribute Value. ( Tuple )
 		'''
-		if value :
+		if value:
 			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("labels", value)
 			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("labels", value)
-			for index in range(len(value)) :
+			for index in range(len(value)):
 				assert type(value[index]) in (str, unicode), "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'str' or 'unicode' !".format("labels", index, value)
 		self._labels = value
 
@@ -250,20 +250,20 @@ class Variable_QPushButton(QPushButton) :
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def variable_QPushButton_OnClicked(self, checked) :
+	def variable_QPushButton_OnClicked(self, checked):
 		'''
 		This Method Is Called When A Variable QPushButton Is Clicked.
 		
 		@param checked : Checked State. ( Boolean )
 		'''
 
-		if self._state :
+		if self._state:
 			self.setFalseState()
-		else :
+		else:
 			self.setTrueState()
 
 	@core.executionTrace
-	def setTrueState(self) :
+	def setTrueState(self):
 		'''
 		This Method Sets The Variable Button True State.
 		'''
@@ -279,7 +279,7 @@ class Variable_QPushButton(QPushButton) :
 		self.setText(self._labels[0])
 
 	@core.executionTrace
-	def setFalseState(self) :
+	def setFalseState(self):
 		'''
 		This Method Sets The Variable QPushButton True State.
 		'''

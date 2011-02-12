@@ -27,7 +27,7 @@
 #***********************************************************************************************
 #
 # If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs :
+# Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -37,13 +37,13 @@
 ************************************************************************************************
 ***	delayed_QSplashScreen.py
 ***
-***	Platform :
+***	Platform:
 ***		Windows, Linux, Mac Os X
 ***
-***	Description :
+***	Description:
 ***		Custom Delayed QSplashScreen Module.
 ***
-***	Others :
+***	Others:
 ***
 ************************************************************************************************
 '''
@@ -75,13 +75,13 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-class Delayed_QSplashScreen(QSplashScreen) :
+class Delayed_QSplashScreen(QSplashScreen):
 	'''
 	This Class Is The sIBL_SplashScreen Class.
 	'''
 
 	@core.executionTrace
-	def __init__(self, picture, waitTime=None) :
+	def __init__(self, picture, waitTime=None):
 		'''
 		This Method Initializes The Class.
 
@@ -121,7 +121,7 @@ class Delayed_QSplashScreen(QSplashScreen) :
 		@param value: Attribute Value. ( Integer / Float )
 		'''
 
-		if value :
+		if value:
 			assert type(value) in (int, float), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format("waitTime", value)
 			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("waitTime", value)
 		self._waitTime = value
@@ -148,7 +148,7 @@ class Delayed_QSplashScreen(QSplashScreen) :
 
 		self.showMessage(message)
 
-		if self._waitTime :
+		if self._waitTime:
 			waitTime = self._waitTime
 
 		waitTime and foundations.common.wait(waitTime)

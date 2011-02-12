@@ -1,0 +1,58 @@
+[Header]
+; Header Comment For Tests Purpose.
+; Additional Header Comment For Tests Purpose.
+ICOfile = "Icon.jpg"
+Name = "Standard"
+Author = "Thomas Mansencal"
+Location = "Outerspace"
+Comment = "Testing Purpose Ibl Set."
+GEOlat = 64.12864321684200
+GEOlong = -96.12864321684200
+Link = "http://www.thomasmansencal.com"
+Date = "2011:01:01"
+Time = "10:01:01"
+Height = 0.1
+North = 0.1
+
+[Background]
+; Background Comment For Tests Purpose.
+BGfile = "Standard_Background.jpg"
+BGmap = 1
+BGu = 0
+BGv = 0
+BGheight = 1024
+
+[Enviroment]
+; Enviroment Comment For Tests Purpose.
+EVfile = "Standard_Lighting.jpg"
+EVmap = 1
+EVu = 0
+EVv = 0
+EVheight = 128
+EVmulti = 1
+EVgamma = 1
+
+[Reflection]
+; Reflection Comment For Tests Purpose.
+REFfile = "Standard_Reflection.jpg"
+REFmap = 1
+REFu = 0
+REFv = 0
+REFheight = 256
+REFmulti = 1
+REFgamma = 1
+
+[Sun]
+; Sun Comment For Tests Purpose.
+SUNcolor = 240,250,255
+SUNmulti = 1.0
+SUNu = 0.5
+SUNv = 0.5
+
+[Light1]
+; Light1 Comment For Tests Purpose.
+LIGHTname = "Standard Keylight"
+LIGHTcolor = 250,220,190
+LIGHTmulti = 0.75
+LIGHTu = 0.25
+LIGHTv = 0.85
