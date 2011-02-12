@@ -74,7 +74,7 @@ import testsFoundations.testsWalker
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
-
+import testsManager.testsManager
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
@@ -108,7 +108,9 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsWalker.WalkerTestCase,
 				testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase)
+				testsGlobals.testsUiConstants.UiConstantsTestCase,
+				testsManager.testsManager.ProfileTestCase,
+				)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
