@@ -67,7 +67,8 @@ from manager.component import Component
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-COMPONENTS_DIRECTORY = os.path.join(os.path.dirname(__file__), "components")
+RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), "resources")
+COMPONENTS_DIRECTORY = os.path.join(RESOURCES_DIRECTORY, "components")
 COMPONENTS = {"core":{"testsComponentA":"core/testsComponentA",
 					"testsComponentB":"core/testsComponentB"},
 			"addons":{"testsComponentC":"core/testsComponentC"}}
