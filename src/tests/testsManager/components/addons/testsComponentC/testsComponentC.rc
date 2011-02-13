@@ -1,0 +1,12 @@
+[Component]
+Name = addons.testsComponentC
+Module = testsComponentC
+Object = TestsComponentC
+Rank = 30
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Core Tests Component C.

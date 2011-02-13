@@ -69,9 +69,12 @@ import testsFoundations.testsLibrary
 import testsFoundations.testsParser
 import testsFoundations.testsPkzip
 import testsFoundations.testsStrings
+import testsFoundations.testsStreamObject
+import testsFoundations.testsWalker
 import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
+import testsManager.testsManager
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -102,9 +105,13 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsFoundations.testsStrings.GetNormalizedPathTestCase,
 				testsFoundations.testsStrings.IsEmailTestCase,
 				testsFoundations.testsStrings.IsWebsiteTestCase,
+				testsFoundations.testsStreamObject.StreamObjectTestCase,
+				testsFoundations.testsWalker.WalkerTestCase,
 				testsGlobals.testsConstants.ConstantsTestCase,
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase)
+				testsGlobals.testsUiConstants.UiConstantsTestCase,
+				testsManager.testsManager.ProfileTestCase,
+				testsManager.testsManager.ManagerTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions

@@ -1,0 +1,12 @@
+[Component]
+Name = core.testsComponentB
+Module = testsComponentB
+Object = TestsComponentB
+Rank = 20
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Core Tests Component B.

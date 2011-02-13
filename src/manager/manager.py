@@ -108,12 +108,12 @@ class Profile(object):
 		self._interface = None
 		self._categorie = None
 
-		self.module = None
-		self.version = None
-		self.author = None
-		self.email = None
-		self.url = None
-		self.description = None
+		self._module = None
+		self._version = None
+		self._author = None
+		self._email = None
+		self._url = None
+		self._description = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -541,7 +541,7 @@ class Manager(object):
 	def __init__(self, paths=None, extension="rc", categories={ "default" : Component, "ui" : UiComponent }):
 		'''
 		This Method Initializes The Class.
-		@param paths: Paths To Walk. ( String )
+		@param paths: Paths To Walk. ( Dictionary )
 		@param extension: Extension To Look After. ( String )
 		'''
 
@@ -733,14 +733,6 @@ class Manager(object):
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(file))
 
 	@core.executionTrace
-	def getComponents(self):
-		'''
-		This Method Gets The Components By Ranking.
-		'''
-
-		return [component[0] for component in sorted([(component, profile.rank) for component, profile in self._components.items()], key=lambda x:(int(x[1])))]
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def gatherComponents(self):
 		'''
@@ -799,10 +791,38 @@ class Manager(object):
 				del(self._components[component])
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def deleteComponent(self, component):
+		'''
+		This Method Removes The Provided Component.
+
+		@param component: Component To Remove. ( List )
+		@return: Deletion Success. ( Boolean )
+		'''
+
+		del(self._components[component])
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def clearComponents(self):
+		'''
+		This Method Clears The Components.
+
+		@return: Clearing Success. ( Boolean )
+		'''
+
+		self._components.clear()
+		return True
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, ImportError)
 	def reloadComponent(self, component):
 		'''
 		This Method Reload The Provided Component.
+		
+		@param callback: Callback Object. ( Object )
+		@return: Reload Success. ( Boolean )
 		'''
 
 		profile = self._components[component]
@@ -815,6 +835,16 @@ class Manager(object):
 				LOGGER.info("{0} | '{1}' Component Has Been Reloaded !".format(self.__class__.__name__, profile.name))
 				profile.import_ = import_
 				profile.interface = interface
+
+				return True
+
+	@core.executionTrace
+	def getComponents(self):
+		'''
+		This Method Gets The Components By Ranking.
+		'''
+
+		return [component[0] for component in sorted([(component, profile.rank) for component, profile in self._components.items()], key=lambda x:(int(x[1])))]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -829,10 +859,10 @@ class Manager(object):
 
 		assert self._components is not None, "'{0}' Manager Has No Components !".format(self)
 		matchingItems = []
-		for component in self._components.values():
+		for component, profile in self._components.items():
 			if categorie:
-				if component.categorie != categorie : continue
-			if re.search(pattern, component.name):
+				if profile.categorie != categorie : continue
+			if re.search(pattern, component):
 				matchingItems.append(component)
 		return matchingItems
 
@@ -846,7 +876,7 @@ class Manager(object):
 		'''
 
 		components = self.filterComponents("^" + component + "$")
-		if components != [] : return components[0].interface
+		if components != [] : return self._components[components[0]].interface
 
 #***********************************************************************************************
 #***	Python End

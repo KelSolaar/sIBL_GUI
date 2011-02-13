@@ -214,7 +214,7 @@ class ParserTestCase(unittest.TestCase):
 			parser = Parser(file)
 			parser.read()
 			parser.parse()
-			self.assertFalse(parser.comments)
+			self.assertEqual(parser.comments, OrderedDict())
 			parser.parse(stripComments=False)
 			for comment, value in RANDOM_COMMENTS[type].items():
 				self.assertIn(comment, parser.comments)
@@ -301,7 +301,7 @@ class GetNamespaceTestCase(unittest.TestCase):
 		self.assertIsInstance(foundations.parser.getNamespace("Section:Attribute", ":"), list)
 		self.assertEqual(foundations.parser.getNamespace("Section|Attribute"), ["Section"])
 		self.assertEqual(foundations.parser.getNamespace("Section:Attribute", ":"), ["Section"])
-		self.assertFalse(foundations.parser.getNamespace("Section"))
+		self.assertIsNone(foundations.parser.getNamespace("Section"))
 
 class RemoveNamespaceTestCase(unittest.TestCase):
 	'''
