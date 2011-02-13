@@ -75,6 +75,7 @@ import testsGlobals.testsConstants
 import testsGlobals.testsRuntimeConstants
 import testsGlobals.testsUiConstants
 import testsManager.testsManager
+
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
@@ -110,7 +111,7 @@ TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTe
 				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
 				testsGlobals.testsUiConstants.UiConstantsTestCase,
 				testsManager.testsManager.ProfileTestCase,
-				)
+				testsManager.testsManager.ManagerTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
