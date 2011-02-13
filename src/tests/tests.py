@@ -55,74 +55,23 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import os
 import unittest
 
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import testsFoundations.testsCommon
-import testsFoundations.testsCore
-import testsFoundations.testsEnvironment
-import testsFoundations.testsExceptions
-import testsFoundations.testsIo
-import testsFoundations.testsLibrary
-import testsFoundations.testsParser
-import testsFoundations.testsPkzip
-import testsFoundations.testsStrings
-import testsFoundations.testsStreamObject
-import testsFoundations.testsWalker
-import testsGlobals.testsConstants
-import testsGlobals.testsRuntimeConstants
-import testsGlobals.testsUiConstants
-import testsManager.testsManager
 
 #***********************************************************************************************
 #***	Overall Variables
 #***********************************************************************************************
-TESTS_CASES = (testsFoundations.testsCommon.GetSystemApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCommon.GetUserApplicationDatasDirectoryTestCase,
-				testsFoundations.testsCore.StandardMessageHookTestCase,
-				testsFoundations.testsCore.SetVerbosityLevelTestCase,
-				testsFoundations.testsCore.GetFrameTestCase,
-				testsFoundations.testsCore.GetCodeLayerNameTestCase,
-				testsFoundations.testsCore.GetModuleTestCase,
-				testsFoundations.testsCore.GetObjectNameTestCase,
-				testsFoundations.testsEnvironment.EnvironmentTestCase,
-				testsFoundations.testsExceptions.ExceptionsTestCase,
-				testsFoundations.testsLibrary.LibraryTestCase,
-				testsFoundations.testsIo.FileTestCase,
-				testsFoundations.testsIo.SetLocalDirectoryTestCase,
-				testsFoundations.testsParser.ParserTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.SetNamespaceTestCase,
-				testsFoundations.testsParser.RemoveNamespaceTestCase,
-				testsFoundations.testsParser.GetAttributeCompoundTestCase,
-				testsFoundations.testsPkzip.PkzipTestCase,
-				testsFoundations.testsStrings.GetNiceNameTestCase,
-				testsFoundations.testsStrings.GetVersionRankTestCase,
-				testsFoundations.testsStrings.ToForwardSlashesTestCase,
-				testsFoundations.testsStrings.ToBackwardSlashesTestCase,
-				testsFoundations.testsStrings.GetNormalizedPathTestCase,
-				testsFoundations.testsStrings.IsEmailTestCase,
-				testsFoundations.testsStrings.IsWebsiteTestCase,
-				testsFoundations.testsStreamObject.StreamObjectTestCase,
-				testsFoundations.testsWalker.WalkerTestCase,
-				testsGlobals.testsConstants.ConstantsTestCase,
-				testsGlobals.testsRuntimeConstants.RuntimeConstantsTestCase,
-				testsGlobals.testsUiConstants.UiConstantsTestCase,
-				testsManager.testsManager.ProfileTestCase,
-				testsManager.testsManager.ManagerTestCase)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
 def testsSuite():
-	testsSuite = unittest.TestSuite()
-
-	for testCase in TESTS_CASES:
-		testsSuite.addTest(unittest.makeSuite(testCase))
-
-	return testsSuite
+	testsLoader = unittest.TestLoader()
+	return testsLoader.discover(os.path.dirname(__file__))
 
 if __name__ == '__main__':
 	import utilities
