@@ -791,10 +791,38 @@ class Manager(object):
 				del(self._components[component])
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def deleteComponent(self, component):
+		'''
+		This Method Removes The Provided Component.
+
+		@param component: Component To Remove. ( List )
+		@return: Deletion Success. ( Boolean )
+		'''
+
+		del(self._components[component])
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def clearComponents(self):
+		'''
+		This Method Clears The Components.
+
+		@return: Clearing Success. ( Boolean )
+		'''
+
+		self._components.clear()
+		return True
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, ImportError)
 	def reloadComponent(self, component):
 		'''
 		This Method Reload The Provided Component.
+		
+		@param callback: Callback Object. ( Object )
+		@return: Reload Success. ( Boolean )
 		'''
 
 		profile = self._components[component]
@@ -807,6 +835,8 @@ class Manager(object):
 				LOGGER.info("{0} | '{1}' Component Has Been Reloaded !".format(self.__class__.__name__, profile.name))
 				profile.import_ = import_
 				profile.interface = interface
+
+				return True
 
 	@core.executionTrace
 	def getComponents(self):
@@ -829,10 +859,10 @@ class Manager(object):
 
 		assert self._components is not None, "'{0}' Manager Has No Components !".format(self)
 		matchingItems = []
-		for component in self._components.values():
+		for component, profile in self._components.items():
 			if categorie:
-				if component.categorie != categorie : continue
-			if re.search(pattern, component.name):
+				if profile.categorie != categorie : continue
+			if re.search(pattern, component):
 				matchingItems.append(component)
 		return matchingItems
 
@@ -846,7 +876,7 @@ class Manager(object):
 		'''
 
 		components = self.filterComponents("^" + component + "$")
-		if components != [] : return components[0].interface
+		if components != [] : return self._components[components[0]].interface
 
 #***********************************************************************************************
 #***	Python End

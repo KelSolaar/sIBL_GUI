@@ -62,6 +62,7 @@ import unittest
 #***	Internal Imports
 #***********************************************************************************************
 from manager.manager import Manager, Profile
+from manager.component import Component
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -70,6 +71,7 @@ COMPONENTS_DIRECTORY = os.path.join(os.path.dirname(__file__), "components")
 COMPONENTS = {"core":{"testsComponentA":"core/testsComponentA",
 					"testsComponentB":"core/testsComponentB"},
 			"addons":{"testsComponentC":"core/testsComponentC"}}
+COMPONENTS_RANKING = ["core.testsComponentA", "core.testsComponentB", "addons.testsComponentC"]
 STANDARD_PROFILE_CONTENT = {"name":"core.testsComponentA",
 							"path":os.path.join(COMPONENTS_DIRECTORY, COMPONENTS["core"]["testsComponentA"]),
 							"module":"testsComponentA",
@@ -111,6 +113,13 @@ class ProfileTestCase(unittest.TestCase):
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, profile.__dict__)
+
+def testManagerCallback(profile):
+	'''
+	This Definition Is The Manager Test Callback.
+	'''
+
+	profile.callback = True
 
 class ManagerTestCase(unittest.TestCase):
 	'''
@@ -181,6 +190,82 @@ class ManagerTestCase(unittest.TestCase):
 		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
 		manager.gatherComponents()
 		manager.instantiateComponents()
+		for component in manager.components.values():
+			self.assertIsInstance(component.interface, Component)
+		manager.clearComponents()
+		manager.gatherComponents()
+		manager.instantiateComponents(testManagerCallback)
+		for component in manager.components.values():
+			self.assertTrue(component.callback)
+
+	def testDeleteComponents(self):
+		'''
+		This Method Tests The "Manager" Class "deleteComponents" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		for component in dict(manager.components).keys():
+			self.assertTrue(manager.deleteComponent(component))
+		self.assertTrue(not manager.components.keys())
+
+	def testClearComponents(self):
+		'''
+		This Method Tests The "Manager" Class "clearComponents" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		manager.clearComponents()
+		self.assertTrue(not manager.components.keys())
+
+	def testReloadComponent(self):
+		'''
+		This Method Tests The "Manager" Class "reloadComponent" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		for component in manager.components.keys():
+			manager.reloadComponent(component)
+
+	def testGetComponents(self):
+		'''
+		This Method Tests The "Manager" Class "getComponents" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		components = manager.getComponents()
+		self.assertIsInstance(components, list)
+		self.assertListEqual(components, COMPONENTS_RANKING)
+
+	def testFilterComponents(self):
+		'''
+		This Method Tests The "Manager" Class "filterComponents" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		components = manager.filterComponents("addons")
+		self.assertIsInstance(components, list)
+		self.assertListEqual(components, ["addons.testsComponentC"])
+
+	def testGetInterface(self):
+		'''
+		This Method Tests The "Manager" Class "getInterface" Method.
+		'''
+
+		manager = Manager({item:os.path.join(COMPONENTS_DIRECTORY, item) for item in COMPONENTS.keys()})
+		manager.gatherComponents()
+		manager.instantiateComponents()
+		for component in manager.components.keys():
+			self.assertIsInstance(manager.getInterface(component), Component)
 
 if __name__ == "__main__":
 	import tests.utilities
