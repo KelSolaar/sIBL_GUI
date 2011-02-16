@@ -12,6 +12,13 @@ sIBL_GUI depends of some other packages :
 	* Manager package available from Github : https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the package is available in Python path.
 	* sIBL_GUI_Templates package available from Github : https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/templates" or ensure the package is available in Python path.
 
+Quick Repositories Cloning Commands :
+	mkdir HDRLabs
+	cd HDRLabs/
+	git clone git://github.com/KelSolaar/sIBL_GUI.git && git clone git://github.com/KelSolaar/Foundations.git &&  git clone git://github.com/KelSolaar/Manager.git && git clone git://github.com/KelSolaar/sIBL_GUI_Templates.git
+	cd sIBL_GUI/src/
+	python sIBL_GUI.py
+
 - About -
 sIBL_GUI by Thomas Mansencal - 2008 - 2011
 Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
