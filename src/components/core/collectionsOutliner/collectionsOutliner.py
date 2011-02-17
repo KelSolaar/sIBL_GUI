@@ -70,6 +70,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings
 import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
@@ -309,15 +310,15 @@ class CollectionsOutliner_QTreeView(QTreeView):
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
-						name = os.path.splitext(os.path.basename(path))[0]
+						name = foundations.strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							 self._coreDatabaseBrowser.addIblSet(name, path)
-							 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self._coreDatabaseBrowser.addIblSet(name, path)
+							self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								 self._coreDatabaseBrowser.addDirectory(path)
-								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self._coreDatabaseBrowser.addDirectory(path)
+								self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
 			else:
