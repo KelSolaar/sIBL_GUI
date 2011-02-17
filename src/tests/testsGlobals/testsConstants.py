@@ -135,6 +135,15 @@ class ConstantsTestCase(unittest.TestCase):
 		self.assertGreaterEqual(Constants.verbosityLevel, 0)
 		self.assertLessEqual(Constants.verbosityLevel, 4)
 
+	def testVerbosityLabelsAttribute(self):
+		'''
+		This Method Tests The "verbosityLabels" Attribute.
+		'''
+
+		self.assertIsInstance(Constants.verbosityLabels, tuple)
+		for label in Constants.verbosityLabels :
+			self.assertIsInstance(label, str)
+
 	def testLoggingSeparatorsAttribute(self):
 		'''
 		This Method Tests The "loggingSeparators" Attribute.
