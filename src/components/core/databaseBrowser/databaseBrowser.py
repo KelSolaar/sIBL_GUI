@@ -70,6 +70,8 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.namespace as namespace
+import foundations.strings as strings
 import ui.common
 import ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
@@ -406,14 +408,14 @@ class DatabaseBrowser_QListView(QListView):
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
-						name = os.path.splitext(os.path.basename(path))[0]
+						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							 self._coreDatabaseBrowser.addIblSet(name, path) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self._coreDatabaseBrowser.addIblSet(name, path) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								 self._coreDatabaseBrowser.addDirectory(path)
-								 self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self._coreDatabaseBrowser.addDirectory(path)
+								self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
 		else:
@@ -1520,7 +1522,7 @@ class DatabaseBrowser(UiComponent):
 		iblSetPath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set :", self._container.lastBrowsedPath, "Ibls Files (*{0})".format(self._extension))))
 		if iblSetPath:
 			LOGGER.debug("> Chosen Ibl Set Path : '{0}'.".format(iblSetPath))
-			self.addIblSet(os.path.basename(iblSetPath).replace(".{0}".format(self._extension), ""), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
+			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_removeIblSetsAction(self, checked):
@@ -1622,7 +1624,7 @@ class DatabaseBrowser(UiComponent):
 		walker = Walker(directory)
 		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
 		for iblSet, path in walker.files.items():
-			self.addIblSet(iblSet, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId())
+			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId())
 
 	@core.executionTrace
 	def removeIblSets(self):

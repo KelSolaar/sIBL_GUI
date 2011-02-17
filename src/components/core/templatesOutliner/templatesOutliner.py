@@ -403,14 +403,14 @@ class TemplatesOutliner_QTreeView(QTreeView):
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self._coreTemplatesOutliner.extension), str(url.path())):
-						name = os.path.splitext(os.path.basename(path))[0]
+						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							 self._coreTemplatesOutliner.addTemplate(name, path) and self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+							self._coreTemplatesOutliner.addTemplate(name, path) and self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								 self._coreTemplatesOutliner.addDirectory(path)
-								 self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+								self._coreTemplatesOutliner.addDirectory(path)
+								self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
 		else:
