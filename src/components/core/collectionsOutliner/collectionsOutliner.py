@@ -329,7 +329,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
 					if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection:
 						iblSets = self._coreDatabaseBrowser.getSelectedItems()
-						LOGGER.debug("> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format(", ".join([iblSet._datas.name for iblSet in iblSets]), collectionStandardItem._datas.name))
+						LOGGER.debug("> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format(", ".join((iblSet._datas.name for iblSet in iblSets)), collectionStandardItem._datas.name))
 						for iblSet in iblSets:
 							iblSet._datas.collection = collectionStandardItem._datas.id
 						if dbUtilities.common.commit(self._coreDb.dbSession):
@@ -1073,7 +1073,7 @@ class CollectionsOutliner(UiComponent):
 		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
 		if identity and collections:
 			if startIndex.column() == 0:
-				if currentText not in [collection.name for collection in collections]:
+				if currentText not in (collection.name for collection in collections):
 					LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
 					collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
 					collection.name = str(currentText)
@@ -1304,12 +1304,12 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollections = self.getSelectedItems()
 
-		if self._overallCollection in [str(collection.text()) for collection in selectedCollections] or self._defaultCollection in [str(collection.text()) for collection in selectedCollections]:
+		if self._overallCollection in (str(collection.text()) for collection in selectedCollections) or self._defaultCollection in (str(collection.text()) for collection in selectedCollections):
 			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection !".format(self.__class__.__name__, self._overallCollection, self._defaultCollection))
 
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self._defaultCollection]
 		if selectedCollections:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format(", ".join([str(collection.text()) for collection in selectedCollections])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				iblSets = dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, self.getSelectedCollectionsIds())
 				for iblSet in iblSets:
 					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection !".format(self.__class__.__name__, iblSet.name))
@@ -1380,7 +1380,7 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollections = self.getSelectedCollections()
 		allIds = [collection._datas.id for collection in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
-		ids = selectedCollections and (self._overallCollection in [collection.text() for collection in selectedCollections] and allIds or self.getSelectedCollectionsIds()) or allIds
+		ids = selectedCollections and (self._overallCollection in (collection.text() for collection in selectedCollections) and allIds or self.getSelectedCollectionsIds()) or allIds
 
 		return dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, ids)
 

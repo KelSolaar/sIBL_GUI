@@ -822,7 +822,7 @@ class LoaderScript(UiComponent):
 			del templateSections[self._templateIblAttributesSection][attribute]
 
 		LOGGER.debug("> Binding Templates File Attributes.")
-		bindedAttributes = dict([(attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self._templateScriptSection) for attribute, value in templateSections[section].items()])
+		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self._templateScriptSection) for attribute, value in templateSections[section].items()))
 
 		LOGGER.debug("> Parsing Ibl Set File : '{0}'.".format(iblSet))
 		iblSetParser = Parser(iblSet)
@@ -830,7 +830,7 @@ class LoaderScript(UiComponent):
 		iblSetSections = dict.copy(iblSetParser.sections)
 
 		LOGGER.debug("> Flattening Ibl Set File Attributes.")
-		flattenedIblAttributes = dict([(attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()])
+		flattenedIblAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()))
 
 		for attribute in flattenedIblAttributes:
 			if attribute in bindedAttributes.keys():

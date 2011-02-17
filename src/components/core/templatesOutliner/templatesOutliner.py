@@ -1158,7 +1158,7 @@ class TemplatesOutliner(UiComponent):
 		collections = dbUtilities.common.filterCollections(self._coreDb.dbSession, "Templates", "type")
 
 		for collection in collections:
-			softwares = set([ software[0] for software in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.software).filter(dbUtilities.types.DbTemplate.collection == collection.id)])
+			softwares = set((software[0] for software in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.software).filter(dbUtilities.types.DbTemplate.collection == collection.id)))
 
 			if softwares:
 				LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
@@ -1171,7 +1171,7 @@ class TemplatesOutliner(UiComponent):
 				self._model.appendRow(collectionStandardItem)
 
 				for software in softwares:
-					templates = set([ template[0] for template in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.id).filter(dbUtilities.types.DbTemplate.collection == collection.id).filter(dbUtilities.types.DbTemplate.software == software)])
+					templates = set((template[0] for template in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.id).filter(dbUtilities.types.DbTemplate.collection == collection.id).filter(dbUtilities.types.DbTemplate.software == software)))
 
 					if templates:
 						LOGGER.debug("> Preparing '{0}' Software For '{1}' Model.".format(software, "Templates_Outliner_treeView"))
