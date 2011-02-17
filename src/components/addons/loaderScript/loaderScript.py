@@ -70,6 +70,7 @@ from PyQt4.QtGui import *
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.namespace
 import foundations.parser
 import foundations.strings as strings
 import ui.common
@@ -817,7 +818,7 @@ class LoaderScript(UiComponent):
 		templateSections = dict.copy(templateParser.sections)
 
 		for attribute, value in dict.copy(templateSections[self._templateIblAttributesSection]).items():
-			templateSections[self._templateIblAttributesSection][foundations.parser.removeNamespace(attribute, rootOnly=True)] = value
+			templateSections[self._templateIblAttributesSection][foundations.namespace.removeNamespace(attribute, rootOnly=True)] = value
 			del templateSections[self._templateIblAttributesSection][attribute]
 
 		LOGGER.debug("> Binding Templates File Attributes.")
@@ -859,7 +860,7 @@ class LoaderScript(UiComponent):
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
 		LOGGER.debug("> Updating Loader Script Content.")
-		loaderScript = templateParser.sections[self._templateScriptSection][foundations.parser.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
+		loaderScript = templateParser.sections[self._templateScriptSection][foundations.namespace.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
 
 		bindedLoaderScript = []
 		for line in loaderScript:
