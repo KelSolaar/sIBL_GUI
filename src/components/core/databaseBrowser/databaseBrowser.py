@@ -1284,7 +1284,7 @@ class DatabaseBrowser(UiComponent):
 
 		self._model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted([(displaySet, displaySet.title) for displaySet in self._displaySets], key=lambda x:(x[1]))]:
+		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self._displaySets), key=lambda x:(x[1]))]:
 			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 
 			try:
@@ -1634,7 +1634,7 @@ class DatabaseBrowser(UiComponent):
 
 		selectedIblSets = self.getSelectedItems()
 		if selectedIblSets:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format(", ".join([str(iblSet.text()) for iblSet in selectedIblSets])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s) ?".format(", ".join((str(iblSet.text()) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet in selectedIblSets:
 					LOGGER.info("{0} | Removing '{1}' Ibl Set From Database !".format(self.__class__.__name__, iblSet.text()))
 					dbUtilities.common.removeIblSet(self._coreDb.dbSession, iblSet._datas.id)

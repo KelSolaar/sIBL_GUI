@@ -73,7 +73,7 @@ def testsSuite():
 	testsLoader = unittest.TestLoader()
 	return testsLoader.discover(os.path.dirname(__file__))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	import utilities
 	unittest.TextTestRunner(verbosity=2).run(testsSuite())
 

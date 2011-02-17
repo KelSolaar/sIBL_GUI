@@ -950,7 +950,7 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set([self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self._model.itemFromIndex(index) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set((self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self._model.itemFromIndex(index) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End

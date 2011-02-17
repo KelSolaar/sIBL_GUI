@@ -1340,7 +1340,7 @@ class RemoteUpdater(object):
 		@param checked : Checked State. ( Boolean )
 		'''
 		urlTokens = self.releases[Constants.applicationName].url.split(self._splitter)
-		builds = dict([(urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)])
+		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			url = builds["Windows"]
@@ -2162,7 +2162,7 @@ class OnlineUpdater(UiComponent):
 			for remoteObject in parser.sections:
 				if remoteObject != Constants.applicationName:
 						dbTemplates = dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(remoteObject), "name")
-						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted([(dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
+						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted(((dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates), reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
 						if not self._container.parameters.databaseReadOnly:
 							if dbTemplate:
 								if dbTemplate.release != parser.getValue("Release", remoteObject):

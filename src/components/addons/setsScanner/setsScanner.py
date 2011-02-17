@@ -68,7 +68,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
-import foundations.strings as strings
+import foundations.namespace
 import ui.widgets.messageBox as messageBox
 
 from foundations.walker import Walker
@@ -254,7 +254,7 @@ class SetsScanner_Worker(QThread):
 
 		self._newIblSets = {}
 		paths = [path[0] for path in self._dbSession.query(dbUtilities.types.DbIblSet.path).all()]
-		folders = set([os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths])
+		folders = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for folder in folders:
 			if os.path.exists(folder):
@@ -538,7 +538,7 @@ class SetsScanner(Component):
 		'''
 
 		if self._setsScannerWorkerThread.newIblSets:
-			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format(", ".join(self._setsScannerWorkerThread.newIblSets.keys())), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found ! Would You Like To Add That Content : '{0}' To The Database ?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self._setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet, path in self._setsScannerWorkerThread.newIblSets.items():
 					LOGGER.info("{0} | Adding '{1}' Ibl Set To Database !".format(self.__class__.__name__, iblSet))
 					if not dbUtilities.common.addIblSet(self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId(self._coreCollectionsOutliner._defaultCollection)):

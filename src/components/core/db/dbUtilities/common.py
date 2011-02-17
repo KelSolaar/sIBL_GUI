@@ -138,7 +138,7 @@ def addStandardItem(session, type, name, path, collection):
 	LOGGER.debug("> Adding : '{0}' '{1}' To Database.".format(name, type.__name__))
 
 	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
-		osStats = ",".join([str(stat) for stat in os.stat(path)])
+		osStats = ",".join((str(stat) for stat in os.stat(path)))
 		dbItem = type(name=name, path=path, collection=collection, osStats=osStats)
 		if dbItem.setContent():
 			return addItem(session, dbItem)
@@ -191,7 +191,7 @@ def updateItemContent(session, item):
 
 	LOGGER.debug("> Updating '{0}' '{1}' Content.".format(item.name, item.__class__.__name__))
 
-	item.osStats = ",".join([str(stat) for stat in os.stat(item.path)])
+	item.osStats = ",".join((str(stat) for stat in os.stat(item.path)))
 	if item.setContent():
 		return commit(session)
 	else:
