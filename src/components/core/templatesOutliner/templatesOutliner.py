@@ -59,7 +59,6 @@ import logging
 import os
 import platform
 import re
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -70,6 +69,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.namespace as namespace
 import foundations.strings as strings
 import ui.common
 import ui.widgets.messageBox as messageBox
@@ -1361,8 +1361,7 @@ class TemplatesOutliner(UiComponent):
 		templatePath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template :", self._container.lastBrowsedPath, "Ibls Files (*.{0})".format(self._extension))))
 		if templatePath:
 			LOGGER.debug("> Chosen Template Path : '{0}'.".format(templatePath))
-			templateName = os.path.basename(templatePath).replace(".{0}".format(self._extension), "")
-			self.addTemplate(templateName, templatePath) and self.Templates_Outliner_treeView_refreshModel()
+			self.addTemplate(strings.getSplitextBasename(templatePath), templatePath) and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_removeTemplatesAction(self, checked):
@@ -1527,11 +1526,10 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
 
-		walker = Walker()
-		walker.root = directory
-		templates = walker.walk(("\.{0}$".format(self._extension),), ("\._",))
-		for template in templates:
-			self.addTemplate(template, templates[template], collectionId, noWarning)
+		walker = Walker(directory)
+		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
+		for template, path in walker.files.items():
+			self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, noWarning)
 
 	@core.executionTrace
 	def removeTemplates(self):
