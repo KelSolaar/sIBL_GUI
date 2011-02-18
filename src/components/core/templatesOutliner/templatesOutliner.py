@@ -1526,10 +1526,9 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
 
-		walker = Walker()
-		walker.root = directory
-		templates = walker.walk(("\.{0}$".format(self._extension),), ("\._",))
-		for template, path in templates.items():
+		walker = Walker(directory)
+		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
+		for template, path in walker.files.items():
 			self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, noWarning)
 
 	@core.executionTrace
