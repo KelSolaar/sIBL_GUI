@@ -1,6 +1,11 @@
-h1=. sIBL_GUI - 3.1.1 - Stable
+h1=. sIBL_GUI - 3.1.2 - Stable
 
 h2=. Change Log
+
+h3. 3.1.2 - Stable
+
+* Fixed issues with the Search Database component and empty Ibl Set attributes.
+* Implement units tests on sIBL_GUI foundations and manager.
 
 h3. 3.1.1 - Stable
 
