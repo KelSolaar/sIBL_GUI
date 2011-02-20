@@ -60,6 +60,7 @@ import os
 import platform
 import re
 import sys
+from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
