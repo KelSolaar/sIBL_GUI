@@ -69,6 +69,7 @@ import dbUtilities.common
 import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -115,11 +116,15 @@ class SearchDatabase(UiComponent):
 		self._completer = None
 		self._completerVisibleItemsCount = 16
 
-		self._databaseFields = [("In Names", "title"),
+		self._cloudTagsField = "In Cloud Tags"
+		self._databaseFields = (("In Names", "title"),
 								("In Authors", "author"),
 								("In Links", "link"),
 								("In Locations", "location"),
-								("In Comments", "comment") ]
+								("In Comments", "comment"),
+								(self._cloudTagsField, "comment"),)
+
+		self._cloudExcludedTags = ("^a$", "^and$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -425,6 +430,36 @@ class SearchDatabase(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completerVisibleItemsCount"))
 
 	@property
+	def cloudTagsField(self):
+		'''
+		This Method Is The Property For The _cloudTagsField Attribute.
+
+		@return: self._cloudTagsField. ( String )
+		'''
+
+		return self._cloudTagsField
+
+	@cloudTagsField.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def cloudTagsField(self, value):
+		'''
+		This Method Is The Setter Method For The _cloudTagsField Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudTagsField"))
+
+	@cloudTagsField.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def cloudTagsField(self):
+		'''
+		This Method Is The Deleter Method For The _cloudTagsField Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("cloudTagsField"))
+
+	@property
 	def databaseFields(self):
 		'''
 		This Method Is The Property For The _databaseFields Attribute.
@@ -453,6 +488,36 @@ class SearchDatabase(UiComponent):
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("databaseFields"))
+
+	@property
+	def cloudExcludedTags(self):
+		'''
+		This Method Is The Property For The _cloudExcludedTags Attribute.
+
+		@return: self._cloudExcludedTags. ( String )
+		'''
+
+		return self._cloudExcludedTags
+
+	@cloudExcludedTags.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def cloudExcludedTags(self, value):
+		'''
+		This Method Is The Setter Method For The _cloudExcludedTags Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudExcludedTags"))
+
+	@cloudExcludedTags.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def cloudExcludedTags(self):
+		'''
+		This Method Is The Deleter Method For The _cloudExcludedTags Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("cloudExcludedTags"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -650,23 +715,42 @@ class SearchDatabase(UiComponent):
 
 		pattern = str(self.ui.Search_Database_lineEdit.text())
 		currentField = self._databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
+		flags = self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
 
 		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
-		try:
-			re.compile(pattern)
-		except:
-			raise foundations.exceptions.ProgrammingError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
+		if self.ui.Search_Database_comboBox.currentText() == self._cloudTagsField :
+			self._completer.setModel(QStringListModel())
+			patternTokens = pattern.split()
+			patternTokens = patternTokens and patternTokens or (".*",)
+			filteredSets = []
+			for iblSet in self._coreCollectionsOutliner.getCollectionsSets():
+				cloudTags = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
+				patternsMatched = True
+				for pattern in patternTokens :
+					patternMatched = False
+					for tag in cloudTags :
+						if re.search(pattern, tag, flags=flags):
+							patternMatched = True
+							break
+					patternsMatched *= patternMatched
+				patternsMatched and filteredSets.append(iblSet)
+			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
+		else :
+			try:
+				re.compile(pattern)
+			except:
+				raise foundations.exceptions.UserError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
-		self._completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets)) if re.search(pattern, fieldValue, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0)))))
-
-		displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self._coreDb.dbSession, "{0}".format(str(pattern)), currentField, self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0))]
+			self._completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
+			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self._coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
 		LOGGER.debug("> Pattern Filtered Ibl Set(s) : '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
 		if previousDisplaySets != displaySets:
 			self._coreDatabaseBrowser.displaySets = displaySets
 			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+
 
 #***********************************************************************************************
 #***	Python End

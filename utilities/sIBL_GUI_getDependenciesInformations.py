@@ -27,13 +27,13 @@
 
 '''
 ************************************************************************************************
-***	sIBL_GUI_textileToHtml.py
+***	sIBL_GUI_getDependenciesInformations.py
 ***
 ***	Platform:
 ***		Windows
 ***
 ***	Description:
-***		Converts A Textile File To HTML.
+***		Get Dependencies Informations.
 ***
 ***	Others:
 ***
@@ -47,9 +47,9 @@
 #***	External Imports
 #***********************************************************************************************
 import logging
-import os
+import subprocess
 import sys
-import textile
+from collections import OrderedDict
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -69,62 +69,27 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)
 
+FOUNDATIONS_DIRECTORY = "../../Foundations"
+MANAGER_DIRECTORY = "../../Manager"
+TEMPLATES_DIRECTORY = "../../sIBL_GUI_Templates"
+DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY), ("Manager", MANAGER_DIRECTORY), ("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
+DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
+
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def textileToHtml(fileIn, fileOut, title):
-	'''
-	This Definition Outputs A Textile File To HTML.
-		
-	@param fileIn: File To Convert. ( String )
-	@param fileOut: Output File. ( String )
-	@param title: HTML File Title. ( String )
-	'''
-
-	LOGGER.info("{0} | Converting '{1}' Textile File To HTML !".format(textileToHtml.__name__, fileIn))
-	file = File(fileIn)
-	file.read()
-
-	output = []
-	output.append("<html>\n\t<head>\n")
-	output.append("\t\t<title>{0}</title>\n".format(title))
-	output.append(
-			"""\t\t<style type="text/css">
-	            body {
-	                text-align: justify;
-	                font-size: 10pt;
-	                margin: 10px 10px 10px 10px;
-	                background-color: rgb(192, 192, 192);
-	                color: rgb(50, 50, 50);
-	            }
-	            A:link {
-	                text-decoration: none;
-	                color: rgb(50, 85, 125);
-	            }
-	            A:visited {
-	                text-decoration: none;
-	                color: rgb(50, 85, 125);
-	            }
-	            A:active {
-	                text-decoration: none;
-	                color: rgb(50, 85, 125);
-	            }
-	            A:hover {
-	                text-decoration: underline;
-	                color: rgb(50, 85, 125);
-	            }
-	        </style>\n""")
-	output.append("\t</head>\n\t<body>\n\t")
-	output.append("\n\t".join(line for line in textile.textile("".join(file.content)).split("\n") if line))
-	output.append("\t\t</span>\n")
-	output.append("\t</body>\n</html>")
-
-	file = File(fileOut)
-	file.content = output
+def getDependenciesInformations():
+	content = ["[Dependencies]\n"]
+	for dependency, path in DEPENDENCIES.items() :
+		release = subprocess.Popen("cd {0} && /opt/local/bin/git describe".format(path), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+		LOGGER.info("{0} | '{1}' : '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
+		content.append("{0}={1}".format(dependency, release))
+	file = File(DEPENDENCIES_FILE)
+	file.content = content
 	file.write()
 
 if __name__ == "__main__":
-	textileToHtml(sys.argv[1], sys.argv[2], sys.argv[3])
+	getDependenciesInformations()
 
 #***********************************************************************************************
 #***	Python End

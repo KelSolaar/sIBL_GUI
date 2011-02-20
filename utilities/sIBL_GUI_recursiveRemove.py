@@ -80,7 +80,7 @@ def remove(item):
 	except:
 		print("remove | '%s' Remove Failed !" % item)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	recursiveRemove(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
