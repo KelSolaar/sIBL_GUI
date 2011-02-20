@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>310</width>
-    <height>348</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -25,8 +17,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>286</width>
-         <height>230</height>
+         <width>271</width>
+         <height>319</height>
         </rect>
        </property>
        <attribute name="label">
@@ -76,6 +68,31 @@
              <property name="text">
               <string/>
              </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QGroupBox" name="Tags_Cloud_groupBox">
+             <property name="title">
+              <string>Tags Cloud</string>
+             </property>
+             <layout class="QGridLayout" name="Tags_Cloud_groupBox_gridLayout">
+              <item row="0" column="0">
+               <widget class="QListWidget" name="Tags_Cloud_listWidget">
+                <property name="movement">
+                 <enum>QListView::Static</enum>
+                </property>
+                <property name="resizeMode">
+                 <enum>QListView::Adjust</enum>
+                </property>
+                <property name="viewMode">
+                 <enum>QListView::IconMode</enum>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
@@ -140,8 +157,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>268</width>
-         <height>95</height>
+         <width>286</width>
+         <height>230</height>
         </rect>
        </property>
        <attribute name="label">

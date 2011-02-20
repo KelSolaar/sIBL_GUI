@@ -5,6 +5,7 @@ h2=. Change Log
 h3. 3.1.2 - Stable
 
 * Fixed issues with the Search Database component and empty Ibl Set attributes.
+* Added new "In Cloud Tags" option to the Search Database component. It's now possible to search for multiples keywords in any order.
 * Implement units tests on sIBL_GUI foundations and manager.
 
 h3. 3.1.1 - Stable
