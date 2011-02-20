@@ -35,7 +35,7 @@
 
 '''
 ************************************************************************************************
-***	variable_QPushButton.py
+***	search_QLineEdit.py
 ***
 ***	Platform:
 ***		Windows, Linux, Mac Os X
@@ -75,6 +75,9 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class Variable_QPushButton(QPushButton):
+	'''
+	This Class Is The Variable_QPushButton Class.
+	'''
 
 	@core.executionTrace
 	def __init__(self, state, colors, labels, parent=None):
@@ -112,7 +115,7 @@ class Variable_QPushButton(QPushButton):
 			self.setFalseState()
 
 		# Signals / Slots.
-		self.clicked.connect(self.variable_QPushButton_OnClicked)
+		self.clicked.connect(self.search_QLineEdit_OnClicked)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -250,7 +253,7 @@ class Variable_QPushButton(QPushButton):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def variable_QPushButton_OnClicked(self, checked):
+	def search_QLineEdit_OnClicked(self, checked):
 		'''
 		This Method Is Called When A Variable QPushButton Is Clicked.
 		
