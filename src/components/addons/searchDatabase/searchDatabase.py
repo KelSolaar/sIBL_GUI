@@ -69,9 +69,9 @@ import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
+from ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #***********************************************************************************************
 #***	Global Variables
@@ -105,6 +105,8 @@ class SearchDatabase(UiComponent):
 		self._uiPath = "ui/Search_Database.ui"
 		self._uiResources = "resources"
 		self._uiSearchIcon = "Search_Icon.png"
+		self._uiClearIcon = "Clear_Icon.png"
+		self._uiClearClickedIcon = "Clear_Clicked_Icon.png"
 		self._dockArea = 2
 		self._tagsCloudListWidgetSpacing = 4
 
@@ -218,6 +220,66 @@ class SearchDatabase(UiComponent):
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiSearchIcon"))
+
+	@property
+	def uiClearIcon(self):
+		'''
+		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+
+		@return: self._uiLargestSizeIcon. ( String )
+		'''
+
+		return self._uiLargestSizeIcon
+
+	@uiClearIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearIcon(self, value):
+		'''
+		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearIcon"))
+
+	@uiClearIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearIcon(self):
+		'''
+		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearIcon"))
+
+	@property
+	def uiClearClickedIcon(self):
+		'''
+		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+
+		@return: self._uiLargestSizeIcon. ( String )
+		'''
+
+		return self._uiLargestSizeIcon
+
+	@uiClearClickedIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedIcon(self, value):
+		'''
+		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearClickedIcon"))
+
+	@uiClearClickedIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedIcon(self):
+		'''
+		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearClickedIcon"))
 
 	@property
 	def dockArea(self):
@@ -524,7 +586,7 @@ class SearchDatabase(UiComponent):
 		'''
 		This Method Is The Property For The _cloudExcludedTags Attribute.
 
-		@return: self._cloudExcludedTags. ( String )
+		@return: self._cloudExcludedTags. ( List )
 		'''
 
 		return self._cloudExcludedTags
@@ -535,7 +597,7 @@ class SearchDatabase(UiComponent):
 		'''
 		This Method Is The Setter Method For The _cloudExcludedTags Attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute Value. ( List )
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudExcludedTags"))
@@ -599,6 +661,8 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
+		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self._uiResources, self._uiClearIcon), os.path.join(self._uiResources, self._uiClearClickedIcon))
+		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
 		self.ui.Tags_Cloud_groupBox.hide()
 		self.ui.Tags_Cloud_listWidget.setSpacing(self._tagsCloudListWidgetSpacing)
 
