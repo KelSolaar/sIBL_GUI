@@ -54,11 +54,12 @@ import sys
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.core as core
-from foundations.io import File
+import foundations.namespace as namespace
 import foundations.parser
-from globals.constants import Constants
+from foundations.io import File
 from foundations.walker import Walker
 from foundations.parser import Parser
+from globals.constants import Constants
 
 #***********************************************************************************************
 #***	Global Variables
@@ -89,7 +90,7 @@ def getTemplatesReleases():
 		parser = Parser(templates[template])
 		parser.read() and parser.parse()
 
-		LOGGER.info("{0} | '{1}' : '{2}' !".format(getTemplatesReleases.__name__, template, foundations.parser.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value))
+		LOGGER.info("{0} | '{1}' : '{2}'.".format(getTemplatesReleases.__name__, namespace.getNamespace(template), foundations.parser.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value))
 
 if __name__ == "__main__":
 	getTemplatesReleases()
