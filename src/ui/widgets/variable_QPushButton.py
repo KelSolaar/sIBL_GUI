@@ -35,7 +35,7 @@
 
 '''
 ************************************************************************************************
-***	search_QLineEdit.py
+***	variable_QPushButton.py
 ***
 ***	Platform:
 ***		Windows, Linux, Mac Os X
