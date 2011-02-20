@@ -272,7 +272,7 @@ class Search_QLineEdit(QLineEdit):
 			self._clearButton.pressed.connect(lambda pixmap=clickedPixmap: self._clearButton.setIcon(QIcon(pixmap)))
 			self._clearButton.released.connect(lambda pixmap=pixmap: self._clearButton.setIcon(QIcon(pixmap)))
 		else:
-			self._clearButton.setText("X")
+			self._clearButton.setText("Clear")
 
 		frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
 		self.setStyleSheet(QString("QLineEdit { padding-right: " + str(self._clearButton.sizeHint().width() + frameWidth)) + "px; }")

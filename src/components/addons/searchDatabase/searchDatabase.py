@@ -665,6 +665,7 @@ class SearchDatabase(UiComponent):
 		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
 		self.ui.Tags_Cloud_groupBox.hide()
 		self.ui.Tags_Cloud_listWidget.setSpacing(self._tagsCloudListWidgetSpacing)
+		self.ui.Tags_Cloud_listWidget.setStyleSheet("QListView { background: rgb(240, 240, 240) }\nQListView::item { background: rgb(224, 224, 224) }")
 
 		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchIcon)))
 		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self._databaseFields])
