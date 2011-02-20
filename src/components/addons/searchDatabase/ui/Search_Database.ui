@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Search_Database_DockWidget</class>
  <widget class="QDockWidget" name="Search_Database_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>364</width>
+    <height>502</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Search Database</string>
   </property>
@@ -17,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>271</width>
-         <height>319</height>
+         <width>340</width>
+         <height>384</height>
         </rect>
        </property>
        <attribute name="label">
@@ -46,6 +54,9 @@
              <layout class="QGridLayout" name="Tags_Cloud_groupBox_gridLayout">
               <item row="0" column="0">
                <widget class="QListWidget" name="Tags_Cloud_listWidget">
+                <property name="statusTip">
+                 <string>Tags Cloud List Widget : Displays Current Collection Ibl Sets Tags Cloud.</string>
+                </property>
                 <property name="movement">
                  <enum>QListView::Static</enum>
                 </property>
@@ -153,8 +164,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>286</width>
-         <height>230</height>
+         <width>340</width>
+         <height>384</height>
         </rect>
        </property>
        <attribute name="label">
