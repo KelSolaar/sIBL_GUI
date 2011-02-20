@@ -57,7 +57,6 @@
 #***********************************************************************************************
 import logging
 import os
-import platform
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -69,7 +68,6 @@ from PyQt4.QtWebKit import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
 

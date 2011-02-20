@@ -57,7 +57,6 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -68,11 +67,8 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.parser
 import foundations.strings as strings
-import ui.widgets.messageBox as messageBox
-from foundations.parser import Parser
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
-from ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
 #***	Global Variables

@@ -59,7 +59,6 @@ import logging
 import os
 import platform
 import re
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
