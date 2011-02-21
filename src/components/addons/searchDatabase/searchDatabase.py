@@ -840,18 +840,19 @@ class SearchDatabase(UiComponent):
 			filteredSets = []
 			allTags = []
 			for iblSet in self._coreCollectionsOutliner.getCollectionsSets():
-				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
-				patternsMatched = True
-				for pattern in patternTokens:
-					patternMatched = False
-					for tag in tagsCloud:
-						if re.search(pattern, tag, flags=flags):
-							patternMatched = True
-							break
-					patternsMatched *= patternMatched
-				if patternsMatched:
-					allTags.extend((tag.lower() for tag in tagsCloud))
-					filteredSets.append(iblSet)
+				if getattr(iblSet, currentField) :
+					tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
+					patternsMatched = True
+					for pattern in patternTokens:
+						patternMatched = False
+						for tag in tagsCloud:
+							if re.search(pattern, tag, flags=flags):
+								patternMatched = True
+								break
+						patternsMatched *= patternMatched
+					if patternsMatched:
+						allTags.extend((tag.lower() for tag in tagsCloud))
+						filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags)))
 			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
