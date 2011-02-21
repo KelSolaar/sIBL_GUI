@@ -35,7 +35,7 @@
       <item row="0" column="0">
        <widget class="QLineEdit" name="Custom_File_Browser_Path_lineEdit">
         <property name="statusTip">
-         <string>Custom File Browser Path Line Edit : Current File Browser Path.</string>
+         <string>Custom File Browser Path Line Edit: Current File Browser Path.</string>
         </property>
        </widget>
       </item>

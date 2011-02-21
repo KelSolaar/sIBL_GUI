@@ -133,7 +133,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -142,7 +142,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def container(self):
@@ -163,7 +163,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -172,7 +172,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
@@ -193,7 +193,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -202,7 +202,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
@@ -223,7 +223,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -232,7 +232,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _settingsSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
@@ -253,7 +253,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -262,7 +262,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -283,7 +283,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -292,7 +292,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def editInSIBLEditAction(self):
@@ -313,7 +313,7 @@ class sIBLeditUtilities(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("editInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInSIBLEditAction"))
 
 	@editInSIBLEditAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -322,7 +322,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Is The Deleter Method For The _editInSIBLEditAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("editInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInSIBLEditAction"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -428,7 +428,7 @@ class sIBLeditUtilities(UiComponent):
 			self._editInSIBLEditAction.triggered.connect(self.Database_Browser_listView_editInSIBLEditAction)
 			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editInSIBLEditAction)
 		else:
-			LOGGER.info("{0} | sIBLedit Link Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | sIBLedit Link Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -459,11 +459,11 @@ class sIBLeditUtilities(UiComponent):
 				LOGGER.info("{0} | Launching 'sIBLedit' With '{1}'.".format(self.__class__.__name__, selectedIblSet._datas.path))
 				editCommand = "\"{0}\" \"{1}\"".format(sIBLedit, selectedIblSet._datas.path)
 
-				LOGGER.debug("> Current Edit Command : '{0}'.".format(editCommand))
+				LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
 				editProcess = QProcess()
 				editProcess.startDetached(editCommand)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences !".format(self.__class__.__name__))
+			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def sIBLedit_Path_lineEdit_setUi(self):
@@ -480,12 +480,12 @@ class sIBLeditUtilities(UiComponent):
 		'''
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		sIBLeditExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable :", self._container.lastBrowsedPath))
+		sIBLeditExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable:", self._container.lastBrowsedPath))
 		if sIBLeditExecutable != "":
-			LOGGER.debug("> Chosen sIBLedit Executable : '{0}'.".format(sIBLeditExecutable))
+			LOGGER.debug("> Chosen sIBLedit Executable: '{0}'.".format(sIBLeditExecutable))
 			self.ui.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
 			self._settings.setKey(self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
@@ -497,10 +497,10 @@ class sIBLeditUtilities(UiComponent):
 		'''
 
 		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences !")
+			LOGGER.debug("> Restoring Preferences!")
 			self.sIBLedit_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File!".format(self.__class__.__name__)
 		else:
 			self._settings.setKey(self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 

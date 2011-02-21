@@ -42,7 +42,7 @@
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="Search_Database_comboBox">
              <property name="statusTip">
-              <string>Search Database Combo Box : Database Fields Types.</string>
+              <string>Search Database Combo Box: Database Fields Types.</string>
              </property>
             </widget>
            </item>
@@ -55,7 +55,7 @@
               <item row="0" column="0">
                <widget class="QListWidget" name="Tags_Cloud_listWidget">
                 <property name="statusTip">
-                 <string>Tags Cloud List Widget : Displays Current Collection Ibl Sets Tags Cloud.</string>
+                 <string>Tags Cloud List Widget: Displays Current Collection Ibl Sets Tags Cloud.</string>
                 </property>
                 <property name="movement">
                  <enum>QListView::Static</enum>
@@ -121,7 +121,7 @@
            <item row="0" column="2">
             <widget class="QCheckBox" name="Case_Insensitive_Matching_checkBox">
              <property name="statusTip">
-              <string>Case Insensitive Check Box : Database Search Will Ignore Case.</string>
+              <string>Case Insensitive Check Box: Database Search Will Ignore Case.</string>
              </property>
              <property name="checked">
               <bool>true</bool>
@@ -187,7 +187,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="To_label">
              <property name="text">
-              <string>From :</string>
+              <string>From:</string>
              </property>
             </widget>
            </item>
@@ -200,7 +200,7 @@
               </size>
              </property>
              <property name="statusTip">
-              <string>Time Low Time Edit : Time From When To Search.</string>
+              <string>Time Low Time Edit: Time From When To Search.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -213,7 +213,7 @@
            <item row="3" column="2">
             <widget class="QLabel" name="From_label">
              <property name="text">
-              <string>To :</string>
+              <string>To:</string>
              </property>
             </widget>
            </item>
@@ -226,7 +226,7 @@
               </size>
              </property>
              <property name="statusTip">
-              <string>High Time Edit : Time To When To Search.</string>
+              <string>High Time Edit: Time To When To Search.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

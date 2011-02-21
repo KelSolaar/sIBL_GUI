@@ -88,9 +88,9 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	'''
 
 	LOGGER.debug("> Launching sIBL_message().")
-	LOGGER.debug("> Message Type : '{0}'.".format(type))
-	LOGGER.debug("> Title : '{0}'.".format(title))
-	LOGGER.debug("> Message : '{0}'.".format(message))
+	LOGGER.debug("> Message Type: '{0}'.".format(type))
+	LOGGER.debug("> Title: '{0}'.".format(title))
+	LOGGER.debug("> Message: '{0}'.".format(message))
 
 	messageBox = QMessageBox()
 	messageBox.setWindowTitle("{0} | {1}".format(Constants.applicationName, title))

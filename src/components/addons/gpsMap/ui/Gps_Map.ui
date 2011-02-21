@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QGroupBox" name="Map_groupBox">
       <property name="statusTip">
-       <string>Map Group Box : Displays The Gps Map.</string>
+       <string>Map Group Box: Displays The Gps Map.</string>
       </property>
       <property name="title">
        <string/>
@@ -58,7 +58,7 @@
        <item row="1" column="3">
         <widget class="QComboBox" name="Map_Type_comboBox">
          <property name="statusTip">
-          <string>Map Type Combo Box : Gps Map Display Type.</string>
+          <string>Map Type Combo Box: Gps Map Display Type.</string>
          </property>
         </widget>
        </item>
@@ -90,7 +90,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Zoom In Push Button : Zoom Into The Gps Map.</string>
+          <string>Zoom In Push Button: Zoom Into The Gps Map.</string>
          </property>
          <property name="text">
           <string/>
@@ -112,7 +112,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Zoom Out Push Button : Zoom Out Of The Gps Map.</string>
+          <string>Zoom Out Push Button: Zoom Out Of The Gps Map.</string>
          </property>
          <property name="text">
           <string/>

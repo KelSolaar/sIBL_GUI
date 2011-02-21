@@ -20,7 +20,7 @@
         <item>
          <widget class="QLabel" name="Check_For_New_Releases_On_Startup_label">
           <property name="text">
-           <string>Check For New Releases On Startup :</string>
+           <string>Check For New Releases On Startup:</string>
           </property>
          </widget>
         </item>
@@ -40,7 +40,7 @@
         <item>
          <widget class="QCheckBox" name="Check_For_New_Releases_On_Startup_checkBox">
           <property name="statusTip">
-           <string>Check For New Releases On Startup Check Box :  Check If New Releases Are Available On Startup.</string>
+           <string>Check For New Releases On Startup Check Box:  Check If New Releases Are Available On Startup.</string>
           </property>
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>
@@ -57,7 +57,7 @@
         <item>
          <widget class="QLabel" name="Ignore_Non_Existing_Templates_label">
           <property name="text">
-           <string>Ignore Non Existing Templates :</string>
+           <string>Ignore Non Existing Templates:</string>
           </property>
          </widget>
         </item>
@@ -77,7 +77,7 @@
         <item>
          <widget class="QCheckBox" name="Ignore_Non_Existing_Templates_checkBox">
           <property name="statusTip">
-           <string>Ignore Non Existing Templates Check Box : Online Updater Will Only Consider Templates In The Database When Checking For Updates.</string>
+           <string>Ignore Non Existing Templates Check Box: Online Updater Will Only Consider Templates In The Database When Checking For Updates.</string>
           </property>
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>
@@ -92,7 +92,7 @@
       <item row="0" column="0">
        <widget class="QPushButton" name="Check_For_New_Releases_pushButton">
         <property name="statusTip">
-         <string>Check For New Releases Push Button : Checks If New Releases Are Available Online.</string>
+         <string>Check For New Releases Push Button: Checks If New Releases Are Available Online.</string>
         </property>
         <property name="text">
          <string>Check For New Releases</string>

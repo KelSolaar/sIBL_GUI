@@ -181,7 +181,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -190,7 +190,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def networkAccessManager(self):
@@ -211,7 +211,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( QNetworkAccessManager )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -220,7 +220,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _networkAccessManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
 
 	@property
 	def downloadFolder(self):
@@ -241,7 +241,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("downloadFolder"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadFolder"))
 
 	@downloadFolder.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -250,7 +250,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _downloadFolder Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("downloadFolder"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadFolder"))
 
 	@property
 	def uiPath(self):
@@ -271,7 +271,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -280,7 +280,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -301,7 +301,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -310,7 +310,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiLogoPixmap(self):
@@ -331,7 +331,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiLogoPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoPixmap"))
 
 	@uiLogoPixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -340,7 +340,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _uiLogoPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiLogoPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoPixmap"))
 
 	@property
 	def requests(self):
@@ -362,7 +362,7 @@ class DownloadManager(QObject):
 		'''
 
 		if value:
-			assert type(value) is list, "'{0}' Attribute : '{1}' Type Is Not 'list' !".format("requests", value)
+			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("requests", value)
 		self._requests = value
 
 	@requests.deleter
@@ -372,7 +372,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _requests Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("requests"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("requests"))
 
 	@property
 	def downloads(self):
@@ -393,7 +393,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("downloads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloads"))
 
 	@downloads.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -402,7 +402,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _downloads Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("downloads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloads"))
 
 	@property
 	def currentRequest(self):
@@ -423,7 +423,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( QNetworkReply )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("currentRequest"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentRequest"))
 
 	@currentRequest.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -432,7 +432,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _currentRequest Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("currentRequest"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentRequest"))
 
 	@property
 	def currentFile(self):
@@ -453,7 +453,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( QFile )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("currentFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentFile"))
 
 	@currentFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -462,7 +462,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _currentFile Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("currentFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentFile"))
 
 	@property
 	def currentFilePath(self):
@@ -483,7 +483,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("currentFilePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentFilePath"))
 
 	@currentFilePath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -492,7 +492,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _currentFilePath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("currentFilePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentFilePath"))
 
 	@property
 	def downloadStatus(self):
@@ -513,7 +513,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("downloadStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadStatus"))
 
 	@downloadStatus.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -522,7 +522,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _downloadStatus Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("downloadStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadStatus"))
 
 	@property
 	def ui(self):
@@ -543,7 +543,7 @@ class DownloadManager(QObject):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ui"))
 
 	@ui.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -552,7 +552,7 @@ class DownloadManager(QObject):
 		This Method Is The Deleter Method For The _ui Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -590,7 +590,7 @@ class DownloadManager(QObject):
 		'''
 		This Method Triggers The DownloadManager Close.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self._ui.close()
@@ -608,13 +608,13 @@ class DownloadManager(QObject):
 
 			self._currentFilePath = os.path.join(self._downloadFolder, os.path.basename(str(self._currentRequest.url().path())))
 			if os.path.exists(self._currentFilePath):
-				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update !".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
+				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update!".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
 				os.remove(self._currentFilePath)
 
 			self._currentFile = QFile(self._currentFilePath)
 
 			if not self._currentFile.open(QIODevice.WriteOnly):
-				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download !".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
+				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download!".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
 				self.downloadNext()
 				return
 
@@ -632,9 +632,9 @@ class DownloadManager(QObject):
 		@param bytesTotal: Bytes Total. ( Integer )
 		'''
 
-		LOGGER.debug("> Updating Download Progress : '{0}' Bytes Received, '{1}' Bytes Total.".format(bytesReceived, bytesTotal))
+		LOGGER.debug("> Updating Download Progress: '{0}' Bytes Received, '{1}' Bytes Total.".format(bytesReceived, bytesTotal))
 
-		self._ui.Current_File_label.setText("Downloading : '{0}'.".format(os.path.basename(str(self._currentRequest.url().path()))))
+		self._ui.Current_File_label.setText("Downloading: '{0}'.".format(os.path.basename(str(self._currentRequest.url().path()))))
 		self._ui.Download_progressBar.setRange(0, bytesTotal)
 		self._ui.Download_progressBar.setValue(bytesReceived)
 
@@ -658,7 +658,7 @@ class DownloadManager(QObject):
 
 		self._currentFile.close()
 		self._downloads.append(self._currentFilePath)
-		self._ui.Current_File_label.setText("'{0}' Downloading Done !".format(os.path.basename(self._currentFilePath)))
+		self._ui.Current_File_label.setText("'{0}' Downloading Done!".format(os.path.basename(self._currentFilePath)))
 		self._ui.Download_progressBar.hide()
 		self._currentRequest.deleteLater();
 
@@ -667,7 +667,7 @@ class DownloadManager(QObject):
 			self.downloadNext()
 		else:
 			self._downloadStatus = True
-			self._ui.Current_File_label.setText("Downloads Complete !")
+			self._ui.Current_File_label.setText("Downloads Complete!")
 			self._ui.Cancel_Close_pushButton.setText("Close")
 			self.emit(SIGNAL("downloadFinished()"))
 
@@ -720,7 +720,7 @@ class RemoteUpdater(object):
 		self._tableWidgetRowHeight = 30
 		self._tableWidgetHeaderHeight = 25
 
-		self._templatesTableWidgetHeaders = ["_datas", "Get It !", "Local Version", "Repository Version", "Release Type", "Comment"]
+		self._templatesTableWidgetHeaders = ["_datas", "Get It!", "Local Version", "Repository Version", "Release Type", "Comment"]
 
 		self._applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
 		self._repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
@@ -758,7 +758,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -767,7 +767,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def releases(self):
@@ -789,7 +789,7 @@ class RemoteUpdater(object):
 		'''
 
 		if value:
-			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("releases", value)
+			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("releases", value)
 		self._releases = value
 
 	@releases.deleter
@@ -799,7 +799,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _releases Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("releases"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releases"))
 
 	@property
 	def uiPath(self):
@@ -820,7 +820,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -829,7 +829,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -850,7 +850,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -859,7 +859,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiLogoPixmap(self):
@@ -880,7 +880,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiLogoPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoPixmap"))
 
 	@uiLogoPixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -889,7 +889,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiLogoPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiLogoPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoPixmap"))
 
 	@property
 	def uiTemplatesPixmap(self):
@@ -910,7 +910,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiTemplatesPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiTemplatesPixmap"))
 
 	@uiTemplatesPixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -919,7 +919,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiTemplatesPixmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiTemplatesPixmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiTemplatesPixmap"))
 
 	@property
 	def uiLightGrayColor(self):
@@ -940,7 +940,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( QColor )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -949,7 +949,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiLightGrayColor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLightGrayColor"))
 
 	@property
 	def uiDarkGrayColor(self):
@@ -970,7 +970,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( QColor )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -979,7 +979,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _uiDarkGrayColor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDarkGrayColor"))
 
 	@property
 	def splitter(self):
@@ -1000,7 +1000,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("splitter"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("splitter"))
 
 	@splitter.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1009,7 +1009,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _splitter Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("splitter"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("splitter"))
 
 	@property
 	def tableWidgetRowHeight(self):
@@ -1030,7 +1030,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1039,7 +1039,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _tableWidgetRowHeight Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetRowHeight"))
 
 	@property
 	def tableWidgetHeaderHeight(self):
@@ -1060,7 +1060,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1069,7 +1069,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _tableWidgetHeaderHeight Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetHeaderHeight"))
 
 	@property
 	def templatesTableWidgetHeaders(self):
@@ -1090,7 +1090,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesTableWidgetHeaders"))
 
 	@templatesTableWidgetHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1099,7 +1099,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _templatesTableWidgetHeaders Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesTableWidgetHeaders"))
 
 	@property
 	def applicationChangeLogUrl(self):
@@ -1120,7 +1120,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("applicationChangeLogUrl"))
 
 	@applicationChangeLogUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1129,7 +1129,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _applicationChangeLogUrl Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("applicationChangeLogUrl"))
 
 	@property
 	def repositoryUrl(self):
@@ -1150,7 +1150,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("repositoryUrl"))
 
 	@repositoryUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1159,7 +1159,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _repositoryUrl Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("repositoryUrl"))
 
 	@property
 	def downloadManager(self):
@@ -1180,7 +1180,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("downloadManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadManager"))
 
 	@downloadManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1189,7 +1189,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _downloadManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("downloadManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadManager"))
 
 	@property
 	def networkAccessManager(self):
@@ -1210,7 +1210,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( QNetworkAccessManager )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1219,7 +1219,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _networkAccessManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
 
 	@property
 	def ui(self):
@@ -1248,7 +1248,7 @@ class RemoteUpdater(object):
 		This Method Is The Deleter Method For The _ui Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1335,7 +1335,7 @@ class RemoteUpdater(object):
 		'''
 		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 		urlTokens = self.releases[Constants.applicationName].url.split(self._splitter)
 		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
@@ -1356,7 +1356,7 @@ class RemoteUpdater(object):
 		'''
 		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		requests = []
@@ -1366,7 +1366,7 @@ class RemoteUpdater(object):
 		if requests:
 			downloadFolder = self.getTemplatesDownloadFolder()
 			if downloadFolder:
-				LOGGER.debug("> Templates Download Folder : '{0}'.".format(downloadFolder))
+				LOGGER.debug("> Templates Download Folder: '{0}'.".format(downloadFolder))
 				self._downloadManager = DownloadManager(self, self._networkAccessManager, downloadFolder, [request.url for request in requests])
 				self._downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
 				self._downloadManager.startDownload()
@@ -1376,10 +1376,10 @@ class RemoteUpdater(object):
 		'''
 		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		LOGGER.debug("> Opening URL : '{0}'.".format(self._repositoryUrl))
+		LOGGER.debug("> Opening URL: '{0}'.".format(self._repositoryUrl))
 		QDesktopServices.openUrl(QUrl(QString(self._repositoryUrl)))
 
 	@core.executionTrace
@@ -1387,10 +1387,10 @@ class RemoteUpdater(object):
 		'''
 		This Method Closes The RemoteUpdater.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		LOGGER.info("{0} | Closing '{1}' Updater !".format(self.__class__.__name__, Constants.applicationName))
+		LOGGER.info("{0} | Closing '{1}' Updater!".format(self.__class__.__name__, Constants.applicationName))
 		self._ui.close()
 
 	@core.executionTrace
@@ -1404,7 +1404,7 @@ class RemoteUpdater(object):
 		messageBox = QMessageBox()
 		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
 		messageBox.setIcon(QMessageBox.Question)
-		messageBox.setText("{0} | Which Folder Do You Want To Install The Templates Into ?".format(self.__class__.__name__))
+		messageBox.setText("{0} | Which Folder Do You Want To Install The Templates Into?".format(self.__class__.__name__))
 		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
 		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
 		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
@@ -1416,7 +1416,7 @@ class RemoteUpdater(object):
 		elif reply == 1:
 			return os.path.join(self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
 		elif reply == 2:
-			return self._container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self._ui, "Choose Templates Directory :", self._container.container.lastBrowsedPath)))
+			return self._container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self._ui, "Choose Templates Directory:", self._container.container.lastBrowsedPath)))
 
 	@core.executionTrace
 	def downloadManager_OnComplete(self):
@@ -1428,10 +1428,10 @@ class RemoteUpdater(object):
 		for download in self._downloadManager.downloads:
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
-					LOGGER.info("{0} | Removing '{1}' Archive !".format(self.__class__.__name__, download))
+					LOGGER.info("{0} | Removing '{1}' Archive!".format(self.__class__.__name__, download))
 					os.remove(download)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File !".format(self.__class__.__name__, os.path.basename(download)))
+					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File!".format(self.__class__.__name__, os.path.basename(download)))
 				self._container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self._container.coreTemplatesOutliner.getCollection(self._container.coreTemplatesOutliner.userCollection).id, noWarning=True)
 				needModelRefresh = True
 			else:
@@ -1522,7 +1522,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1531,7 +1531,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def container(self):
@@ -1552,7 +1552,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1561,7 +1561,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1570,7 +1570,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
@@ -1601,7 +1601,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1610,7 +1610,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _settingsSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1621,7 +1621,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1630,7 +1630,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def corePreferencesManager(self):
@@ -1651,7 +1651,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1660,7 +1660,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDb(self):
@@ -1681,7 +1681,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1690,7 +1690,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -1711,7 +1711,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1720,7 +1720,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def addonsLocationsBrowser(self):
@@ -1741,7 +1741,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("addonsLocationsBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("addonsLocationsBrowser"))
 
 	@addonsLocationsBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1750,7 +1750,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _addonsLocationsBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("addonsLocationsBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("addonsLocationsBrowser"))
 
 	@property
 	def ioDirectory(self):
@@ -1771,7 +1771,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ioDirectory"))
 
 	@ioDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1780,7 +1780,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _ioDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ioDirectory"))
 
 	@property
 	def repositoryUrl(self):
@@ -1801,7 +1801,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("repositoryUrl"))
 
 	@repositoryUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1810,7 +1810,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _repositoryUrl Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("repositoryUrl"))
 
 	@property
 	def releasesFileUrl(self):
@@ -1831,7 +1831,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("releasesFileUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("releasesFileUrl"))
 
 	@releasesFileUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1840,7 +1840,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _releasesFileUrl Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("releasesFileUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releasesFileUrl"))
 
 	@property
 	def networkAccessManager(self):
@@ -1861,7 +1861,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( QNetworkAccessManager )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1870,7 +1870,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _networkAccessManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
 
 	@property
 	def releaseReply(self):
@@ -1891,7 +1891,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( QNetworkReply )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("releaseReply"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("releaseReply"))
 
 	@releaseReply.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1900,7 +1900,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _releaseReply Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("releaseReply"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releaseReply"))
 
 	@property
 	def remoteUpdater(self):
@@ -1921,7 +1921,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("remoteUpdater"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("remoteUpdater"))
 
 	@remoteUpdater.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1930,7 +1930,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _remoteUpdater Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("remoteUpdater"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("remoteUpdater"))
 
 	@property
 	def reportUpdateStatus(self):
@@ -1951,7 +1951,7 @@ class OnlineUpdater(UiComponent):
 		@param value: Attribute Value. ( Boolean )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("reportUpdateStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reportUpdateStatus"))
 
 	@reportUpdateStatus.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1960,7 +1960,7 @@ class OnlineUpdater(UiComponent):
 		This Method Is The Deleter Method For The _reportUpdateStatus Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("reportUpdateStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reportUpdateStatus"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -2070,7 +2070,7 @@ class OnlineUpdater(UiComponent):
 		@param state: Checkbox State. ( Integer )
 		'''
 
-		LOGGER.debug("> Check For New Releases On Startup State : '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
+		LOGGER.debug("> Check For New Releases On Startup State: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
 		self._settings.setKey(self._settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
@@ -2094,7 +2094,7 @@ class OnlineUpdater(UiComponent):
 		@param state: Checkbox State. ( Integer )
 		'''
 
-		LOGGER.debug("> Ignore Non Existing Templates State : '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
+		LOGGER.debug("> Ignore Non Existing Templates State: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
 		self._settings.setKey(self._settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
 
 	@core.executionTrace
@@ -2133,7 +2133,7 @@ class OnlineUpdater(UiComponent):
 		'''
 		This Method Is Triggered When Check_For_New_Releases_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self._reportUpdateStatus = True
@@ -2179,7 +2179,7 @@ class OnlineUpdater(UiComponent):
 																		url=parser.getValue("Url", remoteObject),
 																		comment=parser.getValue("Comment", remoteObject))
 						else:
-							LOGGER.info("{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value !".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
+							LOGGER.info("{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value!".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
 				else:
 					if Constants.releaseVersion != parser.getValue("Release", remoteObject):
 						releases[remoteObject] = ReleaseObject(name=remoteObject,
@@ -2192,9 +2192,9 @@ class OnlineUpdater(UiComponent):
 				LOGGER.debug("> Initialising Remote Updater.")
 				self._remoteUpdater = RemoteUpdater(self, releases)
 			else:
-				self._reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date !".format(self.__class__.__name__, Constants.applicationName))
+				self._reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code : '{0}'.".format(self._releaseReply.error()))
+			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code: '{0}'.".format(self._releaseReply.error()))
 
 	@core.executionTrace
 	def checkForNewReleases(self):

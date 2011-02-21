@@ -91,7 +91,7 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.messageBox("Error", "Exception", "Exception In '{0}' : {1}".format(origin, exception))
+	messageBox.messageBox("Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
@@ -105,7 +105,7 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	'''
 
-	messageBox.standaloneMessageBox("Error", "Exception", "Exception In '{0}' : {1}".format(origin, exception))
+	messageBox.standaloneMessageBox("Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace

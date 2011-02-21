@@ -18,9 +18,9 @@ h3. 3.1.1 - Stable
 h3. 3.1.0 - Stable
 
 * sIBL_GUI now uses Python 2.7.1, allowing usage of OrderedDict, Templates attributes are now displayed in correct order.
-* Replaced Google Maps by Bing Maps : Google Maps support is broken at the moment on Qt Webkit.
+* Replaced Google Maps by Bing Maps: Google Maps support is broken at the moment on Qt Webkit.
 * Added "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
-* Added support for Templates enums : "lightType = @lightType | Area;Directional;Spot | Enum | Light Type".
+* Added support for Templates enums: "lightType = @lightType | Area;Directional;Spot | Enum | Light Type".
 * Fixed an inconsistency related to the comments in the file parser. 
 * Help files stored on network are now properly opened on Windows.
 * Modified Ibl Sets now refresh properly within the current session.
@@ -30,22 +30,22 @@ h3. 3.1.0 - Stable
 
 h3. 3.0.9 - Stable
 
-* sIBL_GUI has now an Internal Image Previewer : You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go : "http://www.hdrlabs.com/picturenaut/index.html":http://www.hdrlabs.com/picturenaut/index.html 
-* Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build : Third Party Images loading is now 10 to 20 times faster.  
-* Implemented Ibl Sets database display name edition : Double click an Ibl Set in the Database Browser to edit it's display name.  
+* sIBL_GUI has now an Internal Image Previewer: You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: "http://www.hdrlabs.com/picturenaut/index.html":http://www.hdrlabs.com/picturenaut/index.html 
+* Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build: Third Party Images loading is now 10 to 20 times faster.  
+* Implemented Ibl Sets database display name edition: Double click an Ibl Set in the Database Browser to edit it's display name.  
 * "--databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
 * Fixed a code regression preventing "Templates Informations" widget display.  
 * Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.  
 * Worker Threads are properly terminated on application exit.  
-* Switched Darwin Installer to DropDmg application : Dmg icons are laid out correctly now.
+* Switched Darwin Installer to DropDmg application: Dmg icons are laid out correctly now.
 
 h3. 3.0.8 - Stable
 
 * sIBL_GUI For Windows now is natively built on Windows 7, this should fix the slow startup issues reported on Windows Vista / 7.
 * Implemented dragNdrop in various components ( Network paths are currently not supported on Windows Vista / 7 ):
-** Database Browser Component : You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
-** Collections Outliner Component : You can also dragNdrop folders or Ibl Sets files directly from the Os.
-** Templates Outliner Component : You can dragNdrop Templates folders or Templates files directly from the Os.
+** Database Browser Component: You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
+** Collections Outliner Component: You can also dragNdrop folders or Ibl Sets files directly from the Os.
+** Templates Outliner Component: You can dragNdrop Templates folders or Templates files directly from the Os.
 * Made the code stronger when sIBL_GUI deals with corrupted Ibl / Templates Files.
 * Refactored portions of the exceptions handling code.
 
@@ -65,9 +65,9 @@ h3. 3.0.7 - Stable
 
 h3. 3.0.6 - Stable
 
-* Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may encounter two issues : 
+* Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may encounter two issues: 
 ** The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I would like to avoid implementing compatibility code.
-** Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. *It's however advised to remove it !* If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering difficulties while doing the merge.
+** Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. *It's however advised to remove it!* If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering difficulties while doing the merge.
 * Moved Templates and Ibl Sets scanners to separate threads for increased performances.
 * Added support for command line parameters.
 * Fixed a regression with "Lights|DynamicLights" attribute export.
@@ -266,8 +266,8 @@ h3. 1.2.6 - Alpha
 
 h3. 1.2.5 - Alpha
 
-* Refactored sIBL_GUI Logging / Verbose: Now sIBL_GUI and sIBL_Framework use Python Standard Logging. Both are using a Log file : "sIBL_GUI_LogFile.log" for sIBL_GUI and "sIBL_Framework_LogFile.log" for sIBL_Framework. Those files are deleted then created each time the softwares start. One side effect is that if you launch two instances of sIBL_GUI, they will both output Log to "sIBL_GUI_LogFile.log" file, while it will not prevent sIBL_GUI from working, both Logging will be mixed.
-* Refactored sIBL_GUI Functions Call Trace : A Decorator is now used to trace whenever a function is called.
+* Refactored sIBL_GUI Logging / Verbose: Now sIBL_GUI and sIBL_Framework use Python Standard Logging. Both are using a Log file: "sIBL_GUI_LogFile.log" for sIBL_GUI and "sIBL_Framework_LogFile.log" for sIBL_Framework. Those files are deleted then created each time the softwares start. One side effect is that if you launch two instances of sIBL_GUI, they will both output Log to "sIBL_GUI_LogFile.log" file, while it will not prevent sIBL_GUI from working, both Logging will be mixed.
+* Refactored sIBL_GUI Functions Call Trace: A Decorator is now used to trace whenever a function is called.
 * Added a brand new GPS Map under the Collection Browser. You can now see a Marker Cloud of sIBL Locations.
 * Interface Tweak to insert the new GPS Map.
 * Code Comment Improvements.
@@ -301,7 +301,7 @@ h3. 0.9.7 - Beta
 h3. 0.9.6 - Alpha
 
 * Bug introduced with Linux Code that prevented remote execution with Maya on Windows.
-* Corrected a dangerous behavior introduced with Eclipse NSIS Plugin: It adds this line to the setup script : "RmDir /r /REBOOTOK $INSTDIR". That means that if you installed by mistake at the root of "Program Files/" and not in "Program Files/sIBL_GUI", everything in "Program Files/" will be deleted. sIBL_GUI - 0.9.6 For Windows and 12 October Nightly Releases are concerned !
+* Corrected a dangerous behavior introduced with Eclipse NSIS Plugin: It adds this line to the setup script: "RmDir /r /REBOOTOK $INSTDIR". That means that if you installed by mistake at the root of "Program Files/" and not in "Program Files/sIBL_GUI", everything in "Program Files/" will be deleted. sIBL_GUI - 0.9.6 For Windows and 12 October Nightly Releases are concerned!
 
 h3. 0.9.6 - Alpha
 
@@ -339,7 +339,7 @@ h3. 0.9.3 - Alpha
 
 h3. 0.9.2 - Alpha
 
-* Corrected the Collection Filtering bug ( Forget to pass a value to my verbose function :| )
+* Corrected the Collection Filtering bug ( Forget to pass a value to my verbose function! )
 
 h3. 0.9.2 - Alpha
 
@@ -358,5 +358,5 @@ h2=. About
 
 sIBL_GUI by Thomas Mansencal - 2008 - 2011
 Copyright (C) 2008 - 2011 - Thomas Mansencal - "thomas.mansencal@gmail.com":mailto:thomas.mansencal@gmail.com 
-This Software Is Released Under Terms Of GNU GPL V3 License : "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/ 
+This Software Is Released Under Terms Of GNU GPL V3 License: "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/ 
 "http://www.thomasmansencal.com/":http://www.thomasmansencal.com/

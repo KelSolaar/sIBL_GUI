@@ -30,7 +30,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Send To Software Push Button : Direct Connection To Target Application If Remote Connection Is Available.</string>
+          <string>Send To Software Push Button: Direct Connection To Target Application If Remote Connection Is Available.</string>
          </property>
          <property name="text">
           <string>Send To Software</string>
@@ -52,7 +52,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="Port_label">
             <property name="text">
-             <string>Port :</string>
+             <string>Port:</string>
             </property>
            </widget>
           </item>
@@ -65,7 +65,7 @@
              </size>
             </property>
             <property name="statusTip">
-             <string>Software Port Spin Box : Port Of The Target 3D Package.</string>
+             <string>Software Port Spin Box: Port Of The Target 3D Package.</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -81,7 +81,7 @@
           <item row="1" column="1">
            <widget class="QLineEdit" name="Address_lineEdit">
             <property name="statusTip">
-             <string>Ip Address Line Edit : Ip Adress Of The Computer Running The Target 3D Package.</string>
+             <string>Ip Address Line Edit: Ip Adress Of The Computer Running The Target 3D Package.</string>
             </property>
             <property name="text">
              <string>127.0.0.1</string>
@@ -94,7 +94,7 @@
           <item row="1" column="0">
            <widget class="QLabel" name="Address_label">
             <property name="text">
-             <string>IP :</string>
+             <string>IP:</string>
             </property>
            </widget>
           </item>
@@ -128,7 +128,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Output Loader Script Push Button : Outputs The Loader Script.</string>
+         <string>Output Loader Script Push Button: Outputs The Loader Script.</string>
         </property>
         <property name="text">
          <string>Output Loader Script</string>

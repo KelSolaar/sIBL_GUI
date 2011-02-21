@@ -44,7 +44,7 @@
 ***		FreeImage libraryPath Manipulation Module.
 ***
 ***	Others:
-***		Portions Of The Code From FreeImagePy By Michele Petrazzo : http://freeimagepy.sourceforge.net/.
+***		Portions Of The Code From FreeImagePy By Michele Petrazzo: http://freeimagepy.sourceforge.net/.
 ************************************************************************************************
 '''
 
@@ -229,7 +229,7 @@ class FICOMPLEX(ctypes.Structure):
 Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
 '''
 if FREEIMAGE_BIGENDIAN:
-	# Little Endian ( x86 / MS Windows, Linux ) : BGR(A) Order.
+	# Little Endian ( x86 / MS Windows, Linux ): BGR(A) Order.
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
@@ -244,7 +244,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_BLUE_SHIFT	 = 0
 		FI_RGBA_ALPHA_SHIFT	 = 24
 	else:
-		# Little Endian ( x86 / MaxOSX ) : RGB(A) Order.
+		# Little Endian ( x86 / MaxOSX ): RGB(A) Order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -259,7 +259,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_ALPHA_SHIFT	 = 0
 else:
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
-		# Big Endian ( PPC / none ) : BGR(A) Order.
+		# Big Endian ( PPC / none ): BGR(A) Order.
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 0
@@ -273,7 +273,7 @@ else:
 		FI_RGBA_BLUE_SHIFT	 = 24
 		FI_RGBA_ALPHA_SHIFT	 = 0
 	else:
-		#Big Endian ( PPC / Linux, MaxOSX ) : RGB(A) Order.
+		#Big Endian ( PPC / Linux, MaxOSX ): RGB(A) Order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -485,7 +485,7 @@ class FREE_IMAGE_MDTYPE(object):
 				FIDT_ASCII : ctypes.c_char_p,
 				FIDT_SHORT : ctypes.c_ushort,
 				FIDT_LONG : ctypes.c_uint,
-				FIDT_RATIONAL: ctypes.c_ulong,
+				FIDT_RATIONAL : ctypes.c_ulong,
 				FIDT_SBYTE : ctypes.c_short,
 				FIDT_UNDEFINED : VOID,
 				FIDT_SSHORT : ctypes.c_short,
@@ -1029,7 +1029,7 @@ class Image(object):
 		@param value: Attribute Value. ( Library )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("library"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("library"))
 
 	@library.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1038,7 +1038,7 @@ class Image(object):
 		This Method Is The Deleter Method For The _library Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("library"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("library"))
 
 	@property
 	def errorsCallback(self):
@@ -1059,7 +1059,7 @@ class Image(object):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("errorsCallback"))
 
 	@errorsCallback.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1068,7 +1068,7 @@ class Image(object):
 		This Method Is The Deleter Method For The _errorsCallback Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("errorsCallback"))
 
 	@property
 	def imagePath(self):
@@ -1090,7 +1090,7 @@ class Image(object):
 		'''
 
 		if value:
-			assert type(value) is str, "'{0}' Attribute : '{1}' Type Is Not 'str' !".format("imagePath", value)
+			assert type(value) is str, "'{0}' Attribute: '{1}' Type Is Not 'str'!".format("imagePath", value)
 		self._imagePath = value
 
 	@imagePath.deleter
@@ -1100,7 +1100,7 @@ class Image(object):
 		This Method Is The Deleter Method For The _imagePath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("imagePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePath"))
 
 	@property
 	def bitmap(self):
@@ -1130,7 +1130,7 @@ class Image(object):
 		This Method Is The Deleter Method For The _bitmap Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("bitmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1142,7 +1142,7 @@ class Image(object):
 		This Method Logs The Library Errors.
 		'''
 
-		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message : '{2}'".format(self.__class__.__name__, errorCode, message)
+		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message: '{2}'".format(self.__class__.__name__, errorCode, message)
 
 	@core.executionTrace
 	def getImageFormat(self, imagePath=None):
@@ -1173,9 +1173,9 @@ class Image(object):
 			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
 				if self._library.FreeImage_FIFSupportsReading(imageFormat):
 					self._bitmap = self._library.FreeImage_Load(imageFormat, self._imagePath, FI_DEFAULT_NULL)
-					self._bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded !".format(self._imagePath))
+					self._bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded!".format(self._imagePath))
 				else:
-					raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported !".format(imageFormat)
+					raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported!".format(imageFormat)
 
 	@core.executionTrace
 	def save(self):
@@ -1199,9 +1199,9 @@ class Image(object):
 		if self._library.FreeImage_FIFSupportsWriting(imageFormat):
 			if imagePath:
 				success = self._library.FreeImage_Save(imageFormat, self._bitmap, ctypes.c_char_p(imagePath), flags)
-				success and	LOGGER.debug("> '{0}' Image Has Been Saved !".format(imagePath))
+				success and	LOGGER.debug("> '{0}' Image Has Been Saved!".format(imagePath))
 		else:
-			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported !".format(imageFormat)
+			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported!".format(imageFormat)
 
 	@core.executionTrace
 	def convertToType(self, targetType, linearScale=True):
@@ -1212,9 +1212,9 @@ class Image(object):
 		@param linearScale: Linear Scale. ( Boolean )
 		'''
 
-		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}' !".format(self._imagePath, targetType))
+		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}'!".format(self._imagePath, targetType))
 		self._bitmap = self._library.FreeImage_ConvertToType(self._bitmap, targetType, linearScale)
-		self._bitmap and LOGGER.debug("> '{0}' Image Bitmap Conversion To Type '{1}' Done !".format(self._imagePath, targetType))
+		self._bitmap and LOGGER.debug("> '{0}' Image Bitmap Conversion To Type '{1}' Done!".format(self._imagePath, targetType))
 
 	@core.executionTrace
 	def convertToLdr(self, gamma=2.2):
@@ -1224,9 +1224,9 @@ class Image(object):
 		@param gamma: Image Conversion Gamma. ( Float )
 		'''
 
-		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR !".format(self._imagePath))
+		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR!".format(self._imagePath))
 		self._bitmap = self._library.FreeImage_HDRLabs_ConvertToLdr(self._bitmap, ctypes.c_double(gamma))
-		self._bitmap and LOGGER.debug("> '{0}' HDR Image Bitmap Conversion To LDR Done !".format(self._imagePath))
+		self._bitmap and LOGGER.debug("> '{0}' HDR Image Bitmap Conversion To LDR Done!".format(self._imagePath))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
@@ -1239,7 +1239,7 @@ class Image(object):
 		(self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBF or self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBAF) and self.convertToLdr(2.2)
 
 		if self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_BITMAP:
-			LOGGER.debug("> Converting '{0}' Image Bitmap To QImage !".format(self._imagePath))
+			LOGGER.debug("> Converting '{0}' Image Bitmap To QImage!".format(self._imagePath))
 
 			from PyQt4.QtGui import QImage
 			from sip import voidptr
@@ -1267,9 +1267,9 @@ class Image(object):
 			bitsPointer = ctypes.addressof(bits)
 
 			LOGGER.debug("> Initializing Image From Memory Pointer '{0}' Address.".format(bitsPointer))
-			LOGGER.debug("> Image Width : '{0}'.".format(width))
-			LOGGER.debug("> Image Height : '{0}'.".format(height))
-			LOGGER.debug("> Image Pitch : '{0}'.".format(pitch))
+			LOGGER.debug("> Image Width: '{0}'.".format(width))
+			LOGGER.debug("> Image Height: '{0}'.".format(height))
+			LOGGER.debug("> Image Pitch: '{0}'.".format(pitch))
 			LOGGER.debug("> Initializing QImage With Memory Pointer '{0}' Address.".format(bitsPointer))
 
 			image = QImage(voidptr(bitsPointer, size=height * pitch), width, height, pitch, QImage.Format_RGB32)
@@ -1279,11 +1279,11 @@ class Image(object):
 			# Removing The Following Line Would Result In A Python Process Crash, I Need To Call 'bits()' Method At Some Point.
 			LOGGER.debug("> Final Memory Pointer With '{0}' Address.".format(image.bits().__int__()))
 
-			LOGGER.debug("> '{0}' Image Bitmap Conversion To QImage Done !".format(self._imagePath))
+			LOGGER.debug("> '{0}' Image Bitmap Conversion To QImage Done!".format(self._imagePath))
 
 			return image
 		else:
-			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}' !".format(FREE_IMAGE_TYPE.FIT_BITMAP)
+			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP)
 
 #***********************************************************************************************
 #***	Python End

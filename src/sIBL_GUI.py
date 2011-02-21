@@ -96,7 +96,7 @@ RuntimeConstants.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
 if os.path.exists(RuntimeConstants.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeConstants.uiFile)
 else:
-	ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' Ui File Is Not Available, {1} Will Now Close !".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
+	ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' Ui File Is Not Available, {1} Will Now Close!".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
 #***	Module Classes And Definitions
@@ -145,8 +145,8 @@ class Preferences():
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("preferencesFile", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("preferencesFile", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("preferencesFile", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("preferencesFile", value)
 		self._preferencesFile = value
 
 	@preferencesFile.deleter
@@ -156,7 +156,7 @@ class Preferences():
 		This Method Is The Deleter Method For The _preferencesFile Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("preferencesFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("preferencesFile"))
 
 	@property
 	def settings(self):
@@ -177,7 +177,7 @@ class Preferences():
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -186,7 +186,7 @@ class Preferences():
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -197,9 +197,9 @@ class Preferences():
 		This Method Defines The Default Settings File Content.
 		'''
 
-		LOGGER.debug("> Initializing Default Settings !")
+		LOGGER.debug("> Initializing Default Settings!")
 
-		LOGGER.debug("> Accessing '{0}' Layouts Settings File !".format(UiConstants.frameworkLayoutsFile))
+		LOGGER.debug("> Accessing '{0}' Layouts Settings File!".format(UiConstants.frameworkLayoutsFile))
 
 		layoutSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 
@@ -257,7 +257,7 @@ class Preferences():
 		@param value: Current Key Value To Save. ( Object )
 		'''
 
-		LOGGER.debug("> Saving '{0}' In '{1}' Section With Value : '{2}' In Settings File.".format(key, section, value))
+		LOGGER.debug("> Saving '{0}' In '{1}' Section With Value: '{2}' In Settings File.".format(key, section, value))
 
 		self._settings.beginGroup(section)
 		self._settings.setValue(key , QVariant(value))
@@ -277,7 +277,7 @@ class Preferences():
 
 		self._settings.beginGroup(section)
 		value = self._settings.value(key)
-		LOGGER.debug("> Key Value : '{0}'.".format(value))
+		LOGGER.debug("> Key Value: '{0}'.".format(value))
 		self._settings.endGroup()
 
 		return value
@@ -365,7 +365,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._componentsManager.gatherComponents()
 
 		if not self._componentsManager.components:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close !".format(self._componentsManager, Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close!".format(self._componentsManager, Constants.applicationName)
 
 		self._componentsManager.instantiateComponents(self.componentsInstantiationCallback)
 
@@ -377,7 +377,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreComponentsManagerUi.addWidget()
 			self._coreComponentsManagerUi.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.componentsManagerUi", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.componentsManagerUi", Constants.applicationName)
 
 		# --- Activating Preferences Manager Component. ---
 		self._corePreferencesManager = self._componentsManager.getInterface("core.preferencesManager")
@@ -387,7 +387,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._corePreferencesManager.addWidget()
 			self._corePreferencesManager.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.preferencesManager", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.preferencesManager", Constants.applicationName)
 
 		# --- Activating Database Component. ---
 		self._coreDb = self._componentsManager.getInterface("core.db")
@@ -396,7 +396,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreDb.activate(self)
 			self._coreDb.initialize()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.db", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.db", Constants.applicationName)
 
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface("core.collectionsOutliner")
@@ -406,7 +406,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreCollectionsOutliner.addWidget()
 			self._coreCollectionsOutliner.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.collectionsOutliner", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.collectionsOutliner", Constants.applicationName)
 
 		# --- Activating Database Browser Component. ---
 		self._coreDatabaseBrowser = self._componentsManager.getInterface("core.databaseBrowser")
@@ -416,7 +416,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreDatabaseBrowser.addWidget()
 			self._coreDatabaseBrowser.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.databaseBrowser", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.databaseBrowser", Constants.applicationName)
 
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface("core.templatesOutliner")
@@ -426,7 +426,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreTemplatesOutliner.addWidget()
 			self._coreTemplatesOutliner.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close !".format("core.templatesOutliner", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.templatesOutliner", Constants.applicationName)
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey("Settings", "deactivatedComponents").toString().split(",")
@@ -487,7 +487,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("componentsManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("componentsManager"))
 
 	@componentsManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -496,7 +496,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _componentsManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("componentsManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("componentsManager"))
 
 	@property
 	def coreComponentsManagerUi(self):
@@ -517,7 +517,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreComponentsManagerUi"))
 
 	@coreComponentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -526,7 +526,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _coreComponentsManagerUi Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreComponentsManagerUi"))
 
 	@property
 	def corePreferencesManager(self):
@@ -547,7 +547,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -556,7 +556,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDb(self):
@@ -577,7 +577,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -586,7 +586,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def coreCollectionsOutliner(self):
@@ -607,7 +607,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -616,7 +616,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreCollectionsOutliner"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -637,7 +637,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -646,7 +646,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -667,7 +667,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -676,7 +676,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def lastBrowsedPath(self):
@@ -698,8 +698,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("lastBrowsedPath", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' Directory Doesn't Exists !".format("lastBrowsedPath", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("lastBrowsedPath", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' Directory Doesn't Exists!".format("lastBrowsedPath", value)
 		self._lastBrowsedPath = value
 
 	@lastBrowsedPath.deleter
@@ -709,7 +709,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _lastBrowsedPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("lastBrowsedPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lastBrowsedPath"))
 
 	@property
 	def userApplicationDatasDirectory(self):
@@ -730,7 +730,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("userApplicationDatasDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("userApplicationDatasDirectory"))
 
 	@userApplicationDatasDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -739,7 +739,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _userApplicationDatasDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("userApplicationDatasDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("userApplicationDatasDirectory"))
 
 	@property
 	def loggingSessionHandler(self):
@@ -760,7 +760,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Handler )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("loggingSessionHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("loggingSessionHandler"))
 
 	@loggingSessionHandler.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -769,7 +769,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _loggingSessionHandler Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("loggingSessionHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("loggingSessionHandler"))
 
 	@property
 	def loggingFileHandler(self):
@@ -790,7 +790,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Handler )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("loggingFileHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("loggingFileHandler"))
 
 	@loggingFileHandler.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -799,7 +799,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _loggingFileHandler Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("loggingFileHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("loggingFileHandler"))
 
 	@property
 	def loggingConsoleHandler(self):
@@ -820,7 +820,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Handler )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("loggingConsoleHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("loggingConsoleHandler"))
 
 	@loggingConsoleHandler.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -829,7 +829,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _loggingConsoleHandler Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("loggingConsoleHandler"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("loggingConsoleHandler"))
 
 	@property
 	def loggingSessionHandlerStream(self):
@@ -850,7 +850,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( StreamObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("loggingSessionHandlerStream"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("loggingSessionHandlerStream"))
 
 	@loggingSessionHandlerStream.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -859,7 +859,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _loggingSessionHandlerStream Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("loggingSessionHandlerStream"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("loggingSessionHandlerStream"))
 
 	@property
 	def settings(self):
@@ -880,7 +880,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -889,7 +889,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def verbosityLevel(self):
@@ -911,8 +911,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		'''
 
 		if value:
-			assert type(value) is int, "'{0}' Attribute : '{1}' Type Is Not 'int' !".format("verbosityLevel", value)
-			assert value >= 0 and value <= 4, "'{0}' Attribute : Value Need To Be Exactly Beetween 0 and 4 !".format("verbosityLevel")
+			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("verbosityLevel", value)
+			assert value >= 0 and value <= 4, "'{0}' Attribute: Value Need To Be Exactly Beetween 0 and 4!".format("verbosityLevel")
 		self._verbosityLevel = value
 
 	@verbosityLevel.deleter
@@ -922,7 +922,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _verbosityLevel Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("verbosityLevel"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("verbosityLevel"))
 
 	@property
 	def parameters(self):
@@ -943,7 +943,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("parameters"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("parameters"))
 
 	@parameters.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -952,7 +952,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _parameters Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("parameters"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parameters"))
 
 	@property
 	def libraryActiveLabel (self):
@@ -973,7 +973,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Active_QLabel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("libraryActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("libraryActiveLabel "))
 
 	@libraryActiveLabel .deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -982,7 +982,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _libraryActiveLabel  Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("libraryActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("libraryActiveLabel "))
 
 	@property
 	def exportActiveLabel (self):
@@ -1003,7 +1003,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Active_QLabel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("exportActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("exportActiveLabel "))
 
 	@exportActiveLabel .deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1012,7 +1012,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _exportActiveLabel  Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("exportActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("exportActiveLabel "))
 
 	@property
 	def preferencesActiveLabel (self):
@@ -1033,7 +1033,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Active_QLabel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("preferencesActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("preferencesActiveLabel "))
 
 	@preferencesActiveLabel .deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1042,7 +1042,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _preferencesActiveLabel  Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("preferencesActiveLabel "))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("preferencesActiveLabel "))
 
 	@property
 	def layoutsActiveLabels(self):
@@ -1063,7 +1063,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("layoutsActiveLabels"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("layoutsActiveLabels"))
 
 	@layoutsActiveLabels.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1072,7 +1072,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _layoutsActiveLabels Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("layoutsActiveLabels"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("layoutsActiveLabels"))
 
 	@property
 	def layoutMenu(self):
@@ -1093,7 +1093,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( QMenu )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("layoutMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("layoutMenu"))
 
 	@layoutMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1102,7 +1102,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _layoutMenu Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("layoutMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("layoutMenu"))
 
 	@property
 	def miscMenu(self):
@@ -1123,7 +1123,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( QMenu )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("miscMenu"))
 
 	@miscMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1132,7 +1132,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _miscMenu Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("miscMenu"))
 
 	@property
 	def workerThreads(self):
@@ -1153,7 +1153,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("workerThreads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("workerThreads"))
 
 	@workerThreads.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1162,7 +1162,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is The Deleter Method For The _workerThreads Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("workerThreads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("workerThreads"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1182,7 +1182,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		# Stopping Worker Threads.
 		for workerThread in self._workerThreads:
 			if not workerThread.isFinished():
-				LOGGER.debug("> Stopping Worker Thread : '{0}'.".format(workerThread))
+				LOGGER.debug("> Stopping Worker Thread: '{0}'.".format(workerThread))
 				workerThread.exit()
 
 		foundations.common.closeHandler(LOGGER, self._loggingFileHandler)
@@ -1223,11 +1223,11 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
 
 		if os.path.exists(styleSheetFile.file):
-			LOGGER.debug("> Reading Style Sheet File : '{0}'.".format(styleSheetFile.file))
+			LOGGER.debug("> Reading Style Sheet File: '{0}'.".format(styleSheetFile.file))
 			styleSheetFile.read()
 			RuntimeConstants.application.setStyleSheet(QString("".join(styleSheetFile.content)))
 		else:
-			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied !".format(self.__class__.__name__, styleSheetFile.file)
+			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied!".format(self.__class__.__name__, styleSheetFile.file)
 
 	@core.executionTrace
 	def initializeToolbar(self):
@@ -1269,7 +1269,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# Signals / Slots.
 		for layoutActiveLabel in self._layoutsActiveLabels:
-			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout : self.activeLabel_OnClicked(activeLabel))
+			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout: self.activeLabel_OnClicked(activeLabel))
 
 		LOGGER.debug("> Adding Central Widget Button.")
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
@@ -1291,7 +1291,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._layoutMenu.addAction(action)
 
 			# Signals / Slots.
-			action.triggered.connect(lambda layout=layout[2] : self.restoreLayout(layout))
+			action.triggered.connect(lambda layout=layout[2]: self.restoreLayout(layout))
 
 		self._layoutMenu.addSeparator()
 
@@ -1301,7 +1301,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._layoutMenu.addAction(action)
 
 			# Signals / Slots.
-			action.triggered.connect(lambda layout=layout[2] : self.storeLayout(layout))
+			action.triggered.connect(lambda layout=layout[2]: self.storeLayout(layout))
 
 		layoutbutton.setMenu(self._layoutMenu)
 
@@ -1334,7 +1334,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Is Triggered When An Active Label Is Clicked.
 		'''
 
-		LOGGER.debug("> Clicked Active Label : '{0}'.".format(activeLabel))
+		LOGGER.debug("> Clicked Active Label: '{0}'.".format(activeLabel))
 
 		self.restoreLayout(activeLabel)
 		for layoutActivelabel in self._layoutsActiveLabels:
@@ -1346,7 +1346,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This Method Sets The Central Widget Visibility.
 		'''
 
-		LOGGER.debug("> Central Widget Button Clicked !")
+		LOGGER.debug("> Central Widget Button Clicked!")
 
 		if self.centralwidget.isVisible():
 			self.centralwidget.hide()
@@ -1365,7 +1365,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action = QAction(layoutActiveLabel.name, self)
 			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
 			self.addAction(action)
-			action.triggered.connect(lambda layout=layoutActiveLabel.layout : self.restoreLayout(layout))
+			action.triggered.connect(lambda layout=layoutActiveLabel.layout: self.restoreLayout(layout))
 
 	@core.executionTrace
 	def getLayoutsActiveLabel(self):
@@ -1379,7 +1379,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		for index in range(len(self._layoutsActiveLabels)):
 			if self._layoutsActiveLabels[index].object_.isChecked():
-				LOGGER.debug("> Current Layout Active Label Index : '{0}'.".format(index))
+				LOGGER.debug("> Current Layout Active Label Index: '{0}'.".format(index))
 				return index
 
 	@core.executionTrace
@@ -1456,10 +1456,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		'''
 		This Method Is Triggered By helpDisplayMiscAction.
 
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		LOGGER.debug("> Opening URL : '{0}'.".format(UiConstants.frameworkHelpFile))
+		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkHelpFile))
 		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
 
 	@core.executionTrace
@@ -1467,10 +1467,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		'''
 		This Method Is Triggered By apiDisplayMiscAction.
 
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		LOGGER.debug("> Opening URL : '{0}'.".format(UiConstants.frameworkApiFile))
+		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkApiFile))
 		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
 
 	@core.executionTrace
@@ -1485,7 +1485,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		path = str(path)
 
 		lastBrowserPath = os.path.normpath(os.path.join(os.path.isfile(path) and os.path.dirname(path) or path, ".."))
-		LOGGER.debug("> Storing Last Browsed Path : '%s'.", lastBrowserPath)
+		LOGGER.debug("> Storing Last Browsed Path: '%s'.", lastBrowserPath)
 
 		self._lastBrowsedPath = lastBrowserPath
 
@@ -1523,11 +1523,11 @@ def sIBL_GUI_start():
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
 	if not setUserApplicationDatasDirectory(RuntimeConstants.userApplicationDatasDirectory):
-		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close !".format(RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName)
+		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close!".format(RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName)
 
-	LOGGER.debug("> Application Python Interpreter : '{0}'".format(sys.executable))
-	LOGGER.debug("> Application Startup Location : '{0}'".format(os.getcwd()))
-	LOGGER.debug("> Session User Application Datas Directory : '{0}'".format(RuntimeConstants.userApplicationDatasDirectory))
+	LOGGER.debug("> Application Python Interpreter: '{0}'".format(sys.executable))
+	LOGGER.debug("> Application Startup Location: '{0}'".format(os.getcwd()))
+	LOGGER.debug("> Session User Application Datas Directory: '{0}'".format(RuntimeConstants.userApplicationDatasDirectory))
 
 	# Getting The Logging File Path.
 	RuntimeConstants.loggingFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile)
@@ -1535,17 +1535,17 @@ def sIBL_GUI_start():
 	try:
 		os.path.exists(RuntimeConstants.loggingFile) and os.remove(RuntimeConstants.loggingFile)
 	except:
-		raise OSError, "{0} Logging File Is Currently Locked, {1} Will Now Close !".format(RuntimeConstants.loggingFile, Constants.applicationName)
+		raise OSError, "{0} Logging File Is Currently Locked, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
 	try:
 		RuntimeConstants.loggingFileHandler = logging.FileHandler(RuntimeConstants.loggingFile)
 		RuntimeConstants.loggingFileHandler.setFormatter(core.LOGGING_FORMATTER)
 		LOGGER.addHandler(RuntimeConstants.loggingFileHandler)
 	except:
-		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close !".format(RuntimeConstants.loggingFile, Constants.applicationName)
+		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
 	# Retrieving Framework Verbose Level From Settings File.
-	LOGGER.debug("> Initializing {0} !".format(Constants.applicationName))
+	LOGGER.debug("> Initializing {0}!".format(Constants.applicationName))
 	LOGGER.debug("> Retrieving Stored Verbose Level.")
 
 	RuntimeConstants.settingsFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile)
@@ -1555,7 +1555,7 @@ def sIBL_GUI_start():
 	os.path.exists(RuntimeConstants.settingsFile) or RuntimeConstants.settings.setDefaultPreferences()
 
 	RuntimeConstants.verbosityLevel = RuntimeConstants.parameters.verbosityLevel and RuntimeConstants.parameters.verbosityLevel or RuntimeConstants.settings.getKey("Settings", "verbosityLevel").toInt()[0]
-	LOGGER.debug("> Setting Logger Verbosity Level To : '{0}'.".format(RuntimeConstants.verbosityLevel))
+	LOGGER.debug("> Setting Logger Verbosity Level To: '{0}'.".format(RuntimeConstants.verbosityLevel))
 	core.setVerbosityLevel(RuntimeConstants.verbosityLevel)
 
 	# Starting The Session Handler.
@@ -1567,9 +1567,9 @@ def sIBL_GUI_start():
 	LOGGER.info(Constants.loggingSeparators)
 	for line in getHeaderMessage():
 		LOGGER.info(line)
-	LOGGER.info("{0} | Session Started At : {1}".format(Constants.applicationName, time.strftime('%X - %x')))
+	LOGGER.info("{0} | Session Started At: {1}".format(Constants.applicationName, time.strftime('%X - %x')))
 	LOGGER.info(Constants.loggingSeparators)
-	LOGGER.info("{0} | Starting Interface !".format(Constants.applicationName))
+	LOGGER.info("{0} | Starting Interface!".format(Constants.applicationName))
 
 	RuntimeConstants.application = QApplication(sys.argv)
 
@@ -1596,9 +1596,9 @@ def sIBL_GUI_close():
 	This Definition Is Called When sIBL_GUI Closes.
 	'''
 
-	LOGGER.info("{0} | Closing Interface ! ".format(Constants.applicationName))
+	LOGGER.info("{0} | Closing Interface! ".format(Constants.applicationName))
 	LOGGER.info(Constants.loggingSeparators)
-	LOGGER.info("{0} | Session Ended At : {1}".format(Constants.applicationName, time.strftime('%X - %x')))
+	LOGGER.info("{0} | Session Ended At: {1}".format(Constants.applicationName, time.strftime('%X - %x')))
 	LOGGER.info(Constants.loggingSeparators)
 
 	foundations.common.closeHandler(LOGGER, RuntimeConstants.loggingConsoleHandler)
@@ -1620,10 +1620,10 @@ def setUserApplicationDatasDirectory(path):
 	if io.setLocalDirectory(userApplicationDatasDirectory):
 		for directory in Constants.preferencesDirectories:
 			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)):
-				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
+				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
 		return True
 	else:
-		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close !".format(userApplicationDatasDirectory, Constants.applicationName)
+		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(userApplicationDatasDirectory, Constants.applicationName)
 
 @core.executionTrace
 def getHeaderMessage():
@@ -1638,7 +1638,7 @@ def getHeaderMessage():
 	message.append("{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName))
 	message.append("{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format(Constants.applicationName))
 	message.append("{0} | http://www.gnu.org/licenses/ ".format(Constants.applicationName))
-	message.append("{0} | Version : {1}".format(Constants.applicationName, Constants.releaseVersion))
+	message.append("{0} | Version: {1}".format(Constants.applicationName, Constants.releaseVersion))
 
 	return message
 
@@ -1657,7 +1657,7 @@ def getCommandLineParameters(argv):
 
 	parser.add_option("-h", "--help", action="help", help="'Display This Help Message And Exit.'")
 	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application About Message.'")
-	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels :  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
+	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels:  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application Datas Directory'.")
 
 	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database Directory'.")

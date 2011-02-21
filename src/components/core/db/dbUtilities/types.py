@@ -183,7 +183,7 @@ class DbIblSet(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(self.path))
+			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
 
 class DbTemplate(DbBase):
 	'''
@@ -283,7 +283,7 @@ class DbTemplate(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid !".format(self.path))
+			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
 
 class DbCollection(DbBase):
 	'''

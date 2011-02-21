@@ -140,7 +140,7 @@ class Variable_QPushButton(QPushButton):
 		'''
 
 		if value:
-			assert type(value) is bool, "'{0}' Attribute : '{1}' Type Is Not 'bool' !".format("activated", value)
+			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("activated", value)
 		self._state = value
 
 	@state.deleter
@@ -150,7 +150,7 @@ class Variable_QPushButton(QPushButton):
 		This Method Is The Deleter Method For The _state Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("state"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("state"))
 
 	@property
 	def colors(self):
@@ -171,10 +171,10 @@ class Variable_QPushButton(QPushButton):
 		@param value: Attribute Value. ( Tuple )
 		'''
 		if value:
-			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("colors", value)
-			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("colors", value)
+			assert type(value) is tuple, "'{0}' Attribute: '{1}' Type Is Not 'tuple'!".format("colors", value)
+			assert len(value) == 2, "'{0}' Attribute: '{1}' Length Should Be '2'!".format("colors", value)
 			for index in range(len(value)):
-				assert type(value[index]) is QColor, "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'QColor' !".format("colors", index, value)
+				assert type(value[index]) is QColor, "'{0}' Attribute Element '{1}': '{2}' Type Is Not 'QColor'!".format("colors", index, value)
 		self._colors = value
 
 	@colors.deleter
@@ -184,7 +184,7 @@ class Variable_QPushButton(QPushButton):
 		This Method Is The Deleter Method For The _colors Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("colors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("colors"))
 
 	@property
 	def labels(self):
@@ -205,10 +205,10 @@ class Variable_QPushButton(QPushButton):
 		@param value: Attribute Value. ( Tuple )
 		'''
 		if value:
-			assert type(value) is tuple, "'{0}' Attribute : '{1}' Type Is Not 'tuple' !".format("labels", value)
-			assert len(value) == 2, "'{0}' Attribute : '{1}' Length Should Be '2' !".format("labels", value)
+			assert type(value) is tuple, "'{0}' Attribute: '{1}' Type Is Not 'tuple'!".format("labels", value)
+			assert len(value) == 2, "'{0}' Attribute: '{1}' Length Should Be '2'!".format("labels", value)
 			for index in range(len(value)):
-				assert type(value[index]) in (str, unicode), "'{0}' Attribute Element '{1}' : '{2}' Type Is Not 'str' or 'unicode' !".format("labels", index, value)
+				assert type(value[index]) in (str, unicode), "'{0}' Attribute Element '{1}': '{2}' Type Is Not 'str' or 'unicode'!".format("labels", index, value)
 		self._labels = value
 
 	@labels.deleter
@@ -218,7 +218,7 @@ class Variable_QPushButton(QPushButton):
 		This Method Is The Deleter Method For The _labels Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("labels"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("labels"))
 
 	@property
 	def parent(self):
@@ -247,7 +247,7 @@ class Variable_QPushButton(QPushButton):
 		This Method Is The Deleter Method For The _parent Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("parent"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -257,7 +257,7 @@ class Variable_QPushButton(QPushButton):
 		'''
 		This Method Is Called When A Variable QPushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		if self._state:

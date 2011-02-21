@@ -127,7 +127,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		'''
 
 		if value:
-			assert type(value) is QImage, "'{0}' Attribute : '{1}' Type Is Not 'QImage' !".format("image", value)
+			assert type(value) is QImage, "'{0}' Attribute: '{1}' Type Is Not 'QImage'!".format("image", value)
 		self._imagePath = value
 
 	@image.deleter
@@ -137,7 +137,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This Method Is The Deleter Method For The _image Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("image"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("image"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -232,7 +232,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -241,7 +241,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def imagePath(self):
@@ -263,8 +263,8 @@ class ImagePreviewer(object):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode, QString), "'{0}' Attribute : '{1}' Type Is Not 'str', 'unicode' or 'QString' !".format("imagePath", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' Image File Doesn't Exists !".format("imagePath", value)
+			assert type(value) in (str, unicode, QString), "'{0}' Attribute: '{1}' Type Is Not 'str', 'unicode' or 'QString'!".format("imagePath", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' Image File Doesn't Exists!".format("imagePath", value)
 		self._imagePath = value
 
 	@imagePath.deleter
@@ -274,7 +274,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _imagePath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("imagePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePath"))
 
 	@property
 	def uiPath(self):
@@ -295,7 +295,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -304,7 +304,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -325,7 +325,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -334,7 +334,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiZoomInIcon(self):
@@ -355,7 +355,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInIcon"))
 
 	@uiZoomInIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -364,7 +364,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _uiZoomInIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInIcon"))
 
 	@property
 	def uiZoomOutIcon(self):
@@ -385,7 +385,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomOutIcon"))
 
 	@uiZoomOutIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -394,7 +394,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _uiZoomOutIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomOutIcon"))
 
 	@property
 	def ui(self):
@@ -415,7 +415,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ui"))
 
 	@ui.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -424,7 +424,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _ui Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	@property
 	def graphicsSceneBackgroundColors(self):
@@ -445,7 +445,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( QColors )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("graphicsSceneBackgroundColors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneBackgroundColors"))
 
 	@graphicsSceneBackgroundColors.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -454,7 +454,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _graphicsSceneBackgroundColors Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("graphicsSceneBackgroundColors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneBackgroundColors"))
 
 	@property
 	def graphicsSceneMargin(self):
@@ -475,7 +475,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("graphicsSceneMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneMargin"))
 
 	@graphicsSceneMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -484,7 +484,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _graphicsSceneMargin Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("graphicsSceneMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneMargin"))
 
 	@property
 	def graphicsSceneWidth(self):
@@ -505,7 +505,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("graphicsSceneWidth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneWidth"))
 
 	@graphicsSceneWidth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -514,7 +514,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _graphicsSceneWidth Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("graphicsSceneWidth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneWidth"))
 
 	@property
 	def graphicsSceneHeight(self):
@@ -535,7 +535,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("graphicsSceneHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneHeight"))
 
 	@graphicsSceneHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -544,7 +544,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _graphicsSceneHeight Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("graphicsSceneHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneHeight"))
 
 	@property
 	def minimumZoomFactor(self):
@@ -565,7 +565,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Float )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("minimumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("minimumZoomFactor"))
 
 	@minimumZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -574,7 +574,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _minimumZoomFactor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("minimumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("minimumZoomFactor"))
 
 	@property
 	def maximumZoomFactor(self):
@@ -595,7 +595,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Float )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("maximumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("maximumZoomFactor"))
 
 	@maximumZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -604,7 +604,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _maximumZoomFactor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("maximumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("maximumZoomFactor"))
 
 	@property
 	def wheelZoomFactor(self):
@@ -625,7 +625,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Float )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("wheelZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("wheelZoomFactor"))
 
 	@wheelZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -634,7 +634,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _wheelZoomFactor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("wheelZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("wheelZoomFactor"))
 
 	@property
 	def keyZoomFactor(self):
@@ -655,7 +655,7 @@ class ImagePreviewer(object):
 		@param value: Attribute Value. ( Float )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("keyZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("keyZoomFactor"))
 
 	@keyZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -664,7 +664,7 @@ class ImagePreviewer(object):
 		This Method Is The Deleter Method For The _keyZoomFactor Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("keyZoomFactor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("keyZoomFactor"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -751,7 +751,7 @@ class ImagePreviewer(object):
 		'''
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.scaleView(self._keyZoomFactor)
@@ -761,7 +761,7 @@ class ImagePreviewer(object):
 		'''
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
 
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.scaleView(1 / self._keyZoomFactor)
@@ -878,7 +878,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -887,7 +887,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -908,7 +908,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -917,7 +917,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def container(self):
@@ -938,7 +938,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -947,7 +947,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
@@ -968,7 +968,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -977,7 +977,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
@@ -998,7 +998,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1007,7 +1007,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _settingsSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
@@ -1028,7 +1028,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1037,7 +1037,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -1058,7 +1058,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1067,7 +1067,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def imagePreviewers(self):
@@ -1088,7 +1088,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("imagePreviewers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("imagePreviewers"))
 
 	@imagePreviewers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1097,7 +1097,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _imagePreviewers Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("imagePreviewers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePreviewers"))
 
 	@property
 	def maximumImagePreviewersInstances(self):
@@ -1118,7 +1118,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("maximumImagePreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("maximumImagePreviewersInstances"))
 
 	@maximumImagePreviewersInstances.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1127,7 +1127,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _maximumImagePreviewersInstances Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("maximumImagePreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("maximumImagePreviewersInstances"))
 
 	@property
 	def previewBackgroundImageAction(self):
@@ -1148,7 +1148,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("previewBackgroundImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewBackgroundImageAction"))
 
 	@previewBackgroundImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1157,7 +1157,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _previewBackgroundImageAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("previewBackgroundImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewBackgroundImageAction"))
 
 	@property
 	def previewLightingImageAction(self):
@@ -1178,7 +1178,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("previewLightingImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewLightingImageAction"))
 
 	@previewLightingImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1187,7 +1187,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _previewLightingImageAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("previewLightingImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewLightingImageAction"))
 
 	@property
 	def previewReflectionImageAction(self):
@@ -1208,7 +1208,7 @@ class Preview(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("previewReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewReflectionImageAction"))
 
 	@previewReflectionImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1217,7 +1217,7 @@ class Preview(UiComponent):
 		This Method Is The Deleter Method For The _previewReflectionImageAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("previewReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewReflectionImageAction"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1403,12 +1403,12 @@ class Preview(UiComponent):
 		'''
 		This Method Is Called When Custom_Previewer_Path_toolButton Is Clicked.
 
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		customPreviewerExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Previewer Executable :", self._container.lastBrowsedPath))
+		customPreviewerExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Previewer Executable:", self._container.lastBrowsedPath))
 		if customPreviewerExecutable != "":
-			LOGGER.debug("> Chosen Custom Previewer Executable : '{0}'.".format(customPreviewerExecutable))
+			LOGGER.debug("> Chosen Custom Previewer Executable: '{0}'.".format(customPreviewerExecutable))
 			self.ui.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))
 			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
@@ -1420,10 +1420,10 @@ class Preview(UiComponent):
 		'''
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Previewer_Path_lineEdit.text()))) and str(self.ui.Custom_Previewer_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences !")
+			LOGGER.debug("> Restoring Preferences!")
 			self.Custom_Previewer_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid Custom Previewer Executable File !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid Custom Previewer Executable File!".format(self.__class__.__name__)
 		else:
 			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
@@ -1460,19 +1460,19 @@ class Preview(UiComponent):
 								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
 								previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, imagePath)
 						if previewCommand:
-							LOGGER.debug("> Current Image Preview Command : '{0}'.".format(previewCommand))
+							LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
 							editProcess = QProcess()
 							editProcess.startDetached(previewCommand)
 					else:
 						if not len(self._imagePreviewers) >= self._maximumImagePreviewersInstances:
 							self.launchImagePreviewer(imagePath)
 						else:
-							messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time !".format(self.__class__.__name__, self._maximumImagePreviewersInstances))
+							messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self._maximumImagePreviewersInstances))
 							break
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped !".format(self.__class__.__name__, imagePath))
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, imagePath))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped !".format(self.__class__.__name__, iblSet._datas.title, imageType))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped!".format(self.__class__.__name__, iblSet._datas.title, imageType))
 
 	@core.executionTrace
 	def launchImagePreviewer(self, imagePath):

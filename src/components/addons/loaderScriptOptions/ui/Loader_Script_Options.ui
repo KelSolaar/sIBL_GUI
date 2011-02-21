@@ -22,7 +22,7 @@
         </rect>
        </property>
        <property name="statusTip">
-        <string>Common Attributes : Common Attributes Settings Of The Loader Script.</string>
+        <string>Common Attributes: Common Attributes Settings Of The Loader Script.</string>
        </property>
        <attribute name="label">
         <string>Common Attributes</string>
@@ -56,7 +56,7 @@
         </rect>
        </property>
        <property name="statusTip">
-        <string>Additional Attributes : Additional Attributes Settings Of The Loader Script.</string>
+        <string>Additional Attributes: Additional Attributes Settings Of The Loader Script.</string>
        </property>
        <attribute name="label">
         <string>Additional Attributes</string>

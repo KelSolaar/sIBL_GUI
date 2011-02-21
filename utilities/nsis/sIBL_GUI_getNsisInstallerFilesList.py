@@ -4,9 +4,9 @@ This Script Generates 2 Lists Of NSIS Commands (Install & Uninstall)For All File
 Usage:
 	sIBL_Generate_NSIS_Installed_Files.py  <Source Directory> <Installation List Name> <UnInstallation List Name>
 Where
-	<Source Directory>		   : Source Directory.
-	<Installation List Name>	 : List Of Files To Install. (NSIS Syntax)
-	<UnInstallation List Name>   : List Of Files To Uninstall. (NSIS Syntax)
+	<Source Directory>		 : Source Directory.
+	<Installation List Name>	: List Of Files To Install. (NSIS Syntax)
+	<UnInstallation List Name> : List Of Files To Uninstall. (NSIS Syntax)
 """
 
 import sys, os, glob
@@ -33,7 +33,7 @@ def open_file_for_writting(filename):
 	try:
 		h = file(filename, "w")
 	except:
-		print "Problem Opening File %s For Writting !" % filename
+		print "Problem Opening File %s For Writting!" % filename
 		print __doc__
 		sys.exit(1)
 	return h
@@ -80,7 +80,7 @@ def my_visitor(my_stack, cur_dir, files_and_dirs):
 
 os.path.walk(source_dir, my_visitor, stack_of_visited)
 ih.close()
-print "Install List Done !"
+print "Install List Done!"
 print "  ", counter_files, "Files In", counter_dirs, "Directories"
 
 stack_of_visited.reverse()
@@ -98,4 +98,4 @@ print >> uh, "  RMDir \"$INSTDIR\\\""
 
 # now close everything
 uh.close()
-print "Uninstall List Done !\n"
+print "Uninstall List Done!\n"

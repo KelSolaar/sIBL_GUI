@@ -123,8 +123,8 @@ class RotatingBackup(object):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("source", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("source", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("source", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("source", value)
 		self._source = value
 
 	@source.deleter
@@ -134,7 +134,7 @@ class RotatingBackup(object):
 		This Method Is The Deleter Method For The _source Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("source"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("source"))
 
 	@property
 	def destination(self):
@@ -156,7 +156,7 @@ class RotatingBackup(object):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("destination", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("destination", value)
 		self._destination = value
 
 	@destination.deleter
@@ -166,7 +166,7 @@ class RotatingBackup(object):
 		This Method Is The Deleter Method For The _destination Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("destination"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("destination"))
 
 	@property
 	def count(self):
@@ -188,9 +188,9 @@ class RotatingBackup(object):
 		'''
 
 		if value:
-			assert type(value) in (int, float), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format("count", value)
-			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("count", value)
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("count"))
+			assert type(value) in (int, float), "'{0}' Attribute: '{1}' Type Is Not 'int' or 'float'!".format("count", value)
+			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("count", value)
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("count"))
 
 	@count.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -199,7 +199,7 @@ class RotatingBackup(object):
 		This Method Is The Deleter Method For The _count Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("count"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("count"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -311,7 +311,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -320,7 +320,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDb(self):
@@ -341,7 +341,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -350,7 +350,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def databaseFile(self):
@@ -371,7 +371,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("databaseFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("databaseFile"))
 
 	@databaseFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -380,7 +380,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _databaseFile Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("databaseFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("databaseFile"))
 
 	@property
 	def destination(self):
@@ -401,7 +401,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("destination"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("destination"))
 
 	@destination.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -410,7 +410,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _destination Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("destination"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("destination"))
 
 	@property
 	def backupDirectory(self):
@@ -431,7 +431,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("backupDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("backupDirectory"))
 
 	@backupDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -440,7 +440,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _backupDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("backupDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("backupDirectory"))
 
 	@property
 	def count(self):
@@ -461,7 +461,7 @@ class DatabaseBackup(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("count"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("count"))
 
 	@count.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -470,7 +470,7 @@ class DatabaseBackup(Component):
 		This Method Is The Deleter Method For The _count Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("count"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("count"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -540,7 +540,7 @@ class DatabaseBackup(Component):
 
 			self.rotatingBackup()
 		else:
-			LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def rotatingBackup(self):
@@ -548,7 +548,7 @@ class DatabaseBackup(Component):
 		This Method Launchs The Database Backup.
 		'''
 
-		LOGGER.info("{0} | Backing Up '{1}' Database To '{2}' !".format(self.__class__.__name__, Constants.databaseFile, self._destination))
+		LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, self._destination))
 
 		rotatingBackup = RotatingBackup(self._databaseFile, self._destination, self._count)
 		rotatingBackup.backup()

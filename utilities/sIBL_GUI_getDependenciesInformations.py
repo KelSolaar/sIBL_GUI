@@ -80,9 +80,9 @@ DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 #***********************************************************************************************
 def getDependenciesInformations():
 	content = ["[Dependencies]\n"]
-	for dependency, path in DEPENDENCIES.items() :
+	for dependency, path in DEPENDENCIES.items():
 		release = subprocess.Popen("cd {0} && /opt/local/bin/git describe".format(path), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
-		LOGGER.info("{0} | '{1}' : '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
+		LOGGER.info("{0} | '{1}': '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
 		content.append("{0}={1}".format(dependency, release))
 	file = File(DEPENDENCIES_FILE)
 	file.content = content
