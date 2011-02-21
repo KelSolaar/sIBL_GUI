@@ -60,7 +60,6 @@ import os
 import platform
 import re
 import socket
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 

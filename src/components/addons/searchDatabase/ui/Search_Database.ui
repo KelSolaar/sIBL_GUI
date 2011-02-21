@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>310</width>
-    <height>348</height>
+    <width>364</width>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,8 +25,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>286</width>
-         <height>230</height>
+         <width>340</width>
+         <height>384</height>
         </rect>
        </property>
        <attribute name="label">
@@ -39,21 +39,45 @@
            <string/>
           </property>
           <layout class="QGridLayout" name="Search_groupBox_gridLayout">
-           <item row="0" column="0" colspan="2">
+           <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="Search_Database_comboBox">
              <property name="statusTip">
               <string>Search Database Combo Box : Database Fields Types.</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLineEdit" name="Search_Database_lineEdit">
-             <property name="statusTip">
-              <string>Search Database Line Edit : Searches Input Text Through The Database.</string>
+           <item row="2" column="0" colspan="4">
+            <widget class="QGroupBox" name="Tags_Cloud_groupBox">
+             <property name="title">
+              <string>Tags Cloud</string>
              </property>
+             <layout class="QGridLayout" name="Tags_Cloud_groupBox_gridLayout">
+              <item row="0" column="0">
+               <widget class="QListWidget" name="Tags_Cloud_listWidget">
+                <property name="statusTip">
+                 <string>Tags Cloud List Widget : Displays Current Collection Ibl Sets Tags Cloud.</string>
+                </property>
+                <property name="movement">
+                 <enum>QListView::Static</enum>
+                </property>
+                <property name="resizeMode">
+                 <enum>QListView::Adjust</enum>
+                </property>
+                <property name="viewMode">
+                 <enum>QListView::IconMode</enum>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="1" column="1" colspan="3">
+            <layout class="QHBoxLayout" name="Search_Database_horizontalLayout"/>
+           </item>
+           <item row="1" column="0">
             <widget class="QLabel" name="Search_Database_label">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -140,8 +164,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>268</width>
-         <height>95</height>
+         <width>340</width>
+         <height>384</height>
         </rect>
        </property>
        <attribute name="label">

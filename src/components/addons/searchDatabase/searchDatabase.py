@@ -58,7 +58,6 @@
 import logging
 import os
 import re
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -70,9 +69,9 @@ import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
+from ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #***********************************************************************************************
 #***	Global Variables
@@ -106,7 +105,10 @@ class SearchDatabase(UiComponent):
 		self._uiPath = "ui/Search_Database.ui"
 		self._uiResources = "resources"
 		self._uiSearchIcon = "Search_Icon.png"
+		self._uiClearIcon = "Clear_Icon.png"
+		self._uiClearClickedIcon = "Clear_Clicked_Icon.png"
 		self._dockArea = 2
+		self._tagsCloudListWidgetSpacing = 4
 
 		self._container = None
 
@@ -116,15 +118,15 @@ class SearchDatabase(UiComponent):
 		self._completer = None
 		self._completerVisibleItemsCount = 16
 
-		self._cloudTagsField = "In Cloud Tags"
+		self._tagsCloudField = "In Tags Cloud "
 		self._databaseFields = (("In Names", "title"),
 								("In Authors", "author"),
 								("In Links", "link"),
 								("In Locations", "location"),
 								("In Comments", "comment"),
-								(self._cloudTagsField, "comment"),)
+								(self._tagsCloudField, "comment"),)
 
-		self._cloudExcludedTags = ("^a$", "^and$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
+		self._cloudExcludedTags = ("^a$", "^and$", "^by$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -220,6 +222,66 @@ class SearchDatabase(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiSearchIcon"))
 
 	@property
+	def uiClearIcon(self):
+		'''
+		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+
+		@return: self._uiLargestSizeIcon. ( String )
+		'''
+
+		return self._uiLargestSizeIcon
+
+	@uiClearIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearIcon(self, value):
+		'''
+		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearIcon"))
+
+	@uiClearIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearIcon(self):
+		'''
+		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearIcon"))
+
+	@property
+	def uiClearClickedIcon(self):
+		'''
+		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+
+		@return: self._uiLargestSizeIcon. ( String )
+		'''
+
+		return self._uiLargestSizeIcon
+
+	@uiClearClickedIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedIcon(self, value):
+		'''
+		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearClickedIcon"))
+
+	@uiClearClickedIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedIcon(self):
+		'''
+		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearClickedIcon"))
+
+	@property
 	def dockArea(self):
 		'''
 		This Method Is The Property For The _dockArea Attribute.
@@ -248,6 +310,36 @@ class SearchDatabase(UiComponent):
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+
+	@property
+	def tagsCloudListWidgetSpacing(self):
+		'''
+		This Method Is The Property For The _tagsCloudListWidgetSpacing Attribute.
+
+		@return: self._tagsCloudListWidgetSpacing. ( Integer )
+		'''
+
+		return self._tagsCloudListWidgetSpacing
+
+	@tagsCloudListWidgetSpacing.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def tagsCloudListWidgetSpacing(self, value):
+		'''
+		This Method Is The Setter Method For The _tagsCloudListWidgetSpacing Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tagsCloudListWidgetSpacing"))
+
+	@tagsCloudListWidgetSpacing.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def tagsCloudListWidgetSpacing(self):
+		'''
+		This Method Is The Deleter Method For The _tagsCloudListWidgetSpacing Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tagsCloudListWidgetSpacing"))
 
 	@property
 	def container(self):
@@ -430,34 +522,34 @@ class SearchDatabase(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completerVisibleItemsCount"))
 
 	@property
-	def cloudTagsField(self):
+	def tagsCloudField(self):
 		'''
-		This Method Is The Property For The _cloudTagsField Attribute.
+		This Method Is The Property For The _tagsCloudField Attribute.
 
-		@return: self._cloudTagsField. ( String )
+		@return: self._tagsCloudField. ( String )
 		'''
 
-		return self._cloudTagsField
+		return self._tagsCloudField
 
-	@cloudTagsField.setter
+	@tagsCloudField.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def cloudTagsField(self, value):
+	def tagsCloudField(self, value):
 		'''
-		This Method Is The Setter Method For The _cloudTagsField Attribute.
+		This Method Is The Setter Method For The _tagsCloudField Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudTagsField"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tagsCloudField"))
 
-	@cloudTagsField.deleter
+	@tagsCloudField.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def cloudTagsField(self):
+	def tagsCloudField(self):
 		'''
-		This Method Is The Deleter Method For The _cloudTagsField Attribute.
+		This Method Is The Deleter Method For The _tagsCloudField Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("cloudTagsField"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tagsCloudField"))
 
 	@property
 	def databaseFields(self):
@@ -494,7 +586,7 @@ class SearchDatabase(UiComponent):
 		'''
 		This Method Is The Property For The _cloudExcludedTags Attribute.
 
-		@return: self._cloudExcludedTags. ( String )
+		@return: self._cloudExcludedTags. ( List )
 		'''
 
 		return self._cloudExcludedTags
@@ -505,7 +597,7 @@ class SearchDatabase(UiComponent):
 		'''
 		This Method Is The Setter Method For The _cloudExcludedTags Attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute Value. ( List )
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudExcludedTags"))
@@ -569,6 +661,12 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
+		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self._uiResources, self._uiClearIcon), os.path.join(self._uiResources, self._uiClearClickedIcon))
+		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
+		self.ui.Tags_Cloud_groupBox.hide()
+		self.ui.Tags_Cloud_listWidget.setSpacing(self._tagsCloudListWidgetSpacing)
+		self.ui.Tags_Cloud_listWidget.setStyleSheet("QListView { background: rgb(240, 240, 240) }\nQListView::item { background: rgb(224, 224, 224) }")
+
 		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchIcon)))
 		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self._databaseFields])
 
@@ -584,6 +682,7 @@ class SearchDatabase(UiComponent):
 		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
 		self.ui.Time_Low_timeEdit.timeChanged.connect(self.Time_Low_timeEdit_OnTimeChanged)
 		self.ui.Time_High_timeEdit.timeChanged.connect(self.Time_High_timeEdit_OnTimeChanged)
+		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.Tags_Cloud_listWidget_OnDoubleClicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -593,14 +692,15 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._completer = None
-
 		# Signals / Slots.
 		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.Search_Database_lineEdit_OnTextChanged)
 		self.ui.Search_Database_comboBox.activated.disconnect(self.Search_Database_comboBox_OnActivated)
 		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
 		self.ui.Time_Low_timeEdit.timeChanged.disconnect(self.Time_Low_timeEdit_OnTimeChanged)
 		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.Time_High_timeEdit_OnTimeChanged)
+		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.Tags_Cloud_listWidget_OnDoubleClicked)
+
+		self._completer = None
 
 	@core.executionTrace
 	def addWidget(self):
@@ -641,6 +741,10 @@ class SearchDatabase(UiComponent):
 		@param index: ComboBox Activated Item Index. ( Integer )
 		'''
 
+		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField :
+			self.ui.Tags_Cloud_groupBox.show()
+		else :
+			self.ui.Tags_Cloud_groupBox.hide()
 		self.setSearchMatchingSets()
 
 	@core.executionTrace
@@ -674,6 +778,16 @@ class SearchDatabase(UiComponent):
 
 		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime(self.ui.Time_Low_timeEdit.time().addSecs(60))
 		self.setTimeMatchingSets()
+
+	@core.executionTrace
+	def Tags_Cloud_listWidget_OnDoubleClicked(self, listWidgetItem):
+		'''
+		This Method Is Triggered When Tags_Cloud_listWidget Is Double Clicked.
+		
+		@param listWidgetItem:  List Widget Item. ( QlistWidgetItem )
+		'''
+
+		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
 	def setTimeMatchingSets(self):
@@ -719,22 +833,27 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
-		if self.ui.Search_Database_comboBox.currentText() == self._cloudTagsField :
+		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField :
 			self._completer.setModel(QStringListModel())
 			patternTokens = pattern.split()
 			patternTokens = patternTokens and patternTokens or (".*",)
 			filteredSets = []
+			allTags = []
 			for iblSet in self._coreCollectionsOutliner.getCollectionsSets():
-				cloudTags = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
+				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
 				patternsMatched = True
 				for pattern in patternTokens :
 					patternMatched = False
-					for tag in cloudTags :
+					for tag in tagsCloud :
 						if re.search(pattern, tag, flags=flags):
 							patternMatched = True
 							break
 					patternsMatched *= patternMatched
-				patternsMatched and filteredSets.append(iblSet)
+				if patternsMatched :
+					allTags.extend((tag.lower() for tag in tagsCloud))
+					filteredSets.append(iblSet)
+			self.ui.Tags_Cloud_listWidget.clear()
+			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags)))
 			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
 		else :
 			try:

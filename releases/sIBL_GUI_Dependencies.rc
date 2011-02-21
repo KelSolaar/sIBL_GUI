@@ -1,4 +1,4 @@
 [Dependencies]
-Foundations=v1.0.1-5-g2e4397d
-Manager=v1.0.0-7-g537e631
-sIBL_GUI_Templates=v1.0.0
+Foundations=v1.0.2
+Manager=v1.0.1
+sIBL_GUI_Templates=v1.0.2

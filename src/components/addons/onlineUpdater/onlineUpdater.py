@@ -58,7 +58,6 @@
 import logging
 import os
 import platform
-import re
 import sys
 from PyQt4 import uic
 from PyQt4.QtCore import *
@@ -74,7 +73,6 @@ import foundations.exceptions
 import foundations.strings as strings
 import ui.common
 import ui.widgets.messageBox as messageBox
-from foundations.io import File
 from foundations.parser import Parser
 from foundations.pkzip import Pkzip
 from globals.constants import Constants
