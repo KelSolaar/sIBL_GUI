@@ -1,1 +1,1 @@
-hiddenimports = ["foundations.strings", "foundations.pkzip", "ui.widgets.variable_QPushButton", "libraries.freeImage.freeImage", "sqlalchemy", "sqlalchemy.orm", "sqlalchemy.ext", "sqlalchemy.ext.declarative", "PyQt4.QtNetwork", "PyQt4.QtWebKit", "win32com.client" ]
+hiddenimports = ["foundations.pkzip", "foundations.strings", "libraries.freeImage.freeImage", "ui.widgets.search_QLineEdit", "ui.widgets.variable_QPushButton", "PyQt4.QtNetwork", "PyQt4.QtWebKit", "sqlalchemy.ext", "sqlalchemy.ext.declarative", "sqlalchemy", "sqlalchemy.orm", "win32com.client" ]

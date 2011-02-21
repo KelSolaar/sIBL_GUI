@@ -7,7 +7,8 @@ h3. 3.1.2 - Stable
 * Fixed issues with the "Search Database" component and empty Ibl Set attributes.
 * Added new "In Tags Cloud" option to the "Search Database" component. It's now possible to search for multiples keywords in any order either by typing them in the "Search Database" widget or select them in the "Tags Cloud" widget.
 * "Search Database" widget now has a button to clear the current search.
-* Implement units tests on sIBL_GUI foundations and manager packages.
+* Implement units tests on sIBL_GUI "foundations", "manager" and "globals" packages.
+* Extracted multiple packages to new repositories for better code reusability.
 
 h3. 3.1.1 - Stable
 
@@ -21,7 +22,6 @@ h3. 3.1.0 - Stable
 * Added "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
 * Added support for Templates enums : "lightType = @lightType | Area;Directional;Spot | Enum | Light Type".
 * Fixed an inconsistency related to the comments in the file parser. 
-* Added support for Templates enums : "lightType = @lightType | Area;Directional;Spot | Enum | Light Type"
 * Help files stored on network are now properly opened on Windows.
 * Modified Ibl Sets now refresh properly within the current session.
 * Added a new fancy splashscreen image thanks to Bob Groothuis.

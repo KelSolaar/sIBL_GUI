@@ -4,16 +4,16 @@ Name sIBL_GUI
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 3.1.2
 !define COMPANY "HDRLabs"
-!define URL http://www.thomasmansencal.com/blog/
+!define URL http://www.thomasmansencal.com/
 
 # MUI Symbol Definitions
-!define MUI_ICON "Z:\sIBL_GUI\src\resources\Icon_Light.ico"
+!define MUI_ICON "..\..\src\resources\Icon_Light.ico"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER sIBL_GUI
-!define MUI_UNICON "Z:\sIBL_GUI\src\resources\Icon_Light.ico"
+!define MUI_UNICON "..\..\src\resources\Icon_Light.ico"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -61,7 +61,7 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    !include  "Z:\sIBL_GUI\utilities\NSIS\sIBL_GUI_Installed_Files.nsh"
+    !include  "sIBL_GUI_Installed_Files.nsh"
     WriteRegStr HKLM "${REGKEY}\Components" Main 1
 SectionEnd
 
@@ -102,7 +102,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    !include  "Z:\sIBL_GUI\utilities\NSIS\sIBL_GUI_Uninstalled_Files.nsh"
+    !include  "sIBL_GUI_Uninstalled_Files.nsh"
     DeleteRegValue HKLM "${REGKEY}\Components" Main
 SectionEnd
 
