@@ -145,7 +145,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -154,7 +154,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def container(self):
@@ -175,7 +175,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -184,7 +184,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
@@ -205,7 +205,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -214,7 +214,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
@@ -235,7 +235,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -244,7 +244,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _settingsSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
 	def coreComponentsManagerUi(self):
@@ -265,7 +265,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreComponentsManagerUi"))
 
 	@coreComponentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -274,7 +274,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _coreComponentsManagerUi Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreComponentsManagerUi"))
 
 	@property
 	def corePreferencesManager(self):
@@ -295,7 +295,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -304,7 +304,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -325,7 +325,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -334,7 +334,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -355,7 +355,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -364,7 +364,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def addonsLoaderScript(self):
@@ -385,7 +385,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("addonsLoaderScript"))
 
 	@addonsLoaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -394,7 +394,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _addonsLoaderScript Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("addonsLoaderScript"))
 
 	@property
 	def openIblSetsLocationsAction(self):
@@ -415,7 +415,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("openIblSetsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openIblSetsLocationsAction"))
 
 	@openIblSetsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -424,7 +424,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _openIblSetsLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("openIblSetsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openIblSetsLocationsAction"))
 
 	@property
 	def openComponentsLocationsAction(self):
@@ -445,7 +445,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("openComponentsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openComponentsLocationsAction"))
 
 	@openComponentsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -454,7 +454,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _openComponentsLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("openComponentsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openComponentsLocationsAction"))
 
 	@property
 	def openTemplatesLocationsAction(self):
@@ -475,7 +475,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("openTemplatesLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openTemplatesLocationsAction"))
 
 	@openTemplatesLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -484,7 +484,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _openTemplatesLocationsAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("openTemplatesLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openTemplatesLocationsAction"))
 
 	@property
 	def Open_Output_Folder_pushButton(self):
@@ -505,7 +505,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QPushButton )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("Open_Output_Folder_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Open_Output_Folder_pushButton"))
 
 	@Open_Output_Folder_pushButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -514,7 +514,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _Open_Output_Folder_pushButton Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("Open_Output_Folder_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Open_Output_Folder_pushButton"))
 
 	@property
 	def linuxBrowsers(self):
@@ -535,7 +535,7 @@ class LocationsBrowser(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("linuxBrowsers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("linuxBrowsers"))
 
 	@linuxBrowsers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -544,7 +544,7 @@ class LocationsBrowser(UiComponent):
 		This Method Is The Deleter Method For The _linuxBrowsers Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("linuxBrowsers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("linuxBrowsers"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -750,12 +750,12 @@ class LocationsBrowser(UiComponent):
 		'''
 		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable :", self._container.lastBrowsedPath))
+		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self._container.lastBrowsedPath))
 		if customTextEditorExecutable != "":
-			LOGGER.debug("> Chosen Custom File Browser Executable : '{0}'.".format(customTextEditorExecutable))
+			LOGGER.debug("> Chosen Custom File Browser Executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customTextEditorExecutable))
 			self._settings.setKey(self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
@@ -767,10 +767,10 @@ class LocationsBrowser(UiComponent):
 		'''
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_File_Browser_Path_lineEdit.text()))) and str(self.ui.Custom_File_Browser_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences !")
+			LOGGER.debug("> Restoring Preferences!")
 			self.Custom_File_Browser_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File!".format(self.__class__.__name__)
 		else:
 			self._settings.setKey(self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
@@ -780,14 +780,14 @@ class LocationsBrowser(UiComponent):
 		'''
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		if self._container.parameters.loaderScriptsOutputDirectory:
 			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
 				self.exploreProvidedFolder(self._container.parameters.loaderScriptsOutputDirectory)
 			else:
-				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
 		else:
 			self.exploreProvidedFolder(self._addonsLoaderScript.ioDirectory)
 
@@ -841,11 +841,11 @@ class LocationsBrowser(UiComponent):
 						break
 
 		if browserCommand:
-			LOGGER.debug("> Current Browser Command : '{0}'.".format(browserCommand))
+			LOGGER.debug("> Current Browser Command: '{0}'.".format(browserCommand))
 			browserProcess = QProcess()
 			browserProcess.startDetached(browserCommand)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Browser Executable In The Preferences !".format(self.__class__.__name__))
+			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Browser Executable In The Preferences!".format(self.__class__.__name__))
 
 #***********************************************************************************************
 #***	Python End

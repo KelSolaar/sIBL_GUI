@@ -129,7 +129,7 @@ class Db(Component):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -138,7 +138,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def dbName(self):
@@ -159,7 +159,7 @@ class Db(Component):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dbName"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbName"))
 
 	@dbName.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -168,7 +168,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _dbName Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dbName"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbName"))
 
 	@property
 	def dbEngine(self):
@@ -189,7 +189,7 @@ class Db(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dbEngine"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbEngine"))
 
 	@dbEngine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -198,7 +198,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _dbEngine Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dbEngine"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbEngine"))
 
 	@property
 	def dbCatalog(self):
@@ -219,7 +219,7 @@ class Db(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dbCatalog"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbCatalog"))
 
 	@dbCatalog.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -228,7 +228,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _dbCatalog Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dbCatalog"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbCatalog"))
 
 	@property
 	def dbSession(self):
@@ -249,7 +249,7 @@ class Db(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -258,7 +258,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _dbSession Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSession"))
 
 	@property
 	def dbSessionMaker(self):
@@ -279,7 +279,7 @@ class Db(Component):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dbSessionMaker"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSessionMaker"))
 
 	@dbSessionMaker.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -288,7 +288,7 @@ class Db(Component):
 		This Method Is The Deleter Method For The _dbSessionMaker Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dbSessionMaker"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSessionMaker"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -313,7 +313,7 @@ class Db(Component):
 		This Method Deactivates The Component.
 		'''
 
-		messageBox.messageBox("Warning", "Warning", "{0} Component Cannot Be Deactivated !".format(self.__class__.__name__))
+		messageBox.messageBox("Warning", "Warning", "{0} Component Cannot Be Deactivated!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiSystemExitExceptionHandler, False, OSError, Exception)
@@ -329,11 +329,11 @@ class Db(Component):
 			if os.path.exists(self._container.parameters.databaseDirectory):
 				self._dbName = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseFile)
 			else:
-				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close !".format(self._container.parameters.databaseDirectory, Constants.applicationName)
+				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close!".format(self._container.parameters.databaseDirectory, Constants.applicationName)
 		else:
 			self._dbName = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 
-		LOGGER.info("{0} | Session Database Location : '{1}'".format(self.__class__.__name__, self._dbName))
+		LOGGER.info("{0} | Session Database Location: '{1}'".format(self.__class__.__name__, self._dbName))
 
 		LOGGER.debug("> Creating Database Engine.")
 		self._dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(self._dbName))
@@ -354,7 +354,7 @@ class Db(Component):
 		This Method Uninitializes The Component.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Uninitialized !".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Uninitialized!".format(self.name))
 
 #***********************************************************************************************
 #***	Python End

@@ -16,7 +16,7 @@
        </size>
       </property>
       <property name="statusTip">
-       <string>Logging Text Edit : Displays Verbose Stack.</string>
+       <string>Logging Text Edit: Displays Verbose Stack.</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>

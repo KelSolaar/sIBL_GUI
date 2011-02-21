@@ -122,8 +122,8 @@ class Delayed_QSplashScreen(QSplashScreen):
 		'''
 
 		if value:
-			assert type(value) in (int, float), "'{0}' Attribute : '{1}' Type Is Not 'int' or 'float' !".format("waitTime", value)
-			assert value > 0, "'{0}' Attribute : '{1}' Need To Be Exactly Positive !".format("waitTime", value)
+			assert type(value) in (int, float), "'{0}' Attribute: '{1}' Type Is Not 'int' or 'float'!".format("waitTime", value)
+			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("waitTime", value)
 		self._waitTime = value
 
 	@waitTime.deleter
@@ -133,7 +133,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		This Method Is The Deleter Method For The _waitTime Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("waitTime"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("waitTime"))
 
 	#***************************************************************************************
 	#***	Class Methods

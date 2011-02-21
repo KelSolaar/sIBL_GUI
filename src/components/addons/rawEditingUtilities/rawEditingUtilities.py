@@ -139,7 +139,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -148,7 +148,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def container(self):
@@ -169,7 +169,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -178,7 +178,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
@@ -199,7 +199,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( QSettings )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -208,7 +208,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _settings Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
@@ -229,7 +229,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -238,7 +238,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _settingsSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
@@ -259,7 +259,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -268,7 +268,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -289,7 +289,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -298,7 +298,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -319,7 +319,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -328,7 +328,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def editSetInTextEditorAction(self):
@@ -349,7 +349,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("editSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editSetInTextEditorAction"))
 
 	@editSetInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -358,7 +358,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _editSetInTextEditorAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("editSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editSetInTextEditorAction"))
 
 	@property
 	def editTemplateInTextEditorAction(self):
@@ -379,7 +379,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( QAction )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("editTemplateInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editTemplateInTextEditorAction"))
 
 	@editTemplateInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -388,7 +388,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _editTemplateInTextEditorAction Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("editTemplateInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editTemplateInTextEditorAction"))
 
 	@property
 	def linuxTextEditors(self):
@@ -409,7 +409,7 @@ class RawEditingUtilities(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("linuxTextEditors"))
 
 	@linuxTextEditors.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -418,7 +418,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Is The Deleter Method For The _linuxTextEditors Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("linuxTextEditors"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -531,7 +531,7 @@ class RawEditingUtilities(UiComponent):
 			self._editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editSetInTextEditorAction)
 			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._editTemplateInTextEditorAction)
 		else:
-			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -588,12 +588,12 @@ class RawEditingUtilities(UiComponent):
 		'''
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Text Editor Executable :", self._container.lastBrowsedPath))
+		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", self._container.lastBrowsedPath))
 		if customTextEditorExecutable != "":
-			LOGGER.debug("> Chosen Custom Text Editor Executable : '{0}'.".format(customTextEditorExecutable))
+			LOGGER.debug("> Chosen Custom Text Editor Executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))
 			self._settings.setKey(self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
@@ -605,10 +605,10 @@ class RawEditingUtilities(UiComponent):
 		'''
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.ui.Custom_Text_Editor_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences !")
+			LOGGER.debug("> Restoring Preferences!")
 			self.Custom_Text_Editor_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File!".format(self.__class__.__name__)
 		else:
 			self._settings.setKey(self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
@@ -661,11 +661,11 @@ class RawEditingUtilities(UiComponent):
 					else:
 						break
 		if editCommand:
-			LOGGER.debug("> Current Edit Command : '{0}'.".format(editCommand))
+			LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
 			editProcess = QProcess()
 			editProcess.startDetached(editCommand)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Text Editor Executable In The Preferences !".format(self.__class__.__name__))
+			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Text Editor Executable In The Preferences!".format(self.__class__.__name__))
 
 #***********************************************************************************************
 #***	Python End

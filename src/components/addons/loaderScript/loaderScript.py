@@ -152,7 +152,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -161,7 +161,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
@@ -182,7 +182,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -191,7 +191,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
@@ -212,7 +212,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -221,7 +221,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -242,7 +242,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -251,7 +251,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -272,7 +272,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -281,7 +281,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def ioDirectory(self):
@@ -302,7 +302,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ioDirectory"))
 
 	@ioDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -311,7 +311,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _ioDirectory Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ioDirectory"))
 
 	@property
 	def bindingIdentifierPattern(self):
@@ -332,7 +332,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("bindingIdentifierPattern"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("bindingIdentifierPattern"))
 
 	@bindingIdentifierPattern.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -341,7 +341,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _bindingIdentifierPattern Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("bindingIdentifierPattern"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bindingIdentifierPattern"))
 
 	@property
 	def templateScriptSection(self):
@@ -362,7 +362,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateScriptSection"))
 
 	@templateScriptSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -371,7 +371,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _templateScriptSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateScriptSection"))
 
 	@property
 	def templateIblAttributesSection(self):
@@ -392,7 +392,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("templateIblAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateIblAttributesSection"))
 
 	@templateIblAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -401,7 +401,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _templateIblAttributesSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("templateIblAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateIblAttributesSection"))
 
 	@property
 	def templateRemoteConnectionSection(self):
@@ -422,7 +422,7 @@ class LoaderScript(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("templateRemoteConnectionSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateRemoteConnectionSection"))
 
 	@templateRemoteConnectionSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -431,7 +431,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _templateRemoteConnectionSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("templateRemoteConnectionSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateRemoteConnectionSection"))
 
 	@property
 	def overrideKeys(self):
@@ -453,7 +453,7 @@ class LoaderScript(UiComponent):
 		'''
 
 		if value:
-			assert type(value) is dict, "'{0}' Attribute : '{1}' Type Is Not 'dict' !".format("sections", value)
+			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("sections", value)
 		self._overrideKeys = value
 
 	@overrideKeys.deleter
@@ -463,7 +463,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _overrideKeys Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("overrideKeys"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("overrideKeys"))
 
 	@property
 	def defaultStringSeparator(self):
@@ -485,9 +485,9 @@ class LoaderScript(UiComponent):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("defaultStringSeparator", value)
-			assert len(value) == 1, "'{0}' Attribute : '{1}' Has Multiples Characters !".format("defaultStringSeparator", value)
-			assert not re.search("\w", value), "'{0}' Attribute : '{1}' Is An AlphaNumeric Character !".format("defaultStringSeparator", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("defaultStringSeparator", value)
+			assert len(value) == 1, "'{0}' Attribute: '{1}' Has Multiples Characters!".format("defaultStringSeparator", value)
+			assert not re.search("\w", value), "'{0}' Attribute: '{1}' Is An AlphaNumeric Character!".format("defaultStringSeparator", value)
 		self._defaultStringSeparator = value
 
 	@defaultStringSeparator.deleter
@@ -497,7 +497,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _defaultStringSeparator Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("defaultStringSeparator"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultStringSeparator"))
 
 	@property
 	def unnamedLightName(self):
@@ -519,7 +519,7 @@ class LoaderScript(UiComponent):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("unnamedLightName", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("unnamedLightName", value)
 		self._unnamedLightName = value
 
 	@unnamedLightName.deleter
@@ -529,7 +529,7 @@ class LoaderScript(UiComponent):
 		This Method Is The Deleter Method For The _unnamedLightName Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("unnamedLightName"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("unnamedLightName"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -628,7 +628,7 @@ class LoaderScript(UiComponent):
 		'''
 		This Method Is Triggered When Output_Loader_Script_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.outputLoaderScript()
@@ -639,12 +639,12 @@ class LoaderScript(UiComponent):
 		'''
 		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		if self.outputLoaderScript():
 			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
-			LOGGER.info("{0} | Starting Remote Connection !".format(self.__class__.__name__))
+			LOGGER.info("{0} | Starting Remote Connection!".format(self.__class__.__name__))
 			templateParser = Parser(selectedTemplate._datas.path)
 			templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
@@ -654,14 +654,14 @@ class LoaderScript(UiComponent):
 					connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
 					socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self._templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
-					LOGGER.debug("> Current Socket Command : '%s'.", socketCommand)
+					LOGGER.debug("> Current Socket Command: '%s'.", socketCommand)
 					connection.send(socketCommand)
 					dataBack = connection.recv(8192)
-					LOGGER.debug("> Received Back From Application : '%s'", dataBack)
+					LOGGER.debug("> Received Back From Application: '%s'", dataBack)
 					connection.close()
-					LOGGER.info("{0} | Ending Remote Connection !".format(self.__class__.__name__))
+					LOGGER.info("{0} | Ending Remote Connection!".format(self.__class__.__name__))
 				except Exception as error:
-					raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error : '{1}' !".format(self.__class__.__name__, error)
+					raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error: '{1}'!".format(self.__class__.__name__, error)
 			elif connectionType.value == "Win32":
 				if platform.system() == "Windows" or platform.system() == "Microsoft":
 					try:
@@ -669,10 +669,10 @@ class LoaderScript(UiComponent):
 						connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self._templateRemoteConnectionSection)).value)
 						connection._FlagAsMethod(self._win32ExecutionMethod)
 						connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self._templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
-						LOGGER.debug("> Current Connection Command : '%s'.", connectionCommand)
+						LOGGER.debug("> Current Connection Command: '%s'.", connectionCommand)
 						getattr(connection, self._win32ExecutionMethod)(connectionCommand)
 					except Exception as error:
-						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error : '{1}' !".format(self.__class__.__name__, error)
+						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
 
 	@core.executionTrace
 	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
@@ -698,12 +698,12 @@ class LoaderScript(UiComponent):
 					self.ui.Remote_Connection_groupBox.show()
 					connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
-						LOGGER.debug("> Remote Connection Type : 'Socket'.")
+						LOGGER.debug("> Remote Connection Type: 'Socket'.")
 						self.ui.Software_Port_spinBox.setValue(int(foundations.parser.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self._templateRemoteConnectionSection)).value))
 						self.ui.Address_lineEdit.setText(QString(foundations.parser.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self._templateRemoteConnectionSection)).value))
 						self.ui.Remote_Connection_Options_frame.show()
 					elif connectionType.value == "Win32":
-						LOGGER.debug("> Remote Connection : 'Win32'.")
+						LOGGER.debug("> Remote Connection: 'Win32'.")
 						self.ui.Remote_Connection_Options_frame.hide()
 				else:
 					self.ui.Remote_Connection_groupBox.hide()
@@ -724,20 +724,20 @@ class LoaderScript(UiComponent):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Template|Path", template._datas.path))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 
 		if iblSet:
-			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Enviroment|EVfile", iblSet._datas.lightingImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Enviroment|EVfile", iblSet._datas.lightingImage))
 			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet._datas.lightingImage))
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
 			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet._datas.reflectionImage))
 
 		return overrideKeys
@@ -755,24 +755,24 @@ class LoaderScript(UiComponent):
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
-			messageBox.messageBox("Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used !".format(self.__class__.__name__, selectedTemplates[0]._datas.name))
+			messageBox.messageBox("Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used!".format(self.__class__.__name__, selectedTemplates[0]._datas.name))
 
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if not template:
-			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Template !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Template!".format(self.__class__.__name__)
 
 		if not os.path.exists(template._datas.path):
-			raise OSError, "{0} | '{1}' Template File Doesn't Exists !".format(self.__class__.__name__, template._datas.name)
+			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template._datas.name)
 
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
 		if not iblSet:
-			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set!".format(self.__class__.__name__)
 
 		if not os.path.exists(iblSet._datas.path):
-			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists !".format(self.__class__.__name__, iblSet._datas.name)
+			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet._datas.name)
 
 		self._overrideKeys = self.getDefaultOverrideKeys()
 
@@ -786,18 +786,18 @@ class LoaderScript(UiComponent):
 			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
 				loaderScript = File(os.path.join(self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript))
 			else:
-				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists !".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
 		else:
 			loaderScript = File(os.path.join(self._ioDirectory, template._datas.outputScript))
 
-		LOGGER.debug("> Loader Script Output File Path : '{0}'.".format(loaderScript.file))
+		LOGGER.debug("> Loader Script Output File Path: '{0}'.".format(loaderScript.file))
 
 		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self._overrideKeys)
 		if loaderScript.content and loaderScript.write():
-			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done !".format(self.__class__.__name__, template._datas.outputScript))
+			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
 			return True
 		else:
-			raise Exception, "{0} | '{1}' Output Failed !".format(self.__class__.__name__, template._datas.outputScript)
+			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template._datas.outputScript)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -811,7 +811,7 @@ class LoaderScript(UiComponent):
 		@return: Loader Script. ( List )
 		'''
 
-		LOGGER.debug("> Parsing Template File : '{0}'.".format(template))
+		LOGGER.debug("> Parsing Template File: '{0}'.".format(template))
 		templateParser = Parser(template)
 		templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 		templateSections = dict.copy(templateParser.sections)
@@ -823,7 +823,7 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Binding Templates File Attributes.")
 		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self._templateScriptSection) for attribute, value in templateSections[section].items()))
 
-		LOGGER.debug("> Parsing Ibl Set File : '{0}'.".format(iblSet))
+		LOGGER.debug("> Parsing Ibl Set File: '{0}'.".format(iblSet))
 		iblSetParser = Parser(iblSet)
 		iblSetParser.read() and iblSetParser.parse()
 		iblSetSections = dict.copy(iblSetParser.sections)
@@ -850,7 +850,7 @@ class LoaderScript(UiComponent):
 					dynamicLights.append(iblSetParser.getValue("LIGHTu", section))
 					dynamicLights.append(iblSetParser.getValue("LIGHTv", section))
 
-			LOGGER.debug("> Adding '{0}' Custom Attribute With Value : '{1}'.".format("Lights|DynamicLights", ", ".join(dynamicLights)))
+			LOGGER.debug("> Adding '{0}' Custom Attribute With Value: '{1}'.".format("Lights|DynamicLights", ", ".join(dynamicLights)))
 			bindedAttributes["Lights|DynamicLights"].value = self._defaultStringSeparator.join(dynamicLights)
 
 		LOGGER.debug("> Updating Attributes With Override Keys.")
@@ -868,7 +868,7 @@ class LoaderScript(UiComponent):
 				for parameter in bindingParameters:
 					for attribute in bindedAttributes.values():
 						if parameter == attribute.link:
-							LOGGER.debug("> Updating Loader Script Parameter '{0}' With Value : '{1}'.".format(parameter, attribute.value))
+							LOGGER.debug("> Updating Loader Script Parameter '{0}' With Value: '{1}'.".format(parameter, attribute.value))
 							line = line.replace(parameter, attribute.value and attribute.value or "-1")
 			bindedLoaderScript.append(line)
 

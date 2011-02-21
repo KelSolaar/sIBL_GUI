@@ -27,7 +27,7 @@
         <item row="0" column="0">
          <widget class="QTextBrowser" name="Components_Informations_textBrowser">
           <property name="statusTip">
-           <string>Components Informations Text Browser : Displays Selected Components Informations.</string>
+           <string>Components Informations Text Browser: Displays Selected Components Informations.</string>
           </property>
           <property name="openExternalLinks">
            <bool>true</bool>

@@ -84,15 +84,15 @@ ABOUT_MESSAGE = """
 		s I B L _ G U I - {1}
 		</p>
 		*
-		<br/><br/>Thanks To All Folks At <b>HDRLabs.com</b> To Provide Smart IBL World !
+		<br/><br/>Thanks To All Folks At <b>HDRLabs.com</b> To Provide Smart IBL World!
 		<br/>
-		Special Thanks To : Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler.
+		Special Thanks To: Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler.
 		<br/>
 		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle. 
 		<br/>
 		Thanks To Marienz From Irc #python For Optimisations Tips.
 		<p>
-		Very Special Thanks To Christian For Providing Me Some Space On His Server :]
+		Very Special Thanks To Christian For Providing Me Some Space On His Server!
 		</p>
 		<p>
 		This Software Uses Python, Qt, PyQT, FreeImage, Py2App, PyInstaller And NSIS.
@@ -114,7 +114,7 @@ ABOUT_MESSAGE = """
 		<p>
 		sIBL_GUI by Thomas Mansencal - 2008 - 2011
 		<br/>
-		This Software Is Released Under Terms Of GNU GPL V3 License : <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
+		This Software Is Released Under Terms Of GNU GPL V3 License: <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
 		<br/>
 		<a href="http://www.thomasmansencal.com/"><span style=" text-decoration: underline; color:#000000;">http://www.thomasmansencal.com/</span></a>
 		</p>
@@ -186,7 +186,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -195,7 +195,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -216,7 +216,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -225,7 +225,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiLogoIcon(self):
@@ -246,7 +246,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiLogoIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoIcon"))
 
 	@uiLogoIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -255,7 +255,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiLogoIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoIcon"))
 
 	@property
 	def uiGpl3Icon(self):
@@ -276,7 +276,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiGpl3Icon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiGpl3Icon"))
 
 	@uiGpl3Icon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -285,7 +285,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _uiGpl3Icon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiGpl3Icon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiGpl3Icon"))
 
 	@property
 	def container(self):
@@ -306,7 +306,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -315,7 +315,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def miscMenu(self):
@@ -336,7 +336,7 @@ class About(UiComponent):
 		@param value: Attribute Value. ( QMenu )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("miscMenu"))
 
 	@miscMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -345,7 +345,7 @@ class About(UiComponent):
 		This Method Is The Deleter Method For The _miscMenu Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("miscMenu"))
 
 	#***************************************************************************************
 	#***	Class Methods

@@ -139,7 +139,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -148,7 +148,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
@@ -169,7 +169,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -178,7 +178,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
@@ -199,7 +199,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -208,7 +208,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -229,7 +229,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -238,7 +238,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def reWireFramesWidgets(self):
@@ -259,7 +259,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("reWireFramesWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireFramesWidgets"))
 
 	@reWireFramesWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -268,7 +268,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _reWireFramesWidgets Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("reWireFramesWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireFramesWidgets"))
 
 	@property
 	def reWireComboBoxesWidgets(self):
@@ -289,7 +289,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("reWireComboBoxesWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireComboBoxesWidgets"))
 
 	@reWireComboBoxesWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -298,7 +298,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _reWireComboBoxesWidgets Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("reWireComboBoxesWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireComboBoxesWidgets"))
 
 	@property
 	def reWireLineEditWidgets(self):
@@ -319,7 +319,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("reWireLineEditWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireLineEditWidgets"))
 
 	@reWireLineEditWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -328,7 +328,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _reWireLineEditWidgets Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("reWireLineEditWidgets"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireLineEditWidgets"))
 
 	@property
 	def rewiringParameters(self):
@@ -349,7 +349,7 @@ class RewiringTool(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("rewiringParameters"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("rewiringParameters"))
 
 	@rewiringParameters.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -358,7 +358,7 @@ class RewiringTool(UiComponent):
 		This Method Is The Deleter Method For The _rewiringParameters Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("rewiringParameters"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("rewiringParameters"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -491,8 +491,8 @@ class RewiringTool(UiComponent):
 		@param component: Target Component. ( String )
 		'''
 
-		customFile = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File :", self._container.lastBrowsedPath))
-		LOGGER.debug("> Chosen Custom '{0}' : '{1}'.".format(component, customFile))
+		customFile = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self._container.lastBrowsedPath))
+		LOGGER.debug("> Chosen Custom '{0}': '{1}'.".format(component, customFile))
 		if customFile != "":
 			if component == "Background":
 				self.ui.Background_Path_lineEdit.setText(QString(customFile))
@@ -506,7 +506,7 @@ class RewiringTool(UiComponent):
 		'''
 		This Method Is Called When Background ToolButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath("Background")
@@ -516,7 +516,7 @@ class RewiringTool(UiComponent):
 		'''
 		This Method Is Called When Lighting ToolButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath("Lighting")
@@ -526,7 +526,7 @@ class RewiringTool(UiComponent):
 		'''
 		This Method Is Called When Reflection ToolButton Is Clicked.
 
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self.setReWireCustomPath("Reflection")
@@ -537,7 +537,7 @@ class RewiringTool(UiComponent):
 		This Method Gets Override Keys.
 		'''
 
-		LOGGER.info("{0} | Updating Loader Script Override Keys !".format(self.__class__.__name__))
+		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
@@ -547,10 +547,10 @@ class RewiringTool(UiComponent):
 				for index, comboBox in enumerate(self._reWireComboBoxesWidgets):
 					parameter = self._rewiringParameters[comboBox.currentIndex()]
 					if comboBox.currentText() == "Custom Image":
-						LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format(comboBox._datas, str(self._reWireLineEditWidgets[index].text())))
+						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, str(self._reWireLineEditWidgets[index].text())))
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self._reWireLineEditWidgets[index].text())))
 					else:
-						LOGGER.debug("> Adding '{0}' Override Key With Value : '{1}'.".format(comboBox._datas, getattr(iblSet._datas, parameter[2])))
+						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, getattr(iblSet._datas, parameter[2])))
 						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet._datas, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet._datas, parameter[2])))
 
 #***********************************************************************************************

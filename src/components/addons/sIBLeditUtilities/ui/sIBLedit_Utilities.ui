@@ -35,7 +35,7 @@
       <item row="0" column="0">
        <widget class="QLineEdit" name="sIBLedit_Path_lineEdit">
         <property name="statusTip">
-         <string>sIBL Edit Path Line Edit : sIBL Edit Executable Path.</string>
+         <string>sIBL Edit Path Line Edit: sIBL Edit Executable Path.</string>
         </property>
        </widget>
       </item>

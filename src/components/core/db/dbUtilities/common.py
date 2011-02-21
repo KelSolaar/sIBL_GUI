@@ -76,13 +76,13 @@ from globals.constants import Constants
 LOGGER = logging.getLogger(Constants.logger)
 
 DB_EXCEPTIONS = {
-			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's Ibl File Is Missing !",
-			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's Icon Is Missing !",
-			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's Background Image Is Missing !",
-			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's Lighting Image Is Missing !",
-			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's Reflection Image Is Missing !",
-			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template File Is Missing !",
-			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template Help File Is Missing !"
+			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's Ibl File Is Missing!",
+			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's Icon Is Missing!",
+			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's Background Image Is Missing!",
+			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's Lighting Image Is Missing!",
+			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's Reflection Image Is Missing!",
+			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template File Is Missing!",
+			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template Help File Is Missing!"
 		}
 
 #***********************************************************************************************
@@ -103,7 +103,7 @@ def commit(session):
 		return True
 	except Exception as error:
 		session.rollback()
-		raise Exception("Database Commit Error : '{0}'".format(error))
+		raise Exception("Database Commit Error: '{0}'".format(error))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -116,7 +116,7 @@ def addItem(session, item):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug("> Adding : '{0}' Item To Database.".format(item))
+	LOGGER.debug("> Adding: '{0}' Item To Database.".format(item))
 
 	session.add(item)
 
@@ -135,7 +135,7 @@ def addStandardItem(session, type, name, path, collection):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug("> Adding : '{0}' '{1}' To Database.".format(name, type.__name__))
+	LOGGER.debug("> Adding: '{0}' '{1}' To Database.".format(name, type.__name__))
 
 	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
 		osStats = ",".join((str(stat) for stat in os.stat(path)))
@@ -143,7 +143,7 @@ def addStandardItem(session, type, name, path, collection):
 		if dbItem.setContent():
 			return addItem(session, dbItem)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' Path Already Exists In Database !".format(core.getModule(addStandardItem).__name__, path, type.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' Path Already Exists In Database!".format(core.getModule(addStandardItem).__name__, path, type.__name__))
 		return False
 
 @core.executionTrace
@@ -157,7 +157,7 @@ def removeItem(session, item):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug("> Removing : '{0}' Item From Database.".format(item))
+	LOGGER.debug("> Removing: '{0}' Item From Database.".format(item))
 
 	session.delete(item)
 
@@ -195,7 +195,7 @@ def updateItemContent(session, item):
 	if item.setContent():
 		return commit(session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' Content Update Failed !".format(core.getModule(updateItemContent).__name__, item.name, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' Content Update Failed!".format(core.getModule(updateItemContent).__name__, item.name, item.__class__.__name__))
 		return False
 
 @core.executionTrace
@@ -215,7 +215,7 @@ def updateItemLocation(session, item, path):
 		item.path = path
 		return updateItemContent(session, item)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' Path Already Exists In Database !".format(core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' Path Already Exists In Database!".format(core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
 		return False
 
 @core.executionTrace
@@ -336,7 +336,7 @@ def checkIblSetsTableIntegrity(session):
 			if  iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
-	if erroneousSets : return erroneousSets
+	if erroneousSets: return erroneousSets
 
 @core.executionTrace
 def getCollections(session):
@@ -375,13 +375,13 @@ def addCollection(session, collection, type, comment):
 	@return: Database Commit Success. ( Boolean )
 	'''
 
-	LOGGER.debug("> Adding : '{0}' Collection Of Type '{1}' To Database.".format(collection, type))
+	LOGGER.debug("> Adding: '{0}' Collection Of Type '{1}' To Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
 		dbItem = dbUtilities.types.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, dbItem)
 	else:
-		LOGGER.warning("!> {0} | '{1}' Collection Already Exists In Database !".format(core.getModule(addCollection).__name__, collection))
+		LOGGER.warning("!> {0} | '{1}' Collection Already Exists In Database!".format(core.getModule(addCollection).__name__, collection))
 		return False
 
 @core.executionTrace

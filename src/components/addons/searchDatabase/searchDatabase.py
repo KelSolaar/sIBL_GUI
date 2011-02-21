@@ -150,7 +150,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -159,7 +159,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -180,7 +180,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -189,7 +189,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiSearchIcon(self):
@@ -210,7 +210,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiSearchIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSearchIcon"))
 
 	@uiSearchIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -219,7 +219,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiSearchIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSearchIcon"))
 
 	@property
 	def uiClearIcon(self):
@@ -240,7 +240,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearIcon"))
 
 	@uiClearIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -249,7 +249,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearIcon"))
 
 	@property
 	def uiClearClickedIcon(self):
@@ -270,7 +270,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiClearClickedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearClickedIcon"))
 
 	@uiClearClickedIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -279,7 +279,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClearClickedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearClickedIcon"))
 
 	@property
 	def dockArea(self):
@@ -300,7 +300,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -309,7 +309,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def tagsCloudListWidgetSpacing(self):
@@ -330,7 +330,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tagsCloudListWidgetSpacing"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tagsCloudListWidgetSpacing"))
 
 	@tagsCloudListWidgetSpacing.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -339,7 +339,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _tagsCloudListWidgetSpacing Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tagsCloudListWidgetSpacing"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tagsCloudListWidgetSpacing"))
 
 	@property
 	def container(self):
@@ -360,7 +360,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -369,7 +369,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDb(self):
@@ -390,7 +390,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -399,7 +399,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -420,7 +420,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -429,7 +429,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreCollectionsOutliner(self):
@@ -450,7 +450,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -459,7 +459,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreCollectionsOutliner"))
 
 	@property
 	def completer(self):
@@ -480,7 +480,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( QCompleter )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("completer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("completer"))
 
 	@completer.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -489,7 +489,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("completer"))
 
 	@property
 	def completerVisibleItemsCount(self):
@@ -510,7 +510,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("completerVisibleItemsCount"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("completerVisibleItemsCount"))
 
 	@completerVisibleItemsCount.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -519,7 +519,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("completerVisibleItemsCount"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("completerVisibleItemsCount"))
 
 	@property
 	def tagsCloudField(self):
@@ -540,7 +540,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("tagsCloudField"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tagsCloudField"))
 
 	@tagsCloudField.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -549,7 +549,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _tagsCloudField Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("tagsCloudField"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tagsCloudField"))
 
 	@property
 	def databaseFields(self):
@@ -570,7 +570,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("databaseFields"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("databaseFields"))
 
 	@databaseFields.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -579,7 +579,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _databaseFields Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("databaseFields"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("databaseFields"))
 
 	@property
 	def cloudExcludedTags(self):
@@ -600,7 +600,7 @@ class SearchDatabase(UiComponent):
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("cloudExcludedTags"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("cloudExcludedTags"))
 
 	@cloudExcludedTags.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -609,7 +609,7 @@ class SearchDatabase(UiComponent):
 		This Method Is The Deleter Method For The _cloudExcludedTags Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("cloudExcludedTags"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("cloudExcludedTags"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -741,9 +741,9 @@ class SearchDatabase(UiComponent):
 		@param index: ComboBox Activated Item Index. ( Integer )
 		'''
 
-		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField :
+		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField:
 			self.ui.Tags_Cloud_groupBox.show()
-		else :
+		else:
 			self.ui.Tags_Cloud_groupBox.hide()
 		self.setSearchMatchingSets()
 
@@ -812,7 +812,7 @@ class SearchDatabase(UiComponent):
 
 		displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(filteredSets)]
 
-		LOGGER.debug("> Time Range Filtered Ibl Set(s) : '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
+		LOGGER.debug("> Time Range Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
 		if previousDisplaySets != displaySets:
 			self._coreDatabaseBrowser.displaySets = displaySets
@@ -833,7 +833,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
-		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField :
+		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField:
 			self._completer.setModel(QStringListModel())
 			patternTokens = pattern.split()
 			patternTokens = patternTokens and patternTokens or (".*",)
@@ -842,20 +842,20 @@ class SearchDatabase(UiComponent):
 			for iblSet in self._coreCollectionsOutliner.getCollectionsSets():
 				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
 				patternsMatched = True
-				for pattern in patternTokens :
+				for pattern in patternTokens:
 					patternMatched = False
-					for tag in tagsCloud :
+					for tag in tagsCloud:
 						if re.search(pattern, tag, flags=flags):
 							patternMatched = True
 							break
 					patternsMatched *= patternMatched
-				if patternsMatched :
+				if patternsMatched:
 					allTags.extend((tag.lower() for tag in tagsCloud))
 					filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags)))
 			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
-		else :
+		else:
 			try:
 				re.compile(pattern)
 			except:
@@ -864,7 +864,7 @@ class SearchDatabase(UiComponent):
 			self._completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
 			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self._coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
-		LOGGER.debug("> Pattern Filtered Ibl Set(s) : '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
+		LOGGER.debug("> Pattern Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
 		if previousDisplaySets != displaySets:
 			self._coreDatabaseBrowser.displaySets = displaySets

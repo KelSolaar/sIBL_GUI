@@ -41,14 +41,14 @@
                </size>
               </property>
               <property name="text">
-               <string>rWr Background With :</string>
+               <string>rWr Background With:</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QComboBox" name="Background_comboBox">
               <property name="statusTip">
-               <string>Background Combo Box : Rewires Background With Selected Component.</string>
+               <string>Background Combo Box: Rewires Background With Selected Component.</string>
               </property>
              </widget>
             </item>
@@ -69,7 +69,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Background_Path_lineEdit">
                <property name="statusTip">
-                <string>Background Path Line Edit : Custom Background Component.</string>
+                <string>Background Path Line Edit: Custom Background Component.</string>
                </property>
               </widget>
              </item>
@@ -108,14 +108,14 @@
                </size>
               </property>
               <property name="text">
-               <string>rWr Lighting With :</string>
+               <string>rWr Lighting With:</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QComboBox" name="Lighting_comboBox">
               <property name="statusTip">
-               <string>Lighting Combo Box : Rewires Lighting With Selected Component.</string>
+               <string>Lighting Combo Box: Rewires Lighting With Selected Component.</string>
               </property>
              </widget>
             </item>
@@ -136,7 +136,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Lighting_Path_lineEdit">
                <property name="statusTip">
-                <string>Lighting Path Line Edit : Custom Lighting Component.</string>
+                <string>Lighting Path Line Edit: Custom Lighting Component.</string>
                </property>
               </widget>
              </item>
@@ -175,14 +175,14 @@
                </size>
               </property>
               <property name="text">
-               <string>rWr Reflection With :</string>
+               <string>rWr Reflection With:</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QComboBox" name="Reflection_comboBox">
               <property name="statusTip">
-               <string>Reflection Combo Box : Rewires Reflection With Selected Component.</string>
+               <string>Reflection Combo Box: Rewires Reflection With Selected Component.</string>
               </property>
              </widget>
             </item>
@@ -203,7 +203,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Reflection_Path_lineEdit">
                <property name="statusTip">
-                <string>Reflection Path Line Edit : Custom Reflection Component.</string>
+                <string>Reflection Path Line Edit: Custom Reflection Component.</string>
                </property>
               </widget>
              </item>

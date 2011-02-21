@@ -210,7 +210,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -219,7 +219,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -240,7 +240,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -249,7 +249,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiZoomInIcon(self):
@@ -270,7 +270,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInIcon"))
 
 	@uiZoomInIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -279,7 +279,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _uiZoomInIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInIcon"))
 
 	@property
 	def uiZoomOutIcon(self):
@@ -300,7 +300,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomOutIcon"))
 
 	@uiZoomOutIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -309,7 +309,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _uiZoomOutIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomOutIcon"))
 
 	@property
 	def gpsMapHtmlFile(self):
@@ -330,7 +330,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("gpsMapHtmlFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("gpsMapHtmlFile"))
 
 	@gpsMapHtmlFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -339,7 +339,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _gpsMapHtmlFile Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("gpsMapHtmlFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("gpsMapHtmlFile"))
 
 	@property
 	def gpsMapBaseSize(self):
@@ -360,7 +360,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( QSize() )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("gpsMapBaseSize"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("gpsMapBaseSize"))
 
 	@gpsMapBaseSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -369,7 +369,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _gpsMapBaseSize Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("gpsMapBaseSize"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("gpsMapBaseSize"))
 
 	@property
 	def dockArea(self):
@@ -390,7 +390,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -399,7 +399,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
@@ -420,7 +420,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -429,7 +429,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -450,7 +450,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -459,7 +459,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def map(self):
@@ -480,7 +480,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("map"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("map"))
 
 	@map.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -489,7 +489,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _map Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("map"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("map"))
 
 	@property
 	def mapTypeIds(self):
@@ -510,7 +510,7 @@ class GpsMap(UiComponent):
 		@param value: Attribute Value. ( Tuple )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("mapTypeIds"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("mapTypeIds"))
 
 	@mapTypeIds.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -519,7 +519,7 @@ class GpsMap(UiComponent):
 		This Method Is The Deleter Method For The _mapTypeIds Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("mapTypeIds"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("mapTypeIds"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -649,7 +649,7 @@ class GpsMap(UiComponent):
 		'''
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self._map.setZoom("In")
@@ -659,7 +659,7 @@ class GpsMap(UiComponent):
 		'''
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
 		
-		@param checked : Checked State. ( Boolean )
+		@param checked: Checked State. ( Boolean )
 		'''
 
 		self._map.setZoom("Out")
@@ -684,11 +684,11 @@ class GpsMap(UiComponent):
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
-			LOGGER.debug("> Current Ibl Set : '{0}'.".format(iblSet._datas.name))
+			LOGGER.debug("> Current Ibl Set: '{0}'.".format(iblSet._datas.name))
 			if iblSet._datas.latitude and iblSet._datas.longitude:
 				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
-				shotDateString = "<b>Shot Date : </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
-				content = "<p><h3><b>{0}</b></h3></p><p><b>Author : </b>{1}<br><b>Location : </b>{2}<br>{3}<br><b>Comment : </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
+				shotDateString = "<b>Shot Date: </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
+				content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
 				self._map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toForwardSlashes(iblSet._datas.icon), content)
 		self._map.setCenter()
 

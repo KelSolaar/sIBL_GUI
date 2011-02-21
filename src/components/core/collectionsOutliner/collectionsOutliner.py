@@ -133,7 +133,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -142,7 +142,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDb(self):
@@ -163,7 +163,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -172,7 +172,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -193,7 +193,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -202,7 +202,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreCollectionsOutliner(self):
@@ -223,7 +223,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -232,7 +232,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreCollectionsOutliner"))
 
 	@property
 	def previousCollection(self):
@@ -253,7 +253,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("previousCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previousCollection"))
 
 	@previousCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -262,7 +262,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		This Method Is The Deleter Method For The _previousCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("previousCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previousCollection"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -276,10 +276,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		'''
 
 		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-			LOGGER.debug("> '{0}' Drag Event Type Accepted !".format("application/x-qabstractitemmodeldatalist"))
+			LOGGER.debug("> '{0}' Drag Event Type Accepted!".format("application/x-qabstractitemmodeldatalist"))
 			event.accept()
 		elif event.mimeData().hasFormat("text/uri-list"):
-			LOGGER.debug("> '{0}' Drag Event Type Accepted !".format("text/uri-list"))
+			LOGGER.debug("> '{0}' Drag Event Type Accepted!".format("text/uri-list"))
 			event.accept()
 		else:
 			event.ignore()
@@ -305,27 +305,27 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 		if not self._container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
-				LOGGER.debug("> Drag Event Urls List : '{0}' !".format(event.mimeData().urls()))
+				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
 						name = foundations.strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database ?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self._coreDatabaseBrowser.addIblSet(name, path)
 							self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else:
 						if os.path.isdir(path):
-							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database ?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self._coreDatabaseBrowser.addDirectory(path)
 								self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else:
-							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path : Syntax Is Invalid !".format(self.__class__.__name__, path)
+							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 			else:
 				indexAt = self.indexAt(event.pos())
 				itemAt = self.model().itemFromIndex(indexAt)
 
 				if itemAt:
-					LOGGER.debug("> Item At Drop Position : '{0}'.".format(itemAt))
+					LOGGER.debug("> Item At Drop Position: '{0}'.".format(itemAt))
 					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
 					if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection:
 						iblSets = self._coreDatabaseBrowser.getSelectedItems()
@@ -342,7 +342,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 							# Crash Preventing Code.
 							self._coreDatabaseBrowser.modelSelectionState = True
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def QTreeView_OnClicked(self, index):
@@ -368,11 +368,11 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 			if collectionStandardItem.text() != self._coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self._coreCollectionsOutliner.overallCollection:
 				if self.model().itemFromIndex(index).column() == self._coreCollectionsOutliner.modelHeaders.index(self._coreCollectionsOutliner.setsCountLabel):
-					messageBox.messageBox("Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only !".format(self.__class__.__name__))
+					messageBox.messageBox("Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only!".format(self.__class__.__name__))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only !".format(self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only!".format(self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only !".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 
 class CollectionsOutliner(UiComponent):
 	'''
@@ -440,7 +440,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -449,7 +449,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _uiPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
@@ -470,7 +470,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -479,7 +479,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _uiResources Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
 	def uiDefaultCollectionIcon(self):
@@ -500,7 +500,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiDefaultCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDefaultCollectionIcon"))
 
 	@uiDefaultCollectionIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -509,7 +509,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _uiDefaultCollectionIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiDefaultCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDefaultCollectionIcon"))
 
 	@property
 	def uiUserCollectionIcon(self):
@@ -530,7 +530,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("uiUserCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUserCollectionIcon"))
 
 	@uiUserCollectionIcon.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -539,7 +539,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _uiUserCollectionIcon Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiUserCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUserCollectionIcon"))
 
 	@property
 	def dockArea(self):
@@ -560,7 +560,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -569,7 +569,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _dockArea Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
@@ -590,7 +590,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( QObject )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -599,7 +599,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _container Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDb(self):
@@ -620,7 +620,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -629,7 +629,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _coreDb Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -650,7 +650,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( Object )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -659,7 +659,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def model(self):
@@ -680,7 +680,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( QStandardItemModel )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("model"))
 
 	@model.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -689,7 +689,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _model Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("model"))
 
 	@property
 	def modelSelection(self):
@@ -710,7 +710,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( Dictionary )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("modelSelection"))
 
 	@modelSelection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -719,7 +719,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _modelSelection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelSelection"))
 
 	@property
 	def overallCollection(self):
@@ -740,7 +740,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("overallCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("overallCollection"))
 
 	@overallCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -749,7 +749,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _overallCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("overallCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("overallCollection"))
 
 	@property
 	def defaultCollection(self):
@@ -770,7 +770,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("defaultCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("defaultCollection"))
 
 	@defaultCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -779,7 +779,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _defaultCollection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("defaultCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultCollection"))
 
 	@property
 	def setsCountLabel(self):
@@ -800,7 +800,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("setsCountLabel"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("setsCountLabel"))
 
 	@setsCountLabel.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -809,7 +809,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _setsCountLabel Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("setsCountLabel"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("setsCountLabel"))
 
 	@property
 	def modelHeaders(self):
@@ -830,7 +830,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( List )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("modelHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("modelHeaders"))
 
 	@modelHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -839,7 +839,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _modelHeaders Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("modelHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelHeaders"))
 
 	@property
 	def treeViewIndentation(self):
@@ -860,7 +860,7 @@ class CollectionsOutliner(UiComponent):
 		@param value: Attribute Value. ( Integer )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("treeViewIndentation"))
 
 	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -869,7 +869,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Is The Deleter Method For The _treeViewIndentation Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewIndentation"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -900,7 +900,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Deactivates The Component.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated !".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -910,7 +910,7 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self._model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 
@@ -936,7 +936,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Uninitializes The Component Ui.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized !".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -955,7 +955,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Removes The Component Widget From The Container.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed !".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
 
 	@core.executionTrace
 	def onStartup(self):
@@ -968,7 +968,7 @@ class CollectionsOutliner(UiComponent):
 		if not self._container.parameters.databaseReadOnly:
 			 self.addDefaultCollection()
 		else:
-			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setModel(self):
@@ -979,11 +979,11 @@ class CollectionsOutliner(UiComponent):
 		Collections | Sets | Comment
 		
 		Rows:
-		* Overall Collection : { _type : "Overall" }
-		** Collection : { _type : "Collection", _datas : dbUtilities.types.DbCollection }
+		* Overall Collection: { _type: "Overall" }
+		** Collection: { _type: "Collection", _datas: dbUtilities.types.DbCollection }
 		'''
 
-		LOGGER.debug("> Setting Up '{0}' Model !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Setting Up '{0}' Model!".format("Collections_Outliner_treeView"))
 
 		self.Collections_Outliner_treeView_storeModelSelection()
 
@@ -1036,10 +1036,10 @@ class CollectionsOutliner(UiComponent):
 					overallCollectionStandardItem.appendRow([collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem])
 
 				except Exception as error:
-					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Collection To '{2}' Model !".format(self.__class__.__name__, collection.name, "Collections_Outliner_treeView"))
+					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Collection To '{2}' Model!".format(self.__class__.__name__, collection.name, "Collections_Outliner_treeView"))
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Collections_Outliner_treeView"))
 		else:
-			LOGGER.info("{0} | Database Has No User Defined Collections !".format(self.__class__.__name__))
+			LOGGER.info("{0} | Database Has No User Defined Collections!".format(self.__class__.__name__))
 
 		self.Collections_Outliner_treeView_restoreModelSelection()
 
@@ -1051,7 +1051,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Refreshes The Collections_Outliner_treeView Model.
 		'''
 
-		LOGGER.debug("> Refreshing '{0}' Model !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
 
 		self.Collections_Outliner_treeView_setModel()
 
@@ -1079,7 +1079,7 @@ class CollectionsOutliner(UiComponent):
 					collection.name = str(currentText)
 					dbUtilities.common.commit(self._coreDb.dbSession)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database !".format(self.__class__.__name__, currentText))
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
 			elif startIndex.column() == 2:
 				LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
 				collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
@@ -1094,7 +1094,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Sets The Collections_Outliner_treeView View.
 		'''
 
-		LOGGER.debug("> Initializing '{0}' Widget !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
 		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
@@ -1119,7 +1119,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Sets Collections_Outliner_treeView Default View State.
 		'''
 
-		LOGGER.debug("> Setting '{0}' Default View State !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Setting '{0}' Default View State!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.expandAll()
 		for column in range(len(self._modelHeaders)):
@@ -1154,7 +1154,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Stores Collections_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug("> Storing '{0}' Model Selection !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Storing '{0}' Model Selection!".format("Collections_Outliner_treeView"))
 
 		self._modelSelection = { "Overall":[], "Collections":[] }
 		for item in self.getSelectedItems():
@@ -1169,7 +1169,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Restores Collections_Outliner_treeView Model Selection.
 		'''
 
-		LOGGER.debug("> Restoring '{0}' Model Selection !".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Restoring '{0}' Model Selection!".format("Collections_Outliner_treeView"))
 
 		indexes = []
 		for i in range(self._model.rowCount()):
@@ -1204,7 +1204,7 @@ class CollectionsOutliner(UiComponent):
 			removeCollectionsAction.triggered.connect(self.Collections_Outliner_treeView_removeCollectionsAction)
 			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
 		else:
-			LOGGER.info("{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value !".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_addContentAction(self, checked):
@@ -1218,9 +1218,9 @@ class CollectionsOutliner(UiComponent):
 		if collection:
 			self.Collections_Outliner_treeView_refreshModel()
 			fileDialog = QFileDialog(self)
-			directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content :", self._container.lastBrowsedPath)))
+			directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
 			if directory:
-				LOGGER.debug("> Chosen Directory Path : '{0}'.".format(directory))
+				LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 				self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
 				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self._model.indexFromItem(self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 				self.Collections_Outliner_treeView_refreshSetsCounts()
@@ -1268,18 +1268,18 @@ class CollectionsOutliner(UiComponent):
 		@return: Addition Success. ( Boolean )
 		'''
 
-		dialogMessage = "Enter Your Collection Name !"
+		dialogMessage = "Enter Your Collection Name!"
 		collectionInformations = QInputDialog.getText(self, "Add Collection", dialogMessage)
 		if collectionInformations[1]:
-			LOGGER.debug("> Chosen Collection Name : '{0}'.".format(collectionInformations[1]))
+			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(collectionInformations[1]))
 			collectionInformations = str(collectionInformations[0]).split(",")
 			collection = collectionInformations[0].strip()
-			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment !" or collectionInformations[1].strip()
+			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
 			if not set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")):
-				LOGGER.info("{0} | Adding '{1}' Collection To Database !".format(self.__class__.__name__, collection))
+				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
 				return dbUtilities.common.addCollection(self._coreDb.dbSession, collection, "Sets", comment) and collection
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database !".format(self.__class__.__name__, collection))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 
 	@core.executionTrace
 	def addDefaultCollection(self):
@@ -1292,7 +1292,7 @@ class CollectionsOutliner(UiComponent):
 		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
 
 		if not collections:
-			LOGGER.info("{0} | Adding '{1}' Collection To Database !".format(self.__class__.__name__, self._defaultCollection))
+			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self._defaultCollection))
 			dbUtilities.common.addCollection(self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection")
 			self.Collections_Outliner_treeView_refreshModel()
 
@@ -1305,17 +1305,17 @@ class CollectionsOutliner(UiComponent):
 		selectedCollections = self.getSelectedItems()
 
 		if self._overallCollection in (str(collection.text()) for collection in selectedCollections) or self._defaultCollection in (str(collection.text()) for collection in selectedCollections):
-			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection !".format(self.__class__.__name__, self._overallCollection, self._defaultCollection))
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self._overallCollection, self._defaultCollection))
 
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self._defaultCollection]
 		if selectedCollections:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s) ?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				iblSets = dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, self.getSelectedCollectionsIds())
 				for iblSet in iblSets:
-					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection !".format(self.__class__.__name__, iblSet.name))
+					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
 					iblSet.collection = self.getCollectionId(self._defaultCollection)
 				for collection in selectedCollections:
-					LOGGER.info("{0} | Removing '{1}' Collection From Database !".format(self.__class__.__name__, collection.text()))
+					LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
 					dbUtilities.common.removeCollection(self._coreDb.dbSession, str(collection._datas.id))
 
 	@core.executionTrace
@@ -1396,7 +1396,7 @@ class CollectionsOutliner(UiComponent):
 		if not len(selectedCollectionsIds):
 			return self.getCollectionId(self._defaultCollection)
 		else:
-			len(selectedCollectionsIds) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id !".format(self.__class__.__name__, selectedCollectionsIds[0]))
+			len(selectedCollectionsIds) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id!".format(self.__class__.__name__, selectedCollectionsIds[0]))
 			return selectedCollectionsIds[0]
 
 #***********************************************************************************************

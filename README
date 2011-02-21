@@ -2,17 +2,17 @@
 
 - Introduction -
 sIBL_GUI is a tool making the process of importing sIBL files into a 3D Package easier and straight forward. 
-What is sIBL ? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
-A lot more informations are available here : http://www.smartibl.com. 
+What is sIBL? It's a short for "Smart IBL". It's a standard describing all informations and files needeed to provide fast and easy Image Based Lighting Setup. 
+A lot more informations are available here: http://www.smartibl.com. 
 
 - Installation / Usage -
-For Installation and Usage check the Manual / Help File available here : http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html and the related thread here : http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
-sIBL_GUI depends of some other packages :
-	* Foundations package available from Github : https://github.com/KelSolaar/Foundations. You will need to create a symbolic link from "Foundations/src/foundations" to "sIBL_GUI/src/foundations" and from "Foundations/src/tests/testsFoundations" to "sIBL_GUI/src/tests/testsFoundations" or ensure the package is available in Python path.
-	* Manager package available from Github : https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the package is available in Python path.
-	* sIBL_GUI_Templates package available from Github : https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/templates" or ensure the package is available in Python path.
+For Installation and Usage check the Manual / Help File available here: http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html and the related thread here: http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371
+sIBL_GUI depends of some other packages:
+	* Foundations package available from Github: https://github.com/KelSolaar/Foundations. You will need to create a symbolic link from "Foundations/src/foundations" to "sIBL_GUI/src/foundations" and from "Foundations/src/tests/testsFoundations" to "sIBL_GUI/src/tests/testsFoundations" or ensure the package is available in Python path.
+	* Manager package available from Github: https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the package is available in Python path.
+	* sIBL_GUI_Templates package available from Github: https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/templates" or ensure the package is available in Python path.
 
-Quick Repositories Cloning Commands :
+Quick Repositories Cloning Commands:
 	mkdir HDRLabs
 	cd HDRLabs/
 	git clone git://github.com/KelSolaar/sIBL_GUI.git && git clone git://github.com/KelSolaar/Foundations.git &&  git clone git://github.com/KelSolaar/Manager.git && git clone git://github.com/KelSolaar/sIBL_GUI_Templates.git
@@ -22,5 +22,5 @@ Quick Repositories Cloning Commands :
 - About -
 sIBL_GUI by Thomas Mansencal - 2008 - 2011
 Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
-This Software Is Released Under Terms Of GNU GPL V3 License : http://www.gnu.org/licenses/
+This Software Is Released Under Terms Of GNU GPL V3 License: http://www.gnu.org/licenses/
 http://www.thomasmansencal.com/

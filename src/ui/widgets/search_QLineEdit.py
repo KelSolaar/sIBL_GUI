@@ -132,8 +132,8 @@ class Search_QLineEdit(QLineEdit):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("uiIconPath", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("uiIconPath", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiIconPath", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiIconPath", value)
 		self._uiIconPath = value
 
 	@uiIconPath.deleter
@@ -143,7 +143,7 @@ class Search_QLineEdit(QLineEdit):
 		This Method Is The Deleter Method For The _uiIconPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiIconPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiIconPath"))
 
 	@property
 	def uiClickedIconPath(self):
@@ -165,8 +165,8 @@ class Search_QLineEdit(QLineEdit):
 		'''
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute : '{1}' Type Is Not 'str' or 'unicode' !".format("uiClickedIconPath", value)
-			assert os.path.exists(value), "'{0}' Attribute : '{1}' File Doesn't Exists !".format("uiClickedIconPath", value)
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClickedIconPath", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClickedIconPath", value)
 		self._uiClickedIconPath = value
 
 	@uiClickedIconPath.deleter
@@ -176,7 +176,7 @@ class Search_QLineEdit(QLineEdit):
 		This Method Is The Deleter Method For The _uiClickedIconPath Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("uiClickedIconPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClickedIconPath"))
 
 	@property
 	def parent(self):
@@ -205,7 +205,7 @@ class Search_QLineEdit(QLineEdit):
 		This Method Is The Deleter Method For The _parent Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("parent"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
 
 	@property
 	def clearButton(self):
@@ -226,7 +226,7 @@ class Search_QLineEdit(QLineEdit):
 		@param value: Attribute Value. ( QPushButton )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only !".format("clearButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("clearButton"))
 
 	@clearButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -235,14 +235,14 @@ class Search_QLineEdit(QLineEdit):
 		This Method Is The Deleter Method For The _clearButton Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable !".format("clearButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("clearButton"))
 
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
 
 	@core.executionTrace
-	def resizeEvent(self, event) :
+	def resizeEvent(self, event):
 		'''
 		This Method Overloads The Search_QLineEdit ResizeEvent.
 		
@@ -255,13 +255,13 @@ class Search_QLineEdit(QLineEdit):
 		self._clearButton.move(self.rect().right() - frameWidth - size.width(), (self.rect().bottom() + offset - size.height()) / 2);
 
 	@core.executionTrace
-	def setClearButtonStyle(self) :
+	def setClearButtonStyle(self):
 		'''
 		This Method Sets The Clear Button Style.
 		'''
 
 		self._clearButton.setCursor(Qt.ArrowCursor)
-		if self._uiIconPath and self._uiClickedIconPath :
+		if self._uiIconPath and self._uiClickedIconPath:
 			pixmap = QPixmap(self._uiIconPath)
 			clickedPixmap = QPixmap(self._uiClickedIconPath)
 			self._clearButton.setStyleSheet("QToolButton { border: none; padding: 0px; }");
@@ -279,16 +279,16 @@ class Search_QLineEdit(QLineEdit):
 		self.setMinimumSize(max(self.minimumSizeHint().width(), self._clearButton.sizeHint().height() + frameWidth * 2), max(self.minimumSizeHint().height(), self._clearButton.sizeHint().height() + frameWidth * 2));
 
 	@core.executionTrace
-	def setClearButtonVisibility(self, text) :
+	def setClearButtonVisibility(self, text):
 		'''
 		This Method Sets The Clear Button Visibility.
 		
 		@param text: Current Text. ( QString )
 		'''
 
-		if text :
+		if text:
 			self._clearButton.show()
-		else :
+		else:
 			self._clearButton.hide()
 
 #***********************************************************************************************
