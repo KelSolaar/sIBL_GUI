@@ -57,6 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
+import re
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -697,12 +698,12 @@ class LoaderScriptOptions(UiComponent):
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
-				item.setValue(float (attributeCompound.value))
+				item.setValue(float(attributeCompound.value))
 				item._datas = attributeCompound
 				tableWidget.setCellWidget(row, 0, item)
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
-				item.addItems(attributeCompound.value.split(self._enumSplitter))
+				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self._enumSplitter)])
 				item._datas = attributeCompound
 				tableWidget.setCellWidget(row, 0, item)
 			else:
