@@ -9,13 +9,14 @@ h2=. Change Log
 h3. 3.1.3 - Stable
 
 * Templates have now options to define different light types : "Area", "Directional", "Point", "Spot", etc ...
-* Fixed a remaining issue in "Search Database" component and empty Ibl Set attributes in the "In Tags Cloud" case.
+* "Search Database" component "In Tags Cloud" method is now case sensitive.
+* Fixed a remaining issue in "Search Database" component and empty Ibl Set attributes in the "In Tags Cloud" method.
 * Fix Windows building file to prevent incorrect "templates" folder hierarchy.
 
 h3. 3.1.2 - Stable
 
 * Fixed issues with the "Search Database" component and empty Ibl Set attributes.
-* Added new "In Tags Cloud" option to the "Search Database" component. It's now possible to search for multiples keywords in any order either by typing them in the "Search Database" widget or select them in the "Tags Cloud" widget.
+* Added new "In Tags Cloud" method to the "Search Database" component. It's now possible to search for multiples keywords in any order either by typing them in the "Search Database" widget or select them in the "Tags Cloud" widget.
 * "Search Database" widget now has a button to clear the current search.
 * Implement units tests on sIBL_GUI "foundations", "manager" and "globals" packages.
 * Extracted multiple packages to new repositories for better code reusability.
