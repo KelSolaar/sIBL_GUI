@@ -12,9 +12,6 @@ cp ./utilities/nsis/sIBL_GUI_Setup.exe ./releases/repository/sIBL_GUI/sIBL_GUI.e
 #! MacOsX Gathering.
 cp ./releases/Darwin/sIBL_GUI.dmg ./releases/repository/sIBL_GUI/sIBL_GUI.dmg
 
-#! Reaching Original Directory.
-cd ../../../
-
 #! sIBL_GUI Change Log Gathering.
 cp -rf ./releases/Change\ Log.html ./releases/repository/sIBL_GUI/
 
