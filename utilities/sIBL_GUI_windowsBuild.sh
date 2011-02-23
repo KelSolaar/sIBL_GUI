@@ -59,10 +59,10 @@ cp -r $SOURCE/resources/Preferences_Hover.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Preferences_Active.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Toolbar.png $DEPLOYMENT/resources/
 mkdir $DEPLOYMENT/templates
-cp -r $SOURCE/templates/3dsMax $DEPLOYMENT/templates/
-cp -r $SOURCE/templates/Maya $DEPLOYMENT/templates/
-cp -r $SOURCE/templates/Softimage $DEPLOYMENT/templates/
-cp -r $SOURCE/templates/XSI $DEPLOYMENT/templates/
+cp -r $SOURCE/templates/3dsMax/* $DEPLOYMENT/templates/
+cp -r $SOURCE/templates/Maya/* $DEPLOYMENT/templates/
+cp -r $SOURCE/templates/Softimage/* $DEPLOYMENT/templates/
+cp -r $SOURCE/templates/XSI/* $DEPLOYMENT/templates/
 cp -r $SOURCE/components $DEPLOYMENT
 mkdir -p $DEPLOYMENT/libraries/freeImage/resources
 cp $SOURCE/libraries/freeImage/resources/FreeImage.dll $DEPLOYMENT/libraries/freeImage/resources/
