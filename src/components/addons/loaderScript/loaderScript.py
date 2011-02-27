@@ -120,7 +120,7 @@ class LoaderScript(UiComponent):
 
 		self._bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self._templateScriptSection = "Script"
-		self._templateIblAttributesSection = "sIBL File Attributes"
+		self._templateIblSetAttributesSection = "Ibl Set Attributes"
 		self._templateRemoteConnectionSection = "Remote Connection"
 
 		self._win32ExecutionMethod = "ExecuteSIBLLoaderScript"
@@ -374,34 +374,34 @@ class LoaderScript(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateScriptSection"))
 
 	@property
-	def templateIblAttributesSection(self):
+	def templateIblSetAttributesSection(self):
 		'''
-		This Method Is The Property For The _templateIblAttributesSection Attribute.
+		This Method Is The Property For The _templateIblSetAttributesSection Attribute.
 
-		@return: self._templateIblAttributesSection. ( String )
+		@return: self._templateIblSetAttributesSection. ( String )
 		'''
 
-		return self._templateIblAttributesSection
+		return self._templateIblSetAttributesSection
 
-	@templateIblAttributesSection.setter
+	@templateIblSetAttributesSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templateIblAttributesSection(self, value):
+	def templateIblSetAttributesSection(self, value):
 		'''
-		This Method Is The Setter Method For The _templateIblAttributesSection Attribute.
+		This Method Is The Setter Method For The _templateIblSetAttributesSection Attribute.
 
 		@param value: Attribute Value. ( String )
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateIblAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateIblSetAttributesSection"))
 
-	@templateIblAttributesSection.deleter
+	@templateIblSetAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templateIblAttributesSection(self):
+	def templateIblSetAttributesSection(self):
 		'''
-		This Method Is The Deleter Method For The _templateIblAttributesSection Attribute.
+		This Method Is The Deleter Method For The _templateIblSetAttributesSection Attribute.
 		'''
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateIblAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateIblSetAttributesSection"))
 
 	@property
 	def templateRemoteConnectionSection(self):
@@ -731,6 +731,9 @@ class LoaderScript(UiComponent):
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 
 		if iblSet:
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet._datas.path))
+			overrideKeys["Ibl Set|Path"] = iblSet._datas.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet._datas.path))
+
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
 
@@ -816,9 +819,9 @@ class LoaderScript(UiComponent):
 		templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 		templateSections = dict.copy(templateParser.sections)
 
-		for attribute, value in dict.copy(templateSections[self._templateIblAttributesSection]).items():
-			templateSections[self._templateIblAttributesSection][namespace.removeNamespace(attribute, rootOnly=True)] = value
-			del templateSections[self._templateIblAttributesSection][attribute]
+		for attribute, value in dict.copy(templateSections[self._templateIblSetAttributesSection]).items():
+			templateSections[self._templateIblSetAttributesSection][namespace.removeNamespace(attribute, rootOnly=True)] = value
+			del templateSections[self._templateIblSetAttributesSection][attribute]
 
 		LOGGER.debug("> Binding Templates File Attributes.")
 		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self._templateScriptSection) for attribute, value in templateSections[section].items()))
@@ -839,7 +842,7 @@ class LoaderScript(UiComponent):
 			LOGGER.debug("> Building '{0}' Custom Attribute.".format("Lights|DynamicLights"))
 			dynamicLights = []
 			for section in iblSetSections:
-				if re.search("Light[0-9]*", section):
+				if re.search("Light[0-9]+", section):
 					dynamicLights.append(section)
 					lightName = iblSetParser.getValue("LIGHTname", section)
 					dynamicLights.append(lightName and lightName or self._unnamedLightName)
