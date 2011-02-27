@@ -408,9 +408,9 @@ def getCollectionsSets(session, ids):
 
 	iblSets = []
 	for id in ids:
-		collectionSets = filterIblSets(session, str(id), "collection")
+		collectionSets = filterIblSets(session, "^{0}$".format(id), "collection")
 		if collectionSets:
-			for iblSet in filterIblSets(session, str(id), "collection"):
+			for iblSet in collectionSets:
 				iblSets.append(iblSet)
 	return iblSets
 
