@@ -1,10 +1,15 @@
-h1=. sIBL_GUI - 3.1.3 - Stable
+h1=. sIBL_GUI - 3.1.4 - Stable
 
 h3{color:rgb(200, 75, 75);}=. ***IMPORTANT NOTICE :***
 
 h4{color:rgb(200, 75, 75);}=. "sIBL_GUI 3.1.2" Windows building file presented some issues resulting in an incorrect "templates" directory hierarchy and presence of non related files in the build. It's advised to either uninstall it or remove the installation "templates" directory content before updating.
 
 h2=. Change Log
+
+h3. 3.1.4 - Stable
+
+* Implemented support for "HDR Lights".
+* Fixed an issue where Ibl Sets were displayed multiple times in the "Database Browser" component.
 
 h3. 3.1.3 - Stable
 
