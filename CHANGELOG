@@ -8,9 +8,10 @@ h2=. Change Log
 
 h3. 3.5.0 - Stable
 
-* Implemented support for "Lightsmith Lights".
+* Implemented support for "Lightsmith Lights": http://vimeo.com/20879389
 * Most of the Templates have been refactored at different level.
 * Fixed an issue where Ibl Sets were displayed multiple times in the "Database Browser" component.
+* Dropped support of Illuminate Labs Turtle Renderer.
 
 h3. 3.1.3 - Stable
 
