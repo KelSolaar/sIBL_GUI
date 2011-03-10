@@ -71,8 +71,8 @@ class UiConstants():
 	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
 	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
 
-	frameworkApplicationWindowsIcon = "./resources/Icon_Light_48.ico"
-	frameworkApplicationDarwinIcon = "./resources/Icon_Light_48.icns"
+	frameworkApplicationWindowsIcon = "./resources/Icon_Light.ico"
+	frameworkApplicationDarwinIcon = "./resources/Icon_Light.icns"
 
 	frameworkSplashScreenPicture = "./resources/sIBL_GUI_SpashScreen.png"
 	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
