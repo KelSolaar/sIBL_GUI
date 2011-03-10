@@ -139,14 +139,17 @@ class Delayed_QSplashScreen(QSplashScreen):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def setMessage(self, message, waitTime=None):
+	def setMessage(self, message, textAlignement=Qt.AlignLeft, textColor=Qt.black, waitTime=None):
 		'''
 		This Method Initializes The Class.
 
 		@param message: Message To Display On The Splashscreen. ( String )
+		@param textAlignement: Text Message Alignment. ( Object )
+		@param textColor: Text Message Color. ( Object )
+		@param waitTime: Wait Time. ( Float )
 		'''
 
-		self.showMessage(message)
+		self.showMessage(message, textAlignement, textColor)
 
 		if self._waitTime:
 			waitTime = self._waitTime
