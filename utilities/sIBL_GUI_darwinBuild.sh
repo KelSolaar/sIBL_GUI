@@ -70,6 +70,9 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
+#! Maya_Arnold_Standard Textile Template Documentation Removal.
+rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_Arnold_Standard/help/Maya_Arnold_Standard Template Manual"
+
 #! Maya_MR_Lightsmith Textile Template Documentation Removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_MR_Lightsmith/help/Maya_MR_Lightsmith Template Manual"
 

@@ -83,6 +83,9 @@ rm "$DEPLOYMENT/templates/3dsMax_Scanline_Standard/help/3dsMax_Scanline_Standard
 #! 3dsMax_VRay_Standard Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/3dsMax_VRay_Standard/help/3dsMax_VRay_Standard Template Manual"
 
+#! Maya_Arnold_Standard Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/Maya_Arnold_Standard/help/Maya_Arnold_Standard Template Manual"
+
 #! Maya_MR_Lightsmith Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/Maya_MR_Lightsmith/help/Maya_MR_Lightsmith Template Manual"
 
@@ -101,11 +104,26 @@ rm "$DEPLOYMENT/templates/Maya_VRay_Lightsmith/help/Maya_VRay_Lightsmith Templat
 #! Maya_VRay_Standard Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
 
+#! Softimage_Arnold_Dome_Light Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/Softimage_Arnold_Dome_Light/help/Softimage_Arnold_Dome_Light Template Manual"
+
+#! Softimage_Arnold_Lightsmith Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/Softimage_Arnold_Lightsmith/help/Softimage_Arnold_Lightsmith Template Manual"
+
+#! Softimage_Arnold_Standard Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/Softimage_Arnold_Standard/help/Softimage_Arnold_Standard Template Manual"
+
 #! Softimage_MR_Lightsmith Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/Softimage_MR_Lightsmith/help/Softimage_MR_Lightsmith Template Manual"
 
 #! Softimage_MR_Standard Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/Softimage_MR_Standard/help/Softimage_MR_Standard Template Manual"
+
+#! XSI_Arnold_Dome_Light Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/XSI_Arnold_Dome_Light/help/XSI_Arnold_Dome_Light Template Manual"
+
+#! XSI_Arnold_Standard Textile Template Documentation Removal.
+rm "$DEPLOYMENT/templates/XSI_Arnold_Standard/help/XSI_Arnold_Standard Template Manual"
 
 #! XSI_MR_Standard Textile Template Documentation Removal.
 rm "$DEPLOYMENT/templates/XSI_MR_Standard/help/XSI_MR_Standard Template Manual"
