@@ -1535,7 +1535,7 @@ def sIBL_GUI_start():
 	try:
 		os.path.exists(RuntimeConstants.loggingFile) and os.remove(RuntimeConstants.loggingFile)
 	except:
-		raise OSError, "{0} Logging File Is Currently Locked, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
+		raise OSError, "{0} Logging File Is Currently Locked By Another Process, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
 	try:
 		RuntimeConstants.loggingFileHandler = logging.FileHandler(RuntimeConstants.loggingFile)
