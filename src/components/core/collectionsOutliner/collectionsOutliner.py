@@ -1066,16 +1066,18 @@ class CollectionsOutliner(UiComponent):
 			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIds = str(self._settings.getKey(self._settingsSection, "activeCollections").toString())
-		LOGGER.debug("> Restoring '{0}' Active Collections Ids: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
+		LOGGER.debug("> Stored '{0}' Active Collections Ids Selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
 		if activeCollectionsIds:
 			if self._settingsSeparator in activeCollectionsIds:
 				ids = activeCollectionsIds.split(self._settingsSeparator)
 			else:
 				ids = [activeCollectionsIds]
-			if self._overallCollection in ids:
-				self._modelSelection[self._overallCollection] = [self._overallCollection]
-				ids.remove(self._overallCollection)
 			self._modelSelection["Collections"] = [int(id) for id in ids]
+
+		activeOverallCollection = str(self._settings.getKey(self._settingsSection, "activeOverallCollection").toString())
+		LOGGER.debug("> Stored '{0}' Active Overall Collection Selection: '{1}'.".format(self.__class__.__name__, activeOverallCollection))
+		if activeOverallCollection:
+			self._modelSelection[self._overallCollection] = [activeOverallCollection]
 		self.Collections_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
@@ -1087,7 +1089,8 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
 		self.Collections_Outliner_treeView_storeModelSelection()
-		self._settings.setKey(self._settingsSection, "activeCollections", self._settingsSeparator.join((str(item) for value in self._modelSelection.values() for item in value)))
+		self._settings.setKey(self._settingsSection, "activeCollections", self._settingsSeparator.join((str(id) for id in self._modelSelection["Collections"])))
+		self._settings.setKey(self._settingsSection, "activeOverallCollection", self._settingsSeparator.join((str(id) for id in self._modelSelection[self._overallCollection])))
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setModel(self):
