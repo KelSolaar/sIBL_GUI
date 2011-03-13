@@ -1175,6 +1175,12 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param event: QEvent. ( QEvent )
 		'''
 
+		# --- Running onClose Components Methods. ---
+		for component in self._componentsManager.getComponents():
+			interface = self._componentsManager.getInterface(component)
+			if interface.activated:
+				hasattr(interface, "onClose") and interface.onClose()
+
 		# Storing Current Layout.
 		self.storeStartupLayout()
 		self._settings.settings.sync()
