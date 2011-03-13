@@ -447,6 +447,9 @@ class TemplatesOutliner(UiComponent):
 		self._dockArea = 1
 
 		self._container = None
+		self._settings = None
+		self._settingsSection = None
+		self._settingsSeparator = ","
 
 		self._coreDb = None
 
@@ -648,6 +651,96 @@ class TemplatesOutliner(UiComponent):
 		'''
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+
+	@property
+	def settings(self):
+		'''
+		This Method Is The Property For The _settings Attribute.
+
+		@return: self._settings. ( QSettings )
+		'''
+
+		return self._settings
+
+	@settings.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self, value):
+		'''
+		This Method Is The Setter Method For The _settings Attribute.
+
+		@param value: Attribute Value. ( QSettings )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+
+	@settings.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self):
+		'''
+		This Method Is The Deleter Method For The _settings Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+
+	@property
+	def settingsSection(self):
+		'''
+		This Method Is The Property For The _settingsSection Attribute.
+
+		@return: self._settingsSection. ( String )
+		'''
+
+		return self._settingsSection
+
+	@settingsSection.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSection(self, value):
+		'''
+		This Method Is The Setter Method For The _settingsSection Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+
+	@settingsSection.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSection(self):
+		'''
+		This Method Is The Deleter Method For The _settingsSection Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+
+	@property
+	def settingsSeparator(self):
+		'''
+		This Method Is The Property For The _settingsSeparator Attribute.
+
+		@return: self._settingsSeparator. ( String )
+		'''
+
+		return self._settingsSeparator
+
+	@settingsSeparator.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSeparator(self, value):
+		'''
+		This Method Is The Setter Method For The _settingsSeparator Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSeparator"))
+
+	@settingsSeparator.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSeparator(self):
+		'''
+		This Method Is The Deleter Method For The _settingsSeparator Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSeparator"))
 
 	@property
 	def coreDb(self):
@@ -1025,6 +1118,8 @@ class TemplatesOutliner(UiComponent):
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
 		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
 		self._container = container
+		self._settings = self._container.settings
+		self._settingsSection = self.name
 
 		self._coreDb = self._container.componentsManager.components["core.db"].interface
 
@@ -1131,6 +1226,48 @@ class TemplatesOutliner(UiComponent):
 				self.Templates_Outliner_treeView_refreshModel()
 		else:
 			LOGGER.info("{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+
+		activeCollections = str(self._settings.getKey(self._settingsSection, "activeCollections").toString())
+		LOGGER.debug("> Stored '{0}' Active Collections Selection: '{1}'.".format(self.__class__.__name__, activeCollections))
+		if activeCollections:
+			if self._settingsSeparator in activeCollections:
+				collections = activeCollections.split(self._settingsSeparator)
+			else:
+				collections = [activeCollections]
+			self._modelSelection["Collections"] = collections
+
+		activeSoftwares = str(self._settings.getKey(self._settingsSection, "activeSoftwares").toString())
+		LOGGER.debug("> Stored '{0}' Active Softwares Selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
+		if activeSoftwares:
+			if self._settingsSeparator in activeSoftwares:
+				softwares = activeSoftwares.split(self._settingsSeparator)
+			else:
+				softwares = [activeSoftwares]
+			self._modelSelection["Softwares"] = softwares
+
+		activeTemplatesIds = str(self._settings.getKey(self._settingsSection, "activeTemplates").toString())
+		LOGGER.debug("> Stored '{0}' Active Templates Ids Selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
+		if activeTemplatesIds:
+			if self._settingsSeparator in activeTemplatesIds:
+				ids = activeTemplatesIds.split(self._settingsSeparator)
+			else:
+				ids = [activeTemplatesIds]
+			self._modelSelection["Templates"] = [int(id) for id in ids]
+
+		self.Templates_Outliner_treeView_restoreModelSelection()
+
+	@core.executionTrace
+	def onClose(self):
+		'''
+		This Method Is Called On Framework Close.
+		'''
+
+		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
+
+		self.Templates_Outliner_treeView_storeModelSelection()
+		self._settings.setKey(self._settingsSection, "activeTemplates", self._settingsSeparator.join(str(id) for id in self._modelSelection["Templates"]))
+		self._settings.setKey(self._settingsSection, "activeCollections", self._settingsSeparator.join(str(id) for id in self._modelSelection["Collections"]))
+		self._settings.setKey(self._settingsSection, "activeSoftwares", self._settingsSeparator.join(str(id) for id in self._modelSelection["Softwares"]))
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setModel(self):

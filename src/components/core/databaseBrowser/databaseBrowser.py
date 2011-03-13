@@ -1305,13 +1305,14 @@ class DatabaseBrowser(UiComponent):
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeIblSetsIds = str(self._settings.getKey(self._settingsSection, "activeIblSets").toString())
-		LOGGER.debug("> Restoring '{0}' Active Ibl Sets Ids: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
+		LOGGER.debug("> Stored '{0}' Active Ibl Sets Ids Selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
 		if activeIblSetsIds:
 			if self._settingsSeparator in activeIblSetsIds:
 				ids = activeIblSetsIds.split(self._settingsSeparator)
 			else:
 				ids = [activeIblSetsIds]
 			self._modelSelection = [int(id) for id in ids]
+
 		self.Database_Browser_listView_restoreModelSelection()
 
 	@core.executionTrace

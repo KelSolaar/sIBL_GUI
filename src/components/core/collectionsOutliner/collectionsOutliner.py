@@ -1078,6 +1078,7 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Stored '{0}' Active Overall Collection Selection: '{1}'.".format(self.__class__.__name__, activeOverallCollection))
 		if activeOverallCollection:
 			self._modelSelection[self._overallCollection] = [activeOverallCollection]
+
 		self.Collections_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
