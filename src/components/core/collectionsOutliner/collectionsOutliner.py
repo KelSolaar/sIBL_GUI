@@ -407,7 +407,7 @@ class CollectionsOutliner(UiComponent):
 		self._container = None
 		self._settings = None
 		self._settingsSection = None
-		self._settingsSeparator = "|"
+		self._settingsSeparator = ","
 
 		self._coreDb = None
 		self._coreDatabaseBrowser = None
@@ -1066,8 +1066,8 @@ class CollectionsOutliner(UiComponent):
 			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIds = str(self._settings.getKey(self._settingsSection, "activeCollections").toString())
+		LOGGER.debug("> Restoring '{0}' Active Collections Ids: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
 		if activeCollectionsIds:
-			LOGGER.debug("> Restoring '{0}' Active Collections Ids: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
 			if self._settingsSeparator in activeCollectionsIds:
 				ids = activeCollectionsIds.split(self._settingsSeparator)
 			else:

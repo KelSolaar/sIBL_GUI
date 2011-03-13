@@ -475,6 +475,7 @@ class DatabaseBrowser(UiComponent):
 		self._container = None
 		self._settings = None
 		self._settingsSection = None
+		self._settingsSeparator = ","
 
 		self._extension = "ibl"
 
@@ -893,6 +894,36 @@ class DatabaseBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
+	def settingsSeparator(self):
+		'''
+		This Method Is The Property For The _settingsSeparator Attribute.
+
+		@return: self._settingsSeparator. ( String )
+		'''
+
+		return self._settingsSeparator
+
+	@settingsSeparator.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSeparator(self, value):
+		'''
+		This Method Is The Setter Method For The _settingsSeparator Attribute.
+
+		@param value: Attribute Value. ( String )
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSeparator"))
+
+	@settingsSeparator.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settingsSeparator(self):
+		'''
+		This Method Is The Deleter Method For The _settingsSeparator Attribute.
+		'''
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSeparator"))
+
+	@property
 	def extension(self):
 		'''
 		This Method Is The Property For The _extension Attribute.
@@ -1272,6 +1303,27 @@ class DatabaseBrowser(UiComponent):
 				self.Database_Browser_listView_localRefreshModel()
 		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+
+		activeIblSetsIds = str(self._settings.getKey(self._settingsSection, "activeIblSets").toString())
+		LOGGER.debug("> Restoring '{0}' Active Ibl Sets Ids: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
+		if activeIblSetsIds:
+			if self._settingsSeparator in activeIblSetsIds:
+				ids = activeIblSetsIds.split(self._settingsSeparator)
+			else:
+				ids = [activeIblSetsIds]
+			self._modelSelection = [int(id) for id in ids]
+		self.Database_Browser_listView_restoreModelSelection()
+
+	@core.executionTrace
+	def onClose(self):
+		'''
+		This Method Is Called On Framework Close.
+		'''
+
+		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
+
+		self.Database_Browser_listView_storeModelSelection()
+		self._settings.setKey(self._settingsSection, "activeIblSets", self._settingsSeparator.join(str(id) for id in self._modelSelection))
 
 	@core.executionTrace
 	def Database_Browser_listView_setModel(self):
