@@ -1296,7 +1296,7 @@ class RemoteUpdater(object):
 			self._ui.Templates_tableWidget.setPalette(palette)
 
 			verticalHeaderLabels = []
-			for row, release in enumerate(templatesReleases):
+			for row, release in enumerate(sorted(templatesReleases)):
 					verticalHeaderLabels.append(release)
 
 					tableWidgetItem = QTableWidgetItem()
