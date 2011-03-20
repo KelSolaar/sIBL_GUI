@@ -33,7 +33,7 @@ cp  $SOURCE/ui/Darwin_styleSheet.qss $DISTRIBUTION/sIBL_GUI.app/Contents/Resourc
 cp  $SOURCE/ui/Linux_styleSheet.qss $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
 cp  $SOURCE/resources/Icon_Light_512.icns $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp  $SOURCE/resources/Icon_Light.icns $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp  $SOURCE/resources/Icon_Light.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/sIBL_GUI_SpashScreen.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/sIBL_GUI_Logo.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Central_Widget.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources

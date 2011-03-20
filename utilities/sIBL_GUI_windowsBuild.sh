@@ -36,7 +36,7 @@ cp -r $SOURCE/ui/Windows_styleSheet.qss $DEPLOYMENT/ui/
 cp -r $SOURCE/ui/Darwin_styleSheet.qss $DEPLOYMENT/ui/
 cp -r $SOURCE/ui/Linux_styleSheet.qss $DEPLOYMENT/ui/
 mkdir $DEPLOYMENT/resources
-cp -r $SOURCE/resources/Icon_Light_48.ico $DEPLOYMENT/resources/Icon_Light.ico
+cp -r $SOURCE/resources/Icon_Light.png $DEPLOYMENT/resources/Icon_Light.png
 cp -r $SOURCE/resources/sIBL_GUI_SpashScreen.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/sIBL_GUI_Logo.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Central_Widget.png $DEPLOYMENT/resources/
