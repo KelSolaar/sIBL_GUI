@@ -349,7 +349,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Initializing sIBL_GUI. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
-
+		
 		# Visual Style Initialisation.
 		self.setVisualStyle()
 		ui.common.setWindowDefaultIcon(self)
