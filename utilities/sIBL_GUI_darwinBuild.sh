@@ -8,7 +8,7 @@ export DISTRIBUTION=./dist
 export BUILD=./build
 export UTILITIES=../../utilities
 
-alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python-32
+alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 
 #! Darwin Build.
 echo ----------------------------------------------------------------
