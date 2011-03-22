@@ -138,7 +138,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		'''
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w")
-		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\.[iI][cC][oO]$")
+		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkApplicationDarwinIconAttribute(self):
 		'''
@@ -146,7 +146,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		'''
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w")
-		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\.[iI][cC][nN][sS]$")
+		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkLogoPictureAttribute(self):
 		'''
