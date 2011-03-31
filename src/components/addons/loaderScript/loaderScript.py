@@ -583,6 +583,8 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self.ui.Remote_Connection_groupBox.hide()
+		if platform.system() == "Linux" or platform.system() == "Darwin":
+			self.ui.Options_groupBox.hide()
 
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.Output_Loader_Script_pushButton_OnClicked)
@@ -796,6 +798,11 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Loader Script Output File Path: '{0}'.".format(loaderScript.file))
 
 		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self._overrideKeys)
+		
+		if self.ui.Trim_Windows_Os_Path_checkBox.isChecked():
+			for line in loaderScript.content:
+				pass
+
 		if loaderScript.content and loaderScript.write():
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
 			return True
