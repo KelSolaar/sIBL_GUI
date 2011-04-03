@@ -650,7 +650,11 @@ class LoaderScript(UiComponent):
 			templateParser = Parser(selectedTemplate._datas.path)
 			templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
 			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
+			
 			loaderScriptPath = strings.getNormalizedPath(os.path.join(self._ioDirectory, selectedTemplate._datas.outputScript))
+			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
+				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
+			
 			if connectionType.value == "Socket":
 				try:
 					connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -799,10 +803,6 @@ class LoaderScript(UiComponent):
 
 		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self._overrideKeys)
 		
-		if self.ui.Trim_Windows_Os_Path_checkBox.isChecked():
-			for line in loaderScript.content:
-				pass
-
 		if loaderScript.content and loaderScript.write():
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
 			return True

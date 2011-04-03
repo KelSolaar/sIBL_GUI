@@ -148,16 +148,16 @@
            <number>0</number>
           </property>
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="Convert_To_POSIX_Paths_horizontalLayout">
+           <layout class="QHBoxLayout" name="Convert_To_Posix_Paths_horizontalLayout">
             <item>
-             <widget class="QLabel" name="Convert_To_POSIX_Paths_label">
+             <widget class="QLabel" name="Convert_To_Posix_Paths_label">
               <property name="text">
-               <string>Convert To POSIX Paths:</string>
+               <string>Convert To Posix Paths:</string>
               </property>
              </widget>
             </item>
             <item>
-             <spacer name="Convert_To_POSIX_Paths_horizontalSpacer">
+             <spacer name="Convert_To_Posix_Paths_horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -170,7 +170,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QCheckBox" name="Convert_To_POSIX_Paths_checkBox">
+             <widget class="QCheckBox" name="Convert_To_Posix_Paths_checkBox">
               <property name="statusTip">
                <string>Ignore Non Existing Templates Check Box: Online Updater Will Only Consider Templates In The Database When Checking For Updates.</string>
               </property>
