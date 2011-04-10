@@ -498,12 +498,16 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			self._setsScannerWorkerThread = SetsScanner_Worker(self)
-			self._container.workerThreads.append(self._setsScannerWorkerThread)
 
-			# Signals / Slots.
-			self._setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
+		if not self._container.parameters.databaseReadOnly:
+			if not self._container.parameters.deactivateWorkerThreads:
+				self._setsScannerWorkerThread = SetsScanner_Worker(self)
+				self._container.workerThreads.append(self._setsScannerWorkerThread)
+	
+				# Signals / Slots.
+				self._setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
+			else:
+				LOGGER.info("{0} | 'Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
 			LOGGER.info("{0} | Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -514,12 +518,13 @@ class SetsScanner(Component):
 		'''
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
-
+		
 		if not self._container.parameters.databaseReadOnly:
-			# Signals / Slots.
-			not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
-
-			self._setsScannerWorkerThread = None
+			if not self._container.parameters.deactivateWorkerThreads:
+				# Signals / Slots.
+				not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
+	
+				self._setsScannerWorkerThread = None
 
 	@core.executionTrace
 	def onStartup(self):
@@ -529,7 +534,7 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.start()
+		not self._container.parameters.databaseReadOnly and not self._container.parameters.deactivateWorkerThreads and self._setsScannerWorkerThread.start()
 
 	@core.executionTrace
 	def databaseChanged(self):

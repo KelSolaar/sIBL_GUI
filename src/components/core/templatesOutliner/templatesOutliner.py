@@ -1144,6 +1144,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
+		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self._model = QStandardItemModel()
 		self.Templates_Outliner_treeView_setModel()
 
@@ -1159,12 +1160,15 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Template_Informations_textBrowser.setText(self._Template_Informations_textBrowser_defaultText)
 		self.ui.Template_Informations_textBrowser.setOpenLinks(False)
 
-		self.ui.Templates_Outliner_splitter.setSizes([ 16777215, 1 ])
+		self.ui.Templates_Outliner_splitter.setSizes([16777215, 1])
 
 		if not self._container.parameters.databaseReadOnly:
-			self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
-			self._templatesOutlinerWorkerThread.start()
-			self._container.workerThreads.append(self._templatesOutlinerWorkerThread)
+			if not self._container.parameters.deactivateWorkerThreads:
+				self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
+				self._templatesOutlinerWorkerThread.start()
+				self._container.workerThreads.append(self._templatesOutlinerWorkerThread)
+			else:
+				LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
 			LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1172,7 +1176,7 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.Templates_Outliner_treeView_OnSelectionChanged)
 		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.Template_Informations_textBrowser_OnAnchorClicked)
 		self.modelChanged.connect(self.Templates_Outliner_treeView_refreshView)
-		not self._container.parameters.databaseReadOnly and self._templatesOutlinerWorkerThread.databaseChanged.connect(self.databaseChanged)
+		not self._container.parameters.databaseReadOnly and not self._container.parameters.deactivateWorkerThreads and self._templatesOutlinerWorkerThread.databaseChanged.connect(self.databaseChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

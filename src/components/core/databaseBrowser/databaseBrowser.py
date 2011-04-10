@@ -1228,9 +1228,12 @@ class DatabaseBrowser(UiComponent):
 		self.Database_Browser_listView_setView()
 
 		if not self._container.parameters.databaseReadOnly:
-			self._databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
-			self._databaseBrowserWorkerThread.start()
-			self._container.workerThreads.append(self._databaseBrowserWorkerThread)
+			if not self._container.parameters.deactivateWorkerThreads:
+				self._databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
+				self._databaseBrowserWorkerThread.start()
+				self._container.workerThreads.append(self._databaseBrowserWorkerThread)
+			else:
+				LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
 			LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1242,8 +1245,10 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.Thumbnails_Size_horizontalSlider_OnChanged)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView.QListView_OnDoubleClicked)
 		self.modelChanged.connect(self.Database_Browser_listView_refreshView)
+
 		if not self._container.parameters.databaseReadOnly:
-			self._databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
+			if not self._container.parameters.deactivateWorkerThreads:
+				self._databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
 			self._model.dataChanged.connect(self.Database_Browser_listView_OnModelDataChanged)
 
 	@core.executionTrace

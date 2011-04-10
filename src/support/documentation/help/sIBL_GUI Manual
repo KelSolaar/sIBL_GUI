@@ -135,6 +135,7 @@ sIBL_GUI accepts command line parameters:
 * *-a, --about*: Display application "About" message. ( Mac Os X and Linux only )
 * *-v VERBOSITYLEVEL, --verbose=VERBOSITYLEVEL*: Application verbosity levels:  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.
 * *-u USERAPPLICATIONDATASDIRECTORY, --userApplicationDatasDirectory=USERAPPLICATIONDATASDIRECTORY*: User application datas directory ( Preferences directory ). 
+* *-t, --deactivateWorkerThreads*: The Worker Threads are deactivated.
 * *-d DATABASEDIRECTORY, --databaseDirectory=DATABASEDIRECTORY*: Database directory.
 * *-r, --databaseReadOnly*: Database is read only, database write access methods are not exposed into the interface.
 * *-o LOADERSCRIPTSOUTPUTDIRECTORY, --loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY*: Loader scripts output directory.

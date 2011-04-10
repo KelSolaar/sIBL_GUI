@@ -1,10 +1,15 @@
-h1=. sIBL_GUI - 3.5.0 - Stable
+h1=. sIBL_GUI - 3.5.1 - Stable
 
 h3{color:rgb(200, 75, 75);}=. ***IMPORTANT NOTICE :***
 
 h4{color:rgb(200, 75, 75);}=. "sIBL_GUI 3.1.2" Windows building file presented some issues resulting in an incorrect "templates" directory hierarchy and presence of non related files in the build. It's advised to either uninstall it or remove the installation "templates" directory content before updating.
 
 h2=. Change Log
+
+h3. 3.5.1 - Stable
+
+* Added "-t / --deactivateWorkerThreads" command line parameter allowing Worker Threads deactivation.
+* Renamed "-s / --noSplashScreen" command line parameter to "-s / --hideSplashScreen".
 
 h3. 3.5.0 - Stable
 
@@ -37,7 +42,7 @@ h3. 3.1.0 - Stable
 
 * sIBL_GUI now uses Python 2.7.1, allowing usage of OrderedDict, Templates attributes are now displayed in correct order.
 * Replaced Google Maps by Bing Maps: Google Maps support is broken at the moment on Qt Webkit.
-* Added "--noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
+* Added "-s / --noSplashScreen" command line parameter allowing user to deactivate the splashscreen.
 * Added support for Templates enums: "lightType = @lightType | Area;Directional;Spot | Enum | Light Type".
 * Fixed an inconsistency related to the comments in the file parser. 
 * Help files stored on network are now properly opened on Windows.
@@ -51,7 +56,7 @@ h3. 3.0.9 - Stable
 * sIBL_GUI has now an Internal Image Previewer: You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: "http://www.hdrlabs.com/picturenaut/index.html":http://www.hdrlabs.com/picturenaut/index.html 
 * Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build: Third Party Images loading is now 10 to 20 times faster.  
 * Implemented Ibl Sets database display name edition: Double click an Ibl Set in the Database Browser to edit it's display name.  
-* "--databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
+* "-r / --databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.
 * Fixed a code regression preventing "Templates Informations" widget display.  
 * Fixed a potential application crash when dragging multiples Ibl Sets from a Collection to another on Mac Os X.  
 * Worker Threads are properly terminated on application exit.  

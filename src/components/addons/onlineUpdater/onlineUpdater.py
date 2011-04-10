@@ -2028,6 +2028,8 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
+		self._container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater Worker Thread Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+
 		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.Ignore_Non_Existing_Templates_checkBox_setUi()
 
@@ -2106,7 +2108,7 @@ class OnlineUpdater(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
 		self._reportUpdateStatus = False
-		self._ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		not self._container.parameters.deactivateWorkerThreads and self._ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 
 	@core.executionTrace
 	def addWidget(self):
