@@ -1580,8 +1580,8 @@ def sIBL_GUI_start():
 	RuntimeConstants.application = QApplication(sys.argv)
 
 	# Initializing SplashScreen.
-	if RuntimeConstants.parameters.noSplashScreen:
-		LOGGER.debug("> SplashScreen Skipped By 'noSplashScreen' Command Line Parameter.")
+	if RuntimeConstants.parameters.hideSplashScreen:
+		LOGGER.debug("> SplashScreen Skipped By 'hideSplashScreen' Command Line Parameter.")
 	else:
 		LOGGER.debug("> Initializing SplashScreen.")
 
@@ -1671,7 +1671,7 @@ def getCommandLineParameters(argv):
 
 	parser.add_option("-o", "--loaderScriptsOutputDirectory", action="store", type="string", dest="loaderScriptsOutputDirectory", help="'Loader Scripts Output Directory'.")
 
-	parser.add_option("-s", "--noSplashScreen", action="store_true", default=False, dest="noSplashScreen", help="'No Splash Screen'.")
+	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide Splash Screen'.")
 
 	parameters, args = parser.parse_args(argv)
 

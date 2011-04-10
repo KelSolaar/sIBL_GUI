@@ -138,7 +138,7 @@ sIBL_GUI accepts command line parameters:
 * *-d DATABASEDIRECTORY, --databaseDirectory=DATABASEDIRECTORY*: Database directory.
 * *-r, --databaseReadOnly*: Database is read only, database write access methods are not exposed into the interface.
 * *-o LOADERSCRIPTSOUTPUTDIRECTORY, --loaderScriptsOutputDirectory=LOADERSCRIPTSOUTPUTDIRECTORY*: Loader scripts output directory.
-* *-s, --noSplashScreen*: The SplashScreen is not displayed during application startup.
+* *-s, --hideSplashScreen*: The SplashScreen is not displayed during application startup.
 
 Note: On Mac Os X, sIBL_GUI is launched from command line doing the following: "cd" into "sIBL_GUI.app" folder and enter "./Contents/MacOS/sIBL_GUI" followed by the parameters.
 
