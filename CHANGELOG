@@ -23,14 +23,14 @@ h3. 3.1.3 - Stable
 * Templates have now options to define different light types : "Area", "Directional", "Point", "Spot", etc ...
 * "Search Database" component "In Tags Cloud" method is now case sensitive.
 * Fixed a remaining issue in "Search Database" component and empty Ibl Set attributes in the "In Tags Cloud" method.
-* Fix Windows building file to prevent incorrect "templates" folder hierarchy.
+* Fixed Windows building file to prevent incorrect "templates" folder hierarchy.
 
 h3. 3.1.2 - Stable
 
 * Fixed issues with the "Search Database" component and empty Ibl Set attributes.
 * Added new "In Tags Cloud" method to the "Search Database" component. It's now possible to search for multiples keywords in any order either by typing them in the "Search Database" widget or select them in the "Tags Cloud" widget.
 * "Search Database" widget now has a button to clear the current search.
-* Implement units tests on sIBL_GUI "foundations", "manager" and "globals" packages.
+* Implemented units tests on sIBL_GUI "foundations", "manager" and "globals" packages.
 * Extracted multiple packages to new repositories for better code reusability.
 
 h3. 3.1.1 - Stable
@@ -64,7 +64,7 @@ h3. 3.0.9 - Stable
 
 h3. 3.0.8 - Stable
 
-* sIBL_GUI For Windows now is natively built on Windows 7, this should fix the slow startup issues reported on Windows Vista / 7.
+* sIBL_GUI For Windows now is natively built on Windows 7, this should Fixed the slow startup issues reported on Windows Vista / 7.
 * Implemented dragNdrop in various components ( Network paths are currently not supported on Windows Vista / 7 ):
 ** Database Browser Component: You can dragNdrop Ibl Sets folders or Ibl Sets files directly from the Os.
 ** Collections Outliner Component: You can also dragNdrop folders or Ibl Sets files directly from the Os.
@@ -89,7 +89,7 @@ h3. 3.0.7 - Stable
 h3. 3.0.6 - Stable
 
 * Session layout state is now stored and restored on application start and exit. If you had a previous sIBL_GUI 3 installation, you may encounter two issues: 
-** The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I would like to avoid implementing compatibility code.
+** The first time you launch sIBL_GUI 3.0.6, the application window will be empty, simply click one of the main toolbar layouts. This is happening because if not absolutely needed I would like to avoid Implementeding compatibility code.
 ** Your settings file will be a bit messy and missing some attributes. This will not prevent sIBL_GUI running properly. *It's however advised to remove it!* If you need to preserve some customs layouts, backup your original settings file, and merge them into the new one. Don't hesitate to contact me if you are encountering difficulties while doing the merge.
 * Moved Templates and Ibl Sets scanners to separate threads for increased performances.
 * Added support for command line parameters.
@@ -304,7 +304,7 @@ h3. 0.9.9 - Release Candidate
 * Corrected introduced Bug in "Open Output Folder" button.
 * Code refactoring around Collections management.
 * Corrected Code execution when clicking Remove button and nothing was selected.
-* Clicking Remove Button when multiple items were selected on same row was throwing an error, this has been fixed.
+* Clicking Remove Button when multiple items were selected on same row was throwing an error, this has been Fixed.
 
 h3. 0.9.8 - Beta
 
