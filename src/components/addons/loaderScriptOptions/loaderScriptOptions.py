@@ -692,25 +692,18 @@ class LoaderScriptOptions(UiComponent):
 				state = int(attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self._uiLightGrayColor, self._uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
-				item._datas = attributeCompound
-				tableWidget.setCellWidget(row, 0, item)
 			elif attributeCompound.type == "Float":
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
 				item.setValue(float(attributeCompound.value))
-				item._datas = attributeCompound
-				tableWidget.setCellWidget(row, 0, item)
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
 				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self._enumSplitter)])
-				item._datas = attributeCompound
-				tableWidget.setCellWidget(row, 0, item)
 			else:
-				item = QTableWidgetItem(QString(attributeCompound.value))
-				item.setTextAlignment(Qt.AlignCenter)
-				item._datas = attributeCompound
-				tableWidget.setItem(row, 0, item)
+				item = QLineEdit(QString(attributeCompound.value))
+			item._datas = attributeCompound
+			tableWidget.setCellWidget(row, 0, item)
 
 		tableWidget.setVerticalHeaderLabels (verticalHeaderLabels)
 		tableWidget.show()
@@ -728,13 +721,13 @@ class LoaderScriptOptions(UiComponent):
 		for row in range(tableWidget.rowCount()):
 			widget = tableWidget.cellWidget(row, 0)
 			if type(widget) is Variable_QPushButton:
-				value = tableWidget.cellWidget(row, 0).text() == "True" and "1" or "0"
+				value = widget.text() == "True" and "1" or "0"
 			elif type(widget) is QDoubleSpinBox:
-				value = str(tableWidget.cellWidget(row, 0).value())
+				value = str(widget.value())
 			elif type(widget) is QComboBox:
-				value = str(tableWidget.cellWidget(row, 0).currentText())
+				value = str(widget.currentText())
 			else:
-				value = str(tableWidget.cellWidget(row, 0).text())
+				value = str(widget.text())
 			widget._datas.value = value
 
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(widget._datas.name, widget._datas.value))
