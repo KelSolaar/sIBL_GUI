@@ -1737,7 +1737,7 @@ class DatabaseBrowser(UiComponent):
 		@return: Current Shot Date. ( String )
 		'''
 
-		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1} Time'.".format(date, time))
+		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1}' Time.".format(date, time))
 
 		if date and time and date != Constants.nullObject and time != Constants.nullObject:
 			shotTime = time.split(":")
