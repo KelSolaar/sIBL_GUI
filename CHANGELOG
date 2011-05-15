@@ -2,12 +2,11 @@ h1=. sIBL_GUI - 3.5.1 - Stable
 
 h3{color:rgb(200, 75, 75);}=. ***IMPORTANT NOTICE :***
 
-h4{color:rgb(200, 75, 75);}=. "sIBL_GUI 3.1.2" Windows building file presented some issues resulting in an incorrect "templates" directory hierarchy and presence of non related files in the build. It's advised to either uninstall it or remove the installation "templates" directory content before updating.
-
 h2=. Change Log
 
 h3. 3.5.1 - Stable
 
+* Added support for Templates strings: "nodePrefix = @nodePrefix | __Prefix__ | String | Node Prefix".
 * Added "-t / --deactivateWorkerThreads" command line parameter allowing Worker Threads deactivation.
 * Renamed "-s / --noSplashScreen" command line parameter to "-s / --hideSplashScreen".
 
