@@ -687,7 +687,7 @@ class LoaderScriptOptions(UiComponent):
 			else:
 				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
 
-			LOGGER.debug("> Attribute Type: '{0}'.".format("Boolean"))
+			LOGGER.debug("> Attribute Type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self._uiLightGrayColor, self._uiDarkGrayColor), ("True", "False"))
@@ -700,8 +700,9 @@ class LoaderScriptOptions(UiComponent):
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
 				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self._enumSplitter)])
-			else:
+			elif attributeCompound.type == "String":
 				item = QLineEdit(QString(attributeCompound.value))
+				
 			item._datas = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
 
