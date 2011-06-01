@@ -683,7 +683,7 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
 		'''
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		This Method Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
