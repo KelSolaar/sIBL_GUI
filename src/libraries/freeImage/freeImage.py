@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	freeImage.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***		Portions Of The Code From FreeImagePy By Michele Petrazzo: http://freeimagepy.sourceforge.net/.
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -85,9 +85,9 @@ if platform.system() == "Windows" or platform.system() == "Microsoft":
 else:
 	DLL_CALLCONV = ctypes.CFUNCTYPE
 
-'''
+"""
 Internal Types.
-'''
+"""
 VOID	 = ctypes.c_void_p
 INT		 = ctypes.c_int
 BOOL	 = ctypes.c_long
@@ -99,9 +99,9 @@ DOUBLE	 = ctypes.c_double
 
 BYTE_P = ctypes.POINTER(BYTE)
 
-'''
+"""
 System Endian.
-'''
+"""
 if sys.byteorder == "big":
 	FREEIMAGE_BIGENDIAN = 1
 else:
@@ -116,9 +116,9 @@ else:
 	FREEIMAGE_COLORORDER = FREEIMAGE_COLORORDER_BGR
 
 class RGBQUAD(ctypes.Structure):
-	'''
+	"""
 	This Class Is The RGBQUAD Class.
-	'''
+	"""
 
 	_fields_ = []
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
@@ -133,9 +133,9 @@ class RGBQUAD(ctypes.Structure):
 	_fields_ += [ ("rgbReserved", BYTE) ]
 
 class RGBTRIPLE(ctypes.Structure):
-	'''
+	"""
 	This Class Is The RGBTRIPLE Class.
-	'''
+	"""
 
 	_fields_ = []
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
@@ -148,16 +148,16 @@ class RGBTRIPLE(ctypes.Structure):
 					("rgbBlue", BYTE)]
 
 class FIBITMAP(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FIBITMAP Class.
-	'''
+	"""
 
 	_fields_ = [ ("data", ctypes.POINTER(VOID)) ]
 
 class BITMAPINFOHEADER(ctypes.Structure):
-	'''
+	"""
 	This Class Is The BITMAPINFOHEADER Class.
-	'''
+	"""
 
 	_fields_ = [ ("biSize", DWORD),
 				 ("biWidth", LONG),
@@ -172,26 +172,26 @@ class BITMAPINFOHEADER(ctypes.Structure):
 				 ("biClrImportant", DWORD) ]
 
 class BITMAPINFO(ctypes.Structure):
-	'''
+	"""
 	This Class Is The BITMAPINFO Class.
-	'''
+	"""
 
 	_fields_ = [ ("bmiHeader", BITMAPINFOHEADER),
 				("bmiColors[1]", RGBQUAD) ]
 
 class FIRGB16(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FIRGB16 Class.
-	'''
+	"""
 
 	_fields_ = [ ("red", WORD),
 				("green", WORD),
 				("blue", WORD) ]
 
 class FIRGBA16(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FIRGBA16 Class.
-	'''
+	"""
 
 	_fields_ = [ ("red", WORD),
 				("green", WORD),
@@ -199,18 +199,18 @@ class FIRGBA16(ctypes.Structure):
 				("alpha", WORD) ]
 
 class FIRGBF(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FIRGBF Class.
-	'''
+	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
 				("green", ctypes.c_float),
 				("blue", ctypes.c_float) ]
 
 class FIRGBAF(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FIRGBAF Class.
-	'''
+	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
 				("green", ctypes.c_float),
@@ -218,16 +218,16 @@ class FIRGBAF(ctypes.Structure):
 				("alpha", ctypes.c_float) ]
 
 class FICOMPLEX(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FICOMPLEX Class.
-	'''
+	"""
 
 	_fields_ = [ ("r", ctypes.c_double),
 				("i", ctypes.c_double) ]
 
-'''
+"""
 Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
-'''
+"""
 if FREEIMAGE_BIGENDIAN:
 	# Little Endian ( x86 / MS Windows, Linux ): BGR(A) Order.
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
@@ -302,9 +302,9 @@ FI16_565_RED_SHIFT		 = 11
 FI16_565_GREEN_SHIFT	 = 5
 FI16_565_BLUE_SHIFT		 = 0
 
-'''
+"""
 ICC Profile Support
-'''
+"""
 FIICC_DEFAULT			 = 0x00
 FIICC_COLOR_IS_CMYK		 = 0x01
 
@@ -314,9 +314,9 @@ class FIICCPROFILE(ctypes.Structure):
 				("data", VOID) ]
 
 class FREE_IMAGE_FORMAT(object):
-	'''
+	"""
 	This Class Is Used For I/O Image Format Identifiers.
-	'''
+	"""
 
 	FIF_UNKNOWN	 = -1
 	FIF_BMP		 = 0
@@ -358,9 +358,9 @@ class FREE_IMAGE_FORMAT(object):
 	FIF_MUTLIPAGE = (FIF_TIFF, FIF_ICO, FIF_GIF)
 
 class FREE_IMAGE_TYPE(object):
-	'''
+	"""
 	This Class Is Used For Images Types.
-	'''
+	"""
 
 	FIT_UNKNOWN	 = 0
 	FIT_BITMAP	 = 1
@@ -377,9 +377,9 @@ class FREE_IMAGE_TYPE(object):
 	FIT_RGBAF	 = 12
 
 class FREE_IMAGE_COLOR_TYPE(object):
-	'''
+	"""
 	This Class Is Used For Image Color Types.
-	'''
+	"""
 
 	FIC_MINISWHITE = 0
 	FIC_MINISBLACK = 1
@@ -389,17 +389,17 @@ class FREE_IMAGE_COLOR_TYPE(object):
 	FIC_CMYK = 5
 
 class FREE_IMAGE_QUANTIZE(object):
-	'''
+	"""
 	This Class Is Used For Color Quantization Algorithms.
-	'''
+	"""
 
 	FIQ_WUQUANT = 0
 	FIQ_NNQUANT = 1
 
 class FREE_IMAGE_DITHER(object):
-	'''
+	"""
 	This Class Is Used For Dithering Algorithms.
-	'''
+	"""
 
 	FID_FS		 	 = 0
 	FID_BAYER4x4	 = 1
@@ -410,9 +410,9 @@ class FREE_IMAGE_DITHER(object):
 	FID_BAYER16x16 	 = 6
 
 class FREE_IMAGE_JPEG_OPERATION(object):
-	'''
+	"""
 	This Class Is Used For Lossless JPEG Transformations.
-	'''
+	"""
 
 	FIJPEG_OP_NONE			 = 0
 	FIJPEG_OP_FLIP_H		 = 1
@@ -424,18 +424,18 @@ class FREE_IMAGE_JPEG_OPERATION(object):
 	FIJPEG_OP_ROTATE_270	 = 7
 
 class FREE_IMAGE_TMO(object):
-	'''
+	"""
 	This Class Is Used For Tone Mapping Operators.
-	'''
+	"""
 
 	FITMO_DRAGO03	 = 0
 	FITMO_REINHARD05 = 1
 	FITMO_FATTAL02	 = 2
 
 class FREE_IMAGE_FILTER(object):
-	'''
+	"""
 	This Class Is Used For Upsampling / Downsampling Filters.
-	'''
+	"""
 
 	FILTER_BOX			 = 0
 	FILTER_BICUBIC		 = 1
@@ -445,9 +445,9 @@ class FREE_IMAGE_FILTER(object):
 	FILTER_LANCZOS3		 = 5
 
 class FREE_IMAGE_COLOR_CHANNEL(object):
-	'''
+	"""
 	This Class Is Used For Color Channels.
-	'''
+	"""
 	FICC_RGB	 = 0
 	FICC_RED	 = 1
 	FICC_GREEN	 = 2
@@ -460,9 +460,9 @@ class FREE_IMAGE_COLOR_CHANNEL(object):
 	FICC_PHASE	 = 9
 
 class FREE_IMAGE_MDTYPE(object):
-	'''
+	"""
 	This Class Is Used For Tags Data Types Informations.
-	'''
+	"""
 
 	FIDT_NOTYPE		 = 0
 	FIDT_BYTE		 = 1
@@ -497,9 +497,9 @@ class FREE_IMAGE_MDTYPE(object):
 				FIDT_PALETTE : RGBQUAD }
 
 class FREE_IMAGE_MDMODEL(object):
-	'''
+	"""
 	This Class Is Used For Metadatas Models.
-	'''
+	"""
 	FIMD_NODATA			 = -1
 	FIMD_COMMENTS		 = 0
 	FIMD_EXIF_MAIN		 = 1
@@ -514,22 +514,22 @@ class FREE_IMAGE_MDMODEL(object):
 	FIMD_CUSTOM			 = 10
 
 class FIMETADATA(ctypes.Structure):
-	'''
+	"""
 	This Class Is A Handle To A Metadata Model.
-	'''
+	"""
 
 	_fields_ = [ ("data", VOID), ]
 
 class FITAG(ctypes.Structure):
-	'''
+	"""
 	This Class Is A Handle To A FreeImage Tag.
-	'''
+	"""
 
 	_fields_ = [ ("data", VOID) ]
 
-'''
+"""
 File IO Routines.
-'''
+"""
 
 fi_handle = ctypes.c_void_p
 
@@ -539,9 +539,9 @@ FI_SeekProc = DLL_CALLCONV(ctypes.c_int, fi_handle, ctypes.c_long, ctypes.c_int)
 FI_TellProc = DLL_CALLCONV(ctypes.c_long, fi_handle)
 
 class FreeImageIO(ctypes.Structure):
-	'''
+	"""
 	This Class Is The FreeImageIO Class.
-	'''
+	"""
 
 	_fields_ = [ ('read_proc', FI_ReadProc),
 				('write_proc', FI_WriteProc),
@@ -549,15 +549,15 @@ class FreeImageIO(ctypes.Structure):
 				('tell_proc', FI_TellProc) ]
 
 class FIMEMORY(ctypes.Structure):
-	'''
+	"""
 	This Class Is A Handle To A Memory I/O stream
-	'''
+	"""
 
 	_fields_ = [ ("data", VOID) ]
 
-'''
+"""
 Load / Save Flag Constants.
-'''
+"""
 BMP_DEFAULT					 = 0
 BMP_SAVE_RLE				 = 1
 CUT_DEFAULT					 = 0
@@ -637,18 +637,18 @@ WBMP_DEFAULT		 		 = 0
 XBM_DEFAULT					 = 0
 XPM_DEFAULT					 = 0
 
-'''
+"""
 Background Filling Options.
-'''
+"""
 FI_COLOR_IS_RGB_COLOR			 = 0x00
 FI_COLOR_IS_RGBA_COLOR			 = 0x01
 FI_COLOR_FIND_EQUAL_COLOR		 = 0x02
 FI_COLOR_ALPHA_IS_INDEX			 = 0x04
 FI_COLOR_PALETTE_SEARCH_MASK	 = (FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX)
 
-'''
+"""
 Custom Constants
-'''
+"""
 BPP_1 = 1
 BPP_4 = 4
 BPP_8 = 8
@@ -964,17 +964,17 @@ FREEIMAGE_FUNCTIONS = (
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
-	'''
+	"""
 	This Is The AttributeCompound Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param kwargs: path, width, height, bpp. ( Key / Value Pairs )
-		'''
+		"""
 
 		core.Structure.__init__(self, **kwargs)
 
@@ -985,11 +985,11 @@ class Image(object):
 
 	@core.executionTrace
 	def __init__(self, imagePath=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param imagePath: Image Path. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -1012,82 +1012,82 @@ class Image(object):
 	#***************************************************************************************
 	@property
 	def library(self):
-		'''
+		"""
 		This Method Is The Property For The _library Attribute.
 		
 		@return: self._library. ( Library )
-		'''
+		"""
 
 		return self._library
 
 	@library.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def library(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _library Attribute.
 		
 		@param value: Attribute Value. ( Library )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("library"))
 
 	@library.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def library(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _library Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("library"))
 
 	@property
 	def errorsCallback(self):
-		'''
+		"""
 		This Method Is The Property For The _errorsCallback Attribute.
 		
 		@return: self._errorsCallback. ( Object )
-		'''
+		"""
 
 		return self._errorsCallback
 
 	@errorsCallback.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def errorsCallback(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _errorsCallback Attribute.
 		
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("errorsCallback"))
 
 	@errorsCallback.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _errorsCallback Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("errorsCallback"))
 
 	@property
 	def imagePath(self):
-		'''
+		"""
 		This Method Is The Property For The _imagePath Attribute.
 		
 		@return: self._imagePath. ( String )
-		'''
+		"""
 
 		return self._imagePath
 
 	@imagePath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def imagePath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _imagePath Attribute.
 		
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) is str, "'{0}' Attribute: '{1}' Type Is Not 'str'!".format("imagePath", value)
@@ -1096,39 +1096,39 @@ class Image(object):
 	@imagePath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def imagePath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _imagePath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePath"))
 
 	@property
 	def bitmap(self):
-		'''
+		"""
 		This Method Is The Property For The _bitmap Attribute.
 		
 		@return: self._bitmap. ( Object )
-		'''
+		"""
 
 		return self._bitmap
 
 	@bitmap.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def bitmap(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _bitmap Attribute.
 		
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		self._bitmap = value
 
 	@bitmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def bitmap(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _bitmap Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
 
@@ -1138,19 +1138,19 @@ class Image(object):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def _logLibraryErrors(self, errorCode, message):
-		'''
+		"""
 		This Method Logs The Library Errors.
-		'''
+		"""
 
 		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message: '{2}'".format(self.__class__.__name__, errorCode, message)
 
 	@core.executionTrace
 	def getImageFormat(self, imagePath=None):
-		'''
+		"""
 		This Method Gets The File Format.
 		
 		@param imagePath: Image Path. ( String )
-		'''
+		"""
 
 		imagePath = imagePath or self._imagePath
 		if imagePath:
@@ -1163,11 +1163,11 @@ class Image(object):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def load(self, imagePath=None):
-		'''
+		"""
 		This Method Loads The File.
 		
 		@param imagePath: Image Path. ( String )
-		'''
+		"""
 		if self._imagePath:
 			imageFormat = self.getImageFormat(self._imagePath)
 			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
@@ -1179,22 +1179,22 @@ class Image(object):
 
 	@core.executionTrace
 	def save(self):
-		'''
+		"""
 		This Method Save The File.
-		'''
+		"""
 
 		self.saveAs(self.getImageFormat(self._imagePath), self._imagePath, FI_DEFAULT_NULL)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
-		'''
+		"""
 		This Method Save The Image To The Provided File.
 		
 		@param imageFormat: Image Format. ( Integer )
 		@param imagePath: Image Path. ( String )
 		@param flags: Save Flags. ( Integer )
-		'''
+		"""
 
 		if self._library.FreeImage_FIFSupportsWriting(imageFormat):
 			if imagePath:
@@ -1205,12 +1205,12 @@ class Image(object):
 
 	@core.executionTrace
 	def convertToType(self, targetType, linearScale=True):
-		'''
+		"""
 		This Method Converts The Bitmap To Provided Type.
 		
 		@param targetType: Target Type. ( Integer )
 		@param linearScale: Linear Scale. ( Boolean )
-		'''
+		"""
 
 		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}'!".format(self._imagePath, targetType))
 		self._bitmap = self._library.FreeImage_ConvertToType(self._bitmap, targetType, linearScale)
@@ -1218,11 +1218,11 @@ class Image(object):
 
 	@core.executionTrace
 	def convertToLdr(self, gamma=2.2):
-		'''
+		"""
 		This Method Converts The HDR Bitmap To LDR.
 		
 		@param gamma: Image Conversion Gamma. ( Float )
-		'''
+		"""
 
 		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR!".format(self._imagePath))
 		self._bitmap = self._library.FreeImage_HDRLabs_ConvertToLdr(self._bitmap, ctypes.c_double(gamma))
@@ -1231,9 +1231,9 @@ class Image(object):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
-		'''
+		"""
 		This Method Converts The Bitmap To QImage.
-		'''
+		"""
 
 		bpp = self._library.FreeImage_GetBPP(self._bitmap)
 		(self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBF or self._library.FreeImage_GetImageType(self._bitmap) == FREE_IMAGE_TYPE.FIT_RGBAF) and self.convertToLdr(2.2)

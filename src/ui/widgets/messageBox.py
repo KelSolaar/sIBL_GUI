@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	messageBox.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -77,7 +77,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 @core.executionTrace
 def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
-	'''
+	"""
 	This Definition Provides A Fast GUI Message Box.
 
 	@param title: Current Message Title. ( String )
@@ -85,7 +85,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	@param icon: Custom Icon. ( QConstant )
 	@param buttons: Custom Buttons. ( QConstant )
 	@return: User Choice. ( Integer )
-	'''
+	"""
 
 	LOGGER.debug("> Launching sIBL_message().")
 	LOGGER.debug("> Message Type: '{0}'.".format(type))
@@ -134,7 +134,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 
 @core.executionTrace
 def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.Ok):
-	'''
+	"""
 	This Definition Provides A Standalone Message Box.
 	
 	@param type: MessageBox Type. ( String )
@@ -142,7 +142,7 @@ def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.
 	@param message: MessageBox Message. ( String )	
 	@param icon: Custom Icon. ( QConstant )
 	@param buttons: Custom Buttons. ( QConstant )
-	'''
+	"""
 
 	application = QApplication(sys.argv)
 	messageBox(type, caption, message, icon, buttons)

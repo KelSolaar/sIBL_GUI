@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	loaderScript.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -88,18 +88,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class LoaderScript(UiComponent):
-	'''
+	"""
 	This Class Is The LoaderScript Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -135,322 +135,322 @@ class LoaderScript(UiComponent):
 	#***************************************************************************************
 	@property
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Property For The _uiPath Attribute.
 
 		@return: self._uiPath. ( String )
-		'''
+		"""
 
 		return self._uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _uiPath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
-		'''
+		"""
 		This Method Is The Property For The _dockArea Attribute.
 
 		@return: self._dockArea. ( Integer )
-		'''
+		"""
 
 		return self._dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dockArea Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
-		'''
+		"""
 		This Method Is The Property For The _container Attribute.
 
 		@return: self._container. ( QObject )
-		'''
+		"""
 
 		return self._container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _container Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
 		@return: self._coreDatabaseBrowser. ( Object )
-		'''
+		"""
 
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
-		'''
+		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
 		@return: self._coreTemplatesOutliner. ( Object )
-		'''
+		"""
 
 		return self._coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def ioDirectory(self):
-		'''
+		"""
 		This Method Is The Property For The _ioDirectory Attribute.
 
 		@return: self._ioDirectory. ( String )
-		'''
+		"""
 
 		return self._ioDirectory
 
 	@ioDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _ioDirectory Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ioDirectory"))
 
 	@ioDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _ioDirectory Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ioDirectory"))
 
 	@property
 	def bindingIdentifierPattern(self):
-		'''
+		"""
 		This Method Is The Property For The _bindingIdentifierPattern Attribute.
 
 		@return: self._bindingIdentifierPattern. ( String )
-		'''
+		"""
 
 		return self._bindingIdentifierPattern
 
 	@bindingIdentifierPattern.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def bindingIdentifierPattern(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _bindingIdentifierPattern Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("bindingIdentifierPattern"))
 
 	@bindingIdentifierPattern.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def bindingIdentifierPattern(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _bindingIdentifierPattern Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bindingIdentifierPattern"))
 
 	@property
 	def templateScriptSection(self):
-		'''
+		"""
 		This Method Is The Property For The _templateScriptSection Attribute.
 
 		@return: self._templateScriptSection. ( String )
-		'''
+		"""
 
 		return self._templateScriptSection
 
 	@templateScriptSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _templateScriptSection Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateScriptSection"))
 
 	@templateScriptSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _templateScriptSection Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateScriptSection"))
 
 	@property
 	def templateIblSetAttributesSection(self):
-		'''
+		"""
 		This Method Is The Property For The _templateIblSetAttributesSection Attribute.
 
 		@return: self._templateIblSetAttributesSection. ( String )
-		'''
+		"""
 
 		return self._templateIblSetAttributesSection
 
 	@templateIblSetAttributesSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateIblSetAttributesSection(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _templateIblSetAttributesSection Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateIblSetAttributesSection"))
 
 	@templateIblSetAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateIblSetAttributesSection(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _templateIblSetAttributesSection Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateIblSetAttributesSection"))
 
 	@property
 	def templateRemoteConnectionSection(self):
-		'''
+		"""
 		This Method Is The Property For The _templateRemoteConnectionSection Attribute.
 
 		@return: self._templateRemoteConnectionSection. ( String )
-		'''
+		"""
 
 		return self._templateRemoteConnectionSection
 
 	@templateRemoteConnectionSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateRemoteConnectionSection(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _templateRemoteConnectionSection Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateRemoteConnectionSection"))
 
 	@templateRemoteConnectionSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateRemoteConnectionSection(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _templateRemoteConnectionSection Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateRemoteConnectionSection"))
 
 	@property
 	def overrideKeys(self):
-		'''
+		"""
 		This Method Is The Property For The _overrideKeys Attribute.
 
 		@return: self._overrideKeys. ( Dictionary )
-		'''
+		"""
 
 		return self._overrideKeys
 
 	@overrideKeys.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def overrideKeys(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _overrideKeys Attribute.
 
 		@param value: Attribute Value. ( Dictionary )
-		'''
+		"""
 
 		if value:
 			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("sections", value)
@@ -459,30 +459,30 @@ class LoaderScript(UiComponent):
 	@overrideKeys.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def overrideKeys(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _overrideKeys Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("overrideKeys"))
 
 	@property
 	def defaultStringSeparator(self):
-		'''
+		"""
 		This Method Is The Property For The _defaultStringSeparator Attribute.
 
 		@return: self._defaultStringSeparator. ( String )
-		'''
+		"""
 
 		return self._defaultStringSeparator
 
 	@defaultStringSeparator.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def defaultStringSeparator(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _defaultStringSeparator Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("defaultStringSeparator", value)
@@ -493,30 +493,30 @@ class LoaderScript(UiComponent):
 	@defaultStringSeparator.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultStringSeparator(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _defaultStringSeparator Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultStringSeparator"))
 
 	@property
 	def unnamedLightName(self):
-		'''
+		"""
 		This Method Is The Property For The _unnamedLightName Attribute.
 
 		@return: self._unnamedLightName. ( String )
-		'''
+		"""
 
 		return self._unnamedLightName
 
 	@unnamedLightName.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def unnamedLightName(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _unnamedLightName Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("unnamedLightName", value)
@@ -525,9 +525,9 @@ class LoaderScript(UiComponent):
 	@unnamedLightName.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def unnamedLightName(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _unnamedLightName Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("unnamedLightName"))
 
@@ -536,11 +536,11 @@ class LoaderScript(UiComponent):
 	#***************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
-		'''
+		"""
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
@@ -558,9 +558,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def deactivate(self):
-		'''
+		"""
 		This Method Deactivates The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
@@ -576,9 +576,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def initializeUi(self):
-		'''
+		"""
 		This Method Initializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -593,9 +593,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def uninitializeUi(self):
-		'''
+		"""
 		This Method Uninitializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -606,9 +606,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def addWidget(self):
-		'''
+		"""
 		This Method Adds The Component Widget To The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -616,9 +616,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def removeWidget(self):
-		'''
+		"""
 		This Method Removes The Component Widget From The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -627,22 +627,22 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def Output_Loader_Script_pushButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Triggered When Output_Loader_Script_pushButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		self.outputLoaderScript()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
 	def Send_To_Software_pushButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		if self.outputLoaderScript():
 			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
@@ -682,12 +682,12 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
-		'''
+		"""
 		This Method Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
-		'''
+		"""
 
 		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
@@ -718,9 +718,9 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	def getDefaultOverrideKeys(self):
-		'''
+		"""
 		This Method Gets Default Override Keys.
-		'''
+		"""
 
 		LOGGER.debug("> Constructing Default Override Keys.")
 
@@ -754,11 +754,11 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception)
 	def outputLoaderScript(self):
-		'''
+		"""
 		This Method Output The Loader Script.
 		
 		@return: Output Success. ( Boolean )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing Loader Script Output.")
 
@@ -812,14 +812,14 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLoaderScript(self, template, iblSet, overrideKeys):
-		'''
+		"""
 		This Method Build A Loader Script.
 		
 		@param template: Template Path. ( String )
 		@param iblSet: iblSet Path. ( String )
 		@param overrideKeys: Override Keys. ( Dictionary )
 		@return: Loader Script. ( List )
-		'''
+		"""
 
 		LOGGER.debug("> Parsing Template File: '{0}'.".format(template))
 		templateParser = Parser(template)

@@ -25,7 +25,7 @@
 # The Following Code Is Protected By GNU GPL V3 Licence.
 #
 
-'''
+"""
 ************************************************************************************************
 ***	sIBL_GUI_textileToHtml.py
 ***
@@ -38,7 +38,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -73,13 +73,13 @@ core.setVerbosityLevel(3)
 #***	Main Python Code
 #***********************************************************************************************
 def textileToHtml(fileIn, fileOut, title):
-	'''
+	"""
 	This Definition Outputs A Textile File To HTML.
 		
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
 	@param title: HTML File Title. ( String )
-	'''
+	"""
 
 	LOGGER.info("{0} | Converting '{1}' Textile File To HTML!".format(textileToHtml.__name__, fileIn))
 	file = File(fileIn)

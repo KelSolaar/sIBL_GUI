@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	db.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -81,17 +81,17 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class Db(Component):
-	'''
+	"""
 	This Class Is The Db Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, name=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -112,181 +112,181 @@ class Db(Component):
 	#***************************************************************************************
 	@property
 	def container(self):
-		'''
+		"""
 		This Method Is The Property For The _container Attribute.
 
 		@return: self._container. ( QObject )
-		'''
+		"""
 
 		return self._container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _container Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def dbName(self):
-		'''
+		"""
 		This Method Is The Property For The _dbName Attribute.
 
 		@return: self._dbName. ( String )
-		'''
+		"""
 
 		return self._dbName
 
 	@dbName.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dbName Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbName"))
 
 	@dbName.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dbName Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbName"))
 
 	@property
 	def dbEngine(self):
-		'''
+		"""
 		This Method Is The Property For The _dbEngine Attribute.
 
 		@return: self._dbEngine. ( Object )
-		'''
+		"""
 
 		return self._dbEngine
 
 	@dbEngine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dbEngine Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbEngine"))
 
 	@dbEngine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dbEngine Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbEngine"))
 
 	@property
 	def dbCatalog(self):
-		'''
+		"""
 		This Method Is The Property For The _dbCatalog Attribute.
 
 		@return: self._dbCatalog. ( Object )
-		'''
+		"""
 
 		return self._dbCatalog
 
 	@dbCatalog.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dbCatalog Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbCatalog"))
 
 	@dbCatalog.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dbCatalog Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbCatalog"))
 
 	@property
 	def dbSession(self):
-		'''
+		"""
 		This Method Is The Property For The _dbSession Attribute.
 
 		@return: self._dbSession. ( Object )
-		'''
+		"""
 
 		return self._dbSession
 
 	@dbSession.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dbSession Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dbSession Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSession"))
 
 	@property
 	def dbSessionMaker(self):
-		'''
+		"""
 		This Method Is The Property For The _dbSessionMaker Attribute.
 
 		@return: self._dbSessionMaker. ( Object )
-		'''
+		"""
 
 		return self._dbSessionMaker
 
 	@dbSessionMaker.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dbSessionMaker Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSessionMaker"))
 
 	@dbSessionMaker.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dbSessionMaker Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSessionMaker"))
 
@@ -295,11 +295,11 @@ class Db(Component):
 	#***************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
-		'''
+		"""
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
@@ -309,18 +309,18 @@ class Db(Component):
 
 	@core.executionTrace
 	def deactivate(self):
-		'''
+		"""
 		This Method Deactivates The Component.
-		'''
+		"""
 
 		messageBox.messageBox("Warning", "Warning", "{0} Component Cannot Be Deactivated!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiSystemExitExceptionHandler, False, OSError, Exception)
 	def initialize(self):
-		'''
+		"""
 		This Method Initializes The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
@@ -350,9 +350,9 @@ class Db(Component):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitialize(self):
-		'''
+		"""
 		This Method Uninitializes The Component.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Uninitialized!".format(self.name))
 

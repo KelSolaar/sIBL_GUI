@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	sIBLeditUtilities.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -80,18 +80,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class sIBLeditUtilities(UiComponent):
-	'''
+	"""
 	This Class Is The LocationsBrowser Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -116,211 +116,211 @@ class sIBLeditUtilities(UiComponent):
 	#***************************************************************************************
 	@property
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Property For The _uiPath Attribute.
 
 		@return: self._uiPath. ( String )
-		'''
+		"""
 
 		return self._uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _uiPath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def container(self):
-		'''
+		"""
 		This Method Is The Property For The _container Attribute.
 
 		@return: self._container. ( QObject )
-		'''
+		"""
 
 		return self._container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _container Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def settings(self):
-		'''
+		"""
 		This Method Is The Property For The _settings Attribute.
 
 		@return: self._settings. ( QSettings )
-		'''
+		"""
 
 		return self._settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _settings Attribute.
 
 		@param value: Attribute Value. ( QSettings )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _settings Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
-		'''
+		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
 		@return: self._settingsSection. ( String )
-		'''
+		"""
 
 		return self._settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _settingsSection Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _settingsSection Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
-		'''
+		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
 		@return: self._corePreferencesManager. ( Object )
-		'''
+		"""
 
 		return self._corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _corePreferencesManager Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
 		@return: self._coreDatabaseBrowser. ( Object )
-		'''
+		"""
 
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def editInSIBLEditAction(self):
-		'''
+		"""
 		This Method Is The Property For The _editInSIBLEditAction Attribute.
 
 		@return: self._editInSIBLEditAction. ( QAction )
-		'''
+		"""
 
 		return self._editInSIBLEditAction
 
 	@editInSIBLEditAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInSIBLEditAction(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _editInSIBLEditAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInSIBLEditAction"))
 
 	@editInSIBLEditAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInSIBLEditAction(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _editInSIBLEditAction Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInSIBLEditAction"))
 
@@ -329,11 +329,11 @@ class sIBLeditUtilities(UiComponent):
 	#***************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
-		'''
+		"""
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
@@ -349,9 +349,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def deactivate(self):
-		'''
+		"""
 		This Method Deactivates The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
@@ -367,9 +367,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def initializeUi(self):
-		'''
+		"""
 		This Method Initializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -383,9 +383,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def uninitializeUi(self):
-		'''
+		"""
 		This Method Uninitializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -397,9 +397,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def addWidget(self):
-		'''
+		"""
 		This Method Adds The Component Widget To The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -407,9 +407,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def removeWidget(self):
-		'''
+		"""
 		This Method Removes The Component Widget From The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -417,9 +417,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def addActions_(self):
-		'''
+		"""
 		This Method Adds Actions.
-		'''
+		"""
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
@@ -432,9 +432,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def removeActions_(self):
-		'''
+		"""
 		This Method Removes Actions.
-		'''
+		"""
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
@@ -444,11 +444,11 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def Database_Browser_listView_editInSIBLEditAction(self, checked):
-		'''
+		"""
 		This Method Is Triggered By editInSIBLEditAction.
 
 		@param checked: Action Checked State. ( Boolean )
-		'''
+		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
@@ -467,9 +467,9 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def sIBLedit_Path_lineEdit_setUi(self):
-		'''
+		"""
 		This Method Fills The sIBLedit_Path_lineEdit.
-		'''
+		"""
 
 		sIBLeditExecutable = self._settings.getKey(self._settingsSection, "sIBLeditExecutable")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
@@ -477,11 +477,11 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	def sIBLedit_Path_toolButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		sIBLeditExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable:", self._container.lastBrowsedPath))
 		if sIBLeditExecutable != "":
@@ -492,9 +492,9 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def sIBLedit_Path_lineEdit_OnEditFinished(self):
-		'''
+		"""
 		This Method Is Called When sIBLedit_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
-		'''
+		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring Preferences!")

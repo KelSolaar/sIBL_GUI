@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	types.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -82,9 +82,9 @@ LOGGER = logging.getLogger(Constants.logger)
 DbBase = sqlalchemy.ext.declarative.declarative_base()
 
 class DbIblSet(DbBase):
-	'''
+	"""
 	This Class Is The DbIblSet Class.
-	'''
+	"""
 
 	__tablename__ = "Sets"
 
@@ -126,11 +126,11 @@ class DbIblSet(DbBase):
 			date=None,
 			time=None,
 			comment=None):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param *:*. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -156,11 +156,11 @@ class DbIblSet(DbBase):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
-		'''
+		"""
 		This Method Initializes The DbIblSet Attributes.
 		
 		@return: DbIblSet Initialization Success. ( Boolean )
-		'''
+		"""
 
 		parser = Parser(self.path)
 		parser.read() and parser.parse()
@@ -186,9 +186,9 @@ class DbIblSet(DbBase):
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
 
 class DbTemplate(DbBase):
-	'''
+	"""
 	This Class Is The DbTemplate Class.
-	'''
+	"""
 
 	__tablename__ = "Templates"
 
@@ -228,11 +228,11 @@ class DbTemplate(DbBase):
 			renderer=None,
 			outputScript=None,
 			comment=None):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param *:*. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -257,11 +257,11 @@ class DbTemplate(DbBase):
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
-		'''
+		"""
 		This Method Initializes The DbTemplate Attributes.
 		
 		@return: DbTemplate Initialization Success. ( Boolean )
-		'''
+		"""
 
 		parser = Parser(self.path)
 		parser.read() and parser.parse(rawSections=("Script"))
@@ -286,9 +286,9 @@ class DbTemplate(DbBase):
 			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
 
 class DbCollection(DbBase):
-	'''
+	"""
 	This Class Is The DbCollection Class.
-	'''
+	"""
 
 	__tablename__ = "Collections"
 
@@ -299,11 +299,11 @@ class DbCollection(DbBase):
 
 	@core.executionTrace
 	def __init__(self, name=None, type=None, comment=None):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param *:*. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 

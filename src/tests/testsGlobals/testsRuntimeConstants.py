@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	testsRuntimeConstants.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -70,14 +70,14 @@ from globals.runtimeConstants import RuntimeConstants
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class RuntimeConstantsTestCase(unittest.TestCase):
-	'''
+	"""
 	This Class Is The RuntimeConstantsTestCase Class.
-	'''
+	"""
 
 	def testRequiredAttributes(self):
-		'''
+		"""
 		This Method Tests Presence Of Required Attributes.
-		'''
+		"""
 
 		requiredAttributes = ("parameters",
 								"args",

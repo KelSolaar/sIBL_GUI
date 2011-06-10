@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	DatabaseBackup.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***		Code Extracted From rotatingbackup.py Written By leo.ss.pku@gmail.com
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -76,19 +76,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class RotatingBackup(object):
-	'''
+	"""
 	This Class Is The DatabaseBackup Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, source=None, destination=None, count=3):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param source: Backup Source. ( String )
 		@param destination: Backup Destination. ( String )
 		@param count: Backup Count. ( Integer )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -105,22 +105,22 @@ class RotatingBackup(object):
 	#***************************************************************************************
 	@property
 	def source(self):
-		'''
+		"""
 		This Method Is The Property For The _source Attribute.
 
 		@return: self._source. ( String )
-		'''
+		"""
 
 		return self._source
 
 	@source.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def source(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _source Attribute.
 		
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("source", value)
@@ -130,30 +130,30 @@ class RotatingBackup(object):
 	@source.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def source(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _source Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("source"))
 
 	@property
 	def destination(self):
-		'''
+		"""
 		This Method Is The Property For The _destination Attribute.
 
 		@return: self._destination. ( String )
-		'''
+		"""
 
 		return self._destination
 
 	@destination.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def destination(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _destination Attribute.
 		
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("destination", value)
@@ -162,30 +162,30 @@ class RotatingBackup(object):
 	@destination.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def destination(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _destination Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("destination"))
 
 	@property
 	def count(self):
-		'''
+		"""
 		This Method Is The Property For The _count Attribute.
 
 		@return: self._count. ( Integer )
-		'''
+		"""
 
 		return self._count
 
 	@count.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def count(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _count Attribute.
 		
 		@param value: Attribute Value. ( Integer )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (int, float), "'{0}' Attribute: '{1}' Type Is Not 'int' or 'float'!".format("count", value)
@@ -195,9 +195,9 @@ class RotatingBackup(object):
 	@count.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def count(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _count Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("count"))
 
@@ -206,9 +206,9 @@ class RotatingBackup(object):
 	#***************************************************************************************
 	@core.executionTrace
 	def backup(self):
-		'''
+		"""
 		This Method Does The Rotating Backup.
-		'''
+		"""
 
 		LOGGER.debug("> Storing '{0}' File Backup.".format(self._source))
 
@@ -228,12 +228,12 @@ class RotatingBackup(object):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	@core.executionTrace
 	def copy(self, source, destination):
-		'''
+		"""
 		This Method Copies The Provided Path To Destination.
 
 		@param source: Source To Copy From. ( String )
 		@param destination: Destination To Copy To. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Copying '{0}' File To '{1}'.".format(source, destination))
 
@@ -245,11 +245,11 @@ class RotatingBackup(object):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	@core.executionTrace
 	def delete(self, path):
-		'''
+		"""
 		This Method Deletes The Provided Ressource.
 
 		@param path: Ressource To Delete. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Removing '{0}' File.".format(path))
 
@@ -259,17 +259,17 @@ class RotatingBackup(object):
 			shutil.rmtree(path)
 
 class DatabaseBackup(Component):
-	'''
+	"""
 	This Class Is The DatabaseBackup Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, name=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -294,181 +294,181 @@ class DatabaseBackup(Component):
 	#***************************************************************************************
 	@property
 	def container(self):
-		'''
+		"""
 		This Method Is The Property For The _container Attribute.
 
 		@return: self._container. ( QObject )
-		'''
+		"""
 
 		return self._container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _container Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDb(self):
-		'''
+		"""
 		This Method Is The Property For The _coreDb Attribute.
 
 		@return: self._coreDb. ( Object )
-		'''
+		"""
 
 		return self._coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _coreDb Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _coreDb Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
 
 	@property
 	def databaseFile(self):
-		'''
+		"""
 		This Method Is The Property For The _databaseFile Attribute.
 
 		@return: self._databaseFile. ( String )
-		'''
+		"""
 
 		return self._databaseFile
 
 	@databaseFile.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseFile(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _databaseFile Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("databaseFile"))
 
 	@databaseFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseFile(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _databaseFile Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("databaseFile"))
 
 	@property
 	def destination(self):
-		'''
+		"""
 		This Method Is The Property For The _destination Attribute.
 
 		@return: self._destination. ( String )
-		'''
+		"""
 
 		return self._destination
 
 	@destination.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def destination(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _destination Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("destination"))
 
 	@destination.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def destination(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _destination Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("destination"))
 
 	@property
 	def backupDirectory(self):
-		'''
+		"""
 		This Method Is The Property For The _backupDirectory Attribute.
 
 		@return: self._backupDirectory. ( String )
-		'''
+		"""
 
 		return self._backupDirectory
 
 	@backupDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def backupDirectory(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _backupDirectory Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("backupDirectory"))
 
 	@backupDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def backupDirectory(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _backupDirectory Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("backupDirectory"))
 
 	@property
 	def count(self):
-		'''
+		"""
 		This Method Is The Property For The _count Attribute.
 
 		@return: self._count. ( String )
-		'''
+		"""
 
 		return self._count
 
 	@count.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def count(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _count Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("count"))
 
 	@count.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def count(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _count Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("count"))
 
@@ -477,11 +477,11 @@ class DatabaseBackup(Component):
 	#***************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
-		'''
+		"""
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
@@ -493,9 +493,9 @@ class DatabaseBackup(Component):
 
 	@core.executionTrace
 	def deactivate(self):
-		'''
+		"""
 		This Method Deactivates The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
@@ -507,9 +507,9 @@ class DatabaseBackup(Component):
 
 	@core.executionTrace
 	def initialize(self):
-		'''
+		"""
 		This Method Initializes The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
@@ -517,9 +517,9 @@ class DatabaseBackup(Component):
 
 	@core.executionTrace
 	def uninitialize(self):
-		'''
+		"""
 		This Method Uninitializes The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
@@ -528,9 +528,9 @@ class DatabaseBackup(Component):
 
 	@core.executionTrace
 	def onStartup(self):
-		'''
+		"""
 		This Method Is Called On Framework Startup.
-		'''
+		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
@@ -544,9 +544,9 @@ class DatabaseBackup(Component):
 
 	@core.executionTrace
 	def rotatingBackup(self):
-		'''
+		"""
 		This Method Launchs The Database Backup.
-		'''
+		"""
 
 		LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, self._destination))
 

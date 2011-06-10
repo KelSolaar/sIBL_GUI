@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	search_QLineEdit.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -76,18 +76,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
-	'''
+	"""
 	This Class Is The Search_QLineEdit Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, uiIconPath=None, uiClickedIconPath=None, parent=None):
-		'''
+		"""
 		This Method Initializes The Class.
 
 		@param uiIconPath: Icon Path. ( String )
 		@param parent: Widget Parent. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -114,22 +114,22 @@ class Search_QLineEdit(QLineEdit):
 	#***************************************************************************************
 	@property
 	def uiIconPath(self):
-		'''
+		"""
 		This Method Is The Property For The _uiIconPath Attribute.
 
 		@return: self._uiIconPath. ( String )
-		'''
+		"""
 
 		return self._uiIconPath
 
 	@uiIconPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiIconPath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _uiIconPath Attribute.
 		
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiIconPath", value)
@@ -139,30 +139,30 @@ class Search_QLineEdit(QLineEdit):
 	@uiIconPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiIconPath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _uiIconPath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiIconPath"))
 
 	@property
 	def uiClickedIconPath(self):
-		'''
+		"""
 		This Method Is The Property For The _uiClickedIconPath Attribute.
 
 		@return: self._uiClickedIconPath. ( String )
-		'''
+		"""
 
 		return self._uiClickedIconPath
 
 	@uiClickedIconPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiClickedIconPath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _uiClickedIconPath Attribute.
 		
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClickedIconPath", value)
@@ -172,68 +172,68 @@ class Search_QLineEdit(QLineEdit):
 	@uiClickedIconPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiClickedIconPath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _uiClickedIconPath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClickedIconPath"))
 
 	@property
 	def parent(self):
-		'''
+		"""
 		This Method Is The Property For The _parent Attribute.
 
 		@return: self._parent. ( QObject )
-		'''
+		"""
 
 		return self._parent
 
 	@parent.setter
 	def parent(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _parent Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		self._parent = value
 
 	@parent.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def parent(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _parent Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
 
 	@property
 	def clearButton(self):
-		'''
+		"""
 		This Method Is The Property For The _clearButton Attribute.
 
 		@return: self._clearButton. ( QPushButton )
-		'''
+		"""
 
 		return self._clearButton
 
 	@clearButton.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _clearButton Attribute.
 
 		@param value: Attribute Value. ( QPushButton )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("clearButton"))
 
 	@clearButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _clearButton Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("clearButton"))
 
@@ -243,11 +243,11 @@ class Search_QLineEdit(QLineEdit):
 
 	@core.executionTrace
 	def resizeEvent(self, event):
-		'''
+		"""
 		This Method Overloads The Search_QLineEdit ResizeEvent.
 		
 		@param event: Resize Event. ( QResizeEvent )
-		'''
+		"""
 
 		size = self._clearButton.sizeHint()
 		frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
@@ -256,9 +256,9 @@ class Search_QLineEdit(QLineEdit):
 
 	@core.executionTrace
 	def setClearButtonStyle(self):
-		'''
+		"""
 		This Method Sets The Clear Button Style.
-		'''
+		"""
 
 		self._clearButton.setCursor(Qt.ArrowCursor)
 		if self._uiIconPath and self._uiClickedIconPath:
@@ -280,11 +280,11 @@ class Search_QLineEdit(QLineEdit):
 
 	@core.executionTrace
 	def setClearButtonVisibility(self, text):
-		'''
+		"""
 		This Method Sets The Clear Button Visibility.
 		
 		@param text: Current Text. ( QString )
-		'''
+		"""
 
 		if text:
 			self._clearButton.show()

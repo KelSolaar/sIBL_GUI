@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	common.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -91,12 +91,12 @@ DB_EXCEPTIONS = {
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 @core.executionTrace
 def commit(session):
-	'''
+	"""
 	This Definition Commits Changes To The Database.
 	
 	@param session: Database Session. ( Session )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	try:
 		session.commit()
@@ -108,13 +108,13 @@ def commit(session):
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def addItem(session, item):
-	'''
+	"""
 	This Definition Adds An Item To The Database.
 	
 	@param session: Database Session. ( Session )
 	@param item: Item To Add. ( sIBL_DB Object )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Adding: '{0}' Item To Database.".format(item))
 
@@ -124,7 +124,7 @@ def addItem(session, item):
 
 @core.executionTrace
 def addStandardItem(session, type, name, path, collection):
-	'''
+	"""
 	This Definition Adds A New Standard Item To The Database.
 
 	@param type: Item Type. ( Object )
@@ -133,7 +133,7 @@ def addStandardItem(session, type, name, path, collection):
 	@param path: Item Path. ( String )
 	@param collection: Collection Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Adding: '{0}' '{1}' To Database.".format(name, type.__name__))
 
@@ -149,13 +149,13 @@ def addStandardItem(session, type, name, path, collection):
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def removeItem(session, item):
-	'''
+	"""
 	This Definition Removes An Item From The Database.
 	
 	@param session: Database Session. ( Session )
 	@param item: Item To Remove. ( sIBL_DB Object )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Removing: '{0}' Item From Database.".format(item))
 
@@ -165,14 +165,14 @@ def removeItem(session, item):
 
 @core.executionTrace
 def removeStandardItem(session, type, id):
-	'''
+	"""
 	This Definition Remove A Standard Item From The Database.
 
 	@param session: Database Session. ( Session )
 	@param type: Item Type. ( Object )
 	@param id: Item Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Removing Item Type '{0}' With Id '{1}' From Database.".format(type.__name__, id))
 
@@ -181,13 +181,13 @@ def removeStandardItem(session, type, id):
 
 @core.executionTrace
 def updateItemContent(session, item):
-	'''
+	"""
 	This Definition Update An Item Content.
 
 	@param session: Database Session. ( Session )
 	@param item: Item To Set Content. ( DbIblSet )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' Content.".format(item.name, item.__class__.__name__))
 
@@ -200,14 +200,14 @@ def updateItemContent(session, item):
 
 @core.executionTrace
 def updateItemLocation(session, item, path):
-	'''
+	"""
 	This Definition Updates An Item Location.
 
 	@param session: Database Session. ( Session )
 	@param item: Item To Update. ( Object )
 	@param path: Item Path. ( Path )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Updating '{0}' '{1}' Location.".format(item, item.__class__.__name__))
 
@@ -220,7 +220,7 @@ def updateItemLocation(session, item, path):
 
 @core.executionTrace
 def filterItems(session, items, pattern, field, flags=0):
-	'''
+	"""
 	This Definition Filters Items From The Database.
 
 	@param session: Database Session. ( Session )
@@ -229,25 +229,25 @@ def filterItems(session, items, pattern, field, flags=0):
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
 	@return: Filtered Items. ( List )
-	'''
+	"""
 
 	if items:
 		return [item for item in items if re.search(pattern, str(item.__dict__[field]), flags) ]
 
 @core.executionTrace
 def getIblSets(session):
-	'''
+	"""
 	This Definition Gets The Ibl Sets From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Ibl Sets. ( List )
-	'''
+	"""
 
 	return session.query(dbUtilities.types.DbIblSet)
 
 @core.executionTrace
 def filterIblSets(session, pattern, field, flags=0):
-	'''
+	"""
 	This Definition Filters The Sets From The Database.
 
 	@param session: Database Session. ( Session )
@@ -255,13 +255,13 @@ def filterIblSets(session, pattern, field, flags=0):
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
 	@return: Filtered Ibl Sets. ( List )
-	'''
+	"""
 
 	return filterItems(session, getIblSets(session), pattern, field, flags)
 
 @core.executionTrace
 def addIblSet(session, name, path, collection):
-	'''
+	"""
 	This Definition Adds A New Ibl Set To The Database.
 
 	@param session: Database Session. ( Session )
@@ -269,55 +269,55 @@ def addIblSet(session, name, path, collection):
 	@param path: Ibl Set Path. ( String )
 	@param collection: Collection Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return addStandardItem(session, dbUtilities.types.DbIblSet, name, path, collection)
 
 @core.executionTrace
 def removeIblSet(session, id):
-	'''
+	"""
 	This Definition Remove An Ibl Set From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Ibl Set Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return removeStandardItem(session, dbUtilities.types.DbIblSet, id)
 
 @core.executionTrace
 def updateIblSetContent(session, iblSet):
-	'''
+	"""
 	This Definition Update An Ibl Set Content.
 
 	@param session: Database Session. ( Session )
 	@param iblSet: Ibl Set To Set Content. ( DbIblSet )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return updateItemContent(session, iblSet)
 
 @core.executionTrace
 def updateIblSetLocation(session, iblSet, path):
-	'''
+	"""
 	This Definition Updates An Ibl Set Location.
 
 	@param session: Database Session. ( Session )
 	@param iblSet: Ibl Set To Update. ( DbIblSet )
 	@param path: Ibl Set Path. ( Path )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return updateItemLocation(session, iblSet, path)
 
 @core.executionTrace
 def checkIblSetsTableIntegrity(session):
-	'''
+	"""
 	This Definition Checks Sets Table Integrity.
 
 	@param session: Database Session. ( Session )
 	@return: Ibl Sets Table Erroneous Items. ( Dictionary )
-	'''
+	"""
 
 	LOGGER.debug("> Checking 'Sets' Database Table Integrity.")
 
@@ -340,18 +340,18 @@ def checkIblSetsTableIntegrity(session):
 
 @core.executionTrace
 def getCollections(session):
-	'''
+	"""
 	This Definition Gets The Collections From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Collections. ( List )
-	'''
+	"""
 
 	return session.query(dbUtilities.types.DbCollection)
 
 @core.executionTrace
 def filterCollections(session, pattern, field, flags=0):
-	'''
+	"""
 	This Definition Filters The Collections From The Database.
 
 	@param session: Database Session. ( Session )
@@ -359,13 +359,13 @@ def filterCollections(session, pattern, field, flags=0):
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
 	@return: Filtered Collections. ( List )
-	'''
+	"""
 
 	return filterItems(session, getCollections(session), pattern, field, flags)
 
 @core.executionTrace
 def addCollection(session, collection, type, comment):
-	'''
+	"""
 	This Definition Adds A Collection To The Database.
 
 	@param session: Database Session. ( Session )
@@ -373,7 +373,7 @@ def addCollection(session, collection, type, comment):
 	@param type: Collection Type. ( String )
 	@param comment: Collection Comment. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	LOGGER.debug("> Adding: '{0}' Collection Of Type '{1}' To Database.".format(collection, type))
 
@@ -386,25 +386,25 @@ def addCollection(session, collection, type, comment):
 
 @core.executionTrace
 def removeCollection(session, id):
-	'''
+	"""
 	This Definition Remove A Collection From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Collection Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return removeStandardItem(session, dbUtilities.types.DbCollection, id)
 
 @core.executionTrace
 def getCollectionsSets(session, ids):
-	'''
+	"""
 	This Definition Gets Sets From Collections Ids
 
 	@param session: Database Session. ( Session )
 	@param ids: Collections Ids. ( List )
 	@return: Ibl Sets List. ( List )
-	'''
+	"""
 
 	iblSets = []
 	for id in ids:
@@ -416,18 +416,18 @@ def getCollectionsSets(session, ids):
 
 @core.executionTrace
 def getTemplates(session):
-	'''
+	"""
 	This Definition Gets The Templates From The Database.
 
 	@param session: Database Session. ( Session )
 	@return: Database Templates. ( List )
-	'''
+	"""
 
 	return session.query(dbUtilities.types.DbTemplate)
 
 @core.executionTrace
 def filterTemplates(session, pattern, field, flags=0):
-	'''
+	"""
 	This Definition Filters The Templates From The Database.
 
 	@param session: Database Session. ( Session )
@@ -435,13 +435,13 @@ def filterTemplates(session, pattern, field, flags=0):
 	@param field: Database Field To Search Into. ( String )
 	@param flags: Flags Passed To The Regex Engine. ( Integer )
 	@return: Filtered Templates. ( List )
-	'''
+	"""
 
 	return filterItems(session, getTemplates(session), pattern, field, flags)
 
 @core.executionTrace
 def addTemplate(session, name, path, collection):
-	'''
+	"""
 	This Definition Adds A New Template To The Database.
 
 	@param session: Database Session. ( Session )
@@ -449,55 +449,55 @@ def addTemplate(session, name, path, collection):
 	@param path: Template Path. ( String )
 	@param collection: Collection Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return addStandardItem(session, dbUtilities.types.DbTemplate, name, path, collection)
 
 @core.executionTrace
 def removeTemplate(session, id):
-	'''
+	"""
 	This Definition Remove A Template From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Template Id. ( String )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return removeStandardItem(session, dbUtilities.types.DbTemplate, id)
 
 @core.executionTrace
 def updateTemplateContent(session, template):
-	'''
+	"""
 	This Definition Update A Template Content.
 
 	@param session: Database Session. ( Session )
 	@param template: Template To Template Content. ( DbTemplate )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return updateItemContent(session, template)
 
 @core.executionTrace
 def updateTemplateLocation(session, template, path):
-	'''
+	"""
 	This Definition Updates A Template Location.
 
 	@param session: Database Session. ( Session )
 	@param template: Template To Update. ( DbTemplate )
 	@param path: Template Path. ( Path )
 	@return: Database Commit Success. ( Boolean )
-	'''
+	"""
 
 	return updateItemLocation(session, template, path)
 
 @core.executionTrace
 def checkTemplatesTableIntegrity(session):
-	'''
+	"""
 	This Definition Checks Templates Table Integrity.
 
 	@param session: Database Session. ( Session )
 	@return: Templates Table Erroneous Items. ( Dictionary )
-	'''
+	"""
 
 	LOGGER.debug("> Checking 'Templates' Database Table Integrity.")
 

@@ -25,7 +25,7 @@
 # The Following Code Is Protected By GNU GPL V3 Licence.
 #
 
-'''
+"""
 ************************************************************************************************
 ***	sIBL_GUI_recursiveRemove.py
 ***
@@ -38,7 +38,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -54,12 +54,12 @@ import sys
 #***	Main Python Code
 #***********************************************************************************************
 def recursiveRemove(rootDirectory, pattern):
-	'''
+	"""
 	This Definition Recursively Deletes The Matching Items.
 		
 	@param rootDirectory: Directory To Recurse. ( String )
 	@param pattern: Pattern To Match. ( String )
-	'''
+	"""
 
 	if os.path.exists(rootDirectory):
 		for root, dirs, files in os.walk(rootDirectory):
@@ -69,10 +69,10 @@ def recursiveRemove(rootDirectory, pattern):
 					remove(itemPath)
 
 def remove(item):
-	'''
+	"""
 	This Definition Deletes Provided Item.
 	@param item: Item To Delete. ( String )
-	'''
+	"""
 
 	print("remove | Removing: '%s'" % item)
 	try:

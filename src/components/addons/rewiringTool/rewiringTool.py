@@ -33,7 +33,7 @@
 #
 #***********************************************************************************************
 
-'''
+"""
 ************************************************************************************************
 ***	rewiringTool.py
 ***
@@ -46,7 +46,7 @@
 ***	Others:
 ***
 ************************************************************************************************
-'''
+"""
 
 #***********************************************************************************************
 #***	Python Begin
@@ -79,18 +79,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 class RewiringTool(UiComponent):
-	'''
+	"""
 	This Class Is The RewiringTool Class.
-	'''
+	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
-		'''
+		"""
 		This Method Initializes The Class.
 		
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
@@ -122,241 +122,241 @@ class RewiringTool(UiComponent):
 	#***************************************************************************************
 	@property
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Property For The _uiPath Attribute.
 
 		@return: self._uiPath. ( String )
-		'''
+		"""
 
 		return self._uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _uiPath Attribute.
 
 		@param value: Attribute Value. ( String )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _uiPath Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
-		'''
+		"""
 		This Method Is The Property For The _dockArea Attribute.
 
 		@return: self._dockArea. ( Integer )
-		'''
+		"""
 
 		return self._dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _dockArea Attribute.
 
 		@param value: Attribute Value. ( Integer )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _dockArea Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
-		'''
+		"""
 		This Method Is The Property For The _container Attribute.
 
 		@return: self._container. ( QObject )
-		'''
+		"""
 
 		return self._container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _container Attribute.
 
 		@param value: Attribute Value. ( QObject )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _container Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
 		@return: self._coreDatabaseBrowser. ( Object )
-		'''
+		"""
 
 		return self._coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
 
 		@param value: Attribute Value. ( Object )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def reWireFramesWidgets(self):
-		'''
+		"""
 		This Method Is The Property For The _reWireFramesWidgets Attribute.
 
 		@return: self._reWireFramesWidgets. ( Tuple )
-		'''
+		"""
 
 		return self._reWireFramesWidgets
 
 	@reWireFramesWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _reWireFramesWidgets Attribute.
 
 		@param value: Attribute Value. ( Tuple )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireFramesWidgets"))
 
 	@reWireFramesWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _reWireFramesWidgets Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireFramesWidgets"))
 
 	@property
 	def reWireComboBoxesWidgets(self):
-		'''
+		"""
 		This Method Is The Property For The _reWireComboBoxesWidgets Attribute.
 
 		@return: self._reWireComboBoxesWidgets. ( Tuple )
-		'''
+		"""
 
 		return self._reWireComboBoxesWidgets
 
 	@reWireComboBoxesWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _reWireComboBoxesWidgets Attribute.
 
 		@param value: Attribute Value. ( Tuple )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireComboBoxesWidgets"))
 
 	@reWireComboBoxesWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _reWireComboBoxesWidgets Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireComboBoxesWidgets"))
 
 	@property
 	def reWireLineEditWidgets(self):
-		'''
+		"""
 		This Method Is The Property For The _reWireLineEditWidgets Attribute.
 
 		@return: self._reWireLineEditWidgets. ( Tuple )
-		'''
+		"""
 
 		return self._reWireLineEditWidgets
 
 	@reWireLineEditWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _reWireLineEditWidgets Attribute.
 
 		@param value: Attribute Value. ( Tuple )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reWireLineEditWidgets"))
 
 	@reWireLineEditWidgets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _reWireLineEditWidgets Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reWireLineEditWidgets"))
 
 	@property
 	def rewiringParameters(self):
-		'''
+		"""
 		This Method Is The Property For The _rewiringParameters Attribute.
 
 		@return: self._rewiringParameters. ( Tuple )
-		'''
+		"""
 
 		return self._rewiringParameters
 
 	@rewiringParameters.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self, value):
-		'''
+		"""
 		This Method Is The Setter Method For The _rewiringParameters Attribute.
 
 		@param value: Attribute Value. ( Tuple )
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("rewiringParameters"))
 
 	@rewiringParameters.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self):
-		'''
+		"""
 		This Method Is The Deleter Method For The _rewiringParameters Attribute.
-		'''
+		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("rewiringParameters"))
 
@@ -365,11 +365,11 @@ class RewiringTool(UiComponent):
 	#***************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
-		'''
+		"""
 		This Method Activates The Component.
 		
 		@param container: Container To Attach The Component To. ( QObject )
-		'''
+		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
@@ -383,9 +383,9 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def deactivate(self):
-		'''
+		"""
 		This Method Deactivates The Component.
-		'''
+		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
@@ -399,9 +399,9 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def initializeUi(self):
-		'''
+		"""
 		This Method Initializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -428,9 +428,9 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def uninitializeUi(self):
-		'''
+		"""
 		This Method Uninitializes The Component Ui.
-		'''
+		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
@@ -448,9 +448,9 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def addWidget(self):
-		'''
+		"""
 		This Method Adds The Component Widget To The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -458,9 +458,9 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def removeWidget(self):
-		'''
+		"""
 		This Method Removes The Component Widget From The Container.
-		'''
+		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
@@ -469,11 +469,11 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def setReWireWidgetFramesVisibility(self, index):
-		'''
+		"""
 		This Method Shows / Hides ReWire Widget Frames.
 
 		@param index: ComboBox Index. ( Tuple )
-		'''
+		"""
 
 		for index in range(len(self._reWireComboBoxesWidgets)):
 			if self._reWireComboBoxesWidgets[index].currentText() == "Custom Image":
@@ -485,11 +485,11 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def setReWireCustomPath(self, component):
-		'''
+		"""
 		This Method Sets The ReWire Custom Image Line Edits.
 
 		@param component: Target Component. ( String )
-		'''
+		"""
 
 		customFile = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self._container.lastBrowsedPath))
 		LOGGER.debug("> Chosen Custom '{0}': '{1}'.".format(component, customFile))
@@ -503,39 +503,39 @@ class RewiringTool(UiComponent):
 
 	@core.executionTrace
 	def Background_Path_toolButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Called When Background ToolButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		self.setReWireCustomPath("Background")
 
 	@core.executionTrace
 	def Lighting_Path_toolButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Called When Lighting ToolButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		self.setReWireCustomPath("Lighting")
 
 	@core.executionTrace
 	def Reflection_Path_toolButton_OnClicked(self, checked):
-		'''
+		"""
 		This Method Is Called When Reflection ToolButton Is Clicked.
 
 		@param checked: Checked State. ( Boolean )
-		'''
+		"""
 
 		self.setReWireCustomPath("Reflection")
 
 	@core.executionTrace
 	def getOverrideKeys(self):
-		'''
+		"""
 		This Method Gets Override Keys.
-		'''
+		"""
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
