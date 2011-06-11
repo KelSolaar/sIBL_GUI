@@ -35,90 +35,58 @@
 
 """
 ************************************************************************************************
-***	constants.py
+***    001_table_Sets_Column_previewImage.py
 ***
-***	Platform:
-***		Windows, Linux, Mac Os X
+***    Platform:
+***        Windows, Linux, Mac Os X
 ***
-***	Description:
-***		Constants Module.
+***    Description:
+***          Database Migration Module.
 ***
-***	Others:
+***    Others:
 ***
 ************************************************************************************************
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***    Python Begin
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***    External Imports
 #***********************************************************************************************
-import os
-import platform
-
-#***********************************************************************************************
-#***	Module Classes And Definitions
-#***********************************************************************************************
-class Constants():
-	"""
-	This Class Is The Constants Class.
-	"""
-
-	applicationName = "sIBL_GUI"
-	releaseVersion = "3.5.1"
-
-	logger = "sIBL_GUI_Logger"
-	verbosityLevel = 3
-	verbosityLabels = ("Critical", "Error", "Warning", "Info", "Debug")
-	loggingSeparators = "*" * 96
-
-	encodingFormat = "utf-8"
-	encodingError = "ignore"
-
-	applicationDirectory = "sIBL_GUI"
-	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
-		providerDirectory = "HDRLabs"
-	elif platform.system() == "Linux":
-		providerDirectory = ".HDRLabs"
-
-	databaseDirectory = "database"
-	databaseMigrationsDirectory = "migrations"
-	databaseMigrationsFilesDirectory = "versions"
-	settingsDirectory = "settings"
-	userComponentsDirectory = "components"
-	loggingDirectory = "logging"
-	templatesDirectory = "templates"
-	ioDirectory = "io"
-
-	preferencesDirectories = (databaseDirectory,
-								settingsDirectory,
-								userComponentsDirectory,
-								loggingDirectory,
-								templatesDirectory,
-								ioDirectory
-							)
-	coreComponentsDirectory = "components/core"
-	addonsComponentsDirectory = "components/addons"
-
-	databaseFile = "sIBL_Database.sqlite"
-	settingsFile = "sIBL_Settings.rc"
-	loggingFile = "sIBL_Logging.log"
-
-	databaseMigrationsFilesExtension = "py"
-
-	librariesDirectory = "libraries"
-	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
-	elif platform.system() == "Darwin":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.dylib")
-	elif platform.system() == "Linux":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
-
-	defaultTimerCycle = 250
-	nullObject = "None"
+from sqlalchemy import *
+from migrate import *
 
 #***********************************************************************************************
-#***	Python End
+#***    Global Variables
+#***********************************************************************************************
+METADATA = MetaData()
+TABLE = Table("Sets", METADATA)
+
+#***********************************************************************************************
+#***    Module Classes And Definitions
+#***********************************************************************************************
+def upgrade(dbEngine):
+    """
+    This Definition Upgrades The Database.
+
+    @param dbEngine: Database Engine. ( Object )
+    """
+    
+    METADATA.bind = dbEngine
+    column = Column("previewImage", String)
+    column.create(TABLE)
+
+def downgrade(dbEngine):
+    """
+    This Definition Downgrades The Database.
+
+    @param dbEngine: Database Engine. ( Object )
+    """
+    
+    pass
+
+#***********************************************************************************************
+#***    Python End
 #***********************************************************************************************

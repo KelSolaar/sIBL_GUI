@@ -97,6 +97,7 @@ class DbIblSet(DbBase):
 	author = sqlalchemy.Column(sqlalchemy.String)
 	link = sqlalchemy.Column(sqlalchemy.String)
 	icon = sqlalchemy.Column(sqlalchemy.String)
+	previewImage = sqlalchemy.Column(sqlalchemy.String)
 	backgroundImage = sqlalchemy.Column(sqlalchemy.String)
 	lightingImage = sqlalchemy.Column(sqlalchemy.String)
 	reflectionImage = sqlalchemy.Column(sqlalchemy.String)
@@ -117,6 +118,7 @@ class DbIblSet(DbBase):
 			author=None,
 			link=None,
 			icon=None,
+			previewImage=None,
 			backgroundImage=None,
 			lightingImage=None,
 			reflectionImage=None,
@@ -143,6 +145,7 @@ class DbIblSet(DbBase):
 		self.author = author
 		self.link = link
 		self.icon = icon
+		self.previewImage = previewImage
 		self.backgroundImage = backgroundImage
 		self.lightingImage = lightingImage
 		self.reflectionImage = reflectionImage
@@ -170,6 +173,7 @@ class DbIblSet(DbBase):
 			self.author = parser.getValue("Author", "Header", encode=True)
 			self.link = parser.getValue("Link", "Header", encode=True)
 			self.icon = parser.getValue("ICOfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("ICOfile", "Header", encode=True))) or None
+			self.previewImage = parser.getValue("PREVIEWfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("PREVIEWfile", "Header", encode=True))) or None
 			self.backgroundImage = parser.getValue("BGfile", "Background", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("BGfile", "Background", encode=True))) or None
 			self.lightingImage = parser.getValue("EVfile", "Enviroment", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("EVfile", "Enviroment", encode=True))) or None
 			self.reflectionImage = parser.getValue("REFfile", "Reflection", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("REFfile", "Reflection", encode=True))) or None

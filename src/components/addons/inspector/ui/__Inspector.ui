@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sIBL_GUI_Image_Previewer_Form</class>
+ <widget class="QWidget" name="sIBL_GUI_Image_Previewer_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>359</width>
+    <height>82</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>sIBL_GUI - Image Previewer</string>
+  </property>
+  <layout class="QGridLayout" name="sIBL_GUI_Image_Previewer_Form_gridLayout">
+   <property name="margin">
+    <number>8</number>
+   </property>
+   <item row="1" column="0" colspan="2">
+    <widget class="QFrame" name="Image_Previewer_frame">
+     <layout class="QGridLayout" name="Image_Previewer_frame_gridLayout">
+      <property name="margin">
+       <number>0</number>
+      </property>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QGroupBox" name="Image_Previewer_Options_groupBox">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="Image_Previewer_Options_groupBox_gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="Zoom_In_pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="statusTip">
+         <string>Zoom In Push Button: Zoom Into The Image.</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="Zoom_Out_pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="statusTip">
+         <string>Zoom Out Push Button: Zoom Out Of The Image.</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="Image_Previewer_Options_groupBox_horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="3">
+       <widget class="QComboBox" name="Background_Colors_comboBox">
+        <property name="statusTip">
+         <string>Background Colors ComboBox: Switch Image Previewer Background Color.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="Image_Previewer_Informations_groupBox">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="Image_Previewer_Informations_groupBox_gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="Image_Informations_label">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

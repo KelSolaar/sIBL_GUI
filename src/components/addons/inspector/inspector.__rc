@@ -1,0 +1,12 @@
+[Component]
+Name = addons.inspector
+Module = inspector
+Object = Inspector
+Rank = 75
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Inspector Addon Component.

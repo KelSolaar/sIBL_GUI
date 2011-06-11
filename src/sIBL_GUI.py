@@ -340,6 +340,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._verbosityLevel = RuntimeConstants.verbosityLevel
 		self._parameters = RuntimeConstants.parameters
 		self._libraryActiveLabel = None
+		self._inspectActiveLabel = None
 		self._exportActiveLabel = None
 		self._preferencesActiveLabel = None
 		self._layoutsActiveLabels = None
@@ -397,7 +398,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreDb.initialize()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.db", Constants.applicationName)
-
+		
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface("core.collectionsOutliner")
 		if self._coreCollectionsOutliner:
@@ -985,6 +986,36 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("libraryActiveLabel "))
 
 	@property
+	def inspectActiveLabel (self):
+		"""
+		This Method Is The Property For The _inspectActiveLabel  Attribute.
+
+		@return: self._inspectActiveLabel . ( Active_QLabel )
+		"""
+
+		return self._inspectActiveLabel
+
+	@inspectActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectActiveLabel (self, value):
+		"""
+		This Method Is The Setter Method For The _inspectActiveLabel  Attribute.
+
+		@param value: Attribute Value. ( Active_QLabel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectActiveLabel "))
+
+	@inspectActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectActiveLabel (self):
+		"""
+		This Method Is The Deleter Method For The _inspectActiveLabel  Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectActiveLabel "))
+
+	@property
 	def exportActiveLabel (self):
 		"""
 		This Method Is The Property For The _exportActiveLabel  Attribute.
@@ -1262,13 +1293,17 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
 		self.toolBar.addWidget(self._libraryActiveLabel)
 
+		self._inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkInspectIcon), QPixmap(UiConstants.frameworkInspectHoverIcon), QPixmap(UiConstants.frameworkInspectActiveIcon), True)
+		self.toolBar.addWidget(self._inspectActiveLabel)
+
 		self._exportActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkExportIcon), QPixmap(UiConstants.frameworkExportHoverIcon), QPixmap(UiConstants.frameworkExportActiveIcon), True)
 		self.toolBar.addWidget(self._exportActiveLabel)
 
 		self._preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
 		self.toolBar.addWidget(self._preferencesActiveLabel)
 
-		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_8),
+		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+									LayoutActiveLabel(name="Inspect", object_=self._inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),									
 									LayoutActiveLabel(name="Export", object_=self._exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
 									LayoutActiveLabel(name="Preferences", object_=self._preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0)
 									)

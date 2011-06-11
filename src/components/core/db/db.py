@@ -57,8 +57,11 @@
 #***********************************************************************************************
 import logging
 import os
+import migrate.exceptions
+import migrate.versioning.api
 import sqlalchemy
 import sqlalchemy.orm
+import shutil
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -69,6 +72,7 @@ import foundations.core as core
 import foundations.exceptions
 import ui.common
 import ui.widgets.messageBox as messageBox
+from foundations.walker import Walker
 from globals.constants import Constants
 from manager.component import Component
 
@@ -106,6 +110,10 @@ class Db(Component):
 		self._dbSession = None
 		self._dbEngine = None
 		self._dbCatalog = None
+		
+		self._connectionString = None
+
+		self._dbMigrationsRepositoryDirectory = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -290,6 +298,66 @@ class Db(Component):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSessionMaker"))
 
+	@property
+	def connectionString(self):
+		"""
+		This Method Is The Property For The _connectionString Attribute.
+
+		@return: self._connectionString. ( String )
+		"""
+
+		return self._connectionString
+
+	@connectionString.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def connectionString(self, value):
+		"""
+		This Method Is The Setter Method For The _connectionString Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("connectionString"))
+
+	@connectionString.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def connectionString(self):
+		"""
+		This Method Is The Deleter Method For The _connectionString Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("connectionString"))
+
+	@property
+	def dbMigrationsRepositoryDirectory(self):
+		"""
+		This Method Is The Property For The _dbMigrationsRepositoryDirectory Attribute.
+
+		@return: self._dbMigrationsRepositoryDirectory. ( String )
+		"""
+
+		return self._dbMigrationsRepositoryDirectory
+
+	@dbMigrationsRepositoryDirectory.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbMigrationsRepositoryDirectory(self, value):
+		"""
+		This Method Is The Setter Method For The _dbMigrationsRepositoryDirectory Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbMigrationsRepositoryDirectory"))
+
+	@dbMigrationsRepositoryDirectory.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbMigrationsRepositoryDirectory(self):
+		"""
+		This Method Is The Deleter Method For The _dbMigrationsRepositoryDirectory Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbMigrationsRepositoryDirectory"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -328,15 +396,42 @@ class Db(Component):
 		if self._container.parameters.databaseDirectory:
 			if os.path.exists(self._container.parameters.databaseDirectory):
 				self._dbName = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseFile)
+				self._dbMigrationsRepositoryDirectory = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
 				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close!".format(self._container.parameters.databaseDirectory, Constants.applicationName)
 		else:
 			self._dbName = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
+			self._dbMigrationsRepositoryDirectory = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database Location: '{1}'".format(self.__class__.__name__, self._dbName))
+		LOGGER.info("{0} | Session Database Migrations Location: '{1}'".format(self.__class__.__name__, self._dbMigrationsRepositoryDirectory))
+		
+		self._connectionString = "sqlite:///{0}".format(self._dbName)
+
+		LOGGER.debug("> Creating Migrations Directory And Requisites.")
+		try:
+			migrate.versioning.api.create(self._dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
+		except migrate.exceptions.KnownError:
+			LOGGER.debug("> Migrate Repository Directory Already Exists!.")
+		
+		LOGGER.debug("> Copying Migrations Files To Migrate Repository.")
+		walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
+		walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
+		for file in walker.files.values():
+			shutil.copy(file, os.path.join(self._dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
+		
+		if os.path.exists(self._dbName):
+			LOGGER.debug("> Placing Database Under Migrate Version Control.")
+			try:
+				migrate.versioning.api.version_control(self._connectionString, self._dbMigrationsRepositoryDirectory)
+			except migrate.exceptions.DatabaseAlreadyControlledError:
+				LOGGER.debug("> Database Is Already Under Migrate Version Control!")
+			
+			LOGGER.debug("> Upgrading Database.")
+			migrate.versioning.api.upgrade(self._connectionString, self._dbMigrationsRepositoryDirectory)
 
 		LOGGER.debug("> Creating Database Engine.")
-		self._dbEngine = sqlalchemy.create_engine("sqlite:///{0}".format(self._dbName))
+		self._dbEngine = sqlalchemy.create_engine(self._connectionString)
 
 		LOGGER.debug("> Creating Database Metadatas.")
 		self._dbCatalog = dbUtilities.types.DbBase.metadata
@@ -346,7 +441,7 @@ class Db(Component):
 		self._dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self._dbEngine)
 
 		self._dbSession = self._dbSessionMaker()
-
+		
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitialize(self):

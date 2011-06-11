@@ -90,6 +90,10 @@ class UiConstants():
 	frameworkLibraryHoverIcon = "./resources/Library_Hover.png"
 	frameworkLibraryActiveIcon = "./resources/Library_Active.png"
 
+	frameworkInspectIcon = "./resources/Inspect.png"
+	frameworkInspectHoverIcon = "./resources/Inspect_Hover.png"
+	frameworkInspectActiveIcon = "./resources/Inspect_Active.png"
+
 	frameworkExportIcon = "./resources/Export.png"
 	frameworkExportHoverIcon = "./resources/Export_Hover.png"
 	frameworkExportActiveIcon = "./resources/Export_Active.png"

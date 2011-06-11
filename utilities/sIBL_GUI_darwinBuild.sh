@@ -15,7 +15,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,libraries.freeImage.freeImage,ui.widgets.search_QLineEdit,ui.widgets.variable_QPushButton,PyQt4.QtNetwork,PyQt4.QtWebKit,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,libraries.freeImage.freeImage,migrate.exceptions,migrate.versioning.api,ui.widgets.search_QLineEdit,ui.widgets.variable_QPushButton,PyQt4.QtNetwork,PyQt4.QtWebKit,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End
@@ -48,6 +48,9 @@ cp  $SOURCE/resources/Miscellaneous_Active.png $DISTRIBUTION/sIBL_GUI.app/Conten
 cp  $SOURCE/resources/Library.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Library_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Library_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp  $SOURCE/resources/Inspect.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp  $SOURCE/resources/Inspect_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp  $SOURCE/resources/Inspect_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Export.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Export_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Export_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
