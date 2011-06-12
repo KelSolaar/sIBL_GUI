@@ -1711,10 +1711,10 @@ class TemplatesOutliner(UiComponent):
 		@return: Update Success. ( Boolean )
 		"""
 
-		templatePath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self._container.lastBrowsedPath, "Template Files (*{0})".format(self._extension))))
-		if templatePath:
+		file = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self._container.lastBrowsedPath, "Template Files (*{0})".format(self._extension))))
+		if file:
 			LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
-			if not dbUtilities.common.updateTemplateLocation(self._coreDb.dbSession, template, templatePath):
+			if not dbUtilities.common.updateTemplateLocation(self._coreDb.dbSession, template, file):
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template!".format(self.__class__.__name__, template.name)
 			else:
 				return True
