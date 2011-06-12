@@ -403,33 +403,35 @@ class Db(Component):
 			self._dbName = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 			self._dbMigrationsRepositoryDirectory = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
 
-		LOGGER.info("{0} | Session Database Location: '{1}'".format(self.__class__.__name__, self._dbName))
-		LOGGER.info("{0} | Session Database Migrations Location: '{1}'".format(self.__class__.__name__, self._dbMigrationsRepositoryDirectory))
-		
+		LOGGER.info("{0} | Session Database Location: '{1}'.".format(self.__class__.__name__, self._dbName))
 		self._connectionString = "sqlite:///{0}".format(self._dbName)
 
-		LOGGER.debug("> Creating Migrations Directory And Requisites.")
-		try:
-			migrate.versioning.api.create(self._dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
-		except migrate.exceptions.KnownError:
-			LOGGER.debug("> Migrate Repository Directory Already Exists!.")
-		
-		LOGGER.debug("> Copying Migrations Files To Migrate Repository.")
-		walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
-		walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
-		for file in walker.files.values():
-			shutil.copy(file, os.path.join(self._dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
-		
-		if os.path.exists(self._dbName):
-			LOGGER.debug("> Placing Database Under Migrate Version Control.")
+		if not self._container.parameters.databaseReadOnly:
+			LOGGER.info("{0} | SQLAlchemy Migrate Repository Location: '{1}'.".format(self.__class__.__name__, self._dbMigrationsRepositoryDirectory))
+			LOGGER.debug("> Creating SQLAlchemy Migrate Migrations Directory And Requisites.")
 			try:
-				migrate.versioning.api.version_control(self._connectionString, self._dbMigrationsRepositoryDirectory)
-			except migrate.exceptions.DatabaseAlreadyControlledError:
-				LOGGER.debug("> Database Is Already Under Migrate Version Control!")
+				migrate.versioning.api.create(self._dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
+			except migrate.exceptions.KnownError:
+				LOGGER.debug("> SQLAlchemy Migrate Repository Directory Already Exists!")
 			
-			LOGGER.debug("> Upgrading Database.")
-			migrate.versioning.api.upgrade(self._connectionString, self._dbMigrationsRepositoryDirectory)
-
+			LOGGER.debug("> Copying Migrations Files To SQLAlchemy Migrate Repository.")
+			walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
+			walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
+			for file in walker.files.values():
+				shutil.copy(file, os.path.join(self._dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
+			
+			if os.path.exists(self._dbName):
+				LOGGER.debug("> Placing Database Under SQLAlchemy Migrate Version Control.")
+				try:
+					migrate.versioning.api.version_control(self._connectionString, self._dbMigrationsRepositoryDirectory)
+				except migrate.exceptions.DatabaseAlreadyControlledError:
+					LOGGER.debug("> Database Is Already Under SQLAlchemy Migrate Version Control!")
+				
+				LOGGER.debug("> Upgrading Database.")
+				migrate.versioning.api.upgrade(self._connectionString, self._dbMigrationsRepositoryDirectory)
+		else:
+			LOGGER.info("{0} | SQLAlchemy Migrate Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+	
 		LOGGER.debug("> Creating Database Engine.")
 		self._dbEngine = sqlalchemy.create_engine(self._connectionString)
 

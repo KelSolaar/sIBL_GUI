@@ -35,7 +35,7 @@
 
 """
 ************************************************************************************************
-***    001_table_Sets_Column_previewImage.py
+***    001_table_Sets_sqlalchemy.Column_previewImage.py
 ***
 ***    Platform:
 ***        Windows, Linux, Mac Os X
@@ -55,14 +55,19 @@
 #***********************************************************************************************
 #***    External Imports
 #***********************************************************************************************
-from sqlalchemy import *
+import sqlalchemy
 from migrate import *
+import logging
 
 #***********************************************************************************************
-#***    Global Variables
+#***    Internal Imports
 #***********************************************************************************************
-METADATA = MetaData()
-TABLE = Table("Sets", METADATA)
+from globals.constants import Constants
+
+#***********************************************************************************************
+#***    Overall Variables
+#***********************************************************************************************
+LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***    Module Classes And Definitions
@@ -74,9 +79,19 @@ def upgrade(dbEngine):
     @param dbEngine: Database Engine. ( Object )
     """
     
-    METADATA.bind = dbEngine
-    column = Column("previewImage", String)
-    column.create(TABLE)
+    LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
+
+    metadata = sqlalchemy.MetaData()
+    metadata.bind = dbEngine
+    table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
+    
+    columnName = "previewImage"
+    if columnName not in table.columns:
+        LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
+        column = sqlalchemy.Column(columnName, sqlalchemy.String)
+        column.create(table)
+    else:
+        LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' Already Exists In '{2}' Table!".format(__name__, columnName, table))
 
 def downgrade(dbEngine):
     """
