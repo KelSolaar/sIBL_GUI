@@ -78,6 +78,7 @@ LOGGER = logging.getLogger(Constants.logger)
 DB_EXCEPTIONS = {
 			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's Ibl File Is Missing!",
 			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's Icon Is Missing!",
+			"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl Set's Preview Image Is Missing!",
 			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's Background Image Is Missing!",
 			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's Lighting Image Is Missing!",
 			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's Reflection Image Is Missing!",
@@ -329,6 +330,8 @@ def checkIblSetsTableIntegrity(session):
 				continue
 			if not os.path.exists(iblSet.icon):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
+			if iblSet.previewImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.previewImage)):
+				erroneousSets[iblSet] = "INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION"
 			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.backgroundImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
 			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.lightingImage)):
