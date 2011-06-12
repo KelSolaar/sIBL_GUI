@@ -64,7 +64,6 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import ui.common
