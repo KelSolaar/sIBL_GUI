@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Database_Operations_Form</class>
+ <widget class="QWidget" name="Database_Operations_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>198</width>
+    <height>64</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Database Operations</string>
+  </property>
+  <layout class="QGridLayout" name="Database_Operations_Form_gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="Database_Operations_groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Database Operations</string>
+     </property>
+     <layout class="QGridLayout" name="Database_Operations_groupBox_gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="Synchronize_Database_pushButton">
+        <property name="statusTip">
+         <string>Synchronize Database Push Button: Forces Database Synchronization.</string>
+        </property>
+        <property name="text">
+         <string>Synchronise Database</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
