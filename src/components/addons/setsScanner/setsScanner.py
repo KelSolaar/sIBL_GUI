@@ -498,7 +498,6 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-
 		if not self._container.parameters.databaseReadOnly:
 			if not self._container.parameters.deactivateWorkerThreads:
 				self._setsScannerWorkerThread = SetsScanner_Worker(self)
