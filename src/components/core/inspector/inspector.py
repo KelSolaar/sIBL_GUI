@@ -114,13 +114,8 @@ class Inspector(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
-
-		self._imagePreviewers = None
-		self._maximumInspectorInstances = 5
-
-		self._previewLightingImageAction = None
-		self._previewReflectionImageAction = None
-		self._inspectIblSetAction = None
+		
+		self._inspectorIblSet = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -244,7 +239,37 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
-	
+
+	@property
+	def inspectorIblSet(self):
+		"""
+		This Method Is The Property For The _inspectorIblSet Attribute.
+
+		@return: self._inspectorIblSet. ( QStandardItem )
+		"""
+
+		return self._inspectorIblSet
+
+	@inspectorIblSet.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSet(self, value):
+		"""
+		This Method Is The Setter Method For The _inspectorIblSet Attribute.
+
+		@param value: Attribute Value. ( QStandardItem )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSet"))
+
+	@inspectorIblSet.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSet(self):
+		"""
+		This Method Is The Deleter Method For The _inspectorIblSet Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -294,8 +319,16 @@ class Inspector(UiComponent):
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
-
+		
+		self.ui.Overall_frame.setStyleSheet("background: rgb(128, 128, 128)")
+		self.ui.Title_frame.setStyleSheet("background: rgb(160, 160, 160)")
+		#self.ui.Image_frame.setStyleSheet("background: rgb(128, 128, 128)")
+		self.ui.Details_frame.setStyleSheet("background: rgb(160, 160, 160)")
+		
+		self.Inspector_setUi()
+		
 		# Signals / Slots.
+		self._coreDatabaseBrowser.modelChanged.connect(self.coreDatabaseBrowser_model_OnModelChanged)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
@@ -309,6 +342,7 @@ class Inspector(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
+		self._coreDatabaseBrowser.modelChanged.disconnect(self.coreDatabaseBrowser_model_OnModelChanged)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.disconnect(self.Previous_Ibl_Set_pushButton_OnClicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.disconnect(self.Next_Ibl_Set_pushButton_OnClicked)
@@ -330,6 +364,14 @@ class Inspector(UiComponent):
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		
+	@core.executionTrace
+	def coreDatabaseBrowser_model_OnModelChanged(self):
+		"""
+		This Method Sets Is Triggered When coreDatabaseBrowser Model Has Changed.
+		"""	
+		
+		self.setInspectorIblSet()
 
 	@core.executionTrace
 	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
@@ -339,16 +381,9 @@ class Inspector(UiComponent):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
+	
+		self.Inspector_setUi()
 
-		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
-		iblSet = selectedIblSet and selectedIblSet[0] or None
-		
-		if iblSet:
-			if iblSet._datas.previewImage:
-				self.ui.Image_label.setPixmap(QPixmap(iblSet._datas.previewImage))
-			else:
-				self.ui.Image_label.setPixmap(QPixmap(iblSet._datas.icon))
-				
 	@core.executionTrace
 	def Previous_Ibl_Set_pushButton_OnClicked(self, checked):
 		"""
@@ -368,7 +403,36 @@ class Inspector(UiComponent):
 		"""
 		
 		self.loopThroughIblSets()
+
+	@core.executionTrace
+	def Inspector_setUi(self):
+		"""
+		This Method Sets The Inspector Ui.
+		"""
+
+		self.setInspectorIblSet()
+		
+		if self._inspectorIblSet:
+			if self._inspectorIblSet._datas.previewImage:
+				self.ui.Image_label.setPixmap(QPixmap(self._inspectorIblSet._datas.previewImage))
+			else:
+				self.ui.Image_label.setPixmap(QPixmap(self._inspectorIblSet._datas.icon))
+			
+			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self._inspectorIblSet._datas.title, self._inspectorIblSet._datas.location))
+			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self._inspectorIblSet._datas.comment))
 	
+	@core.executionTrace
+	def setInspectorIblSet(self):
+		"""
+		This Method Sets The Inspected Ibl Set.
+		"""
+		
+		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
+		self._inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
+		if not self._inspectorIblSet:
+			model = self._coreDatabaseBrowser.model
+			self._inspectorIblSet = model.rowCount() !=0 and model.item(0) or None
+				
 	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
 		"""
@@ -376,19 +440,24 @@ class Inspector(UiComponent):
 		
 		@param direction: Loop Direction. ( String )
 		"""
-	
-		indexes = self._coreDatabaseBrowser.ui.Database_Browser_listView.selectedIndexes()
-		index = indexes and indexes[0] or None
-		if index:
+		
+		if not self._inspectorIblSet:
+			self.setInspectorIblSet()
+
+		if self._inspectorIblSet:
+			model = self._coreDatabaseBrowser.model
+			index = model.indexFromItem(self._inspectorIblSet)
+			
+			step = not backward and 1 or -1
+			idx = index.row() + step
+			if idx < 0:
+				idx = model.rowCount()-1
+			elif idx > model.rowCount()-1:
+				idx = 0
+		
 			selectionModel = self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel()
 			if selectionModel:
 				selectionModel.clear()
-				step = not backward and 1 or -1
-				idx = index.row() + step
-				if idx < 0:
-					idx = self._coreDatabaseBrowser.model.rowCount()-1
-				elif idx > self._coreDatabaseBrowser.model.rowCount()-1:
-					idx = 0
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 
 #***********************************************************************************************
