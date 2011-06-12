@@ -55,6 +55,7 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import functools
 import logging
 import os
 import platform
@@ -848,6 +849,7 @@ class Preview(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 
 		self._imagePreviewers = None
 		self._maximumImagePreviewersInstances = 5
@@ -855,6 +857,10 @@ class Preview(UiComponent):
 		self._previewLightingImageAction = None
 		self._previewReflectionImageAction = None
 		self._previewBackgroundImageAction = None
+		
+		self._inspectorButtons = {"Background" : {"object" : None, "text": "Preview Background Image", "row" : 1,"column" : 3},
+									"Lighting" : {"object" : None, "text": "Preview Lighting Image", "row" : 1,"column" : 4},
+									"Reflection" : {"object" : None, "text": "Preview Reflection Image", "row" : 1,"column" : 5}}
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1070,6 +1076,36 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
+	def coreInspector(self):
+		"""
+		This Method Is The Property For The _coreInspector Attribute.
+
+		@return: self._coreInspector. ( Object )
+		"""
+
+		return self._coreInspector
+
+	@coreInspector.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreInspector(self, value):
+		"""
+		This Method Is The Setter Method For The _coreInspector Attribute.
+
+		@param value: Attribute Value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreInspector"))
+
+	@coreInspector.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreInspector(self):
+		"""
+		This Method Is The Deleter Method For The _coreInspector Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreInspector"))
+
+	@property
 	def imagePreviewers(self):
 		"""
 		This Method Is The Property For The _imagePreviewers Attribute.
@@ -1219,6 +1255,36 @@ class Preview(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewReflectionImageAction"))
 
+	@property
+	def inspectorButtons(self):
+		"""
+		This Method Is The Property For The _inspectorButtons Attribute.
+
+		@return: self._inspectorButtons. ( Dictionary )
+		"""
+
+		return self._inspectorButtons
+
+	@inspectorButtons.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorButtons(self, value):
+		"""
+		This Method Is The Setter Method For The _inspectorButtons Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorButtons"))
+
+	@inspectorButtons.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorButtons(self):
+		"""
+		This Method Is The Deleter Method For The _inspectorButtons Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorButtons"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -1240,6 +1306,7 @@ class Preview(UiComponent):
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
 
 		self._imagePreviewers = []
 
@@ -1261,6 +1328,7 @@ class Preview(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 
 		for imagePreviewer in self._imagePreviewers[:]:
 			imagePreviewer.ui.close()
@@ -1276,8 +1344,9 @@ class Preview(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self.Custom_Previewer_Path_lineEdit_setUi()
-
-		self.addActions_()
+		
+		self.addActions_()		
+		self.addInspectorButtons()
 
 		# Signals / Slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.connect(self.Custom_Previewer_Path_toolButton_OnClicked)
@@ -1292,6 +1361,7 @@ class Preview(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self.removeActions_()
+		self.removeInspectorButtons()
 
 		# Signals / Slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.disconnect(self.Custom_Previewer_Path_toolButton_OnClicked)
@@ -1357,6 +1427,26 @@ class Preview(UiComponent):
 		self._previewBackgroundImageAction = None
 		self._previewLightingImageAction = None
 		self._previewReflectionImageAction = None
+
+	@core.executionTrace
+	def addInspectorButtons(self):
+		"""
+		This Method Adds Buttons To The Inspector Component.
+		"""
+				
+		for key, value in self._inspectorButtons.items():
+			value["object"] = QPushButton(value["text"])
+			self._coreInspector.ui.Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
+			# Cannot Pass Parameter Using Lambda, Partial Used Instead.			
+			value["object"].clicked.connect(functools.partial(self.showImagePreview, key))
+
+	def removeInspectorButtons(self):
+		"""
+		This Method Removes Buttons From The Inspector Component.
+		"""	
+
+		for value in self._inspectorButtons.values():
+			value["object"].setParent(None)
 
 	@core.executionTrace
 	def Database_Browser_listView_previewBackgroundImageAction(self, checked):
@@ -1428,13 +1518,14 @@ class Preview(UiComponent):
 			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	def showImagePreview(self, imageType):
+	def showImagePreview(self, imageType, *args):
 		"""
 		This Method Launches An Image Preview.
 		
 		@param imageType: Image Type. ( String )
+		@param *args: Arguments. ( * )
 		"""
-
+		
 		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
 
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
