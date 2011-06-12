@@ -1304,7 +1304,7 @@ class CollectionsOutliner(UiComponent):
 
 		selectionModel = self.ui.Collections_Outliner_treeView.selectionModel()
 		if selectionModel:
-			selectionModel.reset()
+			selectionModel.clear()
 			for index in indexes:
 				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 

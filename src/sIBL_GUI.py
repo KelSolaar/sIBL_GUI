@@ -217,6 +217,10 @@ class Preferences():
 		self._settings.setValue("setsCentric_windowState", layoutSettings.value("setsCentric/windowState"))
 		self._settings.setValue("setsCentric_centralWidget", layoutSettings.value("setsCentric/centralWidget"))
 		self._settings.setValue("setsCentric_activeLabel", layoutSettings.value("setsCentric/activeLabel"))
+		self._settings.setValue("inspectCentric_geometry", layoutSettings.value("inspectCentric/geometry"))
+		self._settings.setValue("inspectCentric_windowState", layoutSettings.value("inspectCentric/windowState"))
+		self._settings.setValue("inspectCentric_centralWidget", layoutSettings.value("inspectCentric/centralWidget"))
+		self._settings.setValue("inspectCentric_activeLabel", layoutSettings.value("inspectCentric/activeLabel"))
 		self._settings.setValue("templatesCentric_geometry", layoutSettings.value("templatesCentric/geometry"))
 		self._settings.setValue("templatesCentric_windowState", layoutSettings.value("templatesCentric/windowState"))
 		self._settings.setValue("templatesCentric_centralWidget", layoutSettings.value("templatesCentric/centralWidget"))
@@ -330,6 +334,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._coreDatabaseBrowser = None
 		self._coreCollectionsOutliner = None
 		self._coreTemplatesOutliner = None
+		self._coreInspector = None
 		self._lastBrowsedPath = os.getcwd()
 		self._userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
 		self._loggingSessionHandler = RuntimeConstants.loggingSessionHandler
@@ -428,6 +433,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreTemplatesOutliner.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.templatesOutliner", Constants.applicationName)
+
+		# --- Activating Inspector Component. ---
+		self._coreInspector = self._componentsManager.getInterface("core.inspector")
+		if self._coreInspector:
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
+			self._coreInspector.activate(self)
+			self._coreInspector.addWidget()
+			self._coreInspector.initializeUi()
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey("Settings", "deactivatedComponents").toString().split(",")

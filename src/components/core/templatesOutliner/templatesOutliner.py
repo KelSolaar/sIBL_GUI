@@ -1445,7 +1445,7 @@ class TemplatesOutliner(UiComponent):
 
 		selectionModel = self.ui.Templates_Outliner_treeView.selectionModel()
 		if selectionModel:
-			selectionModel.reset()
+			selectionModel.clear()
 			for index in indexes:
 				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 

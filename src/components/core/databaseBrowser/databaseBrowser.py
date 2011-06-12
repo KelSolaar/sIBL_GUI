@@ -1508,7 +1508,7 @@ class DatabaseBrowser(UiComponent):
 
 			selectionModel = self.ui.Database_Browser_listView.selectionModel()
 			if selectionModel:
-				selectionModel.reset()
+				selectionModel.clear()
 				for index in indexes:
 					selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
 
