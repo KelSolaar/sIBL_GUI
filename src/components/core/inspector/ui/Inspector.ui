@@ -7,81 +7,6 @@
   </property>
   <widget class="QWidget" name="Inspector_dockWidgetContents">
    <layout class="QGridLayout" name="Inspector_dockWidgetContents_gridLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QGroupBox" name="Preview_groupBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QGridLayout" name="Preview_groupBox_gridLayout">
-       <item row="0" column="0">
-        <widget class="QFrame" name="Overall_frame">
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="Overall_frame_gridLayout">
-          <item row="0" column="0">
-           <widget class="QFrame" name="Title_frame">
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QGridLayout" name="Title_frame_gridLayout">
-             <item row="0" column="0">
-              <widget class="QLabel" name="Title_label">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QFrame" name="Image_frame">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <layout class="QGridLayout" name="Image_frame_gridLayout">
-             <item row="0" column="0">
-              <widget class="QLabel" name="Image_label">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QFrame" name="Details_frame">
-            <layout class="QGridLayout" name="Details_frame_gridLayout">
-             <item row="0" column="0">
-              <widget class="QLabel" name="Details_label">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
     <item row="1" column="0" colspan="2">
      <widget class="QGroupBox" name="Options_groupBox">
       <property name="title">
@@ -143,6 +68,78 @@
          <property name="text">
           <string/>
          </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QFrame" name="Overall_frame">
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="Overall_frame_gridLayout">
+       <item row="0" column="0">
+        <widget class="QFrame" name="Title_frame">
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="Title_frame_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Title_label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QFrame" name="Image_frame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QGridLayout" name="Image_frame_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Image_label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QFrame" name="Details_frame">
+         <layout class="QGridLayout" name="Details_frame_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Details_label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>

@@ -103,11 +103,13 @@ class Inspector(UiComponent):
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting Class Attributes. ---
-		self.deactivatable = True
+		self.deactivatable = False
 
 		self._uiPath = "ui/Inspector.ui"
 		self._uiResources = "resources"
-
+		self._uiPreviousIcon = "Previous.png"
+		self._uiNextIcon = "Next.png"
+	
 		self._container = None
 		self._settings = None
 		self._settingsSection = None
@@ -116,7 +118,27 @@ class Inspector(UiComponent):
 		self._coreDatabaseBrowser = None
 		
 		self._inspectorIblSet = None
-
+		
+		self._noPreviewImageText = """
+								<center>
+								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
+									<tr>
+										<td>
+											<img src="{0}">
+										</td>
+										<td>
+											<p><b>Preview Image Unavailable!<b></p>
+											What Now?
+											<ul>
+												<li>Check For An Updated Set On <b>HDRLabs</b> At <a href="http://www.hdrlabs.com/sibl/archive.html"><span style=" text-decoration: underline; color:#000000;">http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
+												<li>Contact <b>{1}</b> At <a href="{2}"><span style=" text-decoration: underline; color:#000000;">{2}</span></a> For An Updated Set.</li>
+												<li>Resize The Background Image To 600x300 Pixels. Save It As A JPEG In Your Set Folder.<br/>Register It In The ."Ibl" File Header Using The "PREVIEWfile" Attribute.</li>
+											</ul>
+										</td>
+									</tr>
+								</table>
+								</center>
+								"""
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -179,6 +201,66 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+
+	@property
+	def uiPreviousIcon(self):
+		"""
+		This Method Is The Property For The _uiPreviousIcon Attribute.
+
+		@return: self._uiPreviousIcon. ( String )
+		"""
+
+		return self._uiPreviousIcon
+
+	@uiPreviousIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPreviousIcon(self, value):
+		"""
+		This Method Is The Setter Method For The _uiPreviousIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPreviousIcon"))
+
+	@uiPreviousIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPreviousIcon(self):
+		"""
+		This Method Is The Deleter Method For The _uiPreviousIcon Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPreviousIcon"))
+
+	@property
+	def uiNextIcon(self):
+		"""
+		This Method Is The Property For The _uiNextIcon Attribute.
+
+		@return: self._uiNextIcon. ( String )
+		"""
+
+		return self._uiNextIcon
+
+	@uiNextIcon.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextIcon(self, value):
+		"""
+		This Method Is The Setter Method For The _uiNextIcon Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiNextIcon"))
+
+	@uiNextIcon.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextIcon(self):
+		"""
+		This Method Is The Deleter Method For The _uiNextIcon Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextIcon"))
 
 	@property
 	def container(self):
@@ -270,6 +352,36 @@ class Inspector(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
 
+	@property
+	def noPreviewImageText(self):
+		"""
+		This Method Is The Property For The _noPreviewImageText Attribute.
+
+		@return: self._noPreviewImageText. ( String )
+		"""
+
+		return self._noPreviewImageText
+
+	@noPreviewImageText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def noPreviewImageText(self, value):
+		"""
+		This Method Is The Setter Method For The _noPreviewImageText Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageText"))
+
+	@noPreviewImageText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def noPreviewImageText(self):
+		"""
+		This Method Is The Deleter Method For The _noPreviewImageText Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageText"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -295,22 +407,13 @@ class Inspector(UiComponent):
 		self._activate()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
 		This Method Deactivates The Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
-
-		self.uiFile = None
-		self._uiResources = os.path.basename(self._uiResources)
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
-
-		self._coreDatabaseBrowser = None
-
-		self._deactivate()
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -319,6 +422,9 @@ class Inspector(UiComponent):
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+	
+		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousIcon)))
+		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextIcon)))
 		
 		self.ui.Overall_frame.setStyleSheet("background: rgb(128, 128, 128)")
 		self.ui.Title_frame.setStyleSheet("background: rgb(160, 160, 160)")
@@ -334,18 +440,13 @@ class Inspector(UiComponent):
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
 		This Method Uninitializes The Component Ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
-
-		# Signals / Slots.
-		self._coreDatabaseBrowser.modelChanged.disconnect(self.coreDatabaseBrowser_model_OnModelChanged)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self.ui.Previous_Ibl_Set_pushButton.clicked.disconnect(self.Previous_Ibl_Set_pushButton_OnClicked)
-		self.ui.Next_Ibl_Set_pushButton.clicked.disconnect(self.Next_Ibl_Set_pushButton_OnClicked)
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -358,12 +459,13 @@ class Inspector(UiComponent):
 		self._container.addDockWidget(Qt.DockWidgetArea(1), self.ui)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
 		This Method Removes The Component Widget From The Container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
 		
 	@core.executionTrace
 	def coreDatabaseBrowser_model_OnModelChanged(self):
@@ -416,7 +518,7 @@ class Inspector(UiComponent):
 			if self._inspectorIblSet._datas.previewImage:
 				self.ui.Image_label.setPixmap(QPixmap(self._inspectorIblSet._datas.previewImage))
 			else:
-				self.ui.Image_label.setPixmap(QPixmap(self._inspectorIblSet._datas.icon))
+				self.ui.Image_label.setText(self._noPreviewImageText.format(self._inspectorIblSet._datas.icon, self._inspectorIblSet._datas.author, self._inspectorIblSet._datas.link))
 			
 			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self._inspectorIblSet._datas.title, self._inspectorIblSet._datas.location))
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self._inspectorIblSet._datas.comment))
