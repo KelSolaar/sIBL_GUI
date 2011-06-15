@@ -109,6 +109,7 @@ class Inspector(UiComponent):
 		self._uiResources = "resources"
 		self._uiPreviousIcon = "Previous.png"
 		self._uiNextIcon = "Next.png"
+		self._dockArea = 2
 	
 		self._container = None
 		self._settings = None
@@ -261,6 +262,36 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextIcon"))
+
+	@property
+	def dockArea(self):
+		"""
+		This Method Is The Property For The _dockArea Attribute.
+
+		@return: self._dockArea. ( Integer )
+		"""
+
+		return self._dockArea
+
+	@dockArea.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self, value):
+		"""
+		This Method Is The Setter Method For The _dockArea Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+
+	@dockArea.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dockArea(self):
+		"""
+		This Method Is The Deleter Method For The _dockArea Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
 	def container(self):
@@ -456,7 +487,7 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(1), self.ui)
+		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

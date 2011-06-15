@@ -55,6 +55,7 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import functools
 import logging
 import os
 import optparse
@@ -121,6 +122,9 @@ class Preferences():
 		self._preferencesFile = preferencesFile
 
 		self._settings = QSettings(self.preferencesFile, QSettings.IniFormat)
+		
+		# --- Initializing Preferences. ---
+		self.getDefaultLayoutsSettings()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -188,69 +192,39 @@ class Preferences():
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
 
+	@property
+	def defaultLayoutsSettings(self):
+		"""
+		This Method Is The Property For The _defaultLayoutsSettings Attribute.
+
+		@return: self._defaultLayoutsSettings. ( QSettings )
+		"""
+
+		return self._defaultLayoutsSettings
+
+	@defaultLayoutsSettings.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultLayoutsSettings(self, value):
+		"""
+		This Method Is The Setter Method For The _defaultLayoutsSettings Attribute.
+		
+		@param value: Attribute Value. ( QSettings )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("defaultLayoutsSettings"))
+
+	@defaultLayoutsSettings.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def defaultLayoutsSettings(self):
+		"""
+		This Method Is The Deleter Method For The _defaultLayoutsSettings Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultLayoutsSettings"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-	@core.executionTrace
-	def setDefaultPreferences(self):
-		"""
-		This Method Defines The Default Settings File Content.
-		"""
-
-		LOGGER.debug("> Initializing Default Settings!")
-
-		LOGGER.debug("> Accessing '{0}' Layouts Settings File!".format(UiConstants.frameworkLayoutsFile))
-
-		layoutSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
-
-		self._settings.beginGroup("Settings")
-		self._settings.setValue("verbosityLevel", QVariant("3"))
-		self._settings.setValue("restoreGeometryOnLayoutChange", Qt.Unchecked)
-		self._settings.setValue("deactivatedComponents", QVariant(""))
-		self._settings.endGroup()
-		self._settings.beginGroup("Layouts")
-		self._settings.setValue("startupCentric_geometry", layoutSettings.value("startupCentric/geometry"))
-		self._settings.setValue("startupCentric_windowState", layoutSettings.value("startupCentric/windowState"))
-		self._settings.setValue("startupCentric_centralWidget", layoutSettings.value("startupCentric/centralWidget"))
-		self._settings.setValue("startupCentric_activeLabel", layoutSettings.value("startupCentric/activeLabel"))
-		self._settings.setValue("setsCentric_geometry", layoutSettings.value("setsCentric/geometry"))
-		self._settings.setValue("setsCentric_windowState", layoutSettings.value("setsCentric/windowState"))
-		self._settings.setValue("setsCentric_centralWidget", layoutSettings.value("setsCentric/centralWidget"))
-		self._settings.setValue("setsCentric_activeLabel", layoutSettings.value("setsCentric/activeLabel"))
-		self._settings.setValue("inspectCentric_geometry", layoutSettings.value("inspectCentric/geometry"))
-		self._settings.setValue("inspectCentric_windowState", layoutSettings.value("inspectCentric/windowState"))
-		self._settings.setValue("inspectCentric_centralWidget", layoutSettings.value("inspectCentric/centralWidget"))
-		self._settings.setValue("inspectCentric_activeLabel", layoutSettings.value("inspectCentric/activeLabel"))
-		self._settings.setValue("templatesCentric_geometry", layoutSettings.value("templatesCentric/geometry"))
-		self._settings.setValue("templatesCentric_windowState", layoutSettings.value("templatesCentric/windowState"))
-		self._settings.setValue("templatesCentric_centralWidget", layoutSettings.value("templatesCentric/centralWidget"))
-		self._settings.setValue("templatesCentric_activeLabel", layoutSettings.value("templatesCentric/activeLabel"))
-		self._settings.setValue("preferencesCentric_geometry", layoutSettings.value("preferencesCentric/geometry"))
-		self._settings.setValue("preferencesCentric_windowState", layoutSettings.value("preferencesCentric/windowState"))
-		self._settings.setValue("preferencesCentric_centralWidget", layoutSettings.value("preferencesCentric/centralWidget"))
-		self._settings.setValue("preferencesCentric_activeLabel", layoutSettings.value("preferencesCentric/activeLabel"))
-		self._settings.setValue("one_geometry", "")
-		self._settings.setValue("one_windowState", "")
-		self._settings.setValue("one_centralWidget", True)
-		self._settings.setValue("one_activeLabel", "")
-		self._settings.setValue("two_geometry", "")
-		self._settings.setValue("two_windowState", "")
-		self._settings.setValue("two_centralWidget", True)
-		self._settings.setValue("two_activeLabel", "")
-		self._settings.setValue("three_geometry", "")
-		self._settings.setValue("three_windowState", "")
-		self._settings.setValue("three_centralWidget", True)
-		self._settings.setValue("three_activeLabel", "")
-		self._settings.setValue("four_geometry", "")
-		self._settings.setValue("four_windowState", "")
-		self._settings.setValue("four_centralWidget", True)
-		self._settings.setValue("four_activeLabel", "")
-		self._settings.setValue("five_geometry", "")
-		self._settings.setValue("five_windowState", "")
-		self._settings.setValue("five_centralWidget", True)
-		self._settings.setValue("five_activeLabel", "")
-		self._settings.endGroup()
-
 	@core.executionTrace
 	def setKey(self, section, key, value):
 		"""
@@ -285,6 +259,83 @@ class Preferences():
 		self._settings.endGroup()
 
 		return value
+
+	@core.executionTrace
+	def getDefaultLayoutsSettings(self):
+		"""
+		This Method Gets The Default Layouts Settings.
+		"""	
+		
+		LOGGER.debug("> Accessing '{0}' Layouts Settings File!".format(UiConstants.frameworkLayoutsFile))
+		self._defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
+
+	@core.executionTrace
+	def setDefaultPreferences(self):
+		"""
+		This Method Defines The Default Settings File Content.
+		"""
+
+		LOGGER.debug("> Initializing Default Settings!")
+
+		self._settings.beginGroup("Settings")
+		self._settings.setValue("verbosityLevel", QVariant("3"))
+		self._settings.setValue("restoreGeometryOnLayoutChange", Qt.Unchecked)
+		self._settings.setValue("deactivatedComponents", QVariant(""))
+		self._settings.endGroup()
+		self._settings.beginGroup("Layouts")
+		self._settings.setValue("startupCentric_geometry", self._defaultLayoutsSettings.value("startupCentric/geometry"))
+		self._settings.setValue("startupCentric_windowState", self._defaultLayoutsSettings.value("startupCentric/windowState"))
+		self._settings.setValue("startupCentric_centralWidget", self._defaultLayoutsSettings.value("startupCentric/centralWidget"))
+		self._settings.setValue("startupCentric_activeLabel", self._defaultLayoutsSettings.value("startupCentric/activeLabel"))
+		self._settings.setValue("setsCentric_geometry", self._defaultLayoutsSettings.value("setsCentric/geometry"))
+		self._settings.setValue("setsCentric_windowState", self._defaultLayoutsSettings.value("setsCentric/windowState"))
+		self._settings.setValue("setsCentric_centralWidget", self._defaultLayoutsSettings.value("setsCentric/centralWidget"))
+		self._settings.setValue("setsCentric_activeLabel", self._defaultLayoutsSettings.value("setsCentric/activeLabel"))
+		self._settings.setValue("inspectCentric_geometry", self._defaultLayoutsSettings.value("inspectCentric/geometry"))
+		self._settings.setValue("inspectCentric_windowState", self._defaultLayoutsSettings.value("inspectCentric/windowState"))
+		self._settings.setValue("inspectCentric_centralWidget", self._defaultLayoutsSettings.value("inspectCentric/centralWidget"))
+		self._settings.setValue("inspectCentric_activeLabel", self._defaultLayoutsSettings.value("inspectCentric/activeLabel"))
+		self._settings.setValue("templatesCentric_geometry", self._defaultLayoutsSettings.value("templatesCentric/geometry"))
+		self._settings.setValue("templatesCentric_windowState", self._defaultLayoutsSettings.value("templatesCentric/windowState"))
+		self._settings.setValue("templatesCentric_centralWidget", self._defaultLayoutsSettings.value("templatesCentric/centralWidget"))
+		self._settings.setValue("templatesCentric_activeLabel", self._defaultLayoutsSettings.value("templatesCentric/activeLabel"))
+		self._settings.setValue("preferencesCentric_geometry", self._defaultLayoutsSettings.value("preferencesCentric/geometry"))
+		self._settings.setValue("preferencesCentric_windowState", self._defaultLayoutsSettings.value("preferencesCentric/windowState"))
+		self._settings.setValue("preferencesCentric_centralWidget", self._defaultLayoutsSettings.value("preferencesCentric/centralWidget"))
+		self._settings.setValue("preferencesCentric_activeLabel", self._defaultLayoutsSettings.value("preferencesCentric/activeLabel"))
+		self._settings.setValue("one_geometry", "")
+		self._settings.setValue("one_windowState", "")
+		self._settings.setValue("one_centralWidget", True)
+		self._settings.setValue("one_activeLabel", "")
+		self._settings.setValue("two_geometry", "")
+		self._settings.setValue("two_windowState", "")
+		self._settings.setValue("two_centralWidget", True)
+		self._settings.setValue("two_activeLabel", "")
+		self._settings.setValue("three_geometry", "")
+		self._settings.setValue("three_windowState", "")
+		self._settings.setValue("three_centralWidget", True)
+		self._settings.setValue("three_activeLabel", "")
+		self._settings.setValue("four_geometry", "")
+		self._settings.setValue("four_windowState", "")
+		self._settings.setValue("four_centralWidget", True)
+		self._settings.setValue("four_activeLabel", "")
+		self._settings.setValue("five_geometry", "")
+		self._settings.setValue("five_windowState", "")
+		self._settings.setValue("five_centralWidget", True)
+		self._settings.setValue("five_activeLabel", "")
+		self._settings.endGroup()
+
+	@core.executionTrace
+	def setDefaultLayouts(self):
+		"""
+		This Method Sets The Default Layouts In The Preferences File.
+		"""
+		
+		for layout in ("startupCentric", "setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
+				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
+					if self.getKey("Layouts", "{0}_{1}".format(layout, type)).isNull():
+						LOGGER.debug("> Adding Missing '{0}_{1}' Layout Attribute To Preferences File!".format(layout, type))
+						self.setKey("Layouts", "{0}_{1}".format(layout, type), self._defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
 
 class LayoutActiveLabel(core.Structure):
 	"""
@@ -1345,7 +1396,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._layoutMenu.addAction(action)
 
 			# Signals / Slots.
-			action.triggered.connect(lambda layout=layout[2]: self.restoreLayout(layout))
+			action.triggered.connect(functools.partial(self.restoreLayout, layout))
 
 		self._layoutMenu.addSeparator()
 
@@ -1355,7 +1406,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._layoutMenu.addAction(action)
 
 			# Signals / Slots.
-			action.triggered.connect(lambda layout=layout[2]: self.storeLayout(layout))
+			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
 		layoutbutton.setMenu(self._layoutMenu)
 
@@ -1450,13 +1501,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
 
 	@core.executionTrace
-	def storeLayout(self, name):
+	def storeLayout(self, name, *args):
 		"""
 		This Method Is Called When Storing A Layout.
 
 		@param name: Layout Name. ( String )
+		@param *args: Arguments. ( * )
 		"""
-
+		
 		LOGGER.debug("> Storing Layout '{0}'.".format(name))
 
 		self._settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
@@ -1498,7 +1550,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def storeStartupLayout(self):
 		"""
-		This Method Restores The Startup Layout.
+		This Method Stores The Startup Layout.
 		"""
 
 		LOGGER.debug("> Storing Startup Layout.")
@@ -1605,6 +1657,7 @@ def sIBL_GUI_start():
 	RuntimeConstants.settingsFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile)
 
 	RuntimeConstants.settings = Preferences(RuntimeConstants.settingsFile)
+	RuntimeConstants.settings.setDefaultLayouts()
 
 	os.path.exists(RuntimeConstants.settingsFile) or RuntimeConstants.settings.setDefaultPreferences()
 

@@ -1437,7 +1437,6 @@ class Preview(UiComponent):
 		for key, value in self._inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self._coreInspector.ui.Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
-			# Cannot Pass Parameter Using Lambda, Partial Used Instead.			
 			value["object"].clicked.connect(functools.partial(self.showImagePreview, key))
 
 	def removeInspectorButtons(self):
