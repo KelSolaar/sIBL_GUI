@@ -57,7 +57,6 @@ cp  $SOURCE/resources/Export_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Reso
 cp  $SOURCE/resources/Preferences.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Preferences_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp  $SOURCE/resources/Preferences_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp  $SOURCE/resources/Toolbar.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates
 cp -r $SOURCE/templates/Maya/* $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/
 cp -r $SOURCE/components $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/

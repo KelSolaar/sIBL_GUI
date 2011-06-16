@@ -57,7 +57,6 @@ cp -r $SOURCE/resources/Export_Active.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Preferences.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Preferences_Hover.png $DEPLOYMENT/resources/
 cp -r $SOURCE/resources/Preferences_Active.png $DEPLOYMENT/resources/
-cp -r $SOURCE/resources/Toolbar.png $DEPLOYMENT/resources/
 mkdir $DEPLOYMENT/templates
 cp -r $SOURCE/templates/3dsMax/* $DEPLOYMENT/templates/
 cp -r $SOURCE/templates/Maya/* $DEPLOYMENT/templates/

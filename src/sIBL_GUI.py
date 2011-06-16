@@ -1341,10 +1341,12 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Adding Application Logo.")
 		logoLabel = QLabel()
+		logoLabel.setObjectName("Application_Logo_label")
 		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoPicture))
 		self.toolBar.addWidget(logoLabel)
 
 		spacer = QLabel()
+		spacer.setObjectName("Logo_Spacer_label")
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.toolBar.addWidget(spacer)
 
@@ -1354,15 +1356,19 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Adding Active Labels.")
 
 		self._libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
+		self._libraryActiveLabel.setObjectName("Library_activeLabel")
 		self.toolBar.addWidget(self._libraryActiveLabel)
 
 		self._inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkInspectIcon), QPixmap(UiConstants.frameworkInspectHoverIcon), QPixmap(UiConstants.frameworkInspectActiveIcon), True)
+		self._inspectActiveLabel.setObjectName("Inspect_activeLabel")
 		self.toolBar.addWidget(self._inspectActiveLabel)
 
 		self._exportActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkExportIcon), QPixmap(UiConstants.frameworkExportHoverIcon), QPixmap(UiConstants.frameworkExportActiveIcon), True)
+		self._exportActiveLabel.setObjectName("Export_activeLabel")
 		self.toolBar.addWidget(self._exportActiveLabel)
 
 		self._preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
+		self._preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 		self.toolBar.addWidget(self._preferencesActiveLabel)
 
 		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
@@ -1377,15 +1383,17 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Adding Central Widget Button.")
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
+		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 		self.toolBar.addWidget(centralWidgetButton)
 
 		centralWidgetButton.clicked.connect(self.centralWidgetButton_OnClicked)
 
 		LOGGER.debug("> Adding Layout Button.")
-		layoutbutton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
-		self.toolBar.addWidget(layoutbutton)
+		layoutsButton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
+		layoutsButton.setObjectName("Layouts_activeLabel")
+		self.toolBar.addWidget(layoutsButton)
 
-		self._layoutMenu = QMenu("Layout", layoutbutton)
+		self._layoutMenu = QMenu("Layout", layoutsButton)
 
 		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
 
@@ -1407,16 +1415,17 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
-		layoutbutton.setMenu(self._layoutMenu)
+		layoutsButton.setMenu(self._layoutMenu)
 
 		LOGGER.debug("> Adding Miscellaneous Button.")
-		miscellaneousbutton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
-		self.toolBar.addWidget(miscellaneousbutton)
+		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
+		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
+		self.toolBar.addWidget(miscellaneousButton)
 
 		helpDisplayMiscAction = QAction("Help Content ...", self)
 		apiDisplayMiscAction = QAction("Api Content ...", self)
 
-		self._miscMenu = QMenu("Miscellaneous", miscellaneousbutton)
+		self._miscMenu = QMenu("Miscellaneous", miscellaneousButton)
 
 		self._miscMenu.addAction(helpDisplayMiscAction)
 		self._miscMenu.addAction(apiDisplayMiscAction)
@@ -1426,10 +1435,11 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction_OnTriggered)
 		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction_OnTriggered)
 
-		miscellaneousbutton.setMenu(self._miscMenu)
+		miscellaneousButton.setMenu(self._miscMenu)
 
 		spacer = QLabel()
-		spacer.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+		spacer.setObjectName("Closure_Spacer_activeLabel")
+		spacer.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Expanding)
 		self.toolBar.addWidget(spacer)
 
 	@core.executionTrace
