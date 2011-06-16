@@ -1340,9 +1340,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.toolBar.setIconSize(QSize(UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize))
 
 		LOGGER.debug("> Adding Application Logo.")
-		logolabel = QLabel()
-		logolabel.setPixmap(QPixmap(UiConstants.frameworkLogoPicture))
-		self.toolBar.addWidget(logolabel)
+		logoLabel = QLabel()
+		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoPicture))
+		self.toolBar.addWidget(logoLabel)
 
 		spacer = QLabel()
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
