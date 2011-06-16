@@ -331,11 +331,10 @@ class Preferences():
 		This Method Sets The Default Layouts In The Preferences File.
 		"""
 		
-		for layout in ("startupCentric", "setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
+		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
 				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
-					if self.getKey("Layouts", "{0}_{1}".format(layout, type)).isNull():
-						LOGGER.debug("> Adding Missing '{0}_{1}' Layout Attribute To Preferences File!".format(layout, type))
-						self.setKey("Layouts", "{0}_{1}".format(layout, type), self._defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
+					LOGGER.debug("> Adding Missing '{0}_{1}' Layout Attribute To Preferences File!".format(layout, type))
+					self.setKey("Layouts", "{0}_{1}".format(layout, type), self._defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
 
 class LayoutActiveLabel(core.Structure):
 	"""
