@@ -333,7 +333,7 @@ class Preferences():
 		
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
 				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
-					LOGGER.debug("> Adding Missing '{0}_{1}' Layout Attribute To Preferences File!".format(layout, type))
+					LOGGER.debug("> Updating Preferences File '{0}_{1}' Layout Attribute!".format(layout, type))
 					self.setKey("Layouts", "{0}_{1}".format(layout, type), self._defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
 
 class LayoutActiveLabel(core.Structure):
