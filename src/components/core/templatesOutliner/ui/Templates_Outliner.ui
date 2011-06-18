@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Templates_Outliner_DockWidget</class>
  <widget class="QDockWidget" name="Templates_Outliner_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>310</width>
-    <height>485</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Templates Outliner</string>
   </property>
@@ -27,19 +19,40 @@
         </item>
        </layout>
       </widget>
-      <widget class="QGroupBox" name="Template_Informations_groupBox">
-       <property name="title">
-        <string>Template Informations</string>
+      <widget class="QFrame" name="Template_Informations_frame">
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
        </property>
-       <layout class="QGridLayout" name="Components_Informations_groupBox_gridLayout">
+       <layout class="QGridLayout" name="Template_Informations_frame_gridLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>4</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="Template_Informations_textBrowser">
-          <property name="statusTip">
-           <string>Template Informations Text Browser: Displays Selected Template Informations.</string>
+         <widget class="QGroupBox" name="Template_Informations_groupBox">
+          <property name="title">
+           <string>Template Informations</string>
           </property>
-          <property name="openExternalLinks">
-           <bool>true</bool>
-          </property>
+          <layout class="QGridLayout" name="Components_Informations_groupBox_gridLayout">
+           <item row="0" column="0">
+            <widget class="QTextBrowser" name="Template_Informations_textBrowser">
+             <property name="statusTip">
+              <string>Template Informations Text Browser: Displays Selected Template Informations.</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>

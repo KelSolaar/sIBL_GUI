@@ -36,33 +36,42 @@ cp $SOURCE/ui/Windows_styleSheet.qss $DEPLOYMENT/ui/
 cp $SOURCE/ui/Darwin_styleSheet.qss $DEPLOYMENT/ui/
 cp $SOURCE/ui/Linux_styleSheet.qss $DEPLOYMENT/ui/
 mkdir $DEPLOYMENT/resources
-cp $SOURCE/resources/Icon_Light.png $DEPLOYMENT/resources/Icon_Light.png
-cp $SOURCE/resources/sIBL_GUI_SpashScreen.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/sIBL_GUI_Logo.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Central_Widget.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Central_Widget_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Central_Widget_Active.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Layout.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Layout_Hover.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Layout_Active.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Miscellaneous.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Miscellaneous_Hover.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Miscellaneous_Active.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Library.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Library_Hover.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Library_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Central_Widget_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Export.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Export_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Export_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Export_Hover.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Horizontal_Scrollbar_Grip.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Icon_Light.png $DEPLOYMENT/resources/Icon_Light.png
+cp $SOURCE/resources/Inspect.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Inspect_Active.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Inspect_Hover.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Layout.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Layout_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Layout_Hover.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Library.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Library_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Library_Hover.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Miscellaneous.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Miscellaneous_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Miscellaneous_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Preferences.png $DEPLOYMENT/resources/
-cp $SOURCE/resources/Preferences_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Preferences_Active.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Preferences_Hover.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/Resize_Grip.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/sIBL_GUI_Logo.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/sIBL_GUI_SpashScreen.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Small_Down_Arrow.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Small_Left_Arrow.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Small_Right_Arrow.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Small_Up_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/TreeView_Branch_Closed.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/TreeView_Branch_End.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/TreeView_Branch_More.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/TreeView_Branch_Open.png $DEPLOYMENT/resources/
 cp $SOURCE/resources/TreeView_VLine.png $DEPLOYMENT/resources/
+cp $SOURCE/resources/Vertical_Scrollbar_Grip.png $DEPLOYMENT/resources
 mkdir $DEPLOYMENT/templates
 cp -r $SOURCE/templates/3dsMax/* $DEPLOYMENT/templates/
 cp -r $SOURCE/templates/Maya/* $DEPLOYMENT/templates/

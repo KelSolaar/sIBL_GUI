@@ -104,9 +104,9 @@ class SearchDatabase(UiComponent):
 
 		self._uiPath = "ui/Search_Database.ui"
 		self._uiResources = "resources"
-		self._uiSearchIcon = "Search_Icon.png"
-		self._uiClearIcon = "Clear_Icon.png"
-		self._uiClearClickedIcon = "Clear_Clicked_Icon.png"
+		self._uiSearchIcon = "Search_Glass.png"
+		self._uiClearIcon = "Search_Clear.png"
+		self._uiClearClickedIcon = "Search_Clear_Clicked.png"
 		self._dockArea = 2
 		self._tagsCloudListWidgetSpacing = 4
 

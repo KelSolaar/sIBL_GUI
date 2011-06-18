@@ -55,6 +55,7 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
+import functools
 import logging
 import os
 from PyQt4.QtCore import *
@@ -102,6 +103,7 @@ class Search_QLineEdit(QLineEdit):
 		self.parent = parent
 
 		self._clearButton = QToolButton(self)
+		self._clearButton.setObjectName("Clear_Field_button")
 		self.setClearButtonStyle()
 		self.setClearButtonVisibility(self.text())
 
@@ -251,8 +253,7 @@ class Search_QLineEdit(QLineEdit):
 
 		size = self._clearButton.sizeHint()
 		frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
-		offset = self._uiIconPath and self._uiClickedIconPath and 4 or 2
-		self._clearButton.move(self.rect().right() - frameWidth - size.width(), (self.rect().bottom() + offset - size.height()) / 2);
+		self._clearButton.move(self.rect().right() - frameWidth - size.width() + 1, (self.rect().bottom() - size.height()) / 2 + 1);
 
 	@core.executionTrace
 	def setClearButtonStyle(self):
@@ -269,8 +270,8 @@ class Search_QLineEdit(QLineEdit):
 			self._clearButton.setMaximumSize(pixmap.size())
 
 			# Signals / Slots.
-			self._clearButton.pressed.connect(lambda pixmap=clickedPixmap: self._clearButton.setIcon(QIcon(pixmap)))
-			self._clearButton.released.connect(lambda pixmap=pixmap: self._clearButton.setIcon(QIcon(pixmap)))
+			self._clearButton.pressed.connect(functools.partial(self._clearButton.setIcon, QIcon(clickedPixmap)))
+			self._clearButton.released.connect(functools.partial(self._clearButton.setIcon, QIcon(pixmap)))
 		else:
 			self._clearButton.setText("Clear")
 

@@ -1,28 +1,9 @@
 /* sIBL_GUI - Stylesheet - Linux Os */
 
-QWidget {
-	background-color: rgb(64, 64, 64);
-	color: rgb(192, 192, 192);
-}
-
-QListView {
-	background-color: rgb(96, 96, 96);
-}
-
-#toolBar {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-	stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176),
-	stop: 0.5 rgb(160, 160, 160), stop: 0.51 rgb(128, 128, 128),
-	stop: 0.9 rgb(96, 96, 96), stop: 1 rgb(64, 64, 64));
-	border: none;
+QToolBar {
+	background: rgb(192, 192, 192);
+	background-image: url(./resources/Toolbar.png);
 	spacing: 8px;
-}
-
-#Application_Logo_label, #Logo_Spacer_label, #Library_activeLabel, #Inspect_activeLabel, #Export_activeLabel, #Preferences_activeLabel, #Central_Widget_activeLabel, #Layouts_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_activeLabel, #qt_toolbar_ext_button {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-	stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176),
-	stop: 0.5 rgb(160, 160, 160), stop: 0.51 rgb(128, 128, 128),
-	stop: 0.9 rgb(96, 96, 96), stop: 1 rgb(64, 64, 64));
 }
 
 QToolTip {
