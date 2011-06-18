@@ -7,73 +7,15 @@
   </property>
   <widget class="QWidget" name="Inspector_dockWidgetContents">
    <layout class="QGridLayout" name="Inspector_dockWidgetContents_gridLayout">
-    <item row="1" column="0" colspan="2">
+    <item row="1" column="0" colspan="4">
      <widget class="QGroupBox" name="Options_groupBox">
       <property name="title">
        <string/>
       </property>
-      <layout class="QGridLayout" name="Options_groupBox_gridLayout">
-       <item row="1" column="2">
-        <spacer name="Options_horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="Previous_Ibl_Set_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="statusTip">
-          <string>Previous Ibl Set Push Button: Navigate To Previous Ibl Set In The Current Selected Collection.</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="Next_Ibl_Set_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="statusTip">
-          <string>Next Ibl Set Push Button: Navigate To Next Ibl Set In The Current Selected Collection.</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <layout class="QGridLayout" name="Options_groupBox_gridLayout"/>
      </widget>
     </item>
-    <item row="0" column="0" colspan="2">
+    <item row="0" column="0" colspan="4">
      <widget class="QFrame" name="Overall_frame">
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
@@ -82,7 +24,7 @@
        <property name="verticalSpacing">
         <number>0</number>
        </property>
-       <item row="1" column="0">
+       <item row="1" column="1">
         <widget class="QFrame" name="Title_frame">
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
@@ -101,7 +43,7 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="2" column="1">
         <widget class="QFrame" name="Image_frame">
          <property name="minimumSize">
           <size>
@@ -138,7 +80,7 @@
          </layout>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="3" column="1">
         <widget class="QFrame" name="Details_frame">
          <layout class="QGridLayout" name="Details_frame_gridLayout">
           <item row="0" column="0">
@@ -154,7 +96,7 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="0">
+       <item row="0" column="1">
         <spacer name="Top_verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -167,7 +109,7 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="0">
+       <item row="4" column="1">
         <spacer name="Bottom_verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -179,6 +121,50 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="Previous_Ibl_Set_pushButton">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Previous Ibl Set Push Button: Navigate To Previous Ibl Set In The Current Selected Collection.</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="Next_Ibl_Set_pushButton">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="statusTip">
+          <string>Next Ibl Set Push Button: Navigate To Next Ibl Set In The Current Selected Collection.</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

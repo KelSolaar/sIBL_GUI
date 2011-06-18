@@ -465,11 +465,8 @@ class DatabaseBrowser(UiComponent):
 		self._uiLargestSizeIcon = "Largest_Size.png"
 		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
-		if platform.system() == "Linux":
-			self._listViewSpacing = 14
-		else:
-			self._listViewSpacing = 16
-		self._listViewMargin = 24
+		self._listViewSpacing = 24
+		self._listViewMargin = 32
 		self._listViewIconSize = 128
 
 		self._container = None

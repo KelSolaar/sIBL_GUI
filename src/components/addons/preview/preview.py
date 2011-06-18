@@ -1433,7 +1433,8 @@ class Preview(UiComponent):
 		"""
 		This Method Adds Buttons To The Inspector Component.
 		"""
-				
+		
+		self._coreInspector.ui.Options_groupBox.show()
 		for key, value in self._inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self._coreInspector.ui.Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])

@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Templates_Outliner_DockWidget</class>
  <widget class="QDockWidget" name="Templates_Outliner_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>310</width>
+    <height>485</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Templates Outliner</string>
   </property>

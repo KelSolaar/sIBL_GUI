@@ -457,11 +457,8 @@ class Inspector(UiComponent):
 		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousIcon)))
 		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextIcon)))
 		
-		self.ui.Overall_frame.setStyleSheet("background: rgb(128, 128, 128)")
-		self.ui.Title_frame.setStyleSheet("background: rgb(160, 160, 160)")
-		#self.ui.Image_frame.setStyleSheet("background: rgb(128, 128, 128)")
-		self.ui.Details_frame.setStyleSheet("background: rgb(160, 160, 160)")
-		
+		self.ui.Options_groupBox.hide()
+
 		self.Inspector_setUi()
 		
 		# Signals / Slots.
@@ -546,14 +543,25 @@ class Inspector(UiComponent):
 		self.setInspectorIblSet()
 		
 		if self._inspectorIblSet:
-			if self._inspectorIblSet._datas.previewImage:
-				self.ui.Image_label.setPixmap(QPixmap(self._inspectorIblSet._datas.previewImage))
+			iblSet = self._inspectorIblSet._datas
+			if iblSet.previewImage:
+				self.ui.Image_label.setPixmap(QPixmap(iblSet.previewImage))
 			else:
-				self.ui.Image_label.setText(self._noPreviewImageText.format(self._inspectorIblSet._datas.icon, self._inspectorIblSet._datas.author, self._inspectorIblSet._datas.link))
+				self.ui.Image_label.setText(self._noPreviewImageText.format(iblSet.icon, iblSet.author, iblSet.link))
 			
-			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self._inspectorIblSet._datas.title, self._inspectorIblSet._datas.location))
-			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self._inspectorIblSet._datas.comment))
-	
+			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
+			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
+			
+			shotDateString = "<b>Shot Date: </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
+			toolTip = QString("""
+							<p><b>{0}</b></p>
+							<p><b>Author: </b>{1}<br>
+							<b>Location: </b>{2}<br>
+							{3}<br>
+							<b>Comment: </b>{4}</p>
+							""".format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject))
+			self.ui.Overall_frame.setToolTip(toolTip)
+
 	@core.executionTrace
 	def setInspectorIblSet(self):
 		"""

@@ -49,6 +49,12 @@ cp ../src/resources/Export_Active.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Preferences.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Preferences_Hover.png ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Preferences_Active.png ../releases/Linux/sIBL_GUI/resources/
+cp ../src/resources/Resize_Grip.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/TreeView_Branch_Closed.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/TreeView_Branch_End.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/TreeView_Branch_More.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/TreeView_Branch_Open.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/TreeView_VLine.png ../releases/Linux/sIBL_GUI/resources
 mkdir ../releases/Linux/sIBL_GUI/templates
 cp -r ../src/templates/Maya/* ../releases/Linux/sIBL_GUI/templates/
 cp -r ../src/templates/Softimage/* ../releases/Linux/sIBL_GUI/templates/
