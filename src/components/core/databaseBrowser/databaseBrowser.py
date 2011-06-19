@@ -1357,22 +1357,24 @@ class DatabaseBrowser(UiComponent):
 								""".format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject))
 				iblSetStandardItem.setToolTip(toolTip)
 
-				iblIcon = QIcon()
+				iblSetIcon = QIcon()
 				if os.path.exists(iblSet.icon):
 					for extension in UiConstants.nativeImageFormats.values():
 						if re.search(extension, iblSet.icon):
-							iblIcon = QIcon(iblSet.icon)
+							iblSetIcon = QIcon(iblSet.icon)
 							break
 					else:
 						for extension in UiConstants.thirdPartyImageFormats.values():
 							if re.search(extension, iblSet.icon):
 								image = Image(str(iblSet.icon))
-								iblIcon = QIcon(QPixmap(image.convertToQImage()))
+								iblSetIcon = QIcon(QPixmap(image.convertToQImage()))
 								break
-
-				if iblIcon.isNull():
-					iblIcon = QIcon(os.path.join(self._uiResources, self.uiMissingIcon))
-				iblSetStandardItem.setIcon(iblIcon)
+						else:
+							iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiFormatErrorIcon))
+				else:
+					iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiMissingIcon))
+							
+				iblSetStandardItem.setIcon(iblSetIcon)
 
 				self._container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
 
