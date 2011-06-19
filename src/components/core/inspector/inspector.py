@@ -103,8 +103,10 @@ class Inspector(UiComponent):
 
 		self._uiPath = "ui/Inspector.ui"
 		self._uiResources = "resources"
-		self._uiPreviousIcon = "Previous.png"
-		self._uiNextIcon = "Next.png"
+		self._uiFormatErrorImage = "Thumbnail_Format_Not_Supported_Yet.png"
+		self._uiMissingImage = "Thumbnail_Not_Found.png"
+		self._uiPreviousImage = "Previous.png"
+		self._uiNextImage = "Next.png"
 		self._dockArea = 2
 	
 		self._container = None
@@ -217,64 +219,124 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiPreviousIcon(self):
+	def uiFormatErrorImage(self):
 		"""
-		This Method Is The Property For The _uiPreviousIcon Attribute.
+		This Method Is The Property For The _uiFormatErrorImage Attribute.
 
-		@return: self._uiPreviousIcon. ( String )
+		@return: self._uiFormatErrorImage. ( String )
 		"""
 
-		return self._uiPreviousIcon
+		return self._uiFormatErrorImage
 
-	@uiPreviousIcon.setter
+	@uiFormatErrorImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPreviousIcon(self, value):
+	def uiFormatErrorImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPreviousIcon Attribute.
+		This Method Is The Setter Method For The _uiFormatErrorImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPreviousIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiFormatErrorImage"))
 
-	@uiPreviousIcon.deleter
+	@uiFormatErrorImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPreviousIcon(self):
+	def uiFormatErrorImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiPreviousIcon Attribute.
+		This Method Is The Deleter Method For The _uiFormatErrorImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPreviousIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiFormatErrorImage"))
 
 	@property
-	def uiNextIcon(self):
+	def uiMissingImage(self):
 		"""
-		This Method Is The Property For The _uiNextIcon Attribute.
+		This Method Is The Property For The _uiMissingImage Attribute.
 
-		@return: self._uiNextIcon. ( String )
+		@return: self._uiMissingImage. ( String )
 		"""
 
-		return self._uiNextIcon
+		return self._uiMissingImage
 
-	@uiNextIcon.setter
+	@uiMissingImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiNextIcon(self, value):
+	def uiMissingImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiNextIcon Attribute.
+		This Method Is The Setter Method For The _uiMissingImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiNextIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiMissingImage"))
 
-	@uiNextIcon.deleter
+	@uiMissingImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiNextIcon(self):
+	def uiMissingImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiNextIcon Attribute.
+		This Method Is The Deleter Method For The _uiMissingImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiMissingImage"))
+
+	@property
+	def uiPreviousImage(self):
+		"""
+		This Method Is The Property For The _uiPreviousImage Attribute.
+
+		@return: self._uiPreviousImage. ( String )
+		"""
+
+		return self._uiPreviousImage
+
+	@uiPreviousImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPreviousImage(self, value):
+		"""
+		This Method Is The Setter Method For The _uiPreviousImage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPreviousImage"))
+
+	@uiPreviousImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiPreviousImage(self):
+		"""
+		This Method Is The Deleter Method For The _uiPreviousImage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPreviousImage"))
+
+	@property
+	def uiNextImage(self):
+		"""
+		This Method Is The Property For The _uiNextImage Attribute.
+
+		@return: self._uiNextImage. ( String )
+		"""
+
+		return self._uiNextImage
+
+	@uiNextImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextImage(self, value):
+		"""
+		This Method Is The Setter Method For The _uiNextImage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiNextImage"))
+
+	@uiNextImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextImage(self):
+		"""
+		This Method Is The Deleter Method For The _uiNextImage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextImage"))
 
 	@property
 	def dockArea(self):
@@ -497,8 +559,8 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 	
-		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousIcon)))
-		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextIcon)))
+		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
+		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		
 		self.ui.Options_groupBox.hide()
 
@@ -610,9 +672,9 @@ class Inspector(UiComponent):
 							iblSetIcon = iblSet.icon
 							break
 					else:
-						iblSetIcon = os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiFormatErrorIcon)
+						iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiFormatErrorImage)
 				else:
-					iblSetIcon = os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiMissingIcon)
+					iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)
 				self.ui.Image_label.setText(self._noPreviewImageMessage.format(iblSetIcon, iblSet.author, iblSet.link))
 			
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
@@ -636,7 +698,7 @@ class Inspector(UiComponent):
 		"""
 		
 		self.ui.Title_label.setText(QString())
-		self.ui.Image_label.setText(self._noInspectorIblSetMessage.format(os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiMissingIcon)))
+		self.ui.Image_label.setText(self._noInspectorIblSetMessage.format(os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)))
 		self.ui.Details_label.setText(QString())
 		self.ui.Overall_frame.setToolTip(QString())
 

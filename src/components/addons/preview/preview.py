@@ -187,8 +187,8 @@ class ImagePreviewer(object):
 		self._uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
 		self._uiResources = "resources"
 		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._uiZoomInIcon = "Zoom_In.png"
-		self._uiZoomOutIcon = "Zoom_Out.png"
+		self._uiZoomInImage = "Zoom_In.png"
+		self._uiZoomOutImage = "Zoom_Out.png"
 
 		self._ui = uic.loadUi(self._uiPath)
 		if "." in sys.path:
@@ -338,64 +338,64 @@ class ImagePreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiZoomInIcon(self):
+	def uiZoomInImage(self):
 		"""
-		This Method Is The Property For The _uiZoomInIcon Attribute.
+		This Method Is The Property For The _uiZoomInImage Attribute.
 
-		@return: self._uiZoomInIcon. ( String )
+		@return: self._uiZoomInImage. ( String )
 		"""
 
-		return self._uiZoomInIcon
+		return self._uiZoomInImage
 
-	@uiZoomInIcon.setter
+	@uiZoomInImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomInIcon(self, value):
+	def uiZoomInImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiZoomInIcon Attribute.
+		This Method Is The Setter Method For The _uiZoomInImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInImage"))
 
-	@uiZoomInIcon.deleter
+	@uiZoomInImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomInIcon(self):
+	def uiZoomInImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiZoomInIcon Attribute.
+		This Method Is The Deleter Method For The _uiZoomInImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInImage"))
 
 	@property
-	def uiZoomOutIcon(self):
+	def uiZoomOutImage(self):
 		"""
-		This Method Is The Property For The _uiZoomOutIcon Attribute.
+		This Method Is The Property For The _uiZoomOutImage Attribute.
 
-		@return: self._uiZoomOutIcon. ( String )
+		@return: self._uiZoomOutImage. ( String )
 		"""
 
-		return self._uiZoomOutIcon
+		return self._uiZoomOutImage
 
-	@uiZoomOutIcon.setter
+	@uiZoomOutImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomOutIcon(self, value):
+	def uiZoomOutImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiZoomOutIcon Attribute.
+		This Method Is The Setter Method For The _uiZoomOutImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomOutImage"))
 
-	@uiZoomOutIcon.deleter
+	@uiZoomOutImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomOutIcon(self):
+	def uiZoomOutImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiZoomOutIcon Attribute.
+		This Method Is The Deleter Method For The _uiZoomOutImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomOutIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomOutImage"))
 
 	@property
 	def ui(self):
@@ -678,8 +678,8 @@ class ImagePreviewer(object):
 
 		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
 
-		self._ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInIcon)))
-		self._ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutIcon)))
+		self._ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInImage)))
+		self._ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutImage)))
 
 		self._ui.Background_Colors_comboBox.addItems([color[0] for color in self._graphicsSceneBackgroundColors])
 

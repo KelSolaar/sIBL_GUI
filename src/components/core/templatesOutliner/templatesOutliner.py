@@ -443,7 +443,7 @@ class TemplatesOutliner(UiComponent):
 		self._uiPath = "ui/Templates_Outliner.ui"
 		self._uiResources = "resources"
 		self._uiSoftwareAffixe = "_Software.png"
-		self._uiUnknownSoftwareIcon = "Unknown_Software.png"
+		self._uiUnknownSoftwareImage = "Unknown_Software.png"
 		self._dockArea = 1
 
 		self._container = None
@@ -563,34 +563,34 @@ class TemplatesOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSoftwareAffixe"))
 
 	@property
-	def uiUnknownSoftwareIcon(self):
+	def uiUnknownSoftwareImage(self):
 		"""
-		This Method Is The Property For The _uiUnknownSoftwareIcon Attribute.
+		This Method Is The Property For The _uiUnknownSoftwareImage Attribute.
 
-		@return: self._uiUnknownSoftwareIcon. ( String )
+		@return: self._uiUnknownSoftwareImage. ( String )
 		"""
 
-		return self._uiUnknownSoftwareIcon
+		return self._uiUnknownSoftwareImage
 
-	@uiUnknownSoftwareIcon.setter
+	@uiUnknownSoftwareImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiUnknownSoftwareIcon(self, value):
+	def uiUnknownSoftwareImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiUnknownSoftwareIcon Attribute.
+		This Method Is The Setter Method For The _uiUnknownSoftwareImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUnknownSoftwareIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUnknownSoftwareImage"))
 
-	@uiUnknownSoftwareIcon.deleter
+	@uiUnknownSoftwareImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiUnknownSoftwareIcon(self):
+	def uiUnknownSoftwareImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiUnknownSoftwareIcon Attribute.
+		This Method Is The Deleter Method For The _uiUnknownSoftwareImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUnknownSoftwareIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUnknownSoftwareImage"))
 
 	@property
 	def dockArea(self):
@@ -1322,7 +1322,7 @@ class TemplatesOutliner(UiComponent):
 						if os.path.exists(iconPath):
 							softwareStandardItem.setIcon(QIcon(iconPath))
 						else:
-							softwareStandardItem.setIcon(QIcon(os.path.join(self._uiResources, self._uiUnknownSoftwareIcon)))
+							softwareStandardItem.setIcon(QIcon(os.path.join(self._uiResources, self._uiUnknownSoftwareImage)))
 
 						softwareStandardItem._type = "Software"
 

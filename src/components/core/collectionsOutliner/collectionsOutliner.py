@@ -400,8 +400,8 @@ class CollectionsOutliner(UiComponent):
 
 		self._uiPath = "ui/Collections_Outliner.ui"
 		self._uiResources = "resources"
-		self._uiDefaultCollectionIcon = "Default_Collection.png"
-		self._uiUserCollectionIcon = "User_Collection.png"
+		self._uiDefaultCollectionImage = "Default_Collection.png"
+		self._uiUserCollectionImage = "User_Collection.png"
 		self._dockArea = 1
 
 		self._container = None
@@ -485,64 +485,64 @@ class CollectionsOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiDefaultCollectionIcon(self):
+	def uiDefaultCollectionImage(self):
 		"""
-		This Method Is The Property For The _uiDefaultCollectionIcon Attribute.
+		This Method Is The Property For The _uiDefaultCollectionImage Attribute.
 
-		@return: self._uiDefaultCollectionIcon. ( String )
+		@return: self._uiDefaultCollectionImage. ( String )
 		"""
 
-		return self._uiDefaultCollectionIcon
+		return self._uiDefaultCollectionImage
 
-	@uiDefaultCollectionIcon.setter
+	@uiDefaultCollectionImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDefaultCollectionIcon(self, value):
+	def uiDefaultCollectionImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiDefaultCollectionIcon Attribute.
+		This Method Is The Setter Method For The _uiDefaultCollectionImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDefaultCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDefaultCollectionImage"))
 
-	@uiDefaultCollectionIcon.deleter
+	@uiDefaultCollectionImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDefaultCollectionIcon(self):
+	def uiDefaultCollectionImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiDefaultCollectionIcon Attribute.
+		This Method Is The Deleter Method For The _uiDefaultCollectionImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDefaultCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDefaultCollectionImage"))
 
 	@property
-	def uiUserCollectionIcon(self):
+	def uiUserCollectionImage(self):
 		"""
-		This Method Is The Property For The _uiUserCollectionIcon Attribute.
+		This Method Is The Property For The _uiUserCollectionImage Attribute.
 
-		@return: self._uiUserCollectionIcon. ( String )
+		@return: self._uiUserCollectionImage. ( String )
 		"""
 
-		return self._uiUserCollectionIcon
+		return self._uiUserCollectionImage
 
-	@uiUserCollectionIcon.setter
+	@uiUserCollectionImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiUserCollectionIcon(self, value):
+	def uiUserCollectionImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiUserCollectionIcon Attribute.
+		This Method Is The Setter Method For The _uiUserCollectionImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUserCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUserCollectionImage"))
 
-	@uiUserCollectionIcon.deleter
+	@uiUserCollectionImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiUserCollectionIcon(self):
+	def uiUserCollectionImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiUserCollectionIcon Attribute.
+		This Method Is The Deleter Method For The _uiUserCollectionImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUserCollectionIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUserCollectionImage"))
 
 	@property
 	def dockArea(self):
@@ -1141,7 +1141,7 @@ class CollectionsOutliner(UiComponent):
 
 				try:
 					collectionStandardItem = QStandardItem(QString(collection.name))
-					iconPath = collection.name == self.defaultCollection and os.path.join(self._uiResources, self._uiDefaultCollectionIcon) or os.path.join(self._uiResources, self._uiUserCollectionIcon)
+					iconPath = collection.name == self.defaultCollection and os.path.join(self._uiResources, self._uiDefaultCollectionImage) or os.path.join(self._uiResources, self._uiUserCollectionImage)
 					collectionStandardItem.setIcon(QIcon(iconPath))
 					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 

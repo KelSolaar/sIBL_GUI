@@ -39,13 +39,13 @@ QSplitter::handle:pressed {
 
 /* Toolbar. */
 #toolBar {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176), stop: 0.35 rgb(160, 160, 160), stop: 0.36 rgb(128, 128, 128), stop: 0.9 rgb(64, 64, 64), stop: 1 rgb(48, 48, 48));
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176), stop: 0.35 rgb(160, 160, 160), stop: 0.36 rgb(128, 128, 128), stop: 0.95 rgb(64, 64, 64), stop: 1 rgb(48, 48, 48));
 	border: none;
 	spacing: 8px;
 }
 
 #Application_Logo_label, #Logo_Spacer_label, #Library_activeLabel, #Inspect_activeLabel, #Export_activeLabel, #Preferences_activeLabel, #Central_Widget_activeLabel, #Layouts_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_activeLabel, #qt_toolbar_ext_button {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176), stop: 0.35 rgb(160, 160, 160), stop: 0.36 rgb(128, 128, 128), stop: 0.9 rgb(64, 64, 64), stop: 1 rgb(48, 48, 48));
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(160, 160, 160), stop: 0.05 rgb(176, 176,176), stop: 0.35 rgb(160, 160, 160), stop: 0.36 rgb(128, 128, 128), stop: 0.95 rgb(64, 64, 64), stop: 1 rgb(48, 48, 48));
 }
 
 /* QStatusBar. */

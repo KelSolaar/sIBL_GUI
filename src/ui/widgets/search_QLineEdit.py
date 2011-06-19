@@ -82,11 +82,11 @@ class Search_QLineEdit(QLineEdit):
 	"""
 
 	@core.executionTrace
-	def __init__(self, uiIconPath=None, uiClickedIconPath=None, parent=None):
+	def __init__(self, uiClearImage=None, uiClearClickedImage=None, parent=None):
 		"""
 		This Method Initializes The Class.
 
-		@param uiIconPath: Icon Path. ( String )
+		@param uiClearImage: Icon Path. ( String )
 		@param parent: Widget Parent. ( QObject )
 		"""
 
@@ -95,10 +95,10 @@ class Search_QLineEdit(QLineEdit):
 		QLineEdit.__init__(self, parent)
 
 		# --- Setting Class Attributes. ---
-		self._uiIconPath = None
-		self.uiIconPath = uiIconPath
-		self._uiClickedIconPath = None
-		self.uiClickedIconPath = uiClickedIconPath
+		self._uiClearImage = None
+		self.uiClearImage = uiClearImage
+		self._uiClearClickedImage = None
+		self.uiClearClickedImage = uiClearClickedImage
 		self._parent = None
 		self.parent = parent
 
@@ -115,70 +115,70 @@ class Search_QLineEdit(QLineEdit):
 	#***	Attributes Properties
 	#***************************************************************************************
 	@property
-	def uiIconPath(self):
+	def uiClearImage(self):
 		"""
-		This Method Is The Property For The _uiIconPath Attribute.
+		This Method Is The Property For The _uiClearImage Attribute.
 
-		@return: self._uiIconPath. ( String )
+		@return: self._uiClearImage. ( String )
 		"""
 
-		return self._uiIconPath
+		return self._uiClearImage
 
-	@uiIconPath.setter
+	@uiClearImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def uiIconPath(self, value):
+	def uiClearImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiIconPath Attribute.
+		This Method Is The Setter Method For The _uiClearImage Attribute.
 		
 		@param value: Attribute Value. ( String )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiIconPath", value)
-			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiIconPath", value)
-		self._uiIconPath = value
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearImage", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearImage", value)
+		self._uiClearImage = value
 
-	@uiIconPath.deleter
+	@uiClearImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiIconPath(self):
+	def uiClearImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiIconPath Attribute.
+		This Method Is The Deleter Method For The _uiClearImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiIconPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearImage"))
 
 	@property
-	def uiClickedIconPath(self):
+	def uiClearClickedImage(self):
 		"""
-		This Method Is The Property For The _uiClickedIconPath Attribute.
+		This Method Is The Property For The _uiClearClickedImage Attribute.
 
-		@return: self._uiClickedIconPath. ( String )
+		@return: self._uiClearClickedImage. ( String )
 		"""
 
-		return self._uiClickedIconPath
+		return self._uiClearClickedImage
 
-	@uiClickedIconPath.setter
+	@uiClearClickedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def uiClickedIconPath(self, value):
+	def uiClearClickedImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiClickedIconPath Attribute.
+		This Method Is The Setter Method For The _uiClearClickedImage Attribute.
 		
 		@param value: Attribute Value. ( String )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClickedIconPath", value)
-			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClickedIconPath", value)
-		self._uiClickedIconPath = value
+			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearClickedImage", value)
+			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearClickedImage", value)
+		self._uiClearClickedImage = value
 
-	@uiClickedIconPath.deleter
+	@uiClearClickedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClickedIconPath(self):
+	def uiClearClickedImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiClickedIconPath Attribute.
+		This Method Is The Deleter Method For The _uiClearClickedImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClickedIconPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearClickedImage"))
 
 	@property
 	def parent(self):
@@ -262,9 +262,9 @@ class Search_QLineEdit(QLineEdit):
 		"""
 
 		self._clearButton.setCursor(Qt.ArrowCursor)
-		if self._uiIconPath and self._uiClickedIconPath:
-			pixmap = QPixmap(self._uiIconPath)
-			clickedPixmap = QPixmap(self._uiClickedIconPath)
+		if self._uiClearImage and self._uiClearClickedImage:
+			pixmap = QPixmap(self._uiClearImage)
+			clickedPixmap = QPixmap(self._uiClearClickedImage)
 			self._clearButton.setStyleSheet("QToolButton { border: none; padding: 0px; }");
 			self._clearButton.setIcon(QIcon(pixmap))
 			self._clearButton.setMaximumSize(pixmap.size())

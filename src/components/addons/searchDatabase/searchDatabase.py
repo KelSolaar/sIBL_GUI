@@ -104,9 +104,9 @@ class SearchDatabase(UiComponent):
 
 		self._uiPath = "ui/Search_Database.ui"
 		self._uiResources = "resources"
-		self._uiSearchIcon = "Search_Glass.png"
-		self._uiClearIcon = "Search_Clear.png"
-		self._uiClearClickedIcon = "Search_Clear_Clicked.png"
+		self._uiSearchImage = "Search_Glass.png"
+		self._uiClearImage = "Search_Clear.png"
+		self._uiClearClickedImage = "Search_Clear_Clicked.png"
 		self._dockArea = 2
 		self._tagsCloudListWidgetSpacing = 4
 
@@ -192,94 +192,94 @@ class SearchDatabase(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiSearchIcon(self):
+	def uiSearchImage(self):
 		"""
-		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+		This Method Is The Property For The _uiSearchImage Attribute.
 
-		@return: self._uiLargestSizeIcon. ( String )
+		@return: self._uiSearchImage. ( String )
 		"""
 
-		return self._uiLargestSizeIcon
+		return self._uiSearchImage
 
-	@uiSearchIcon.setter
+	@uiSearchImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchIcon(self, value):
+	def uiSearchImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Setter Method For The _uiSearchImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSearchIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSearchImage"))
 
-	@uiSearchIcon.deleter
+	@uiSearchImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSearchIcon(self):
+	def uiSearchImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Deleter Method For The _uiSearchImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSearchIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSearchImage"))
 
 	@property
-	def uiClearIcon(self):
+	def uiClearImage(self):
 		"""
-		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+		This Method Is The Property For The _uiClearImage Attribute.
 
-		@return: self._uiLargestSizeIcon. ( String )
+		@return: self._uiClearImage. ( String )
 		"""
 
-		return self._uiLargestSizeIcon
+		return self._uiClearImage
 
-	@uiClearIcon.setter
+	@uiClearImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearIcon(self, value):
+	def uiClearImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Setter Method For The _uiClearImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearImage"))
 
-	@uiClearIcon.deleter
+	@uiClearImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearIcon(self):
+	def uiClearImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Deleter Method For The _uiClearImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearImage"))
 
 	@property
-	def uiClearClickedIcon(self):
+	def uiClearClickedImage(self):
 		"""
-		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+		This Method Is The Property For The _uiClearClickedImage Attribute.
 
-		@return: self._uiLargestSizeIcon. ( String )
+		@return: self._uiClearClickedImage. ( String )
 		"""
 
-		return self._uiLargestSizeIcon
+		return self._uiClearClickedImage
 
-	@uiClearClickedIcon.setter
+	@uiClearClickedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearClickedIcon(self, value):
+	def uiClearClickedImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Setter Method For The _uiClearClickedImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearClickedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiClearClickedImage"))
 
-	@uiClearClickedIcon.deleter
+	@uiClearClickedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiClearClickedIcon(self):
+	def uiClearClickedImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Deleter Method For The _uiClearClickedImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearClickedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearClickedImage"))
 
 	@property
 	def dockArea(self):
@@ -661,12 +661,12 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self._uiResources, self._uiClearIcon), os.path.join(self._uiResources, self._uiClearClickedIcon))
+		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self._uiResources, self._uiClearImage), os.path.join(self._uiResources, self._uiClearClickedImage))
 		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
 		self.ui.Tags_Cloud_groupBox.hide()
 		self.ui.Tags_Cloud_listWidget.setSpacing(self._tagsCloudListWidgetSpacing)
 
-		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchIcon)))
+		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchImage)))
 		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self._databaseFields])
 
 		self._completer = QCompleter()

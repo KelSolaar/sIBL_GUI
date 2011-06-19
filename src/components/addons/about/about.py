@@ -158,8 +158,8 @@ class About(UiComponent):
 
 		self._uiPath = "ui/About.ui"
 		self._uiResources = "resources"
-		self._uiLogoIcon = "sIBL_GUI_Small_Logo.png"
-		self._uiGpl3Icon = "GPL_V3.png"
+		self._uiLogoImage = "sIBL_GUI_Small_Logo.png"
+		self._uiGpl3Image = "GPL_V3.png"
 
 		self._container = None
 		self._miscMenu = None
@@ -228,64 +228,64 @@ class About(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiLogoIcon(self):
+	def uiLogoImage(self):
 		"""
-		This Method Is The Property For The _uiLogoIcon Attribute.
+		This Method Is The Property For The _uiLogoImage Attribute.
 
-		@return: self._uiLogoIcon. ( String )
+		@return: self._uiLogoImage. ( String )
 		"""
 
-		return self._uiLogoIcon
+		return self._uiLogoImage
 
-	@uiLogoIcon.setter
+	@uiLogoImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoIcon(self, value):
+	def uiLogoImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLogoIcon Attribute.
+		This Method Is The Setter Method For The _uiLogoImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoImage"))
 
-	@uiLogoIcon.deleter
+	@uiLogoImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoIcon(self):
+	def uiLogoImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLogoIcon Attribute.
+		This Method Is The Deleter Method For The _uiLogoImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoImage"))
 
 	@property
-	def uiGpl3Icon(self):
+	def uiGpl3Image(self):
 		"""
-		This Method Is The Property For The _uiGpl3Icon Attribute.
+		This Method Is The Property For The _uiGpl3Image Attribute.
 
-		@return: self._uiGpl3Icon. ( String )
+		@return: self._uiGpl3Image. ( String )
 		"""
 
-		return self._uiGpl3Icon
+		return self._uiGpl3Image
 
-	@uiGpl3Icon.setter
+	@uiGpl3Image.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiGpl3Icon(self, value):
+	def uiGpl3Image(self, value):
 		"""
-		This Method Is The Setter Method For The _uiGpl3Icon Attribute.
+		This Method Is The Setter Method For The _uiGpl3Image Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiGpl3Icon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiGpl3Image"))
 
-	@uiGpl3Icon.deleter
+	@uiGpl3Image.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiGpl3Icon(self):
+	def uiGpl3Image(self):
 		"""
-		This Method Is The Deleter Method For The _uiGpl3Icon Attribute.
+		This Method Is The Deleter Method For The _uiGpl3Image Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiGpl3Icon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiGpl3Image"))
 
 	@property
 	def container(self):
@@ -455,9 +455,9 @@ class About(UiComponent):
 
 		ui.common.setWindowDefaultIcon(self.ui)
 
-		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self._uiResources, self._uiLogoIcon),
+		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self._uiResources, self._uiLogoImage),
 					Constants.releaseVersion.replace(".", " . "),
-					os.path.join(self._uiResources, self._uiGpl3Icon)
+					os.path.join(self._uiResources, self._uiGpl3Image)
 					)
 
 		self.ui.About_label.setText(aboutMessage)

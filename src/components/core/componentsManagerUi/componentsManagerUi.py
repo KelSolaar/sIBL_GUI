@@ -128,8 +128,8 @@ class ComponentsManagerUi(UiComponent):
 
 		self._uiPath = "ui/Components_Manager_Ui.ui"
 		self._uiResources = "resources"
-		self._uiActivatedIcon = "Activated.png"
-		self._uiDeactivatedIcon = "Deactivated.png"
+		self._uiActivatedImage = "Activated.png"
+		self._uiDeactivatedImage = "Deactivated.png"
 		self._uiCategorieAffixe = "_Categorie.png"
 		self._dockArea = 1
 
@@ -207,64 +207,64 @@ class ComponentsManagerUi(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiActivatedIcon(self):
+	def uiActivatedImage(self):
 		"""
-		This Method Is The Property For The _uiActivatedIcon Attribute.
+		This Method Is The Property For The _uiActivatedImage Attribute.
 
-		@return: self._uiActivatedIcon. ( String )
+		@return: self._uiActivatedImage. ( String )
 		"""
 
-		return self._uiActivatedIcon
+		return self._uiActivatedImage
 
-	@uiActivatedIcon.setter
+	@uiActivatedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiActivatedIcon(self, value):
+	def uiActivatedImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiActivatedIcon Attribute.
+		This Method Is The Setter Method For The _uiActivatedImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiActivatedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiActivatedImage"))
 
-	@uiActivatedIcon.deleter
+	@uiActivatedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiActivatedIcon(self):
+	def uiActivatedImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiActivatedIcon Attribute.
+		This Method Is The Deleter Method For The _uiActivatedImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiActivatedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiActivatedImage"))
 
 	@property
-	def uiDeactivatedIcon(self):
+	def uiDeactivatedImage(self):
 		"""
-		This Method Is The Property For The _uiDeactivatedIcon Attribute.
+		This Method Is The Property For The _uiDeactivatedImage Attribute.
 
-		@return: self._uiDeactivatedIcon. ( String )
+		@return: self._uiDeactivatedImage. ( String )
 		"""
 
-		return self._uiDeactivatedIcon
+		return self._uiDeactivatedImage
 
-	@uiDeactivatedIcon.setter
+	@uiDeactivatedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDeactivatedIcon(self, value):
+	def uiDeactivatedImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiDeactivatedIcon Attribute.
+		This Method Is The Setter Method For The _uiDeactivatedImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDeactivatedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDeactivatedImage"))
 
-	@uiDeactivatedIcon.deleter
+	@uiDeactivatedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDeactivatedIcon(self):
+	def uiDeactivatedImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiDeactivatedIcon Attribute.
+		This Method Is The Deleter Method For The _uiDeactivatedImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDeactivatedIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDeactivatedImage"))
 
 	@property
 	def uiCategorieAffixe(self):
@@ -666,7 +666,7 @@ class ComponentsManagerUi(UiComponent):
 					componentStandardItem.setIcon(QIcon(iconPath))
 
 					componentActivationStandardItem = QStandardItem(QString(str(self._container.componentsManager.components[component].interface.activated)))
-					iconPath = self._container.componentsManager.components[component].interface.activated and os.path.join(self._uiResources, self._uiActivatedIcon) or os.path.join(self._uiResources, self._uiDeactivatedIcon)
+					iconPath = self._container.componentsManager.components[component].interface.activated and os.path.join(self._uiResources, self._uiActivatedImage) or os.path.join(self._uiResources, self._uiDeactivatedImage)
 					componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 					componentCategorieStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].categorie and strings.getNiceName(self._container.componentsManager.components[component].categorie) or ""))
@@ -748,7 +748,7 @@ class ComponentsManagerUi(UiComponent):
 				componentStandardItem = self._model.item(i).child(j, 0)
 				componentActivationStandardItem = self._model.item(i).child(j, 1)
 				componentActivationStandardItem.setText(str(componentStandardItem._datas.interface.activated))
-				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self._uiResources, self._uiActivatedIcon) or os.path.join(self._uiResources, self._uiDeactivatedIcon)
+				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self._uiResources, self._uiActivatedImage) or os.path.join(self._uiResources, self._uiDeactivatedImage)
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace

@@ -460,10 +460,10 @@ class DatabaseBrowser(UiComponent):
 
 		self._uiPath = "ui/Database_Browser.ui"
 		self._uiResources = "resources"
-		self._uiFormatErrorIcon = "Thumbnail_Format_Not_Supported_Yet.png"
-		self._uiMissingIcon = "Thumbnail_Not_Found.png"
-		self._uiLargestSizeIcon = "Largest_Size.png"
-		self._uiSmallestSizeIcon = "Smallest_Size.png"
+		self._uiFormatErrorImage = "Thumbnail_Format_Not_Supported_Yet.png"
+		self._uiMissingImage = "Thumbnail_Not_Found.png"
+		self._uiLargestSizeImage = "Largest_Size.png"
+		self._uiSmallestSizeImage = "Smallest_Size.png"
 		self._dockArea = 8
 		self._listViewSpacing = 24
 		self._listViewMargin = 32
@@ -552,124 +552,124 @@ class DatabaseBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiFormatErrorIcon(self):
+	def uiFormatErrorImage(self):
 		"""
-		This Method Is The Property For The _uiFormatErrorIcon Attribute.
+		This Method Is The Property For The _uiFormatErrorImage Attribute.
 
-		@return: self._uiFormatErrorIcon. ( String )
+		@return: self._uiFormatErrorImage. ( String )
 		"""
 
-		return self._uiFormatErrorIcon
+		return self._uiFormatErrorImage
 
-	@uiFormatErrorIcon.setter
+	@uiFormatErrorImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiFormatErrorIcon(self, value):
+	def uiFormatErrorImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiFormatErrorIcon Attribute.
+		This Method Is The Setter Method For The _uiFormatErrorImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiFormatErrorIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiFormatErrorImage"))
 
-	@uiFormatErrorIcon.deleter
+	@uiFormatErrorImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiFormatErrorIcon(self):
+	def uiFormatErrorImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiFormatErrorIcon Attribute.
+		This Method Is The Deleter Method For The _uiFormatErrorImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiFormatErrorIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiFormatErrorImage"))
 
 	@property
-	def uiMissingIcon(self):
+	def uiMissingImage(self):
 		"""
-		This Method Is The Property For The _uiMissingIcon Attribute.
+		This Method Is The Property For The _uiMissingImage Attribute.
 
-		@return: self._uiMissingIcon. ( String )
+		@return: self._uiMissingImage. ( String )
 		"""
 
-		return self._uiMissingIcon
+		return self._uiMissingImage
 
-	@uiMissingIcon.setter
+	@uiMissingImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiMissingIcon(self, value):
+	def uiMissingImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiMissingIcon Attribute.
+		This Method Is The Setter Method For The _uiMissingImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiMissingIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiMissingImage"))
 
-	@uiMissingIcon.deleter
+	@uiMissingImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiMissingIcon(self):
+	def uiMissingImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiMissingIcon Attribute.
+		This Method Is The Deleter Method For The _uiMissingImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiMissingIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiMissingImage"))
 
 	@property
-	def uiLargestSizeIcon(self):
+	def uiLargestSizeImage(self):
 		"""
-		This Method Is The Property For The _uiLargestSizeIcon Attribute.
+		This Method Is The Property For The _uiLargestSizeImage Attribute.
 
-		@return: self._uiLargestSizeIcon. ( String )
+		@return: self._uiLargestSizeImage. ( String )
 		"""
 
-		return self._uiLargestSizeIcon
+		return self._uiLargestSizeImage
 
-	@uiLargestSizeIcon.setter
+	@uiLargestSizeImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLargestSizeIcon(self, value):
+	def uiLargestSizeImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Setter Method For The _uiLargestSizeImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLargestSizeIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLargestSizeImage"))
 
-	@uiLargestSizeIcon.deleter
+	@uiLargestSizeImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLargestSizeIcon(self):
+	def uiLargestSizeImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLargestSizeIcon Attribute.
+		This Method Is The Deleter Method For The _uiLargestSizeImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLargestSizeIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLargestSizeImage"))
 
 	@property
-	def uiSmallestSizeIcon(self):
+	def uiSmallestSizeImage(self):
 		"""
-		This Method Is The Property For The _uiSmallestSizeIcon Attribute.
+		This Method Is The Property For The _uiSmallestSizeImage Attribute.
 
-		@return: self._uiSmallestSizeIcon. ( String )
+		@return: self._uiSmallestSizeImage. ( String )
 		"""
 
-		return self._uiSmallestSizeIcon
+		return self._uiSmallestSizeImage
 
-	@uiSmallestSizeIcon.setter
+	@uiSmallestSizeImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSmallestSizeIcon(self, value):
+	def uiSmallestSizeImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiSmallestSizeIcon Attribute.
+		This Method Is The Setter Method For The _uiSmallestSizeImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSmallestSizeIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSmallestSizeImage"))
 
-	@uiSmallestSizeIcon.deleter
+	@uiSmallestSizeImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiSmallestSizeIcon(self):
+	def uiSmallestSizeImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiSmallestSizeIcon Attribute.
+		This Method Is The Deleter Method For The _uiSmallestSizeImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSmallestSizeIcon"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSmallestSizeImage"))
 
 	@property
 	def dockArea(self):
@@ -1235,8 +1235,8 @@ class DatabaseBrowser(UiComponent):
 			LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		self.ui.Thumbnails_Size_horizontalSlider.setValue(self._listViewIconSize)
-		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLargestSizeIcon)))
-		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSmallestSizeIcon)))
+		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLargestSizeImage)))
+		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSmallestSizeImage)))
 
 		# Signals / Slots.
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.Thumbnails_Size_horizontalSlider_OnChanged)
@@ -1370,9 +1370,9 @@ class DatabaseBrowser(UiComponent):
 								iblSetIcon = QIcon(QPixmap(image.convertToQImage()))
 								break
 						else:
-							iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiFormatErrorIcon))
+							iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiFormatErrorImage))
 				else:
-					iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiMissingIcon))
+					iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiMissingImage))
 							
 				iblSetStandardItem.setIcon(iblSetIcon)
 
