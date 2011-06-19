@@ -1393,8 +1393,8 @@ class CollectionsOutliner(UiComponent):
 
 		dialogMessage = "Enter Your Collection Name!"
 		collectionInformations = QInputDialog.getText(self, "Add Collection", dialogMessage)
-		if collectionInformations[1]:
-			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(collectionInformations[1]))
+		if collectionInformations[0]:
+			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(collectionInformations[0]))
 			collectionInformations = str(collectionInformations[0]).split(",")
 			collection = collectionInformations[0].strip()
 			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
