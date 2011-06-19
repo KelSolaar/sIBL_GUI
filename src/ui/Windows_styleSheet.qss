@@ -73,10 +73,6 @@ QTableView {
 	gridline-color: rgb(48, 48, 48);
 }
 
-#Clear_Field_button {
-	background-color: rgb(48, 48, 48);
-}
-
 /* QDockWidget. */
 QDockWidget {
 	titlebar-close-icon: url(./resources/Close_Cross.png);
@@ -389,6 +385,10 @@ QToolTip {
 }
 
 /* Addon Component "Search Database". */
+#Clear_Field_button {
+	background-color: rgb(48, 48, 48);
+}
+
 #Tags_Cloud_listWidget::item {
 	border: 0px;
 	padding: 2px;
