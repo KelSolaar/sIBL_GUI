@@ -57,9 +57,7 @@
 #***********************************************************************************************
 import logging
 import os
-import platform
 import re
-import sys
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -69,8 +67,6 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import ui.common
-import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
 from libraries.freeImage.freeImage import Image
@@ -120,7 +116,7 @@ class Inspector(UiComponent):
 		
 		self._inspectorIblSet = None
 		
-		self._noPreviewImageText = """
+		self._noPreviewImageMessage = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -140,6 +136,23 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
+		
+		self._noInspectorIblSetMessage = """
+								<center>
+								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
+									<tr>
+										<td>
+											<img src="{0}">
+										</td>
+										<td>
+											<p><b>No Ibl Set To Inspect!<b></p>
+											Please Add some Ibl Set To The Database Or Select A Non Empty Collection!
+										</td>
+									</tr>
+								</table>
+								</center>
+								"""
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -384,34 +397,64 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
 
 	@property
-	def noPreviewImageText(self):
+	def noPreviewImageMessage(self):
 		"""
-		This Method Is The Property For The _noPreviewImageText Attribute.
+		This Method Is The Property For The _noPreviewImageMessage Attribute.
 
-		@return: self._noPreviewImageText. ( String )
+		@return: self._noPreviewImageMessage. ( String )
 		"""
 
-		return self._noPreviewImageText
+		return self._noPreviewImageMessage
 
-	@noPreviewImageText.setter
+	@noPreviewImageMessage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noPreviewImageText(self, value):
+	def noPreviewImageMessage(self, value):
 		"""
-		This Method Is The Setter Method For The _noPreviewImageText Attribute.
+		This Method Is The Setter Method For The _noPreviewImageMessage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageMessage"))
 
-	@noPreviewImageText.deleter
+	@noPreviewImageMessage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noPreviewImageText(self):
+	def noPreviewImageMessage(self):
 		"""
-		This Method Is The Deleter Method For The _noPreviewImageText Attribute.
+		This Method Is The Deleter Method For The _noPreviewImageMessage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageMessage"))
+
+	@property
+	def noInspectorIblSetMessage(self):
+		"""
+		This Method Is The Property For The _noInspectorIblSetMessage Attribute.
+
+		@return: self._noInspectorIblSetMessage. ( String )
+		"""
+
+		return self._noInspectorIblSetMessage
+
+	@noInspectorIblSetMessage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def noInspectorIblSetMessage(self, value):
+		"""
+		This Method Is The Setter Method For The _noInspectorIblSetMessage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noInspectorIblSetMessage"))
+
+	@noInspectorIblSetMessage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def noInspectorIblSetMessage(self):
+		"""
+		This Method Is The Deleter Method For The _noInspectorIblSetMessage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noInspectorIblSetMessage"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -466,6 +509,7 @@ class Inspector(UiComponent):
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
+		self.ui.Image_label.linkActivated.connect(self.Image_label_OnLinkActivated)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -535,6 +579,16 @@ class Inspector(UiComponent):
 		self.loopThroughIblSets()
 
 	@core.executionTrace
+	def Image_label_OnLinkActivated(self, url):
+		"""
+		This Method Is Triggered When A Link Is Clicked In The Image_label Widget.
+
+		@param url: Url To Explore. ( QString )
+		"""
+
+		QDesktopServices.openUrl(QUrl(url))
+
+	@core.executionTrace
 	def Inspector_setUi(self):
 		"""
 		This Method Sets The Inspector Ui.
@@ -544,12 +598,23 @@ class Inspector(UiComponent):
 		
 		if self._inspectorIblSet:
 			iblSet = self._inspectorIblSet._datas
+
+			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
+			
 			if iblSet.previewImage:
 				self.ui.Image_label.setPixmap(QPixmap(iblSet.previewImage))
 			else:
-				self.ui.Image_label.setText(self._noPreviewImageText.format(iblSet.icon, iblSet.author, iblSet.link))
+				if os.path.exists(iblSet.icon):
+					for extension in UiConstants.nativeImageFormats.values():
+						if re.search(extension, iblSet.icon):
+							iblSetIcon = iblSet.icon
+							break
+					else:
+						iblSetIcon = os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiFormatErrorIcon)
+				else:
+					iblSetIcon = os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiMissingIcon)
+				self.ui.Image_label.setText(self._noPreviewImageMessage.format(iblSetIcon, iblSet.author, iblSet.link))
 			
-			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
 			
 			shotDateString = "<b>Shot Date: </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
@@ -561,6 +626,19 @@ class Inspector(UiComponent):
 							<b>Comment: </b>{4}</p>
 							""".format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject))
 			self.ui.Overall_frame.setToolTip(toolTip)
+		else:
+			self.Inspector_clearUi()
+
+	@core.executionTrace
+	def Inspector_clearUi(self):
+		"""
+		This Method Clears The Inspector Ui.
+		"""
+		
+		self.ui.Title_label.setText(QString())
+		self.ui.Image_label.setText(self._noInspectorIblSetMessage.format(os.path.join(self._coreDatabaseBrowser.uiResources, self._coreDatabaseBrowser.uiMissingIcon)))
+		self.ui.Details_label.setText(QString())
+		self.ui.Overall_frame.setToolTip(QString())
 
 	@core.executionTrace
 	def setInspectorIblSet(self):
@@ -600,6 +678,8 @@ class Inspector(UiComponent):
 			if selectionModel:
 				selectionModel.clear()
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
+		else:
+			self.Inspector_clearUi()
 
 #***********************************************************************************************
 #***	Python End
