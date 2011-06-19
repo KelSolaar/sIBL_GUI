@@ -1384,6 +1384,7 @@ class CollectionsOutliner(UiComponent):
 		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def addCollection(self):
 		"""
 		This Method Adds A Collection To The Database.
@@ -1403,6 +1404,9 @@ class CollectionsOutliner(UiComponent):
 				return dbUtilities.common.addCollection(self._coreDb.dbSession, collection, "Sets", comment) and collection
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
+		else:
+			if collectionInformations[1]: 
+				raise OSError, "{0} | Exception While Attempting To Add A New Collection To Database: Cannot Add A Collection With Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def addDefaultCollection(self):
