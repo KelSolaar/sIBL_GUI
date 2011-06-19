@@ -295,7 +295,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
 		This Method Defines The Drop Event Behavior.
@@ -1406,7 +1406,7 @@ class CollectionsOutliner(UiComponent):
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 		else:
 			if collectionInformations[1]: 
-				raise OSError, "{0} | Exception While Attempting To Add A New Collection To Database: Cannot Add A Collection With Empty Name!".format(self.__class__.__name__)
+				raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Add A Collection With Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def addDefaultCollection(self):
