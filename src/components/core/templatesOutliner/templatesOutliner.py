@@ -1579,16 +1579,16 @@ class TemplatesOutliner(UiComponent):
 					<br/>
 					<b>Author:</b> {2}
 					<br/>
-					<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#000000;">{3}</span></a>
+					<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
 					<br/>
-					<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#000000;">{4}</span></a>
+					<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
 					<br/>
 					<b>Output Script:</b> {5}
 					<p>
 					<b>Comment:</b> {6}
 					</p>
 					<p>
-					<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#000000;">Template Manual</span></a>
+					<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">Template Manual</span></a>
 					</p>
 					</p>
 					"""

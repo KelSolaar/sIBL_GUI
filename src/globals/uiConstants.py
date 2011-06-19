@@ -64,6 +64,9 @@ class UiConstants():
 	frameworkWindowsStylesheetFile = "./ui/Windows_styleSheet.qss"
 	frameworkDarwinStylesheetFile = "./ui/Darwin_styleSheet.qss"
 	frameworkLinuxStylesheetFile = "./ui/Linux_styleSheet.qss"
+	frameworkWindowsStyle = "plastique"
+	frameworkDarwinStyle = "plastique"
+	frameworkLinuxStyle = "plastique"
 	frameworkLayoutsFile = "./ui/sIBL_GUI_Layouts.rc"
 
 	frameworkApplicationWindowsIcon = "./resources/Icon_Light.png"

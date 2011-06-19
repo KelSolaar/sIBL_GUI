@@ -131,8 +131,8 @@ class Inspector(UiComponent):
 											<p><b>Preview Image Unavailable!<b></p>
 											What Now?
 											<ul>
-												<li>Check For An Updated Set On <b>HDRLabs</b> At <a href="http://www.hdrlabs.com/sibl/archive.html"><span style=" text-decoration: underline; color:#000000;">http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
-												<li>Contact <b>{1}</b> At <a href="{2}"><span style=" text-decoration: underline; color:#000000;">{2}</span></a> For An Updated Set.</li>
+												<li>Check For An Updated Set On <b>HDRLabs</b> At <a href="http://www.hdrlabs.com/sibl/archive.html"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
+												<li>Contact <b>{1}</b> At <a href="{2}"><span style=" text-decoration: underline; color:#e0e0e0;">{2}</span></a> For An Updated Set.</li>
 												<li>Resize The Background Image To 600x300 Pixels. Save It As A JPEG In Your Set Folder.<br/>Register It In The ."Ibl" File Header Using The "PREVIEWfile" Attribute.</li>
 											</ul>
 										</td>

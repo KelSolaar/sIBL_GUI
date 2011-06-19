@@ -107,22 +107,22 @@ ABOUT_MESSAGE = """
 		<br/>
 		Please Contact Us At HDRLabs:
 		<br/>
-		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#000000;">blochi@edenfx.com</span></a>
+		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
 		<br/>
-		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#000000;">thomas.mansencal@gmail.com</span></a>
+		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
 		</p>
 		<p>
 		sIBL_GUI by Thomas Mansencal - 2008 - 2011
 		<br/>
-		This Software Is Released Under Terms Of GNU GPL V3 License: <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#000000;">http://www.gnu.org/licenses/</span></a>
+		This Software Is Released Under Terms Of GNU GPL V3 License: <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
 		<br/>
-		<a href="http://www.thomasmansencal.com/"><span style=" text-decoration: underline; color:#000000;">http://www.thomasmansencal.com/</span></a>
+		<a href="http://www.thomasmansencal.com/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.thomasmansencal.com/</span></a>
 		</p>
 		<p>
 		*
 		</p>
 		<p>
-		<a href="http://www.hdrlabs.com/"><span style=" text-decoration: underline; color:#000000;">http://www.hdrlabs.com/</span></a>
+		<a href="http://www.hdrlabs.com/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/</span></a>
 		</p>
 		*
 		<p>

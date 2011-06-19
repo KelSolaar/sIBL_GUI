@@ -460,8 +460,8 @@ class DatabaseBrowser(UiComponent):
 
 		self._uiPath = "ui/Database_Browser.ui"
 		self._uiResources = "resources"
-		self._uiFormatErrorIcon = "Thumbnails_Format_Not_Supported_Yet.png"
-		self._uiMissingIcon = "Thumbnailst_Not_Found.png"
+		self._uiFormatErrorIcon = "Thumbnail_Format_Not_Supported_Yet.png"
+		self._uiMissingIcon = "Thumbnail_Not_Found.png"
 		self._uiLargestSizeIcon = "Largest_Size.png"
 		self._uiSmallestSizeIcon = "Smallest_Size.png"
 		self._dockArea = 8
@@ -475,7 +475,7 @@ class DatabaseBrowser(UiComponent):
 		self._settingsSeparator = ","
 
 		self._extension = "ibl"
-
+		
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
 

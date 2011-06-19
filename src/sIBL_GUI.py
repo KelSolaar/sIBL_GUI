@@ -1314,12 +1314,13 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Setting Application Visual Style.")
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			RuntimeConstants.application.setStyle("Plastique")
+			RuntimeConstants.application.setStyle(UiConstants.frameworkWindowsStyle)
 			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
 		elif platform.system() == "Darwin":
+			RuntimeConstants.application.setStyle(UiConstants.frameworkDarwinStyle)
 			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
 		elif platform.system() == "Linux":
-			RuntimeConstants.application.setStyle("Plastique")
+			RuntimeConstants.application.setStyle(UiConstants.frameworkLinuxStyle)
 			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
 
 		if os.path.exists(styleSheetFile.file):
@@ -1374,8 +1375,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
 									LayoutActiveLabel(name="Inspect", object_=self._inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),									
 									LayoutActiveLabel(name="Export", object_=self._exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
-									LayoutActiveLabel(name="Preferences", object_=self._preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0)
-									)
+									LayoutActiveLabel(name="Preferences", object_=self._preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
 		for layoutActiveLabel in self._layoutsActiveLabels:

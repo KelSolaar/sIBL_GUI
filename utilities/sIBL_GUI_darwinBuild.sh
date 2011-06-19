@@ -36,6 +36,8 @@ mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Central_Widget.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Central_Widget_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Central_Widget_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Close_Cross.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Close_Cross_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Export.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Export_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Export_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
@@ -63,11 +65,15 @@ cp $SOURCE/resources/Small_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Re
 cp $SOURCE/resources/Small_Left_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Small_Right_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Small_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Tiny_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Tiny_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_Branch_Closed.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_Branch_End.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_Branch_More.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_Branch_Open.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_VLine.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Undock_Window.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Undock_Window_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Vertical_Scrollbar_Grip.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates
 cp -r $SOURCE/templates/Maya/* $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/

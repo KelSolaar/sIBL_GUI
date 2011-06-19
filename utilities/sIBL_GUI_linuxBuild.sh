@@ -31,6 +31,8 @@ mkdir ../releases/Linux/sIBL_GUI/resources/
 cp ../src/resources/Central_Widget.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Central_Widget_Active.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Central_Widget_Hover.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Close_Cross.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Close_Cross_Hover.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Export.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Export_Active.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Export_Hover.png ../releases/Linux/sIBL_GUI/resources
@@ -58,11 +60,15 @@ cp ../src/resources/Small_Down_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Left_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Right_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Up_Arrow.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Tiny_Down_Arrow.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Tiny_Up_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_Branch_Closed.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_Branch_End.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_Branch_More.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_Branch_Open.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_VLine.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Undock_Window.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources/Undock_Window_Hover.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Vertical_Scrollbar_Grip.png ../releases/Linux/sIBL_GUI/resources
 mkdir ../releases/Linux/sIBL_GUI/templates
 cp -r ../src/templates/Maya/* ../releases/Linux/sIBL_GUI/templates/
