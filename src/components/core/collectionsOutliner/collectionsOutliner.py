@@ -1179,6 +1179,7 @@ class CollectionsOutliner(UiComponent):
 		self.Collections_Outliner_treeView_setModel()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def Collections_Outliner_treeView_OnModelDataChanged(self, startIndex, endIndex):
 		"""
 		This Method Defines The Behavior When The Collections_Outliner_treeView Model Data Change.
@@ -1189,27 +1190,30 @@ class CollectionsOutliner(UiComponent):
 
 		standardItem = self._model.itemFromIndex(startIndex)
 		currentText = standardItem.text()
-
-		collectionStandardItem = self._model.itemFromIndex(self._model.sibling(startIndex.row(), 0, startIndex))
-
-		identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
-		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
-		if identity and collections:
-			if startIndex.column() == 0:
-				if currentText not in (collection.name for collection in collections):
-					LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
+		
+		if currentText:
+			collectionStandardItem = self._model.itemFromIndex(self._model.sibling(startIndex.row(), 0, startIndex))
+	
+			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
+			collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
+			if identity and collections:
+				if startIndex.column() == 0:
+					if currentText not in (collection.name for collection in collections):
+						LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
+						collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+						collection.name = str(currentText)
+						dbUtilities.common.commit(self._coreDb.dbSession)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
+				elif startIndex.column() == 2:
+					LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
 					collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-					collection.name = str(currentText)
+					collection.comment = str(currentText)
 					dbUtilities.common.commit(self._coreDb.dbSession)
-				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
-			elif startIndex.column() == 2:
-				LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
-				collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-				collection.comment = str(currentText)
-				dbUtilities.common.commit(self._coreDb.dbSession)
-
-		self.Collections_Outliner_treeView_refreshModel()
+					self.Collections_Outliner_treeView_refreshModel()
+		else:
+			self.Collections_Outliner_treeView_refreshModel()
+			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setView(self):
@@ -1406,7 +1410,7 @@ class CollectionsOutliner(UiComponent):
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 		else:
 			if collectionInformations[1]: 
-				raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Add A Collection With Empty Name!".format(self.__class__.__name__)
+				raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def addDefaultCollection(self):
