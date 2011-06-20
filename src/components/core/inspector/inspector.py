@@ -118,7 +118,7 @@ class Inspector(UiComponent):
 		
 		self._inspectorIblSet = None
 		
-		self._noPreviewImageMessage = """
+		self._noPreviewImageText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -138,7 +138,7 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
-		self._noInspectorIblSetMessage = """
+		self._noInspectorIblSetText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -153,7 +153,7 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
-		self._toolTipMessage = """
+		self._toolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -465,94 +465,94 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
 
 	@property
-	def noPreviewImageMessage(self):
+	def noPreviewImageText(self):
 		"""
-		This Method Is The Property For The _noPreviewImageMessage Attribute.
+		This Method Is The Property For The _noPreviewImageText Attribute.
 
-		@return: self._noPreviewImageMessage. ( String )
+		@return: self._noPreviewImageText. ( String )
 		"""
 
-		return self._noPreviewImageMessage
+		return self._noPreviewImageText
 
-	@noPreviewImageMessage.setter
+	@noPreviewImageText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noPreviewImageMessage(self, value):
+	def noPreviewImageText(self, value):
 		"""
-		This Method Is The Setter Method For The _noPreviewImageMessage Attribute.
+		This Method Is The Setter Method For The _noPreviewImageText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageText"))
 
-	@noPreviewImageMessage.deleter
+	@noPreviewImageText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noPreviewImageMessage(self):
+	def noPreviewImageText(self):
 		"""
-		This Method Is The Deleter Method For The _noPreviewImageMessage Attribute.
+		This Method Is The Deleter Method For The _noPreviewImageText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageText"))
 
 	@property
-	def noInspectorIblSetMessage(self):
+	def noInspectorIblSetText(self):
 		"""
-		This Method Is The Property For The _noInspectorIblSetMessage Attribute.
+		This Method Is The Property For The _noInspectorIblSetText Attribute.
 
-		@return: self._noInspectorIblSetMessage. ( String )
+		@return: self._noInspectorIblSetText. ( String )
 		"""
 
-		return self._noInspectorIblSetMessage
+		return self._noInspectorIblSetText
 
-	@noInspectorIblSetMessage.setter
+	@noInspectorIblSetText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noInspectorIblSetMessage(self, value):
+	def noInspectorIblSetText(self, value):
 		"""
-		This Method Is The Setter Method For The _noInspectorIblSetMessage Attribute.
+		This Method Is The Setter Method For The _noInspectorIblSetText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noInspectorIblSetMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noInspectorIblSetText"))
 
-	@noInspectorIblSetMessage.deleter
+	@noInspectorIblSetText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def noInspectorIblSetMessage(self):
+	def noInspectorIblSetText(self):
 		"""
-		This Method Is The Deleter Method For The _noInspectorIblSetMessage Attribute.
+		This Method Is The Deleter Method For The _noInspectorIblSetText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noInspectorIblSetMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noInspectorIblSetText"))
 
 	@property
-	def toolTipMessage(self):
+	def toolTipText(self):
 		"""
-		This Method Is The Property For The _toolTipMessage Attribute.
+		This Method Is The Property For The _toolTipText Attribute.
 
-		@return: self._toolTipMessage. ( String )
+		@return: self._toolTipText. ( String )
 		"""
 
-		return self._toolTipMessage
+		return self._toolTipText
 
-	@toolTipMessage.setter
+	@toolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipMessage(self, value):
+	def toolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _toolTipMessage Attribute.
+		This Method Is The Setter Method For The _toolTipText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipText"))
 
-	@toolTipMessage.deleter
+	@toolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipMessage(self):
+	def toolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _toolTipMessage Attribute.
+		This Method Is The Deleter Method For The _toolTipText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipText"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -711,11 +711,11 @@ class Inspector(UiComponent):
 						iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiFormatErrorImage)
 				else:
 					iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)
-				self.ui.Image_label.setText(self._noPreviewImageMessage.format(iblSetIcon, iblSet.author, iblSet.link))
+				self.ui.Image_label.setText(self._noPreviewImageText.format(iblSetIcon, iblSet.author, iblSet.link))
 			
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
 			
-			self.ui.Overall_frame.setToolTip(self._toolTipMessage.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			self.ui.Overall_frame.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 		else:
 			self.Inspector_clearUi()
 
@@ -726,7 +726,7 @@ class Inspector(UiComponent):
 		"""
 		
 		self.ui.Title_label.setText(QString())
-		self.ui.Image_label.setText(self._noInspectorIblSetMessage.format(os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)))
+		self.ui.Image_label.setText(self._noInspectorIblSetText.format(os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)))
 		self.ui.Details_label.setText(QString())
 		self.ui.Overall_frame.setToolTip(QString())
 

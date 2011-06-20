@@ -467,8 +467,28 @@ class TemplatesOutliner(UiComponent):
 		self._modelHeaders = [ "Templates", "Release", "Software Version" ]
 		self._treeViewIndentation = 15
 		self._treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self._Template_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations!<h4>* * *</h4></center>"
-
+		self._templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations!<h4>* * *</h4></center>"
+		self._templatesInformationsText = """
+											<h4><center>{0}</center></h4>
+											<p>
+											<b>Date:</b> {1}
+											<br/>
+											<b>Author:</b> {2}
+											<br/>
+											<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
+											<br/>
+											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
+											<br/>
+											<b>Output Script:</b> {5}
+											<p>
+											<b>Comment:</b> {6}
+											</p>
+											<p>
+											<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">Template Manual</span></a>
+											</p>
+											</p>
+											"""
+		
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -1073,34 +1093,64 @@ class TemplatesOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewInnerMargins"))
 
 	@property
-	def Template_Informations_textBrowser_defaultText(self):
+	def templatesInformationsDefaultText(self):
 		"""
-		This Method Is The Property For The _Template_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Property For The _templatesInformationsDefaultText Attribute.
 
-		@return: self._Template_Informations_textBrowser_defaultText. ( String )
+		@return: self._templatesInformationsDefaultText. ( String )
 		"""
 
-		return self._Template_Informations_textBrowser_defaultText
+		return self._templatesInformationsDefaultText
 
-	@Template_Informations_textBrowser_defaultText.setter
+	@templatesInformationsDefaultText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Template_Informations_textBrowser_defaultText(self, value):
+	def templatesInformationsDefaultText(self, value):
 		"""
-		This Method Is The Setter Method For The _Template_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Setter Method For The _templatesInformationsDefaultText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Template_Informations_textBrowser_defaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesInformationsDefaultText"))
 
-	@Template_Informations_textBrowser_defaultText.deleter
+	@templatesInformationsDefaultText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Template_Informations_textBrowser_defaultText(self):
+	def templatesInformationsDefaultText(self):
 		"""
-		This Method Is The Deleter Method For The _Template_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Deleter Method For The _templatesInformationsDefaultText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Template_Informations_textBrowser_defaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesInformationsDefaultText"))
+
+	@property
+	def templatesInformationsText(self):
+		"""
+		This Method Is The Property For The _templatesInformationsText Attribute.
+
+		@return: self._templatesInformationsText. ( String )
+		"""
+
+		return self._templatesInformationsText
+
+	@templatesInformationsText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def templatesInformationsText(self, value):
+		"""
+		This Method Is The Setter Method For The _templatesInformationsText Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesInformationsText"))
+
+	@templatesInformationsText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def templatesInformationsText(self):
+		"""
+		This Method Is The Deleter Method For The _templatesInformationsText Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesInformationsText"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1157,7 +1207,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.Templates_Outliner_treeView_setView()
 
-		self.ui.Template_Informations_textBrowser.setText(self._Template_Informations_textBrowser_defaultText)
+		self.ui.Template_Informations_textBrowser.setText(self._templatesInformationsDefaultText)
 		self.ui.Template_Informations_textBrowser.setOpenLinks(False)
 
 		self.ui.Templates_Outliner_splitter.setSizes([16777215, 1])
@@ -1572,42 +1622,20 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
 
 		content = []
-		subContent = """
-					<h4><center>{0}</center></h4>
-					<p>
-					<b>Date:</b> {1}
-					<br/>
-					<b>Author:</b> {2}
-					<br/>
-					<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
-					<br/>
-					<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
-					<br/>
-					<b>Output Script:</b> {5}
-					<p>
-					<b>Comment:</b> {6}
-					</p>
-					<p>
-					<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">Template Manual</span></a>
-					</p>
-					</p>
-					"""
-
 		selectedTemplates = self.getSelectedTemplates()
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(subContent.format("{0} {1} {2}".format(template._datas.software, template._datas.renderer, template._datas.title),
-									template._datas.date,
-									template._datas.author,
-									template._datas.email,
-									template._datas.url,
-									template._datas.outputScript,
-									template._datas.comment,
-									QUrl.fromLocalFile(template._datas.helpFile).toString()
-									))
+				template and content.append(self._templatesInformationsText.format("{0} {1} {2}".format(template._datas.software, template._datas.renderer, template._datas.title),
+												template._datas.date,
+												template._datas.author,
+												template._datas.email,
+												template._datas.url,
+												template._datas.outputScript,
+												template._datas.comment,
+												QUrl.fromLocalFile(template._datas.helpFile).toString()))
 		else:
-			content.append(self._Template_Informations_textBrowser_defaultText)
+			content.append(self._templatesInformationsDefaultText)
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 

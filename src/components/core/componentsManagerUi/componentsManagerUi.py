@@ -141,8 +141,22 @@ class ComponentsManagerUi(UiComponent):
 		self._modelHeaders = [ "Components", "Activated", "Categorie", "Rank", "Version" ]
 		self._treeWidgetIndentation = 15
 		self._treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self._Components_Informations_textBrowser_defaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations!<h4>* * *</h4></center>"
-
+		self._componentsInformationsDefaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations!<h4>* * *</h4></center>"
+		self._componentsInformationsText = """
+											<h4><center>{0}</center></h4>
+											<p>
+											<b>Categorie:</b> {1}
+											<br/>
+											<b>Author:</b> {2}
+											<br/>
+											<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
+											<br/>
+											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
+											<p>
+											<b>Description:</b> {5}
+											</p>
+											</p>
+											"""
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -507,34 +521,64 @@ class ComponentsManagerUi(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewInnerMargins"))
 
 	@property
-	def Components_Informations_textBrowser_defaultText(self):
+	def componentsInformationsDefaultText(self):
 		"""
-		This Method Is The Property For The _Components_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Property For The _componentsInformationsDefaultText Attribute.
 
-		@return: self._Components_Informations_textBrowser_defaultText. ( String )
+		@return: self._componentsInformationsDefaultText. ( String )
 		"""
 
-		return self._Components_Informations_textBrowser_defaultText
+		return self._componentsInformationsDefaultText
 
-	@Components_Informations_textBrowser_defaultText.setter
+	@componentsInformationsDefaultText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Components_Informations_textBrowser_defaultText(self, value):
+	def componentsInformationsDefaultText(self, value):
 		"""
-		This Method Is The Setter Method For The _Components_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Setter Method For The _componentsInformationsDefaultText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Components_Informations_textBrowser_defaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("componentsInformationsDefaultText"))
 
-	@Components_Informations_textBrowser_defaultText.deleter
+	@componentsInformationsDefaultText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Components_Informations_textBrowser_defaultText(self):
+	def componentsInformationsDefaultText(self):
 		"""
-		This Method Is The Deleter Method For The _Components_Informations_textBrowser_defaultText Attribute.
+		This Method Is The Deleter Method For The _componentsInformationsDefaultText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Components_Informations_textBrowser_defaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("componentsInformationsDefaultText"))
+
+	@property
+	def componentsInformationsText(self):
+		"""
+		This Method Is The Property For The _componentsInformationsText Attribute.
+
+		@return: self._componentsInformationsText. ( String )
+		"""
+
+		return self._componentsInformationsText
+
+	@componentsInformationsText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def componentsInformationsText(self, value):
+		"""
+		This Method Is The Setter Method For The _componentsInformationsText Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("componentsInformationsText"))
+
+	@componentsInformationsText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def componentsInformationsText(self):
+		"""
+		This Method Is The Deleter Method For The _componentsInformationsText Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("componentsInformationsText"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -584,7 +628,7 @@ class ComponentsManagerUi(UiComponent):
 
 		self.Components_Manager_Ui_treeView_setView()
 
-		self.ui.Components_Informations_textBrowser.setText(self._Components_Informations_textBrowser_defaultText)
+		self.ui.Components_Informations_textBrowser.setText(self._componentsInformationsDefaultText)
 
 		self.ui.Components_Manager_Ui_splitter.setSizes([ 16777215, 1 ])
 
@@ -856,34 +900,17 @@ class ComponentsManagerUi(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Additional_Informations_textEdit"))
 
 		content = []
-		subContent = """
-					<h4><center>{0}</center></h4>
-					<p>
-					<b>Categorie:</b> {1}
-					<br/>
-					<b>Author:</b> {2}
-					<br/>
-					<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
-					<br/>
-					<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
-					<p>
-					<b>Description:</b> {5}
-					</p>
-					</p>
-					"""
-
 		selectedItems = self.getSelectedItems()
 		for item in selectedItems:
 			if item._type == "Component":
-				content.append(subContent.format(item._datas.name,
-												strings.getNiceName(item._datas.categorie),
-												item._datas.author,
-												item._datas.email,
-												item._datas.url,
-												item._datas.description
-												))
+				content.append(self._componentsInformationsText.format(item._datas.name,
+																		strings.getNiceName(item._datas.categorie),
+																		item._datas.author,
+																		item._datas.email,
+																		item._datas.url,
+																		item._datas.description))
 			else:
-				len(selectedItems) == 1 and content.append(self._Components_Informations_textBrowser_defaultText)
+				len(selectedItems) == 1 and content.append(self._componentsInformationsDefaultText)
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 		self.ui.Components_Informations_textBrowser.setText(separator.join(content))

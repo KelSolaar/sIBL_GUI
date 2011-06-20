@@ -488,7 +488,7 @@ class DatabaseBrowser(UiComponent):
 
 		self._displaySets = None
 		
-		self._toolTipMessage = """
+		self._toolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -1175,34 +1175,34 @@ class DatabaseBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displaySets"))
 
 	@property
-	def toolTipMessage(self):
+	def toolTipText(self):
 		"""
-		This Method Is The Property For The _toolTipMessage Attribute.
+		This Method Is The Property For The _toolTipText Attribute.
 
-		@return: self._toolTipMessage. ( String )
+		@return: self._toolTipText. ( String )
 		"""
 
-		return self._toolTipMessage
+		return self._toolTipText
 
-	@toolTipMessage.setter
+	@toolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipMessage(self, value):
+	def toolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _toolTipMessage Attribute.
+		This Method Is The Setter Method For The _toolTipText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipText"))
 
-	@toolTipMessage.deleter
+	@toolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipMessage(self):
+	def toolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _toolTipMessage Attribute.
+		This Method Is The Deleter Method For The _toolTipText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipMessage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipText"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -1384,7 +1384,7 @@ class DatabaseBrowser(UiComponent):
 			try:
 				iblSetStandardItem = QStandardItem()
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-				iblSetStandardItem.setToolTip(self._toolTipMessage.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+				iblSetStandardItem.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
 				iblSetIcon = QIcon()
 				if os.path.exists(iblSet.icon):
