@@ -487,6 +487,14 @@ class DatabaseBrowser(UiComponent):
 		self._databaseBrowserWorkerThread = None
 
 		self._displaySets = None
+		
+		self._toolTipMessage = """
+								<p><b>{0}</b></p>
+								<p><b>Author: </b>{1}<br>
+								<b>Location: </b>{2}<br>
+								<b>Shot Date: </b>{3}<br>
+								<b>Comment: </b>{4}</p>
+								"""
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1166,6 +1174,36 @@ class DatabaseBrowser(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displaySets"))
 
+	@property
+	def toolTipMessage(self):
+		"""
+		This Method Is The Property For The _toolTipMessage Attribute.
+
+		@return: self._toolTipMessage. ( String )
+		"""
+
+		return self._toolTipMessage
+
+	@toolTipMessage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipMessage(self, value):
+		"""
+		This Method Is The Setter Method For The _toolTipMessage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipMessage"))
+
+	@toolTipMessage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipMessage(self):
+		"""
+		This Method Is The Deleter Method For The _toolTipMessage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipMessage"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -1346,16 +1384,7 @@ class DatabaseBrowser(UiComponent):
 			try:
 				iblSetStandardItem = QStandardItem()
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-
-				shotDateString = "<b>Shot Date: </b>{0}".format(self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
-				toolTip = QString("""
-								<p><b>{0}</b></p>
-								<p><b>Author: </b>{1}<br>
-								<b>Location: </b>{2}<br>
-								{3}<br>
-								<b>Comment: </b>{4}</p>
-								""".format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, shotDateString, iblSet.comment or Constants.nullObject))
-				iblSetStandardItem.setToolTip(toolTip)
+				iblSetStandardItem.setToolTip(self._toolTipMessage.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
 				iblSetIcon = QIcon()
 				if os.path.exists(iblSet.icon):
