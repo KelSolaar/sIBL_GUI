@@ -72,6 +72,7 @@ import foundations.core as core
 import foundations.exceptions
 import ui.common
 import ui.widgets.messageBox as messageBox
+from foundations.rotatingBackup import RotatingBackup
 from foundations.walker import Walker
 from globals.constants import Constants
 from manager.component import Component
@@ -114,6 +115,9 @@ class Db(Component):
 		self._connectionString = None
 
 		self._dbMigrationsRepositoryDirectory = None
+		
+		self._dbBackupDirectory = "backup"
+		self._dbBackupCount = 6	
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -358,6 +362,66 @@ class Db(Component):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbMigrationsRepositoryDirectory"))
 
+	@property
+	def dbBackupDirectory(self):
+		"""
+		This Method Is The Property For The _dbBackupDirectory Attribute.
+
+		@return: self._dbBackupDirectory. ( String )
+		"""
+
+		return self._dbBackupDirectory
+
+	@dbBackupDirectory.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbBackupDirectory(self, value):
+		"""
+		This Method Is The Setter Method For The _dbBackupDirectory Attribute.
+
+		@param value: Attribute Value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbBackupDirectory"))
+
+	@dbBackupDirectory.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbBackupDirectory(self):
+		"""
+		This Method Is The Deleter Method For The _dbBackupDirectory Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbBackupDirectory"))
+
+	@property
+	def dbBackupCount(self):
+		"""
+		This Method Is The Property For The _dbBackupCount Attribute.
+
+		@return: self._dbBackupCount. ( String )
+		"""
+
+		return self._dbBackupCount
+
+	@dbBackupCount.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbBackupCount(self, value):
+		"""
+		This Method Is The Setter Method For The _dbBackupCount Attribute.
+
+		@param value: Attribute Value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbBackupCount"))
+
+	@dbBackupCount.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbBackupCount(self):
+		"""
+		This Method Is The Deleter Method For The _dbBackupCount Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbBackupCount"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -405,6 +469,15 @@ class Db(Component):
 
 		LOGGER.info("{0} | Session Database Location: '{1}'.".format(self.__class__.__name__, self._dbName))
 		self._connectionString = "sqlite:///{0}".format(self._dbName)
+
+		if not self._container.parameters.databaseReadOnly:
+			backupDestination = os.path.join(os.path.dirname(self.dbName), self._dbBackupDirectory)
+			
+			LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
+			rotatingBackup = RotatingBackup(self._dbName, backupDestination, self._dbBackupCount)
+			rotatingBackup.backup()
+		else:
+				LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		if not self._container.parameters.databaseReadOnly:
 			LOGGER.info("{0} | SQLAlchemy Migrate Repository Location: '{1}'.".format(self.__class__.__name__, self._dbMigrationsRepositoryDirectory))
