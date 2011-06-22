@@ -35,7 +35,7 @@
 
 """
 ************************************************************************************************
-***	LocationsBrowser.py
+***	locationsBrowser.py
 ***
 ***	Platform:
 ***		Windows, Linux, Mac Os X
