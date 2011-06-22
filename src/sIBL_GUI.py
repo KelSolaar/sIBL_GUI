@@ -474,6 +474,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.databaseBrowser", Constants.applicationName)
 
+		# --- Activating Inspector Component. ---
+		self._coreInspector = self._componentsManager.getInterface("core.inspector")
+		if self._coreInspector:
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
+			self._coreInspector.activate(self)
+			self._coreInspector.addWidget()
+			self._coreInspector.initializeUi()
+
 		# --- Activating Templates Outliner Component. ---
 		self._coreTemplatesOutliner = self._componentsManager.getInterface("core.templatesOutliner")
 		if self._coreTemplatesOutliner:
@@ -483,14 +491,6 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreTemplatesOutliner.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.templatesOutliner", Constants.applicationName)
-
-		# --- Activating Inspector Component. ---
-		self._coreInspector = self._componentsManager.getInterface("core.inspector")
-		if self._coreInspector:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
-			self._coreInspector.activate(self)
-			self._coreInspector.addWidget()
-			self._coreInspector.initializeUi()
 
 		# --- Activating Others Components. ---
 		deactivatedComponents = self._settings.getKey("Settings", "deactivatedComponents").toString().split(",")
@@ -512,18 +512,12 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		if RuntimeConstants.splashscreen:
 			RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initialization Done.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white)
 			RuntimeConstants.splashscreen.hide()
-
+			
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents():
 			interface = self._componentsManager.getInterface(component)
 			if interface.activated:
 				hasattr(interface, "onStartup") and interface.onStartup()
-
-		# Layouts Helper Snippet.
-		# visibleComponents = ()
-		# for component in self._componentsManager.getComponents():
-		#	 interface = self._componentsManager.getInterface( component )
-		#	 hasattr( interface, "ui" ) and interface.name != "core.databaseBrowser" and interface.name not in visibleComponents and interface.ui and interface.ui.hide()
 
 		self.setLayoutsActiveLabelsShortcuts()
 

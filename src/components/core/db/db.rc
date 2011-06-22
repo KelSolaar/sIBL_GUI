@@ -2,7 +2,7 @@
 Name = core.db
 Module = db
 Object = Db
-Rank = 5
+Rank = 15
 Version = 1.0
 
 [Informations]

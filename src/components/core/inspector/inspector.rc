@@ -2,7 +2,7 @@
 Name = core.inspector
 Module = inspector
 Object = Inspector
-Rank = 45
+Rank = 30
 Version = 1.0
 
 [Informations]
