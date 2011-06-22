@@ -2,7 +2,7 @@ Name sIBL_GUI
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 3.5.1
+!define VERSION 4.0.0
 !define COMPANY "HDRLabs"
 !define URL http://www.thomasmansencal.com/
 
@@ -45,7 +45,7 @@ InstallDir $PROGRAMFILES\sIBL_GUI
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 3.5.1.0
+VIProductVersion 4.0.0.0
 VIAddVersionKey ProductName sIBL_GUI
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"

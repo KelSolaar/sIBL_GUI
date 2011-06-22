@@ -1,11 +1,20 @@
-h1=. sIBL_GUI - 3.5.1 - Stable
+h1=. sIBL_GUI - 4.0.0 - Stable
 
-h3{color:rgb(200, 75, 75);}=. ***IMPORTANT NOTICE :***
+h3{color:rgb(200, 75, 75);}=. IMPORTANT NOTICES:
+* sIBL_GUI 4.x.x requires database migration / update, the process has been extensively tested and should work fine, however if something goes wrong a database backup will be available under sIBL_GUI preferences folder: "../HDRLabs/sIBL_GUI/database/backup".
+* If you are using a read only database, you need to start sIBL_GUI in standard mode at least once so that the database can be migrated, otherwise the application will not be able to read the database properly and will exit.
 
 h2=. Change Log
 
-h3. 3.5.1 - Stable
+h3. 4.0.0 - Stable
 
+* sIBL_GUI now features a refreshed new dark Ui theme with new logo, splashscreen and more!
+* A new "Inspector" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
+* Most Maya templates have been ported toward Python for better maintainability and performance.
+* A database migration mechanism has been implemented using SQLAlchemy Migrate, it should allow database structure manipulation for future releases. 
+* A new "databaseOperations" component has been introduced to allow manual database synchronization.
+* The "databaseBackup" component has been integrated to the "db" component.
+* Adding / Renaming a collection using an empty name was possible, this incorrect behavior has been fixed.
 * Added support for Templates strings: "nodePrefix = @nodePrefix | __Prefix__ | String | Node Prefix".
 * Added "-t / --deactivateWorkerThreads" command line parameter allowing Worker Threads deactivation.
 * Renamed "-s / --noSplashScreen" command line parameter to "-s / --hideSplashScreen".
