@@ -67,6 +67,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+from foundations.parser import Parser
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
 from libraries.freeImage.freeImage import Image
@@ -80,6 +81,24 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class Plate(core.Structure):
+	"""
+	This Is The Plate Class.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This Method Initializes The Class.
+
+		@param kwargs: icon, previewImage, image ( Key / Value Pairs )
+		"""
+
+		core.Structure.__init__(self, **kwargs)
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update(kwargs)
+
 class Inspector(UiComponent):
 	"""
 	This Class Is The Preview Class.
@@ -117,7 +136,8 @@ class Inspector(UiComponent):
 		self._coreDatabaseBrowser = None
 		
 		self._inspectorIblSet = None
-		
+		self._inspectorPlates = None
+	
 		self._noPreviewImageText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
@@ -465,6 +485,36 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
 
 	@property
+	def inspectorPlates(self):
+		"""
+		This Method Is The Property For The _inspectorPlates Attribute.
+
+		@return: self._inspectorPlates. ( Dictionary )
+		"""
+
+		return self._inspectorPlates
+
+	@inspectorPlates.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorPlates(self, value):
+		"""
+		This Method Is The Setter Method For The _inspectorPlates Attribute.
+
+		@param value: Attribute Value. ( Dictionary )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorPlates"))
+
+	@inspectorPlates.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorPlates(self):
+		"""
+		This Method Is The Deleter Method For The _inspectorPlates Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorPlates"))
+
+	@property
 	def noPreviewImageText(self):
 		"""
 		This Method Is The Property For The _noPreviewImageText Attribute.
@@ -598,6 +648,7 @@ class Inspector(UiComponent):
 		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
 		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		
+		self.ui.Plates_listView.hide()
 		self.ui.Options_groupBox.hide()
 
 		self.Inspector_setUi()
@@ -691,7 +742,7 @@ class Inspector(UiComponent):
 		"""
 		This Method Sets The Inspector Ui.
 		"""
-
+		
 		self.setInspectorIblSet()
 		
 		if self._inspectorIblSet:
@@ -713,8 +764,20 @@ class Inspector(UiComponent):
 					iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)
 				self.ui.Image_label.setText(self._noPreviewImageText.format(iblSetIcon, iblSet.author, iblSet.link))
 			
+			self.getPlates()
+			self.ui.Plates_listView.clear()
+			if self._inspectorPlates:
+				self.ui.Plates_listView.show()
+				for name, plate in self._inspectorPlates.items():
+					if os.path.exists(plate.icon):
+						listWidgetItem = QListWidgetItem()
+						listWidgetItem.setIcon(QIcon(plate.icon))
+						self.ui.Plates_listView.addItem(listWidgetItem)
+			else:
+				self.ui.Plates_listView.hide()
+				
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
-			
+
 			self.ui.Overall_frame.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 		else:
 			self.Inspector_clearUi()
@@ -724,6 +787,8 @@ class Inspector(UiComponent):
 		"""
 		This Method Clears The Inspector Ui.
 		"""
+		
+		self.ui.Plates_listView.hide()
 		
 		self.ui.Title_label.setText(QString())
 		self.ui.Image_label.setText(self._noInspectorIblSetText.format(os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)))
@@ -770,6 +835,28 @@ class Inspector(UiComponent):
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.Inspector_clearUi()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	def getPlates(self):
+		"""
+		This Method Retrieves Plates From The Inspected Ibl Set.
+		"""
+		
+		if self._inspectorIblSet:
+			if os.path.exists(self._inspectorIblSet._datas.path):
+				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
+				parser = Parser(self._inspectorIblSet._datas.path)
+				parser.read() and parser.parse()
+				
+				self._inspectorPlates = {}
+				for section in parser.sections:
+					if re.search("Plate[0-9]+", section):
+						self._inspectorPlates[section] = Plate(icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEthumb", section))),
+										previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEpreview", section))),
+										image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEfile", section))))
+			else:
+				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
 
 #***********************************************************************************************
 #***	Python End
