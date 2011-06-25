@@ -1372,7 +1372,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Sets The Database_Browser_listView Model.
 		"""
 
-		LOGGER.debug("> Setting Up '{0}' Model!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Setting Up '{0}' Model!".format("Database_Browser_listView"))
 
 		self.Database_Browser_listView_storeModelSelection()
 
