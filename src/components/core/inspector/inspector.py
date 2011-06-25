@@ -58,6 +58,7 @@
 import logging
 import os
 import re
+from collections import OrderedDict
 from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -67,10 +68,10 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 from foundations.parser import Parser
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
-from libraries.freeImage.freeImage import Image
 from manager.uiComponent import UiComponent
 
 #***********************************************************************************************
@@ -91,7 +92,7 @@ class Plate(core.Structure):
 		"""
 		This Method Initializes The Class.
 
-		@param kwargs: icon, previewImage, image ( Key / Value Pairs )
+		@param kwargs: name, icon, previewImage, image ( Key / Value Pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -122,11 +123,10 @@ class Inspector(UiComponent):
 
 		self._uiPath = "ui/Inspector.ui"
 		self._uiResources = "resources"
-		self._uiFormatErrorImage = "Thumbnail_Format_Not_Supported_Yet.png"
-		self._uiMissingImage = "Thumbnail_Not_Found.png"
 		self._uiPreviousImage = "Previous.png"
 		self._uiNextImage = "Next.png"
 		self._dockArea = 2
+		self._listViewIconSize = 32
 	
 		self._container = None
 		self._settings = None
@@ -134,6 +134,8 @@ class Inspector(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		
+		self._model = None
 		
 		self._inspectorIblSet = None
 		self._inspectorPlates = None
@@ -173,7 +175,7 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
-		self._toolTipText = """
+		self._inspectorIblSetToolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -181,6 +183,10 @@ class Inspector(UiComponent):
 								<b>Comment: </b>{4}</p>
 								"""
 		
+		self._inspectorIblSetPlatesToolTipText = """
+								<p><b>{0}</b></p>
+								"""
+	
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -395,6 +401,39 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
 
 	@property
+	def listViewIconSize(self):
+		"""
+		This Method Is The Property For The _listViewIconSize Attribute.
+
+		@return: self._listViewIconSize. ( Integer )
+		"""
+
+		return self._listViewIconSize
+
+	@listViewIconSize.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def listViewIconSize(self, value):
+		"""
+		This Method Is The Setter Method For The _listViewIconSize Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewIconSize", value)
+			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewIconSize", value)
+		self._listViewIconSize = value
+
+	@listViewIconSize.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def listViewIconSize(self):
+		"""
+		This Method Is The Deleter Method For The _listViewIconSize Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("listViewIconSize"))
+
+	@property
 	def container(self):
 		"""
 		This Method Is The Property For The _container Attribute.
@@ -453,6 +492,36 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+
+	@property
+	def model(self):
+		"""
+		This Method Is The Property For The _model Attribute.
+
+		@return: self._model. ( QStandardItemModel )
+		"""
+
+		return self._model
+
+	@model.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self, value):
+		"""
+		This Method Is The Setter Method For The _model Attribute.
+
+		@param value: Attribute Value. ( QStandardItemModel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("model"))
+
+	@model.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def model(self):
+		"""
+		This Method Is The Deleter Method For The _model Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("model"))
 
 	@property
 	def inspectorIblSet(self):
@@ -575,34 +644,64 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noInspectorIblSetText"))
 
 	@property
-	def toolTipText(self):
+	def inspectorIblSetToolTipText(self):
 		"""
-		This Method Is The Property For The _toolTipText Attribute.
+		This Method Is The Property For The _inspectorIblSetToolTipText Attribute.
 
-		@return: self._toolTipText. ( String )
+		@return: self._inspectorIblSetToolTipText. ( String )
 		"""
 
-		return self._toolTipText
+		return self._inspectorIblSetToolTipText
 
-	@toolTipText.setter
+	@inspectorIblSetToolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
+	def inspectorIblSetToolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _toolTipText Attribute.
+		This Method Is The Setter Method For The _inspectorIblSetToolTipText Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetToolTipText"))
 
-	@toolTipText.deleter
+	@inspectorIblSetToolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
+	def inspectorIblSetToolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _toolTipText Attribute.
+		This Method Is The Deleter Method For The _inspectorIblSetToolTipText Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetToolTipText"))
+
+	@property
+	def inspectorIblSetPlatesToolTipText(self):
+		"""
+		This Method Is The Property For The _inspectorIblSetPlatesToolTipText Attribute.
+
+		@return: self._inspectorIblSetPlatesToolTipText. ( String )
+		"""
+
+		return self._inspectorIblSetPlatesToolTipText
+
+	@inspectorIblSetPlatesToolTipText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSetPlatesToolTipText(self, value):
+		"""
+		This Method Is The Setter Method For The _inspectorIblSetPlatesToolTipText Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetPlatesToolTipText"))
+
+	@inspectorIblSetPlatesToolTipText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSetPlatesToolTipText(self):
+		"""
+		This Method Is The Deleter Method For The _inspectorIblSetPlatesToolTipText Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetPlatesToolTipText"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -644,16 +743,24 @@ class Inspector(UiComponent):
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
-	
+
+
 		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
 		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
+		self.ui.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
+		self.ui.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		
-		self.ui.Plates_listView.hide()
+		self.ui.Plates_frame.hide()
 		self.ui.Options_groupBox.hide()
 
-		self.Inspector_setUi()
+		self._model = QStandardItemModel()
+		self.Plates_listView_setModel()
+		self.Plates_listView_setView()
 		
+		self.Inspector_DockWidget_setUi()
+
 		# Signals / Slots.
+		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.Plates_listView_OnModelSelectionChanged)
 		self._coreDatabaseBrowser.modelChanged.connect(self.coreDatabaseBrowser_model_OnModelChanged)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
@@ -687,7 +794,129 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+
+	@core.executionTrace
+	def Inspector_DockWidget_setUi(self):
+		"""
+		This Method Sets The Inspector DockWidget Ui.
+		"""
 		
+		if self._inspectorIblSet:
+			iblSet = self._inspectorIblSet._datas
+
+			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
+			
+			if iblSet.previewImage:
+				self.ui.Image_label.setPixmap(ui.common.getPixmap(iblSet.previewImage))
+			else:
+				self.ui.Image_label.setText(self._noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
+				self.ui.Image_label.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			
+			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
+			
+			if self._inspectorPlates:
+				self.ui.Plates_frame.show()
+			else:
+				self.ui.Plates_frame.hide()
+		else:
+			self.Inspector_DockWidget_clearUi()
+
+	@core.executionTrace
+	def Inspector_DockWidget_clearUi(self):
+		"""
+		This Method Clears The Inspector DockWidget Ui.
+		"""
+		
+		self.ui.Title_label.setText(QString())
+		self.ui.Image_label.setText(self._noInspectorIblSetText.format(ui.common.filterImagePath("")))
+		self.ui.Image_label.setToolTip(QString())
+		self.ui.Details_label.setText(QString())
+		
+		self.ui.Plates_frame.hide()
+		
+	@core.executionTrace
+	def Plates_listView_setModel(self):
+		"""
+		This Method Sets The Plates_listView Model.
+		"""
+
+		LOGGER.debug("> Setting Up '{0}' Model!".format("Plates_listView"))
+		
+		self._model.clear()
+		
+		if self._inspectorIblSet:
+			iblSet = self._inspectorIblSet._datas
+			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Plates_listView"))
+			inspectorIblSetStandardItem = QStandardItem()
+			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self._inspectorIblSet._datas.icon))
+			inspectorIblSetStandardItem.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			self._model.appendRow(inspectorIblSetStandardItem)
+			
+			for name, plate in self._inspectorPlates.items():
+				LOGGER.debug("> Preparing '{0}' Plate For '{1}' Model.".format(name, "Plates_listView"))
+				try:
+					plateStandardItem = QStandardItem()
+					plateStandardItem.setIcon(ui.common.getIcon(plate.icon))
+					plateStandardItem.setToolTip(self._inspectorIblSetPlatesToolTipText.format(plate.name))
+	
+					plateStandardItem._datas = plate
+	
+					LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(name, "Plates_listView"))
+					self._model.appendRow(plateStandardItem)
+	
+				except Exception as error:
+					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Plate To '{2}' Model!".format(self.__class__.__name__, name, "Plates_listView"))
+					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
+
+	@core.executionTrace
+	def Plates_listView_setView(self):
+		"""
+		This Method Sets The Plates_listView Ui.
+		"""
+
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Plates_listView"))
+
+		self.ui.Plates_listView.setAcceptDrops(False)
+		self.ui.Plates_listView.setAutoScroll(True)
+		self.ui.Plates_listView.setFlow(QListView.LeftToRight)
+		self.ui.Plates_listView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self.ui.Plates_listView.setMovement(QListView.Static)
+		self.ui.Plates_listView.setSelectionMode(QAbstractItemView.SingleSelection)
+		self.ui.Plates_listView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self.ui.Plates_listView.setViewMode(QListView.IconMode)
+		self.ui.Plates_listView.setWrapping(False)
+
+		self.Plates_listView_setItemsSize()
+
+		self.ui.Plates_listView.setModel(self._model)
+
+	@core.executionTrace
+	def Plates_listView_setItemsSize(self):
+		"""
+		This Method Scales The Plates_listView Item Size.
+		"""
+
+		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self._listViewIconSize))
+
+		self.ui.Plates_listView.setIconSize(QSize(self._listViewIconSize, self._listViewIconSize))
+	
+	@core.executionTrace
+	def Plates_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This Method Sets Is Triggered When  Plates_listView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
+		"""
+		
+		index =  selectedItems.indexes() and selectedItems.indexes()[0] or None
+		item = index and self._model.itemFromIndex(index) or None
+		if item:
+			if hasattr(item, "_datas"):
+				self.ui.Image_label.setPixmap(ui.common.getPixmap(item._datas.previewImage))
+			else:
+				self.Inspector_DockWidget_setUi()
+	
 	@core.executionTrace
 	def coreDatabaseBrowser_model_OnModelChanged(self):
 		"""
@@ -705,7 +934,15 @@ class Inspector(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 	
-		self.Inspector_setUi()
+		self.setInspectorIblSet()
+
+		self.setInspectorIblSetPlates()
+		self.Plates_listView_setModel()
+		
+		if self._inspectorIblSet: 
+			self.Inspector_DockWidget_setUi()
+		else:
+			self.Inspector_DockWidget_clearUi()
 
 	@core.executionTrace
 	def Previous_Ibl_Set_pushButton_OnClicked(self, checked):
@@ -738,64 +975,6 @@ class Inspector(UiComponent):
 		QDesktopServices.openUrl(QUrl(url))
 
 	@core.executionTrace
-	def Inspector_setUi(self):
-		"""
-		This Method Sets The Inspector Ui.
-		"""
-		
-		self.setInspectorIblSet()
-		
-		if self._inspectorIblSet:
-			iblSet = self._inspectorIblSet._datas
-
-			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
-			
-			if iblSet.previewImage:
-				self.ui.Image_label.setPixmap(QPixmap(iblSet.previewImage))
-			else:
-				if os.path.exists(iblSet.icon):
-					for extension in UiConstants.nativeImageFormats.values():
-						if re.search(extension, iblSet.icon):
-							iblSetIcon = iblSet.icon
-							break
-					else:
-						iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiFormatErrorImage)
-				else:
-					iblSetIcon = os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)
-				self.ui.Image_label.setText(self._noPreviewImageText.format(iblSetIcon, iblSet.author, iblSet.link))
-			
-			self.getPlates()
-			self.ui.Plates_listView.clear()
-			if self._inspectorPlates:
-				self.ui.Plates_listView.show()
-				for name, plate in self._inspectorPlates.items():
-					if os.path.exists(plate.icon):
-						listWidgetItem = QListWidgetItem()
-						listWidgetItem.setIcon(QIcon(plate.icon))
-						self.ui.Plates_listView.addItem(listWidgetItem)
-			else:
-				self.ui.Plates_listView.hide()
-				
-			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
-
-			self.ui.Overall_frame.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
-		else:
-			self.Inspector_clearUi()
-
-	@core.executionTrace
-	def Inspector_clearUi(self):
-		"""
-		This Method Clears The Inspector Ui.
-		"""
-		
-		self.ui.Plates_listView.hide()
-		
-		self.ui.Title_label.setText(QString())
-		self.ui.Image_label.setText(self._noInspectorIblSetText.format(os.path.join(self._uiResources, self._coreDatabaseBrowser.uiMissingImage)))
-		self.ui.Details_label.setText(QString())
-		self.ui.Overall_frame.setToolTip(QString())
-
-	@core.executionTrace
 	def setInspectorIblSet(self):
 		"""
 		This Method Sets The Inspected Ibl Set.
@@ -806,7 +985,30 @@ class Inspector(UiComponent):
 		if not self._inspectorIblSet:
 			model = self._coreDatabaseBrowser.model
 			self._inspectorIblSet = model.rowCount() !=0 and model.item(0) or None
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	def setInspectorIblSetPlates(self):
+		"""
+		This Method Sets The Plates From The Inspected Ibl Set.
+		"""
+		
+		if self._inspectorIblSet:
+			if os.path.exists(self._inspectorIblSet._datas.path):
+				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
+				parser = Parser(self._inspectorIblSet._datas.path)
+				parser.read() and parser.parse()
 				
+				self._inspectorPlates = OrderedDict()
+				for section in parser.sections:
+					if re.search("Plate[0-9]+", section):
+						self._inspectorPlates[section] = Plate(name=os.path.splitext(parser.getValue("PLATEfile", section))[0],
+																icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEthumb", section))),
+																previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEpreview", section))),
+																image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEfile", section))))
+			else:
+				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
+
 	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
 		"""
@@ -815,9 +1017,6 @@ class Inspector(UiComponent):
 		@param direction: Loop Direction. ( String )
 		"""
 		
-		if not self._inspectorIblSet:
-			self.setInspectorIblSet()
-
 		if self._inspectorIblSet:
 			model = self._coreDatabaseBrowser.model
 			index = model.indexFromItem(self._inspectorIblSet)
@@ -834,30 +1033,8 @@ class Inspector(UiComponent):
 				selectionModel.clear()
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
-			self.Inspector_clearUi()
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, OSError)
-	def getPlates(self):
-		"""
-		This Method Retrieves Plates From The Inspected Ibl Set.
-		"""
-		
-		if self._inspectorIblSet:
-			if os.path.exists(self._inspectorIblSet._datas.path):
-				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
-				parser = Parser(self._inspectorIblSet._datas.path)
-				parser.read() and parser.parse()
-				
-				self._inspectorPlates = {}
-				for section in parser.sections:
-					if re.search("Plate[0-9]+", section):
-						self._inspectorPlates[section] = Plate(icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEthumb", section))),
-										previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEpreview", section))),
-										image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEfile", section))))
-			else:
-				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
-
+			self.Inspector_DockWidget_clearUi()
+			
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************

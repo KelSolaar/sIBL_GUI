@@ -854,13 +854,13 @@ class Preview(UiComponent):
 		self._imagePreviewers = None
 		self._maximumImagePreviewersInstances = 5
 
-		self._previewLightingImageAction = None
-		self._previewReflectionImageAction = None
-		self._previewBackgroundImageAction = None
+		self._viewLightingImageAction = None
+		self._viewReflectionImageAction = None
+		self._viewBackgroundImageAction = None
 		
-		self._inspectorButtons = {"Background" : {"object" : None, "text": "Preview Background Image", "row" : 1,"column" : 3},
-									"Lighting" : {"object" : None, "text": "Preview Lighting Image", "row" : 1,"column" : 4},
-									"Reflection" : {"object" : None, "text": "Preview Reflection Image", "row" : 1,"column" : 5}}
+		self._inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1,"column" : 3},
+									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1,"column" : 4},
+									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1,"column" : 5}}
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1166,94 +1166,94 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("maximumImagePreviewersInstances"))
 
 	@property
-	def previewBackgroundImageAction(self):
+	def viewBackgroundImageAction(self):
 		"""
-		This Method Is The Property For The _previewBackgroundImageAction Attribute.
+		This Method Is The Property For The _viewBackgroundImageAction Attribute.
 
-		@return: self._previewBackgroundImageAction. ( QAction )
+		@return: self._viewBackgroundImageAction. ( QAction )
 		"""
 
-		return self._previewBackgroundImageAction
+		return self._viewBackgroundImageAction
 
-	@previewBackgroundImageAction.setter
+	@viewBackgroundImageAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewBackgroundImageAction(self, value):
+	def viewBackgroundImageAction(self, value):
 		"""
-		This Method Is The Setter Method For The _previewBackgroundImageAction Attribute.
+		This Method Is The Setter Method For The _viewBackgroundImageAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewBackgroundImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewBackgroundImageAction"))
 
-	@previewBackgroundImageAction.deleter
+	@viewBackgroundImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewBackgroundImageAction(self):
+	def viewBackgroundImageAction(self):
 		"""
-		This Method Is The Deleter Method For The _previewBackgroundImageAction Attribute.
+		This Method Is The Deleter Method For The _viewBackgroundImageAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewBackgroundImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewBackgroundImageAction"))
 
 	@property
-	def previewLightingImageAction(self):
+	def viewLightingImageAction(self):
 		"""
-		This Method Is The Property For The _previewLightingImageAction Attribute.
+		This Method Is The Property For The _viewLightingImageAction Attribute.
 
-		@return: self._previewLightingImageAction. ( QAction )
+		@return: self._viewLightingImageAction. ( QAction )
 		"""
 
-		return self._previewLightingImageAction
+		return self._viewLightingImageAction
 
-	@previewLightingImageAction.setter
+	@viewLightingImageAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewLightingImageAction(self, value):
+	def viewLightingImageAction(self, value):
 		"""
-		This Method Is The Setter Method For The _previewLightingImageAction Attribute.
+		This Method Is The Setter Method For The _viewLightingImageAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewLightingImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewLightingImageAction"))
 
-	@previewLightingImageAction.deleter
+	@viewLightingImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewLightingImageAction(self):
+	def viewLightingImageAction(self):
 		"""
-		This Method Is The Deleter Method For The _previewLightingImageAction Attribute.
+		This Method Is The Deleter Method For The _viewLightingImageAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewLightingImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewLightingImageAction"))
 
 	@property
-	def previewReflectionImageAction(self):
+	def viewReflectionImageAction(self):
 		"""
-		This Method Is The Property For The _previewReflectionImageAction Attribute.
+		This Method Is The Property For The _viewReflectionImageAction Attribute.
 
-		@return: self._previewReflectionImageAction. ( QAction )
+		@return: self._viewReflectionImageAction. ( QAction )
 		"""
 
-		return self._previewReflectionImageAction
+		return self._viewReflectionImageAction
 
-	@previewReflectionImageAction.setter
+	@viewReflectionImageAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewReflectionImageAction(self, value):
+	def viewReflectionImageAction(self, value):
 		"""
-		This Method Is The Setter Method For The _previewReflectionImageAction Attribute.
+		This Method Is The Setter Method For The _viewReflectionImageAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewReflectionImageAction"))
 
-	@previewReflectionImageAction.deleter
+	@viewReflectionImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def previewReflectionImageAction(self):
+	def viewReflectionImageAction(self):
 		"""
-		This Method Is The Deleter Method For The _previewReflectionImageAction Attribute.
+		This Method Is The Deleter Method For The _viewReflectionImageAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewReflectionImageAction"))
 
 	@property
 	def inspectorButtons(self):
@@ -1400,17 +1400,17 @@ class Preview(UiComponent):
 		separatorAction.setSeparator(True)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(separatorAction)
 
-		self._previewBackgroundImageAction = QAction("Preview Background Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._previewBackgroundImageAction.triggered.connect(self.Database_Browser_listView_previewBackgroundImageAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._previewBackgroundImageAction)
+		self._viewBackgroundImageAction = QAction("View Background Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
+		self._viewBackgroundImageAction.triggered.connect(self.Database_Browser_listView_viewBackgroundImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewBackgroundImageAction)
 
-		self._previewLightingImageAction = QAction("Preview Lighting Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._previewLightingImageAction.triggered.connect(self.Database_Browser_listView_previewLightingImageAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._previewLightingImageAction)
+		self._viewLightingImageAction = QAction("View Lighting Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
+		self._viewLightingImageAction.triggered.connect(self.Database_Browser_listView_viewLightingImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewLightingImageAction)
 
-		self._previewReflectionImageAction = QAction("Preview Reflection Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._previewReflectionImageAction.triggered.connect(self.Database_Browser_listView_previewReflectionImageAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._previewReflectionImageAction)
+		self._viewReflectionImageAction = QAction("View Reflection Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
+		self._viewReflectionImageAction.triggered.connect(self.Database_Browser_listView_viewReflectionImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewReflectionImageAction)
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -1420,13 +1420,13 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._previewBackgroundImageAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._previewLightingImageAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._previewReflectionImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewBackgroundImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewLightingImageAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewReflectionImageAction)
 
-		self._previewBackgroundImageAction = None
-		self._previewLightingImageAction = None
-		self._previewReflectionImageAction = None
+		self._viewBackgroundImageAction = None
+		self._viewLightingImageAction = None
+		self._viewReflectionImageAction = None
 
 	@core.executionTrace
 	def addInspectorButtons(self):
@@ -1449,9 +1449,9 @@ class Preview(UiComponent):
 			value["object"].setParent(None)
 
 	@core.executionTrace
-	def Database_Browser_listView_previewBackgroundImageAction(self, checked):
+	def Database_Browser_listView_viewBackgroundImageAction(self, checked):
 		"""
-		This Method Is Triggered By previewBackgroundImageAction.
+		This Method Is Triggered By viewBackgroundImageAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
@@ -1459,9 +1459,9 @@ class Preview(UiComponent):
 		self.showImagePreview("Background")
 
 	@core.executionTrace
-	def Database_Browser_listView_previewLightingImageAction(self, checked):
+	def Database_Browser_listView_viewLightingImageAction(self, checked):
 		"""
-		This Method Is Triggered By previewLightingImageAction.
+		This Method Is Triggered By viewLightingImageAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
@@ -1469,9 +1469,9 @@ class Preview(UiComponent):
 		self.showImagePreview("Lighting")
 
 	@core.executionTrace
-	def Database_Browser_listView_previewReflectionImageAction(self, checked):
+	def Database_Browser_listView_viewReflectionImageAction(self, checked):
 		"""
-		This Method Is Triggered By previewReflectionImageAction.
+		This Method Is Triggered By viewReflectionImageAction.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""

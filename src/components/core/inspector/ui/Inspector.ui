@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Inspector_DockWidget</class>
  <widget class="QDockWidget" name="Inspector_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>820</width>
+    <height>626</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Inspector</string>
   </property>
@@ -17,62 +25,19 @@
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QFrame" name="Overall_frame">
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
       <layout class="QGridLayout" name="Overall_frame_gridLayout">
-       <property name="verticalSpacing">
-        <number>0</number>
-       </property>
-       <item row="1" column="1">
-        <widget class="QFrame" name="Title_frame">
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
+       <item row="6" column="1">
+        <spacer name="Bottom_verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <layout class="QGridLayout" name="Title_frame_gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="Title_label">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QFrame" name="Image_frame">
-         <property name="minimumSize">
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>600</width>
-           <height>300</height>
+           <width>20</width>
+           <height>40</height>
           </size>
          </property>
-         <layout class="QGridLayout" name="Image_frame_gridLayout">
-          <property name="margin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="Image_label">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+        </spacer>
        </item>
        <item row="0" column="1">
         <spacer name="Top_verticalSpacer">
@@ -87,67 +52,102 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="1">
-        <spacer name="Bottom_verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="Previous_Ibl_Set_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="statusTip">
-          <string>Previous Ibl Set Push Button: Navigate To Previous Ibl Set In The Current Selected Collection.</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QPushButton" name="Next_Ibl_Set_pushButton">
-         <property name="minimumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>32</height>
-          </size>
-         </property>
-         <property name="statusTip">
-          <string>Next Ibl Set Push Button: Navigate To Next Ibl Set In The Current Selected Collection.</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QFrame" name="Details_frame">
-         <layout class="QGridLayout" name="Details_frame_gridLayout">
+       <item row="1" column="1">
+        <widget class="QFrame" name="Content_frame">
+         <layout class="QGridLayout" name="Content_frame_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Title_label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="0">
+           <layout class="QHBoxLayout" name="Image_horizontalLayout">
+            <item>
+             <widget class="QPushButton" name="Previous_Ibl_Set_pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="statusTip">
+               <string>Previous Ibl Set Push Button: Navigate To Previous Ibl Set In The Current Selected Collection.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="Image_label">
+              <property name="minimumSize">
+               <size>
+                <width>600</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="Next_Ibl_Set_pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="statusTip">
+               <string>Next Ibl Set Push Button: Navigate To Next Ibl Set In The Current Selected Collection.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
            <widget class="QLabel" name="Details_label">
             <property name="text">
              <string/>
@@ -157,30 +157,103 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QFrame" name="Plates_frame">
+            <layout class="QGridLayout" name="Platres_frame_gridLayout">
+             <property name="margin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="Previous_Plate_pushButton">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>52</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>52</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="Next_Plate_pushButton">
+               <property name="minimumSize">
+                <size>
+                 <width>50</width>
+                 <height>52</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>50</width>
+                 <height>52</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QListView" name="Plates_listView">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>600</width>
+                 <height>52</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>52</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QListWidget" name="Plates_listView">
-         <property name="maximumSize">
+       <item row="1" column="0">
+        <spacer name="Left_horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>16777215</width>
-           <height>64</height>
+           <width>40</width>
+           <height>20</height>
           </size>
          </property>
-         <property name="movement">
-          <enum>QListView::Static</enum>
+        </spacer>
+       </item>
+       <item row="1" column="2">
+        <spacer name="Right_horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="gridSize">
+         <property name="sizeHint" stdset="0">
           <size>
-           <width>48</width>
-           <height>48</height>
+           <width>40</width>
+           <height>20</height>
           </size>
          </property>
-         <property name="viewMode">
-          <enum>QListView::IconMode</enum>
-         </property>
-        </widget>
+        </spacer>
        </item>
       </layout>
      </widget>

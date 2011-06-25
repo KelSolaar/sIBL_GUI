@@ -202,7 +202,7 @@ def setWindowDefaultIcon(window):
 @core.executionTrace
 def getIcon(path):
 		"""
-		This Method Returns A QIcon Setup Depending The Path Provided.
+		This Method Gets A QIcon.
 		
 		@param path: Icon Image Path. ( String )
 		@return: QIcon. ( QIcon )
@@ -222,6 +222,29 @@ def getIcon(path):
 		else:
 			return QIcon(UiConstants.frameworkMissingImage)
 
+@core.executionTrace
+def getPixmap(path):
+		"""
+		This Method Gets A QPixmap.
+		
+		@param path: Icon Image Path. ( String )
+		@return: QPixmap. ( QPixmap )
+		"""
+	
+		if os.path.exists(path):
+			for extension in UiConstants.nativeImageFormats.values():
+				if re.search(extension, path):
+					return QPixmap(path)
+			else:
+				for extension in UiConstants.thirdPartyImageFormats.values():
+					if re.search(extension, path):
+						image = Image(str(path))
+						return QPixmap(image.convertToQImage())
+				else:
+					return QPixmap(UiConstants.frameworkFormatErrorImage)
+		else:
+			return QPixmap(UiConstants.frameworkMissingImage)
+	
 @core.executionTrace
 def filterImagePath(path):
 		"""
