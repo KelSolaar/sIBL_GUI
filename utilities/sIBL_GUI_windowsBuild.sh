@@ -68,6 +68,8 @@ cp $SOURCE/resources/Small_Down_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/Small_Left_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/Small_Right_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/Small_Up_Arrow.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Thumbnail_Format_Not_Supported_Yet.png $DEPLOYMENT/resources
+cp $SOURCE/resources/Thumbnail_Not_Found.png $DEPLOYMENT/resources
 cp $SOURCE/resources/Tiny_Down_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/Tiny_Up_Arrow.png $DEPLOYMENT/resources
 cp $SOURCE/resources/TreeView_Branch_Closed.png $DEPLOYMENT/resources

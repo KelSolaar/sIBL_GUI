@@ -60,6 +60,8 @@ cp ../src/resources/Small_Down_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Left_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Right_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Small_Up_Arrow.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources//Thumbnail_Format_Not_Supported_Yet.png ../releases/Linux/sIBL_GUI/resources
+cp ../src/resources//Thumbnail_Not_Found.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Tiny_Down_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/Tiny_Up_Arrow.png ../releases/Linux/sIBL_GUI/resources
 cp ../src/resources/TreeView_Branch_Closed.png ../releases/Linux/sIBL_GUI/resources

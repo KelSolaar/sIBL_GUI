@@ -65,6 +65,8 @@ cp $SOURCE/resources/Small_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Re
 cp $SOURCE/resources/Small_Left_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Small_Right_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Small_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Thumbnail_Format_Not_Supported_Yet.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+cp $SOURCE/resources/Thumbnail_Not_Found.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Tiny_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/Tiny_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
 cp $SOURCE/resources/TreeView_Branch_Closed.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources

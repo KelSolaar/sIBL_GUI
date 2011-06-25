@@ -58,6 +58,7 @@
 import logging
 import os
 import platform
+import re
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -71,6 +72,7 @@ import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
 from globals.runtimeConstants import RuntimeConstants
+from libraries.freeImage.freeImage import Image
 
 #***********************************************************************************************
 #***	Overall Variables
@@ -80,6 +82,24 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class Icon(core.Structure):
+	"""
+	This Is The Icon Class.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This Method Initializes The Class.
+
+		@param kwargs: path ( Key / Value Pairs )
+		"""
+
+		core.Structure.__init__(self, **kwargs)
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update(kwargs)
+
 @core.executionTrace
 def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
@@ -178,6 +198,49 @@ def setWindowDefaultIcon(window):
 		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationDarwinIcon)))
 	elif platform.system() == "Linux":
 		pass
+
+@core.executionTrace
+def getIcon(path):
+		"""
+		This Method Returns A QIcon Setup Depending The Path Provided.
+		
+		@param path: Icon Image Path. ( String )
+		@return: QIcon. ( QIcon )
+		"""
+	
+		if os.path.exists(path):
+			for extension in UiConstants.nativeImageFormats.values():
+				if re.search(extension, path):
+					return QIcon(path)
+			else:
+				for extension in UiConstants.thirdPartyImageFormats.values():
+					if re.search(extension, path):
+						image = Image(str(path))
+						return QIcon(QPixmap(image.convertToQImage()))
+				else:
+					return QIcon(UiConstants.frameworkFormatErrorImage)
+		else:
+			return QIcon(UiConstants.frameworkMissingImage)
+
+@core.executionTrace
+def filterImagePath(path):
+		"""
+		This Method Filters The Image Path.
+		
+		@param path: Image Path. ( String )
+		@return: Path. ( String )
+		"""
+	
+		if os.path.exists(path):
+			for extension in UiConstants.nativeImageFormats.values():
+				if re.search(extension, path):
+					return path
+			else:
+				for extension in UiConstants.thirdPartyImageFormats.values():
+					if re.search(extension, path):
+						return UiConstants.frameworkFormatErrorImage
+		else:
+			return UiConstants.frameworkMissingImage
 
 #***********************************************************************************************
 #***	Python End

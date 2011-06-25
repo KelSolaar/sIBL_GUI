@@ -1386,24 +1386,7 @@ class DatabaseBrowser(UiComponent):
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
 				iblSetStandardItem.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
-				iblSetIcon = QIcon()
-				if os.path.exists(iblSet.icon):
-					for extension in UiConstants.nativeImageFormats.values():
-						if re.search(extension, iblSet.icon):
-							iblSetIcon = QIcon(iblSet.icon)
-							break
-					else:
-						for extension in UiConstants.thirdPartyImageFormats.values():
-							if re.search(extension, iblSet.icon):
-								image = Image(str(iblSet.icon))
-								iblSetIcon = QIcon(QPixmap(image.convertToQImage()))
-								break
-						else:
-							iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiFormatErrorImage))
-				else:
-					iblSetIcon = QIcon(os.path.join(self._uiResources, self._uiMissingImage))
-							
-				iblSetStandardItem.setIcon(iblSetIcon)
+				iblSetStandardItem.setIcon(ui.common.getIcon(iblSet.icon))
 
 				self._container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
 
@@ -1475,13 +1458,12 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
-		# self.ui.Database_Browser_listView.setAutoScroll( False )
-		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
+		# self.ui.Database_Browser_listView.setAutoScroll(False)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
 		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		# self.ui.Database_Browser_listView.setAcceptDrops( False )
+		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
 
-		self.Database_Browser_listView_setItemSize()
+		self.Database_Browser_listView_setItemsSize()
 
 		self.ui.Database_Browser_listView.setModel(self._model)
 
@@ -1491,17 +1473,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Refreshes The Database_Browser_listView View.
 		"""
 
-		self.Database_Browser_listView_setDefaultViewState()
-
-	@core.executionTrace
-	def Database_Browser_listView_setDefaultViewState(self):
-		"""
-		This Method Sets Database_Browser_listView Default View State.
-		"""
-
-		LOGGER.debug("> Setting '{0}' Default View State!".format("Database_Browser_listView"))
-
-		self.Database_Browser_listView_setItemSize()
+		self.Database_Browser_listView_setItemsSize()
 
 	@core.executionTrace
 	def Database_Browser_listView_storeModelSelection(self):
@@ -1541,11 +1513,9 @@ class DatabaseBrowser(UiComponent):
 					selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
 
 	@core.executionTrace
-	def Database_Browser_listView_setItemSize(self):
+	def Database_Browser_listView_setItemsSize(self):
 		"""
 		This Method Scales The Database_Browser_listView Item Size.
-		
-		@param value: Thumbnails Size. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self._listViewIconSize))
@@ -1648,7 +1618,7 @@ class DatabaseBrowser(UiComponent):
 
 		self._listViewIconSize = value
 
-		self.Database_Browser_listView_setItemSize()
+		self.Database_Browser_listView_setItemsSize()
 
 		# Storing Settings Key.
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("listViewIconSize", value))

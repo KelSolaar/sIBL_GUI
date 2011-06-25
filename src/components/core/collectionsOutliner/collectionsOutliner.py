@@ -1224,8 +1224,8 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
-		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Collections_Outliner_treeView.setIndentation(self._treeViewIndentation)
+		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Collections_Outliner_treeView.setSortingEnabled(True)
 
 		self.ui.Collections_Outliner_treeView.setModel(self._model)
