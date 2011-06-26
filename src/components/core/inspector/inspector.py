@@ -251,66 +251,6 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiFormatErrorImage(self):
-		"""
-		This Method Is The Property For The _uiFormatErrorImage Attribute.
-
-		@return: self._uiFormatErrorImage. ( String )
-		"""
-
-		return self._uiFormatErrorImage
-
-	@uiFormatErrorImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiFormatErrorImage(self, value):
-		"""
-		This Method Is The Setter Method For The _uiFormatErrorImage Attribute.
-
-		@param value: Attribute Value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiFormatErrorImage"))
-
-	@uiFormatErrorImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiFormatErrorImage(self):
-		"""
-		This Method Is The Deleter Method For The _uiFormatErrorImage Attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiFormatErrorImage"))
-
-	@property
-	def uiMissingImage(self):
-		"""
-		This Method Is The Property For The _uiMissingImage Attribute.
-
-		@return: self._uiMissingImage. ( String )
-		"""
-
-		return self._uiMissingImage
-
-	@uiMissingImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiMissingImage(self, value):
-		"""
-		This Method Is The Setter Method For The _uiMissingImage Attribute.
-
-		@param value: Attribute Value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiMissingImage"))
-
-	@uiMissingImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiMissingImage(self):
-		"""
-		This Method Is The Deleter Method For The _uiMissingImage Attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiMissingImage"))
-
-	@property
 	def uiPreviousImage(self):
 		"""
 		This Method Is The Property For The _uiPreviousImage Attribute.
@@ -1014,7 +954,7 @@ class Inspector(UiComponent):
 		"""
 		This Method Loops Through Database Browser Ibl Sets.
 		
-		@param direction: Loop Direction. ( String )
+		@param backward: Looping Direction. ( String )
 		"""
 		
 		if self._inspectorIblSet:
