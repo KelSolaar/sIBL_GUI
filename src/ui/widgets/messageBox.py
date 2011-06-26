@@ -64,7 +64,6 @@ from PyQt4.QtGui import *
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.core as core
-import foundations.exceptions
 from globals.constants import Constants
 
 #***********************************************************************************************
@@ -86,7 +85,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	@param buttons: Custom Buttons. ( QConstant )
 	@return: User Choice. ( Integer )
 	"""
-
+	
 	LOGGER.debug("> Launching sIBL_message().")
 	LOGGER.debug("> Message Type: '{0}'.".format(type))
 	LOGGER.debug("> Title: '{0}'.".format(title))
