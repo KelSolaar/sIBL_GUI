@@ -1340,11 +1340,11 @@ class CollectionsOutliner(UiComponent):
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
-
-		collection = self.addCollection()
+		
+		collectionInformations = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
+		collection = self.addCollection(collectionInformations[0])
 		if collection:
 			self.Collections_Outliner_treeView_refreshModel()
-			fileDialog = QFileDialog(self)
 			directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
 			if directory:
 				LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
@@ -1360,7 +1360,8 @@ class CollectionsOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		collection = self.addCollection()
+		collectionInformations = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
+		collection = self.addCollection(collectionInformations[0])
 		if collection:
 			self.Collections_Outliner_treeView_refreshModel()
 
@@ -1389,18 +1390,17 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def addCollection(self):
+	def addCollection(self, collection):
 		"""
 		This Method Adds A Collection To The Database.
 		
+		@param collection: Collection Name. ( String )
 		@return: Addition Success. ( Boolean )
 		"""
 
-		dialogMessage = "Enter Your Collection Name!"
-		collectionInformations = QInputDialog.getText(self, "Add Collection", dialogMessage)
-		if collectionInformations[0]:
-			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(collectionInformations[0]))
-			collectionInformations = str(collectionInformations[0]).split(",")
+		if collection:
+			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(collection))
+			collectionInformations = str(collection).split(",")
 			collection = collectionInformations[0].strip()
 			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
 			if not set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")):
@@ -1409,8 +1409,7 @@ class CollectionsOutliner(UiComponent):
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 		else:
-			if collectionInformations[1]: 
-				raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def addDefaultCollection(self):
