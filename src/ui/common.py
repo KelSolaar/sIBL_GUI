@@ -200,6 +200,36 @@ def setWindowDefaultIcon(window):
 		pass
 
 @core.executionTrace
+def getGraphicItem(path, type):
+		"""
+		This Method Gets A Graphic Display: QIcon, QImage, QPixmap.
+		
+		@param path: Image Path. ( String )
+		@param type: QIcon, QImage, QPixmap. ( QObject )
+		@return: Graphic Display. ( Icon, QImage, QPixmap )
+		"""
+	
+		if os.path.exists(path):
+			for extension in UiConstants.nativeImageFormats.values():
+				if re.search(extension, path):
+					return type(path)
+			else:
+				for extension in UiConstants.thirdPartyImageFormats.values():
+					if re.search(extension, path):
+						image = Image(str(path))
+						image = image.convertToQImage()
+						if type == QIcon:
+							return QIcon(QPixmap(image))
+						elif type == QImage:
+							return image
+						elif type == QPixmap:
+							return QPixmap(image)
+				else:
+					return type(UiConstants.frameworkFormatErrorImage)
+		else:
+			return type(UiConstants.frameworkMissingImage)
+	
+@core.executionTrace
 def getIcon(path):
 		"""
 		This Method Gets A QIcon.
@@ -207,20 +237,8 @@ def getIcon(path):
 		@param path: Icon Image Path. ( String )
 		@return: QIcon. ( QIcon )
 		"""
-	
-		if os.path.exists(path):
-			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
-					return QIcon(path)
-			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
-						image = Image(str(path))
-						return QIcon(QPixmap(image.convertToQImage()))
-				else:
-					return QIcon(UiConstants.frameworkFormatErrorImage)
-		else:
-			return QIcon(UiConstants.frameworkMissingImage)
+		
+		return getGraphicItem(path, QIcon)
 
 @core.executionTrace
 def getPixmap(path):
@@ -231,20 +249,19 @@ def getPixmap(path):
 		@return: QPixmap. ( QPixmap )
 		"""
 	
-		if os.path.exists(path):
-			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
-					return QPixmap(path)
-			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
-						image = Image(str(path))
-						return QPixmap(image.convertToQImage())
-				else:
-					return QPixmap(UiConstants.frameworkFormatErrorImage)
-		else:
-			return QPixmap(UiConstants.frameworkMissingImage)
-	
+		return getGraphicItem(path, QPixmap)
+
+@core.executionTrace
+def getImage(path):
+		"""
+		This Method Gets A QImage.
+		
+		@param path: Icon Image Path. ( String )
+		@return: QImage. ( QImage )
+		"""
+		
+		return getGraphicItem(path, QImage)
+
 @core.executionTrace
 def filterImagePath(path):
 		"""

@@ -70,8 +70,10 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import libraries.freeImage.freeImage as freeImage
 import ui.common
 import ui.widgets.messageBox as messageBox
+from foundations.parser import Parser
 from globals.constants import Constants
 from globals.uiConstants import UiConstants
 from libraries.freeImage.freeImage import Image
@@ -104,6 +106,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		# --- Setting Class Attributes. ---
 		self._image = image
+		self._width = image.width()
+		self._height = image.height()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -129,7 +133,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		if value:
 			assert type(value) is QImage, "'{0}' Attribute: '{1}' Type Is Not 'QImage'!".format("image", value)
-		self._imagePath = value
+		self._image = value
 
 	@image.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -139,6 +143,70 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("image"))
+
+	@property
+	def width(self):
+		"""
+		This Method Is The Property For The _width Attribute.
+
+		@return: self._width. ( Integer )
+		"""
+
+		return self._width
+
+	@width.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def width(self, value):
+		"""
+		This Method Is The Setter Method For The _width Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("width", value)
+		self._width = value
+
+	@width.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def width(self):
+		"""
+		This Method Is The Deleter Method For The _width Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("width"))
+
+	@property
+	def height(self):
+		"""
+		This Method Is The Property For The _height Attribute.
+
+		@return: self._height. ( Integer )
+		"""
+
+		return self._height
+
+	@height.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def height(self, value):
+		"""
+		This Method Is The Setter Method For The _height Attribute.
+		
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("height", value)
+		self._height = value
+
+	@height.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def height(self):
+		"""
+		This Method Is The Deleter Method For The _height Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("height"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -163,32 +231,35 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		painter.drawImage(-(self._image.width() / 2), -(self._image.height() / 2), self._image)
 
-class ImagePreviewer(object):
+class ImagesPreviewer(object):
 	"""
-	This Is The ImagePreviewer Class.
+	This Is The ImagesPreviewer Class.
 	"""
 
 	@core.executionTrace
-	def __init__(self, container, imagePath):
+	def __init__(self, container, paths=None):
 		"""
 		This Method Initializes The Class.
 		
 		@param container: Container. ( Object )
-		@param imagePath: Image Path. ( String )
+		@param paths: Images Paths. ( List )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
 		self._container = container
-		self._imagePath = imagePath
+		self._paths = None
+		self.paths = paths
 
 		self._uiPath = "ui/Image_Previewer.ui"
 		self._uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
 		self._uiResources = "resources"
 		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._uiZoomInImage = "Zoom_In.png"
+		self._uiPreviousImage = "Previous.png"
+		self._uiNextImage = "Next.png"
 		self._uiZoomOutImage = "Zoom_Out.png"
+		self._uiZoomInImage = "Zoom_In.png"
 
 		self._ui = uic.loadUi(self._uiPath)
 		if "." in sys.path:
@@ -198,19 +269,26 @@ class ImagePreviewer(object):
 		# Reimplementing Widget Close Event Method.
 		self._ui.closeEvent = self.closeUi
 
-		self._graphicsSceneBackgroundColors = (("Dark", QColor(32, 32, 32)), ("Average", QColor(128, 128, 128)), ("Bright", QColor(200, 200, 200)))
-		self._minimumZoomFactor = 0.125
+		self._graphicsSceneBackgroundColors = (("Dark", QColor(16, 16, 16)), ("Average", QColor(64, 64, 64)), ("Bright", QColor(128, 128, 128)))
+		self._minimumZoomFactor = 0.05
 		self._maximumZoomFactor = 25
 		self._graphicsSceneMargin = 128
+		self._displayGraphicsItemMargin = 32
 		self._graphicsSceneWidth = QApplication.desktop().width() * (1 / self._minimumZoomFactor * 1.75)
 		self._graphicsSceneHeight = QApplication.desktop().height() * (1 / self._minimumZoomFactor * 1.75)
 		self._wheelZoomFactor = 350.0
 		self._keyZoomFactor = 1.20
-
+		
+		self._graphicsView = None
+		self._graphicsScene = None
+		self._displayGraphicsItem = None
+		
 		self.initializeUi()
 
 		self._ui.show()
 
+		self.fitDisplayImage()
+	
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -245,37 +323,36 @@ class ImagePreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
-	def imagePath(self):
+	def paths(self):
 		"""
-		This Method Is The Property For The _imagePath Attribute.
+		This Method Is The Property For The _paths Attribute.
 
-		@return: self._imagePath. ( String )
+		@return: self._paths. ( List )
 		"""
 
-		return self._imagePath
+		return self._paths
 
-	@imagePath.setter
+	@paths.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def imagePath(self, value):
+	def paths(self, value):
 		"""
-		This Method Is The Setter Method For The _imagePath Attribute.
+		This Method Is The Setter Method For The _paths Attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute Value. ( List )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode, QString), "'{0}' Attribute: '{1}' Type Is Not 'str', 'unicode' or 'QString'!".format("imagePath", value)
-			assert os.path.exists(value), "'{0}' Attribute: '{1}' Image File Doesn't Exists!".format("imagePath", value)
-		self._imagePath = value
+			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("paths", value)
+		self._paths = value
 
-	@imagePath.deleter
+	@paths.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def imagePath(self):
+	def paths(self):
 		"""
-		This Method Is The Deleter Method For The _imagePath Attribute.
+		This Method Is The Deleter Method For The _paths Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("paths"))
 
 	@property
 	def uiPath(self):
@@ -338,34 +415,64 @@ class ImagePreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
 
 	@property
-	def uiZoomInImage(self):
+	def uiPreviousImage(self):
 		"""
-		This Method Is The Property For The _uiZoomInImage Attribute.
+		This Method Is The Property For The _uiPreviousImage Attribute.
 
-		@return: self._uiZoomInImage. ( String )
+		@return: self._uiPreviousImage. ( String )
 		"""
 
-		return self._uiZoomInImage
+		return self._uiPreviousImage
 
-	@uiZoomInImage.setter
+	@uiPreviousImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomInImage(self, value):
+	def uiPreviousImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiZoomInImage Attribute.
+		This Method Is The Setter Method For The _uiPreviousImage Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPreviousImage"))
 
-	@uiZoomInImage.deleter
+	@uiPreviousImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiZoomInImage(self):
+	def uiPreviousImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiZoomInImage Attribute.
+		This Method Is The Deleter Method For The _uiPreviousImage Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPreviousImage"))
+
+	@property
+	def uiNextImage(self):
+		"""
+		This Method Is The Property For The _uiNextImage Attribute.
+
+		@return: self._uiNextImage. ( String )
+		"""
+
+		return self._uiNextImage
+
+	@uiNextImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextImage(self, value):
+		"""
+		This Method Is The Setter Method For The _uiNextImage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiNextImage"))
+
+	@uiNextImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiNextImage(self):
+		"""
+		This Method Is The Deleter Method For The _uiNextImage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextImage"))
 
 	@property
 	def uiZoomOutImage(self):
@@ -396,6 +503,36 @@ class ImagePreviewer(object):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomOutImage"))
+
+	@property
+	def uiZoomInImage(self):
+		"""
+		This Method Is The Property For The _uiZoomInImage Attribute.
+
+		@return: self._uiZoomInImage. ( String )
+		"""
+
+		return self._uiZoomInImage
+
+	@uiZoomInImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomInImage(self, value):
+		"""
+		This Method Is The Setter Method For The _uiZoomInImage Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiZoomInImage"))
+
+	@uiZoomInImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiZoomInImage(self):
+		"""
+		This Method Is The Deleter Method For The _uiZoomInImage Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiZoomInImage"))
 
 	@property
 	def ui(self):
@@ -667,6 +804,96 @@ class ImagePreviewer(object):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("keyZoomFactor"))
 
+	@property
+	def graphicsView(self):
+		"""
+		This Method Is The Property For The _graphicsView Attribute.
+
+		@return: self._graphicsView. ( QGraphicsView )
+		"""
+
+		return self._graphicsView
+
+	@graphicsView.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def graphicsView(self, value):
+		"""
+		This Method Is The Setter Method For The _graphicsView Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsView )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsView"))
+
+	@graphicsView.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def graphicsView(self):
+		"""
+		This Method Is The Deleter Method For The _graphicsView Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsView"))
+
+	@property
+	def graphicsScene(self):
+		"""
+		This Method Is The Property For The _graphicsScene Attribute.
+
+		@return: self._graphicsScene. ( QGraphicsScene )
+		"""
+
+		return self._graphicsScene
+
+	@graphicsScene.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def graphicsScene(self, value):
+		"""
+		This Method Is The Setter Method For The _graphicsScene Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsScene )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsScene"))
+
+	@graphicsScene.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def graphicsScene(self):
+		"""
+		This Method Is The Deleter Method For The _graphicsScene Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsScene"))
+
+	@property
+	def displayGraphicsItem(self):
+		"""
+		This Method Is The Property For The _displayGraphicsItem Attribute.
+
+		@return: self._displayGraphicsItem. ( QGraphicsItem )
+		"""
+
+		return self._displayGraphicsItem
+
+	@displayGraphicsItem.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def displayGraphicsItem(self, value):
+		"""
+		This Method Is The Setter Method For The _displayGraphicsItem Attribute.
+		
+		@param value: Attribute Value. ( QGraphicsItem )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("displayGraphicsItem"))
+
+	@displayGraphicsItem.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def displayGraphicsItem(self):
+		"""
+		This Method Is The Deleter Method For The _displayGraphicsItem Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displayGraphicsItem"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -678,60 +905,44 @@ class ImagePreviewer(object):
 
 		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
 
+		self.ui.Previous_Image_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
+		self.ui.Next_Image_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		self._ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInImage)))
 		self._ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutImage)))
+		if len(self._paths) <= 1:
+			self.ui.Previous_Image_pushButton.hide()
+			self.ui.Next_Image_pushButton.hide()
 
 		self._ui.Background_Colors_comboBox.addItems([color[0] for color in self._graphicsSceneBackgroundColors])
 
-		for extension in UiConstants.nativeImageFormats.values():
-			if re.search(extension, self._imagePath):
-				LOGGER.debug("> Loading Native Format '{0}' Image.".format(self._imagePath))
-				image = QImage(self._imagePath)
-				bpp = image.depth()
-				break
-		else:
-			for extension in UiConstants.thirdPartyImageFormats.values():
-				if re.search(extension, self._imagePath):
-					LOGGER.debug("> Loading Third Party Format '{0}' Image.".format(self._imagePath))
-					image = Image(str(self._imagePath))
-					image = image.convertToQImage()
-					bpp = image._datas.bpp
-					break
-
-		self._ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(self._imagePath), image.width(), image.height(), bpp))
-
 		LOGGER.debug("> Initializing Graphics View.")
-		graphicsView = QGraphicsView()
-		graphicsView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-		graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-		graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
-		graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
+		self._graphicsView = QGraphicsView()
+		self._graphicsView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self._graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self._graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
+		self._graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
 		# Reimplementing QGraphics View wheelEvent Method.
-		graphicsView.wheelEvent = self.wheelEvent
+		self._graphicsView.wheelEvent = self.wheelEvent
 
 		LOGGER.debug("> Initializing Graphics Scene.")
-		graphicsScene = QGraphicsScene(graphicsView)
-		graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
-		graphicsScene.setSceneRect(-(float(self._graphicsSceneWidth)) / 2, -(float(self._graphicsSceneHeight)) / 2, float(self._graphicsSceneWidth), float(self._graphicsSceneHeight))
+		self._graphicsScene = QGraphicsScene(self._graphicsView)
+		self._graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
+		self._graphicsScene.setSceneRect(-(float(self._graphicsSceneWidth)) / 2, -(float(self._graphicsSceneHeight)) / 2, float(self._graphicsSceneWidth), float(self._graphicsSceneHeight))
 
-		graphicsView.setScene(graphicsScene)
+		self._graphicsView.setScene(self._graphicsScene)
+		self._graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColors[0][1]))
 
-		graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColors[0][1]))
-
-		LOGGER.debug("> Initializing Graphics Item.")
-		graphicsItem = Image_QGraphicsItem(image)
-		graphicsScene.addItem(graphicsItem)
-
-		self._ui.Image_Previewer_frame_gridLayout.addWidget(graphicsView)
-
-		width = image.width() > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._graphicsSceneMargin or image.width() + self._graphicsSceneMargin
-		height = image.height() > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._graphicsSceneMargin or image.height() + self._graphicsSceneMargin
-
-		self._ui.resize(width, height)
+		self.setDisplayImage()
+		self.resizePreviewer()
+		
+		self._ui.Image_Previewer_frame_gridLayout.addWidget(self._graphicsView)
 
 		# Signals / Slots.
-		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
+		self.ui.Previous_Image_pushButton.clicked.connect(self.Previous_Image_pushButton_OnClicked)
+		self.ui.Next_Image_pushButton.clicked.connect(self.Next_Image_pushButton_OnClicked)
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.Zoom_Out_pushButton_OnClicked)
+		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
+		self.ui.Zoom_Fit_pushButton.clicked.connect(self.Zoom_Fit_pushButton_OnClicked)
 		self.ui.Background_Colors_comboBox.activated.connect(self.Background_Colors_comboBox_OnActivated)
 
 	@core.executionTrace
@@ -745,8 +956,85 @@ class ImagePreviewer(object):
 		event.accept()
 
 		LOGGER.debug("> Removing '{0}' From Image Previewers List.".format(self))
-		self._container.imagePreviewers.remove(self)
+		self._container.imagesPreviewers.remove(self)
 
+	@core.executionTrace
+	def resizePreviewer(self):
+		"""
+		This Method Fits The Previewer Window.
+		"""
+
+		if self._displayGraphicsItem:
+			width = self._displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._graphicsSceneMargin or self._displayGraphicsItem.width + self._graphicsSceneMargin
+			height = self._displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._graphicsSceneMargin or self._displayGraphicsItem.height + self._graphicsSceneMargin
+	
+			self._ui.resize(width, height)
+
+	@core.executionTrace
+	def setDisplayImage(self, index=0):
+		"""
+		This Method Sets The Display Image.
+		
+		@param index: Index To Display. ( Integer )
+		"""
+		
+		if self._paths:
+			path = self._paths[index]
+			image = ui.common.getImage(path)
+			if not hasattr(image, "_datas"):
+				image._datas = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
+				
+			LOGGER.debug("> Initializing Graphics Item.")
+			self._displayGraphicsItem = Image_QGraphicsItem(image)
+			self._graphicsScene.addItem(self._displayGraphicsItem)
+		
+			self._ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
+	
+	@core.executionTrace
+	def fitDisplayImage(self):
+		"""
+		This Method Fits The Display Image.
+		"""	
+		
+		if self._displayGraphicsItem:
+			self._graphicsView.fitInView(QRectF(-(self._displayGraphicsItem.width / 2) - (self._displayGraphicsItemMargin / 2), -(self._displayGraphicsItem.height / 2) - (self._displayGraphicsItemMargin / 2), self._displayGraphicsItem.width + self._displayGraphicsItemMargin, self._displayGraphicsItem.height + self._displayGraphicsItemMargin), Qt.KeepAspectRatio)
+
+	@core.executionTrace
+	def loopThroughImages(self, backward=False):
+		"""
+		This Method Loops Through Previewer Images.
+		
+		@param backward: Looping Direction. ( String )
+		"""
+		index = self._paths.index(self._displayGraphicsItem.image._datas.path)
+		index += not backward and 1 or -1
+		if index < 0:
+			index = len(self._paths) - 1
+		elif index > len(self._paths) - 1:
+			index = 0
+		self.setDisplayImage(index)
+		self.fitDisplayImage()
+
+	@core.executionTrace
+	def Previous_Image_pushButton_OnClicked(self, checked):
+		"""
+		This Method Is Triggered When Previous_Image_pushButton Is Clicked.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.loopThroughImages(True)
+
+	@core.executionTrace
+	def Next_Image_pushButton_OnClicked(self, checked):
+		"""
+		This Method Is Triggered When Next_Image_pushButton Is Clicked.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.loopThroughImages()
+	
 	@core.executionTrace
 	def Zoom_In_pushButton_OnClicked(self, checked):
 		"""
@@ -766,6 +1054,16 @@ class ImagePreviewer(object):
 		"""
 
 		self.scaleView(1 / self._keyZoomFactor)
+
+	@core.executionTrace
+	def Zoom_Fit_pushButton_OnClicked(self, checked):
+		"""
+		This Method Is Triggered When Zoom_Fit_pushButton Is Clicked.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.fitDisplayImage()
 
 	@core.executionTrace
 	def Background_Colors_comboBox_OnActivated(self, index):
@@ -851,8 +1149,8 @@ class Preview(UiComponent):
 		self._coreDatabaseBrowser = None
 		self._coreInspector = None
 
-		self._imagePreviewers = None
-		self._maximumImagePreviewersInstances = 5
+		self._imagesPreviewers = None
+		self._maximumImagesPreviewersInstances = 5
 
 		self._viewLightingImageAction = None
 		self._viewReflectionImageAction = None
@@ -1106,64 +1404,64 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreInspector"))
 
 	@property
-	def imagePreviewers(self):
+	def imagesPreviewers(self):
 		"""
-		This Method Is The Property For The _imagePreviewers Attribute.
+		This Method Is The Property For The _imagesPreviewers Attribute.
 
-		@return: self._imagePreviewers. ( List )
+		@return: self._imagesPreviewers. ( List )
 		"""
 
-		return self._imagePreviewers
+		return self._imagesPreviewers
 
-	@imagePreviewers.setter
+	@imagesPreviewers.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def imagePreviewers(self, value):
+	def imagesPreviewers(self, value):
 		"""
-		This Method Is The Setter Method For The _imagePreviewers Attribute.
+		This Method Is The Setter Method For The _imagesPreviewers Attribute.
 
 		@param value: Attribute Value. ( List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("imagePreviewers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("imagesPreviewers"))
 
-	@imagePreviewers.deleter
+	@imagesPreviewers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def imagePreviewers(self):
+	def imagesPreviewers(self):
 		"""
-		This Method Is The Deleter Method For The _imagePreviewers Attribute.
+		This Method Is The Deleter Method For The _imagesPreviewers Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePreviewers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagesPreviewers"))
 
 	@property
-	def maximumImagePreviewersInstances(self):
+	def maximumImagesPreviewersInstances(self):
 		"""
-		This Method Is The Property For The _maximumImagePreviewersInstances Attribute.
+		This Method Is The Property For The _maximumImagesPreviewersInstances Attribute.
 
-		@return: self._maximumImagePreviewersInstances. ( Integer )
+		@return: self._maximumImagesPreviewersInstances. ( Integer )
 		"""
 
-		return self._maximumImagePreviewersInstances
+		return self._maximumImagesPreviewersInstances
 
-	@maximumImagePreviewersInstances.setter
+	@maximumImagesPreviewersInstances.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def maximumImagePreviewersInstances(self, value):
+	def maximumImagesPreviewersInstances(self, value):
 		"""
-		This Method Is The Setter Method For The _maximumImagePreviewersInstances Attribute.
+		This Method Is The Setter Method For The _maximumImagesPreviewersInstances Attribute.
 
 		@param value: Attribute Value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("maximumImagePreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("maximumImagesPreviewersInstances"))
 
-	@maximumImagePreviewersInstances.deleter
+	@maximumImagesPreviewersInstances.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def maximumImagePreviewersInstances(self):
+	def maximumImagesPreviewersInstances(self):
 		"""
-		This Method Is The Deleter Method For The _maximumImagePreviewersInstances Attribute.
+		This Method Is The Deleter Method For The _maximumImagesPreviewersInstances Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("maximumImagePreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("maximumImagesPreviewersInstances"))
 
 	@property
 	def viewBackgroundImageAction(self):
@@ -1308,7 +1606,7 @@ class Preview(UiComponent):
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
 		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
 
-		self._imagePreviewers = []
+		self._imagesPreviewers = []
 
 		self._activate()
 
@@ -1330,8 +1628,8 @@ class Preview(UiComponent):
 		self._coreDatabaseBrowser = None
 		self._coreInspector = None
 
-		for imagePreviewer in self._imagePreviewers[:]:
-			imagePreviewer.ui.close()
+		for imagesPreviewer in self._imagesPreviewers[:]:
+			imagesPreviewer.ui.close()
 
 		self._deactivate()
 
@@ -1412,6 +1710,10 @@ class Preview(UiComponent):
 		self._viewReflectionImageAction.triggered.connect(self.Database_Browser_listView_viewReflectionImageAction)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewReflectionImageAction)
 
+		self._viewPlatesAction = QAction("View Plates ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
+		self._viewPlatesAction.triggered.connect(self.Database_Browser_listView_viewPlatesAction)
+		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewPlatesAction)
+
 	@core.executionTrace
 	def removeActions_(self):
 		"""
@@ -1438,7 +1740,7 @@ class Preview(UiComponent):
 		for key, value in self._inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self._coreInspector.ui.Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
-			value["object"].clicked.connect(functools.partial(self.showImagePreview, key))
+			value["object"].clicked.connect(functools.partial(self.showImagesPreview, key))
 
 	def removeInspectorButtons(self):
 		"""
@@ -1456,7 +1758,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showImagePreview("Background")
+		self.showImagesPreview("Background")
 
 	@core.executionTrace
 	def Database_Browser_listView_viewLightingImageAction(self, checked):
@@ -1466,7 +1768,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showImagePreview("Lighting")
+		self.showImagesPreview("Lighting")
 
 	@core.executionTrace
 	def Database_Browser_listView_viewReflectionImageAction(self, checked):
@@ -1476,7 +1778,17 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showImagePreview("Reflection")
+		self.showImagesPreview("Reflection")
+
+	@core.executionTrace
+	def Database_Browser_listView_viewPlatesAction(self, checked):
+		"""
+		This Method Is Triggered By viewPlatesAction.
+
+		@param checked: Action Checked State. ( Boolean )
+		"""
+		
+		self.showImagesPreview("Plates")
 
 	@core.executionTrace
 	def Custom_Previewer_Path_lineEdit_setUi(self):
@@ -1518,77 +1830,87 @@ class Preview(UiComponent):
 			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	def showImagePreview(self, imageType, *args):
+	def showImagesPreview(self, imageType, *args):
 		"""
-		This Method Launches An Image Preview.
+		This Method Launches An Images Previewer.
 		
 		@param imageType: Image Type. ( String )
 		@param *args: Arguments. ( * )
 		"""
 		
 		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
-
+		
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
+			imagePaths = []
 			if imageType == "Background":
-				imagePath = getattr(iblSet._datas, "backgroundImage")
+				imagePaths.append(getattr(iblSet._datas, "backgroundImage"))
 			elif imageType == "Lighting":
-				imagePath = getattr(iblSet._datas, "lightingImage")
+				imagePaths.append(getattr(iblSet._datas, "lightingImage"))
 			elif imageType == "Reflection":
-				imagePath = getattr(iblSet._datas, "reflectionImage")
-			if imagePath:
-				if os.path.exists(imagePath):
-					if customPreviewer:
-						previewCommand = None
-						imagePath = os.path.normpath(imagePath)
-						if platform.system() == "Windows" or platform.system() == "Microsoft":
-								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
-								previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, imagePath)
-						elif platform.system() == "Darwin":
-								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
-								previewCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, imagePath)
-						elif platform.system() == "Linux":
-								LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePath))
-								previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, imagePath)
-						if previewCommand:
-							LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
-							editProcess = QProcess()
-							editProcess.startDetached(previewCommand)
-					else:
-						if not len(self._imagePreviewers) >= self._maximumImagePreviewersInstances:
-							self.launchImagePreviewer(imagePath)
-						else:
-							messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self._maximumImagePreviewersInstances))
-							break
+				imagePaths.append(getattr(iblSet._datas, "reflectionImage"))
+			elif imageType == "Plates":
+				if os.path.exists(iblSet._datas.path):
+					LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(iblSet))
+					parser = Parser(iblSet._datas.path)
+					parser.read() and parser.parse()
+					for section in parser.sections:
+						if re.search("Plate[0-9]+", section):
+							imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet._datas.path), parser.getValue("PLATEfile", section))))
+			
+			for path in imagePaths[:]:
+				if not os.path.exists(path):
+					imagePaths.remove(path) and messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, path))
+			
+			if imagePaths:
+				if customPreviewer:
+					previewCommand = None
+					imagePaths = [os.path.normpath(path) for path in imagePaths]
+					if platform.system() == "Windows" or platform.system() == "Microsoft":
+							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
+							previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
+					elif platform.system() == "Darwin":
+							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
+							previewCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
+					elif platform.system() == "Linux":
+							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
+							previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
+					if previewCommand:
+						LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
+						editProcess = QProcess()
+						editProcess.startDetached(previewCommand)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, imagePath))
+					if not len(self._imagesPreviewers) >= self._maximumImagesPreviewersInstances:
+						self.launchImagesPreviewer(imagePaths)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self._maximumImagesPreviewersInstances))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped!".format(self.__class__.__name__, iblSet._datas.title, imageType))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image(s) Type And Will Be Skipped!".format(self.__class__.__name__, iblSet._datas.title, imageType))
 
 	@core.executionTrace
-	def launchImagePreviewer(self, imagePath):
+	def launchImagesPreviewer(self, paths):
 		"""
-		This Method Launches An Image Previewer.
+		This Method Launches An Images Previewer.
 		
-		@param imagePath: Image Path. ( String )
+		@param paths: Images Paths. ( List )
 		"""
 
-		LOGGER.debug("> Launching Image Previewer For '{0}' Image.".format(imagePath))
+		LOGGER.debug("> Launching Images Previewer For '{0}' Image.".format(paths))
 
-		imagePreviewer = ImagePreviewer(self, imagePath)
-		self._imagePreviewers.append(imagePreviewer)
+		imagesPreviewer = ImagesPreviewer(self, paths)
+		self._imagesPreviewers.append(imagesPreviewer)
 
 	@core.executionTrace
-	def removeImagePreviewer(self, imagePreviewer):
+	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
-		This Method Removes An Image Previewer.
+		This Method Removes An Images Previewer.
 		
-		@param imagePreviewer: Image Previewer. ( ImagePreviewer )
+		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		"""
 
-		LOGGER.debug("> Removing '{0}' Image Previewer.".format(imagePreviewer))
+		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
 
-		self._imagePreviewers.remove(imagePreviewer)
+		self._imagesPreviewers.remove(imagesPreviewer)
 
 #***********************************************************************************************
 #***	Python End
