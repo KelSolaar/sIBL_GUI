@@ -269,10 +269,10 @@ class ImagesPreviewer(object):
 		# Reimplementing Widget Close Event Method.
 		self._ui.closeEvent = self.closeUi
 
-		self._graphicsSceneBackgroundColors = (("Dark", QColor(16, 16, 16)), ("Average", QColor(64, 64, 64)), ("Bright", QColor(128, 128, 128)))
+		self._graphicsSceneBackgroundColor = QColor(48, 48, 48)
 		self._minimumZoomFactor = 0.05
 		self._maximumZoomFactor = 25
-		self._graphicsSceneMargin = 128
+		self._previewerMargin = 128
 		self._displayGraphicsItemMargin = 32
 		self._graphicsSceneWidth = QApplication.desktop().width() * (1 / self._minimumZoomFactor * 1.75)
 		self._graphicsSceneHeight = QApplication.desktop().height() * (1 / self._minimumZoomFactor * 1.75)
@@ -284,11 +284,11 @@ class ImagesPreviewer(object):
 		self._displayGraphicsItem = None
 		
 		self.initializeUi()
-
+		
 		self._ui.show()
 
-		self.fitDisplayImage()
-	
+		self.fitImage()
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -565,64 +565,64 @@ class ImagesPreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	@property
-	def graphicsSceneBackgroundColors(self):
+	def graphicsSceneBackgroundColor(self):
 		"""
-		This Method Is The Property For The _graphicsSceneBackgroundColors Attribute.
+		This Method Is The Property For The _graphicsSceneBackgroundColor Attribute.
 
-		@return: self._graphicsSceneBackgroundColors. ( QColors )
+		@return: self._graphicsSceneBackgroundColor. ( QColors )
 		"""
 
-		return self._graphicsSceneBackgroundColors
+		return self._graphicsSceneBackgroundColor
 
-	@graphicsSceneBackgroundColors.setter
+	@graphicsSceneBackgroundColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def graphicsSceneBackgroundColors(self, value):
+	def graphicsSceneBackgroundColor(self, value):
 		"""
-		This Method Is The Setter Method For The _graphicsSceneBackgroundColors Attribute.
+		This Method Is The Setter Method For The _graphicsSceneBackgroundColor Attribute.
 		
 		@param value: Attribute Value. ( QColors )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneBackgroundColors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneBackgroundColor"))
 
-	@graphicsSceneBackgroundColors.deleter
+	@graphicsSceneBackgroundColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def graphicsSceneBackgroundColors(self):
+	def graphicsSceneBackgroundColor(self):
 		"""
-		This Method Is The Deleter Method For The _graphicsSceneBackgroundColors Attribute.
+		This Method Is The Deleter Method For The _graphicsSceneBackgroundColor Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneBackgroundColors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneBackgroundColor"))
 
 	@property
-	def graphicsSceneMargin(self):
+	def previewerMargin(self):
 		"""
-		This Method Is The Property For The _graphicsSceneMargin Attribute.
+		This Method Is The Property For The _previewerMargin Attribute.
 
-		@return: self._graphicsSceneMargin. ( Integer )
+		@return: self._previewerMargin. ( Integer )
 		"""
 
-		return self._graphicsSceneMargin
+		return self._previewerMargin
 
-	@graphicsSceneMargin.setter
+	@previewerMargin.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def graphicsSceneMargin(self, value):
+	def previewerMargin(self, value):
 		"""
-		This Method Is The Setter Method For The _graphicsSceneMargin Attribute.
+		This Method Is The Setter Method For The _previewerMargin Attribute.
 		
 		@param value: Attribute Value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("graphicsSceneMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("previewerMargin"))
 
-	@graphicsSceneMargin.deleter
+	@previewerMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def graphicsSceneMargin(self):
+	def previewerMargin(self):
 		"""
-		This Method Is The Deleter Method For The _graphicsSceneMargin Attribute.
+		This Method Is The Deleter Method For The _previewerMargin Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("graphicsSceneMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previewerMargin"))
 
 	@property
 	def graphicsSceneWidth(self):
@@ -909,11 +909,7 @@ class ImagesPreviewer(object):
 		self.ui.Next_Image_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		self._ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInImage)))
 		self._ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutImage)))
-		if len(self._paths) <= 1:
-			self.ui.Previous_Image_pushButton.hide()
-			self.ui.Next_Image_pushButton.hide()
-
-		self._ui.Background_Colors_comboBox.addItems([color[0] for color in self._graphicsSceneBackgroundColors])
+		len(self._paths) <= 1 and self.ui.Navigation_groupBox.hide()
 
 		LOGGER.debug("> Initializing Graphics View.")
 		self._graphicsView = QGraphicsView()
@@ -930,11 +926,11 @@ class ImagesPreviewer(object):
 		self._graphicsScene.setSceneRect(-(float(self._graphicsSceneWidth)) / 2, -(float(self._graphicsSceneHeight)) / 2, float(self._graphicsSceneWidth), float(self._graphicsSceneHeight))
 
 		self._graphicsView.setScene(self._graphicsScene)
-		self._graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColors[0][1]))
+		self._graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColor))
 
-		self.setDisplayImage()
+		self.setImage()
 		self.resizePreviewer()
-		
+
 		self._ui.Image_Previewer_frame_gridLayout.addWidget(self._graphicsView)
 
 		# Signals / Slots.
@@ -943,7 +939,6 @@ class ImagesPreviewer(object):
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.Zoom_Out_pushButton_OnClicked)
 		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
 		self.ui.Zoom_Fit_pushButton.clicked.connect(self.Zoom_Fit_pushButton_OnClicked)
-		self.ui.Background_Colors_comboBox.activated.connect(self.Background_Colors_comboBox_OnActivated)
 
 	@core.executionTrace
 	def closeUi(self, event):
@@ -965,13 +960,13 @@ class ImagesPreviewer(object):
 		"""
 
 		if self._displayGraphicsItem:
-			width = self._displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._graphicsSceneMargin or self._displayGraphicsItem.width + self._graphicsSceneMargin
-			height = self._displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._graphicsSceneMargin or self._displayGraphicsItem.height + self._graphicsSceneMargin
+			width = self._displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._previewerMargin or self._displayGraphicsItem.width + self._previewerMargin
+			height = self._displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._previewerMargin or self._displayGraphicsItem.height + self._previewerMargin
 	
 			self._ui.resize(width, height)
 
 	@core.executionTrace
-	def setDisplayImage(self, index=0):
+	def setImage(self, index=0):
 		"""
 		This Method Sets The Display Image.
 		
@@ -991,7 +986,7 @@ class ImagesPreviewer(object):
 			self._ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
 	
 	@core.executionTrace
-	def fitDisplayImage(self):
+	def fitImage(self):
 		"""
 		This Method Fits The Display Image.
 		"""	
@@ -1012,8 +1007,8 @@ class ImagesPreviewer(object):
 			index = len(self._paths) - 1
 		elif index > len(self._paths) - 1:
 			index = 0
-		self.setDisplayImage(index)
-		self.fitDisplayImage()
+		self.setImage(index)
+		self.fitImage()
 
 	@core.executionTrace
 	def Previous_Image_pushButton_OnClicked(self, checked):
@@ -1063,18 +1058,7 @@ class ImagesPreviewer(object):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.fitDisplayImage()
-
-	@core.executionTrace
-	def Background_Colors_comboBox_OnActivated(self, index):
-		"""
-		This Method Is Triggered When Background_Colors_comboBox Index Changes.
-		
-		@param index: ComboBox Activated Item Index. ( Integer )
-		"""
-
-		graphicsView = self._ui.findChild(QGraphicsView)
-		graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColors[index][1]))
+		self.fitImage()
 
 	@core.executionTrace
 	def scaleView(self, scaleFactor):
@@ -1158,7 +1142,8 @@ class Preview(UiComponent):
 		
 		self._inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1,"column" : 3},
 									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1,"column" : 4},
-									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1,"column" : 5}}
+									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1,"column" : 5},
+									"Plates" : {"object" : None, "text": "View Plates", "row" : 1,"column" : 6}}
 
 	#***************************************************************************************
 	#***	Attributes Properties
