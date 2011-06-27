@@ -705,6 +705,8 @@ class Inspector(UiComponent):
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
+		self.ui.Previous_Plate_pushButton.clicked.connect(self.Previous_Plate_pushButton_OnClicked)
+		self.ui.Next_Plate_pushButton.clicked.connect(self.Next_Plate_pushButton_OnClicked)
 		self.ui.Image_label.linkActivated.connect(self.Image_label_OnLinkActivated)
 
 	@core.executionTrace
@@ -903,6 +905,26 @@ class Inspector(UiComponent):
 		"""
 		
 		self.loopThroughIblSets()
+		
+	@core.executionTrace
+	def Previous_Plate_pushButton_OnClicked(self, checked):
+		"""
+		This Method Is Triggered When Previous_Plate_pushButton Is Clicked.
+		
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.loopThroughPlates(True)
+
+	@core.executionTrace
+	def Next_Plate_pushButton_OnClicked(self, checked):
+		"""
+		This Method Is Triggered When Next_Plate_pushButton Is Clicked.
+		
+		@param checked: Checked State. ( Boolean )
+		"""
+		
+		self.loopThroughPlates()
 
 	@core.executionTrace
 	def Image_label_OnLinkActivated(self, url):
@@ -974,7 +996,32 @@ class Inspector(UiComponent):
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.Inspector_DockWidget_clearUi()
-			
+	
+	
+	@core.executionTrace
+	def loopThroughPlates(self, backward=False):
+		"""
+		This Method Loops Through Inspector Plates.
+		
+		@param backward: Looping Direction. ( String )
+		"""
+		
+		index =  self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None
+		if index:
+			step = not backward and 1 or -1
+			idx = index.row() + step
+			if idx < 0:
+				idx = self._model.rowCount()-1
+			elif idx > self._model.rowCount()-1:
+				idx = 0
+		
+			selectionModel = self.ui.Plates_listView.selectionModel()
+			if selectionModel:
+				selectionModel.clear()
+				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
+		else:
+			self.ui.Plates_listView.setCurrentIndex(self._model.index(0, 0))
+
 #***********************************************************************************************
 #***	Python End
 #***********************************************************************************************
