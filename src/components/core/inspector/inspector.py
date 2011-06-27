@@ -138,6 +138,7 @@ class Inspector(UiComponent):
 		self._model = None
 		
 		self._inspectorIblSet = None
+		self._inspectorIblSetParser = None
 		self._inspectorPlates = None
 	
 		self._noPreviewImageText = """
@@ -492,6 +493,36 @@ class Inspector(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
+
+	@property
+	def inspectorIblSetParser(self):
+		"""
+		This Method Is The Property For The _inspectorIblSetParser Attribute.
+
+		@return: self._inspectorIblSetParser. ( Parser )
+		"""
+
+		return self._inspectorIblSetParser
+
+	@inspectorIblSetParser.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSetParser(self, value):
+		"""
+		This Method Is The Setter Method For The _inspectorIblSetParser Attribute.
+
+		@param value: Attribute Value. ( Parser )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetParser"))
+
+	@inspectorIblSetParser.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectorIblSetParser(self):
+		"""
+		This Method Is The Deleter Method For The _inspectorIblSetParser Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetParser"))
 
 	@property
 	def inspectorPlates(self):
@@ -947,6 +978,18 @@ class Inspector(UiComponent):
 		if not self._inspectorIblSet:
 			model = self._coreDatabaseBrowser.model
 			self._inspectorIblSet = model.rowCount() !=0 and model.item(0) or None
+		self._inspectorIblSet and self.setInspectorIblSetParser()
+
+	@core.executionTrace
+	def setInspectorIblSetParser(self):
+		"""
+		This Method Sets The Inspected Ibl Set Parser.
+		"""
+
+		if os.path.exists(self._inspectorIblSet._datas.path):
+			LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
+			self._inspectorIblSetParser = Parser(self._inspectorIblSet._datas.path)
+			self._inspectorIblSetParser.read() and self._inspectorIblSetParser.parse()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -957,17 +1000,13 @@ class Inspector(UiComponent):
 		
 		if self._inspectorIblSet:
 			if os.path.exists(self._inspectorIblSet._datas.path):
-				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
-				parser = Parser(self._inspectorIblSet._datas.path)
-				parser.read() and parser.parse()
-				
 				self._inspectorPlates = OrderedDict()
-				for section in parser.sections:
+				for section in self._inspectorIblSetParser.sections:
 					if re.search("Plate[0-9]+", section):
-						self._inspectorPlates[section] = Plate(name=os.path.splitext(parser.getValue("PLATEfile", section))[0],
-																icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEthumb", section))),
-																previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEpreview", section))),
-																image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), parser.getValue("PLATEfile", section))))
+						self._inspectorPlates[section] = Plate(name=os.path.splitext(self._inspectorIblSetParser.getValue("PLATEfile", section))[0],
+																icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEthumb", section))),
+																previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEpreview", section))),
+																image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
 				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
 
@@ -996,7 +1035,6 @@ class Inspector(UiComponent):
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.Inspector_DockWidget_clearUi()
-	
 	
 	@core.executionTrace
 	def loopThroughPlates(self, backward=False):
