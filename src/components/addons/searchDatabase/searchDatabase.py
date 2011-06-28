@@ -796,7 +796,7 @@ class SearchDatabase(UiComponent):
 
 		previousDisplaySets = self.__coreDatabaseBrowser.displaySets
 
-		iblSets = self.__coreCollectionsOutliner.getCollectionsSets()
+		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets()
 
 		timeLow = self.ui.Time_Low_timeEdit.time()
 		timeHigh = self.ui.Time_High_timeEdit.time()
@@ -809,7 +809,7 @@ class SearchDatabase(UiComponent):
 				timeTokens = iblSet.time.split(":")
 				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
-		displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(filteredSets)]
+		displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(filteredSets)]
 
 		LOGGER.debug("> Time Range Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
@@ -838,7 +838,7 @@ class SearchDatabase(UiComponent):
 			patternTokens = patternTokens and patternTokens or (".*",)
 			filteredSets = []
 			allTags = []
-			for iblSet in self.__coreCollectionsOutliner.getCollectionsSets():
+			for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets():
 				if getattr(iblSet, currentField):
 					tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
 					patternsMatched = True
@@ -854,7 +854,7 @@ class SearchDatabase(UiComponent):
 						filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
+			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(set(filteredSets))]
 		else:
 			try:
 				re.compile(pattern)
@@ -862,7 +862,7 @@ class SearchDatabase(UiComponent):
 				raise foundations.exceptions.UserError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
 			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
-			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
+			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
 		LOGGER.debug("> Pattern Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 

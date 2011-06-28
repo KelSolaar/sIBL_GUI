@@ -81,7 +81,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module Classes And Definitions
 #***********************************************************************************************
 @core.executionTrace
-def componentActivationErrorHandler(exception, origin, *args, **kwargs):
+def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides An Exception Handler For Component Activation.
 	
@@ -89,10 +89,10 @@ def componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
 
-	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Activating '{1}' Component:\n{2}".format(core.getModule(componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Activating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
-def componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
+def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides An Exception Handler For Component Deactivation.
 	
@@ -100,7 +100,7 @@ def componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
 
-	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Deactivating '{1}' Component:\n{2}".format(core.getModule(componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Deactivating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 class ComponentsManagerUi(UiComponent):
 	"""
@@ -624,7 +624,7 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Components_Manager_Ui_treeView_setActions()
+		self.__Components_Manager_Ui_treeView_setActions()
 
 		self.Components_Manager_Ui_treeView_setView()
 
@@ -633,7 +633,7 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_splitter.setSizes([ 16777215, 1 ])
 
 		# Signals / Slots.
-		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.Components_Manager_Ui_treeView_OnSelectionChanged)
+		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.__Components_Manager_Ui_treeView_selectionModel__selectionChanged)
 		self.modelChanged.connect(self.Components_Manager_Ui_treeView_refreshView)
 
 	@core.executionTrace
@@ -796,17 +796,17 @@ class ComponentsManagerUi(UiComponent):
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setActions(self):
+	def __Components_Manager_Ui_treeView_setActions(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView Actions.
 		"""
 
 		activateComponentsAction = QAction("Activate Component(s)", self.ui.Components_Manager_Ui_treeView)
-		activateComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_activateComponentsAction_OnTriggered)
+		activateComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_activateComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(activateComponentsAction)
 
 		deactivateComponentsAction = QAction("Deactivate Component(s)", self.ui.Components_Manager_Ui_treeView)
-		deactivateComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_deactivateComponentsAction_OnTriggered)
+		deactivateComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_deactivateComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(deactivateComponentsAction)
 
 		separatorAction = QAction(self.ui.Components_Manager_Ui_treeView)
@@ -814,7 +814,7 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_treeView.addAction(separatorAction)
 
 		reloadComponentsAction = QAction("Reload Component(s)", self.ui.Components_Manager_Ui_treeView)
-		reloadComponentsAction.triggered.connect(self.Components_Manager_Ui_treeView_reloadComponentsAction_OnTriggered)
+		reloadComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_reloadComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(reloadComponentsAction)
 
 		separatorAction = QAction(self.ui.Components_Manager_Ui_treeView)
@@ -822,7 +822,7 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_treeView.addAction(separatorAction)
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_activateComponentsAction_OnTriggered(self, checked):
+	def __Components_Manager_Ui_treeView_activateComponentsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By activateComponentsAction Action.
 
@@ -840,10 +840,10 @@ class ComponentsManagerUi(UiComponent):
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
-			self.storeDeactivatedComponents()
+			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_deactivateComponentsAction_OnTriggered(self, checked):
+	def __Components_Manager_Ui_treeView_deactivateComponentsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By deactivateComponentsAction Action.
 
@@ -864,10 +864,10 @@ class ComponentsManagerUi(UiComponent):
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
 
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
-			self.storeDeactivatedComponents()
+			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_reloadComponentsAction_OnTriggered(self, checked):
+	def __Components_Manager_Ui_treeView_reloadComponentsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By reloadComponentsAction Action.
 
@@ -889,7 +889,7 @@ class ComponentsManagerUi(UiComponent):
 			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
+	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets The Additional_Informations_textEdit Widget.
 		
@@ -916,7 +916,21 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Informations_textBrowser.setText(separator.join(content))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
+	def __storeDeactivatedComponents(self):
+		"""
+		This Method Stores Deactivated Components In The Settings File.
+		"""
+
+		deactivatedComponents = []
+		for component in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0):
+			if component._type == "Component":
+				component._datas.interface.activated or deactivatedComponents.append(component._datas.name)
+
+		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))
+		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
 	def activateComponent(self, component):
 		"""
 		This Method Activates The Provided Component.
@@ -934,7 +948,7 @@ class ComponentsManagerUi(UiComponent):
 			component.interface.initializeUi()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
+	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
 	def deactivateComponent(self, component):
 		"""
 		This Method Deactivates The Provided Component.
@@ -951,19 +965,6 @@ class ComponentsManagerUi(UiComponent):
 			component.interface.removeWidget()
 		component.interface.deactivate()
 
-	@core.executionTrace
-	def storeDeactivatedComponents(self):
-		"""
-		This Method Stores Deactivated Components In The Settings File.
-		"""
-
-		deactivatedComponents = []
-		for component in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0):
-			if component._type == "Component":
-				component._datas.interface.activated or deactivatedComponents.append(component._datas.name)
-
-		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))
-		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):

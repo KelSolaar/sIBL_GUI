@@ -110,12 +110,12 @@ class Variable_QPushButton(QPushButton):
 		# Initializing The Button
 		self.setCheckable(True)
 		if self.__state:
-			self.setTrueState()
+			self.__setTrueState()
 		else:
-			self.setFalseState()
+			self.__setFalseState()
 
 		# Signals / Slots.
-		self.clicked.connect(self.search_QLineEdit_OnClicked)
+		self.clicked.connect(self.__variable_QPushButton__clicked)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -253,7 +253,7 @@ class Variable_QPushButton(QPushButton):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def search_QLineEdit_OnClicked(self, checked):
+	def __variable_QPushButton__clicked(self, checked):
 		"""
 		This Method Is Called When A Variable QPushButton Is Clicked.
 		
@@ -261,12 +261,12 @@ class Variable_QPushButton(QPushButton):
 		"""
 
 		if self.__state:
-			self.setFalseState()
+			self.__setFalseState()
 		else:
-			self.setTrueState()
+			self.__setTrueState()
 
 	@core.executionTrace
-	def setTrueState(self):
+	def __setTrueState(self):
 		"""
 		This Method Sets The Variable Button True State.
 		"""
@@ -282,7 +282,7 @@ class Variable_QPushButton(QPushButton):
 		self.setText(self.__labels[0])
 
 	@core.executionTrace
-	def setFalseState(self):
+	def __setFalseState(self):
 		"""
 		This Method Sets The Variable QPushButton True State.
 		"""

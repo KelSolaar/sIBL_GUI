@@ -904,17 +904,17 @@ class Inspector(UiComponent):
 		self.Inspector_DockWidget_setUi()
 
 		self.ui.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Inspector_Overall_frame_setActions()
+		self.__Inspector_Overall_frame_setActions()
 
 		# Signals / Slots.
-		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.Plates_listView_OnModelSelectionChanged)
-		self.__coreDatabaseBrowser.modelChanged.connect(self.coreDatabaseBrowser_model_OnModelChanged)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
-		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
-		self.ui.Previous_Plate_pushButton.clicked.connect(self.Previous_Plate_pushButton_OnClicked)
-		self.ui.Next_Plate_pushButton.clicked.connect(self.Next_Plate_pushButton_OnClicked)
-		self.ui.Image_label.linkActivated.connect(self.Image_label_OnLinkActivated)
+		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.modelChanged.connect(self.__coreDatabaseBrowser__modelChanged)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
+		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
+		self.ui.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
+		self.ui.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
+		self.ui.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -957,7 +957,7 @@ class Inspector(UiComponent):
 
 			if iblSet.previewImage:
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(iblSet.previewImage))
-				self.drawInspectorIblSetOverlay()
+				self.__drawInspectorIblSetOverlay()
 			else:
 				self.ui.Image_label.setText(self.__noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
 
@@ -984,14 +984,6 @@ class Inspector(UiComponent):
 		self.ui.Details_label.setText(QString())
 
 		self.ui.Plates_frame.hide()
-
-	@core.executionTrace
-	def Inspector_Overall_frame_setActions(self):
-		"""
-		This Method Sets The Inspector_Overall_frame Actions.
-		"""
-
-		pass
 
 	@core.executionTrace
 	def Plates_listView_setModel(self):
@@ -1060,9 +1052,17 @@ class Inspector(UiComponent):
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 
 	@core.executionTrace
-	def Plates_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
+	def __Inspector_Overall_frame_setActions(self):
 		"""
-		This Method Sets Is Triggered When  Plates_listView Selection Has Changed.
+		This Method Sets The Inspector_Overall_frame Actions.
+		"""
+
+		pass
+
+	@core.executionTrace
+	def __Plates_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This Method Sets Is Triggered When Plates_listView Model Selection Has Changed.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
@@ -1077,25 +1077,25 @@ class Inspector(UiComponent):
 				self.Inspector_DockWidget_setUi()
 
 	@core.executionTrace
-	def coreDatabaseBrowser_model_OnModelChanged(self):
+	def __coreDatabaseBrowser__modelChanged(self):
 		"""
 		This Method Sets Is Triggered When coreDatabaseBrowser Model Has Changed.
 		"""
 
-		self.setInspectorIblSet()
+		self.__setInspectorIblSet()
 
 	@core.executionTrace
-	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Selection Has Changed.
+		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Model Selection Has Changed.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		self.setInspectorIblSet()
+		self.__setInspectorIblSet()
 
-		self.setInspectorIblSetPlates()
+		self.__setInspectorIblSetPlates()
 		self.Plates_listView_setModel()
 
 		if self.__inspectorIblSet:
@@ -1104,7 +1104,7 @@ class Inspector(UiComponent):
 			self.Inspector_DockWidget_clearUi()
 
 	@core.executionTrace
-	def Previous_Ibl_Set_pushButton_OnClicked(self, checked):
+	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Previous_Ibl_Set_pushButton Is Clicked.
 		
@@ -1114,7 +1114,7 @@ class Inspector(UiComponent):
 		self.loopThroughIblSets(True)
 
 	@core.executionTrace
-	def Next_Ibl_Set_pushButton_OnClicked(self, checked):
+	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Next_Ibl_Set_pushButton Is Clicked.
 		
@@ -1124,7 +1124,7 @@ class Inspector(UiComponent):
 		self.loopThroughIblSets()
 
 	@core.executionTrace
-	def Previous_Plate_pushButton_OnClicked(self, checked):
+	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Previous_Plate_pushButton Is Clicked.
 		
@@ -1134,7 +1134,7 @@ class Inspector(UiComponent):
 		self.loopThroughPlates(True)
 
 	@core.executionTrace
-	def Next_Plate_pushButton_OnClicked(self, checked):
+	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Next_Plate_pushButton Is Clicked.
 		
@@ -1144,7 +1144,7 @@ class Inspector(UiComponent):
 		self.loopThroughPlates()
 
 	@core.executionTrace
-	def Image_label_OnLinkActivated(self, url):
+	def __Image_label__linkActivated(self, url):
 		"""
 		This Method Is Triggered When A Link Is Clicked In The Image_label Widget.
 
@@ -1154,7 +1154,7 @@ class Inspector(UiComponent):
 		QDesktopServices.openUrl(QUrl(url))
 
 	@core.executionTrace
-	def setInspectorIblSet(self):
+	def __setInspectorIblSet(self):
 		"""
 		This Method Sets The Inspected Ibl Set.
 		"""
@@ -1164,10 +1164,10 @@ class Inspector(UiComponent):
 		if not self.__inspectorIblSet:
 			model = self.__coreDatabaseBrowser.model
 			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0) or None
-		self.__inspectorIblSet and self.setInspectorIblSetParser()
+		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
 	@core.executionTrace
-	def setInspectorIblSetParser(self):
+	def __setInspectorIblSetParser(self):
 		"""
 		This Method Sets The Inspected Ibl Set Parser.
 		"""
@@ -1179,7 +1179,7 @@ class Inspector(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
-	def setInspectorIblSetPlates(self):
+	def __setInspectorIblSetPlates(self):
 		"""
 		This Method Sets The Plates From The Inspected Ibl Set.
 		"""
@@ -1197,7 +1197,7 @@ class Inspector(UiComponent):
 				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self.__inspectorIblSet._datas.name)
 
 	@core.executionTrace
-	def drawInspectorIblSetOverlay(self):
+	def __drawInspectorIblSetOverlay(self):
 		"""
 		This Method Draws An Overlay On .
 		"""
@@ -1206,19 +1206,19 @@ class Inspector(UiComponent):
 		painter.setRenderHints(QPainter.Antialiasing)
 		for section in self.__inspectorIblSetParser.sections:
 				if section == "Sun":
-					self.drawLightLabel(painter, Light(name="Sun",
+					self.__drawLightLabel(painter, Light(name="Sun",
 														color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
 														uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
 														vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
 				elif re.search("Light[0-9]+", section):
-					self.drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
+					self.__drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
 														color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
 														uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),
 														vCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTv", section))))
 		painter.end()
 
 	@core.executionTrace
-	def drawLightLabel(self, painter, light):
+	def __drawLightLabel(self, painter, light):
 		"""
 		This Method Draws A Light Label On Provided QPainter.
 

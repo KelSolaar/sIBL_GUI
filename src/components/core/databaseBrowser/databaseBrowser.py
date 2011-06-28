@@ -251,12 +251,12 @@ class DatabaseBrowser_Worker(QThread):
 		self.__timer.moveToThread(self)
 		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
 
-		self.__timer.timeout.connect(self.updateSets, Qt.DirectConnection)
+		self.__timer.timeout.connect(self.__updateSets, Qt.DirectConnection)
 
 		self.exec_()
 
 	@core.executionTrace
-	def updateSets(self):
+	def __updateSets(self):
 		"""
 		This Method Updates Database Sets If They Have Been Modified On Disk.
 		"""
@@ -422,7 +422,7 @@ class DatabaseBrowser_QListView(QListView):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def QListView_OnDoubleClicked(self, index):
+	def __QListView__doubleClicked(self, index):
 		"""
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
 		
@@ -1196,7 +1196,7 @@ class DatabaseBrowser(UiComponent):
 		self.Database_Browser_listView_setModel()
 
 		self.ui.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Database_Browser_listView_setActions()
+		self.__Database_Browser_listView_setActions()
 
 		self.Database_Browser_listView_setView()
 
@@ -1215,14 +1215,14 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
 
 		# Signals / Slots.
-		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.Thumbnails_Size_horizontalSlider_OnChanged)
-		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView.QListView_OnDoubleClicked)
+		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
+		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
 		self.modelChanged.connect(self.Database_Browser_listView_refreshView)
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
-				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
-			self.__model.dataChanged.connect(self.Database_Browser_listView_OnModelDataChanged)
+				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__codeDb_database__changed)
+			self.__model.dataChanged.connect(self.__Database_Browser_listView_model__dataChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1370,25 +1370,6 @@ class DatabaseBrowser(UiComponent):
 		self.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listView_OnModelDataChanged(self, startIndex, endIndex):
-		"""
-		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
-		
-		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
-		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
-		"""
-
-		standardItem = self.__model.itemFromIndex(startIndex)
-		currentTitle = standardItem.text()
-
-		LOGGER.debug("> Updating Ibl Set '{0}' Title To '{1}'.".format(standardItem._datas.title, currentTitle))
-		iblSet = dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
-		iblSet.title = str(currentTitle)
-		dbUtilities.common.commit(self.__coreDb.dbSession)
-
-		self.Database_Browser_listView_refreshModel()
-
-	@core.executionTrace
 	def Database_Browser_listView_setView(self):
 		"""
 		This Method Sets The Database_Browser_listView Ui.
@@ -1462,26 +1443,26 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
 
 	@core.executionTrace
-	def Database_Browser_listView_setActions(self):
+	def __Database_Browser_listView_setActions(self):
 		"""
 		This Method Sets The Database Browser Actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
-			addContentAction.triggered.connect(self.Database_Browser_listView_addContentAction_OnTriggered)
+			addContentAction.triggered.connect(self.__Database_Browser_listView_addContentAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
 
 			addIblSetAction = QAction("Add Ibl Set ...", self.ui.Database_Browser_listView)
-			addIblSetAction.triggered.connect(self.Database_Browser_listView_addIblSetAction_OnTriggered)
+			addIblSetAction.triggered.connect(self.__Database_Browser_listView_addIblSetAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addIblSetAction)
 
 			removeIblSetsAction = QAction("Remove Ibl Set(s) ...", self.ui.Database_Browser_listView)
-			removeIblSetsAction.triggered.connect(self.Database_Browser_listView_removeIblSetsAction_OnTriggered)
+			removeIblSetsAction.triggered.connect(self.__Database_Browser_listView_removeIblSetsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(removeIblSetsAction)
 
 			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) Location(s) ...", self.ui.Database_Browser_listView)
-			updateIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_updateIblSetsLocationsAction_OnTriggered)
+			updateIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(updateIblSetsLocationsAction)
 
 			separatorAction = QAction(self.ui.Database_Browser_listView)
@@ -1491,7 +1472,7 @@ class DatabaseBrowser(UiComponent):
 			LOGGER.info("{0} | Ibl Sets Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def Database_Browser_listView_addContentAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_addContentAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By addContentAction Action.
 
@@ -1505,7 +1486,7 @@ class DatabaseBrowser(UiComponent):
 			self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listView_addIblSetAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By addIblSetAction Action.
 
@@ -1518,7 +1499,7 @@ class DatabaseBrowser(UiComponent):
 			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listView_removeIblSetsAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By removeIblSetsAction Action.
 
@@ -1529,7 +1510,7 @@ class DatabaseBrowser(UiComponent):
 		self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
-	def Database_Browser_listView_updateIblSetsLocationsAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By updateIblSetsLocationsAction Action.
 
@@ -1547,7 +1528,26 @@ class DatabaseBrowser(UiComponent):
 			self.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
-	def Thumbnails_Size_horizontalSlider_OnChanged(self, value):
+	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
+		"""
+		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
+		
+		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
+		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
+		"""
+
+		standardItem = self.__model.itemFromIndex(startIndex)
+		currentTitle = standardItem.text()
+
+		LOGGER.debug("> Updating Ibl Set '{0}' Title To '{1}'.".format(standardItem._datas.title, currentTitle))
+		iblSet = dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
+		iblSet.title = str(currentTitle)
+		dbUtilities.common.commit(self.__coreDb.dbSession)
+
+		self.Database_Browser_listView_refreshModel()
+
+	@core.executionTrace
+	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
 		This Method Scales The Database_Browser_listView Icons.
 		
@@ -1563,7 +1563,7 @@ class DatabaseBrowser(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
 	@core.executionTrace
-	def databaseChanged(self):
+	def __codeDb_database__changed(self):
 		"""
 		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
 		"""
@@ -1578,7 +1578,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Gets The Display Sets Associated To Selected coreCollectionsOutliner Collections.
 		"""
 
-		self.__displaySets = self.__coreCollectionsOutliner.getCollectionsSets()
+		self.__displaySets = self.__coreCollectionsOutliner.getCollectionsIblSets()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)

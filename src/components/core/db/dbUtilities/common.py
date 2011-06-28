@@ -400,9 +400,9 @@ def removeCollection(session, id):
 	return removeStandardItem(session, dbUtilities.types.DbCollection, id)
 
 @core.executionTrace
-def getCollectionsSets(session, ids):
+def getCollectionsIblSets(session, ids):
 	"""
-	This Definition Gets Sets From Collections Ids
+	This Definition Gets Ibl Sets From Collections Ids
 
 	@param session: Database Session. ( Session )
 	@param ids: Collections Ids. ( List )

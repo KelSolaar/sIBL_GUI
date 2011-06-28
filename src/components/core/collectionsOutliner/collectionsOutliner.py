@@ -345,7 +345,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 
 	@core.executionTrace
-	def QTreeView_OnClicked(self, index):
+	def __QTreeView__clicked(self, index):
 		"""
 		This Method Defines The Behavior When The Model Is Clicked.
 		
@@ -356,7 +356,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def QTreeView_OnDoubleClicked(self, index):
+	def __QTreeView__doubleClicked(self, index):
 		"""
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
 		
@@ -1013,16 +1013,16 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
 
 		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.Collections_Outliner_treeView_setActions()
+		self.__Collections_Outliner_treeView_setActions()
 
 		self.Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
-		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.Collections_Outliner_treeView_OnModelSelectionChanged)
-		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnClicked)
-		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked)
+		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
+		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
+		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
 		self.modelChanged.connect(self.Collections_Outliner_treeView_refreshView)
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1179,43 +1179,6 @@ class CollectionsOutliner(UiComponent):
 		self.Collections_Outliner_treeView_setModel()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Collections_Outliner_treeView_OnModelDataChanged(self, startIndex, endIndex):
-		"""
-		This Method Defines The Behavior When The Collections_Outliner_treeView Model Data Change.
-		
-		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
-		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
-		"""
-
-		standardItem = self.__model.itemFromIndex(startIndex)
-		currentText = standardItem.text()
-
-		if currentText:
-			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
-
-			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
-			collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
-			if identity and collections:
-				if startIndex.column() == 0:
-					if currentText not in (collection.name for collection in collections):
-						LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
-						collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-						collection.name = str(currentText)
-						dbUtilities.common.commit(self.__coreDb.dbSession)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
-				elif startIndex.column() == 2:
-					LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
-					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-					collection.comment = str(currentText)
-					dbUtilities.common.commit(self.__coreDb.dbSession)
-					self.Collections_Outliner_treeView_refreshModel()
-		else:
-			self.Collections_Outliner_treeView_refreshModel()
-			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Value!".format(self.__class__.__name__)
-
-	@core.executionTrace
 	def Collections_Outliner_treeView_setView(self):
 		"""
 		This Method Sets The Collections_Outliner_treeView View.
@@ -1261,7 +1224,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		# Disconnecting Model "dataChanged()" Signal.
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 		for i in range(self.__model.rowCount()):
 			currentStandardItem = self.__model.item(i)
@@ -1273,7 +1236,7 @@ class CollectionsOutliner(UiComponent):
 				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting Model "dataChanged()" Signal.
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_storeModelSelection(self):
@@ -1313,28 +1276,28 @@ class CollectionsOutliner(UiComponent):
 				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setActions(self):
+	def __Collections_Outliner_treeView_setActions(self):
 		"""
 		This Method Sets The Collections Outliner Actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
-			addContentAction.triggered.connect(self.Collections_Outliner_treeView_addContentAction_OnTriggered)
+			addContentAction.triggered.connect(self.__Collections_Outliner_treeView_addContentAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
 
 			addCollectionAction = QAction("Add Collection ...", self.ui.Collections_Outliner_treeView)
-			addCollectionAction.triggered.connect(self.Collections_Outliner_treeView_addCollectionAction_OnTriggered)
+			addCollectionAction.triggered.connect(self.__Collections_Outliner_treeView_addCollectionAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(addCollectionAction)
 
 			removeCollectionsAction = QAction("Remove Collection(s) ...", self.ui.Collections_Outliner_treeView)
-			removeCollectionsAction.triggered.connect(self.Collections_Outliner_treeView_removeCollectionsAction_OnTriggered)
+			removeCollectionsAction.triggered.connect(self.__Collections_Outliner_treeView_removeCollectionsAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
 		else:
 			LOGGER.info("{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addContentAction_OnTriggered(self, checked):
+	def __Collections_Outliner_treeView_addContentAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By addContentAction Action.
 
@@ -1354,7 +1317,7 @@ class CollectionsOutliner(UiComponent):
 					self.Collections_Outliner_treeView_refreshSetsCounts()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addCollectionAction_OnTriggered(self, checked):
+	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By addCollectionAction Action.
 
@@ -1368,7 +1331,7 @@ class CollectionsOutliner(UiComponent):
 				self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_removeCollectionsAction_OnTriggered(self, checked):
+	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By removeCollectionsAction Action.
 
@@ -1380,7 +1343,44 @@ class CollectionsOutliner(UiComponent):
 		self.__coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	def __Collections_Outliner_treeView_model__dataChanged(self, startIndex, endIndex):
+		"""
+		This Method Defines The Behavior When The Collections_Outliner_treeView Model Data Change.
+		
+		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
+		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
+		"""
+
+		standardItem = self.__model.itemFromIndex(startIndex)
+		currentText = standardItem.text()
+
+		if currentText:
+			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
+
+			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
+			collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+			if identity and collections:
+				if startIndex.column() == 0:
+					if currentText not in (collection.name for collection in collections):
+						LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
+						collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+						collection.name = str(currentText)
+						dbUtilities.common.commit(self.__coreDb.dbSession)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
+				elif startIndex.column() == 2:
+					LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
+					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+					collection.comment = str(currentText)
+					dbUtilities.common.commit(self.__coreDb.dbSession)
+					self.Collections_Outliner_treeView_refreshModel()
+		else:
+			self.Collections_Outliner_treeView_refreshModel()
+			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Value!".format(self.__class__.__name__)
+
+	@core.executionTrace
+	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Triggers The Database_Browser_listView Refresh Depending On The Collections Outliner Selected Items.
 		
@@ -1442,7 +1442,7 @@ class CollectionsOutliner(UiComponent):
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection]
 		if selectedCollections:
 			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				iblSets = dbUtilities.common.getCollectionsSets(self.__coreDb.dbSession, self.getSelectedCollectionsIds())
+				iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, self.getSelectedCollectionsIds())
 				for iblSet in iblSets:
 					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
 					iblSet.collection = self.getCollectionId(self.__defaultCollection)
@@ -1503,9 +1503,9 @@ class CollectionsOutliner(UiComponent):
 		return self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
 
 	@core.executionTrace
-	def getCollectionsSets(self):
+	def getCollectionsIblSets(self):
 		"""
-		This Method Gets The Sets Associated To Selected Collections.
+		This Method Gets The Ibl Sets Associated To Selected Collections.
 		
 		@return: Sets List. ( List )
 		"""
@@ -1514,7 +1514,7 @@ class CollectionsOutliner(UiComponent):
 		allIds = [collection._datas.id for collection in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
 		ids = selectedCollections and (self.__overallCollection in (collection.text() for collection in selectedCollections) and allIds or self.getSelectedCollectionsIds()) or allIds
 
-		return dbUtilities.common.getCollectionsSets(self.__coreDb.dbSession, ids)
+		return dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, ids)
 
 	@core.executionTrace
 	def getUniqueCollectionId(self):

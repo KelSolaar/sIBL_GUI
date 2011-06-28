@@ -124,7 +124,7 @@ class Preferences():
 		self.__settings = QSettings(self.preferencesFile, QSettings.IniFormat)
 
 		# --- Initializing Preferences. ---
-		self.getDefaultLayoutsSettings()
+		self.__getDefaultLayoutsSettings()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -261,7 +261,7 @@ class Preferences():
 		return value
 
 	@core.executionTrace
-	def getDefaultLayoutsSettings(self):
+	def __getDefaultLayoutsSettings(self):
 		"""
 		This Method Gets The Default Layouts Settings.
 		"""
@@ -376,6 +376,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.setupUi(self)
 
+		self.closeEvent = self.__closeUi
+
 		# --- Setting Class Attributes. ---
 		self.__componentsManager = None
 		self.__coreComponentsManagerUi = None
@@ -412,7 +414,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# Setting Window Title And Toolbar.
 		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
-		self.initializeToolbar()
+		self.__initializeToolbar()
 
 		# --- Initializing Component Manager. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Components Manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
@@ -423,7 +425,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		if not self.__componentsManager.components:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close!".format(self.__componentsManager, Constants.applicationName)
 
-		self.__componentsManager.instantiateComponents(self.componentsInstantiationCallback)
+		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
 		# --- Activating Component Manager Ui. ---
 		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
@@ -519,7 +521,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			if interface.activated:
 				hasattr(interface, "onStartup") and interface.onStartup()
 
-		self.setLayoutsActiveLabelsShortcuts()
+		self.__setLayoutsActiveLabelsShortcuts()
 
 		self.restoreStartupLayout()
 
@@ -1256,7 +1258,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	#***	Class Methods
 	#***************************************************************************************
 	@core.executionTrace
-	def closeEvent(self, event):
+	def __closeUi(self, event):
 		"""
 		This Method Is Called When Close Event Is Fired.
 
@@ -1286,10 +1288,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.deleteLater()
 		event.accept()
 
-		sIBL_GUI_close()
+		_exit()
 
 	@core.executionTrace
-	def componentsInstantiationCallback(self, profile):
+	def __componentsInstantiationCallback(self, profile):
 		"""
 		This Method Is A Callback For The Components Instantiation.
 		
@@ -1299,33 +1301,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def setVisualStyle(self):
-		"""
-		This Method Sets The Application Visual Style.
-		"""
-
-		LOGGER.debug("> Setting Application Visual Style.")
-
-		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			RuntimeConstants.application.setStyle(UiConstants.frameworkWindowsStyle)
-			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
-		elif platform.system() == "Darwin":
-			RuntimeConstants.application.setStyle(UiConstants.frameworkDarwinStyle)
-			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
-		elif platform.system() == "Linux":
-			RuntimeConstants.application.setStyle(UiConstants.frameworkLinuxStyle)
-			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
-
-		if os.path.exists(styleSheetFile.file):
-			LOGGER.debug("> Reading Style Sheet File: '{0}'.".format(styleSheetFile.file))
-			styleSheetFile.read()
-			RuntimeConstants.application.setStyleSheet(QString("".join(styleSheetFile.content)))
-		else:
-			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied!".format(self.__class__.__name__, styleSheetFile.file)
-
-	@core.executionTrace
-	def initializeToolbar(self):
+	def __initializeToolbar(self):
 		"""
 		This Method Initializes sIBL_GUI Toolbar.
 		"""
@@ -1373,14 +1349,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.__layoutsActiveLabels:
-			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout: self.activeLabel_OnClicked(activeLabel))
+			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout: self.__activeLabel__clicked(activeLabel))
 
 		LOGGER.debug("> Adding Central Widget Button.")
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 		self.toolBar.addWidget(centralWidgetButton)
 
-		centralWidgetButton.clicked.connect(self.centralWidgetButton_OnClicked)
+		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 
 		LOGGER.debug("> Adding Layout Button.")
 		layoutsButton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
@@ -1426,8 +1402,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__miscMenu.addSeparator()
 
 		# Signals / Slots.
-		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction_OnTriggered)
-		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction_OnTriggered)
+		helpDisplayMiscAction.triggered.connect(self.__helpDisplayMiscAction__triggered)
+		apiDisplayMiscAction.triggered.connect(self.__apiDisplayMiscAction__triggered)
 
 		miscellaneousButton.setMenu(self.__miscMenu)
 
@@ -1437,32 +1413,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.toolBar.addWidget(spacer)
 
 	@core.executionTrace
-	def activeLabel_OnClicked(self, activeLabel):
-		"""
-		This Method Is Triggered When An Active Label Is Clicked.
-		"""
-
-		LOGGER.debug("> Clicked Active Label: '{0}'.".format(activeLabel))
-
-		self.restoreLayout(activeLabel)
-		for layoutActivelabel in self.__layoutsActiveLabels:
-			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
-
-	@core.executionTrace
-	def centralWidgetButton_OnClicked(self):
-		"""
-		This Method Sets The Central Widget Visibility.
-		"""
-
-		LOGGER.debug("> Central Widget Button Clicked!")
-
-		if self.centralwidget.isVisible():
-			self.centralwidget.hide()
-		else:
-			self.centralwidget.show()
-
-	@core.executionTrace
-	def setLayoutsActiveLabelsShortcuts(self):
+	def __setLayoutsActiveLabelsShortcuts(self):
 		"""
 		This Method Sets The Layouts Active Labels Shortcuts.
 		"""
@@ -1476,7 +1427,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action.triggered.connect(lambda layout=layoutActiveLabel.layout: self.restoreLayout(layout))
 
 	@core.executionTrace
-	def getLayoutsActiveLabel(self):
+	def __getLayoutsActiveLabel(self):
 		"""
 		This Method Returns The Current Layout Active Label Index.
 
@@ -1491,7 +1442,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 				return index
 
 	@core.executionTrace
-	def setLayoutsActiveLabel(self, index):
+	def __setLayoutsActiveLabel(self, index):
 		"""
 		This Method Sets The Layouts Active Label.
 
@@ -1502,6 +1453,53 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		for index_ in range(len(self.__layoutsActiveLabels)):
 			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
+
+	@core.executionTrace
+	def __activeLabel__clicked(self, activeLabel):
+		"""
+		This Method Is Triggered When An Active Label Is Clicked.
+		"""
+
+		LOGGER.debug("> Clicked Active Label: '{0}'.".format(activeLabel))
+
+		self.restoreLayout(activeLabel)
+		for layoutActivelabel in self.__layoutsActiveLabels:
+			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
+
+	@core.executionTrace
+	def __centralWidgetButton__clicked(self):
+		"""
+		This Method Sets The Central Widget Visibility.
+		"""
+
+		LOGGER.debug("> Central Widget Button Clicked!")
+
+		if self.centralwidget.isVisible():
+			self.centralwidget.hide()
+		else:
+			self.centralwidget.show()
+
+	@core.executionTrace
+	def __helpDisplayMiscAction__triggered(self, checked):
+		"""
+		This Method Is Triggered By helpDisplayMiscAction Action.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkHelpFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
+
+	@core.executionTrace
+	def __apiDisplayMiscAction__triggered(self, checked):
+		"""
+		This Method Is Triggered By apiDisplayMiscAction Action.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkApiFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
 
 	@core.executionTrace
 	def storeLayout(self, name, *args):
@@ -1517,7 +1515,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
 		self.__settings.setKey("Layouts", "{0}_windowState".format(name), self.saveState())
 		self.__settings.setKey("Layouts", "{0}_centralWidget".format(name), self.centralwidget.isVisible())
-		self.__settings.setKey("Layouts", "{0}_activeLabel".format(name), self.getLayoutsActiveLabel())
+		self.__settings.setKey("Layouts", "{0}_activeLabel".format(name), self.__getLayoutsActiveLabel())
 
 	@core.executionTrace
 	def restoreLayout(self, name):
@@ -1536,7 +1534,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.centralwidget.setVisible(self.__settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
 		self.restoreState(self.__settings.getKey("Layouts", "{0}_windowState".format(name)).toByteArray())
 		self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(name)).toByteArray())
-		self.setLayoutsActiveLabel(self.__settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
+		self.__setLayoutsActiveLabel(self.__settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
 	@core.executionTrace
@@ -1561,28 +1559,6 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.storeLayout(UiConstants.frameworkStartupLayout)
 
 	@core.executionTrace
-	def helpDisplayMiscAction_OnTriggered(self, checked):
-		"""
-		This Method Is Triggered By helpDisplayMiscAction Action.
-
-		@param checked: Checked State. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkHelpFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
-
-	@core.executionTrace
-	def apiDisplayMiscAction_OnTriggered(self, checked):
-		"""
-		This Method Is Triggered By apiDisplayMiscAction Action.
-
-		@param checked: Checked State. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening URL: '{0}'.".format(UiConstants.frameworkApiFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
-
-	@core.executionTrace
 	def storeLastBrowsedPath(self, path):
 		"""
 		This Method Is A Wrapper Method For Storing The Last Browser Path.
@@ -1600,21 +1576,47 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		return path
 
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	def setVisualStyle(self):
+		"""
+		This Method Sets The Application Visual Style.
+		"""
+
+		LOGGER.debug("> Setting Application Visual Style.")
+
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+			RuntimeConstants.application.setStyle(UiConstants.frameworkWindowsStyle)
+			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
+		elif platform.system() == "Darwin":
+			RuntimeConstants.application.setStyle(UiConstants.frameworkDarwinStyle)
+			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
+		elif platform.system() == "Linux":
+			RuntimeConstants.application.setStyle(UiConstants.frameworkLinuxStyle)
+			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
+
+		if os.path.exists(styleSheetFile.file):
+			LOGGER.debug("> Reading Style Sheet File: '{0}'.".format(styleSheetFile.file))
+			styleSheetFile.read()
+			RuntimeConstants.application.setStyleSheet(QString("".join(styleSheetFile.content)))
+		else:
+			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied!".format(self.__class__.__name__, styleSheetFile.file)
+
 #***************************************************************************************
 #***	Overall Definitions.
 #***************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
-def sIBL_GUI_start():
+def _run():
 	"""
 	This Definition Is Called When sIBL_GUI Starts.
 	"""
 
 	# Command Line Parameters Handling.
-	RuntimeConstants.parameters, RuntimeConstants.args = getCommandLineParameters(sys.argv)
+	RuntimeConstants.parameters, RuntimeConstants.args = _getCommandLineParameters(sys.argv)
 
 	if RuntimeConstants.parameters.about:
-		for line in getHeaderMessage():
+		for line in _getHeaderMessage():
 			sys.stdout.write("{0}\n".format(line))
 		foundations.common.exit(1, LOGGER, [])
 
@@ -1631,7 +1633,7 @@ def sIBL_GUI_start():
 	else:
 		RuntimeConstants.userApplicationDatasDirectory = foundations.common.getUserApplicationDatasDirectory()
 
-	if not setUserApplicationDatasDirectory(RuntimeConstants.userApplicationDatasDirectory):
+	if not _setUserApplicationDatasDirectory(RuntimeConstants.userApplicationDatasDirectory):
 		raise OSError, "'{0}' User Application Datas Directory Is Not Available, {1} Will Now Close!".format(RuntimeConstants.userApplicationDatasDirectory, Constants.applicationName)
 
 	LOGGER.debug("> Application Python Interpreter: '{0}'".format(sys.executable))
@@ -1675,7 +1677,7 @@ def sIBL_GUI_start():
 	LOGGER.addHandler(RuntimeConstants.loggingSessionHandler)
 
 	LOGGER.info(Constants.loggingSeparators)
-	for line in getHeaderMessage():
+	for line in _getHeaderMessage():
 		LOGGER.info(line)
 	LOGGER.info("{0} | Session Started At: {1}".format(Constants.applicationName, time.strftime('%X - %x')))
 	LOGGER.info(Constants.loggingSeparators)
@@ -1701,7 +1703,7 @@ def sIBL_GUI_start():
 	sys.exit(RuntimeConstants.application.exec_())
 
 @core.executionTrace
-def sIBL_GUI_close():
+def _exit():
 	"""
 	This Definition Is Called When sIBL_GUI Closes.
 	"""
@@ -1716,27 +1718,7 @@ def sIBL_GUI_close():
 	QApplication.exit()
 
 @core.executionTrace
-@foundations.exceptions.exceptionsHandler(ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
-def setUserApplicationDatasDirectory(path):
-	"""
-	This Definition Sets The Application Datas Directory.
-
-	@param path: Starting Point For The Directories Tree Creation. ( String )
-	"""
-
-	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
-
-	LOGGER.debug("> Current Application Datas Directory '{0}'.".format(userApplicationDatasDirectory))
-	if io.setLocalDirectory(userApplicationDatasDirectory):
-		for directory in Constants.preferencesDirectories:
-			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)):
-				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
-		return True
-	else:
-		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(userApplicationDatasDirectory, Constants.applicationName)
-
-@core.executionTrace
-def getHeaderMessage():
+def _getHeaderMessage():
 	"""
 	This Definition Builds The Header Message.
 
@@ -1753,7 +1735,7 @@ def getHeaderMessage():
 	return message
 
 @core.executionTrace
-def getCommandLineParameters(argv):
+def _getCommandLineParameters(argv):
 	"""
 	This Definition Process Command Line Parameters.
 
@@ -1783,11 +1765,31 @@ def getCommandLineParameters(argv):
 
 	return parameters, args
 
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
+def _setUserApplicationDatasDirectory(path):
+	"""
+	This Definition Sets The Application Datas Directory.
+
+	@param path: Starting Point For The Directories Tree Creation. ( String )
+	"""
+
+	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
+
+	LOGGER.debug("> Current Application Datas Directory '{0}'.".format(userApplicationDatasDirectory))
+	if io.setLocalDirectory(userApplicationDatasDirectory):
+		for directory in Constants.preferencesDirectories:
+			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)):
+				raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
+		return True
+	else:
+		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(userApplicationDatasDirectory, Constants.applicationName)
+
 #***********************************************************************************************
 #***	Launcher
 #***********************************************************************************************
 if __name__ == "__main__":
-	sIBL_GUI_start()
+	_run()
 
 #***********************************************************************************************
 #***	Python End

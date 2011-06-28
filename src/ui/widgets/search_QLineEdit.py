@@ -104,12 +104,12 @@ class Search_QLineEdit(QLineEdit):
 
 		self.__clearButton = QToolButton(self)
 		self.__clearButton.setObjectName("Clear_Field_button")
-		self.setClearButtonStyle()
-		self.setClearButtonVisibility(self.text())
+		self.__setClearButtonStyle()
+		self.__setClearButtonVisibility(self.text())
 
 		# Signals / Slots.
 		self.__clearButton.clicked.connect(self.clear)
-		self.textChanged.connect(self.setClearButtonVisibility)
+		self.textChanged.connect(self.__setClearButtonVisibility)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -242,7 +242,6 @@ class Search_QLineEdit(QLineEdit):
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
-
 	@core.executionTrace
 	def resizeEvent(self, event):
 		"""
@@ -256,7 +255,7 @@ class Search_QLineEdit(QLineEdit):
 		self.__clearButton.move(self.rect().right() - frameWidth - size.width() + 1, (self.rect().bottom() - size.height()) / 2 + 1);
 
 	@core.executionTrace
-	def setClearButtonStyle(self):
+	def __setClearButtonStyle(self):
 		"""
 		This Method Sets The Clear Button Style.
 		"""
@@ -280,7 +279,7 @@ class Search_QLineEdit(QLineEdit):
 		self.setMinimumSize(max(self.minimumSizeHint().width(), self.__clearButton.sizeHint().height() + frameWidth * 2), max(self.minimumSizeHint().height(), self.__clearButton.sizeHint().height() + frameWidth * 2));
 
 	@core.executionTrace
-	def setClearButtonVisibility(self, text):
+	def __setClearButtonVisibility(self, text):
 		"""
 		This Method Sets The Clear Button Visibility.
 		
