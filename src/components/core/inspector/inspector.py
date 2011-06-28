@@ -100,6 +100,24 @@ class Plate(core.Structure):
 		# --- Setting Class Attributes. ---
 		self.__dict__.update(kwargs)
 
+class Light(core.Structure):
+	"""
+	This Is The Light Class.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This Method Initializes The Class.
+
+		@param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value Pairs )
+		"""
+
+		core.Structure.__init__(self, **kwargs)
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update(kwargs)
+
 class Inspector(UiComponent):
 	"""
 	This Class Is The Preview Class.
@@ -127,20 +145,20 @@ class Inspector(UiComponent):
 		self._uiNextImage = "Next.png"
 		self._dockArea = 2
 		self._listViewIconSize = 32
-	
+
 		self._container = None
 		self._settings = None
 		self._settingsSection = None
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
-		
+
 		self._model = None
-		
+
 		self._inspectorIblSet = None
 		self._inspectorIblSetParser = None
 		self._inspectorPlates = None
-	
+
 		self._noPreviewImageText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
@@ -183,11 +201,10 @@ class Inspector(UiComponent):
 								<b>Shot Date: </b>{3}<br>
 								<b>Comment: </b>{4}</p>
 								"""
-		
 		self._inspectorIblSetPlatesToolTipText = """
 								<p><b>{0}</b></p>
 								"""
-	
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -720,14 +737,14 @@ class Inspector(UiComponent):
 		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 		self.ui.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
 		self.ui.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
-		
+
 		self.ui.Plates_frame.hide()
 		self.ui.Options_groupBox.hide()
 
 		self._model = QStandardItemModel()
 		self.Plates_listView_setModel()
 		self.Plates_listView_setView()
-		
+
 		self.Inspector_DockWidget_setUi()
 
 		# Signals / Slots.
@@ -773,20 +790,22 @@ class Inspector(UiComponent):
 		"""
 		This Method Sets The Inspector DockWidget Ui.
 		"""
-		
+
 		if self._inspectorIblSet:
 			iblSet = self._inspectorIblSet._datas
 
 			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
-			
+
 			if iblSet.previewImage:
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(iblSet.previewImage))
+				self.drawInspectorIblSetOverlay()
 			else:
 				self.ui.Image_label.setText(self._noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
-				self.ui.Image_label.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
-			
+
+			self.ui.Image_label.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
-			
+
 			if self._inspectorPlates:
 				self.ui.Plates_frame.show()
 			else:
@@ -799,14 +818,14 @@ class Inspector(UiComponent):
 		"""
 		This Method Clears The Inspector DockWidget Ui.
 		"""
-		
+
 		self.ui.Title_label.setText(QString())
 		self.ui.Image_label.setText(self._noInspectorIblSetText.format(ui.common.filterImagePath("")))
 		self.ui.Image_label.setToolTip(QString())
 		self.ui.Details_label.setText(QString())
-		
+
 		self.ui.Plates_frame.hide()
-		
+
 	@core.executionTrace
 	def Plates_listView_setModel(self):
 		"""
@@ -814,9 +833,9 @@ class Inspector(UiComponent):
 		"""
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Plates_listView"))
-		
+
 		self._model.clear()
-		
+
 		if self._inspectorIblSet:
 			iblSet = self._inspectorIblSet._datas
 			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Plates_listView"))
@@ -824,19 +843,19 @@ class Inspector(UiComponent):
 			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self._inspectorIblSet._datas.icon))
 			inspectorIblSetStandardItem.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 			self._model.appendRow(inspectorIblSetStandardItem)
-			
+
 			for name, plate in self._inspectorPlates.items():
 				LOGGER.debug("> Preparing '{0}' Plate For '{1}' Model.".format(name, "Plates_listView"))
 				try:
 					plateStandardItem = QStandardItem()
 					plateStandardItem.setIcon(ui.common.getIcon(plate.icon))
 					plateStandardItem.setToolTip(self._inspectorIblSetPlatesToolTipText.format(plate.name))
-	
+
 					plateStandardItem._datas = plate
-	
+
 					LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(name, "Plates_listView"))
 					self._model.appendRow(plateStandardItem)
-	
+
 				except Exception as error:
 					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Plate To '{2}' Model!".format(self.__class__.__name__, name, "Plates_listView"))
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
@@ -872,7 +891,7 @@ class Inspector(UiComponent):
 		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self._listViewIconSize))
 
 		self.ui.Plates_listView.setIconSize(QSize(self._listViewIconSize, self._listViewIconSize))
-	
+
 	@core.executionTrace
 	def Plates_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
 		"""
@@ -881,21 +900,21 @@ class Inspector(UiComponent):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
-		
-		index =  selectedItems.indexes() and selectedItems.indexes()[0] or None
+
+		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
 		item = index and self._model.itemFromIndex(index) or None
 		if item:
 			if hasattr(item, "_datas"):
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(item._datas.previewImage))
 			else:
 				self.Inspector_DockWidget_setUi()
-	
+
 	@core.executionTrace
 	def coreDatabaseBrowser_model_OnModelChanged(self):
 		"""
 		This Method Sets Is Triggered When coreDatabaseBrowser Model Has Changed.
-		"""	
-		
+		"""
+
 		self.setInspectorIblSet()
 
 	@core.executionTrace
@@ -906,13 +925,13 @@ class Inspector(UiComponent):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
-	
+
 		self.setInspectorIblSet()
 
 		self.setInspectorIblSetPlates()
 		self.Plates_listView_setModel()
-		
-		if self._inspectorIblSet: 
+
+		if self._inspectorIblSet:
 			self.Inspector_DockWidget_setUi()
 		else:
 			self.Inspector_DockWidget_clearUi()
@@ -934,9 +953,9 @@ class Inspector(UiComponent):
 		
 		@param checked: Checked State. ( Boolean )
 		"""
-		
+
 		self.loopThroughIblSets()
-		
+
 	@core.executionTrace
 	def Previous_Plate_pushButton_OnClicked(self, checked):
 		"""
@@ -954,7 +973,7 @@ class Inspector(UiComponent):
 		
 		@param checked: Checked State. ( Boolean )
 		"""
-		
+
 		self.loopThroughPlates()
 
 	@core.executionTrace
@@ -972,12 +991,12 @@ class Inspector(UiComponent):
 		"""
 		This Method Sets The Inspected Ibl Set.
 		"""
-		
+
 		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
 		self._inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
 		if not self._inspectorIblSet:
 			model = self._coreDatabaseBrowser.model
-			self._inspectorIblSet = model.rowCount() !=0 and model.item(0) or None
+			self._inspectorIblSet = model.rowCount() != 0 and model.item(0) or None
 		self._inspectorIblSet and self.setInspectorIblSetParser()
 
 	@core.executionTrace
@@ -997,7 +1016,7 @@ class Inspector(UiComponent):
 		"""
 		This Method Sets The Plates From The Inspected Ibl Set.
 		"""
-		
+
 		if self._inspectorIblSet:
 			if os.path.exists(self._inspectorIblSet._datas.path):
 				self._inspectorPlates = OrderedDict()
@@ -1011,31 +1030,81 @@ class Inspector(UiComponent):
 				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
 
 	@core.executionTrace
+	def drawInspectorIblSetOverlay(self):
+		"""
+		This Method Draws An Overlay On .
+		"""
+
+		painter = QPainter(self.ui.Image_label.pixmap())
+		painter.setRenderHints(QPainter.Antialiasing)
+		for section in self._inspectorIblSetParser.sections:
+				if section == "Sun":
+					self.drawLightLabel(painter, Light(name="Sun",
+														color=[int(value)for value in self._inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
+														uCoordinate=float(self._inspectorIblSetParser.getValue("SUNu", section)),
+														vCoordinate=float(self._inspectorIblSetParser.getValue("SUNv", section))))
+				elif re.search("Light[0-9]+", section):
+					self.drawLightLabel(painter, Light(name=self._inspectorIblSetParser.getValue("LIGHTname", section),
+														color=[int(value)for value in self._inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
+														uCoordinate=float(self._inspectorIblSetParser.getValue("LIGHTu", section)),
+														vCoordinate=float(self._inspectorIblSetParser.getValue("LIGHTv", section))))
+		painter.end()
+
+	@core.executionTrace
+	def drawLightLabel(self, painter, light):
+		"""
+		This Method Draws A Light Label On Provided QPainter.
+		"""
+
+		labelRadius = 6
+		labelTextOffset = 24
+		labelTextMargin = 16
+		textHeight = 14
+		width = painter.window().width()
+		height = painter.window().height()
+
+		painter.setPen(QColor(light.color[0], light.color[1], light.color[2]))
+		painter.setBrush(QColor(light.color[0], light.color[1], light.color[2]))
+		painter.setFont(QFont("Arial", textHeight))
+
+		x = int(light.uCoordinate * width)
+		y = int(light.vCoordinate * height)
+
+		textWidth = painter.fontMetrics().width(light.name.title())
+		xLabelTextOffset = x + textWidth + labelTextMargin + labelTextOffset > width and - (labelTextOffset + textWidth) or labelTextOffset
+		yLabelTextOffset = y - (textHeight + labelTextMargin + labelTextOffset) < 0 and - (labelTextOffset + textHeight) or labelTextOffset
+		painter.drawText(x + xLabelTextOffset, y - yLabelTextOffset, light.name.title())
+
+		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + textHeight or yLabelTextOffset))
+
+		painter.drawEllipse(QPoint(x, y), labelRadius, labelRadius)
+
+	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
 		"""
 		This Method Loops Through Database Browser Ibl Sets.
 		
 		@param backward: Looping Direction. ( String )
 		"""
-		
+
 		if self._inspectorIblSet:
 			model = self._coreDatabaseBrowser.model
 			index = model.indexFromItem(self._inspectorIblSet)
-			
-			step = not backward and 1 or -1
+
+			step = not backward and 1 or - 1
 			idx = index.row() + step
 			if idx < 0:
-				idx = model.rowCount()-1
-			elif idx > model.rowCount()-1:
+				idx = model.rowCount() - 1
+			elif idx > model.rowCount() - 1:
 				idx = 0
-		
+
 			selectionModel = self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel()
 			if selectionModel:
 				selectionModel.clear()
 				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.Inspector_DockWidget_clearUi()
-	
+
 	@core.executionTrace
 	def loopThroughPlates(self, backward=False):
 		"""
@@ -1043,16 +1112,16 @@ class Inspector(UiComponent):
 		
 		@param backward: Looping Direction. ( String )
 		"""
-		
-		index =  self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None
+
+		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None
 		if index:
-			step = not backward and 1 or -1
+			step = not backward and 1 or - 1
 			idx = index.row() + step
 			if idx < 0:
-				idx = self._model.rowCount()-1
-			elif idx > self._model.rowCount()-1:
+				idx = self._model.rowCount() - 1
+			elif idx > self._model.rowCount() - 1:
 				idx = 0
-		
+
 			selectionModel = self.ui.Plates_listView.selectionModel()
 			if selectionModel:
 				selectionModel.clear()
