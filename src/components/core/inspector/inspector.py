@@ -205,7 +205,7 @@ class Inspector(UiComponent):
 								<p><b>{0}</b></p>
 								"""
 
-		self._lightLabelRadius = 6
+		self._lightLabelRadius = 4
 		self._lightLabelTextOffset = 24
 		self._lightLabelTextMargin = 16
 		self._lightLabelTextHeight = 14
@@ -1229,9 +1229,11 @@ class Inspector(UiComponent):
 		width = painter.window().width()
 		height = painter.window().height()
 
-		painter.setPen(QColor(light.color[0], light.color[1], light.color[2]))
-		painter.setBrush(QColor(light.color[0], light.color[1], light.color[2]))
-		painter.setFont(QFont(self._lightLabelTextFont, self._lightLabelTextHeight))
+		painter.setBrush(QColor(light.color[0], light.color[1], light.color[2], 200))
+		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 200)), 2))
+		font = QFont(self._lightLabelTextFont, self._lightLabelTextHeight)
+		font.setBold(True)
+		painter.setFont(font)
 
 		x = int(light.uCoordinate * width)
 		y = int(light.vCoordinate * height)
@@ -1244,6 +1246,12 @@ class Inspector(UiComponent):
 		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + self._lightLabelTextHeight or yLabelTextOffset))
 
 		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius, self._lightLabelRadius)
+
+		painter.setBrush(Qt.NoBrush)
+		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 100)), 2))
+		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius * 3, self._lightLabelRadius * 3)
+		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 50)), 2))
+		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius * 4, self._lightLabelRadius * 4)
 
 	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
