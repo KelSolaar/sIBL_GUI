@@ -148,12 +148,12 @@ class Delayed_QSplashScreen(QSplashScreen):
 		@param textColor: Text Message Color. ( Object )
 		@param waitTime: Wait Time. ( Float )
 		"""
-		
+
 		self.showMessage(message, textAlignement, textColor)
 
 		# Force QSplashscreen Refresh.
 		QApplication.processEvents()
-		
+
 		if self._waitTime:
 			waitTime = self._waitTime
 

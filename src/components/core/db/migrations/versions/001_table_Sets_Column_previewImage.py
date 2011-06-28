@@ -78,13 +78,13 @@ def upgrade(dbEngine):
 
     @param dbEngine: Database Engine. ( Object )
     """
-    
+
     LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
 
     metadata = sqlalchemy.MetaData()
     metadata.bind = dbEngine
     table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
-    
+
     columnName = "previewImage"
     if columnName not in table.columns:
         LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
@@ -99,7 +99,7 @@ def downgrade(dbEngine):
 
     @param dbEngine: Database Engine. ( Object )
     """
-    
+
     pass
 
 #***********************************************************************************************

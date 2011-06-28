@@ -502,7 +502,7 @@ class SetsScanner(Component):
 			if not self._container.parameters.deactivateWorkerThreads:
 				self._setsScannerWorkerThread = SetsScanner_Worker(self)
 				self._container.workerThreads.append(self._setsScannerWorkerThread)
-	
+
 				# Signals / Slots.
 				self._setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
 			else:
@@ -517,12 +517,12 @@ class SetsScanner(Component):
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
-		
+
 		if not self._container.parameters.databaseReadOnly:
 			if not self._container.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
 				not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
-	
+
 				self._setsScannerWorkerThread = None
 
 	@core.executionTrace

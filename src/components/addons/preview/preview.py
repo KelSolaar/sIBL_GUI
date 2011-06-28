@@ -278,13 +278,13 @@ class ImagesPreviewer(object):
 		self._graphicsSceneHeight = QApplication.desktop().height() * (1 / self._minimumZoomFactor * 1.75)
 		self._wheelZoomFactor = 350.0
 		self._keyZoomFactor = 1.20
-		
+
 		self._graphicsView = None
 		self._graphicsScene = None
 		self._displayGraphicsItem = None
-		
+
 		self.initializeUi()
-		
+
 		self._ui.show()
 
 		self.fitImage()
@@ -962,7 +962,7 @@ class ImagesPreviewer(object):
 		if self._displayGraphicsItem:
 			width = self._displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._previewerMargin or self._displayGraphicsItem.width + self._previewerMargin
 			height = self._displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._previewerMargin or self._displayGraphicsItem.height + self._previewerMargin
-	
+
 			self._ui.resize(width, height)
 
 	@core.executionTrace
@@ -972,25 +972,25 @@ class ImagesPreviewer(object):
 		
 		@param index: Index To Display. ( Integer )
 		"""
-		
+
 		if self._paths:
 			path = self._paths[index]
 			image = ui.common.getImage(path)
 			if not hasattr(image, "_datas"):
 				image._datas = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
-				
+
 			LOGGER.debug("> Initializing Graphics Item.")
 			self._displayGraphicsItem = Image_QGraphicsItem(image)
 			self._graphicsScene.addItem(self._displayGraphicsItem)
-		
+
 			self._ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
-	
+
 	@core.executionTrace
 	def fitImage(self):
 		"""
 		This Method Fits The Display Image.
-		"""	
-		
+		"""
+
 		if self._displayGraphicsItem:
 			self._graphicsView.fitInView(QRectF(-(self._displayGraphicsItem.width / 2) - (self._displayGraphicsItemMargin / 2), -(self._displayGraphicsItem.height / 2) - (self._displayGraphicsItemMargin / 2), self._displayGraphicsItem.width + self._displayGraphicsItemMargin, self._displayGraphicsItem.height + self._displayGraphicsItemMargin), Qt.KeepAspectRatio)
 
@@ -999,10 +999,11 @@ class ImagesPreviewer(object):
 		"""
 		This Method Loops Through Previewer Images.
 		
-		@param backward: Looping Direction. ( String )
+		@param backward: Looping Backward. ( Boolean )
 		"""
+
 		index = self._paths.index(self._displayGraphicsItem.image._datas.path)
-		index += not backward and 1 or -1
+		index += not backward and 1 or - 1
 		if index < 0:
 			index = len(self._paths) - 1
 		elif index > len(self._paths) - 1:
@@ -1029,7 +1030,7 @@ class ImagesPreviewer(object):
 		"""
 
 		self.loopThroughImages()
-	
+
 	@core.executionTrace
 	def Zoom_In_pushButton_OnClicked(self, checked):
 		"""
@@ -1139,11 +1140,11 @@ class Preview(UiComponent):
 		self._viewLightingImageAction = None
 		self._viewReflectionImageAction = None
 		self._viewBackgroundImageAction = None
-		
-		self._inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1,"column" : 3},
-									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1,"column" : 4},
-									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1,"column" : 5},
-									"Plates" : {"object" : None, "text": "View Plates", "row" : 1,"column" : 6}}
+
+		self._inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
+									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1, "column" : 4},
+									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
+									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1627,8 +1628,8 @@ class Preview(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self.Custom_Previewer_Path_lineEdit_setUi()
-		
-		self.addActions_()		
+
+		self.addActions_()
 		self.addInspectorButtons()
 
 		# Signals / Slots.
@@ -1720,7 +1721,7 @@ class Preview(UiComponent):
 		"""
 		This Method Adds Buttons To The Inspector Component.
 		"""
-		
+
 		self._coreInspector.ui.Options_groupBox.show()
 		for key, value in self._inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
@@ -1730,7 +1731,7 @@ class Preview(UiComponent):
 	def removeInspectorButtons(self):
 		"""
 		This Method Removes Buttons From The Inspector Component.
-		"""	
+		"""
 
 		for value in self._inspectorButtons.values():
 			value["object"].setParent(None)
@@ -1772,7 +1773,7 @@ class Preview(UiComponent):
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
-		
+
 		self.showImagesPreview("Plates")
 
 	@core.executionTrace
@@ -1822,9 +1823,9 @@ class Preview(UiComponent):
 		@param imageType: Image Type. ( String )
 		@param *args: Arguments. ( * )
 		"""
-		
+
 		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
-		
+
 		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
 			imagePaths = []
@@ -1842,11 +1843,11 @@ class Preview(UiComponent):
 					for section in parser.sections:
 						if re.search("Plate[0-9]+", section):
 							imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet._datas.path), parser.getValue("PLATEfile", section))))
-			
+
 			for path in imagePaths[:]:
 				if not os.path.exists(path):
 					imagePaths.remove(path) and messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, path))
-			
+
 			if imagePaths:
 				if customPreviewer:
 					previewCommand = None

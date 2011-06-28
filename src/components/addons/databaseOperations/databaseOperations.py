@@ -389,7 +389,7 @@ class DatabaseOperations(UiComponent):
 		
 		@param checked: Checked State. ( Boolean )
 		"""
-		
+
 		self.synchronizeDatabase()
 
 	@core.executionTrace
@@ -400,7 +400,7 @@ class DatabaseOperations(UiComponent):
 
 		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self._coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel},
 					{"type" : "Template", "getMethod" : dbUtilities.common.getTemplates, "updateContentMethod" : dbUtilities.common.updateTemplateContent, "updateLocationMethod" : self._coreTemplatesOutliner.updateTemplateLocation, "refreshModelMethod" : self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel})
-		
+
 		for dbType in dbTypes:
 			needModelRefresh = False
 			for item in dbType["getMethod"](self._coreDb.dbSession):

@@ -1190,10 +1190,10 @@ class CollectionsOutliner(UiComponent):
 
 		standardItem = self._model.itemFromIndex(startIndex)
 		currentText = standardItem.text()
-		
+
 		if currentText:
 			collectionStandardItem = self._model.itemFromIndex(self._model.sibling(startIndex.row(), 0, startIndex))
-	
+
 			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
 			collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
 			if identity and collections:
@@ -1340,7 +1340,7 @@ class CollectionsOutliner(UiComponent):
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
-		
+
 		collectionInformations = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
 		collection = self.addCollection(collectionInformations[0])
 		if collection:

@@ -488,7 +488,7 @@ class TemplatesOutliner(UiComponent):
 											</p>
 											</p>
 											"""
-		
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -1539,7 +1539,6 @@ class TemplatesOutliner(UiComponent):
 		separatorAction = QAction(self.ui.Templates_Outliner_treeView)
 		separatorAction.setSeparator(True)
 		self.ui.Templates_Outliner_treeView.addAction(separatorAction)
-
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_addTemplateAction(self, checked):

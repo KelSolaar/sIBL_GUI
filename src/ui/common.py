@@ -208,7 +208,7 @@ def getGraphicItem(path, type):
 		@param type: QIcon, QImage, QPixmap. ( QObject )
 		@return: Graphic Display. ( Icon, QImage, QPixmap )
 		"""
-	
+
 		if os.path.exists(path):
 			for extension in UiConstants.nativeImageFormats.values():
 				if re.search(extension, path):
@@ -228,7 +228,7 @@ def getGraphicItem(path, type):
 					return type(UiConstants.frameworkFormatErrorImage)
 		else:
 			return type(UiConstants.frameworkMissingImage)
-	
+
 @core.executionTrace
 def getIcon(path):
 		"""
@@ -237,7 +237,7 @@ def getIcon(path):
 		@param path: Icon Image Path. ( String )
 		@return: QIcon. ( QIcon )
 		"""
-		
+
 		return getGraphicItem(path, QIcon)
 
 @core.executionTrace
@@ -248,7 +248,7 @@ def getPixmap(path):
 		@param path: Icon Image Path. ( String )
 		@return: QPixmap. ( QPixmap )
 		"""
-	
+
 		return getGraphicItem(path, QPixmap)
 
 @core.executionTrace
@@ -259,7 +259,7 @@ def getImage(path):
 		@param path: Icon Image Path. ( String )
 		@return: QImage. ( QImage )
 		"""
-		
+
 		return getGraphicItem(path, QImage)
 
 @core.executionTrace
@@ -270,7 +270,7 @@ def filterImagePath(path):
 		@param path: Image Path. ( String )
 		@return: Path. ( String )
 		"""
-	
+
 		if os.path.exists(path):
 			for extension in UiConstants.nativeImageFormats.values():
 				if re.search(extension, path):
