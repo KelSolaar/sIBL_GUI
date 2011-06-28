@@ -377,7 +377,7 @@ QToolTip {
 
 /* Components. */
 /* Core Component "Inspector". */
-#Overall_frame {
+#Inspector_Overall_frame {
 	background-color: rgb(48, 48, 48);
 }
 

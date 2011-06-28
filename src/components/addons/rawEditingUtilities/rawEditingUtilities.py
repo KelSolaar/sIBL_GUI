@@ -109,9 +109,11 @@ class RawEditingUtilities(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 		self._coreTemplatesOutliner = None
 
-		self._editSetInTextEditorAction = None
+		self._editIblSetsInTextEditorAction = None
+		self._editInspectedIblSetInTextEditorAction = None
 		self._editTemplateInTextEditorAction = None
 
 		self._linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
@@ -300,6 +302,36 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 
 	@property
+	def coreInspector(self):
+		"""
+		This Method Is The Property For The _coreInspector Attribute.
+
+		@return: self._coreInspector. ( Object )
+		"""
+
+		return self._coreInspector
+
+	@coreInspector.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreInspector(self, value):
+		"""
+		This Method Is The Setter Method For The _coreInspector Attribute.
+
+		@param value: Attribute Value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreInspector"))
+
+	@coreInspector.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def coreInspector(self):
+		"""
+		This Method Is The Deleter Method For The _coreInspector Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreInspector"))
+
+	@property
 	def coreTemplatesOutliner(self):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
@@ -330,34 +362,64 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
 	@property
-	def editSetInTextEditorAction(self):
+	def editIblSetsInTextEditorAction(self):
 		"""
-		This Method Is The Property For The _editSetInTextEditorAction Attribute.
+		This Method Is The Property For The _editIblSetsInTextEditorAction Attribute.
 
-		@return: self._editSetInTextEditorAction. ( QAction )
+		@return: self._editIblSetsInTextEditorAction. ( QAction )
 		"""
 
-		return self._editSetInTextEditorAction
+		return self._editIblSetsInTextEditorAction
 
-	@editSetInTextEditorAction.setter
+	@editIblSetsInTextEditorAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editSetInTextEditorAction(self, value):
+	def editIblSetsInTextEditorAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editSetInTextEditorAction Attribute.
+		This Method Is The Setter Method For The _editIblSetsInTextEditorAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editIblSetsInTextEditorAction"))
 
-	@editSetInTextEditorAction.deleter
+	@editIblSetsInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editSetInTextEditorAction(self):
+	def editIblSetsInTextEditorAction(self):
 		"""
-		This Method Is The Deleter Method For The _editSetInTextEditorAction Attribute.
+		This Method Is The Deleter Method For The _editIblSetsInTextEditorAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editIblSetsInTextEditorAction"))
+
+	@property
+	def editInspectedIblSetInTextEditorAction(self):
+		"""
+		This Method Is The Property For The _editInspectedIblSetInTextEditorAction Attribute.
+
+		@return: self._editInspectedIblSetInTextEditorAction. ( QAction )
+		"""
+
+		return self._editInspectedIblSetInTextEditorAction
+
+	@editInspectedIblSetInTextEditorAction.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editInspectedIblSetInTextEditorAction(self, value):
+		"""
+		This Method Is The Setter Method For The _editInspectedIblSetInTextEditorAction Attribute.
+
+		@param value: Attribute Value. ( QAction )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectedIblSetInTextEditorAction"))
+
+	@editInspectedIblSetInTextEditorAction.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editInspectedIblSetInTextEditorAction(self):
+		"""
+		This Method Is The Deleter Method For The _editInspectedIblSetInTextEditorAction Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectedIblSetInTextEditorAction"))
 
 	@property
 	def editTemplateInTextEditorAction(self):
@@ -439,6 +501,7 @@ class RawEditingUtilities(UiComponent):
 
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 
 		self._activate()
@@ -458,6 +521,7 @@ class RawEditingUtilities(UiComponent):
 
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 		self._coreTemplatesOutliner = None
 
 		self._deactivate()
@@ -522,13 +586,18 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
 		if not self._container.parameters.databaseReadOnly:
-			self._editSetInTextEditorAction = QAction("Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-			self._editSetInTextEditorAction.triggered.connect(self.Database_Browser_listView_editSetInTextEditorAction)
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editSetInTextEditorAction)
+			self._editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
+			self._editIblSetsInTextEditorAction.triggered.connect(self.Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered)
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editIblSetsInTextEditorAction)
+
+			self._editInspectedIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self._coreInspector.ui.Inspector_Overall_frame)
+			self._editInspectedIblSetInTextEditorAction.triggered.connect(self.Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered)
+			self._coreInspector.ui.Inspector_Overall_frame.addAction(self._editInspectedIblSetInTextEditorAction)
 
 			self._editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-			self._editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editSetInTextEditorAction)
+			self._editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered)
 			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._editTemplateInTextEditorAction)
+
 		else:
 			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -541,16 +610,19 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
 		if not self._container.parameters.databaseReadOnly:
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editSetInTextEditorAction)
-			self._editSetInTextEditorAction = None
+			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editIblSetsInTextEditorAction)
+			self._editIblSetsInTextEditorAction = None
+
+			self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._editInspectedIblSetInTextEditorAction)
+			self._editInspectedIblSetInTextEditorAction = None
 
 			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self._editTemplateInTextEditorAction)
 			self._editTemplateInTextEditorAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_editSetInTextEditorAction(self, checked):
+	def Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By editSetInTextEditorAction.
+		This Method Is Triggered By editIblSetsInTextEditorAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
@@ -560,9 +632,21 @@ class RawEditingUtilities(UiComponent):
 			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editProvidedfile(iblSet._datas.path)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_editSetInTextEditorAction(self, checked):
+	def Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By editTemplateInTextEditorAction.
+		This Method Is Triggered By editInspectedIblSetInTextEditorAction Action.
+
+		@param checked: Action Checked State. ( Boolean )
+		"""
+
+		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
+		selectedIblSet and self.editProvidedfile(selectedIblSet._datas.path)
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered(self, checked):
+		"""
+		This Method Is Triggered By editTemplateInTextEditorAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""

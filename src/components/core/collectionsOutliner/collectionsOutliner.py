@@ -1320,55 +1320,57 @@ class CollectionsOutliner(UiComponent):
 
 		if not self._container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
-			addContentAction.triggered.connect(self.Collections_Outliner_treeView_addContentAction)
+			addContentAction.triggered.connect(self.Collections_Outliner_treeView_addContentAction_OnTriggered)
 			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
 
 			addCollectionAction = QAction("Add Collection ...", self.ui.Collections_Outliner_treeView)
-			addCollectionAction.triggered.connect(self.Collections_Outliner_treeView_addCollectionAction)
+			addCollectionAction.triggered.connect(self.Collections_Outliner_treeView_addCollectionAction_OnTriggered)
 			self.ui.Collections_Outliner_treeView.addAction(addCollectionAction)
 
 			removeCollectionsAction = QAction("Remove Collection(s) ...", self.ui.Collections_Outliner_treeView)
-			removeCollectionsAction.triggered.connect(self.Collections_Outliner_treeView_removeCollectionsAction)
+			removeCollectionsAction.triggered.connect(self.Collections_Outliner_treeView_removeCollectionsAction_OnTriggered)
 			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
 		else:
 			LOGGER.info("{0} | Collections Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addContentAction(self, checked):
+	def Collections_Outliner_treeView_addContentAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By addContentAction.
+		This Method Is Triggered By addContentAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		collectionInformations = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
-		collection = self.addCollection(collectionInformations[0])
-		if collection:
-			self.Collections_Outliner_treeView_refreshModel()
-			directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
-			if directory:
-				LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-				self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
-				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self._model.indexFromItem(self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-				self.Collections_Outliner_treeView_refreshSetsCounts()
+		name, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
+		if state:
+			collection = self.addCollection(name)
+			if collection:
+				self.Collections_Outliner_treeView_refreshModel()
+				directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
+				if directory:
+					LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+					self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
+					self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self._model.indexFromItem(self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+					self.Collections_Outliner_treeView_refreshSetsCounts()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_addCollectionAction(self, checked):
+	def Collections_Outliner_treeView_addCollectionAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By addCollectionAction.
+		This Method Is Triggered By addCollectionAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		collectionInformations = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
-		collection = self.addCollection(collectionInformations[0])
-		if collection:
-			self.Collections_Outliner_treeView_refreshModel()
+		name, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
+		if state:
+			collection = self.addCollection(name)
+			if collection:
+				self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_removeCollectionsAction(self, checked):
+	def Collections_Outliner_treeView_removeCollectionsAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By removeCollectionsAction.
+		This Method Is Triggered By removeCollectionsAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""

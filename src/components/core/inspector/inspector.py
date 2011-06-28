@@ -895,13 +895,16 @@ class Inspector(UiComponent):
 		self.ui.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
 
 		self.ui.Plates_frame.hide()
-		self.ui.Options_groupBox.hide()
+		self.ui.Inspector_Options_groupBox.hide()
 
 		self._model = QStandardItemModel()
 		self.Plates_listView_setModel()
 		self.Plates_listView_setView()
 
 		self.Inspector_DockWidget_setUi()
+
+		self.ui.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.Inspector_Overall_frame_setActions()
 
 		# Signals / Slots.
 		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.Plates_listView_OnModelSelectionChanged)
@@ -981,6 +984,14 @@ class Inspector(UiComponent):
 		self.ui.Details_label.setText(QString())
 
 		self.ui.Plates_frame.hide()
+
+	@core.executionTrace
+	def Inspector_Overall_frame_setActions(self):
+		"""
+		This Method Sets The Inspector_Overall_frame Actions.
+		"""
+
+		pass
 
 	@core.executionTrace
 	def Plates_listView_setModel(self):

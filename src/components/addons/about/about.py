@@ -347,6 +347,36 @@ class About(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("miscMenu"))
 
+	@property
+	def aboutMiscAction(self):
+		"""
+		This Method Is The Property For The _aboutMiscAction Attribute.
+
+		@return: self._aboutMiscAction. ( QAction )
+		"""
+
+		return self._aboutMiscAction
+
+	@aboutMiscAction.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def aboutMiscAction(self, value):
+		"""
+		This Method Is The Setter Method For The _aboutMiscAction Attribute.
+
+		@param value: Attribute Value. ( QAction )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("aboutMiscAction"))
+
+	@aboutMiscAction.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def aboutMiscAction(self):
+		"""
+		This Method Is The Deleter Method For The _aboutMiscAction Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("aboutMiscAction"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -427,7 +457,7 @@ class About(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self._aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
-		self._aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction)
+		self._aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction_OnTriggered)
 		self._miscMenu.addAction(self._aboutMiscAction)
 
 	@core.executionTrace
@@ -443,9 +473,9 @@ class About(UiComponent):
 		self._aboutMiscAction = None
 
 	@core.executionTrace
-	def miscMenu_aboutMiscAction(self, checked):
+	def miscMenu_aboutMiscAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By aboutMiscAction.
+		This Method Is Triggered By aboutMiscAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""

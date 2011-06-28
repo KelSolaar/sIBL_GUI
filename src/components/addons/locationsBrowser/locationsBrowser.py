@@ -112,6 +112,7 @@ class LocationsBrowser(UiComponent):
 		self._coreComponentsManagerUi = None
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 		self._coreTemplatesOutliner = None
 		self._addonsLoaderScript = None
 
@@ -427,6 +428,36 @@ class LocationsBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openIblSetsLocationsAction"))
 
 	@property
+	def openInspectedIblSetLocationsAction(self):
+		"""
+		This Method Is The Property For The _openInspectedIblSetLocationsAction Attribute.
+
+		@return: self._openInspectedIblSetLocationsAction. ( QAction )
+		"""
+
+		return self._openInspectedIblSetLocationsAction
+
+	@openInspectedIblSetLocationsAction.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def openInspectedIblSetLocationsAction(self, value):
+		"""
+		This Method Is The Setter Method For The _openInspectedIblSetLocationsAction Attribute.
+
+		@param value: Attribute Value. ( QAction )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openInspectedIblSetLocationsAction"))
+
+	@openInspectedIblSetLocationsAction.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def openInspectedIblSetLocationsAction(self):
+		"""
+		This Method Is The Deleter Method For The _openInspectedIblSetLocationsAction Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openInspectedIblSetLocationsAction"))
+
+	@property
 	def openComponentsLocationsAction(self):
 		"""
 		This Method Is The Property For The _openComponentsLocationsAction Attribute.
@@ -567,6 +598,7 @@ class LocationsBrowser(UiComponent):
 		self._coreComponentsManagerUi = self._container.componentsManager.components["core.componentsManagerUi"].interface
 		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
 		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
 		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
 		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
 
@@ -588,6 +620,7 @@ class LocationsBrowser(UiComponent):
 		self._coreComponentsManagerUi = None
 		self._corePreferencesManager = None
 		self._coreDatabaseBrowser = None
+		self._coreInspector = None
 		self._coreTemplatesOutliner = None
 		self._addonsLoaderScript = None
 
@@ -669,15 +702,19 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self._openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._openIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_openIblSetsLocationsAction)
+		self._openIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_openIblSetsLocationsAction_OnTriggered)
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._openIblSetsLocationsAction)
 
+		self._openInspectedIblSetLocationsAction = QAction("Open Ibl Set Location ...", self._coreInspector.ui.Inspector_Overall_frame)
+		self._openInspectedIblSetLocationsAction.triggered.connect(self.Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered)
+		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._openInspectedIblSetLocationsAction)
+
 		self._openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
-		self._openComponentsLocationsAction.triggered.connect(self.Components_Manager_Ui_treeView_openComponentsLocationsAction)
+		self._openComponentsLocationsAction.triggered.connect(self.Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered)
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self._openComponentsLocationsAction)
 
 		self._openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-		self._openTemplatesLocationsAction.triggered.connect(self.Templates_Outliner_treeView_openTemplatesLocationsAction)
+		self._openTemplatesLocationsAction.triggered.connect(self.Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered)
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._openTemplatesLocationsAction)
 
 	@core.executionTrace
@@ -689,17 +726,19 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._openIblSetsLocationsAction)
+		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._openInspectedIblSetLocationsAction)
 		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self._openComponentsLocationsAction)
 		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self._openTemplatesLocationsAction)
 
 		self._openIblSetsLocationsAction = None
+		self._openInspectedIblSetLocationsAction = None
 		self._openComponentsLocationsAction = None
 		self._openTemplatesLocationsAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_openIblSetsLocationsAction(self, checked):
+	def Database_Browser_listView_openIblSetsLocationsAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By openIblSetsLocationsAction.
+		This Method Is Triggered By openIblSetsLocationsAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
@@ -711,9 +750,21 @@ class LocationsBrowser(UiComponent):
 			iblSetPath and self.exploreProvidedFolder(iblSetPath)
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_openComponentsLocationsAction(self, checked):
+	def Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By openComponentsLocationsAction.
+		This Method Is Triggered By openInspectedIblSetLocationsAction Action.
+
+		@param checked: Action Checked State. ( Boolean )
+		"""
+
+		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
+		selectedIblSet and self.exploreProvidedFolder(os.path.dirname(selectedIblSet._datas.path))
+
+	@core.executionTrace
+	def Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered(self, checked):
+		"""
+		This Method Is Triggered By openComponentsLocationsAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
@@ -723,9 +774,9 @@ class LocationsBrowser(UiComponent):
 			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreProvidedFolder(component._datas.path)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_openTemplatesLocationsAction(self, checked):
+	def Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By openTemplatesLocationsAction.
+		This Method Is Triggered By openTemplatesLocationsAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""

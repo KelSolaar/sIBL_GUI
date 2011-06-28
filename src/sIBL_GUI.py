@@ -1563,7 +1563,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def helpDisplayMiscAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By helpDisplayMiscAction.
+		This Method Is Triggered By helpDisplayMiscAction Action.
 
 		@param checked: Checked State. ( Boolean )
 		"""
@@ -1574,7 +1574,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def apiDisplayMiscAction_OnTriggered(self, checked):
 		"""
-		This Method Is Triggered By apiDisplayMiscAction.
+		This Method Is Triggered By apiDisplayMiscAction Action.
 
 		@param checked: Checked State. ( Boolean )
 		"""
