@@ -205,6 +205,12 @@ class Inspector(UiComponent):
 								<p><b>{0}</b></p>
 								"""
 
+		self._lightLabelRadius = 6
+		self._lightLabelTextOffset = 24
+		self._lightLabelTextMargin = 16
+		self._lightLabelTextHeight = 14
+		self._lightLabelTextFont = "Helvetica"
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -691,6 +697,156 @@ class Inspector(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetPlatesToolTipText"))
 
+	@property
+	def lightLabelRadius(self):
+		"""
+		This Method Is The Property For The _lightLabelRadius Attribute.
+
+		@return: self._lightLabelRadius. ( Integer )
+		"""
+
+		return self._lightLabelRadius
+
+	@lightLabelRadius.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelRadius(self, value):
+		"""
+		This Method Is The Setter Method For The _lightLabelRadius Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelRadius"))
+
+	@lightLabelRadius.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelRadius(self):
+		"""
+		This Method Is The Deleter Method For The _lightLabelRadius Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelRadius"))
+
+	@property
+	def lightLabelTextOffset(self):
+		"""
+		This Method Is The Property For The _lightLabelTextOffset Attribute.
+
+		@return: self._lightLabelTextOffset. ( Integer )
+		"""
+
+		return self._lightLabelTextOffset
+
+	@lightLabelTextOffset.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextOffset(self, value):
+		"""
+		This Method Is The Setter Method For The _lightLabelTextOffset Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextOffset"))
+
+	@lightLabelTextOffset.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextOffset(self):
+		"""
+		This Method Is The Deleter Method For The _lightLabelTextOffset Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextOffset"))
+
+	@property
+	def lightLabelTextMargin(self):
+		"""
+		This Method Is The Property For The _lightLabelTextMargin Attribute.
+
+		@return: self._lightLabelTextMargin. ( Integer )
+		"""
+
+		return self._lightLabelTextMargin
+
+	@lightLabelTextMargin.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextMargin(self, value):
+		"""
+		This Method Is The Setter Method For The _lightLabelTextMargin Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextMargin"))
+
+	@lightLabelTextMargin.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextMargin(self):
+		"""
+		This Method Is The Deleter Method For The _lightLabelTextMargin Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextMargin"))
+
+	@property
+	def lightLabelTextHeight(self):
+		"""
+		This Method Is The Property For The _lightLabelTextHeight Attribute.
+
+		@return: self._lightLabelTextHeight. ( Integer )
+		"""
+
+		return self._lightLabelTextHeight
+
+	@lightLabelTextHeight.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextHeight(self, value):
+		"""
+		This Method Is The Setter Method For The _lightLabelTextHeight Attribute.
+
+		@param value: Attribute Value. ( Integer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextHeight"))
+
+	@lightLabelTextHeight.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextHeight(self):
+		"""
+		This Method Is The Deleter Method For The _lightLabelTextHeight Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextHeight"))
+
+	@property
+	def lightLabelTextFont(self):
+		"""
+		This Method Is The Property For The _lightLabelTextFont Attribute.
+
+		@return: self._lightLabelTextFont. ( String )
+		"""
+
+		return self._lightLabelTextFont
+
+	@lightLabelTextFont.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextFont(self, value):
+		"""
+		This Method Is The Setter Method For The _lightLabelTextFont Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextFont"))
+
+	@lightLabelTextFont.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def lightLabelTextFont(self):
+		"""
+		This Method Is The Deleter Method For The _lightLabelTextFont Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextFont"))
+
 	#***************************************************************************************
 	#***	Class Methods
 	#***************************************************************************************
@@ -1054,30 +1210,29 @@ class Inspector(UiComponent):
 	def drawLightLabel(self, painter, light):
 		"""
 		This Method Draws A Light Label On Provided QPainter.
+
+		@param painter: QPainter. ( QPainter )
+		@param light: Light. ( Light )
 		"""
 
-		labelRadius = 6
-		labelTextOffset = 24
-		labelTextMargin = 16
-		textHeight = 14
 		width = painter.window().width()
 		height = painter.window().height()
 
 		painter.setPen(QColor(light.color[0], light.color[1], light.color[2]))
 		painter.setBrush(QColor(light.color[0], light.color[1], light.color[2]))
-		painter.setFont(QFont("Arial", textHeight))
+		painter.setFont(QFont(self._lightLabelTextFont, self._lightLabelTextHeight))
 
 		x = int(light.uCoordinate * width)
 		y = int(light.vCoordinate * height)
 
 		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = x + textWidth + labelTextMargin + labelTextOffset > width and - (labelTextOffset + textWidth) or labelTextOffset
-		yLabelTextOffset = y - (textHeight + labelTextMargin + labelTextOffset) < 0 and - (labelTextOffset + textHeight) or labelTextOffset
+		xLabelTextOffset = x + textWidth + self._lightLabelTextMargin + self._lightLabelTextOffset > width and - (self._lightLabelTextOffset + textWidth) or self._lightLabelTextOffset
+		yLabelTextOffset = y - (self._lightLabelTextHeight + self._lightLabelTextMargin + self._lightLabelTextOffset) < 0 and - (self._lightLabelTextOffset + self._lightLabelTextHeight) or self._lightLabelTextOffset
 		painter.drawText(x + xLabelTextOffset, y - yLabelTextOffset, light.name.title())
 
-		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + textHeight or yLabelTextOffset))
+		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + self._lightLabelTextHeight or yLabelTextOffset))
 
-		painter.drawEllipse(QPoint(x, y), labelRadius, labelRadius)
+		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius, self._lightLabelRadius)
 
 	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
