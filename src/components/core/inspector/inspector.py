@@ -1239,7 +1239,7 @@ class Inspector(UiComponent):
 		"""
 		This Method Loops Through Database Browser Ibl Sets.
 		
-		@param backward: Looping Direction. ( String )
+		@param backward: Looping Backward. ( Boolean )
 		"""
 
 		if self._inspectorIblSet:
@@ -1254,9 +1254,8 @@ class Inspector(UiComponent):
 				idx = 0
 
 			selectionModel = self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel()
-			if selectionModel:
-				selectionModel.clear()
-				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
+			selectionModel.clear()
+			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.Inspector_DockWidget_clearUi()
 
@@ -1265,7 +1264,7 @@ class Inspector(UiComponent):
 		"""
 		This Method Loops Through Inspector Plates.
 		
-		@param backward: Looping Direction. ( String )
+		@param backward: Looping Backward. ( Boolean )
 		"""
 
 		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None
@@ -1278,9 +1277,8 @@ class Inspector(UiComponent):
 				idx = 0
 
 			selectionModel = self.ui.Plates_listView.selectionModel()
-			if selectionModel:
-				selectionModel.clear()
-				selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
+			selectionModel.clear()
+			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.ui.Plates_listView.setCurrentIndex(self._model.index(0, 0))
 

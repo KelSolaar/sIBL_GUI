@@ -702,7 +702,7 @@ class LoaderScriptOptions(UiComponent):
 				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self._enumSplitter)])
 			elif attributeCompound.type == "String":
 				item = QLineEdit(QString(attributeCompound.value))
-				
+
 			item._datas = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
 

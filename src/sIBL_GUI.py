@@ -122,7 +122,7 @@ class Preferences():
 		self._preferencesFile = preferencesFile
 
 		self._settings = QSettings(self.preferencesFile, QSettings.IniFormat)
-		
+
 		# --- Initializing Preferences. ---
 		self.getDefaultLayoutsSettings()
 
@@ -264,8 +264,8 @@ class Preferences():
 	def getDefaultLayoutsSettings(self):
 		"""
 		This Method Gets The Default Layouts Settings.
-		"""	
-		
+		"""
+
 		LOGGER.debug("> Accessing '{0}' Layouts Settings File!".format(UiConstants.frameworkLayoutsFile))
 		self._defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 
@@ -330,7 +330,7 @@ class Preferences():
 		"""
 		This Method Sets The Default Layouts In The Preferences File.
 		"""
-		
+
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
 				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
 					LOGGER.debug("> Updating Preferences File '{0}_{1}' Layout Attribute!".format(layout, type))
@@ -405,7 +405,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# --- Initializing sIBL_GUI. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
-		
+
 		# Visual Style Initialisation.
 		self.setVisualStyle()
 		ui.common.setWindowDefaultIcon(self)
@@ -453,7 +453,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self._coreDb.initialize()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.db", Constants.applicationName)
-		
+
 		# --- Activating Collections Outliner Component. ---
 		self._coreCollectionsOutliner = self._componentsManager.getInterface("core.collectionsOutliner")
 		if self._coreCollectionsOutliner:
@@ -512,7 +512,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		if RuntimeConstants.splashscreen:
 			RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initialization Done.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white)
 			RuntimeConstants.splashscreen.hide()
-			
+
 		# --- Running onStartup Components Methods. ---
 		for component in self._componentsManager.getComponents():
 			interface = self._componentsManager.getInterface(component)
@@ -1367,7 +1367,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.toolBar.addWidget(self._preferencesActiveLabel)
 
 		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
-									LayoutActiveLabel(name="Inspect", object_=self._inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),									
+									LayoutActiveLabel(name="Inspect", object_=self._inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
 									LayoutActiveLabel(name="Export", object_=self._exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
 									LayoutActiveLabel(name="Preferences", object_=self._preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
@@ -1511,7 +1511,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param name: Layout Name. ( String )
 		@param *args: Arguments. ( * )
 		"""
-		
+
 		LOGGER.debug("> Storing Layout '{0}'.".format(name))
 
 		self._settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())

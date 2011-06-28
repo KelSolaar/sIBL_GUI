@@ -111,13 +111,13 @@ class Db(Component):
 		self._dbSession = None
 		self._dbEngine = None
 		self._dbCatalog = None
-		
+
 		self._connectionString = None
 
 		self._dbMigrationsRepositoryDirectory = None
-		
+
 		self._dbBackupDirectory = "backup"
-		self._dbBackupCount = 6	
+		self._dbBackupCount = 6
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -472,7 +472,7 @@ class Db(Component):
 
 		if not self._container.parameters.databaseReadOnly:
 			backupDestination = os.path.join(os.path.dirname(self.dbName), self._dbBackupDirectory)
-			
+
 			LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
 			rotatingBackup = RotatingBackup(self._dbName, backupDestination, self._dbBackupCount)
 			rotatingBackup.backup()
@@ -486,25 +486,25 @@ class Db(Component):
 				migrate.versioning.api.create(self._dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
 			except migrate.exceptions.KnownError:
 				LOGGER.debug("> SQLAlchemy Migrate Repository Directory Already Exists!")
-			
+
 			LOGGER.debug("> Copying Migrations Files To SQLAlchemy Migrate Repository.")
 			walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
 			walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
 			for file in walker.files.values():
 				shutil.copy(file, os.path.join(self._dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
-			
+
 			if os.path.exists(self._dbName):
 				LOGGER.debug("> Placing Database Under SQLAlchemy Migrate Version Control.")
 				try:
 					migrate.versioning.api.version_control(self._connectionString, self._dbMigrationsRepositoryDirectory)
 				except migrate.exceptions.DatabaseAlreadyControlledError:
 					LOGGER.debug("> Database Is Already Under SQLAlchemy Migrate Version Control!")
-				
+
 				LOGGER.debug("> Upgrading Database.")
 				migrate.versioning.api.upgrade(self._connectionString, self._dbMigrationsRepositoryDirectory)
 		else:
 			LOGGER.info("{0} | SQLAlchemy Migrate Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
-	
+
 		LOGGER.debug("> Creating Database Engine.")
 		self._dbEngine = sqlalchemy.create_engine(self._connectionString)
 
@@ -516,7 +516,7 @@ class Db(Component):
 		self._dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self._dbEngine)
 
 		self._dbSession = self._dbSessionMaker()
-		
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitialize(self):
