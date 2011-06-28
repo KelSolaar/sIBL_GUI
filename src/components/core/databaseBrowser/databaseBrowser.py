@@ -108,12 +108,12 @@ class DatabaseBrowser_Worker(QThread):
 		QThread.__init__(self, container)
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._dbSession = self._container.coreDb.dbSessionMaker()
+		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
-		self._timer = None
-		self._timerCycleMultiplier = 5
+		self.__timer = None
+		self.__timerCycleMultiplier = 5
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -123,10 +123,10 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -153,10 +153,10 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This Method Is The Property For The _dbSession Attribute.
 
-		@return: self._dbSession. ( Object )
+		@return: self.__dbSession. ( Object )
 		"""
 
-		return self._dbSession
+		return self.__dbSession
 
 	@dbSession.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -183,10 +183,10 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This Method Is The Property For The _timer Attribute.
 
-		@return: self._timer. ( QTimer )
+		@return: self.__timer. ( QTimer )
 		"""
 
-		return self._timer
+		return self.__timer
 
 	@timer.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -213,10 +213,10 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This Method Is The Property For The _timerCycleMultiplier Attribute.
 
-		@return: self._timerCycleMultiplier. ( Float )
+		@return: self.__timerCycleMultiplier. ( Float )
 		"""
 
-		return self._timerCycleMultiplier
+		return self.__timerCycleMultiplier
 
 	@timerCycleMultiplier.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -247,11 +247,11 @@ class DatabaseBrowser_Worker(QThread):
 		This Method Starts The QThread.
 		"""
 
-		self._timer = QTimer()
-		self._timer.moveToThread(self)
-		self._timer.start(Constants.defaultTimerCycle * self._timerCycleMultiplier)
+		self.__timer = QTimer()
+		self.__timer.moveToThread(self)
+		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
 
-		self._timer.timeout.connect(self.updateSets, Qt.DirectConnection)
+		self.__timer.timeout.connect(self.updateSets, Qt.DirectConnection)
 
 		self.exec_()
 
@@ -262,14 +262,14 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 
 		needModelRefresh = False
-		for iblSet in dbUtilities.common.getIblSets(self._dbSession):
+		for iblSet in dbUtilities.common.getIblSets(self.__dbSession):
 			if iblSet.path:
 				if os.path.exists(iblSet.path):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
 						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, iblSet.name))
-						if dbUtilities.common.updateIblSetContent(self._dbSession, iblSet):
+						if dbUtilities.common.updateIblSetContent(self.__dbSession, iblSet):
 							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated!".format(self.__class__.__name__, iblSet.name))
 							needModelRefresh = True
 
@@ -296,9 +296,9 @@ class DatabaseBrowser_QListView(QListView):
 
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -308,10 +308,10 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -338,10 +338,10 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -401,20 +401,20 @@ class DatabaseBrowser_QListView(QListView):
 		@param event: QEvent. ( QEvent )		
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
 				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
+					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self._coreDatabaseBrowser.addIblSet(name, path) and self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self.__coreDatabaseBrowser.addIblSet(name, path) and self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								self._coreDatabaseBrowser.addDirectory(path)
-								self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self.__coreDatabaseBrowser.addDirectory(path)
+								self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 		else:
@@ -429,7 +429,7 @@ class DatabaseBrowser_QListView(QListView):
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			pass
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
@@ -458,35 +458,35 @@ class DatabaseBrowser(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Database_Browser.ui"
-		self._uiResources = "resources"
-		self._uiLargestSizeImage = "Largest_Size.png"
-		self._uiSmallestSizeImage = "Smallest_Size.png"
-		self._dockArea = 8
-		self._listViewSpacing = 24
-		self._listViewMargin = 32
-		self._listViewIconSize = 128
+		self.__uiPath = "ui/Database_Browser.ui"
+		self.__uiResources = "resources"
+		self.__uiLargestSizeImage = "Largest_Size.png"
+		self.__uiSmallestSizeImage = "Smallest_Size.png"
+		self.__dockArea = 8
+		self.__listViewSpacing = 24
+		self.__listViewMargin = 32
+		self.__listViewIconSize = 128
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
-		self._settingsSeparator = ","
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
+		self.__settingsSeparator = ","
 
-		self._extension = "ibl"
+		self.__extension = "ibl"
 
-		self._coreDb = None
-		self._coreCollectionsOutliner = None
+		self.__coreDb = None
+		self.__coreCollectionsOutliner = None
 
-		self._model = None
-		self._modelSelection = None
+		self.__model = None
+		self.__modelSelection = None
 		# Crash Preventing Code.
-		self._modelSelectionState = True
+		self.__modelSelectionState = True
 
-		self._databaseBrowserWorkerThread = None
+		self.__databaseBrowserWorkerThread = None
 
-		self._displaySets = None
+		self.__displaySets = None
 
-		self._toolTipText = """
+		self.__toolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
@@ -502,10 +502,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -532,10 +532,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -562,10 +562,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _uiLargestSizeImage Attribute.
 
-		@return: self._uiLargestSizeImage. ( String )
+		@return: self.__uiLargestSizeImage. ( String )
 		"""
 
-		return self._uiLargestSizeImage
+		return self.__uiLargestSizeImage
 
 	@uiLargestSizeImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -592,10 +592,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _uiSmallestSizeImage Attribute.
 
-		@return: self._uiSmallestSizeImage. ( String )
+		@return: self.__uiSmallestSizeImage. ( String )
 		"""
 
-		return self._uiSmallestSizeImage
+		return self.__uiSmallestSizeImage
 
 	@uiSmallestSizeImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -622,10 +622,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -652,10 +652,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _listViewSpacing Attribute.
 
-		@return: self._listViewSpacing. ( Integer )
+		@return: self.__listViewSpacing. ( Integer )
 		"""
 
-		return self._listViewSpacing
+		return self.__listViewSpacing
 
 	@listViewSpacing.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -669,7 +669,7 @@ class DatabaseBrowser(UiComponent):
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewSpacing", value)
 			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewSpacing", value)
-		self._listViewSpacing = value
+		self.__listViewSpacing = value
 
 	@listViewSpacing.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -685,10 +685,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _listViewMargin Attribute.
 
-		@return: self._listViewMargin. ( Integer )
+		@return: self.__listViewMargin. ( Integer )
 		"""
 
-		return self._listViewMargin
+		return self.__listViewMargin
 
 	@listViewMargin.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -702,7 +702,7 @@ class DatabaseBrowser(UiComponent):
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewMargin", value)
 			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewMargin", value)
-		self._listViewMargin = value
+		self.__listViewMargin = value
 
 	@listViewMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -718,10 +718,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _listViewIconSize Attribute.
 
-		@return: self._listViewIconSize. ( Integer )
+		@return: self.__listViewIconSize. ( Integer )
 		"""
 
-		return self._listViewIconSize
+		return self.__listViewIconSize
 
 	@listViewIconSize.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -735,7 +735,7 @@ class DatabaseBrowser(UiComponent):
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewIconSize", value)
 			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewIconSize", value)
-		self._listViewIconSize = value
+		self.__listViewIconSize = value
 
 	@listViewIconSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -751,10 +751,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -781,10 +781,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -811,10 +811,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -841,10 +841,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSeparator Attribute.
 
-		@return: self._settingsSeparator. ( String )
+		@return: self.__settingsSeparator. ( String )
 		"""
 
-		return self._settingsSeparator
+		return self.__settingsSeparator
 
 	@settingsSeparator.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -871,10 +871,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _extension Attribute.
 
-		@return: self._extension. ( String )
+		@return: self.__extension. ( String )
 		"""
 
-		return self._extension
+		return self.__extension
 
 	@extension.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -901,10 +901,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -931,10 +931,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
-		@return: self._coreCollectionsOutliner. ( Object )
+		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
-		return self._coreCollectionsOutliner
+		return self.__coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -962,10 +962,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _model Attribute.
 
-		@return: self._model. ( QStandardItemModel )
+		@return: self.__model. ( QStandardItemModel )
 		"""
 
-		return self._model
+		return self.__model
 
 	@model.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -992,10 +992,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _modelSelection Attribute.
 
-		@return: self._modelSelection. ( Dictionary )
+		@return: self.__modelSelection. ( Dictionary )
 		"""
 
-		return self._modelSelection
+		return self.__modelSelection
 
 	@modelSelection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1023,10 +1023,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _modelSelectionState Attribute.
 
-		@return: self._modelSelectionState. ( Boolean )
+		@return: self.__modelSelectionState. ( Boolean )
 		"""
 
-		return self._modelSelectionState
+		return self.__modelSelectionState
 
 	@modelSelectionState.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1039,7 +1039,7 @@ class DatabaseBrowser(UiComponent):
 
 		if value:
 			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("modelSelectionState", value)
-		self._modelSelectionState = value
+		self.__modelSelectionState = value
 
 	@modelSelectionState.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1055,10 +1055,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _databaseBrowserWorkerThread Attribute.
 
-		@return: self._databaseBrowserWorkerThread. ( QThread )
+		@return: self.__databaseBrowserWorkerThread. ( QThread )
 		"""
 
-		return self._databaseBrowserWorkerThread
+		return self.__databaseBrowserWorkerThread
 
 	@databaseBrowserWorkerThread.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1085,10 +1085,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _displaySets Attribute.
 
-		@return: self._displaySets. ( List )
+		@return: self.__displaySets. ( List )
 		"""
 
-		return self._displaySets
+		return self.__displaySets
 
 	@displaySets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -1101,7 +1101,7 @@ class DatabaseBrowser(UiComponent):
 
 		if value:
 			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("content", value)
-		self._displaySets = value
+		self.__displaySets = value
 
 	@displaySets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1117,10 +1117,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _toolTipText Attribute.
 
-		@return: self._toolTipText. ( String )
+		@return: self.__toolTipText. ( String )
 		"""
 
-		return self._toolTipText
+		return self.__toolTipText
 
 	@toolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1155,14 +1155,14 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
 		self._activate()
 
@@ -1173,7 +1173,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -1183,16 +1183,16 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self._container)
+		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
 		self.ui.Database_Browser_Widget_gridLayout.addWidget(self.ui.Database_Browser_listView, 0, 0)
 
-		self._displaySets = dbUtilities.common.getIblSets(self._coreDb.dbSession)
+		self.__displaySets = dbUtilities.common.getIblSets(self.__coreDb.dbSession)
 
-		listViewIconSize = self._settings.getKey(self._settingsSection, "listViewIconSize")
-		self._listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self._listViewIconSize
+		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
+		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Database_Browser_listView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self._model = QStandardItemModel()
+		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Database_Browser_listView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__model = QStandardItemModel()
 		self.Database_Browser_listView_setModel()
 
 		self.ui.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
@@ -1200,29 +1200,29 @@ class DatabaseBrowser(UiComponent):
 
 		self.Database_Browser_listView_setView()
 
-		if not self._container.parameters.databaseReadOnly:
-			if not self._container.parameters.deactivateWorkerThreads:
-				self._databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
-				self._databaseBrowserWorkerThread.start()
-				self._container.workerThreads.append(self._databaseBrowserWorkerThread)
+		if not self.__container.parameters.databaseReadOnly:
+			if not self.__container.parameters.deactivateWorkerThreads:
+				self.__databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
+				self.__databaseBrowserWorkerThread.start()
+				self.__container.workerThreads.append(self.__databaseBrowserWorkerThread)
 			else:
 				LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
 			LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.ui.Thumbnails_Size_horizontalSlider.setValue(self._listViewIconSize)
-		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLargestSizeImage)))
-		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSmallestSizeImage)))
+		self.ui.Thumbnails_Size_horizontalSlider.setValue(self.__listViewIconSize)
+		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
+		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
 
 		# Signals / Slots.
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.Thumbnails_Size_horizontalSlider_OnChanged)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView.QListView_OnDoubleClicked)
 		self.modelChanged.connect(self.Database_Browser_listView_refreshView)
 
-		if not self._container.parameters.databaseReadOnly:
-			if not self._container.parameters.deactivateWorkerThreads:
-				self._databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
-			self._model.dataChanged.connect(self.Database_Browser_listView_OnModelDataChanged)
+		if not self.__container.parameters.databaseReadOnly:
+			if not self.__container.parameters.deactivateWorkerThreads:
+				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.databaseChanged)
+			self.__model.dataChanged.connect(self.Database_Browser_listView_OnModelDataChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1241,7 +1241,7 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.centralwidget_gridLayout.addWidget(self.ui)
+		self.__container.centralwidget_gridLayout.addWidget(self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1260,17 +1260,17 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			# Wizard If Sets Table Is Empty.
-			if not dbUtilities.common.getIblSets(self._coreDb.dbSession).count():
+			if not dbUtilities.common.getIblSets(self.__coreDb.dbSession).count():
 				if messageBox.messageBox("Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-					directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
+					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
 					if directory:
 						self.addDirectory(directory)
 						self.Database_Browser_listView_extendedRefreshModel()
 
 			# Ibl Sets Table Integrity Checking.
-			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity(self._coreDb.dbSession)
+			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
@@ -1282,14 +1282,14 @@ class DatabaseBrowser(UiComponent):
 		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeIblSetsIds = str(self._settings.getKey(self._settingsSection, "activeIblSets").toString())
+		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
 		LOGGER.debug("> Stored '{0}' Active Ibl Sets Ids Selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
 		if activeIblSetsIds:
-			if self._settingsSeparator in activeIblSetsIds:
-				ids = activeIblSetsIds.split(self._settingsSeparator)
+			if self.__settingsSeparator in activeIblSetsIds:
+				ids = activeIblSetsIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeIblSetsIds]
-			self._modelSelection = [int(id) for id in ids]
+			self.__modelSelection = [int(id) for id in ids]
 
 		self.Database_Browser_listView_restoreModelSelection()
 
@@ -1302,7 +1302,7 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
 		self.Database_Browser_listView_storeModelSelection()
-		self._settings.setKey(self._settingsSection, "activeIblSets", self._settingsSeparator.join(str(id) for id in self._modelSelection))
+		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
 
 	@core.executionTrace
 	def Database_Browser_listView_setModel(self):
@@ -1314,24 +1314,24 @@ class DatabaseBrowser(UiComponent):
 
 		self.Database_Browser_listView_storeModelSelection()
 
-		self._model.clear()
+		self.__model.clear()
 
-		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self._displaySets), key=lambda x:(x[1]))]:
+		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self.__displaySets), key=lambda x:(x[1]))]:
 			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 
 			try:
 				iblSetStandardItem = QStandardItem()
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-				iblSetStandardItem.setToolTip(self._toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
 				iblSetStandardItem.setIcon(ui.common.getIcon(iblSet.icon))
 
-				self._container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
+				self.__container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
 
 				iblSetStandardItem._datas = iblSet
 
 				LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
-				self._model.appendRow(iblSetStandardItem)
+				self.__model.appendRow(iblSetStandardItem)
 
 			except Exception as error:
 				LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
@@ -1366,7 +1366,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Implements The Extended Refresh Behavior.
 		"""
 
-		self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+		self.__coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 		self.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
@@ -1378,13 +1378,13 @@ class DatabaseBrowser(UiComponent):
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
 		"""
 
-		standardItem = self._model.itemFromIndex(startIndex)
+		standardItem = self.__model.itemFromIndex(startIndex)
 		currentTitle = standardItem.text()
 
 		LOGGER.debug("> Updating Ibl Set '{0}' Title To '{1}'.".format(standardItem._datas.title, currentTitle))
-		iblSet = dbUtilities.common.filterIblSets(self._coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
+		iblSet = dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
 		iblSet.title = str(currentTitle)
-		dbUtilities.common.commit(self._coreDb.dbSession)
+		dbUtilities.common.commit(self.__coreDb.dbSession)
 
 		self.Database_Browser_listView_refreshModel()
 
@@ -1403,7 +1403,7 @@ class DatabaseBrowser(UiComponent):
 
 		self.Database_Browser_listView_setItemsSize()
 
-		self.ui.Database_Browser_listView.setModel(self._model)
+		self.ui.Database_Browser_listView.setModel(self.__model)
 
 	@core.executionTrace
 	def Database_Browser_listView_refreshView(self):
@@ -1420,13 +1420,13 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		# Crash Preventing Code.
-		if self._modelSelectionState:
+		if self.__modelSelectionState:
 
 			LOGGER.debug("> Storing '{0}' Model Selection!".format("Database_Browser_listView"))
 
-			self._modelSelection = []
+			self.__modelSelection = []
 			for item in self.getSelectedItems():
-				self._modelSelection.append(item._datas.id)
+				self.__modelSelection.append(item._datas.id)
 
 	@core.executionTrace
 	def Database_Browser_listView_restoreModelSelection(self):
@@ -1435,14 +1435,14 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		# Crash Preventing Code.
-		if self._modelSelectionState:
+		if self.__modelSelectionState:
 
 			LOGGER.debug("> Restoring '{0}' Model Selection!".format("Database_Browser_listView"))
 
 			indexes = []
-			for i in range(self._model.rowCount()):
-				iblSetStandardItem = self._model.item(i)
-				iblSetStandardItem._datas.id in self._modelSelection and indexes.append(self._model.indexFromItem(iblSetStandardItem))
+			for i in range(self.__model.rowCount()):
+				iblSetStandardItem = self.__model.item(i)
+				iblSetStandardItem._datas.id in self.__modelSelection and indexes.append(self.__model.indexFromItem(iblSetStandardItem))
 
 			selectionModel = self.ui.Database_Browser_listView.selectionModel()
 			if selectionModel:
@@ -1456,10 +1456,10 @@ class DatabaseBrowser(UiComponent):
 		This Method Scales The Database_Browser_listView Item Size.
 		"""
 
-		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self._listViewIconSize))
+		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
 
-		self.ui.Database_Browser_listView.setIconSize(QSize(self._listViewIconSize, self._listViewIconSize))
-		self.ui.Database_Browser_listView.setGridSize(QSize(self._listViewIconSize + self._listViewSpacing, self._listViewIconSize + self._listViewMargin))
+		self.ui.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
 
 	@core.executionTrace
 	def Database_Browser_listView_setActions(self):
@@ -1467,7 +1467,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Sets The Database Browser Actions.
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
 			addContentAction.triggered.connect(self.Database_Browser_listView_addContentAction_OnTriggered)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
@@ -1498,7 +1498,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
+		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
 		if directory:
 			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 			self.addDirectory(directory)
@@ -1512,7 +1512,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		iblSetPath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self._container.lastBrowsedPath, "Ibls Files (*{0})".format(self._extension))))
+		iblSetPath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
 		if iblSetPath:
 			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(iblSetPath))
 			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
@@ -1554,13 +1554,13 @@ class DatabaseBrowser(UiComponent):
 		@param value: Thumbnails Size. ( Integer )
 		"""
 
-		self._listViewIconSize = value
+		self.__listViewIconSize = value
 
 		self.Database_Browser_listView_setItemsSize()
 
 		# Storing Settings Key.
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("listViewIconSize", value))
-		self._settings.setKey(self._settingsSection, "listViewIconSize", value)
+		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
 	@core.executionTrace
 	def databaseChanged(self):
@@ -1569,7 +1569,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
-		self._coreDb.dbSession.expire_all()
+		self.__coreDb.dbSession.expire_all()
 		self.Database_Browser_listView_extendedRefreshModel()
 
 	@core.executionTrace
@@ -1578,7 +1578,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Gets The Display Sets Associated To Selected coreCollectionsOutliner Collections.
 		"""
 
-		self._displaySets = self._coreCollectionsOutliner.getCollectionsSets()
+		self.__displaySets = self.__coreCollectionsOutliner.getCollectionsSets()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1593,9 +1593,9 @@ class DatabaseBrowser(UiComponent):
 		@return: Ibl Set Database Addition Success. ( Boolean )		
 		"""
 
-		if not dbUtilities.common.filterIblSets(self._coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
+		if not dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name))
-			if dbUtilities.common.addIblSet(self._coreDb.dbSession, name, path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId()):
+			if dbUtilities.common.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
 				return True
 			else:
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name)
@@ -1615,9 +1615,9 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
 
 		walker = Walker(directory)
-		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
+		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 		for iblSet, path in walker.files.items():
-			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self._coreCollectionsOutliner.getUniqueCollectionId())
+			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId())
 
 	@core.executionTrace
 	def removeIblSets(self):
@@ -1632,7 +1632,7 @@ class DatabaseBrowser(UiComponent):
 			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.text()) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet in selectedIblSets:
 					LOGGER.info("{0} | Removing '{1}' Ibl Set From Database!".format(self.__class__.__name__, iblSet.text()))
-					dbUtilities.common.removeIblSet(self._coreDb.dbSession, iblSet._datas.id)
+					dbUtilities.common.removeIblSet(self.__coreDb.dbSession, iblSet._datas.id)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1644,10 +1644,10 @@ class DatabaseBrowser(UiComponent):
 		@return: Update Success. ( Boolean )
 		"""
 
-		file = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.name), self._container.lastBrowsedPath, "Ibls Files (*.{0})".format(self._extension))))
+		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
 		if file:
 			LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.name, file))
-			if not dbUtilities.common.updateIblSetLocation(self._coreDb.dbSession, iblSet, file):
+			if not dbUtilities.common.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set!".format(self.__class__.__name__, iblSet.name)
 			else:
 				return True
@@ -1660,7 +1660,7 @@ class DatabaseBrowser(UiComponent):
 		@return: View Selected Items. ( List )
 		"""
 
-		return [self._model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
+		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

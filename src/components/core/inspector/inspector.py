@@ -139,27 +139,27 @@ class Inspector(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Inspector.ui"
-		self._uiResources = "resources"
-		self._uiPreviousImage = "Previous.png"
-		self._uiNextImage = "Next.png"
-		self._dockArea = 2
-		self._listViewIconSize = 32
+		self.__uiPath = "ui/Inspector.ui"
+		self.__uiResources = "resources"
+		self.__uiPreviousImage = "Previous.png"
+		self.__uiNextImage = "Next.png"
+		self.__dockArea = 2
+		self.__listViewIconSize = 32
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
 
-		self._model = None
+		self.__model = None
 
-		self._inspectorIblSet = None
-		self._inspectorIblSetParser = None
-		self._inspectorPlates = None
+		self.__inspectorIblSet = None
+		self.__inspectorIblSetParser = None
+		self.__inspectorPlates = None
 
-		self._noPreviewImageText = """
+		self.__noPreviewImageText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -179,7 +179,7 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
-		self._noInspectorIblSetText = """
+		self.__noInspectorIblSetText = """
 								<center>
 								<table border="0" bordercolor="" cellpadding="0" cellspacing="16">
 									<tr>
@@ -194,22 +194,22 @@ class Inspector(UiComponent):
 								</table>
 								</center>
 								"""
-		self._inspectorIblSetToolTipText = """
+		self.__inspectorIblSetToolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
 								<b>Location: </b>{2}<br>
 								<b>Shot Date: </b>{3}<br>
 								<b>Comment: </b>{4}</p>
 								"""
-		self._inspectorIblSetPlatesToolTipText = """
+		self.__inspectorIblSetPlatesToolTipText = """
 								<p><b>{0}</b></p>
 								"""
 
-		self._lightLabelRadius = 4
-		self._lightLabelTextOffset = 24
-		self._lightLabelTextMargin = 16
-		self._lightLabelTextHeight = 14
-		self._lightLabelTextFont = "Helvetica"
+		self.__lightLabelRadius = 4
+		self.__lightLabelTextOffset = 24
+		self.__lightLabelTextMargin = 16
+		self.__lightLabelTextHeight = 14
+		self.__lightLabelTextFont = "Helvetica"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -219,10 +219,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -249,10 +249,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -279,10 +279,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _uiPreviousImage Attribute.
 
-		@return: self._uiPreviousImage. ( String )
+		@return: self.__uiPreviousImage. ( String )
 		"""
 
-		return self._uiPreviousImage
+		return self.__uiPreviousImage
 
 	@uiPreviousImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -309,10 +309,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _uiNextImage Attribute.
 
-		@return: self._uiNextImage. ( String )
+		@return: self.__uiNextImage. ( String )
 		"""
 
-		return self._uiNextImage
+		return self.__uiNextImage
 
 	@uiNextImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -339,10 +339,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -369,10 +369,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _listViewIconSize Attribute.
 
-		@return: self._listViewIconSize. ( Integer )
+		@return: self.__listViewIconSize. ( Integer )
 		"""
 
-		return self._listViewIconSize
+		return self.__listViewIconSize
 
 	@listViewIconSize.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -386,7 +386,7 @@ class Inspector(UiComponent):
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewIconSize", value)
 			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewIconSize", value)
-		self._listViewIconSize = value
+		self.__listViewIconSize = value
 
 	@listViewIconSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -402,10 +402,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -432,10 +432,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -462,10 +462,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _model Attribute.
 
-		@return: self._model. ( QStandardItemModel )
+		@return: self.__model. ( QStandardItemModel )
 		"""
 
-		return self._model
+		return self.__model
 
 	@model.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -492,10 +492,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorIblSet Attribute.
 
-		@return: self._inspectorIblSet. ( QStandardItem )
+		@return: self.__inspectorIblSet. ( QStandardItem )
 		"""
 
-		return self._inspectorIblSet
+		return self.__inspectorIblSet
 
 	@inspectorIblSet.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -522,10 +522,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorIblSetParser Attribute.
 
-		@return: self._inspectorIblSetParser. ( Parser )
+		@return: self.__inspectorIblSetParser. ( Parser )
 		"""
 
-		return self._inspectorIblSetParser
+		return self.__inspectorIblSetParser
 
 	@inspectorIblSetParser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -552,10 +552,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorPlates Attribute.
 
-		@return: self._inspectorPlates. ( Dictionary )
+		@return: self.__inspectorPlates. ( Dictionary )
 		"""
 
-		return self._inspectorPlates
+		return self.__inspectorPlates
 
 	@inspectorPlates.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -582,10 +582,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _noPreviewImageText Attribute.
 
-		@return: self._noPreviewImageText. ( String )
+		@return: self.__noPreviewImageText. ( String )
 		"""
 
-		return self._noPreviewImageText
+		return self.__noPreviewImageText
 
 	@noPreviewImageText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -612,10 +612,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _noInspectorIblSetText Attribute.
 
-		@return: self._noInspectorIblSetText. ( String )
+		@return: self.__noInspectorIblSetText. ( String )
 		"""
 
-		return self._noInspectorIblSetText
+		return self.__noInspectorIblSetText
 
 	@noInspectorIblSetText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -642,10 +642,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorIblSetToolTipText Attribute.
 
-		@return: self._inspectorIblSetToolTipText. ( String )
+		@return: self.__inspectorIblSetToolTipText. ( String )
 		"""
 
-		return self._inspectorIblSetToolTipText
+		return self.__inspectorIblSetToolTipText
 
 	@inspectorIblSetToolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -672,10 +672,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorIblSetPlatesToolTipText Attribute.
 
-		@return: self._inspectorIblSetPlatesToolTipText. ( String )
+		@return: self.__inspectorIblSetPlatesToolTipText. ( String )
 		"""
 
-		return self._inspectorIblSetPlatesToolTipText
+		return self.__inspectorIblSetPlatesToolTipText
 
 	@inspectorIblSetPlatesToolTipText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -702,10 +702,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _lightLabelRadius Attribute.
 
-		@return: self._lightLabelRadius. ( Integer )
+		@return: self.__lightLabelRadius. ( Integer )
 		"""
 
-		return self._lightLabelRadius
+		return self.__lightLabelRadius
 
 	@lightLabelRadius.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -732,10 +732,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _lightLabelTextOffset Attribute.
 
-		@return: self._lightLabelTextOffset. ( Integer )
+		@return: self.__lightLabelTextOffset. ( Integer )
 		"""
 
-		return self._lightLabelTextOffset
+		return self.__lightLabelTextOffset
 
 	@lightLabelTextOffset.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -762,10 +762,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _lightLabelTextMargin Attribute.
 
-		@return: self._lightLabelTextMargin. ( Integer )
+		@return: self.__lightLabelTextMargin. ( Integer )
 		"""
 
-		return self._lightLabelTextMargin
+		return self.__lightLabelTextMargin
 
 	@lightLabelTextMargin.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -792,10 +792,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _lightLabelTextHeight Attribute.
 
-		@return: self._lightLabelTextHeight. ( Integer )
+		@return: self.__lightLabelTextHeight. ( Integer )
 		"""
 
-		return self._lightLabelTextHeight
+		return self.__lightLabelTextHeight
 
 	@lightLabelTextHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -822,10 +822,10 @@ class Inspector(UiComponent):
 		"""
 		This Method Is The Property For The _lightLabelTextFont Attribute.
 
-		@return: self._lightLabelTextFont. ( String )
+		@return: self.__lightLabelTextFont. ( String )
 		"""
 
-		return self._lightLabelTextFont
+		return self.__lightLabelTextFont
 
 	@lightLabelTextFont.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -860,14 +860,14 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
 
@@ -878,7 +878,7 @@ class Inspector(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -889,15 +889,15 @@ class Inspector(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 
-		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
-		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
-		self.ui.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
-		self.ui.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
+		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
+		self.ui.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
+		self.ui.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
+		self.ui.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
 
 		self.ui.Plates_frame.hide()
 		self.ui.Inspector_Options_groupBox.hide()
 
-		self._model = QStandardItemModel()
+		self.__model = QStandardItemModel()
 		self.Plates_listView_setModel()
 		self.Plates_listView_setView()
 
@@ -908,8 +908,8 @@ class Inspector(UiComponent):
 
 		# Signals / Slots.
 		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.Plates_listView_OnModelSelectionChanged)
-		self._coreDatabaseBrowser.modelChanged.connect(self.coreDatabaseBrowser_model_OnModelChanged)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
+		self.__coreDatabaseBrowser.modelChanged.connect(self.coreDatabaseBrowser_model_OnModelChanged)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.Previous_Ibl_Set_pushButton_OnClicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.Next_Ibl_Set_pushButton_OnClicked)
 		self.ui.Previous_Plate_pushButton.clicked.connect(self.Previous_Plate_pushButton_OnClicked)
@@ -933,7 +933,7 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -950,8 +950,8 @@ class Inspector(UiComponent):
 		This Method Sets The Inspector DockWidget Ui.
 		"""
 
-		if self._inspectorIblSet:
-			iblSet = self._inspectorIblSet._datas
+		if self.__inspectorIblSet:
+			iblSet = self.__inspectorIblSet._datas
 
 			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
 
@@ -959,13 +959,13 @@ class Inspector(UiComponent):
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(iblSet.previewImage))
 				self.drawInspectorIblSetOverlay()
 			else:
-				self.ui.Image_label.setText(self._noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
+				self.ui.Image_label.setText(self.__noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
 
-			self.ui.Image_label.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			self.ui.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
 			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
 
-			if self._inspectorPlates:
+			if self.__inspectorPlates:
 				self.ui.Plates_frame.show()
 			else:
 				self.ui.Plates_frame.hide()
@@ -979,7 +979,7 @@ class Inspector(UiComponent):
 		"""
 
 		self.ui.Title_label.setText(QString())
-		self.ui.Image_label.setText(self._noInspectorIblSetText.format(ui.common.filterImagePath("")))
+		self.ui.Image_label.setText(self.__noInspectorIblSetText.format(ui.common.filterImagePath("")))
 		self.ui.Image_label.setToolTip(QString())
 		self.ui.Details_label.setText(QString())
 
@@ -1001,27 +1001,27 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Plates_listView"))
 
-		self._model.clear()
+		self.__model.clear()
 
-		if self._inspectorIblSet:
-			iblSet = self._inspectorIblSet._datas
+		if self.__inspectorIblSet:
+			iblSet = self.__inspectorIblSet._datas
 			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
-			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self._inspectorIblSet._datas.icon))
-			inspectorIblSetStandardItem.setToolTip(self._inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self._coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
-			self._model.appendRow(inspectorIblSetStandardItem)
+			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self.__inspectorIblSet._datas.icon))
+			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			self.__model.appendRow(inspectorIblSetStandardItem)
 
-			for name, plate in self._inspectorPlates.items():
+			for name, plate in self.__inspectorPlates.items():
 				LOGGER.debug("> Preparing '{0}' Plate For '{1}' Model.".format(name, "Plates_listView"))
 				try:
 					plateStandardItem = QStandardItem()
 					plateStandardItem.setIcon(ui.common.getIcon(plate.icon))
-					plateStandardItem.setToolTip(self._inspectorIblSetPlatesToolTipText.format(plate.name))
+					plateStandardItem.setToolTip(self.__inspectorIblSetPlatesToolTipText.format(plate.name))
 
 					plateStandardItem._datas = plate
 
 					LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(name, "Plates_listView"))
-					self._model.appendRow(plateStandardItem)
+					self.__model.appendRow(plateStandardItem)
 
 				except Exception as error:
 					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Plate To '{2}' Model!".format(self.__class__.__name__, name, "Plates_listView"))
@@ -1047,7 +1047,7 @@ class Inspector(UiComponent):
 
 		self.Plates_listView_setItemsSize()
 
-		self.ui.Plates_listView.setModel(self._model)
+		self.ui.Plates_listView.setModel(self.__model)
 
 	@core.executionTrace
 	def Plates_listView_setItemsSize(self):
@@ -1055,9 +1055,9 @@ class Inspector(UiComponent):
 		This Method Scales The Plates_listView Item Size.
 		"""
 
-		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self._listViewIconSize))
+		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self.__listViewIconSize))
 
-		self.ui.Plates_listView.setIconSize(QSize(self._listViewIconSize, self._listViewIconSize))
+		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 
 	@core.executionTrace
 	def Plates_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
@@ -1069,7 +1069,7 @@ class Inspector(UiComponent):
 		"""
 
 		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
-		item = index and self._model.itemFromIndex(index) or None
+		item = index and self.__model.itemFromIndex(index) or None
 		if item:
 			if hasattr(item, "_datas"):
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(item._datas.previewImage))
@@ -1098,7 +1098,7 @@ class Inspector(UiComponent):
 		self.setInspectorIblSetPlates()
 		self.Plates_listView_setModel()
 
-		if self._inspectorIblSet:
+		if self.__inspectorIblSet:
 			self.Inspector_DockWidget_setUi()
 		else:
 			self.Inspector_DockWidget_clearUi()
@@ -1159,12 +1159,12 @@ class Inspector(UiComponent):
 		This Method Sets The Inspected Ibl Set.
 		"""
 
-		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
-		self._inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
-		if not self._inspectorIblSet:
-			model = self._coreDatabaseBrowser.model
-			self._inspectorIblSet = model.rowCount() != 0 and model.item(0) or None
-		self._inspectorIblSet and self.setInspectorIblSetParser()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
+		self.__inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
+		if not self.__inspectorIblSet:
+			model = self.__coreDatabaseBrowser.model
+			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0) or None
+		self.__inspectorIblSet and self.setInspectorIblSetParser()
 
 	@core.executionTrace
 	def setInspectorIblSetParser(self):
@@ -1172,10 +1172,10 @@ class Inspector(UiComponent):
 		This Method Sets The Inspected Ibl Set Parser.
 		"""
 
-		if os.path.exists(self._inspectorIblSet._datas.path):
-			LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self._inspectorIblSet))
-			self._inspectorIblSetParser = Parser(self._inspectorIblSet._datas.path)
-			self._inspectorIblSetParser.read() and self._inspectorIblSetParser.parse()
+		if os.path.exists(self.__inspectorIblSet._datas.path):
+			LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self.__inspectorIblSet))
+			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet._datas.path)
+			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -1184,17 +1184,17 @@ class Inspector(UiComponent):
 		This Method Sets The Plates From The Inspected Ibl Set.
 		"""
 
-		if self._inspectorIblSet:
-			if os.path.exists(self._inspectorIblSet._datas.path):
-				self._inspectorPlates = OrderedDict()
-				for section in self._inspectorIblSetParser.sections:
+		if self.__inspectorIblSet:
+			if os.path.exists(self.__inspectorIblSet._datas.path):
+				self.__inspectorPlates = OrderedDict()
+				for section in self.__inspectorIblSetParser.sections:
 					if re.search("Plate[0-9]+", section):
-						self._inspectorPlates[section] = Plate(name=os.path.splitext(self._inspectorIblSetParser.getValue("PLATEfile", section))[0],
-																icon=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEthumb", section))),
-																previewImage=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEpreview", section))),
-																image=os.path.normpath(os.path.join(os.path.dirname(self._inspectorIblSet._datas.path), self._inspectorIblSetParser.getValue("PLATEfile", section))))
+						self.__inspectorPlates[section] = Plate(name=os.path.splitext(self.__inspectorIblSetParser.getValue("PLATEfile", section))[0],
+																icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
+																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
+																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self._inspectorIblSet._datas.name)
+				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self.__inspectorIblSet._datas.name)
 
 	@core.executionTrace
 	def drawInspectorIblSetOverlay(self):
@@ -1204,17 +1204,17 @@ class Inspector(UiComponent):
 
 		painter = QPainter(self.ui.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		for section in self._inspectorIblSetParser.sections:
+		for section in self.__inspectorIblSetParser.sections:
 				if section == "Sun":
 					self.drawLightLabel(painter, Light(name="Sun",
-														color=[int(value)for value in self._inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
-														uCoordinate=float(self._inspectorIblSetParser.getValue("SUNu", section)),
-														vCoordinate=float(self._inspectorIblSetParser.getValue("SUNv", section))))
+														color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
+														uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
+														vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
 				elif re.search("Light[0-9]+", section):
-					self.drawLightLabel(painter, Light(name=self._inspectorIblSetParser.getValue("LIGHTname", section),
-														color=[int(value)for value in self._inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
-														uCoordinate=float(self._inspectorIblSetParser.getValue("LIGHTu", section)),
-														vCoordinate=float(self._inspectorIblSetParser.getValue("LIGHTv", section))))
+					self.drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
+														color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
+														uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),
+														vCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTv", section))))
 		painter.end()
 
 	@core.executionTrace
@@ -1231,7 +1231,7 @@ class Inspector(UiComponent):
 
 		painter.setBrush(QColor(light.color[0], light.color[1], light.color[2], 200))
 		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 200)), 2))
-		font = QFont(self._lightLabelTextFont, self._lightLabelTextHeight)
+		font = QFont(self.__lightLabelTextFont, self.__lightLabelTextHeight)
 		font.setBold(True)
 		painter.setFont(font)
 
@@ -1239,19 +1239,19 @@ class Inspector(UiComponent):
 		y = int(light.vCoordinate * height)
 
 		textWidth = painter.fontMetrics().width(light.name.title())
-		xLabelTextOffset = x + textWidth + self._lightLabelTextMargin + self._lightLabelTextOffset > width and - (self._lightLabelTextOffset + textWidth) or self._lightLabelTextOffset
-		yLabelTextOffset = y - (self._lightLabelTextHeight + self._lightLabelTextMargin + self._lightLabelTextOffset) < 0 and - (self._lightLabelTextOffset + self._lightLabelTextHeight) or self._lightLabelTextOffset
+		xLabelTextOffset = x + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width and - (self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
+		yLabelTextOffset = y - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) < 0 and - (self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
 		painter.drawText(x + xLabelTextOffset, y - yLabelTextOffset, light.name.title())
 
-		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + self._lightLabelTextHeight or yLabelTextOffset))
+		painter.drawLine(x, y, x + (xLabelTextOffset < 0 and xLabelTextOffset + textWidth or xLabelTextOffset), y - (yLabelTextOffset < 0 and yLabelTextOffset + self.__lightLabelTextHeight or yLabelTextOffset))
 
-		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius, self._lightLabelRadius)
+		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius, self.__lightLabelRadius)
 
 		painter.setBrush(Qt.NoBrush)
 		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 100)), 2))
-		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius * 3, self._lightLabelRadius * 3)
+		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius * 3, self.__lightLabelRadius * 3)
 		painter.setPen(QPen(QBrush(QColor(light.color[0], light.color[1], light.color[2], 50)), 2))
-		painter.drawEllipse(QPoint(x, y), self._lightLabelRadius * 4, self._lightLabelRadius * 4)
+		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
 
 	@core.executionTrace
 	def loopThroughIblSets(self, backward=False):
@@ -1261,9 +1261,9 @@ class Inspector(UiComponent):
 		@param backward: Looping Backward. ( Boolean )
 		"""
 
-		if self._inspectorIblSet:
-			model = self._coreDatabaseBrowser.model
-			index = model.indexFromItem(self._inspectorIblSet)
+		if self.__inspectorIblSet:
+			model = self.__coreDatabaseBrowser.model
+			index = model.indexFromItem(self.__inspectorIblSet)
 
 			step = not backward and 1 or - 1
 			idx = index.row() + step
@@ -1272,7 +1272,7 @@ class Inspector(UiComponent):
 			elif idx > model.rowCount() - 1:
 				idx = 0
 
-			selectionModel = self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel()
+			selectionModel = self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel()
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
@@ -1291,15 +1291,15 @@ class Inspector(UiComponent):
 			step = not backward and 1 or - 1
 			idx = index.row() + step
 			if idx < 0:
-				idx = self._model.rowCount() - 1
-			elif idx > self._model.rowCount() - 1:
+				idx = self.__model.rowCount() - 1
+			elif idx > self.__model.rowCount() - 1:
 				idx = 0
 
 			selectionModel = self.ui.Plates_listView.selectionModel()
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
-			self.ui.Plates_listView.setCurrentIndex(self._model.index(0, 0))
+			self.ui.Plates_listView.setCurrentIndex(self.__model.index(0, 0))
 
 #***********************************************************************************************
 #***	Python End

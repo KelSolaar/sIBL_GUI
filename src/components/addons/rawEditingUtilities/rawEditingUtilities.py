@@ -101,22 +101,22 @@ class RawEditingUtilities(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Raw_Editing_Utilities.ui"
+		self.__uiPath = "ui/Raw_Editing_Utilities.ui"
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
-		self._coreTemplatesOutliner = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
+		self.__coreTemplatesOutliner = None
 
-		self._editIblSetsInTextEditorAction = None
-		self._editInspectedIblSetInTextEditorAction = None
-		self._editTemplateInTextEditorAction = None
+		self.__editIblSetsInTextEditorAction = None
+		self.__editInspectedIblSetInTextEditorAction = None
+		self.__editTemplateInTextEditorAction = None
 
-		self._linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
+		self.__linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -126,10 +126,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -156,10 +156,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -186,10 +186,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -216,10 +216,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -246,10 +246,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -276,10 +276,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -306,10 +306,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _coreInspector Attribute.
 
-		@return: self._coreInspector. ( Object )
+		@return: self.__coreInspector. ( Object )
 		"""
 
-		return self._coreInspector
+		return self.__coreInspector
 
 	@coreInspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -336,10 +336,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -366,10 +366,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _editIblSetsInTextEditorAction Attribute.
 
-		@return: self._editIblSetsInTextEditorAction. ( QAction )
+		@return: self.__editIblSetsInTextEditorAction. ( QAction )
 		"""
 
-		return self._editIblSetsInTextEditorAction
+		return self.__editIblSetsInTextEditorAction
 
 	@editIblSetsInTextEditorAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -396,10 +396,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _editInspectedIblSetInTextEditorAction Attribute.
 
-		@return: self._editInspectedIblSetInTextEditorAction. ( QAction )
+		@return: self.__editInspectedIblSetInTextEditorAction. ( QAction )
 		"""
 
-		return self._editInspectedIblSetInTextEditorAction
+		return self.__editInspectedIblSetInTextEditorAction
 
 	@editInspectedIblSetInTextEditorAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -426,10 +426,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _editTemplateInTextEditorAction Attribute.
 
-		@return: self._editTemplateInTextEditorAction. ( QAction )
+		@return: self.__editTemplateInTextEditorAction. ( QAction )
 		"""
 
-		return self._editTemplateInTextEditorAction
+		return self.__editTemplateInTextEditorAction
 
 	@editTemplateInTextEditorAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -456,10 +456,10 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _linuxTextEditors Attribute.
 
-		@return: self._linuxTextEditors. ( Tuple )
+		@return: self.__linuxTextEditors. ( Tuple )
 		"""
 
-		return self._linuxTextEditors
+		return self.__linuxTextEditors
 
 	@linuxTextEditors.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -494,15 +494,15 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
 		self._activate()
 
@@ -515,14 +515,14 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
-		self._coreTemplatesOutliner = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
+		self.__coreTemplatesOutliner = None
 
 		self._deactivate()
 
@@ -564,7 +564,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -574,7 +574,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
+		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
 
 	@core.executionTrace
@@ -585,18 +585,18 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			self._editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-			self._editIblSetsInTextEditorAction.triggered.connect(self.Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered)
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editIblSetsInTextEditorAction)
+		if not self.__container.parameters.databaseReadOnly:
+			self.__editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+			self.__editIblSetsInTextEditorAction.triggered.connect(self.Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered)
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
 
-			self._editInspectedIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self._coreInspector.ui.Inspector_Overall_frame)
-			self._editInspectedIblSetInTextEditorAction.triggered.connect(self.Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered)
-			self._coreInspector.ui.Inspector_Overall_frame.addAction(self._editInspectedIblSetInTextEditorAction)
+			self.__editInspectedIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectedIblSetInTextEditorAction.triggered.connect(self.Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered)
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInTextEditorAction)
 
-			self._editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-			self._editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered)
-			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._editTemplateInTextEditorAction)
+			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+			self.__editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered)
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__editTemplateInTextEditorAction)
 
 		else:
 			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -609,15 +609,15 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editIblSetsInTextEditorAction)
-			self._editIblSetsInTextEditorAction = None
+		if not self.__container.parameters.databaseReadOnly:
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetsInTextEditorAction)
+			self.__editIblSetsInTextEditorAction = None
 
-			self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._editInspectedIblSetInTextEditorAction)
-			self._editInspectedIblSetInTextEditorAction = None
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectedIblSetInTextEditorAction)
+			self.__editInspectedIblSetInTextEditorAction = None
 
-			self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self._editTemplateInTextEditorAction)
-			self._editTemplateInTextEditorAction = None
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__editTemplateInTextEditorAction)
+			self.__editTemplateInTextEditorAction = None
 
 	@core.executionTrace
 	def Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered(self, checked):
@@ -627,7 +627,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
 			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editProvidedfile(iblSet._datas.path)
 
@@ -639,7 +639,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 		selectedIblSet and self.editProvidedfile(selectedIblSet._datas.path)
 
@@ -651,7 +651,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates:
 			for template in selectedTemplates:
 				os.path.exists(template._datas.path) and self.editProvidedfile(template._datas.path)
@@ -662,7 +662,7 @@ class RawEditingUtilities(UiComponent):
 		This Method Fills The Custom_Text_Editor_Path_lineEdit.
 		"""
 
-		customTextEditor = self._settings.getKey(self._settingsSection, "customTextEditor")
+		customTextEditor = self.__settings.getKey(self.__settingsSection, "customTextEditor")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_Text_Editor_Path_lineEdit", customTextEditor.toString()))
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
@@ -674,11 +674,11 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", self._container.lastBrowsedPath))
+		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", self.__container.lastBrowsedPath))
 		if customTextEditorExecutable != "":
 			LOGGER.debug("> Chosen Custom Text Editor Executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))
-			self._settings.setKey(self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -693,7 +693,7 @@ class RawEditingUtilities(UiComponent):
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File!".format(self.__class__.__name__)
 		else:
-			self._settings.setKey(self._settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	def editProvidedfile(self, file):
@@ -730,7 +730,7 @@ class RawEditingUtilities(UiComponent):
 				paths = environmentVariable.getPath().split(":")
 
 				editorFound = False
-				for editor in self._linuxTextEditors:
+				for editor in self.__linuxTextEditors:
 					if not editorFound:
 						try:
 							for path in paths:

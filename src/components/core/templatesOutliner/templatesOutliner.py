@@ -106,12 +106,12 @@ class TemplatesOutliner_Worker(QThread):
 		QThread.__init__(self, container)
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._dbSession = self._container.coreDb.dbSessionMaker()
+		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
-		self._timer = None
-		self._timerCycleMultiplier = 5
+		self.__timer = None
+		self.__timerCycleMultiplier = 5
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -121,10 +121,10 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -151,10 +151,10 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This Method Is The Property For The _dbSession Attribute.
 
-		@return: self._dbSession. ( Object )
+		@return: self.__dbSession. ( Object )
 		"""
 
-		return self._dbSession
+		return self.__dbSession
 
 	@dbSession.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -182,10 +182,10 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This Method Is The Property For The _timer Attribute.
 
-		@return: self._timer. ( QTimer )
+		@return: self.__timer. ( QTimer )
 		"""
 
-		return self._timer
+		return self.__timer
 
 	@timer.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -212,10 +212,10 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This Method Is The Property For The _timerCycleMultiplier Attribute.
 
-		@return: self._timerCycleMultiplier. ( Float )
+		@return: self.__timerCycleMultiplier. ( Float )
 		"""
 
-		return self._timerCycleMultiplier
+		return self.__timerCycleMultiplier
 
 	@timerCycleMultiplier.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -246,11 +246,11 @@ class TemplatesOutliner_Worker(QThread):
 		This Method Starts The QThread.
 		"""
 
-		self._timer = QTimer()
-		self._timer.moveToThread(self)
-		self._timer.start(Constants.defaultTimerCycle * self._timerCycleMultiplier)
+		self.__timer = QTimer()
+		self.__timer.moveToThread(self)
+		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
 
-		self._timer.timeout.connect(self.updateTemplates, Qt.DirectConnection)
+		self.__timer.timeout.connect(self.updateTemplates, Qt.DirectConnection)
 
 		self.exec_()
 
@@ -261,14 +261,14 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 
 		needModelRefresh = False
-		for template in dbUtilities.common.getTemplates(self._dbSession):
+		for template in dbUtilities.common.getTemplates(self.__dbSession):
 			if template.path:
 				if os.path.exists(template.path):
 					storedStats = template.osStats.split(",")
 					osStats = os.stat(template.path)
 					if str(osStats[8]) != str(storedStats[8]):
 						LOGGER.info("{0} | '{1}' Template File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, template.name))
-						if dbUtilities.common.updateTemplateContent(self._dbSession, template):
+						if dbUtilities.common.updateTemplateContent(self.__dbSession, template):
 							LOGGER.info("{0} | '{1}' Template Has Been Updated!".format(self.__class__.__name__, template.name))
 							needModelRefresh = True
 
@@ -295,9 +295,9 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -307,10 +307,10 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -337,10 +337,10 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -397,20 +397,20 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		@param event: QEvent. ( QEvent )		
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
 				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-					if re.search("\.{0}$".format(self._coreTemplatesOutliner.extension), str(url.path())):
+					if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self._coreTemplatesOutliner.addTemplate(name, path) and self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+							self.__coreTemplatesOutliner.addTemplate(name, path) and self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								self._coreTemplatesOutliner.addDirectory(path)
-								self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+								self.__coreTemplatesOutliner.addDirectory(path)
+								self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 		else:
@@ -440,35 +440,35 @@ class TemplatesOutliner(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Templates_Outliner.ui"
-		self._uiResources = "resources"
-		self._uiSoftwareAffixe = "_Software.png"
-		self._uiUnknownSoftwareImage = "Unknown_Software.png"
-		self._dockArea = 1
+		self.__uiPath = "ui/Templates_Outliner.ui"
+		self.__uiResources = "resources"
+		self.__uiSoftwareAffixe = "_Software.png"
+		self.__uiUnknownSoftwareImage = "Unknown_Software.png"
+		self.__dockArea = 1
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
-		self._settingsSeparator = ","
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
+		self.__settingsSeparator = ","
 
-		self._coreDb = None
+		self.__coreDb = None
 
-		self._model = None
-		self._modelSelection = None
+		self.__model = None
+		self.__modelSelection = None
 
-		self._templatesOutlinerWorkerThread = None
+		self.__templatesOutlinerWorkerThread = None
 
-		self._extension = "sIBLT"
+		self.__extension = "sIBLT"
 
-		self._defaultCollections = None
-		self._factoryCollection = "Factory"
-		self._userCollection = "User"
+		self.__defaultCollections = None
+		self.__factoryCollection = "Factory"
+		self.__userCollection = "User"
 
-		self._modelHeaders = [ "Templates", "Release", "Software Version" ]
-		self._treeViewIndentation = 15
-		self._treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self._templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations!<h4>* * *</h4></center>"
-		self._templatesInformationsText = """
+		self.__modelHeaders = [ "Templates", "Release", "Software Version" ]
+		self.__treeViewIndentation = 15
+		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
+		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations!<h4>* * *</h4></center>"
+		self.__templatesInformationsText = """
 											<h4><center>{0}</center></h4>
 											<p>
 											<b>Date:</b> {1}
@@ -497,10 +497,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -527,10 +527,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -557,10 +557,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiSoftwareAffixe Attribute.
 
-		@return: self._uiSoftwareAffixe. ( String )
+		@return: self.__uiSoftwareAffixe. ( String )
 		"""
 
-		return self._uiSoftwareAffixe
+		return self.__uiSoftwareAffixe
 
 	@uiSoftwareAffixe.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -587,10 +587,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiUnknownSoftwareImage Attribute.
 
-		@return: self._uiUnknownSoftwareImage. ( String )
+		@return: self.__uiUnknownSoftwareImage. ( String )
 		"""
 
-		return self._uiUnknownSoftwareImage
+		return self.__uiUnknownSoftwareImage
 
 	@uiUnknownSoftwareImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -617,10 +617,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -647,10 +647,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -677,10 +677,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -707,10 +707,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -737,10 +737,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSeparator Attribute.
 
-		@return: self._settingsSeparator. ( String )
+		@return: self.__settingsSeparator. ( String )
 		"""
 
-		return self._settingsSeparator
+		return self.__settingsSeparator
 
 	@settingsSeparator.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -767,10 +767,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -797,10 +797,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _model Attribute.
 
-		@return: self._model. ( QStandardItemModel )
+		@return: self.__model. ( QStandardItemModel )
 		"""
 
-		return self._model
+		return self.__model
 
 	@model.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -827,10 +827,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _modelSelection Attribute.
 
-		@return: self._modelSelection. ( Dictionary )
+		@return: self.__modelSelection. ( Dictionary )
 		"""
 
-		return self._modelSelection
+		return self.__modelSelection
 
 	@modelSelection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -857,10 +857,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _templatesOutlinerWorkerThread Attribute.
 
-		@return: self._templatesOutlinerWorkerThread. ( QThread )
+		@return: self.__templatesOutlinerWorkerThread. ( QThread )
 		"""
 
-		return self._templatesOutlinerWorkerThread
+		return self.__templatesOutlinerWorkerThread
 
 	@templatesOutlinerWorkerThread.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -887,10 +887,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _extension Attribute.
 
-		@return: self._extension. ( String )
+		@return: self.__extension. ( String )
 		"""
 
-		return self._extension
+		return self.__extension
 
 	@extension.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -917,10 +917,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _defaultCollections Attribute.
 
-		@return: self._defaultCollections. ( Dictionary )
+		@return: self.__defaultCollections. ( Dictionary )
 		"""
 
-		return self._defaultCollections
+		return self.__defaultCollections
 
 	@defaultCollections.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -947,10 +947,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _factoryCollection Attribute.
 
-		@return: self._factoryCollection. ( String )
+		@return: self.__factoryCollection. ( String )
 		"""
 
-		return self._factoryCollection
+		return self.__factoryCollection
 
 	@factoryCollection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -977,10 +977,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _userCollection Attribute.
 
-		@return: self._userCollection. ( String )
+		@return: self.__userCollection. ( String )
 		"""
 
-		return self._userCollection
+		return self.__userCollection
 
 	@userCollection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1007,10 +1007,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _modelHeaders Attribute.
 
-		@return: self._modelHeaders. ( List )
+		@return: self.__modelHeaders. ( List )
 		"""
 
-		return self._modelHeaders
+		return self.__modelHeaders
 
 	@modelHeaders.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1037,10 +1037,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _treeViewIndentation Attribute.
 
-		@return: self._treeViewIndentation. ( Integer )
+		@return: self.__treeViewIndentation. ( Integer )
 		"""
 
-		return self._treeViewIndentation
+		return self.__treeViewIndentation
 
 	@treeViewIndentation.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1067,10 +1067,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _treeViewInnerMargins Attribute.
 
-		@return: self._treeViewInnerMargins. ( Integer )
+		@return: self.__treeViewInnerMargins. ( Integer )
 		"""
 
-		return self._treeViewInnerMargins
+		return self.__treeViewInnerMargins
 
 	@treeViewInnerMargins.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1097,10 +1097,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _templatesInformationsDefaultText Attribute.
 
-		@return: self._templatesInformationsDefaultText. ( String )
+		@return: self.__templatesInformationsDefaultText. ( String )
 		"""
 
-		return self._templatesInformationsDefaultText
+		return self.__templatesInformationsDefaultText
 
 	@templatesInformationsDefaultText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1127,10 +1127,10 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _templatesInformationsText Attribute.
 
-		@return: self._templatesInformationsText. ( String )
+		@return: self.__templatesInformationsText. ( String )
 		"""
 
-		return self._templatesInformationsText
+		return self.__templatesInformationsText
 
 	@templatesInformationsText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1165,15 +1165,15 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 
-		self._defaultCollections = { self._factoryCollection: os.path.join(os.getcwd(), Constants.templatesDirectory), self._userCollection: os.path.join(self._container.userApplicationDatasDirectory, Constants.templatesDirectory) }
+		self.__defaultCollections = { self.__factoryCollection: os.path.join(os.getcwd(), Constants.templatesDirectory), self.__userCollection: os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory) }
 
 		self._activate()
 
@@ -1184,7 +1184,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -1194,12 +1194,12 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self._model = QStandardItemModel()
+		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__model = QStandardItemModel()
 		self.Templates_Outliner_treeView_setModel()
 
-		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self._container)
-		self.ui.Templates_Outliner_gridLayout.setContentsMargins(self._treeViewInnerMargins)
+		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__container)
+		self.ui.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.ui.Templates_Outliner_gridLayout.addWidget(self.ui.Templates_Outliner_treeView, 0, 0)
 
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
@@ -1207,16 +1207,16 @@ class TemplatesOutliner(UiComponent):
 
 		self.Templates_Outliner_treeView_setView()
 
-		self.ui.Template_Informations_textBrowser.setText(self._templatesInformationsDefaultText)
+		self.ui.Template_Informations_textBrowser.setText(self.__templatesInformationsDefaultText)
 		self.ui.Template_Informations_textBrowser.setOpenLinks(False)
 
 		self.ui.Templates_Outliner_splitter.setSizes([16777215, 1])
 
-		if not self._container.parameters.databaseReadOnly:
-			if not self._container.parameters.deactivateWorkerThreads:
-				self._templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
-				self._templatesOutlinerWorkerThread.start()
-				self._container.workerThreads.append(self._templatesOutlinerWorkerThread)
+		if not self.__container.parameters.databaseReadOnly:
+			if not self.__container.parameters.deactivateWorkerThreads:
+				self.__templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
+				self.__templatesOutlinerWorkerThread.start()
+				self.__container.workerThreads.append(self.__templatesOutlinerWorkerThread)
 			else:
 				LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -1226,7 +1226,7 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.Templates_Outliner_treeView_OnSelectionChanged)
 		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.Template_Informations_textBrowser_OnAnchorClicked)
 		self.modelChanged.connect(self.Templates_Outliner_treeView_refreshView)
-		not self._container.parameters.databaseReadOnly and not self._container.parameters.deactivateWorkerThreads and self._templatesOutlinerWorkerThread.databaseChanged.connect(self.databaseChanged)
+		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.databaseChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1245,7 +1245,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1264,12 +1264,12 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			# Adding Default Templates.			
 			self.addDefaultTemplates()
 
 			# Templates Table Integrity Checking.
-			erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity(self._coreDb.dbSession)
+			erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
@@ -1281,32 +1281,32 @@ class TemplatesOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollections = str(self._settings.getKey(self._settingsSection, "activeCollections").toString())
+		activeCollections = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' Active Collections Selection: '{1}'.".format(self.__class__.__name__, activeCollections))
 		if activeCollections:
-			if self._settingsSeparator in activeCollections:
-				collections = activeCollections.split(self._settingsSeparator)
+			if self.__settingsSeparator in activeCollections:
+				collections = activeCollections.split(self.__settingsSeparator)
 			else:
 				collections = [activeCollections]
-			self._modelSelection["Collections"] = collections
+			self.__modelSelection["Collections"] = collections
 
-		activeSoftwares = str(self._settings.getKey(self._settingsSection, "activeSoftwares").toString())
+		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' Active Softwares Selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		if activeSoftwares:
-			if self._settingsSeparator in activeSoftwares:
-				softwares = activeSoftwares.split(self._settingsSeparator)
+			if self.__settingsSeparator in activeSoftwares:
+				softwares = activeSoftwares.split(self.__settingsSeparator)
 			else:
 				softwares = [activeSoftwares]
-			self._modelSelection["Softwares"] = softwares
+			self.__modelSelection["Softwares"] = softwares
 
-		activeTemplatesIds = str(self._settings.getKey(self._settingsSection, "activeTemplates").toString())
+		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
 		LOGGER.debug("> Stored '{0}' Active Templates Ids Selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
 		if activeTemplatesIds:
-			if self._settingsSeparator in activeTemplatesIds:
-				ids = activeTemplatesIds.split(self._settingsSeparator)
+			if self.__settingsSeparator in activeTemplatesIds:
+				ids = activeTemplatesIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeTemplatesIds]
-			self._modelSelection["Templates"] = [int(id) for id in ids]
+			self.__modelSelection["Templates"] = [int(id) for id in ids]
 
 		self.Templates_Outliner_treeView_restoreModelSelection()
 
@@ -1319,9 +1319,9 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
 		self.Templates_Outliner_treeView_storeModelSelection()
-		self._settings.setKey(self._settingsSection, "activeTemplates", self._settingsSeparator.join(str(id) for id in self._modelSelection["Templates"]))
-		self._settings.setKey(self._settingsSection, "activeCollections", self._settingsSeparator.join(str(id) for id in self._modelSelection["Collections"]))
-		self._settings.setKey(self._settingsSection, "activeSoftwares", self._settingsSeparator.join(str(id) for id in self._modelSelection["Softwares"]))
+		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
+		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Collections"]))
+		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Softwares"]))
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_setModel(self):
@@ -1341,15 +1341,15 @@ class TemplatesOutliner(UiComponent):
 
 		self.Templates_Outliner_treeView_storeModelSelection()
 
-		self._model.clear()
+		self.__model.clear()
 
-		self._model.setHorizontalHeaderLabels(self._modelHeaders)
-		self._model.setColumnCount(len(self._modelHeaders))
+		self.__model.setHorizontalHeaderLabels(self.__modelHeaders)
+		self.__model.setColumnCount(len(self.__modelHeaders))
 
-		collections = dbUtilities.common.filterCollections(self._coreDb.dbSession, "Templates", "type")
+		collections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 
 		for collection in collections:
-			softwares = set((software[0] for software in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.software).filter(dbUtilities.types.DbTemplate.collection == collection.id)))
+			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbUtilities.types.DbTemplate.software).filter(dbUtilities.types.DbTemplate.collection == collection.id)))
 
 			if softwares:
 				LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
@@ -1359,20 +1359,20 @@ class TemplatesOutliner(UiComponent):
 				collectionStandardItem._type = "Collection"
 
 				LOGGER.debug("> Adding '{0}' Collection To '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
-				self._model.appendRow(collectionStandardItem)
+				self.__model.appendRow(collectionStandardItem)
 
 				for software in softwares:
-					templates = set((template[0] for template in self._coreDb.dbSession.query(dbUtilities.types.DbTemplate.id).filter(dbUtilities.types.DbTemplate.collection == collection.id).filter(dbUtilities.types.DbTemplate.software == software)))
+					templates = set((template[0] for template in self.__coreDb.dbSession.query(dbUtilities.types.DbTemplate.id).filter(dbUtilities.types.DbTemplate.collection == collection.id).filter(dbUtilities.types.DbTemplate.software == software)))
 
 					if templates:
 						LOGGER.debug("> Preparing '{0}' Software For '{1}' Model.".format(software, "Templates_Outliner_treeView"))
 
 						softwareStandardItem = QStandardItem(QString(software))
-						iconPath = os.path.join(self._uiResources, "{0}{1}".format(software, self._uiSoftwareAffixe))
+						iconPath = os.path.join(self.__uiResources, "{0}{1}".format(software, self.__uiSoftwareAffixe))
 						if os.path.exists(iconPath):
 							softwareStandardItem.setIcon(QIcon(iconPath))
 						else:
-							softwareStandardItem.setIcon(QIcon(os.path.join(self._uiResources, self._uiUnknownSoftwareImage)))
+							softwareStandardItem.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiUnknownSoftwareImage)))
 
 						softwareStandardItem._type = "Software"
 
@@ -1380,7 +1380,7 @@ class TemplatesOutliner(UiComponent):
 						collectionStandardItem.appendRow([softwareStandardItem, None, None])
 
 						for template in templates:
-							template = dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(template), "id")[0]
+							template = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
 
 							LOGGER.debug("> Preparing '{0}' Template For '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
 
@@ -1428,10 +1428,10 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_treeView.setAutoScroll(False)
 		self.ui.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
 		self.ui.Templates_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.ui.Templates_Outliner_treeView.setIndentation(self._treeViewIndentation)
+		self.ui.Templates_Outliner_treeView.setIndentation(self.__treeViewIndentation)
 		self.ui.Templates_Outliner_treeView.setSortingEnabled(True)
 
-		self.ui.Templates_Outliner_treeView.setModel(self._model)
+		self.ui.Templates_Outliner_treeView.setModel(self.__model)
 
 		self.Templates_Outliner_treeView_setDefaultViewState()
 
@@ -1452,7 +1452,7 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Setting '{0}' Default View State!".format("Templates_Outliner_treeView"))
 
 		self.ui.Templates_Outliner_treeView.expandAll()
-		for column in range(len(self._modelHeaders)):
+		for column in range(len(self.__modelHeaders)):
 			self.ui.Templates_Outliner_treeView.resizeColumnToContents(column)
 
 		self.ui.Templates_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
@@ -1465,14 +1465,14 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Storing '{0}' Model Selection!".format("Templates_Outliner_treeView"))
 
-		self._modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
+		self.__modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
 		for item in self.getSelectedItems():
 			if item._type == "Collection":
-				self._modelSelection["Collections"].append(item.text())
+				self.__modelSelection["Collections"].append(item.text())
 			elif item._type == "Software":
-				self._modelSelection["Softwares"].append(item.text())
+				self.__modelSelection["Softwares"].append(item.text())
 			else:
-				self._modelSelection["Templates"].append(item._datas.id)
+				self.__modelSelection["Templates"].append(item._datas.id)
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_restoreModelSelection(self):
@@ -1483,15 +1483,15 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Restoring '{0}' Model Selection!".format("Templates_Outliner_treeView"))
 
 		indexes = []
-		for i in range(self._model.rowCount()):
-			collectionStandardItem = self._model.item(i)
-			collectionStandardItem.text() in self._modelSelection["Collections"] and indexes.append(self._model.indexFromItem(collectionStandardItem))
+		for i in range(self.__model.rowCount()):
+			collectionStandardItem = self.__model.item(i)
+			collectionStandardItem.text() in self.__modelSelection["Collections"] and indexes.append(self.__model.indexFromItem(collectionStandardItem))
 			for j in range(collectionStandardItem.rowCount()):
 				softwareStandardItem = collectionStandardItem.child(j, 0)
-				softwareStandardItem.text() in self._modelSelection["Softwares"] and indexes.append(self._model.indexFromItem(softwareStandardItem))
+				softwareStandardItem.text() in self.__modelSelection["Softwares"] and indexes.append(self.__model.indexFromItem(softwareStandardItem))
 				for k in range(softwareStandardItem.rowCount()):
 					templateStandardItem = softwareStandardItem.child(k, 0)
-					templateStandardItem._datas.id in self._modelSelection["Templates"] and indexes.append(self._model.indexFromItem(templateStandardItem))
+					templateStandardItem._datas.id in self.__modelSelection["Templates"] and indexes.append(self.__model.indexFromItem(templateStandardItem))
 
 		selectionModel = self.ui.Templates_Outliner_treeView.selectionModel()
 		if selectionModel:
@@ -1505,7 +1505,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Sets The Templates_Outliner_treeView Actions.
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			addTemplateAction = QAction("Add Template ...", self.ui.Templates_Outliner_treeView)
 			addTemplateAction.triggered.connect(self.Templates_Outliner_treeView_addTemplateAction_OnTriggered)
 			self.ui.Templates_Outliner_treeView.addAction(addTemplateAction)
@@ -1548,7 +1548,7 @@ class TemplatesOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		templatePath = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self._container.lastBrowsedPath, "Ibls Files (*.{0})".format(self._extension))))
+		templatePath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
 		if templatePath:
 			LOGGER.debug("> Chosen Template Path: '{0}'.".format(templatePath))
 			self.addTemplate(strings.getSplitextBasename(templatePath), templatePath) and self.Templates_Outliner_treeView_refreshModel()
@@ -1572,7 +1572,7 @@ class TemplatesOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		for collection, path in self._defaultCollections.items():
+		for collection, path in self.__defaultCollections.items():
 			os.path.exists(path) and self.addDirectory(path, self.getCollection(collection).id, noWarning=True)
 		self.Templates_Outliner_treeView_refreshModel()
 
@@ -1598,14 +1598,14 @@ class TemplatesOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		templates = dbUtilities.common.getTemplates(self._coreDb.dbSession)
+		templates = dbUtilities.common.getTemplates(self.__coreDb.dbSession)
 		needModelRefresh = False
 		for template in templates:
-			matchingTemplates = dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(template.name), "name")
+			matchingTemplates = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
 				needModelRefresh = True
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
-					dbUtilities.common.removeTemplate(self._coreDb.dbSession, id[0])
+					dbUtilities.common.removeTemplate(self.__coreDb.dbSession, id[0])
 
 		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
@@ -1625,7 +1625,7 @@ class TemplatesOutliner(UiComponent):
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(self._templatesInformationsText.format("{0} {1} {2}".format(template._datas.software, template._datas.renderer, template._datas.title),
+				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template._datas.software, template._datas.renderer, template._datas.title),
 												template._datas.date,
 												template._datas.author,
 												template._datas.email,
@@ -1634,7 +1634,7 @@ class TemplatesOutliner(UiComponent):
 												template._datas.comment,
 												QUrl.fromLocalFile(template._datas.helpFile).toString()))
 		else:
-			content.append(self._templatesInformationsDefaultText)
+			content.append(self.__templatesInformationsDefaultText)
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 
@@ -1657,7 +1657,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
-		self._coreDb.dbSession.expire_all()
+		self.__coreDb.dbSession.expire_all()
 		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
@@ -1673,9 +1673,9 @@ class TemplatesOutliner(UiComponent):
 		@return: Template Database Addition Success. ( Boolean )		
 		"""
 
-		if not dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
+		if not dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template To Database!".format(self.__class__.__name__, name))
-			if dbUtilities.common.addTemplate(self._coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
+			if dbUtilities.common.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
 				return True
 			else:
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database!".format(self.__class__.__name__, name)
@@ -1695,7 +1695,7 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
 
 		walker = Walker(directory)
-		walker.walk(("\.{0}$".format(self._extension),), ("\._",))
+		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 		for template, path in walker.files.items():
 			self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, noWarning)
 
@@ -1726,7 +1726,7 @@ class TemplatesOutliner(UiComponent):
 			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s)?".format(", ".join([str(template.text()) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for template in selectedTemplates:
 					LOGGER.info("{0} | Removing '{1}' Template From Database!".format(self.__class__.__name__, template.text()))
-					dbUtilities.common.removeTemplate(self._coreDb.dbSession, str(template._datas.id))
+					dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template._datas.id))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1738,10 +1738,10 @@ class TemplatesOutliner(UiComponent):
 		@return: Update Success. ( Boolean )
 		"""
 
-		file = self._container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self._container.lastBrowsedPath, "Template Files (*{0})".format(self._extension))))
+		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self.__container.lastBrowsedPath, "Template Files (*{0})".format(self.__extension))))
 		if file:
 			LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
-			if not dbUtilities.common.updateTemplateLocation(self._coreDb.dbSession, template, file):
+			if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template!".format(self.__class__.__name__, template.name)
 			else:
 				return True
@@ -1754,13 +1754,13 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Adding Default Templates To Database.")
 
-		if not dbUtilities.common.getTemplates(self._coreDb.dbSession).count():
+		if not dbUtilities.common.getTemplates(self.__coreDb.dbSession).count():
 			needModelRefresh = False
-			for collection, path in self._defaultCollections.items():
+			for collection, path in self.__defaultCollections.items():
 				if os.path.exists(path):
-					if not set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Templates", "type")):
+					if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 						LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
-						dbUtilities.common.addCollection(self._coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
+						dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 					needModelRefresh = True
 					self.addDirectory(path, self.getCollection(collection).id)
 
@@ -1775,7 +1775,7 @@ class TemplatesOutliner(UiComponent):
 		@return: Collection. ( dbCollection )
 		"""
 
-		return [collection for collection in set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Templates", "type"))][0]
+		return [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
 
 	@core.executionTrace
 	def getUniqueCollectionId(self, path):
@@ -1786,8 +1786,8 @@ class TemplatesOutliner(UiComponent):
 		@return: Collection. ( Integer )
 		"""
 
-		templatesCollections = dbUtilities.common.filterCollections(self._coreDb.dbSession, "Templates", "type")
-		return self.defaultCollections[self._factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(self._factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(self._userCollection), "name")).intersection(templatesCollections)][0].id
+		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1800,7 +1800,7 @@ class TemplatesOutliner(UiComponent):
 
 		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set([self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self._model.itemFromIndex(index) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace
 	def getSelectedTemplates(self):

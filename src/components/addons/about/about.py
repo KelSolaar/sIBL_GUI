@@ -156,13 +156,13 @@ class About(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/About.ui"
-		self._uiResources = "resources"
-		self._uiLogoImage = "sIBL_GUI_Small_Logo.png"
-		self._uiGpl3Image = "GPL_V3.png"
+		self.__uiPath = "ui/About.ui"
+		self.__uiResources = "resources"
+		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
+		self.__uiGpl3Image = "GPL_V3.png"
 
-		self._container = None
-		self._miscMenu = None
+		self.__container = None
+		self.__miscMenu = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -172,10 +172,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -202,10 +202,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -232,10 +232,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _uiLogoImage Attribute.
 
-		@return: self._uiLogoImage. ( String )
+		@return: self.__uiLogoImage. ( String )
 		"""
 
-		return self._uiLogoImage
+		return self.__uiLogoImage
 
 	@uiLogoImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -262,10 +262,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _uiGpl3Image Attribute.
 
-		@return: self._uiGpl3Image. ( String )
+		@return: self.__uiGpl3Image. ( String )
 		"""
 
-		return self._uiGpl3Image
+		return self.__uiGpl3Image
 
 	@uiGpl3Image.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -292,10 +292,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -322,10 +322,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _miscMenu Attribute.
 
-		@return: self._miscMenu. ( QMenu )
+		@return: self.__miscMenu. ( QMenu )
 		"""
 
-		return self._miscMenu
+		return self.__miscMenu
 
 	@miscMenu.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -352,10 +352,10 @@ class About(UiComponent):
 		"""
 		This Method Is The Property For The _aboutMiscAction Attribute.
 
-		@return: self._aboutMiscAction. ( QAction )
+		@return: self.__aboutMiscAction. ( QAction )
 		"""
 
-		return self._aboutMiscAction
+		return self.__aboutMiscAction
 
 	@aboutMiscAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -390,10 +390,10 @@ class About(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._miscMenu = self._container.miscMenu
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__miscMenu = self.__container.miscMenu
 
 		self.addActions_()
 
@@ -410,9 +410,9 @@ class About(UiComponent):
 		self.removeActions_()
 
 		self.uiFile = None
-		self._uiResources = os.path.basename(self._uiResources)
-		self._container = None
-		self._miscMenu = None
+		self.__uiResources = os.path.basename(self.__uiResources)
+		self.__container = None
+		self.__miscMenu = None
 
 		self._deactivate()
 
@@ -456,9 +456,9 @@ class About(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
-		self._aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction_OnTriggered)
-		self._miscMenu.addAction(self._aboutMiscAction)
+		self.__aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
+		self.__aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction_OnTriggered)
+		self.__miscMenu.addAction(self.__aboutMiscAction)
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -468,9 +468,9 @@ class About(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._miscMenu.removeAction(self._aboutMiscAction)
+		self.__miscMenu.removeAction(self.__aboutMiscAction)
 
-		self._aboutMiscAction = None
+		self.__aboutMiscAction = None
 
 	@core.executionTrace
 	def miscMenu_aboutMiscAction_OnTriggered(self, checked):
@@ -485,9 +485,9 @@ class About(UiComponent):
 
 		ui.common.setWindowDefaultIcon(self.ui)
 
-		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self._uiResources, self._uiLogoImage),
+		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResources, self.__uiLogoImage),
 					Constants.releaseVersion.replace(".", " . "),
-					os.path.join(self._uiResources, self._uiGpl3Image)
+					os.path.join(self.__uiResources, self.__uiGpl3Image)
 					)
 
 		self.ui.About_label.setText(aboutMessage)

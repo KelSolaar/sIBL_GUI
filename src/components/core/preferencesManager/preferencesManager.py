@@ -97,11 +97,11 @@ class PreferencesManager(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Preferences_Manager.ui"
-		self._dockArea = 2
+		self.__uiPath = "ui/Preferences_Manager.ui"
+		self.__dockArea = 2
 
-		self._container = None
-		self._settings = None
+		self.__container = None
+		self.__settings = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -111,10 +111,10 @@ class PreferencesManager(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -141,10 +141,10 @@ class PreferencesManager(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -171,10 +171,10 @@ class PreferencesManager(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -201,10 +201,10 @@ class PreferencesManager(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -239,10 +239,10 @@ class PreferencesManager(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
 
-		self._settings = self._container.settings
+		self.__settings = self.__container.settings
 
 		self._activate()
 
@@ -253,7 +253,7 @@ class PreferencesManager(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -287,7 +287,7 @@ class PreferencesManager(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -307,8 +307,8 @@ class PreferencesManager(UiComponent):
 		self.ui.Verbose_Level_comboBox.clear()
 		LOGGER.debug("> Available Verbose Levels: '{0}'.".format(Constants.verbosityLabels))
 		self.ui.Verbose_Level_comboBox.insertItems(0, QStringList (Constants.verbosityLabels))
-		self._container.verbosityLevel = self._settings.getKey("Settings", "verbosityLevel").toInt()[0]
-		self.ui.Verbose_Level_comboBox.setCurrentIndex(self._container.verbosityLevel)
+		self.__container.verbosityLevel = self.__settings.getKey("Settings", "verbosityLevel").toInt()[0]
+		self.ui.Verbose_Level_comboBox.setCurrentIndex(self.__container.verbosityLevel)
 
 	@core.executionTrace
 	def Verbose_Level_comboBox_OnActivated(self, index):
@@ -319,9 +319,9 @@ class PreferencesManager(UiComponent):
 		"""
 
 		LOGGER.debug("> Setting Verbose Level: '{0}'.".format(self.ui.Verbose_Level_comboBox.currentText()))
-		self._container.verbosityLevel = int(self.ui.Verbose_Level_comboBox.currentIndex())
+		self.__container.verbosityLevel = int(self.ui.Verbose_Level_comboBox.currentIndex())
 		core.setVerbosityLevel(int(self.ui.Verbose_Level_comboBox.currentIndex()))
-		self._settings.setKey("Settings", "verbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex())
+		self.__settings.setKey("Settings", "verbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex())
 
 	@core.executionTrace
 	def Restore_Geometry_On_Layout_Change_checkBox_setUi(self):
@@ -330,9 +330,9 @@ class PreferencesManager(UiComponent):
 		"""
 
 		# Adding Settings Key If It Doesn't Exists.
-		self._settings.getKey("Settings", "restoreGeometryOnLayoutChange").isNull() and self._settings.setKey("Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked)
+		self.__settings.getKey("Settings", "restoreGeometryOnLayoutChange").isNull() and self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked)
 
-		restoreGeometryOnLayoutChange = self._settings.getKey("Settings", "restoreGeometryOnLayoutChange")
+		restoreGeometryOnLayoutChange = self.__settings.getKey("Settings", "restoreGeometryOnLayoutChange")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Restore_Geometry_On_Layout_Change_checkBox", restoreGeometryOnLayoutChange.toInt()[0]))
 		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState(restoreGeometryOnLayoutChange.toInt()[0])
 
@@ -345,7 +345,7 @@ class PreferencesManager(UiComponent):
 		"""
 
 		LOGGER.debug("> Restore Geometry On Layout Change State: '{0}'.".format(self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState()))
-		self._settings.setKey("Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState())
+		self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState())
 
 #***********************************************************************************************
 #***	Python End

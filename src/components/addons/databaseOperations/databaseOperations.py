@@ -99,14 +99,14 @@ class DatabaseOperations(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Database_Operations.ui"
+		self.__uiPath = "ui/Database_Operations.ui"
 
-		self._container = None
+		self.__container = None
 
-		self._coreDb = None
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreTemplatesOutliner = None
+		self.__coreDb = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreTemplatesOutliner = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -116,10 +116,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -146,10 +146,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -176,10 +176,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -206,10 +206,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -236,10 +236,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -266,10 +266,10 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -305,15 +305,15 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
 		self._activate()
 
@@ -326,13 +326,13 @@ class DatabaseOperations(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreTemplatesOutliner = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreTemplatesOutliner = None
 
 		self._deactivate()
 
@@ -345,7 +345,7 @@ class DatabaseOperations(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			self.ui.Synchronize_Database_pushButton.clicked.connect(self.Synchronize_Database_pushButton_OnClicked)
 		else:
 			LOGGER.info("{0} | Database Operations Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -359,7 +359,7 @@ class DatabaseOperations(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		not self._container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.Synchronize_Database_pushButton_OnClicked)
+		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.Synchronize_Database_pushButton_OnClicked)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -369,7 +369,7 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Database_Operations_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Database_Operations_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -379,7 +379,7 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
+		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Database_Operations_groupBox.setParent(None)
 
 	@core.executionTrace
@@ -398,15 +398,15 @@ class DatabaseOperations(UiComponent):
 		This Method Synchronizes The Database.
 		"""
 
-		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self._coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel},
-					{"type" : "Template", "getMethod" : dbUtilities.common.getTemplates, "updateContentMethod" : dbUtilities.common.updateTemplateContent, "updateLocationMethod" : self._coreTemplatesOutliner.updateTemplateLocation, "refreshModelMethod" : self._coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel})
+		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self.__coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel},
+					{"type" : "Template", "getMethod" : dbUtilities.common.getTemplates, "updateContentMethod" : dbUtilities.common.updateTemplateContent, "updateLocationMethod" : self.__coreTemplatesOutliner.updateTemplateLocation, "refreshModelMethod" : self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel})
 
 		for dbType in dbTypes:
 			needModelRefresh = False
-			for item in dbType["getMethod"](self._coreDb.dbSession):
+			for item in dbType["getMethod"](self.__coreDb.dbSession):
 				if item.path:
 					if os.path.exists(item.path):
-						if dbType["updateContentMethod"](self._coreDb.dbSession, item):
+						if dbType["updateContentMethod"](self.__coreDb.dbSession, item):
 							LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType["type"]))
 							needModelRefresh = True
 					else:

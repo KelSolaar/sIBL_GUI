@@ -105,9 +105,9 @@ class Image_QGraphicsItem(QGraphicsItem):
 		QGraphicsItem.__init__(self)
 
 		# --- Setting Class Attributes. ---
-		self._image = image
-		self._width = image.width()
-		self._height = image.height()
+		self.__image = image
+		self.__width = image.width()
+		self.__height = image.height()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -117,10 +117,10 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This Method Is The Property For The _image Attribute.
 
-		@return: self._image. ( QImage )
+		@return: self.__image. ( QImage )
 		"""
 
-		return self._image
+		return self.__image
 
 	@image.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -133,7 +133,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		if value:
 			assert type(value) is QImage, "'{0}' Attribute: '{1}' Type Is Not 'QImage'!".format("image", value)
-		self._image = value
+		self.__image = value
 
 	@image.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -149,10 +149,10 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This Method Is The Property For The _width Attribute.
 
-		@return: self._width. ( Integer )
+		@return: self.__width. ( Integer )
 		"""
 
-		return self._width
+		return self.__width
 
 	@width.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -165,7 +165,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("width", value)
-		self._width = value
+		self.__width = value
 
 	@width.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -181,10 +181,10 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This Method Is The Property For The _height Attribute.
 
-		@return: self._height. ( Integer )
+		@return: self.__height. ( Integer )
 		"""
 
-		return self._height
+		return self.__height
 
 	@height.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -197,7 +197,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("height", value)
-		self._height = value
+		self.__height = value
 
 	@height.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -217,7 +217,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This Method Sets The Bounding Rectangle.
 		"""
 
-		return QRectF(-(self._image.width()) / 2, -(self._image.height()) / 2, self._image.width(), self._image.height())
+		return QRectF(-(self.__image.width()) / 2, -(self.__image.height()) / 2, self.__image.width(), self.__image.height())
 
 	@core.executionTrace
 	def paint(self, painter, options, widget):
@@ -229,7 +229,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		@param widget: QWidget ( QWidget )
 		"""
 
-		painter.drawImage(-(self._image.width() / 2), -(self._image.height() / 2), self._image)
+		painter.drawImage(-(self.__image.width() / 2), -(self.__image.height() / 2), self.__image)
 
 class ImagesPreviewer(object):
 	"""
@@ -248,44 +248,44 @@ class ImagesPreviewer(object):
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
-		self._container = container
-		self._paths = None
+		self.__container = container
+		self.__paths = None
 		self.paths = paths
 
-		self._uiPath = "ui/Image_Previewer.ui"
-		self._uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = "resources"
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._uiPreviousImage = "Previous.png"
-		self._uiNextImage = "Next.png"
-		self._uiZoomOutImage = "Zoom_Out.png"
-		self._uiZoomInImage = "Zoom_In.png"
+		self.__uiPath = "ui/Image_Previewer.ui"
+		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = "resources"
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiPreviousImage = "Previous.png"
+		self.__uiNextImage = "Next.png"
+		self.__uiZoomOutImage = "Zoom_Out.png"
+		self.__uiZoomInImage = "Zoom_In.png"
 
-		self._ui = uic.loadUi(self._uiPath)
+		self.__ui = uic.loadUi(self.__uiPath)
 		if "." in sys.path:
 			sys.path.remove(".")
 		# Ensure The Ui Object Is Destroyed On Close To Avoid Memory Leaks.
-		self._ui.setAttribute(Qt.WA_DeleteOnClose)
+		self.__ui.setAttribute(Qt.WA_DeleteOnClose)
 		# Reimplementing Widget Close Event Method.
-		self._ui.closeEvent = self.closeUi
+		self.__ui.closeEvent = self.closeUi
 
-		self._graphicsSceneBackgroundColor = QColor(48, 48, 48)
-		self._minimumZoomFactor = 0.05
-		self._maximumZoomFactor = 25
-		self._previewerMargin = 128
-		self._displayGraphicsItemMargin = 32
-		self._graphicsSceneWidth = QApplication.desktop().width() * (1 / self._minimumZoomFactor * 1.75)
-		self._graphicsSceneHeight = QApplication.desktop().height() * (1 / self._minimumZoomFactor * 1.75)
-		self._wheelZoomFactor = 350.0
-		self._keyZoomFactor = 1.20
+		self.__graphicsSceneBackgroundColor = QColor(48, 48, 48)
+		self.__minimumZoomFactor = 0.05
+		self.__maximumZoomFactor = 25
+		self.__previewerMargin = 128
+		self.__displayGraphicsItemMargin = 32
+		self.__graphicsSceneWidth = QApplication.desktop().width() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__graphicsSceneHeight = QApplication.desktop().height() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__wheelZoomFactor = 350.0
+		self.__keyZoomFactor = 1.20
 
-		self._graphicsView = None
-		self._graphicsScene = None
-		self._displayGraphicsItem = None
+		self.__graphicsView = None
+		self.__graphicsScene = None
+		self.__displayGraphicsItem = None
 
 		self.initializeUi()
 
-		self._ui.show()
+		self.__ui.show()
 
 		self.fitImage()
 
@@ -297,10 +297,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -327,10 +327,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _paths Attribute.
 
-		@return: self._paths. ( List )
+		@return: self.__paths. ( List )
 		"""
 
-		return self._paths
+		return self.__paths
 
 	@paths.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -343,7 +343,7 @@ class ImagesPreviewer(object):
 
 		if value:
 			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("paths", value)
-		self._paths = value
+		self.__paths = value
 
 	@paths.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -359,10 +359,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -389,10 +389,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -419,10 +419,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiPreviousImage Attribute.
 
-		@return: self._uiPreviousImage. ( String )
+		@return: self.__uiPreviousImage. ( String )
 		"""
 
-		return self._uiPreviousImage
+		return self.__uiPreviousImage
 
 	@uiPreviousImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -449,10 +449,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiNextImage Attribute.
 
-		@return: self._uiNextImage. ( String )
+		@return: self.__uiNextImage. ( String )
 		"""
 
-		return self._uiNextImage
+		return self.__uiNextImage
 
 	@uiNextImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -479,10 +479,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiZoomOutImage Attribute.
 
-		@return: self._uiZoomOutImage. ( String )
+		@return: self.__uiZoomOutImage. ( String )
 		"""
 
-		return self._uiZoomOutImage
+		return self.__uiZoomOutImage
 
 	@uiZoomOutImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -509,10 +509,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _uiZoomInImage Attribute.
 
-		@return: self._uiZoomInImage. ( String )
+		@return: self.__uiZoomInImage. ( String )
 		"""
 
-		return self._uiZoomInImage
+		return self.__uiZoomInImage
 
 	@uiZoomInImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -539,10 +539,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _ui Attribute.
 
-		@return: self._ui. ( Object )
+		@return: self.__ui. ( Object )
 		"""
 
-		return self._ui
+		return self.__ui
 
 	@ui.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -569,10 +569,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _graphicsSceneBackgroundColor Attribute.
 
-		@return: self._graphicsSceneBackgroundColor. ( QColors )
+		@return: self.__graphicsSceneBackgroundColor. ( QColors )
 		"""
 
-		return self._graphicsSceneBackgroundColor
+		return self.__graphicsSceneBackgroundColor
 
 	@graphicsSceneBackgroundColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -599,10 +599,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _previewerMargin Attribute.
 
-		@return: self._previewerMargin. ( Integer )
+		@return: self.__previewerMargin. ( Integer )
 		"""
 
-		return self._previewerMargin
+		return self.__previewerMargin
 
 	@previewerMargin.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -629,10 +629,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _graphicsSceneWidth Attribute.
 
-		@return: self._graphicsSceneWidth. ( Integer )
+		@return: self.__graphicsSceneWidth. ( Integer )
 		"""
 
-		return self._graphicsSceneWidth
+		return self.__graphicsSceneWidth
 
 	@graphicsSceneWidth.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -659,10 +659,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _graphicsSceneHeight Attribute.
 
-		@return: self._graphicsSceneHeight. ( Object )
+		@return: self.__graphicsSceneHeight. ( Object )
 		"""
 
-		return self._graphicsSceneHeight
+		return self.__graphicsSceneHeight
 
 	@graphicsSceneHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -689,10 +689,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _minimumZoomFactor Attribute.
 
-		@return: self._minimumZoomFactor. ( Float )
+		@return: self.__minimumZoomFactor. ( Float )
 		"""
 
-		return self._minimumZoomFactor
+		return self.__minimumZoomFactor
 
 	@minimumZoomFactor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -719,10 +719,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _maximumZoomFactor Attribute.
 
-		@return: self._maximumZoomFactor. ( Float )
+		@return: self.__maximumZoomFactor. ( Float )
 		"""
 
-		return self._maximumZoomFactor
+		return self.__maximumZoomFactor
 
 	@maximumZoomFactor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -749,10 +749,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _wheelZoomFactor Attribute.
 
-		@return: self._wheelZoomFactor. ( Float )
+		@return: self.__wheelZoomFactor. ( Float )
 		"""
 
-		return self._wheelZoomFactor
+		return self.__wheelZoomFactor
 
 	@wheelZoomFactor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -779,10 +779,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _keyZoomFactor Attribute.
 
-		@return: self._keyZoomFactor. ( Float )
+		@return: self.__keyZoomFactor. ( Float )
 		"""
 
-		return self._keyZoomFactor
+		return self.__keyZoomFactor
 
 	@keyZoomFactor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -809,10 +809,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _graphicsView Attribute.
 
-		@return: self._graphicsView. ( QGraphicsView )
+		@return: self.__graphicsView. ( QGraphicsView )
 		"""
 
-		return self._graphicsView
+		return self.__graphicsView
 
 	@graphicsView.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -839,10 +839,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _graphicsScene Attribute.
 
-		@return: self._graphicsScene. ( QGraphicsScene )
+		@return: self.__graphicsScene. ( QGraphicsScene )
 		"""
 
-		return self._graphicsScene
+		return self.__graphicsScene
 
 	@graphicsScene.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -869,10 +869,10 @@ class ImagesPreviewer(object):
 		"""
 		This Method Is The Property For The _displayGraphicsItem Attribute.
 
-		@return: self._displayGraphicsItem. ( QGraphicsItem )
+		@return: self.__displayGraphicsItem. ( QGraphicsItem )
 		"""
 
-		return self._displayGraphicsItem
+		return self.__displayGraphicsItem
 
 	@displayGraphicsItem.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -905,33 +905,33 @@ class ImagesPreviewer(object):
 
 		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
 
-		self.ui.Previous_Image_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiPreviousImage)))
-		self.ui.Next_Image_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiNextImage)))
-		self._ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInImage)))
-		self._ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutImage)))
-		len(self._paths) <= 1 and self.ui.Navigation_groupBox.hide()
+		self.ui.Previous_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
+		self.ui.Next_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
+		self.__ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomInImage)))
+		self.__ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomOutImage)))
+		len(self.__paths) <= 1 and self.ui.Navigation_groupBox.hide()
 
 		LOGGER.debug("> Initializing Graphics View.")
-		self._graphicsView = QGraphicsView()
-		self._graphicsView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-		self._graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-		self._graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
-		self._graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
+		self.__graphicsView = QGraphicsView()
+		self.__graphicsView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self.__graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+		self.__graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
+		self.__graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
 		# Reimplementing QGraphics View wheelEvent Method.
-		self._graphicsView.wheelEvent = self.wheelEvent
+		self.__graphicsView.wheelEvent = self.wheelEvent
 
 		LOGGER.debug("> Initializing Graphics Scene.")
-		self._graphicsScene = QGraphicsScene(self._graphicsView)
-		self._graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
-		self._graphicsScene.setSceneRect(-(float(self._graphicsSceneWidth)) / 2, -(float(self._graphicsSceneHeight)) / 2, float(self._graphicsSceneWidth), float(self._graphicsSceneHeight))
+		self.__graphicsScene = QGraphicsScene(self.__graphicsView)
+		self.__graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
+		self.__graphicsScene.setSceneRect(-(float(self.__graphicsSceneWidth)) / 2, -(float(self.__graphicsSceneHeight)) / 2, float(self.__graphicsSceneWidth), float(self.__graphicsSceneHeight))
 
-		self._graphicsView.setScene(self._graphicsScene)
-		self._graphicsView.setBackgroundBrush(QBrush(self._graphicsSceneBackgroundColor))
+		self.__graphicsView.setScene(self.__graphicsScene)
+		self.__graphicsView.setBackgroundBrush(QBrush(self.__graphicsSceneBackgroundColor))
 
 		self.setImage()
 		self.resizePreviewer()
 
-		self._ui.Image_Previewer_frame_gridLayout.addWidget(self._graphicsView)
+		self.__ui.Image_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
 
 		# Signals / Slots.
 		self.ui.Previous_Image_pushButton.clicked.connect(self.Previous_Image_pushButton_OnClicked)
@@ -951,7 +951,7 @@ class ImagesPreviewer(object):
 		event.accept()
 
 		LOGGER.debug("> Removing '{0}' From Image Previewers List.".format(self))
-		self._container.imagesPreviewers.remove(self)
+		self.__container.imagesPreviewers.remove(self)
 
 	@core.executionTrace
 	def resizePreviewer(self):
@@ -959,11 +959,11 @@ class ImagesPreviewer(object):
 		This Method Fits The Previewer Window.
 		"""
 
-		if self._displayGraphicsItem:
-			width = self._displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self._previewerMargin or self._displayGraphicsItem.width + self._previewerMargin
-			height = self._displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self._previewerMargin or self._displayGraphicsItem.height + self._previewerMargin
+		if self.__displayGraphicsItem:
+			width = self.__displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.width + self.__previewerMargin
+			height = self.__displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.height + self.__previewerMargin
 
-			self._ui.resize(width, height)
+			self.__ui.resize(width, height)
 
 	@core.executionTrace
 	def setImage(self, index=0):
@@ -973,17 +973,17 @@ class ImagesPreviewer(object):
 		@param index: Index To Display. ( Integer )
 		"""
 
-		if self._paths:
-			path = self._paths[index]
+		if self.__paths:
+			path = self.__paths[index]
 			image = ui.common.getImage(path)
 			if not hasattr(image, "_datas"):
 				image._datas = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
 
 			LOGGER.debug("> Initializing Graphics Item.")
-			self._displayGraphicsItem = Image_QGraphicsItem(image)
-			self._graphicsScene.addItem(self._displayGraphicsItem)
+			self.__displayGraphicsItem = Image_QGraphicsItem(image)
+			self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
-			self._ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
+			self.__ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
 
 	@core.executionTrace
 	def fitImage(self):
@@ -991,8 +991,8 @@ class ImagesPreviewer(object):
 		This Method Fits The Display Image.
 		"""
 
-		if self._displayGraphicsItem:
-			self._graphicsView.fitInView(QRectF(-(self._displayGraphicsItem.width / 2) - (self._displayGraphicsItemMargin / 2), -(self._displayGraphicsItem.height / 2) - (self._displayGraphicsItemMargin / 2), self._displayGraphicsItem.width + self._displayGraphicsItemMargin, self._displayGraphicsItem.height + self._displayGraphicsItemMargin), Qt.KeepAspectRatio)
+		if self.__displayGraphicsItem:
+			self.__graphicsView.fitInView(QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2), -(self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2), self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin, self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin), Qt.KeepAspectRatio)
 
 	@core.executionTrace
 	def loopThroughImages(self, backward=False):
@@ -1002,11 +1002,11 @@ class ImagesPreviewer(object):
 		@param backward: Looping Backward. ( Boolean )
 		"""
 
-		index = self._paths.index(self._displayGraphicsItem.image._datas.path)
+		index = self.__paths.index(self.__displayGraphicsItem.image._datas.path)
 		index += not backward and 1 or - 1
 		if index < 0:
-			index = len(self._paths) - 1
-		elif index > len(self._paths) - 1:
+			index = len(self.__paths) - 1
+		elif index > len(self.__paths) - 1:
 			index = 0
 		self.setImage(index)
 		self.fitImage()
@@ -1039,7 +1039,7 @@ class ImagesPreviewer(object):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.scaleView(self._keyZoomFactor)
+		self.scaleView(self.__keyZoomFactor)
 
 	@core.executionTrace
 	def Zoom_Out_pushButton_OnClicked(self, checked):
@@ -1049,7 +1049,7 @@ class ImagesPreviewer(object):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.scaleView(1 / self._keyZoomFactor)
+		self.scaleView(1 / self.__keyZoomFactor)
 
 	@core.executionTrace
 	def Zoom_Fit_pushButton_OnClicked(self, checked):
@@ -1069,9 +1069,9 @@ class ImagesPreviewer(object):
 		@param scaleFactor: Float ( Float )
 		"""
 
-		graphicsView = self._ui.findChild(QGraphicsView)
+		graphicsView = self.__ui.findChild(QGraphicsView)
 		factor = graphicsView.matrix().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width()
-		if factor < self._minimumZoomFactor or factor > self._maximumZoomFactor:
+		if factor < self.__minimumZoomFactor or factor > self.__maximumZoomFactor:
 			return
 
 		graphicsView.scale(scaleFactor, scaleFactor)
@@ -1084,7 +1084,7 @@ class ImagesPreviewer(object):
 		@param event: QEvent ( QEvent )
 		"""
 
-		self.scaleView(pow(1.5, event.delta() / self._wheelZoomFactor))
+		self.scaleView(pow(1.5, event.delta() / self.__wheelZoomFactor))
 
 	@core.executionTrace
 	def keyPressEvent(self, event):
@@ -1096,9 +1096,9 @@ class ImagesPreviewer(object):
 
 		key = event.key()
 		if key == Qt.Key_Plus:
-			self.scaleView(self._keyZoomFactor)
+			self.scaleView(self.__keyZoomFactor)
 		elif key == Qt.Key_Minus:
-			self.scaleView(1 / self._keyZoomFactor)
+			self.scaleView(1 / self.__keyZoomFactor)
 		else:
 			QGraphicsView.keyPressEvent(self, event)
 
@@ -1123,26 +1123,26 @@ class Preview(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Preview.ui"
-		self._uiResources = "resources"
+		self.__uiPath = "ui/Preview.ui"
+		self.__uiResources = "resources"
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
 
-		self._imagesPreviewers = None
-		self._maximumImagesPreviewersInstances = 5
+		self.__imagesPreviewers = None
+		self.__maximumImagesPreviewersInstances = 5
 
-		self._viewIblSetsLightingImagesAction = None
-		self._viewIblSetsReflectionImagesAction = None
-		self._viewIblSetsBackgroundImagesAction = None
-		self._viewIblSetsPlatesAction = None
+		self.__viewIblSetsLightingImagesAction = None
+		self.__viewIblSetsReflectionImagesAction = None
+		self.__viewIblSetsBackgroundImagesAction = None
+		self.__viewIblSetsPlatesAction = None
 
-		self._inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
+		self.__inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
 									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1, "column" : 4},
 									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
 									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
@@ -1155,10 +1155,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1185,10 +1185,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1215,10 +1215,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1245,10 +1245,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1275,10 +1275,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1305,10 +1305,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1335,10 +1335,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1365,10 +1365,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _coreInspector Attribute.
 
-		@return: self._coreInspector. ( Object )
+		@return: self.__coreInspector. ( Object )
 		"""
 
-		return self._coreInspector
+		return self.__coreInspector
 
 	@coreInspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1395,10 +1395,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _imagesPreviewers Attribute.
 
-		@return: self._imagesPreviewers. ( List )
+		@return: self.__imagesPreviewers. ( List )
 		"""
 
-		return self._imagesPreviewers
+		return self.__imagesPreviewers
 
 	@imagesPreviewers.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1425,10 +1425,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _maximumImagesPreviewersInstances Attribute.
 
-		@return: self._maximumImagesPreviewersInstances. ( Integer )
+		@return: self.__maximumImagesPreviewersInstances. ( Integer )
 		"""
 
-		return self._maximumImagesPreviewersInstances
+		return self.__maximumImagesPreviewersInstances
 
 	@maximumImagesPreviewersInstances.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1455,10 +1455,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsBackgroundImagesAction Attribute.
 
-		@return: self._viewIblSetsBackgroundImagesAction. ( QAction )
+		@return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsBackgroundImagesAction
+		return self.__viewIblSetsBackgroundImagesAction
 
 	@viewIblSetsBackgroundImagesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1485,10 +1485,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsLightingImagesAction Attribute.
 
-		@return: self._viewIblSetsLightingImagesAction. ( QAction )
+		@return: self.__viewIblSetsLightingImagesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsLightingImagesAction
+		return self.__viewIblSetsLightingImagesAction
 
 	@viewIblSetsLightingImagesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1515,10 +1515,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsReflectionImagesAction Attribute.
 
-		@return: self._viewIblSetsReflectionImagesAction. ( QAction )
+		@return: self.__viewIblSetsReflectionImagesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsReflectionImagesAction
+		return self.__viewIblSetsReflectionImagesAction
 
 	@viewIblSetsReflectionImagesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1545,10 +1545,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsPlatesAction Attribute.
 
-		@return: self._viewIblSetsPlatesAction. ( QAction )
+		@return: self.__viewIblSetsPlatesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsPlatesAction
+		return self.__viewIblSetsPlatesAction
 
 	@viewIblSetsPlatesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1574,10 +1574,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsBackgroundImagesAction Attribute.
 
-		@return: self._viewIblSetsBackgroundImagesAction. ( QAction )
+		@return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsBackgroundImagesAction
+		return self.__viewIblSetsBackgroundImagesAction
 
 	@viewIblSetsBackgroundImagesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1604,10 +1604,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewIblSetsLightingImagesAction Attribute.
 
-		@return: self._viewIblSetsLightingImagesAction. ( QAction )
+		@return: self.__viewIblSetsLightingImagesAction. ( QAction )
 		"""
 
-		return self._viewIblSetsLightingImagesAction
+		return self.__viewIblSetsLightingImagesAction
 
 	@viewIblSetsLightingImagesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1634,10 +1634,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewInspectedIblSetReflectionImageAction Attribute.
 
-		@return: self._viewInspectedIblSetReflectionImageAction. ( QAction )
+		@return: self.__viewInspectedIblSetReflectionImageAction. ( QAction )
 		"""
 
-		return self._viewInspectedIblSetReflectionImageAction
+		return self.__viewInspectedIblSetReflectionImageAction
 
 	@viewInspectedIblSetReflectionImageAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1664,10 +1664,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _viewInspectedIblSetPlatesAction Attribute.
 
-		@return: self._viewInspectedIblSetPlatesAction. ( QAction )
+		@return: self.__viewInspectedIblSetPlatesAction. ( QAction )
 		"""
 
-		return self._viewInspectedIblSetPlatesAction
+		return self.__viewInspectedIblSetPlatesAction
 
 	@viewInspectedIblSetPlatesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1694,10 +1694,10 @@ class Preview(UiComponent):
 		"""
 		This Method Is The Property For The _inspectorButtons Attribute.
 
-		@return: self._inspectorButtons. ( Dictionary )
+		@return: self.__inspectorButtons. ( Dictionary )
 		"""
 
-		return self._inspectorButtons
+		return self.__inspectorButtons
 
 	@inspectorButtons.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1732,17 +1732,17 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 
-		self._imagesPreviewers = []
+		self.__imagesPreviewers = []
 
 		self._activate()
 
@@ -1755,16 +1755,16 @@ class Preview(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._uiResources = os.path.basename(self._uiResources)
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__uiResources = os.path.basename(self.__uiResources)
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
 
-		for imagesPreviewer in self._imagesPreviewers[:]:
+		for imagesPreviewer in self.__imagesPreviewers[:]:
 			imagesPreviewer.ui.close()
 
 		self._deactivate()
@@ -1809,7 +1809,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Previewer_Path_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Previewer_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -1819,7 +1819,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
+		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Previewer_Path_groupBox.setParent(None)
 
 	@core.executionTrace
@@ -1830,45 +1830,45 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		separatorAction = QAction(self._coreDatabaseBrowser.ui.Database_Browser_listView)
+		separatorAction = QAction(self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		separatorAction.setSeparator(True)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(separatorAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(separatorAction)
 
-		self._viewIblSetsBackgroundImagesAction = QAction("View Background Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._viewIblSetsBackgroundImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsBackgroundImagesAction_OnTriggered)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewIblSetsBackgroundImagesAction)
+		self.__viewIblSetsBackgroundImagesAction = QAction("View Background Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsBackgroundImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsBackgroundImagesAction_OnTriggered)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsBackgroundImagesAction)
 
-		self._viewIblSetsLightingImagesAction = QAction("View Lighting Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._viewIblSetsLightingImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsLightingImagesAction_OnTriggered)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewIblSetsLightingImagesAction)
+		self.__viewIblSetsLightingImagesAction = QAction("View Lighting Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsLightingImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsLightingImagesAction_OnTriggered)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsLightingImagesAction)
 
-		self._viewIblSetsReflectionImagesAction = QAction("View Reflection Image ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._viewIblSetsReflectionImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsReflectionImagesAction_OnTriggered)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewIblSetsReflectionImagesAction)
+		self.__viewIblSetsReflectionImagesAction = QAction("View Reflection Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsReflectionImagesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsReflectionImagesAction_OnTriggered)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsReflectionImagesAction)
 
-		self._viewIblSetsPlatesAction = QAction("View Plates ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._viewIblSetsPlatesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsPlatesAction_OnTriggered)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._viewIblSetsPlatesAction)
+		self.__viewIblSetsPlatesAction = QAction("View Plates ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsPlatesAction.triggered.connect(self.Database_Browser_listView_viewIblSetsPlatesAction_OnTriggered)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsPlatesAction)
 
-		separatorAction = QAction(self._coreInspector.ui.Inspector_Overall_frame)
+		separatorAction = QAction(self.__coreInspector.ui.Inspector_Overall_frame)
 		separatorAction.setSeparator(True)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(separatorAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(separatorAction)
 
-		self._viewInspectedIblSetBackgroundImageAction = QAction("View Background Image ...", self._coreInspector.ui.Inspector_Overall_frame)
-		self._viewInspectedIblSetBackgroundImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetBackgroundImageAction_OnTriggered)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._viewInspectedIblSetBackgroundImageAction)
+		self.__viewInspectedIblSetBackgroundImageAction = QAction("View Background Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectedIblSetBackgroundImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetBackgroundImageAction_OnTriggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetBackgroundImageAction)
 
-		self._viewInspectedIblSetLightingImageAction = QAction("View Lighting Image ...", self._coreInspector.ui.Inspector_Overall_frame)
-		self._viewInspectedIblSetLightingImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetLightingImageAction_OnTriggered)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._viewInspectedIblSetLightingImageAction)
+		self.__viewInspectedIblSetLightingImageAction = QAction("View Lighting Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectedIblSetLightingImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetLightingImageAction_OnTriggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetLightingImageAction)
 
-		self._viewInspectedIblSetReflectionImageAction = QAction("View Reflection Image ...", self._coreInspector.ui.Inspector_Overall_frame)
-		self._viewInspectedIblSetReflectionImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetReflectionImageAction_OnTriggered)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._viewInspectedIblSetReflectionImageAction)
+		self.__viewInspectedIblSetReflectionImageAction = QAction("View Reflection Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectedIblSetReflectionImageAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetReflectionImageAction_OnTriggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetReflectionImageAction)
 
-		self._viewInspectedIblSetPlatesAction = QAction("View Plates ...", self._coreInspector.ui.Inspector_Overall_frame)
-		self._viewInspectedIblSetPlatesAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetPlatesAction_OnTriggered)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._viewInspectedIblSetPlatesAction)
+		self.__viewInspectedIblSetPlatesAction = QAction("View Plates ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectedIblSetPlatesAction.triggered.connect(self.Inspector_Overall_frame_viewInspectedIblSetPlatesAction_OnTriggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetPlatesAction)
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -1878,25 +1878,25 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewIblSetsBackgroundImagesAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewIblSetsLightingImagesAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewIblSetsReflectionImagesAction)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._viewIblSetsPlatesAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsBackgroundImagesAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsLightingImagesAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsReflectionImagesAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsPlatesAction)
 
-		self._viewIblSetsBackgroundImagesAction = None
-		self._viewIblSetsLightingImagesAction = None
-		self._viewIblSetsReflectionImagesAction = None
-		self._viewIblSetsPlatesAction = None
+		self.__viewIblSetsBackgroundImagesAction = None
+		self.__viewIblSetsLightingImagesAction = None
+		self.__viewIblSetsReflectionImagesAction = None
+		self.__viewIblSetsPlatesAction = None
 
-		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._viewInspectedIblSetBackgroundImageAction)
-		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._viewInspectedIblSetLightingImageAction)
-		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._viewInspectedIblSetReflectionImageAction)
-		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._viewInspectedIblSetPlatesAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetBackgroundImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetLightingImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetReflectionImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetPlatesAction)
 
-		self._viewInspectedIblSetBackgroundImageAction = None
-		self._viewInspectedIblSetLightingImageAction = None
-		self._viewInspectedIblSetReflectionImageAction = None
-		self._viewInspectedIblSetPlatesAction = None
+		self.__viewInspectedIblSetBackgroundImageAction = None
+		self.__viewInspectedIblSetLightingImageAction = None
+		self.__viewInspectedIblSetReflectionImageAction = None
+		self.__viewInspectedIblSetPlatesAction = None
 
 	@core.executionTrace
 	def addInspectorButtons(self):
@@ -1904,10 +1904,10 @@ class Preview(UiComponent):
 		This Method Adds Buttons To The Inspector Component.
 		"""
 
-		self._coreInspector.ui.Inspector_Options_groupBox.show()
-		for key, value in self._inspectorButtons.items():
+		self.__coreInspector.ui.Inspector_Options_groupBox.show()
+		for key, value in self.__inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
-			self._coreInspector.ui.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
+			self.__coreInspector.ui.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
 			value["object"].clicked.connect(functools.partial(self.showImagesPreview, key))
 
 	def removeInspectorButtons(self):
@@ -1915,7 +1915,7 @@ class Preview(UiComponent):
 		This Method Removes Buttons From The Inspector Component.
 		"""
 
-		for value in self._inspectorButtons.values():
+		for value in self.__inspectorButtons.values():
 			value["object"].setParent(None)
 
 	@core.executionTrace
@@ -2004,7 +2004,7 @@ class Preview(UiComponent):
 		This Method Fills The Custom_Previewer_Path_lineEdit.
 		"""
 
-		customPreviewer = self._settings.getKey(self._settingsSection, "customPreviewer")
+		customPreviewer = self.__settings.getKey(self.__settingsSection, "customPreviewer")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_Previewer_Path_lineEdit", customPreviewer.toString()))
 		self.ui.Custom_Previewer_Path_lineEdit.setText(customPreviewer.toString())
 
@@ -2016,11 +2016,11 @@ class Preview(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		customPreviewerExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Previewer Executable:", self._container.lastBrowsedPath))
+		customPreviewerExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Previewer Executable:", self.__container.lastBrowsedPath))
 		if customPreviewerExecutable != "":
 			LOGGER.debug("> Chosen Custom Previewer Executable: '{0}'.".format(customPreviewerExecutable))
 			self.ui.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))
-			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -2035,7 +2035,7 @@ class Preview(UiComponent):
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Previewer Executable File!".format(self.__class__.__name__)
 		else:
-			self._settings.setKey(self._settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
 	def showImagesPreview(self, imageType, *args):
@@ -2048,7 +2048,7 @@ class Preview(UiComponent):
 
 		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
 			imagePaths = []
 			if imageType == "Background":
@@ -2091,10 +2091,10 @@ class Preview(UiComponent):
 						editProcess = QProcess()
 						editProcess.startDetached(previewCommand)
 				else:
-					if not len(self._imagesPreviewers) >= self._maximumImagesPreviewersInstances:
+					if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 						self.launchImagesPreviewer(imagePaths)
 					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self._maximumImagesPreviewersInstances))
+						messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image(s) Type And Will Be Skipped!".format(self.__class__.__name__, iblSet._datas.title, imageType))
 
@@ -2109,7 +2109,7 @@ class Preview(UiComponent):
 		LOGGER.debug("> Launching Images Previewer For '{0}' Image.".format(paths))
 
 		imagesPreviewer = ImagesPreviewer(self, paths)
-		self._imagesPreviewers.append(imagesPreviewer)
+		self.__imagesPreviewers.append(imagesPreviewer)
 
 	@core.executionTrace
 	def removeImagesPreviewer(self, imagesPreviewer):
@@ -2121,7 +2121,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
 
-		self._imagesPreviewers.remove(imagesPreviewer)
+		self.__imagesPreviewers.remove(imagesPreviewer)
 
 #***********************************************************************************************
 #***	Python End

@@ -95,20 +95,20 @@ class Search_QLineEdit(QLineEdit):
 		QLineEdit.__init__(self, parent)
 
 		# --- Setting Class Attributes. ---
-		self._uiClearImage = None
+		self.__uiClearImage = None
 		self.uiClearImage = uiClearImage
-		self._uiClearClickedImage = None
+		self.__uiClearClickedImage = None
 		self.uiClearClickedImage = uiClearClickedImage
-		self._parent = None
+		self.__parent = None
 		self.parent = parent
 
-		self._clearButton = QToolButton(self)
-		self._clearButton.setObjectName("Clear_Field_button")
+		self.__clearButton = QToolButton(self)
+		self.__clearButton.setObjectName("Clear_Field_button")
 		self.setClearButtonStyle()
 		self.setClearButtonVisibility(self.text())
 
 		# Signals / Slots.
-		self._clearButton.clicked.connect(self.clear)
+		self.__clearButton.clicked.connect(self.clear)
 		self.textChanged.connect(self.setClearButtonVisibility)
 
 	#***************************************************************************************
@@ -119,10 +119,10 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This Method Is The Property For The _uiClearImage Attribute.
 
-		@return: self._uiClearImage. ( String )
+		@return: self.__uiClearImage. ( String )
 		"""
 
-		return self._uiClearImage
+		return self.__uiClearImage
 
 	@uiClearImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -136,7 +136,7 @@ class Search_QLineEdit(QLineEdit):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearImage", value)
 			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearImage", value)
-		self._uiClearImage = value
+		self.__uiClearImage = value
 
 	@uiClearImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -152,10 +152,10 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This Method Is The Property For The _uiClearClickedImage Attribute.
 
-		@return: self._uiClearClickedImage. ( String )
+		@return: self.__uiClearClickedImage. ( String )
 		"""
 
-		return self._uiClearClickedImage
+		return self.__uiClearClickedImage
 
 	@uiClearClickedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -169,7 +169,7 @@ class Search_QLineEdit(QLineEdit):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearClickedImage", value)
 			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearClickedImage", value)
-		self._uiClearClickedImage = value
+		self.__uiClearClickedImage = value
 
 	@uiClearClickedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -185,10 +185,10 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This Method Is The Property For The _parent Attribute.
 
-		@return: self._parent. ( QObject )
+		@return: self.__parent. ( QObject )
 		"""
 
-		return self._parent
+		return self.__parent
 
 	@parent.setter
 	def parent(self, value):
@@ -198,7 +198,7 @@ class Search_QLineEdit(QLineEdit):
 		@param value: Attribute Value. ( QObject )
 		"""
 
-		self._parent = value
+		self.__parent = value
 
 	@parent.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -214,10 +214,10 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This Method Is The Property For The _clearButton Attribute.
 
-		@return: self._clearButton. ( QPushButton )
+		@return: self.__clearButton. ( QPushButton )
 		"""
 
-		return self._clearButton
+		return self.__clearButton
 
 	@clearButton.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -251,9 +251,9 @@ class Search_QLineEdit(QLineEdit):
 		@param event: Resize Event. ( QResizeEvent )
 		"""
 
-		size = self._clearButton.sizeHint()
+		size = self.__clearButton.sizeHint()
 		frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
-		self._clearButton.move(self.rect().right() - frameWidth - size.width() + 1, (self.rect().bottom() - size.height()) / 2 + 1);
+		self.__clearButton.move(self.rect().right() - frameWidth - size.width() + 1, (self.rect().bottom() - size.height()) / 2 + 1);
 
 	@core.executionTrace
 	def setClearButtonStyle(self):
@@ -261,23 +261,23 @@ class Search_QLineEdit(QLineEdit):
 		This Method Sets The Clear Button Style.
 		"""
 
-		self._clearButton.setCursor(Qt.ArrowCursor)
-		if self._uiClearImage and self._uiClearClickedImage:
-			pixmap = QPixmap(self._uiClearImage)
-			clickedPixmap = QPixmap(self._uiClearClickedImage)
-			self._clearButton.setStyleSheet("QToolButton { border: none; padding: 0px; }");
-			self._clearButton.setIcon(QIcon(pixmap))
-			self._clearButton.setMaximumSize(pixmap.size())
+		self.__clearButton.setCursor(Qt.ArrowCursor)
+		if self.__uiClearImage and self.__uiClearClickedImage:
+			pixmap = QPixmap(self.__uiClearImage)
+			clickedPixmap = QPixmap(self.__uiClearClickedImage)
+			self.__clearButton.setStyleSheet("QToolButton { border: none; padding: 0px; }");
+			self.__clearButton.setIcon(QIcon(pixmap))
+			self.__clearButton.setMaximumSize(pixmap.size())
 
 			# Signals / Slots.
-			self._clearButton.pressed.connect(functools.partial(self._clearButton.setIcon, QIcon(clickedPixmap)))
-			self._clearButton.released.connect(functools.partial(self._clearButton.setIcon, QIcon(pixmap)))
+			self.__clearButton.pressed.connect(functools.partial(self.__clearButton.setIcon, QIcon(clickedPixmap)))
+			self.__clearButton.released.connect(functools.partial(self.__clearButton.setIcon, QIcon(pixmap)))
 		else:
-			self._clearButton.setText("Clear")
+			self.__clearButton.setText("Clear")
 
 		frameWidth = self.style().pixelMetric(QStyle.PM_DefaultFrameWidth)
-		self.setStyleSheet(QString("QLineEdit { padding-right: " + str(self._clearButton.sizeHint().width() + frameWidth)) + "px; }")
-		self.setMinimumSize(max(self.minimumSizeHint().width(), self._clearButton.sizeHint().height() + frameWidth * 2), max(self.minimumSizeHint().height(), self._clearButton.sizeHint().height() + frameWidth * 2));
+		self.setStyleSheet(QString("QLineEdit { padding-right: " + str(self.__clearButton.sizeHint().width() + frameWidth)) + "px; }")
+		self.setMinimumSize(max(self.minimumSizeHint().width(), self.__clearButton.sizeHint().height() + frameWidth * 2), max(self.minimumSizeHint().height(), self.__clearButton.sizeHint().height() + frameWidth * 2));
 
 	@core.executionTrace
 	def setClearButtonVisibility(self, text):
@@ -288,9 +288,9 @@ class Search_QLineEdit(QLineEdit):
 		"""
 
 		if text:
-			self._clearButton.show()
+			self.__clearButton.show()
 		else:
-			self._clearButton.hide()
+			self.__clearButton.hide()
 
 #***********************************************************************************************
 #***	Python End

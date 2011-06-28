@@ -102,31 +102,31 @@ class SearchDatabase(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Search_Database.ui"
-		self._uiResources = "resources"
-		self._uiSearchImage = "Search_Glass.png"
-		self._uiClearImage = "Search_Clear.png"
-		self._uiClearClickedImage = "Search_Clear_Clicked.png"
-		self._dockArea = 2
-		self._tagsCloudListWidgetSpacing = 4
+		self.__uiPath = "ui/Search_Database.ui"
+		self.__uiResources = "resources"
+		self.__uiSearchImage = "Search_Glass.png"
+		self.__uiClearImage = "Search_Clear.png"
+		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
+		self.__dockArea = 2
+		self.__tagsCloudListWidgetSpacing = 4
 
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
-		self._coreCollectionsOutliner = None
+		self.__coreDatabaseBrowser = None
+		self.__coreCollectionsOutliner = None
 
-		self._completer = None
-		self._completerVisibleItemsCount = 16
+		self.__completer = None
+		self.__completerVisibleItemsCount = 16
 
-		self._tagsCloudField = "In Tags Cloud "
-		self._databaseFields = (("In Names", "title"),
+		self.__tagsCloudField = "In Tags Cloud "
+		self.__databaseFields = (("In Names", "title"),
 								("In Authors", "author"),
 								("In Links", "link"),
 								("In Locations", "location"),
 								("In Comments", "comment"),
-								(self._tagsCloudField, "comment"),)
+								(self.__tagsCloudField, "comment"),)
 
-		self._cloudExcludedTags = ("^a$", "^and$", "^by$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
+		self.__cloudExcludedTags = ("^a$", "^and$", "^by$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -136,10 +136,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -166,10 +166,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -196,10 +196,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _uiSearchImage Attribute.
 
-		@return: self._uiSearchImage. ( String )
+		@return: self.__uiSearchImage. ( String )
 		"""
 
-		return self._uiSearchImage
+		return self.__uiSearchImage
 
 	@uiSearchImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -226,10 +226,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _uiClearImage Attribute.
 
-		@return: self._uiClearImage. ( String )
+		@return: self.__uiClearImage. ( String )
 		"""
 
-		return self._uiClearImage
+		return self.__uiClearImage
 
 	@uiClearImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -256,10 +256,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _uiClearClickedImage Attribute.
 
-		@return: self._uiClearClickedImage. ( String )
+		@return: self.__uiClearClickedImage. ( String )
 		"""
 
-		return self._uiClearClickedImage
+		return self.__uiClearClickedImage
 
 	@uiClearClickedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -286,10 +286,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -316,10 +316,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _tagsCloudListWidgetSpacing Attribute.
 
-		@return: self._tagsCloudListWidgetSpacing. ( Integer )
+		@return: self.__tagsCloudListWidgetSpacing. ( Integer )
 		"""
 
-		return self._tagsCloudListWidgetSpacing
+		return self.__tagsCloudListWidgetSpacing
 
 	@tagsCloudListWidgetSpacing.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -346,10 +346,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -376,10 +376,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -406,10 +406,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -436,10 +436,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
-		@return: self._coreCollectionsOutliner. ( Object )
+		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
-		return self._coreCollectionsOutliner
+		return self.__coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -466,10 +466,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QCompleter )
+		@return: self.__container. ( QCompleter )
 		"""
 
-		return self._container
+		return self.__container
 
 	@completer.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -496,10 +496,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( Integer )
+		@return: self.__container. ( Integer )
 		"""
 
-		return self._container
+		return self.__container
 
 	@completerVisibleItemsCount.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -526,10 +526,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _tagsCloudField Attribute.
 
-		@return: self._tagsCloudField. ( String )
+		@return: self.__tagsCloudField. ( String )
 		"""
 
-		return self._tagsCloudField
+		return self.__tagsCloudField
 
 	@tagsCloudField.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -556,10 +556,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _databaseFields Attribute.
 
-		@return: self._databaseFields. ( List )
+		@return: self.__databaseFields. ( List )
 		"""
 
-		return self._databaseFields
+		return self.__databaseFields
 
 	@databaseFields.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -586,10 +586,10 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is The Property For The _cloudExcludedTags Attribute.
 
-		@return: self._cloudExcludedTags. ( List )
+		@return: self.__cloudExcludedTags. ( List )
 		"""
 
-		return self._cloudExcludedTags
+		return self.__cloudExcludedTags
 
 	@cloudExcludedTags.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -625,13 +625,13 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
 		self._activate()
 
@@ -644,12 +644,12 @@ class SearchDatabase(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._uiResources = os.path.basename(self._uiResources)
-		self._container = None
+		self.__uiResources = os.path.basename(self.__uiResources)
+		self.__container = None
 
-		self._coreDb = None
-		self._coreDatabaseBrowser = None
-		self._coreCollectionsOutliner = None
+		self.__coreDb = None
+		self.__coreDatabaseBrowser = None
+		self.__coreCollectionsOutliner = None
 
 		self._deactivate()
 
@@ -661,19 +661,19 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self._uiResources, self._uiClearImage), os.path.join(self._uiResources, self._uiClearClickedImage))
+		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
 		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
 		self.ui.Tags_Cloud_groupBox.hide()
-		self.ui.Tags_Cloud_listWidget.setSpacing(self._tagsCloudListWidgetSpacing)
+		self.ui.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
-		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiSearchImage)))
-		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self._databaseFields])
+		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSearchImage)))
+		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
 
-		self._completer = QCompleter()
-		self._completer.setCaseSensitivity(Qt.CaseInsensitive)
-		self._completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
-		self._completer.setMaxVisibleItems(self._completerVisibleItemsCount)
-		self.ui.Search_Database_lineEdit.setCompleter(self._completer)
+		self.__completer = QCompleter()
+		self.__completer.setCaseSensitivity(Qt.CaseInsensitive)
+		self.__completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
+		self.__completer.setMaxVisibleItems(self.__completerVisibleItemsCount)
+		self.ui.Search_Database_lineEdit.setCompleter(self.__completer)
 
 		# Signals / Slots.
 		self.ui.Search_Database_lineEdit.textChanged.connect(self.Search_Database_lineEdit_OnTextChanged)
@@ -699,7 +699,7 @@ class SearchDatabase(UiComponent):
 		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.Time_High_timeEdit_OnTimeChanged)
 		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.Tags_Cloud_listWidget_OnDoubleClicked)
 
-		self._completer = None
+		self.__completer = None
 
 	@core.executionTrace
 	def addWidget(self):
@@ -709,7 +709,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -719,7 +719,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget(self.ui)
+		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
 
 	@core.executionTrace
@@ -740,7 +740,7 @@ class SearchDatabase(UiComponent):
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
-		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField:
+		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
 			self.ui.Tags_Cloud_groupBox.show()
 		else:
 			self.ui.Tags_Cloud_groupBox.hide()
@@ -794,9 +794,9 @@ class SearchDatabase(UiComponent):
 		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser displaySets.
 		"""
 
-		previousDisplaySets = self._coreDatabaseBrowser.displaySets
+		previousDisplaySets = self.__coreDatabaseBrowser.displaySets
 
-		iblSets = self._coreCollectionsOutliner.getCollectionsSets()
+		iblSets = self.__coreCollectionsOutliner.getCollectionsSets()
 
 		timeLow = self.ui.Time_Low_timeEdit.time()
 		timeHigh = self.ui.Time_High_timeEdit.time()
@@ -809,13 +809,13 @@ class SearchDatabase(UiComponent):
 				timeTokens = iblSet.time.split(":")
 				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
-		displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(filteredSets)]
+		displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(filteredSets)]
 
 		LOGGER.debug("> Time Range Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
 		if previousDisplaySets != displaySets:
-			self._coreDatabaseBrowser.displaySets = displaySets
-			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+			self.__coreDatabaseBrowser.displaySets = displaySets
+			self.__coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
@@ -824,23 +824,23 @@ class SearchDatabase(UiComponent):
 		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser displaySets.
 		"""
 
-		previousDisplaySets = self._coreDatabaseBrowser.displaySets
+		previousDisplaySets = self.__coreDatabaseBrowser.displaySets
 
 		pattern = str(self.ui.Search_Database_lineEdit.text())
-		currentField = self._databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
+		currentField = self.__databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
 		flags = self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
 
 		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
 
-		if self.ui.Search_Database_comboBox.currentText() == self._tagsCloudField:
-			self._completer.setModel(QStringListModel())
+		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
+			self.__completer.setModel(QStringListModel())
 			patternTokens = pattern.split()
 			patternTokens = patternTokens and patternTokens or (".*",)
 			filteredSets = []
 			allTags = []
-			for iblSet in self._coreCollectionsOutliner.getCollectionsSets():
+			for iblSet in self.__coreCollectionsOutliner.getCollectionsSets():
 				if getattr(iblSet, currentField):
-					tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self._cloudExcludedTags, flags=flags)
+					tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
 					patternsMatched = True
 					for pattern in patternTokens:
 						patternMatched = False
@@ -854,21 +854,21 @@ class SearchDatabase(UiComponent):
 						filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
+			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(set(filteredSets))]
 		else:
 			try:
 				re.compile(pattern)
 			except:
 				raise foundations.exceptions.UserError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
-			self._completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
-			displaySets = [displaySet for displaySet in set(self._coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self._coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
+			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
+			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsSets()).intersection(dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
 		LOGGER.debug("> Pattern Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
 
 		if previousDisplaySets != displaySets:
-			self._coreDatabaseBrowser.displaySets = displaySets
-			self._coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+			self.__coreDatabaseBrowser.displaySets = displaySets
+			self.__coreDatabaseBrowser.Database_Browser_listView_refreshModel()
 
 
 #***********************************************************************************************

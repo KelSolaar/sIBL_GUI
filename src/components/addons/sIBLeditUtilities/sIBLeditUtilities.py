@@ -100,18 +100,18 @@ class sIBLeditUtilities(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/sIBLedit_Utilities.ui"
+		self.__uiPath = "ui/sIBLedit_Utilities.ui"
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
 
-		self._editInSIBLEditAction = None
-		self._editInspectedIblSetInSIBLEditAction = None
+		self.__editInSIBLEditAction = None
+		self.__editInspectedIblSetInSIBLEditAction = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -121,10 +121,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -151,10 +151,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -181,10 +181,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -211,10 +211,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -241,10 +241,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -271,10 +271,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -301,10 +301,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _coreInspector Attribute.
 
-		@return: self._coreInspector. ( Object )
+		@return: self.__coreInspector. ( Object )
 		"""
 
-		return self._coreInspector
+		return self.__coreInspector
 
 	@coreInspector.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -331,10 +331,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _editInSIBLEditAction Attribute.
 
-		@return: self._editInSIBLEditAction. ( QAction )
+		@return: self.__editInSIBLEditAction. ( QAction )
 		"""
 
-		return self._editInSIBLEditAction
+		return self.__editInSIBLEditAction
 
 	@editInSIBLEditAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -361,10 +361,10 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This Method Is The Property For The _editInspectedIblSetInSIBLEditAction Attribute.
 
-		@return: self._editInspectedIblSetInSIBLEditAction. ( QAction )
+		@return: self.__editInspectedIblSetInSIBLEditAction. ( QAction )
 		"""
 
-		return self._editInspectedIblSetInSIBLEditAction
+		return self.__editInspectedIblSetInSIBLEditAction
 
 	@editInspectedIblSetInSIBLEditAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -399,14 +399,14 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 
 		self._activate()
 
@@ -419,13 +419,13 @@ class sIBLeditUtilities(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
 
 		self._deactivate()
 
@@ -467,7 +467,7 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.sIBLedit_Path_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.sIBLedit_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -487,14 +487,14 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			self._editInSIBLEditAction = QAction("Edit In sIBLedit ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-			self._editInSIBLEditAction.triggered.connect(self.Database_Browser_listView_editInSIBLEditAction_OnTriggered)
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._editInSIBLEditAction)
+		if not self.__container.parameters.databaseReadOnly:
+			self.__editInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+			self.__editInSIBLEditAction.triggered.connect(self.Database_Browser_listView_editInSIBLEditAction_OnTriggered)
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editInSIBLEditAction)
 
-			self._editInspectedIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self._coreInspector.ui.Inspector_Overall_frame)
-			self._editInspectedIblSetInSIBLEditAction.triggered.connect(self.Inspector_Overall_frame_editInSIBLEditAction_OnTriggered)
-			self._coreInspector.ui.Inspector_Overall_frame.addAction(self._editInspectedIblSetInSIBLEditAction)
+			self.__editInspectedIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectedIblSetInSIBLEditAction.triggered.connect(self.Inspector_Overall_frame_editInSIBLEditAction_OnTriggered)
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInSIBLEditAction)
 		else:
 			LOGGER.info("{0} | sIBLedit Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -506,12 +506,12 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._editInSIBLEditAction)
-			self._editInSIBLEditAction = None
+		if not self.__container.parameters.databaseReadOnly:
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editInSIBLEditAction)
+			self.__editInSIBLEditAction = None
 
-			self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._editInspectedIblSetInSIBLEditAction)
-			self._editInspectedIblSetInSIBLEditAction = None
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectedIblSetInSIBLEditAction)
+			self.__editInspectedIblSetInSIBLEditAction = None
 
 	@core.executionTrace
 	def Database_Browser_listView_editInSIBLEditAction_OnTriggered(self, checked):
@@ -539,7 +539,7 @@ class sIBLeditUtilities(UiComponent):
 		This Method Fills The sIBLedit_Path_lineEdit.
 		"""
 
-		sIBLeditExecutable = self._settings.getKey(self._settingsSection, "sIBLeditExecutable")
+		sIBLeditExecutable = self.__settings.getKey(self.__settingsSection, "sIBLeditExecutable")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
 		self.ui.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
@@ -551,11 +551,11 @@ class sIBLeditUtilities(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		sIBLeditExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable:", self._container.lastBrowsedPath))
+		sIBLeditExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable:", self.__container.lastBrowsedPath))
 		if sIBLeditExecutable != "":
 			LOGGER.debug("> Chosen sIBLedit Executable: '{0}'.".format(sIBLeditExecutable))
 			self.ui.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
-			self._settings.setKey(self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -570,7 +570,7 @@ class sIBLeditUtilities(UiComponent):
 
 			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File!".format(self.__class__.__name__)
 		else:
-			self._settings.setKey(self._settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
 	def editInSIBLedit(self):
@@ -579,7 +579,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 
 		if sIBLedit:

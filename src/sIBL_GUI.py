@@ -118,10 +118,10 @@ class Preferences():
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
-		self._preferencesFile = None
-		self._preferencesFile = preferencesFile
+		self.__preferencesFile = None
+		self.__preferencesFile = preferencesFile
 
-		self._settings = QSettings(self.preferencesFile, QSettings.IniFormat)
+		self.__settings = QSettings(self.preferencesFile, QSettings.IniFormat)
 
 		# --- Initializing Preferences. ---
 		self.getDefaultLayoutsSettings()
@@ -134,10 +134,10 @@ class Preferences():
 		"""
 		This Method Is The Property For The _preferencesFile Attribute.
 
-		@return: self._preferencesFile. ( String )
+		@return: self.__preferencesFile. ( String )
 		"""
 
-		return self._preferencesFile
+		return self.__preferencesFile
 
 	@preferencesFile.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -151,7 +151,7 @@ class Preferences():
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("preferencesFile", value)
 			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("preferencesFile", value)
-		self._preferencesFile = value
+		self.__preferencesFile = value
 
 	@preferencesFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -167,10 +167,10 @@ class Preferences():
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -197,10 +197,10 @@ class Preferences():
 		"""
 		This Method Is The Property For The _defaultLayoutsSettings Attribute.
 
-		@return: self._defaultLayoutsSettings. ( QSettings )
+		@return: self.__defaultLayoutsSettings. ( QSettings )
 		"""
 
-		return self._defaultLayoutsSettings
+		return self.__defaultLayoutsSettings
 
 	@defaultLayoutsSettings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -237,9 +237,9 @@ class Preferences():
 
 		LOGGER.debug("> Saving '{0}' In '{1}' Section With Value: '{2}' In Settings File.".format(key, section, value))
 
-		self._settings.beginGroup(section)
-		self._settings.setValue(key , QVariant(value))
-		self._settings.endGroup()
+		self.__settings.beginGroup(section)
+		self.__settings.setValue(key , QVariant(value))
+		self.__settings.endGroup()
 
 	@core.executionTrace
 	def getKey(self, section, key):
@@ -253,10 +253,10 @@ class Preferences():
 
 		LOGGER.debug("> Retrieving '{0}' In '{1}' Section.".format(key, section))
 
-		self._settings.beginGroup(section)
-		value = self._settings.value(key)
+		self.__settings.beginGroup(section)
+		value = self.__settings.value(key)
 		LOGGER.debug("> Key Value: '{0}'.".format(value))
-		self._settings.endGroup()
+		self.__settings.endGroup()
 
 		return value
 
@@ -267,7 +267,7 @@ class Preferences():
 		"""
 
 		LOGGER.debug("> Accessing '{0}' Layouts Settings File!".format(UiConstants.frameworkLayoutsFile))
-		self._defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
+		self.__defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 
 	@core.executionTrace
 	def setDefaultPreferences(self):
@@ -277,53 +277,53 @@ class Preferences():
 
 		LOGGER.debug("> Initializing Default Settings!")
 
-		self._settings.beginGroup("Settings")
-		self._settings.setValue("verbosityLevel", QVariant("3"))
-		self._settings.setValue("restoreGeometryOnLayoutChange", Qt.Unchecked)
-		self._settings.setValue("deactivatedComponents", QVariant(""))
-		self._settings.endGroup()
-		self._settings.beginGroup("Layouts")
-		self._settings.setValue("startupCentric_geometry", self._defaultLayoutsSettings.value("startupCentric/geometry"))
-		self._settings.setValue("startupCentric_windowState", self._defaultLayoutsSettings.value("startupCentric/windowState"))
-		self._settings.setValue("startupCentric_centralWidget", self._defaultLayoutsSettings.value("startupCentric/centralWidget"))
-		self._settings.setValue("startupCentric_activeLabel", self._defaultLayoutsSettings.value("startupCentric/activeLabel"))
-		self._settings.setValue("setsCentric_geometry", self._defaultLayoutsSettings.value("setsCentric/geometry"))
-		self._settings.setValue("setsCentric_windowState", self._defaultLayoutsSettings.value("setsCentric/windowState"))
-		self._settings.setValue("setsCentric_centralWidget", self._defaultLayoutsSettings.value("setsCentric/centralWidget"))
-		self._settings.setValue("setsCentric_activeLabel", self._defaultLayoutsSettings.value("setsCentric/activeLabel"))
-		self._settings.setValue("inspectCentric_geometry", self._defaultLayoutsSettings.value("inspectCentric/geometry"))
-		self._settings.setValue("inspectCentric_windowState", self._defaultLayoutsSettings.value("inspectCentric/windowState"))
-		self._settings.setValue("inspectCentric_centralWidget", self._defaultLayoutsSettings.value("inspectCentric/centralWidget"))
-		self._settings.setValue("inspectCentric_activeLabel", self._defaultLayoutsSettings.value("inspectCentric/activeLabel"))
-		self._settings.setValue("templatesCentric_geometry", self._defaultLayoutsSettings.value("templatesCentric/geometry"))
-		self._settings.setValue("templatesCentric_windowState", self._defaultLayoutsSettings.value("templatesCentric/windowState"))
-		self._settings.setValue("templatesCentric_centralWidget", self._defaultLayoutsSettings.value("templatesCentric/centralWidget"))
-		self._settings.setValue("templatesCentric_activeLabel", self._defaultLayoutsSettings.value("templatesCentric/activeLabel"))
-		self._settings.setValue("preferencesCentric_geometry", self._defaultLayoutsSettings.value("preferencesCentric/geometry"))
-		self._settings.setValue("preferencesCentric_windowState", self._defaultLayoutsSettings.value("preferencesCentric/windowState"))
-		self._settings.setValue("preferencesCentric_centralWidget", self._defaultLayoutsSettings.value("preferencesCentric/centralWidget"))
-		self._settings.setValue("preferencesCentric_activeLabel", self._defaultLayoutsSettings.value("preferencesCentric/activeLabel"))
-		self._settings.setValue("one_geometry", "")
-		self._settings.setValue("one_windowState", "")
-		self._settings.setValue("one_centralWidget", True)
-		self._settings.setValue("one_activeLabel", "")
-		self._settings.setValue("two_geometry", "")
-		self._settings.setValue("two_windowState", "")
-		self._settings.setValue("two_centralWidget", True)
-		self._settings.setValue("two_activeLabel", "")
-		self._settings.setValue("three_geometry", "")
-		self._settings.setValue("three_windowState", "")
-		self._settings.setValue("three_centralWidget", True)
-		self._settings.setValue("three_activeLabel", "")
-		self._settings.setValue("four_geometry", "")
-		self._settings.setValue("four_windowState", "")
-		self._settings.setValue("four_centralWidget", True)
-		self._settings.setValue("four_activeLabel", "")
-		self._settings.setValue("five_geometry", "")
-		self._settings.setValue("five_windowState", "")
-		self._settings.setValue("five_centralWidget", True)
-		self._settings.setValue("five_activeLabel", "")
-		self._settings.endGroup()
+		self.__settings.beginGroup("Settings")
+		self.__settings.setValue("verbosityLevel", QVariant("3"))
+		self.__settings.setValue("restoreGeometryOnLayoutChange", Qt.Unchecked)
+		self.__settings.setValue("deactivatedComponents", QVariant(""))
+		self.__settings.endGroup()
+		self.__settings.beginGroup("Layouts")
+		self.__settings.setValue("startupCentric_geometry", self.__defaultLayoutsSettings.value("startupCentric/geometry"))
+		self.__settings.setValue("startupCentric_windowState", self.__defaultLayoutsSettings.value("startupCentric/windowState"))
+		self.__settings.setValue("startupCentric_centralWidget", self.__defaultLayoutsSettings.value("startupCentric/centralWidget"))
+		self.__settings.setValue("startupCentric_activeLabel", self.__defaultLayoutsSettings.value("startupCentric/activeLabel"))
+		self.__settings.setValue("setsCentric_geometry", self.__defaultLayoutsSettings.value("setsCentric/geometry"))
+		self.__settings.setValue("setsCentric_windowState", self.__defaultLayoutsSettings.value("setsCentric/windowState"))
+		self.__settings.setValue("setsCentric_centralWidget", self.__defaultLayoutsSettings.value("setsCentric/centralWidget"))
+		self.__settings.setValue("setsCentric_activeLabel", self.__defaultLayoutsSettings.value("setsCentric/activeLabel"))
+		self.__settings.setValue("inspectCentric_geometry", self.__defaultLayoutsSettings.value("inspectCentric/geometry"))
+		self.__settings.setValue("inspectCentric_windowState", self.__defaultLayoutsSettings.value("inspectCentric/windowState"))
+		self.__settings.setValue("inspectCentric_centralWidget", self.__defaultLayoutsSettings.value("inspectCentric/centralWidget"))
+		self.__settings.setValue("inspectCentric_activeLabel", self.__defaultLayoutsSettings.value("inspectCentric/activeLabel"))
+		self.__settings.setValue("templatesCentric_geometry", self.__defaultLayoutsSettings.value("templatesCentric/geometry"))
+		self.__settings.setValue("templatesCentric_windowState", self.__defaultLayoutsSettings.value("templatesCentric/windowState"))
+		self.__settings.setValue("templatesCentric_centralWidget", self.__defaultLayoutsSettings.value("templatesCentric/centralWidget"))
+		self.__settings.setValue("templatesCentric_activeLabel", self.__defaultLayoutsSettings.value("templatesCentric/activeLabel"))
+		self.__settings.setValue("preferencesCentric_geometry", self.__defaultLayoutsSettings.value("preferencesCentric/geometry"))
+		self.__settings.setValue("preferencesCentric_windowState", self.__defaultLayoutsSettings.value("preferencesCentric/windowState"))
+		self.__settings.setValue("preferencesCentric_centralWidget", self.__defaultLayoutsSettings.value("preferencesCentric/centralWidget"))
+		self.__settings.setValue("preferencesCentric_activeLabel", self.__defaultLayoutsSettings.value("preferencesCentric/activeLabel"))
+		self.__settings.setValue("one_geometry", "")
+		self.__settings.setValue("one_windowState", "")
+		self.__settings.setValue("one_centralWidget", True)
+		self.__settings.setValue("one_activeLabel", "")
+		self.__settings.setValue("two_geometry", "")
+		self.__settings.setValue("two_windowState", "")
+		self.__settings.setValue("two_centralWidget", True)
+		self.__settings.setValue("two_activeLabel", "")
+		self.__settings.setValue("three_geometry", "")
+		self.__settings.setValue("three_windowState", "")
+		self.__settings.setValue("three_centralWidget", True)
+		self.__settings.setValue("three_activeLabel", "")
+		self.__settings.setValue("four_geometry", "")
+		self.__settings.setValue("four_windowState", "")
+		self.__settings.setValue("four_centralWidget", True)
+		self.__settings.setValue("four_activeLabel", "")
+		self.__settings.setValue("five_geometry", "")
+		self.__settings.setValue("five_windowState", "")
+		self.__settings.setValue("five_centralWidget", True)
+		self.__settings.setValue("five_activeLabel", "")
+		self.__settings.endGroup()
 
 	@core.executionTrace
 	def setDefaultLayouts(self):
@@ -334,7 +334,7 @@ class Preferences():
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
 				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
 					LOGGER.debug("> Updating Preferences File '{0}_{1}' Layout Attribute!".format(layout, type))
-					self.setKey("Layouts", "{0}_{1}".format(layout, type), self._defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
+					self.setKey("Layouts", "{0}_{1}".format(layout, type), self.__defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
 
 class LayoutActiveLabel(core.Structure):
 	"""
@@ -377,31 +377,31 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.setupUi(self)
 
 		# --- Setting Class Attributes. ---
-		self._componentsManager = None
-		self._coreComponentsManagerUi = None
-		self._corePreferencesManager = None
-		self._coreDb = None
-		self._coreDatabaseBrowser = None
-		self._coreCollectionsOutliner = None
-		self._coreTemplatesOutliner = None
-		self._coreInspector = None
-		self._lastBrowsedPath = os.getcwd()
-		self._userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
-		self._loggingSessionHandler = RuntimeConstants.loggingSessionHandler
-		self._loggingFileHandler = RuntimeConstants.loggingFileHandler
-		self._loggingConsoleHandler = RuntimeConstants.loggingConsoleHandler
-		self._loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
-		self._settings = RuntimeConstants.settings
-		self._verbosityLevel = RuntimeConstants.verbosityLevel
-		self._parameters = RuntimeConstants.parameters
-		self._libraryActiveLabel = None
-		self._inspectActiveLabel = None
-		self._exportActiveLabel = None
-		self._preferencesActiveLabel = None
-		self._layoutsActiveLabels = None
-		self._layoutMenu = None
-		self._miscMenu = None
-		self._workerThreads = []
+		self.__componentsManager = None
+		self.__coreComponentsManagerUi = None
+		self.__corePreferencesManager = None
+		self.__coreDb = None
+		self.__coreDatabaseBrowser = None
+		self.__coreCollectionsOutliner = None
+		self.__coreTemplatesOutliner = None
+		self.__coreInspector = None
+		self.__lastBrowsedPath = os.getcwd()
+		self.__userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
+		self.__loggingSessionHandler = RuntimeConstants.loggingSessionHandler
+		self.__loggingFileHandler = RuntimeConstants.loggingFileHandler
+		self.__loggingConsoleHandler = RuntimeConstants.loggingConsoleHandler
+		self.__loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
+		self.__settings = RuntimeConstants.settings
+		self.__verbosityLevel = RuntimeConstants.verbosityLevel
+		self.__parameters = RuntimeConstants.parameters
+		self.__libraryActiveLabel = None
+		self.__inspectActiveLabel = None
+		self.__exportActiveLabel = None
+		self.__preferencesActiveLabel = None
+		self.__layoutsActiveLabels = None
+		self.__layoutMenu = None
+		self.__miscMenu = None
+		self.__workerThreads = []
 
 		# --- Initializing sIBL_GUI. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
@@ -417,87 +417,87 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		# --- Initializing Component Manager. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Components Manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
-		self._componentsManager = Manager({ "Core" : os.path.join(os.getcwd(), Constants.coreComponentsDirectory), "Addons" : os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), "User" : os.path.join(self._userApplicationDatasDirectory, Constants.userComponentsDirectory) })
-		self._componentsManager.gatherComponents()
+		self.__componentsManager = Manager({ "Core" : os.path.join(os.getcwd(), Constants.coreComponentsDirectory), "Addons" : os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), "User" : os.path.join(self.__userApplicationDatasDirectory, Constants.userComponentsDirectory) })
+		self.__componentsManager.gatherComponents()
 
-		if not self._componentsManager.components:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close!".format(self._componentsManager, Constants.applicationName)
+		if not self.__componentsManager.components:
+			raise foundations.exceptions.ProgrammingError, "'{0}' Manager Has No Components, {1} Will Now Close!".format(self.__componentsManager, Constants.applicationName)
 
-		self._componentsManager.instantiateComponents(self.componentsInstantiationCallback)
+		self.__componentsManager.instantiateComponents(self.componentsInstantiationCallback)
 
 		# --- Activating Component Manager Ui. ---
-		self._coreComponentsManagerUi = self._componentsManager.getInterface("core.componentsManagerUi")
-		if self._coreComponentsManagerUi:
+		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
+		if self.__coreComponentsManagerUi:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"), textColor=Qt.white)
-			self._coreComponentsManagerUi.activate(self)
-			self._coreComponentsManagerUi.addWidget()
-			self._coreComponentsManagerUi.initializeUi()
+			self.__coreComponentsManagerUi.activate(self)
+			self.__coreComponentsManagerUi.addWidget()
+			self.__coreComponentsManagerUi.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.componentsManagerUi", Constants.applicationName)
 
 		# --- Activating Preferences Manager Component. ---
-		self._corePreferencesManager = self._componentsManager.getInterface("core.preferencesManager")
-		if self._corePreferencesManager:
+		self.__corePreferencesManager = self.__componentsManager.getInterface("core.preferencesManager")
+		if self.__corePreferencesManager:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager"), textColor=Qt.white)
-			self._corePreferencesManager.activate(self)
-			self._corePreferencesManager.addWidget()
-			self._corePreferencesManager.initializeUi()
+			self.__corePreferencesManager.activate(self)
+			self.__corePreferencesManager.addWidget()
+			self.__corePreferencesManager.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.preferencesManager", Constants.applicationName)
 
 		# --- Activating Database Component. ---
-		self._coreDb = self._componentsManager.getInterface("core.db")
-		if self._coreDb:
+		self.__coreDb = self.__componentsManager.getInterface("core.db")
+		if self.__coreDb:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.db"), textColor=Qt.white)
-			self._coreDb.activate(self)
-			self._coreDb.initialize()
+			self.__coreDb.activate(self)
+			self.__coreDb.initialize()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.db", Constants.applicationName)
 
 		# --- Activating Collections Outliner Component. ---
-		self._coreCollectionsOutliner = self._componentsManager.getInterface("core.collectionsOutliner")
-		if self._coreCollectionsOutliner:
+		self.__coreCollectionsOutliner = self.__componentsManager.getInterface("core.collectionsOutliner")
+		if self.__coreCollectionsOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner"), textColor=Qt.white)
-			self._coreCollectionsOutliner.activate(self)
-			self._coreCollectionsOutliner.addWidget()
-			self._coreCollectionsOutliner.initializeUi()
+			self.__coreCollectionsOutliner.activate(self)
+			self.__coreCollectionsOutliner.addWidget()
+			self.__coreCollectionsOutliner.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.collectionsOutliner", Constants.applicationName)
 
 		# --- Activating Database Browser Component. ---
-		self._coreDatabaseBrowser = self._componentsManager.getInterface("core.databaseBrowser")
-		if self._coreDatabaseBrowser:
+		self.__coreDatabaseBrowser = self.__componentsManager.getInterface("core.databaseBrowser")
+		if self.__coreDatabaseBrowser:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser"), textColor=Qt.white)
-			self._coreDatabaseBrowser.activate(self)
-			self._coreDatabaseBrowser.addWidget()
-			self._coreDatabaseBrowser.initializeUi()
+			self.__coreDatabaseBrowser.activate(self)
+			self.__coreDatabaseBrowser.addWidget()
+			self.__coreDatabaseBrowser.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.databaseBrowser", Constants.applicationName)
 
 		# --- Activating Inspector Component. ---
-		self._coreInspector = self._componentsManager.getInterface("core.inspector")
-		if self._coreInspector:
+		self.__coreInspector = self.__componentsManager.getInterface("core.inspector")
+		if self.__coreInspector:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
-			self._coreInspector.activate(self)
-			self._coreInspector.addWidget()
-			self._coreInspector.initializeUi()
+			self.__coreInspector.activate(self)
+			self.__coreInspector.addWidget()
+			self.__coreInspector.initializeUi()
 
 		# --- Activating Templates Outliner Component. ---
-		self._coreTemplatesOutliner = self._componentsManager.getInterface("core.templatesOutliner")
-		if self._coreTemplatesOutliner:
+		self.__coreTemplatesOutliner = self.__componentsManager.getInterface("core.templatesOutliner")
+		if self.__coreTemplatesOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner"), textColor=Qt.white)
-			self._coreTemplatesOutliner.activate(self)
-			self._coreTemplatesOutliner.addWidget()
-			self._coreTemplatesOutliner.initializeUi()
+			self.__coreTemplatesOutliner.activate(self)
+			self.__coreTemplatesOutliner.addWidget()
+			self.__coreTemplatesOutliner.initializeUi()
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.templatesOutliner", Constants.applicationName)
 
 		# --- Activating Others Components. ---
-		deactivatedComponents = self._settings.getKey("Settings", "deactivatedComponents").toString().split(",")
-		for component in self._componentsManager.getComponents():
+		deactivatedComponents = self.__settings.getKey("Settings", "deactivatedComponents").toString().split(",")
+		for component in self.__componentsManager.getComponents():
 			if component not in deactivatedComponents:
-				profile = self._componentsManager.components[component]
-				interface = self._componentsManager.getInterface(component)
+				profile = self.__componentsManager.components[component]
+				interface = self.__componentsManager.getInterface(component)
 				if not interface.activated:
 					RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, component), textColor=Qt.white)
 					interface.activate(self)
@@ -514,8 +514,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			RuntimeConstants.splashscreen.hide()
 
 		# --- Running onStartup Components Methods. ---
-		for component in self._componentsManager.getComponents():
-			interface = self._componentsManager.getInterface(component)
+		for component in self.__componentsManager.getComponents():
+			interface = self.__componentsManager.getInterface(component)
 			if interface.activated:
 				hasattr(interface, "onStartup") and interface.onStartup()
 
@@ -531,10 +531,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _componentsManager Attribute.
 
-		@return: self._componentsManager. ( Object )
+		@return: self.__componentsManager. ( Object )
 		"""
 
-		return self._componentsManager
+		return self.__componentsManager
 
 	@componentsManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -561,10 +561,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _coreComponentsManagerUi Attribute.
 
-		@return: self._coreComponentsManagerUi. ( Object )
+		@return: self.__coreComponentsManagerUi. ( Object )
 		"""
 
-		return self._coreComponentsManagerUi
+		return self.__coreComponentsManagerUi
 
 	@coreComponentsManagerUi.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -591,10 +591,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -621,10 +621,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -651,10 +651,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
-		@return: self._coreCollectionsOutliner. ( Object )
+		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
-		return self._coreCollectionsOutliner
+		return self.__coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -681,10 +681,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -711,10 +711,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -741,10 +741,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _lastBrowsedPath Attribute.
 
-		@return: self._lastBrowsedPath. ( String )
+		@return: self.__lastBrowsedPath. ( String )
 		"""
 
-		return self._lastBrowsedPath
+		return self.__lastBrowsedPath
 
 	@lastBrowsedPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -758,7 +758,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("lastBrowsedPath", value)
 			assert os.path.exists(value), "'{0}' Attribute: '{1}' Directory Doesn't Exists!".format("lastBrowsedPath", value)
-		self._lastBrowsedPath = value
+		self.__lastBrowsedPath = value
 
 	@lastBrowsedPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -774,10 +774,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _userApplicationDatasDirectory Attribute.
 
-		@return: self._userApplicationDatasDirectory. ( String )
+		@return: self.__userApplicationDatasDirectory. ( String )
 		"""
 
-		return self._userApplicationDatasDirectory
+		return self.__userApplicationDatasDirectory
 
 	@userApplicationDatasDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -804,10 +804,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _loggingSessionHandler Attribute.
 
-		@return: self._loggingSessionHandler. ( Handler )
+		@return: self.__loggingSessionHandler. ( Handler )
 		"""
 
-		return self._loggingSessionHandler
+		return self.__loggingSessionHandler
 
 	@loggingSessionHandler.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -834,10 +834,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _loggingFileHandler Attribute.
 
-		@return: self._loggingFileHandler. ( Handler )
+		@return: self.__loggingFileHandler. ( Handler )
 		"""
 
-		return self._loggingFileHandler
+		return self.__loggingFileHandler
 
 	@loggingFileHandler.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -864,10 +864,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _loggingConsoleHandler Attribute.
 
-		@return: self._loggingConsoleHandler. ( Handler )
+		@return: self.__loggingConsoleHandler. ( Handler )
 		"""
 
-		return self._loggingConsoleHandler
+		return self.__loggingConsoleHandler
 
 	@loggingConsoleHandler.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -894,10 +894,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _loggingSessionHandlerStream Attribute.
 
-		@return: self._loggingSessionHandlerStream. ( StreamObject )
+		@return: self.__loggingSessionHandlerStream. ( StreamObject )
 		"""
 
-		return self._loggingSessionHandlerStream
+		return self.__loggingSessionHandlerStream
 
 	@loggingSessionHandlerStream.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -924,10 +924,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -954,10 +954,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _verbosityLevel Attribute.
 
-		@return: self._verbosityLevel. ( Integer )
+		@return: self.__verbosityLevel. ( Integer )
 		"""
 
-		return self._verbosityLevel
+		return self.__verbosityLevel
 
 	@verbosityLevel.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -971,7 +971,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		if value:
 			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("verbosityLevel", value)
 			assert value >= 0 and value <= 4, "'{0}' Attribute: Value Need To Be Exactly Beetween 0 and 4!".format("verbosityLevel")
-		self._verbosityLevel = value
+		self.__verbosityLevel = value
 
 	@verbosityLevel.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -987,10 +987,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _parameters Attribute.
 
-		@return: self._parameters. ( Object )
+		@return: self.__parameters. ( Object )
 		"""
 
-		return self._parameters
+		return self.__parameters
 
 	@parameters.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1017,10 +1017,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _libraryActiveLabel  Attribute.
 
-		@return: self._libraryActiveLabel . ( Active_QLabel )
+		@return: self.__libraryActiveLabel . ( Active_QLabel )
 		"""
 
-		return self._libraryActiveLabel
+		return self.__libraryActiveLabel
 
 	@libraryActiveLabel .setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1047,10 +1047,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _inspectActiveLabel  Attribute.
 
-		@return: self._inspectActiveLabel . ( Active_QLabel )
+		@return: self.__inspectActiveLabel . ( Active_QLabel )
 		"""
 
-		return self._inspectActiveLabel
+		return self.__inspectActiveLabel
 
 	@inspectActiveLabel .setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1077,10 +1077,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _exportActiveLabel  Attribute.
 
-		@return: self._exportActiveLabel . ( Active_QLabel )
+		@return: self.__exportActiveLabel . ( Active_QLabel )
 		"""
 
-		return self._exportActiveLabel
+		return self.__exportActiveLabel
 
 	@exportActiveLabel .setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1107,10 +1107,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _preferencesActiveLabel  Attribute.
 
-		@return: self._preferencesActiveLabel . ( Active_QLabel )
+		@return: self.__preferencesActiveLabel . ( Active_QLabel )
 		"""
 
-		return self._preferencesActiveLabel
+		return self.__preferencesActiveLabel
 
 	@preferencesActiveLabel .setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1137,10 +1137,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _layoutsActiveLabels Attribute.
 
-		@return: self._layoutsActiveLabels. ( Tuple )
+		@return: self.__layoutsActiveLabels. ( Tuple )
 		"""
 
-		return self._layoutsActiveLabels
+		return self.__layoutsActiveLabels
 
 	@layoutsActiveLabels.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1167,10 +1167,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _layoutMenu Attribute.
 
-		@return: self._layoutMenu. ( QMenu )
+		@return: self.__layoutMenu. ( QMenu )
 		"""
 
-		return self._layoutMenu
+		return self.__layoutMenu
 
 	@layoutMenu.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1197,10 +1197,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _miscMenu Attribute.
 
-		@return: self._miscMenu. ( QMenu )
+		@return: self.__miscMenu. ( QMenu )
 		"""
 
-		return self._miscMenu
+		return self.__miscMenu
 
 	@miscMenu.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1227,10 +1227,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Is The Property For The _workerThreads Attribute.
 
-		@return: self._workerThreads. ( List )
+		@return: self.__workerThreads. ( List )
 		"""
 
-		return self._workerThreads
+		return self.__workerThreads
 
 	@workerThreads.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1264,24 +1264,24 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 
 		# --- Running onClose Components Methods. ---
-		for component in self._componentsManager.getComponents():
-			interface = self._componentsManager.getInterface(component)
+		for component in self.__componentsManager.getComponents():
+			interface = self.__componentsManager.getInterface(component)
 			if interface.activated:
 				hasattr(interface, "onClose") and interface.onClose()
 
 		# Storing Current Layout.
 		self.storeStartupLayout()
-		self._settings.settings.sync()
+		self.__settings.settings.sync()
 
 		# Stopping Worker Threads.
-		for workerThread in self._workerThreads:
+		for workerThread in self.__workerThreads:
 			if not workerThread.isFinished():
 				LOGGER.debug("> Stopping Worker Thread: '{0}'.".format(workerThread))
 				workerThread.exit()
 
-		foundations.common.closeHandler(LOGGER, self._loggingFileHandler)
-		foundations.common.closeHandler(LOGGER, self._loggingSessionHandler)
-		# foundations.common.closeHandler( LOGGER, self._loggingConsoleHandler )
+		foundations.common.closeHandler(LOGGER, self.__loggingFileHandler)
+		foundations.common.closeHandler(LOGGER, self.__loggingSessionHandler)
+		# foundations.common.closeHandler( LOGGER, self.__loggingConsoleHandler )
 
 		self.deleteLater()
 		event.accept()
@@ -1350,29 +1350,29 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Adding Active Labels.")
 
-		self._libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
-		self._libraryActiveLabel.setObjectName("Library_activeLabel")
-		self.toolBar.addWidget(self._libraryActiveLabel)
+		self.__libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
+		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
+		self.toolBar.addWidget(self.__libraryActiveLabel)
 
-		self._inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkInspectIcon), QPixmap(UiConstants.frameworkInspectHoverIcon), QPixmap(UiConstants.frameworkInspectActiveIcon), True)
-		self._inspectActiveLabel.setObjectName("Inspect_activeLabel")
-		self.toolBar.addWidget(self._inspectActiveLabel)
+		self.__inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkInspectIcon), QPixmap(UiConstants.frameworkInspectHoverIcon), QPixmap(UiConstants.frameworkInspectActiveIcon), True)
+		self.__inspectActiveLabel.setObjectName("Inspect_activeLabel")
+		self.toolBar.addWidget(self.__inspectActiveLabel)
 
-		self._exportActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkExportIcon), QPixmap(UiConstants.frameworkExportHoverIcon), QPixmap(UiConstants.frameworkExportActiveIcon), True)
-		self._exportActiveLabel.setObjectName("Export_activeLabel")
-		self.toolBar.addWidget(self._exportActiveLabel)
+		self.__exportActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkExportIcon), QPixmap(UiConstants.frameworkExportHoverIcon), QPixmap(UiConstants.frameworkExportActiveIcon), True)
+		self.__exportActiveLabel.setObjectName("Export_activeLabel")
+		self.toolBar.addWidget(self.__exportActiveLabel)
 
-		self._preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
-		self._preferencesActiveLabel.setObjectName("Preferences_activeLabel")
-		self.toolBar.addWidget(self._preferencesActiveLabel)
+		self.__preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
+		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
+		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
-		self._layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self._libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
-									LayoutActiveLabel(name="Inspect", object_=self._inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
-									LayoutActiveLabel(name="Export", object_=self._exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
-									LayoutActiveLabel(name="Preferences", object_=self._preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+		self.__layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+									LayoutActiveLabel(name="Inspect", object_=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
+									LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
+									LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
-		for layoutActiveLabel in self._layoutsActiveLabels:
+		for layoutActiveLabel in self.__layoutsActiveLabels:
 			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout: self.activeLabel_OnClicked(activeLabel))
 
 		LOGGER.debug("> Adding Central Widget Button.")
@@ -1387,29 +1387,29 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		layoutsButton.setObjectName("Layouts_activeLabel")
 		self.toolBar.addWidget(layoutsButton)
 
-		self._layoutMenu = QMenu("Layout", layoutsButton)
+		self.__layoutMenu = QMenu("Layout", layoutsButton)
 
 		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
 
 		for layout in userLayouts:
 			action = QAction("Restore Layout {0}".format(layout[0]), self)
 			action.setShortcut(QKeySequence(layout[1]))
-			self._layoutMenu.addAction(action)
+			self.__layoutMenu.addAction(action)
 
 			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.restoreLayout, layout))
 
-		self._layoutMenu.addSeparator()
+		self.__layoutMenu.addSeparator()
 
 		for layout in userLayouts:
 			action = QAction("Store Layout {0}".format(layout[0]), self)
 			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
-			self._layoutMenu.addAction(action)
+			self.__layoutMenu.addAction(action)
 
 			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
-		layoutsButton.setMenu(self._layoutMenu)
+		layoutsButton.setMenu(self.__layoutMenu)
 
 		LOGGER.debug("> Adding Miscellaneous Button.")
 		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
@@ -1419,17 +1419,17 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		helpDisplayMiscAction = QAction("Help Content ...", self)
 		apiDisplayMiscAction = QAction("Api Content ...", self)
 
-		self._miscMenu = QMenu("Miscellaneous", miscellaneousButton)
+		self.__miscMenu = QMenu("Miscellaneous", miscellaneousButton)
 
-		self._miscMenu.addAction(helpDisplayMiscAction)
-		self._miscMenu.addAction(apiDisplayMiscAction)
-		self._miscMenu.addSeparator()
+		self.__miscMenu.addAction(helpDisplayMiscAction)
+		self.__miscMenu.addAction(apiDisplayMiscAction)
+		self.__miscMenu.addSeparator()
 
 		# Signals / Slots.
 		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction_OnTriggered)
 		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction_OnTriggered)
 
-		miscellaneousButton.setMenu(self._miscMenu)
+		miscellaneousButton.setMenu(self.__miscMenu)
 
 		spacer = QLabel()
 		spacer.setObjectName("Closure_Spacer_activeLabel")
@@ -1445,7 +1445,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Clicked Active Label: '{0}'.".format(activeLabel))
 
 		self.restoreLayout(activeLabel)
-		for layoutActivelabel in self._layoutsActiveLabels:
+		for layoutActivelabel in self.__layoutsActiveLabels:
 			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
 
 	@core.executionTrace
@@ -1469,7 +1469,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Setting Layouts Active Labels Shortcuts.")
 
-		for layoutActiveLabel in self._layoutsActiveLabels:
+		for layoutActiveLabel in self.__layoutsActiveLabels:
 			action = QAction(layoutActiveLabel.name, self)
 			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
 			self.addAction(action)
@@ -1485,8 +1485,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Retrieving Current Layout Active Label Index.")
 
-		for index in range(len(self._layoutsActiveLabels)):
-			if self._layoutsActiveLabels[index].object_.isChecked():
+		for index in range(len(self.__layoutsActiveLabels)):
+			if self.__layoutsActiveLabels[index].object_.isChecked():
 				LOGGER.debug("> Current Layout Active Label Index: '{0}'.".format(index))
 				return index
 
@@ -1500,8 +1500,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Setting Layouts Active Labels States.")
 
-		for index_ in range(len(self._layoutsActiveLabels)):
-			self._layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
+		for index_ in range(len(self.__layoutsActiveLabels)):
+			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
 
 	@core.executionTrace
 	def storeLayout(self, name, *args):
@@ -1514,10 +1514,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Storing Layout '{0}'.".format(name))
 
-		self._settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
-		self._settings.setKey("Layouts", "{0}_windowState".format(name), self.saveState())
-		self._settings.setKey("Layouts", "{0}_centralWidget".format(name), self.centralwidget.isVisible())
-		self._settings.setKey("Layouts", "{0}_activeLabel".format(name), self.getLayoutsActiveLabel())
+		self.__settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
+		self.__settings.setKey("Layouts", "{0}_windowState".format(name), self.saveState())
+		self.__settings.setKey("Layouts", "{0}_centralWidget".format(name), self.centralwidget.isVisible())
+		self.__settings.setKey("Layouts", "{0}_activeLabel".format(name), self.getLayoutsActiveLabel())
 
 	@core.executionTrace
 	def restoreLayout(self, name):
@@ -1530,13 +1530,13 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Restoring Layout '{0}'.".format(name))
 
 		visibleComponents = [ "core.databaseBrowser" ]
-		for component, profile in self._componentsManager.components.items():
-			profile.categorie == "ui" and component not in visibleComponents and self._componentsManager.getInterface(component).ui and self._componentsManager.getInterface(component).ui.hide()
+		for component, profile in self.__componentsManager.components.items():
+			profile.categorie == "ui" and component not in visibleComponents and self.__componentsManager.getInterface(component).ui and self.__componentsManager.getInterface(component).ui.hide()
 
-		self.centralwidget.setVisible(self._settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
-		self.restoreState(self._settings.getKey("Layouts", "{0}_windowState".format(name)).toByteArray())
-		self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self._settings.getKey("Layouts", "{0}_geometry".format(name)).toByteArray())
-		self.setLayoutsActiveLabel(self._settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
+		self.centralwidget.setVisible(self.__settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
+		self.restoreState(self.__settings.getKey("Layouts", "{0}_windowState".format(name)).toByteArray())
+		self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(name)).toByteArray())
+		self.setLayoutsActiveLabel(self.__settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
 		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
 
 	@core.executionTrace
@@ -1548,7 +1548,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Restoring Startup Layout.")
 
 		self.restoreLayout(UiConstants.frameworkStartupLayout)
-		not self._corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self._settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
+		not self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
 
 	@core.executionTrace
 	def storeStartupLayout(self):
@@ -1596,7 +1596,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		lastBrowserPath = os.path.normpath(os.path.join(os.path.isfile(path) and os.path.dirname(path) or path, ".."))
 		LOGGER.debug("> Storing Last Browsed Path: '%s'.", lastBrowserPath)
 
-		self._lastBrowsedPath = lastBrowserPath
+		self.__lastBrowsedPath = lastBrowserPath
 
 		return path
 

@@ -95,21 +95,21 @@ class Variable_QPushButton(QPushButton):
 		QPushButton.__init__(self, parent)
 
 		# --- Setting Class Attributes. ---
-		self._state = None
+		self.__state = None
 		self.state = state
 
-		self._colors = None
+		self.__colors = None
 		self.colors = colors
 
-		self._labels = None
+		self.__labels = None
 		self.labels = labels
 
-		self._parent = None
+		self.__parent = None
 		self.parent = parent
 
 		# Initializing The Button
 		self.setCheckable(True)
-		if self._state:
+		if self.__state:
 			self.setTrueState()
 		else:
 			self.setFalseState()
@@ -125,10 +125,10 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This Method Is The Property For The _state Attribute.
 
-		@return: self._state. ( Boolean )
+		@return: self.__state. ( Boolean )
 		"""
 
-		return self._state
+		return self.__state
 
 	@state.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -141,7 +141,7 @@ class Variable_QPushButton(QPushButton):
 
 		if value:
 			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("activated", value)
-		self._state = value
+		self.__state = value
 
 	@state.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -157,10 +157,10 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This Method Is The Property For The _colors Attribute.
 
-		@return: self._colors. ( Tuple )
+		@return: self.__colors. ( Tuple )
 		"""
 
-		return self._colors
+		return self.__colors
 
 	@colors.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -175,7 +175,7 @@ class Variable_QPushButton(QPushButton):
 			assert len(value) == 2, "'{0}' Attribute: '{1}' Length Should Be '2'!".format("colors", value)
 			for index in range(len(value)):
 				assert type(value[index]) is QColor, "'{0}' Attribute Element '{1}': '{2}' Type Is Not 'QColor'!".format("colors", index, value)
-		self._colors = value
+		self.__colors = value
 
 	@colors.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -191,10 +191,10 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This Method Is The Property For The _labels Attribute.
 
-		@return: self._labels. ( Tuple )
+		@return: self.__labels. ( Tuple )
 		"""
 
-		return self._labels
+		return self.__labels
 
 	@labels.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -209,7 +209,7 @@ class Variable_QPushButton(QPushButton):
 			assert len(value) == 2, "'{0}' Attribute: '{1}' Length Should Be '2'!".format("labels", value)
 			for index in range(len(value)):
 				assert type(value[index]) in (str, unicode), "'{0}' Attribute Element '{1}': '{2}' Type Is Not 'str' or 'unicode'!".format("labels", index, value)
-		self._labels = value
+		self.__labels = value
 
 	@labels.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -225,10 +225,10 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This Method Is The Property For The _parent Attribute.
 
-		@return: self._parent. ( QObject )
+		@return: self.__parent. ( QObject )
 		"""
 
-		return self._parent
+		return self.__parent
 
 	@parent.setter
 	def parent(self, value):
@@ -238,7 +238,7 @@ class Variable_QPushButton(QPushButton):
 		@param value: Attribute Value. ( QObject )
 		"""
 
-		self._parent = value
+		self.__parent = value
 
 	@parent.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -260,7 +260,7 @@ class Variable_QPushButton(QPushButton):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		if self._state:
+		if self.__state:
 			self.setFalseState()
 		else:
 			self.setTrueState()
@@ -272,14 +272,14 @@ class Variable_QPushButton(QPushButton):
 		"""
 
 		LOGGER.debug("> Setting Variable QPushButton() To 'True' State.")
-		self._state = True
+		self.__state = True
 
 		palette = QPalette()
-		palette.setColor(QPalette.Button, self._colors[0])
+		palette.setColor(QPalette.Button, self.__colors[0])
 		self.setPalette(palette)
 
 		self.setChecked(True)
-		self.setText(self._labels[0])
+		self.setText(self.__labels[0])
 
 	@core.executionTrace
 	def setFalseState(self):
@@ -289,14 +289,14 @@ class Variable_QPushButton(QPushButton):
 
 		LOGGER.debug("> Setting Variable QPushButton() To 'False' State.")
 
-		self._state = False
+		self.__state = False
 
 		palette = QPalette()
-		palette.setColor(QPalette.Button, self._colors[1])
+		palette.setColor(QPalette.Button, self.__colors[1])
 		self.setPalette(palette)
 
 		self.setChecked(False)
-		self.setText(self._labels[1])
+		self.setText(self.__labels[1])
 
 #***********************************************************************************************
 #***	Python End

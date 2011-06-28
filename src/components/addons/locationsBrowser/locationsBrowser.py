@@ -103,26 +103,26 @@ class LocationsBrowser(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Locations_Browser.ui"
+		self.__uiPath = "ui/Locations_Browser.ui"
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._coreComponentsManagerUi = None
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
-		self._coreTemplatesOutliner = None
-		self._addonsLoaderScript = None
+		self.__coreComponentsManagerUi = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLoaderScript = None
 
-		self._openIblSetsLocationsAction = None
-		self._openComponentsLocationsAction = None
-		self._openTemplatesLocationsAction = None
+		self.__openIblSetsLocationsAction = None
+		self.__openComponentsLocationsAction = None
+		self.__openTemplatesLocationsAction = None
 
-		self._Open_Output_Folder_pushButton = None
+		self.__Open_Output_Folder_pushButton = None
 
-		self._linuxBrowsers = ("nautilus", "dolphin", "konqueror", "thunar")
+		self.__linuxBrowsers = ("nautilus", "dolphin", "konqueror", "thunar")
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -132,10 +132,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -162,10 +162,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -192,10 +192,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -222,10 +222,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -252,10 +252,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _coreComponentsManagerUi Attribute.
 
-		@return: self._coreComponentsManagerUi. ( Object )
+		@return: self.__coreComponentsManagerUi. ( Object )
 		"""
 
-		return self._coreComponentsManagerUi
+		return self.__coreComponentsManagerUi
 
 	@coreComponentsManagerUi.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -282,10 +282,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -312,10 +312,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -342,10 +342,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -372,10 +372,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _addonsLoaderScript Attribute.
 
-		@return: self._addonsLoaderScript. ( Object )
+		@return: self.__addonsLoaderScript. ( Object )
 		"""
 
-		return self._addonsLoaderScript
+		return self.__addonsLoaderScript
 
 	@addonsLoaderScript.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -402,10 +402,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _openIblSetsLocationsAction Attribute.
 
-		@return: self._openIblSetsLocationsAction. ( QAction )
+		@return: self.__openIblSetsLocationsAction. ( QAction )
 		"""
 
-		return self._openIblSetsLocationsAction
+		return self.__openIblSetsLocationsAction
 
 	@openIblSetsLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -432,10 +432,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _openInspectedIblSetLocationsAction Attribute.
 
-		@return: self._openInspectedIblSetLocationsAction. ( QAction )
+		@return: self.__openInspectedIblSetLocationsAction. ( QAction )
 		"""
 
-		return self._openInspectedIblSetLocationsAction
+		return self.__openInspectedIblSetLocationsAction
 
 	@openInspectedIblSetLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -462,10 +462,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _openComponentsLocationsAction Attribute.
 
-		@return: self._openComponentsLocationsAction. ( QAction )
+		@return: self.__openComponentsLocationsAction. ( QAction )
 		"""
 
-		return self._openComponentsLocationsAction
+		return self.__openComponentsLocationsAction
 
 	@openComponentsLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -492,10 +492,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _openTemplatesLocationsAction Attribute.
 
-		@return: self._openTemplatesLocationsAction. ( QAction )
+		@return: self.__openTemplatesLocationsAction. ( QAction )
 		"""
 
-		return self._openTemplatesLocationsAction
+		return self.__openTemplatesLocationsAction
 
 	@openTemplatesLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -522,10 +522,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _Open_Output_Folder_pushButton Attribute.
 
-		@return: self._Open_Output_Folder_pushButton. ( QPushButton )
+		@return: self.__Open_Output_Folder_pushButton. ( QPushButton )
 		"""
 
-		return self._Open_Output_Folder_pushButton
+		return self.__Open_Output_Folder_pushButton
 
 	@Open_Output_Folder_pushButton.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -552,10 +552,10 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Is The Property For The _linuxBrowsers Attribute.
 
-		@return: self._linuxBrowsers. ( QObject )
+		@return: self.__linuxBrowsers. ( QObject )
 		"""
 
-		return self._linuxBrowsers
+		return self.__linuxBrowsers
 
 	@linuxBrowsers.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -590,17 +590,17 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._coreComponentsManagerUi = self._container.componentsManager.components["core.componentsManagerUi"].interface
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreInspector = self._container.componentsManager.components["core.inspector"].interface
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
-		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
+		self.__coreComponentsManagerUi = self.__container.componentsManager.components["core.componentsManagerUi"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
 		self._activate()
 
@@ -613,16 +613,16 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._coreComponentsManagerUi = None
-		self._corePreferencesManager = None
-		self._coreDatabaseBrowser = None
-		self._coreInspector = None
-		self._coreTemplatesOutliner = None
-		self._addonsLoaderScript = None
+		self.__coreComponentsManagerUi = None
+		self.__corePreferencesManager = None
+		self.__coreDatabaseBrowser = None
+		self.__coreInspector = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLoaderScript = None
 
 		self._deactivate()
 
@@ -644,12 +644,12 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
 
 		# LoaderScript Addon Component Specific Code.
-		if self._addonsLoaderScript.activated:
-			self._Open_Output_Folder_pushButton = QPushButton("Open Output Folder")
-			self._addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self._Open_Output_Folder_pushButton)
+		if self.__addonsLoaderScript.activated:
+			self.__Open_Output_Folder_pushButton = QPushButton("Open Output Folder")
+			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Folder_pushButton)
 
 			# Signals / Slots.
-			self._Open_Output_Folder_pushButton.clicked.connect(self.Open_Output_Folder_pushButton_OnClicked)
+			self.__Open_Output_Folder_pushButton.clicked.connect(self.Open_Output_Folder_pushButton_OnClicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -664,12 +664,12 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
 
 		# LoaderScript Addon Component Specific Code.
-		if self._addonsLoaderScript.activated:
+		if self.__addonsLoaderScript.activated:
 			# Signals / Slots.
-			self._Open_Output_Folder_pushButton.clicked.disconnect(self.Open_Output_Folder_pushButton_OnClicked)
+			self.__Open_Output_Folder_pushButton.clicked.disconnect(self.Open_Output_Folder_pushButton_OnClicked)
 
-			self._Open_Output_Folder_pushButton.setParent(None)
-			self._Open_Output_Folder_pushButton = None
+			self.__Open_Output_Folder_pushButton.setParent(None)
+			self.__Open_Output_Folder_pushButton = None
 
 		self.removeActions_()
 
@@ -681,7 +681,7 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -701,21 +701,21 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self._coreDatabaseBrowser.ui.Database_Browser_listView)
-		self._openIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_openIblSetsLocationsAction_OnTriggered)
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self._openIblSetsLocationsAction)
+		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__openIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_openIblSetsLocationsAction_OnTriggered)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
 
-		self._openInspectedIblSetLocationsAction = QAction("Open Ibl Set Location ...", self._coreInspector.ui.Inspector_Overall_frame)
-		self._openInspectedIblSetLocationsAction.triggered.connect(self.Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered)
-		self._coreInspector.ui.Inspector_Overall_frame.addAction(self._openInspectedIblSetLocationsAction)
+		self.__openInspectedIblSetLocationsAction = QAction("Open Ibl Set Location ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__openInspectedIblSetLocationsAction.triggered.connect(self.Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectedIblSetLocationsAction)
 
-		self._openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
-		self._openComponentsLocationsAction.triggered.connect(self.Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered)
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self._openComponentsLocationsAction)
+		self.__openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
+		self.__openComponentsLocationsAction.triggered.connect(self.Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered)
+		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__openComponentsLocationsAction)
 
-		self._openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self._coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-		self._openTemplatesLocationsAction.triggered.connect(self.Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered)
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self._openTemplatesLocationsAction)
+		self.__openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+		self.__openTemplatesLocationsAction.triggered.connect(self.Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__openTemplatesLocationsAction)
 
 	@core.executionTrace
 	def removeActions_(self):
@@ -725,15 +725,15 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self._openIblSetsLocationsAction)
-		self._coreInspector.ui.Inspector_Overall_frame.removeAction(self._openInspectedIblSetLocationsAction)
-		self._coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self._openComponentsLocationsAction)
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self._openTemplatesLocationsAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__openIblSetsLocationsAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectedIblSetLocationsAction)
+		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__openComponentsLocationsAction)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__openTemplatesLocationsAction)
 
-		self._openIblSetsLocationsAction = None
-		self._openInspectedIblSetLocationsAction = None
-		self._openComponentsLocationsAction = None
-		self._openTemplatesLocationsAction = None
+		self.__openIblSetsLocationsAction = None
+		self.__openInspectedIblSetLocationsAction = None
+		self.__openComponentsLocationsAction = None
+		self.__openTemplatesLocationsAction = None
 
 	@core.executionTrace
 	def Database_Browser_listView_openIblSetsLocationsAction_OnTriggered(self, checked):
@@ -743,7 +743,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
 			iblSetPath = iblSet._datas.path
 			iblSetPath = iblSetPath and os.path.exists(iblSetPath) and os.path.dirname(iblSetPath)
@@ -757,7 +757,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 		selectedIblSet and self.exploreProvidedFolder(os.path.dirname(selectedIblSet._datas.path))
 
@@ -769,7 +769,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponent = self._coreComponentsManagerUi.getSelectedItems()
+		selectedComponent = self.__coreComponentsManagerUi.getSelectedItems()
 		for component in selectedComponent:
 			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreProvidedFolder(component._datas.path)
 
@@ -781,7 +781,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates:
 			for template in selectedTemplates:
 				os.path.exists(template._datas.path) and self.exploreProvidedFolder(os.path.dirname(template._datas.path))
@@ -792,7 +792,7 @@ class LocationsBrowser(UiComponent):
 		This Method Fills The Custom_File_Browser_Path_lineEdit.
 		"""
 
-		customTextEditor = self._settings.getKey(self._settingsSection, "customFileBrowser")
+		customTextEditor = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customTextEditor.toString()))
 		self.ui.Custom_File_Browser_Path_lineEdit.setText(customTextEditor.toString())
 
@@ -804,11 +804,11 @@ class LocationsBrowser(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		customTextEditorExecutable = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self._container.lastBrowsedPath))
+		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self.__container.lastBrowsedPath))
 		if customTextEditorExecutable != "":
 			LOGGER.debug("> Chosen Custom File Browser Executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customTextEditorExecutable))
-			self._settings.setKey(self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -823,7 +823,7 @@ class LocationsBrowser(UiComponent):
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File!".format(self.__class__.__name__)
 		else:
-			self._settings.setKey(self._settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -834,13 +834,13 @@ class LocationsBrowser(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		if self._container.parameters.loaderScriptsOutputDirectory:
-			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
-				self.exploreProvidedFolder(self._container.parameters.loaderScriptsOutputDirectory)
+		if self.__container.parameters.loaderScriptsOutputDirectory:
+			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
+				self.exploreProvidedFolder(self.__container.parameters.loaderScriptsOutputDirectory)
 			else:
-				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory)
 		else:
-			self.exploreProvidedFolder(self._addonsLoaderScript.ioDirectory)
+			self.exploreProvidedFolder(self.__addonsLoaderScript.ioDirectory)
 
 	@core.executionTrace
 	def exploreProvidedFolder(self, folder):
@@ -877,7 +877,7 @@ class LocationsBrowser(UiComponent):
 				paths = environmentVariable.getPath().split(":")
 
 				browserFound = False
-				for browser in self._linuxBrowsers:
+				for browser in self.__linuxBrowsers:
 					if not browserFound:
 						try:
 							for path in paths:

@@ -104,11 +104,11 @@ class SetsScanner_Worker(QThread):
 		QThread.__init__(self)
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._dbSession = self._container.coreDb.dbSessionMaker()
+		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
-		self._extension = "ibl"
+		self.__extension = "ibl"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -118,10 +118,10 @@ class SetsScanner_Worker(QThread):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -148,10 +148,10 @@ class SetsScanner_Worker(QThread):
 		"""
 		This Method Is The Property For The _dbSession Attribute.
 
-		@return: self._dbSession. ( Object )
+		@return: self.__dbSession. ( Object )
 		"""
 
-		return self._dbSession
+		return self.__dbSession
 
 	@dbSession.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -178,10 +178,10 @@ class SetsScanner_Worker(QThread):
 		"""
 		This Method Is The Property For The _extension Attribute.
 
-		@return: self._extension. ( String )
+		@return: self.__extension. ( String )
 		"""
 
-		return self._extension
+		return self.__extension
 
 	@extension.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -208,10 +208,10 @@ class SetsScanner_Worker(QThread):
 		"""
 		This Method Is The Property For The _newIblSets Attribute.
 
-		@return: self._newIblSets. ( Dictionary )
+		@return: self.__newIblSets. ( Dictionary )
 		"""
 
-		return self._newIblSets
+		return self.__newIblSets
 
 	@newIblSets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -252,22 +252,22 @@ class SetsScanner_Worker(QThread):
 
 		LOGGER.info("{0} | Scanning Sets Directories For New Sets!".format(self.__class__.__name__))
 
-		self._newIblSets = {}
-		paths = [path[0] for path in self._dbSession.query(dbUtilities.types.DbIblSet.path).all()]
+		self.__newIblSets = {}
+		paths = [path[0] for path in self.__dbSession.query(dbUtilities.types.DbIblSet.path).all()]
 		folders = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for folder in folders:
 			if os.path.exists(folder):
 				walker = Walker(folder)
-				walker.walk(("\.{0}$".format(self._extension),), ("\._",))
+				walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 				for iblSet, path in walker.files.items():
-					if not dbUtilities.common.filterIblSets(self._dbSession, "^{0}$".format(re.escape(path)), "path"):
+					if not dbUtilities.common.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
-						self._newIblSets[iblSet] = path
+						self.__newIblSets[iblSet] = path
 			else:
 				LOGGER.warning("!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets!".format(folder))
 
-		self._dbSession.close()
+		self.__dbSession.close()
 
 		LOGGER.info("{0} | Scanning Done!".format(self.__class__.__name__))
 
@@ -293,12 +293,12 @@ class SetsScanner(Component):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._container = None
+		self.__container = None
 
-		self._coreDb = None
-		self._coreCollectionsOutliner = None
+		self.__coreDb = None
+		self.__coreCollectionsOutliner = None
 
-		self._setsScannerWorkerThread = None
+		self.__setsScannerWorkerThread = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -308,10 +308,10 @@ class SetsScanner(Component):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -338,10 +338,10 @@ class SetsScanner(Component):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -368,10 +368,10 @@ class SetsScanner(Component):
 		"""
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
-		@return: self._coreCollectionsOutliner. ( Object )
+		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
-		return self._coreCollectionsOutliner
+		return self.__coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -398,10 +398,10 @@ class SetsScanner(Component):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -428,10 +428,10 @@ class SetsScanner(Component):
 		"""
 		This Method Is The Property For The _setsScannerWorkerThread Attribute.
 
-		@return: self._setsScannerWorkerThread. ( QThread )
+		@return: self.__setsScannerWorkerThread. ( QThread )
 		"""
 
-		return self._setsScannerWorkerThread
+		return self.__setsScannerWorkerThread
 
 	@setsScannerWorkerThread.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -466,11 +466,11 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self._container = container
+		self.__container = container
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
 
@@ -482,11 +482,11 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self._container = None
+		self.__container = None
 
-		self._coreDb = None
-		self._coreCollectionsOutliner = None
-		self._coreDatabaseBrowser = None
+		self.__coreDb = None
+		self.__coreCollectionsOutliner = None
+		self.__coreDatabaseBrowser = None
 
 		self._deactivate()
 
@@ -498,13 +498,13 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			if not self._container.parameters.deactivateWorkerThreads:
-				self._setsScannerWorkerThread = SetsScanner_Worker(self)
-				self._container.workerThreads.append(self._setsScannerWorkerThread)
+		if not self.__container.parameters.databaseReadOnly:
+			if not self.__container.parameters.deactivateWorkerThreads:
+				self.__setsScannerWorkerThread = SetsScanner_Worker(self)
+				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
-				self._setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
+				self.__setsScannerWorkerThread.databaseChanged.connect(self.databaseChanged)
 			else:
 				LOGGER.info("{0} | 'Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -518,12 +518,12 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
-			if not self._container.parameters.deactivateWorkerThreads:
+		if not self.__container.parameters.databaseReadOnly:
+			if not self.__container.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
-				not self._container.parameters.databaseReadOnly and self._setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
+				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.databaseChanged)
 
-				self._setsScannerWorkerThread = None
+				self.__setsScannerWorkerThread = None
 
 	@core.executionTrace
 	def onStartup(self):
@@ -533,7 +533,7 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		not self._container.parameters.databaseReadOnly and not self._container.parameters.deactivateWorkerThreads and self._setsScannerWorkerThread.start()
+		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 
 	@core.executionTrace
 	def databaseChanged(self):
@@ -541,17 +541,17 @@ class SetsScanner(Component):
 		This Method Is Triggered By The SetsScanner_Worker When The Database Has Changed.
 		"""
 
-		if self._setsScannerWorkerThread.newIblSets:
-			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found! Would You Like To Add That Content: '{0}' To The Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self._setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				for iblSet, path in self._setsScannerWorkerThread.newIblSets.items():
+		if self.__setsScannerWorkerThread.newIblSets:
+			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found! Would You Like To Add That Content: '{0}' To The Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self.__setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				for iblSet, path in self.__setsScannerWorkerThread.newIblSets.items():
 					iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 					LOGGER.info("{0} | Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
-					if not dbUtilities.common.addIblSet(self._coreDb.dbSession, iblSet, path, self._coreCollectionsOutliner.getCollectionId(self._coreCollectionsOutliner._defaultCollection)):
+					if not dbUtilities.common.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
 
-				self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+				self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 
-		self._setsScannerWorkerThread.exit()
+		self.__setsScannerWorkerThread.exit()
 
 #***********************************************************************************************
 #***	Python End

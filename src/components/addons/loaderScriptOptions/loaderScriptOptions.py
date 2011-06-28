@@ -102,26 +102,26 @@ class LoaderScriptOptions(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Loader_Script_Options.ui"
-		self._dockArea = 2
+		self.__uiPath = "ui/Loader_Script_Options.ui"
+		self.__dockArea = 2
 
-		self._container = None
+		self.__container = None
 
-		self._coreTemplatesOutliner = None
-		self._addonsLoaderScript = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLoaderScript = None
 
-		self._templateCommonAttributesSection = "Common Attributes"
-		self._templateAdditionalAttributesSection = "Additional Attributes"
-		self._templateScriptSection = "Script"
-		self._optionsToolboxesHeaders = ["Value"]
+		self.__templateCommonAttributesSection = "Common Attributes"
+		self.__templateAdditionalAttributesSection = "Additional Attributes"
+		self.__templateScriptSection = "Script"
+		self.__optionsToolboxesHeaders = ["Value"]
 
-		self._uiLightGrayColor = QColor(240, 240, 240)
-		self._uiDarkGrayColor = QColor(160, 160, 160)
+		self.__uiLightGrayColor = QColor(240, 240, 240)
+		self.__uiDarkGrayColor = QColor(160, 160, 160)
 
-		self._tableWidgetRowHeight = 30
-		self._tableWidgetHeaderHeight = 26
+		self.__tableWidgetRowHeight = 30
+		self.__tableWidgetHeaderHeight = 26
 
-		self._enumSplitter = ";"
+		self.__enumSplitter = ";"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -131,10 +131,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -161,10 +161,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -191,10 +191,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -221,10 +221,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -251,10 +251,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _addonsLoaderScript Attribute.
 
-		@return: self._addonsLoaderScript. ( Object )
+		@return: self.__addonsLoaderScript. ( Object )
 		"""
 
-		return self._addonsLoaderScript
+		return self.__addonsLoaderScript
 
 	@addonsLoaderScript.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -281,10 +281,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _templateCommonAttributesSection Attribute.
 
-		@return: self._templateCommonAttributesSection. ( String )
+		@return: self.__templateCommonAttributesSection. ( String )
 		"""
 
-		return self._templateCommonAttributesSection
+		return self.__templateCommonAttributesSection
 
 	@templateCommonAttributesSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -311,10 +311,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _templateAdditionalAttributesSection Attribute.
 
-		@return: self._templateAdditionalAttributesSection. ( String )
+		@return: self.__templateAdditionalAttributesSection. ( String )
 		"""
 
-		return self._templateAdditionalAttributesSection
+		return self.__templateAdditionalAttributesSection
 
 	@templateAdditionalAttributesSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -341,10 +341,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _templateScriptSection Attribute.
 
-		@return: self._templateScriptSection. ( String )
+		@return: self.__templateScriptSection. ( String )
 		"""
 
-		return self._templateScriptSection
+		return self.__templateScriptSection
 
 	@templateScriptSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -371,10 +371,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _optionsToolboxesHeaders Attribute.
 
-		@return: self._optionsToolboxesHeaders. ( List )
+		@return: self.__optionsToolboxesHeaders. ( List )
 		"""
 
-		return self._optionsToolboxesHeaders
+		return self.__optionsToolboxesHeaders
 
 	@optionsToolboxesHeaders.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -401,10 +401,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _uiLightGrayColor Attribute.
 
-		@return: self._uiLightGrayColor. ( QColor )
+		@return: self.__uiLightGrayColor. ( QColor )
 		"""
 
-		return self._uiLightGrayColor
+		return self.__uiLightGrayColor
 
 	@uiLightGrayColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -431,10 +431,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _uiDarkGrayColor Attribute.
 
-		@return: self._uiDarkGrayColor. ( QColor )
+		@return: self.__uiDarkGrayColor. ( QColor )
 		"""
 
-		return self._uiDarkGrayColor
+		return self.__uiDarkGrayColor
 
 	@uiDarkGrayColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -461,10 +461,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _tableWidgetRowHeight Attribute.
 
-		@return: self._tableWidgetRowHeight. ( Integer )
+		@return: self.__tableWidgetRowHeight. ( Integer )
 		"""
 
-		return self._tableWidgetRowHeight
+		return self.__tableWidgetRowHeight
 
 	@tableWidgetRowHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -491,10 +491,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _tableWidgetHeaderHeight Attribute.
 
-		@return: self._tableWidgetHeaderHeight. ( Integer )
+		@return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
 
-		return self._tableWidgetHeaderHeight
+		return self.__tableWidgetHeaderHeight
 
 	@tableWidgetHeaderHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -521,10 +521,10 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Is The Property For The _enumSplitter Attribute.
 
-		@return: self._enumSplitter. ( String )
+		@return: self.__enumSplitter. ( String )
 		"""
 
-		return self._enumSplitter
+		return self.__enumSplitter
 
 	@enumSplitter.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -539,7 +539,7 @@ class LoaderScriptOptions(UiComponent):
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("enumSplitter", value)
 			assert len(value) == 1, "'{0}' Attribute: '{1}' Has Multiples Characters!".format("enumSplitter", value)
 			assert not re.search("\w", value), "'{0}' Attribute: '{1}' Is An AlphaNumeric Character!".format("enumSplitter", value)
-		self._enumSplitter = value
+		self.__enumSplitter = value
 
 	@enumSplitter.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -563,11 +563,11 @@ class LoaderScriptOptions(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
 
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
-		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
 		self._activate()
 
@@ -580,10 +580,10 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
+		self.__container = None
 
-		self._coreTemplatesOutliner = None
-		self._addonsLoaderScript = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLoaderScript = None
 
 		self._deactivate()
 
@@ -596,7 +596,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -607,7 +607,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -617,7 +617,7 @@ class LoaderScriptOptions(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -627,7 +627,7 @@ class LoaderScriptOptions(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget(self.ui)
+		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
 
 	@core.executionTrace
@@ -639,18 +639,18 @@ class LoaderScriptOptions(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self._templateCommonAttributesSection, self._templateAdditionalAttributesSection))
+			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 
 			if os.path.exists(template._datas.path):
 				templateParser = Parser(template._datas.path)
-				templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
+				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
-				self.setOptionsToolBox(templateParser.sections[self._templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
-				self.setOptionsToolBox(templateParser.sections[self._templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
+				self.setOptionsToolBox(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
+				self.setOptionsToolBox(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
 	def setOptionsToolBox(self, section, tableWidget):
@@ -667,12 +667,12 @@ class LoaderScriptOptions(UiComponent):
 
 		tableWidget.clear()
 		tableWidget.setRowCount(len(section))
-		tableWidget.setColumnCount(len(self._optionsToolboxesHeaders))
+		tableWidget.setColumnCount(len(self.__optionsToolboxesHeaders))
 		tableWidget.horizontalHeader().setStretchLastSection(True)
-		tableWidget.setHorizontalHeaderLabels(self._optionsToolboxesHeaders)
+		tableWidget.setHorizontalHeaderLabels(self.__optionsToolboxesHeaders)
 		tableWidget.horizontalHeader().hide()
 
-		tableWidget.setMinimumHeight(len(section) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight)
+		tableWidget.setMinimumHeight(len(section) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
 
 		palette = QPalette()
 		palette.setColor(QPalette.Base, Qt.transparent)
@@ -690,7 +690,7 @@ class LoaderScriptOptions(UiComponent):
 			LOGGER.debug("> Attribute Type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(attributeCompound.value) and True or False
-				item = Variable_QPushButton(state, (self._uiLightGrayColor, self._uiDarkGrayColor), ("True", "False"))
+				item = Variable_QPushButton(state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
 			elif attributeCompound.type == "Float":
 				item = QDoubleSpinBox()
@@ -699,7 +699,7 @@ class LoaderScriptOptions(UiComponent):
 				item.setValue(float(attributeCompound.value))
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
-				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self._enumSplitter)])
+				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self.__enumSplitter)])
 			elif attributeCompound.type == "String":
 				item = QLineEdit(QString(attributeCompound.value))
 
@@ -732,7 +732,7 @@ class LoaderScriptOptions(UiComponent):
 			widget._datas.value = value
 
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(widget._datas.name, widget._datas.value))
-			self._addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
+			self.__addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
 
 	@core.executionTrace
 	def getOverrideKeys(self):

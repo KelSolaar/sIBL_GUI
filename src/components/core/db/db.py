@@ -105,19 +105,19 @@ class Db(Component):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._container = None
+		self.__container = None
 
-		self._dbName = None
-		self._dbSession = None
-		self._dbEngine = None
-		self._dbCatalog = None
+		self.__dbName = None
+		self.__dbSession = None
+		self.__dbEngine = None
+		self.__dbCatalog = None
 
-		self._connectionString = None
+		self.__connectionString = None
 
-		self._dbMigrationsRepositoryDirectory = None
+		self.__dbMigrationsRepositoryDirectory = None
 
-		self._dbBackupDirectory = "backup"
-		self._dbBackupCount = 6
+		self.__dbBackupDirectory = "backup"
+		self.__dbBackupCount = 6
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -127,10 +127,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -157,10 +157,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbName Attribute.
 
-		@return: self._dbName. ( String )
+		@return: self.__dbName. ( String )
 		"""
 
-		return self._dbName
+		return self.__dbName
 
 	@dbName.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -187,10 +187,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbEngine Attribute.
 
-		@return: self._dbEngine. ( Object )
+		@return: self.__dbEngine. ( Object )
 		"""
 
-		return self._dbEngine
+		return self.__dbEngine
 
 	@dbEngine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -217,10 +217,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbCatalog Attribute.
 
-		@return: self._dbCatalog. ( Object )
+		@return: self.__dbCatalog. ( Object )
 		"""
 
-		return self._dbCatalog
+		return self.__dbCatalog
 
 	@dbCatalog.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -247,10 +247,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbSession Attribute.
 
-		@return: self._dbSession. ( Object )
+		@return: self.__dbSession. ( Object )
 		"""
 
-		return self._dbSession
+		return self.__dbSession
 
 	@dbSession.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -277,10 +277,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbSessionMaker Attribute.
 
-		@return: self._dbSessionMaker. ( Object )
+		@return: self.__dbSessionMaker. ( Object )
 		"""
 
-		return self._dbSessionMaker
+		return self.__dbSessionMaker
 
 	@dbSessionMaker.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -307,10 +307,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _connectionString Attribute.
 
-		@return: self._connectionString. ( String )
+		@return: self.__connectionString. ( String )
 		"""
 
-		return self._connectionString
+		return self.__connectionString
 
 	@connectionString.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -337,10 +337,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbMigrationsRepositoryDirectory Attribute.
 
-		@return: self._dbMigrationsRepositoryDirectory. ( String )
+		@return: self.__dbMigrationsRepositoryDirectory. ( String )
 		"""
 
-		return self._dbMigrationsRepositoryDirectory
+		return self.__dbMigrationsRepositoryDirectory
 
 	@dbMigrationsRepositoryDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -367,10 +367,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbBackupDirectory Attribute.
 
-		@return: self._dbBackupDirectory. ( String )
+		@return: self.__dbBackupDirectory. ( String )
 		"""
 
-		return self._dbBackupDirectory
+		return self.__dbBackupDirectory
 
 	@dbBackupDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -397,10 +397,10 @@ class Db(Component):
 		"""
 		This Method Is The Property For The _dbBackupCount Attribute.
 
-		@return: self._dbBackupCount. ( String )
+		@return: self.__dbBackupCount. ( String )
 		"""
 
-		return self._dbBackupCount
+		return self.__dbBackupCount
 
 	@dbBackupCount.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -435,7 +435,7 @@ class Db(Component):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self._container = container
+		self.__container = container
 
 		self._activate()
 
@@ -457,33 +457,33 @@ class Db(Component):
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		LOGGER.debug("> Initializing '{0}' SQLite Database.".format(Constants.databaseFile))
-		if self._container.parameters.databaseDirectory:
-			if os.path.exists(self._container.parameters.databaseDirectory):
-				self._dbName = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseFile)
-				self._dbMigrationsRepositoryDirectory = os.path.join(self._container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
+		if self.__container.parameters.databaseDirectory:
+			if os.path.exists(self.__container.parameters.databaseDirectory):
+				self.__dbName = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseFile)
+				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close!".format(self._container.parameters.databaseDirectory, Constants.applicationName)
+				raise OSError, "'{0}' Database Storing Directory Doesn't Exists, {1} Will Now Close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName)
 		else:
-			self._dbName = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
-			self._dbMigrationsRepositoryDirectory = os.path.join(self._container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
+			self.__dbName = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
+			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
 
-		LOGGER.info("{0} | Session Database Location: '{1}'.".format(self.__class__.__name__, self._dbName))
-		self._connectionString = "sqlite:///{0}".format(self._dbName)
+		LOGGER.info("{0} | Session Database Location: '{1}'.".format(self.__class__.__name__, self.__dbName))
+		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
 
-		if not self._container.parameters.databaseReadOnly:
-			backupDestination = os.path.join(os.path.dirname(self.dbName), self._dbBackupDirectory)
+		if not self.__container.parameters.databaseReadOnly:
+			backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
 			LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
-			rotatingBackup = RotatingBackup(self._dbName, backupDestination, self._dbBackupCount)
+			rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
 			rotatingBackup.backup()
 		else:
 				LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		if not self._container.parameters.databaseReadOnly:
-			LOGGER.info("{0} | SQLAlchemy Migrate Repository Location: '{1}'.".format(self.__class__.__name__, self._dbMigrationsRepositoryDirectory))
+		if not self.__container.parameters.databaseReadOnly:
+			LOGGER.info("{0} | SQLAlchemy Migrate Repository Location: '{1}'.".format(self.__class__.__name__, self.__dbMigrationsRepositoryDirectory))
 			LOGGER.debug("> Creating SQLAlchemy Migrate Migrations Directory And Requisites.")
 			try:
-				migrate.versioning.api.create(self._dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
+				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
 			except migrate.exceptions.KnownError:
 				LOGGER.debug("> SQLAlchemy Migrate Repository Directory Already Exists!")
 
@@ -491,31 +491,31 @@ class Db(Component):
 			walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
 			walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
 			for file in walker.files.values():
-				shutil.copy(file, os.path.join(self._dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
+				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
 
-			if os.path.exists(self._dbName):
+			if os.path.exists(self.__dbName):
 				LOGGER.debug("> Placing Database Under SQLAlchemy Migrate Version Control.")
 				try:
-					migrate.versioning.api.version_control(self._connectionString, self._dbMigrationsRepositoryDirectory)
+					migrate.versioning.api.version_control(self.__connectionString, self.__dbMigrationsRepositoryDirectory)
 				except migrate.exceptions.DatabaseAlreadyControlledError:
 					LOGGER.debug("> Database Is Already Under SQLAlchemy Migrate Version Control!")
 
 				LOGGER.debug("> Upgrading Database.")
-				migrate.versioning.api.upgrade(self._connectionString, self._dbMigrationsRepositoryDirectory)
+				migrate.versioning.api.upgrade(self.__connectionString, self.__dbMigrationsRepositoryDirectory)
 		else:
 			LOGGER.info("{0} | SQLAlchemy Migrate Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		LOGGER.debug("> Creating Database Engine.")
-		self._dbEngine = sqlalchemy.create_engine(self._connectionString)
+		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
 
 		LOGGER.debug("> Creating Database Metadatas.")
-		self._dbCatalog = dbUtilities.types.DbBase.metadata
-		self._dbCatalog.create_all(self._dbEngine)
+		self.__dbCatalog = dbUtilities.types.DbBase.metadata
+		self.__dbCatalog.create_all(self.__dbEngine)
 
 		LOGGER.debug("> Initializing Database Session.")
-		self._dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self._dbEngine)
+		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
 
-		self._dbSession = self._dbSessionMaker()
+		self.__dbSession = self.__dbSessionMaker()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

@@ -100,21 +100,21 @@ class Active_QLabel(QLabel):
 		QLabel.__init__(self, parent)
 
 		# --- Setting Class Attributes. ---
-		self._defaultPixmap = defaultPixmap
-		self._hoverPixmap = hoverPixmap
-		self._activePixmap = activePixmap
+		self.__defaultPixmap = defaultPixmap
+		self.__hoverPixmap = hoverPixmap
+		self.__activePixmap = activePixmap
 
-		self._checkable = None
+		self.__checkable = None
 		self.checkable = checkable
-		self._checked = None
+		self.__checked = None
 		self.checked = checked
 
-		self._parent = None
+		self.__parent = None
 		self.parent = parent
 
-		self._menu = None
+		self.__menu = None
 
-		self._checked and self.setPixmap(self._activePixmap) or self.setPixmap(self._defaultPixmap)
+		self.__checked and self.setPixmap(self.__activePixmap) or self.setPixmap(self.__defaultPixmap)
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -124,10 +124,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _defaultPixmap Attribute.
 
-		@return: self._defaultPixmap. ( QPixmap )
+		@return: self.__defaultPixmap. ( QPixmap )
 		"""
 
-		return self._defaultPixmap
+		return self.__defaultPixmap
 
 	@defaultPixmap.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -140,7 +140,7 @@ class Active_QLabel(QLabel):
 
 		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute: '{1}' Type Is Not 'QPixmap'!".format("checked", value)
-		self._defaultPixmap = value
+		self.__defaultPixmap = value
 
 	@defaultPixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -156,10 +156,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _hoverPixmap Attribute.
 
-		@return: self._hoverPixmap. ( QPixmap )
+		@return: self.__hoverPixmap. ( QPixmap )
 		"""
 
-		return self._hoverPixmap
+		return self.__hoverPixmap
 
 	@hoverPixmap.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -172,7 +172,7 @@ class Active_QLabel(QLabel):
 
 		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute: '{1}' Type Is Not 'QPixmap'!".format("checked", value)
-		self._hoverPixmap = value
+		self.__hoverPixmap = value
 
 	@hoverPixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -188,10 +188,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _activePixmap Attribute.
 
-		@return: self._activePixmap. ( QPixmap )
+		@return: self.__activePixmap. ( QPixmap )
 		"""
 
-		return self._activePixmap
+		return self.__activePixmap
 
 	@activePixmap.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -204,7 +204,7 @@ class Active_QLabel(QLabel):
 
 		if value:
 			assert type(value) is QPixmap, "'{0}' Attribute: '{1}' Type Is Not 'QPixmap'!".format("checked", value)
-		self._activePixmap = value
+		self.__activePixmap = value
 
 	@activePixmap.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -220,10 +220,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _checkable Attribute.
 
-		@return: self._checkable. ( Boolean )
+		@return: self.__checkable. ( Boolean )
 		"""
 
-		return self._checkable
+		return self.__checkable
 
 	@checkable.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -236,7 +236,7 @@ class Active_QLabel(QLabel):
 
 		if value:
 			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("checkable", value)
-		self._checkable = value
+		self.__checkable = value
 
 	@checkable.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -252,10 +252,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _checked Attribute.
 
-		@return: self._checked. ( Boolean )
+		@return: self.__checked. ( Boolean )
 		"""
 
-		return self._checked
+		return self.__checked
 
 	@checked.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -268,7 +268,7 @@ class Active_QLabel(QLabel):
 
 		if value:
 			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("checked", value)
-		self._checked = value
+		self.__checked = value
 
 	@checked.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -284,10 +284,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _parent Attribute.
 
-		@return: self._parent. ( QObject )
+		@return: self.__parent. ( QObject )
 		"""
 
-		return self._parent
+		return self.__parent
 
 	@parent.setter
 	def parent(self, value):
@@ -297,7 +297,7 @@ class Active_QLabel(QLabel):
 		@param value: Attribute Value. ( QObject )
 		"""
 
-		self._parent = value
+		self.__parent = value
 
 	@parent.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -313,10 +313,10 @@ class Active_QLabel(QLabel):
 		"""
 		This Method Is The Property For The _menu Attribute.
 
-		@return: self._menu. ( QMenu )
+		@return: self.__menu. ( QMenu )
 		"""
 
-		return self._menu
+		return self.__menu
 
 	@menu.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -350,11 +350,11 @@ class Active_QLabel(QLabel):
 		"""
 
 		if state:
-			self._checked = True
-			self.setPixmap(self._activePixmap)
+			self.__checked = True
+			self.setPixmap(self.__activePixmap)
 		else:
-			self._checked = False
-			self.setPixmap(self._defaultPixmap)
+			self.__checked = False
+			self.setPixmap(self.__defaultPixmap)
 
 	@core.executionTrace
 	def isChecked(self):
@@ -364,7 +364,7 @@ class Active_QLabel(QLabel):
 		@return: Checked State. ( Boolean )
 		"""
 
-		return self._checked
+		return self.__checked
 
 	@core.executionTrace
 	def setMenu(self, menu):
@@ -374,11 +374,11 @@ class Active_QLabel(QLabel):
 		@param menu: Menu. ( QMenu )
 		"""
 
-		self._menu = menu
+		self.__menu = menu
 
 		# Propagating Actions To Parent.
-		for action in self._menu.actions():
-			not action.shortcut().isEmpty() and self._parent.addAction(action)
+		for action in self.__menu.actions():
+			not action.shortcut().isEmpty() and self.__parent.addAction(action)
 
 	@core.executionTrace
 	def enterEvent(self, event):
@@ -388,10 +388,10 @@ class Active_QLabel(QLabel):
 		@param event: QEvent. ( QEvent )
 		"""
 
-		if self._checkable:
-			not self._checked and self.setPixmap(self._hoverPixmap)
+		if self.__checkable:
+			not self.__checked and self.setPixmap(self.__hoverPixmap)
 		else:
-			self.setPixmap(self._hoverPixmap)
+			self.setPixmap(self.__hoverPixmap)
 
 	@core.executionTrace
 	def leaveEvent(self, event):
@@ -401,10 +401,10 @@ class Active_QLabel(QLabel):
 		@param event: QEvent. ( QEvent )
 		"""
 
-		if self._checkable:
-			not self._checked and self.setPixmap(self._defaultPixmap)
+		if self.__checkable:
+			not self.__checked and self.setPixmap(self.__defaultPixmap)
 		else:
-			self.setPixmap(self._defaultPixmap)
+			self.setPixmap(self.__defaultPixmap)
 
 	@core.executionTrace
 	def mousePressEvent(self, event):
@@ -416,11 +416,11 @@ class Active_QLabel(QLabel):
 
 		self.emit(SIGNAL("clicked()"))
 
-		if self._checkable:
+		if self.__checkable:
 			self.setChecked(True)
 		else:
-			self.setPixmap(self._activePixmap)
-			self._menu and self._menu.exec_(QCursor.pos())
+			self.setPixmap(self.__activePixmap)
+			self.__menu and self.__menu.exec_(QCursor.pos())
 
 	@core.executionTrace
 	def mouseReleaseEvent(self, event):
@@ -430,7 +430,7 @@ class Active_QLabel(QLabel):
 		@param event: QEvent. ( QEvent )
 		"""
 
-		not self._checkable and	self.setPixmap(self._defaultPixmap)
+		not self.__checkable and	self.setPixmap(self.__defaultPixmap)
 
 #***********************************************************************************************
 #***	Python End

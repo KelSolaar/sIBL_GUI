@@ -103,13 +103,13 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		self.setAcceptDrops(True)
 
 		# --- Setting Class Attributes. ---
-		self._container = container
+		self.__container = container
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreCollectionsOutliner = self._container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		self._previousCollection = None
+		self.__previousCollection = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -119,10 +119,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -149,10 +149,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -179,10 +179,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -209,10 +209,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _coreCollectionsOutliner Attribute.
 
-		@return: self._coreCollectionsOutliner. ( Object )
+		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
-		return self._coreCollectionsOutliner
+		return self.__coreCollectionsOutliner
 
 	@coreCollectionsOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -239,10 +239,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This Method Is The Property For The _previousCollection Attribute.
 
-		@return: self._previousCollection. ( String )
+		@return: self.__previousCollection. ( String )
 		"""
 
-		return self._previousCollection
+		return self.__previousCollection
 
 	@previousCollection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -303,21 +303,21 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param event: QEvent. ( QEvent )		
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
 				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-					if re.search("\.{0}$".format(self._coreDatabaseBrowser.extension), str(url.path())):
+					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = foundations.strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self._coreDatabaseBrowser.addIblSet(name, path)
-							self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self.__coreDatabaseBrowser.addIblSet(name, path)
+							self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								self._coreDatabaseBrowser.addDirectory(path)
-								self._coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self.__coreDatabaseBrowser.addDirectory(path)
+								self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 			else:
@@ -327,20 +327,20 @@ class CollectionsOutliner_QTreeView(QTreeView):
 				if itemAt:
 					LOGGER.debug("> Item At Drop Position: '{0}'.".format(itemAt))
 					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
-					if collectionStandardItem.text() != self._coreCollectionsOutliner._overallCollection:
-						iblSets = self._coreDatabaseBrowser.getSelectedItems()
+					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
+						iblSets = self.__coreDatabaseBrowser.getSelectedItems()
 						LOGGER.debug("> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format(", ".join((iblSet._datas.name for iblSet in iblSets)), collectionStandardItem._datas.name))
 						for iblSet in iblSets:
 							iblSet._datas.collection = collectionStandardItem._datas.id
-						if dbUtilities.common.commit(self._coreDb.dbSession):
+						if dbUtilities.common.commit(self.__coreDb.dbSession):
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser.modelSelectionState = False
+							self.__coreDatabaseBrowser.modelSelectionState = False
 
-							self._coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-							self._coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+							self.__coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
+							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 							# Crash Preventing Code.
-							self._coreDatabaseBrowser.modelSelectionState = True
+							self.__coreDatabaseBrowser.modelSelectionState = True
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 
@@ -352,7 +352,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
-		self._previousCollection = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index)).text()
+		self.__previousCollection = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index)).text()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -363,14 +363,14 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			collectionStandardItem = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index))
 
-			if collectionStandardItem.text() != self._coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self._coreCollectionsOutliner.overallCollection:
-				if self.model().itemFromIndex(index).column() == self._coreCollectionsOutliner.modelHeaders.index(self._coreCollectionsOutliner.setsCountLabel):
+			if collectionStandardItem.text() != self.__coreCollectionsOutliner.defaultCollection and collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
+				if self.model().itemFromIndex(index).column() == self.__coreCollectionsOutliner.modelHeaders.index(self.__coreCollectionsOutliner.setsCountLabel):
 					messageBox.messageBox("Warning", "Warning", "{0} | 'Sets Counts' Column Is Read Only!".format(self.__class__.__name__))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only!".format(self.__class__.__name__, self._coreCollectionsOutliner.overallCollection, self._coreCollectionsOutliner.defaultCollection))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' And '{2}' Collections Attributes Are Read Only!".format(self.__class__.__name__, self.__coreCollectionsOutliner.overallCollection, self.__coreCollectionsOutliner.defaultCollection))
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 
@@ -398,28 +398,28 @@ class CollectionsOutliner(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Collections_Outliner.ui"
-		self._uiResources = "resources"
-		self._uiDefaultCollectionImage = "Default_Collection.png"
-		self._uiUserCollectionImage = "User_Collection.png"
-		self._dockArea = 1
+		self.__uiPath = "ui/Collections_Outliner.ui"
+		self.__uiResources = "resources"
+		self.__uiDefaultCollectionImage = "Default_Collection.png"
+		self.__uiUserCollectionImage = "User_Collection.png"
+		self.__dockArea = 1
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
-		self._settingsSeparator = ","
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
+		self.__settingsSeparator = ","
 
-		self._coreDb = None
-		self._coreDatabaseBrowser = None
+		self.__coreDb = None
+		self.__coreDatabaseBrowser = None
 
-		self._model = None
-		self._modelSelection = None
+		self.__model = None
+		self.__modelSelection = None
 
-		self._overallCollection = "Overall"
-		self._defaultCollection = "Default"
-		self._setsCountLabel = "Sets"
-		self._modelHeaders = [ "Collections", self._setsCountLabel, "Comment" ]
-		self._treeViewIndentation = 15
+		self.__overallCollection = "Overall"
+		self.__defaultCollection = "Default"
+		self.__setsCountLabel = "Sets"
+		self.__modelHeaders = [ "Collections", self.__setsCountLabel, "Comment" ]
+		self.__treeViewIndentation = 15
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -429,10 +429,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -459,10 +459,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -489,10 +489,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiDefaultCollectionImage Attribute.
 
-		@return: self._uiDefaultCollectionImage. ( String )
+		@return: self.__uiDefaultCollectionImage. ( String )
 		"""
 
-		return self._uiDefaultCollectionImage
+		return self.__uiDefaultCollectionImage
 
 	@uiDefaultCollectionImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -519,10 +519,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _uiUserCollectionImage Attribute.
 
-		@return: self._uiUserCollectionImage. ( String )
+		@return: self.__uiUserCollectionImage. ( String )
 		"""
 
-		return self._uiUserCollectionImage
+		return self.__uiUserCollectionImage
 
 	@uiUserCollectionImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -549,10 +549,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -579,10 +579,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -609,10 +609,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -639,10 +639,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -669,10 +669,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _settingsSeparator Attribute.
 
-		@return: self._settingsSeparator. ( String )
+		@return: self.__settingsSeparator. ( String )
 		"""
 
-		return self._settingsSeparator
+		return self.__settingsSeparator
 
 	@settingsSeparator.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -699,10 +699,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -729,10 +729,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -759,10 +759,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _model Attribute.
 
-		@return: self._model. ( QStandardItemModel )
+		@return: self.__model. ( QStandardItemModel )
 		"""
 
-		return self._model
+		return self.__model
 
 	@model.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -789,10 +789,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _modelSelection Attribute.
 
-		@return: self._modelSelection. ( Dictionary )
+		@return: self.__modelSelection. ( Dictionary )
 		"""
 
-		return self._modelSelection
+		return self.__modelSelection
 
 	@modelSelection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -819,10 +819,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _overallCollection Attribute.
 
-		@return: self._overallCollection. ( String )
+		@return: self.__overallCollection. ( String )
 		"""
 
-		return self._overallCollection
+		return self.__overallCollection
 
 	@overallCollection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -849,10 +849,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _defaultCollection Attribute.
 
-		@return: self._defaultCollection. ( String )
+		@return: self.__defaultCollection. ( String )
 		"""
 
-		return self._defaultCollection
+		return self.__defaultCollection
 
 	@defaultCollection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -879,10 +879,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _setsCountLabel Attribute.
 
-		@return: self._setsCountLabel. ( String )
+		@return: self.__setsCountLabel. ( String )
 		"""
 
-		return self._setsCountLabel
+		return self.__setsCountLabel
 
 	@setsCountLabel.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -909,10 +909,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _modelHeaders Attribute.
 
-		@return: self._modelHeaders. ( List )
+		@return: self.__modelHeaders. ( List )
 		"""
 
-		return self._modelHeaders
+		return self.__modelHeaders
 
 	@modelHeaders.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -939,10 +939,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Is The Property For The _treeViewIndentation Attribute.
 
-		@return: self._treeViewIndentation. ( Integer )
+		@return: self.__treeViewIndentation. ( Integer )
 		"""
 
-		return self._treeViewIndentation
+		return self.__treeViewIndentation
 
 	@treeViewIndentation.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -977,14 +977,14 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
 
@@ -995,7 +995,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -1005,11 +1005,11 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self._model = QStandardItemModel()
+		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__model = QStandardItemModel()
 		self.Collections_Outliner_treeView_setModel()
 
-		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self._container)
+		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__container)
 		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
 
 		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
@@ -1022,7 +1022,7 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnClicked)
 		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView.QTreeView_OnDoubleClicked)
 		self.modelChanged.connect(self.Collections_Outliner_treeView_refreshView)
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1041,7 +1041,7 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1060,24 +1060,24 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			self.addDefaultCollection()
 		else:
 			LOGGER.info("{0} | Database Default Collection Wizard Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIds = str(self._settings.getKey(self._settingsSection, "activeCollections").toString())
+		activeCollectionsIds = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
 		LOGGER.debug("> Stored '{0}' Active Collections Ids Selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
 		if activeCollectionsIds:
-			if self._settingsSeparator in activeCollectionsIds:
-				ids = activeCollectionsIds.split(self._settingsSeparator)
+			if self.__settingsSeparator in activeCollectionsIds:
+				ids = activeCollectionsIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeCollectionsIds]
-			self._modelSelection["Collections"] = [int(id) for id in ids]
+			self.__modelSelection["Collections"] = [int(id) for id in ids]
 
-		activeOverallCollection = str(self._settings.getKey(self._settingsSection, "activeOverallCollection").toString())
+		activeOverallCollection = str(self.__settings.getKey(self.__settingsSection, "activeOverallCollection").toString())
 		LOGGER.debug("> Stored '{0}' Active Overall Collection Selection: '{1}'.".format(self.__class__.__name__, activeOverallCollection))
 		if activeOverallCollection:
-			self._modelSelection[self._overallCollection] = [activeOverallCollection]
+			self.__modelSelection[self.__overallCollection] = [activeOverallCollection]
 
 		self.Collections_Outliner_treeView_restoreModelSelection()
 
@@ -1090,8 +1090,8 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
 		self.Collections_Outliner_treeView_storeModelSelection()
-		self._settings.setKey(self._settingsSection, "activeCollections", self._settingsSeparator.join((str(id) for id in self._modelSelection["Collections"])))
-		self._settings.setKey(self._settingsSection, "activeOverallCollection", self._settingsSeparator.join((str(id) for id in self._modelSelection[self._overallCollection])))
+		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(id) for id in self.__modelSelection["Collections"])))
+		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(id) for id in self.__modelSelection[self.__overallCollection])))
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setModel(self):
@@ -1110,18 +1110,18 @@ class CollectionsOutliner(UiComponent):
 
 		self.Collections_Outliner_treeView_storeModelSelection()
 
-		self._model.clear()
+		self.__model.clear()
 
-		self._model.setHorizontalHeaderLabels(self._modelHeaders)
-		self._model.setColumnCount(len(self._modelHeaders))
+		self.__model.setHorizontalHeaderLabels(self.__modelHeaders)
+		self.__model.setColumnCount(len(self.__modelHeaders))
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
 
-		LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(self._overallCollection, "Collections_Outliner_treeView"))
+		LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(self.__overallCollection, "Collections_Outliner_treeView"))
 
-		overallCollectionStandardItem = QStandardItem(QString(self._overallCollection))
+		overallCollectionStandardItem = QStandardItem(QString(self.__overallCollection))
 		overallCollectionStandardItem.setFlags(readOnlyFlags)
 
-		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count())))
+		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getIblSets(self.__coreDb.dbSession).count())))
 		overallCollectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 		overallCollectionSetsCountStandardItem.setFlags(readOnlyFlags)
 
@@ -1130,10 +1130,10 @@ class CollectionsOutliner(UiComponent):
 
 		overallCollectionStandardItem._type = "Overall"
 
-		LOGGER.debug("> Adding '{0}' Collection To '{1}'.".format(self._overallCollection, "Collections_Outliner_treeView"))
-		self._model.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
+		LOGGER.debug("> Adding '{0}' Collection To '{1}'.".format(self.__overallCollection, "Collections_Outliner_treeView"))
+		self.__model.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
 
-		collections = dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")
+		collections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")
 
 		if collections:
 			for collection in collections:
@@ -1141,16 +1141,16 @@ class CollectionsOutliner(UiComponent):
 
 				try:
 					collectionStandardItem = QStandardItem(QString(collection.name))
-					iconPath = collection.name == self.defaultCollection and os.path.join(self._uiResources, self._uiDefaultCollectionImage) or os.path.join(self._uiResources, self._uiUserCollectionImage)
+					iconPath = collection.name == self.defaultCollection and os.path.join(self.__uiResources, self.__uiDefaultCollectionImage) or os.path.join(self.__uiResources, self.__uiUserCollectionImage)
 					collectionStandardItem.setIcon(QIcon(iconPath))
-					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
+					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 
-					collectionSetsCountStandardItem = QStandardItem(QString(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collection.id).count())))
+					collectionSetsCountStandardItem = QStandardItem(QString(str(self.__coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collection.id).count())))
 					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 					collectionSetsCountStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
 					collectionCommentsStandardItem = QStandardItem(QString(collection.comment))
-					(collection.name == self._defaultCollection or self._container.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
+					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
 
 					collectionStandardItem._datas = collection
 					collectionStandardItem._type = "Collection"
@@ -1188,32 +1188,32 @@ class CollectionsOutliner(UiComponent):
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
 		"""
 
-		standardItem = self._model.itemFromIndex(startIndex)
+		standardItem = self.__model.itemFromIndex(startIndex)
 		currentText = standardItem.text()
 
 		if currentText:
-			collectionStandardItem = self._model.itemFromIndex(self._model.sibling(startIndex.row(), 0, startIndex))
+			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
 
 			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
-			collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
+			collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
 			if identity and collections:
 				if startIndex.column() == 0:
 					if currentText not in (collection.name for collection in collections):
 						LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
-						collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+						collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
 						collection.name = str(currentText)
-						dbUtilities.common.commit(self._coreDb.dbSession)
+						dbUtilities.common.commit(self.__coreDb.dbSession)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
 				elif startIndex.column() == 2:
 					LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
-					collection = dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(identity), "id")[0]
+					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
 					collection.comment = str(currentText)
-					dbUtilities.common.commit(self._coreDb.dbSession)
+					dbUtilities.common.commit(self.__coreDb.dbSession)
 					self.Collections_Outliner_treeView_refreshModel()
 		else:
 			self.Collections_Outliner_treeView_refreshModel()
-			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Name!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Value!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_setView(self):
@@ -1224,11 +1224,11 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
-		self.ui.Collections_Outliner_treeView.setIndentation(self._treeViewIndentation)
+		self.ui.Collections_Outliner_treeView.setIndentation(self.__treeViewIndentation)
 		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Collections_Outliner_treeView.setSortingEnabled(True)
 
-		self.ui.Collections_Outliner_treeView.setModel(self._model)
+		self.ui.Collections_Outliner_treeView.setModel(self.__model)
 
 		self.Collections_Outliner_treeView_setDefaultViewState()
 
@@ -1249,7 +1249,7 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Setting '{0}' Default View State!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.expandAll()
-		for column in range(len(self._modelHeaders)):
+		for column in range(len(self.__modelHeaders)):
 			self.ui.Collections_Outliner_treeView.resizeColumnToContents(column)
 
 		self.ui.Collections_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
@@ -1261,19 +1261,19 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		# Disconnecting Model "dataChanged()" Signal.
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.disconnect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
-		for i in range(self._model.rowCount()):
-			currentStandardItem = self._model.item(i)
-			if currentStandardItem.text() == self._overallCollection:
-				self._model.itemFromIndex(self._model.sibling(i, 1, self._model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getIblSets(self._coreDb.dbSession).count()))
+		for i in range(self.__model.rowCount()):
+			currentStandardItem = self.__model.item(i)
+			if currentStandardItem.text() == self.__overallCollection:
+				self.__model.itemFromIndex(self.__model.sibling(i, 1, self.__model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getIblSets(self.__coreDb.dbSession).count()))
 			for j in range(currentStandardItem.rowCount()):
 				collectionStandardItem = currentStandardItem.child(j, 0)
 				collectionSetsCountStandardItem = currentStandardItem.child(j, 1)
-				collectionSetsCountStandardItem.setText(str(self._coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
+				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting Model "dataChanged()" Signal.
-		not self._container.parameters.databaseReadOnly and self._model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
+		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.Collections_Outliner_treeView_OnModelDataChanged)
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_storeModelSelection(self):
@@ -1283,12 +1283,12 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Storing '{0}' Model Selection!".format("Collections_Outliner_treeView"))
 
-		self._modelSelection = { self._overallCollection:[], "Collections":[] }
+		self.__modelSelection = { self.__overallCollection:[], "Collections":[] }
 		for item in self.getSelectedItems():
-			if item._type == self._overallCollection:
-				self._modelSelection[self._overallCollection].append(item.text())
+			if item._type == self.__overallCollection:
+				self.__modelSelection[self.__overallCollection].append(item.text())
 			elif item._type == "Collection":
-				self._modelSelection["Collections"].append(item._datas.id)
+				self.__modelSelection["Collections"].append(item._datas.id)
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_restoreModelSelection(self):
@@ -1299,12 +1299,12 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Restoring '{0}' Model Selection!".format("Collections_Outliner_treeView"))
 
 		indexes = []
-		for i in range(self._model.rowCount()):
-			overallCollectionStandardItem = self._model.item(i)
-			overallCollectionStandardItem.text() in self._modelSelection["Overall"] and indexes.append(self._model.indexFromItem(overallCollectionStandardItem))
+		for i in range(self.__model.rowCount()):
+			overallCollectionStandardItem = self.__model.item(i)
+			overallCollectionStandardItem.text() in self.__modelSelection["Overall"] and indexes.append(self.__model.indexFromItem(overallCollectionStandardItem))
 			for j in range(overallCollectionStandardItem.rowCount()):
 				collectionStandardItem = overallCollectionStandardItem.child(j, 0)
-				collectionStandardItem._datas.id in self._modelSelection["Collections"] and indexes.append(self._model.indexFromItem(collectionStandardItem))
+				collectionStandardItem._datas.id in self.__modelSelection["Collections"] and indexes.append(self.__model.indexFromItem(collectionStandardItem))
 
 		selectionModel = self.ui.Collections_Outliner_treeView.selectionModel()
 		if selectionModel:
@@ -1318,7 +1318,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Sets The Collections Outliner Actions.
 		"""
 
-		if not self._container.parameters.databaseReadOnly:
+		if not self.__container.parameters.databaseReadOnly:
 			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
 			addContentAction.triggered.connect(self.Collections_Outliner_treeView_addContentAction_OnTriggered)
 			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
@@ -1346,11 +1346,11 @@ class CollectionsOutliner(UiComponent):
 			collection = self.addCollection(name)
 			if collection:
 				self.Collections_Outliner_treeView_refreshModel()
-				directory = self._container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self._container.lastBrowsedPath)))
+				directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
 				if directory:
 					LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 					self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
-					self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self._model.indexFromItem(self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+					self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 					self.Collections_Outliner_treeView_refreshSetsCounts()
 
 	@core.executionTrace
@@ -1377,7 +1377,7 @@ class CollectionsOutliner(UiComponent):
 
 		self.removeCollections()
 		self.Collections_Outliner_treeView_refreshModel()
-		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
+		self.__coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
@@ -1388,7 +1388,7 @@ class CollectionsOutliner(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		self._coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
+		self.__coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1405,9 +1405,9 @@ class CollectionsOutliner(UiComponent):
 			collectionInformations = str(collection).split(",")
 			collection = collectionInformations[0].strip()
 			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
-			if not set(dbUtilities.common.filterCollections(self._coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")):
+			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
-				return dbUtilities.common.addCollection(self._coreDb.dbSession, collection, "Sets", comment) and collection
+				return dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Sets", comment) and collection
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 		else:
@@ -1421,11 +1421,11 @@ class CollectionsOutliner(UiComponent):
 		@return: Addition Success. ( Boolean )
 		"""
 
-		collections = [collection for collection in dbUtilities.common.filterCollections(self._coreDb.dbSession, "Sets", "type")]
+		collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
 
 		if not collections:
-			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self._defaultCollection))
-			dbUtilities.common.addCollection(self._coreDb.dbSession, self._defaultCollection, "Sets", "Default Collection")
+			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self.__defaultCollection))
+			dbUtilities.common.addCollection(self.__coreDb.dbSession, self.__defaultCollection, "Sets", "Default Collection")
 			self.Collections_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
@@ -1436,19 +1436,19 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollections = self.getSelectedItems()
 
-		if self._overallCollection in (str(collection.text()) for collection in selectedCollections) or self._defaultCollection in (str(collection.text()) for collection in selectedCollections):
-			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self._overallCollection, self._defaultCollection))
+		if self.__overallCollection in (str(collection.text()) for collection in selectedCollections) or self.__defaultCollection in (str(collection.text()) for collection in selectedCollections):
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
-		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self._defaultCollection]
+		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection]
 		if selectedCollections:
 			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				iblSets = dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, self.getSelectedCollectionsIds())
+				iblSets = dbUtilities.common.getCollectionsSets(self.__coreDb.dbSession, self.getSelectedCollectionsIds())
 				for iblSet in iblSets:
 					LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
-					iblSet.collection = self.getCollectionId(self._defaultCollection)
+					iblSet.collection = self.getCollectionId(self.__defaultCollection)
 				for collection in selectedCollections:
 					LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
-					dbUtilities.common.removeCollection(self._coreDb.dbSession, str(collection._datas.id))
+					dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection._datas.id))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1461,7 +1461,7 @@ class CollectionsOutliner(UiComponent):
 
 		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set([self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self._model.itemFromIndex(index) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace
 	def getSelectedCollections(self):
@@ -1487,7 +1487,7 @@ class CollectionsOutliner(UiComponent):
 		ids = []
 		if selectedCollections:
 			ids = [collection._datas.id for collection in selectedCollections]
-			return ids == [] and ids.append(self.getCollectionId(self._defaultCollection)) or ids
+			return ids == [] and ids.append(self.getCollectionId(self.__defaultCollection)) or ids
 		else:
 			return ids
 
@@ -1500,7 +1500,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Provided Collection Id. ( Integer )
 		"""
 
-		return self._model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
+		return self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
 
 	@core.executionTrace
 	def getCollectionsSets(self):
@@ -1511,10 +1511,10 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		selectedCollections = self.getSelectedCollections()
-		allIds = [collection._datas.id for collection in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
-		ids = selectedCollections and (self._overallCollection in (collection.text() for collection in selectedCollections) and allIds or self.getSelectedCollectionsIds()) or allIds
+		allIds = [collection._datas.id for collection in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
+		ids = selectedCollections and (self.__overallCollection in (collection.text() for collection in selectedCollections) and allIds or self.getSelectedCollectionsIds()) or allIds
 
-		return dbUtilities.common.getCollectionsSets(self._coreDb.dbSession, ids)
+		return dbUtilities.common.getCollectionsSets(self.__coreDb.dbSession, ids)
 
 	@core.executionTrace
 	def getUniqueCollectionId(self):
@@ -1526,7 +1526,7 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollectionsIds = self.getSelectedCollectionsIds()
 		if not len(selectedCollectionsIds):
-			return self.getCollectionId(self._defaultCollection)
+			return self.getCollectionId(self.__defaultCollection)
 		else:
 			len(selectedCollectionsIds) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id!".format(self.__class__.__name__, selectedCollectionsIds[0]))
 			return selectedCollectionsIds[0]

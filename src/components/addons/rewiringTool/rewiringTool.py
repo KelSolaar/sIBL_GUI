@@ -99,20 +99,20 @@ class RewiringTool(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Rewiring_Tool.ui"
-		self._dockArea = 2
+		self.__uiPath = "ui/Rewiring_Tool.ui"
+		self.__dockArea = 2
 
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
+		self.__coreDatabaseBrowser = None
 
-		self._reWireFramesWidgets = None
-		self._reWireComboBoxesWidgets = None
-		self._reWireLineEditWidgets = None
+		self.__reWireFramesWidgets = None
+		self.__reWireComboBoxesWidgets = None
+		self.__reWireLineEditWidgets = None
 
-		self._addonsLoaderScript = None
+		self.__addonsLoaderScript = None
 
-		self._rewiringParameters = (("Background", "Background|BGfile", "backgroundImage"),
+		self.__rewiringParameters = (("Background", "Background|BGfile", "backgroundImage"),
 									("Lighting", "Enviroment|EVfile", "lightingImage"),
 									("Reflection", "Reflection|REFfile", "reflectionImage"),
 									("Custom Image", None, None))
@@ -125,10 +125,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -155,10 +155,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -185,10 +185,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -215,10 +215,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -245,10 +245,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _reWireFramesWidgets Attribute.
 
-		@return: self._reWireFramesWidgets. ( Tuple )
+		@return: self.__reWireFramesWidgets. ( Tuple )
 		"""
 
-		return self._reWireFramesWidgets
+		return self.__reWireFramesWidgets
 
 	@reWireFramesWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -275,10 +275,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _reWireComboBoxesWidgets Attribute.
 
-		@return: self._reWireComboBoxesWidgets. ( Tuple )
+		@return: self.__reWireComboBoxesWidgets. ( Tuple )
 		"""
 
-		return self._reWireComboBoxesWidgets
+		return self.__reWireComboBoxesWidgets
 
 	@reWireComboBoxesWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -305,10 +305,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _reWireLineEditWidgets Attribute.
 
-		@return: self._reWireLineEditWidgets. ( Tuple )
+		@return: self.__reWireLineEditWidgets. ( Tuple )
 		"""
 
-		return self._reWireLineEditWidgets
+		return self.__reWireLineEditWidgets
 
 	@reWireLineEditWidgets.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -335,10 +335,10 @@ class RewiringTool(UiComponent):
 		"""
 		This Method Is The Property For The _rewiringParameters Attribute.
 
-		@return: self._rewiringParameters. ( Tuple )
+		@return: self.__rewiringParameters. ( Tuple )
 		"""
 
-		return self._rewiringParameters
+		return self.__rewiringParameters
 
 	@rewiringParameters.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -373,11 +373,11 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
 
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._addonsLoaderScript = self._container.componentsManager.components["addons.loaderScript"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
 		self._activate()
 
@@ -390,10 +390,10 @@ class RewiringTool(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
-		self._addonsLoaderScript = None
+		self.__coreDatabaseBrowser = None
+		self.__addonsLoaderScript = None
 
 		self._deactivate()
 
@@ -405,18 +405,18 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._reWireFramesWidgets = (self.ui.Background_frame, self.ui.Lighting_frame, self.ui.Reflection_frame)
-		self._reWireComboBoxesWidgets = (self.ui.Background_comboBox, self.ui.Lighting_comboBox, self.ui.Reflection_comboBox)
-		self._reWireLineEditWidgets = (self.ui.Background_Path_lineEdit, self.ui.Lighting_Path_lineEdit, self.ui.Reflection_Path_lineEdit)
+		self.__reWireFramesWidgets = (self.ui.Background_frame, self.ui.Lighting_frame, self.ui.Reflection_frame)
+		self.__reWireComboBoxesWidgets = (self.ui.Background_comboBox, self.ui.Lighting_comboBox, self.ui.Reflection_comboBox)
+		self.__reWireLineEditWidgets = (self.ui.Background_Path_lineEdit, self.ui.Lighting_Path_lineEdit, self.ui.Reflection_Path_lineEdit)
 
-		for frame in self._reWireFramesWidgets:
+		for frame in self.__reWireFramesWidgets:
 			LOGGER.debug("> Hiding '%s'.", frame)
 			frame.hide()
 
-		for index in range(len(self._reWireComboBoxesWidgets)):
-			self._reWireComboBoxesWidgets[index]._datas = self._rewiringParameters[index][1]
-			self._reWireComboBoxesWidgets[index].addItems([parameter[0] for parameter in self._rewiringParameters])
-			self._reWireComboBoxesWidgets[index].setCurrentIndex(index)
+		for index in range(len(self.__reWireComboBoxesWidgets)):
+			self.__reWireComboBoxesWidgets[index]._datas = self.__rewiringParameters[index][1]
+			self.__reWireComboBoxesWidgets[index].addItems([parameter[0] for parameter in self.__rewiringParameters])
+			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
 		# Signals / Slots.
 		self.ui.Background_comboBox.activated.connect(self.setReWireWidgetFramesVisibility)
@@ -434,9 +434,9 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._reWireFramesWidgets = None
-		self._reWireComboBoxesWidgets = None
-		self._reWireLineEditWidgets = None
+		self.__reWireFramesWidgets = None
+		self.__reWireComboBoxesWidgets = None
+		self.__reWireLineEditWidgets = None
 
 		# Signals / Slots.
 		self.ui.Background_comboBox.activated.disconnect(self.setReWireWidgetFramesVisibility)
@@ -454,7 +454,7 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -464,7 +464,7 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget(self.ui)
+		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
 
 	@core.executionTrace
@@ -475,13 +475,13 @@ class RewiringTool(UiComponent):
 		@param index: ComboBox Index. ( Tuple )
 		"""
 
-		for index in range(len(self._reWireComboBoxesWidgets)):
-			if self._reWireComboBoxesWidgets[index].currentText() == "Custom Image":
-				LOGGER.debug("> Showing ReWire Frame '{0}'.".format(self._reWireFramesWidgets[index]))
-				self._reWireFramesWidgets[index].show()
+		for index in range(len(self.__reWireComboBoxesWidgets)):
+			if self.__reWireComboBoxesWidgets[index].currentText() == "Custom Image":
+				LOGGER.debug("> Showing ReWire Frame '{0}'.".format(self.__reWireFramesWidgets[index]))
+				self.__reWireFramesWidgets[index].show()
 			else:
-				LOGGER.debug("> Hiding ReWire Frame '{0}'.".format(self._reWireFramesWidgets[index]))
-				self._reWireFramesWidgets[index].hide()
+				LOGGER.debug("> Hiding ReWire Frame '{0}'.".format(self.__reWireFramesWidgets[index]))
+				self.__reWireFramesWidgets[index].hide()
 
 	@core.executionTrace
 	def setReWireCustomPath(self, component):
@@ -491,7 +491,7 @@ class RewiringTool(UiComponent):
 		@param component: Target Component. ( String )
 		"""
 
-		customFile = self._container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self._container.lastBrowsedPath))
+		customFile = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self.__container.lastBrowsedPath))
 		LOGGER.debug("> Chosen Custom '{0}': '{1}'.".format(component, customFile))
 		if customFile != "":
 			if component == "Background":
@@ -539,19 +539,19 @@ class RewiringTool(UiComponent):
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
-		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
 		if iblSet:
 			if os.path.exists(iblSet._datas.path):
-				for index, comboBox in enumerate(self._reWireComboBoxesWidgets):
-					parameter = self._rewiringParameters[comboBox.currentIndex()]
+				for index, comboBox in enumerate(self.__reWireComboBoxesWidgets):
+					parameter = self.__rewiringParameters[comboBox.currentIndex()]
 					if comboBox.currentText() == "Custom Image":
-						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, str(self._reWireLineEditWidgets[index].text())))
-						self._addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self._reWireLineEditWidgets[index].text())))
+						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, str(self.__reWireLineEditWidgets[index].text())))
+						self.__addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self.__reWireLineEditWidgets[index].text())))
 					else:
 						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, getattr(iblSet._datas, parameter[2])))
-						self._addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet._datas, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet._datas, parameter[2])))
+						self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet._datas, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet._datas, parameter[2])))
 
 #***********************************************************************************************
 #***	Python End

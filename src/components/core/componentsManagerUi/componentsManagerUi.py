@@ -126,23 +126,23 @@ class ComponentsManagerUi(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = False
 
-		self._uiPath = "ui/Components_Manager_Ui.ui"
-		self._uiResources = "resources"
-		self._uiActivatedImage = "Activated.png"
-		self._uiDeactivatedImage = "Deactivated.png"
-		self._uiCategorieAffixe = "_Categorie.png"
-		self._dockArea = 1
+		self.__uiPath = "ui/Components_Manager_Ui.ui"
+		self.__uiResources = "resources"
+		self.__uiActivatedImage = "Activated.png"
+		self.__uiDeactivatedImage = "Deactivated.png"
+		self.__uiCategorieAffixe = "_Categorie.png"
+		self.__dockArea = 1
 
-		self._container = None
-		self._settings = None
+		self.__container = None
+		self.__settings = None
 
-		self._model = None
+		self.__model = None
 
-		self._modelHeaders = [ "Components", "Activated", "Categorie", "Rank", "Version" ]
-		self._treeWidgetIndentation = 15
-		self._treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self._componentsInformationsDefaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations!<h4>* * *</h4></center>"
-		self._componentsInformationsText = """
+		self.__modelHeaders = [ "Components", "Activated", "Categorie", "Rank", "Version" ]
+		self.__treeWidgetIndentation = 15
+		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
+		self.__componentsInformationsDefaultText = "<center><h4>* * *</h4>Select Some Components To Display Related Informations!<h4>* * *</h4></center>"
+		self.__componentsInformationsText = """
 											<h4><center>{0}</center></h4>
 											<p>
 											<b>Categorie:</b> {1}
@@ -165,10 +165,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -195,10 +195,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -225,10 +225,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _uiActivatedImage Attribute.
 
-		@return: self._uiActivatedImage. ( String )
+		@return: self.__uiActivatedImage. ( String )
 		"""
 
-		return self._uiActivatedImage
+		return self.__uiActivatedImage
 
 	@uiActivatedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -255,10 +255,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _uiDeactivatedImage Attribute.
 
-		@return: self._uiDeactivatedImage. ( String )
+		@return: self.__uiDeactivatedImage. ( String )
 		"""
 
-		return self._uiDeactivatedImage
+		return self.__uiDeactivatedImage
 
 	@uiDeactivatedImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -285,10 +285,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _uiCategorieAffixe Attribute.
 
-		@return: self._uiCategorieAffixe. ( String )
+		@return: self.__uiCategorieAffixe. ( String )
 		"""
 
-		return self._uiCategorieAffixe
+		return self.__uiCategorieAffixe
 
 	@uiCategorieAffixe.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -315,10 +315,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -345,10 +345,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -375,10 +375,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -405,10 +405,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _model Attribute.
 
-		@return: self._model. ( QStandardItemModel )
+		@return: self.__model. ( QStandardItemModel )
 		"""
 
-		return self._model
+		return self.__model
 
 	@model.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -435,10 +435,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _modelHeaders Attribute.
 
-		@return: self._modelHeaders. ( List )
+		@return: self.__modelHeaders. ( List )
 		"""
 
-		return self._modelHeaders
+		return self.__modelHeaders
 
 	@modelHeaders.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -465,10 +465,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _treeWidgetIndentation Attribute.
 
-		@return: self._treeWidgetIndentation. ( Integer )
+		@return: self.__treeWidgetIndentation. ( Integer )
 		"""
 
-		return self._treeWidgetIndentation
+		return self.__treeWidgetIndentation
 
 	@treeWidgetIndentation.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -495,10 +495,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _treeViewInnerMargins Attribute.
 
-		@return: self._treeViewInnerMargins. ( Integer )
+		@return: self.__treeViewInnerMargins. ( Integer )
 		"""
 
-		return self._treeViewInnerMargins
+		return self.__treeViewInnerMargins
 
 	@treeViewInnerMargins.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -525,10 +525,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _componentsInformationsDefaultText Attribute.
 
-		@return: self._componentsInformationsDefaultText. ( String )
+		@return: self.__componentsInformationsDefaultText. ( String )
 		"""
 
-		return self._componentsInformationsDefaultText
+		return self.__componentsInformationsDefaultText
 
 	@componentsInformationsDefaultText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -555,10 +555,10 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Is The Property For The _componentsInformationsText Attribute.
 
-		@return: self._componentsInformationsText. ( String )
+		@return: self.__componentsInformationsText. ( String )
 		"""
 
-		return self._componentsInformationsText
+		return self.__componentsInformationsText
 
 	@componentsInformationsText.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -593,11 +593,11 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._container = container
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__container = container
 
-		self._settings = self._container.settings
+		self.__settings = self.__container.settings
 
 		self._activate()
 
@@ -608,7 +608,7 @@ class ComponentsManagerUi(UiComponent):
 		This Method Deactivates The Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self._name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -618,17 +618,17 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._model = QStandardItemModel()
+		self.__model = QStandardItemModel()
 		self.Components_Manager_Ui_treeView_setModel()
 
-		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self._treeViewInnerMargins)
+		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Components_Manager_Ui_treeView_setActions()
 
 		self.Components_Manager_Ui_treeView_setView()
 
-		self.ui.Components_Informations_textBrowser.setText(self._componentsInformationsDefaultText)
+		self.ui.Components_Informations_textBrowser.setText(self.__componentsInformationsDefaultText)
 
 		self.ui.Components_Manager_Ui_splitter.setSizes([ 16777215, 1 ])
 
@@ -653,7 +653,7 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -689,40 +689,40 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Components_Manager_Ui_treeView"))
 
-		self._model.clear()
+		self.__model.clear()
 
-		self._model.setHorizontalHeaderLabels(self._modelHeaders)
-		self._model.setColumnCount(len(self._modelHeaders))
+		self.__model.setHorizontalHeaderLabels(self.__modelHeaders)
+		self.__model.setColumnCount(len(self.__modelHeaders))
 
-		for path in self._container.componentsManager.paths:
-			components = [component for component in self._container.componentsManager.components if os.path.normpath(self._container.componentsManager.paths[path]) in os.path.normpath(self._container.componentsManager.components[component].path)]
+		for path in self.__container.componentsManager.paths:
+			components = [component for component in self.__container.componentsManager.components if os.path.normpath(self.__container.componentsManager.paths[path]) in os.path.normpath(self.__container.componentsManager.components[component].path)]
 
 			if components:
 				pathStandardItem = QStandardItem(QString(path))
 				pathStandardItem._type = "Path"
 
 				LOGGER.debug("> Adding '{0}' Path To '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
-				self._model.appendRow(pathStandardItem)
+				self.__model.appendRow(pathStandardItem)
 
 				for component in components:
-					componentStandardItem = QStandardItem(QString(strings.getNiceName(self._container.componentsManager.components[component].module)))
-					iconPath = os.path.join(self._uiResources, "{0}{1}".format(strings.getNiceName(self._container.componentsManager.components[component].categorie), self._uiCategorieAffixe))
+					componentStandardItem = QStandardItem(QString(strings.getNiceName(self.__container.componentsManager.components[component].module)))
+					iconPath = os.path.join(self.__uiResources, "{0}{1}".format(strings.getNiceName(self.__container.componentsManager.components[component].categorie), self.__uiCategorieAffixe))
 					componentStandardItem.setIcon(QIcon(iconPath))
 
-					componentActivationStandardItem = QStandardItem(QString(str(self._container.componentsManager.components[component].interface.activated)))
-					iconPath = self._container.componentsManager.components[component].interface.activated and os.path.join(self._uiResources, self._uiActivatedImage) or os.path.join(self._uiResources, self._uiDeactivatedImage)
+					componentActivationStandardItem = QStandardItem(QString(str(self.__container.componentsManager.components[component].interface.activated)))
+					iconPath = self.__container.componentsManager.components[component].interface.activated and os.path.join(self.__uiResources, self.__uiActivatedImage) or os.path.join(self.__uiResources, self.__uiDeactivatedImage)
 					componentActivationStandardItem.setIcon(QIcon(iconPath))
 
-					componentCategorieStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].categorie and strings.getNiceName(self._container.componentsManager.components[component].categorie) or ""))
+					componentCategorieStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].categorie and strings.getNiceName(self.__container.componentsManager.components[component].categorie) or ""))
 					componentCategorieStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentRankStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].rank or ""))
+					componentRankStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].rank or ""))
 					componentRankStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentVersionStandardItem = QStandardItem(QString(self._container.componentsManager.components[component].version or ""))
+					componentVersionStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].version or ""))
 					componentVersionStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentStandardItem._datas = self._container.componentsManager.components[component]
+					componentStandardItem._datas = self.__container.componentsManager.components[component]
 					componentStandardItem._type = "Component"
 
 					LOGGER.debug("> Adding '{0}' Component To '{1}'.".format(component, "Components_Manager_Ui_treeView"))
@@ -751,11 +751,11 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_treeView.setAutoScroll(False)
 		self.ui.Components_Manager_Ui_treeView.setDragDropMode(QAbstractItemView.NoDragDrop)
 		self.ui.Components_Manager_Ui_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-		self.ui.Components_Manager_Ui_treeView.setIndentation(self._treeWidgetIndentation)
+		self.ui.Components_Manager_Ui_treeView.setIndentation(self.__treeWidgetIndentation)
 		self.ui.Components_Manager_Ui_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Components_Manager_Ui_treeView.setSortingEnabled(True)
 
-		self.ui.Components_Manager_Ui_treeView.setModel(self._model)
+		self.ui.Components_Manager_Ui_treeView.setModel(self.__model)
 
 		self.Components_Manager_Ui_treeView_setDefaultViewState()
 
@@ -776,7 +776,7 @@ class ComponentsManagerUi(UiComponent):
 		LOGGER.debug("> Setting '{0}' Default View State!".format("Components_Manager_Ui_treeView"))
 
 		self.ui.Components_Manager_Ui_treeView.expandAll()
-		for column in range(len(self._modelHeaders)):
+		for column in range(len(self.__modelHeaders)):
 			self.ui.Components_Manager_Ui_treeView.resizeColumnToContents(column)
 
 		self.ui.Components_Manager_Ui_treeView.sortByColumn(0, Qt.AscendingOrder)
@@ -787,12 +787,12 @@ class ComponentsManagerUi(UiComponent):
 		This Method Refreshes The Components_Manager_Ui_treeView Activations Status.
 		"""
 
-		for i in range(self._model.rowCount()):
-			for j in range(self._model.item(i).rowCount()):
-				componentStandardItem = self._model.item(i).child(j, 0)
-				componentActivationStandardItem = self._model.item(i).child(j, 1)
+		for i in range(self.__model.rowCount()):
+			for j in range(self.__model.item(i).rowCount()):
+				componentStandardItem = self.__model.item(i).child(j, 0)
+				componentActivationStandardItem = self.__model.item(i).child(j, 1)
 				componentActivationStandardItem.setText(str(componentStandardItem._datas.interface.activated))
-				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self._uiResources, self._uiActivatedImage) or os.path.join(self._uiResources, self._uiDeactivatedImage)
+				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self.__uiResources, self.__uiActivatedImage) or os.path.join(self.__uiResources, self.__uiDeactivatedImage)
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace
@@ -881,7 +881,7 @@ class ComponentsManagerUi(UiComponent):
 					if component._datas.interface.deactivatable:
 						if component._datas.interface.activated:
 							self.deactivateComponent(component._datas)
-						self._container.componentsManager.reloadComponent(component._datas.name)
+						self.__container.componentsManager.reloadComponent(component._datas.name)
 						if not component._datas.interface.activated:
 							self.activateComponent(component._datas)
 					else:
@@ -903,14 +903,14 @@ class ComponentsManagerUi(UiComponent):
 		selectedItems = self.getSelectedItems()
 		for item in selectedItems:
 			if item._type == "Component":
-				content.append(self._componentsInformationsText.format(item._datas.name,
+				content.append(self.__componentsInformationsText.format(item._datas.name,
 																		strings.getNiceName(item._datas.categorie),
 																		item._datas.author,
 																		item._datas.email,
 																		item._datas.url,
 																		item._datas.description))
 			else:
-				len(selectedItems) == 1 and content.append(self._componentsInformationsDefaultText)
+				len(selectedItems) == 1 and content.append(self.__componentsInformationsDefaultText)
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 		self.ui.Components_Informations_textBrowser.setText(separator.join(content))
@@ -926,7 +926,7 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Attempting '{0}' Component Activation.".format(component.name))
 
-		component.interface.activate(self._container)
+		component.interface.activate(self.__container)
 		if component.categorie == "default":
 			component.interface.initialize()
 		elif component.categorie == "ui":
@@ -958,12 +958,12 @@ class ComponentsManagerUi(UiComponent):
 		"""
 
 		deactivatedComponents = []
-		for component in self._model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0):
+		for component in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0):
 			if component._type == "Component":
 				component._datas.interface.activated or deactivatedComponents.append(component._datas.name)
 
 		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))
-		self._settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
+		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -976,7 +976,7 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
 
-		return rowsRootOnly and [item for item in set((self._model.itemFromIndex(self._model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self._model.itemFromIndex(index) for index in selectedIndexes]
+		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End

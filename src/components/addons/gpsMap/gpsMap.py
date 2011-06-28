@@ -173,20 +173,20 @@ class GpsMap(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Gps_Map.ui"
-		self._uiResources = "resources"
-		self._uiZoomInImage = "Zoom_In.png"
-		self._uiZoomOutImage = "Zoom_Out.png"
-		self._gpsMapHtmlFile = "Bing_Maps.html"
-		self._gpsMapBaseSize = QSize(160, 100)
-		self._dockArea = 2
+		self.__uiPath = "ui/Gps_Map.ui"
+		self.__uiResources = "resources"
+		self.__uiZoomInImage = "Zoom_In.png"
+		self.__uiZoomOutImage = "Zoom_Out.png"
+		self.__gpsMapHtmlFile = "Bing_Maps.html"
+		self.__gpsMapBaseSize = QSize(160, 100)
+		self.__dockArea = 2
 
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
+		self.__coreDatabaseBrowser = None
 
-		self._map = None
-		self._mapTypeIds = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
+		self.__map = None
+		self.__mapTypeIds = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -196,10 +196,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -226,10 +226,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -256,10 +256,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _uiZoomInImage Attribute.
 
-		@return: self._uiZoomInImage. ( String )
+		@return: self.__uiZoomInImage. ( String )
 		"""
 
-		return self._uiZoomInImage
+		return self.__uiZoomInImage
 
 	@uiZoomInImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -286,10 +286,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _uiZoomOutImage Attribute.
 
-		@return: self._uiZoomOutImage. ( String )
+		@return: self.__uiZoomOutImage. ( String )
 		"""
 
-		return self._uiZoomOutImage
+		return self.__uiZoomOutImage
 
 	@uiZoomOutImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -316,10 +316,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _gpsMapHtmlFile Attribute.
 
-		@return: self._gpsMapHtmlFile. ( String )
+		@return: self.__gpsMapHtmlFile. ( String )
 		"""
 
-		return self._gpsMapHtmlFile
+		return self.__gpsMapHtmlFile
 
 	@gpsMapHtmlFile.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -346,10 +346,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _gpsMapBaseSize Attribute.
 
-		@return: self._gpsMapBaseSize. ( QSize() )
+		@return: self.__gpsMapBaseSize. ( QSize() )
 		"""
 
-		return self._gpsMapBaseSize
+		return self.__gpsMapBaseSize
 
 	@gpsMapBaseSize.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -376,10 +376,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -406,10 +406,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -436,10 +436,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -466,10 +466,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _map Attribute.
 
-		@return: self._map. ( QObject )
+		@return: self.__map. ( QObject )
 		"""
 
-		return self._map
+		return self.__map
 
 	@map.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -496,10 +496,10 @@ class GpsMap(UiComponent):
 		"""
 		This Method Is The Property For The _mapTypeIds Attribute.
 
-		@return: self._mapTypeIds. ( Tuple )
+		@return: self.__mapTypeIds. ( Tuple )
 		"""
 
-		return self._mapTypeIds
+		return self.__mapTypeIds
 
 	@mapTypeIds.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -534,12 +534,12 @@ class GpsMap(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 
-		self._container = container
+		self.__container = container
 
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		self._activate()
 
@@ -552,11 +552,11 @@ class GpsMap(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._uiResources = os.path.basename(self._uiResources)
+		self.__uiResources = os.path.basename(self.__uiResources)
 
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
+		self.__coreDatabaseBrowser = None
 
 		self._deactivate()
 
@@ -568,21 +568,21 @@ class GpsMap(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomInImage)))
-		self.ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self._uiResources, self._uiZoomOutImage)))
+		self.ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomInImage)))
+		self.ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomOutImage)))
 
-		self.ui.Map_Type_comboBox.addItems([mapType[0] for mapType in self._mapTypeIds])
+		self.ui.Map_Type_comboBox.addItems([mapType[0] for mapType in self.__mapTypeIds])
 
-		self._map = Map()
-		self._map.setMinimumSize(self._gpsMapBaseSize)
-		self._map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self._uiResources, self._gpsMapHtmlFile))))
-		self._map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
-		self._map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
-		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self._map)
+		self.__map = Map()
+		self.__map.setMinimumSize(self.__gpsMapBaseSize)
+		self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__uiResources, self.__gpsMapHtmlFile))))
+		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
+		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
+		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self._map.loadFinished.connect(self.map_OnLoadFinished)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
+		self.__map.loadFinished.connect(self.map_OnLoadFinished)
 		self.ui.Map_Type_comboBox.activated.connect(self.Map_Type_comboBox_OnActivated)
 		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.Zoom_Out_pushButton_OnClicked)
@@ -594,13 +594,13 @@ class GpsMap(UiComponent):
 		"""
 
 		# Signals / Slots.
-		self._coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self._map.loadFinished.disconnect(self.map_OnLoadFinished)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
+		self.__map.loadFinished.disconnect(self.map_OnLoadFinished)
 		self.ui.Map_Type_comboBox.activated.disconnect(self.Map_Type_comboBox_OnActivated)
 		self.ui.Zoom_In_pushButton.clicked.disconnect(self.Zoom_In_pushButton_OnClicked)
 		self.ui.Zoom_Out_pushButton.clicked.disconnect(self.Zoom_Out_pushButton_OnClicked)
 
-		self._map = None
+		self.__map = None
 
 	@core.executionTrace
 	def addWidget(self):
@@ -610,7 +610,7 @@ class GpsMap(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -620,7 +620,7 @@ class GpsMap(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget(self.ui)
+		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
 
 	@core.executionTrace
@@ -642,7 +642,7 @@ class GpsMap(UiComponent):
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
-		self._map.setMapType(self._mapTypeIds[index][1])
+		self.__map.setMapType(self.__mapTypeIds[index][1])
 
 	@core.executionTrace
 	def Zoom_In_pushButton_OnClicked(self, checked):
@@ -652,7 +652,7 @@ class GpsMap(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self._map.setZoom("In")
+		self.__map.setZoom("In")
 
 	@core.executionTrace
 	def Zoom_Out_pushButton_OnClicked(self, checked):
@@ -662,7 +662,7 @@ class GpsMap(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self._map.setZoom("Out")
+		self.__map.setZoom("Out")
 
 	@core.executionTrace
 	def map_OnLoadFinished(self, state):
@@ -680,17 +680,17 @@ class GpsMap(UiComponent):
 		This Method Triggers The GPS Map Markers.
 		"""
 
-		self._map.removeMarkers()
+		self.__map.removeMarkers()
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
 			LOGGER.debug("> Current Ibl Set: '{0}'.".format(iblSet._datas.name))
 			if iblSet._datas.latitude and iblSet._datas.longitude:
 				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
-				shotDateString = "<b>Shot Date: </b>{0}".format(self._coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
+				shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
 				content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
-				self._map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toForwardSlashes(iblSet._datas.icon), content)
-		self._map.setCenter()
+				self.__map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toForwardSlashes(iblSet._datas.icon), content)
+		self.__map.setCenter()
 
 #***********************************************************************************************
 #***	Python End

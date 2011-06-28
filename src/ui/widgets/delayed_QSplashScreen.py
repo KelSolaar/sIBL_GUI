@@ -96,7 +96,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 
 		# --- Setting Class Attributes. ---
-		self._waitTime = None
+		self.__waitTime = None
 		self.waitTime = waitTime
 
 	#***************************************************************************************
@@ -107,10 +107,10 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This Method Is The Property For The _waitTime Attribute.
 
-		@return: self._waitTime ( Integer / Float )
+		@return: self.__waitTime ( Integer / Float )
 		"""
 
-		return self._waitTime
+		return self.__waitTime
 
 	@waitTime.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -124,7 +124,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		if value:
 			assert type(value) in (int, float), "'{0}' Attribute: '{1}' Type Is Not 'int' or 'float'!".format("waitTime", value)
 			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("waitTime", value)
-		self._waitTime = value
+		self.__waitTime = value
 
 	@waitTime.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -154,8 +154,8 @@ class Delayed_QSplashScreen(QSplashScreen):
 		# Force QSplashscreen Refresh.
 		QApplication.processEvents()
 
-		if self._waitTime:
-			waitTime = self._waitTime
+		if self.__waitTime:
+			waitTime = self.__waitTime
 
 		waitTime and foundations.common.wait(waitTime)
 

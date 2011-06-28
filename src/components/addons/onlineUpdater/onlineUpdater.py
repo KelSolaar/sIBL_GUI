@@ -131,33 +131,33 @@ class DownloadManager(QObject):
 		QObject.__init__(self)
 
 		# --- Setting Class Attributes. ---
-		self._container = container
-		self._networkAccessManager = networkAccessManager
-		self._downloadFolder = downloadFolder
+		self.__container = container
+		self.__networkAccessManager = networkAccessManager
+		self.__downloadFolder = downloadFolder
 
-		self._uiPath = "ui/Download_Manager.ui"
-		self._uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = "resources/"
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._uiLogoImage = "sIBL_GUI_Small_Logo.png"
+		self.__uiPath = "ui/Download_Manager.ui"
+		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = "resources/"
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 
-		self._requests = None
+		self.__requests = None
 		self.requests = requests
-		self._downloads = []
-		self._currentRequest = None
-		self._currentFile = None
-		self._currentFilePath = None
+		self.__downloads = []
+		self.__currentRequest = None
+		self.__currentFile = None
+		self.__currentFilePath = None
 
 		# Helper Attribute For QNetwork Reply Crash.
-		self._downloadStatus = None
+		self.__downloadStatus = None
 
-		self._ui = uic.loadUi(self._uiPath)
+		self.__ui = uic.loadUi(self.__uiPath)
 		if "." in sys.path:
 			sys.path.remove(".")
 
 		self.initializeUi()
 
-		self._ui.show()
+		self.__ui.show()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -167,10 +167,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -197,10 +197,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _networkAccessManager Attribute.
 
-		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
-		return self._networkAccessManager
+		return self.__networkAccessManager
 
 	@networkAccessManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -227,10 +227,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _downloadFolder Attribute.
 
-		@return: self._downloadFolder. ( String )
+		@return: self.__downloadFolder. ( String )
 		"""
 
-		return self._downloadFolder
+		return self.__downloadFolder
 
 	@downloadFolder.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -257,10 +257,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -287,10 +287,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -317,10 +317,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _uiLogoImage Attribute.
 
-		@return: self._uiLogoImage. ( String )
+		@return: self.__uiLogoImage. ( String )
 		"""
 
-		return self._uiLogoImage
+		return self.__uiLogoImage
 
 	@uiLogoImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -347,10 +347,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _requests Attribute.
 
-		@return: self._requests. ( List )
+		@return: self.__requests. ( List )
 		"""
 
-		return self._requests
+		return self.__requests
 
 	@requests.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -363,7 +363,7 @@ class DownloadManager(QObject):
 
 		if value:
 			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("requests", value)
-		self._requests = value
+		self.__requests = value
 
 	@requests.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -379,10 +379,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _downloads Attribute.
 
-		@return: self._downloads. ( List )
+		@return: self.__downloads. ( List )
 		"""
 
-		return self._downloads
+		return self.__downloads
 
 	@downloads.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -409,10 +409,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _currentRequest Attribute.
 
-		@return: self._currentRequest. ( QNetworkReply )
+		@return: self.__currentRequest. ( QNetworkReply )
 		"""
 
-		return self._currentRequest
+		return self.__currentRequest
 
 	@currentRequest.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -439,10 +439,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _currentFile Attribute.
 
-		@return: self._currentFile. ( QFile )
+		@return: self.__currentFile. ( QFile )
 		"""
 
-		return self._currentFile
+		return self.__currentFile
 
 	@currentFile.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -469,10 +469,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _currentFilePath Attribute.
 
-		@return: self._currentFilePath. ( String )
+		@return: self.__currentFilePath. ( String )
 		"""
 
-		return self._currentFilePath
+		return self.__currentFilePath
 
 	@currentFilePath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -499,10 +499,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _downloadStatus Attribute.
 
-		@return: self._downloadStatus. ( QObject )
+		@return: self.__downloadStatus. ( QObject )
 		"""
 
-		return self._downloadStatus
+		return self.__downloadStatus
 
 	@downloadStatus.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -529,10 +529,10 @@ class DownloadManager(QObject):
 		"""
 		This Method Is The Property For The _ui Attribute.
 
-		@return: self._ui. ( Object )
+		@return: self.__ui. ( Object )
 		"""
 
-		return self._ui
+		return self.__ui
 
 	@ui.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -565,14 +565,14 @@ class DownloadManager(QObject):
 
 		ui.common.setWindowDefaultIcon(self.ui)
 
-		self._ui.Download_progressBar.setValue(0)
-		self._ui.Download_progressBar.hide()
-		self._ui.Logo_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLogoImage)))
+		self.__ui.Download_progressBar.setValue(0)
+		self.__ui.Download_progressBar.hide()
+		self.__ui.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLogoImage)))
 
-		self._ui.closeEvent = self.closeEvent
+		self.__ui.closeEvent = self.closeEvent
 
 		# Signals / Slots.
-		self._ui.Cancel_Close_pushButton.clicked.connect(self.Cancel_Close_pushButton_OnClicked)
+		self.__ui.Cancel_Close_pushButton.clicked.connect(self.Cancel_Close_pushButton_OnClicked)
 
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
@@ -582,7 +582,7 @@ class DownloadManager(QObject):
 		@param closeEvent: Close Event. ( QCloseEvent )
 		"""
 
-		self._downloadStatus or self.abortDownload()
+		self.__downloadStatus or self.abortDownload()
 		closeEvent.accept()
 
 	@core.executionTrace
@@ -593,7 +593,7 @@ class DownloadManager(QObject):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self._ui.close()
+		self.__ui.close()
 
 	@core.executionTrace
 	def downloadNext(self):
@@ -601,27 +601,27 @@ class DownloadManager(QObject):
 		This Method Downloads The Next Request.
 		"""
 
-		if self._requests:
-			self._ui.Download_progressBar.show()
+		if self.__requests:
+			self.__ui.Download_progressBar.show()
 
-			self._currentRequest = self._networkAccessManager.get(QNetworkRequest(QUrl(self._requests.pop())))
+			self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
-			self._currentFilePath = os.path.join(self._downloadFolder, os.path.basename(str(self._currentRequest.url().path())))
-			if os.path.exists(self._currentFilePath):
-				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update!".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
-				os.remove(self._currentFilePath)
+			self.__currentFilePath = os.path.join(self.__downloadFolder, os.path.basename(str(self.__currentRequest.url().path())))
+			if os.path.exists(self.__currentFilePath):
+				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+				os.remove(self.__currentFilePath)
 
-			self._currentFile = QFile(self._currentFilePath)
+			self.__currentFile = QFile(self.__currentFilePath)
 
-			if not self._currentFile.open(QIODevice.WriteOnly):
-				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download!".format(self.__class__.__name__, os.path.basename(self._currentFilePath)))
+			if not self.__currentFile.open(QIODevice.WriteOnly):
+				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
 				self.downloadNext()
 				return
 
 			# Signals / Slots.
-			self._currentRequest.downloadProgress.connect(self.downloadProgress)
-			self._currentRequest.finished.connect(self.downloadComplete)
-			self._currentRequest.readyRead.connect(self.requestReady)
+			self.__currentRequest.downloadProgress.connect(self.downloadProgress)
+			self.__currentRequest.finished.connect(self.downloadComplete)
+			self.__currentRequest.readyRead.connect(self.requestReady)
 
 	@core.executionTrace
 	def downloadProgress(self, bytesReceived, bytesTotal):
@@ -634,9 +634,9 @@ class DownloadManager(QObject):
 
 		LOGGER.debug("> Updating Download Progress: '{0}' Bytes Received, '{1}' Bytes Total.".format(bytesReceived, bytesTotal))
 
-		self._ui.Current_File_label.setText("Downloading: '{0}'.".format(os.path.basename(str(self._currentRequest.url().path()))))
-		self._ui.Download_progressBar.setRange(0, bytesTotal)
-		self._ui.Download_progressBar.setValue(bytesReceived)
+		self.__ui.Current_File_label.setText("Downloading: '{0}'.".format(os.path.basename(str(self.__currentRequest.url().path()))))
+		self.__ui.Download_progressBar.setRange(0, bytesTotal)
+		self.__ui.Download_progressBar.setValue(bytesReceived)
 
 	@core.executionTrace
 	def requestReady(self):
@@ -644,9 +644,9 @@ class DownloadManager(QObject):
 		This Method Is Triggered When The Request Is Ready To Write.
 		"""
 
-		LOGGER.debug("> Updating '{0}' File Content.".format(self._currentFile))
+		LOGGER.debug("> Updating '{0}' File Content.".format(self.__currentFile))
 
-		self._currentFile.write(self._currentRequest.readAll())
+		self.__currentFile.write(self.__currentRequest.readAll())
 
 	@core.executionTrace
 	def downloadComplete(self):
@@ -654,21 +654,21 @@ class DownloadManager(QObject):
 		This Method Is Triggered When The Request Download Is Complete.
 		"""
 
-		LOGGER.debug("> '{0}' Download Complete.".format(self._currentFile))
+		LOGGER.debug("> '{0}' Download Complete.".format(self.__currentFile))
 
-		self._currentFile.close()
-		self._downloads.append(self._currentFilePath)
-		self._ui.Current_File_label.setText("'{0}' Downloading Done!".format(os.path.basename(self._currentFilePath)))
-		self._ui.Download_progressBar.hide()
-		self._currentRequest.deleteLater();
+		self.__currentFile.close()
+		self.__downloads.append(self.__currentFilePath)
+		self.__ui.Current_File_label.setText("'{0}' Downloading Done!".format(os.path.basename(self.__currentFilePath)))
+		self.__ui.Download_progressBar.hide()
+		self.__currentRequest.deleteLater();
 
-		if self._requests:
+		if self.__requests:
 			LOGGER.debug("> Proceeding To Next Download Request.")
 			self.downloadNext()
 		else:
-			self._downloadStatus = True
-			self._ui.Current_File_label.setText("Downloads Complete!")
-			self._ui.Cancel_Close_pushButton.setText("Close")
+			self.__downloadStatus = True
+			self.__ui.Current_File_label.setText("Downloads Complete!")
+			self.__ui.Cancel_Close_pushButton.setText("Close")
 			self.emit(SIGNAL("downloadFinished()"))
 
 	@core.executionTrace
@@ -677,7 +677,7 @@ class DownloadManager(QObject):
 		This Method Triggers The Download.
 		"""
 
-		self._downloadStatus = False
+		self.__downloadStatus = False
 		self.downloadNext()
 
 	@core.executionTrace
@@ -686,8 +686,8 @@ class DownloadManager(QObject):
 		This Method Aborts The Current Download.
 		"""
 
-		self._currentRequest.abort()
-		self._currentRequest.deleteLater()
+		self.__currentRequest.abort()
+		self.__currentRequest.deleteLater()
 
 class RemoteUpdater(object):
 	"""
@@ -705,36 +705,36 @@ class RemoteUpdater(object):
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
 		# --- Setting Class Attributes. ---
-		self._container = container
-		self._releases = None
+		self.__container = container
+		self.__releases = None
 		self.releases = releases
-		self._uiPath = "ui/Remote_Updater.ui"
-		self._uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._uiResources = "resources/"
-		self._uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiResources)
-		self._uiLogoImage = "sIBL_GUI_Small_Logo.png"
-		self._uiTemplatesImage = "Templates_Logo.png"
-		self._uiLightGrayColor = QColor(240, 240, 240)
-		self._uiDarkGrayColor = QColor(160, 160, 160)
-		self._splitter = "|"
-		self._tableWidgetRowHeight = 30
-		self._tableWidgetHeaderHeight = 25
+		self.__uiPath = "ui/Remote_Updater.ui"
+		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__uiResources = "resources/"
+		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
+		self.__uiTemplatesImage = "Templates_Logo.png"
+		self.__uiLightGrayColor = QColor(240, 240, 240)
+		self.__uiDarkGrayColor = QColor(160, 160, 160)
+		self.__splitter = "|"
+		self.__tableWidgetRowHeight = 30
+		self.__tableWidgetHeaderHeight = 25
 
-		self._templatesTableWidgetHeaders = ["_datas", "Get It!", "Local Version", "Repository Version", "Release Type", "Comment"]
+		self.__templatesTableWidgetHeaders = ["_datas", "Get It!", "Local Version", "Repository Version", "Release Type", "Comment"]
 
-		self._applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
-		self._repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
+		self.__applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
+		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
 
-		self._downloadManager = None
-		self._networkAccessManager = self._container.networkAccessManager
+		self.__downloadManager = None
+		self.__networkAccessManager = self.__container.networkAccessManager
 
-		self._ui = uic.loadUi(self._uiPath)
+		self.__ui = uic.loadUi(self.__uiPath)
 		if "." in sys.path:
 			sys.path.remove(".")
 
 		self.initializeUi()
 
-		self._ui.show()
+		self.__ui.show()
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -744,10 +744,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -774,10 +774,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _releases Attribute.
 
-		@return: self._releases. ( Dictionary )
+		@return: self.__releases. ( Dictionary )
 		"""
 
-		return self._releases
+		return self.__releases
 
 	@releases.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -790,7 +790,7 @@ class RemoteUpdater(object):
 
 		if value:
 			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("releases", value)
-		self._releases = value
+		self.__releases = value
 
 	@releases.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -806,10 +806,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -836,10 +836,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiResources Attribute.
 
-		@return: self._uiResources. ( String )
+		@return: self.__uiResources. ( String )
 		"""
 
-		return self._uiResources
+		return self.__uiResources
 
 	@uiResources.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -866,10 +866,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiLogoImage Attribute.
 
-		@return: self._uiLogoImage. ( String )
+		@return: self.__uiLogoImage. ( String )
 		"""
 
-		return self._uiLogoImage
+		return self.__uiLogoImage
 
 	@uiLogoImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -896,10 +896,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiTemplatesImage Attribute.
 
-		@return: self._uiTemplatesImage. ( String )
+		@return: self.__uiTemplatesImage. ( String )
 		"""
 
-		return self._uiTemplatesImage
+		return self.__uiTemplatesImage
 
 	@uiTemplatesImage.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -926,10 +926,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiLightGrayColor Attribute.
 
-		@return: self._uiLightGrayColor. ( QColor )
+		@return: self.__uiLightGrayColor. ( QColor )
 		"""
 
-		return self._uiLightGrayColor
+		return self.__uiLightGrayColor
 
 	@uiLightGrayColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -956,10 +956,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _uiDarkGrayColor Attribute.
 
-		@return: self._uiDarkGrayColor. ( QColor )
+		@return: self.__uiDarkGrayColor. ( QColor )
 		"""
 
-		return self._uiDarkGrayColor
+		return self.__uiDarkGrayColor
 
 	@uiDarkGrayColor.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -986,10 +986,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _splitter Attribute.
 
-		@return: self._splitter. ( String )
+		@return: self.__splitter. ( String )
 		"""
 
-		return self._splitter
+		return self.__splitter
 
 	@splitter.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -1016,10 +1016,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _tableWidgetRowHeight Attribute.
 
-		@return: self._tableWidgetRowHeight. ( Integer )
+		@return: self.__tableWidgetRowHeight. ( Integer )
 		"""
 
-		return self._tableWidgetRowHeight
+		return self.__tableWidgetRowHeight
 
 	@tableWidgetRowHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1046,10 +1046,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _tableWidgetHeaderHeight Attribute.
 
-		@return: self._tableWidgetHeaderHeight. ( Integer )
+		@return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
 
-		return self._tableWidgetHeaderHeight
+		return self.__tableWidgetHeaderHeight
 
 	@tableWidgetHeaderHeight.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1076,10 +1076,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _templatesTableWidgetHeaders Attribute.
 
-		@return: self._templatesTableWidgetHeaders. ( String )
+		@return: self.__templatesTableWidgetHeaders. ( String )
 		"""
 
-		return self._templatesTableWidgetHeaders
+		return self.__templatesTableWidgetHeaders
 
 	@templatesTableWidgetHeaders.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1106,10 +1106,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _applicationChangeLogUrl Attribute.
 
-		@return: self._applicationChangeLogUrl. ( String )
+		@return: self.__applicationChangeLogUrl. ( String )
 		"""
 
-		return self._applicationChangeLogUrl
+		return self.__applicationChangeLogUrl
 
 	@applicationChangeLogUrl.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1136,10 +1136,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _repositoryUrl Attribute.
 
-		@return: self._repositoryUrl. ( String )
+		@return: self.__repositoryUrl. ( String )
 		"""
 
-		return self._repositoryUrl
+		return self.__repositoryUrl
 
 	@repositoryUrl.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1166,10 +1166,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _downloadManager Attribute.
 
-		@return: self._downloadManager. ( Object )
+		@return: self.__downloadManager. ( Object )
 		"""
 
-		return self._downloadManager
+		return self.__downloadManager
 
 	@downloadManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1196,10 +1196,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _networkAccessManager Attribute.
 
-		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
-		return self._networkAccessManager
+		return self.__networkAccessManager
 
 	@networkAccessManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1226,10 +1226,10 @@ class RemoteUpdater(object):
 		"""
 		This Method Is The Property For The _ui Attribute.
 
-		@return: self._ui. ( Object )
+		@return: self.__ui. ( Object )
 		"""
 
-		return self._ui
+		return self.__ui
 
 	@ui.setter
 	def ui(self, value):
@@ -1239,7 +1239,7 @@ class RemoteUpdater(object):
 		@param value: Attribute Value. ( Object )
 		"""
 
-		self._ui = value
+		self.__ui = value
 
 	@ui.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1263,37 +1263,37 @@ class RemoteUpdater(object):
 
 		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
 
-		if Constants.applicationName not in self._releases:
-			self._ui.sIBL_GUI_groupBox.hide()
-			self._ui.Get_sIBL_GUI_pushButton.hide()
+		if Constants.applicationName not in self.__releases:
+			self.__ui.sIBL_GUI_groupBox.hide()
+			self.__ui.Get_sIBL_GUI_pushButton.hide()
 		else:
-			self._ui.Logo_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiLogoImage)))
-			self._ui.Your_Version_label.setText(self._releases[Constants.applicationName].localVersion)
-			self._ui.Latest_Version_label.setText(self._releases[Constants.applicationName].repositoryVersion)
-			self._ui.Change_Log_webView.load(QUrl.fromEncoded(QByteArray(self._applicationChangeLogUrl)))
+			self.__ui.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLogoImage)))
+			self.__ui.Your_Version_label.setText(self.__releases[Constants.applicationName].localVersion)
+			self.__ui.Latest_Version_label.setText(self.__releases[Constants.applicationName].repositoryVersion)
+			self.__ui.Change_Log_webView.load(QUrl.fromEncoded(QByteArray(self.__applicationChangeLogUrl)))
 
-		templatesReleases = dict(self._releases)
-		if Constants.applicationName in self._releases:
+		templatesReleases = dict(self.__releases)
+		if Constants.applicationName in self.__releases:
 			templatesReleases.pop(Constants.applicationName)
 
 		if not templatesReleases:
-			self._ui.Templates_groupBox.hide()
-			self._ui.Get_Latest_Templates_pushButton.hide()
+			self.__ui.Templates_groupBox.hide()
+			self.__ui.Get_Latest_Templates_pushButton.hide()
 		else:
-			self._ui.Templates_label.setPixmap(QPixmap(os.path.join(self._uiResources, self._uiTemplatesImage)))
-			self._ui.Templates_tableWidget.clear()
-			self._ui.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-			self._ui.Templates_tableWidget.setRowCount(len(templatesReleases))
-			self._ui.Templates_tableWidget.setColumnCount(len(self._templatesTableWidgetHeaders))
-			self._ui.Templates_tableWidget.setHorizontalHeaderLabels(self._templatesTableWidgetHeaders)
-			self._ui.Templates_tableWidget.hideColumn(0)
-			self._ui.Templates_tableWidget.horizontalHeader().setStretchLastSection(True)
-			self._ui.Templates_tableWidget.setMinimumHeight(len(templatesReleases) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight)
-			self._ui.Templates_tableWidget.setMaximumHeight(len(templatesReleases) * self._tableWidgetRowHeight + self._tableWidgetHeaderHeight)
+			self.__ui.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiTemplatesImage)))
+			self.__ui.Templates_tableWidget.clear()
+			self.__ui.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+			self.__ui.Templates_tableWidget.setRowCount(len(templatesReleases))
+			self.__ui.Templates_tableWidget.setColumnCount(len(self.__templatesTableWidgetHeaders))
+			self.__ui.Templates_tableWidget.setHorizontalHeaderLabels(self.__templatesTableWidgetHeaders)
+			self.__ui.Templates_tableWidget.hideColumn(0)
+			self.__ui.Templates_tableWidget.horizontalHeader().setStretchLastSection(True)
+			self.__ui.Templates_tableWidget.setMinimumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
+			self.__ui.Templates_tableWidget.setMaximumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
 
 			palette = QPalette()
 			palette.setColor(QPalette.Base, Qt.transparent)
-			self._ui.Templates_tableWidget.setPalette(palette)
+			self.__ui.Templates_tableWidget.setPalette(palette)
 
 			verticalHeaderLabels = []
 			for row, release in enumerate(sorted(templatesReleases)):
@@ -1301,34 +1301,34 @@ class RemoteUpdater(object):
 
 					tableWidgetItem = QTableWidgetItem()
 					tableWidgetItem._datas = templatesReleases[release]
-					self._ui.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
+					self.__ui.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
-					tableWidgetItem = Variable_QPushButton(True, (self._uiLightGrayColor, self._uiDarkGrayColor), ("Yes", "No"))
-					self._ui.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
+					tableWidgetItem = Variable_QPushButton(True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
+					self.__ui.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
 					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self._ui.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
+					self.__ui.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].repositoryVersion)
 					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self._ui.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
+					self.__ui.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].type)
 					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self._ui.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
+					self.__ui.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].comment)
-					self._ui.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
+					self.__ui.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
 
-			self._ui.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
-			self._ui.Templates_tableWidget.resizeColumnsToContents()
+			self.__ui.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
+			self.__ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self._ui.Get_sIBL_GUI_pushButton.clicked.connect(self.Get_sIBL_GUI_pushButton_OnClicked)
-		self._ui.Get_Latest_Templates_pushButton.clicked.connect(self.Get_Latest_Templates_pushButton_OnClicked)
-		self._ui.Open_Repository_pushButton.clicked.connect(self.Open_Repository_pushButton_OnClicked)
-		self._ui.Close_pushButton.clicked.connect(self.Close_pushButton_OnClicked)
+		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.Get_sIBL_GUI_pushButton_OnClicked)
+		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.Get_Latest_Templates_pushButton_OnClicked)
+		self.__ui.Open_Repository_pushButton.clicked.connect(self.Open_Repository_pushButton_OnClicked)
+		self.__ui.Close_pushButton.clicked.connect(self.Close_pushButton_OnClicked)
 
 	@core.executionTrace
 	def Get_sIBL_GUI_pushButton_OnClicked(self, checked):
@@ -1337,7 +1337,7 @@ class RemoteUpdater(object):
 		
 		@param checked: Checked State. ( Boolean )
 		"""
-		urlTokens = self.releases[Constants.applicationName].url.split(self._splitter)
+		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
 		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -1347,9 +1347,9 @@ class RemoteUpdater(object):
 		elif platform.system() == "Linux":
 			url = builds["Linux"]
 
-		self._downloadManager = DownloadManager(self, self._networkAccessManager, self._container.ioDirectory, [url])
-		self._downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
-		self._downloadManager.startDownload()
+		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, self.__container.ioDirectory, [url])
+		self.__downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
+		self.__downloadManager.startDownload()
 
 	@core.executionTrace
 	def Get_Latest_Templates_pushButton_OnClicked(self, checked):
@@ -1360,16 +1360,16 @@ class RemoteUpdater(object):
 		"""
 
 		requests = []
-		for row in range(self._ui.Templates_tableWidget.rowCount()):
-			if self._ui.Templates_tableWidget.cellWidget(row, 1).state:
-				requests.append(self._ui.Templates_tableWidget.item(row, 0)._datas)
+		for row in range(self.__ui.Templates_tableWidget.rowCount()):
+			if self.__ui.Templates_tableWidget.cellWidget(row, 1).state:
+				requests.append(self.__ui.Templates_tableWidget.item(row, 0)._datas)
 		if requests:
 			downloadFolder = self.getTemplatesDownloadFolder()
 			if downloadFolder:
 				LOGGER.debug("> Templates Download Folder: '{0}'.".format(downloadFolder))
-				self._downloadManager = DownloadManager(self, self._networkAccessManager, downloadFolder, [request.url for request in requests])
-				self._downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
-				self._downloadManager.startDownload()
+				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadFolder, [request.url for request in requests])
+				self.__downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
+				self.__downloadManager.startDownload()
 
 	@core.executionTrace
 	def Open_Repository_pushButton_OnClicked(self, checked):
@@ -1379,8 +1379,8 @@ class RemoteUpdater(object):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		LOGGER.debug("> Opening URL: '{0}'.".format(self._repositoryUrl))
-		QDesktopServices.openUrl(QUrl(QString(self._repositoryUrl)))
+		LOGGER.debug("> Opening URL: '{0}'.".format(self.__repositoryUrl))
+		QDesktopServices.openUrl(QUrl(QString(self.__repositoryUrl)))
 
 	@core.executionTrace
 	def Close_pushButton_OnClicked(self, checked):
@@ -1391,7 +1391,7 @@ class RemoteUpdater(object):
 		"""
 
 		LOGGER.info("{0} | Closing '{1}' Updater!".format(self.__class__.__name__, Constants.applicationName))
-		self._ui.close()
+		self.__ui.close()
 
 	@core.executionTrace
 	def getTemplatesDownloadFolder(self):
@@ -1414,9 +1414,9 @@ class RemoteUpdater(object):
 		if reply == 0:
 			return os.path.join(os.getcwd(), Constants.templatesDirectory)
 		elif reply == 1:
-			return os.path.join(self._container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
+			return os.path.join(self.__container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
 		elif reply == 2:
-			return self._container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self._ui, "Choose Templates Directory:", self._container.container.lastBrowsedPath)))
+			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates Directory:", self.__container.container.lastBrowsedPath)))
 
 	@core.executionTrace
 	def downloadManager_OnComplete(self):
@@ -1425,20 +1425,20 @@ class RemoteUpdater(object):
 		"""
 
 		needModelRefresh = False
-		for download in self._downloadManager.downloads:
+		for download in self.__downloadManager.downloads:
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
 					LOGGER.info("{0} | Removing '{1}' Archive!".format(self.__class__.__name__, download))
 					os.remove(download)
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File!".format(self.__class__.__name__, os.path.basename(download)))
-				self._container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self._container.coreTemplatesOutliner.getCollection(self._container.coreTemplatesOutliner.userCollection).id, noWarning=True)
+				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id, noWarning=True)
 				needModelRefresh = True
 			else:
-				if self._container.addonsLocationsBrowser.activated:
-					self._container.addonsLocationsBrowser.exploreProvidedFolder(os.path.dirname(download))
+				if self.__container.addonsLocationsBrowser.activated:
+					self.__container.addonsLocationsBrowser.exploreProvidedFolder(os.path.dirname(download))
 
-		needModelRefresh and self._container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+		needModelRefresh and self.__container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1478,27 +1478,27 @@ class OnlineUpdater(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Online_Updater.ui"
+		self.__uiPath = "ui/Online_Updater.ui"
 
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDb = None
-		self._coreTemplatesOutliner = None
-		self._addonsLocationsBrowser = None
+		self.__corePreferencesManager = None
+		self.__coreDb = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLocationsBrowser = None
 
-		self._ioDirectory = "remote/"
+		self.__ioDirectory = "remote/"
 
-		self._repositoryUrl = REPOSITORY_URL
-		self._releasesFileUrl = "sIBL_GUI_Releases.rc"
+		self.__repositoryUrl = REPOSITORY_URL
+		self.__releasesFileUrl = "sIBL_GUI_Releases.rc"
 
-		self._networkAccessManager = None
-		self._releaseReply = None
+		self.__networkAccessManager = None
+		self.__releaseReply = None
 
-		self._remoteUpdater = None
-		self._reportUpdateStatus = None
+		self.__remoteUpdater = None
+		self.__reportUpdateStatus = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -1508,10 +1508,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1538,10 +1538,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1577,20 +1577,20 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _settings Attribute.
 
-		@return: self._settings. ( QSettings )
+		@return: self.__settings. ( QSettings )
 		"""
 
-		return self._settings
+		return self.__settings
 
 	@property
 	def settingsSection(self):
 		"""
 		This Method Is The Property For The _settingsSection Attribute.
 
-		@return: self._settingsSection. ( String )
+		@return: self.__settingsSection. ( String )
 		"""
 
-		return self._settingsSection
+		return self.__settingsSection
 
 	@settingsSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1637,10 +1637,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _corePreferencesManager Attribute.
 
-		@return: self._corePreferencesManager. ( Object )
+		@return: self.__corePreferencesManager. ( Object )
 		"""
 
-		return self._corePreferencesManager
+		return self.__corePreferencesManager
 
 	@corePreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1667,10 +1667,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _coreDb Attribute.
 
-		@return: self._coreDb. ( Object )
+		@return: self.__coreDb. ( Object )
 		"""
 
-		return self._coreDb
+		return self.__coreDb
 
 	@coreDb.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1697,10 +1697,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1727,10 +1727,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _addonsLocationsBrowser Attribute.
 
-		@return: self._addonsLocationsBrowser. ( Object )
+		@return: self.__addonsLocationsBrowser. ( Object )
 		"""
 
-		return self._addonsLocationsBrowser
+		return self.__addonsLocationsBrowser
 
 	@addonsLocationsBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1757,10 +1757,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _ioDirectory Attribute.
 
-		@return: self._ioDirectory. ( String )
+		@return: self.__ioDirectory. ( String )
 		"""
 
-		return self._ioDirectory
+		return self.__ioDirectory
 
 	@ioDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1787,10 +1787,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _repositoryUrl Attribute.
 
-		@return: self._repositoryUrl. ( String )
+		@return: self.__repositoryUrl. ( String )
 		"""
 
-		return self._repositoryUrl
+		return self.__repositoryUrl
 
 	@repositoryUrl.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1817,10 +1817,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _releasesFileUrl Attribute.
 
-		@return: self._releasesFileUrl. ( String )
+		@return: self.__releasesFileUrl. ( String )
 		"""
 
-		return self._releasesFileUrl
+		return self.__releasesFileUrl
 
 	@releasesFileUrl.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1847,10 +1847,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _networkAccessManager Attribute.
 
-		@return: self._networkAccessManager. ( QNetworkAccessManager )
+		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
-		return self._networkAccessManager
+		return self.__networkAccessManager
 
 	@networkAccessManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1877,10 +1877,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _releaseReply Attribute.
 
-		@return: self._releaseReply. ( QNetworkReply )
+		@return: self.__releaseReply. ( QNetworkReply )
 		"""
 
-		return self._releaseReply
+		return self.__releaseReply
 
 	@releaseReply.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1907,10 +1907,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _remoteUpdater Attribute.
 
-		@return: self._remoteUpdater. ( Object )
+		@return: self.__remoteUpdater. ( Object )
 		"""
 
-		return self._remoteUpdater
+		return self.__remoteUpdater
 
 	@remoteUpdater.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1937,10 +1937,10 @@ class OnlineUpdater(UiComponent):
 		"""
 		This Method Is The Property For The _reportUpdateStatus Attribute.
 
-		@return: self._reportUpdateStatus. ( Boolean )
+		@return: self.__reportUpdateStatus. ( Boolean )
 		"""
 
-		return self._reportUpdateStatus
+		return self.__reportUpdateStatus
 
 	@reportUpdateStatus.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1975,22 +1975,22 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
-		self._container = container
-		self._settings = self._container.settings
-		self._settingsSection = self.name
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
+		self.__container = container
+		self.__settings = self.__container.settings
+		self.__settingsSection = self.name
 
-		self._corePreferencesManager = self._container.componentsManager.components["core.preferencesManager"].interface
-		self._coreDb = self._container.componentsManager.components["core.db"].interface
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
-		self._addonsLocationsBrowser = self._container.componentsManager.components["addons.locationsBrowser"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+		self.__addonsLocationsBrowser = self.__container.componentsManager.components["addons.locationsBrowser"].interface
 
-		self._ioDirectory = os.path.join(self._container.userApplicationDatasDirectory, Constants.ioDirectory, self._ioDirectory)
-		not os.path.exists(self._ioDirectory) and os.makedirs(self._ioDirectory)
+		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
-		self._networkAccessManager = QNetworkAccessManager()
+		self.__networkAccessManager = QNetworkAccessManager()
 
-		self._reportUpdateStatus = True
+		self.__reportUpdateStatus = True
 
 		self._activate()
 
@@ -2003,20 +2003,20 @@ class OnlineUpdater(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
-		self._settings = None
-		self._settingsSection = None
+		self.__container = None
+		self.__settings = None
+		self.__settingsSection = None
 
-		self._corePreferencesManager = None
-		self._coreDb = None
-		self._coreTemplatesOutliner = None
-		self._addonsLocationsBrowser = None
+		self.__corePreferencesManager = None
+		self.__coreDb = None
+		self.__coreTemplatesOutliner = None
+		self.__addonsLocationsBrowser = None
 
-		self._ioDirectory = os.path.basename(os.path.abspath(self._ioDirectory))
+		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
-		self._networkAccessManager = None
+		self.__networkAccessManager = None
 
-		self._reportUpdateStatus = None
+		self.__reportUpdateStatus = None
 
 		self._deactivate()
 
@@ -2028,7 +2028,7 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self._container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater Worker Thread Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater Worker Thread Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.Ignore_Non_Existing_Templates_checkBox_setUi()
@@ -2058,9 +2058,9 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		# Adding Settings Key If It Doesn't Exists.
-		self._settings.getKey(self._settingsSection, "checkForNewReleasesOnStartup").isNull() and self._settings.setKey(self._settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
+		self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup").isNull() and self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
 
-		checkForNewReleasesOnStartup = self._settings.getKey(self._settingsSection, "checkForNewReleasesOnStartup")
+		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
 
@@ -2073,7 +2073,7 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		LOGGER.debug("> Check For New Releases On Startup State: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
-		self._settings.setKey(self._settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
+		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
 	def Ignore_Non_Existing_Templates_checkBox_setUi(self):
@@ -2082,9 +2082,9 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		# Adding Settings Key If It Doesn't Exists.
-		self._settings.getKey(self._settingsSection, "ignoreNonExistingTemplates").isNull() and self._settings.setKey(self._settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
+		self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates").isNull() and self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
 
-		ignoreNonExistingTemplates = self._settings.getKey(self._settingsSection, "ignoreNonExistingTemplates")
+		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
 		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
 
@@ -2097,7 +2097,7 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		LOGGER.debug("> Ignore Non Existing Templates State: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
-		self._settings.setKey(self._settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
+		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
 
 	@core.executionTrace
 	def onStartup(self):
@@ -2107,8 +2107,8 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		self._reportUpdateStatus = False
-		not self._container.parameters.deactivateWorkerThreads and self._ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		self.__reportUpdateStatus = False
+		not self.__container.parameters.deactivateWorkerThreads and self.ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 
 	@core.executionTrace
 	def addWidget(self):
@@ -2118,7 +2118,7 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Online_Updater_groupBox)
+		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Online_Updater_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -2138,7 +2138,7 @@ class OnlineUpdater(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self._reportUpdateStatus = True
+		self.__reportUpdateStatus = True
 		self.checkForNewReleases()
 
 	@core.executionTrace
@@ -2148,10 +2148,10 @@ class OnlineUpdater(UiComponent):
 		This Method Is Triggered When The Release Reply Finishes.
 		"""
 
-		if not self._releaseReply.error():
+		if not self.__releaseReply.error():
 			content = []
-			while not self._releaseReply.atEnd ():
-				content.append(str(self._releaseReply.readLine()))
+			while not self.__releaseReply.atEnd ():
+				content.append(str(self.__releaseReply.readLine()))
 
 			LOGGER.debug("> Parsing Releases File Content.")
 			parser = Parser()
@@ -2161,9 +2161,9 @@ class OnlineUpdater(UiComponent):
 			releases = {}
 			for remoteObject in parser.sections:
 				if remoteObject != Constants.applicationName:
-						dbTemplates = dbUtilities.common.filterTemplates(self._coreDb.dbSession, "^{0}$".format(remoteObject), "name")
+						dbTemplates = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(remoteObject), "name")
 						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted(((dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates), reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
-						if not self._container.parameters.databaseReadOnly:
+						if not self.__container.parameters.databaseReadOnly:
 							if dbTemplate:
 								if dbTemplate.release != parser.getValue("Release", remoteObject):
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
@@ -2192,11 +2192,11 @@ class OnlineUpdater(UiComponent):
 															comment=None)
 			if releases:
 				LOGGER.debug("> Initialising Remote Updater.")
-				self._remoteUpdater = RemoteUpdater(self, releases)
+				self.__remoteUpdater = RemoteUpdater(self, releases)
 			else:
-				self._reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date!".format(self.__class__.__name__, Constants.applicationName))
+				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code: '{0}'.".format(self._releaseReply.error()))
+			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code: '{0}'.".format(self.__releaseReply.error()))
 
 	@core.executionTrace
 	def checkForNewReleases(self):
@@ -2204,7 +2204,7 @@ class OnlineUpdater(UiComponent):
 		This Method Checks For New Releases.
 		"""
 
-		self.getReleaseFile(QUrl(os.path.join(self._repositoryUrl, self._releasesFileUrl)))
+		self.getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
 
 	@core.executionTrace
 	def getReleaseFile(self, url):
@@ -2214,8 +2214,8 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Downloading '{0}' Releases File.".format(url.path()))
 
-		self._releaseReply = self._networkAccessManager.get(QNetworkRequest(url))
-		self._releaseReply.finished.connect(self.releaseReply_OnDownloadComplete)
+		self.__releaseReply = self.__networkAccessManager.get(QNetworkRequest(url))
+		self.__releaseReply.finished.connect(self.releaseReply_OnDownloadComplete)
 
 #***********************************************************************************************
 #***	Python End

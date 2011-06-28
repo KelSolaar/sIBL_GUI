@@ -108,27 +108,27 @@ class LoaderScript(UiComponent):
 		# --- Setting Class Attributes. ---
 		self.deactivatable = True
 
-		self._uiPath = "ui/Loader_Script.ui"
-		self._dockArea = 2
+		self.__uiPath = "ui/Loader_Script.ui"
+		self.__dockArea = 2
 
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
-		self._coreTemplatesOutliner = None
+		self.__coreDatabaseBrowser = None
+		self.__coreTemplatesOutliner = None
 
-		self._ioDirectory = "loaderScripts/"
+		self.__ioDirectory = "loaderScripts/"
 
-		self._bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
-		self._templateScriptSection = "Script"
-		self._templateIblSetAttributesSection = "Ibl Set Attributes"
-		self._templateRemoteConnectionSection = "Remote Connection"
+		self.__bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
+		self.__templateScriptSection = "Script"
+		self.__templateIblSetAttributesSection = "Ibl Set Attributes"
+		self.__templateRemoteConnectionSection = "Remote Connection"
 
-		self._win32ExecutionMethod = "ExecuteSIBLLoaderScript"
+		self.__win32ExecutionMethod = "ExecuteSIBLLoaderScript"
 
-		self._overrideKeys = {}
+		self.__overrideKeys = {}
 
-		self._defaultStringSeparator = "|"
-		self._unnamedLightName = "Unnamed_Light"
+		self.__defaultStringSeparator = "|"
+		self.__unnamedLightName = "Unnamed_Light"
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -138,10 +138,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _uiPath Attribute.
 
-		@return: self._uiPath. ( String )
+		@return: self.__uiPath. ( String )
 		"""
 
-		return self._uiPath
+		return self.__uiPath
 
 	@uiPath.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -168,10 +168,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _dockArea Attribute.
 
-		@return: self._dockArea. ( Integer )
+		@return: self.__dockArea. ( Integer )
 		"""
 
-		return self._dockArea
+		return self.__dockArea
 
 	@dockArea.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -198,10 +198,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _container Attribute.
 
-		@return: self._container. ( QObject )
+		@return: self.__container. ( QObject )
 		"""
 
-		return self._container
+		return self.__container
 
 	@container.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -228,10 +228,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _coreDatabaseBrowser Attribute.
 
-		@return: self._coreDatabaseBrowser. ( Object )
+		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
-		return self._coreDatabaseBrowser
+		return self.__coreDatabaseBrowser
 
 	@coreDatabaseBrowser.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -258,10 +258,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _coreTemplatesOutliner Attribute.
 
-		@return: self._coreTemplatesOutliner. ( Object )
+		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
-		return self._coreTemplatesOutliner
+		return self.__coreTemplatesOutliner
 
 	@coreTemplatesOutliner.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -288,10 +288,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _ioDirectory Attribute.
 
-		@return: self._ioDirectory. ( String )
+		@return: self.__ioDirectory. ( String )
 		"""
 
-		return self._ioDirectory
+		return self.__ioDirectory
 
 	@ioDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -318,10 +318,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _bindingIdentifierPattern Attribute.
 
-		@return: self._bindingIdentifierPattern. ( String )
+		@return: self.__bindingIdentifierPattern. ( String )
 		"""
 
-		return self._bindingIdentifierPattern
+		return self.__bindingIdentifierPattern
 
 	@bindingIdentifierPattern.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -348,10 +348,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _templateScriptSection Attribute.
 
-		@return: self._templateScriptSection. ( String )
+		@return: self.__templateScriptSection. ( String )
 		"""
 
-		return self._templateScriptSection
+		return self.__templateScriptSection
 
 	@templateScriptSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -378,10 +378,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _templateIblSetAttributesSection Attribute.
 
-		@return: self._templateIblSetAttributesSection. ( String )
+		@return: self.__templateIblSetAttributesSection. ( String )
 		"""
 
-		return self._templateIblSetAttributesSection
+		return self.__templateIblSetAttributesSection
 
 	@templateIblSetAttributesSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -408,10 +408,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _templateRemoteConnectionSection Attribute.
 
-		@return: self._templateRemoteConnectionSection. ( String )
+		@return: self.__templateRemoteConnectionSection. ( String )
 		"""
 
-		return self._templateRemoteConnectionSection
+		return self.__templateRemoteConnectionSection
 
 	@templateRemoteConnectionSection.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -438,10 +438,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _overrideKeys Attribute.
 
-		@return: self._overrideKeys. ( Dictionary )
+		@return: self.__overrideKeys. ( Dictionary )
 		"""
 
-		return self._overrideKeys
+		return self.__overrideKeys
 
 	@overrideKeys.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -454,7 +454,7 @@ class LoaderScript(UiComponent):
 
 		if value:
 			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("sections", value)
-		self._overrideKeys = value
+		self.__overrideKeys = value
 
 	@overrideKeys.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -470,10 +470,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _defaultStringSeparator Attribute.
 
-		@return: self._defaultStringSeparator. ( String )
+		@return: self.__defaultStringSeparator. ( String )
 		"""
 
-		return self._defaultStringSeparator
+		return self.__defaultStringSeparator
 
 	@defaultStringSeparator.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -488,7 +488,7 @@ class LoaderScript(UiComponent):
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("defaultStringSeparator", value)
 			assert len(value) == 1, "'{0}' Attribute: '{1}' Has Multiples Characters!".format("defaultStringSeparator", value)
 			assert not re.search("\w", value), "'{0}' Attribute: '{1}' Is An AlphaNumeric Character!".format("defaultStringSeparator", value)
-		self._defaultStringSeparator = value
+		self.__defaultStringSeparator = value
 
 	@defaultStringSeparator.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -504,10 +504,10 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Is The Property For The _unnamedLightName Attribute.
 
-		@return: self._unnamedLightName. ( String )
+		@return: self.__unnamedLightName. ( String )
 		"""
 
-		return self._unnamedLightName
+		return self.__unnamedLightName
 
 	@unnamedLightName.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
@@ -520,7 +520,7 @@ class LoaderScript(UiComponent):
 
 		if value:
 			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("unnamedLightName", value)
-		self._unnamedLightName = value
+		self.__unnamedLightName = value
 
 	@unnamedLightName.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -544,15 +544,15 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self._uiPath)
+		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 
-		self._container = container
+		self.__container = container
 
-		self._coreDatabaseBrowser = self._container.componentsManager.components["core.databaseBrowser"].interface
-		self._coreTemplatesOutliner = self._container.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		self._ioDirectory = os.path.join(self._container.userApplicationDatasDirectory, Constants.ioDirectory, self._ioDirectory)
-		not os.path.exists(self._ioDirectory) and os.makedirs(self._ioDirectory)
+		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self._activate()
 
@@ -565,12 +565,12 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
-		self._container = None
+		self.__container = None
 
-		self._coreDatabaseBrowser = None
-		self._coreTemplatesOutliner = None
+		self.__coreDatabaseBrowser = None
+		self.__coreTemplatesOutliner = None
 
-		self._ioDirectory = os.path.basename(os.path.abspath(self._ioDirectory))
+		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
 		self._deactivate()
 
@@ -589,7 +589,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.Output_Loader_Script_pushButton_OnClicked)
 		self.ui.Send_To_Software_pushButton.clicked.connect(self.Send_To_Software_pushButton_OnClicked)
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -602,7 +602,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.Output_Loader_Script_pushButton_OnClicked)
 		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.Send_To_Software_pushButton_OnClicked)
-		self._coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -612,7 +612,7 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.addDockWidget(Qt.DockWidgetArea(self._dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -622,7 +622,7 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self._container.removeDockWidget(self.ui)
+		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
 
 	@core.executionTrace
@@ -645,13 +645,13 @@ class LoaderScript(UiComponent):
 		"""
 
 		if self.outputLoaderScript():
-			selectedTemplate = self._coreTemplatesOutliner.getSelectedTemplates()[0]
+			selectedTemplate = self.__coreTemplatesOutliner.getSelectedTemplates()[0]
 			LOGGER.info("{0} | Starting Remote Connection!".format(self.__class__.__name__))
 			templateParser = Parser(selectedTemplate._datas.path)
-			templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
-			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
+			templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
+			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 
-			loaderScriptPath = strings.getNormalizedPath(os.path.join(self._ioDirectory, selectedTemplate._datas.outputScript))
+			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, selectedTemplate._datas.outputScript))
 			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
 				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
 
@@ -659,7 +659,7 @@ class LoaderScript(UiComponent):
 				try:
 					connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 					connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
-					socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self._templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+					socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 					LOGGER.debug("> Current Socket Command: '%s'.", socketCommand)
 					connection.send(socketCommand)
 					dataBack = connection.recv(8192)
@@ -672,11 +672,11 @@ class LoaderScript(UiComponent):
 				if platform.system() == "Windows" or platform.system() == "Microsoft":
 					try:
 						import win32com.client
-						connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self._templateRemoteConnectionSection)).value)
-						connection._FlagAsMethod(self._win32ExecutionMethod)
-						connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self._templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+						connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
+						connection._FlagAsMethod(self.__win32ExecutionMethod)
+						connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 						LOGGER.debug("> Current Connection Command: '%s'.", connectionCommand)
-						getattr(connection, self._win32ExecutionMethod)(connectionCommand)
+						getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 					except Exception as error:
 						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
 
@@ -689,24 +689,24 @@ class LoaderScript(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Parsing '{0}' Template For '{1}' Section.".format(template._datas.name, self._templateRemoteConnectionSection))
+			LOGGER.debug("> Parsing '{0}' Template For '{1}' Section.".format(template._datas.name, self.__templateRemoteConnectionSection))
 
 			if os.path.exists(template._datas.path):
 				templateParser = Parser(template._datas.path)
-				templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
+				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
-				if self._templateRemoteConnectionSection in templateParser.sections:
-					LOGGER.debug("> {0}' Section Found.".format(self._templateRemoteConnectionSection))
+				if self.__templateRemoteConnectionSection in templateParser.sections:
+					LOGGER.debug("> {0}' Section Found.".format(self.__templateRemoteConnectionSection))
 					self.ui.Remote_Connection_groupBox.show()
-					connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self._templateRemoteConnectionSection))
+					connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote Connection Type: 'Socket'.")
-						self.ui.Software_Port_spinBox.setValue(int(foundations.parser.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self._templateRemoteConnectionSection)).value))
-						self.ui.Address_lineEdit.setText(QString(foundations.parser.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self._templateRemoteConnectionSection)).value))
+						self.ui.Software_Port_spinBox.setValue(int(foundations.parser.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
+						self.ui.Address_lineEdit.setText(QString(foundations.parser.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
 						self.ui.Remote_Connection_Options_frame.show()
 					elif connectionType.value == "Win32":
 						LOGGER.debug("> Remote Connection: 'Win32'.")
@@ -726,14 +726,14 @@ class LoaderScript(UiComponent):
 
 		overrideKeys = {}
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
 
-		selectedIblSets = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 
 		if iblSet:
@@ -762,7 +762,7 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Initializing Loader Script Output.")
 
-		selectedTemplates = self._coreTemplatesOutliner.getSelectedTemplates()
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
 			messageBox.messageBox("Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used!".format(self.__class__.__name__, selectedTemplates[0]._datas.name))
 
@@ -774,7 +774,7 @@ class LoaderScript(UiComponent):
 		if not os.path.exists(template._datas.path):
 			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template._datas.name)
 
-		selectedIblSet = self._coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
 		if not iblSet:
@@ -783,25 +783,25 @@ class LoaderScript(UiComponent):
 		if not os.path.exists(iblSet._datas.path):
 			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet._datas.name)
 
-		self._overrideKeys = self.getDefaultOverrideKeys()
+		self.__overrideKeys = self.getDefaultOverrideKeys()
 
-		for component in self._container.componentsManager.getComponents():
-			profile = self._container._componentsManager.components[component]
-			interface = self._container.componentsManager.getInterface(component)
+		for component in self.__container.componentsManager.getComponents():
+			profile = self.__container.componentsManager.components[component]
+			interface = self.__container.componentsManager.getInterface(component)
 			if interface.activated and profile.name != self.name:
 				hasattr(interface, "getOverrideKeys") and interface.getOverrideKeys()
 
-		if self._container.parameters.loaderScriptsOutputDirectory:
-			if os.path.exists(self._container.parameters.loaderScriptsOutputDirectory):
-				loaderScript = File(os.path.join(self._container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript))
+		if self.__container.parameters.loaderScriptsOutputDirectory:
+			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
+				loaderScript = File(os.path.join(self.__container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript))
 			else:
-				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self._container.parameters.loaderScriptsOutputDirectory)
+				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory)
 		else:
-			loaderScript = File(os.path.join(self._ioDirectory, template._datas.outputScript))
+			loaderScript = File(os.path.join(self.__ioDirectory, template._datas.outputScript))
 
 		LOGGER.debug("> Loader Script Output File Path: '{0}'.".format(loaderScript.file))
 
-		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self._overrideKeys)
+		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self.__overrideKeys)
 
 		if loaderScript.content and loaderScript.write():
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
@@ -823,15 +823,15 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Parsing Template File: '{0}'.".format(template))
 		templateParser = Parser(template)
-		templateParser.read() and templateParser.parse(rawSections=(self._templateScriptSection))
+		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 		templateSections = dict.copy(templateParser.sections)
 
-		for attribute, value in dict.copy(templateSections[self._templateIblSetAttributesSection]).items():
-			templateSections[self._templateIblSetAttributesSection][namespace.removeNamespace(attribute, rootOnly=True)] = value
-			del templateSections[self._templateIblSetAttributesSection][attribute]
+		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).items():
+			templateSections[self.__templateIblSetAttributesSection][namespace.removeNamespace(attribute, rootOnly=True)] = value
+			del templateSections[self.__templateIblSetAttributesSection][attribute]
 
 		LOGGER.debug("> Binding Templates File Attributes.")
-		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self._templateScriptSection) for attribute, value in templateSections[section].items()))
+		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self.__templateScriptSection) for attribute, value in templateSections[section].items()))
 
 		LOGGER.debug("> Parsing Ibl Set File: '{0}'.".format(iblSet))
 		iblSetParser = Parser(iblSet)
@@ -852,7 +852,7 @@ class LoaderScript(UiComponent):
 				if re.search("Light[0-9]+", section):
 					dynamicLights.append(section)
 					lightName = iblSetParser.getValue("LIGHTname", section)
-					dynamicLights.append(lightName and lightName or self._unnamedLightName)
+					dynamicLights.append(lightName and lightName or self.__unnamedLightName)
 					lightColorTokens = iblSetParser.getValue("LIGHTcolor", section).split(",")
 					for color in lightColorTokens:
 						dynamicLights.append(color)
@@ -861,7 +861,7 @@ class LoaderScript(UiComponent):
 					dynamicLights.append(iblSetParser.getValue("LIGHTv", section))
 
 			LOGGER.debug("> Adding '{0}' Custom Attribute With Value: '{1}'.".format("Lights|DynamicLights", ", ".join(dynamicLights)))
-			bindedAttributes["Lights|DynamicLights"].value = self._defaultStringSeparator.join(dynamicLights)
+			bindedAttributes["Lights|DynamicLights"].value = self.__defaultStringSeparator.join(dynamicLights)
 
 		LOGGER.debug("> Updating Attributes With Override Keys.")
 		for attribute in overrideKeys:
@@ -869,11 +869,11 @@ class LoaderScript(UiComponent):
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
 		LOGGER.debug("> Updating Loader Script Content.")
-		loaderScript = templateParser.sections[self._templateScriptSection][namespace.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
+		loaderScript = templateParser.sections[self.__templateScriptSection][namespace.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
 
 		bindedLoaderScript = []
 		for line in loaderScript:
-			bindingParameters = re.findall("{0}".format(self._bindingIdentifierPattern), line)
+			bindingParameters = re.findall("{0}".format(self.__bindingIdentifierPattern), line)
 			if bindingParameters:
 				for parameter in bindingParameters:
 					for attribute in bindedAttributes.values():
