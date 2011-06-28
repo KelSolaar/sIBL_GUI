@@ -62,7 +62,7 @@ QSizeGrip {
 }
 
 /* Various. */
-QCheckBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QSpinBox, QTreeView, QTextBrowser {
+QCheckBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QSpinBox, QTreeView, QTextEdit, QTextBrowser {
 	background-color: rgb(48, 48, 48);
 }
 
