@@ -473,7 +473,7 @@ class DatabaseBrowser(UiComponent):
 		self._settingsSeparator = ","
 
 		self._extension = "ibl"
-		
+
 		self._coreDb = None
 		self._coreCollectionsOutliner = None
 
@@ -485,7 +485,7 @@ class DatabaseBrowser(UiComponent):
 		self._databaseBrowserWorkerThread = None
 
 		self._displaySets = None
-		
+
 		self._toolTipText = """
 								<p><b>{0}</b></p>
 								<p><b>Author: </b>{1}<br>
@@ -1396,7 +1396,7 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
-		# self.ui.Database_Browser_listView.setAutoScroll(False)
+		self.ui.Database_Browser_listView.setAutoScroll(True)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
 		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
