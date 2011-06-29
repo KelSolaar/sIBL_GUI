@@ -624,7 +624,7 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Components_Manager_Ui_treeView_setActions()
+		self.__Components_Manager_Ui_treeView_addActions()
 
 		self.Components_Manager_Ui_treeView_setView()
 
@@ -796,7 +796,7 @@ class ComponentsManagerUi(UiComponent):
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace
-	def __Components_Manager_Ui_treeView_setActions(self):
+	def __Components_Manager_Ui_treeView_addActions(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView Actions.
 		"""

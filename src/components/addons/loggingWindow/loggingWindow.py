@@ -305,10 +305,10 @@ class LoggingWindow(UiComponent):
 		self.ui.Logging_textEdit.setReadOnly(True)
 		self.ui.Logging_textEdit.setWordWrapMode(QTextOption.NoWrap)
 		self.ui.Logging_textEdit.setFontFamily("Courier")
-		self.setLoggingTextEdit()
+		self.__Logging_textEdit_setUi()
 
 		# Signals / Slots.
-		self.__timer.timeout.connect(self.updateLoggingTextEdit)
+		self.__timer.timeout.connect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -319,7 +319,7 @@ class LoggingWindow(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__timer.timeout.disconnect(self.updateLoggingTextEdit)
+		self.__timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
 
 		self.__timer.stop()
 		self.__timer = None
@@ -346,7 +346,7 @@ class LoggingWindow(UiComponent):
 		self.ui.setParent(None)
 
 	# @core.executionTrace
-	def setLoggingTextEdit(self):
+	def __Logging_textEdit_setUi(self):
 		"""
 		This Method Sets The Logging TextEdit.
 		"""
@@ -356,14 +356,14 @@ class LoggingWindow(UiComponent):
 		self.ui.Logging_textEdit.ensureCursorVisible()
 
 	# @core.executionTrace
-	def updateLoggingTextEdit(self):
+	def __Logging_textEdit_refreshUi(self):
 		"""
 		This Method Updates The Logging TextEdit.
 		"""
 
 		memoryHandlerStack = len(self.__container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStack != self.__memoryHandlerStack:
-			self.setLoggingTextEdit()
+			self.__Logging_textEdit_setUi()
 			self.__memoryHandlerStack = memoryHandlerStack
 
 #***********************************************************************************************

@@ -1013,7 +1013,7 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
 
 		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Collections_Outliner_treeView_setActions()
+		self.__Collections_Outliner_treeView_addActions()
 
 		self.Collections_Outliner_treeView_setView()
 
@@ -1276,7 +1276,7 @@ class CollectionsOutliner(UiComponent):
 				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 	@core.executionTrace
-	def __Collections_Outliner_treeView_setActions(self):
+	def __Collections_Outliner_treeView_addActions(self):
 		"""
 		This Method Sets The Collections Outliner Actions.
 		"""

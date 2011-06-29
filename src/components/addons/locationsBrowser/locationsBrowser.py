@@ -637,11 +637,11 @@ class LocationsBrowser(UiComponent):
 
 		self.Custom_File_Browser_Path_lineEdit_setUi()
 
-		self.addActions_()
+		self.__addActions()
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.clicked.connect(self.Custom_File_Browser_Path_toolButton_OnClicked)
-		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
+		self.ui.Custom_File_Browser_Path_toolButton.clicked.connect(self.__Custom_File_Browser_Path_toolButton__clicked)
+		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript Addon Component Specific Code.
 		if self.__addonsLoaderScript.activated:
@@ -649,7 +649,7 @@ class LocationsBrowser(UiComponent):
 			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Folder_pushButton)
 
 			# Signals / Slots.
-			self.__Open_Output_Folder_pushButton.clicked.connect(self.Open_Output_Folder_pushButton_OnClicked)
+			self.__Open_Output_Folder_pushButton.clicked.connect(self.__Open_Output_Folder_pushButton__clicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -660,18 +660,18 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.Custom_File_Browser_Path_toolButton_OnClicked)
-		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.Custom_File_Browser_Path_lineEdit_OnEditFinished)
+		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
+		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript Addon Component Specific Code.
 		if self.__addonsLoaderScript.activated:
 			# Signals / Slots.
-			self.__Open_Output_Folder_pushButton.clicked.disconnect(self.Open_Output_Folder_pushButton_OnClicked)
+			self.__Open_Output_Folder_pushButton.clicked.disconnect(self.__Open_Output_Folder_pushButton__clicked)
 
 			self.__Open_Output_Folder_pushButton.setParent(None)
 			self.__Open_Output_Folder_pushButton = None
 
-		self.removeActions_()
+		self.__removeActions()
 
 	@core.executionTrace
 	def addWidget(self):
@@ -694,7 +694,7 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_groupBox.setParent(None)
 
 	@core.executionTrace
-	def addActions_(self):
+	def __addActions(self):
 		"""
 		This Method Adds Actions.
 		"""
@@ -702,23 +702,23 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__openIblSetsLocationsAction.triggered.connect(self.Database_Browser_listView_openIblSetsLocationsAction_OnTriggered)
+		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
 
 		self.__openInspectedIblSetLocationsAction = QAction("Open Ibl Set Location ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__openInspectedIblSetLocationsAction.triggered.connect(self.Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered)
+		self.__openInspectedIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectedIblSetLocationsAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectedIblSetLocationsAction)
 
 		self.__openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
-		self.__openComponentsLocationsAction.triggered.connect(self.Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered)
+		self.__openComponentsLocationsAction.triggered.connect(self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered)
 		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__openComponentsLocationsAction)
 
 		self.__openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-		self.__openTemplatesLocationsAction.triggered.connect(self.Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered)
+		self.__openTemplatesLocationsAction.triggered.connect(self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered)
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__openTemplatesLocationsAction)
 
 	@core.executionTrace
-	def removeActions_(self):
+	def __removeActions(self):
 		"""
 		This Method Removes Actions.
 		"""
@@ -736,7 +736,7 @@ class LocationsBrowser(UiComponent):
 		self.__openTemplatesLocationsAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_openIblSetsLocationsAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_openIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By openIblSetsLocationsAction Action.
 
@@ -747,10 +747,10 @@ class LocationsBrowser(UiComponent):
 		for iblSet in selectedIblSets:
 			iblSetPath = iblSet._datas.path
 			iblSetPath = iblSetPath and os.path.exists(iblSetPath) and os.path.dirname(iblSetPath)
-			iblSetPath and self.exploreProvidedFolder(iblSetPath)
+			iblSetPath and self.exploreDirectory(iblSetPath)
 
 	@core.executionTrace
-	def Inspector_Overall_frame_openInspectedIblSetLocationsAction_OnTriggered(self, checked):
+	def __Inspector_Overall_frame_openInspectedIblSetLocationsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By openInspectedIblSetLocationsAction Action.
 
@@ -759,10 +759,10 @@ class LocationsBrowser(UiComponent):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
-		selectedIblSet and self.exploreProvidedFolder(os.path.dirname(selectedIblSet._datas.path))
+		selectedIblSet and self.exploreDirectory(os.path.dirname(selectedIblSet._datas.path))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_openComponentsLocationsAction_OnTriggered(self, checked):
+	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By openComponentsLocationsAction Action.
 
@@ -771,10 +771,10 @@ class LocationsBrowser(UiComponent):
 
 		selectedComponent = self.__coreComponentsManagerUi.getSelectedItems()
 		for component in selectedComponent:
-			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreProvidedFolder(component._datas.path)
+			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreDirectory(component._datas.path)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_openTemplatesLocationsAction_OnTriggered(self, checked):
+	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By openTemplatesLocationsAction Action.
 
@@ -784,7 +784,7 @@ class LocationsBrowser(UiComponent):
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates:
 			for template in selectedTemplates:
-				os.path.exists(template._datas.path) and self.exploreProvidedFolder(os.path.dirname(template._datas.path))
+				os.path.exists(template._datas.path) and self.exploreDirectory(os.path.dirname(template._datas.path))
 
 	@core.executionTrace
 	def Custom_File_Browser_Path_lineEdit_setUi(self):
@@ -797,7 +797,7 @@ class LocationsBrowser(UiComponent):
 		self.ui.Custom_File_Browser_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
-	def Custom_File_Browser_Path_toolButton_OnClicked(self, checked):
+	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
 		
@@ -812,7 +812,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Custom_File_Browser_Path_lineEdit_OnEditFinished(self):
+	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
 		This Method Is Called When Custom_File_Browser_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		"""
@@ -827,7 +827,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def Open_Output_Folder_pushButton_OnClicked(self, checked):
+	def __Open_Output_Folder_pushButton__clicked(self, checked):
 		"""
 		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
 		
@@ -836,42 +836,42 @@ class LocationsBrowser(UiComponent):
 
 		if self.__container.parameters.loaderScriptsOutputDirectory:
 			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
-				self.exploreProvidedFolder(self.__container.parameters.loaderScriptsOutputDirectory)
+				self.exploreDirectory(self.__container.parameters.loaderScriptsOutputDirectory)
 			else:
 				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory)
 		else:
-			self.exploreProvidedFolder(self.__addonsLoaderScript.ioDirectory)
+			self.exploreDirectory(self.__addonsLoaderScript.ioDirectory)
 
 	@core.executionTrace
-	def exploreProvidedFolder(self, folder):
+	def exploreDirectory(self, directory):
 		"""
-		This Method Provides Folder Exploring Capability.
+		This Method Provides Directory Exploring Capability.
 
-		@param folder: Folder To Explore. ( String )
+		@param directory: Directory To Explore. ( String )
 		"""
 
 		browserCommand = None
 		customFileBrowser = str(self.ui.Custom_File_Browser_Path_lineEdit.text())
 
-		folder = os.path.normpath(folder)
+		directory = os.path.normpath(directory)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
-				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, folder)
+				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
+				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, directory)
 			else:
-				LOGGER.info("{0} | Launching 'explorer.exe' With '{1}'.".format(self.__class__.__name__, folder))
-				browserCommand = "explorer.exe \"{0}\"".format(folder)
+				LOGGER.info("{0} | Launching 'explorer.exe' With '{1}'.".format(self.__class__.__name__, directory))
+				browserCommand = "explorer.exe \"{0}\"".format(directory)
 		elif platform.system() == "Darwin":
 			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
-				browserCommand = "open -a \"{0}\" \"{1}\"".format(customFileBrowser, folder)
+				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
+				browserCommand = "open -a \"{0}\" \"{1}\"".format(customFileBrowser, directory)
 			else:
-				LOGGER.info("{0} | Launching 'Finder' With '{1}'.".format(self.__class__.__name__, folder))
-				browserCommand = "open \"{0}\"".format(folder)
+				LOGGER.info("{0} | Launching 'Finder' With '{1}'.".format(self.__class__.__name__, directory))
+				browserCommand = "open \"{0}\"".format(directory)
 		elif platform.system() == "Linux":
 			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), folder))
-				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, folder)
+				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
+				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, directory)
 			else:
 				environmentVariable = Environment("PATH")
 				paths = environmentVariable.getPath().split(":")
@@ -882,8 +882,8 @@ class LocationsBrowser(UiComponent):
 						try:
 							for path in paths:
 								if os.path.exists(os.path.join(path, browser)):
-									LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, folder))
-									browserCommand = "\"{0}\" \"{1}\"".format(browser, folder)
+									LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, directory))
+									browserCommand = "\"{0}\" \"{1}\"".format(browser, directory)
 									browserFound = True
 									raise StopIteration
 						except StopIteration:

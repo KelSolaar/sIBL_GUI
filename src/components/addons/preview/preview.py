@@ -1779,7 +1779,7 @@ class Preview(UiComponent):
 
 		self.Custom_Previewer_Path_lineEdit_setUi()
 
-		self.addActions_()
+		self.__addActions()
 		self.addInspectorButtons()
 
 		# Signals / Slots.
@@ -1794,7 +1794,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.removeActions_()
+		self.__removeActions()
 		self.removeInspectorButtons()
 
 		# Signals / Slots.
@@ -1823,7 +1823,7 @@ class Preview(UiComponent):
 		self.ui.Custom_Previewer_Path_groupBox.setParent(None)
 
 	@core.executionTrace
-	def addActions_(self):
+	def __addActions(self):
 		"""
 		This Method Adds Actions.
 		"""
@@ -1871,7 +1871,7 @@ class Preview(UiComponent):
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetPlatesAction)
 
 	@core.executionTrace
-	def removeActions_(self):
+	def __removeActions(self):
 		"""
 		This Method Removes Actions.
 		"""

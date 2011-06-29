@@ -395,7 +395,7 @@ class About(UiComponent):
 		self.__container = container
 		self.__miscMenu = self.__container.miscMenu
 
-		self.addActions_()
+		self.__addActions()
 
 		self._activate()
 
@@ -407,7 +407,7 @@ class About(UiComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.removeActions_()
+		self.__removeActions()
 
 		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
@@ -449,7 +449,7 @@ class About(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def addActions_(self):
+	def __addActions(self):
 		"""
 		This Method Adds Actions.
 		"""
@@ -457,11 +457,11 @@ class About(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self.__aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
-		self.__aboutMiscAction.triggered.connect(self.miscMenu_aboutMiscAction_OnTriggered)
+		self.__aboutMiscAction.triggered.connect(self.__miscMenu_aboutMiscAction__triggered)
 		self.__miscMenu.addAction(self.__aboutMiscAction)
 
 	@core.executionTrace
-	def removeActions_(self):
+	def __removeActions(self):
 		"""
 		This Method Removes Actions.
 		"""
@@ -473,7 +473,7 @@ class About(UiComponent):
 		self.__aboutMiscAction = None
 
 	@core.executionTrace
-	def miscMenu_aboutMiscAction_OnTriggered(self, checked):
+	def __miscMenu_aboutMiscAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By aboutMiscAction Action.
 

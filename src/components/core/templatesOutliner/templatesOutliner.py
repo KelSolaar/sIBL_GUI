@@ -1203,7 +1203,7 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_gridLayout.addWidget(self.ui.Templates_Outliner_treeView, 0, 0)
 
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Templates_Outliner_treeView_setActions()
+		self.__Templates_Outliner_treeView_addActions()
 
 		self.Templates_Outliner_treeView_setView()
 
@@ -1500,7 +1500,7 @@ class TemplatesOutliner(UiComponent):
 				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 	@core.executionTrace
-	def __Templates_Outliner_treeView_setActions(self):
+	def __Templates_Outliner_treeView_addActions(self):
 		"""
 		This Method Sets The Templates_Outliner_treeView Actions.
 		"""

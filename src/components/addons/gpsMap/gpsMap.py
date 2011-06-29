@@ -581,11 +581,11 @@ class GpsMap(UiComponent):
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self.__map.loadFinished.connect(self.map_OnLoadFinished)
-		self.ui.Map_Type_comboBox.activated.connect(self.Map_Type_comboBox_OnActivated)
-		self.ui.Zoom_In_pushButton.clicked.connect(self.Zoom_In_pushButton_OnClicked)
-		self.ui.Zoom_Out_pushButton.clicked.connect(self.Zoom_Out_pushButton_OnClicked)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__map.loadFinished.connect(self.__map__loadFinished)
+		self.ui.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
+		self.ui.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
+		self.ui.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -594,11 +594,11 @@ class GpsMap(UiComponent):
 		"""
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged)
-		self.__map.loadFinished.disconnect(self.map_OnLoadFinished)
-		self.ui.Map_Type_comboBox.activated.disconnect(self.Map_Type_comboBox_OnActivated)
-		self.ui.Zoom_In_pushButton.clicked.disconnect(self.Zoom_In_pushButton_OnClicked)
-		self.ui.Zoom_Out_pushButton.clicked.disconnect(self.Zoom_Out_pushButton_OnClicked)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__map.loadFinished.disconnect(self.__map__loadFinished)
+		self.ui.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
+		self.ui.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
+		self.ui.Zoom_Out_pushButton.clicked.disconnect(self.__Zoom_Out_pushButton__clicked)
 
 		self.__map = None
 
@@ -624,7 +624,7 @@ class GpsMap(UiComponent):
 		self.ui.setParent(None)
 
 	@core.executionTrace
-	def coreDatabaseBrowser_Database_Browser_listView_OnModelSelectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Selection Has Changed.
 		
@@ -635,7 +635,7 @@ class GpsMap(UiComponent):
 		self.setMarkers()
 
 	@core.executionTrace
-	def Map_Type_comboBox_OnActivated(self, index):
+	def __Map_Type_comboBox__activated(self, index):
 		"""
 		This Method Is Triggered When Map_Type_comboBox Index Changes.
 		
@@ -645,7 +645,7 @@ class GpsMap(UiComponent):
 		self.__map.setMapType(self.__mapTypeIds[index][1])
 
 	@core.executionTrace
-	def Zoom_In_pushButton_OnClicked(self, checked):
+	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
 		
@@ -655,7 +655,7 @@ class GpsMap(UiComponent):
 		self.__map.setZoom("In")
 
 	@core.executionTrace
-	def Zoom_Out_pushButton_OnClicked(self, checked):
+	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
 		
@@ -665,7 +665,7 @@ class GpsMap(UiComponent):
 		self.__map.setZoom("Out")
 
 	@core.executionTrace
-	def map_OnLoadFinished(self, state):
+	def __map__loadFinished(self, state):
 		"""
 		This Method Is Triggered When The GPS Map Finishes Loading.
 		

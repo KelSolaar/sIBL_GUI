@@ -596,7 +596,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -607,7 +607,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -631,29 +631,7 @@ class LoaderScriptOptions(UiComponent):
 		self.ui.setParent(None)
 
 	@core.executionTrace
-	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
-		"""
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
-		
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
-		"""
-
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
-
-		if template:
-			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
-
-			if os.path.exists(template._datas.path):
-				templateParser = Parser(template._datas.path)
-				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-
-				self.setOptionsToolBox(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
-				self.setOptionsToolBox(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
-
-	@core.executionTrace
-	def setOptionsToolBox(self, section, tableWidget):
+	def __tableWidget_setUi(self, section, tableWidget):
 		"""
 		This Method Defines And Sets Options TableWidgets.
 
@@ -708,6 +686,28 @@ class LoaderScriptOptions(UiComponent):
 
 		tableWidget.setVerticalHeaderLabels (verticalHeaderLabels)
 		tableWidget.show()
+
+	@core.executionTrace
+	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		
+		@param selectedItems: Selected Items. ( QItemSelection )
+		@param deselectedItems: Deselected Items. ( QItemSelection )
+		"""
+
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
+
+		if template:
+			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+
+			if os.path.exists(template._datas.path):
+				templateParser = Parser(template._datas.path)
+				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
+
+				self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
+				self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
 	def updateOverrideKeys(self, tableWidget):

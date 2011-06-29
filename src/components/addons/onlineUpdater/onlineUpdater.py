@@ -1436,7 +1436,7 @@ class RemoteUpdater(object):
 				needModelRefresh = True
 			else:
 				if self.__container.addonsLocationsBrowser.activated:
-					self.__container.addonsLocationsBrowser.exploreProvidedFolder(os.path.dirname(download))
+					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
 
 		needModelRefresh and self.__container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 

@@ -1196,7 +1196,7 @@ class DatabaseBrowser(UiComponent):
 		self.Database_Browser_listView_setModel()
 
 		self.ui.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Database_Browser_listView_setActions()
+		self.__Database_Browser_listView_addActions()
 
 		self.Database_Browser_listView_setView()
 
@@ -1443,7 +1443,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
 
 	@core.executionTrace
-	def __Database_Browser_listView_setActions(self):
+	def __Database_Browser_listView_addActions(self):
 		"""
 		This Method Sets The Database Browser Actions.
 		"""

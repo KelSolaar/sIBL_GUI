@@ -439,7 +439,7 @@ class sIBLeditUtilities(UiComponent):
 
 		self.sIBLedit_Path_lineEdit_setUi()
 
-		self.addActions_()
+		self.__addActions()
 
 		# Signals / Slots.
 		self.ui.sIBLedit_Path_toolButton.clicked.connect(self.sIBLedit_Path_toolButton_OnClicked)
@@ -457,7 +457,7 @@ class sIBLeditUtilities(UiComponent):
 		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.sIBLedit_Path_toolButton_OnClicked)
 		self.ui.sIBLedit_Path_lineEdit.editingFinished.disconnect(self.sIBLedit_Path_lineEdit_OnEditFinished)
 
-		self.removeActions_()
+		self.__removeActions()
 
 	@core.executionTrace
 	def addWidget(self):
@@ -480,7 +480,7 @@ class sIBLeditUtilities(UiComponent):
 		self.ui.sIBLedit_Path_groupBox.setParent(None)
 
 	@core.executionTrace
-	def addActions_(self):
+	def __addActions(self):
 		"""
 		This Method Adds Actions.
 		"""
@@ -499,7 +499,7 @@ class sIBLeditUtilities(UiComponent):
 			LOGGER.info("{0} | sIBLedit Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def removeActions_(self):
+	def __removeActions(self):
 		"""
 		This Method Removes Actions.
 		"""

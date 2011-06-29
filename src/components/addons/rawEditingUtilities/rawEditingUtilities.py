@@ -536,7 +536,7 @@ class RawEditingUtilities(UiComponent):
 
 		self.Custom_Text_Editor_Path_lineEdit_setUi()
 
-		self.addActions_()
+		self.__addActions()
 
 		# Signals / Slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.Custom_Text_Editor_Path_toolButton_OnClicked)
@@ -554,7 +554,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.Custom_Text_Editor_Path_toolButton_OnClicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.Custom_Text_Editor_Path_lineEdit_OnEditFinished)
 
-		self.removeActions_()
+		self.__removeActions()
 
 	@core.executionTrace
 	def addWidget(self):
@@ -578,7 +578,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
 
 	@core.executionTrace
-	def addActions_(self):
+	def __addActions(self):
 		"""
 		This Method Adds Actions.
 		"""
@@ -602,7 +602,7 @@ class RawEditingUtilities(UiComponent):
 			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def removeActions_(self):
+	def __removeActions(self):
 		"""
 		This Method Removes Actions.
 		"""

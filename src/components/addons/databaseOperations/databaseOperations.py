@@ -346,7 +346,7 @@ class DatabaseOperations(UiComponent):
 
 		# Signals / Slots.
 		if not self.__container.parameters.databaseReadOnly:
-			self.ui.Synchronize_Database_pushButton.clicked.connect(self.Synchronize_Database_pushButton_OnClicked)
+			self.ui.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
 			LOGGER.info("{0} | Database Operations Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -359,7 +359,7 @@ class DatabaseOperations(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.Synchronize_Database_pushButton_OnClicked)
+		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -383,7 +383,7 @@ class DatabaseOperations(UiComponent):
 		self.ui.Database_Operations_groupBox.setParent(None)
 
 	@core.executionTrace
-	def Synchronize_Database_pushButton_OnClicked(self, checked):
+	def __synchronize_Database_pushButton_clicked(self, checked):
 		"""
 		This Method Is Triggered When Synchronize_Database_pushButton Is Clicked.
 		

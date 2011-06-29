@@ -904,7 +904,7 @@ class Inspector(UiComponent):
 		self.Inspector_DockWidget_setUi()
 
 		self.ui.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Inspector_Overall_frame_setActions()
+		self.__Inspector_Overall_frame_addActions()
 
 		# Signals / Slots.
 		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
@@ -1052,7 +1052,7 @@ class Inspector(UiComponent):
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_setActions(self):
+	def __Inspector_Overall_frame_addActions(self):
 		"""
 		This Method Sets The Inspector_Overall_frame Actions.
 		"""

@@ -587,9 +587,9 @@ class LoaderScript(UiComponent):
 			self.ui.Options_groupBox.hide()
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.Output_Loader_Script_pushButton_OnClicked)
-		self.ui.Send_To_Software_pushButton.clicked.connect(self.Send_To_Software_pushButton_OnClicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
+		self.ui.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -600,9 +600,9 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.Output_Loader_Script_pushButton_OnClicked)
-		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.Send_To_Software_pushButton_OnClicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged)
+		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
+		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -626,7 +626,7 @@ class LoaderScript(UiComponent):
 		self.ui.setParent(None)
 
 	@core.executionTrace
-	def Output_Loader_Script_pushButton_OnClicked(self, checked):
+	def __Output_Loader_Script_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Output_Loader_Script_pushButton Is Clicked.
 		
@@ -637,7 +637,7 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
-	def Send_To_Software_pushButton_OnClicked(self, checked):
+	def __Send_To_Software_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
 		
@@ -681,7 +681,7 @@ class LoaderScript(UiComponent):
 						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
 
 	@core.executionTrace
-	def coreTemplatesOutlinerUi_Templates_Outliner_treeView_OnSelectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
 		
