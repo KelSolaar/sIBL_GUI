@@ -442,8 +442,8 @@ class sIBLeditUtilities(UiComponent):
 		self.__addActions()
 
 		# Signals / Slots.
-		self.ui.sIBLedit_Path_toolButton.clicked.connect(self.sIBLedit_Path_toolButton_OnClicked)
-		self.ui.sIBLedit_Path_lineEdit.editingFinished.connect(self.sIBLedit_Path_lineEdit_OnEditFinished)
+		self.ui.sIBLedit_Path_toolButton.clicked.connect(self.__sIBLedit_Path_toolButton__clicked)
+		self.ui.sIBLedit_Path_lineEdit.editingFinished.connect(self.__sIBLedit_Path_lineEdit__editFinished)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -454,8 +454,8 @@ class sIBLeditUtilities(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.sIBLedit_Path_toolButton_OnClicked)
-		self.ui.sIBLedit_Path_lineEdit.editingFinished.disconnect(self.sIBLedit_Path_lineEdit_OnEditFinished)
+		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.__sIBLedit_Path_toolButton__clicked)
+		self.ui.sIBLedit_Path_lineEdit.editingFinished.disconnect(self.__sIBLedit_Path_lineEdit__editFinished)
 
 		self.__removeActions()
 
@@ -489,11 +489,11 @@ class sIBLeditUtilities(UiComponent):
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__editInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-			self.__editInSIBLEditAction.triggered.connect(self.Database_Browser_listView_editInSIBLEditAction_OnTriggered)
+			self.__editInSIBLEditAction.triggered.connect(self.__Database_Browser_listView_editInSIBLEditAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editInSIBLEditAction)
 
 			self.__editInspectedIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectedIblSetInSIBLEditAction.triggered.connect(self.Inspector_Overall_frame_editInSIBLEditAction_OnTriggered)
+			self.__editInspectedIblSetInSIBLEditAction.triggered.connect(self.__Inspector_Overall_frame_editInSIBLEditAction__triggered)
 			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInSIBLEditAction)
 		else:
 			LOGGER.info("{0} | sIBLedit Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -514,24 +514,24 @@ class sIBLeditUtilities(UiComponent):
 			self.__editInspectedIblSetInSIBLEditAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_editInSIBLEditAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_editInSIBLEditAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By editInSIBLEditAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.editInSIBLedit()
+		self.editIblSetsInSIBLedit()
 
 	@core.executionTrace
-	def Inspector_Overall_frame_editInSIBLEditAction_OnTriggered(self, checked):
+	def __Inspector_Overall_frame_editInSIBLEditAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By editInspectedIblSetInSIBLEditAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.editInSIBLedit()
+		self.editIblSetsInSIBLedit()
 
 	@core.executionTrace
 	def sIBLedit_Path_lineEdit_setUi(self):
@@ -544,7 +544,7 @@ class sIBLeditUtilities(UiComponent):
 		self.ui.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
 	@core.executionTrace
-	def sIBLedit_Path_toolButton_OnClicked(self, checked):
+	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
 		
@@ -559,7 +559,7 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def sIBLedit_Path_lineEdit_OnEditFinished(self):
+	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
 		This Method Is Called When sIBLedit_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		"""
@@ -573,7 +573,7 @@ class sIBLeditUtilities(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
-	def editInSIBLedit(self):
+	def editIblSetsInSIBLedit(self):
 		"""
 		This Method Edits Selected Ibl Sets In sIBLedit.
 		"""

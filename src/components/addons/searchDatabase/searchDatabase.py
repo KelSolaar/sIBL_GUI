@@ -676,12 +676,12 @@ class SearchDatabase(UiComponent):
 		self.ui.Search_Database_lineEdit.setCompleter(self.__completer)
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.connect(self.Search_Database_lineEdit_OnTextChanged)
-		self.ui.Search_Database_comboBox.activated.connect(self.Search_Database_comboBox_OnActivated)
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
-		self.ui.Time_Low_timeEdit.timeChanged.connect(self.Time_Low_timeEdit_OnTimeChanged)
-		self.ui.Time_High_timeEdit.timeChanged.connect(self.Time_High_timeEdit_OnTimeChanged)
-		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.Tags_Cloud_listWidget_OnDoubleClicked)
+		self.ui.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
+		self.ui.Search_Database_comboBox.activated.connect(self.__Search_Database_comboBox__activated)
+		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.ui.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
+		self.ui.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
+		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -692,12 +692,12 @@ class SearchDatabase(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.Search_Database_lineEdit_OnTextChanged)
-		self.ui.Search_Database_comboBox.activated.disconnect(self.Search_Database_comboBox_OnActivated)
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.Case_Insensitive_Matching_checkBox_OnStateChanged)
-		self.ui.Time_Low_timeEdit.timeChanged.disconnect(self.Time_Low_timeEdit_OnTimeChanged)
-		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.Time_High_timeEdit_OnTimeChanged)
-		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.Tags_Cloud_listWidget_OnDoubleClicked)
+		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.__Search_Database_lineEdit__textChanged)
+		self.ui.Search_Database_comboBox.activated.disconnect(self.__Search_Database_comboBox__activated)
+		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.ui.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
+		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
+		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
 
 		self.__completer = None
 
@@ -723,17 +723,17 @@ class SearchDatabase(UiComponent):
 		self.ui.setParent(None)
 
 	@core.executionTrace
-	def Search_Database_lineEdit_OnTextChanged(self, text):
+	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
 		This Method Is Triggered When Search_Database_lineEdit Text Changes.
 		
 		@param text: Current Text Value. ( QString )
 		"""
 
-		self.setSearchMatchingSets()
+		self.setSearchMatchingIblsSets()
 
 	@core.executionTrace
-	def Search_Database_comboBox_OnActivated(self, index):
+	def __Search_Database_comboBox__activated(self, index):
 		"""
 		This Method Is Triggered When Search_Database_comboBox Index Changes.
 		
@@ -744,20 +744,20 @@ class SearchDatabase(UiComponent):
 			self.ui.Tags_Cloud_groupBox.show()
 		else:
 			self.ui.Tags_Cloud_groupBox.hide()
-		self.setSearchMatchingSets()
+		self.setSearchMatchingIblsSets()
 
 	@core.executionTrace
-	def Case_Insensitive_Matching_checkBox_OnStateChanged(self, state):
+	def __Case_Insensitive_Matching_checkBox__stateChanged(self, state):
 		"""
 		This Method Is Triggered When Case_Insensitive_Matching_checkBox State Changes.
 		
 		@param state: Current Checkbox State. ( Integer )
 		"""
 
-		self.setSearchMatchingSets()
+		self.setSearchMatchingIblsSets()
 
 	@core.executionTrace
-	def Time_Low_timeEdit_OnTimeChanged(self, time):
+	def __Time_Low_timeEdit__timeChanged(self, time):
 		"""
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
 		
@@ -765,10 +765,10 @@ class SearchDatabase(UiComponent):
 		"""
 
 		self.ui.Time_Low_timeEdit.time() >= self.ui.Time_High_timeEdit.time() and self.ui.Time_Low_timeEdit.setTime(self.ui.Time_High_timeEdit.time().addSecs(-60))
-		self.setTimeMatchingSets()
+		self.setTimeMatchingIblSets()
 
 	@core.executionTrace
-	def Time_High_timeEdit_OnTimeChanged(self, time):
+	def __Time_High_timeEdit__timeChanged(self, time):
 		"""
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
 		
@@ -776,10 +776,10 @@ class SearchDatabase(UiComponent):
 		"""
 
 		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime(self.ui.Time_Low_timeEdit.time().addSecs(60))
-		self.setTimeMatchingSets()
+		self.setTimeMatchingIblSets()
 
 	@core.executionTrace
-	def Tags_Cloud_listWidget_OnDoubleClicked(self, listWidgetItem):
+	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
 		"""
 		This Method Is Triggered When Tags_Cloud_listWidget Is Double Clicked.
 		
@@ -789,7 +789,7 @@ class SearchDatabase(UiComponent):
 		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
-	def setTimeMatchingSets(self):
+	def setTimeMatchingIblSets(self):
 		"""
 		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser displaySets.
 		"""
@@ -819,7 +819,7 @@ class SearchDatabase(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
-	def setSearchMatchingSets(self):
+	def setSearchMatchingIblsSets(self):
 		"""
 		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser displaySets.
 		"""

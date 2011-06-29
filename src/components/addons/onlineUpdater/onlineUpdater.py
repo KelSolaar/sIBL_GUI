@@ -116,13 +116,13 @@ class DownloadManager(QObject):
 	downloadFinished = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, container, networkAccessManager, downloadFolder, requests=None):
+	def __init__(self, container, networkAccessManager, downloadDirectory, requests=None):
 		"""
 		This Method Initializes The Class.
 		
 		@param container: Container. ( Object )
 		@param networkAccessManager: Network Access Manager. ( QNetworkAccessManager )
-		@param downloadFolder: Download Folder. ( String )
+		@param downloadDirectory: Download Directory. ( String )
 		@param requests: Download Requests. ( List )
 		"""
 
@@ -133,7 +133,7 @@ class DownloadManager(QObject):
 		# --- Setting Class Attributes. ---
 		self.__container = container
 		self.__networkAccessManager = networkAccessManager
-		self.__downloadFolder = downloadFolder
+		self.__downloadDirectory = downloadDirectory
 
 		self.__uiPath = "ui/Download_Manager.ui"
 		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
@@ -223,34 +223,34 @@ class DownloadManager(QObject):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
 
 	@property
-	def downloadFolder(self):
+	def downloadDirectory(self):
 		"""
-		This Method Is The Property For The _downloadFolder Attribute.
+		This Method Is The Property For The _downloadDirectory Attribute.
 
-		@return: self.__downloadFolder. ( String )
+		@return: self.__downloadDirectory. ( String )
 		"""
 
-		return self.__downloadFolder
+		return self.__downloadDirectory
 
-	@downloadFolder.setter
+	@downloadDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadFolder(self, value):
+	def downloadDirectory(self, value):
 		"""
-		This Method Is The Setter Method For The _downloadFolder Attribute.
+		This Method Is The Setter Method For The _downloadDirectory Attribute.
 
 		@param value: Attribute Value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadFolder"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadDirectory"))
 
-	@downloadFolder.deleter
+	@downloadDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadFolder(self):
+	def downloadDirectory(self):
 		"""
-		This Method Is The Deleter Method For The _downloadFolder Attribute.
+		This Method Is The Deleter Method For The _downloadDirectory Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadFolder"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadDirectory"))
 
 	@property
 	def uiPath(self):
@@ -572,7 +572,7 @@ class DownloadManager(QObject):
 		self.__ui.closeEvent = self.closeEvent
 
 		# Signals / Slots.
-		self.__ui.Cancel_Close_pushButton.clicked.connect(self.Cancel_Close_pushButton_OnClicked)
+		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
 
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
@@ -586,7 +586,7 @@ class DownloadManager(QObject):
 		closeEvent.accept()
 
 	@core.executionTrace
-	def Cancel_Close_pushButton_OnClicked(self, checked):
+	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
 		This Method Triggers The DownloadManager Close.
 		
@@ -596,7 +596,7 @@ class DownloadManager(QObject):
 		self.__ui.close()
 
 	@core.executionTrace
-	def downloadNext(self):
+	def __downloadNext(self):
 		"""
 		This Method Downloads The Next Request.
 		"""
@@ -606,7 +606,7 @@ class DownloadManager(QObject):
 
 			self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
-			self.__currentFilePath = os.path.join(self.__downloadFolder, os.path.basename(str(self.__currentRequest.url().path())))
+			self.__currentFilePath = os.path.join(self.__downloadDirectory, os.path.basename(str(self.__currentRequest.url().path())))
 			if os.path.exists(self.__currentFilePath):
 				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
 				os.remove(self.__currentFilePath)
@@ -615,16 +615,16 @@ class DownloadManager(QObject):
 
 			if not self.__currentFile.open(QIODevice.WriteOnly):
 				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
-				self.downloadNext()
+				self.__downloadNext()
 				return
 
 			# Signals / Slots.
-			self.__currentRequest.downloadProgress.connect(self.downloadProgress)
-			self.__currentRequest.finished.connect(self.downloadComplete)
-			self.__currentRequest.readyRead.connect(self.requestReady)
+			self.__currentRequest.__downloadProgress.connect(self.__downloadProgress)
+			self.__currentRequest.finished.connect(self.__downloadComplete)
+			self.__currentRequest.readyRead.connect(self.__requestReady)
 
 	@core.executionTrace
-	def downloadProgress(self, bytesReceived, bytesTotal):
+	def __downloadProgress(self, bytesReceived, bytesTotal):
 		"""
 		This Method Updates The Download Progress.
 		
@@ -639,7 +639,7 @@ class DownloadManager(QObject):
 		self.__ui.Download_progressBar.setValue(bytesReceived)
 
 	@core.executionTrace
-	def requestReady(self):
+	def __requestReady(self):
 		"""
 		This Method Is Triggered When The Request Is Ready To Write.
 		"""
@@ -649,7 +649,7 @@ class DownloadManager(QObject):
 		self.__currentFile.write(self.__currentRequest.readAll())
 
 	@core.executionTrace
-	def downloadComplete(self):
+	def __downloadComplete(self):
 		"""
 		This Method Is Triggered When The Request Download Is Complete.
 		"""
@@ -664,7 +664,7 @@ class DownloadManager(QObject):
 
 		if self.__requests:
 			LOGGER.debug("> Proceeding To Next Download Request.")
-			self.downloadNext()
+			self.__downloadNext()
 		else:
 			self.__downloadStatus = True
 			self.__ui.Current_File_label.setText("Downloads Complete!")
@@ -678,7 +678,7 @@ class DownloadManager(QObject):
 		"""
 
 		self.__downloadStatus = False
-		self.downloadNext()
+		self.__downloadNext()
 
 	@core.executionTrace
 	def abortDownload(self):
@@ -1325,13 +1325,13 @@ class RemoteUpdater(object):
 			self.__ui.Templates_tableWidget.resizeColumnsToContents()
 
 		# Signals / Slots.
-		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.Get_sIBL_GUI_pushButton_OnClicked)
-		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.Get_Latest_Templates_pushButton_OnClicked)
-		self.__ui.Open_Repository_pushButton.clicked.connect(self.Open_Repository_pushButton_OnClicked)
-		self.__ui.Close_pushButton.clicked.connect(self.Close_pushButton_OnClicked)
+		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.__Get_sIBL_GUI_pushButton__clicked)
+		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
+		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
+		self.__ui.Close_pushButton.clicked.connect(self.__Close_pushButton__clicked)
 
 	@core.executionTrace
-	def Get_sIBL_GUI_pushButton_OnClicked(self, checked):
+	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
 		
@@ -1348,11 +1348,11 @@ class RemoteUpdater(object):
 			url = builds["Linux"]
 
 		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, self.__container.ioDirectory, [url])
-		self.__downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
+		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
 		self.__downloadManager.startDownload()
 
 	@core.executionTrace
-	def Get_Latest_Templates_pushButton_OnClicked(self, checked):
+	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
 		
@@ -1364,15 +1364,15 @@ class RemoteUpdater(object):
 			if self.__ui.Templates_tableWidget.cellWidget(row, 1).state:
 				requests.append(self.__ui.Templates_tableWidget.item(row, 0)._datas)
 		if requests:
-			downloadFolder = self.getTemplatesDownloadFolder()
-			if downloadFolder:
-				LOGGER.debug("> Templates Download Folder: '{0}'.".format(downloadFolder))
-				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadFolder, [request.url for request in requests])
-				self.__downloadManager.downloadFinished.connect(self.downloadManager_OnComplete)
+			downloadDirectory = self.__getTemplatesDownloadDirectory()
+			if downloadDirectory:
+				LOGGER.debug("> Templates Download Directory: '{0}'.".format(downloadDirectory))
+				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests])
+				self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
 				self.__downloadManager.startDownload()
 
 	@core.executionTrace
-	def Open_Repository_pushButton_OnClicked(self, checked):
+	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
 		
@@ -1383,7 +1383,7 @@ class RemoteUpdater(object):
 		QDesktopServices.openUrl(QUrl(QString(self.__repositoryUrl)))
 
 	@core.executionTrace
-	def Close_pushButton_OnClicked(self, checked):
+	def __Close_pushButton__clicked(self, checked):
 		"""
 		This Method Closes The RemoteUpdater.
 		
@@ -1394,32 +1394,7 @@ class RemoteUpdater(object):
 		self.__ui.close()
 
 	@core.executionTrace
-	def getTemplatesDownloadFolder(self):
-		"""
-		This Method Gets The Templates Folder.
-		"""
-
-		LOGGER.debug("> Retrieving Templates Download Folder.")
-
-		messageBox = QMessageBox()
-		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
-		messageBox.setIcon(QMessageBox.Question)
-		messageBox.setText("{0} | Which Folder Do You Want To Install The Templates Into?".format(self.__class__.__name__))
-		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Cancel"), QMessageBox.AcceptRole)
-		reply = messageBox.exec_()
-
-		if reply == 0:
-			return os.path.join(os.getcwd(), Constants.templatesDirectory)
-		elif reply == 1:
-			return os.path.join(self.__container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
-		elif reply == 2:
-			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates Directory:", self.__container.container.lastBrowsedPath)))
-
-	@core.executionTrace
-	def downloadManager_OnComplete(self):
+	def __downloadManager__finished(self):
 		"""
 		This Method Is Triggered When The Download Manager Finishes.
 		"""
@@ -1439,6 +1414,31 @@ class RemoteUpdater(object):
 					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
 
 		needModelRefresh and self.__container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+
+	@core.executionTrace
+	def __getTemplatesDownloadDirectory(self):
+		"""
+		This Method Gets The Templates Directory.
+		"""
+
+		LOGGER.debug("> Retrieving Templates Download Directory.")
+
+		messageBox = QMessageBox()
+		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
+		messageBox.setIcon(QMessageBox.Question)
+		messageBox.setText("{0} | Which Directory Do You Want To Install The Templates Into?".format(self.__class__.__name__))
+		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
+		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
+		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
+		messageBox.addButton(QString("Cancel"), QMessageBox.AcceptRole)
+		reply = messageBox.exec_()
+
+		if reply == 0:
+			return os.path.join(os.getcwd(), Constants.templatesDirectory)
+		elif reply == 1:
+			return os.path.join(self.__container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
+		elif reply == 2:
+			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates Directory:", self.__container.container.lastBrowsedPath)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -2034,9 +2034,9 @@ class OnlineUpdater(UiComponent):
 		self.Ignore_Non_Existing_Templates_checkBox_setUi()
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.Check_For_New_Releases_pushButton_OnClicked)
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged)
-		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged)
+		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -2047,57 +2047,9 @@ class OnlineUpdater(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.Check_For_New_Releases_pushButton_OnClicked)
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.Check_For_New_Releases_On_Startup_checkBox_OnStateChanged)
-		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.Ignore_Non_Existing_Templates_checkBox_OnStateChanged)
-
-	@core.executionTrace
-	def Check_For_New_Releases_On_Startup_checkBox_setUi(self):
-		"""
-		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
-		"""
-
-		# Adding Settings Key If It Doesn't Exists.
-		self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup").isNull() and self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
-
-		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
-
-	@core.executionTrace
-	def Check_For_New_Releases_On_Startup_checkBox_OnStateChanged(self, state):
-		"""
-		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
-		
-		@param state: Checkbox State. ( Integer )
-		"""
-
-		LOGGER.debug("> Check For New Releases On Startup State: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
-
-	@core.executionTrace
-	def Ignore_Non_Existing_Templates_checkBox_setUi(self):
-		"""
-		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
-		"""
-
-		# Adding Settings Key If It Doesn't Exists.
-		self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates").isNull() and self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
-
-		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
-		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
-
-	@core.executionTrace
-	def Ignore_Non_Existing_Templates_checkBox_OnStateChanged(self, state):
-		"""
-		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
-		
-		@param state: Checkbox State. ( Integer )
-		"""
-
-		LOGGER.debug("> Ignore Non Existing Templates State: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
+		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
 	@core.executionTrace
 	def onStartup(self):
@@ -2131,7 +2083,55 @@ class OnlineUpdater(UiComponent):
 		self.ui.Online_Updater_groupBox.setParent(None)
 
 	@core.executionTrace
-	def Check_For_New_Releases_pushButton_OnClicked(self, checked):
+	def Check_For_New_Releases_On_Startup_checkBox_setUi(self):
+		"""
+		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
+		"""
+
+		# Adding Settings Key If It Doesn't Exists.
+		self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup").isNull() and self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
+
+		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
+		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
+		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
+
+	@core.executionTrace
+	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
+		"""
+		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
+		
+		@param state: Checkbox State. ( Integer )
+		"""
+
+		LOGGER.debug("> Check For New Releases On Startup State: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
+		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
+
+	@core.executionTrace
+	def Ignore_Non_Existing_Templates_checkBox_setUi(self):
+		"""
+		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
+		"""
+
+		# Adding Settings Key If It Doesn't Exists.
+		self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates").isNull() and self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
+
+		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
+		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
+		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
+
+	@core.executionTrace
+	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
+		"""
+		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
+		
+		@param state: Checkbox State. ( Integer )
+		"""
+
+		LOGGER.debug("> Ignore Non Existing Templates State: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
+		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
+
+	@core.executionTrace
+	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Check_For_New_Releases_pushButton Is Clicked.
 		
@@ -2143,7 +2143,7 @@ class OnlineUpdater(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.NetworkError)
-	def releaseReply_OnDownloadComplete(self):
+	def __releaseReply__finished(self):
 		"""
 		This Method Is Triggered When The Release Reply Finishes.
 		"""
@@ -2215,7 +2215,7 @@ class OnlineUpdater(UiComponent):
 		LOGGER.debug("> Downloading '{0}' Releases File.".format(url.path()))
 
 		self.__releaseReply = self.__networkAccessManager.get(QNetworkRequest(url))
-		self.__releaseReply.finished.connect(self.releaseReply_OnDownloadComplete)
+		self.__releaseReply.finished.connect(self.__releaseReply__finished)
 
 #***********************************************************************************************
 #***	Python End

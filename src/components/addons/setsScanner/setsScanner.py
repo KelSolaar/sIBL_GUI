@@ -254,18 +254,18 @@ class SetsScanner_Worker(QThread):
 
 		self.__newIblSets = {}
 		paths = [path[0] for path in self.__dbSession.query(dbUtilities.types.DbIblSet.path).all()]
-		folders = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
+		directorys = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
-		for folder in folders:
-			if os.path.exists(folder):
-				walker = Walker(folder)
+		for directory in directorys:
+			if os.path.exists(directory):
+				walker = Walker(directory)
 				walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 				for iblSet, path in walker.files.items():
 					if not dbUtilities.common.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:
-				LOGGER.warning("!> '{0}' Folder Doesn't Exists And Can't Be Scanned For New Sets!".format(folder))
+				LOGGER.warning("!> '{0}' Directory Doesn't Exists And Can't Be Scanned For New Sets!".format(directory))
 
 		self.__dbSession.close()
 

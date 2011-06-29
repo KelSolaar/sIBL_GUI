@@ -419,12 +419,12 @@ class RewiringTool(UiComponent):
 			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
 		# Signals / Slots.
-		self.ui.Background_comboBox.activated.connect(self.setReWireWidgetFramesVisibility)
-		self.ui.Lighting_comboBox.activated.connect(self.setReWireWidgetFramesVisibility)
-		self.ui.Reflection_comboBox.activated.connect(self.setReWireWidgetFramesVisibility)
-		self.ui.Background_Path_toolButton.clicked.connect(self.Background_Path_toolButton_OnClicked)
-		self.ui.Lighting_Path_toolButton.clicked.connect(self.Lighting_Path_toolButton_OnClicked)
-		self.ui.Reflection_Path_toolButton.clicked.connect(self.Reflection_Path_toolButton_OnClicked)
+		self.ui.Background_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Lighting_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Reflection_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Background_Path_toolButton.clicked.connect(self.__Background_Path_toolButton__clicked)
+		self.ui.Lighting_Path_toolButton.clicked.connect(self.__Lighting_Path_toolButton__clicked)
+		self.ui.Reflection_Path_toolButton.clicked.connect(self.__Reflection_Path_toolButton__clicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -439,12 +439,12 @@ class RewiringTool(UiComponent):
 		self.__reWireLineEditWidgets = None
 
 		# Signals / Slots.
-		self.ui.Background_comboBox.activated.disconnect(self.setReWireWidgetFramesVisibility)
-		self.ui.Lighting_comboBox.activated.disconnect(self.setReWireWidgetFramesVisibility)
-		self.ui.Reflection_comboBox.activated.disconnect(self.setReWireWidgetFramesVisibility)
-		self.ui.Background_Path_toolButton.clicked.disconnect(self.Background_Path_toolButton_OnClicked)
-		self.ui.Lighting_Path_toolButton.clicked.disconnect(self.Lighting_Path_toolButton_OnClicked)
-		self.ui.Reflection_Path_toolButton.clicked.disconnect(self.Reflection_Path_toolButton_OnClicked)
+		self.ui.Background_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Lighting_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Reflection_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.ui.Background_Path_toolButton.clicked.disconnect(self.__Background_Path_toolButton__clicked)
+		self.ui.Lighting_Path_toolButton.clicked.disconnect(self.__Lighting_Path_toolButton__clicked)
+		self.ui.Reflection_Path_toolButton.clicked.disconnect(self.__Reflection_Path_toolButton__clicked)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -468,7 +468,37 @@ class RewiringTool(UiComponent):
 		self.ui.setParent(None)
 
 	@core.executionTrace
-	def setReWireWidgetFramesVisibility(self, index):
+	def __Background_Path_toolButton__clicked(self, checked):
+		"""
+		This Method Is Called When Background ToolButton Is Clicked.
+		
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.__setReWireCustomPath("Background")
+
+	@core.executionTrace
+	def __Lighting_Path_toolButton__clicked(self, checked):
+		"""
+		This Method Is Called When Lighting ToolButton Is Clicked.
+		
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.__setReWireCustomPath("Lighting")
+
+	@core.executionTrace
+	def __Reflection_Path_toolButton__clicked(self, checked):
+		"""
+		This Method Is Called When Reflection ToolButton Is Clicked.
+
+		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.__setReWireCustomPath("Reflection")
+
+	@core.executionTrace
+	def __setReWireWidgetFramesVisibility(self, index):
 		"""
 		This Method Shows / Hides ReWire Widget Frames.
 
@@ -484,7 +514,7 @@ class RewiringTool(UiComponent):
 				self.__reWireFramesWidgets[index].hide()
 
 	@core.executionTrace
-	def setReWireCustomPath(self, component):
+	def __setReWireCustomPath(self, component):
 		"""
 		This Method Sets The ReWire Custom Image Line Edits.
 
@@ -500,36 +530,6 @@ class RewiringTool(UiComponent):
 				self.ui.Lighting_Path_lineEdit.setText(QString(customFile))
 			elif component == "Reflection":
 				self.ui.Reflection_Path_lineEdit.setText(QString(customFile))
-
-	@core.executionTrace
-	def Background_Path_toolButton_OnClicked(self, checked):
-		"""
-		This Method Is Called When Background ToolButton Is Clicked.
-		
-		@param checked: Checked State. ( Boolean )
-		"""
-
-		self.setReWireCustomPath("Background")
-
-	@core.executionTrace
-	def Lighting_Path_toolButton_OnClicked(self, checked):
-		"""
-		This Method Is Called When Lighting ToolButton Is Clicked.
-		
-		@param checked: Checked State. ( Boolean )
-		"""
-
-		self.setReWireCustomPath("Lighting")
-
-	@core.executionTrace
-	def Reflection_Path_toolButton_OnClicked(self, checked):
-		"""
-		This Method Is Called When Reflection ToolButton Is Clicked.
-
-		@param checked: Checked State. ( Boolean )
-		"""
-
-		self.setReWireCustomPath("Reflection")
 
 	@core.executionTrace
 	def getOverrideKeys(self):

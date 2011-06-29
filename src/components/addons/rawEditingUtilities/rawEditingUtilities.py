@@ -539,8 +539,8 @@ class RawEditingUtilities(UiComponent):
 		self.__addActions()
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.Custom_Text_Editor_Path_toolButton_OnClicked)
-		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.Custom_Text_Editor_Path_lineEdit_OnEditFinished)
+		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
+		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -551,8 +551,8 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.Custom_Text_Editor_Path_toolButton_OnClicked)
-		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.Custom_Text_Editor_Path_lineEdit_OnEditFinished)
+		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
+		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 
 		self.__removeActions()
 
@@ -587,15 +587,15 @@ class RawEditingUtilities(UiComponent):
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-			self.__editIblSetsInTextEditorAction.triggered.connect(self.Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered)
+			self.__editIblSetsInTextEditorAction.triggered.connect(self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
 
 			self.__editInspectedIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectedIblSetInTextEditorAction.triggered.connect(self.Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered)
+			self.__editInspectedIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered)
 			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInTextEditorAction)
 
 			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-			self.__editTemplateInTextEditorAction.triggered.connect(self.Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered)
+			self.__editTemplateInTextEditorAction.triggered.connect(self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered)
 			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__editTemplateInTextEditorAction)
 
 		else:
@@ -620,7 +620,7 @@ class RawEditingUtilities(UiComponent):
 			self.__editTemplateInTextEditorAction = None
 
 	@core.executionTrace
-	def Database_Browser_listView_editIblSetsInTextEditorAction_OnTriggered(self, checked):
+	def __Database_Browser_listView_editIblSetsInTextEditorAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By editIblSetsInTextEditorAction Action.
 
@@ -629,10 +629,10 @@ class RawEditingUtilities(UiComponent):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		for iblSet in selectedIblSets:
-			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editProvidedfile(iblSet._datas.path)
+			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editFile(iblSet._datas.path)
 
 	@core.executionTrace
-	def Inspector_Overall_frame_editInspectedIblSetInTextEditorAction_OnTriggered(self, checked):
+	def __Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By editInspectedIblSetInTextEditorAction Action.
 
@@ -641,10 +641,10 @@ class RawEditingUtilities(UiComponent):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
-		selectedIblSet and self.editProvidedfile(selectedIblSet._datas.path)
+		selectedIblSet and self.editFile(selectedIblSet._datas.path)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_editTemplateInTextEditorAction_OnTriggered(self, checked):
+	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
 		"""
 		This Method Is Triggered By editTemplateInTextEditorAction Action.
 
@@ -654,7 +654,7 @@ class RawEditingUtilities(UiComponent):
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates:
 			for template in selectedTemplates:
-				os.path.exists(template._datas.path) and self.editProvidedfile(template._datas.path)
+				os.path.exists(template._datas.path) and self.editFile(template._datas.path)
 
 	@core.executionTrace
 	def Custom_Text_Editor_Path_lineEdit_setUi(self):
@@ -667,7 +667,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
-	def Custom_Text_Editor_Path_toolButton_OnClicked(self, checked):
+	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
 		
@@ -682,7 +682,7 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def Custom_Text_Editor_Path_lineEdit_OnEditFinished(self):
+	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
 		This Method Is Called When Custom_Text_Editor_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
 		"""
@@ -696,7 +696,7 @@ class RawEditingUtilities(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
-	def editProvidedfile(self, file):
+	def editFile(self, file):
 		"""
 		This Method Provides Editing Capability.
 

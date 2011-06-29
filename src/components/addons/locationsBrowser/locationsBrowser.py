@@ -120,7 +120,7 @@ class LocationsBrowser(UiComponent):
 		self.__openComponentsLocationsAction = None
 		self.__openTemplatesLocationsAction = None
 
-		self.__Open_Output_Folder_pushButton = None
+		self.__Open_Output_Directory_pushButton = None
 
 		self.__linuxBrowsers = ("nautilus", "dolphin", "konqueror", "thunar")
 
@@ -518,34 +518,34 @@ class LocationsBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openTemplatesLocationsAction"))
 
 	@property
-	def Open_Output_Folder_pushButton(self):
+	def Open_Output_Directory_pushButton(self):
 		"""
-		This Method Is The Property For The _Open_Output_Folder_pushButton Attribute.
+		This Method Is The Property For The _Open_Output_Directory_pushButton Attribute.
 
-		@return: self.__Open_Output_Folder_pushButton. ( QPushButton )
+		@return: self.__Open_Output_Directory_pushButton. ( QPushButton )
 		"""
 
-		return self.__Open_Output_Folder_pushButton
+		return self.__Open_Output_Directory_pushButton
 
-	@Open_Output_Folder_pushButton.setter
+	@Open_Output_Directory_pushButton.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Open_Output_Folder_pushButton(self, value):
+	def Open_Output_Directory_pushButton(self, value):
 		"""
-		This Method Is The Setter Method For The _Open_Output_Folder_pushButton Attribute.
+		This Method Is The Setter Method For The _Open_Output_Directory_pushButton Attribute.
 
 		@param value: Attribute Value. ( QPushButton )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Open_Output_Folder_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Open_Output_Directory_pushButton"))
 
-	@Open_Output_Folder_pushButton.deleter
+	@Open_Output_Directory_pushButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def Open_Output_Folder_pushButton(self):
+	def Open_Output_Directory_pushButton(self):
 		"""
-		This Method Is The Deleter Method For The _Open_Output_Folder_pushButton Attribute.
+		This Method Is The Deleter Method For The _Open_Output_Directory_pushButton Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Open_Output_Folder_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Open_Output_Directory_pushButton"))
 
 	@property
 	def linuxBrowsers(self):
@@ -645,11 +645,11 @@ class LocationsBrowser(UiComponent):
 
 		# LoaderScript Addon Component Specific Code.
 		if self.__addonsLoaderScript.activated:
-			self.__Open_Output_Folder_pushButton = QPushButton("Open Output Folder")
-			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Folder_pushButton)
+			self.__Open_Output_Directory_pushButton = QPushButton("Open Output Directory")
+			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
 
 			# Signals / Slots.
-			self.__Open_Output_Folder_pushButton.clicked.connect(self.__Open_Output_Folder_pushButton__clicked)
+			self.__Open_Output_Directory_pushButton.clicked.connect(self.__Open_Output_Directory_pushButton__clicked)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -666,10 +666,10 @@ class LocationsBrowser(UiComponent):
 		# LoaderScript Addon Component Specific Code.
 		if self.__addonsLoaderScript.activated:
 			# Signals / Slots.
-			self.__Open_Output_Folder_pushButton.clicked.disconnect(self.__Open_Output_Folder_pushButton__clicked)
+			self.__Open_Output_Directory_pushButton.clicked.disconnect(self.__Open_Output_Directory_pushButton__clicked)
 
-			self.__Open_Output_Folder_pushButton.setParent(None)
-			self.__Open_Output_Folder_pushButton = None
+			self.__Open_Output_Directory_pushButton.setParent(None)
+			self.__Open_Output_Directory_pushButton = None
 
 		self.__removeActions()
 
@@ -827,9 +827,9 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def __Open_Output_Folder_pushButton__clicked(self, checked):
+	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This Method Is Called When Open_Output_Folder_pushButton Is Clicked.
+		This Method Is Called When Open_Output_Directory_pushButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
 		"""
