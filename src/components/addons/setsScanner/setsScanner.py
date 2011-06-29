@@ -254,9 +254,9 @@ class SetsScanner_Worker(QThread):
 
 		self.__newIblSets = {}
 		paths = [path[0] for path in self.__dbSession.query(dbUtilities.types.DbIblSet.path).all()]
-		directorys = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
+		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
-		for directory in directorys:
+		for directory in directories:
 			if os.path.exists(directory):
 				walker = Walker(directory)
 				walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
