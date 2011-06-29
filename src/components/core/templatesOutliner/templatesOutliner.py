@@ -1196,7 +1196,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
-		self.Templates_Outliner_treeView_setModel()
+		self.__Templates_Outliner_treeView_setModel()
 
 		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__container)
 		self.ui.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
@@ -1205,7 +1205,7 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Templates_Outliner_treeView_addActions()
 
-		self.Templates_Outliner_treeView_setView()
+		self.__Templates_Outliner_treeView_setView()
 
 		self.ui.Template_Informations_textBrowser.setText(self.__templatesInformationsDefaultText)
 		self.ui.Template_Informations_textBrowser.setOpenLinks(False)
@@ -1324,7 +1324,7 @@ class TemplatesOutliner(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Softwares"]))
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_setModel(self):
+	def __Templates_Outliner_treeView_setModel(self):
 		"""
 		This Method Sets The Templates_Outliner_treeView Model.
 		
@@ -1401,24 +1401,14 @@ class TemplatesOutliner(UiComponent):
 
 							except Exception as error:
 								LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Template To '{2}' Model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
-								foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Templates_Outliner_treeView_setModel"))
+								foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Templates_Outliner_treeView_setModel"))
 
 		self.Templates_Outliner_treeView_restoreModelSelection()
 
 		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Templates_Outliner_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
-
-		self.Templates_Outliner_treeView_setModel()
-
-	@core.executionTrace
-	def Templates_Outliner_treeView_setView(self):
+	def __Templates_Outliner_treeView_setView(self):
 		"""
 		This Method Sets The Templates_Outliner_treeView View.
 		"""
@@ -1433,18 +1423,10 @@ class TemplatesOutliner(UiComponent):
 
 		self.ui.Templates_Outliner_treeView.setModel(self.__model)
 
-		self.Templates_Outliner_treeView_setDefaultViewState()
+		self.__Templates_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_refreshView(self):
-		"""
-		This Method Refreshes The Templates_Outliner_treeView View.
-		"""
-
-		self.Templates_Outliner_treeView_setDefaultViewState()
-
-	@core.executionTrace
-	def Templates_Outliner_treeView_setDefaultViewState(self):
+	def __Templates_Outliner_treeView_setDefaultViewState(self):
 		"""
 		This Method Sets Templates_Outliner_treeView Default View State.
 		"""
@@ -1456,6 +1438,24 @@ class TemplatesOutliner(UiComponent):
 			self.ui.Templates_Outliner_treeView.resizeColumnToContents(column)
 
 		self.ui.Templates_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Templates_Outliner_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
+
+		self.__Templates_Outliner_treeView_setModel()
+
+	@core.executionTrace
+	def Templates_Outliner_treeView_refreshView(self):
+		"""
+		This Method Refreshes The Templates_Outliner_treeView View.
+		"""
+
+		self.__Templates_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def Templates_Outliner_treeView_storeModelSelection(self):

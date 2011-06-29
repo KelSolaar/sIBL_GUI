@@ -398,7 +398,7 @@ class DatabaseOperations(UiComponent):
 		This Method Synchronizes The Database.
 		"""
 
-		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self.__coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel},
+		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self.__coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended},
 					{"type" : "Template", "getMethod" : dbUtilities.common.getTemplates, "updateContentMethod" : dbUtilities.common.updateTemplateContent, "updateLocationMethod" : self.__coreTemplatesOutliner.updateTemplateLocation, "refreshModelMethod" : self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel})
 
 		for dbType in dbTypes:

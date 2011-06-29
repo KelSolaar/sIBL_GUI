@@ -409,12 +409,12 @@ class DatabaseBrowser_QListView(QListView):
 					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self.__coreDatabaseBrowser.addIblSet(name, path) and self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self.__coreDatabaseBrowser.addIblSet(name, path) and self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
-								self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 		else:
@@ -1193,12 +1193,12 @@ class DatabaseBrowser(UiComponent):
 
 		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Database_Browser_listView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
-		self.Database_Browser_listView_setModel()
+		self.__Database_Browser_listView_setModel()
 
 		self.ui.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Database_Browser_listView_addActions()
 
-		self.Database_Browser_listView_setView()
+		self.__Database_Browser_listView_setView()
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
@@ -1218,6 +1218,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
 		self.modelChanged.connect(self.Database_Browser_listView_refreshView)
+		self.modelChanged.connect(self.__coreCollectionsOutliner._CollectionsOutliner__Collections_Outliner_treeView_setIblSetsCounts)
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
@@ -1267,7 +1268,7 @@ class DatabaseBrowser(UiComponent):
 					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
 					if directory:
 						self.addDirectory(directory)
-						self.Database_Browser_listView_extendedRefreshModel()
+						self.Database_Browser_listView_refreshModelExtended()
 
 			# Ibl Sets Table Integrity Checking.
 			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
@@ -1278,7 +1279,7 @@ class DatabaseBrowser(UiComponent):
 							self.updateIblSetLocation(iblSet)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
-				self.Database_Browser_listView_localRefreshModel()
+				self.Database_Browser_listView_refreshModelExtended()
 		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1305,7 +1306,7 @@ class DatabaseBrowser(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
 
 	@core.executionTrace
-	def Database_Browser_listView_setModel(self):
+	def __Database_Browser_listView_setModel(self):
 		"""
 		This Method Sets The Database_Browser_listView Model.
 		"""
@@ -1335,42 +1336,14 @@ class DatabaseBrowser(UiComponent):
 
 			except Exception as error:
 				LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
-				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Database_Browser_listView_setModel"))
+				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Database_Browser_listView_setModel"))
 
 		self.Database_Browser_listView_restoreModelSelection()
 
 		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Database_Browser_listView_refreshModel(self):
-		"""
-		This Method Refreshes The Database_Browser_listView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
-
-		self.Database_Browser_listView_setModel()
-
-	@core.executionTrace
-	def Database_Browser_listView_localRefreshModel(self):
-		"""
-		This Method Implements The Local Refresh Behavior.
-		"""
-
-		self.setCollectionsDisplaySets()
-		self.Database_Browser_listView_refreshModel()
-
-	@core.executionTrace
-	def Database_Browser_listView_extendedRefreshModel(self):
-		"""
-		This Method Implements The Extended Refresh Behavior.
-		"""
-
-		self.__coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
-		self.Database_Browser_listView_localRefreshModel()
-
-	@core.executionTrace
-	def Database_Browser_listView_setView(self):
+	def __Database_Browser_listView_setView(self):
 		"""
 		This Method Sets The Database_Browser_listView Ui.
 		"""
@@ -1382,9 +1355,39 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
 
-		self.Database_Browser_listView_setItemsSize()
+		self.__Database_Browser_listView_setDefaultViewState()
 
 		self.ui.Database_Browser_listView.setModel(self.__model)
+
+	@core.executionTrace
+	def __Database_Browser_listView_setDefaultViewState(self):
+		"""
+		This Method Scales The Database_Browser_listView Item Size.
+		"""
+
+		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
+
+		self.ui.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+
+	@core.executionTrace
+	def Database_Browser_listView_refreshModel(self):
+		"""
+		This Method Refreshes The Database_Browser_listView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
+
+		self.__Database_Browser_listView_setModel()
+
+	@core.executionTrace
+	def Database_Browser_listView_refreshModelExtended(self):
+		"""
+		This Method Implements The Local Refresh Behavior.
+		"""
+
+		self.setCollectionsDisplaySets()
+		self.Database_Browser_listView_refreshModel()
 
 	@core.executionTrace
 	def Database_Browser_listView_refreshView(self):
@@ -1392,7 +1395,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Refreshes The Database_Browser_listView View.
 		"""
 
-		self.Database_Browser_listView_setItemsSize()
+		self.__Database_Browser_listView_setDefaultViewState()
 
 	@core.executionTrace
 	def Database_Browser_listView_storeModelSelection(self):
@@ -1430,17 +1433,6 @@ class DatabaseBrowser(UiComponent):
 				selectionModel.clear()
 				for index in indexes:
 					selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
-
-	@core.executionTrace
-	def Database_Browser_listView_setItemsSize(self):
-		"""
-		This Method Scales The Database_Browser_listView Item Size.
-		"""
-
-		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
-
-		self.ui.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
 
 	@core.executionTrace
 	def __Database_Browser_listView_addActions(self):
@@ -1483,7 +1475,7 @@ class DatabaseBrowser(UiComponent):
 		if directory:
 			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 			self.addDirectory(directory)
-			self.Database_Browser_listView_extendedRefreshModel()
+			self.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
@@ -1496,7 +1488,7 @@ class DatabaseBrowser(UiComponent):
 		iblSetPath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
 		if iblSetPath:
 			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(iblSetPath))
-			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath) and self.Database_Browser_listView_extendedRefreshModel()
+			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath) and self.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
@@ -1507,7 +1499,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		self.removeIblSets()
-		self.Database_Browser_listView_extendedRefreshModel()
+		self.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
@@ -1525,7 +1517,7 @@ class DatabaseBrowser(UiComponent):
 				needModelRefresh = True
 
 		if needModelRefresh:
-			self.Database_Browser_listView_localRefreshModel()
+			self.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
@@ -1556,7 +1548,7 @@ class DatabaseBrowser(UiComponent):
 
 		self.__listViewIconSize = value
 
-		self.Database_Browser_listView_setItemsSize()
+		self.__Database_Browser_listView_setDefaultViewState()
 
 		# Storing Settings Key.
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("listViewIconSize", value))
@@ -1570,7 +1562,7 @@ class DatabaseBrowser(UiComponent):
 
 		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
 		self.__coreDb.dbSession.expire_all()
-		self.Database_Browser_listView_extendedRefreshModel()
+		self.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	def setCollectionsDisplaySets(self):

@@ -898,8 +898,8 @@ class Inspector(UiComponent):
 		self.ui.Inspector_Options_groupBox.hide()
 
 		self.__model = QStandardItemModel()
-		self.Plates_listView_setModel()
-		self.Plates_listView_setView()
+		self.__Plates_listView_setModel()
+		self.__Plates_listView_setView()
 
 		self.Inspector_DockWidget_setUi()
 
@@ -986,7 +986,7 @@ class Inspector(UiComponent):
 		self.ui.Plates_frame.hide()
 
 	@core.executionTrace
-	def Plates_listView_setModel(self):
+	def __Plates_listView_setModel(self):
 		"""
 		This Method Sets The Plates_listView Model.
 		"""
@@ -1020,7 +1020,7 @@ class Inspector(UiComponent):
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
 
 	@core.executionTrace
-	def Plates_listView_setView(self):
+	def __Plates_listView_setView(self):
 		"""
 		This Method Sets The Plates_listView Ui.
 		"""
@@ -1037,12 +1037,12 @@ class Inspector(UiComponent):
 		self.ui.Plates_listView.setViewMode(QListView.IconMode)
 		self.ui.Plates_listView.setWrapping(False)
 
-		self.Plates_listView_setItemsSize()
+		self.__Plates_listView_setDefaultViewState()
 
 		self.ui.Plates_listView.setModel(self.__model)
 
 	@core.executionTrace
-	def Plates_listView_setItemsSize(self):
+	def __Plates_listView_setDefaultViewState(self):
 		"""
 		This Method Scales The Plates_listView Item Size.
 		"""
@@ -1050,6 +1050,14 @@ class Inspector(UiComponent):
 		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self.__listViewIconSize))
 
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+
+	@core.executionTrace
+	def Plates_listView_refreshModel(self):
+		"""
+		This Method Refreshes The Plates_listView Model.
+		"""
+
+		self.__Plates_listView_setModel()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_addActions(self):
@@ -1096,7 +1104,7 @@ class Inspector(UiComponent):
 		self.__setInspectorIblSet()
 
 		self.__setInspectorIblSetPlates()
-		self.Plates_listView_setModel()
+		self.__Plates_listView_setModel()
 
 		if self.__inspectorIblSet:
 			self.Inspector_DockWidget_setUi()

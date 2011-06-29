@@ -312,12 +312,12 @@ class CollectionsOutliner_QTreeView(QTreeView):
 						name = foundations.strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreDatabaseBrowser.addIblSet(name, path)
-							self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+							self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
-								self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+								self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 			else:
@@ -336,7 +336,6 @@ class CollectionsOutliner_QTreeView(QTreeView):
 							# Crash Preventing Code.
 							self.__coreDatabaseBrowser.modelSelectionState = False
 
-							self.__coreCollectionsOutliner.Collections_Outliner_treeView_refreshSetsCounts()
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 
 							# Crash Preventing Code.
@@ -1007,7 +1006,7 @@ class CollectionsOutliner(UiComponent):
 
 		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Collections_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
-		self.Collections_Outliner_treeView_setModel()
+		self.__Collections_Outliner_treeView_setModel()
 
 		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__container)
 		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
@@ -1015,7 +1014,7 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Collections_Outliner_treeView_addActions()
 
-		self.Collections_Outliner_treeView_setView()
+		self.__Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
 		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
@@ -1094,7 +1093,7 @@ class CollectionsOutliner(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(id) for id in self.__modelSelection[self.__overallCollection])))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_setModel(self):
+	def __Collections_Outliner_treeView_setModel(self):
 		"""
 		This Method Sets The Collections_Outliner_treeView Model.
 
@@ -1169,17 +1168,7 @@ class CollectionsOutliner(UiComponent):
 		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Collections_Outliner_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
-
-		self.Collections_Outliner_treeView_setModel()
-
-	@core.executionTrace
-	def Collections_Outliner_treeView_setView(self):
+	def __Collections_Outliner_treeView_setView(self):
 		"""
 		This Method Sets The Collections_Outliner_treeView View.
 		"""
@@ -1193,18 +1182,10 @@ class CollectionsOutliner(UiComponent):
 
 		self.ui.Collections_Outliner_treeView.setModel(self.__model)
 
-		self.Collections_Outliner_treeView_setDefaultViewState()
+		self.__Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshView(self):
-		"""
-		This Method Refreshes The Collections_Outliner_treeView View.
-		"""
-
-		self.Collections_Outliner_treeView_setDefaultViewState()
-
-	@core.executionTrace
-	def Collections_Outliner_treeView_setDefaultViewState(self):
+	def __Collections_Outliner_treeView_setDefaultViewState(self):
 		"""
 		This Method Sets Collections_Outliner_treeView Default View State.
 		"""
@@ -1218,9 +1199,9 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshSetsCounts(self):
+	def __Collections_Outliner_treeView_setIblSetsCounts(self):
 		"""
-		This Method Refreshes The Collections_Outliner_treeView Sets Counts.
+		This Method Sets The Collections_Outliner_treeView Ibl Sets Counts.
 		"""
 
 		# Disconnecting Model "dataChanged()" Signal.
@@ -1237,6 +1218,24 @@ class CollectionsOutliner(UiComponent):
 
 		# Reconnecting Model "dataChanged()" Signal.
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
+
+	@core.executionTrace
+	def Collections_Outliner_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Collections_Outliner_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
+
+		self.__Collections_Outliner_treeView_setModel()
+
+	@core.executionTrace
+	def Collections_Outliner_treeView_refreshView(self):
+		"""
+		This Method Refreshes The Collections_Outliner_treeView View.
+		"""
+
+		self.__Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def Collections_Outliner_treeView_storeModelSelection(self):
@@ -1314,7 +1313,7 @@ class CollectionsOutliner(UiComponent):
 					LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 					self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
 					self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-					self.Collections_Outliner_treeView_refreshSetsCounts()
+					#self.__Collections_Outliner_treeView_setIblSetsCounts()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
@@ -1340,7 +1339,7 @@ class CollectionsOutliner(UiComponent):
 
 		self.removeCollections()
 		self.Collections_Outliner_treeView_refreshModel()
-		self.__coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
+		self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1388,7 +1387,7 @@ class CollectionsOutliner(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		self.__coreDatabaseBrowser.Database_Browser_listView_localRefreshModel()
+		self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)

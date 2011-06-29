@@ -619,14 +619,14 @@ class ComponentsManagerUi(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		self.__model = QStandardItemModel()
-		self.Components_Manager_Ui_treeView_setModel()
+		self.__Components_Manager_Ui_treeView_setModel()
 
 		self.ui.Components_Manager_Ui_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 
 		self.ui.Components_Manager_Ui_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Components_Manager_Ui_treeView_addActions()
 
-		self.Components_Manager_Ui_treeView_setView()
+		self.__Components_Manager_Ui_treeView_setView()
 
 		self.ui.Components_Informations_textBrowser.setText(self.__componentsInformationsDefaultText)
 
@@ -635,6 +635,7 @@ class ComponentsManagerUi(UiComponent):
 		# Signals / Slots.
 		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.__Components_Manager_Ui_treeView_selectionModel__selectionChanged)
 		self.modelChanged.connect(self.Components_Manager_Ui_treeView_refreshView)
+		self.modelChanged.connect(self.__Components_Manager_Ui_treeView_setActivationsStatus)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -672,10 +673,10 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
-		self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+		self.__Components_Manager_Ui_treeView_setActivationsStatus()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_setModel(self):
+	def __Components_Manager_Ui_treeView_setModel(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView Model.
 		
@@ -731,17 +732,7 @@ class ComponentsManagerUi(UiComponent):
 		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Components_Manager_Ui_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
-
-		self.Components_Manager_Ui_treeView_setModel()
-
-	@core.executionTrace
-	def Components_Manager_Ui_treeView_setView(self):
+	def __Components_Manager_Ui_treeView_setView(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView View.
 		"""
@@ -757,18 +748,10 @@ class ComponentsManagerUi(UiComponent):
 
 		self.ui.Components_Manager_Ui_treeView.setModel(self.__model)
 
-		self.Components_Manager_Ui_treeView_setDefaultViewState()
+		self.__Components_Manager_Ui_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshView(self):
-		"""
-		This Method Refreshes The Components_Manager_Ui_treeView View.
-		"""
-
-		self.Components_Manager_Ui_treeView_setDefaultViewState()
-
-	@core.executionTrace
-	def Components_Manager_Ui_treeView_setDefaultViewState(self):
+	def __Components_Manager_Ui_treeView_setDefaultViewState(self):
 		"""
 		This Method Sets Components_Manager_Ui_treeView Default View State.
 		"""
@@ -782,9 +765,9 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Manager_Ui_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshActivationsStatus(self):
+	def __Components_Manager_Ui_treeView_setActivationsStatus(self):
 		"""
-		This Method Refreshes The Components_Manager_Ui_treeView Activations Status.
+		This Method Sets The Components_Manager_Ui_treeView Activations Status.
 		"""
 
 		for i in range(self.__model.rowCount()):
@@ -794,6 +777,24 @@ class ComponentsManagerUi(UiComponent):
 				componentActivationStandardItem.setText(str(componentStandardItem._datas.interface.activated))
 				iconPath = componentStandardItem._datas.interface.activated and os.path.join(self.__uiResources, self.__uiActivatedImage) or os.path.join(self.__uiResources, self.__uiDeactivatedImage)
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
+
+	@core.executionTrace
+	def Components_Manager_Ui_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Components_Manager_Ui_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
+
+		self.__Components_Manager_Ui_treeView_setModel()
+
+	@core.executionTrace
+	def Components_Manager_Ui_treeView_refreshView(self):
+		"""
+		This Method Refreshes The Components_Manager_Ui_treeView View.
+		"""
+
+		self.__Components_Manager_Ui_treeView_setDefaultViewState()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_addActions(self):
@@ -839,7 +840,7 @@ class ComponentsManagerUi(UiComponent):
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
 
-			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
@@ -863,7 +864,7 @@ class ComponentsManagerUi(UiComponent):
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
 
-			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
@@ -886,7 +887,7 @@ class ComponentsManagerUi(UiComponent):
 							self.activateComponent(component._datas)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
-			self.Components_Manager_Ui_treeView_refreshActivationsStatus()
+			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):

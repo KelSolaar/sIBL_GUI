@@ -549,7 +549,7 @@ class SetsScanner(Component):
 					if not dbUtilities.common.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
 
-				self.__coreDatabaseBrowser.Database_Browser_listView_extendedRefreshModel()
+				self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 
 		self.__setsScannerWorkerThread.exit()
 
