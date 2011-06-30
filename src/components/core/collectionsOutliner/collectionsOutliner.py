@@ -1499,9 +1499,9 @@ class CollectionsOutliner(UiComponent):
 			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
 		selectedCollections = self.getSelectedCollections()
-		selectedCollections = selectedCollections and [collection for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection] or None
+		selectedCollections = selectedCollections and [collection._datas for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection] or None
 		if selectedCollections:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				self.removeCollections(selectedCollections)
 
 	@core.executionTrace
@@ -1543,16 +1543,16 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Removes Collections From The Database.
 		
-		@param collections: Collections To Remove ( List )
+		@param collections: Collections To Remove ( DbCollection List )
 		"""
 
-		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection._datas.id for collection in collections])
+		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 		for collection in collections:
-			LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
-			dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection._datas.id))
+			LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.name))
+			dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection.id))
 		self.emit(SIGNAL("modelRefresh()"))
 		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 
