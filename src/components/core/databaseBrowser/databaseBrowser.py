@@ -1276,7 +1276,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Sets Database_Browser_listView Model Content.
 		"""
 
-		self.__modelContent = self.__coreCollectionsOutliner.getCollectionsIblSets()
+		self.__modelContent = self.__coreCollectionsOutliner.getSelectedCollectionsIblSets()
 
 	@core.executionTrace
 	def __Database_Browser_listView_setModel(self):
@@ -1522,6 +1522,39 @@ class DatabaseBrowser(UiComponent):
 		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
+	def getSelectedItems(self):
+		"""
+		This Method Returns The Database_Browser_listView Selected Items.
+		
+		@return: View Selected Items. ( List )
+		"""
+
+		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getFormatedShotDate(self, date, time):
+		"""
+		This Method Returns A Formated Shot Date.
+
+		@param date: sIBL Set Date Key Value. ( String )
+		@param time: sIBL Set Time Key Value. ( String )
+		@return: Current Shot Date. ( String )
+		"""
+
+		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1}' Time.".format(date, time))
+
+		if date and time and date != Constants.nullObject and time != Constants.nullObject:
+			shotTime = time.split(":")
+			shotTime = shotTime[0] + "H" + shotTime[1]
+			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
+
+			LOGGER.debug("> Formatted Shot Date: '{0}'.".format(shotDate))
+			return shotDate
+		else:
+			return Constants.nullObject
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None, noWarning=False):
 		"""
@@ -1600,39 +1633,6 @@ class DatabaseBrowser(UiComponent):
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 				return True
-
-	@core.executionTrace
-	def getSelectedItems(self):
-		"""
-		This Method Returns The Database_Browser_listView Selected Items.
-		
-		@return: View Selected Items. ( List )
-		"""
-
-		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getFormatedShotDate(self, date, time):
-		"""
-		This Method Returns A Formated Shot Date.
-
-		@param date: sIBL Set Date Key Value. ( String )
-		@param time: sIBL Set Time Key Value. ( String )
-		@return: Current Shot Date. ( String )
-		"""
-
-		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1}' Time.".format(date, time))
-
-		if date and time and date != Constants.nullObject and time != Constants.nullObject:
-			shotTime = time.split(":")
-			shotTime = shotTime[0] + "H" + shotTime[1]
-			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
-
-			LOGGER.debug("> Formatted Shot Date: '{0}'.".format(shotDate))
-			return shotDate
-		else:
-			return Constants.nullObject
 
 #***********************************************************************************************
 #***	Python End
