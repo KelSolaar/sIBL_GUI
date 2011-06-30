@@ -327,17 +327,11 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
 					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
 						iblSets = self.__coreDatabaseBrowser.getSelectedItems()
-						LOGGER.debug("> Adding '{0}' Ibl Set(s) To '{1}' Collection.".format(", ".join((iblSet._datas.name for iblSet in iblSets)), collectionStandardItem._datas.name))
 						for iblSet in iblSets:
+							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet._datas.name, collectionStandardItem._datas.name))
 							iblSet._datas.collection = collectionStandardItem._datas.id
 						if dbUtilities.common.commit(self.__coreDb.dbSession):
-							# Crash Preventing Code.
-							self.__coreDatabaseBrowser.modelSelectionState = False
-
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-
-							# Crash Preventing Code.
-							self.__coreDatabaseBrowser.modelSelectionState = True
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
 

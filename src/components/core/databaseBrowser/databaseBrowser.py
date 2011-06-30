@@ -479,8 +479,6 @@ class DatabaseBrowser(UiComponent):
 
 		self.__model = None
 		self.__modelSelection = None
-		# Crash Preventing Code.
-		self.__modelSelectionState = True
 
 		self.__databaseBrowserWorkerThread = None
 
@@ -1017,39 +1015,6 @@ class DatabaseBrowser(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelSelection"))
 
-	# Crash Preventing Code.
-	@property
-	def modelSelectionState(self):
-		"""
-		This Method Is The Property For The _modelSelectionState Attribute.
-
-		@return: self.__modelSelectionState. ( Boolean )
-		"""
-
-		return self.__modelSelectionState
-
-	@modelSelectionState.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelectionState(self, value):
-		"""
-		This Method Is The Setter Method For The _modelSelectionState Attribute.
-
-		@param value: Attribute Value. ( Boolean )
-		"""
-
-		if value:
-			assert type(value) is bool, "'{0}' Attribute: '{1}' Type Is Not 'bool'!".format("modelSelectionState", value)
-		self.__modelSelectionState = value
-
-	@modelSelectionState.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelectionState(self):
-		"""
-		This Method Is The Deleter Method For The _modelSelectionState Attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelSelectionState"))
-
 	@property
 	def databaseBrowserWorkerThread(self):
 		"""
@@ -1398,12 +1363,12 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	def __Database_Browser_listView_storeModelSelection(self):
-		"""
-		This Method Stores Database_Browser_listView Model Selection.
-		"""
+			"""
+			This Method Stores Database_Browser_listView Model Selection.
+			"""
 
-		# Crash Preventing Code.
-		if self.__modelSelectionState:
+			# Crash Preventing Code.
+			# if self.__modelSelectionState:
 
 			LOGGER.debug("> Storing '{0}' Model Selection!".format("Database_Browser_listView"))
 
@@ -1413,12 +1378,12 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	def __Database_Browser_listView_restoreModelSelection(self):
-		"""
-		This Method Restores Database_Browser_listView Model Selection.
-		"""
+			"""
+			This Method Restores Database_Browser_listView Model Selection.
+			"""
 
-		# Crash Preventing Code.
-		if self.__modelSelectionState:
+			# Crash Preventing Code.
+			# if self.__modelSelectionState:
 
 			LOGGER.debug("> Restoring '{0}' Model Selection!".format("Database_Browser_listView"))
 
