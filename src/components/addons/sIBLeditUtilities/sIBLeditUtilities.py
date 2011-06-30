@@ -437,7 +437,7 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.sIBLedit_Path_lineEdit_setUi()
+		self.__sIBLedit_Path_lineEdit_setUi()
 
 		self.__addActions()
 
@@ -534,7 +534,7 @@ class sIBLeditUtilities(UiComponent):
 		self.editIblSetsInSIBLedit()
 
 	@core.executionTrace
-	def sIBLedit_Path_lineEdit_setUi(self):
+	def __sIBLedit_Path_lineEdit_setUi(self):
 		"""
 		This Method Fills The sIBLedit_Path_lineEdit.
 		"""
@@ -566,7 +566,7 @@ class sIBLeditUtilities(UiComponent):
 
 		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring Preferences!")
-			self.sIBLedit_Path_lineEdit_setUi()
+			self.__sIBLedit_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File!".format(self.__class__.__name__)
 		else:

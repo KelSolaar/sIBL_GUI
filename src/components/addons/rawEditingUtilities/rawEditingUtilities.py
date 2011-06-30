@@ -534,7 +534,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.Custom_Text_Editor_Path_lineEdit_setUi()
+		self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
 		self.__addActions()
 
@@ -657,7 +657,7 @@ class RawEditingUtilities(UiComponent):
 				os.path.exists(template._datas.path) and self.editFile(template._datas.path)
 
 	@core.executionTrace
-	def Custom_Text_Editor_Path_lineEdit_setUi(self):
+	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
 		"""
 		This Method Fills The Custom_Text_Editor_Path_lineEdit.
 		"""
@@ -689,7 +689,7 @@ class RawEditingUtilities(UiComponent):
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.ui.Custom_Text_Editor_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring Preferences!")
-			self.Custom_Text_Editor_Path_lineEdit_setUi()
+			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File!".format(self.__class__.__name__)
 		else:

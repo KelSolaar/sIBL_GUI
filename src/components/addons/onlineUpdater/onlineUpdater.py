@@ -2026,8 +2026,8 @@ class OnlineUpdater(UiComponent):
 
 		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater Worker Thread Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 
-		self.Check_For_New_Releases_On_Startup_checkBox_setUi()
-		self.Ignore_Non_Existing_Templates_checkBox_setUi()
+		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
+		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
 
 		# Signals / Slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
@@ -2079,7 +2079,7 @@ class OnlineUpdater(UiComponent):
 		self.ui.Online_Updater_groupBox.setParent(None)
 
 	@core.executionTrace
-	def Check_For_New_Releases_On_Startup_checkBox_setUi(self):
+	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		"""
 		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
 		"""
@@ -2103,7 +2103,7 @@ class OnlineUpdater(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
-	def Ignore_Non_Existing_Templates_checkBox_setUi(self):
+	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		"""
 		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
 		"""

@@ -1777,7 +1777,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.Custom_Previewer_Path_lineEdit_setUi()
+		self.__Custom_Previewer_Path_lineEdit_setUi()
 
 		self.__addActions()
 		self.__addInspectorButtons()
@@ -1999,7 +1999,7 @@ class Preview(UiComponent):
 		self.showIblSetsImages("Plates")
 
 	@core.executionTrace
-	def Custom_Previewer_Path_lineEdit_setUi(self):
+	def __Custom_Previewer_Path_lineEdit_setUi(self):
 		"""
 		This Method Fills The Custom_Previewer_Path_lineEdit.
 		"""
@@ -2031,7 +2031,7 @@ class Preview(UiComponent):
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Previewer_Path_lineEdit.text()))) and str(self.ui.Custom_Previewer_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring Preferences!")
-			self.Custom_Previewer_Path_lineEdit_setUi()
+			self.__Custom_Previewer_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError, "{0} | Invalid Custom Previewer Executable File!".format(self.__class__.__name__)
 		else:
