@@ -834,17 +834,7 @@ class ComponentsManagerUi(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponents = self.getSelectedItems()
-
-		if selectedComponents:
-			for component in selectedComponents:
-				if component._type == "Component":
-					if not component._datas.interface.activated:
-						self.activateComponent(component._datas)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
-
-			self.__storeDeactivatedComponents()
+		self.activateComponents__()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_deactivateComponentsAction__triggered(self, checked):
@@ -854,20 +844,7 @@ class ComponentsManagerUi(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponents = self.getSelectedItems()
-
-		if selectedComponents:
-			for component in selectedComponents:
-				if component._type == "Component":
-					if component._datas.interface.activated:
-						if component._datas.interface.deactivatable:
-							self.deactivateComponent(component._datas)
-						else:
-							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component._datas.name))
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
-
-			self.__storeDeactivatedComponents()
+		self.deactivateComponents__()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_reloadComponentsAction__triggered(self, checked):
@@ -877,18 +854,7 @@ class ComponentsManagerUi(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponents = self.getSelectedItems()
-		if selectedComponents:
-			for component in selectedComponents:
-				if component._type == "Component":
-					if component._datas.interface.deactivatable:
-						if component._datas.interface.activated:
-							self.deactivateComponent(component._datas)
-						self.__container.componentsManager.reloadComponent(component._datas.name)
-						if not component._datas.interface.activated:
-							self.activateComponent(component._datas)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
+		self.reloadComponents__()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -932,17 +898,62 @@ class ComponentsManagerUi(UiComponent):
 		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
 
 	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
+	def activateComponents__(self):
 		"""
-		This Method Returns The Components_Manager_Ui_treeView Selected Items.
-		
-		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
-		@return: View Selected Items. ( List )
+		This Method Activates User Selected Components.
 		"""
 
-		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
+		selectedComponents = self.getSelectedItems()
 
-		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if not component._datas.interface.activated:
+						self.activateComponent(component._datas)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
+
+			self.__storeDeactivatedComponents()
+
+	@core.executionTrace
+	def deactivateComponents__(self):
+		"""
+		This Method Deactivates User Selected Components.
+		"""
+
+		selectedComponents = self.getSelectedItems()
+
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if component._datas.interface.activated:
+						if component._datas.interface.deactivatable:
+							self.deactivateComponent(component._datas)
+						else:
+							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component._datas.name))
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
+
+			self.__storeDeactivatedComponents()
+
+	@core.executionTrace
+	def reloadComponents__(self):
+		"""
+		This Method Reload User Selected Components.
+		"""
+
+		selectedComponents = self.getSelectedItems()
+		if selectedComponents:
+			for component in selectedComponents:
+				if component._type == "Component":
+					if component._datas.interface.deactivatable:
+						if component._datas.interface.activated:
+							self.deactivateComponent(component._datas)
+						self.__container.componentsManager.reloadComponent(component._datas.name)
+						if not component._datas.interface.activated:
+							self.activateComponent(component._datas)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
@@ -961,6 +972,8 @@ class ComponentsManagerUi(UiComponent):
 		elif component.categorie == "ui":
 			component.interface.addWidget()
 			component.interface.initializeUi()
+
+		LOGGER.info("{0} | '{1}' Component Has Been Activated!".format(self.__class__.__name__, component.name))
 
 		self.emit(SIGNAL("modelPartialRefresh()"))
 
@@ -982,7 +995,22 @@ class ComponentsManagerUi(UiComponent):
 			component.interface.removeWidget()
 		component.interface.deactivate()
 
+		LOGGER.info("{0} | '{1}' Component Has Been Deactivated!".format(self.__class__.__name__, component.name))
+
 		self.emit(SIGNAL("modelPartialRefresh()"))
+
+	@core.executionTrace
+	def getSelectedItems(self, rowsRootOnly=True):
+		"""
+		This Method Returns The Components_Manager_Ui_treeView Selected Items.
+		
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
+		"""
+
+		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End

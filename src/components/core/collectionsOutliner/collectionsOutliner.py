@@ -1298,7 +1298,7 @@ class CollectionsOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.addUserContent()
+		self.addContent__()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
@@ -1308,7 +1308,7 @@ class CollectionsOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.addUserCollection()
+		self.addCollection__()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
@@ -1318,7 +1318,7 @@ class CollectionsOutliner(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.removeUserCollections()
+		self.removeCollections__()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1374,6 +1374,106 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		self.__coreDatabaseBrowser.modelContent = self.getSelectedCollectionsIblSets()
+
+	@core.executionTrace
+	def addContent__(self):
+		"""
+		This Method Adds User Defined Content To The Database.
+		"""
+
+		collection, state = self.addCollection__()
+		if state:
+			directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
+			if directory:
+				LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+				self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
+				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+
+	@core.executionTrace
+	def	addCollection__(self):
+		"""
+		This Method Adds An User Defined Collection To The Database.
+		
+		@return: Collection Name, Addition Success. ( String, Boolean )		
+		"""
+
+		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
+		if state:
+			collectionInformations = str(collectionInformations).split(",")
+			name = collectionInformations[0].strip()
+			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
+			return name, self.addCollection(name, comment)
+		else:
+			return collectionInformations, state
+
+	@core.executionTrace
+	def	removeCollections__(self):
+		"""
+		This Method Removes User Selected Collections From The Database.
+		"""
+
+		selectedItems = self.getSelectedItems()
+
+		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
+
+		selectedCollections = self.getSelectedCollections()
+		selectedCollections = selectedCollections and [collection._datas for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection] or None
+		if selectedCollections:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				self.removeCollections(selectedCollections)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.ProgrammingError)
+	def addCollection(self, name, comment="Double Click To Set A Comment!"):
+		"""
+		This Method Adds A Collection To The Database.
+		
+		@param name: Collection Name. ( String )
+		@param collection: Collection Name. ( String )
+		"""
+
+		if name:
+			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(name))
+			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(name), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")):
+				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, name))
+				if dbUtilities.common.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
+					self.emit(SIGNAL("modelRefresh()"))
+			else:
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, name))
+		else:
+			raise foundations.exceptions.ProgrammingError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
+
+	@core.executionTrace
+	def addDefaultCollection(self):
+		"""
+		This Method Adds A Default Collection To The Database.
+		"""
+
+		collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+
+		if not collections:
+			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self.__defaultCollection))
+			dbUtilities.common.addCollection(self.__coreDb.dbSession, self.__defaultCollection, "Sets", "Default Collection")
+			self.emit(SIGNAL("modelRefresh()"))
+
+	@core.executionTrace
+	def removeCollections(self, collections):
+		"""
+		This Method Removes Collections From The Database.
+		
+		@param collections: Collections To Remove ( DbCollection List )
+		"""
+
+		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
+		for iblSet in iblSets:
+			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
+			iblSet.collection = self.getCollectionId(self.__defaultCollection)
+		for collection in collections:
+			LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.name))
+			dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection.id))
+		self.emit(SIGNAL("modelRefresh()"))
+		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1455,106 +1555,6 @@ class CollectionsOutliner(UiComponent):
 		else:
 			len(selectedCollectionsIds) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id!".format(self.__class__.__name__, selectedCollectionsIds[0]))
 			return selectedCollectionsIds[0]
-
-	@core.executionTrace
-	def addUserContent(self):
-		"""
-		This Method Adds User Content To The Database.
-		"""
-
-		collection, state = self.addUserCollection()
-		if state:
-			directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-			if directory:
-				LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-				self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
-				self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-
-	@core.executionTrace
-	def	addUserCollection(self):
-		"""
-		This Method Adds User Collection To The Database.
-		
-		@return: Collection Name, Addition Success. ( String, Boolean )		
-		"""
-
-		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
-		if state:
-			collectionInformations = str(collectionInformations).split(",")
-			name = collectionInformations[0].strip()
-			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
-			return name, self.addCollection(name, comment)
-		else:
-			return collectionInformations, state
-
-	@core.executionTrace
-	def	removeUserCollections(self):
-		"""
-		This Method Removes User Collections From The Database.
-		"""
-
-		selectedItems = self.getSelectedItems()
-
-		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
-			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
-
-		selectedCollections = self.getSelectedCollections()
-		selectedCollections = selectedCollections and [collection._datas for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection] or None
-		if selectedCollections:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				self.removeCollections(selectedCollections)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.ProgrammingError)
-	def addCollection(self, name, comment="Double Click To Set A Comment!"):
-		"""
-		This Method Adds A Collection To The Database.
-		
-		@param name: Collection Name. ( String )
-		@param collection: Collection Name. ( String )
-		"""
-
-		if name:
-			LOGGER.debug("> Chosen Collection Name: '{0}'.".format(name))
-			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(name), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")):
-				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, name))
-				if dbUtilities.common.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
-					self.emit(SIGNAL("modelRefresh()"))
-			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, name))
-		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
-
-	@core.executionTrace
-	def addDefaultCollection(self):
-		"""
-		This Method Adds A Default Collection To The Database.
-		"""
-
-		collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
-
-		if not collections:
-			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self.__defaultCollection))
-			dbUtilities.common.addCollection(self.__coreDb.dbSession, self.__defaultCollection, "Sets", "Default Collection")
-			self.emit(SIGNAL("modelRefresh()"))
-
-	@core.executionTrace
-	def removeCollections(self, collections):
-		"""
-		This Method Removes Collections From The Database.
-		
-		@param collections: Collections To Remove ( DbCollection List )
-		"""
-
-		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
-		for iblSet in iblSets:
-			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
-			iblSet.collection = self.getCollectionId(self.__defaultCollection)
-		for collection in collections:
-			LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.name))
-			dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection.id))
-		self.emit(SIGNAL("modelRefresh()"))
-		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 
 #***********************************************************************************************
 #***	Python End

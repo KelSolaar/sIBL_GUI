@@ -1406,7 +1406,7 @@ class RemoteUpdater(object):
 					os.remove(download)
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File!".format(self.__class__.__name__, os.path.basename(download)))
-				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id, noWarning=True)
+				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id, ignoreWarning=True)
 			else:
 				if self.__container.addonsLocationsBrowser.activated:
 					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))

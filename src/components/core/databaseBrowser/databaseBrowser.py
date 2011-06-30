@@ -1435,7 +1435,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.addUserContent()
+		self.addContent__()
 
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
@@ -1445,7 +1445,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.addUserIblSet()
+		self.addIblSet__()
 
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
@@ -1455,7 +1455,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.removeUserIblSets()
+		self.removeIblSets__()
 
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
@@ -1465,7 +1465,7 @@ class DatabaseBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.updateUserIblSetsLocation()
+		self.updateIblSetsLocation__()
 
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
@@ -1513,6 +1513,123 @@ class DatabaseBrowser(UiComponent):
 		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
+	def addContent__(self):
+		"""
+		This Method Adds User Defined Content To The Database.
+		"""
+
+		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
+		if directory:
+			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+			self.addDirectory(directory)
+
+	@core.executionTrace
+	def addIblSet__(self):
+		"""
+		This Method Adds An User Defined Ibl Set To The Database.
+		"""
+
+		iblSetPath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
+		if iblSetPath:
+			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(iblSetPath))
+			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath)
+
+	@core.executionTrace
+	def removeIblSets__(self):
+		"""
+		This Method Removes User Selected Ibl Sets From The Database.
+		"""
+
+		selectedIblSets = [iblSet._datas for iblSet in self.getSelectedItems()]
+		if selectedIblSets:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				self.removeIblSets(selectedIblSets)
+
+	@core.executionTrace
+	def updateIblSetsLocation__(self):
+		"""
+		This Method Updates User Selected Ibl Sets Location.
+		"""
+
+		selectedIblSets = self.getSelectedItems()
+		if selectedIblSets:
+			for iblSet in selectedIblSets:
+				file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet._datas.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
+				self.updateIblSetLocation(iblSet._datas, file)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
+	def addIblSet(self, name, path, collectionId=None, ignoreWarning=False):
+		"""
+		This Method Adds An Ibl Set To The Database.
+		
+		@param name: Ibl Set Name. ( String )		
+		@param path: Ibl Set Path. ( String )		
+		@param collectionId: Target Collection Id. ( Integer )		
+		@param ignoreWarning: Ignore Warning Message. ( Boolean )
+		"""
+
+		if not dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
+			LOGGER.info("{0} | Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name))
+			if dbUtilities.common.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
+				self.emit(SIGNAL("modelDatasRefresh()"))
+				self.emit(SIGNAL("modelRefresh()"))
+			else:
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name)
+		else:
+			ignoreWarning or messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database!".format(self.__class__.__name__, name))
+
+	@core.executionTrace
+	def addDirectory(self, directory, collectionId=None, ignoreWarning=False):
+		"""
+		This Method Adds A Sets Directory Content To The Database.
+		
+		@param directory: Directory To Add. ( String )		
+		@param collectionId: Target Collection Id. ( Integer )		
+		@param ignoreWarning: Ignore Warning Message. ( Boolean )
+		"""
+
+		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
+
+		walker = Walker(directory)
+		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+		for iblSet, path in walker.files.items():
+			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId())
+		self.emit(SIGNAL("modelDatasRefresh()"))
+		self.emit(SIGNAL("modelRefresh()"))
+
+	@core.executionTrace
+	def removeIblSets(self, iblSets):
+		"""
+		This Method Remove Ibl Sets From The Database.
+		
+		@param iblSets: Ibl Sets To Remove. ( DbIblSet List )
+		"""
+
+		for iblSet in iblSets:
+			LOGGER.info("{0} | Removing '{1}' Ibl Set From Database!".format(self.__class__.__name__, iblSet.name))
+			dbUtilities.common.removeIblSet(self.__coreDb.dbSession, iblSet.id)
+		self.emit(SIGNAL("modelDatasRefresh()"))
+		self.emit(SIGNAL("modelRefresh()"))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
+	def updateIblSetLocation(self, iblSet, file):
+		"""
+		This Method Updates Provided Ibl Set Location.
+		
+		@param iblSet: Ibl Set To Update. ( DbIblSet )
+		@param iblSet: New Ibl Set File. ( String )
+		"""
+
+		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.name, file))
+		if dbUtilities.common.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
+			self.emit(SIGNAL("modelDatasRefresh()"))
+			self.emit(SIGNAL("modelRefresh()"))
+		else:
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set Location!".format(self.__class__.__name__, iblSet.name)
+
+	@core.executionTrace
 	def getSelectedItems(self):
 		"""
 		This Method Returns The Database_Browser_listView Selected Items.
@@ -1544,122 +1661,6 @@ class DatabaseBrowser(UiComponent):
 			return shotDate
 		else:
 			return Constants.nullObject
-
-	@core.executionTrace
-	def addUserContent(self):
-		"""
-		This Method Adds User Content To The Database.
-		"""
-
-		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-		if directory:
-			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-			self.addDirectory(directory)
-
-	@core.executionTrace
-	def addUserIblSet(self):
-		"""
-		This Method Adds User Ibl Set To The Database.
-		"""
-		iblSetPath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
-		if iblSetPath:
-			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(iblSetPath))
-			self.addIblSet(strings.getSplitextBasename(iblSetPath), iblSetPath)
-
-	@core.executionTrace
-	def removeUserIblSets(self):
-		"""
-		This Method Remove User Ibl Sets From The Database.
-		"""
-
-		selectedIblSets = [iblSet._datas for iblSet in self.getSelectedItems()]
-		if selectedIblSets:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				self.removeIblSets(selectedIblSets)
-
-	@core.executionTrace
-	def updateUserIblSetsLocation(self):
-		"""
-		This Method Updates User Ibl Sets Location.
-		"""
-
-		selectedIblSets = self.getSelectedItems()
-		if selectedIblSets:
-			for iblSet in selectedIblSets:
-				file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet._datas.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
-				self.updateIblSetLocation(iblSet._datas, file)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
-	def addIblSet(self, name, path, collectionId=None, noWarning=False):
-		"""
-		This Method Adds An Ibl Set To The Database.
-		
-		@param name: Ibl Set Name. ( String )		
-		@param path: Ibl Set Path. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
-		@param noWarning: No Warning Message. ( Boolean )
-		"""
-
-		if not dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
-			LOGGER.info("{0} | Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name))
-			if dbUtilities.common.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
-				self.emit(SIGNAL("modelDatasRefresh()"))
-				self.emit(SIGNAL("modelRefresh()"))
-			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, name)
-		else:
-			noWarning or messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Path Already Exists In Database!".format(self.__class__.__name__, name))
-
-	@core.executionTrace
-	def addDirectory(self, directory, collectionId=None, noWarning=False):
-		"""
-		This Method Adds A Sets Directory Content To The Database.
-		
-		@param directory: Directory To Add. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
-		@param noWarning: No Warning Message. ( Boolean )
-		"""
-
-		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
-
-		walker = Walker(directory)
-		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
-		for iblSet, path in walker.files.items():
-			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId())
-		self.emit(SIGNAL("modelDatasRefresh()"))
-		self.emit(SIGNAL("modelRefresh()"))
-
-	@core.executionTrace
-	def removeIblSets(self, iblSets):
-		"""
-		This Method Remove Ibl Sets From The Database.
-		
-		@param iblSets: Ibl Sets To Remove ( DbIblSet List )
-		"""
-
-		for iblSet in iblSets:
-			LOGGER.info("{0} | Removing '{1}' Ibl Set From Database!".format(self.__class__.__name__, iblSet.name))
-			dbUtilities.common.removeIblSet(self.__coreDb.dbSession, iblSet.id)
-		self.emit(SIGNAL("modelDatasRefresh()"))
-		self.emit(SIGNAL("modelRefresh()"))
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
-	def updateIblSetLocation(self, iblSet, file):
-		"""
-		This Method Updates An Ibl Set Location.
-		
-		@param iblSet: Ibl Set To Update. ( DbIblSet )
-		@param iblSet: New Ibl Set File. ( String )
-		"""
-
-		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.name, file))
-		if not dbUtilities.common.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set!".format(self.__class__.__name__, iblSet.name)
-		else:
-			self.emit(SIGNAL("modelDatasRefresh()"))
-			self.emit(SIGNAL("modelRefresh()"))
 
 #***********************************************************************************************
 #***	Python End

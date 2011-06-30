@@ -67,6 +67,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import ui.common
 from foundations.parser import Parser
 from globals.constants import Constants
@@ -1211,7 +1212,7 @@ class Inspector(UiComponent):
 				self.__inspectorPlates = OrderedDict()
 				for section in self.__inspectorIblSetParser.sections:
 					if re.search("Plate[0-9]+", section):
-						self.__inspectorPlates[section] = Plate(name=os.path.splitext(self.__inspectorIblSetParser.getValue("PLATEfile", section))[0],
+						self.__inspectorPlates[section] = Plate(name=strings.getSplitextBasename(self.__inspectorIblSetParser.getValue("PLATEfile", section)),
 																icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
 																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
