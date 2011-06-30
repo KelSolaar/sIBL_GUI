@@ -1656,6 +1656,53 @@ class TemplatesOutliner(UiComponent):
 		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
+	def getCollection(self, collection):
+		"""
+		This Method Gets Template Collection From Provided Collection Name.
+		
+		@param collection: Collection Name. ( String )
+		@return: Collection. ( dbCollection )
+		"""
+
+		return [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
+
+	@core.executionTrace
+	def getUniqueCollectionId(self, path):
+		"""
+		This Method Gets A Unique Collection Id Using Provided Path.
+		
+		@param path: Template Path. ( String )
+		@return: Collection. ( Integer )
+		"""
+
+		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
+
+	@core.executionTrace
+	def getSelectedItems(self, rowsRootOnly=True):
+		"""
+		This Method Returns The Templates_Outliner_treeView Selected Items.
+		
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
+		"""
+
+		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
+
+	@core.executionTrace
+	def getSelectedTemplates(self):
+		"""
+		This Method Returns The Selected Templates.
+		
+		@return: Selected Template. ( QTreeWidgetItem )
+		"""
+
+		selectedItems = self.getSelectedItems()
+		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None, noWarning=False):
 		"""
@@ -1760,53 +1807,6 @@ class TemplatesOutliner(UiComponent):
 						LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
 						dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 					self.addDirectory(path, self.getCollection(collection).id)
-
-	@core.executionTrace
-	def getCollection(self, collection):
-		"""
-		This Method Gets Template Collection From Provided Collection Name.
-		
-		@param collection: Collection Name. ( String )
-		@return: Collection. ( dbCollection )
-		"""
-
-		return [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
-
-	@core.executionTrace
-	def getUniqueCollectionId(self, path):
-		"""
-		This Method Gets A Unique Collection Id Using Provided Path.
-		
-		@param path: Template Path. ( String )
-		@return: Collection. ( Integer )
-		"""
-
-		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
-		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
-
-	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
-		"""
-		This Method Returns The Templates_Outliner_treeView Selected Items.
-		
-		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
-		@return: View Selected Items. ( List )
-		"""
-
-		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
-
-		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
-
-	@core.executionTrace
-	def getSelectedTemplates(self):
-		"""
-		This Method Returns The Selected Templates.
-		
-		@return: Selected Template. ( QTreeWidgetItem )
-		"""
-
-		selectedItems = self.getSelectedItems()
-		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
 
 #***********************************************************************************************
 #***	Python End

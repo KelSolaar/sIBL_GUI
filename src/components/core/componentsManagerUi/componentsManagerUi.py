@@ -932,6 +932,19 @@ class ComponentsManagerUi(UiComponent):
 		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
 
 	@core.executionTrace
+	def getSelectedItems(self, rowsRootOnly=True):
+		"""
+		This Method Returns The Components_Manager_Ui_treeView Selected Items.
+		
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
+		"""
+
+		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
+
+		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
 	def activateComponent(self, component):
 		"""
@@ -970,19 +983,6 @@ class ComponentsManagerUi(UiComponent):
 		component.interface.deactivate()
 
 		self.emit(SIGNAL("modelPartialRefresh()"))
-
-	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
-		"""
-		This Method Returns The Components_Manager_Ui_treeView Selected Items.
-		
-		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
-		@return: View Selected Items. ( List )
-		"""
-
-		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
-
-		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 #***********************************************************************************************
 #***	Python End
