@@ -1493,24 +1493,25 @@ class CollectionsOutliner(UiComponent):
 		This Method Removes User Collections From The Database.
 		"""
 
-		selectedCollections = self.getSelectedItems()
+		selectedItems = self.getSelectedItems()
 
-		if self.__overallCollection in (str(collection.text()) for collection in selectedCollections) or self.__defaultCollection in (str(collection.text()) for collection in selectedCollections):
+		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
 			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
-		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection]
-		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-			self.removeCollections(selectedCollections)
+		selectedCollections = self.getSelectedCollections()
+		selectedCollections = selectedCollections and [collection for collection in self.getSelectedCollections() if collection.text() != self.__defaultCollection] or None
+		if selectedCollections:
+			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.text()) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				self.removeCollections(selectedCollections)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.ProgrammingError)
 	def addCollection(self, name, comment="Double Click To Set A Comment!"):
 		"""
 		This Method Adds A Collection To The Database.
 		
 		@param name: Collection Name. ( String )
 		@param collection: Collection Name. ( String )
-		@return: Addition Success. ( Boolean )
 		"""
 
 		if name:
@@ -1519,18 +1520,15 @@ class CollectionsOutliner(UiComponent):
 				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, name))
 				if dbUtilities.common.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
 					self.emit(SIGNAL("modelRefresh()"))
-					return True
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
+			raise foundations.exceptions.ProgrammingError, "{0} | Exception While Adding A Collection To Database: Cannot Use An Empty Name!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	def addDefaultCollection(self):
 		"""
 		This Method Adds A Default Collection To The Database.
-		
-		@return: Addition Success. ( Boolean )
 		"""
 
 		collections = [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
@@ -1548,16 +1546,15 @@ class CollectionsOutliner(UiComponent):
 		@param collections: Collections To Remove ( List )
 		"""
 
-		if collections:
-			iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection._datas.id for collection in collections])
-			for iblSet in iblSets:
-				LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
-				iblSet.collection = self.getCollectionId(self.__defaultCollection)
-			for collection in collections:
-				LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
-				dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection._datas.id))
-			self.emit(SIGNAL("modelRefresh()"))
-			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
+		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection._datas.id for collection in collections])
+		for iblSet in iblSets:
+			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
+			iblSet.collection = self.getCollectionId(self.__defaultCollection)
+		for collection in collections:
+			LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
+			dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection._datas.id))
+		self.emit(SIGNAL("modelRefresh()"))
+		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 
 #***********************************************************************************************
 #***	Python End
