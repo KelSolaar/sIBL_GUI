@@ -791,10 +791,10 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def setTimeMatchingIblSets(self):
 		"""
-		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser displaySets.
+		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser modelContent.
 		"""
 
-		previousDisplaySets = self.__coreDatabaseBrowser.displaySets
+		previousModelContent = self.__coreDatabaseBrowser.modelContent
 
 		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets()
 
@@ -809,22 +809,22 @@ class SearchDatabase(UiComponent):
 				timeTokens = iblSet.time.split(":")
 				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
-		displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(filteredSets)]
+		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(filteredSets)]
 
-		LOGGER.debug("> Time Range Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
+		LOGGER.debug("> Time Range Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
 
-		if previousDisplaySets != displaySets:
-			self.__coreDatabaseBrowser.displaySets = displaySets
-			self.__coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+		if previousModelContent != modelContent:
+			self.__coreDatabaseBrowser.modelContent = modelContent
+			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def setSearchMatchingIblsSets(self):
 		"""
-		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser displaySets.
+		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser modelContent.
 		"""
 
-		previousDisplaySets = self.__coreDatabaseBrowser.displaySets
+		previousModelContent = self.__coreDatabaseBrowser.modelContent
 
 		pattern = str(self.ui.Search_Database_lineEdit.text())
 		currentField = self.__databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
@@ -854,21 +854,21 @@ class SearchDatabase(UiComponent):
 						filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(set(filteredSets))]
+			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(set(filteredSets))]
 		else:
 			try:
 				re.compile(pattern)
 			except:
 				raise foundations.exceptions.UserError("{0} | Error While Compiling '{1}' Regex Pattern!".format(self.__class__.__name__, pattern))
 
-			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousDisplaySets if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
-			displaySets = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
+			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousModelContent if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
+			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets()).intersection(dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
-		LOGGER.debug("> Pattern Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in displaySets))))
+		LOGGER.debug("> Pattern Filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
 
-		if previousDisplaySets != displaySets:
-			self.__coreDatabaseBrowser.displaySets = displaySets
-			self.__coreDatabaseBrowser.Database_Browser_listView_refreshModel()
+		if previousModelContent != modelContent:
+			self.__coreDatabaseBrowser.modelContent = modelContent
+			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
 
 #***********************************************************************************************

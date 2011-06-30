@@ -405,12 +405,11 @@ class TemplatesOutliner_QTreeView(QTreeView):
 					if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self.__coreTemplatesOutliner.addTemplate(name, path) and self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
+							self.__coreTemplatesOutliner.addTemplate(name, path)
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreTemplatesOutliner.addDirectory(path)
-								self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 		else:
@@ -422,6 +421,7 @@ class TemplatesOutliner(UiComponent):
 	"""
 
 	# Custom Signals Definitions.
+	modelRefresh = pyqtSignal()
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
@@ -1225,8 +1225,9 @@ class TemplatesOutliner(UiComponent):
 		# Signals / Slots.
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
 		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
-		self.modelChanged.connect(self.Templates_Outliner_treeView_refreshView)
-		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__codeDb_database__changed)
+		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)
+		self.modelRefresh.connect(self.__Templates_Outliner_treeView_refreshModel)
+		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1277,7 +1278,6 @@ class TemplatesOutliner(UiComponent):
 							self.updateTemplateLocation(template)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbUtilities.common.DB_EXCEPTIONS[erroneousTemplates[template]]))
-				self.Templates_Outliner_treeView_refreshModel()
 		else:
 			LOGGER.info("{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1308,7 +1308,7 @@ class TemplatesOutliner(UiComponent):
 				ids = [activeTemplatesIds]
 			self.__modelSelection["Templates"] = [int(id) for id in ids]
 
-		self.Templates_Outliner_treeView_restoreModelSelection()
+		self.__Templates_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def onClose(self):
@@ -1318,7 +1318,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
-		self.Templates_Outliner_treeView_storeModelSelection()
+		self.__Templates_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
 		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Softwares"]))
@@ -1339,7 +1339,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Templates_Outliner_treeView"))
 
-		self.Templates_Outliner_treeView_storeModelSelection()
+		self.__Templates_Outliner_treeView_storeModelSelection()
 
 		self.__model.clear()
 
@@ -1403,9 +1403,19 @@ class TemplatesOutliner(UiComponent):
 								LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Template To '{2}' Model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
 								foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Templates_Outliner_treeView_setModel"))
 
-		self.Templates_Outliner_treeView_restoreModelSelection()
+		self.__Templates_Outliner_treeView_restoreModelSelection()
 
 		self.emit(SIGNAL("modelChanged()"))
+
+	@core.executionTrace
+	def __Templates_Outliner_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Templates_Outliner_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
+
+		self.__Templates_Outliner_treeView_setModel()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setView(self):
@@ -1440,17 +1450,7 @@ class TemplatesOutliner(UiComponent):
 		self.ui.Templates_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Templates_Outliner_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
-
-		self.__Templates_Outliner_treeView_setModel()
-
-	@core.executionTrace
-	def Templates_Outliner_treeView_refreshView(self):
+	def __Templates_Outliner_treeView_refreshView(self):
 		"""
 		This Method Refreshes The Templates_Outliner_treeView View.
 		"""
@@ -1458,7 +1458,7 @@ class TemplatesOutliner(UiComponent):
 		self.__Templates_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_storeModelSelection(self):
+	def __Templates_Outliner_treeView_storeModelSelection(self):
 		"""
 		This Method Stores Templates_Outliner_treeView Model Selection.
 		"""
@@ -1475,7 +1475,7 @@ class TemplatesOutliner(UiComponent):
 				self.__modelSelection["Templates"].append(item._datas.id)
 
 	@core.executionTrace
-	def Templates_Outliner_treeView_restoreModelSelection(self):
+	def __Templates_Outliner_treeView_restoreModelSelection(self):
 		"""
 		This Method Restores Templates_Outliner_treeView Model Selection.
 		"""
@@ -1551,7 +1551,7 @@ class TemplatesOutliner(UiComponent):
 		templatePath = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
 		if templatePath:
 			LOGGER.debug("> Chosen Template Path: '{0}'.".format(templatePath))
-			self.addTemplate(strings.getSplitextBasename(templatePath), templatePath) and self.Templates_Outliner_treeView_refreshModel()
+			self.addTemplate(strings.getSplitextBasename(templatePath), templatePath)
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
@@ -1562,7 +1562,6 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		self.removeTemplates()
-		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
@@ -1574,7 +1573,6 @@ class TemplatesOutliner(UiComponent):
 
 		for collection, path in self.__defaultCollections.items():
 			os.path.exists(path) and self.addDirectory(path, self.getCollection(collection).id, noWarning=True)
-		self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
@@ -1599,15 +1597,12 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		templates = dbUtilities.common.getTemplates(self.__coreDb.dbSession)
-		needModelRefresh = False
 		for template in templates:
 			matchingTemplates = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
-				needModelRefresh = True
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					dbUtilities.common.removeTemplate(self.__coreDb.dbSession, id[0])
-
-		needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
+				self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1651,14 +1646,14 @@ class TemplatesOutliner(UiComponent):
 		QDesktopServices.openUrl(url)
 
 	@core.executionTrace
-	def __codeDb_database__changed(self):
+	def __coreDb_database__changed(self):
 		"""
 		This Method Is Triggered By The TemplatesOutliner_Worker When The Database Has Changed.
 		"""
 
 		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
 		self.__coreDb.dbSession.expire_all()
-		self.Templates_Outliner_treeView_refreshModel()
+		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1676,6 +1671,7 @@ class TemplatesOutliner(UiComponent):
 		if not dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template To Database!".format(self.__class__.__name__, name))
 			if dbUtilities.common.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
+				self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database!".format(self.__class__.__name__, name)
@@ -1698,6 +1694,7 @@ class TemplatesOutliner(UiComponent):
 		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 		for template, path in walker.files.items():
 			self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, noWarning)
+		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	def removeTemplates(self):
@@ -1727,6 +1724,7 @@ class TemplatesOutliner(UiComponent):
 				for template in selectedTemplates:
 					LOGGER.info("{0} | Removing '{1}' Template From Database!".format(self.__class__.__name__, template.text()))
 					dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template._datas.id))
+				self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1744,6 +1742,7 @@ class TemplatesOutliner(UiComponent):
 			if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template!".format(self.__class__.__name__, template.name)
 			else:
+				self.emit(SIGNAL("modelRefresh()"))
 				return True
 
 	@core.executionTrace
@@ -1755,16 +1754,12 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Adding Default Templates To Database.")
 
 		if not dbUtilities.common.getTemplates(self.__coreDb.dbSession).count():
-			needModelRefresh = False
 			for collection, path in self.__defaultCollections.items():
 				if os.path.exists(path):
 					if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 						LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
 						dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
-					needModelRefresh = True
 					self.addDirectory(path, self.getCollection(collection).id)
-
-			needModelRefresh and self.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def getCollection(self, collection):

@@ -504,7 +504,7 @@ class SetsScanner(Component):
 				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
-				self.__setsScannerWorkerThread.databaseChanged.connect(self.__codeDb_database__changed)
+				self.__setsScannerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			else:
 				LOGGER.info("{0} | 'Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -521,7 +521,7 @@ class SetsScanner(Component):
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
-				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.__codeDb_database__changed)
+				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.__coreDb_database__changed)
 
 				self.__setsScannerWorkerThread = None
 
@@ -536,7 +536,7 @@ class SetsScanner(Component):
 		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 
 	@core.executionTrace
-	def __codeDb_database__changed(self):
+	def __coreDb_database__changed(self):
 		"""
 		This Method Is Triggered By The SetsScanner_Worker When The Database Has Changed.
 		"""
@@ -549,7 +549,7 @@ class SetsScanner(Component):
 					if not dbUtilities.common.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
 
-				self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
+				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
 		self.__setsScannerWorkerThread.exit()
 

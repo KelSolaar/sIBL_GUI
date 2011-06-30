@@ -109,6 +109,8 @@ class ComponentsManagerUi(UiComponent):
 
 	# Custom Signals Definitions.
 	modelChanged = pyqtSignal()
+	modelRefresh = pyqtSignal()
+	modelPartialRefresh = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
@@ -157,6 +159,7 @@ class ComponentsManagerUi(UiComponent):
 											</p>
 											</p>
 											"""
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -634,8 +637,9 @@ class ComponentsManagerUi(UiComponent):
 
 		# Signals / Slots.
 		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.__Components_Manager_Ui_treeView_selectionModel__selectionChanged)
-		self.modelChanged.connect(self.Components_Manager_Ui_treeView_refreshView)
-		self.modelChanged.connect(self.__Components_Manager_Ui_treeView_setActivationsStatus)
+		self.modelChanged.connect(self.__Components_Manager_Ui_treeView_refreshView)
+		self.modelRefresh.connect(self.__Components_Manager_Ui_treeView_refreshModel)
+		self.modelPartialRefresh.connect(self.__Components_Manager_Ui_treeView_setActivationsStatus)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -732,6 +736,16 @@ class ComponentsManagerUi(UiComponent):
 		self.emit(SIGNAL("modelChanged()"))
 
 	@core.executionTrace
+	def __Components_Manager_Ui_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Components_Manager_Ui_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
+
+		self.__Components_Manager_Ui_treeView_setModel()
+
+	@core.executionTrace
 	def __Components_Manager_Ui_treeView_setView(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView View.
@@ -779,17 +793,7 @@ class ComponentsManagerUi(UiComponent):
 				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
 	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Components_Manager_Ui_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
-
-		self.__Components_Manager_Ui_treeView_setModel()
-
-	@core.executionTrace
-	def Components_Manager_Ui_treeView_refreshView(self):
+	def __Components_Manager_Ui_treeView_refreshView(self):
 		"""
 		This Method Refreshes The Components_Manager_Ui_treeView View.
 		"""
@@ -840,7 +844,6 @@ class ComponentsManagerUi(UiComponent):
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
 
-			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
@@ -864,7 +867,6 @@ class ComponentsManagerUi(UiComponent):
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
 
-			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 			self.__storeDeactivatedComponents()
 
 	@core.executionTrace
@@ -887,7 +889,6 @@ class ComponentsManagerUi(UiComponent):
 							self.activateComponent(component._datas)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
-			self.__Components_Manager_Ui_treeView_setActivationsStatus()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -948,6 +949,8 @@ class ComponentsManagerUi(UiComponent):
 			component.interface.addWidget()
 			component.interface.initializeUi()
 
+		self.emit(SIGNAL("modelPartialRefresh()"))
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
 	def deactivateComponent(self, component):
@@ -966,6 +969,7 @@ class ComponentsManagerUi(UiComponent):
 			component.interface.removeWidget()
 		component.interface.deactivate()
 
+		self.emit(SIGNAL("modelPartialRefresh()"))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):

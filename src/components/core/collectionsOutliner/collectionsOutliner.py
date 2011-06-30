@@ -55,8 +55,6 @@
 #***********************************************************************************************
 #***	External Imports
 #***********************************************************************************************
-import dbUtilities.common
-import dbUtilities.types
 import logging
 import os
 import platform
@@ -67,6 +65,8 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
+import dbUtilities.common
+import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings
@@ -312,12 +312,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 						name = foundations.strings.getSplitextBasename(path)
 						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreDatabaseBrowser.addIblSet(name, path)
-							self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 					else:
 						if os.path.isdir(path):
 							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
-								self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
 						else:
 							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
 			else:
@@ -380,6 +378,8 @@ class CollectionsOutliner(UiComponent):
 
 	# Custom Signals Definitions.
 	modelChanged = pyqtSignal()
+	modelRefresh = pyqtSignal()
+	modelPartialRefresh = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
@@ -1020,7 +1020,9 @@ class CollectionsOutliner(UiComponent):
 		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
 		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
 		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
-		self.modelChanged.connect(self.Collections_Outliner_treeView_refreshView)
+		self.modelChanged.connect(self.__Collections_Outliner_treeView_refreshView)
+		self.modelRefresh.connect(self.__Collections_Outliner_treeView_refreshModel)
+		self.modelPartialRefresh.connect(self.__Collections_Outliner_treeView_setIblSetsCounts)
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
@@ -1078,7 +1080,7 @@ class CollectionsOutliner(UiComponent):
 		if activeOverallCollection:
 			self.__modelSelection[self.__overallCollection] = [activeOverallCollection]
 
-		self.Collections_Outliner_treeView_restoreModelSelection()
+		self.__Collections_Outliner_treeView_restoreModelSelection()
 
 	@core.executionTrace
 	def onClose(self):
@@ -1088,7 +1090,7 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
 
-		self.Collections_Outliner_treeView_storeModelSelection()
+		self.__Collections_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(id) for id in self.__modelSelection["Collections"])))
 		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(id) for id in self.__modelSelection[self.__overallCollection])))
 
@@ -1107,7 +1109,7 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Collections_Outliner_treeView"))
 
-		self.Collections_Outliner_treeView_storeModelSelection()
+		self.__Collections_Outliner_treeView_storeModelSelection()
 
 		self.__model.clear()
 
@@ -1163,9 +1165,18 @@ class CollectionsOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Database Has No User Defined Collections!".format(self.__class__.__name__))
 
-		self.Collections_Outliner_treeView_restoreModelSelection()
-
+		self.__Collections_Outliner_treeView_restoreModelSelection()
 		self.emit(SIGNAL("modelChanged()"))
+
+	@core.executionTrace
+	def __Collections_Outliner_treeView_refreshModel(self):
+		"""
+		This Method Refreshes The Collections_Outliner_treeView Model.
+		"""
+
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
+
+		self.__Collections_Outliner_treeView_setModel()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setView(self):
@@ -1220,17 +1231,7 @@ class CollectionsOutliner(UiComponent):
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_refreshModel(self):
-		"""
-		This Method Refreshes The Collections_Outliner_treeView Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
-
-		self.__Collections_Outliner_treeView_setModel()
-
-	@core.executionTrace
-	def Collections_Outliner_treeView_refreshView(self):
+	def __Collections_Outliner_treeView_refreshView(self):
 		"""
 		This Method Refreshes The Collections_Outliner_treeView View.
 		"""
@@ -1238,7 +1239,7 @@ class CollectionsOutliner(UiComponent):
 		self.__Collections_Outliner_treeView_setDefaultViewState()
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_storeModelSelection(self):
+	def __Collections_Outliner_treeView_storeModelSelection(self):
 		"""
 		This Method Stores Collections_Outliner_treeView Model Selection.
 		"""
@@ -1253,7 +1254,7 @@ class CollectionsOutliner(UiComponent):
 				self.__modelSelection["Collections"].append(item._datas.id)
 
 	@core.executionTrace
-	def Collections_Outliner_treeView_restoreModelSelection(self):
+	def __Collections_Outliner_treeView_restoreModelSelection(self):
 		"""
 		This Method Restores Collections_Outliner_treeView Model Selection.
 		"""
@@ -1307,13 +1308,11 @@ class CollectionsOutliner(UiComponent):
 		if state:
 			collection = self.addCollection(name)
 			if collection:
-				self.Collections_Outliner_treeView_refreshModel()
 				directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
 				if directory:
 					LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 					self.coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection))
 					self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-					#self.__Collections_Outliner_treeView_setIblSetsCounts()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
@@ -1325,9 +1324,7 @@ class CollectionsOutliner(UiComponent):
 
 		name, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
 		if state:
-			collection = self.addCollection(name)
-			if collection:
-				self.Collections_Outliner_treeView_refreshModel()
+			self.addCollection(name)
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
@@ -1338,8 +1335,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		self.removeCollections()
-		self.Collections_Outliner_treeView_refreshModel()
-		self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
+		self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1373,10 +1369,9 @@ class CollectionsOutliner(UiComponent):
 					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
 					collection.comment = str(currentText)
 					dbUtilities.common.commit(self.__coreDb.dbSession)
-					self.Collections_Outliner_treeView_refreshModel()
 		else:
-			self.Collections_Outliner_treeView_refreshModel()
-			raise foundations.exceptions.UserError, "{0} | Exception While Renaming A Collection: Cannot Use An Empty Value!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Exception While Editing A Collection Field: Cannot Use An Empty Value!".format(self.__class__.__name__)
+		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1386,8 +1381,16 @@ class CollectionsOutliner(UiComponent):
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
+		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
+		self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
-		self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended()
+	@core.executionTrace
+	def __coreDatabaseBrowser_Database_Browser_listView_setModelContent(self):
+		"""
+		This Method Sets coreDatabaseBrowser Model Content.
+		"""
+
+		self.__coreDatabaseBrowser.modelContent = self.getCollectionsIblSets()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1406,7 +1409,9 @@ class CollectionsOutliner(UiComponent):
 			comment = len(collectionInformations) == 1 and "Double Click To Set A Comment!" or collectionInformations[1].strip()
 			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
-				return dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Sets", comment) and collection
+				if dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Sets", comment):
+					self.emit(SIGNAL("modelRefresh()"))
+					return collection
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Already Exists In Database!".format(self.__class__.__name__, collection))
 		else:
@@ -1425,7 +1430,7 @@ class CollectionsOutliner(UiComponent):
 		if not collections:
 			LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, self.__defaultCollection))
 			dbUtilities.common.addCollection(self.__coreDb.dbSession, self.__defaultCollection, "Sets", "Default Collection")
-			self.Collections_Outliner_treeView_refreshModel()
+			self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
 	def removeCollections(self):
@@ -1448,6 +1453,8 @@ class CollectionsOutliner(UiComponent):
 				for collection in selectedCollections:
 					LOGGER.info("{0} | Removing '{1}' Collection From Database!".format(self.__class__.__name__, collection.text()))
 					dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection._datas.id))
+			self.emit(SIGNAL("modelRefresh()"))
+			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):

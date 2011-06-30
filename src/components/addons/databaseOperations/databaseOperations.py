@@ -78,6 +78,25 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+class DbType(core.Structure):
+	"""
+	This Is The DbType Class.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This Method Initializes The Class.
+
+		@param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value Pairs )
+		"""
+
+		core.Structure.__init__(self, **kwargs)
+
+		# --- Setting Class Attributes. ---
+		self.__dict__.update(kwargs)
+
+
 class DatabaseOperations(UiComponent):
 	"""
 	This Class Is The DatabaseOperations Class.
@@ -398,21 +417,19 @@ class DatabaseOperations(UiComponent):
 		This Method Synchronizes The Database.
 		"""
 
-		dbTypes = ({"type" : "Ibl Set", "getMethod" : dbUtilities.common.getIblSets, "updateContentMethod" : dbUtilities.common.updateIblSetContent, "updateLocationMethod" : self.__coreDatabaseBrowser.updateIblSetLocation, "refreshModelMethod" : self.__coreDatabaseBrowser.Database_Browser_listView_refreshModelExtended},
-					{"type" : "Template", "getMethod" : dbUtilities.common.getTemplates, "updateContentMethod" : dbUtilities.common.updateTemplateContent, "updateLocationMethod" : self.__coreTemplatesOutliner.updateTemplateLocation, "refreshModelMethod" : self.__coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel})
+		dbTypes = (DbType(type="Ibl Set", getMethod=dbUtilities.common.getIblSets, updateContentMethod=dbUtilities.common.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+					DbType(type="Template", getMethod=dbUtilities.common.getTemplates, updateContentMethod=dbUtilities.common.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
 		for dbType in dbTypes:
-			needModelRefresh = False
-			for item in dbType["getMethod"](self.__coreDb.dbSession):
+			for item in dbType.getMethod(self.__coreDb.dbSession):
 				if item.path:
 					if os.path.exists(item.path):
-						if dbType["updateContentMethod"](self.__coreDb.dbSession, item):
-							LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType["type"]))
-							needModelRefresh = True
+						if dbType.updateContentMethod(self.__coreDb.dbSession, item):
+							LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType.type))
 					else:
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, item.name, dbType["type"]), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
-								dbType["updateLocationMethod"](item)
-			needModelRefresh and dbType["refreshModelMethod"]()
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+								dbType.updateLocationMethod(item)
+			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
 		messageBox.messageBox("Information", "Information", "{0} | Database Synchronization Done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 
 #***********************************************************************************************

@@ -1399,7 +1399,6 @@ class RemoteUpdater(object):
 		This Method Is Triggered When The Download Manager Finishes.
 		"""
 
-		needModelRefresh = False
 		for download in self.__downloadManager.downloads:
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
@@ -1408,12 +1407,9 @@ class RemoteUpdater(object):
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File!".format(self.__class__.__name__, os.path.basename(download)))
 				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id, noWarning=True)
-				needModelRefresh = True
 			else:
 				if self.__container.addonsLocationsBrowser.activated:
 					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
-
-		needModelRefresh and self.__container.coreTemplatesOutliner.Templates_Outliner_treeView_refreshModel()
 
 	@core.executionTrace
 	def __getTemplatesDownloadDirectory(self):

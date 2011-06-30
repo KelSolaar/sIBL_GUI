@@ -59,7 +59,6 @@ import logging
 import os
 import re
 from collections import OrderedDict
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -71,7 +70,6 @@ import foundations.exceptions
 import ui.common
 from foundations.parser import Parser
 from globals.constants import Constants
-from globals.uiConstants import UiConstants
 from manager.uiComponent import UiComponent
 
 #***********************************************************************************************
@@ -122,6 +120,11 @@ class Inspector(UiComponent):
 	"""
 	This Class Is The Preview Class.
 	"""
+
+	# Custom Signals Definitions.
+	modelRefresh = pyqtSignal()
+	uiRefresh = pyqtSignal()
+	uiClear = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
@@ -901,7 +904,7 @@ class Inspector(UiComponent):
 		self.__Plates_listView_setModel()
 		self.__Plates_listView_setView()
 
-		self.Inspector_DockWidget_setUi()
+		self.__Inspector_DockWidget_setUi()
 
 		self.ui.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Inspector_Overall_frame_addActions()
@@ -915,6 +918,9 @@ class Inspector(UiComponent):
 		self.ui.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
 		self.ui.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
 		self.ui.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
+		self.modelRefresh.connect(self.__Plates_listView_refreshModel)
+		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
+		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -945,7 +951,7 @@ class Inspector(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
 
 	@core.executionTrace
-	def Inspector_DockWidget_setUi(self):
+	def __Inspector_DockWidget_setUi(self):
 		"""
 		This Method Sets The Inspector DockWidget Ui.
 		"""
@@ -970,10 +976,18 @@ class Inspector(UiComponent):
 			else:
 				self.ui.Plates_frame.hide()
 		else:
-			self.Inspector_DockWidget_clearUi()
+			self.__Inspector_DockWidget_clearUi()
 
 	@core.executionTrace
-	def Inspector_DockWidget_clearUi(self):
+	def __Inspector_DockWidget_refreshUi(self):
+		"""
+		This Method Sets The Inspector DockWidget Ui.
+		"""
+
+		self.__Inspector_DockWidget_setUi()
+
+	@core.executionTrace
+	def __Inspector_DockWidget_clearUi(self):
 		"""
 		This Method Clears The Inspector DockWidget Ui.
 		"""
@@ -1020,6 +1034,14 @@ class Inspector(UiComponent):
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
 
 	@core.executionTrace
+	def __Plates_listView_refreshModel(self):
+		"""
+		This Method Refreshes The Plates_listView Model.
+		"""
+
+		self.__Plates_listView_setModel()
+
+	@core.executionTrace
 	def __Plates_listView_setView(self):
 		"""
 		This Method Sets The Plates_listView Ui.
@@ -1052,14 +1074,6 @@ class Inspector(UiComponent):
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 
 	@core.executionTrace
-	def Plates_listView_refreshModel(self):
-		"""
-		This Method Refreshes The Plates_listView Model.
-		"""
-
-		self.__Plates_listView_setModel()
-
-	@core.executionTrace
 	def __Inspector_Overall_frame_addActions(self):
 		"""
 		This Method Sets The Inspector_Overall_frame Actions.
@@ -1082,7 +1096,7 @@ class Inspector(UiComponent):
 			if hasattr(item, "_datas"):
 				self.ui.Image_label.setPixmap(ui.common.getPixmap(item._datas.previewImage))
 			else:
-				self.Inspector_DockWidget_setUi()
+				self.emit(SIGNAL("uiRefresh()"))
 
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
@@ -1095,7 +1109,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Model Selection Has Changed.
+		This Method Sets Is Triggered When coreDatabaseBrowser Database_Browser_listView Model Selection Has Changed.
 		
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
@@ -1104,12 +1118,12 @@ class Inspector(UiComponent):
 		self.__setInspectorIblSet()
 
 		self.__setInspectorIblSetPlates()
-		self.__Plates_listView_setModel()
+		self.emit(SIGNAL("modelRefresh()"))
 
 		if self.__inspectorIblSet:
-			self.Inspector_DockWidget_setUi()
+			self.emit(SIGNAL("uiRefresh()"))
 		else:
-			self.Inspector_DockWidget_clearUi()
+			self.emit(SIGNAL("uiClear()"))
 
 	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
@@ -1284,7 +1298,7 @@ class Inspector(UiComponent):
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
-			self.Inspector_DockWidget_clearUi()
+			self.emit(SIGNAL("uiClear()"))
 
 	@core.executionTrace
 	def loopThroughPlates(self, backward=False):
