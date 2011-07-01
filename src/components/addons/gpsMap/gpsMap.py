@@ -632,7 +632,7 @@ class GpsMap(UiComponent):
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
 
-		self.setMarkers()
+		self.setMarkers__()
 
 	@core.executionTrace
 	def __Map_Type_comboBox__activated(self, index):
@@ -672,24 +672,33 @@ class GpsMap(UiComponent):
 		@param state: Loading State. ( Boolean )
 		"""
 
-		self.setMarkers()
+		self.setMarkers__()
 
 	@core.executionTrace
-	def setMarkers(self):
+	def setMarkers__(self):
 		"""
-		This Method Triggers The GPS Map Markers.
+		This Method Sets Selected Ibl Sets Markers.
+		"""
+
+		selectedIblSets = [iblSet._datas for iblSet in self.__coreDatabaseBrowser.getSelectedItems()]
+		selectedIblSets and	self.setMarkers(selectedIblSets)
+
+	@core.executionTrace
+	def setMarkers(self, iblSets):
+		"""
+		This Method Sets Ibl Sets Markers.
+
+		@param iblSets: Ibl Sets To Display Markers. ( DbIblSet List )
 		"""
 
 		self.__map.removeMarkers()
-
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
-		for iblSet in selectedIblSets:
-			LOGGER.debug("> Current Ibl Set: '{0}'.".format(iblSet._datas.name))
-			if iblSet._datas.latitude and iblSet._datas.longitude:
-				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet._datas.name))
-				shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet._datas.date, iblSet._datas.time) or Constants.nullObject)
-				content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet._datas.title, iblSet._datas.author, iblSet._datas.location, shotDateString, iblSet._datas.comment)
-				self.__map.addMarker((iblSet._datas.latitude, iblSet._datas.longitude), iblSet._datas.title, strings.toForwardSlashes(iblSet._datas.icon), content)
+		for iblSet in iblSets:
+			LOGGER.debug("> Current Ibl Set: '{0}'.".format(iblSet.name))
+			if iblSet.latitude and iblSet.longitude:
+				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet.name))
+				shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
+				content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
+				self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)
 		self.__map.setCenter()
 
 #***********************************************************************************************
