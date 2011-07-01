@@ -810,7 +810,6 @@ class LoaderScript(UiComponent):
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
 					raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
-
 		return True
 
 	@core.executionTrace
@@ -846,7 +845,6 @@ class LoaderScript(UiComponent):
 
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
 			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet._datas.reflectionImage))
-
 		return overrideKeys
 
 	@core.executionTrace
@@ -921,7 +919,6 @@ class LoaderScript(UiComponent):
 							LOGGER.debug("> Updating Loader Script Parameter '{0}' With Value: '{1}'.".format(parameter, attribute.value))
 							line = line.replace(parameter, attribute.value and attribute.value or "-1")
 			bindedLoaderScript.append(line)
-
 		return bindedLoaderScript
 
 #***********************************************************************************************
