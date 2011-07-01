@@ -127,6 +127,8 @@ class DatabaseOperations(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreTemplatesOutliner = None
 
+		self.__dbTypes = None
+
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
@@ -310,6 +312,35 @@ class DatabaseOperations(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 
+	@property
+	def dbTypes(self):
+		"""
+		This Method Is The Property For The _dbTypes Attribute.
+
+		@return: self.__dbTypes. ( Tuple )
+		"""
+
+		return self.__dbTypes
+
+	@dbTypes.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbTypes(self, value):
+		"""
+		This Method Is The Setter Method For The _dbTypes Attribute.
+
+		@param value: Attribute Value. ( Tuple )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbTypes"))
+
+	@dbTypes.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbTypes(self):
+		"""
+		This Method Is The Deleter Method For The _dbTypes Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbTypes"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -333,6 +364,9 @@ class DatabaseOperations(UiComponent):
 		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+
+		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbUtilities.common.getIblSets, updateContentMethod=dbUtilities.common.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+						DbType(type="Template", getMethod=dbUtilities.common.getTemplates, updateContentMethod=dbUtilities.common.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
 		self._activate()
 
@@ -417,10 +451,7 @@ class DatabaseOperations(UiComponent):
 		This Method Synchronizes The Database.
 		"""
 
-		dbTypes = (DbType(type="Ibl Set", getMethod=dbUtilities.common.getIblSets, updateContentMethod=dbUtilities.common.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
-					DbType(type="Template", getMethod=dbUtilities.common.getTemplates, updateContentMethod=dbUtilities.common.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
-
-		for dbType in dbTypes:
+		for dbType in self.__dbTypes:
 			for item in dbType.getMethod(self.__coreDb.dbSession):
 				if item.path:
 					if os.path.exists(item.path):
