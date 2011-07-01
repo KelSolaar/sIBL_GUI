@@ -633,10 +633,9 @@ class LoaderScript(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.outputLoaderScript()
+		self.outputLoaderScript__()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
 	def __Send_To_Software_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Send_To_Software_pushButton Is Clicked.
@@ -644,41 +643,7 @@ class LoaderScript(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		if self.outputLoaderScript():
-			selectedTemplate = self.__coreTemplatesOutliner.getSelectedTemplates()[0]
-			LOGGER.info("{0} | Starting Remote Connection!".format(self.__class__.__name__))
-			templateParser = Parser(selectedTemplate._datas.path)
-			templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-			connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
-
-			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, selectedTemplate._datas.outputScript))
-			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
-				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-
-			if connectionType.value == "Socket":
-				try:
-					connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-					connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
-					socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
-					LOGGER.debug("> Current Socket Command: '%s'.", socketCommand)
-					connection.send(socketCommand)
-					dataBack = connection.recv(8192)
-					LOGGER.debug("> Received Back From Application: '%s'", dataBack)
-					connection.close()
-					LOGGER.info("{0} | Ending Remote Connection!".format(self.__class__.__name__))
-				except Exception as error:
-					raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error: '{1}'!".format(self.__class__.__name__, error)
-			elif connectionType.value == "Win32":
-				if platform.system() == "Windows" or platform.system() == "Microsoft":
-					try:
-						import win32com.client
-						connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
-						connection._FlagAsMethod(self.__win32ExecutionMethod)
-						connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
-						LOGGER.debug("> Current Connection Command: '%s'.", connectionCommand)
-						getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
-					except Exception as error:
-						raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
+		self.sendLoaderScriptToSoftware__()
 
 	@core.executionTrace
 	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
@@ -717,45 +682,10 @@ class LoaderScript(UiComponent):
 			self.ui.Remote_Connection_groupBox.hide()
 
 	@core.executionTrace
-	def getDefaultOverrideKeys(self):
-		"""
-		This Method Gets Default Override Keys.
-		"""
-
-		LOGGER.debug("> Constructing Default Override Keys.")
-
-		overrideKeys = {}
-
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		template = selectedTemplates and selectedTemplates[0] or None
-
-		if template:
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
-			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
-
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
-		iblSet = selectedIblSets and selectedIblSets[0] or None
-
-		if iblSet:
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet._datas.path))
-			overrideKeys["Ibl Set|Path"] = iblSet._datas.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet._datas.path))
-
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
-			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
-
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Enviroment|EVfile", iblSet._datas.lightingImage))
-			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet._datas.lightingImage))
-
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
-			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet._datas.reflectionImage))
-
-		return overrideKeys
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception)
-	def outputLoaderScript(self):
+	def outputLoaderScript__(self):
 		"""
-		This Method Output The Loader Script.
+		This Method Outputs The Loader Script.
 		
 		@return: Output Success. ( Boolean )
 		"""
@@ -783,6 +713,40 @@ class LoaderScript(UiComponent):
 		if not os.path.exists(iblSet._datas.path):
 			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet._datas.name)
 
+		if self.outputLoaderScript(template._datas, iblSet._datas):
+			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
+			return True
+		else:
+			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template._datas.outputScript)
+
+	@core.executionTrace
+	def sendLoaderScriptToSoftware__(self):
+		"""
+		This Method Sends The Output Loader Script To Associated Package.
+		
+		@return: Send Success. ( Boolean )
+		"""
+
+		if self.outputLoaderScript__():
+			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+			template = selectedTemplates and selectedTemplates[0] or None
+			if template:
+				loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template._datas.outputScript))
+				if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
+					loaderScriptPath = strings.toPosixPath(loaderScriptPath)
+				return self.sendLoaderScriptToSoftware(template._datas, loaderScriptPath)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	def outputLoaderScript(self, template, iblSet):
+		"""
+		This Method Outputs The Loader Script.
+
+		@param template: Template. ( DbTemplate )
+		@param iblSet: Ibl Set. ( DbIblSet )	
+		@return: Output Success. ( Boolean )
+		"""
+
 		self.__overrideKeys = self.getDefaultOverrideKeys()
 
 		for component in self.__container.componentsManager.getComponents():
@@ -793,21 +757,97 @@ class LoaderScript(UiComponent):
 
 		if self.__container.parameters.loaderScriptsOutputDirectory:
 			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
-				loaderScript = File(os.path.join(self.__container.parameters.loaderScriptsOutputDirectory, template._datas.outputScript))
+				loaderScript = File(os.path.join(self.__container.parameters.loaderScriptsOutputDirectory, template.outputScript))
 			else:
 				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory)
 		else:
-			loaderScript = File(os.path.join(self.__ioDirectory, template._datas.outputScript))
+			loaderScript = File(os.path.join(self.__ioDirectory, template.outputScript))
 
 		LOGGER.debug("> Loader Script Output File Path: '{0}'.".format(loaderScript.file))
 
-		loaderScript.content = self.getLoaderScript(template._datas.path, iblSet._datas.path, self.__overrideKeys)
+		loaderScript.content = self.getLoaderScript(template.path, iblSet.path, self.__overrideKeys)
 
 		if loaderScript.content and loaderScript.write():
-			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
 			return True
-		else:
-			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template._datas.outputScript)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
+	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):
+		"""
+		This Method Sends The Loader Script To Associated Package.
+		
+		@param template: Template. ( DbTemplate )
+		@param loaderScriptPath: Loader Script Path. ( String )
+		@return: Send Success. ( Boolean )
+		"""
+
+		LOGGER.info("{0} | Starting Remote Connection!".format(self.__class__.__name__))
+		templateParser = Parser(template.path)
+		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
+		connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+
+		if connectionType.value == "Socket":
+			try:
+				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+				connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
+				socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+				LOGGER.debug("> Current Socket Command: '%s'.", socketCommand)
+				connection.send(socketCommand)
+				dataBack = connection.recv(8192)
+				LOGGER.debug("> Received Back From Application: '%s'", dataBack)
+				connection.close()
+				LOGGER.info("{0} | Ending Remote Connection!".format(self.__class__.__name__))
+			except Exception as error:
+				raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error: '{1}'!".format(self.__class__.__name__, error)
+		elif connectionType.value == "Win32":
+			if platform.system() == "Windows" or platform.system() == "Microsoft":
+				try:
+					import win32com.client
+					connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
+					connection._FlagAsMethod(self.__win32ExecutionMethod)
+					connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+					LOGGER.debug("> Current Connection Command: '%s'.", connectionCommand)
+					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
+				except Exception as error:
+					raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
+
+		return True
+
+	@core.executionTrace
+	def getDefaultOverrideKeys(self):
+		"""
+		This Method Gets Default Override Keys.
+
+		@return: Override Keys. ( Dictionary )
+		"""
+
+		LOGGER.debug("> Constructing Default Override Keys.")
+
+		overrideKeys = {}
+
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+		template = selectedTemplates and selectedTemplates[0] or None
+
+		if template:
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
+			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
+
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		iblSet = selectedIblSets and selectedIblSets[0] or None
+		if iblSet:
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet._datas.path))
+			overrideKeys["Ibl Set|Path"] = iblSet._datas.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet._datas.path))
+
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
+			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
+
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Enviroment|EVfile", iblSet._datas.lightingImage))
+			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet._datas.lightingImage))
+
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
+			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet._datas.reflectionImage))
+
+		return overrideKeys
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
