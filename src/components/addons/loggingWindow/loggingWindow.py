@@ -102,10 +102,7 @@ class LoggingWindow(UiComponent):
 
 		self.__container = None
 
-		self.__timer = None
-		self.__timerCycleMultiplier = 1.5
-
-		self.__memoryHandlerStack = None
+		self.__memoryHandlerStackDepth = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -201,64 +198,34 @@ class LoggingWindow(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
 
 	@property
-	def timer(self):
+	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Property For The _timer Attribute.
+		This Method Is The Property For The _memoryHandlerStackDepth Attribute.
 
-		@return: self.__timer. ( QTimer )
+		@return: self.__memoryHandlerStackDepth. ( Integer )
 		"""
 
-		return self.__timer
+		return self.__memoryHandlerStackDepth
 
-	@timer.setter
+	@memoryHandlerStackDepth.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timer(self, value):
+	def memoryHandlerStackDepth(self, value):
 		"""
-		This Method Is The Setter Method For The _timer Attribute.
+		This Method Is The Setter Method For The _memoryHandlerStackDepth Attribute.
 
-		@param value: Attribute Value. ( QTimer )
+		@param value: Attribute Value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("memoryHandlerStackDepth"))
 
-	@timer.deleter
+	@memoryHandlerStackDepth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timer(self):
+	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Deleter Method For The _timer Attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timer"))
-
-	@property
-	def timerCycleMultiplier(self):
-		"""
-		This Method Is The Property For The _timerCycleMultiplier Attribute.
-
-		@return: self.__timerCycleMultiplier. ( Float )
+		This Method Is The Deleter Method For The _memoryHandlerStackDepth Attribute.
 		"""
 
-		return self.__timerCycleMultiplier
-
-	@timerCycleMultiplier.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timerCycleMultiplier(self, value):
-		"""
-		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
-
-		@param value: Attribute Value. ( Float )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timerCycleMultiplier"))
-
-	@timerCycleMultiplier.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timerCycleMultiplier(self):
-		"""
-		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("memoryHandlerStackDepth"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -299,16 +266,13 @@ class LoggingWindow(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.__timer = QTimer(self)
-		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
-
 		self.ui.Logging_textEdit.setReadOnly(True)
 		self.ui.Logging_textEdit.setWordWrapMode(QTextOption.NoWrap)
 		self.ui.Logging_textEdit.setFontFamily("Courier")
 		self.__Logging_textEdit_setUi()
 
 		# Signals / Slots.
-		self.__timer.timeout.connect(self.__Logging_textEdit_refreshUi)
+		self.__container.timer.timeout.connect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -319,10 +283,7 @@ class LoggingWindow(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
-
-		self.__timer.stop()
-		self.__timer = None
+		self.__container.timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -361,10 +322,10 @@ class LoggingWindow(UiComponent):
 		This Method Updates The Logging TextEdit.
 		"""
 
-		memoryHandlerStack = len(self.__container.loggingSessionHandlerStream.stream)
-		if memoryHandlerStack != self.__memoryHandlerStack:
+		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
+		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
 			self.__Logging_textEdit_setUi()
-			self.__memoryHandlerStack = memoryHandlerStack
+			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
 #***********************************************************************************************
 #***	Python End

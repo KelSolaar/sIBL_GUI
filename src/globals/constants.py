@@ -116,7 +116,7 @@ class Constants():
 	elif platform.system() == "Linux":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
 
-	defaultTimerCycle = 250
+	defaultTimerCycle = 125
 	nullObject = "None"
 
 #***********************************************************************************************

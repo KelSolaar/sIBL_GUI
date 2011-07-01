@@ -379,6 +379,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.closeEvent = self.__closeUi
 
 		# --- Setting Class Attributes. ---
+		self.__timer = None
 		self.__componentsManager = None
 		self.__coreComponentsManagerUi = None
 		self.__corePreferencesManager = None
@@ -405,7 +406,11 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__miscMenu = None
 		self.__workerThreads = []
 
-		# --- Initializing sIBL_GUI. ---
+		# --- Initializing Timer. ---
+		self.__timer = QTimer(self)
+		self.__timer.start(Constants.defaultTimerCycle)
+
+		# --- Initializing Application. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
 		# Visual Style Initialisation.
@@ -528,6 +533,36 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	#***************************************************************************************
 	#***	Attributes Properties
 	#***************************************************************************************
+	@property
+	def timer(self):
+		"""
+		This Method Is The Property For The _timer Attribute.
+
+		@return: self.__timer. ( QTimer )
+		"""
+
+		return self.__timer
+
+	@timer.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timer(self, value):
+		"""
+		This Method Is The Setter Method For The _timer Attribute.
+
+		@param value: Attribute Value. ( QTimer )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timer"))
+
+	@timer.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def timer(self):
+		"""
+		This Method Is The Deleter Method For The _timer Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timer"))
+
 	@property
 	def componentsManager(self):
 		"""
@@ -1284,6 +1319,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		foundations.common.closeHandler(LOGGER, self.__loggingFileHandler)
 		foundations.common.closeHandler(LOGGER, self.__loggingSessionHandler)
 		# foundations.common.closeHandler( LOGGER, self.__loggingConsoleHandler )
+
+		# Stopping The Timer.
+		self.__timer.stop()
+		self.__timer = None
 
 		self.deleteLater()
 		event.accept()
