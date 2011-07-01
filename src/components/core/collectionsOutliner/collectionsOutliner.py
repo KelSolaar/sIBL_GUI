@@ -1462,7 +1462,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Removes Collections From The Database.
 		
-		@param collections: Collections To Remove ( DbCollection List )
+		@param collections: Collections To Remove. ( DbCollection List )
 		"""
 
 		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
