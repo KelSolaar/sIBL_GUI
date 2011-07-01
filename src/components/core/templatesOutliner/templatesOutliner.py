@@ -1815,6 +1815,29 @@ class TemplatesOutliner(UiComponent):
 		QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 
 	@core.executionTrace
+	def getSelectedItems(self, rowsRootOnly=True):
+		"""
+		This Method Returns The Templates_Outliner_treeView Selected Items.
+		
+		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
+		@return: View Selected Items. ( List )
+		"""
+
+		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
+		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
+
+	@core.executionTrace
+	def getSelectedTemplates(self):
+		"""
+		This Method Returns The Selected Templates.
+		
+		@return: Selected Template. ( QTreeWidgetItem )
+		"""
+
+		selectedItems = self.getSelectedItems()
+		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
+
+	@core.executionTrace
 	def getCollection(self, collection):
 		"""
 		This Method Gets Template Collection From Provided Collection Name.
@@ -1836,30 +1859,6 @@ class TemplatesOutliner(UiComponent):
 
 		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
-
-	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
-		"""
-		This Method Returns The Templates_Outliner_treeView Selected Items.
-		
-		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
-		@return: View Selected Items. ( List )
-		"""
-
-		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
-
-		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
-
-	@core.executionTrace
-	def getSelectedTemplates(self):
-		"""
-		This Method Returns The Selected Templates.
-		
-		@return: Selected Template. ( QTreeWidgetItem )
-		"""
-
-		selectedItems = self.getSelectedItems()
-		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
 
 #***********************************************************************************************
 #***	Python End

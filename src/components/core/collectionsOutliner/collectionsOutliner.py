@@ -1485,7 +1485,6 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
-
 		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace
@@ -1527,7 +1526,6 @@ class CollectionsOutliner(UiComponent):
 		selectedCollections = self.getSelectedCollections()
 		allIds = [collection._datas.id for collection in self.__model.findItems(".*", Qt.MatchRegExp | Qt.MatchRecursive, 0) if collection._type == "Collection"]
 		ids = selectedCollections and (self.__overallCollection in (collection.text() for collection in selectedCollections) and allIds or self.getSelectedCollectionsIds()) or allIds
-
 		return dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, ids)
 
 	@core.executionTrace
