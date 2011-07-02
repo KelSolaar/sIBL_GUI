@@ -89,8 +89,8 @@ DB_EXCEPTIONS = {
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def commit(session):
 	"""
 	This Definition Commits Changes To The Database.
@@ -117,13 +117,14 @@ def addItem(session, item):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Adding: '{0}' Item To Database.".format(item))
+	LOGGER.debug("> Adding: '{0}' Item To The Database.".format(item))
 
 	session.add(item)
 
 	return commit(session)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def addStandardItem(session, type, name, path, collection):
 	"""
 	This Definition Adds A New Standard Item To The Database.
@@ -136,7 +137,7 @@ def addStandardItem(session, type, name, path, collection):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Adding: '{0}' '{1}' To Database.".format(name, type.__name__))
+	LOGGER.debug("> Adding: '{0}' '{1}' To The Database.".format(name, type.__name__))
 
 	if not filterItems(session, session.query(type), "^{0}$".format(re.escape(path)), "path"):
 		osStats = ",".join((str(stat) for stat in os.stat(path)))
@@ -158,16 +159,17 @@ def removeItem(session, item):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Removing: '{0}' Item From Database.".format(item))
+	LOGGER.debug("> Removing: '{0}' Item From The Database.".format(item))
 
 	session.delete(item)
 
 	return commit(session)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def removeStandardItem(session, type, id):
 	"""
-	This Definition Remove A Standard Item From The Database.
+	This Definition Removes A Standard Item From The Database.
 
 	@param session: Database Session. ( Session )
 	@param type: Item Type. ( Object )
@@ -175,12 +177,13 @@ def removeStandardItem(session, type, id):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Removing Item Type '{0}' With Id '{1}' From Database.".format(type.__name__, id))
+	LOGGER.debug("> Removing Item Type '{0}' With Id '{1}' From The Database.".format(type.__name__, id))
 
 	item = session.query(type).filter_by(id=id).one()
 	return removeItem(session, item)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def updateItemContent(session, item):
 	"""
 	This Definition Update An Item Content.
@@ -200,6 +203,7 @@ def updateItemContent(session, item):
 		return False
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def updateItemLocation(session, item, path):
 	"""
 	This Definition Updates An Item Location.
@@ -220,6 +224,7 @@ def updateItemLocation(session, item, path):
 		return False
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterItems(session, items, pattern, field, flags=0):
 	"""
 	This Definition Filters Items From The Database.
@@ -232,8 +237,23 @@ def filterItems(session, items, pattern, field, flags=0):
 	@return: Filtered Items. ( List )
 	"""
 
-	if items:
-		return [item for item in items if re.search(pattern, str(item.__dict__[field]), flags) ]
+	return [item for item in items if re.search(pattern, str(item.__dict__[field]), flags)]
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def itemExists(session, items, pattern, field, flags=0):
+	"""
+	This Definition Returns If Item Exists In The Database.
+
+	@param session: Database Session. ( Session )
+	@param items: Database Items. ( List )
+	@param pattern: Filtering Pattern. ( String )
+	@param field: Database Field To Search Into. ( String )
+	@param flags: Flags Passed To The Regex Engine. ( Integer )
+	@return: Filtered Items. ( List )
+	"""
+
+	return filterItems(session, items, pattern, field, flags) and True or False
 
 @core.executionTrace
 def getIblSets(session):
@@ -261,6 +281,17 @@ def filterIblSets(session, pattern, field, flags=0):
 	return filterItems(session, getIblSets(session), pattern, field, flags)
 
 @core.executionTrace
+def iblSetExists(session, path):
+	"""
+	This Method Returns If Ibl Set Exists In The Database.
+	
+	@param name: Ibl Set path. ( String )
+	@return: Ibl Set Exists. ( Boolean )
+	"""
+
+	return filterIblSets(session, "^{0}$".format(re.escape(path)), "path") and True or False
+
+@core.executionTrace
 def addIblSet(session, name, path, collection):
 	"""
 	This Definition Adds A New Ibl Set To The Database.
@@ -277,7 +308,7 @@ def addIblSet(session, name, path, collection):
 @core.executionTrace
 def removeIblSet(session, id):
 	"""
-	This Definition Remove An Ibl Set From The Database.
+	This Definition Removes An Ibl Set From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Ibl Set Id. ( String )
@@ -367,6 +398,17 @@ def filterCollections(session, pattern, field, flags=0):
 	return filterItems(session, getCollections(session), pattern, field, flags)
 
 @core.executionTrace
+def collectionExists(session, name):
+	"""
+	This Method Returns If The Collection Exists In The Database.
+	
+	@param name: Collection Name. ( String )
+	@return: Collection Exists. ( Boolean )
+	"""
+
+	return filterCollections(session, "^{0}$".format(name), "name") and True or False
+
+@core.executionTrace
 def addCollection(session, collection, type, comment):
 	"""
 	This Definition Adds A Collection To The Database.
@@ -378,7 +420,7 @@ def addCollection(session, collection, type, comment):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Adding: '{0}' Collection Of Type '{1}' To Database.".format(collection, type))
+	LOGGER.debug("> Adding: '{0}' Collection Of Type '{1}' To The Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
 		dbItem = dbUtilities.types.DbCollection(name=collection, type=type, comment=comment)
@@ -390,7 +432,7 @@ def addCollection(session, collection, type, comment):
 @core.executionTrace
 def removeCollection(session, id):
 	"""
-	This Definition Remove A Collection From The Database.
+	This Definition Removes A Collection From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Collection Id. ( String )
@@ -443,6 +485,17 @@ def filterTemplates(session, pattern, field, flags=0):
 	return filterItems(session, getTemplates(session), pattern, field, flags)
 
 @core.executionTrace
+def templateExists(session, path):
+	"""
+	This Method Returns If Template Exists In The Database.
+	
+	@param name: Template path. ( String )
+	@return: Template Exists. ( Boolean )
+	"""
+
+	return filterTemplates(session, "^{0}$".format(re.escape(path)), "path") and True or False
+
+@core.executionTrace
 def addTemplate(session, name, path, collection):
 	"""
 	This Definition Adds A New Template To The Database.
@@ -459,7 +512,7 @@ def addTemplate(session, name, path, collection):
 @core.executionTrace
 def removeTemplate(session, id):
 	"""
-	This Definition Remove A Template From The Database.
+	This Definition Removes A Template From The Database.
 
 	@param session: Database Session. ( Session )
 	@param id: Template Id. ( String )
