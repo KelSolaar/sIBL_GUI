@@ -470,13 +470,14 @@ class Db(Component):
 		LOGGER.info("{0} | Session Database Location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
 
-		if not self.__container.parameters.databaseReadOnly:
-			backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
+		if os.path.exists(self.__dbName):
+			if not self.__container.parameters.databaseReadOnly:
+					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
-			LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
-			rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
-			rotatingBackup.backup()
-		else:
+					LOGGER.info("{0} | Backing Up '{1}' Database To '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
+					rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
+					rotatingBackup.backup()
+			else:
 				LOGGER.info("{0} | Database Backup Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		if not self.__container.parameters.databaseReadOnly:
