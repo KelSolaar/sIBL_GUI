@@ -1778,7 +1778,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Removes Templates From The Database.
 
-		@param templates: Templates To Remove. ( DbTemplate List )
+		@param templates: Templates To Remove. ( List )
 		"""
 
 		for template in templates:

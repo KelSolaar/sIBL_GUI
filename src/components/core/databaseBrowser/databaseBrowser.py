@@ -1182,7 +1182,7 @@ class DatabaseBrowser(UiComponent):
 		# Signals / Slots.
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
-		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelContent)
+		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelDatas)
 		self.modelChanged.connect(self.__Database_Browser_listView_refreshView)
 		self.modelChanged.connect(functools.partial(self.__coreCollectionsOutliner.emit, SIGNAL("modelPartialRefresh()")))
 		self.modelRefresh.connect(self.__Database_Browser_listView_refreshModel)
@@ -1271,12 +1271,12 @@ class DatabaseBrowser(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
 
 	@core.executionTrace
-	def __Database_Browser_listView_setModelContent(self):
+	def __Database_Browser_listView_setModelDatas(self):
 		"""
 		This Method Sets Database_Browser_listView Model Content.
 		"""
 
-		self.__modelContent = self.__coreCollectionsOutliner.getSelectedCollectionsIblSets()
+		self.__modelContent = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 
 	@core.executionTrace
 	def __Database_Browser_listView_setModel(self):
@@ -1603,7 +1603,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Remove Ibl Sets From The Database.
 		
-		@param iblSets: Ibl Sets To Remove. ( DbIblSet List )
+		@param iblSets: Ibl Sets To Remove. ( List )
 		"""
 
 		for iblSet in iblSets:

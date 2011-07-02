@@ -100,7 +100,18 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
 
-	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Deactivating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Deactivating '{1}' Component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+
+@core.executionTrace
+def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
+	"""
+	This Definition Provides An Exception Handler For Component Reload.
+	
+	@param exception: Exception. ( Exception )
+	@param origin: Function / Method Raising The Exception. ( String )
+	"""
+
+	ui.common.uiBasicExceptionHandler(Exception("{0} | An Exception Occurred While Reloading '{1}' Component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 class ComponentsManagerUi(UiComponent):
 	"""
@@ -884,9 +895,12 @@ class ComponentsManagerUi(UiComponent):
 		self.ui.Components_Informations_textBrowser.setText(separator.join(content))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def __storeDeactivatedComponents(self):
 		"""
 		This Method Stores Deactivated Components In The Settings File.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		deactivatedComponents = []
@@ -896,15 +910,18 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Storing '{0}' Deactivated Components.".format(", ".join(deactivatedComponents)))
 		self.__settings.setKey("Settings", "deactivatedComponents", ",".join(deactivatedComponents))
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def activateComponents__(self):
 		"""
 		This Method Activates User Selected Components.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		selectedComponents = self.getSelectedItems()
-
 		if selectedComponents:
 			for component in selectedComponents:
 				if component._type == "Component":
@@ -912,17 +929,19 @@ class ComponentsManagerUi(UiComponent):
 						self.activateComponent(component._datas)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
-
 			self.__storeDeactivatedComponents()
+			return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def deactivateComponents__(self):
 		"""
 		This Method Deactivates User Selected Components.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		selectedComponents = self.getSelectedItems()
-
 		if selectedComponents:
 			for component in selectedComponents:
 				if component._type == "Component":
@@ -933,27 +952,23 @@ class ComponentsManagerUi(UiComponent):
 							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component._datas.name))
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
-
 			self.__storeDeactivatedComponents()
+			return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def reloadComponents__(self):
 		"""
 		This Method Reload User Selected Components.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = self.getSelectedItems()
+		selectedComponents = [component._datas for component in self.getSelectedItems() if component._type == "Component"]
 		if selectedComponents:
 			for component in selectedComponents:
-				if component._type == "Component":
-					if component._datas.interface.deactivatable:
-						if component._datas.interface.activated:
-							self.deactivateComponent(component._datas)
-						self.__container.componentsManager.reloadComponent(component._datas.name)
-						if not component._datas.interface.activated:
-							self.activateComponent(component._datas)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
+				self.reloadComponent(component)
+			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
@@ -962,20 +977,19 @@ class ComponentsManagerUi(UiComponent):
 		This Method Activates The Provided Component.
 		
 		@param component: Component. ( Profile )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Activation.".format(component.name))
-
 		component.interface.activate(self.__container)
 		if component.categorie == "default":
 			component.interface.initialize()
 		elif component.categorie == "ui":
 			component.interface.addWidget()
 			component.interface.initializeUi()
-
 		LOGGER.info("{0} | '{1}' Component Has Been Activated!".format(self.__class__.__name__, component.name))
-
 		self.emit(SIGNAL("modelPartialRefresh()"))
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
@@ -984,20 +998,42 @@ class ComponentsManagerUi(UiComponent):
 		This Method Deactivates The Provided Component.
 		
 		@param component: Component. ( Profile )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Deactivation.".format(component.name))
-
 		if component.categorie == "default":
 			component.interface.uninitialize()
 		elif component.categorie == "ui":
 			component.interface.uninitializeUi()
 			component.interface.removeWidget()
 		component.interface.deactivate()
-
 		LOGGER.info("{0} | '{1}' Component Has Been Deactivated!".format(self.__class__.__name__, component.name))
-
 		self.emit(SIGNAL("modelPartialRefresh()"))
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, foundations.exceptions.ComponentReloadError)
+	def reloadComponent(self, component):
+		"""
+		This Method Reload The Provided Component.
+
+		@param component: Component. ( Profile )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Attempting '{0}' Component Reload.".format(component.name))
+		if component.interface.deactivatable:
+			if component.interface.activated:
+				self.deactivateComponent(component)
+			self.__container.componentsManager.reloadComponent(component.name)
+			if not component.interface.activated:
+				self.activateComponent(component)
+			LOGGER.info("{0} | '{1}' Component Has Been Reloaded!".format(self.__class__.__name__, component.name))
+			self.emit(SIGNAL("modelPartialRefresh()"))
+			return True
+		else:
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):

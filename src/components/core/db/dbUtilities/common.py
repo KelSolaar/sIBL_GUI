@@ -113,7 +113,7 @@ def addItem(session, item):
 	This Definition Adds An Item To The Database.
 	
 	@param session: Database Session. ( Session )
-	@param item: Item To Add. ( sIBL_DB Object )
+	@param item: Item To Add. ( Db Object )
 	@return: Database Commit Success. ( Boolean )
 	"""
 
@@ -154,7 +154,7 @@ def removeItem(session, item):
 	This Definition Removes An Item From The Database.
 	
 	@param session: Database Session. ( Session )
-	@param item: Item To Remove. ( sIBL_DB Object )
+	@param item: Item To Remove. ( Db Object )
 	@return: Database Commit Success. ( Boolean )
 	"""
 
