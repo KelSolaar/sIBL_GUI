@@ -545,9 +545,9 @@ class SetsScanner(Component):
 			if messageBox.messageBox("Question", "Question", "One Or More Neighbor Ibl Sets Have Been Found! Would You Like To Add That Content: '{0}' To The Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self.__setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet, path in self.__setsScannerWorkerThread.newIblSets.items():
 					iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
-					LOGGER.info("{0} | Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
+					LOGGER.info("{0} | Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, iblSet))
 					if not dbUtilities.common.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
-						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To Database!".format(self.__class__.__name__, iblSet))
+						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, iblSet))
 
 				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 

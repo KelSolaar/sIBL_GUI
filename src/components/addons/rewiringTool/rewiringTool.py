@@ -539,7 +539,7 @@ class RewiringTool(UiComponent):
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
 		if iblSet:

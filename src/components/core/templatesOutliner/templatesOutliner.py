@@ -1637,7 +1637,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Is Triggered By The TemplatesOutliner_Worker When The Database Has Changed.
 		"""
 
-		# Ensure That DB Objects Modified By The Worker Thread Will Refresh Properly.
+		# Ensure That Db Objects Modified By The Worker Thread Will Refresh Properly.
 		self.__coreDb.dbSession.expire_all()
 		self.emit(SIGNAL("modelRefresh()"))
 
@@ -1725,11 +1725,11 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		if not dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
-			LOGGER.info("{0} | Adding '{1}' Template To Database!".format(self.__class__.__name__, name))
+			LOGGER.info("{0} | Adding '{1}' Template To The Database!".format(self.__class__.__name__, name))
 			if dbUtilities.common.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
 				self.emit(SIGNAL("modelRefresh()"))
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, name)
 		else:
 			ignoreWarning or messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template Path Already Exists In Database!".format(self.__class__.__name__, path))
 
@@ -1765,11 +1765,11 @@ class TemplatesOutliner(UiComponent):
 			proceed = False
 
 		if proceed:
-			LOGGER.debug("> Adding Default Templates To Database.")
+			LOGGER.debug("> Adding Default Templates To The Database.")
 			for collection, path in self.__defaultCollections.items():
 				if os.path.exists(path):
 					if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
-						LOGGER.info("{0} | Adding '{1}' Collection To Database!".format(self.__class__.__name__, collection))
+						LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
 						dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 					self.addDirectory(path, self.getCollection(collection).id, ignoreWarning)
 
@@ -1782,7 +1782,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		for template in templates:
-			LOGGER.info("{0} | Removing '{1}' Template From Database!".format(self.__class__.__name__, template.name))
+			LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
 			dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template.id))
 		self.emit(SIGNAL("modelRefresh()"))
 

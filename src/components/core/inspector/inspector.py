@@ -1182,7 +1182,7 @@ class Inspector(UiComponent):
 		This Method Sets The Inspected Ibl Set.
 		"""
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		self.__inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
 		if not self.__inspectorIblSet:
 			model = self.__coreDatabaseBrowser.model

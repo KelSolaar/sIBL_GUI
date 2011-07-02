@@ -680,7 +680,7 @@ class GpsMap(UiComponent):
 		This Method Sets Selected Ibl Sets Markers.
 		"""
 
-		selectedIblSets = [iblSet._datas for iblSet in self.__coreDatabaseBrowser.getSelectedItems()]
+		selectedIblSets = [iblSet._datas for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets()]
 		selectedIblSets and	self.setMarkers(selectedIblSets)
 
 	@core.executionTrace

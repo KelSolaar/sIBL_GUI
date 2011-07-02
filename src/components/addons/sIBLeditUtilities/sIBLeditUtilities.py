@@ -579,7 +579,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 
 		if sIBLedit:

@@ -627,7 +627,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		for iblSet in selectedIblSets:
 			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editFile(iblSet._datas.path)
 
@@ -639,7 +639,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 		selectedIblSet and self.editFile(selectedIblSet._datas.path)
 

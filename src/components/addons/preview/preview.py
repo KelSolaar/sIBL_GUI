@@ -2048,7 +2048,7 @@ class Preview(UiComponent):
 
 		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		for iblSet in selectedIblSets:
 			imagePaths = []
 			if imageType == "Background":

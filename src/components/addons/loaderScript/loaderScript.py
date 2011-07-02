@@ -704,7 +704,7 @@ class LoaderScript(UiComponent):
 		if not os.path.exists(template._datas.path):
 			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template._datas.name)
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
 
 		if not iblSet:
@@ -831,7 +831,7 @@ class LoaderScript(UiComponent):
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
 			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet._datas.path))

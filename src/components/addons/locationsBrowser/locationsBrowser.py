@@ -743,7 +743,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		for iblSet in selectedIblSets:
 			iblSetPath = iblSet._datas.path
 			iblSetPath = iblSetPath and os.path.exists(iblSetPath) and os.path.dirname(iblSetPath)
@@ -757,7 +757,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedItems()
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
 		selectedIblSet and self.exploreDirectory(os.path.dirname(selectedIblSet._datas.path))
 
