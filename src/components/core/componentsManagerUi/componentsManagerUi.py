@@ -921,16 +921,14 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = self.getSelectedItems()
-		if selectedComponents:
-			for component in selectedComponents:
-				if component._type == "Component":
-					if not component._datas.interface.activated:
-						self.activateComponent(component._datas)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component._datas.name))
-			self.__storeDeactivatedComponents()
-			return True
+		selectedComponents = self.getSelectedComponents()
+		for component in selectedComponents:
+			if not component.interface.activated:
+				self.activateComponent(component)
+			else:
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Activated!".format(self.__class__.__name__, component.name))
+		self.__storeDeactivatedComponents()
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -941,19 +939,17 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = self.getSelectedItems()
-		if selectedComponents:
-			for component in selectedComponents:
-				if component._type == "Component":
-					if component._datas.interface.activated:
-						if component._datas.interface.deactivatable:
-							self.deactivateComponent(component._datas)
-						else:
-							messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component._datas.name))
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component._datas.name))
-			self.__storeDeactivatedComponents()
-			return True
+		selectedComponents = self.getSelectedComponents()
+		for component in selectedComponents:
+			if component.interface.activated:
+				if component.interface.deactivatable:
+					self.deactivateComponent(component)
+				else:
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component.name))
+			else:
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Is Already Deactivated!".format(self.__class__.__name__, component.name))
+		self.__storeDeactivatedComponents()
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -964,11 +960,10 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = [component._datas for component in self.getSelectedItems() if component._type == "Component"]
-		if selectedComponents:
-			for component in selectedComponents:
-				self.reloadComponent(component)
-			return True
+		selectedComponents = self.getSelectedComponents()
+		for component in selectedComponents:
+			self.reloadComponent(component)
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
@@ -1033,7 +1028,7 @@ class ComponentsManagerUi(UiComponent):
 			self.emit(SIGNAL("modelPartialRefresh()"))
 			return True
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component._datas.name))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component.name))
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1046,6 +1041,17 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
 		return rowsRootOnly and [item for item in set((self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes))] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
+
+	@core.executionTrace
+	def getSelectedComponents(self):
+		"""
+		This Method Returns The Selected Components.
+		
+		@return: View Selected Components. ( List )
+		"""
+
+		selectedComponents = [item._datas for item in self.getSelectedItems() if item._type == "Component"]
+		return selectedComponents and selectedComponents or None
 
 #***********************************************************************************************
 #***	Python End
