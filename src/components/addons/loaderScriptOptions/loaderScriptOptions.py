@@ -698,16 +698,15 @@ class LoaderScriptOptions(UiComponent):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
+		if not template: return
 
-		if template:
-			LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template._datas.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+		LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+		if os.path.exists(template.path):
+			templateParser = Parser(template.path)
+			templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
-			if os.path.exists(template._datas.path):
-				templateParser = Parser(template._datas.path)
-				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-
-				self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
-				self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
+			self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
+			self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
 	def updateOverrideKeys(self, tableWidget):

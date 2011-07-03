@@ -658,10 +658,10 @@ class LoaderScript(UiComponent):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Parsing '{0}' Template For '{1}' Section.".format(template._datas.name, self.__templateRemoteConnectionSection))
+			LOGGER.debug("> Parsing '{0}' Template For '{1}' Section.".format(template.name, self.__templateRemoteConnectionSection))
 
-			if os.path.exists(template._datas.path):
-				templateParser = Parser(template._datas.path)
+			if os.path.exists(template.path):
+				templateParser = Parser(template.path)
 				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
 				if self.__templateRemoteConnectionSection in templateParser.sections:
@@ -694,15 +694,15 @@ class LoaderScript(UiComponent):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		if selectedTemplates and len(selectedTemplates) != 1:
-			messageBox.messageBox("Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used!".format(self.__class__.__name__, selectedTemplates[0]._datas.name))
+			messageBox.messageBox("Information", "Information", "{0} | Multiple Selected Templates, '{1}' Will Be Used!".format(self.__class__.__name__, selectedTemplates[0].name))
 
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if not template:
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Template!".format(self.__class__.__name__)
 
-		if not os.path.exists(template._datas.path):
-			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template._datas.name)
+		if not os.path.exists(template.path):
+			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template.name)
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
@@ -710,14 +710,14 @@ class LoaderScript(UiComponent):
 		if not iblSet:
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set!".format(self.__class__.__name__)
 
-		if not os.path.exists(iblSet._datas.path):
-			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet._datas.name)
+		if not os.path.exists(iblSet.path):
+			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet.name)
 
-		if self.outputLoaderScript(template._datas, iblSet._datas):
-			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template._datas.outputScript))
+		if self.outputLoaderScript(template, iblSet):
+			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template.outputScript))
 			return True
 		else:
-			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template._datas.outputScript)
+			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template.outputScript)
 
 	@core.executionTrace
 	def sendLoaderScriptToSoftware__(self):
@@ -731,10 +731,10 @@ class LoaderScript(UiComponent):
 			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 			template = selectedTemplates and selectedTemplates[0] or None
 			if template:
-				loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template._datas.outputScript))
+				loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
 				if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
 					loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-				return self.sendLoaderScriptToSoftware(template._datas, loaderScriptPath)
+				return self.sendLoaderScriptToSoftware(template, loaderScriptPath)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -828,23 +828,23 @@ class LoaderScript(UiComponent):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template._datas.path))
-			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template._datas.path)
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Template|Path", template.path))
+			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template.path)
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if iblSet:
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet._datas.path))
-			overrideKeys["Ibl Set|Path"] = iblSet._datas.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet._datas.path))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Ibl Set|Path", iblSet.path))
+			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet.path))
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet._datas.backgroundImage))
-			overrideKeys["Background|BGfile"] = iblSet._datas.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet._datas.backgroundImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Background|BGfile", iblSet.backgroundImage))
+			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet.backgroundImage))
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Enviroment|EVfile", iblSet._datas.lightingImage))
-			overrideKeys["Enviroment|EVfile"] = iblSet._datas.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet._datas.lightingImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Enviroment|EVfile", iblSet.lightingImage))
+			overrideKeys["Enviroment|EVfile"] = iblSet.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet.lightingImage))
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet._datas.reflectionImage))
-			overrideKeys["Reflection|REFfile"] = iblSet._datas.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet._datas.reflectionImage))
+			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format("Reflection|REFfile", iblSet.reflectionImage))
+			overrideKeys["Reflection|REFfile"] = iblSet.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet.reflectionImage))
 		return overrideKeys
 
 	@core.executionTrace

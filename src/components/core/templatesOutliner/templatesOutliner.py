@@ -1606,14 +1606,14 @@ class TemplatesOutliner(UiComponent):
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template._datas.software, template._datas.renderer, template._datas.title),
-												template._datas.date,
-												template._datas.author,
-												template._datas.email,
-												template._datas.url,
-												template._datas.outputScript,
-												template._datas.comment,
-												QUrl.fromLocalFile(template._datas.helpFile).toString()))
+				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template.software, template.renderer, template.title),
+												template.date,
+												template.author,
+												template.email,
+												template.url,
+												template.outputScript,
+												template.comment,
+												QUrl.fromLocalFile(template.helpFile).toString()))
 		else:
 			content.append(self.__templatesInformationsDefaultText)
 
@@ -1642,20 +1642,31 @@ class TemplatesOutliner(UiComponent):
 		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def addTemplate__(self):
 		"""
 		This Method Adds An User Defined Template To The Database.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT Files (*.{0})".format(self.__extension))))
-		if path:
+		if not path: return
+
+		if not self.templateExists(path):
 			LOGGER.debug("> Chosen Template Path: '{0}'.".format(path))
-			self.addTemplate(strings.getSplitextBasename(path), path)
+			if self.addTemplate(strings.getSplitextBasename(path), path): return True
+			else: raise Exception, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, path)
+		else:
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template Already Exists In Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def removeTemplates__(self):
 		"""
 		This Method Removes User Selected Templates From The Database.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1675,30 +1686,42 @@ class TemplatesOutliner(UiComponent):
 		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
 		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
-		if selectedTemplates:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				self.removeTemplates(selectedTemplates)
+		if not selectedTemplates: return
+
+		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			success = True
+			for template in selectedTemplates:
+				success *= self.removeTemplate(template) or False
+			if success: return True
+			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Templates From The Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def importDefaultTemplates__(self):
 		"""
 		This Method Imports Default Templates Into The Database.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
-		self.addDefaultTemplates(forceImport=True, ignoreWarning=True)
+		if not self.addDefaultTemplates(forceImport=True, ignoreWarning=True):
+			raise Exception, "{0} | Exception Raised While Importing Default Templates Into The Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def displayHelpFiles__(self):
 		"""
 		This Method Displays User Selected Templates Help Files.
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
-		if selectedTemplates:
-			for template in selectedTemplates:
-				self.displayHelpFile(template._datas)
+		if not selectedTemplates: return
+
+		for template in selectedTemplates:
+			self.displayHelpFile(template)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def filterTemplatesVersions__(self):
 		"""
 		This Method Filters Templates By Versions.
@@ -1713,15 +1736,14 @@ class TemplatesOutliner(UiComponent):
 				self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
-	def addTemplate(self, name, path, collectionId=None, ignoreWarning=False):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
+	def addTemplate(self, name, path, collectionId=None):
 		"""
 		This Method Adds A Template To The Database.
 		
 		@param name: Template Set Name. ( String )		
 		@param path: Template Set Path. ( String )		
 		@param collectionId: Target Collection Id. ( Integer )		
-		@param ignoreWarning: Ignore Warning Message. ( Boolean )
 		"""
 
 		if not dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
@@ -1731,7 +1753,7 @@ class TemplatesOutliner(UiComponent):
 			else:
 				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, name)
 		else:
-			ignoreWarning or messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template Path Already Exists In Database!".format(self.__class__.__name__, path))
+			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Template Already Exists In Database!".format(self.__class__.__name__, name)
 
 	@core.executionTrace
 	def addDirectory(self, directory, collectionId=None, ignoreWarning=False):
@@ -1763,28 +1785,43 @@ class TemplatesOutliner(UiComponent):
 		proceed = True
 		if not forceImport and dbUtilities.common.getTemplates(self.__coreDb.dbSession).count():
 			proceed = False
+		if not proceed: return
 
-		if proceed:
-			LOGGER.debug("> Adding Default Templates To The Database.")
-			for collection, path in self.__defaultCollections.items():
-				if os.path.exists(path):
-					if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
-						LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
-						dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
-					self.addDirectory(path, self.getCollection(collection).id, ignoreWarning)
+		LOGGER.debug("> Adding Default Templates To The Database.")
+		for collection, path in self.__defaultCollections.items():
+			if os.path.exists(path):
+				if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
+					LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
+					dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
+				self.addDirectory(path, self.getCollection(collection).id, ignoreWarning)
 
 	@core.executionTrace
-	def removeTemplates(self, templates):
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError, Exception)
+	def removeTemplate(self, template):
 		"""
-		This Method Removes Templates From The Database.
+		This Method Removes Provided Template From The Database.
 
-		@param templates: Templates To Remove. ( List )
+		@param templates: Template To Remove. ( List )
+		@return: Method Success. ( Boolean )		
 		"""
 
-		for template in templates:
-			LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
-			dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template.id))
-		self.emit(SIGNAL("modelRefresh()"))
+		LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
+		if dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
+			self.emit(SIGNAL("modelRefresh()"))
+			return True
+		else:
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name)
+
+	@core.executionTrace
+	def templateExists(self, path):
+		"""
+		This Method Returns If Template Exists In The Database.
+		
+		@param name: Template Path. ( String )
+		@return: Template Exists. ( Boolean )
+		"""
+
+		return dbUtilities.common.templateExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
@@ -1796,12 +1833,13 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self.__container.lastBrowsedPath, "Template Files (*{0})".format(self.__extension))))
-		if file:
-			LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
-			if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):
-				self.emit(SIGNAL("modelRefresh()"))
-			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template Location!".format(self.__class__.__name__, template.name)
+		if not file: return
+
+		LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
+		if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):
+			self.emit(SIGNAL("modelRefresh()"))
+		else:
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template Location!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	def displayHelpFile(self, template):
@@ -1835,7 +1873,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		selectedItems = self.getSelectedItems()
-		return selectedItems and [item for item in selectedItems if item._type == "Template"] or None
+		return selectedItems and [item._datas for item in selectedItems if item._type == "Template"] or None
 
 	@core.executionTrace
 	def getCollection(self, collection):

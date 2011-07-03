@@ -1524,13 +1524,14 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-		if directory:
-			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-			if self.addDirectory(directory): return True
-			else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if not directory: return
+
+		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+		if self.addDirectory(directory): return True
+		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def addIblSet__(self):
 		"""
 		This Method Adds An User Defined Ibl Set To The Database.
@@ -1540,6 +1541,7 @@ class DatabaseBrowser(UiComponent):
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
 		if not path: return
+
 		if not self.iblSetExists(path):
 			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(path))
 			if self.addIblSet(strings.getSplitextBasename(path), path): return True
@@ -1557,13 +1559,14 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		selectedIblSets = [iblSet._datas for iblSet in self.getSelectedIblSets()]
-		if selectedIblSets:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				success = True
-				for iblSet in selectedIblSets:
-					success *= self.removeIblSet(iblSet) or False
-				if success: return True
-				else: raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
+		if not selectedIblSets: return
+
+		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			success = True
+			for iblSet in selectedIblSets:
+				success *= self.removeIblSet(iblSet) or False
+			if success: return True
+			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1575,16 +1578,17 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
-		if selectedIblSets:
-			success = True
-			for iblSet in selectedIblSets:
-				file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet._datas.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
-				success *= self.updateIblSetLocation(iblSet._datas, file) or False
-			if success: return True
-			else: raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
+		if not selectedIblSets: return
+
+		success = True
+		for iblSet in selectedIblSets:
+			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet._datas.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
+			success *= self.updateIblSetLocation(iblSet._datas, file) or False
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None):
 		"""
 		This Method Adds An Ibl Set To The Database.
@@ -1622,19 +1626,24 @@ class DatabaseBrowser(UiComponent):
 
 		walker = Walker(directory)
 		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+
+		success = True
 		for iblSet, path in walker.files.items():
-			self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId())
-		self.emit(SIGNAL("modelDatasRefresh()"))
-		self.emit(SIGNAL("modelRefresh()"))
-		return True
+			success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()) or False
+		if success:
+			self.emit(SIGNAL("modelDatasRefresh()"))
+			self.emit(SIGNAL("modelRefresh()"))
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError, Exception)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet):
 		"""
-		This Method Remove Provided Ibl Set From The Database.
+		This Method Removes Provided Ibl Set From The Database.
 		
-		@param iblSets: Ibl Set To Remove. ( DbIblSet )
+		@param iblSet: Ibl Set To Remove. ( DbIblSet )
 		@return: Method Success. ( Boolean )		
 		"""
 
@@ -1658,7 +1667,7 @@ class DatabaseBrowser(UiComponent):
 		return dbUtilities.common.iblSetExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file):
 		"""
 		This Method Updates Provided Ibl Set Location.

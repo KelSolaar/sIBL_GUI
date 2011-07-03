@@ -1335,26 +1335,27 @@ class CollectionsOutliner(UiComponent):
 
 		if currentText:
 			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
-
-			identity = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
+			id = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
 			collections = [collection for collection in self.getCollections()]
-			if identity and collections:
-				if startIndex.column() == 0:
-					if currentText not in (collection.name for collection in collections):
-						LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(identity, currentText))
-						collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-						collection.name = str(currentText)
-						dbUtilities.common.commit(self.__coreDb.dbSession)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
-				elif startIndex.column() == 2:
-					LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(identity, currentText))
-					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(identity), "id")[0]
-					collection.comment = str(currentText)
+			if not id and not collections: return
+
+			if startIndex.column() == 0:
+				if currentText not in (collection.name for collection in collections):
+					LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(id, currentText))
+					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
+					collection.name = str(currentText)
 					dbUtilities.common.commit(self.__coreDb.dbSession)
+				else:
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
+			elif startIndex.column() == 2:
+				LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(id, currentText))
+				collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
+				collection.comment = str(currentText)
+				dbUtilities.common.commit(self.__coreDb.dbSession)
 		else:
 			raise foundations.exceptions.UserError, "{0} | Exception While Editing A Collection Field: Cannot Use An Empty Value!".format(self.__class__.__name__)
 		self.emit(SIGNAL("modelRefresh()"))
+
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1386,11 +1387,13 @@ class CollectionsOutliner(UiComponent):
 
 		collection = self.addCollection__()
 		if not collection: return
+
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-		if directory:
-			LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-			if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)): return True
-			else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if not directory: return
+
+		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)): return True
+		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
@@ -1403,6 +1406,7 @@ class CollectionsOutliner(UiComponent):
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
 		if not state: return
+
 		if collectionInformations:
 			collectionInformations = str(collectionInformations).split(",")
 			name = collectionInformations[0].strip()
@@ -1436,16 +1440,17 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollections = self.getSelectedCollections()
 		selectedCollections = selectedCollections and [collection for collection in selectedCollections if collection.name != self.__defaultCollection] or None
-		if selectedCollections:
-			if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				success = True
-				for collection in selectedCollections:
-					success *= self.removeCollection(collection) or False
-				if success: return True
-				else: raise Exception, "{0} | Exception Raised While Removing '{1}' Collections From The Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
+		if not selectedCollections: return
+
+		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			success = True
+			for collection in selectedCollections:
+				success *= self.removeCollection(collection) or False
+			if success: return True
+			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Collections From The Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError, Exception)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
 	def addCollection(self, name, comment="Double Click To Set A Comment!"):
 		"""
 		This Method Adds A Collection To The Database.
@@ -1469,7 +1474,7 @@ class CollectionsOutliner(UiComponent):
 			raise foundations.exceptions.ProgrammingError, "{0} | Cannot Use '{1}' As Collection Name!".format(self.__class__.__name__, self.__overallCollection)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
 		This Method Removes Provided Collection From The Database.
@@ -1482,6 +1487,7 @@ class CollectionsOutliner(UiComponent):
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
+
 		LOGGER.info("{0} | Removing '{1}' Collection From The Database!".format(self.__class__.__name__, collection.name))
 		if dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection.id)):
 			self.emit(SIGNAL("modelRefresh()"))
