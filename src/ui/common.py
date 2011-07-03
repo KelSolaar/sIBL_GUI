@@ -111,8 +111,8 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.messageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
+	messageBox.messageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 
 @core.executionTrace
 def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
@@ -125,8 +125,8 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.standaloneMessageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
+	messageBox.standaloneMessageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 
 @core.executionTrace
 def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
@@ -139,8 +139,8 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.messageBox("Detailed Error", "Exception", "{0}".format(exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
+	messageBox.messageBox("Detailed Error", "Exception", "{0}".format(exception))
 
 @core.executionTrace
 def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
@@ -153,8 +153,8 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.standaloneMessageBox("Detailed Error", "Exception", "{0}".format(exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
+	messageBox.standaloneMessageBox("Detailed Error", "Exception", "{0}".format(exception))
 
 @core.executionTrace
 def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
