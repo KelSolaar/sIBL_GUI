@@ -111,7 +111,7 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.messageBox("Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
+	messageBox.messageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
@@ -125,7 +125,7 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.standaloneMessageBox("Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
+	messageBox.standaloneMessageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
@@ -139,7 +139,7 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.messageBox("Error", "Exception", "{0}".format(exception))
+	messageBox.messageBox("Detailed Error", "Exception", "{0}".format(exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
@@ -153,7 +153,7 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	@param **kwargs: Arguments. ( * )
 	"""
 
-	messageBox.standaloneMessageBox("Error", "Exception", "{0}".format(exception))
+	messageBox.standaloneMessageBox("Detailed Error", "Exception", "{0}".format(exception))
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
 
 @core.executionTrace
@@ -168,7 +168,7 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 
 	uiExtendedExceptionHandler(exception, origin, *args, **kwargs)
-	foundations.common.exit(1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ])
+	foundations.common.exit(1, LOGGER, [RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler])
 
 @core.executionTrace
 def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
@@ -182,7 +182,7 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 
 	uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs)
-	foundations.common.exit(1, LOGGER, [ RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler ])
+	foundations.common.exit(1, LOGGER, [RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler])
 
 @core.executionTrace
 def setWindowDefaultIcon(window):

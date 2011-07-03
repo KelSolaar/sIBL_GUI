@@ -65,6 +65,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Global Variables
@@ -86,7 +87,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	@return: User Choice. ( Integer )
 	"""
 
-	LOGGER.debug("> Launching sIBL_message().")
+	LOGGER.debug("> Launching messageBox().")
 	LOGGER.debug("> Message Type: '{0}'.".format(type))
 	LOGGER.debug("> Title: '{0}'.".format(title))
 	LOGGER.debug("> Message: '{0}'.".format(message))
@@ -102,6 +103,13 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.critical("!> {0}".format(message))
 	elif type == "Error":
+		if icon:
+			messageBox.setIcon(icon)
+		else:
+			messageBox.setIcon(QMessageBox.Critical)
+		LOGGER.error("!> {0}".format(message))
+	elif type == "Detailed Error":
+		RuntimeConstants.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeConstants.loggingSessionHandlerStream.stream))
 		if icon:
 			messageBox.setIcon(icon)
 		else:
