@@ -1499,7 +1499,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def collectionExists(self, name):
 		"""
-		This Method Returns If Collection Exists In The Database.
+		This Method Returns If Provided Collection Name Exists In The Database.
 		
 		@param name: Collection Name. ( String )
 		@return: Collection Exists. ( Boolean )
@@ -1510,7 +1510,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getCollections(self):
 		"""
-		This Method Returns The Database Set Collections.
+		This Method Returns Database Set Collections.
 		
 		@return: Database Set Collections. ( List )
 		"""
@@ -1520,7 +1520,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getCollectionsIblSets(self, collections):
 		"""
-		This Method Gets Collections Ibl Sets.
+		This Method Gets Provided Collections Ibl Sets.
 		
 		@param collections: Collections To Get Ibl Sets From. ( List )
 		@return: Ibl Sets List. ( List )
@@ -1542,9 +1542,9 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getUniqueCollectionId(self):
 		"""
-		This Method Returns A Unique Collection Id ( Either First Selected Collection Or Default One).
+		This Method Returns An Unique Collection Id ( Either First Selected Collection Or Default One).
 
-		@return: Unique Id. ( String )
+		@return: Unique Id. ( Integer )
 		"""
 
 		selectedCollections = self.getSelectedCollections()
@@ -1558,7 +1558,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
-		This Method Returns The Collections_Outliner_treeView Selected Items.
+		This Method Returns Collections_Outliner_treeView Selected Items.
 		
 		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
@@ -1572,7 +1572,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Gets Selected Collections.
 	
-		@return: Selected Collections. ( List )
+		@return: View Selected Collections. ( List )
 		"""
 
 		selectedCollections = [item._datas for item in self.getSelectedItems() if item._type == "Collection"]

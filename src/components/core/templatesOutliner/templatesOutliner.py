@@ -1778,7 +1778,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This Method Adds Directory Templates To The Database.
+		This Method Adds Provided Directory Templates To The Database.
 		
 		@param directory: Templates Directory. ( String )
 		@param collectionId: Collection Id. ( Integer )
@@ -1842,7 +1842,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def templateExists(self, path):
 		"""
-		This Method Returns If Template Exists In The Database.
+		This Method Returns If Provided Template Path Exists In The Database.
 		
 		@param name: Template Path. ( String )
 		@return: Template Exists. ( Boolean )
@@ -1875,7 +1875,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def displayHelpFile(self, template):
 		"""
-		This Method Displays Templates Help File.
+		This Method Displays Provided Templates Help File.
 
 		@param template: Template To Display Help File. ( DbTemplate )
 		@return: Method Success. ( Boolean )	
@@ -1905,7 +1905,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This Method Returns The Selected Templates.
 		
-		@return: Selected Template. ( QTreeWidgetItem )
+		@return: View Selected Templates. ( List )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1917,7 +1917,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Gets Template Collection From Provided Collection Name.
 		
 		@param collection: Collection Name. ( String )
-		@return: Collection. ( dbCollection )
+		@return: Collection. ( DbCollection )
 		"""
 
 		return [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
@@ -1925,10 +1925,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getUniqueCollectionId(self, path):
 		"""
-		This Method Gets A Unique Collection Id Using Provided Path.
+		This Method Gets An Unique Collection Id Using Provided Path.
 		
 		@param path: Template Path. ( String )
-		@return: Collection. ( Integer )
+		@return: Unique Id. ( Integer )
 		"""
 
 		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")

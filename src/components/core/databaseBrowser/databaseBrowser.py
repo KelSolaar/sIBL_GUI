@@ -1576,7 +1576,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def updateIblSetsLocation__(self):
 		"""
-		This Method Updates User Selected Ibl Sets Location.
+		This Method Updates User Selected Ibl Sets Locations.
 
 		@return: Method Success. ( Boolean )		
 		"""
@@ -1670,7 +1670,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def iblSetExists(self, path):
 		"""
-		This Method Returns If Ibl Set Exists In The Database.
+		This Method Returns If Provided Ibl Set Path Exists In The Database.
 		
 		@param path: Collection Path. ( String )
 		@return: Collection Exists. ( Boolean )
@@ -1702,7 +1702,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def getIblSets(self):
 		"""
-		This Method Returns The Database Ibl Sets.
+		This Method Returns Database Ibl Sets.
 		
 		@return: Database Ibl Sets Collections. ( List )
 		"""
@@ -1712,7 +1712,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self):
 		"""
-		This Method Returns The Database_Browser_listView Selected Items.
+		This Method Returns Database_Browser_listView Selected Items.
 		
 		@return: View Selected Items. ( List )
 		"""
@@ -1724,7 +1724,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Returns Selected Ibl Sets.
 		
-		@return: Selected Ibl Sets. ( List )
+		@return: View Selected Ibl Sets. ( List )
 		"""
 
 		return self.getSelectedItems()
