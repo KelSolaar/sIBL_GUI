@@ -1277,11 +1277,13 @@ class Inspector(UiComponent):
 		painter.drawEllipse(QPoint(x, y), self.__lightLabelRadius * 4, self.__lightLabelRadius * 4)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
 		This Method Loops Through Database Browser Ibl Sets.
 		
 		@param backward: Looping Backward. ( Boolean )
+		@return: Method Success. ( Boolean )	
 		"""
 
 		if self.__inspectorIblSet:
@@ -1300,13 +1302,16 @@ class Inspector(UiComponent):
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.emit(SIGNAL("uiClear()"))
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
 		This Method Loops Through Inspector Plates.
 		
 		@param backward: Looping Backward. ( Boolean )
+		@return: Method Success. ( Boolean )	
 		"""
 
 		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None
@@ -1323,6 +1328,7 @@ class Inspector(UiComponent):
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
 			self.ui.Plates_listView.setCurrentIndex(self.__model.index(0, 0))
+		return True
 
 #***********************************************************************************************
 #***	Python End
