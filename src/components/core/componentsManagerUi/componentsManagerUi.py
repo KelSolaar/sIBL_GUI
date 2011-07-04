@@ -898,7 +898,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def __storeDeactivatedComponents(self):
 		"""
-		This Method Stores Deactivated Components In The Settings File.
+		This Method Stores Deactivated Components In Settings File.
 
 		@return: Method Success. ( Boolean )		
 		"""
@@ -955,21 +955,25 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def reloadComponents__(self):
 		"""
-		This Method Reload User Selected Components.
+		This Method Reloads User Selected Components.
 
 		@return: Method Success. ( Boolean )		
 		"""
 
 		selectedComponents = self.getSelectedComponents()
+
+		success = True
 		for component in selectedComponents:
-			self.reloadComponent(component)
-		return True
+			success *= self.reloadComponent(component) or False
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Reloading '{1}' Components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
 	def activateComponent(self, component):
 		"""
-		This Method Activates The Provided Component.
+		This Method Activates Provided Component.
 		
 		@param component: Component. ( Profile )
 		@return: Method Success. ( Boolean )		
@@ -990,45 +994,45 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
 	def deactivateComponent(self, component):
 		"""
-		This Method Deactivates The Provided Component.
+		This Method Deactivates Provided Component.
 		
 		@param component: Component. ( Profile )
 		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Deactivation.".format(component.name))
-		if component.categorie == "default":
-			component.interface.uninitialize()
-		elif component.categorie == "ui":
-			component.interface.uninitializeUi()
-			component.interface.removeWidget()
-		component.interface.deactivate()
-		LOGGER.info("{0} | '{1}' Component Has Been Deactivated!".format(self.__class__.__name__, component.name))
-		self.emit(SIGNAL("modelPartialRefresh()"))
-		return True
+		if component.interface.deactivatable:
+			if component.categorie == "default":
+				component.interface.uninitialize()
+			elif component.categorie == "ui":
+				component.interface.uninitializeUi()
+				component.interface.removeWidget()
+			component.interface.deactivate()
+			LOGGER.info("{0} | '{1}' Component Has Been Deactivated!".format(self.__class__.__name__, component.name))
+			self.emit(SIGNAL("modelPartialRefresh()"))
+			return True
+		else:
+			raise foundations.exceptions.ComponentDeactivationError, "{0} | '{1}' Component Cannot Be Deactivated!".format(self.__class__.__name__, component.name)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, foundations.exceptions.ComponentReloadError)
+	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, Exception)
 	def reloadComponent(self, component):
 		"""
-		This Method Reload The Provided Component.
+		This Method Reloads Provided Component.
 
 		@param component: Component. ( Profile )
 		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Reload.".format(component.name))
-		if component.interface.deactivatable:
-			if component.interface.activated:
-				self.deactivateComponent(component)
-			self.__container.componentsManager.reloadComponent(component.name)
-			if not component.interface.activated:
-				self.activateComponent(component)
-			LOGGER.info("{0} | '{1}' Component Has Been Reloaded!".format(self.__class__.__name__, component.name))
-			self.emit(SIGNAL("modelPartialRefresh()"))
-			return True
-		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component Cannot Be Reloaded!".format(self.__class__.__name__, component.name))
+		if component.interface.activated:
+			self.deactivateComponent(component)
+		self.__container.componentsManager.reloadComponent(component.name)
+		if not component.interface.activated:
+			self.activateComponent(component)
+		LOGGER.info("{0} | '{1}' Component Has Been Reloaded!".format(self.__class__.__name__, component.name))
+		self.emit(SIGNAL("modelPartialRefresh()"))
+		return True
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1045,7 +1049,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def getSelectedComponents(self):
 		"""
-		This Method Returns The Selected Components.
+		This Method Returns Selected Components.
 		
 		@return: View Selected Components. ( List )
 		"""
