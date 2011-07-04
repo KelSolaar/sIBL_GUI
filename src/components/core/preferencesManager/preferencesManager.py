@@ -263,7 +263,7 @@ class PreferencesManager(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		self.Verbose_Level_comboBox_setUi()
+		self.__Verbose_Level_comboBox_setUi()
 		self.__Restore_Geometry_On_Layout_Change_checkBox_setUi()
 
 		# Signals / Slots.
@@ -299,7 +299,7 @@ class PreferencesManager(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
 
 	@core.executionTrace
-	def Verbose_Level_comboBox_setUi(self):
+	def __Verbose_Level_comboBox_setUi(self):
 		"""
 		This Method Fills The Verbose Level ComboBox.
 		"""
