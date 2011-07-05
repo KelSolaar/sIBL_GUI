@@ -449,19 +449,23 @@ class DatabaseOperations(UiComponent):
 	def synchronizeDatabase(self):
 		"""
 		This Method Synchronizes The Database.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		for dbType in self.__dbTypes:
 			for item in dbType.getMethod(self.__coreDb.dbSession):
-				if item.path:
-					if os.path.exists(item.path):
-						if dbType.updateContentMethod(self.__coreDb.dbSession, item):
-							LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType.type))
-					else:
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
-								dbType.updateLocationMethod(item)
+				if not item.path: continue
+
+				if os.path.exists(item.path):
+					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
+						LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType.type))
+				else:
+					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						dbType.updateLocationMethod(item)
 			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
 		messageBox.messageBox("Information", "Information", "{0} | Database Synchronization Done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
+		return True
 
 #***********************************************************************************************
 #***	Python End
