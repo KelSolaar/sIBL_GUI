@@ -67,6 +67,7 @@ from PyQt4.QtWebKit import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import ui.common
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
 
@@ -102,31 +103,39 @@ class Map(QWebView):
 		@param title: Marker Title. ( String )
 		@param icon: Marker Icon. ( String )
 		@param content: Marker Popup Window Content. ( String )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format(title, coordinates))
 
 		self.page().mainFrame().evaluateJavaScript("addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(coordinates[0], coordinates[1], title, icon, content))
+		return True
 
 	@core.executionTrace
 	def removeMarkers(self):
 		"""
 		This Method Removes The Map Markers.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing GPS Map Markers.")
 
 		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
+		return True
 
 	@core.executionTrace
 	def setCenter(self):
 		"""
 		This Method Center The Map.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Centering GPS Map.")
 
 		self.page().mainFrame().evaluateJavaScript("setCenter()")
+		return True
 
 	@core.executionTrace
 	def setMapType(self, mapTypeId):
@@ -134,11 +143,13 @@ class Map(QWebView):
 		This Method Sets The Map Type.
 		
 		@param mapTypeId: GPS Map Type. ( String )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Setting GPS Map Type To '{0}'.".format(mapTypeId))
 
 		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
+		return True
 
 	@core.executionTrace
 	def setZoom(self, type):
@@ -146,11 +157,13 @@ class Map(QWebView):
 		This Method Sets The Map Zoom.
 		
 		@param type: Zoom Type. ( String )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Zooming '{0}' GPS Map.".format(type))
 
 		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
+		return True
 
 class GpsMap(UiComponent):
 	"""
@@ -675,31 +688,40 @@ class GpsMap(UiComponent):
 		self.setMarkers__()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def setMarkers__(self):
 		"""
 		This Method Sets Selected Ibl Sets Markers.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		selectedIblSets = [iblSet._datas for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets()]
-		selectedIblSets and	self.setMarkers(selectedIblSets)
+		self.__map.removeMarkers()
+		success = True
+		for iblSet in selectedIblSets:
+			success *= self.setMarker(iblSet) or False
+		self.__map.setCenter()
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Setting '{1}' GPS Markers!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
 
 	@core.executionTrace
-	def setMarkers(self, iblSets):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setMarker(self, iblSet):
 		"""
 		This Method Sets Ibl Sets Markers.
 
-		@param iblSets: Ibl Sets To Display Markers. ( DbIblSet List )
+		@param iblSet: Ibl Set To Display Marker. ( DbIblSet )
+		@return: Method Success. ( Boolean )		
 		"""
 
-		self.__map.removeMarkers()
-		for iblSet in iblSets:
-			LOGGER.debug("> Current Ibl Set: '{0}'.".format(iblSet.name))
-			if iblSet.latitude and iblSet.longitude:
-				LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet.name))
-				shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
-				content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
-				self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)
-		self.__map.setCenter()
+		if not iblSet.latitude and not iblSet.longitude: return True
+
+		LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet.name))
+		shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
+		content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
+		return self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)
 
 #***********************************************************************************************
 #***	Python End
