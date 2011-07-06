@@ -687,7 +687,7 @@ class LoaderScript(UiComponent):
 		"""
 		This Method Outputs The Loader Script.
 		
-		@return: Output Success. ( Boolean )
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing Loader Script Output.")
@@ -704,8 +704,8 @@ class LoaderScript(UiComponent):
 		if not os.path.exists(template.path):
 			raise OSError, "{0} | '{1}' Template File Doesn't Exists!".format(self.__class__.__name__, template.name)
 
-		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
-		iblSet = selectedIblSet and selectedIblSet[0] or None
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		iblSet = selectedIblSets and selectedIblSets[0] or None
 
 		if not iblSet:
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set!".format(self.__class__.__name__)
@@ -717,14 +717,15 @@ class LoaderScript(UiComponent):
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template.outputScript))
 			return True
 		else:
-			raise Exception, "{0} | '{1}' Output Failed!".format(self.__class__.__name__, template.outputScript)
+			raise Exception, "{0} | Exception Raised: '{1}' Output Failed!".format(self.__class__.__name__, template.outputScript)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def sendLoaderScriptToSoftware__(self):
 		"""
 		This Method Sends The Output Loader Script To Associated Package.
 		
-		@return: Send Success. ( Boolean )
+		@return: Method Success. ( Boolean )
 		"""
 
 		if self.outputLoaderScript__():
@@ -734,17 +735,20 @@ class LoaderScript(UiComponent):
 				loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
 				if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
 					loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-				return self.sendLoaderScriptToSoftware(template, loaderScriptPath)
+				if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
+					raise Exception, "{0} | Exception Raised While Sending Loader Script!".format(self.__class__.__name__)
+		else:
+			raise Exception, "{0} | Exception Raised While Outputing Loader Script!".format(self.__class__.__name__)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def outputLoaderScript(self, template, iblSet):
 		"""
 		This Method Outputs The Loader Script.
 
 		@param template: Template. ( DbTemplate )
 		@param iblSet: Ibl Set. ( DbIblSet )	
-		@return: Output Success. ( Boolean )
+		@return: Method Success. ( Boolean )
 		"""
 
 		self.__overrideKeys = self.getDefaultOverrideKeys()
@@ -771,14 +775,14 @@ class LoaderScript(UiComponent):
 			return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.SocketConnectionError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.SocketConnectionError)
 	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):
 		"""
 		This Method Sends The Loader Script To Associated Package.
 		
 		@param template: Template. ( DbTemplate )
 		@param loaderScriptPath: Loader Script Path. ( String )
-		@return: Send Success. ( Boolean )
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Starting Remote Connection!".format(self.__class__.__name__))
@@ -798,7 +802,7 @@ class LoaderScript(UiComponent):
 				connection.close()
 				LOGGER.info("{0} | Ending Remote Connection!".format(self.__class__.__name__))
 			except Exception as error:
-				raise foundations.exceptions.SocketConnectionError, "{0} | Remote Connection Error: '{1}'!".format(self.__class__.__name__, error)
+				raise foundations.exceptions.SocketConnectionError, "{0} | Socket Connection Error: '{1}'!".format(self.__class__.__name__, error)
 		elif connectionType.value == "Win32":
 			if platform.system() == "Windows" or platform.system() == "Microsoft":
 				try:
@@ -809,10 +813,11 @@ class LoaderScript(UiComponent):
 					LOGGER.debug("> Current Connection Command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
-					raise foundations.exceptions.SocketConnectionError, "{0} | Remote On Win32 OLE Server Error: '{1}'!".format(self.__class__.__name__, error)
+					raise foundations.exceptions.SocketConnectionError, "{0} | Win32 OLE Server Connection Error: '{1}'!".format(self.__class__.__name__, error)
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getDefaultOverrideKeys(self):
 		"""
 		This Method Gets Default Override Keys.
@@ -851,7 +856,7 @@ class LoaderScript(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLoaderScript(self, template, iblSet, overrideKeys):
 		"""
-		This Method Build A Loader Script.
+		This Method Builds A Loader Script.
 		
 		@param template: Template Path. ( String )
 		@param iblSet: iblSet Path. ( String )
