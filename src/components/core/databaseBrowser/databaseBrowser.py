@@ -1376,7 +1376,7 @@ class DatabaseBrowser(UiComponent):
 
 			self.__modelSelection = []
 			for item in self.getSelectedIblSets():
-				self.__modelSelection.append(item._datas.id)
+				self.__modelSelection.append(item.id)
 
 	@core.executionTrace
 	def __Database_Browser_listView_restoreModelSelection(self):
@@ -1558,7 +1558,7 @@ class DatabaseBrowser(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedIblSets = [iblSet._datas for iblSet in self.getSelectedIblSets()]
+		selectedIblSets = self.getSelectedIblSets()
 		if not selectedIblSets: return
 
 		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
@@ -1586,8 +1586,8 @@ class DatabaseBrowser(UiComponent):
 
 		success = True
 		for iblSet in selectedIblSets:
-			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet._datas.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
-			success *= self.updateIblSetLocation(iblSet._datas, file) or False
+			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
+			success *= self.updateIblSetLocation(iblSet, file) or False
 
 		self.emit(SIGNAL("modelDatasRefresh()"))
 		self.emit(SIGNAL("modelRefresh()"))
@@ -1727,7 +1727,7 @@ class DatabaseBrowser(UiComponent):
 		@return: View Selected Ibl Sets. ( List )
 		"""
 
-		return self.getSelectedItems()
+		return [item._datas for item in self.getSelectedItems()]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

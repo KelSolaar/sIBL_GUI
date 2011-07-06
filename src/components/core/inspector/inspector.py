@@ -958,19 +958,18 @@ class Inspector(UiComponent):
 		"""
 
 		if self.__inspectorIblSet:
-			iblSet = self.__inspectorIblSet._datas
 
-			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(iblSet.title, iblSet.location))
+			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__inspectorIblSet.title, self.__inspectorIblSet.location))
 
-			if iblSet.previewImage:
-				self.ui.Image_label.setPixmap(ui.common.getPixmap(iblSet.previewImage))
+			if self.__inspectorIblSet.previewImage:
+				self.ui.Image_label.setPixmap(ui.common.getPixmap(self.__inspectorIblSet.previewImage))
 				self.__drawInspectorIblSetOverlay()
 			else:
-				self.ui.Image_label.setText(self.__noPreviewImageText.format(ui.common.filterImagePath(iblSet.icon), iblSet.author, iblSet.link))
+				self.ui.Image_label.setText(self.__noPreviewImageText.format(ui.common.filterImagePath(self.__inspectorIblSet.icon), self.__inspectorIblSet.author, self.__inspectorIblSet.link))
 
-			self.ui.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			self.ui.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 
-			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(iblSet.comment))
+			self.ui.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__inspectorIblSet.comment))
 
 			if self.__inspectorPlates:
 				self.ui.Plates_frame.show()
@@ -1011,11 +1010,10 @@ class Inspector(UiComponent):
 		self.__model.clear()
 
 		if self.__inspectorIblSet:
-			iblSet = self.__inspectorIblSet._datas
-			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Plates_listView"))
+			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(self.__inspectorIblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
-			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self.__inspectorIblSet._datas.icon))
-			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+			inspectorIblSetStandardItem.setIcon(ui.common.getIcon(self.__inspectorIblSet.icon))
+			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 			self.__model.appendRow(inspectorIblSetStandardItem)
 
 			for name, plate in self.__inspectorPlates.items():
@@ -1186,7 +1184,7 @@ class Inspector(UiComponent):
 		self.__inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
 		if not self.__inspectorIblSet:
 			model = self.__coreDatabaseBrowser.model
-			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0) or None
+			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0)._datas or None
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
 	@core.executionTrace
@@ -1195,9 +1193,9 @@ class Inspector(UiComponent):
 		This Method Sets The Inspected Ibl Set Parser.
 		"""
 
-		if os.path.exists(self.__inspectorIblSet._datas.path):
+		if os.path.exists(self.__inspectorIblSet.path):
 			LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self.__inspectorIblSet))
-			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet._datas.path)
+			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet.path)
 			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 
 	@core.executionTrace
@@ -1208,16 +1206,16 @@ class Inspector(UiComponent):
 		"""
 
 		if self.__inspectorIblSet:
-			if os.path.exists(self.__inspectorIblSet._datas.path):
+			if os.path.exists(self.__inspectorIblSet.path):
 				self.__inspectorPlates = OrderedDict()
 				for section in self.__inspectorIblSetParser.sections:
 					if re.search("Plate[0-9]+", section):
 						self.__inspectorPlates[section] = Plate(name=strings.getSplitextBasename(self.__inspectorIblSetParser.getValue("PLATEfile", section)),
-																icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
-																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
-																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet._datas.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
+																icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
+																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
+																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self.__inspectorIblSet._datas.name)
+				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists, !".format(self.__class__.__name__, self.__inspectorIblSet.name)
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
@@ -1287,8 +1285,12 @@ class Inspector(UiComponent):
 		"""
 
 		if self.__inspectorIblSet:
+			iblSetStandardItems = [iblSetStandardItem for iblSetStandardItem in self.__coreDatabaseBrowser.model.findItems("*", Qt.MatchWildcard | Qt.MatchRecursive, 0) if iblSetStandardItem._datas.path == self.__inspectorIblSet.path]
+			inspectorIblSetStandardItem = iblSetStandardItems and iblSetStandardItems[0] or None
+			if not inspectorIblSetStandardItem: return True
+
 			model = self.__coreDatabaseBrowser.model
-			index = model.indexFromItem(self.__inspectorIblSet)
+			index = model.indexFromItem(inspectorIblSetStandardItem)
 
 			step = not backward and 1 or - 1
 			idx = index.row() + step

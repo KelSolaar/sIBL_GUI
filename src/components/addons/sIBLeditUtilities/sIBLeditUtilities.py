@@ -580,12 +580,12 @@ class sIBLeditUtilities(UiComponent):
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
 
 		if sIBLedit:
 			if selectedIblSet:
-				LOGGER.info("{0} | Launching 'sIBLedit' With '{1}'.".format(self.__class__.__name__, selectedIblSet._datas.path))
-				editCommand = "\"{0}\" \"{1}\"".format(sIBLedit, selectedIblSet._datas.path)
+				LOGGER.info("{0} | Launching 'sIBLedit' With '{1}'.".format(self.__class__.__name__, selectedIblSet.path))
+				editCommand = "\"{0}\" \"{1}\"".format(sIBLedit, selectedIblSet.path)
 
 				LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
 				editProcess = QProcess()

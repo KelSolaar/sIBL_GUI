@@ -745,8 +745,7 @@ class LocationsBrowser(UiComponent):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		for iblSet in selectedIblSets:
-			iblSetPath = iblSet._datas.path
-			iblSetPath = iblSetPath and os.path.exists(iblSetPath) and os.path.dirname(iblSetPath)
+			iblSetPath = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
 			iblSetPath and self.exploreDirectory(iblSetPath)
 
 	@core.executionTrace
@@ -758,8 +757,8 @@ class LocationsBrowser(UiComponent):
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
-		selectedIblSet and self.exploreDirectory(os.path.dirname(selectedIblSet._datas.path))
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
+		selectedIblSet and self.exploreDirectory(os.path.dirname(selectedIblSet.path))
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):

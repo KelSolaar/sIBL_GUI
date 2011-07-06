@@ -328,8 +328,8 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
 						iblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 						for iblSet in iblSets:
-							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet._datas.name, collectionStandardItem._datas.name))
-							iblSet._datas.collection = collectionStandardItem._datas.id
+							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.name, collectionStandardItem.name))
+							iblSet.collection = collectionStandardItem.id
 						if dbUtilities.common.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:

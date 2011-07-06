@@ -2052,22 +2052,22 @@ class Preview(UiComponent):
 		for iblSet in selectedIblSets:
 			imagePaths = []
 			if imageType == "Background":
-				path = getattr(iblSet._datas, "backgroundImage")
+				path = getattr(iblSet, "backgroundImage")
 				path and imagePaths.append(path)
 			elif imageType == "Lighting":
-				path = getattr(iblSet._datas, "lightingImage")
+				path = getattr(iblSet, "lightingImage")
 				path and imagePaths.append(path)
 			elif imageType == "Reflection":
-				path = getattr(iblSet._datas, "reflectionImage")
+				path = getattr(iblSet, "reflectionImage")
 				path and imagePaths.append(path)
 			elif imageType == "Plates":
-				if os.path.exists(iblSet._datas.path):
+				if os.path.exists(iblSet.path):
 					LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(iblSet))
-					parser = Parser(iblSet._datas.path)
+					parser = Parser(iblSet.path)
 					parser.read() and parser.parse()
 					for section in parser.sections:
 						if re.search("Plate[0-9]+", section):
-							imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet._datas.path), parser.getValue("PLATEfile", section))))
+							imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), parser.getValue("PLATEfile", section))))
 
 			for path in imagePaths[:]:
 				if not os.path.exists(path):
@@ -2096,7 +2096,7 @@ class Preview(UiComponent):
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image(s) Type And Will Be Skipped!".format(self.__class__.__name__, iblSet._datas.title, imageType))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image(s) Type And Will Be Skipped!".format(self.__class__.__name__, iblSet.title, imageType))
 
 	@core.executionTrace
 	def launchImagesPreviewer(self, paths):

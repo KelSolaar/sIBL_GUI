@@ -696,7 +696,7 @@ class GpsMap(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedIblSets = [iblSet._datas for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets()]
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		self.__map.removeMarkers()
 		success = True
 		for iblSet in selectedIblSets:

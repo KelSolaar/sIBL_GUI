@@ -629,7 +629,7 @@ class RawEditingUtilities(UiComponent):
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		for iblSet in selectedIblSets:
-			iblSet._datas.path and os.path.exists(iblSet._datas.path) and self.editFile(iblSet._datas.path)
+			iblSet.path and os.path.exists(iblSet.path) and self.editFile(iblSet.path)
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered(self, checked):
@@ -640,8 +640,8 @@ class RawEditingUtilities(UiComponent):
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0]._datas.path) and selectedIblSets[0] or None
-		selectedIblSet and self.editFile(selectedIblSet._datas.path)
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
+		selectedIblSet and self.editFile(selectedIblSet.path)
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
