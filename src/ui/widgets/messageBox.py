@@ -110,6 +110,11 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 		LOGGER.error("!> {0}".format(message))
 	elif type == "Detailed Error":
 		RuntimeConstants.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeConstants.loggingSessionHandlerStream.stream))
+		textEdit = messageBox.findChild(QTextEdit)
+		textEdit.setCurrentFont(QFont("Courier"))
+		textEdit.setLineWrapMode(QTextEdit.NoWrap)
+		textEdit.moveCursor(QTextCursor.End)
+		textEdit.ensureCursorVisible()
 		if icon:
 			messageBox.setIcon(icon)
 		else:
