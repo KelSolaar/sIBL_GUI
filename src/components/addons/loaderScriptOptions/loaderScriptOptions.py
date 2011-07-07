@@ -709,11 +709,13 @@ class LoaderScriptOptions(UiComponent):
 			self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
-	def updateOverrideKeys(self, tableWidget):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __updateOverrideKeys(self, tableWidget):
 		"""
 		This Method Updates The Loader Script Component Override Keys.
 		
 		@param tableWidget: Table Widget. ( QTableWidget )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Updating Override Keys With '{0}' Attributes.".format(tableWidget.objectName()))
@@ -732,17 +734,25 @@ class LoaderScriptOptions(UiComponent):
 
 			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(widget._datas.name, widget._datas.value))
 			self.__addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getOverrideKeys(self):
 		"""
 		This Method Gets Override Keys.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
-		self.updateOverrideKeys(self.ui.Common_Attributes_tableWidget)
-		self.updateOverrideKeys(self.ui.Additional_Attributes_tableWidget)
+		success = True
+		success *= self.__updateOverrideKeys(self.ui.Common_Attributes_tableWidget) or False
+		success *= self.__updateOverrideKeys(self.ui.Additional_Attributes_tableWidget) or False
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Retrieving Override Keys!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python End
