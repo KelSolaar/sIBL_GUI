@@ -109,16 +109,17 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.error("!> {0}".format(message))
 	elif type == "Detailed Error":
-		RuntimeConstants.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeConstants.loggingSessionHandlerStream.stream))
-		textEdit = messageBox.findChild(QTextEdit)
-		textEdit.setCurrentFont(QFont("Courier"))
-		textEdit.setLineWrapMode(QTextEdit.NoWrap)
-		textEdit.moveCursor(QTextCursor.End)
-		textEdit.ensureCursorVisible()
 		if icon:
 			messageBox.setIcon(icon)
 		else:
 			messageBox.setIcon(QMessageBox.Critical)
+		RuntimeConstants.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeConstants.loggingSessionHandlerStream.stream))
+		textEdit = messageBox.findChild(QTextEdit)
+		if textEdit:
+			textEdit.setCurrentFont(QFont("Courier"))
+			textEdit.setLineWrapMode(QTextEdit.NoWrap)
+			textEdit.moveCursor(QTextCursor.End)
+			textEdit.ensureCursorVisible()
 		LOGGER.error("!> {0}".format(message))
 	elif type == "Warning":
 		if icon:
@@ -140,8 +141,8 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 		LOGGER.info("{0}".format(message))
 
 	messageBox.setStandardButtons(buttons)
-
 	messageBox.setWindowFlags(Qt.WindowStaysOnTopHint)
+
 	return messageBox.exec_()
 
 @core.executionTrace
