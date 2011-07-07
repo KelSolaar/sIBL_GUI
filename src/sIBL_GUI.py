@@ -414,7 +414,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
 		# Visual Style Initialisation.
-		self.setVisualStyle()
+		self.__setVisualStyle()
 		ui.common.setWindowDefaultIcon(self)
 
 		# Setting Window Title And Toolbar.
@@ -1388,7 +1388,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.__layoutsActiveLabels:
-			layoutActiveLabel.object_.clicked.connect(lambda activeLabel=layoutActiveLabel.layout: self.__activeLabel__clicked(activeLabel))
+			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding Central Widget Button.")
 		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
@@ -1412,7 +1412,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__layoutMenu.addAction(action)
 
 			# Signals / Slots.
-			action.triggered.connect(functools.partial(self.restoreLayout, layout))
+			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
 
 		self.__layoutMenu.addSeparator()
 
@@ -1463,7 +1463,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action = QAction(layoutActiveLabel.name, self)
 			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
 			self.addAction(action)
-			action.triggered.connect(lambda layout=layoutActiveLabel.layout: self.restoreLayout(layout))
+			action.triggered.connect(functools.partial(self.restoreLayout, layoutActiveLabel.layout))
 
 	@core.executionTrace
 	def __getLayoutsActiveLabel(self):
@@ -1541,83 +1541,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
 
 	@core.executionTrace
-	def storeLayout(self, name, *args):
-		"""
-		This Method Is Called When Storing A Layout.
-
-		@param name: Layout Name. ( String )
-		@param *args: Arguments. ( * )
-		"""
-
-		LOGGER.debug("> Storing Layout '{0}'.".format(name))
-
-		self.__settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
-		self.__settings.setKey("Layouts", "{0}_windowState".format(name), self.saveState())
-		self.__settings.setKey("Layouts", "{0}_centralWidget".format(name), self.centralwidget.isVisible())
-		self.__settings.setKey("Layouts", "{0}_activeLabel".format(name), self.__getLayoutsActiveLabel())
-
-	@core.executionTrace
-	def restoreLayout(self, name):
-		"""
-		This Method Is Called When Restoring A Layout.
-
-		@param name: Layout Name. ( String )
-		"""
-
-		LOGGER.debug("> Restoring Layout '{0}'.".format(name))
-
-		visibleComponents = [ "core.databaseBrowser" ]
-		for component, profile in self.__componentsManager.components.items():
-			profile.categorie == "ui" and component not in visibleComponents and self.__componentsManager.getInterface(component).ui and self.__componentsManager.getInterface(component).ui.hide()
-
-		self.centralwidget.setVisible(self.__settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
-		self.restoreState(self.__settings.getKey("Layouts", "{0}_windowState".format(name)).toByteArray())
-		self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(name)).toByteArray())
-		self.__setLayoutsActiveLabel(self.__settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
-		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
-
-	@core.executionTrace
-	def restoreStartupLayout(self):
-		"""
-		This Method Restores The Startup Layout.
-		"""
-
-		LOGGER.debug("> Restoring Startup Layout.")
-
-		self.restoreLayout(UiConstants.frameworkStartupLayout)
-		not self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
-
-	@core.executionTrace
-	def storeStartupLayout(self):
-		"""
-		This Method Stores The Startup Layout.
-		"""
-
-		LOGGER.debug("> Storing Startup Layout.")
-
-		self.storeLayout(UiConstants.frameworkStartupLayout)
-
-	@core.executionTrace
-	def storeLastBrowsedPath(self, path):
-		"""
-		This Method Is A Wrapper Method For Storing The Last Browser Path.
-		
-		@param path: Provided Path. ( QString )
-		@return: Provided Path. ( QString )
-		"""
-
-		path = str(path)
-
-		lastBrowserPath = os.path.normpath(os.path.join(os.path.isfile(path) and os.path.dirname(path) or path, ".."))
-		LOGGER.debug("> Storing Last Browsed Path: '%s'.", lastBrowserPath)
-
-		self.__lastBrowsedPath = lastBrowserPath
-
-		return path
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def setVisualStyle(self):
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	def __setVisualStyle(self):
 		"""
 		This Method Sets The Application Visual Style.
 		"""
@@ -1640,6 +1565,98 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			RuntimeConstants.application.setStyleSheet(QString("".join(styleSheetFile.content)))
 		else:
 			raise OSError, "{0} | '{1}' Stylesheet File Is Not Available, Visual Style Will Not Be Applied!".format(self.__class__.__name__, styleSheetFile.file)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def storeLayout(self, name, *args):
+		"""
+		This Method Is Called When Storing A Layout.
+
+		@param name: Layout Name. ( String )
+		@param *args: Arguments. ( * )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Storing Layout '{0}'.".format(name))
+
+		self.__settings.setKey("Layouts", "{0}_geometry".format(name), self.saveGeometry())
+		self.__settings.setKey("Layouts", "{0}_windowState".format(name), self.saveState())
+		self.__settings.setKey("Layouts", "{0}_centralWidget".format(name), self.centralwidget.isVisible())
+		self.__settings.setKey("Layouts", "{0}_activeLabel".format(name), self.__getLayoutsActiveLabel())
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def restoreLayout(self, name, *args):
+		"""
+		This Method Is Called When Restoring A Layout.
+
+		@param name: Layout Name. ( String )
+		@param *args: Arguments. ( * )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Restoring Layout '{0}'.".format(name))
+
+		visibleComponents = [ "core.databaseBrowser" ]
+		for component, profile in self.__componentsManager.components.items():
+			profile.categorie == "ui" and component not in visibleComponents and self.__componentsManager.getInterface(component).ui and self.__componentsManager.getInterface(component).ui.hide()
+
+		self.centralwidget.setVisible(self.__settings.getKey("Layouts", "{0}_centralWidget".format(name)).toBool())
+		self.restoreState(self.__settings.getKey("Layouts", "{0}_windowState".format(name)).toByteArray())
+		self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(name)).toByteArray())
+		self.__setLayoutsActiveLabel(self.__settings.getKey("Layouts", "{0}_activeLabel".format(name)).toInt()[0])
+		QApplication.focusWidget() and QApplication.focusWidget().clearFocus()
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def restoreStartupLayout(self):
+		"""
+		This Method Restores The Startup Layout.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Restoring Startup Layout.")
+
+		if self.restoreLayout(UiConstants.frameworkStartupLayout):
+			not self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Restoring Startup Layout!".format(self.__class__.__name__)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def storeStartupLayout(self):
+		"""
+		This Method Stores The Startup Layout.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Storing Startup Layout.")
+
+		return self.storeLayout(UiConstants.frameworkStartupLayout)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def storeLastBrowsedPath(self, path):
+		"""
+		This Method Is A Wrapper Method For Storing The Last Browser Path.
+		
+		@param path: Provided Path. ( QString )
+		@return: Provided Path. ( QString )
+		"""
+
+		path = str(path)
+
+		lastBrowserPath = os.path.normpath(os.path.join(os.path.isfile(path) and os.path.dirname(path) or path, ".."))
+		LOGGER.debug("> Storing Last Browsed Path: '%s'.", lastBrowserPath)
+
+		self.__lastBrowsedPath = lastBrowserPath
+
+		return path
 
 #***************************************************************************************
 #***	Overall Definitions.
