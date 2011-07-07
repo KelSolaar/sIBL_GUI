@@ -833,15 +833,25 @@ class LocationsBrowser(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		if self.__container.parameters.loaderScriptsOutputDirectory:
-			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
-				self.exploreDirectory(self.__container.parameters.loaderScriptsOutputDirectory)
-			else:
-				raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory)
-		else:
-			self.exploreDirectory(self.__addonsLoaderScript.ioDirectory)
+		self.exploreOutputDirectory__()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
+	def exploreOutputDirectory__(self):
+		"""
+		This Method Explores Output Directory.
+		"""
+
+		directory = self.__container.parameters.loaderScriptsOutputDirectory and  self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
+
+		if not os.path.exists(directory):
+			raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, directory)
+
+		if self.exploreDirectory(directory): return True
+		else: raise Exception, "{0} | Exception Raised While Exploring '{1}' Directory!".format(self.__class__.__name__, directory)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def exploreDirectory(self, directory):
 		"""
 		This Method Provides Directory Exploring Capability.
@@ -877,25 +887,26 @@ class LocationsBrowser(UiComponent):
 
 				browserFound = False
 				for browser in self.__linuxBrowsers:
-					if not browserFound:
-						try:
-							for path in paths:
-								if os.path.exists(os.path.join(path, browser)):
-									LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, directory))
-									browserCommand = "\"{0}\" \"{1}\"".format(browser, directory)
-									browserFound = True
-									raise StopIteration
-						except StopIteration:
-							pass
-					else:
-						break
+					if browserFound: break
+
+					try:
+						for path in paths:
+							if os.path.exists(os.path.join(path, browser)):
+								LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, directory))
+								browserCommand = "\"{0}\" \"{1}\"".format(browser, directory)
+								browserFound = True
+								raise StopIteration
+					except StopIteration:
+						pass
+
+				if not browserFound:
+					raise foundations.exceptions.UserError, "{0} | Exception Raised: No Suitable Browser Found, Please Define A Browser Executable In The Preferences!".format(self.__class__.__name__)
 
 		if browserCommand:
 			LOGGER.debug("> Current Browser Command: '{0}'.".format(browserCommand))
 			browserProcess = QProcess()
 			browserProcess.startDetached(browserCommand)
-		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Browser Executable In The Preferences!".format(self.__class__.__name__))
+			return True
 
 #***********************************************************************************************
 #***	Python End
