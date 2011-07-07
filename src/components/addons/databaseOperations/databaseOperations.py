@@ -66,6 +66,7 @@ from PyQt4.QtGui import *
 import dbUtilities.common
 import foundations.core as core
 import foundations.exceptions
+import ui.common
 import ui.widgets.messageBox as messageBox
 from globals.constants import Constants
 from manager.uiComponent import UiComponent
@@ -446,6 +447,7 @@ class DatabaseOperations(UiComponent):
 		self.synchronizeDatabase()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
 	def synchronizeDatabase(self):
 		"""
 		This Method Synchronizes The Database.
