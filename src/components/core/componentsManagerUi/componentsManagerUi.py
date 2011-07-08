@@ -921,8 +921,7 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = self.getSelectedComponents()
-		for component in selectedComponents:
+		for component in self.getSelectedComponents():
 			if not component.interface.activated:
 				self.activateComponent(component)
 			else:
@@ -939,8 +938,7 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedComponents = self.getSelectedComponents()
-		for component in selectedComponents:
+		for component in self.getSelectedComponents():
 			if component.interface.activated:
 				if component.interface.deactivatable:
 					self.deactivateComponent(component)
@@ -963,7 +961,7 @@ class ComponentsManagerUi(UiComponent):
 		selectedComponents = self.getSelectedComponents()
 
 		success = True
-		for component in selectedComponents:
+		for component in self.getSelectedComponents():
 			success *= self.reloadComponent(component) or False
 
 		if success: return True
@@ -1055,7 +1053,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 
 		selectedComponents = [item._datas for item in self.getSelectedItems() if item._type == "Component"]
-		return selectedComponents and selectedComponents or None
+		return selectedComponents and selectedComponents or []
 
 #***********************************************************************************************
 #***	Python End

@@ -1369,9 +1369,6 @@ class DatabaseBrowser(UiComponent):
 			This Method Stores Database_Browser_listView Model Selection.
 			"""
 
-			# Crash Preventing Code.
-			# if self.__modelSelectionState:
-
 			LOGGER.debug("> Storing '{0}' Model Selection!".format("Database_Browser_listView"))
 
 			self.__modelSelection = []
@@ -1383,9 +1380,6 @@ class DatabaseBrowser(UiComponent):
 			"""
 			This Method Restores Database_Browser_listView Model Selection.
 			"""
-
-			# Crash Preventing Code.
-			# if self.__modelSelectionState:
 
 			LOGGER.debug("> Restoring '{0}' Model Selection!".format("Database_Browser_listView"))
 

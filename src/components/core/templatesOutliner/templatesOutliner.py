@@ -1909,7 +1909,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		selectedItems = self.getSelectedItems()
-		return selectedItems and [item._datas for item in selectedItems if item._type == "Template"] or None
+		return selectedItems and [item._datas for item in selectedItems if item._type == "Template"] or []
 
 	@core.executionTrace
 	def getCollection(self, collection):

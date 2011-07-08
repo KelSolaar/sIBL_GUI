@@ -326,10 +326,10 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					LOGGER.debug("> Item At Drop Position: '{0}'.".format(itemAt))
 					collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
 					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
-						iblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-						for iblSet in iblSets:
-							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.name, collectionStandardItem.name))
-							iblSet.collection = collectionStandardItem.id
+						collection = collectionStandardItem._datas
+						for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
+							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.name, collection.name))
+							iblSet.collection = collection.id
 						if dbUtilities.common.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
@@ -1438,14 +1438,14 @@ class CollectionsOutliner(UiComponent):
 		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
 			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
-		selectedCollections = self.getSelectedCollections()
-		selectedCollections = selectedCollections and [collection for collection in selectedCollections if collection.name != self.__defaultCollection] or None
+		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.name != self.__defaultCollection]
 		if not selectedCollections: return
 
 		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
+			self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 			if success: return True
 			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Collections From The Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
 
@@ -1547,8 +1547,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Unique Id. ( Integer )
 		"""
 
-		selectedCollections = self.getSelectedCollections()
-		ids = selectedCollections and [collection.id for collection in selectedCollections] or None
+		ids = [collection.id for collection in self.getSelectedCollections()]
 		if not ids:
 			return self.getCollectionId(self.__defaultCollection)
 		else:
@@ -1576,7 +1575,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		selectedCollections = [item._datas for item in self.getSelectedItems() if item._type == "Collection"]
-		return selectedCollections and selectedCollections or None
+		return selectedCollections and selectedCollections or []
 
 #***********************************************************************************************
 #***	Python End

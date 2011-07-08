@@ -627,8 +627,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		for iblSet in selectedIblSets:
+		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
 			iblSet.path and os.path.exists(iblSet.path) and self.editFile(iblSet.path)
 
 	@core.executionTrace
