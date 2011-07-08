@@ -1781,13 +1781,10 @@ def _getHeaderMessage():
 	@return: Header Message ( List )
 	"""
 
-	message = []
-
-	message.append("{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName))
-	message.append("{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format(Constants.applicationName))
-	message.append("{0} | http://www.gnu.org/licenses/ ".format(Constants.applicationName))
-	message.append("{0} | Version: {1}".format(Constants.applicationName, Constants.releaseVersion))
-
+	message = {	"{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName),
+				"{0} | This Software Is Released Under Terms Of GNU GPL V3 License.".format(Constants.applicationName),
+				"{0} | http://www.gnu.org/licenses/ ".format(Constants.applicationName),
+				"{0} | Version: {1}".format(Constants.applicationName, Constants.releaseVersion)}
 	return message
 
 @core.executionTrace
