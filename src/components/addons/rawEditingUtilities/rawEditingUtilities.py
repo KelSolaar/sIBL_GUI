@@ -650,10 +650,8 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		if selectedTemplates:
-			for template in selectedTemplates:
-				os.path.exists(template._datas.path) and self.editFile(template._datas.path)
+		for template in self.__coreTemplatesOutliner.getSelectedTemplates():
+			os.path.exists(template._datas.path) and self.editFile(template._datas.path)
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):

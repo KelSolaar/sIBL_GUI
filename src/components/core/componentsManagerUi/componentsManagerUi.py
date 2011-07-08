@@ -878,18 +878,18 @@ class ComponentsManagerUi(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Additional_Informations_textEdit"))
 
+		selectedComponents = self.getSelectedComponents()
 		content = []
-		selectedItems = self.getSelectedItems()
-		for item in selectedItems:
-			if item._type == "Component":
-				content.append(self.__componentsInformationsText.format(item._datas.name,
-																		strings.getNiceName(item._datas.categorie),
-																		item._datas.author,
-																		item._datas.email,
-																		item._datas.url,
-																		item._datas.description))
-			else:
-				len(selectedItems) == 1 and content.append(self.__componentsInformationsDefaultText)
+		if selectedComponents:
+			for item in selectedComponents:
+				content.append(self.__componentsInformationsText.format(item.name,
+																		strings.getNiceName(item.categorie),
+																		item.author,
+																		item.email,
+																		item.url,
+																		item.description))
+		else:
+			content.append(self.__componentsInformationsDefaultText)
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 		self.ui.Components_Informations_textBrowser.setText(separator.join(content))

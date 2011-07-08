@@ -1601,8 +1601,8 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
 
-		content = []
 		selectedTemplates = self.getSelectedTemplates()
+		content = []
 
 		if selectedTemplates:
 			for template in selectedTemplates:

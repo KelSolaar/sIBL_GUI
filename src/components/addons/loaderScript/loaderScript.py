@@ -730,12 +730,13 @@ class LoaderScript(UiComponent):
 		if self.outputLoaderScript__():
 			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 			template = selectedTemplates and selectedTemplates[0] or None
-			if template:
-				loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
-				if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
-					loaderScriptPath = strings.toPosixPath(loaderScriptPath)
-				if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
-					raise Exception, "{0} | Exception Raised While Sending Loader Script!".format(self.__class__.__name__)
+			if not template: return
+
+			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
+			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
+				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
+			if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
+				raise Exception, "{0} | Exception Raised While Sending Loader Script!".format(self.__class__.__name__)
 		else:
 			raise Exception, "{0} | Exception Raised While Outputing Loader Script!".format(self.__class__.__name__)
 
