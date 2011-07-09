@@ -1908,7 +1908,7 @@ class Preview(UiComponent):
 		for key, value in self.__inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self.__coreInspector.ui.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
-			value["object"].clicked.connect(functools.partial(self.showIblSetsImages, key))
+			value["object"].clicked.connect(functools.partial(self.showIblSetsImages__, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -1926,7 +1926,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Background")
+		self.showIblSetsImages__("Background")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
@@ -1936,7 +1936,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Lighting")
+		self.showIblSetsImages__("Lighting")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
@@ -1946,7 +1946,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Reflection")
+		self.showIblSetsImages__("Reflection")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
@@ -1956,7 +1956,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Plates")
+		self.showIblSetsImages__("Plates")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectedIblSetBackgroundImageAction__triggered(self, checked):
@@ -1966,7 +1966,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Background")
+		self.showIblSetsImages__("Background")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectedIblSetLightingImageAction__triggered(self, checked):
@@ -1976,7 +1976,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Lighting")
+		self.showIblSetsImages__("Lighting")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectedIblSetReflectionImageAction__triggered(self, checked):
@@ -1986,7 +1986,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Reflection")
+		self.showIblSetsImages__("Reflection")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectedIblSetPlatesAction__triggered(self, checked):
@@ -1996,7 +1996,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages("Plates")
+		self.showIblSetsImages__("Plates")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -2038,80 +2038,73 @@ class Preview(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	def showIblSetsImages(self, imageType, *args):
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
+	def showIblSetsImages__(self, imageType, *args):
 		"""
-		This Method Launches An Images Previewer.
+		This Method Launches Selected Ibl Sets Images Previewer.
 		
 		@param imageType: Image Type. ( String )
 		@param *args: Arguments. ( * )
 		"""
 
-		customPreviewer = str(self.ui.Custom_Previewer_Path_lineEdit.text())
+		success = True
+		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
+			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
+				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				break
+			success *= self.showIblSetImages(iblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		for iblSet in selectedIblSets:
-			imagePaths = []
-			if imageType == "Background":
-				path = getattr(iblSet, "backgroundImage")
-				path and imagePaths.append(path)
-			elif imageType == "Lighting":
-				path = getattr(iblSet, "lightingImage")
-				path and imagePaths.append(path)
-			elif imageType == "Reflection":
-				path = getattr(iblSet, "reflectionImage")
-				path and imagePaths.append(path)
-			elif imageType == "Plates":
-				if os.path.exists(iblSet.path):
-					LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(iblSet))
-					parser = Parser(iblSet.path)
-					parser.read() and parser.parse()
-					for section in parser.sections:
-						if re.search("Plate[0-9]+", section):
-							imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), parser.getValue("PLATEfile", section))))
-
-			for path in imagePaths[:]:
-				if not os.path.exists(path):
-						imagePaths.remove(path) and messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, path))
-
-			if imagePaths:
-				if customPreviewer:
-					previewCommand = None
-					imagePaths = [os.path.normpath(path) for path in imagePaths]
-					if platform.system() == "Windows" or platform.system() == "Microsoft":
-							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
-							previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
-					elif platform.system() == "Darwin":
-							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
-							previewCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
-					elif platform.system() == "Linux":
-							LOGGER.info("{0} | Launching '{1}' Custom Image Previewer With '{2}'.".format(self.__class__.__name__, os.path.basename(customPreviewer), imagePaths))
-							previewCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagePaths))
-					if previewCommand:
-						LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
-						editProcess = QProcess()
-						editProcess.startDetached(previewCommand)
-				else:
-					if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-						self.launchImagesPreviewer(imagePaths)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
-			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image(s) Type And Will Be Skipped!".format(self.__class__.__name__, iblSet.title, imageType))
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Ibl Set Image(s)!".format(self.__class__.__name__, iblSet.name)
 
 	@core.executionTrace
-	def launchImagesPreviewer(self, paths):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def showIblSetImages(self, iblSet, imageType, customPreviewer=None):
 		"""
-		This Method Launches An Images Previewer.
+		This Method Launches An Ibl Set Images Previewer.
 		
-		@param paths: Images Paths. ( List )
+		@param iblSet: Ibl Set. ( DbIblSet )
+		@param imageType: Image Type. ( String )
+		@param customPreviewer: Custom Previewer. ( String )
 		"""
 
-		LOGGER.debug("> Launching Images Previewer For '{0}' Image.".format(paths))
-
-		imagesPreviewer = ImagesPreviewer(self, paths)
-		self.__imagesPreviewers.append(imagesPreviewer)
+		imagesPaths = self.getIblSetImagesPaths(iblSet, imageType)
+		if imagesPaths:
+			if customPreviewer:
+				previewCommand = self.getProcessCommand(imagesPaths, customPreviewer)
+				if previewCommand:
+					LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
+					LOGGER.info("{0} | Launching Previewer With '{1}' Images Paths.".format(self.__class__.__name__, ", ".join(imagesPaths)))
+					editProcess = QProcess()
+					editProcess.startDetached(previewCommand)
+					return True
+				else:
+					raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
+			else:
+				if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
+					return self.getImagesPreviewer(imagesPaths)
+				else:
+					LOGGER.warning("!> {0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+		else:
+			raise Exception, "{0} | Exception Raised: '{1}' Ibl Set Has No '{2}' Image(s) Type!".format(self.__class__.__name__, iblSet.title, imageType)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def addImagesPreviewer(self, imagesPreviewer):
+		"""
+		This Method Adds An Images Previewer.
+		
+		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Adding '{0}' Images Previewer.".format(imagesPreviewer))
+
+		self.__imagesPreviewers.append(imagesPreviewer)
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
 		This Method Removes An Images Previewer.
@@ -2122,6 +2115,78 @@ class Preview(UiComponent):
 		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
 
 		self.__imagesPreviewers.remove(imagesPreviewer)
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getImagesPreviewer(self, paths):
+		"""
+		This Method Launches An Images Previewer.
+		
+		@param paths: Images Paths. ( List )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Launching Images Previewer For '{0}' Image.".format(paths))
+
+		self.addImagesPreviewer(ImagesPreviewer(self, paths))
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getProcessCommand(self, paths, customPreviewer):
+		"""
+		This Method Gets Process Command.
+
+		@param paths: Paths To Preview. ( String )
+		@param customPreviewer: Custom Browser. ( String )
+		@return: Process Command. ( String )		
+		"""
+
+		processCommand = None
+		imagesPaths = [os.path.normpath(path) for path in paths]
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+				processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+		elif platform.system() == "Darwin":
+				processCommand = "open -a \"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+		elif platform.system() == "Linux":
+				processCommand = "\"{0}\" \"{1}\"".format(customPreviewer, " ".join(imagesPaths))
+		return processCommand
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getIblSetImagesPaths(self, iblSet, imageType):
+		"""
+		This Method Gets Ibl Set Images Paths.
+		
+		@param iblSet: Ibl Set. ( DbIblSet )
+		@param imageType: Image Type. ( String )
+		@return: Images Paths. ( List )		
+		"""
+
+		imagePaths = []
+		if imageType == "Background":
+			path = iblSet.backgroundImage
+			path and imagePaths.append(path)
+		elif imageType == "Lighting":
+			path = iblSet.lightingImage
+			path and imagePaths.append(path)
+		elif imageType == "Reflection":
+			path = iblSet.reflectionImage
+			path and imagePaths.append(path)
+		elif imageType == "Plates":
+			if os.path.exists(iblSet.path):
+				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(iblSet))
+				parser = Parser(iblSet.path)
+				parser.read() and parser.parse()
+				for section in parser.sections:
+					if re.search("Plate[0-9]+", section):
+						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), parser.getValue("PLATEfile", section))))
+
+		for path in imagePaths[:]:
+			if not os.path.exists(path):
+				imagePaths.remove(path) and LOGGER.warning("!> {0} | '{1}' Image File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, path))
+		return imagePaths
 
 #***********************************************************************************************
 #***	Python End
