@@ -112,7 +112,7 @@ class sIBLeditUtilities(UiComponent):
 		self.__coreInspector = None
 
 		self.__editIblSetInSIBLEditAction = None
-		self.__editInspectedIblSetInSIBLEditAction = None
+		self.__editInspectorIblSetInSIBLEditAction = None
 
 	#***************************************************************************************
 	#***	Attributes Properties
@@ -358,34 +358,34 @@ class sIBLeditUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editIblSetInSIBLEditAction"))
 
 	@property
-	def editInspectedIblSetInSIBLEditAction(self):
+	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Property For The _editInspectedIblSetInSIBLEditAction Attribute.
+		This Method Is The Property For The _editInspectorIblSetInSIBLEditAction Attribute.
 
-		@return: self.__editInspectedIblSetInSIBLEditAction. ( QAction )
+		@return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
 		"""
 
-		return self.__editInspectedIblSetInSIBLEditAction
+		return self.__editInspectorIblSetInSIBLEditAction
 
-	@editInspectedIblSetInSIBLEditAction.setter
+	@editInspectorIblSetInSIBLEditAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectedIblSetInSIBLEditAction(self, value):
+	def editInspectorIblSetInSIBLEditAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editInspectedIblSetInSIBLEditAction Attribute.
+		This Method Is The Setter Method For The _editInspectorIblSetInSIBLEditAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectedIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectorIblSetInSIBLEditAction"))
 
-	@editInspectedIblSetInSIBLEditAction.deleter
+	@editInspectorIblSetInSIBLEditAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectedIblSetInSIBLEditAction(self):
+	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Deleter Method For The _editInspectedIblSetInSIBLEditAction Attribute.
+		This Method Is The Deleter Method For The _editInspectorIblSetInSIBLEditAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectedIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectorIblSetInSIBLEditAction"))
 
 	#***************************************************************************************
 	#***	Class Methods
@@ -493,9 +493,9 @@ class sIBLeditUtilities(UiComponent):
 			self.__editIblSetInSIBLEditAction.triggered.connect(self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetInSIBLEditAction)
 
-			self.__editInspectedIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectedIblSetInSIBLEditAction.triggered.connect(self.__Inspector_Overall_frame_editInspectedIblSetInSIBLEditAction__triggered)
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInSIBLEditAction)
+			self.__editInspectorIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectorIblSetInSIBLEditAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered)
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInSIBLEditAction)
 		else:
 			LOGGER.info("{0} | sIBLedit Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -511,8 +511,8 @@ class sIBLeditUtilities(UiComponent):
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetInSIBLEditAction)
 			self.__editIblSetInSIBLEditAction = None
 
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectedIblSetInSIBLEditAction)
-			self.__editInspectedIblSetInSIBLEditAction = None
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectorIblSetInSIBLEditAction)
+			self.__editInspectorIblSetInSIBLEditAction = None
 
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):
@@ -525,14 +525,14 @@ class sIBLeditUtilities(UiComponent):
 		self.editIblSetInSIBLEdit__()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectedIblSetInSIBLEditAction__triggered(self, checked):
+	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editInspectedIblSetInSIBLEditAction Action.
+		This Method Is Triggered By editInspectorIblSetInSIBLEditAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.editInspectedIblSetInSIBLEdit__()
+		self.editInspectorIblSetInSIBLEdit__()
 
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
@@ -595,21 +595,21 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def editInspectedIblSetInSIBLEdit__(self):
+	def editInspectorIblSetInSIBLEdit__(self):
 		"""
-		This Method Edits Inspected Ibl Set In sIBLedit.
+		This Method Edits Inspector Ibl Set In sIBLedit.
 		
 		@return: Method Success. ( Boolean )		
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
-			inspectedIblSet = self.__coreInspector.inspectorIblSet
-			inspectedIblSet = inspectedIblSet and os.path.exists(inspectedIblSet.path) and inspectedIblSet or None
-			if inspectedIblSet:
-				return self.editIblSetInSIBLedit(inspectedIblSet.path, sIBLedit)
+			inspectorIblSet = self.__coreInspector.inspectorIblSet
+			inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+			if inspectorIblSet:
+				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception Raised While Sending Inspector Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectedIblSet.name)
+				raise OSError, "{0} | Exception Raised While Sending Inspector Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences!".format(self.__class__.__name__))
 

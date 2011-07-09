@@ -113,7 +113,7 @@ class RawEditingUtilities(UiComponent):
 		self.__coreTemplatesOutliner = None
 
 		self.__editIblSetsInTextEditorAction = None
-		self.__editInspectedIblSetInTextEditorAction = None
+		self.__editInspectorIblSetInTextEditorAction = None
 		self.__editTemplateInTextEditorAction = None
 
 		self.__linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
@@ -392,34 +392,34 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editIblSetsInTextEditorAction"))
 
 	@property
-	def editInspectedIblSetInTextEditorAction(self):
+	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This Method Is The Property For The _editInspectedIblSetInTextEditorAction Attribute.
+		This Method Is The Property For The _editInspectorIblSetInTextEditorAction Attribute.
 
-		@return: self.__editInspectedIblSetInTextEditorAction. ( QAction )
+		@return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
 		"""
 
-		return self.__editInspectedIblSetInTextEditorAction
+		return self.__editInspectorIblSetInTextEditorAction
 
-	@editInspectedIblSetInTextEditorAction.setter
+	@editInspectorIblSetInTextEditorAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectedIblSetInTextEditorAction(self, value):
+	def editInspectorIblSetInTextEditorAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editInspectedIblSetInTextEditorAction Attribute.
+		This Method Is The Setter Method For The _editInspectorIblSetInTextEditorAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectedIblSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectorIblSetInTextEditorAction"))
 
-	@editInspectedIblSetInTextEditorAction.deleter
+	@editInspectorIblSetInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectedIblSetInTextEditorAction(self):
+	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This Method Is The Deleter Method For The _editInspectedIblSetInTextEditorAction Attribute.
+		This Method Is The Deleter Method For The _editInspectorIblSetInTextEditorAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectedIblSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectorIblSetInTextEditorAction"))
 
 	@property
 	def editTemplateInTextEditorAction(self):
@@ -590,9 +590,9 @@ class RawEditingUtilities(UiComponent):
 			self.__editIblSetsInTextEditorAction.triggered.connect(self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
 
-			self.__editInspectedIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectedIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered)
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectedIblSetInTextEditorAction)
+			self.__editInspectorIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectorIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered)
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInTextEditorAction)
 
 			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 			self.__editTemplateInTextEditorAction.triggered.connect(self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered)
@@ -613,8 +613,8 @@ class RawEditingUtilities(UiComponent):
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetsInTextEditorAction)
 			self.__editIblSetsInTextEditorAction = None
 
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectedIblSetInTextEditorAction)
-			self.__editInspectedIblSetInTextEditorAction = None
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectorIblSetInTextEditorAction)
+			self.__editInspectorIblSetInTextEditorAction = None
 
 			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__editTemplateInTextEditorAction)
 			self.__editTemplateInTextEditorAction = None
@@ -630,14 +630,14 @@ class RawEditingUtilities(UiComponent):
 		self.editIblSetsInTextEditor__()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered(self, checked):
+	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editInspectedIblSetInTextEditorAction Action.
+		This Method Is Triggered By editInspectorIblSetInTextEditorAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.editInspectedIblSetInTextEditor__()
+		self.editInspectorIblSetInTextEditor__()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
@@ -711,19 +711,19 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def editInspectedIblSetInTextEditor__(self):
+	def editInspectorIblSetInTextEditor__(self):
 		"""
 		This Method Edits Inspector Ibl Set.
 
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
-		if selectedIblSet:
-			return self.editFile(selectedIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
+		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+		if inspectorIblSet:
+			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Editing Inspected Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, selectedIblSet.name)
+			raise OSError, "{0} | Exception Raised While Editing Inspector Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
 
 	@core.executionTrace
 	def editTemplatesInTextEditor__(self):

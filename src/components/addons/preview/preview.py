@@ -1630,64 +1630,64 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewIblSetsLightingImagesAction"))
 
 	@property
-	def viewInspectedIblSetReflectionImageAction(self):
+	def viewInspectorIblSetReflectionImageAction(self):
 		"""
-		This Method Is The Property For The _viewInspectedIblSetReflectionImageAction Attribute.
+		This Method Is The Property For The _viewInspectorIblSetReflectionImageAction Attribute.
 
-		@return: self.__viewInspectedIblSetReflectionImageAction. ( QAction )
+		@return: self.__viewInspectorIblSetReflectionImageAction. ( QAction )
 		"""
 
-		return self.__viewInspectedIblSetReflectionImageAction
+		return self.__viewInspectorIblSetReflectionImageAction
 
-	@viewInspectedIblSetReflectionImageAction.setter
+	@viewInspectorIblSetReflectionImageAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectedIblSetReflectionImageAction(self, value):
+	def viewInspectorIblSetReflectionImageAction(self, value):
 		"""
-		This Method Is The Setter Method For The _viewInspectedIblSetReflectionImageAction Attribute.
+		This Method Is The Setter Method For The _viewInspectorIblSetReflectionImageAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewInspectedIblSetReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewInspectorIblSetReflectionImageAction"))
 
-	@viewInspectedIblSetReflectionImageAction.deleter
+	@viewInspectorIblSetReflectionImageAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectedIblSetReflectionImageAction(self):
+	def viewInspectorIblSetReflectionImageAction(self):
 		"""
-		This Method Is The Deleter Method For The _viewInspectedIblSetReflectionImageAction Attribute.
+		This Method Is The Deleter Method For The _viewInspectorIblSetReflectionImageAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewInspectedIblSetReflectionImageAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewInspectorIblSetReflectionImageAction"))
 
 	@property
-	def viewInspectedIblSetPlatesAction(self):
+	def viewInspectorIblSetPlatesAction(self):
 		"""
-		This Method Is The Property For The _viewInspectedIblSetPlatesAction Attribute.
+		This Method Is The Property For The _viewInspectorIblSetPlatesAction Attribute.
 
-		@return: self.__viewInspectedIblSetPlatesAction. ( QAction )
+		@return: self.__viewInspectorIblSetPlatesAction. ( QAction )
 		"""
 
-		return self.__viewInspectedIblSetPlatesAction
+		return self.__viewInspectorIblSetPlatesAction
 
-	@viewInspectedIblSetPlatesAction.setter
+	@viewInspectorIblSetPlatesAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectedIblSetPlatesAction(self, value):
+	def viewInspectorIblSetPlatesAction(self, value):
 		"""
-		This Method Is The Setter Method For The _viewInspectedIblSetPlatesAction Attribute.
+		This Method Is The Setter Method For The _viewInspectorIblSetPlatesAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewInspectedIblSetPlatesAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("viewInspectorIblSetPlatesAction"))
 
-	@viewInspectedIblSetPlatesAction.deleter
+	@viewInspectorIblSetPlatesAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectedIblSetPlatesAction(self):
+	def viewInspectorIblSetPlatesAction(self):
 		"""
-		This Method Is The Deleter Method For The _viewInspectedIblSetPlatesAction Attribute.
+		This Method Is The Deleter Method For The _viewInspectorIblSetPlatesAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewInspectedIblSetPlatesAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("viewInspectorIblSetPlatesAction"))
 
 	@property
 	def inspectorButtons(self):
@@ -1854,21 +1854,21 @@ class Preview(UiComponent):
 		separatorAction.setSeparator(True)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(separatorAction)
 
-		self.__viewInspectedIblSetBackgroundImageAction = QAction("View Background Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectedIblSetBackgroundImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectedIblSetBackgroundImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetBackgroundImageAction)
+		self.__viewInspectorIblSetBackgroundImageAction = QAction("View Background Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetBackgroundImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetBackgroundImageAction)
 
-		self.__viewInspectedIblSetLightingImageAction = QAction("View Lighting Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectedIblSetLightingImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectedIblSetLightingImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetLightingImageAction)
+		self.__viewInspectorIblSetLightingImageAction = QAction("View Lighting Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetLightingImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetLightingImageAction)
 
-		self.__viewInspectedIblSetReflectionImageAction = QAction("View Reflection Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectedIblSetReflectionImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectedIblSetReflectionImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetReflectionImageAction)
+		self.__viewInspectorIblSetReflectionImageAction = QAction("View Reflection Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetReflectionImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetReflectionImageAction)
 
-		self.__viewInspectedIblSetPlatesAction = QAction("View Plates ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectedIblSetPlatesAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectedIblSetPlatesAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectedIblSetPlatesAction)
+		self.__viewInspectorIblSetPlatesAction = QAction("View Plates ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetPlatesAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetPlatesAction)
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -1888,15 +1888,15 @@ class Preview(UiComponent):
 		self.__viewIblSetsReflectionImagesAction = None
 		self.__viewIblSetsPlatesAction = None
 
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetBackgroundImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetLightingImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetReflectionImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectedIblSetPlatesAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetBackgroundImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetLightingImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetReflectionImageAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetPlatesAction)
 
-		self.__viewInspectedIblSetBackgroundImageAction = None
-		self.__viewInspectedIblSetLightingImageAction = None
-		self.__viewInspectedIblSetReflectionImageAction = None
-		self.__viewInspectedIblSetPlatesAction = None
+		self.__viewInspectorIblSetBackgroundImageAction = None
+		self.__viewInspectorIblSetLightingImageAction = None
+		self.__viewInspectorIblSetReflectionImageAction = None
+		self.__viewInspectorIblSetPlatesAction = None
 
 	@core.executionTrace
 	def __addInspectorButtons(self):
@@ -1908,7 +1908,7 @@ class Preview(UiComponent):
 		for key, value in self.__inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self.__coreInspector.ui.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
-			value["object"].clicked.connect(functools.partial(self.showIblSetsImages__, key))
+			value["object"].clicked.connect(functools.partial(self.viewIblSetsImages__, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -1926,7 +1926,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Background")
+		self.viewIblSetsImages__("Background")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
@@ -1936,7 +1936,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Lighting")
+		self.viewIblSetsImages__("Lighting")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
@@ -1946,7 +1946,7 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Reflection")
+		self.viewIblSetsImages__("Reflection")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
@@ -1956,47 +1956,47 @@ class Preview(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Plates")
+		self.viewIblSetsImages__("Plates")
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_viewInspectedIblSetBackgroundImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By viewInspectedIblSetBackgroundImageAction Action.
+		This Method Is Triggered By viewInspectorIblSetBackgroundImageAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Background")
+		self.viewIblSetsImages__("Background")
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_viewInspectedIblSetLightingImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By viewInspectedIblSetLightingImageAction Action.
+		This Method Is Triggered By viewInspectorIblSetLightingImageAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Lighting")
+		self.viewIblSetsImages__("Lighting")
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_viewInspectedIblSetReflectionImageAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By viewInspectedIblSetReflectionImageAction Action.
+		This Method Is Triggered By viewInspectorIblSetReflectionImageAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Reflection")
+		self.viewIblSetsImages__("Reflection")
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_viewInspectedIblSetPlatesAction__triggered(self, checked):
+	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By viewInspectedIblSetPlatesAction Action.
+		This Method Is Triggered By viewInspectorIblSetPlatesAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.showIblSetsImages__("Plates")
+		self.viewIblSetsImages__("Plates")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -2039,7 +2039,7 @@ class Preview(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
-	def showIblSetsImages__(self, imageType, *args):
+	def viewIblSetsImages__(self, imageType, *args):
 		"""
 		This Method Launches Selected Ibl Sets Images Previewer.
 		
@@ -2052,14 +2052,34 @@ class Preview(UiComponent):
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 				break
-			success *= self.showIblSetImages(iblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
+			success *= self.viewIblSetImages(iblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
 
 		if success: return True
 		else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Ibl Set Image(s)!".format(self.__class__.__name__, iblSet.name)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
+	def viewInspectorIblSetImages__(self, imageType, *args):
+		"""
+		This Method Launches Inspector Ibl Set Images Previewer.
+		
+		@param imageType: Image Type. ( String )
+		@param *args: Arguments. ( * )
+		"""
+
+		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+		if inspectorIblSet:
+			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
+				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+			if self.viewIblSetImages(inspectorIblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())): return True
+			else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Inspector Ibl Set Image(s)!".format(self.__class__.__name__, inspectorIblSet.name)
+		else:
+			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def showIblSetImages(self, iblSet, imageType, customPreviewer=None):
+	def viewIblSetImages(self, iblSet, imageType, customPreviewer=None):
 		"""
 		This Method Launches An Ibl Set Images Previewer.
 		
@@ -2176,7 +2196,7 @@ class Preview(UiComponent):
 			path and imagePaths.append(path)
 		elif imageType == "Plates":
 			if os.path.exists(iblSet.path):
-				LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(iblSet))
+				LOGGER.debug("> Parsing Inspector Ibl Set File: '{0}'.".format(iblSet))
 				parser = Parser(iblSet.path)
 				parser.read() and parser.parse()
 				for section in parser.sections:

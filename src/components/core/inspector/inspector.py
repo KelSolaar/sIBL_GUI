@@ -1177,7 +1177,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
-		This Method Sets The Inspected Ibl Set.
+		This Method Sets The Inspector Ibl Set.
 		"""
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -1190,11 +1190,11 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This Method Sets The Inspected Ibl Set Parser.
+		This Method Sets The Inspector Ibl Set Parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):
-			LOGGER.debug("> Parsing Inspected Ibl Set File: '{0}'.".format(self.__inspectorIblSet))
+			LOGGER.debug("> Parsing Inspector Ibl Set File: '{0}'.".format(self.__inspectorIblSet))
 			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet.path)
 			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 
@@ -1202,7 +1202,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def __setInspectorIblSetPlates(self):
 		"""
-		This Method Sets The Plates From The Inspected Ibl Set.
+		This Method Sets The Plates From The Inspector Ibl Set.
 		"""
 
 		if self.__inspectorIblSet:

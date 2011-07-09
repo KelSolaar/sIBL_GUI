@@ -428,34 +428,34 @@ class LocationsBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openIblSetsLocationsAction"))
 
 	@property
-	def openInspectedIblSetLocationsAction(self):
+	def openInspectorIblSetLocationsAction(self):
 		"""
-		This Method Is The Property For The _openInspectedIblSetLocationsAction Attribute.
+		This Method Is The Property For The _openInspectorIblSetLocationsAction Attribute.
 
-		@return: self.__openInspectedIblSetLocationsAction. ( QAction )
+		@return: self.__openInspectorIblSetLocationsAction. ( QAction )
 		"""
 
-		return self.__openInspectedIblSetLocationsAction
+		return self.__openInspectorIblSetLocationsAction
 
-	@openInspectedIblSetLocationsAction.setter
+	@openInspectorIblSetLocationsAction.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openInspectedIblSetLocationsAction(self, value):
+	def openInspectorIblSetLocationsAction(self, value):
 		"""
-		This Method Is The Setter Method For The _openInspectedIblSetLocationsAction Attribute.
+		This Method Is The Setter Method For The _openInspectorIblSetLocationsAction Attribute.
 
 		@param value: Attribute Value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openInspectedIblSetLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openInspectorIblSetLocationsAction"))
 
-	@openInspectedIblSetLocationsAction.deleter
+	@openInspectorIblSetLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openInspectedIblSetLocationsAction(self):
+	def openInspectorIblSetLocationsAction(self):
 		"""
-		This Method Is The Deleter Method For The _openInspectedIblSetLocationsAction Attribute.
+		This Method Is The Deleter Method For The _openInspectorIblSetLocationsAction Attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openInspectedIblSetLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openInspectorIblSetLocationsAction"))
 
 	@property
 	def openComponentsLocationsAction(self):
@@ -705,9 +705,9 @@ class LocationsBrowser(UiComponent):
 		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
 
-		self.__openInspectedIblSetLocationsAction = QAction("Open Ibl Set Location ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__openInspectedIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectedIblSetLocationsAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectedIblSetLocationsAction)
+		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl Set Location ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__openInspectorIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectorIblSetLocationsAction)
 
 		self.__openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
 		self.__openComponentsLocationsAction.triggered.connect(self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered)
@@ -726,12 +726,12 @@ class LocationsBrowser(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
 
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__openIblSetsLocationsAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectedIblSetLocationsAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectorIblSetLocationsAction)
 		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__openComponentsLocationsAction)
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__openTemplatesLocationsAction)
 
 		self.__openIblSetsLocationsAction = None
-		self.__openInspectedIblSetLocationsAction = None
+		self.__openInspectorIblSetLocationsAction = None
 		self.__openComponentsLocationsAction = None
 		self.__openTemplatesLocationsAction = None
 
@@ -746,14 +746,14 @@ class LocationsBrowser(UiComponent):
 		self.openIblSetsLocations__()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_openInspectedIblSetLocationsAction__triggered(self, checked):
+	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By openInspectedIblSetLocationsAction Action.
+		This Method Is Triggered By openInspectorIblSetLocationsAction Action.
 
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		self.openInspectedIblSetLocations__()
+		self.openInspectorIblSetLocations__()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
@@ -848,19 +848,19 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
-	def openInspectedIblSetLocations__(self):
+	def openInspectorIblSetLocations__(self):
 		"""
 		This Method Opens Inspector Ibl Set Directory.
 
 		@return: Method Success. ( Boolean )		
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
-		if selectedIblSet:
-			return self.exploreDirectory(os.path.dirname(selectedIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
+		inspectorIblSet = self.__coreInspector.inspectorIblSet
+		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
+		if inspectorIblSet:
+			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Opening Inspected Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, selectedIblSet.name)
+			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
