@@ -627,8 +627,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-			iblSet.path and os.path.exists(iblSet.path) and self.editFile(iblSet.path)
+		self.editIblSetsInTextEditor__()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectedIblSetInTextEditorAction__triggered(self, checked):
@@ -638,9 +637,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
-		selectedIblSet and self.editFile(selectedIblSet.path)
+		self.editInspectedIblSetInTextEditor__()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
@@ -650,8 +647,7 @@ class RawEditingUtilities(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		for template in self.__coreTemplatesOutliner.getSelectedTemplates():
-			os.path.exists(template._datas.path) and self.editFile(template._datas.path)
+		self.editTemplatesInTextEditor__()
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
@@ -693,59 +689,130 @@ class RawEditingUtilities(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
-	def editFile(self, file):
+	def editIblSetsInTextEditor__(self):
 		"""
-		This Method Provides Editing Capability.
+		This Method Edits Selected Ibl Sets.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+
+		success = True
+		for iblSet in selectedIblSets:
+			path = iblSet.path and os.path.exists(iblSet.path) and iblSet.path
+			if path:
+				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
+			else:
+				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.name))
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.name for iblSet in selectedIblSets))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	def editInspectedIblSetInTextEditor__(self):
+		"""
+		This Method Edits Inspector Ibl Set.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
+		if selectedIblSet:
+			return self.editFile(selectedIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
+		else:
+			raise OSError, "{0} | Exception Raised While Editing Inspected Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, selectedIblSet.name)
+
+	@core.executionTrace
+	def editTemplatesInTextEditor__(self):
+		"""
+		This Method Edits Selected Templates.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+
+		success = True
+		for template in selectedTemplates:
+			path = template.path and os.path.exists(template.path) and template.path
+			if path:
+				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
+			else:
+				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getProcessCommand(self, file, customTextEditor=None):
+		"""
+		This Method Gets Process Command.
 
 		@param file: File To Edit. ( String )
+		@param customTextEditor: Custom Text Editor. ( String )
+		@return: Process Command. ( String )		
 		"""
 
-		editCommand = None
-		customTextEditor = str(self.ui.Custom_Text_Editor_Path_lineEdit.text())
-
+		processCommand = None
 		file = os.path.normpath(file)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			if customTextEditor:
-				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
-				editCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
+				processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
-				LOGGER.info("{0} | Launching 'notepad.exe' With '{1}'.".format(self.__class__.__name__, file))
-				editCommand = "notepad.exe \"{0}\"".format(file)
+				processCommand = "notepad.exe \"{0}\"".format(file)
 		elif platform.system() == "Darwin":
 			if customTextEditor:
-				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
-				editCommand = "open -a \"{0}\" \"{1}\"".format(customTextEditor, file)
+				processCommand = "open -a \"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
-				LOGGER.info("{0} | Launching Default Text Editor With '{1}'.".format(self.__class__.__name__, file))
-				editCommand = "open -e \"{0}\"".format(file)
+				processCommand = "open -e \"{0}\"".format(file)
 		elif platform.system() == "Linux":
 			if customTextEditor:
-				LOGGER.info("{0} | Launching '{1}' Custom Text Editor With '{2}'.".format(self.__class__.__name__, os.path.basename(customTextEditor), file))
-				editCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
+				processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
 				environmentVariable = Environment("PATH")
 				paths = environmentVariable.getPath().split(":")
 
 				editorFound = False
 				for editor in self.__linuxTextEditors:
-					if not editorFound:
-						try:
-							for path in paths:
-								if os.path.exists(os.path.join(path, editor)):
-									LOGGER.info("{0} | Launching '{1}' Text Editor With '{2}'.".format(self.__class__.__name__, editor, file))
-									editCommand = "\"{0}\" \"{1}\"".format(editor, file)
-									editorFound = True
-									raise StopIteration
-						except StopIteration:
-							pass
-					else:
-						break
+					if editorFound: break
+
+					try:
+						for path in paths:
+							if os.path.exists(os.path.join(path, editor)):
+								processCommand = "\"{0}\" \"{1}\"".format(editor, file)
+								editorFound = True
+								raise StopIteration
+					except StopIteration:
+						pass
+
+				if not editorFound:
+					raise Exception, "{0} | Exception Raised: No Suitable Linux Editor Found!".format(self.__class__.__name__)
+		return processCommand
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def editFile(self, file, customTextEditor=None):
+		"""
+		This Method Provides Editing Capability.
+
+		@param file: File To Edit. ( String )
+		@param customTextEditor: Custom Text Editor. ( String )
+		@return: Method Success. ( Boolean )
+		"""
+
+		editCommand = self.getProcessCommand(file, customTextEditor)
 		if editCommand:
 			LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
+			LOGGER.info("{0} | Launching Text Editor With '{1}' File.".format(self.__class__.__name__, file))
 			editProcess = QProcess()
 			editProcess.startDetached(editCommand)
+			return True
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define A Text Editor Executable In The Preferences!".format(self.__class__.__name__))
+			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python End
