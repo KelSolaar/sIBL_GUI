@@ -789,9 +789,10 @@ class SearchDatabase(UiComponent):
 		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTimeMatchingIblSets(self):
 		"""
-		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser modelContent.
+		This Method Gets The Time Matching Sets And Updates coreDatabaseBrowser Model Content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent
@@ -805,9 +806,10 @@ class SearchDatabase(UiComponent):
 
 		filteredSets = []
 		for iblSet in iblSets:
-			if iblSet.time:
-				timeTokens = iblSet.time.split(":")
-				int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
+			if not iblSet.time: continue
+
+			timeTokens = iblSet.time.split(":")
+			int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
 
 		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
 
@@ -816,12 +818,13 @@ class SearchDatabase(UiComponent):
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def setSearchMatchingIblsSets(self):
 		"""
-		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser modelContent.
+		This Method Gets The Pattern Matching Sets And Updates coreDatabaseBrowser Model Content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent
@@ -839,19 +842,20 @@ class SearchDatabase(UiComponent):
 			filteredSets = []
 			allTags = []
 			for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()):
-				if getattr(iblSet, currentField):
-					tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
-					patternsMatched = True
-					for pattern in patternTokens:
-						patternMatched = False
-						for tag in tagsCloud:
-							if re.search(pattern, tag, flags=flags):
-								patternMatched = True
-								break
-						patternsMatched *= patternMatched
-					if patternsMatched:
-						allTags.extend(tagsCloud)
-						filteredSets.append(iblSet)
+				if not getattr(iblSet, currentField): continue
+
+				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
+				patternsMatched = True
+				for pattern in patternTokens:
+					patternMatched = False
+					for tag in tagsCloud:
+						if re.search(pattern, tag, flags=flags):
+							patternMatched = True
+							break
+					patternsMatched *= patternMatched
+				if patternsMatched:
+					allTags.extend(tagsCloud)
+					filteredSets.append(iblSet)
 			self.ui.Tags_Cloud_listWidget.clear()
 			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
 			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(set(filteredSets))]
@@ -869,7 +873,7 @@ class SearchDatabase(UiComponent):
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
-
+		return True
 
 #***********************************************************************************************
 #***	Python End
