@@ -743,9 +743,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-			iblSetPath = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
-			iblSetPath and self.exploreDirectory(iblSetPath)
+		self.openIblSetsLocations__()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectedIblSetLocationsAction__triggered(self, checked):
@@ -755,9 +753,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
-		selectedIblSet and self.exploreDirectory(os.path.dirname(selectedIblSet.path))
+		self.openInspectedIblSetLocations__()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
@@ -767,9 +763,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
-		for component in selectedComponents:
-			os.path.exists(component.path) and self.exploreDirectory(component.path)
+		self.openComponentsLocations__()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
@@ -779,8 +773,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		for template in self.__coreTemplatesOutliner.getSelectedTemplates():
-			os.path.exists(template.path) and self.exploreDirectory(os.path.dirname(template.path))
+		self.openTemplatesLocations__()
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
@@ -822,12 +815,104 @@ class LocationsBrowser(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
 		This Method Is Called When Open_Output_Directory_pushButton Is Clicked.
 		
 		@param checked: Checked State. ( Boolean )
+		"""
+
+		self.openOutputDirectory__()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
+	def openIblSetsLocations__(self):
+		"""
+		This Method Open Selected Ibl Sets Directories.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+
+		success = True
+		for iblSet in selectedIblSets:
+			path = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
+			if path:
+				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+			else:
+				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.name))
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.name for iblSet in selectedIblSets))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	def openInspectedIblSetLocations__(self):
+		"""
+		This Method Opens Inspector Ibl Set Directory.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
+		if selectedIblSet:
+			return self.exploreDirectory(os.path.dirname(selectedIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
+		else:
+			raise OSError, "{0} | Exception Raised While Opening Inspected Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, selectedIblSet.name)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
+	def openComponentsLocations__(self):
+		"""
+		This Method Opens Selected Components Directories.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
+
+		success = True
+		for component in selectedComponents:
+			path = component.path and os.path.exists(component.path) and component.path
+			if path:
+				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+			else:
+				LOGGER.warning("!> {0} | '{1}' Component File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, component.name))
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Components Directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
+	def openTemplatesLocations__(self):
+		"""
+		This Method Opens Selected Templates Directories.
+
+		@return: Method Success. ( Boolean )		
+		"""
+
+		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
+
+		success = True
+		for template in selectedTemplates:
+			path = template.path and os.path.exists(template.path) and os.path.dirname(template.path)
+			if path:
+				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+			else:
+				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
+
+		if success: return True
+		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Templates Directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
+	def openOutputDirectory__(self):
+		"""
+		This Method Opens Output Directory.
+
+		@return: Method Success. ( Boolean )		
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
