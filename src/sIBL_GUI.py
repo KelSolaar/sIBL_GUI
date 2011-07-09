@@ -93,6 +93,11 @@ if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platfor
 	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_FORMATTER)
 	LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
 
+# Defining Logging Formatters.
+RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_FORMATTER,
+									"Extended" : core.LOGGING_EXTENDED_FORMATTER,
+									"Standard" : core.LOGGING_STANDARD_FORMATTER}
+
 RuntimeConstants.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
 if os.path.exists(RuntimeConstants.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeConstants.uiFile)
@@ -394,6 +399,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__loggingFileHandler = RuntimeConstants.loggingFileHandler
 		self.__loggingConsoleHandler = RuntimeConstants.loggingConsoleHandler
 		self.__loggingSessionHandlerStream = RuntimeConstants.loggingSessionHandlerStream
+		self.__loggingActiveFormatter = RuntimeConstants.loggingActiveFormatter
 		self.__settings = RuntimeConstants.settings
 		self.__verbosityLevel = RuntimeConstants.verbosityLevel
 		self.__parameters = RuntimeConstants.parameters
@@ -1706,30 +1712,39 @@ def _run():
 
 	try:
 		RuntimeConstants.loggingFileHandler = logging.FileHandler(RuntimeConstants.loggingFile)
-		RuntimeConstants.loggingFileHandler.setFormatter(core.LOGGING_FORMATTER)
+		RuntimeConstants.loggingFileHandler.setFormatter(RuntimeConstants.loggingFormatters[Constants.loggingDefaultFormatter])
 		LOGGER.addHandler(RuntimeConstants.loggingFileHandler)
 	except:
 		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
 	# Retrieving Framework Verbose Level From Settings File.
 	LOGGER.debug("> Initializing {0}!".format(Constants.applicationName))
-	LOGGER.debug("> Retrieving Stored Verbose Level.")
-
 	RuntimeConstants.settingsFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile)
 
 	RuntimeConstants.settings = Preferences(RuntimeConstants.settingsFile)
+
+	LOGGER.debug("> Retrieving Default Layouts.")
 	RuntimeConstants.settings.setDefaultLayouts()
 
 	os.path.exists(RuntimeConstants.settingsFile) or RuntimeConstants.settings.setDefaultPreferences()
 
+	LOGGER.debug("> Retrieving Stored Verbose Level.")
 	RuntimeConstants.verbosityLevel = RuntimeConstants.parameters.verbosityLevel and RuntimeConstants.parameters.verbosityLevel or RuntimeConstants.settings.getKey("Settings", "verbosityLevel").toInt()[0]
 	LOGGER.debug("> Setting Logger Verbosity Level To: '{0}'.".format(RuntimeConstants.verbosityLevel))
 	core.setVerbosityLevel(RuntimeConstants.verbosityLevel)
 
+	LOGGER.debug("> Retrieving Stored Logging Formatter.")
+	loggingFormatter = RuntimeConstants.parameters.loggingFormater and RuntimeConstants.parameters.loggingFormater or str(RuntimeConstants.settings.getKey("Settings", "loggingFormatter").toString())
+	loggingFormatter = loggingFormatter in RuntimeConstants.loggingFormatters.keys() and loggingFormatter or None
+	RuntimeConstants.loggingActiveFormatter = loggingFormatter and loggingFormatter or Constants.loggingDefaultFormatter
+	LOGGER.debug("> Setting Logging Formatter: '{0}'.".format(RuntimeConstants.loggingActiveFormatter))
+	for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler):
+		handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
+
 	# Starting The Session Handler.
 	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
 	RuntimeConstants.loggingSessionHandler = logging.StreamHandler(RuntimeConstants.loggingSessionHandlerStream)
-	RuntimeConstants.loggingSessionHandler.setFormatter(core.LOGGING_FORMATTER)
+	RuntimeConstants.loggingSessionHandler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
 	LOGGER.addHandler(RuntimeConstants.loggingSessionHandler)
 
 	LOGGER.info(Constants.loggingSeparators)
@@ -1803,6 +1818,7 @@ def _getCommandLineParameters(argv):
 	parser.add_option("-h", "--help", action="help", help="'Display This Help Message And Exit.'")
 	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application About Message.'")
 	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels:  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
+	parser.add_option("-f", "--formatter", action="store", type="string", dest="loggingFormater", help="'Application Logging Formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application Datas Directory'.")
 
 	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate Worker Threads'.")

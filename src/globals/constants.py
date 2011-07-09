@@ -72,6 +72,7 @@ class Constants():
 	logger = "sIBL_GUI_Logger"
 	verbosityLevel = 3
 	verbosityLabels = ("Critical", "Error", "Warning", "Info", "Debug")
+	loggingDefaultFormatter = "Default"
 	loggingSeparators = "*" * 96
 
 	encodingFormat = "utf-8"

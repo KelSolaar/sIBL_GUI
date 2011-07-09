@@ -71,6 +71,8 @@ class RuntimeConstants():
 	loggingFileHandler = None
 	loggingSessionHandler = None
 	loggingSessionHandlerStream = None
+	loggingFormatters = None
+	loggingActiveFormatter = None
 
 	verbosityLevel = None
 	loggingFile = None

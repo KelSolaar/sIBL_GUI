@@ -66,6 +66,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 from globals.constants import Constants
+from globals.runtimeConstants import RuntimeConstants
 from manager.uiComponent import UiComponent
 
 #***********************************************************************************************
@@ -263,10 +264,12 @@ class PreferencesManager(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
 
+		self.__Logging_Formatters_comboBox_setUi()
 		self.__Verbose_Level_comboBox_setUi()
 		self.__Restore_Geometry_On_Layout_Change_checkBox_setUi()
 
 		# Signals / Slots.
+		self.ui.Logging_Formatters_comboBox.activated.connect(self.__Logging_Formatters_comboBox__activated)
 		self.ui.Verbose_Level_comboBox.activated.connect(self.__Verbose_Level_comboBox__activated)
 		self.ui.Restore_Geometry_On_Layout_Change_checkBox.stateChanged.connect(self.__Restore_Geometry_On_Layout_Change_checkBox__stateChanged)
 
@@ -297,6 +300,33 @@ class PreferencesManager(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+
+	@core.executionTrace
+	def __Logging_Formatters_comboBox_setUi(self):
+		"""
+		This Method Fills The Logging Formatter ComboBox.
+		"""
+
+		self.ui.Logging_Formatters_comboBox.clear()
+		LOGGER.debug("> Available Logging Formatters: '{0}'.".format(", ".join(RuntimeConstants.loggingFormatters.keys())))
+		self.ui.Logging_Formatters_comboBox.insertItems(0, QStringList (RuntimeConstants.loggingFormatters.keys()))
+		loggingFormatter = self.__settings.getKey("Settings", "loggingFormatter").toString()
+		self.__container.loggingActiveFormatter = loggingFormatter and loggingFormatter or Constants.loggingDefaultFormatter
+		self.ui.Logging_Formatters_comboBox.setCurrentIndex(self.ui.Logging_Formatters_comboBox.findText(self.__container.loggingActiveFormatter, Qt.MatchExactly))
+
+	@core.executionTrace
+	def __Logging_Formatters_comboBox__activated(self, index):
+		"""
+		This Method Is Called When The Logging Formatter Is Triggered.
+		
+		@param index: ComboBox Activated Item Index. ( Integer )
+		"""
+
+		formatter = str(self.ui.Logging_Formatters_comboBox.currentText())
+		LOGGER.debug("> Setting Logging Formatter: '{0}'.".format(formatter))
+		RuntimeConstants.loggingActiveFormatter = formatter
+		self.setLoggingFormatter()
+		self.__settings.setKey("Settings", "loggingFormatter", self.ui.Logging_Formatters_comboBox.currentText())
 
 	@core.executionTrace
 	def __Verbose_Level_comboBox_setUi(self):
@@ -346,6 +376,15 @@ class PreferencesManager(UiComponent):
 
 		LOGGER.debug("> Restore Geometry On Layout Change State: '{0}'.".format(self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState()))
 		self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState())
+
+	@core.executionTrace
+	def setLoggingFormatter(self):
+		"""
+		This Method Sets The Logging Formatter.
+		"""
+
+		for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingSessionHandler):
+			handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
 
 #***********************************************************************************************
 #***	Python End

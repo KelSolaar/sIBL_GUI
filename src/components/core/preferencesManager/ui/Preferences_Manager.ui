@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>Preferences_Manager_DockWidget</class>
  <widget class="QDockWidget" name="Preferences_Manager_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>393</width>
-    <height>336</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Preferences Manager</string>
   </property>
@@ -31,7 +23,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>369</width>
+         <width>365</width>
          <height>218</height>
         </rect>
        </property>
@@ -58,7 +50,7 @@
            <string>Logging</string>
           </property>
           <layout class="QGridLayout" name="Log_Settings_groupBox_gridLayout">
-           <item row="0" column="0">
+           <item row="1" column="0">
             <layout class="QHBoxLayout" name="Verbosity_horizontalLayout">
              <item>
               <widget class="QLabel" name="Verbose_Level_label">
@@ -82,8 +74,51 @@
              </item>
              <item>
               <widget class="QComboBox" name="Verbose_Level_comboBox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="statusTip">
                 <string>Verbose Level Combo Box: Defines Application Verbose Level: Each Option Encompasses The Ones Over It In The List.</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="Formatter_horizontalLayout">
+             <item>
+              <widget class="QLabel" name="Logging_Formatter_label">
+               <property name="text">
+                <string>Logging Formatter:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="Logging_Formatter_horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="Logging_Formatters_comboBox">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="statusTip">
+                <string>Logging Formatter Combo Box: Defines The Logging Formatter.</string>
                </property>
               </widget>
              </item>
@@ -142,8 +177,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>96</width>
-         <height>36</height>
+         <width>365</width>
+         <height>218</height>
         </rect>
        </property>
        <attribute name="label">
