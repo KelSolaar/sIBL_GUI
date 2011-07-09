@@ -242,15 +242,18 @@ class SetsScanner_Worker(QThread):
 		This Method Starts The QThread.
 		"""
 
-		self.scanSetsDirectories()
+		self.scanIblSetsDirectories()
 
 	@core.executionTrace
-	def scanSetsDirectories(self):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def scanIblSetsDirectories(self):
 		"""
-		This Method Scans Sets Directories.
+		This Method Scans Ibl Sets Directories.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
-		LOGGER.info("{0} | Scanning Sets Directories For New Sets!".format(self.__class__.__name__))
+		LOGGER.info("{0} | Scanning Sets Directories For New Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
 		paths = [path[0] for path in self.__dbSession.query(dbUtilities.types.DbIblSet.path).all()]
@@ -265,13 +268,13 @@ class SetsScanner_Worker(QThread):
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:
-				LOGGER.warning("!> '{0}' Directory Doesn't Exists And Can't Be Scanned For New Sets!".format(directory))
+				LOGGER.warning("!> '{0}' Directory Doesn't Exists And Won't Be Scanned For New Ibl Sets!".format(directory))
 
 		self.__dbSession.close()
 
 		LOGGER.info("{0} | Scanning Done!".format(self.__class__.__name__))
-
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
+		return True
 
 class SetsScanner(Component):
 	"""
