@@ -672,22 +672,30 @@ class DownloadManager(QObject):
 			self.emit(SIGNAL("downloadFinished()"))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def startDownload(self):
 		"""
 		This Method Triggers The Download.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		self.__downloadStatus = False
 		self.__downloadNext()
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def abortDownload(self):
 		"""
 		This Method Aborts The Current Download.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		self.__currentRequest.abort()
 		self.__currentRequest.deleteLater()
+		return True
 
 class RemoteUpdater(object):
 	"""
@@ -2134,8 +2142,7 @@ class OnlineUpdater(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.__reportUpdateStatus = True
-		self.checkForNewReleases()
+		self.checkForNewReleases__()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.NetworkError)
@@ -2195,15 +2202,7 @@ class OnlineUpdater(UiComponent):
 			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code: '{0}'.".format(self.__releaseReply.error()))
 
 	@core.executionTrace
-	def checkForNewReleases(self):
-		"""
-		This Method Checks For New Releases.
-		"""
-
-		self.getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
-
-	@core.executionTrace
-	def getReleaseFile(self, url):
+	def __getReleaseFile(self, url):
 		"""
 		This Method Gets The Release File.
 		"""
@@ -2212,6 +2211,31 @@ class OnlineUpdater(UiComponent):
 
 		self.__releaseReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releaseReply.finished.connect(self.__releaseReply__finished)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
+	def checkForNewReleases__(self):
+		"""
+		This Method Checks For New Releases.
+		
+		@return: Method Success. ( Boolean )		
+		"""
+
+		self.__reportUpdateStatus = True
+		if self.checkForNewReleases(): return True
+		else: raise Exception, "{0} | Exception Raised While Checking For New Releases!".format(self.__class__.__name__)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def checkForNewReleases(self):
+		"""
+		This Method Checks For New Releases.
+		
+		@return: Method Success. ( Boolean )		
+		"""
+
+		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
+		return True
 
 #***********************************************************************************************
 #***	Python End
