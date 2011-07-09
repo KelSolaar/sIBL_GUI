@@ -743,8 +743,7 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
-		for iblSet in selectedIblSets:
+		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
 			iblSetPath = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
 			iblSetPath and self.exploreDirectory(iblSetPath)
 
@@ -768,9 +767,9 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedComponent = self.__coreComponentsManagerUi.getSelectedItems()
-		for component in selectedComponent:
-			hasattr(component, "_datas") and os.path.exists(component._datas.path) and self.exploreDirectory(component._datas.path)
+		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
+		for component in selectedComponents:
+			os.path.exists(component.path) and self.exploreDirectory(component.path)
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
@@ -780,10 +779,8 @@ class LocationsBrowser(UiComponent):
 		@param checked: Action Checked State. ( Boolean )
 		"""
 
-		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
-		if selectedTemplates:
-			for template in selectedTemplates:
-				os.path.exists(template._datas.path) and self.exploreDirectory(os.path.dirname(template._datas.path))
+		for template in self.__coreTemplatesOutliner.getSelectedTemplates():
+			os.path.exists(template.path) and self.exploreDirectory(os.path.dirname(template.path))
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
@@ -791,9 +788,9 @@ class LocationsBrowser(UiComponent):
 		This Method Fills The Custom_File_Browser_Path_lineEdit.
 		"""
 
-		customTextEditor = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customTextEditor.toString()))
-		self.ui.Custom_File_Browser_Path_lineEdit.setText(customTextEditor.toString())
+		customFileBrowser = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
+		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customFileBrowser.toString()))
+		self.ui.Custom_File_Browser_Path_lineEdit.setText(customFileBrowser.toString())
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
@@ -803,10 +800,10 @@ class LocationsBrowser(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self.__container.lastBrowsedPath))
-		if customTextEditorExecutable != "":
-			LOGGER.debug("> Chosen Custom File Browser Executable: '{0}'.".format(customTextEditorExecutable))
-			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customTextEditorExecutable))
+		customFileBrowserExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self.__container.lastBrowsedPath))
+		if customFileBrowserExecutable != "":
+			LOGGER.debug("> Chosen Custom File Browser Executable: '{0}'.".format(customFileBrowserExecutable))
+			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
@@ -825,7 +822,7 @@ class LocationsBrowser(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
+	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
 		This Method Is Called When Open_Output_Directory_pushButton Is Clicked.
@@ -833,54 +830,40 @@ class LocationsBrowser(UiComponent):
 		@param checked: Checked State. ( Boolean )
 		"""
 
-		self.exploreOutputDirectory__()
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
-	def exploreOutputDirectory__(self):
-		"""
-		This Method Explores Output Directory.
-		"""
-
-		directory = self.__container.parameters.loaderScriptsOutputDirectory and  self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
+		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
 
 		if not os.path.exists(directory):
 			raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, directory)
 
-		if self.exploreDirectory(directory): return True
+		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())): return True
 		else: raise Exception, "{0} | Exception Raised While Exploring '{1}' Directory!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
-	def exploreDirectory(self, directory):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getProcessCommand(self, directory, customBrowser=None):
 		"""
-		This Method Provides Directory Exploring Capability.
+		This Method Gets Process Command.
 
 		@param directory: Directory To Explore. ( String )
+		@param customBrowser: Custom Browser. ( String )
+		@return: Process Command. ( String )		
 		"""
 
-		browserCommand = None
-		customFileBrowser = str(self.ui.Custom_File_Browser_Path_lineEdit.text())
-
+		processCommand = None
 		directory = os.path.normpath(directory)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
-				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, directory)
+			if customBrowser:
+				processCommand = "\"{0}\" \"{1}\"".format(customBrowser, directory)
 			else:
-				LOGGER.info("{0} | Launching 'explorer.exe' With '{1}'.".format(self.__class__.__name__, directory))
-				browserCommand = "explorer.exe \"{0}\"".format(directory)
+				processCommand = "explorer.exe \"{0}\"".format(directory)
 		elif platform.system() == "Darwin":
-			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
-				browserCommand = "open -a \"{0}\" \"{1}\"".format(customFileBrowser, directory)
+			if customBrowser:
+				processCommand = "open -a \"{0}\" \"{1}\"".format(customBrowser, directory)
 			else:
-				LOGGER.info("{0} | Launching 'Finder' With '{1}'.".format(self.__class__.__name__, directory))
-				browserCommand = "open \"{0}\"".format(directory)
+				processCommand = "open \"{0}\"".format(directory)
 		elif platform.system() == "Linux":
-			if customFileBrowser:
-				LOGGER.info("{0} | Launching '{1}' Custom File Browser With '{2}'.".format(self.__class__.__name__, os.path.basename(customFileBrowser), directory))
-				browserCommand = "\"{0}\" \"{1}\"".format(customFileBrowser, directory)
+			if customBrowser:
+				processCommand = "\"{0}\" \"{1}\"".format(customBrowser, directory)
 			else:
 				environmentVariable = Environment("PATH")
 				paths = environmentVariable.getPath().split(":")
@@ -892,21 +875,36 @@ class LocationsBrowser(UiComponent):
 					try:
 						for path in paths:
 							if os.path.exists(os.path.join(path, browser)):
-								LOGGER.info("{0} | Launching '{1}' File Browser With '{2}'.".format(self.__class__.__name__, browser, directory))
-								browserCommand = "\"{0}\" \"{1}\"".format(browser, directory)
+								processCommand = "\"{0}\" \"{1}\"".format(browser, directory)
 								browserFound = True
 								raise StopIteration
 					except StopIteration:
 						pass
 
 				if not browserFound:
-					raise foundations.exceptions.UserError, "{0} | Exception Raised: No Suitable Browser Found, Please Define A Browser Executable In The Preferences!".format(self.__class__.__name__)
+					raise Exception, "{0} | Exception Raised: No Suitable Linux Browser Found!".format(self.__class__.__name__)
+		return processCommand
 
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def exploreDirectory(self, directory, customBrowser=None):
+		"""
+		This Method Provides Directory Exploring Capability.
+
+		@param directory: Directory To Explore. ( String )
+		@param customBrowser: Custom Browser. ( String )
+		@return: Method Success. ( Boolean )		
+		"""
+
+		browserCommand = self.getProcessCommand(directory, customBrowser)
 		if browserCommand:
 			LOGGER.debug("> Current Browser Command: '{0}'.".format(browserCommand))
+			LOGGER.info("{0} | Launching File Browser With '{1}' Directory.".format(self.__class__.__name__, directory))
 			browserProcess = QProcess()
 			browserProcess.startDetached(browserCommand)
 			return True
+		else:
+			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python End
