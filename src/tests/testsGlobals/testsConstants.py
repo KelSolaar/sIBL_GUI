@@ -84,6 +84,7 @@ class ConstantsTestCase(unittest.TestCase):
 								"logger",
 								"verbosityLevel",
 								"verbosityLabels",
+								"loggingDefaultFormatter",
 								"loggingSeparators",
 								"encodingFormat",
 								"encodingError",
@@ -134,6 +135,13 @@ class ConstantsTestCase(unittest.TestCase):
 		self.assertIsInstance(Constants.verbosityLevel, int)
 		self.assertGreaterEqual(Constants.verbosityLevel, 0)
 		self.assertLessEqual(Constants.verbosityLevel, 4)
+
+	def testLoggingDefaultFormaterAttribute(self):
+		"""
+		This Method Tests The "loggingDefaultFormatter" Attribute.
+		"""
+
+		self.assertIsInstance(Constants.loggingDefaultFormatter, str)
 
 	def testVerbosityLabelsAttribute(self):
 		"""
