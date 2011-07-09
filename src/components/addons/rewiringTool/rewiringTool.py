@@ -532,26 +532,29 @@ class RewiringTool(UiComponent):
 				self.ui.Reflection_Path_lineEdit.setText(QString(customFile))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getOverrideKeys(self):
 		"""
 		This Method Gets Override Keys.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
+		if not iblSet: return
 
-		if iblSet:
-			if os.path.exists(iblSet.path):
-				for index, comboBox in enumerate(self.__reWireComboBoxesWidgets):
-					parameter = self.__rewiringParameters[comboBox.currentIndex()]
-					if comboBox.currentText() == "Custom Image":
-						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, str(self.__reWireLineEditWidgets[index].text())))
-						self.__addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self.__reWireLineEditWidgets[index].text())))
-					else:
-						LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, getattr(iblSet, parameter[2])))
-						self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet, parameter[2])))
+		for index, comboBox in enumerate(self.__reWireComboBoxesWidgets):
+			parameter = self.__rewiringParameters[comboBox.currentIndex()]
+			if comboBox.currentText() == "Custom Image":
+				LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, str(self.__reWireLineEditWidgets[index].text())))
+				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self.__reWireLineEditWidgets[index].text())))
+			else:
+				LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(comboBox._datas, getattr(iblSet, parameter[2])))
+				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet, parameter[2])))
+		return True
 
 #***********************************************************************************************
 #***	Python End
