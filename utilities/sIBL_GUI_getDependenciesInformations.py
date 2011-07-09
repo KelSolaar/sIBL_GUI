@@ -64,7 +64,7 @@ from globals.constants import Constants
 LOGGER = logging.getLogger(Constants.logger)
 
 LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_FORMATTER)
+LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
 LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)

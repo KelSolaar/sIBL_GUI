@@ -90,11 +90,11 @@ LOGGER = logging.getLogger(Constants.logger)
 # Starting The Console Handler.
 if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platform.system() == "Microsoft"):
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
-	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_FORMATTER)
+	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
 	LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
 
 # Defining Logging Formatters.
-RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_FORMATTER,
+RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_DEFAULT_FORMATTER,
 									"Extended" : core.LOGGING_EXTENDED_FORMATTER,
 									"Standard" : core.LOGGING_STANDARD_FORMATTER}
 
@@ -1818,7 +1818,7 @@ def _getCommandLineParameters(argv):
 	parser.add_option("-h", "--help", action="help", help="'Display This Help Message And Exit.'")
 	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application About Message.'")
 	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels:  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
-	parser.add_option("-f", "--formatter", action="store", type="string", dest="loggingFormater", help="'Application Logging Formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
+	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application Logging Formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application Datas Directory'.")
 
 	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate Worker Threads'.")
