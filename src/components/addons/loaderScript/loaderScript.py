@@ -710,7 +710,7 @@ class LoaderScript(UiComponent):
 			raise foundations.exceptions.UserError, "{0} | In Order To Output The Loader Script, You Need To Select A Set!".format(self.__class__.__name__)
 
 		if not os.path.exists(iblSet.path):
-			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet.name)
+			raise OSError, "{0} | '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, iblSet.title)
 
 		if self.outputLoaderScript(template, iblSet):
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' Output Done!".format(self.__class__.__name__, template.outputScript))

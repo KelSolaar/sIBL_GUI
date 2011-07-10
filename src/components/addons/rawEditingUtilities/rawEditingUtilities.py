@@ -704,10 +704,10 @@ class RawEditingUtilities(UiComponent):
 			if path:
 				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.name))
+				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.name for iblSet in selectedIblSets))
+		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -723,7 +723,7 @@ class RawEditingUtilities(UiComponent):
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Editing Inspector Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
+			raise OSError, "{0} | Exception Raised While Editing Inspector Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	def editTemplatesInTextEditor__(self):

@@ -328,7 +328,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
 						collection = collectionStandardItem._datas
 						for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.name, collection.name))
+							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.title, collection.name))
 							iblSet.collection = collection.id
 						if dbUtilities.common.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
@@ -1485,7 +1485,7 @@ class CollectionsOutliner(UiComponent):
 
 		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
-			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.name))
+			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection From The Database!".format(self.__class__.__name__, collection.name))

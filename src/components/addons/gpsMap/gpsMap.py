@@ -704,7 +704,7 @@ class GpsMap(UiComponent):
 		self.__map.setCenter()
 
 		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Setting '{1}' GPS Markers!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
+		else: raise Exception, "{0} | Exception Raised While Setting '{1}' GPS Markers!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

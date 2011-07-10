@@ -1215,7 +1215,7 @@ class Inspector(UiComponent):
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
 																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, self.__inspectorIblSet.name)
+				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
@@ -1228,14 +1228,14 @@ class Inspector(UiComponent):
 		for section in self.__inspectorIblSetParser.sections:
 				if section == "Sun":
 					self.__drawLightLabel(painter, Light(name="Sun",
-														color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
-														uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
-														vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
+													color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
+													uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
+													vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
 				elif re.search("Light[0-9]+", section):
 					self.__drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
-														color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
-														uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),
-														vCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTv", section))))
+													color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
+													uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),
+													vCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTv", section))))
 		painter.end()
 
 	@core.executionTrace

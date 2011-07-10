@@ -841,10 +841,10 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.name))
+				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.name for iblSet in selectedIblSets))
+		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -860,7 +860,7 @@ class LocationsBrowser(UiComponent):
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
+			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)

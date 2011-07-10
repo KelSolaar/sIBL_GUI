@@ -609,7 +609,7 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception Raised While Sending Inspector Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
+				raise OSError, "{0} | Exception Raised While Sending Inspector Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences!".format(self.__class__.__name__))
 

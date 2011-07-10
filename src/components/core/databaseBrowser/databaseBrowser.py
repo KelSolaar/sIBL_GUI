@@ -267,9 +267,9 @@ class DatabaseBrowser_Worker(QThread):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, iblSet.name))
+						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, iblSet.title))
 						if dbUtilities.common.updateIblSetContent(self.__dbSession, iblSet):
-							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated!".format(self.__class__.__name__, iblSet.name))
+							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated!".format(self.__class__.__name__, iblSet.title))
 							needModelRefresh = True
 
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
@@ -1243,10 +1243,10 @@ class DatabaseBrowser(UiComponent):
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, iblSet.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateIblSetLocation(iblSet)
 					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.name, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1555,7 +1555,7 @@ class DatabaseBrowser(UiComponent):
 		selectedIblSets = self.getSelectedIblSets()
 		if not selectedIblSets: return
 
-		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.name) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for iblSet in selectedIblSets:
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
@@ -1564,7 +1564,7 @@ class DatabaseBrowser(UiComponent):
 			self.emit(SIGNAL("modelRefresh()"))
 
 			if success: return True
-			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
+			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1580,14 +1580,14 @@ class DatabaseBrowser(UiComponent):
 
 		success = True
 		for iblSet in selectedIblSets:
-			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.name), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
+			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
 			success *= self.updateIblSetLocation(iblSet, file) or False
 
 		self.emit(SIGNAL("modelDatasRefresh()"))
 		self.emit(SIGNAL("modelRefresh()"))
 
 		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.name for iblSet in selectedIblSets)))
+		else: raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
@@ -1652,14 +1652,14 @@ class DatabaseBrowser(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		LOGGER.info("{0} | Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.name))
+		LOGGER.info("{0} | Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title))
 		if dbUtilities.common.removeIblSet(self.__coreDb.dbSession, iblSet.id):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def iblSetExists(self, path):
@@ -1684,14 +1684,14 @@ class DatabaseBrowser(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.name, file))
+		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
 		if dbUtilities.common.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set Location!".format(self.__class__.__name__, iblSet.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set Location!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def getIblSets(self):
