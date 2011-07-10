@@ -619,7 +619,7 @@ class DownloadManager(QObject):
 				return
 
 			# Signals / Slots.
-			self.__currentRequest.__downloadProgress.connect(self.__downloadProgress)
+			self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
 			self.__currentRequest.finished.connect(self.__downloadComplete)
 			self.__currentRequest.readyRead.connect(self.__requestReady)
 
