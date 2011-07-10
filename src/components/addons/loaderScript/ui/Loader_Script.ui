@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Loader_Script_DockWidget</class>
  <widget class="QDockWidget" name="Loader_Script_DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>282</width>
+    <height>431</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Loader Script</string>
   </property>
@@ -172,7 +180,7 @@
             <item>
              <widget class="QCheckBox" name="Convert_To_Posix_Paths_checkBox">
               <property name="statusTip">
-               <string>Ignore Non Existing Templates Check Box: Online Updater Will Only Consider Templates In The Database When Checking For Updates.</string>
+               <string>Convert To Posix Paths Check Box: Windows Paths Will Be Converted To Unix Paths, Drive Letters Will Be Trimmed.</string>
               </property>
               <property name="layoutDirection">
                <enum>Qt::RightToLeft</enum>
