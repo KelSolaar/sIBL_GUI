@@ -2052,8 +2052,9 @@ class Preview(UiComponent):
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 				break
-			success *= self.viewIblSetImages(iblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
-
+			paths = self.getIblSetImagesPaths(iblSet, imageType)
+			if paths: success *= self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
+			else: messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped!".format(self.__class__.__name__, iblSet.title, imageType))
 		if success: return True
 		else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Ibl Set Image(s)!".format(self.__class__.__name__, iblSet.name)
 
@@ -2072,41 +2073,39 @@ class Preview(UiComponent):
 		if inspectorIblSet:
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
-			if self.viewIblSetImages(inspectorIblSet, imageType, str(self.ui.Custom_Previewer_Path_lineEdit.text())): return True
-			else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Inspector Ibl Set Image(s)!".format(self.__class__.__name__, inspectorIblSet.name)
+			paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
+			if paths:
+				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())): return True
+				else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Inspector Ibl Set Image(s)!".format(self.__class__.__name__, inspectorIblSet.name)
+			else: messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Inspector Ibl Set Has No '{2}' Image Type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
 			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def viewIblSetImages(self, iblSet, imageType, customPreviewer=None):
+	def viewImages(self, paths, customPreviewer=None):
 		"""
 		This Method Launches An Ibl Set Images Previewer.
 		
-		@param iblSet: Ibl Set. ( DbIblSet )
-		@param imageType: Image Type. ( String )
+		@param paths: Image Paths. ( List )
 		@param customPreviewer: Custom Previewer. ( String )
 		"""
 
-		imagesPaths = self.getIblSetImagesPaths(iblSet, imageType)
-		if imagesPaths:
-			if customPreviewer:
-				previewCommand = self.getProcessCommand(imagesPaths, customPreviewer)
-				if previewCommand:
-					LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
-					LOGGER.info("{0} | Launching Previewer With '{1}' Images Paths.".format(self.__class__.__name__, ", ".join(imagesPaths)))
-					editProcess = QProcess()
-					editProcess.startDetached(previewCommand)
-					return True
-				else:
-					raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
+		if customPreviewer:
+			previewCommand = self.getProcessCommand(paths, customPreviewer)
+			if previewCommand:
+				LOGGER.debug("> Current Image Preview Command: '{0}'.".format(previewCommand))
+				LOGGER.info("{0} | Launching Previewer With '{1}' Images Paths.".format(self.__class__.__name__, ", ".join(paths)))
+				editProcess = QProcess()
+				editProcess.startDetached(previewCommand)
+				return True
 			else:
-				if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-					return self.getImagesPreviewer(imagesPaths)
-				else:
-					LOGGER.warning("!> {0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
 		else:
-			raise Exception, "{0} | Exception Raised: '{1}' Ibl Set Has No '{2}' Image(s) Type!".format(self.__class__.__name__, iblSet.title, imageType)
+			if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
+				return self.getImagesPreviewer(paths)
+			else:
+				LOGGER.warning("!> {0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
