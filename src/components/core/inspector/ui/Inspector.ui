@@ -177,6 +177,9 @@
                  <height>52</height>
                 </size>
                </property>
+               <property name="statusTip">
+                <string>Previous Plate Push Button: Navigate To Previous Inspector Ibl Set Plate.</string>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -195,6 +198,9 @@
                  <width>50</width>
                  <height>52</height>
                 </size>
+               </property>
+               <property name="statusTip">
+                <string>Next Plate Push Button: Navigate To Next Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
                 <string/>
