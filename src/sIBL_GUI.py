@@ -275,9 +275,11 @@ class Preferences():
 		self.__defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setDefaultPreferences(self):
 		"""
 		This Method Defines The Default Settings File Content.
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing Default Settings!")
@@ -329,17 +331,22 @@ class Preferences():
 		self.__settings.setValue("five_centralWidget", True)
 		self.__settings.setValue("five_activeLabel", "")
 		self.__settings.endGroup()
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setDefaultLayouts(self):
 		"""
 		This Method Sets The Default Layouts In The Preferences File.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
 				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
 					LOGGER.debug("> Updating Preferences File '{0}_{1}' Layout Attribute!".format(layout, type))
 					self.setKey("Layouts", "{0}_{1}".format(layout, type), self.__defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
+		return True
 
 class LayoutActiveLabel(core.Structure):
 	"""
@@ -1841,6 +1848,7 @@ def _setUserApplicationDatasDirectory(path):
 	This Definition Sets The Application Datas Directory.
 
 	@param path: Starting Point For The Directories Tree Creation. ( String )
+	@return: Definition Success. ( Boolean )		
 	"""
 
 	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
