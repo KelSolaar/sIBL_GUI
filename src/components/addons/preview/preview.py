@@ -274,8 +274,8 @@ class ImagesPreviewer(object):
 		self.__maximumZoomFactor = 25
 		self.__previewerMargin = 128
 		self.__displayGraphicsItemMargin = 32
-		self.__graphicsSceneWidth = QApplication.desktop().width() * (1 / self.__minimumZoomFactor * 1.75)
-		self.__graphicsSceneHeight = QApplication.desktop().height() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__graphicsSceneWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__graphicsSceneHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height() * (1 / self.__minimumZoomFactor * 1.75)
 		self.__wheelZoomFactor = 350.0
 		self.__keyZoomFactor = 1.20
 
@@ -1051,10 +1051,13 @@ class ImagesPreviewer(object):
 		"""
 
 		if self.__displayGraphicsItem:
-			width = self.__displayGraphicsItem.width > QApplication.desktop().width() and QApplication.desktop().width() / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.width + self.__previewerMargin
-			height = self.__displayGraphicsItem.height > QApplication.desktop().height() and QApplication.desktop().height() / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.height + self.__previewerMargin
+			desktopWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width()
+			desktopHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height()
+			width = self.__displayGraphicsItem.width > desktopWidth and desktopWidth / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.width + self.__previewerMargin
+			height = self.__displayGraphicsItem.height > desktopHeight and desktopHeight / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.height + self.__previewerMargin
 
 			self.__ui.resize(width, height)
+			ui.common.centerWidgetOnScreen(self.__ui)
 
 	@core.executionTrace
 	def setImage(self, index=0):

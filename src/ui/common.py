@@ -200,6 +200,18 @@ def setWindowDefaultIcon(window):
 		pass
 
 @core.executionTrace
+def centerWidgetOnScreen(widget, screen=None):
+	"""
+	This Definition Centers The Provided Widget Middle Of The Screen.
+	
+	@param widget: Current Widget. ( QWidget )
+	"""
+	screen = screen and screen or QApplication.desktop().primaryScreen()
+	desktopWidth = QApplication.desktop().screenGeometry(screen).width()
+	desktopHeight = QApplication.desktop().screenGeometry(screen).height()
+	widget.move(desktopWidth / 2 - widget.width() / 2, desktopHeight / 2 - widget.height() / 2)
+
+@core.executionTrace
 def getGraphicItem(path, type):
 		"""
 		This Method Gets A Graphic Display: QIcon, QImage, QPixmap.
