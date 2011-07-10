@@ -148,7 +148,7 @@ class Inspector(UiComponent):
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"
 		self.__dockArea = 2
-		self.__listViewIconSize = 32
+		self.__listViewIconSize = 30
 
 		self.__container = None
 		self.__settings = None
@@ -1070,6 +1070,7 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self.__listViewIconSize))
 
+		self.ui.Plates_listView.setEditTriggers(QAbstractItemView.NoEditTriggers)
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 
 	@core.executionTrace
