@@ -1701,7 +1701,7 @@ class DatabaseBrowser(UiComponent):
 		@return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return dbUtilities.common.getIblSets(self.__coreDb.dbSession)
+		return [iblSet for iblSet in dbUtilities.common.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
 	def getSelectedItems(self):

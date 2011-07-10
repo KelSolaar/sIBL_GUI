@@ -1515,7 +1515,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Database Set Collections. ( List )
 		"""
 
-		return dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")
+		return [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
 
 	@core.executionTrace
 	def getCollectionsIblSets(self, collections):

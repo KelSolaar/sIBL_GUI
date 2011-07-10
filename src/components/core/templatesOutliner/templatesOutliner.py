@@ -1810,16 +1810,17 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if not forceImport and dbUtilities.common.getTemplates(self.__coreDb.dbSession).count(): return
+		if not forceImport and self.getTemplates(): return
 
 		LOGGER.debug("> Adding Default Templates To The Database.")
 		for collection, path in self.__defaultCollections.items():
-			if os.path.exists(path):
-				if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
-					LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
-					dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
-				if self.addDirectory(path, self.getCollection(collection).id): return True
-				else: Exception, "{0} | Exception Raised While Adding Default Templates To The Database!".format(self.__class__.__name__)
+			if not os.path.exists(path): continue
+
+			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
+				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
+				dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
+			if self.addDirectory(path, self.getCollection(collection).id): return True
+			else: Exception, "{0} | Exception Raised While Adding Default Templates To The Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
@@ -1887,6 +1888,16 @@ class TemplatesOutliner(UiComponent):
 			return True
 		else:
 			raise OSError, "{0} | Exception Raised While Displaying '{1}' Template Help File: '{2}' File Doesn't Exists!".format(self.__class__.__name__, template.name, template.helpFile)
+
+	@core.executionTrace
+	def getTemplates(self):
+		"""
+		This Method Returns Database Templates.
+		
+		@return: Database Templates Collections. ( List )
+		"""
+
+		return [template for template in dbUtilities.common.getTemplates(self.__coreDb.dbSession)]
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
