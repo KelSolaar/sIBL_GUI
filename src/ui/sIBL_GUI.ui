@@ -6,19 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
-    <height>600</height>
+    <width>1085</width>
+    <height>580</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>sIBL_GUI</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/sIBL_GUI/Resources/Icon_Light.png</normaloff>:/sIBL_GUI/Resources/Icon_Light.png</iconset>
-  </property>
-  <property name="locale">
-   <locale language="English" country="UnitedStates"/>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -35,7 +28,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
-    <string>sIBL_GUI_toolBar</string>
+    <string>sIBL_GUI - ToolBar</string>
    </property>
    <property name="movable">
     <bool>false</bool>
