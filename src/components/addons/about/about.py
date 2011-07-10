@@ -84,26 +84,29 @@ ABOUT_MESSAGE = """
 		s I B L _ G U I - {1}
 		</p>
 		*
-		<br/><br/>Thanks To All Folks At <b>HDRLabs.com</b> To Provide Smart IBL World!
+		<br/><br/>Thanks To All Folks At <b>HDRLabs.com</b> For Providing Smart IBL World!
 		<br/>
-		Special Thanks To: Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler.
+		Special Thanks To: Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler, Lee And Brett.
 		<br/>
 		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle. 
 		<br/>
 		Thanks To Marienz From Irc #python For Optimisations Tips.
 		<p>
+		Thanks To All Cool Guys From CGFeedback, XSIBase And CGTalk.
+		</p>
+		<p>
 		Very Special Thanks To Christian For Providing Me Some Space On His Server!
 		</p>
 		<p>
-		This Software Uses Python, Qt, PyQT, FreeImage, Py2App, PyInstaller And NSIS.
+		This Software Uses Python, Qt, PyQT, FreeImage, SQLAlchemy, SQLAlchemy-migrate, Py2App, PyInstaller And NSIS.
 		<br/>
-		Coded With Eclipse - Pydev - Aptana - TextMate - Jedit And Git.
+		Coded With Eclipse - Pydev - Aptana - TextMate And Git.
 		</p>
 		<p>
 		Light Bulb Icon Is Copyright Christian Bloch.
 		</p>
 		<p>
-		If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+		If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets Smart IBL Compliant:
 		<br/>
 		Please Contact Us At HDRLabs:
 		<br/>
