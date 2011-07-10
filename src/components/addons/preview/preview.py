@@ -252,7 +252,7 @@ class ImagesPreviewer(object):
 		self.__paths = None
 		self.paths = paths
 
-		self.__uiPath = "ui/Image_Previewer.ui"
+		self.__uiPath = "ui/Images_Previewer.ui"
 		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = "resources"
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -931,7 +931,7 @@ class ImagesPreviewer(object):
 		self.setImage()
 		self.fitPreviewer()
 
-		self.__ui.Image_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
+		self.__ui.Images_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
 
 		# Signals / Slots.
 		self.ui.Previous_Image_pushButton.clicked.connect(self.__Previous_Image_pushButton__clicked)
@@ -1077,7 +1077,7 @@ class ImagesPreviewer(object):
 			self.__displayGraphicsItem = Image_QGraphicsItem(image)
 			self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
-			self.__ui.Image_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
+			self.__ui.Images_Informations_label.setText("{0} - {1} x {2} - {3} BPP".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
 
 	@core.executionTrace
 	def fitImage(self):
