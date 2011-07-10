@@ -1145,20 +1145,23 @@ class Image(object):
 		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message: '{2}'".format(self.__class__.__name__, errorCode, message)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getImageFormat(self, imagePath=None):
 		"""
 		This Method Gets The File Format.
 		
 		@param imagePath: Image Path. ( String )
+		@return: File Format. ( Object )		
 		"""
 
 		imagePath = imagePath or self.__imagePath
-		if imagePath:
-			imagePath = ctypes.c_char_p(imagePath)
-			fileFormat = self.__library.FreeImage_GetFileType(imagePath, False)
-			if fileFormat == -1:
-				fileFormat = self.__library.FreeImage_GetFIFFromFilename(imagePath)
-			return fileFormat
+		if not imagePath: return
+
+		imagePath = ctypes.c_char_p(imagePath)
+		fileFormat = self.__library.FreeImage_GetFileType(imagePath, False)
+		if fileFormat == -1:
+			fileFormat = self.__library.FreeImage_GetFIFFromFilename(imagePath)
+		return fileFormat
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
@@ -1167,72 +1170,90 @@ class Image(object):
 		This Method Loads The File.
 		
 		@param imagePath: Image Path. ( String )
+		@return: Method Success. ( Boolean )		
 		"""
-		if self.__imagePath:
-			imageFormat = self.getImageFormat(self.__imagePath)
-			if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
-				if self.__library.FreeImage_FIFSupportsReading(imageFormat):
-					self.__bitmap = self.__library.FreeImage_Load(imageFormat, self.__imagePath, FI_DEFAULT_NULL)
-					self.__bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded!".format(self.__imagePath))
-				else:
-					raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported!".format(imageFormat)
+
+		if not self.__imagePath: return
+
+		imageFormat = self.getImageFormat(self.__imagePath)
+		if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
+			if self.__library.FreeImage_FIFSupportsReading(imageFormat):
+				self.__bitmap = self.__library.FreeImage_Load(imageFormat, self.__imagePath, FI_DEFAULT_NULL)
+				self.__bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded!".format(self.__imagePath))
+				return True
+			else:
+				raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported!".format(imageFormat)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def save(self):
 		"""
-		This Method Save The File.
+		This Method Saves The File.
+		
+		@return: Method Success. ( Boolean )		
 		"""
 
-		self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
+		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
-		This Method Save The Image To The Provided File.
+		This Method Saves The Image To The Provided File.
 		
 		@param imageFormat: Image Format. ( Integer )
 		@param imagePath: Image Path. ( String )
 		@param flags: Save Flags. ( Integer )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
-			if imagePath:
-				success = self.__library.FreeImage_Save(imageFormat, self.__bitmap, ctypes.c_char_p(imagePath), flags)
-				success and	LOGGER.debug("> '{0}' Image Has Been Saved!".format(imagePath))
+			if not imagePath: return
+			if self.__library.FreeImage_Save(imageFormat, self.__bitmap, ctypes.c_char_p(imagePath), flags):
+				LOGGER.debug("> '{0}' Image Has Been Saved!".format(imagePath))
+				return True
 		else:
 			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported!".format(imageFormat)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToType(self, targetType, linearScale=True):
 		"""
 		This Method Converts The Bitmap To Provided Type.
 		
 		@param targetType: Target Type. ( Integer )
 		@param linearScale: Linear Scale. ( Boolean )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}'!".format(self.__imagePath, targetType))
 		self.__bitmap = self.__library.FreeImage_ConvertToType(self.__bitmap, targetType, linearScale)
-		self.__bitmap and LOGGER.debug("> '{0}' Image Bitmap Conversion To Type '{1}' Done!".format(self.__imagePath, targetType))
+		if self.__bitmap:
+			LOGGER.debug("> '{0}' Image Bitmap Conversion To Type '{1}' Done!".format(self.__imagePath, targetType))
+			return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToLdr(self, gamma=2.2):
 		"""
 		This Method Converts The HDR Bitmap To LDR.
 		
 		@param gamma: Image Conversion Gamma. ( Float )
+		@return: Method Success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR!".format(self.__imagePath))
 		self.__bitmap = self.__library.FreeImage_HDRLabs_ConvertToLdr(self.__bitmap, ctypes.c_double(gamma))
-		self.__bitmap and LOGGER.debug("> '{0}' HDR Image Bitmap Conversion To LDR Done!".format(self.__imagePath))
+		if self.__bitmap:
+			LOGGER.debug("> '{0}' HDR Image Bitmap Conversion To LDR Done!".format(self.__imagePath))
+			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
 		This Method Converts The Bitmap To QImage.
+		@return: Converted Image. ( QImage )		
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)
@@ -1247,18 +1268,6 @@ class Image(object):
 			width = self.__library.FreeImage_GetWidth(self.__bitmap)
 			height = self.__library.FreeImage_GetHeight(self.__bitmap)
 			pitch = width * (BPP_32 / 8)
-			# pitch = self.__library.FreeImage_GetPitch( self.__bitmap )
-
-			# Deprecated Memory Access Method.
-			# bits = QByteArray()
-			# for y in range( height ):
-			# 	bitsAdress = self.__library.FreeImage_GetScanLine( self.__bitmap, y )
-			# 	bitsPointer = ctypes.pointer( RGBTRIPLE.from_address( bitsAdress ) )
-			# 	for x in range( width ):
-			# 		bits += chr( bitsPointer[x].rgbBlue ) + chr( bitsPointer[x].rgbGreen ) + chr( bitsPointer[x].rgbRed ) + chr( 0 )
-			#image = QImage( bits, width, height, QImage.Format_RGB32 )
-
-			# New Memory Access Method.
 			bits = ctypes.create_string_buffer(chr(0) * height * pitch)
 			self.__library.FreeImage_ConvertToRawBits(ctypes.byref(bits), self.__bitmap, pitch, BPP_32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, True)
 
