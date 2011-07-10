@@ -94,24 +94,24 @@ def textileToHtml(fileIn, fileOut, title):
 	                text-align: justify;
 	                font-size: 10pt;
 	                margin: 10px 10px 10px 10px;
-	                background-color: rgb(192, 192, 192);
-	                color: rgb(50, 50, 50);
+	                background-color: rgb(48, 48, 48);
+	                color: rgb(192, 192, 192);
 	            }
 	            A:link {
 	                text-decoration: none;
-	                color: rgb(50, 85, 125);
+	                color: rgb(160, 96, 64);
 	            }
 	            A:visited {
 	                text-decoration: none;
-	                color: rgb(50, 85, 125);
+	                color: rgb(160, 96, 64);
 	            }
 	            A:active {
 	                text-decoration: none;
-	                color: rgb(50, 85, 125);
+	                color: rgb(160, 96, 64);
 	            }
 	            A:hover {
 	                text-decoration: underline;
-	                color: rgb(50, 85, 125);
+	                color: rgb(160, 96, 64);
 	            }
 	        </style>\n""")
 	output.append("\t</head>\n\t<body>\n\t")
