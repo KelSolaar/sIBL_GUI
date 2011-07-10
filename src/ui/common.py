@@ -185,11 +185,13 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	foundations.common.exit(1, LOGGER, [RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler])
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def setWindowDefaultIcon(window):
 	"""
 	This Method Sets The Application Icon To The Provided Window.
 
 	@param window: Window. ( QWidget )	
+	@return: Definition Success. ( Boolean )		
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -198,20 +200,27 @@ def setWindowDefaultIcon(window):
 		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationDarwinIcon)))
 	elif platform.system() == "Linux":
 		pass
+	return True
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def centerWidgetOnScreen(widget, screen=None):
 	"""
 	This Definition Centers The Provided Widget Middle Of The Screen.
 	
 	@param widget: Current Widget. ( QWidget )
+	@param screen: Screen USed For Centering. ( Integer )
+	@return: Definition Success. ( Boolean )		
 	"""
+
 	screen = screen and screen or QApplication.desktop().primaryScreen()
 	desktopWidth = QApplication.desktop().screenGeometry(screen).width()
 	desktopHeight = QApplication.desktop().screenGeometry(screen).height()
 	widget.move(desktopWidth / 2 - widget.width() / 2, desktopHeight / 2 - widget.height() / 2)
+	return True
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicItem(path, type):
 		"""
 		This Method Gets A Graphic Display: QIcon, QImage, QPixmap.
@@ -242,6 +251,7 @@ def getGraphicItem(path, type):
 			return type(UiConstants.frameworkMissingImage)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path):
 		"""
 		This Method Gets A QIcon.
@@ -253,6 +263,7 @@ def getIcon(path):
 		return getGraphicItem(path, QIcon)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path):
 		"""
 		This Method Gets A QPixmap.
@@ -264,6 +275,7 @@ def getPixmap(path):
 		return getGraphicItem(path, QPixmap)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path):
 		"""
 		This Method Gets A QImage.
@@ -275,6 +287,7 @@ def getImage(path):
 		return getGraphicItem(path, QImage)
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterImagePath(path):
 		"""
 		This Method Filters The Image Path.
