@@ -198,7 +198,7 @@
      <item>
       <widget class="QPushButton" name="Get_sIBL_GUI_pushButton">
        <property name="statusTip">
-        <string>Get sIBL_GUI Push Button: Downloads sIBL_GUI Last Release.</string>
+        <string>Get sIBL_GUI Push Button: Downloads sIBL_GUI Latest Release.</string>
        </property>
        <property name="text">
         <string>Get sIBL_GUI</string>
@@ -263,7 +263,7 @@
   <customwidget>
    <class>QWebView</class>
    <extends>QWidget</extends>
-   <header>PyQt4.QtWebKit</header>
+   <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
  <resources/>

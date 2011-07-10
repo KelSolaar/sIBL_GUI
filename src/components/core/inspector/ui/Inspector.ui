@@ -88,7 +88,7 @@
                </size>
               </property>
               <property name="statusTip">
-               <string>Previous Ibl Set Push Button: Navigate To Previous Ibl Set In The Current Selected Collection.</string>
+               <string>Previous Ibl Set Push Button: Navigates To Previous Ibl Set In The Current Selected Collection.</string>
               </property>
               <property name="text">
                <string/>
@@ -138,7 +138,7 @@
                </size>
               </property>
               <property name="statusTip">
-               <string>Next Ibl Set Push Button: Navigate To Next Ibl Set In The Current Selected Collection.</string>
+               <string>Next Ibl Set Push Button: Navigates To Next Ibl Set In The Current Selected Collection.</string>
               </property>
               <property name="text">
                <string/>
@@ -178,7 +178,7 @@
                 </size>
                </property>
                <property name="statusTip">
-                <string>Previous Plate Push Button: Navigate To Previous Inspector Ibl Set Plate.</string>
+                <string>Previous Plate Push Button: Navigates To Previous Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
                 <string/>
@@ -200,7 +200,7 @@
                 </size>
                </property>
                <property name="statusTip">
-                <string>Next Plate Push Button: Navigate To Next Inspector Ibl Set Plate.</string>
+                <string>Next Plate Push Button: Navigates To Next Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
                 <string/>

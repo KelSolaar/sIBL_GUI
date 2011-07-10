@@ -77,8 +77,6 @@
        </widget>
       </item>
      </layout>
-     <zorder>Current_File_label</zorder>
-     <zorder>Download_progressBar</zorder>
     </widget>
    </item>
    <item row="3" column="0">
@@ -98,6 +96,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="Cancel_Close_pushButton">
+       <property name="statusTip">
+        <string>Cancel / Close Push Button: Cancel / Close The Download Manager / Current Download.</string>
+       </property>
        <property name="text">
         <string>Cancel</string>
        </property>

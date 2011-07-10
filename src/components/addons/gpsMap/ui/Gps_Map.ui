@@ -34,8 +34,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>255</width>
-            <height>76</height>
+            <width>257</width>
+            <height>78</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="Map_scrollAreaWidgetContents_gridLayout">
@@ -58,7 +58,7 @@
        <item row="1" column="3">
         <widget class="QComboBox" name="Map_Type_comboBox">
          <property name="statusTip">
-          <string>Map Type Combo Box: Gps Map Display Type.</string>
+          <string>Map Type Combo Box: Changes Gps Map Display Type.</string>
          </property>
         </widget>
        </item>
@@ -90,7 +90,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Zoom In Push Button: Zoom Into The Gps Map.</string>
+          <string>Zoom In Push Button: Zooms Into The Gps Map.</string>
          </property>
          <property name="text">
           <string/>
@@ -112,7 +112,7 @@
           </size>
          </property>
          <property name="statusTip">
-          <string>Zoom Out Push Button: Zoom Out Of The Gps Map.</string>
+          <string>Zoom Out Push Button: Zooms Out Of The Gps Map.</string>
          </property>
          <property name="text">
           <string/>
