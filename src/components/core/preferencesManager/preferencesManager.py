@@ -378,13 +378,14 @@ class PreferencesManager(UiComponent):
 		self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState())
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setLoggingFormatter(self):
 		"""
 		This Method Sets The Logging Formatter.
 		"""
 
 		for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingSessionHandler):
-			handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
+			handler and handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
 
 #***********************************************************************************************
 #***	Python End
