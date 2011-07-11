@@ -88,7 +88,7 @@ from manager.manager import Manager
 LOGGER = logging.getLogger(Constants.logger)
 
 # Starting The Console Handler.
-if not hasattr(sys, "frozen") and not (platform.system() == "Windows" or platform.system() == "Microsoft"):
+if not hasattr(sys, "frozen") or not (platform.system() == "Windows" or platform.system() == "Microsoft"):
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
 	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
 	LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
@@ -1746,7 +1746,7 @@ def _run():
 	RuntimeConstants.loggingActiveFormatter = loggingFormatter and loggingFormatter or Constants.loggingDefaultFormatter
 	LOGGER.debug("> Setting Logging Formatter: '{0}'.".format(RuntimeConstants.loggingActiveFormatter))
 	for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler):
-		handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
+		handler and handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
 
 	# Starting The Session Handler.
 	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
