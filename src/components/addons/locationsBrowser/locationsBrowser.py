@@ -843,8 +843,10 @@ class LocationsBrowser(UiComponent):
 			else:
 				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -881,8 +883,10 @@ class LocationsBrowser(UiComponent):
 			else:
 				LOGGER.warning("!> {0} | '{1}' Component File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, component.name))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Components Directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Opening '{1}' Components Directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -903,8 +907,10 @@ class LocationsBrowser(UiComponent):
 			else:
 				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Opening '{1}' Templates Directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Opening '{1}' Templates Directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
@@ -920,8 +926,10 @@ class LocationsBrowser(UiComponent):
 		if not os.path.exists(directory):
 			raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, directory)
 
-		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())): return True
-		else: raise Exception, "{0} | Exception Raised While Exploring '{1}' Directory!".format(self.__class__.__name__, directory)
+		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())):
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Exploring '{1}' Directory!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

@@ -1392,8 +1392,10 @@ class CollectionsOutliner(UiComponent):
 		if not directory: return
 
 		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)): return True
-		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
@@ -1446,8 +1448,10 @@ class CollectionsOutliner(UiComponent):
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
 			self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-			if success: return True
-			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Collections From The Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
+			if success:
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Removing '{1}' Collections From The Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)

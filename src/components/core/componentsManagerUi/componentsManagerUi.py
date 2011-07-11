@@ -964,8 +964,10 @@ class ComponentsManagerUi(UiComponent):
 		for component in self.getSelectedComponents():
 			success *= self.reloadComponent(component) or False
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Reloading '{1}' Components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Reloading '{1}' Components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)

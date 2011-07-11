@@ -2222,8 +2222,10 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		self.__reportUpdateStatus = True
-		if self.checkForNewReleases(): return True
-		else: raise Exception, "{0} | Exception Raised While Checking For New Releases!".format(self.__class__.__name__)
+		if self.checkForNewReleases():
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Checking For New Releases!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

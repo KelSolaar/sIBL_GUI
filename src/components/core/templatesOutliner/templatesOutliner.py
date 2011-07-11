@@ -1655,8 +1655,10 @@ class TemplatesOutliner(UiComponent):
 
 		if not self.templateExists(path):
 			LOGGER.debug("> Chosen Template Path: '{0}'.".format(path))
-			if self.addTemplate(strings.getSplitextBasename(path), path): return True
-			else: raise Exception, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, path)
+			if self.addTemplate(strings.getSplitextBasename(path), path):
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, path)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template Already Exists In Database!".format(self.__class__.__name__, path))
 
@@ -1695,8 +1697,10 @@ class TemplatesOutliner(UiComponent):
 
 			self.emit(SIGNAL("modelRefresh()"))
 
-			if success: return True
-			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Templates From The Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
+			if success:
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Removing '{1}' Templates From The Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1707,8 +1711,10 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if self.addDefaultTemplates(forceImport=True): return True
-		else: raise Exception, "{0} | Exception Raised While Importing Default Templates Into The Database!".format(self.__class__.__name__)
+		if self.addDefaultTemplates(forceImport=True):
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Importing Default Templates Into The Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1726,8 +1732,10 @@ class TemplatesOutliner(UiComponent):
 		for template in selectedTemplates:
 			success *= self.displayHelpFile(template) or False
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Displaying Templates Help Files!".format(self.__class__.__name__)
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Displaying Templates Help Files!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1748,8 +1756,10 @@ class TemplatesOutliner(UiComponent):
 
 				self.emit(SIGNAL("modelRefresh()"))
 
-				if success: return True
-				else: raise Exception, "{0} | Exception Raised While Filtering Templates By Versions!".format(self.__class__.__name__)
+				if success:
+					return True
+				else:
+					raise Exception, "{0} | Exception Raised While Filtering Templates By Versions!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
@@ -1797,8 +1807,10 @@ class TemplatesOutliner(UiComponent):
 
 		self.emit(SIGNAL("modelRefresh()"))
 
-		if success:	return True
-		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1819,8 +1831,10 @@ class TemplatesOutliner(UiComponent):
 			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
 				dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
-			if self.addDirectory(path, self.getCollection(collection).id): return True
-			else: Exception, "{0} | Exception Raised While Adding Default Templates To The Database!".format(self.__class__.__name__)
+			if self.addDirectory(path, self.getCollection(collection).id):
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Adding Default Templates To The Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)

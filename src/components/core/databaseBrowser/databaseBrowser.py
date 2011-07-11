@@ -1521,8 +1521,10 @@ class DatabaseBrowser(UiComponent):
 		if not directory: return
 
 		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
-		if self.addDirectory(directory): return True
-		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if self.addDirectory(directory):
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1538,8 +1540,10 @@ class DatabaseBrowser(UiComponent):
 
 		if not self.iblSetExists(path):
 			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(path))
-			if self.addIblSet(strings.getSplitextBasename(path), path): return True
-			else: raise Exception, "{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, path)
+			if self.addIblSet(strings.getSplitextBasename(path), path):
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, path)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Already Exists In Database!".format(self.__class__.__name__, path))
 
@@ -1563,8 +1567,10 @@ class DatabaseBrowser(UiComponent):
 			self.emit(SIGNAL("modelDatasRefresh()"))
 			self.emit(SIGNAL("modelRefresh()"))
 
-			if success: return True
-			else: raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+			if success:
+				return True
+			else:
+				raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1586,8 +1592,10 @@ class DatabaseBrowser(UiComponent):
 		self.emit(SIGNAL("modelDatasRefresh()"))
 		self.emit(SIGNAL("modelRefresh()"))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
@@ -1638,8 +1646,10 @@ class DatabaseBrowser(UiComponent):
 		self.emit(SIGNAL("modelDatasRefresh()"))
 		self.emit(SIGNAL("modelRefresh()"))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)

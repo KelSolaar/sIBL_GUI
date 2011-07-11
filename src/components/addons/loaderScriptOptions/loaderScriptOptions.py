@@ -751,8 +751,10 @@ class LoaderScriptOptions(UiComponent):
 		success *= self.__updateOverrideKeys(self.ui.Common_Attributes_tableWidget) or False
 		success *= self.__updateOverrideKeys(self.ui.Additional_Attributes_tableWidget) or False
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Retrieving Override Keys!".format(self.__class__.__name__)
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Retrieving Override Keys!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python End

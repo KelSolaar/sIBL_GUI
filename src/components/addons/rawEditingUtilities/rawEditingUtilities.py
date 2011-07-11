@@ -706,8 +706,10 @@ class RawEditingUtilities(UiComponent):
 			else:
 				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError)
@@ -743,8 +745,10 @@ class RawEditingUtilities(UiComponent):
 			else:
 				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
 
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

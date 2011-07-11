@@ -2056,10 +2056,14 @@ class Preview(UiComponent):
 				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 				break
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
-			if paths: success *= self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
-			else: messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped!".format(self.__class__.__name__, iblSet.title, imageType))
-		if success: return True
-		else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Ibl Set Image(s)!".format(self.__class__.__name__, iblSet.title)
+			if paths:
+				success *= self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
+			else:
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Has No '{2}' Image Type And Will Be Skipped!".format(self.__class__.__name__, iblSet.title, imageType))
+		if success:
+			return True
+		else:
+			raise Exception, "{0} | Exception Raised While Displaying '{1}' Ibl Set Image(s)!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(ui.common.uiBasicExceptionHandler, False, OSError, Exception)
@@ -2078,9 +2082,12 @@ class Preview(UiComponent):
 				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 			paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
 			if paths:
-				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())): return True
-				else: raise Exception, "{0} | Exception Raised While Displaying '{1}' Inspector Ibl Set Image(s)!".format(self.__class__.__name__, inspectorIblSet.title)
-			else: messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Inspector Ibl Set Has No '{2}' Image Type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
+				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())):
+					return True
+				else:
+					raise Exception, "{0} | Exception Raised While Displaying '{1}' Inspector Ibl Set Image(s)!".format(self.__class__.__name__, inspectorIblSet.title)
+			else:
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Inspector Ibl Set Has No '{2}' Image Type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
 			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
