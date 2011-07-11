@@ -1518,7 +1518,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-		if not directory: return
+		if not directory:
+			return
 
 		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 		if self.addDirectory(directory):
@@ -1536,7 +1537,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
-		if not path: return
+		if not path:
+			return
 
 		if not self.iblSetExists(path):
 			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(path))
@@ -1557,7 +1559,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
-		if not selectedIblSets: return
+		if not selectedIblSets:
+			return
 
 		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
@@ -1582,7 +1585,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
-		if not selectedIblSets: return
+		if not selectedIblSets:
+			return
 
 		success = True
 		for iblSet in selectedIblSets:

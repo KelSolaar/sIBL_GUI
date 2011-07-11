@@ -718,7 +718,8 @@ class GpsMap(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if not iblSet.latitude and not iblSet.longitude: return True
+		if not iblSet.latitude and not iblSet.longitude:
+			return True
 
 		LOGGER.debug("> Ibl Set '{0}' Provides GEO Coordinates.".format(iblSet.name))
 		shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)

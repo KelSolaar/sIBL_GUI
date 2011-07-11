@@ -730,7 +730,8 @@ class LoaderScript(UiComponent):
 		if self.outputLoaderScript__():
 			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 			template = selectedTemplates and selectedTemplates[0] or None
-			if not template: return
+			if not template:
+				return
 
 			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
 			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():

@@ -1155,7 +1155,8 @@ class Image(object):
 		"""
 
 		imagePath = imagePath or self.__imagePath
-		if not imagePath: return
+		if not imagePath:
+			return
 
 		imagePath = ctypes.c_char_p(imagePath)
 		fileFormat = self.__library.FreeImage_GetFileType(imagePath, False)
@@ -1173,7 +1174,8 @@ class Image(object):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if not self.__imagePath: return
+		if not self.__imagePath:
+			return
 
 		imageFormat = self.getImageFormat(self.__imagePath)
 		if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
@@ -1208,7 +1210,8 @@ class Image(object):
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
-			if not imagePath: return
+			if not imagePath:
+				return
 			if self.__library.FreeImage_Save(imageFormat, self.__bitmap, ctypes.c_char_p(imagePath), flags):
 				LOGGER.debug("> '{0}' Image Has Been Saved!".format(imagePath))
 				return True

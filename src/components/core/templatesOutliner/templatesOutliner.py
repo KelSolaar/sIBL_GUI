@@ -1651,7 +1651,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT Files (*.{0})".format(self.__extension))))
-		if not path: return
+		if not path:
+			return
 
 		if not self.templateExists(path):
 			LOGGER.debug("> Chosen Template Path: '{0}'.".format(path))
@@ -1688,7 +1689,8 @@ class TemplatesOutliner(UiComponent):
 		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
 		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
-		if not selectedTemplates: return
+		if not selectedTemplates:
+			return
 
 		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
@@ -1726,7 +1728,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
-		if not selectedTemplates: return
+		if not selectedTemplates:
+			return
 
 		success = True
 		for template in selectedTemplates:
@@ -1822,11 +1825,13 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if not forceImport and self.getTemplates(): return
+		if not forceImport and self.getTemplates():
+			return
 
 		LOGGER.debug("> Adding Default Templates To The Database.")
 		for collection, path in self.__defaultCollections.items():
-			if not os.path.exists(path): continue
+			if not os.path.exists(path):
+				continue
 
 			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
@@ -1877,7 +1882,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self.__container.lastBrowsedPath, "Template Files (*{0})".format(self.__extension))))
-		if not file: return
+		if not file:
+			return
 
 		LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
 		if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):

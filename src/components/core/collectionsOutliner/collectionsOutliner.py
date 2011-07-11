@@ -1337,7 +1337,8 @@ class CollectionsOutliner(UiComponent):
 			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
 			id = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
 			collections = [collection for collection in self.getCollections()]
-			if not id and not collections: return
+			if not id and not collections:
+				return
 
 			if startIndex.column() == 0:
 				if currentText not in (collection.name for collection in collections):
@@ -1386,10 +1387,12 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		collection = self.addCollection__()
-		if not collection: return
+		if not collection:
+			return
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
-		if not directory: return
+		if not directory:
+			return
 
 		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
 		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
@@ -1407,7 +1410,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
-		if not state: return
+		if not state:
+			return
 
 		if collectionInformations:
 			collectionInformations = str(collectionInformations).split(",")
@@ -1441,7 +1445,8 @@ class CollectionsOutliner(UiComponent):
 			messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.name != self.__defaultCollection]
-		if not selectedCollections: return
+		if not selectedCollections:
+			return
 
 		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True

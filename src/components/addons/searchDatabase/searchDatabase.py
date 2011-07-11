@@ -806,7 +806,8 @@ class SearchDatabase(UiComponent):
 
 		filteredSets = []
 		for iblSet in iblSets:
-			if not iblSet.time: continue
+			if not iblSet.time:
+				continue
 
 			timeTokens = iblSet.time.split(":")
 			int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
@@ -842,7 +843,8 @@ class SearchDatabase(UiComponent):
 			filteredSets = []
 			allTags = []
 			for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()):
-				if not getattr(iblSet, currentField): continue
+				if not getattr(iblSet, currentField):
+					continue
 
 				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
 				patternsMatched = True

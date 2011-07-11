@@ -370,7 +370,8 @@ def checkIblSetsTableIntegrity(session):
 			if  iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
-	if erroneousSets: return erroneousSets
+	if erroneousSets:
+		return erroneousSets
 
 @core.executionTrace
 def getCollections(session):

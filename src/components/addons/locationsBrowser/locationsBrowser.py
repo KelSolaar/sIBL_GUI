@@ -963,7 +963,8 @@ class LocationsBrowser(UiComponent):
 
 				browserFound = False
 				for browser in self.__linuxBrowsers:
-					if browserFound: break
+					if browserFound:
+						break
 
 					try:
 						for path in paths:

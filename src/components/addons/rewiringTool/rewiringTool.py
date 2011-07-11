@@ -544,7 +544,8 @@ class RewiringTool(UiComponent):
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSet and selectedIblSet[0] or None
-		if not iblSet: return
+		if not iblSet:
+			return
 
 		for index, comboBox in enumerate(self.__reWireComboBoxesWidgets):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]

@@ -1288,7 +1288,8 @@ class Inspector(UiComponent):
 		if self.__inspectorIblSet:
 			iblSetStandardItems = [iblSetStandardItem for iblSetStandardItem in self.__coreDatabaseBrowser.model.findItems("*", Qt.MatchWildcard | Qt.MatchRecursive, 0) if iblSetStandardItem._datas.path == self.__inspectorIblSet.path]
 			inspectorIblSetStandardItem = iblSetStandardItems and iblSetStandardItems[0] or None
-			if not inspectorIblSetStandardItem: return True
+			if not inspectorIblSetStandardItem:
+				return True
 
 			model = self.__coreDatabaseBrowser.model
 			index = model.indexFromItem(inspectorIblSetStandardItem)

@@ -782,7 +782,8 @@ class RawEditingUtilities(UiComponent):
 
 				editorFound = False
 				for editor in self.__linuxTextEditors:
-					if editorFound: break
+					if editorFound:
+						break
 
 					try:
 						for path in paths:

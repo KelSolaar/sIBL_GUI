@@ -698,8 +698,10 @@ class LoaderScriptOptions(UiComponent):
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 		template = selectedTemplates and selectedTemplates[0] or None
-		if not template: return
-		if not os.path.exists(template.path): return
+		if not template:
+			return
+		if not os.path.exists(template.path):
+			return
 
 		LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateParser = Parser(template.path)
