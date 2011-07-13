@@ -27,13 +27,13 @@
 
 """
 ************************************************************************************************
-***	sIBL_GUI_textileToHtml.py
+***	sIBL_GUI_getHDRLabsDocumentation.py
 ***
 ***	Platform:
 ***		Windows
 ***
 ***	Description:
-***		Converts A Textile File To HTML.
+***		Extracts sIBL_GUI Documentation Body For HDRLabs.com.
 ***
 ***	Others:
 ***
@@ -49,7 +49,8 @@
 import logging
 import os
 import sys
-import textile
+import re
+from xml.etree import ElementTree
 
 #***********************************************************************************************
 #***	Internal Imports
@@ -72,66 +73,35 @@ core.setVerbosityLevel(3)
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def textileToHtml(fileIn, fileOut, title):
+def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
-	This Definition Outputs A Textile File To HTML.
+	This Definition sIBL_GUI Documentation Body For HDRLabs.com.
 		
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
-	@param title: HTML File Title. ( String )
 	"""
 
-	LOGGER.info("{0} | Converting '{1}' Textile File To HTML!".format(textileToHtml.__name__, fileIn))
+	LOGGER.info("{0} | Extracting 'body' Tag Content From {1}' File!".format(getHDRLabsDocumentation.__name__, fileIn))
 	file = File(fileIn)
 	file.read()
 
-	output = []
-	output.append("<html>\n\t<head>\n")
-	output.append("\t\t<title>{0}</title>\n".format(title))
-	output.append(
-			"""\t\t<style type="text/css">
-	            body {
-	                text-align: justify;
-	                font-size: 10pt;
-	                margin: 10px 10px 10px 10px;
-	                background-color: rgb(48, 48, 48);
-	                color: rgb(192, 192, 192);
-	            }
-	            A:link {
-	                text-decoration: none;
-	                color: rgb(160, 96, 64);
-	            }
-	            A:visited {
-	                text-decoration: none;
-	                color: rgb(160, 96, 64);
-	            }
-	            A:active {
-	                text-decoration: none;
-	                color: rgb(160, 96, 64);
-	            }
-	            A:hover {
-	                text-decoration: underline;
-	                color: rgb(160, 96, 64);
-	            }
-	        </style>\n""")
-	output.append("\t</head>\n\t<body>\n\t")
-	output.append("\n\t".join(line for line in textile.textile("".join(file.content)).split("\n") if line))
-	output.append("\t\t</span>\n")
-	output.append("\t</body>\n</html>")
+	element = ElementTree.fromstringlist(file.content)
+	tree = ElementTree.ElementTree(element)
+
+	LOGGER.info("{0} | Processing 'body' Datas!".format(getHDRLabsDocumentation.__name__))
+	uls = list(tree.iter("ul"))
+	for ul in uls:
+		if "style" in ul.attrib.keys():
+			if "font-size" in ul.attrib["style"]:
+				ul.attrib["style"] = "font-size: 11pt;"
+	content = ["{0}\n".format(line.replace("\t", "", 1)) for line in ElementTree.tostring(tree.find("body")).split("\n") if not re.search("<body>", line) and not re.search("</body>", line)]
 
 	file = File(fileOut)
-	file.content = output
-	file.write()
-
-	LOGGER.info("{0} | Formatting HTML File!".format(textileToHtml.__name__))
-	os.system("tidy -config {0} -m '{1}'".format(os.path.join(os.path.dirname(__file__), "tidy/tidySettings.rc"), file.file))
-
-	file.read()
-	file.content = [line.replace(" " * 4, "\t") for line in file.content]
+	file.content = content
 	file.write()
 
 if __name__ == "__main__":
-	textileToHtml(sys.argv[1], sys.argv[2], sys.argv[3])
+	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
 #***	Python End

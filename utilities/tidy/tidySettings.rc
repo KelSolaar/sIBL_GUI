@@ -1,0 +1,7 @@
+char-encoding: raw
+doctype: omit
+indent: auto
+indent-spaces: 4
+output-xml: true
+quiet: true
+show-warnings: false
