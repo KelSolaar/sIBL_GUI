@@ -3,7 +3,7 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI - Mac Os X - Overall Build
 echo ----------------------------------------------------------------
 
-export SOURCE=../../src
+export SOURCE=../../src/siblgui
 export DISTRIBUTION=./dist
 export BUILD=./build
 export UTILITIES=../../utilities
@@ -15,7 +15,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,libraries.freeImage.freeImage,migrate.exceptions,migrate.versioning.api,ui.widgets.search_QLineEdit,ui.widgets.variable_QPushButton,PyQt4.QtNetwork,PyQt4.QtWebKit,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,siblgui.libraries.freeImage.freeImage,siblgui.ui.widgets.search_QLineEdit,siblgui.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End
