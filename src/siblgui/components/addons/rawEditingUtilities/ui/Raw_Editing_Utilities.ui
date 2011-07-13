@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Raw_Editing_Utilities_Form</class>
+ <widget class="QWidget" name="Raw_Editing_Utilities_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>209</width>
+    <height>64</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Raw Editing Utilities</string>
+  </property>
+  <layout class="QGridLayout" name="Raw_Editing_Utilities_Form_gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="Custom_Text_Editor_Path_groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Custom Text Editor</string>
+     </property>
+     <layout class="QGridLayout" name="Custom_Text_Editor_Path_groupBox_gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMaximumSize</enum>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="Custom_Text_Editor_Path_lineEdit">
+        <property name="statusTip">
+         <string>Custom Text Editor Path Line Edit: Custom Text Editor Path.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QToolButton" name="Custom_Text_Editor_Path_toolButton">
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::DelayedPopup</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

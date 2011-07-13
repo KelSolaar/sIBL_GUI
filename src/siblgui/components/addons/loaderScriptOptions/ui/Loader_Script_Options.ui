@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Loader_Script_Options_DockWidget</class>
+ <widget class="QDockWidget" name="Loader_Script_Options_DockWidget">
+  <property name="windowTitle">
+   <string>Loader Script Options</string>
+  </property>
+  <widget class="QWidget" name="Loader_Script_Options_dockWidgetContents">
+   <layout class="QGridLayout" name="Loader_Script_Options_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QToolBox" name="Loader_Script_Options_toolBox">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="Common_Attributes_page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>256</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <property name="statusTip">
+        <string>Common Attributes: Common Attributes Settings Of The Loader Script.</string>
+       </property>
+       <attribute name="label">
+        <string>Common Attributes</string>
+       </attribute>
+       <layout class="QGridLayout" name="Common_Attributes_page_gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="Common_Attributes_tableWidget">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="cornerButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Additional_Attributes_page">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>256</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <property name="statusTip">
+        <string>Additional Attributes: Additional Attributes Settings Of The Loader Script.</string>
+       </property>
+       <attribute name="label">
+        <string>Additional Attributes</string>
+       </attribute>
+       <layout class="QGridLayout" name="Additional_Attributes_page_gridLayout">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="Additional_Attributes_tableWidget">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="cornerButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

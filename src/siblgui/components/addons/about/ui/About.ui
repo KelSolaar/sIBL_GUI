@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>About_Form</class>
+ <widget class="QWidget" name="About_Form">
+  <property name="windowTitle">
+   <string>sIBL_GUI - About</string>
+  </property>
+  <layout class="QGridLayout" name="About_Form_gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="About_label">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

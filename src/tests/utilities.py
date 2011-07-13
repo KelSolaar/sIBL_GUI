@@ -62,8 +62,8 @@ import sys
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.core as core
-from globals.constants import Constants
-from globals.runtimeConstants import RuntimeConstants
+from siblgui.globals.constants import Constants
+from siblgui.globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables

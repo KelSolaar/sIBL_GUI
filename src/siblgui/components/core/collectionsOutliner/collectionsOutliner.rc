@@ -1,0 +1,12 @@
+[Component]
+Name = core.collectionsOutliner
+Module = collectionsOutliner
+Object = CollectionsOutliner
+Rank = 20
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Collections Outliner Core Component.

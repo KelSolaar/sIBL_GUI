@@ -1,0 +1,12 @@
+[Component]
+Name = addons.loggingNotifier
+Module = loggingNotifier
+Object = LoggingNotifier
+Rank = 70
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Logging Notifier Addon Component.

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sIBL_GUI_Updater_Form</class>
+ <widget class="QWidget" name="sIBL_GUI_Updater_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>sIBL_GUI - Remote Updater</string>
+  </property>
+  <layout class="QGridLayout" name="sIBL_GUI_Updater_Form_gridLayout">
+   <item row="0" column="0">
+    <widget class="QSplitter" name="Releases_splitter">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QGroupBox" name="sIBL_GUI_groupBox">
+      <layout class="QGridLayout" name="sIBL_GUI_groupBox_gridLayout">
+       <item row="0" column="1" colspan="2">
+        <layout class="QHBoxLayout" name="Logo_horizontalLayout">
+         <item>
+          <spacer name="Logo_Left_horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="Logo_label">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>:/sIBL_GUI FTP/Resources/sIBL_GUI_Small_Logo.png</pixmap>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="Logo_Right_horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="Your_Version_groupBox">
+         <property name="statusTip">
+          <string>Your Version Group Box: Local Application Version.</string>
+         </property>
+         <property name="title">
+          <string>Your Version</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <layout class="QGridLayout" name="Your_Version_groupBox_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Your_Version_label">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QGroupBox" name="Latest_Version_groupBox">
+         <property name="statusTip">
+          <string>Latest Version Group Box: Online Application Version.</string>
+         </property>
+         <property name="title">
+          <string>Latest Version</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <layout class="QGridLayout" name="Latest_Version_groupBox_gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="Latest_Version_label">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <widget class="QGroupBox" name="Change_Log_groupBox">
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="Change_Log_gridLayout">
+          <item row="0" column="0">
+           <widget class="QWebView" name="Change_Log_webView">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string>Change Log Web View: Application Change Log.</string>
+            </property>
+            <property name="url">
+             <url>
+              <string>about:blank</string>
+             </url>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="Templates_groupBox">
+      <layout class="QGridLayout" name="Templates_gridLayout">
+       <item row="1" column="0" colspan="2">
+        <widget class="QTableWidget" name="Templates_tableWidget">
+         <property name="statusTip">
+          <string>Templates Table: Templates Releases.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="Templates_label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <spacer name="Templates_verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="Buttons_horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="Get_sIBL_GUI_pushButton">
+       <property name="statusTip">
+        <string>Get sIBL_GUI Push Button: Downloads sIBL_GUI Latest Release.</string>
+       </property>
+       <property name="text">
+        <string>Get sIBL_GUI</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Get_Latest_Templates_pushButton">
+       <property name="statusTip">
+        <string>Get Latest Templates Push Button: Downloads Selected Templates.</string>
+       </property>
+       <property name="text">
+        <string>Get Latest Templates</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="Buttons_line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Open_Repository_pushButton">
+       <property name="statusTip">
+        <string>Open Repository Push Button: Opens Application Repository.</string>
+       </property>
+       <property name="text">
+        <string>Open Repository</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="Buttons_horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>68</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Close_pushButton">
+       <property name="statusTip">
+        <string>Close Push Button: Closes Remote Updater Window.</string>
+       </property>
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

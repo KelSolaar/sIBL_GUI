@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Collections_Outliner_DockWidget</class>
+ <widget class="QDockWidget" name="Collections_Outliner_DockWidget">
+  <property name="windowTitle">
+   <string>Collections Outliner</string>
+  </property>
+  <widget class="QWidget" name="Collections_Outliner_dockWidgetContents">
+   <layout class="QGridLayout" name="Collections_Outliner_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QTreeView" name="Collections_Outliner_treeView"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

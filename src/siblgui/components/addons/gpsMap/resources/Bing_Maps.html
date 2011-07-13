@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>sIBL_GUI - Bing Maps</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+        <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
+        </script>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                outline: 0;
+                font-size: 1em;
+                line-height: 1.5em;
+            }
+            
+            body {
+                background-color: rgb(64, 64, 64);
+                color: rgb(192, 192, 192);
+            }
+            
+            .infoBox {
+                background-color: rgb(64, 64, 64);
+                border: 2px solid rgb(96, 96, 96);
+                color: rgb(192, 192, 192);
+                overflow: hidden;
+                font-size: 10pt;
+                padding: 8px;
+                position: absolute;
+                text-align: left;
+                width: 288px;
+                z-index: 1024;
+            }
+        </style>
+        <script type="text/javascript">
+            var map = null;
+            var credentials = "AnCbNkOa0ISfGVJXzetcRsfAuQT_VAnqQaO-iFPyh96RbcH-xmXMv6Zv7fpxargq";
+            var defaultLocation = new Microsoft.Maps.Location(50, 0);
+            var defaultZoomLevel = 2
+            
+            function infoBox(html){
+                this.div;
+                this.html = html;
+            }
+            
+            infoBox.prototype.show = function(e){
+                if (this.div == undefined) {
+                    this.div = document.createElement("div");
+                    this.div.className = "infoBox";
+                    this.div.innerHTML = this.html;
+                    var mapDiv = document.getElementById("mapDiv");
+                    mapDiv.appendChild(this.div);
+                }
+                
+                var pinLocation = map.tryLocationToPixel(e.target.getLocation(), Microsoft.Maps.PixelReference.control);
+                
+                this.div.style.left = pinLocation.x + 4 + "px";
+                this.div.style.top = pinLocation.y + 4 + "px";
+                this.div.style.visibility = "visible";
+            };
+            
+            infoBox.prototype.hide = function(e){
+                if (this.div != undefined) 
+                    this.div.style.visibility = "hidden";
+            };
+            
+            Microsoft.Maps.Pushpin.prototype.setinfoBox = function(infoBox){
+                if (typeof this.infoBox != undefined && this.infoBox != undefined && this.infoBox != null) {
+                    this.removeinfoBox();
+                }
+                this.infoBox = infoBox;
+                
+                this.mouseoverHandler = Microsoft.Maps.Events.addHandler(this, "mouseover", function(e){
+                    infoBox.show(e);
+                });
+                this.mouseoutHander = Microsoft.Maps.Events.addHandler(this, "mouseout", function(e){
+                    infoBox.hide(e);
+                });
+            }
+            
+            Microsoft.Maps.Pushpin.prototype.removeinfoBox = function(){
+                this.infoBox = null;
+                
+                Microsoft.Maps.Events.removeHandler(this.mouseoverHandler);
+                Microsoft.Maps.Events.removeHandler(this.mouseoutHander);
+            }
+            
+            function getMap(){
+                map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
+                    center: defaultLocation,
+                    credentials: credentials,
+                    enableClickableLogo: false,
+                    enableSearchLogo: false,
+                    showCopyright: false,
+                    showDashboard: false,
+                    showLogo: false,
+                    showScalebar: false,
+                    mapTypeId: Microsoft.Maps.MapTypeId.road,
+                    zoom: defaultZoomLevel
+                });
+            }
+            
+            function addMarker(coordinates, title, icon, content){
+                var marker = new Microsoft.Maps.Pushpin(coordinates);
+				marker.setOptions({icon:"./Marker.png"});
+                marker.setinfoBox(new infoBox("<img src=\"" + icon + "\" style=\"display:block; float:right; height:128; padding:8px; width:128\" alt=\"\">" + content));
+                map.entities.push(marker);
+            }
+            
+            function removeMarkers(){
+                map.entities.clear();
+            }
+            
+            function setMapType(mapTypeId){
+                switch (mapTypeId) {
+                    case "MapTypeId.aerial":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.aerial;
+                        break;
+                    case "MapTypeId.auto":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.auto;
+                        break;
+                    case "MapTypeId.birdseye":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.birdseye;
+                        break;
+                    case "MapTypeId.collinsBart":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.collinsBart;
+                        break;
+                    case "MapTypeId.mercator":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.mercator;
+                        break;
+                    case "MapTypeId.ordnanceSurvey":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.ordnanceSurvey;
+                        break;
+                    case "MapTypeId.road":
+                        var mapTypeIdObject = Microsoft.Maps.MapTypeId.road;
+                        break;
+                }
+                map.setView({
+                    mapTypeId: mapTypeIdObject
+                });
+            }
+            
+            function setCenter(){
+                if (map.entities.getLength()) {
+                    if (map.entities.getLength() == 1) {
+                        var centerPoint = map.entities.get(0).getLocation();
+                        map.setView({
+                            center: centerPoint
+                        });
+                    }
+                    else {
+                        var locations = [];
+                        for (i = 0; i < map.entities.getLength(); i++) {
+                            locations.push(map.entities.get(i).getLocation());
+                        }
+                        var viewBoundaries = new Microsoft.Maps.LocationRect.fromLocations(locations);
+                        map.setView({
+                            bounds: viewBoundaries
+                        });
+                    }
+                }
+                else {
+                    map.setView({
+                        center: defaultLocation
+                    });
+                }
+            }
+            
+            function setZoom(type){
+                switch (type) {
+                    case "In":
+                        map.setView({
+                            zoom: map.getZoom() + 1
+                        });
+                        break;
+                    case "Out":
+                        map.setView({
+                            zoom: map.getZoom() + -1
+                        });
+                        break;
+                }
+            }
+        </script>
+    </head>
+    <body onload="getMap();">
+        <div id="mapDiv" style="width: 100%; height: 100%;">
+        </div>
+    </body>
+</html>
