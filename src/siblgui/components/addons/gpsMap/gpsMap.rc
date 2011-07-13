@@ -1,0 +1,12 @@
+[Component]
+Name = addons.gpsMap
+Module = gpsMap
+Object = GpsMap
+Rank = 75
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Google Map Geolocalisation Addon Component.

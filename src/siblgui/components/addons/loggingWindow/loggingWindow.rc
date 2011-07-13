@@ -1,0 +1,12 @@
+[Component]
+Name = addons.loggingWindow
+Module = loggingWindow
+Object = LoggingWindow
+Rank = 75
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Logging Window Addon Component.

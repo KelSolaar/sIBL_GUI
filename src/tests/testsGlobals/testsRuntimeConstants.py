@@ -60,7 +60,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-from globals.runtimeConstants import RuntimeConstants
+from siblgui.globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables

@@ -56,7 +56,7 @@ from collections import OrderedDict
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
-from globals.constants import Constants
+from siblgui.globals.constants import Constants
 
 #***********************************************************************************************
 #***	Global Variables
