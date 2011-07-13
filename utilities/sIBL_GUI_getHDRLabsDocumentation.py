@@ -94,6 +94,10 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 		if "style" in ul.attrib.keys():
 			if "font-size" in ul.attrib["style"]:
 				ul.attrib["style"] = "font-size: 11pt;"
+				continue
+			if "color:rgb" in ul.attrib["style"]:
+				ul.attrib["style"] = ""
+				continue
 	content = ["{0}\n".format(line.replace("\t", "", 1)) for line in ElementTree.tostring(tree.find("body")).split("\n") if not re.search("<body>", line) and not re.search("</body>", line)]
 
 	file = File(fileOut)
