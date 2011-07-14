@@ -67,6 +67,22 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
+#***	Path Manipulations
+#***********************************************************************************************
+def _setApplicationPackageDirectory():
+	"""
+	This Definition Sets The Application Datas Package Directory In sys.path.
+
+	@return: Definition Success. ( Boolean )		
+	"""
+
+	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
+	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
+	return True
+
+_setApplicationPackageDirectory()
+
+#***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.common

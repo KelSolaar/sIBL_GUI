@@ -5,7 +5,7 @@ echo ----------------------------------------------------------------
 
 export PYINSTALLER=c:/pyinstaller
 export APPLICATION=z:/Documents/Developement/sIBL_GUI
-export SOURCE=$APPLICATION/src
+export SOURCE=$APPLICATION/src/siblgui
 export RELEASES=$APPLICATION/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
