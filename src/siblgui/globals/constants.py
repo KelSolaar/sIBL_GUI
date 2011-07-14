@@ -99,8 +99,7 @@ class Constants():
 								userComponentsDirectory,
 								loggingDirectory,
 								templatesDirectory,
-								ioDirectory
-							)
+								ioDirectory)
 	coreComponentsDirectory = "components/core"
 	addonsComponentsDirectory = "components/addons"
 
