@@ -87,6 +87,7 @@ class Constants():
 	databaseDirectory = "database"
 	databaseMigrationsDirectory = "migrations"
 	databaseMigrationsFilesDirectory = "versions"
+	databaseMigrationsTemplatesDirectory = "templates"
 	settingsDirectory = "settings"
 	userComponentsDirectory = "components"
 	loggingDirectory = "logging"

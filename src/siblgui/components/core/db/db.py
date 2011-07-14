@@ -113,6 +113,7 @@ class Db(Component):
 		self.__connectionString = None
 
 		self.__dbMigrationsRepositoryDirectory = None
+		self.__dbMigrationsTemplatesDirectory = None
 
 		self.__dbBackupDirectory = "backup"
 		self.__dbBackupCount = 6
@@ -361,6 +362,36 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbMigrationsRepositoryDirectory"))
 
 	@property
+	def dbMigrationsTemplatesDirectory(self):
+		"""
+		This Method Is The Property For The _dbMigrationsTemplatesDirectory Attribute.
+
+		@return: self.__dbMigrationsTemplatesDirectory. ( String )
+		"""
+
+		return self.__dbMigrationsTemplatesDirectory
+
+	@dbMigrationsTemplatesDirectory.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbMigrationsTemplatesDirectory(self, value):
+		"""
+		This Method Is The Setter Method For The _dbMigrationsTemplatesDirectory Attribute.
+
+		@param value: Attribute Value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbMigrationsTemplatesDirectory"))
+
+	@dbMigrationsTemplatesDirectory.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbMigrationsTemplatesDirectory(self):
+		"""
+		This Method Is The Deleter Method For The _dbMigrationsTemplatesDirectory Attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbMigrationsTemplatesDirectory"))
+
+	@property
 	def dbBackupDirectory(self):
 		"""
 		This Method Is The Property For The _dbBackupDirectory Attribute.
@@ -482,7 +513,8 @@ class Db(Component):
 			LOGGER.info("{0} | SQLAlchemy Migrate Repository Location: '{1}'.".format(self.__class__.__name__, self.__dbMigrationsRepositoryDirectory))
 			LOGGER.debug("> Creating SQLAlchemy Migrate Migrations Directory And Requisites.")
 			try:
-				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate")
+				repositoryTemplate = os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsTemplatesDirectory)
+				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate", templates_path=repositoryTemplate)
 			except migrate.exceptions.KnownError:
 				LOGGER.debug("> SQLAlchemy Migrate Repository Directory Already Exists!")
 
