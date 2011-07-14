@@ -7,6 +7,8 @@
 #
 #***********************************************************************************************
 #
+
+
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -56,6 +58,7 @@
 #***	External Imports
 #***********************************************************************************************
 import os
+import sys
 import unittest
 
 #***********************************************************************************************
@@ -69,6 +72,21 @@ import unittest
 #***********************************************************************************************
 #***	Module Classes And Definitions
 #***********************************************************************************************
+def _setApplicationPackageDirectory():
+	"""
+	This Definition Sets The Application Package And Dependencies Directories In The Path.
+
+	@return: Definition Success. ( Boolean )		
+	"""
+
+	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
+	dependenciesDirectory = os.path.join(applicationPackageDirectory, "siblgui")
+	for path in (applicationPackageDirectory, dependenciesDirectory):
+		path not in sys.path and sys.path.append(path)
+	return True
+
+_setApplicationPackageDirectory()
+
 def testsSuite():
 	testsLoader = unittest.TestLoader()
 	return testsLoader.discover(os.path.dirname(__file__))

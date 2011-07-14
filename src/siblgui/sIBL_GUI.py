@@ -71,7 +71,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
-	This Definition Sets The Application Datas Package Directory In sys.path.
+	This Definition Sets The Application Package Directory In The Path.
 
 	@return: Definition Success. ( Boolean )		
 	"""
