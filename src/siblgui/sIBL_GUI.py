@@ -83,6 +83,18 @@ def _setApplicationPackageDirectory():
 _setApplicationPackageDirectory()
 
 #***********************************************************************************************
+#***	Dependencies Globals Manipulation
+#***********************************************************************************************
+import foundations.globals.constants
+import manager.globals.constants
+from siblgui.globals.constants import Constants
+
+foundations.globals.constants.Constants.logger = Constants.logger
+manager.globals.constants.Constants.logger = Constants.logger
+foundations.globals.constants.Constants.applicationDirectory = Constants.applicationDirectory
+manager.globals.constants.Constants.applicationDirectory = Constants.applicationDirectory
+
+#***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
 import foundations.common
@@ -92,7 +104,6 @@ import foundations.io as io
 import siblgui.ui.common
 from foundations.streamObject import StreamObject
 from manager.componentsManager import Manager
-from siblgui.globals.constants import Constants
 from siblgui.globals.runtimeConstants import RuntimeConstants
 from siblgui.globals.uiConstants import UiConstants
 from siblgui.ui.widgets.active_QLabel import Active_QLabel
