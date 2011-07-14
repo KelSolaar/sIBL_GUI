@@ -74,15 +74,13 @@ import unittest
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
-	This Definition Sets The Application Package And Dependencies Directories In The Path.
+	This Definition Sets The Application Package Directory In The Path.
 
 	@return: Definition Success. ( Boolean )		
 	"""
 
 	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
-	dependenciesDirectory = os.path.join(applicationPackageDirectory, "siblgui")
-	for path in (applicationPackageDirectory, dependenciesDirectory):
-		path not in sys.path and sys.path.append(path)
+	applicationPackageDirectory not in sys.path and sys.path.append(applicationPackageDirectory)
 	return True
 
 _setApplicationPackageDirectory()
