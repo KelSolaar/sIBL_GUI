@@ -20,7 +20,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $PYINSTALLER/Makespec.py --icon "$SOURCE/resources/Icon_Light.ico" $SOURCE/sIBL_GUI.py -o $RELEASES
+python $PYINSTALLER/Makespec.py --noconsole --icon "$SOURCE/resources/Icon_Light.ico" $SOURCE/sIBL_GUI.py -o $RELEASES
 python $PYINSTALLER/Build.py $RELEASES/sIBL_GUI.spec
 echo ----------------------------------------------------------------
 echo Build - End
