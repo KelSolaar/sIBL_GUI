@@ -3,8 +3,9 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI - Windows - Overall Build
 echo ----------------------------------------------------------------
 
+export ROOT=z:/Documents/Developement
 export PYINSTALLER=c:/pyinstaller
-export APPLICATION=z:/Documents/Developement/sIBL_GUI
+export APPLICATION=$ROOT/sIBL_GUI
 export SOURCE=$APPLICATION/src/siblgui
 export RELEASES=$APPLICATION/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
@@ -12,12 +13,14 @@ export BUILD=$RELEASES/build
 export DEPLOYMENT=$RELEASES/sIBL_GUI
 export UTILITIES=$APPLICATION/utilities
 
+export PYTHONPATH=$APPLICATION/src
+
 #! Windows Build.
 echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $PYINSTALLER/Makespec.py --noconsole --icon "$SOURCE/resources/Icon_Light.ico" $SOURCE/sIBL_GUI.py -o $RELEASES
+python $PYINSTALLER/Makespec.py --icon "$SOURCE/resources/Icon_Light.ico" $SOURCE/sIBL_GUI.py -o $RELEASES
 python $PYINSTALLER/Build.py $RELEASES/sIBL_GUI.spec
 echo ----------------------------------------------------------------
 echo Build - End

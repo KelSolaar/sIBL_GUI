@@ -1,7 +1,4 @@
-hiddenimports = ["foundations.pkzip",
-				"foundations.rotatingBackup",
-				"foundations.strings",
-				"migrate.exceptions",
+hiddenimports = ["migrate.exceptions",
 				"migrate.versioning.api",
 				"PyQt4.QtNetwork",
 				"PyQt4.QtWebKit",
