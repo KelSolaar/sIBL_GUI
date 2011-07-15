@@ -89,10 +89,18 @@ import foundations.globals.constants
 import manager.globals.constants
 from siblgui.globals.constants import Constants
 
-foundations.globals.constants.Constants.logger = Constants.logger
-manager.globals.constants.Constants.logger = Constants.logger
-foundations.globals.constants.Constants.applicationDirectory = Constants.applicationDirectory
-manager.globals.constants.Constants.applicationDirectory = Constants.applicationDirectory
+def _overrideDependenciesGlobals():
+	"""
+	This Definition Overrides Dependencies Globals.
+
+	@return: Definition Success. ( Boolean )		
+	"""
+
+	foundations.globals.constants.Constants.logger = manager.globals.constants.Constants.logger = Constants.logger
+	foundations.globals.constants.Constants.applicationDirectory = manager.globals.constants.Constants.applicationDirectory = Constants.applicationDirectory
+	return True
+
+_overrideDependenciesGlobals()
 
 #***********************************************************************************************
 #***	Internal Imports

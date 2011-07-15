@@ -69,7 +69,7 @@ class Constants():
 	applicationName = "sIBL_GUI"
 	releaseVersion = "4.0.0"
 
-	logger = "Default_Logger"
+	logger = "sIBL_GUI_Logger"
 	verbosityLevel = 3
 	verbosityLabels = ("Critical", "Error", "Warning", "Info", "Debug")
 	loggingDefaultFormatter = "Default"
