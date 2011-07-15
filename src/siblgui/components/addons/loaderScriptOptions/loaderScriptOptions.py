@@ -707,7 +707,7 @@ class LoaderScriptOptions(UiComponent):
 		templateParser = Parser(template.path)
 		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
-		self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.siblgui.ui.common_Attributes_tableWidget)
+		self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
 		self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
 
 	@core.executionTrace
@@ -750,7 +750,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
 
 		success = True
-		success *= self.__updateOverrideKeys(self.siblgui.ui.common_Attributes_tableWidget) or False
+		success *= self.__updateOverrideKeys(self.ui.Common_Attributes_tableWidget) or False
 		success *= self.__updateOverrideKeys(self.ui.Additional_Attributes_tableWidget) or False
 
 		if success:
