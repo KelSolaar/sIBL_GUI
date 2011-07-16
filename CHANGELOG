@@ -20,6 +20,7 @@ h3. 4.0.0 - Stable
 * Added "-f / --loggingFormatter" command line parameter allowing logging formatter choice.
 * Added "-t / --deactivateWorkerThreads" command line parameter allowing Worker Threads deactivation.
 * Renamed "-s / --noSplashScreen" command line parameter to "-s / --hideSplashScreen".
+* Package directories structure has been deeply reorganized.
 
 h3. 3.5.0 - Stable
 
