@@ -6,7 +6,7 @@ echo ----------------------------------------------------------------
 alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 export APPLICATION=/Users/KelSolaar/Documents/Developement/sIBL_GUI
 
-export SOURCE=$APPLICATION/src/siblgui
+export SOURCE=$APPLICATION/src/umbra
 export RELEASES=$APPLICATION/releases/Darwin
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
@@ -17,7 +17,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,siblgui.libraries.freeImage.freeImage,siblgui.ui.widgets.search_QLineEdit,siblgui.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,umbra.libraries.freeImage.freeImage,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End

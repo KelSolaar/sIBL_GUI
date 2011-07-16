@@ -24,89 +24,84 @@
 #
 # The Following Code Is Protected By GNU GPL V3 Licence.
 #
+#***********************************************************************************************
+#
+# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# Please Contact Us At HDRLabs:
+# Christian Bloch - blochi@edenfx.com
+# Thomas Mansencal - thomas.mansencal@gmail.com
+#
+#***********************************************************************************************
 
 """
 ************************************************************************************************
-***	sIBL_GUI_getHDRLabsDocumentation.py
+***    001_table_Sets_sqlalchemy.Column_previewImage.py
 ***
-***	Platform:
-***		Windows
+***    Platform:
+***        Windows, Linux, Mac Os X
 ***
-***	Description:
-***		Extracts sIBL_GUI Documentation Body For HDRLabs.com.
+***    Description:
+***          Database Migration Module.
 ***
-***	Others:
+***    Others:
 ***
 ************************************************************************************************
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***    Python Begin
 #***********************************************************************************************
+
 #***********************************************************************************************
-#***	External Imports
+#***    External Imports
 #***********************************************************************************************
+import sqlalchemy
+from migrate import *
 import logging
-import os
-import sys
-import re
-from xml.etree import ElementTree
 
 #***********************************************************************************************
-#***	Internal Imports
+#***    Internal Imports
 #***********************************************************************************************
-import foundations.core as core
-from foundations.io import File
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***    Overall Variables
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
-LOGGING_CONSOLE_HANDLER = logging.StreamHandler(sys.stdout)
-LOGGING_CONSOLE_HANDLER.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
+#***********************************************************************************************
+#***    Module Classes And Definitions
+#***********************************************************************************************
+def upgrade(dbEngine):
+    """
+    This Definition Upgrades The Database.
 
-core.setVerbosityLevel(3)
+    @param dbEngine: Database Engine. ( Object )
+    """
+
+    LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
+
+    metadata = sqlalchemy.MetaData()
+    metadata.bind = dbEngine
+    table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
+
+    columnName = "previewImage"
+    if columnName not in table.columns:
+        LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
+        column = sqlalchemy.Column(columnName, sqlalchemy.String)
+        column.create(table)
+    else:
+        LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' Already Exists In '{2}' Table!".format(__name__, columnName, table))
+
+def downgrade(dbEngine):
+    """
+    This Definition Downgrades The Database.
+
+    @param dbEngine: Database Engine. ( Object )
+    """
+
+    pass
 
 #***********************************************************************************************
-#***	Main Python Code
-#***********************************************************************************************
-def getHDRLabsDocumentation(fileIn, fileOut):
-	"""
-	This Definition sIBL_GUI Documentation Body For HDRLabs.com.
-		
-	@param fileIn: File To Convert. ( String )
-	@param fileOut: Output File. ( String )
-	"""
-
-	LOGGER.info("{0} | Extracting 'body' Tag Content From {1}' File!".format(getHDRLabsDocumentation.__name__, fileIn))
-	file = File(fileIn)
-	file.read()
-
-	element = ElementTree.fromstringlist(file.content)
-	tree = ElementTree.ElementTree(element)
-
-	LOGGER.info("{0} | Processing 'body' Datas!".format(getHDRLabsDocumentation.__name__))
-	uls = list(tree.iter("ul"))
-	for ul in uls:
-		if "style" in ul.attrib.keys():
-			if "font-size" in ul.attrib["style"]:
-				ul.attrib["style"] = "font-size: 11pt;"
-				continue
-			if "color:rgb" in ul.attrib["style"]:
-				ul.attrib["style"] = ""
-				continue
-	content = ["{0}\n".format(line.replace("\t", "", 1)) for line in ElementTree.tostring(tree.find("body")).split("\n") if not re.search("<body>", line) and not re.search("</body>", line)]
-
-	file = File(fileOut)
-	file.content = content
-	file.write()
-
-if __name__ == "__main__":
-	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
-
-#***********************************************************************************************
-#***	Python End
+#***    Python End
 #***********************************************************************************************

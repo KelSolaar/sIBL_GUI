@@ -10,13 +10,13 @@ For Installation and Usage check the Manual / Help File available here: http://k
 sIBL_GUI depends on some other packages / repositories:
 	* Foundations package available from Github: https://github.com/KelSolaar/Foundations. You will need to create a symbolic link from "Foundations/src/foundations" to "sIBL_GUI/src/foundations" and from "Foundations/src/tests/testsFoundations" to "sIBL_GUI/src/tests/testsFoundations" or ensure the packages are available in Python path.
 	* Manager package available from Github: https://github.com/KelSolaar/Manager. You will need to create a symbolic link from "Manager/src/manager" to "sIBL_GUI/src/manager" and from "Manager/src/tests/testsManager" to "sIBL_GUI/src/tests/testsManager" or ensure the packages are available in Python path.
-	* sIBL_GUI_Templates repository available from Github: https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/siblgui/templates".
+	* sIBL_GUI_Templates repository available from Github: https://github.com/KelSolaar/sIBL_GUI_Templates. You will need to create a symbolic link from "sIBL_GUI_Templates/src/templates" to "sIBL_GUI/src/umbra/templates".
 
 Quick Repositories Cloning Commands:
 	mkdir HDRLabs
 	cd HDRLabs/
 	git clone git://github.com/KelSolaar/sIBL_GUI.git && git clone git://github.com/KelSolaar/Foundations.git &&  git clone git://github.com/KelSolaar/Manager.git && git clone git://github.com/KelSolaar/sIBL_GUI_Templates.git
-	cd sIBL_GUI/src/siblgui/
+	cd sIBL_GUI/src/umbra/
 	python sIBL_GUI.py
 
 - About -

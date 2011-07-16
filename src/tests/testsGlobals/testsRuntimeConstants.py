@@ -60,7 +60,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-from siblgui.globals.runtimeConstants import RuntimeConstants
+from umbra.globals.runtimeConstants import RuntimeConstants
 
 #***********************************************************************************************
 #***	Overall Variables

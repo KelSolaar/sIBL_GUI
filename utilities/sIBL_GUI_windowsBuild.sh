@@ -7,7 +7,7 @@ export PYINSTALLER=c:/pyinstaller
 export APPLICATION=z:/Documents/Developement/sIBL_GUI
 export PYTHONPATH=$APPLICATION/src
 
-export SOURCE=$APPLICATION/src/siblgui
+export SOURCE=$APPLICATION/src/umbra
 export RELEASES=$APPLICATION/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
