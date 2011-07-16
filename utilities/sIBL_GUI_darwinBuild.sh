@@ -3,12 +3,14 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI - Mac Os X - Overall Build
 echo ----------------------------------------------------------------
 
-export SOURCE=../../src/siblgui
-export DISTRIBUTION=./dist
-export BUILD=./build
-export UTILITIES=../../utilities
-
 alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+export APPLICATION=/Users/KelSolaar/Documents/Developement/sIBL_GUI
+
+export SOURCE=$APPLICATION/src/siblgui
+export RELEASES=$APPLICATION/releases/Darwin
+export DISTRIBUTION=$RELEASES/dist
+export BUILD=$RELEASES/build
+export UTILITIES=$APPLICATION/utilities
 
 #! Darwin Build.
 echo ----------------------------------------------------------------

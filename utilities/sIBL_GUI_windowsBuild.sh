@@ -3,17 +3,16 @@ echo ----------------------------------------------------------------
 echo sIBL_GUI - Windows - Overall Build
 echo ----------------------------------------------------------------
 
-export ROOT=z:/Documents/Developement
 export PYINSTALLER=c:/pyinstaller
-export APPLICATION=$ROOT/sIBL_GUI
+export APPLICATION=z:/Documents/Developement/sIBL_GUI
+export PYTHONPATH=$APPLICATION/src
+
 export SOURCE=$APPLICATION/src/siblgui
 export RELEASES=$APPLICATION/releases/Windows
 export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
 export DEPLOYMENT=$RELEASES/sIBL_GUI
 export UTILITIES=$APPLICATION/utilities
-
-export PYTHONPATH=$APPLICATION/src
 
 #! Windows Build.
 echo ----------------------------------------------------------------
