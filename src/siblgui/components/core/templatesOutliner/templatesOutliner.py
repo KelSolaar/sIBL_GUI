@@ -1902,7 +1902,7 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )	
 		"""
 
-		if not os.path.exists(template.helpFile):
+		if os.path.exists(template.helpFile):
 			LOGGER.info("{0} | Opening '{1}' Template Help File: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
