@@ -20,4 +20,4 @@ cp -rf ./releases/sIBL_GUI_Releases.rc ./releases/repository/sIBL_GUI/
 
 #! sIBL_GUI Manual / Help File.
 cp -rf ./support/documentation/help ./releases/repository/sIBL_GUI/
-rm ./releases/repository/sIBL_GUI/help/sIBL_GUI\ Manual
+rm ./releases/repository/sIBL_GUI/help/sIBL_GUI\ Manual.rst
