@@ -1,20 +1,20 @@
 sIBL_GUI - 4.0.0 - Stable
-~~~~~~~~~~~~~~~~~~~~~~~~~
+=========================
 
 .. raw:: html
-	
-	<div style="color: rgb(160, 48, 32);">
-		<h2>IMPORTANT NOTICES:</h2>
-		<ul>
-			<li>sIBL_GUI 4.x.x requires database migration / update, the process has been extensively tested and should work fine, however if something goes wrong a database backup will be available under sIBL_GUI preferences folder: "../HDRLabs/sIBL_GUI/database/backup".
-			</li>
-			<li>If you are using a read only database, you need to start sIBL_GUI in standard mode at least once so that the database can be migrated, otherwise the application will not be able to read the database properly and will exit.
-			</li>
-		</ul> 
-	</div>
+    
+    <div style="color: rgb(160, 48, 32);">
+        <h2>IMPORTANT NOTICES:</h2>
+        <ul>
+            <li>sIBL_GUI 4.x.x requires database migration / update, the process has been extensively tested and should work fine, however if something goes wrong a database backup will be available under sIBL_GUI preferences folder: "../HDRLabs/sIBL_GUI/database/backup".
+            </li>
+            <li>If you are using a read only database, you need to start sIBL_GUI in standard mode at least once so that the database can be migrated, otherwise the application will not be able to read the database properly and will exit.
+            </li>
+        </ul> 
+    </div>
 
 Change Log
-~~~~~~~~~~
+==========
 
 4.0.0 - Stable
 --------------
