@@ -57,7 +57,7 @@ from xml.etree import ElementTree
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
-from umbra.globals.constants import Constants
+from foundations.globals.constants import Constants
 
 #***********************************************************************************************
 #***	Global Variables
@@ -75,7 +75,7 @@ core.setVerbosityLevel(3)
 #***********************************************************************************************
 def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
-	This Definition sIBL_GUI Documentation Body For HDRLabs.com.
+	This Definition Extracts sIBL_GUI Documentation Body For HDRLabs.com.
 		
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
@@ -89,16 +89,7 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	tree = ElementTree.ElementTree(element)
 
 	LOGGER.info("{0} | Processing 'body' Datas!".format(getHDRLabsDocumentation.__name__))
-	uls = list(tree.iter("ul"))
-	for ul in uls:
-		if "style" in ul.attrib.keys():
-			if "font-size" in ul.attrib["style"]:
-				ul.attrib["style"] = "font-size: 11pt;"
-				continue
-			if "color:rgb" in ul.attrib["style"]:
-				ul.attrib["style"] = ""
-				continue
-	content = ["{0}\n".format(line.replace("\t", "", 1)) for line in ElementTree.tostring(tree.find("body")).split("\n") if not re.search("<body>", line) and not re.search("</body>", line)]
+	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 1)) for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n") if not re.search("<html:body.*", line) and not re.search("</html:body.*", line)]
 
 	file = File(fileOut)
 	file.content = content
