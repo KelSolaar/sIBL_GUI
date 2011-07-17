@@ -1,7 +1,9 @@
 char-encoding: raw
 doctype: omit
-indent: auto
+indent: true
 indent-spaces: 4
-output-xml: true
+output-xhtml: true
+merge-divs:true
 quiet: true
 show-warnings: false
+wrap: 0

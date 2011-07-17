@@ -72,6 +72,8 @@ RST2HTML = "/Library/Frameworks/Python.framework/Versions/2.7/bin/rst2html.py"
 CSS_FILE = "css/style.css"
 TIDY_SETTINGS_FILE = "tidy/tidySettings.rc"
 
+NORMALIZATION = {"document": "document", }
+
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
@@ -81,7 +83,6 @@ def reStructuredTextToHtml(fileIn, fileOut):
 		
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
-	@param title: HTML File Title. ( String )
 	"""
 
 	LOGGER.info("{0} | Converting '{1}' reStructuredText File To HTML!".format(reStructuredTextToHtml.__name__, fileIn))

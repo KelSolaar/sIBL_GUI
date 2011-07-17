@@ -21,3 +21,9 @@ A:hover {
 	text-decoration: underline;
 	color: rgb(160, 96, 64);
 }
+table {
+	border-color: rgb(96, 96, 96);
+	border-collapse: collapse;
+	border-width: 1px;
+	border-style: solid;
+}
