@@ -1,6 +1,6 @@
 |sIBL_GUI_Logo|
 
-Manual – Help File
+Manual - Help File
 ==================
 
 Table Of Content
@@ -539,7 +539,7 @@ General Page:
 -  **Logging Formatter**: Adjust sIBL_GUI logging formatter:
 
    -  Default: Default logging formatter: **Logging Level: Message**.
-   -  Extended: Extended logging formatter: **Time – Thread – Logging Level: Message**.
+   -  Extended: Extended logging formatter: **Time - Thread - Logging Level: Message**.
    -  Standard: Simple standard logging formatter: **Message**.
 
 -  **Verbose Level**: Adjust sIBL_GUI verbose level between different modes (Debug being the most verbosing, Critical the less):
@@ -930,24 +930,24 @@ Interactions:
 Api
 ===
 
-**sIBL_GUI – Api**:
+**sIBL_GUI - Api**:
 http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html
 
 Faq
 ===
 
-A “Frequently Asked Questions” thread is available on HDRLabs forum: `Smart Ibl Loaders – Faq <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491>`_
+A “Frequently Asked Questions” thread is available on HDRLabs forum: `Smart Ibl Loaders - Faq <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271612491>`_
 
 Change Log
 ==========
 
-`sIBL_GUI – Change Log <http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Change%20Log/Change%20Log.html>`_
+`sIBL_GUI - Change Log <http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Change%20Log/Change%20Log.html>`_
 
 About
 =====
 
-| sIBL_GUI by Thomas Mansencal – 2008 – 2011
-| Copyright© 2008 – 2011 – Thomas Mansencal – `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
+| sIBL_GUI by Thomas Mansencal - 2008 - 2011
+| Copyright© 2008 - 2011 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
 | This Software Is Released Under Terms Of GNU GPL V3 License: `http://www.gnu.org/licenses/ <http://www.gnu.org/licenses/>`_
 | `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_
 
