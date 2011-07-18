@@ -1,4 +1,4 @@
-|sIBL_GUI_Logo|
+§|sIBL_GUI_Logo|
 
 Manual - Help File
 ==================
@@ -397,8 +397,7 @@ While adding a new Collection, a comment can be directly provided by using a com
 | |sIBL_GUI_CollectionsOutlinerAddCollection|     |
 +-------------------------------------------------+
 
-\*\*\*
-------
+**\*\*\***
 
 _`Components Manager` (core.componentsManagerUi)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -434,8 +433,7 @@ Addons Functionalities:
 
 -  **Open Component(s) Location(s) ...**: Opens component(s) directory(s).
 
-\*\*\*
-------
+**\*\*\***
 
 _`Database Browser` (core.databaseBrowser)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -479,16 +477,14 @@ Addons Functionalities:
 -  **View Reflection Image …**: Views selected Ibls Set reflection images in either the Internal Image Previewer or the application defined in the Preview component preferences.
 -  **View Plates …**: Views selected Ibls Set plates images in either the Internal Image Previewer or the application defined in the Preview component preferences.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
 The Db component is the heart of sIBL_GUI datas storage, it provides the database manipulation, read, write and rotating backup methods.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Inspector` (core.inspector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -531,8 +527,7 @@ Addons Functionalities:
 -  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the Preview component preferences.
 -  **View Plates …**: Views the Ibl Set Inspector plates images in either the Internal Image Previewer or the application defined in the Preview component preferences.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Preferences Manager` (core.preferencesManager)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -568,8 +563,7 @@ Others Page:
 
 Those settings are components dependent and will be described per related component.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Templates Outliner` (core.templatesOutliner)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -629,8 +623,7 @@ _`About sIBL_GUI` (addons.about)
 
 The About component displays the *About* window.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Database Operations` (addons.databaseOperations)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -645,8 +638,7 @@ Interactions:
 
 -  **Synchronize Database Push Button**: Forces database synchronization by reparsing all registered files.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Gps Map` (addons.gpsMap)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -667,8 +659,7 @@ Interactions:
    -  Aerial: This map type overlays satellite imagery onto the map and highlights roads and major landmarks to be easily identifiable amongst the satellite images.
    -  Road: This map type displays vector imagery of roads, buildings, and geography.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Loader Script` (addons.loaderScript)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -691,8 +682,7 @@ Addons Functionalities:
 
 -  **Open Output Folder Push Button**: Opens the output directory.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Loader Script Options` (addons.loaderScriptOptions)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -706,8 +696,7 @@ The Loader Script Options component allows the user to tweak the way the loader 
 -  **Common Attributes**: Common Template attributes (Refer to the current Template help file for details about an attribute).
 -  **Additional Attributes**: Additional Template attributes (Refer to the current Template help file for details about an attribute).
 
-\*\*\*
-------
+**\*\*\***
 
 _`Locations Browser` (addons.locationsBrowser)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -739,16 +728,14 @@ Interactions:
 
 -  **Custom File Browser Path Line Edit**: User defined file browser executable path.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Logging Notifier` (addons.loggingNotifier)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Logging Notifier component displays logging messages in the status bar.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Logging Window` (addons.loggingWindow)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -759,8 +746,7 @@ _`Logging Window` (addons.loggingWindow)
 
 The Logging Window component is available by right clicking the main toolbar and displays sIBL_GUI verbose messages.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Online Updater` (addons.onlineUpdater)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -795,8 +781,7 @@ Interactions:
 -  **Check For New Releases On Startup Check Box**: sIBL_GUI will check for new releases on startup.
 -  **Ignore Non Existing Templates Check Box**: sIBL_GUI will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Preview` (addons.preview)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -829,8 +814,7 @@ Interactions:
 -  **Zoom Fit Push Button**: Zooms fit the Image.
 -  **Zoom Out Push Button**: Zooms out of the Image.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Raw Editing Utilities` (addons.rawEditingUtilities)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -862,8 +846,7 @@ Interactions:
 
 -  **Custom Text Editor Path Line Edit**: User defined Text Editor executable path.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Rewiring Tool` (addons.rewiringTool)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -879,8 +862,7 @@ Interactions:
 -  **Combo Boxes**: The current image will be remapped to the chosen entry.
 -  **Path Line Edits**: The current image will be remapped to the chosen custom image.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Search Database` (addons.searchDatabase)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -915,16 +897,14 @@ Search In Shot Time:
 -  **From Time Edit**: Time range search start.
 -  **To Time Edit**: Time range search end.
 
-\*\*\*
-------
+**\*\*\***
 
 _`Sets Scanner` (addons.setsScanner)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^#
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Sets Scanner component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent directory. This behavior can be stopped by deactivating the component.
 
-\*\*\*
-------
+**\*\*\***
 
 _`sIBLedit Utilities` (addons.sIBLeditUtilities)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

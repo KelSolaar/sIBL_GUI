@@ -115,9 +115,11 @@ def getSphinxDocumentationIndex(fileIn, fileOut, contentDirectory):
 			item = search.groups()[0]
 			code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
 			if code in existingFiles:
-				tocTree.append("{0}{1}{2} <{3}>\n".format("   ", " " * line.index("-"), item, "{0}/{1}".format(relativeDirectory, code)))
+				currentPage = code
+				link = "{0}/{1}".format(relativeDirectory, code)
 			else:
-				tocTree.append("{0}{1}{2}\n".format("   ", " " * line.index("-"), item))
+				link = "{0}/{1}/{2}".format(relativeDirectory, currentPage, item)
+			tocTree.append("{0}{1}{2} <{3}>\n".format("   ", " " * line.index("-"), item, link))
 		else:
 			tocTree.append("\n")
 

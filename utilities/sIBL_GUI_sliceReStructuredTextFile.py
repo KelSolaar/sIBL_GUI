@@ -72,6 +72,7 @@ core.setVerbosityLevel(3)
 
 FILES_EXTENSION = "rst"
 SLICE_ATTRIBUTE_INDENT = 2
+IGNORED_CONTENT = ("\\*\\*\\\\\\*\\\\\\*\\\\\\*\\*\\*",)
 
 #***********************************************************************************************
 #***	Main Python Code
@@ -99,7 +100,8 @@ def sliceReStructuredTextFile(fileIn, outputDirectory):
 		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, FILES_EXTENSION)))
 		LOGGER.info("{0} | Outputing '{1}' File!".format(sliceReStructuredTextFile.__name__, sliceFile.file))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or len(file.content)
-		sliceFile.content = [file.content[i] for i in range(sliceStart, sliceEnd)]
+
+		sliceFile.content = [file.content[i] for i in range(sliceStart, sliceEnd) for ignoredContent in IGNORED_CONTENT if not re.search(ignoredContent, file.content[i])]
 		sliceFile.write()
 		index += 1
 
