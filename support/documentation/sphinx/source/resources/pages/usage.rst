@@ -13,9 +13,9 @@ sIBL_GUI preferences are stored per user in their home directory:
 
 The typical sIBL_GUI preferences directory structure is the following:
 
-+----------------------------------+
-| |sIBL_GUI_PreferencesFolder|     |
-+----------------------------------+
++-------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_PreferencesFolder.jpg            |
++-------------------------------------------------------------------+
 
 Structure Description:
 
@@ -89,15 +89,15 @@ _`Ibl Sets Wizard`
 
 The first time sIBL_GUI is started a wizard asks to add Ibl Sets into the database:
 
-+--------------------------------------+
-| |sIBL_GUI_EmptyDatabaseWizard_A|     |
-+--------------------------------------+
++-----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_A.jpg            |
++-----------------------------------------------------------------------+
 
 Choose a directory where are stored some Ibl Sets and they will be added to the Default Sets Collection.
 
-+--------------------------------------+
-| |sIBL_GUI_EmptyDatabaseWizard_B|     |
-+--------------------------------------+
++-----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_EmptyDatabaseWizard_B.jpg            |
++-----------------------------------------------------------------------+
 
 _`Interface`
 ------------
@@ -112,31 +112,31 @@ sIBL_GUI interface is customizable and comes with 3 main layouts directly availa
 _`Toolbar`
 ^^^^^^^^^^
 
-+------------------------+
-| |sIBL_GUI_Toolbar|     |
-+------------------------+
++---------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_Toolbar.jpg            |
++---------------------------------------------------------+
 
 Interactions:
 
 **Right clic**: raises a context menu with the Ui Widgets list:
 
-+-----------------------------------+
-| |sIBL_GUI_ToolbarContextMenu|     |
-+-----------------------------------+
++--------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_ToolbarContextMenu.jpg            |
++--------------------------------------------------------------------+
 
 **Central Widget icon**: Shows / hides the Database Browser component widget Ui.
 
 **Layouts icon**: Raises a context menu where the user can store / restore up to 5 custom layouts and recall them whenever needed:
 
-+-----------------------------------+
-| |sIBL_GUI_LayoutsContextMenu|     |
-+-----------------------------------+
++--------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_LayoutsContextMenu.jpg            |
++--------------------------------------------------------------------+
 
 **Miscellaneous icon**: Raises a context menu with some links and miscellaneous functionalities:
 
-+-----------------------------------------+
-| |sIBL_GUI_MiscellaneousContextMenu|     |
-+-----------------------------------------+
++--------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_MiscellaneousContextMenu.jpg            |
++--------------------------------------------------------------------------+
 
 _`Library Layout`
 ^^^^^^^^^^^^^^^^^
@@ -149,9 +149,9 @@ This layout is built around 4 components:
 -  `Search Database`_ (addons.searchDatabase)
 -  `Gps Map`_ (addons.gpsMap)
 
-+----------------------------------+
-| |sIBL_GUI_SetsCentricLayout|     |
-+----------------------------------+
++-------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_SetsCentricLayout.jpg            |
++-------------------------------------------------------------------+
 
 _`Inspect Layout`
 ^^^^^^^^^^^^^^^^^
@@ -163,9 +163,9 @@ This layout is built around 3 components:
 -  `Inspector`_ (core.databaseBrowser)
 -  `Gps Map`_ (addons.gpsMap)
 
-+-------------------------------------+
-| |sIBL_GUI_InspectCentricLayout|     |
-+-------------------------------------+
++----------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_InspectCentricLayout.jpg            |
++----------------------------------------------------------------------+
 
 _`Export Layout`
 ^^^^^^^^^^^^^^^^
@@ -182,9 +182,9 @@ An additional but extremely powerful export related component is available by ri
 
 -  `Rewiring Tool`_ (addons.rewiringTool)
 
-+---------------------------------------+
-| |sIBL_GUI_TemplatesCentricLayout|     |
-+---------------------------------------+
++------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_TemplatesCentricLayout.jpg            |
++------------------------------------------------------------------------+
 
 _`Preferences Layout`
 ^^^^^^^^^^^^^^^^^^^^^
@@ -195,7 +195,7 @@ This layout is built around 2 components:
 -  `Components Manager`_ (core.componentsManagerUi)
 -  `Preferences Manager`_ (core.preferencesManager)
 
-+-----------------------------------------+
-| |sIBL_GUI_PreferencesCentricLayout|     |
-+-----------------------------------------+
++--------------------------------------------------------------------------+
+| ..  image:: ../pictures/sIBL_GUI_PreferencesCentricLayout.jpg            |
++--------------------------------------------------------------------------+
 

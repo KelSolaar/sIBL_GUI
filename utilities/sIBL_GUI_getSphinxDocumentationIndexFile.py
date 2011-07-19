@@ -106,7 +106,7 @@ def getSphinxDocumentationIndex(fileIn, fileOut, contentDirectory):
 	file.read()
 
 	existingFiles = [strings.getSplitextBasename(item) for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]
-	relativeDirectory = contentDirectory.replace(os.path.dirname(fileOut), "")
+	relativeDirectory = contentDirectory.replace("{0}/".format(os.path.dirname(fileOut)), "")
 
 	tocTree = ["\n"]
 	for line in file.content:

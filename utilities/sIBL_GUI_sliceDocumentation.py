@@ -27,13 +27,13 @@
 
 """
 ************************************************************************************************
-***	sIBL_GUI_sliceReStructuredTextFile.py
+***	sIBL_GUI_sliceDocumentation.py
 ***
 ***	Platform:
 ***		Windows
 ***
 ***	Description:
-***		Slices Provided reStructuredText File.
+***		Slices Provided Documentation File.
 ***
 ***	Others:
 ***
@@ -70,22 +70,24 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 
 core.setVerbosityLevel(3)
 
-FILES_EXTENSION = "rst"
+OUTPUT_FILES_EXTENSION = "rst"
 SLICE_ATTRIBUTE_INDENT = 2
-IGNORED_CONTENT = ("\\*\\*\\\\\\*\\\\\\*\\\\\\*\\*\\*",)
+CONTENT_DELETION = ("\\*\\*\\\\\\*\\\\\\*\\\\\\*\\*\\*",)
+CONTENT_SUBSTITUTIONS = {"resources/": "../",
+						"     \|":"            |" }
 
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def sliceReStructuredTextFile(fileIn, outputDirectory):
+def sliceDocumentation(fileIn, outputDirectory):
 	"""
-	This Definition Slices Slices Provided reStructuredText File.
+	This Definition Slices Slices Provided Documentation File.
 		
 	@param fileIn: File To Convert. ( String )
 	@param outputDirectory: Output Directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Slicing '{1}' File!".format(sliceReStructuredTextFile.__name__, fileIn))
+	LOGGER.info("{0} | Slicing '{1}' File!".format(sliceDocumentation.__name__, fileIn))
 	file = File(fileIn)
 	file.read()
 
@@ -97,16 +99,25 @@ def sliceReStructuredTextFile(fileIn, outputDirectory):
 
 	index = 0
 	for slice, sliceStart in slices.items():
-		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, FILES_EXTENSION)))
-		LOGGER.info("{0} | Outputing '{1}' File!".format(sliceReStructuredTextFile.__name__, sliceFile.file))
+		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, OUTPUT_FILES_EXTENSION)))
+		LOGGER.info("{0} | Outputing '{1}' File!".format(sliceDocumentation.__name__, sliceFile.file))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or len(file.content)
 
-		sliceFile.content = [file.content[i] for i in range(sliceStart, sliceEnd) for ignoredContent in IGNORED_CONTENT if not re.search(ignoredContent, file.content[i])]
+		sliceFile.content = []
+		for i in range(sliceStart, sliceEnd):
+			for item in CONTENT_DELETION:
+				if re.search(item, file.content[i]):
+					continue
+				line = file.content[i]
+				for pattern, value in CONTENT_SUBSTITUTIONS.items():
+					line = re.sub(pattern, value, line)
+			sliceFile.content.append(line)
+
 		sliceFile.write()
 		index += 1
 
 if __name__ == "__main__":
-	sliceReStructuredTextFile(sys.argv[1], sys.argv[2])
+	sliceDocumentation(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
 #***	Python End
