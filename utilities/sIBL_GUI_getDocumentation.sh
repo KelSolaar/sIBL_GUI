@@ -35,7 +35,9 @@ echo ----------------------------------------------------------------
 echo Sphinx Documentation Build - Begin
 echo ----------------------------------------------------------------
 python $UTILITIES/sIBL_GUI_sliceDocumentation.py "$HELP/sIBL_GUI Manual" "$SPHINX/source/resources/pages"
-python $UTILITIES/sIBL_GUI_getSphinxDocumentationIndexFile.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
+python $UTILITIES/sIBL_GUI_getSphinxDocumentationTocTree.py "$SPHINX/source/resources/pages/tocTree.rst" "$SPHINX/source/index.rst" "$SPHINX/source/resources/pages"
+rm -rf $SPHINX/build
+rm "$SPHINX/source/resources/pages/tocTree.rst"
 sphinx-build -b html -d $SPHINX/build/doctrees   $SPHINX/source $SPHINX/build/html
 echo ----------------------------------------------------------------
 echo Sphinx Documentation Build - End

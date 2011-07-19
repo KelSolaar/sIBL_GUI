@@ -89,11 +89,12 @@ def reStructuredTextToHtml(fileIn, fileOut):
 	os.system("{0} --stylesheet-path='{1}' '{2}' > '{3}'".format(RST2HTML, os.path.join(os.path.dirname(__file__), CSS_FILE), fileIn, fileOut))
 
 
-	LOGGER.info("{0} | Formatting HTML File!".format(reStructuredTextToHtml.__name__))
+	LOGGER.info("{0} | Formatting HTML File!".format("Tidy"))
 	os.system("tidy -config {0} -m '{1}'".format(os.path.join(os.path.dirname(__file__), TIDY_SETTINGS_FILE), fileOut))
 
 	file = File(fileOut)
 	file.read()
+	LOGGER.info("{0} | Replacing Spaces With Tabs!".format(reStructuredTextToHtml.__name__))
 	file.content = [line.replace(" " * 4, "\t") for line in file.content]
 	file.write()
 

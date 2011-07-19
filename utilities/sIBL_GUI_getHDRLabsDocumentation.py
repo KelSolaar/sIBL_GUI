@@ -85,6 +85,7 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	file = File(fileIn)
 	file.read()
 
+	LOGGER.info("{0} | Building 'ElementTree' Parsing Tree!".format(getHDRLabsDocumentation.__name__))
 	element = ElementTree.fromstringlist(file.content)
 	tree = ElementTree.ElementTree(element)
 

@@ -27,13 +27,13 @@
 
 """
 ************************************************************************************************
-***	sIBL_GUI_getSphinxDocumentationIndexFile.py
+***	sIBL_GUI_getSphinxDocumentationTocTree.py
 ***
 ***	Platform:
 ***		Windows
 ***
 ***	Description:
-***		Gets Sphinx Documentation Index File.
+***		Gets Sphinx Documentation Toc Tree File.
 ***
 ***	Others:
 ***
@@ -74,25 +74,23 @@ core.setVerbosityLevel(3)
 
 FILES_EXTENSION = ".rst"
 
-INDEX_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI's documentation!\n",
-						"====================================\n",
+TOCTREE_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI |version|'s documentation!\n",
+						"==============================================\n",
 						"\n",
 						"Contents:\n",
 						"\n",
 						".. toctree::\n",
 						"   :maxdepth: 3\n",
 						"   :numbered:\n"]
-INDEX_TEMPLATE_END = ["Indices and tables\n"
+TOCTREE_TEMPLATE_END = ["Search:\n"
 					"==================\n"
 					"\n"
-					"* :ref:`genindex`\n"
-					"* :ref:`modindex`\n"
 					"* :ref:`search`\n"]
 
 #***********************************************************************************************
 #***	Main Python Code
 #***********************************************************************************************
-def getSphinxDocumentationIndex(fileIn, fileOut, contentDirectory):
+def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
 	This Definition Gets Sphinx Documentation Index File.
 		
@@ -101,7 +99,7 @@ def getSphinxDocumentationIndex(fileIn, fileOut, contentDirectory):
 	@param contentDirectory: Content Directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Building Sphinx Documentation Index '{1}' File!".format(getSphinxDocumentationIndex.__name__, fileOut))
+	LOGGER.info("{0} | Building Sphinx Documentation Index '{1}' File!".format(getSphinxDocumentationTocTree.__name__, fileOut))
 	file = File(fileIn)
 	file.read()
 
@@ -111,28 +109,28 @@ def getSphinxDocumentationIndex(fileIn, fileOut, contentDirectory):
 	tocTree = ["\n"]
 	for line in file.content:
 		search = re.search("`([a-zA-Z_ ]+)`_", line)
-		if search:
-			item = search.groups()[0]
-			code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
-			if code in existingFiles:
-				currentPage = code
-				link = "{0}/{1}".format(relativeDirectory, code)
-			else:
-				link = "{0}/{1}/{2}".format(relativeDirectory, currentPage, item)
-			tocTree.append("{0}{1}{2} <{3}>\n".format("   ", " " * line.index("-"), item, link))
-		else:
-			tocTree.append("\n")
+		if not search:
+			continue
 
-	content = INDEX_TEMPLATE_BEGIN
+		item = search.groups()[0]
+		code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
+		if code in existingFiles:
+			link = "{0}/{1}".format(relativeDirectory, code)
+			datas = "{0}{1}{2} <{3}>\n".format("   ", " " * line.index("-"), item, link)
+			LOGGER.info("{0} | Adding '{1}' Entry To Toc Tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
+			tocTree.append(datas)
+	tocTree.append("\n")
+
+	content = TOCTREE_TEMPLATE_BEGIN
 	content.extend(tocTree)
-	content.extend(INDEX_TEMPLATE_END)
+	content.extend(TOCTREE_TEMPLATE_END)
 
 	file = File(fileOut)
 	file.content = content
 	file.write()
 
 if __name__ == "__main__":
-	getSphinxDocumentationIndex(sys.argv[1], sys.argv[2], sys.argv[3])
+	getSphinxDocumentationTocTree(sys.argv[1], sys.argv[2], sys.argv[3])
 
 #***********************************************************************************************
 #***	Python End

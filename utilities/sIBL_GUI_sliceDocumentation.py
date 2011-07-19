@@ -107,10 +107,16 @@ def sliceDocumentation(fileIn, outputDirectory):
 		for i in range(sliceStart, sliceEnd):
 			for item in CONTENT_DELETION:
 				if re.search(item, file.content[i]):
+					LOGGER.info("{0} | Skipping Line '{1}' With '{2}' Content!".format(sliceDocumentation.__name__, i, item))
 					continue
 				line = file.content[i]
 				for pattern, value in CONTENT_SUBSTITUTIONS.items():
 					line = re.sub(pattern, value, line)
+
+				search = re.search("-  `[a-zA-Z0-9_ ]+`_ \(([a-zA-Z0-9_\.]+)\)", line)
+				if search:
+					LOGGER.info("{0} | Updating Line '{1}' Link: '{2}'!".format(sliceDocumentation.__name__, i, search.groups()[0]))
+					line = "-  :ref:`{0}`\n".format(search.groups()[0])
 			sliceFile.content.append(line)
 
 		sliceFile.write()

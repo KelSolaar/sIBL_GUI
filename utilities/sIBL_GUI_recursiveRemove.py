@@ -61,12 +61,13 @@ def recursiveRemove(rootDirectory, pattern):
 	@param pattern: Pattern To Match. ( String )
 	"""
 
-	if os.path.exists(rootDirectory):
-		for root, dirs, files in os.walk(rootDirectory):
-			for item in files:
-				itemPath = os.path.join(root, item).replace("\\", "/")
-				if pattern in str(item):
-					remove(itemPath)
+	if not os.path.exists(rootDirectory):
+		return
+	for root, dirs, files in os.walk(rootDirectory):
+		for item in files:
+			itemPath = os.path.join(root, item).replace("\\", "/")
+			if pattern in str(item):
+				remove(itemPath)
 
 def remove(item):
 	"""
@@ -74,11 +75,11 @@ def remove(item):
 	@param item: Item To Delete. ( String )
 	"""
 
-	print("remove | Removing: '%s'" % item)
+	print("{0} | Removing: '{1}'".format(remove.__name__, item))
 	try:
 		os.remove(item)
 	except:
-		print("remove | '%s' Remove Failed!" % item)
+		print("{0} | '{1}' Remove Failed!".format(remove.__name__, item))
 
 if __name__ == "__main__":
 	recursiveRemove(sys.argv[1], sys.argv[2])

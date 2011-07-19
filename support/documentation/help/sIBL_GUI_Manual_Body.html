@@ -166,29 +166,48 @@
 		<h1>
 			<span class="target" id="introduction">Introduction</span>
 		</h1>
+		<div class="line-block">
+			<div class="line">
+				<em>sIBL_GUI</em> is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (&#8220;.Ibl&#8221;).
+			</div>
+			<div class="line">
+				What is sIBL? It&#8217;s a short for &#8220;Smart IBL&#8221;, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
+			</div>
+		</div>
 		<p>
-			sIBL_GUI is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (&#8220;.Ibl&#8221;). What is sIBL? It&#8217;s a short for &#8220;Smart IBL&#8221;, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice. More detailed informations are available here: <a class="reference external" href="http://www.smartibl.com">http://www.smartibl.com</a>.
+			More detailed informations are available here: <a class="reference external" href="http://www.smartibl.com">http://www.smartibl.com</a>.
 		</p>
 		<div class="section" id="id2">
 			<h2>
 				<span class="target" id="features">Features</span>
 			</h2>
 			<p>
-				Why an external application instead of directly using scripting possibilities of the 3d package itself? There are advantages and issues with both methods. With an external application, &#8220;.Ibl&#8221; files format parsing, Collections management and database inspection are handled by that application, you write that framework once and then you can reuse it for other 3d packages. The bridge between sIBL_GUI and the 3d package is done through Templates that output simple loader scripts. That&#8217;s one of sIBL_GUI strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as sIBL_GUI would have taken days if not weeks.
+				Why an external application instead of directly using scripting possibilities of the 3d package itself? There are advantages and issues with both methods.
 			</p>
 			<p>
-				sIBL_GUI is built in Python:
+				With an external application, &#8220;.Ibl&#8221; files format parsing, Collections management and database inspection are handled by that application, you write that framework once and then you can reuse it for other 3d packages.
+			</p>
+			<p>
+				The bridge between <em>sIBL_GUI</em> and the 3d package is done through Templates that output simple loader scripts. That&#8217;s one of <em>sIBL_GUI</em> strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as <em>sIBL_GUI</em> would have taken days if not weeks.
+			</p>
+			<p>
+				<em>sIBL_GUI</em> is built in <a class="reference external" href="http://www.python.org/">Python 2.7.1</a> and uses some others major libraries / tools:
 			</p>
 			<ul class="simple">
 				<li>
-					<a class="reference external" href="http://www.python.org/">http://www.python.org/</a>.
-				</li>
-				<li>Nokia Qt Ui Framework: <a class="reference external" href="http://qt.nokia.com/">http://qt.nokia.com/</a> is used for the Interface thanks to PyQt bindings:
+					<a class="reference external" href="http://qt.nokia.com/">Nokia Qt Ui Framework</a> is used for the Interface thanks to <a class="reference external" href="http://www.riverbankcomputing.co.uk/">Pyqt</a> bindings.
 				</li>
 				<li>
-					<a class="reference external" href="http://www.riverbankcomputing.co.uk/">http://www.riverbankcomputing.co.uk/</a>
+					<a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a> provides the database backbone.
 				</li>
-				<li>SQLAlchemy: <a class="reference external" href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a> provides the database backbone.
+				<li>
+					<a class="reference external" href="http://code.google.com/p/sqlalchemy-migrate/">SQLAlchemy-migrate</a> adds support for database migrations.
+				</li>
+				<li>
+					<a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> provides the documentation build system.
+				</li>
+				<li>
+					<a class="reference external" href="http://tidy.sourceforge.net/">Tidy</a> is used to cleanup docutils documentation html files.
 				</li>
 			</ul>
 			<p>
@@ -212,7 +231,10 @@
 				and much more&#8230;
 			</p>
 			<p>
-				Additional informations about sIBL_GUI are available into this development thread: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI Thread</a> The source code is available on <a class="reference external" href="http://github.com/">github</a>: <a class="reference external" href="http://github.com/KelSolaar">http://github.com/KelSolaar</a>
+				Additional informations about <em>sIBL_GUI</em> are available into this development thread: <a class="reference external" href="http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371">sIBL_GUI Thread</a>
+			</p>
+			<p>
+				The source code is available on <a class="reference external" href="http://github.com/">github</a>: <a class="reference external" href="http://github.com/KelSolaar">http://github.com/KelSolaar</a>
 			</p>
 		</div>
 	</div>
@@ -233,22 +255,27 @@
 				<span class="target" id="mac-os-x-platform">Mac Os X Platform</span>
 			</h2>
 			<p>
-				Download &#8220;sIBL_GUI.dmg&#8221;. Open it and drag &#8220;sIBL_GUI.app&#8221; into the &#8220;Application&#8221; directory.
+				Open &#8220;sIBL_GUI.dmg&#8221; and drag &#8220;sIBL_GUI.app&#8221; into the &#8220;Application&#8221; directory.
 			</p>
 		</div>
 		<div class="section" id="id6">
 			<h2>
 				<span class="target" id="linux-platform">Linux Platform</span>
 			</h2>
-			<p>
-				sIBL_GUI 3 is currently not built on Linux because of several issues. You can however grab the source code at Github.com: <a class="reference external" href="http://github.com/KelSolaar/sIBL_GUI">http://github.com/KelSolaar/sIBL_GUI</a> and launch sIBL_GUI.py file from a shell.
-			</p>
+			<div class="line-block">
+				<div class="line">
+					<em>sIBL_GUI 4</em> is currently not built on Linux because of several issues.
+				</div>
+				<div class="line">
+					You can however grab the source code at Github.com: <a class="reference external" href="http://github.com/KelSolaar/sIBL_GUI">http://github.com/KelSolaar/sIBL_GUI</a> and launch sIBL_GUI.py file from a shell.
+				</div>
+			</div>
 			<p>
 				You will need those dependencies:
 			</p>
 			<ul class="simple">
 				<li>
-					<strong>Python 2.7</strong>: <a class="reference external" href="http://www.python.org/">http://www.python.org/</a>
+					<strong>Python 2.7.1</strong>: <a class="reference external" href="http://www.python.org/">http://www.python.org/</a>
 				</li>
 				<li>
 					<strong>PyQt</strong>: <a class="reference external" href="http://www.riverbankcomputing.co.uk/">http://www.riverbankcomputing.co.uk/</a>
@@ -263,18 +290,29 @@
 					<strong>SQLAlchemy-migrate</strong>: <a class="reference external" href="http://code.google.com/p/sqlalchemy-migrate/">http://code.google.com/p/sqlalchemy-migrate/</a>
 				</li>
 			</ul>
+			<p>
+				If you want to build the documentation you will need:
+			</p>
+			<ul class="simple">
+				<li>
+					<strong>Sphinx</strong>: <a class="reference external" href="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</a>
+				</li>
+				<li>
+					<strong>Tidy</strong> <a class="reference external" href="http://tidy.sourceforge.net/">http://tidy.sourceforge.net/</a>
+				</li>
+			</ul>
 		</div>
 	</div>
-	<div class="section" id="id11">
+	<div class="section" id="id7">
 		<h1>
 			<span class="target" id="usage">Usage</span>
 		</h1>
-		<div class="section" id="id12">
+		<div class="section" id="id8">
 			<h2>
 				<span class="target" id="user-preferences">User Preferences</span>
 			</h2>
 			<p>
-				sIBL_GUI preferences are stored per user in their home directory:
+				<em>sIBL_GUI</em> preferences are stored per user in their home directory:
 			</p>
 			<ul class="simple">
 				<li>C:\Users\$USER\AppData\Roaming\HDRLabs\sIBL_GUI on Windows 7
@@ -287,7 +325,7 @@
 				</li>
 			</ul>
 			<p>
-				The typical sIBL_GUI preferences directory structure is the following:
+				The typical <em>sIBL_GUI</em> preferences directory structure is the following:
 			</p>
 			<table border="1" class="docutils">
 				<colgroup>
@@ -306,22 +344,22 @@
 			</p>
 			<ul class="simple">
 				<li>
-					<strong>Templates</strong>: Directory storing user Templates (This directory is scanned by sIBL_GUI when importing default Templates).
+					<strong>Templates</strong>: Directory storing user Templates (This directory is scanned by <em>sIBL_GUI</em> when importing default Templates).
 				</li>
 				<li>
-					<strong>settings</strong>: Directory storing sIBL_GUI settings file.
+					<strong>settings</strong>: Directory storing <em>sIBL_GUI</em> settings file.
 				</li>
 				<li>
-					<strong>logging</strong>: Directory storing sIBL_GUI logging file.
+					<strong>logging</strong>: Directory storing <em>sIBL_GUI</em> logging file.
 				</li>
 				<li>
-					<strong>io</strong>: Directory used for sIBL_GUI input / output operations.
+					<strong>io</strong>: Directory used for <em>sIBL_GUI</em> input / output operations.
 					<ul>
 						<li>
-							<strong>remote</strong>: Directory used by the Online Updater component when it downloads online files.
+							<strong>remote</strong>: Directory used by the <em>Online Updater</em> component when it downloads online files.
 						</li>
 						<li>
-							<strong>loaderScripts</strong>: Directory used as output directory by the Loader Script component.
+							<strong>loaderScripts</strong>: Directory used as output directory by the <em>Loader Script</em> component.
 						</li>
 					</ul>
 				</li>
@@ -329,7 +367,7 @@
 					<strong>database</strong>: Directory storing the SQLite database.
 					<ul>
 						<li>
-							<strong>backup</strong>: Directory used by the Db component when it backups the database.
+							<strong>backup</strong>: Directory used by the <em>Db</em> component when it backups the database.
 						</li>
 					</ul>
 				</li>
@@ -338,12 +376,12 @@
 				</li>
 			</ul>
 		</div>
-		<div class="section" id="id13">
+		<div class="section" id="id9">
 			<h2>
 				<span class="target" id="command-line-parameters">Command Line Parameters</span>
 			</h2>
 			<p>
-				sIBL_GUI accepts various command line parameters:
+				<em>sIBL_GUI</em> accepts various command line parameters:
 			</p>
 			<ul class="simple">
 				<li>
@@ -378,21 +416,25 @@
 				</li>
 			</ul>
 			<p>
-				Note: On Mac Os X, sIBL_GUI is launched from command line doing the following: &#8220;cd&#8221; into &#8220;sIBL_GUI.app&#8221; directory and enter &#8220;./Contents/MacOS/sIBL_GUI&#8221; followed by the parameters.
+				Note: On Mac Os X, <em>sIBL_GUI</em> is launched from command line doing the following:
 			</p>
+			<pre class="literal-block">
+cd sIBL_GUI.app
+./Contents/MacOS/sIBL_GUI
+</pre>
 		</div>
-		<div class="section" id="id14">
+		<div class="section" id="id10">
 			<h2>
 				<span class="target" id="shared-database-configuration">Shared Database Configuration</span>
 			</h2>
 			<p>
-				If you want to share the same Database between multiple installed versions of sIBL_GUI there are 2 solutions:
+				If you want to share the same Database between multiple installed versions of <em>sIBL_GUI</em> there are 2 solutions:
 			</p>
 			<p>
 				<strong>Dirty Method</strong>
 			</p>
 			<p>
-				Copy the Database file <strong>sIBL_Database.sqlite</strong> on every machine that have sIBL_GUI installed.
+				Copy the Database file <strong>sIBL_Database.sqlite</strong> on every machine that have <em>sIBL_GUI</em> installed.
 			</p>
 			<p>
 				The file is located in one of those directory depending your OS:
@@ -411,11 +453,11 @@
 				<strong>Recommended Method</strong>
 			</p>
 			<p>
-				It&#8217;s possible to share one Database file between multiple sIBL_GUI install. In order to do that you need to start sIBL_GUI with some command line parameters:
+				It&#8217;s possible to share one Database file between multiple <em>sIBL_GUI</em> install. In order to do that you need to start <em>sIBL_GUI</em> with some command line parameters:
 			</p>
 			<ul class="simple">
 				<li>
-					<strong>-d DATABASEDIRECTORY, &#8212;databaseDirectory=DATABASEDIRECTORY</strong>: This one is mandatory for what you want to do, it will tell sIBL_GUI to store / use the database on the provided path.
+					<strong>-d DATABASEDIRECTORY, &#8212;databaseDirectory=DATABASEDIRECTORY</strong>: This one is mandatory for what you want to do, it will tell <em>sIBL_GUI</em> to store / use the database on the provided path.
 				</li>
 				<li>
 					<strong>-r, &#8212;databaseReadOnly</strong>: This one is optional, but HIGHLY recommended: It will hide / unexpose from the UI all methods that can write to the Database. That&#8217;s something important because the last thing you want is someone screwing the whole database by doing a mistake.
@@ -424,25 +466,25 @@
 			<p>
 				Example Command Line:
 			</p>
-			<blockquote>
-				C:\HDRLabs\sIBL_GUI\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
-			</blockquote>
+			<pre class="literal-block">
+C:\\HDRLabs\\sIBL_GUI\\sIBL_GUI.exe -d &#8220;Z:/sIBL_Database/&#8221; -r
+</pre>
 			<p>
 				When the Database is read only, the automatic scanner adding new Ibl Sets is deactivated meaning that newly Ibl Sets dropped into your library directory won&#8217;t be added automatically.
 			</p>
 			<p>
-				It&#8217;s a good idea to put the Database with a real file system write lock in case someone launch a sIBL_GUI instance without the command line arguments.
+				It&#8217;s a good idea to put the Database with a real file system write lock in case someone launch a <em>sIBL_GUI</em> instance without the command line arguments.
 			</p>
 			<p>
 				That way you can have artists using the Database a supervisor has defined, and even using different Databases depending on their current production.
 			</p>
 		</div>
-		<div class="section" id="id15">
+		<div class="section" id="id11">
 			<h2>
 				<span class="target" id="ibl-sets-wizard">Ibl Sets Wizard</span>
 			</h2>
 			<p>
-				The first time sIBL_GUI is started a wizard asks to add Ibl Sets into the database:
+				The first time <em>sIBL_GUI</em> is started a wizard asks to add Ibl Sets into the database:
 			</p>
 			<table border="1" class="docutils">
 				<colgroup>
@@ -472,12 +514,12 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="section" id="id16">
+		<div class="section" id="id12">
 			<h2>
 				<span class="target" id="interface">Interface</span>
 			</h2>
 			<p>
-				sIBL_GUI interface is customizable and comes with 3 main layouts directly available from the main toolbar:
+				<em>sIBL_GUI</em> interface is customizable and comes with 3 main layouts directly available from the main toolbar:
 			</p>
 			<ul class="simple">
 				<li>
@@ -493,7 +535,7 @@
 					<a class="reference internal" href="#preferences-layout">Preferences Layout</a>
 				</li>
 			</ul>
-			<div class="section" id="id17">
+			<div class="section" id="id13">
 				<h3>
 					<span class="target" id="toolbar">Toolbar</span>
 				</h3>
@@ -528,7 +570,7 @@
 					</tbody>
 				</table>
 				<p>
-					<strong>Central Widget icon</strong>: Shows / hides the Database Browser component widget Ui.
+					<strong>Central Widget icon</strong>: Shows / hides the <em>Database Browser</em> component widget Ui.
 				</p>
 				<p>
 					<strong>Layouts icon</strong>: Raises a context menu where the user can store / restore up to 5 custom layouts and recall them whenever needed:
@@ -561,12 +603,15 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="section" id="id18">
+			<div class="section" id="id14">
 				<h3>
 					<span class="target" id="library-layout">Library Layout</span>
 				</h3>
 				<p>
-					The Library layout is where most of the Ibl Sets management is done. This layout is built around 4 components:
+					The <em>Library layout</em> is where most of the Ibl Sets management is done.
+				</p>
+				<p>
+					This layout is built around 4 components:
 				</p>
 				<ul class="simple">
 					<li>
@@ -595,19 +640,22 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="section" id="id19">
+			<div class="section" id="id15">
 				<h3>
 					<span class="target" id="inspect-layout">Inspect Layout</span>
 				</h3>
 				<p>
-					The Inspect layout is where Ibl Set inspection is done. This layout is built around 3 components:
+					The <em>Inspect layout</em> is where Ibl Set inspection is done.
+				</p>
+				<p>
+					This layout is built around 3 components:
 				</p>
 				<ul class="simple">
 					<li>
 						<a class="reference internal" href="#collections-outliner">Collections Outliner</a> (core.collectionsOutliner)
 					</li>
 					<li>
-						<a class="reference internal" href="#inspector">Inspector</a> (core.databaseBrowser)
+						<a class="reference internal" href="#inspector">Inspector</a> (core.inspector)
 					</li>
 					<li>
 						<a class="reference internal" href="#gps-map">Gps Map</a> (addons.gpsMap)
@@ -626,12 +674,15 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="section" id="id20">
+			<div class="section" id="id16">
 				<h3>
 					<span class="target" id="export-layout">Export Layout</span>
 				</h3>
 				<p>
-					The Export layout is where the bridge between sIBL_GUI and the 3d packages is created. This layout is built around 4 components:
+					The <em>Export layout</em> is where the bridge between <em>sIBL_GUI</em> and the 3d packages is created.
+				</p>
+				<p>
+					This layout is built around 4 components:
 				</p>
 				<ul class="simple">
 					<li>
@@ -668,12 +719,15 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="section" id="id21">
+			<div class="section" id="id17">
 				<h3>
 					<span class="target" id="preferences-layout">Preferences Layout</span>
 				</h3>
 				<p>
-					The Preferences layout is where sIBL_GUI behavior is configured. This layout is built around 2 components:
+					The <em>Preferences layout</em> is where <em>sIBL_GUI</em> behavior is configured.
+				</p>
+				<p>
+					This layout is built around 2 components:
 				</p>
 				<ul class="simple">
 					<li>
@@ -698,12 +752,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="section" id="id22">
+	<div class="section" id="id18">
 		<h1>
 			<span class="target" id="components">Components</span>
 		</h1>
 		<p>
-			sIBL_GUI has currently 2 categories of components:
+			<em>sIBL_GUI</em> has currently 2 categories of components:
 		</p>
 		<ul class="simple">
 			<li>
@@ -727,11 +781,12 @@
 				<strong>User</strong> (User optional components, deactivable and removable)
 			</li>
 		</ul>
-		<div class="section" id="id23">
+		<div class="section" id="id19">
 			<h2>
 				<span class="target" id="core">Core</span>
 			</h2>
 			<div class="section" id="collections-outliner-core-collectionsoutliner">
+				<span id="core-collectionsoutliner" />
 				<h3>
 					<span class="target" id="collections-outliner">Collections Outliner</span> (core.collectionsOutliner)
 				</h3>
@@ -747,9 +802,14 @@
 						</tr>
 					</tbody>
 				</table>
-				<p>
-					The Collections Outliner component is where the Ibl Sets are organized into Collections for better management. There is a Default Collection where Ibl Sets fall when they are added without a specific Collection container.
-				</p>
+				<div class="line-block">
+					<div class="line">
+						The <em>Collections Outliner</em> component is where the Ibl Sets are organized into Collections for better management.
+					</div>
+					<div class="line">
+						There is a <em>Default Collection</em> where Ibl Sets fall when they are added without a specific Collection container.
+					</div>
+				</div>
 				<p>
 					Interactions:
 				</p>
@@ -763,7 +823,7 @@
 					<li>
 						<strong>Drag&#8217;n&#8217;drop</strong>:
 						<ul>
-							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the Database Browser component to a Collections Outliner component Collection change sets current Collection.
+							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a Collections Outliner component Collection change sets current Collection.
 							</li>
 							<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 							</li>
@@ -833,6 +893,7 @@
 				</p>
 			</div>
 			<div class="section" id="components-manager-core-componentsmanagerui">
+				<span id="core-componentsmanagerui" />
 				<h3>
 					<span class="target" id="components-manager">Components Manager</span> (core.componentsManagerUi)
 				</h3>
@@ -849,7 +910,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Components Manager component allows sIBL_GUI addons and user components activation / deactivation (Core components are required and not deactivable). Selected components details are displayed in the bottom <em>Components Informations</em> widget.
+					The <em>Components Manager</em> component allows <em>sIBL_GUI</em> addons and user components activation / deactivation (Core components are required and not deactivable). Selected components details are displayed in the bottom <em>Components Informations</em> widget.
 				</p>
 				<p>
 					Interactions:
@@ -915,6 +976,7 @@
 				</p>
 			</div>
 			<div class="section" id="database-browser-core-databasebrowser">
+				<span id="core-databasebrowser" />
 				<h3>
 					<span class="target" id="database-browser">Database Browser</span> (core.databaseBrowser)
 				</h3>
@@ -931,7 +993,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Database Browser component is the central component where Ibl Sets are viewed and chosen for export. The component is tracking the Ibl Sets files on the disk and reload them automatically when modified.
+					The <em>Database Browser</em> component is the central component where Ibl Sets are viewed and chosen for export. The component is tracking the Ibl Sets files on the disk and reload them automatically when modified.
 				</p>
 				<p>
 					Interactions:
@@ -946,7 +1008,7 @@
 					<li>
 						<strong>Drag&#8217;n&#8217;drop</strong>:
 						<ul>
-							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the Database Browser component to a Collections Outliner component Collection change the selected sets Collection.
+							<li>Drag&#8217;n&#8217;dropping an Ibl Sets selection from the <em>Database Browser</em> component to a <em>Collections Outliner</em> component Collection change the selected sets Collection.
 							</li>
 							<li>Drag&#8217;n&#8217;dropping some Ibl Sets files or directories from the Os will raise a message box asking confirmation for their addition into the database.
 							</li>
@@ -976,10 +1038,10 @@
 				</table>
 				<ul class="simple">
 					<li>
-						<strong>Add Content &#8230;</strong>: Recursively adds chosen directory Ibl Sets into the database assigning them to the selected Collections Outliner component Collection or the Default Collection if none is selected.
+						<strong>Add Content &#8230;</strong>: Recursively adds chosen directory Ibl Sets into the database assigning them to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
 					</li>
 					<li>
-						<strong>Add Ibl Set &#8230;</strong>: Adds the selected Ibl Set file into the database assigning it to the selected Collections Outliner component Collection or the Default Collection if none is selected.
+						<strong>Add Ibl Set &#8230;</strong>: Adds the selected Ibl Set file into the database assigning it to the selected <em>Collections Outliner</em> component Collection or the Default Collection if none is selected.
 					</li>
 					<li>
 						<strong>Remove Ibl Set(s) ...</strong>: Removes selected Ibl Sets from the database.
@@ -993,7 +1055,7 @@
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Edit In sIBLedit &#8230;</strong>: Sends selected Ibl Sets to sIBLedit.
+						<strong>Edit In sIBLedit &#8230;</strong>: Sends selected Ibl Sets to <em>sIBLedit</em>.
 					</li>
 					<li>
 						<strong>Edit In Text Editor &#8230;</strong>: Edits selected Ibl Sets with system or custom user defined text editor.
@@ -1002,16 +1064,16 @@
 						<strong>Open Ibl Set(s) Location(s) ...</strong>: Opens selected Ibl Sets directories.
 					</li>
 					<li>
-						<strong>View Background Image &#8230;</strong>: Views selected Ibl Sets background images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Background Image &#8230;</strong>: Views selected Ibl Sets background images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Lighting Image &#8230;</strong>: Views selected Ibls Set lighting images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Lighting Image &#8230;</strong>: Views selected Ibls Set lighting images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Reflection Image &#8230;</strong>: Views selected Ibls Set reflection images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Reflection Image &#8230;</strong>: Views selected Ibls Set reflection images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Plates &#8230;</strong>: Views selected Ibls Set plates images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Plates &#8230;</strong>: Views selected Ibls Set plates images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
 				<p>
@@ -1023,13 +1085,14 @@
 					<span class="target" id="db">Db</span> (core.db)
 				</h3>
 				<p>
-					The Db component is the heart of sIBL_GUI datas storage, it provides the database manipulation, read, write and rotating backup methods.
+					The <em>Db</em> component is the heart of <em>sIBL_GUI</em> datas storage, it provides the database manipulation, read, write and rotating backup methods.
 				</p>
 				<p>
 					<strong>***</strong>
 				</p>
 			</div>
 			<div class="section" id="inspector-core-inspector">
+				<span id="core-inspector" />
 				<h3>
 					<span class="target" id="inspector">Inspector</span> (core.inspector)
 				</h3>
@@ -1046,7 +1109,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Database Browser component allows Ibl Set inspection.
+					The <em>Inspector</em> component allows Ibl Set inspection.
 				</p>
 				<p>
 					Interactions:
@@ -1076,16 +1139,16 @@
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>View Background Image Push Button</strong>: Views Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Background Image Push Button</strong>: Views Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Lighting Image Push Button</strong>: Views Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Lighting Image Push Button</strong>: Views Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Reflection Image Push Button</strong>: Views Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Reflection Image Push Button</strong>: Views Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Plates Push Button</strong>: Views Inspector Ibl Set plates images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Plates Push Button</strong>: Views Inspector Ibl Set plates images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
 				<p>
@@ -1108,7 +1171,7 @@
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Edit In sIBLedit &#8230;</strong>: Sends Inspector Ibl Set to sIBLedit.
+						<strong>Edit In sIBLedit &#8230;</strong>: Sends Inspector Ibl Set to <em>sIBLedit</em>.
 					</li>
 					<li>
 						<strong>Edit In Text Editor &#8230;</strong>: Edits Inspector Ibl Set with system or custom user defined text editor.
@@ -1117,16 +1180,16 @@
 						<strong>Open Ibl Set(s) Location(s) ...</strong>: Opens Inspector Ibl Sets directory.
 					</li>
 					<li>
-						<strong>View Background Image &#8230;</strong>: Views the Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Background Image &#8230;</strong>: Views the Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Lighting Image &#8230;</strong>: Views the Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Lighting Image &#8230;</strong>: Views the Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Reflection Image &#8230;</strong>: Views the Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Reflection Image &#8230;</strong>: Views the Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 					<li>
-						<strong>View Plates &#8230;</strong>: Views the Ibl Set Inspector plates images in either the Internal Image Previewer or the application defined in the Preview component preferences.
+						<strong>View Plates &#8230;</strong>: Views the Ibl Set Inspector plates images in either the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 					</li>
 				</ul>
 				<p>
@@ -1134,6 +1197,7 @@
 				</p>
 			</div>
 			<div class="section" id="preferences-manager-core-preferencesmanager">
+				<span id="core-preferencesmanager" />
 				<h3>
 					<span class="target" id="preferences-manager">Preferences Manager</span> (core.preferencesManager)
 				</h3>
@@ -1150,11 +1214,11 @@
 					</tbody>
 				</table>
 				<p>
-					The Preferences Manager component is used to configure sIBL_GUI behavior. There are 2 pages where settings can be changed:
+					The <em>Preferences Manager</em> component is used to configure <em>sIBL_GUI</em> behavior. There are 2 pages where settings can be changed:
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>General</strong>: Overall sIBL_GUI settings.
+						<strong>General</strong>: Overall <em>sIBL_GUI</em> settings.
 					</li>
 					<li>
 						<strong>Others</strong>: Components settings.
@@ -1165,7 +1229,7 @@
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Logging Formatter</strong>: Adjust sIBL_GUI logging formatter:
+						<strong>Logging Formatter</strong>: Adjusts <em>sIBL_GUI</em> logging formatter:
 						<ul>
 							<li>Default: Default logging formatter: <strong>Logging Level: Message</strong>.
 							</li>
@@ -1176,7 +1240,7 @@
 						</ul>
 					</li>
 					<li>
-						<strong>Verbose Level</strong>: Adjust sIBL_GUI verbose level between different modes (Debug being the most verbosing, Critical the less):
+						<strong>Verbose Level</strong>: Adjusts <em>sIBL_GUI</em> verbose level between different modes (Debug being the most verbosing, Critical the less):
 						<ul>
 							<li>Debug
 							</li>
@@ -1191,7 +1255,7 @@
 						</ul>
 					</li>
 					<li>
-						<strong>Restore Geometry On Layout Change</strong>: sIBL_GUI window size and position will be restored when switching layouts.
+						<strong>Restore Geometry On Layout Change</strong>: <em>sIBL_GUI</em> window size and position will be restored when switching layouts.
 					</li>
 				</ul>
 				<p>
@@ -1205,6 +1269,7 @@
 				</p>
 			</div>
 			<div class="section" id="templates-outliner-core-templatesoutliner">
+				<span id="core-templatesoutliner" />
 				<h3>
 					<span class="target" id="templates-outliner">Templates Outliner</span> (core.templatesOutliner)
 				</h3>
@@ -1221,17 +1286,17 @@
 					</tbody>
 				</table>
 				<p>
-					The Templates Outliner component is where Templates are organized and reviewed. Selected Templates details are displayed in the bottom <em>Templates Informations</em> widget. The component is tracking the Templates files on the disk and reload them automatically when modified.
+					The <em>Templates Outliner</em> component is where Templates are organized and reviewed. Selected Templates details are displayed in the bottom <em>Templates Informations</em> widget. The component is tracking the Templates files on the disk and reload them automatically when modified.
 				</p>
 				<p>
 					Templates are sorted into 2 main categories:
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Factory</strong> (Templates from sIBL_GUI installation directory).
+						<strong>Factory</strong> (Templates from <em>sIBL_GUI</em> installation directory).
 					</li>
 					<li>
-						<strong>User</strong> (Templates not from sIBL_GUI installation directory).
+						<strong>User</strong> (Templates not from <em>sIBL_GUI</em> installation directory).
 					</li>
 				</ul>
 				<p>
@@ -1289,10 +1354,10 @@
 						<strong>Remove Templates(s) ...</strong>: Removes selected Templates from the database.
 					</li>
 					<li>
-						<strong>Import Default Templates</strong>: sIBL_GUI will scan for Templates into it&#8217;s installation directory and the user preferences directories.
+						<strong>Import Default Templates</strong>: <em>sIBL_GUI</em> will scan for Templates into it&#8217;s installation directory and the user preferences directories.
 					</li>
 					<li>
-						<strong>Filter Templates Versions</strong>: sIBL_GUI will filter the Templates keeping the highest version of multiple same Templates.
+						<strong>Filter Templates Versions</strong>: <em>sIBL_GUI</em> will filter the Templates keeping the highest version of multiple same Templates.
 					</li>
 					<li>
 						<strong>Display Help File(s) ...</strong>: Displays Templates associated help files.
@@ -1316,6 +1381,7 @@
 				Addons
 			</h2>
 			<div class="section" id="about-sibl-gui-addons-about">
+				<span id="addons-about" />
 				<h3>
 					<span class="target" id="about-sibl-gui">About sIBL_GUI</span> (addons.about)
 				</h3>
@@ -1332,13 +1398,14 @@
 					</tbody>
 				</table>
 				<p>
-					The About component displays the <em>About</em> window.
+					The <em>About</em> component displays the <em>About</em> window.
 				</p>
 				<p>
 					<strong>***</strong>
 				</p>
 			</div>
 			<div class="section" id="database-operations-addons-databaseoperations">
+				<span id="addons-databaseoperations" />
 				<h3>
 					<span class="target" id="database-operations">Database Operations</span> (addons.databaseOperations)
 				</h3>
@@ -1355,7 +1422,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Database Operations component allows the user to launch some database maintenance operations.
+					The <em>Database Operations</em> component allows the user to launch some database maintenance operations.
 				</p>
 				<p>
 					Interactions:
@@ -1370,6 +1437,7 @@
 				</p>
 			</div>
 			<div class="section" id="gps-map-addons-gpsmap">
+				<span id="addons-gpsmap" />
 				<h3>
 					<span class="target" id="gps-map">Gps Map</span> (addons.gpsMap)
 				</h3>
@@ -1386,7 +1454,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Gps Map component is embedding a Microsoft Bing Map into sIBL_GUI: Selecting some Ibl Sets (Sets with GEO coordinates) in the Database Browser component will display their markers onto the Gps Map.
+					The <em>Gps Map</em> component is embedding a Microsoft Bing Map into <em>sIBL_GUI</em>: Selecting some Ibl Sets (Sets with GEO coordinates) in the <em>Database Browser</em> component will display their markers onto the Gps Map.
 				</p>
 				<p>
 					Interactions:
@@ -1415,6 +1483,7 @@
 				</p>
 			</div>
 			<div class="section" id="loader-script-addons-loaderscript">
+				<span id="addons-loaderscript" />
 				<h3>
 					<span class="target" id="loader-script">Loader Script</span> (addons.loaderScript)
 				</h3>
@@ -1431,7 +1500,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Loader Script component is providing the bridge between sIBL_GUI and the 3d packages. It parses the selected Ibl Set, extracts datas from it, and feeds the selected Template with those datas resulting in a loader script that can be executed by the 3d package.
+					The <em>Loader Script</em> component is providing the bridge between <em>sIBL_GUI</em> and the 3d packages. It parses the selected Ibl Set, extracts datas from it, and feeds the selected Template with those datas resulting in a loader script that can be executed by the 3d package.
 				</p>
 				<p>
 					Interactions:
@@ -1466,6 +1535,7 @@
 				</p>
 			</div>
 			<div class="section" id="loader-script-options-addons-loaderscriptoptions">
+				<span id="addons-loaderscriptoptions" />
 				<h3>
 					<span class="target" id="loader-script-options">Loader Script Options</span> (addons.loaderScriptOptions)
 				</h3>
@@ -1482,7 +1552,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Loader Script Options component allows the user to tweak the way the loader script will behave in the 3d package. Templates attributes are exposed in 2 pages where they can be adjusted:
+					The <em>Loader Script Options</em> component allows the user to tweak the way the loader script will behave in the 3d package. Templates attributes are exposed in 2 pages where they can be adjusted:
 				</p>
 				<ul class="simple">
 					<li>
@@ -1497,6 +1567,7 @@
 				</p>
 			</div>
 			<div class="section" id="locations-browser-addons-locationsbrowser">
+				<span id="addons-locationsbrowser" />
 				<h3>
 					<span class="target" id="locations-browser">Locations Browser</span> (addons.locationsBrowser)
 				</h3>
@@ -1513,7 +1584,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Locations Browser component provides browsing capability to sIBL_GUI, adding directory browsing at various entry points in sIBL_GUI Ui. The browsing is done either by the Os default file browser or an user defined file browser.
+					The <em>Locations Browser</em> component provides browsing capability to <em>sIBL_GUI</em>, adding directory browsing at various entry points in <em>sIBL_GUI</em> Ui. The browsing is done either by the Os default file browser or an user defined file browser.
 				</p>
 				<p>
 					Default Supported File Browsers:
@@ -1560,17 +1631,19 @@
 				</p>
 			</div>
 			<div class="section" id="logging-notifier-addons-loggingnotifier">
+				<span id="addons-loggingnotifier" />
 				<h3>
 					<span class="target" id="logging-notifier">Logging Notifier</span> (addons.loggingNotifier)
 				</h3>
 				<p>
-					The Logging Notifier component displays logging messages in the status bar.
+					The <em>Logging Notifier</em> component displays logging messages in the status bar.
 				</p>
 				<p>
 					<strong>***</strong>
 				</p>
 			</div>
 			<div class="section" id="logging-window-addons-loggingwindow">
+				<span id="addons-loggingwindow" />
 				<h3>
 					<span class="target" id="logging-window">Logging Window</span> (addons.loggingWindow)
 				</h3>
@@ -1587,13 +1660,14 @@
 					</tbody>
 				</table>
 				<p>
-					The Logging Window component is available by right clicking the main toolbar and displays sIBL_GUI verbose messages.
+					The <em>Logging Window</em> component is available by right clicking the main toolbar and displays <em>sIBL_GUI</em> verbose messages.
 				</p>
 				<p>
 					<strong>***</strong>
 				</p>
 			</div>
 			<div class="section" id="online-updater-addons-onlineupdater">
+				<span id="addons-onlineupdater" />
 				<h3>
 					<span class="target" id="online-updater">Online Updater</span> (addons.onlineUpdater)
 				</h3>
@@ -1610,14 +1684,14 @@
 					</tbody>
 				</table>
 				<p>
-					The Online Updater component maintains sIBL_GUI and it&#8217;s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
+					The <em>Online Updater</em> component maintains <em>sIBL_GUI</em> and it&#8217;s Templates up to date by checking HDRLabs repository for new releases on startup or user request.
 				</p>
 				<p>
 					Interactions:
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>Get sIBL_GUI Push Button</strong>: Starts sIBL_GUI download.
+						<strong>Get sIBL_GUI Push Button</strong>: Starts <em>sIBL_GUI</em> download.
 					</li>
 					<li>
 						<strong>Get Lastest Templates</strong>: Starts selected Templates download.
@@ -1642,7 +1716,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Online Updater component is configurable in the Preferences Manager component:
+					The <em>Online Updater</em> component is configurable in the <em>Preferences Manager</em> component:
 				</p>
 				<table border="1" class="docutils">
 					<colgroup>
@@ -1664,10 +1738,10 @@
 						<strong>Check For New Releases Push Button</strong>: Checks for new releases on HDRLabs repository.
 					</li>
 					<li>
-						<strong>Check For New Releases On Startup Check Box</strong>: sIBL_GUI will check for new releases on startup.
+						<strong>Check For New Releases On Startup Check Box</strong>: <em>sIBL_GUI</em> will check for new releases on startup.
 					</li>
 					<li>
-						<strong>Ignore Non Existing Templates Check Box</strong>: sIBL_GUI will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
+						<strong>Ignore Non Existing Templates Check Box</strong>: <em>sIBL_GUI</em> will ignore non existing Template when checking for new releases, meaning that if a Template for a new 3d package is available, it will be ignored.
 					</li>
 				</ul>
 				<p>
@@ -1675,6 +1749,7 @@
 				</p>
 			</div>
 			<div class="section" id="preview-addons-preview">
+				<span id="addons-preview" />
 				<h3>
 					<span class="target" id="preview">Preview</span> (addons.preview)
 				</h3>
@@ -1691,7 +1766,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Preview component provides image viewing capability to sIBL_GUI through the use of the Internal Image Previewer or the application defined in the Preview component preferences.
+					The <em>Preview</em> component provides image viewing capability to <em>sIBL_GUI</em> through the use of the Internal Image Previewer or the application defined in the <em>Preview</em> component preferences.
 				</p>
 				<p>
 					Interactions:
@@ -1753,6 +1828,7 @@
 				</p>
 			</div>
 			<div class="section" id="raw-editing-utilities-addons-raweditingutilities">
+				<span id="addons-raweditingutilities" />
 				<h3>
 					<span class="target" id="raw-editing-utilities">Raw Editing Utilities</span> (addons.rawEditingUtilities)
 				</h3>
@@ -1769,7 +1845,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Raw Editing Utilities component provides text editing capability to sIBL_GUI, adding text edition at various entry points in sIBL_GUI Ui. The text edition is done either by the Os default text editor or an user defined text editor.
+					The <em>Raw Editing Utilities</em> component provides text editing capability to <em>sIBL_GUI</em>, adding text edition at various entry points in <em>sIBL_GUI</em> Ui. The text edition is done either by the Os default text editor or an user defined text editor.
 				</p>
 				<p>
 					Default Supported Text Editors:
@@ -1816,6 +1892,7 @@
 				</p>
 			</div>
 			<div class="section" id="rewiring-tool-addons-rewiringtool">
+				<span id="addons-rewiringtool" />
 				<h3>
 					<span class="target" id="rewiring-tool">Rewiring Tool</span> (addons.rewiringTool)
 				</h3>
@@ -1832,7 +1909,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Rewiring Tool component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate IBL sets and arbitrary load whatever HDR you want and still benefit from sIBL_GUI one click lighting setup.
+					The <em>Rewiring Tool</em> component is available by right clicking the main toolbar. This component allows rewiring / remapping of an Ibl Set file to another file of that set or an arbitrary image. This widget is powerful because it&#8217;s possible to dynamically generate IBL sets and arbitrary load whatever HDR you want and still benefit from <em>sIBL_GUI</em> one click lighting setup.
 				</p>
 				<p>
 					Interactions:
@@ -1850,6 +1927,7 @@
 				</p>
 			</div>
 			<div class="section" id="search-database-addons-searchdatabase">
+				<span id="addons-searchdatabase" />
 				<h3>
 					<span class="target" id="search-database">Search Database</span> (addons.searchDatabase)
 				</h3>
@@ -1874,7 +1952,7 @@
 					</tbody>
 				</table>
 				<p>
-					The Search Database component enables search in the database. There are 2 pages providing different search options:
+					The <em>Search Database</em> component enables search in the database. There are 2 pages providing different search options:
 				</p>
 				<ul class="simple">
 					<li>
@@ -1931,17 +2009,19 @@
 				</p>
 			</div>
 			<div class="section" id="sets-scanner-addons-setsscanner">
+				<span id="addons-setsscanner" />
 				<h3>
 					<span class="target" id="sets-scanner">Sets Scanner</span> (addons.setsScanner)
 				</h3>
 				<p>
-					The Sets Scanner component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent directory. This behavior can be stopped by deactivating the component.
+					The <em>Sets Scanner</em> component is a file scanning component that will automatically register any new sets to the Default Collection whenever it founds one in an already existing Ibl Sets parent directory. This behavior can be stopped by deactivating the component.
 				</p>
 				<p>
 					<strong>***</strong>
 				</p>
 			</div>
 			<div class="section" id="sibledit-utilities-addons-sibleditutilities">
+				<span id="addons-sibleditutilities" />
 				<h3>
 					<span class="target" id="sibledit-utilities">sIBLedit Utilities</span> (addons.sIBLeditUtilities)
 				</h3>
@@ -1958,14 +2038,14 @@
 					</tbody>
 				</table>
 				<p>
-					The sIBLedit Utilities component provides a bridge between sIBL_GUI and sIBLedit.
+					The <em>sIBLedit Utilities</em> component provides a bridge between <em>sIBL_GUI</em> and <em>sIBLedit</em>.
 				</p>
 				<p>
 					Interactions:
 				</p>
 				<ul class="simple">
 					<li>
-						<strong>sIBLedit Executable Path Line Edit</strong>: sIBLedit executable path.
+						<strong>sIBLedit Executable Path Line Edit</strong>: <em>sIBLedit</em> executable path.
 					</li>
 				</ul>
 			</div>
@@ -1992,7 +2072,7 @@
 			Change Log
 		</h1>
 		<p>
-			<a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/Builds/Change%20Log/Change%20Log.html">sIBL_GUI - Change Log</a>
+			<a class="reference external" href="http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html">sIBL_GUI - Change Log</a>
 		</p>
 	</div>
 	<div class="section" id="about">
@@ -2001,7 +2081,7 @@
 		</h1>
 		<div class="line-block">
 			<div class="line">
-				sIBL_GUI by Thomas Mansencal - 2008 - 2011
+				<em>sIBL_GUI</em> by Thomas Mansencal - 2008 - 2011
 			</div>
 			<div class="line">
 				Copyright&#169; 2008 - 2011 - Thomas Mansencal - <a class="reference external" href="mailto:thomas.mansencal@gmail.com">thomas.mansencal@gmail.com</a>
