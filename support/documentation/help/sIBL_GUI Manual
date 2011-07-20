@@ -73,7 +73,7 @@ _`Introduction`
 | *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (“.Ibl”).
 | What is sIBL? It’s a short for “Smart IBL”, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
 
-More detailed informations are available here: `http://www.smartibl.com <http://www.smartibl.com>`_.
+More detailed informations are available here: http://www.smartibl.com
 
 .. .features
 
@@ -84,11 +84,11 @@ Why an external application instead of directly using scripting possibilities of
 
 With an external application, “.Ibl” files format parsing, Collections management and database inspection are handled by that application, you write that framework once and then you can reuse it for other 3d packages.
 
-The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only took a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
+The bridge between *sIBL_GUI* and the 3d package is done through Templates that output simple loader scripts. That’s one of *sIBL_GUI* strength: It only tooks a few hours to convert the XSI Mental Ray Template into a Maya Mental Ray one. Scripting a native tool with a good interface offering same functionalities as *sIBL_GUI* would have taken days if not weeks.
 
 *sIBL_GUI* is built in `Python 2.7.1 <http://www.python.org/>`_ and uses some others major libraries / tools:
 
-- `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `Pyqt <http://www.riverbankcomputing.co.uk/>`_ bindings.
+- `Nokia Qt Ui Framework <http://qt.nokia.com/>`_ is used for the Interface thanks to `PyQt <http://www.riverbankcomputing.co.uk/>`_ bindings.
 - `SQLAlchemy <http://www.sqlalchemy.org/>`_ provides the database backbone.
 - `SQLAlchemy-migrate <http://code.google.com/p/sqlalchemy-migrate/>`_ adds support for database migrations.
 - `Sphinx <http://sphinx.pocoo.org/>`_ provides the documentation build system.
@@ -107,7 +107,7 @@ and much more…
 
 Additional informations about *sIBL_GUI* are available into this development thread: `sIBL_GUI Thread <http://www.hdrlabs.com/cgi-bin/forum/YaBB.pl?num=1271609371>`_
 
-The source code is available on `github <http://github.com/>`_: `http://github.com/KelSolaar <http://github.com/KelSolaar>`_
+The source code is available on `github <http://github.com/>`_: http://github.com/KelSolaar
 
 .. .installation
 
@@ -128,20 +128,20 @@ _`Linux Platform`
 -----------------
 
 | *sIBL_GUI 4*  is currently not built on Linux because of several issues.
-| You can however grab the source code at Github.com: `http://github.com/KelSolaar/sIBL_GUI <http://github.com/KelSolaar/sIBL_GUI>`_ and launch sIBL_GUI.py file from a shell.
+| You can however grab the source code at Github.com: http://github.com/KelSolaar/sIBL_GUI and launch sIBL_GUI.py file from a shell.
 
 You will need those dependencies:
 
--  **Python 2.7.1**: `http://www.python.org/ <http://www.python.org/>`_
--  **PyQt**: `http://www.riverbankcomputing.co.uk/ <http://www.riverbankcomputing.co.uk/>`_
--  **Qt**: `http://qt.nokia.com/ <http://qt.nokia.com/>`_
--  **SQLAlchemy**: `http://www.sqlalchemy.org/ <http://www.sqlalchemy.org/>`_
--  **SQLAlchemy-migrate**: `http://code.google.com/p/sqlalchemy-migrate/ <http://code.google.com/p/sqlalchemy-migrate/>`_
+-  **Python 2.7.1**: http://www.python.org/
+-  **PyQt**: http://www.riverbankcomputing.co.uk/
+-  **Qt**: http://qt.nokia.com/
+-  **SQLAlchemy**: http://www.sqlalchemy.org/
+-  **SQLAlchemy-migrate**: http://code.google.com/p/sqlalchemy-migrate/
 
 If you want to build the documentation you will need:
 
--  **Sphinx**: `http://sphinx.pocoo.org/ <http://sphinx.pocoo.org/>`_
--  **Tidy** `http://tidy.sourceforge.net/ <http://tidy.sourceforge.net/>`_
+-  **Sphinx**: http://sphinx.pocoo.org/
+-  **Tidy** http://tidy.sourceforge.net/
 
 .. .usage
 
@@ -984,8 +984,7 @@ Interactions:
 Api
 ===
 
-**sIBL_GUI - Api**:
-http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html
+**sIBL_GUI - Api**: Nothing to see yet!
 
 .. .faq
 
@@ -999,7 +998,7 @@ A “Frequently Asked Questions” thread is available on HDRLabs forum: `Smart 
 Change Log
 ==========
 
-`sIBL_GUI - Change Log <http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html>`_
+**sIBL_GUI - Change Log**: http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html
 
 .. .about
 
@@ -1008,5 +1007,5 @@ About
 
 | *sIBL_GUI* by Thomas Mansencal - 2008 - 2011
 | Copyright© 2008 - 2011 - Thomas Mansencal - `thomas.mansencal@gmail.com <mailto:thomas.mansencal@gmail.com>`_
-| This Software Is Released Under Terms Of GNU GPL V3 License: `http://www.gnu.org/licenses/ <http://www.gnu.org/licenses/>`_
-| `http://www.thomasmansencal.com/ <http://www.thomasmansencal.com/>`_
+| This Software Is Released Under Terms Of GNU GPL V3 License: http://www.gnu.org/licenses/
+| http://www.thomasmansencal.com/

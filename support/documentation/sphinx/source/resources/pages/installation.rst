@@ -15,18 +15,18 @@ _`Linux Platform`
 -----------------
 
 | *sIBL_GUI 4*  is currently not built on Linux because of several issues.
-| You can however grab the source code at Github.com: `http://github.com/KelSolaar/sIBL_GUI <http://github.com/KelSolaar/sIBL_GUI>`_ and launch sIBL_GUI.py file from a shell.
+| You can however grab the source code at Github.com: http://github.com/KelSolaar/sIBL_GUI and launch sIBL_GUI.py file from a shell.
 
 You will need those dependencies:
 
--  **Python 2.7.1**: `http://www.python.org/ <http://www.python.org/>`_
--  **PyQt**: `http://www.riverbankcomputing.co.uk/ <http://www.riverbankcomputing.co.uk/>`_
--  **Qt**: `http://qt.nokia.com/ <http://qt.nokia.com/>`_
--  **SQLAlchemy**: `http://www.sqlalchemy.org/ <http://www.sqlalchemy.org/>`_
--  **SQLAlchemy-migrate**: `http://code.google.com/p/sqlalchemy-migrate/ <http://code.google.com/p/sqlalchemy-migrate/>`_
+-  **Python 2.7.1**: http://www.python.org/
+-  **PyQt**: http://www.riverbankcomputing.co.uk/
+-  **Qt**: http://qt.nokia.com/
+-  **SQLAlchemy**: http://www.sqlalchemy.org/
+-  **SQLAlchemy-migrate**: http://code.google.com/p/sqlalchemy-migrate/
 
 If you want to build the documentation you will need:
 
--  **Sphinx**: `http://sphinx.pocoo.org/ <http://sphinx.pocoo.org/>`_
--  **Tidy** `http://tidy.sourceforge.net/ <http://tidy.sourceforge.net/>`_
+-  **Sphinx**: http://sphinx.pocoo.org/
+-  **Tidy** http://tidy.sourceforge.net/
 

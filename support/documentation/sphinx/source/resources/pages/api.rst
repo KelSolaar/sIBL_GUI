@@ -1,6 +1,5 @@
 Api
 ===
 
-**sIBL_GUI - Api**:
-http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html
+**sIBL_GUI - Api**: Nothing to see yet!
 
