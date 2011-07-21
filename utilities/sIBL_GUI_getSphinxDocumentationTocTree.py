@@ -26,18 +26,16 @@
 #
 
 """
-************************************************************************************************
-***	sIBL_GUI_getSphinxDocumentationTocTree.py
-***
-***	Platform:
-***		Windows
-***
-***	Description:
-***		Gets Sphinx Documentation Toc Tree File.
-***
-***	Others:
-***
-************************************************************************************************
+**sIBL_GUI_getSphinxDocumentationTocTree.py
+
+**Platform:**
+	Windows.
+
+**Description:**
+	Gets Sphinx Documentation Toc Tree File.
+
+**Others:**
+
 """
 
 #***********************************************************************************************

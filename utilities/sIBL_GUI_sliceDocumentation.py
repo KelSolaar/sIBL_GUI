@@ -26,18 +26,16 @@
 #
 
 """
-************************************************************************************************
-***	sIBL_GUI_sliceDocumentation.py
-***
-***	Platform:
-***		Windows
-***
-***	Description:
-***		Slices Provided Documentation File.
-***
-***	Others:
-***
-************************************************************************************************
+**sIBL_GUI_sliceDocumentation.py
+
+**Platform:**
+	Windows.
+
+**Description:**
+	Slices Provided Documentation File.
+
+**Others:**
+
 """
 
 #***********************************************************************************************

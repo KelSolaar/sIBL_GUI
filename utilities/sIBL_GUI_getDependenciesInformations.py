@@ -26,18 +26,16 @@
 #
 
 """
-************************************************************************************************
-***	sIBL_GUI_getDependenciesInformations.py
-***
-***	Platform:
-***		Windows
-***
-***	Description:
-***		Get Dependencies Informations.
-***
-***	Others:
-***
-************************************************************************************************
+**sIBL_GUI_getDependenciesInformations.py
+
+**Platform:**
+	Windows.
+
+**Description:**
+	Get Dependencies Informations.
+
+**Others:**
+
 """
 
 #***********************************************************************************************

@@ -26,18 +26,16 @@
 #
 
 """
-************************************************************************************************
-***	sIBL_GUI_getHDRLabsDocumentation.py
-***
-***	Platform:
-***		Windows
-***
-***	Description:
-***		Extracts sIBL_GUI Documentation Body For HDRLabs.com.
-***
-***	Others:
-***
-************************************************************************************************
+**sIBL_GUI_getHDRLabsDocumentation.py
+
+**Platform:**
+	Windows.
+
+**Description:**
+	Extracts sIBL_GUI Documentation Body For HDRLabs.com.
+
+**Others:**
+
 """
 
 #***********************************************************************************************

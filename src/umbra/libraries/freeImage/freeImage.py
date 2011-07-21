@@ -34,18 +34,16 @@
 #***********************************************************************************************
 
 """
-************************************************************************************************
-***	freeImage.py
-***
-***	Platform:
-***		Windows, Linux, Mac Os X
-***
-***	Description:
-***		FreeImage libraryPath Manipulation Module.
-***
-***	Others:
-***		Portions Of The Code From FreeImagePy By Michele Petrazzo: http://freeimagepy.sourceforge.net/.
-************************************************************************************************
+**freeImage.py**
+
+**Platform:**
+	Windows, Linux, Mac Os X.
+
+**Description:**
+	FreeImage libraryPath Manipulation Module.
+
+**Others:**
+	Portions Of The Code From FreeImagePy By Michele Petrazzo: http://freeimagepy.sourceforge.net/.
 """
 
 #***********************************************************************************************
