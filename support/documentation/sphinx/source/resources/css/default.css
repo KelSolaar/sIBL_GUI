@@ -25,7 +25,7 @@ body {
 }
 
 div.document {
-	background-color: rgb(80, 80, 80);
+	background-color: rgb(64, 64, 64);
 }
 
 div.documentwrapper {
@@ -57,17 +57,17 @@ div.footer a {
 }
 
 div.related {
-	background-color: rgb(96, 96, 96);
+	background-color: rgb(80, 80, 80);
 	line-height: 30px;
 	color: rgb(224, 224, 224);
 }
 
 div.related a {
-	color: rgb(225, 135, 85);
+	color: rgb(210, 125, 80);
 }
 
 div.sphinxsidebar {
-	background-color: rgb(80, 80, 80);
+	background-color: rgb(64, 64, 64);
 }
 
 div.sphinxsidebar h3 {
