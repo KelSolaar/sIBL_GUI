@@ -64,12 +64,11 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
+import umbra.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
@@ -259,14 +258,14 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 
 		needModelRefresh = False
-		for iblSet in dbUtilities.common.getIblSets(self.__dbSession):
+		for iblSet in dbCommon.getIblSets(self.__dbSession):
 			if iblSet.path:
 				if os.path.exists(iblSet.path):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
 						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, iblSet.title))
-						if dbUtilities.common.updateIblSetContent(self.__dbSession, iblSet):
+						if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
 							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated!".format(self.__class__.__name__, iblSet.title))
 							needModelRefresh = True
 
@@ -1149,7 +1148,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
 		self.ui.Database_Browser_Widget_gridLayout.addWidget(self.ui.Database_Browser_listView, 0, 0)
 
-		self.__modelContent = dbUtilities.common.getIblSets(self.__coreDb.dbSession)
+		self.__modelContent = dbCommon.getIblSets(self.__coreDb.dbSession)
 
 		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
 		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
@@ -1237,14 +1236,14 @@ class DatabaseBrowser(UiComponent):
 							raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
 			# Ibl Sets Table Integrity Checking.
-			erroneousIblSets = dbUtilities.common.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
+			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
 						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateIblSetLocation(iblSet)
 					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbUtilities.common.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
 			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1474,9 +1473,9 @@ class DatabaseBrowser(UiComponent):
 		currentTitle = standardItem.text()
 
 		LOGGER.debug("> Updating Ibl Set '{0}' Title To '{1}'.".format(standardItem._datas.title, currentTitle))
-		iblSet = dbUtilities.common.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
+		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
 		iblSet.title = str(currentTitle)
-		dbUtilities.common.commit(self.__coreDb.dbSession)
+		dbCommon.commit(self.__coreDb.dbSession)
 
 		self.emit(SIGNAL("modelRefresh()"))
 
@@ -1614,7 +1613,7 @@ class DatabaseBrowser(UiComponent):
 
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, name))
-			if dbUtilities.common.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
+			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
 				if emitSignal:
 					self.emit(SIGNAL("modelDatasRefresh()"))
 					self.emit(SIGNAL("modelRefresh()"))
@@ -1665,7 +1664,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title))
-		if dbUtilities.common.removeIblSet(self.__coreDb.dbSession, iblSet.id):
+		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
@@ -1682,7 +1681,7 @@ class DatabaseBrowser(UiComponent):
 		@return: Collection Exists. ( Boolean )
 		"""
 
-		return dbUtilities.common.iblSetExists(self.__coreDb.dbSession, path)
+		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
@@ -1697,7 +1696,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
-		if dbUtilities.common.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
+		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
@@ -1713,7 +1712,7 @@ class DatabaseBrowser(UiComponent):
 		@return: Database Ibl Sets Collections. ( List )
 		"""
 
-		return [iblSet for iblSet in dbUtilities.common.getIblSets(self.__coreDb.dbSession)]
+		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
 	def getSelectedItems(self):

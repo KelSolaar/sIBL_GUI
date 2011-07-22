@@ -61,9 +61,9 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
 import foundations.core as core
 import foundations.exceptions
+import umbra.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -364,8 +364,8 @@ class DatabaseOperations(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbUtilities.common.getIblSets, updateContentMethod=dbUtilities.common.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
-						DbType(type="Template", getMethod=dbUtilities.common.getTemplates, updateContentMethod=dbUtilities.common.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
+		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
 		self._activate()
 

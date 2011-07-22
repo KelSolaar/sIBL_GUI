@@ -63,10 +63,10 @@ import shutil
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
+import umbra.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.rotatingBackup import RotatingBackup
 from foundations.walker import Walker
@@ -538,7 +538,7 @@ class Db(Component):
 		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
 
 		LOGGER.debug("> Creating Database Metadatas.")
-		self.__dbCatalog = dbUtilities.types.DbBase.metadata
+		self.__dbCatalog = dbTypes.DbBase.metadata
 		self.__dbCatalog.create_all(self.__dbEngine)
 
 		LOGGER.debug("> Initializing Database Session.")

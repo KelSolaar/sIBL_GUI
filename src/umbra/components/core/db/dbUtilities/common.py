@@ -63,9 +63,9 @@ import sqlalchemy.ext.declarative
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import umbra.components.core.db.dbUtilities.types as dbTypes
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -262,7 +262,7 @@ def getIblSets(session):
 	@return: Database Ibl Sets. ( List )
 	"""
 
-	return session.query(dbUtilities.types.DbIblSet)
+	return session.query(dbTypes.DbIblSet)
 
 @core.executionTrace
 def filterIblSets(session, pattern, field, flags=0):
@@ -301,7 +301,7 @@ def addIblSet(session, name, path, collection):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	return addStandardItem(session, dbUtilities.types.DbIblSet, name, path, collection)
+	return addStandardItem(session, dbTypes.DbIblSet, name, path, collection)
 
 @core.executionTrace
 def removeIblSet(session, id):
@@ -313,7 +313,7 @@ def removeIblSet(session, id):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbUtilities.types.DbIblSet, id)
+	return removeStandardItem(session, dbTypes.DbIblSet, id)
 
 @core.executionTrace
 def updateIblSetContent(session, iblSet):
@@ -380,7 +380,7 @@ def getCollections(session):
 	@return: Database Collections. ( List )
 	"""
 
-	return session.query(dbUtilities.types.DbCollection)
+	return session.query(dbTypes.DbCollection)
 
 @core.executionTrace
 def filterCollections(session, pattern, field, flags=0):
@@ -422,7 +422,7 @@ def addCollection(session, collection, type, comment):
 	LOGGER.debug("> Adding: '{0}' Collection Of Type '{1}' To The Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
-		dbItem = dbUtilities.types.DbCollection(name=collection, type=type, comment=comment)
+		dbItem = dbTypes.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, dbItem)
 	else:
 		LOGGER.warning("!> {0} | '{1}' Collection Already Exists In Database!".format(core.getModule(addCollection).__name__, collection))
@@ -438,7 +438,7 @@ def removeCollection(session, id):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbUtilities.types.DbCollection, id)
+	return removeStandardItem(session, dbTypes.DbCollection, id)
 
 @core.executionTrace
 def getCollectionsIblSets(session, ids):
@@ -467,7 +467,7 @@ def getTemplates(session):
 	@return: Database Templates. ( List )
 	"""
 
-	return session.query(dbUtilities.types.DbTemplate)
+	return session.query(dbTypes.DbTemplate)
 
 @core.executionTrace
 def filterTemplates(session, pattern, field, flags=0):
@@ -506,7 +506,7 @@ def addTemplate(session, name, path, collection):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	return addStandardItem(session, dbUtilities.types.DbTemplate, name, path, collection)
+	return addStandardItem(session, dbTypes.DbTemplate, name, path, collection)
 
 @core.executionTrace
 def removeTemplate(session, id):
@@ -518,7 +518,7 @@ def removeTemplate(session, id):
 	@return: Database Commit Success. ( Boolean )
 	"""
 
-	return removeStandardItem(session, dbUtilities.types.DbTemplate, id)
+	return removeStandardItem(session, dbTypes.DbTemplate, id)
 
 @core.executionTrace
 def updateTemplateContent(session, template):

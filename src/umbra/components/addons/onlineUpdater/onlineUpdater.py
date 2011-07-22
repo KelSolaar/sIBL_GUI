@@ -65,10 +65,10 @@ from PyQt4.QtNetwork import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import umbra.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
@@ -2162,7 +2162,7 @@ class OnlineUpdater(UiComponent):
 			releases = {}
 			for remoteObject in parser.sections:
 				if remoteObject != Constants.applicationName:
-						dbTemplates = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(remoteObject), "name")
+						dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(remoteObject), "name")
 						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted(((dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates), reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
 						if not self.__container.parameters.databaseReadOnly:
 							if dbTemplate:

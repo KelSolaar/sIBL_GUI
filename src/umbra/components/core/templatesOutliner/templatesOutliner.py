@@ -63,12 +63,12 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
+import umbra.components.core.db.dbUtilities.common as dbCommon
+import umbra.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -259,14 +259,14 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 
 		needModelRefresh = False
-		for template in dbUtilities.common.getTemplates(self.__dbSession):
+		for template in dbCommon.getTemplates(self.__dbSession):
 			if template.path:
 				if os.path.exists(template.path):
 					storedStats = template.osStats.split(",")
 					osStats = os.stat(template.path)
 					if str(osStats[8]) != str(storedStats[8]):
 						LOGGER.info("{0} | '{1}' Template File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, template.name))
-						if dbUtilities.common.updateTemplateContent(self.__dbSession, template):
+						if dbCommon.updateTemplateContent(self.__dbSession, template):
 							LOGGER.info("{0} | '{1}' Template Has Been Updated!".format(self.__class__.__name__, template.name))
 							needModelRefresh = True
 
@@ -1268,14 +1268,14 @@ class TemplatesOutliner(UiComponent):
 			self.addDefaultTemplates()
 
 			# Templates Table Integrity Checking.
-			erroneousTemplates = dbUtilities.common.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
+			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
 						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateTemplateLocation(template)
 					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbUtilities.common.DB_EXCEPTIONS[erroneousTemplates[template]]))
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
 		else:
 			LOGGER.info("{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1332,7 +1332,7 @@ class TemplatesOutliner(UiComponent):
 		Rows:
 		* Collection: { _type: "Collection" }
 		** Software: { _type: "Software" }
-		***	Template: { _type: "Template", _datas: dbUtilities.types.DbTemplate }
+		***	Template: { _type: "Template", _datas: dbTypes.DbTemplate }
 		"""
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Templates_Outliner_treeView"))
@@ -1344,10 +1344,10 @@ class TemplatesOutliner(UiComponent):
 		self.__model.setHorizontalHeaderLabels(self.__modelHeaders)
 		self.__model.setColumnCount(len(self.__modelHeaders))
 
-		collections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 
 		for collection in collections:
-			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbUtilities.types.DbTemplate.software).filter(dbUtilities.types.DbTemplate.collection == collection.id)))
+			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 
 			if softwares:
 				LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
@@ -1360,7 +1360,7 @@ class TemplatesOutliner(UiComponent):
 				self.__model.appendRow(collectionStandardItem)
 
 				for software in softwares:
-					templates = set((template[0] for template in self.__coreDb.dbSession.query(dbUtilities.types.DbTemplate.id).filter(dbUtilities.types.DbTemplate.collection == collection.id).filter(dbUtilities.types.DbTemplate.software == software)))
+					templates = set((template[0] for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate.id).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
 
 					if templates:
 						LOGGER.debug("> Preparing '{0}' Software For '{1}' Model.".format(software, "Templates_Outliner_treeView"))
@@ -1378,7 +1378,7 @@ class TemplatesOutliner(UiComponent):
 						collectionStandardItem.appendRow([softwareStandardItem, None, None])
 
 						for template in templates:
-							template = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
+							template = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
 
 							LOGGER.debug("> Preparing '{0}' Template For '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
 
@@ -1747,13 +1747,13 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		templates = dbUtilities.common.getTemplates(self.__coreDb.dbSession)
+		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
 		for template in templates:
-			matchingTemplates = dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
+			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
 				success = True
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
-					success *= dbUtilities.common.removeTemplate(self.__coreDb.dbSession, id[0]) or False
+					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
 
 				self.emit(SIGNAL("modelRefresh()"))
 
@@ -1775,9 +1775,9 @@ class TemplatesOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		if not dbUtilities.common.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
+		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template To The Database!".format(self.__class__.__name__, name))
-			if dbUtilities.common.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
+			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
 				emitSignal and self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
@@ -1831,9 +1831,9 @@ class TemplatesOutliner(UiComponent):
 			if not os.path.exists(path):
 				continue
 
-			if not set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
+			if not set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
-				dbUtilities.common.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
+				dbCommon.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 			if self.addDirectory(path, self.getCollection(collection).id):
 				return True
 			else:
@@ -1851,7 +1851,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
-		if dbUtilities.common.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
+		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
@@ -1866,7 +1866,7 @@ class TemplatesOutliner(UiComponent):
 		@return: Template Exists. ( Boolean )
 		"""
 
-		return dbUtilities.common.templateExists(self.__coreDb.dbSession, path)
+		return dbCommon.templateExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
@@ -1884,7 +1884,7 @@ class TemplatesOutliner(UiComponent):
 			return
 
 		LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
-		if not dbUtilities.common.updateTemplateLocation(self.__coreDb.dbSession, template, file):
+		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
@@ -1915,7 +1915,7 @@ class TemplatesOutliner(UiComponent):
 		@return: Database Templates Collections. ( List )
 		"""
 
-		return [template for template in dbUtilities.common.getTemplates(self.__coreDb.dbSession)]
+		return [template for template in dbCommon.getTemplates(self.__coreDb.dbSession)]
 
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
@@ -1949,7 +1949,7 @@ class TemplatesOutliner(UiComponent):
 		@return: Collection. ( DbCollection )
 		"""
 
-		return [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
+		return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
 
 	@core.executionTrace
 	def getUniqueCollectionId(self, path):
@@ -1960,8 +1960,8 @@ class TemplatesOutliner(UiComponent):
 		@return: Unique Id. ( Integer )
 		"""
 
-		templatesCollections = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Templates", "type")
-		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
+		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
 
 #***********************************************************************************************
 #***	Python End

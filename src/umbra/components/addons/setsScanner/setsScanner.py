@@ -62,11 +62,11 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace
+import umbra.components.core.db.dbUtilities.common as dbCommon
+import umbra.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
 from manager.component import Component
@@ -253,7 +253,7 @@ class SetsScanner_Worker(QThread):
 		LOGGER.info("{0} | Scanning Sets Directories For New Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
-		paths = [path[0] for path in self.__dbSession.query(dbUtilities.types.DbIblSet.path).all()]
+		paths = [path[0] for path in self.__dbSession.query(dbTypes.DbIblSet.path).all()]
 		directories = set((os.path.normpath(os.path.join(os.path.dirname(path), "..")) for path in paths))
 		needModelRefresh = False
 		for directory in directories:
@@ -261,7 +261,7 @@ class SetsScanner_Worker(QThread):
 				walker = Walker(directory)
 				walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 				for iblSet, path in walker.files.items():
-					if not dbUtilities.common.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
+					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path
 			else:
@@ -546,7 +546,7 @@ class SetsScanner(Component):
 				for iblSet, path in self.__setsScannerWorkerThread.newIblSets.items():
 					iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 					LOGGER.info("{0} | Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, iblSet))
-					if not dbUtilities.common.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
+					if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 						LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, iblSet))
 
 				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))

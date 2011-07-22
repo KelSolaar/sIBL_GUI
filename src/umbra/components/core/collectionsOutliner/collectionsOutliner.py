@@ -63,11 +63,11 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.common
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings
+import umbra.components.core.db.dbUtilities.common as dbCommon
+import umbra.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -328,7 +328,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 						for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
 							LOGGER.info("> Moving '{0}' Ibl Set To '{1}' Collection.".format(iblSet.title, collection.name))
 							iblSet.collection = collection.id
-						if dbUtilities.common.commit(self.__coreDb.dbSession):
+						if dbCommon.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
@@ -1096,7 +1096,7 @@ class CollectionsOutliner(UiComponent):
 		
 		Rows:
 		* Overall Collection: { _type: "Overall" }
-		** Collection: { _type: "Collection", _datas: dbUtilities.types.DbCollection }
+		** Collection: { _type: "Collection", _datas: dbTypes.DbCollection }
 		"""
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Collections_Outliner_treeView"))
@@ -1114,7 +1114,7 @@ class CollectionsOutliner(UiComponent):
 		overallCollectionStandardItem = QStandardItem(QString(self.__overallCollection))
 		overallCollectionStandardItem.setFlags(readOnlyFlags)
 
-		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbUtilities.common.getIblSets(self.__coreDb.dbSession).count())))
+		overallCollectionSetsCountStandardItem = QStandardItem(QString(str(dbCommon.getIblSets(self.__coreDb.dbSession).count())))
 		overallCollectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 		overallCollectionSetsCountStandardItem.setFlags(readOnlyFlags)
 
@@ -1138,7 +1138,7 @@ class CollectionsOutliner(UiComponent):
 					collectionStandardItem.setIcon(QIcon(iconPath))
 					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 
-					collectionSetsCountStandardItem = QStandardItem(QString(str(self.__coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collection.id).count())))
+					collectionSetsCountStandardItem = QStandardItem(QString(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count())))
 					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 					collectionSetsCountStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
@@ -1213,11 +1213,11 @@ class CollectionsOutliner(UiComponent):
 		for i in range(self.__model.rowCount()):
 			currentStandardItem = self.__model.item(i)
 			if currentStandardItem.text() == self.__overallCollection:
-				self.__model.itemFromIndex(self.__model.sibling(i, 1, self.__model.indexFromItem(currentStandardItem))).setText(str(dbUtilities.common.getIblSets(self.__coreDb.dbSession).count()))
+				self.__model.itemFromIndex(self.__model.sibling(i, 1, self.__model.indexFromItem(currentStandardItem))).setText(str(dbCommon.getIblSets(self.__coreDb.dbSession).count()))
 			for j in range(currentStandardItem.rowCount()):
 				collectionStandardItem = currentStandardItem.child(j, 0)
 				collectionSetsCountStandardItem = currentStandardItem.child(j, 1)
-				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbUtilities.types.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
+				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting Model "dataChanged()" Signal.
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
@@ -1341,16 +1341,16 @@ class CollectionsOutliner(UiComponent):
 			if startIndex.column() == 0:
 				if currentText not in (collection.name for collection in collections):
 					LOGGER.debug("> Updating Collection '{0}' Name To '{1}'.".format(id, currentText))
-					collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
+					collection = dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
 					collection.name = str(currentText)
-					dbUtilities.common.commit(self.__coreDb.dbSession)
+					dbCommon.commit(self.__coreDb.dbSession)
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection Name Already Exists In Database!".format(self.__class__.__name__, currentText))
 			elif startIndex.column() == 2:
 				LOGGER.debug("> Updating Collection '{0}' Comment To '{1}'.".format(id, currentText))
-				collection = dbUtilities.common.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
+				collection = dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
 				collection.comment = str(currentText)
-				dbUtilities.common.commit(self.__coreDb.dbSession)
+				dbCommon.commit(self.__coreDb.dbSession)
 		else:
 			raise foundations.exceptions.UserError, "{0} | Exception While Editing A Collection Field: Cannot Use An Empty Value!".format(self.__class__.__name__)
 		self.emit(SIGNAL("modelRefresh()"))
@@ -1470,7 +1470,7 @@ class CollectionsOutliner(UiComponent):
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, name))
-				if dbUtilities.common.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
+				if dbCommon.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
 					self.emit(SIGNAL("modelRefresh()"))
 					return True
 				else:
@@ -1490,13 +1490,13 @@ class CollectionsOutliner(UiComponent):
 		@return: Method Success. ( Boolean )		
 		"""
 
-		iblSets = dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
+		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set To Default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection From The Database!".format(self.__class__.__name__, collection.name))
-		if dbUtilities.common.removeCollection(self.__coreDb.dbSession, str(collection.id)):
+		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
 			self.emit(SIGNAL("modelRefresh()"))
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 			return True
@@ -1512,7 +1512,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Collection Exists. ( Boolean )
 		"""
 
-		return dbUtilities.common.collectionExists(self.__coreDb.dbSession, name)
+		return dbCommon.collectionExists(self.__coreDb.dbSession, name)
 
 	@core.executionTrace
 	def getCollections(self):
@@ -1522,7 +1522,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Database Set Collections. ( List )
 		"""
 
-		return [collection for collection in dbUtilities.common.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
+		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
 
 	@core.executionTrace
 	def getCollectionsIblSets(self, collections):
@@ -1533,7 +1533,7 @@ class CollectionsOutliner(UiComponent):
 		@return: Ibl Sets List. ( List )
 		"""
 
-		return dbUtilities.common.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
+		return dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
 
 	@core.executionTrace
 	def getCollectionId(self, collection):

@@ -62,9 +62,9 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 #***	Internal Imports
 #***********************************************************************************************
-import dbUtilities.types
 import foundations.core as core
 import foundations.exceptions
+import umbra.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
 from foundations.environment import Environment
 from manager.uiComponent import UiComponent
