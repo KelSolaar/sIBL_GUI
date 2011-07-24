@@ -29,7 +29,7 @@
 **sIBL_GUI_reStructuredTextToHtml.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Converts A Textile File To HTML.

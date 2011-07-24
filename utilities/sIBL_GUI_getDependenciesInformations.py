@@ -29,7 +29,7 @@
 **sIBL_GUI_getDependenciesInformations.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Get Dependencies Informations.

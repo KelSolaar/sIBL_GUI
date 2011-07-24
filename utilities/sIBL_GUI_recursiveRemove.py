@@ -29,7 +29,7 @@
 **sIBL_GUI_recursiveRemove.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Recursion Delete.

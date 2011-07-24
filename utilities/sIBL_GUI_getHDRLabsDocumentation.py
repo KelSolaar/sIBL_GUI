@@ -29,7 +29,7 @@
 **sIBL_GUI_getHDRLabsDocumentation.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Extracts sIBL_GUI Documentation Body For HDRLabs.com.

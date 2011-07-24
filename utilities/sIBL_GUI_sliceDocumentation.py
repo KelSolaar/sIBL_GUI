@@ -29,7 +29,7 @@
 **sIBL_GUI_sliceDocumentation.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Slices Provided Documentation File.

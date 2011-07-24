@@ -29,7 +29,7 @@
 **sIBL_GUI_getSphinxDocumentationApi.py
 
 **Platform:**
-	Windows.
+	Windows, Linux, Mac Os X.
 
 **Description:**
 	Gets Sphinx Documentation Toc Tree File.
