@@ -17,4 +17,5 @@ releases/repository/
 releases/Windows/
 src/resources/builders/
 support/documentation/sphinx/build
+support/documentation/sphinx/source/resources/src
 utilities/dmgCanvas/

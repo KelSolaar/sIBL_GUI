@@ -95,7 +95,7 @@ class RuntimeConstantsTestCase(unittest.TestCase):
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, RuntimeConstants.__dict__)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	unittest.main()
 
 #***********************************************************************************************

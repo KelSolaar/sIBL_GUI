@@ -93,6 +93,7 @@ pygments_style = "sphinx"
 # a list of builtin themes.
 html_theme = "default"
 
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
@@ -217,4 +218,4 @@ man_pages = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"http://docs.python.org/": None}
+# intersphinx_mapping = {"http://docs.python.org/": None}

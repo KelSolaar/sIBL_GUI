@@ -280,7 +280,7 @@ class ConstantsTestCase(unittest.TestCase):
 
 		self.assertRegexpMatches(Constants.nullObject, "\w")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	unittest.main()
 
 #***********************************************************************************************

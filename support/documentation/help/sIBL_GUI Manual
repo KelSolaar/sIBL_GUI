@@ -68,7 +68,7 @@ Table Of Content
 .. .introduction
 
 _`Introduction`
-================
+===============
 
 | *sIBL_GUI* is an open source lighting assistant making the Image Based Lighting process easier and straight forward through the use of sIbl files (“.Ibl”).
 | What is sIBL? It’s a short for “Smart IBL”, a standard describing all informations and files needed to provide a fast and easy Image Based Lighting Setup in the 3d package of your choice.
@@ -78,7 +78,7 @@ More detailed informations are available here: http://www.smartibl.com
 .. .features
 
 _`Features`
------------
+===========
 
 Why an external application instead of directly using scripting possibilities of the 3d package itself? There are advantages and issues with both methods.
 
@@ -112,7 +112,7 @@ The source code is available on `github <http://github.com/>`_: http://github.co
 .. .installation
 
 _`Installation`
-================
+===============
 
 _`Windows Platform`
 -------------------

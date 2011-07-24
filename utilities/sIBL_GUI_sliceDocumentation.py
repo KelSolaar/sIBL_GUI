@@ -101,7 +101,6 @@ def sliceDocumentation(fileIn, outputDirectory):
 		LOGGER.info("{0} | Outputing '{1}' File!".format(sliceDocumentation.__name__, sliceFile.file))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or len(file.content)
 
-		sliceFile.content = []
 		for i in range(sliceStart, sliceEnd):
 			for item in CONTENT_DELETION:
 				if re.search(item, file.content[i]):

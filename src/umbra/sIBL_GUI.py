@@ -131,6 +131,20 @@ RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_DEFAULT_FORMATTER,
 									"Extended" : core.LOGGING_EXTENDED_FORMATTER,
 									"Standard" : core.LOGGING_STANDARD_FORMATTER}
 
+class Ui_Setup():
+	"""
+	This Class Is The Ui_Setup Class.
+	"""
+
+	pass
+
+class Ui_Type():
+	"""
+	This Class Is The Ui_Type Class.
+	"""
+
+	pass
+
 RuntimeConstants.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
 if os.path.exists(RuntimeConstants.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeConstants.uiFile)
