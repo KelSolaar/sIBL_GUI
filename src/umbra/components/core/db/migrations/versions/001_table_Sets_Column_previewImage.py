@@ -47,59 +47,59 @@
 """
 
 #***********************************************************************************************
-#***    Python Begin
+#***	Python Begin
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***    External Imports
+#*** External Imports
 #***********************************************************************************************
 import sqlalchemy
 from migrate import *
 import logging
 
 #***********************************************************************************************
-#***    Internal Imports
+#***	Internal Imports
 #***********************************************************************************************
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***    Overall Variables
+#***	Overall Variables
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***    Module Classes And Definitions
+#***	Module Classes And Definitions
 #***********************************************************************************************
 def upgrade(dbEngine):
-    """
-    This Definition Upgrades The Database.
+	"""
+	This Definition Upgrades The Database.
 
-    @param dbEngine: Database Engine. ( Object )
-    """
+	@param dbEngine: Database Engine. ( Object )
+	"""
 
-    LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
+	LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
 
-    metadata = sqlalchemy.MetaData()
-    metadata.bind = dbEngine
-    table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
+	metadata = sqlalchemy.MetaData()
+	metadata.bind = dbEngine
+	table = sqlalchemy.Table("Sets", metadata, autoload=True, autoload_with=dbEngine)
 
-    columnName = "previewImage"
-    if columnName not in table.columns:
-        LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
-        column = sqlalchemy.Column(columnName, sqlalchemy.String)
-        column.create(table)
-    else:
-        LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' Already Exists In '{2}' Table!".format(__name__, columnName, table))
+	columnName = "previewImage"
+	if columnName not in table.columns:
+		LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
+		column = sqlalchemy.Column(columnName, sqlalchemy.String)
+		column.create(table)
+	else:
+		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' Already Exists In '{2}' Table!".format(__name__, columnName, table))
 
 def downgrade(dbEngine):
-    """
-    This Definition Downgrades The Database.
+	"""
+	This Definition Downgrades The Database.
 
-    @param dbEngine: Database Engine. ( Object )
-    """
+	@param dbEngine: Database Engine. ( Object )
+	"""
 
-    pass
+	pass
 
 #***********************************************************************************************
-#***    Python End
+#***	Python End
 #***********************************************************************************************

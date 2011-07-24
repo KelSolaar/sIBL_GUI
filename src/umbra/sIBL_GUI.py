@@ -1112,7 +1112,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@property
 	def libraryActiveLabel (self):
 		"""
-		This Method Is The Property For The _libraryActiveLabel  Attribute.
+		This Method Is The Property For The _libraryActiveLabel Attribute.
 
 		@return: self.__libraryActiveLabel . ( Active_QLabel )
 		"""
@@ -1123,7 +1123,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def libraryActiveLabel (self, value):
 		"""
-		This Method Is The Setter Method For The _libraryActiveLabel  Attribute.
+		This Method Is The Setter Method For The _libraryActiveLabel Attribute.
 
 		@param value: Attribute Value. ( Active_QLabel )
 		"""
@@ -1134,7 +1134,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def libraryActiveLabel (self):
 		"""
-		This Method Is The Deleter Method For The _libraryActiveLabel  Attribute.
+		This Method Is The Deleter Method For The _libraryActiveLabel Attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("libraryActiveLabel "))
@@ -1142,7 +1142,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@property
 	def inspectActiveLabel (self):
 		"""
-		This Method Is The Property For The _inspectActiveLabel  Attribute.
+		This Method Is The Property For The _inspectActiveLabel Attribute.
 
 		@return: self.__inspectActiveLabel . ( Active_QLabel )
 		"""
@@ -1153,7 +1153,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectActiveLabel (self, value):
 		"""
-		This Method Is The Setter Method For The _inspectActiveLabel  Attribute.
+		This Method Is The Setter Method For The _inspectActiveLabel Attribute.
 
 		@param value: Attribute Value. ( Active_QLabel )
 		"""
@@ -1164,7 +1164,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectActiveLabel (self):
 		"""
-		This Method Is The Deleter Method For The _inspectActiveLabel  Attribute.
+		This Method Is The Deleter Method For The _inspectActiveLabel Attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectActiveLabel "))
@@ -1172,7 +1172,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@property
 	def exportActiveLabel (self):
 		"""
-		This Method Is The Property For The _exportActiveLabel  Attribute.
+		This Method Is The Property For The _exportActiveLabel Attribute.
 
 		@return: self.__exportActiveLabel . ( Active_QLabel )
 		"""
@@ -1183,7 +1183,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def exportActiveLabel (self, value):
 		"""
-		This Method Is The Setter Method For The _exportActiveLabel  Attribute.
+		This Method Is The Setter Method For The _exportActiveLabel Attribute.
 
 		@param value: Attribute Value. ( Active_QLabel )
 		"""
@@ -1194,7 +1194,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def exportActiveLabel (self):
 		"""
-		This Method Is The Deleter Method For The _exportActiveLabel  Attribute.
+		This Method Is The Deleter Method For The _exportActiveLabel Attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("exportActiveLabel "))
@@ -1202,7 +1202,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@property
 	def preferencesActiveLabel (self):
 		"""
-		This Method Is The Property For The _preferencesActiveLabel  Attribute.
+		This Method Is The Property For The _preferencesActiveLabel	 Attribute.
 
 		@return: self.__preferencesActiveLabel . ( Active_QLabel )
 		"""

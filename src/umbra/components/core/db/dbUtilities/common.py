@@ -365,7 +365,7 @@ def checkIblSetsTableIntegrity(session):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
 			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.lightingImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
-			if  iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
+			if iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
 	if erroneousSets:

@@ -79,7 +79,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	This Definition Provides A Fast GUI Message Box.
 
 	@param title: Current Message Title. ( String )
-	@param message:	Message. ( String )
+	@param message: Message. ( String )
 	@param icon: Custom Icon. ( QConstant )
 	@param buttons: Custom Buttons. ( QConstant )
 	@return: User Choice. ( Integer )

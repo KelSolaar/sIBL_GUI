@@ -1400,7 +1400,7 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
-	def	addCollection__(self):
+	def addCollection__(self):
 		"""
 		This Method Adds An User Defined Collection To The Database.
 		
@@ -1431,7 +1431,7 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def	removeCollections__(self):
+	def removeCollections__(self):
 		"""
 		This Method Removes User Selected Collections From The Database.
 

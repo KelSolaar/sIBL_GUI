@@ -111,12 +111,12 @@ class UiConstants():
 	frameworkHelpFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Help/index.html"
 	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 
-	nativeImageFormats = { 	"Bmp" : "\.[bB][mM][pP]",
+	nativeImageFormats = { "Bmp" : "\.[bB][mM][pP]",
 							"Jpeg" : "\.[jJ][pP][eE][gG]",
 							"Jpg" : "\.[jJ][pP][gG]",
 							"Png" : "\.[pP][nN][gG]" }
 
-	thirdPartyImageFormats = { 	"Exr" : ("\.[eE][xX][rR]"),
+	thirdPartyImageFormats = { "Exr" : ("\.[eE][xX][rR]"),
 								"Hdr" : ("\.[hH][dD][rR]"),
 								"Tif" : ("\.[tT][iI][fF]"),
 								"Tiff" : ("\.[tT][iI][fF][fF]"),

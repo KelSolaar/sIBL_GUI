@@ -780,7 +780,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This Method Is Triggered When Tags_Cloud_listWidget Is Double Clicked.
 		
-		@param listWidgetItem:  List Widget Item. ( QlistWidgetItem )
+		@param listWidgetItem: List Widget Item. ( QlistWidgetItem )
 		"""
 
 		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))
@@ -831,7 +831,7 @@ class SearchDatabase(UiComponent):
 		currentField = self.__databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
 		flags = self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
 
-		LOGGER.debug("> Filtering Sets On '{0}' Pattern  In '{1}' Field.".format(pattern, currentField))
+		LOGGER.debug("> Filtering Sets On '{0}' Pattern In '{1}' Field.".format(pattern, currentField))
 
 		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
 			self.__completer.setModel(QStringListModel())

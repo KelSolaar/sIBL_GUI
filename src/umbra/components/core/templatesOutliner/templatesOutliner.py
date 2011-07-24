@@ -1332,7 +1332,7 @@ class TemplatesOutliner(UiComponent):
 		Rows:
 		* Collection: { _type: "Collection" }
 		** Software: { _type: "Software" }
-		***	Template: { _type: "Template", _datas: dbTypes.DbTemplate }
+		*** Template: { _type: "Template", _datas: dbTypes.DbTemplate }
 		"""
 
 		LOGGER.debug("> Setting Up '{0}' Model!".format("Templates_Outliner_treeView"))
