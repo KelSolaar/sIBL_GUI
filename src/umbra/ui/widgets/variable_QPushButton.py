@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -115,9 +115,9 @@ class Variable_QPushButton(QPushButton):
 		# Signals / Slots.
 		self.clicked.connect(self.__variable_QPushButton__clicked)
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def state(self):
 		"""
@@ -247,9 +247,9 @@ class Variable_QPushButton(QPushButton):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def __variable_QPushButton__clicked(self, checked):
 		"""

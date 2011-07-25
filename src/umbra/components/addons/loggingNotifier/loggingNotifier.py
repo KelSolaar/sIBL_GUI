@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -97,9 +97,9 @@ class LoggingNotifier(Component):
 
 		self.__memoryHandlerStackDepth = 0
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -160,9 +160,9 @@ class LoggingNotifier(Component):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("memoryHandlerStackDepth"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
 		"""

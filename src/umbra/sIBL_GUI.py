@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -178,9 +178,9 @@ class Preferences():
 		# --- Initializing Preferences. ---
 		self.__getDefaultLayoutsSettings()
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def preferencesFile(self):
 		"""
@@ -274,9 +274,9 @@ class Preferences():
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultLayoutsSettings"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def setKey(self, section, key, value):
 		"""
@@ -418,9 +418,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	This Class Is The Main Class For sIBL_GUI.
 	"""
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Initialization.
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
 	def __init__(self):
@@ -473,7 +473,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		# --- Initializing Application. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
-		# Visual Style Initialisation.
+		# Visual Style Initialization.
 		self.__setVisualStyle()
 		umbra.ui.common.setWindowDefaultIcon(self)
 
@@ -481,7 +481,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
 		self.__initializeToolbar()
 
-		# --- Initializing Component Manager. ---
+		# --- Initializing Components Manager. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Components Manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
 		self.__componentsManager = Manager({ "Core" : os.path.join(os.getcwd(), Constants.coreComponentsDirectory), "Addons" : os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), "User" : os.path.join(self.__userApplicationDatasDirectory, Constants.userComponentsDirectory) })
@@ -492,7 +492,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
-		# --- Activating Component Manager Ui. ---
+		# --- Activating Component Manager Ui Component. ---
 		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
 		if self.__coreComponentsManagerUi:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"), textColor=Qt.white)
@@ -590,9 +590,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.restoreStartupLayout()
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def timer(self):
 		"""
@@ -1349,9 +1349,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("workerThreads"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def __closeUi(self, event):
 		"""
@@ -1378,7 +1378,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		foundations.common.closeHandler(LOGGER, self.__loggingFileHandler)
 		foundations.common.closeHandler(LOGGER, self.__loggingSessionHandler)
-		# foundations.common.closeHandler( LOGGER, self.__loggingConsoleHandler )
+		# foundations.common.closeHandler(LOGGER, self.__loggingConsoleHandler)
 
 		# Stopping The Timer.
 		self.__timer.stop()
@@ -1718,9 +1718,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		return path
 
-#***************************************************************************************
+#***********************************************************************************************
 #***	Overall Definitions.
-#***************************************************************************************
+#***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
 def _run():

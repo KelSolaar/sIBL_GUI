@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -97,9 +97,9 @@ class Delayed_QSplashScreen(QSplashScreen):
 		self.__waitTime = None
 		self.waitTime = waitTime
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def waitTime(self):
 		"""
@@ -133,9 +133,9 @@ class Delayed_QSplashScreen(QSplashScreen):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("waitTime"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def setMessage(self, message, textAlignement=Qt.AlignLeft, textColor=Qt.black, waitTime=None):
 		"""

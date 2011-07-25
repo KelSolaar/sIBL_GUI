@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -242,7 +242,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_BLUE_SHIFT	 = 0
 		FI_RGBA_ALPHA_SHIFT	 = 24
 	else:
-		# Little Endian ( x86 / MaxOSX ): RGB(A) Order.
+		# Little Endian ( x86 / MacOSX ): RGB(A) Order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -271,7 +271,7 @@ else:
 		FI_RGBA_BLUE_SHIFT	 = 24
 		FI_RGBA_ALPHA_SHIFT	 = 0
 	else:
-		#Big Endian ( PPC / Linux, MaxOSX ): RGB(A) Order.
+		# Big Endian ( PPC / Linux, MacOSX ): RGB(A) Order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -680,7 +680,7 @@ FREEIMAGE_FUNCTIONS = (
 	# Message Output Functions.
 	LibraryHook(name="FreeImage_SetOutputMessageStdCall" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetOutputMessage" , affixe="@4", argumentsType=None, returnValue=None),
-	# LibraryHook( name = "FreeImage_OutputMessageProc" , affixe = "@0", argumentsType = None, returnValue = None ),
+	# LibraryHook(name="FreeImage_OutputMessageProc", affixe="@0", argumentsType=None, returnValue=None),
 
 	# Allocate / Clone / Unload Functions.
 	LibraryHook(name="FreeImage_Allocate" , affixe="@24", argumentsType=BPP_1TO32, returnValue=None),
@@ -710,7 +710,7 @@ FREEIMAGE_FUNCTIONS = (
 
 	# Plugin Interface Functions.
 	LibraryHook(name="FreeImage_RegisterLocalPlugin" , affixe="@20", argumentsType=None, returnValue=None),
-	# LibraryHook( name = "FreeImage_RegisterExternalPlugin" , affixe = "@20", argumentsType = None, returnValue = None ),
+	# LibraryHook(name="FreeImage_RegisterExternalPlugin", affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetFIFCount" , affixe="@0", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetPluginEnabled" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_IsPluginEnabled" , affixe="@4", argumentsType=None, returnValue=None),
@@ -1005,9 +1005,9 @@ class Image(object):
 		if imagePath:
 			self.load()
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def library(self):
 		"""
@@ -1130,9 +1130,9 @@ class Image(object):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):

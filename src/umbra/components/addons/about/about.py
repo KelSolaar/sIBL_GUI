@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -104,7 +104,7 @@ ABOUT_MESSAGE = """
 		Light Bulb Icon Is Copyright Christian Bloch.
 		</p>
 		<p>
-		If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets Smart IBL Compliant:
+		If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets Smart IBL Compliant:
 		<br/>
 		Please Contact Us At HDRLabs:
 		<br/>
@@ -165,9 +165,9 @@ class About(UiComponent):
 		self.__container = None
 		self.__miscMenu = None
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def uiPath(self):
 		"""
@@ -378,9 +378,9 @@ class About(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("aboutMiscAction"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
 		"""

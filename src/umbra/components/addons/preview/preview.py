@@ -26,7 +26,7 @@
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Ressources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
+# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
 # Please Contact Us At HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
@@ -105,9 +105,9 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__width = image.width()
 		self.__height = image.height()
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def image(self):
 		"""
@@ -204,9 +204,9 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("height"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def boundingRect(self):
 		"""
@@ -285,9 +285,9 @@ class ImagesPreviewer(object):
 
 		self.fitImage()
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def container(self):
 		"""
@@ -890,9 +890,9 @@ class ImagesPreviewer(object):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displayGraphicsItem"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
 		"""
@@ -913,7 +913,7 @@ class ImagesPreviewer(object):
 		self.__graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 		self.__graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
 		self.__graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
-		# Reimplementing QGraphics View wheelEvent Method.
+		# Reimplementing QGraphicsView wheelEvent Method.
 		self.__graphicsView.wheelEvent = self.wheelEvent
 
 		LOGGER.debug("> Initializing Graphics Scene.")
@@ -1146,9 +1146,9 @@ class Preview(UiComponent):
 									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
 									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Attributes Properties
-	#***************************************************************************************
+	#***********************************************************************************************
 	@property
 	def uiPath(self):
 		"""
@@ -1718,9 +1718,9 @@ class Preview(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorButtons"))
 
-	#***************************************************************************************
+	#***********************************************************************************************
 	#***	Class Methods
-	#***************************************************************************************
+	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
 		"""
