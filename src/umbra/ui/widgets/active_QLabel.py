@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,37 +47,37 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Active_QLabel(QLabel):
 	"""
 	This Class Is The Active_QLabel Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	clicked = pyqtSignal()
 
 	@core.executionTrace
@@ -97,7 +97,7 @@ class Active_QLabel(QLabel):
 
 		QLabel.__init__(self, parent)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__defaultPixmap = defaultPixmap
 		self.__hoverPixmap = hoverPixmap
 		self.__activePixmap = activePixmap
@@ -115,7 +115,7 @@ class Active_QLabel(QLabel):
 		self.__checked and self.setPixmap(self.__activePixmap) or self.setPixmap(self.__defaultPixmap)
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def defaultPixmap(self):
@@ -337,7 +337,7 @@ class Active_QLabel(QLabel):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("menu"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def setChecked(self, state):
@@ -374,7 +374,7 @@ class Active_QLabel(QLabel):
 
 		self.__menu = menu
 
-		# Propagating Actions To Parent.
+		# Propagating actions to parent.
 		for action in self.__menu.actions():
 			not action.shortcut().isEmpty() and self.__parent.addAction(action)
 
@@ -431,6 +431,6 @@ class Active_QLabel(QLabel):
 		not self.__checkable and	self.setPixmap(self.__defaultPixmap)
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************
 

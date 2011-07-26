@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -61,7 +61,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -74,12 +74,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class CollectionsOutliner_QTreeView(QTreeView):
 	"""
@@ -100,7 +100,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 		self.setAcceptDrops(True)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
@@ -110,7 +110,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		self.__previousCollection = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -263,7 +263,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previousCollection"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
@@ -368,7 +368,7 @@ class CollectionsOutliner(UiComponent):
 	This Class Is The CollectionsOutliner Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	modelChanged = pyqtSignal()
 	modelRefresh = pyqtSignal()
 	modelPartialRefresh = pyqtSignal()
@@ -386,7 +386,7 @@ class CollectionsOutliner(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = False
 
 		self.__uiPath = "ui/Collections_Outliner.ui"
@@ -413,7 +413,7 @@ class CollectionsOutliner(UiComponent):
 		self.__treeViewIndentation = 15
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -956,7 +956,7 @@ class CollectionsOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewIndentation"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -1008,7 +1008,7 @@ class CollectionsOutliner(UiComponent):
 
 		self.__Collections_Outliner_treeView_setView()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
 		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
 		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
@@ -1207,7 +1207,7 @@ class CollectionsOutliner(UiComponent):
 		This Method Sets The Collections_Outliner_treeView Ibl Sets Counts.
 		"""
 
-		# Disconnecting Model "dataChanged()" Signal.
+		# Disconnecting model "dataChanged()" signal.
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 		for i in range(self.__model.rowCount()):
@@ -1219,7 +1219,7 @@ class CollectionsOutliner(UiComponent):
 				collectionSetsCountStandardItem = currentStandardItem.child(j, 1)
 				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
-		# Reconnecting Model "dataChanged()" Signal.
+		# Reconnecting model "dataChanged()" signal.
 		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
@@ -1585,5 +1585,5 @@ class CollectionsOutliner(UiComponent):
 		return selectedCollections and selectedCollections or []
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

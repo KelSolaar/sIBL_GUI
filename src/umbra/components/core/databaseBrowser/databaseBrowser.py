@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -62,7 +62,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -76,19 +76,19 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class DatabaseBrowser_Worker(QThread):
 	"""
 	This Class Is The DatabaseBrowser_Worker Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
@@ -103,7 +103,7 @@ class DatabaseBrowser_Worker(QThread):
 
 		QThread.__init__(self, container)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
@@ -112,7 +112,7 @@ class DatabaseBrowser_Worker(QThread):
 		self.__timerCycleMultiplier = 5
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -235,7 +235,7 @@ class DatabaseBrowser_Worker(QThread):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timerCycleMultiplier"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def run(self):
@@ -291,13 +291,13 @@ class DatabaseBrowser_QListView(QListView):
 		self.setAcceptDrops(True)
 
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -359,7 +359,7 @@ class DatabaseBrowser_QListView(QListView):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
@@ -434,7 +434,7 @@ class DatabaseBrowser(UiComponent):
 	This Class Is The DatabaseBrowser Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	modelDatasRefresh = pyqtSignal()
 	modelRefresh = pyqtSignal()
 	modelChanged = pyqtSignal()
@@ -452,7 +452,7 @@ class DatabaseBrowser(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = False
 
 		self.__uiPath = "ui/Database_Browser.ui"
@@ -490,7 +490,7 @@ class DatabaseBrowser(UiComponent):
 								"""
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1105,7 +1105,7 @@ class DatabaseBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipText"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -1176,7 +1176,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
 		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
 		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelDatas)
@@ -1227,7 +1227,7 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			# Wizard If Sets Table Is Empty.
+			# Wizard if sets table is empty.
 			if not self.getIblSets():
 				if messageBox.messageBox("Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
@@ -1235,7 +1235,7 @@ class DatabaseBrowser(UiComponent):
 						if not self.addDirectory(directory):
 							raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
 
-			# Ibl Sets Table Integrity Checking.
+			# Ibl sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
@@ -1491,7 +1491,7 @@ class DatabaseBrowser(UiComponent):
 
 		self.__Database_Browser_listView_setDefaultViewState()
 
-		# Storing Settings Key.
+		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
@@ -1501,7 +1501,7 @@ class DatabaseBrowser(UiComponent):
 		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
 		"""
 
-		# Ensure That Db Objects Modified By The Worker Thread Will Refresh Properly.
+		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
 		self.emit(SIGNAL("modelRefresh()"))
 
@@ -1758,5 +1758,5 @@ class DatabaseBrowser(UiComponent):
 			return Constants.nullObject
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

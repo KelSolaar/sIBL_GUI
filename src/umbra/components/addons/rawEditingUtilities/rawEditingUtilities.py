@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -60,7 +60,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -70,12 +70,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class RawEditingUtilities(UiComponent):
 	"""
@@ -95,7 +95,7 @@ class RawEditingUtilities(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__uiPath = "ui/Raw_Editing_Utilities.ui"
@@ -116,7 +116,7 @@ class RawEditingUtilities(UiComponent):
 		self.__linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -479,7 +479,7 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("linuxTextEditors"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -535,7 +535,7 @@ class RawEditingUtilities(UiComponent):
 
 		self.__addActions()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 
@@ -547,7 +547,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 
@@ -817,5 +817,5 @@ class RawEditingUtilities(UiComponent):
 			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

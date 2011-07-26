@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import ctypes
 import logging
@@ -60,7 +60,7 @@ import platform
 import sys
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -69,12 +69,12 @@ from foundations.library import LibraryHook
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Overall Variables.
+#***	Overall variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	FreeImage Variables.
+#***	FreeImage variables.
 #***********************************************************************************************
 FREEIMAGE_LIBRARY_PATH = os.path.join(os.getcwd(), Constants.freeImageLibrary)
 
@@ -227,7 +227,7 @@ class FICOMPLEX(ctypes.Structure):
 Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
 """
 if FREEIMAGE_BIGENDIAN:
-	# Little Endian ( x86 / MS Windows, Linux ): BGR(A) Order.
+	# Little Endian ( x86 / MS Windows, Linux ): BGR(A) order.
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
@@ -242,7 +242,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_BLUE_SHIFT	 = 0
 		FI_RGBA_ALPHA_SHIFT	 = 24
 	else:
-		# Little Endian ( x86 / MacOSX ): RGB(A) Order.
+		# Little Endian ( x86 / MacOSX ): RGB(A) order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -257,7 +257,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_ALPHA_SHIFT	 = 0
 else:
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
-		# Big Endian ( PPC / none ): BGR(A) Order.
+		# Big Endian ( PPC / none ): BGR(A) order.
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 0
@@ -271,7 +271,7 @@ else:
 		FI_RGBA_BLUE_SHIFT	 = 24
 		FI_RGBA_ALPHA_SHIFT	 = 0
 	else:
-		# Big Endian ( PPC / Linux, MacOSX ): RGB(A) Order.
+		# Big Endian ( PPC / Linux, MacOSX ): RGB(A) order.
 		FI_RGBA_RED			 = 0
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 2
@@ -669,26 +669,26 @@ FI_DEFAULT_GAMMA = 2.2
 
 FREEIMAGE_FUNCTIONS = (
 
-	# Initialization Functions.
+	# Initialization functions.
 	LibraryHook(name="FreeImage_Initialise" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_DeInitialise" , affixe="@0", argumentsType=None, returnValue=None),
 
-	# Version Functions.
+	# Version functions.
 	LibraryHook(name="FreeImage_GetVersion" , affixe="@0", argumentsType=None, returnValue=ctypes.c_char_p),
 	LibraryHook(name="FreeImage_GetCopyrightMessage" , affixe="@0", argumentsType=None, returnValue=ctypes.c_char_p),
 
-	# Message Output Functions.
+	# Message output functions.
 	LibraryHook(name="FreeImage_SetOutputMessageStdCall" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetOutputMessage" , affixe="@4", argumentsType=None, returnValue=None),
-	# LibraryHook(name="FreeImage_OutputMessageProc" , affixe="@0", argumentsType=None, returnValue=None),
+	# LibraryHook(name="FreeImage_OutputMessageProc" , affixe="@0", argumentstype=none, returnvalue=none),
 
-	# Allocate / Clone / Unload Functions.
+	# Allocate / clone / unload functions.
 	LibraryHook(name="FreeImage_Allocate" , affixe="@24", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_AllocateT" , affixe="@28", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_Clone" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_Unload" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Load / Save Unload Functions.
+	# Load / save unload functions.
 	LibraryHook(name="FreeImage_Load" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LoadU" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LoadFromHandle" , affixe="@16", argumentsType=None, returnValue=None),
@@ -696,7 +696,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_SaveU" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SaveToHandle" , affixe="@20", argumentsType=None, returnValue=None),
 
-	# Memory I/O Stream Functions.
+	# Memory I/O stream functions.
 	LibraryHook(name="FreeImage_OpenMemory" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_CloseMemory" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LoadFromMemory" , affixe="@12", argumentsType=None, returnValue=None),
@@ -708,9 +708,9 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_WriteMemory" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LoadMultiBitmapFromMemory" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Plugin Interface Functions.
+	# Plugin interface functions.
 	LibraryHook(name="FreeImage_RegisterLocalPlugin" , affixe="@20", argumentsType=None, returnValue=None),
-	# LibraryHook(name="FreeImage_RegisterExternalPlugin" , affixe="@20", argumentsType=None, returnValue=None),
+	# LibraryHook(name="FreeImage_RegisterExternalPlugin" , affixe="@20", argumentstype=none, returnvalue=none),
 	LibraryHook(name="FreeImage_GetFIFCount" , affixe="@0", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetPluginEnabled" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_IsPluginEnabled" , affixe="@4", argumentsType=None, returnValue=None),
@@ -729,7 +729,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_FIFSupportsExportType" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_FIFSupportsICCProfiles" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Multipaging Functions.
+	# Multipaging functions.
 	LibraryHook(name="FreeImage_OpenMultiBitmap" , affixe="@24", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_OpenMultiBitmapFromHandle" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_CloseMultiBitmap" , affixe="@8", argumentsType=None, returnValue=None),
@@ -742,21 +742,21 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_MovePage" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetLockedPageNumbers" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# File Type Request Functions.
+	# File type request functions.
 	LibraryHook(name="FreeImage_GetFileType" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetFileTypeU" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetFileTypeFromHandle" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetFileTypeFromMemory" , affixe="@8", argumentsType=None, returnValue=None),
 
-	# Image Type Request Functions.
+	# Image type request functions.
 	LibraryHook(name="FreeImage_GetImageType" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# FreeImage Helper Functions.
+	# FreeImage helper functions.
 	LibraryHook(name="FreeImage_IsLittleEndian" , affixe="@0", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LookupX11Color" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_LookupSVGColor" , affixe="@16", argumentsType=None, returnValue=None),
 
-	# Pixel Access Functions.
+	# Pixel access functions.
 	LibraryHook(name="FreeImage_GetBits" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetScanLine" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetPixelIndex" , affixe="@16", argumentsType=BPP_1TO8, returnValue=None),
@@ -764,7 +764,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_SetPixelIndex" , affixe="@16", argumentsType=BPP_1TO8, returnValue=None),
 	LibraryHook(name="FreeImage_SetPixelColor" , affixe="@16", argumentsType=BPP_16TO32, returnValue=None),
 
-	# DIB Informations Functions.
+	# DIB informations functions.
 	LibraryHook(name="FreeImage_GetColorsUsed" , affixe="@4", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_GetBPP" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetWidth" , affixe="@4", argumentsType=None, returnValue=None),
@@ -794,12 +794,12 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_GetBackgroundColor" , affixe="@8", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=ctypes.POINTER(RGBQUAD)),
 	LibraryHook(name="FreeImage_SetBackgroundColor" , affixe="@8", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=None),
 
-	# ICC Profile Functions.
+	# ICC profile functions.
 	LibraryHook(name="FreeImage_GetICCProfile" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_CreateICCProfile" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_DestroyICCProfile" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Line Conversion Functions.
+	# Line conversion functions.
 	LibraryHook(name="FreeImage_ConvertLine1To4" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertLine8To4" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertLine16To4_555" , affixe="@12", argumentsType=None, returnValue=None),
@@ -837,7 +837,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_ConvertLine16To32_565" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertLine24To32" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Smart Conversion Functions.
+	# Smart conversion functions.
 	LibraryHook(name="FreeImage_ConvertTo4Bits" , affixe="@4", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertTo8Bits" , affixe="@4", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertToGreyscale" , affixe="@4", argumentsType=BPP_1TO32, returnValue=None),
@@ -855,26 +855,26 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_ConvertToStandardType" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ConvertToType" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Tone Mapping Operators Functions.
+	# Tone mapping operators functions.
 	LibraryHook(name="FreeImage_ToneMapping" , affixe="@24", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_TmoDrago03" , affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_TmoReinhard05" , affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_TmoReinhard05Ex" , affixe="@36", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_TmoFattal02" , affixe="@20", argumentsType=None, returnValue=None),
 
-	# ZLib Functions.
+	# ZLib functions.
 	LibraryHook(name="FreeImage_ZLibCompress" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ZLibUncompress" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ZLibGZip" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ZLibGUnzip" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_ZLibCRC32" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Tags Creation / Destruction Functions.
+	# Tags creation / destruction functions.
 	LibraryHook(name="FreeImage_CreateTag" , affixe="@0", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_DeleteTag" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_CloneTag" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Tags Getters / Setters Functions.
+	# Tags getters / setters functions.
 	LibraryHook(name="FreeImage_GetTagKey" , affixe="@4", argumentsType=None, returnValue=ctypes.c_char_p),
 	LibraryHook(name="FreeImage_GetTagDescription" , affixe="@4", argumentsType=None, returnValue=ctypes.c_char_p),
 	LibraryHook(name="FreeImage_GetTagID" , affixe="@4", argumentsType=None, returnValue=ctypes.c_char_p),
@@ -890,21 +890,21 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_SetTagLength" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetTagValue" , affixe="@8", argumentsType=None, returnValue=None),
 
-	# Iterator Functions.
+	# Iterator functions.
 	LibraryHook(name="FreeImage_FindFirstMetadata" , affixe="@12", argumentsType=None, returnValue=ctypes.c_void_p),
 	LibraryHook(name="FreeImage_FindNextMetadata" , affixe="@8", argumentsType=None, returnValue=ctypes.c_void_p),
 	LibraryHook(name="FreeImage_FindCloseMetadata" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Metadatas Getters / Setters Functions.
+	# Metadatas getters / setters functions.
 	LibraryHook(name="FreeImage_SetMetadata" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetMetadata" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetMetadataCount" , affixe="@8", argumentsType=None, returnValue=ctypes.c_ulong),
 	LibraryHook(name="FreeImage_CloneMetadata" , affixe="@8", argumentsType=None, returnValue=None),
 
-	# Tag To C String Conversion Function.
+	# Tag to C string conversion function.
 	LibraryHook(name="FreeImage_TagToString" , affixe="@12", argumentsType=None, returnValue=ctypes.c_char_p),
 
-	# Rotation and Flipping Functions.
+	# Rotation and flipping functions.
 	LibraryHook(name="FreeImage_RotateClassic" , affixe="@12", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_Rotate" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_RotateEx" , affixe="@48", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=None),
@@ -913,11 +913,11 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_JPEGTransform" , affixe="@16", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_JPEGTransformU" , affixe="@16", argumentsType=None, returnValue=None),
 
-	# Upsampling / Downsampling Functions.
+	# Upsampling / downsampling functions.
 	LibraryHook(name="FreeImage_Rescale" , affixe="@16", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_MakeThumbnail" , affixe="@12", argumentsType=BPP_1TO32, returnValue=None),
 
-	# Color Manipulation Functions.
+	# Color manipulation functions.
 	LibraryHook(name="FreeImage_AdjustCurve" , affixe="@12", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=ctypes.c_long),
 	LibraryHook(name="FreeImage_AdjustGamma" , affixe="@12", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=ctypes.c_long),
 	LibraryHook(name="FreeImage_AdjustBrightness" , affixe="@12", argumentsType=(BPP_8, BPP_24, BPP_32), returnValue=ctypes.c_long),
@@ -931,13 +931,13 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_ApplyPaletteIndexMapping" , affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SwapPaletteIndices" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Channel Processing Functions.
+	# Channel processing functions.
 	LibraryHook(name="FreeImage_GetChannel" , affixe="@8", argumentsType=(BPP_24, BPP_32,), returnValue=None),
 	LibraryHook(name="FreeImage_SetChannel" , affixe="@12", argumentsType=(BPP_24, BPP_32,), returnValue=None),
 	LibraryHook(name="FreeImage_GetComplexChannel" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetComplexChannel" , affixe="@12", argumentsType=None, returnValue=None),
 
-	# Copy / Paste / Composite Functions.
+	# Copy / paste / composite functions.
 	LibraryHook(name="FreeImage_Copy" , affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_Paste" , affixe="@20", argumentsType=BPP_1TO32, returnValue=None),
 	LibraryHook(name="FreeImage_Composite" , affixe="@16", argumentsType=None, returnValue=None),
@@ -945,21 +945,21 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_JPEGCropU" , affixe="@24", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_PreMultiplyWithAlpha" , affixe="@4", argumentsType=None, returnValue=None),
 
-	# Background Filling Functions.
+	# Background filling functions.
 	LibraryHook(name="FreeImage_FillBackground" , affixe="@12", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_EnlargeCanvas" , affixe="@28", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_AllocateEx" , affixe="@36", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_AllocateExT" , affixe="@40", argumentsType=None, returnValue=None),
 
-	# Miscellaneous Algorithms Functions.
+	# Miscellaneous algorithms functions.
 	LibraryHook(name="FreeImage_MultigridPoissonSolver" , affixe="@8", argumentsType=None, returnValue=None),
 
-	# Custom Functions.
+	# Custom functions.
 	LibraryHook(name="FreeImage_HDRLabs_ConvertToLdr" , affixe="@12", argumentsType=(FIBITMAP, ctypes.c_double), returnValue=None),
  )
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
 	"""
@@ -976,7 +976,7 @@ class ImageInformationsHeader(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__dict__.update(kwargs)
 
 class Image(object):
@@ -991,7 +991,7 @@ class Image(object):
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__library = foundations.library.Library(FREEIMAGE_LIBRARY_PATH, FREEIMAGE_FUNCTIONS)
 
 		self.__errorsCallback = self.__library.callback(self.__logLibraryErrors)
@@ -1006,7 +1006,7 @@ class Image(object):
 			self.load()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def library(self):
@@ -1131,7 +1131,7 @@ class Image(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
@@ -1286,7 +1286,7 @@ class Image(object):
 
 			image._datas = ImageInformationsHeader(path=self.__imagePath, width=width, height=height, bpp=bpp)
 
-			# Removing The Following Line Would Result In A Python Process Crash, I Need To Call 'bits()' Method At Some Point.
+			# Removing the following line would result in a Python process crash, I need to call 'bits()' method at some point.
 			LOGGER.debug("> Final Memory Pointer With '{0}' Address.".format(image.bits().__int__()))
 
 			LOGGER.debug("> '{0}' Image Bitmap Conversion To QImage Done!".format(self.__imagePath))
@@ -1296,5 +1296,5 @@ class Image(object):
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP)
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

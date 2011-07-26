@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -59,7 +59,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -67,12 +67,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class LoggingWindow(UiComponent):
 	"""
@@ -92,7 +92,7 @@ class LoggingWindow(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__uiPath = "ui/Logging_Window.ui"
@@ -103,7 +103,7 @@ class LoggingWindow(UiComponent):
 		self.__memoryHandlerStackDepth = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -226,7 +226,7 @@ class LoggingWindow(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("memoryHandlerStackDepth"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -269,7 +269,7 @@ class LoggingWindow(UiComponent):
 		self.ui.Logging_textEdit.setFontFamily("Courier")
 		self.__Logging_textEdit_setUi()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__container.timer.timeout.connect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
@@ -280,7 +280,7 @@ class LoggingWindow(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__container.timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
@@ -326,5 +326,5 @@ class LoggingWindow(UiComponent):
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

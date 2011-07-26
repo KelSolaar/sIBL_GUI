@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -60,19 +60,19 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
 	"""
@@ -92,7 +92,7 @@ class Search_QLineEdit(QLineEdit):
 
 		QLineEdit.__init__(self, parent)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__uiClearImage = None
 		self.uiClearImage = uiClearImage
 		self.__uiClearClickedImage = None
@@ -105,12 +105,12 @@ class Search_QLineEdit(QLineEdit):
 		self.__setClearButtonStyle()
 		self.__setClearButtonVisibility(self.text())
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__clearButton.clicked.connect(self.clear)
 		self.textChanged.connect(self.__setClearButtonVisibility)
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiClearImage(self):
@@ -238,7 +238,7 @@ class Search_QLineEdit(QLineEdit):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("clearButton"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def resizeEvent(self, event):
@@ -266,7 +266,7 @@ class Search_QLineEdit(QLineEdit):
 			self.__clearButton.setIcon(QIcon(pixmap))
 			self.__clearButton.setMaximumSize(pixmap.size())
 
-			# Signals / Slots.
+			# Signals / slots.
 			self.__clearButton.pressed.connect(functools.partial(self.__clearButton.setIcon, QIcon(clickedPixmap)))
 			self.__clearButton.released.connect(functools.partial(self.__clearButton.setIcon, QIcon(pixmap)))
 		else:
@@ -290,6 +290,6 @@ class Search_QLineEdit(QLineEdit):
 			self.__clearButton.hide()
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************
 

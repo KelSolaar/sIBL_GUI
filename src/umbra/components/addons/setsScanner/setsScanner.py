@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -60,7 +60,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -73,19 +73,19 @@ from manager.component import Component
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class SetsScanner_Worker(QThread):
 	"""
 	This Class Is The SetsScanner_Worker Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
@@ -100,7 +100,7 @@ class SetsScanner_Worker(QThread):
 
 		QThread.__init__(self)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
@@ -108,7 +108,7 @@ class SetsScanner_Worker(QThread):
 		self.__extension = "ibl"
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -231,7 +231,7 @@ class SetsScanner_Worker(QThread):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("newIblSets"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def run(self):
@@ -290,7 +290,7 @@ class SetsScanner(Component):
 
 		Component.__init__(self, name=name)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__container = None
@@ -301,7 +301,7 @@ class SetsScanner(Component):
 		self.__setsScannerWorkerThread = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -454,7 +454,7 @@ class SetsScanner(Component):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("setsScannerWorkerThread"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -503,7 +503,7 @@ class SetsScanner(Component):
 				self.__setsScannerWorkerThread = SetsScanner_Worker(self)
 				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
 
-				# Signals / Slots.
+				# Signals / slots.
 				self.__setsScannerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			else:
 				LOGGER.info("{0} | 'Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
@@ -520,7 +520,7 @@ class SetsScanner(Component):
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
-				# Signals / Slots.
+				# Signals / slots.
 				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.__coreDb_database__changed)
 
 				self.__setsScannerWorkerThread = None
@@ -554,5 +554,5 @@ class SetsScanner(Component):
 		self.__setsScannerWorkerThread.exit()
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

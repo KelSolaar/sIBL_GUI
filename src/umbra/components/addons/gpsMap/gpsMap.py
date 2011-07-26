@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -60,7 +60,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtWebKit import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -70,12 +70,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Map(QWebView):
 	"""
@@ -181,7 +181,7 @@ class GpsMap(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__uiPath = "ui/Gps_Map.ui"
@@ -200,7 +200,7 @@ class GpsMap(UiComponent):
 		self.__mapTypeIds = (("Auto", "MapTypeId.auto"), ("Aerial", "MapTypeId.aerial"), ("Road", "MapTypeId.road"))
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -533,7 +533,7 @@ class GpsMap(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("mapTypeIds"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -591,7 +591,7 @@ class GpsMap(UiComponent):
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
@@ -604,7 +604,7 @@ class GpsMap(UiComponent):
 		This Method Uninitializes The Component Ui.
 		"""
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
@@ -725,5 +725,5 @@ class GpsMap(UiComponent):
 		return self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

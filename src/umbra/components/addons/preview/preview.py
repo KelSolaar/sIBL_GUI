@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -64,7 +64,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -76,12 +76,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
@@ -100,13 +100,13 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		QGraphicsItem.__init__(self)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__image = image
 		self.__width = image.width()
 		self.__height = image.height()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def image(self):
@@ -205,7 +205,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("height"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def boundingRect(self):
@@ -243,7 +243,7 @@ class ImagesPreviewer(object):
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 		self.__paths = None
 		self.paths = paths
@@ -260,9 +260,9 @@ class ImagesPreviewer(object):
 		self.__ui = uic.loadUi(self.__uiPath)
 		if "." in sys.path:
 			sys.path.remove(".")
-		# Ensure The Ui Object Is Destroyed On Close To Avoid Memory Leaks.
+		# Ensure the ui object is destroyed on close to avoid memory leaks.
 		self.__ui.setAttribute(Qt.WA_DeleteOnClose)
-		# Reimplementing Widget Close Event Method.
+		# Reimplementing widget close event method.
 		self.__ui.closeEvent = self.closeUi
 
 		self.__graphicsSceneBackgroundColor = QColor(48, 48, 48)
@@ -286,7 +286,7 @@ class ImagesPreviewer(object):
 		self.fitImage()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -891,7 +891,7 @@ class ImagesPreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displayGraphicsItem"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -913,7 +913,7 @@ class ImagesPreviewer(object):
 		self.__graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 		self.__graphicsView.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
 		self.__graphicsView.setDragMode(QGraphicsView.ScrollHandDrag)
-		# Reimplementing QGraphicsView wheelEvent Method.
+		# Reimplementing QGraphicsView wheelEvent method.
 		self.__graphicsView.wheelEvent = self.wheelEvent
 
 		LOGGER.debug("> Initializing Graphics Scene.")
@@ -929,7 +929,7 @@ class ImagesPreviewer(object):
 
 		self.__ui.Images_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Previous_Image_pushButton.clicked.connect(self.__Previous_Image_pushButton__clicked)
 		self.ui.Next_Image_pushButton.clicked.connect(self.__Next_Image_pushButton__clicked)
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
@@ -1119,7 +1119,7 @@ class Preview(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__uiPath = "ui/Preview.ui"
@@ -1147,7 +1147,7 @@ class Preview(UiComponent):
 									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1719,7 +1719,7 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorButtons"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -1781,7 +1781,7 @@ class Preview(UiComponent):
 		self.__addActions()
 		self.__addInspectorButtons()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.connect(self.__Custom_Previewer_Path_toolButton__clicked)
 		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.connect(self.__Custom_Previewer_Path_lineEdit__editFinished)
 
@@ -1796,7 +1796,7 @@ class Preview(UiComponent):
 		self.__removeActions()
 		self.__removeInspectorButtons()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.disconnect(self.__Custom_Previewer_Path_toolButton__clicked)
 		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.disconnect(self.__Custom_Previewer_Path_lineEdit__editFinished)
 
@@ -2214,5 +2214,5 @@ class Preview(UiComponent):
 		return imagePaths
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

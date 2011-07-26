@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -60,7 +60,7 @@ from PyQt4.QtGui import *
 import traceback
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -71,12 +71,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 @core.executionTrace
 def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
@@ -116,7 +116,7 @@ class ComponentsManagerUi(UiComponent):
 	This Class Is The ComponentsManagerUi Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	modelChanged = pyqtSignal()
 	modelRefresh = pyqtSignal()
 	modelPartialRefresh = pyqtSignal()
@@ -134,7 +134,7 @@ class ComponentsManagerUi(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = False
 
 		self.__uiPath = "ui/Components_Manager_Ui.ui"
@@ -170,7 +170,7 @@ class ComponentsManagerUi(UiComponent):
 											"""
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -593,7 +593,7 @@ class ComponentsManagerUi(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("componentsInformationsText"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -644,7 +644,7 @@ class ComponentsManagerUi(UiComponent):
 
 		self.ui.Components_Manager_Ui_splitter.setSizes([ 16777215, 1 ])
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Components_Manager_Ui_treeView.selectionModel().selectionChanged.connect(self.__Components_Manager_Ui_treeView_selectionModel__selectionChanged)
 		self.modelChanged.connect(self.__Components_Manager_Ui_treeView_refreshView)
 		self.modelRefresh.connect(self.__Components_Manager_Ui_treeView_refreshModel)
@@ -1056,5 +1056,5 @@ class ComponentsManagerUi(UiComponent):
 		return selectedComponents and selectedComponents or []
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

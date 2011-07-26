@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -61,7 +61,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -76,19 +76,19 @@ from foundations.walker import Walker
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class TemplatesOutliner_Worker(QThread):
 	"""
 	This Class Is The TemplatesOutliner_Worker Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
@@ -103,7 +103,7 @@ class TemplatesOutliner_Worker(QThread):
 
 		QThread.__init__(self, container)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
@@ -112,7 +112,7 @@ class TemplatesOutliner_Worker(QThread):
 		self.__timerCycleMultiplier = 5
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -236,7 +236,7 @@ class TemplatesOutliner_Worker(QThread):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timerCycleMultiplier"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def run(self):
@@ -292,13 +292,13 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		self.setAcceptDrops(True)
 
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -360,7 +360,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
@@ -418,7 +418,7 @@ class TemplatesOutliner(UiComponent):
 	This Class Is The TemplatesOutliner Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	modelRefresh = pyqtSignal()
 	modelChanged = pyqtSignal()
 
@@ -435,7 +435,7 @@ class TemplatesOutliner(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = False
 
 		self.__uiPath = "ui/Templates_Outliner.ui"
@@ -488,7 +488,7 @@ class TemplatesOutliner(UiComponent):
 											"""
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1151,7 +1151,7 @@ class TemplatesOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesInformationsText"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -1220,7 +1220,7 @@ class TemplatesOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
 		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)
@@ -1264,10 +1264,10 @@ class TemplatesOutliner(UiComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			# Adding Default Templates.
+			# Adding default templates.
 			self.addDefaultTemplates()
 
-			# Templates Table Integrity Checking.
+			# Templates table integrity checking.
 			erroneousTemplates = dbCommon.checkTemplatesTableIntegrity(self.__coreDb.dbSession)
 			if erroneousTemplates:
 				for template in erroneousTemplates:
@@ -1635,7 +1635,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Is Triggered By The TemplatesOutliner_Worker When The Database Has Changed.
 		"""
 
-		# Ensure That Db Objects Modified By The Worker Thread Will Refresh Properly.
+		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
 		self.emit(SIGNAL("modelRefresh()"))
 
@@ -1964,5 +1964,5 @@ class TemplatesOutliner(UiComponent):
 		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

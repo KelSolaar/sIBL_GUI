@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -63,7 +63,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtNetwork import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -78,14 +78,14 @@ from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class ReleaseObject(core.Structure):
 	"""
@@ -102,7 +102,7 @@ class ReleaseObject(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__dict__.update(kwargs)
 
 class DownloadManager(QObject):
@@ -110,7 +110,7 @@ class DownloadManager(QObject):
 	This Is The DownloadManager Class.
 	"""
 
-	# Custom Signals Definitions.
+	# Custom signals definitions.
 	downloadFinished = pyqtSignal()
 
 	@core.executionTrace
@@ -128,7 +128,7 @@ class DownloadManager(QObject):
 
 		QObject.__init__(self)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 		self.__networkAccessManager = networkAccessManager
 		self.__downloadDirectory = downloadDirectory
@@ -146,7 +146,7 @@ class DownloadManager(QObject):
 		self.__currentFile = None
 		self.__currentFilePath = None
 
-		# Helper Attribute For QNetwork Reply Crash.
+		# Helper attribute for QNetwork reply crash.
 		self.__downloadStatus = None
 
 		self.__ui = uic.loadUi(self.__uiPath)
@@ -158,7 +158,7 @@ class DownloadManager(QObject):
 		self.__ui.show()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -553,7 +553,7 @@ class DownloadManager(QObject):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -569,7 +569,7 @@ class DownloadManager(QObject):
 
 		self.__ui.closeEvent = self.closeEvent
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
 
 	@core.executionTrace
@@ -616,7 +616,7 @@ class DownloadManager(QObject):
 				self.__downloadNext()
 				return
 
-			# Signals / Slots.
+			# Signals / slots.
 			self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
 			self.__currentRequest.finished.connect(self.__downloadComplete)
 			self.__currentRequest.readyRead.connect(self.__requestReady)
@@ -710,7 +710,7 @@ class RemoteUpdater(object):
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__container = container
 		self.__releases = None
 		self.releases = releases
@@ -743,7 +743,7 @@ class RemoteUpdater(object):
 		self.__ui.show()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -1257,7 +1257,7 @@ class RemoteUpdater(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -1330,7 +1330,7 @@ class RemoteUpdater(object):
 			self.__ui.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
 			self.__ui.Templates_tableWidget.resizeColumnsToContents()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.__Get_sIBL_GUI_pushButton__clicked)
 		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
 		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
@@ -1477,7 +1477,7 @@ class OnlineUpdater(UiComponent):
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.deactivatable = True
 
 		self.__uiPath = "ui/Online_Updater.ui"
@@ -1503,7 +1503,7 @@ class OnlineUpdater(UiComponent):
 		self.__reportUpdateStatus = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1965,7 +1965,7 @@ class OnlineUpdater(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reportUpdateStatus"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -2035,7 +2035,7 @@ class OnlineUpdater(UiComponent):
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
@@ -2048,7 +2048,7 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
 
-		# Signals / Slots.
+		# Signals / slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
@@ -2090,7 +2090,7 @@ class OnlineUpdater(UiComponent):
 		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
 		"""
 
-		# Adding Settings Key If It Doesn't Exists.
+		# Adding settings key if it doesn't exists.
 		self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup").isNull() and self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
 
 		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
@@ -2114,7 +2114,7 @@ class OnlineUpdater(UiComponent):
 		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
 		"""
 
-		# Adding Settings Key If It Doesn't Exists.
+		# Adding settings key if it doesn't exists.
 		self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates").isNull() and self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
 
 		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
@@ -2238,5 +2238,5 @@ class OnlineUpdater(UiComponent):
 		return True
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

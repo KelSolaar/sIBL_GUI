@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,18 +47,18 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.common
@@ -66,12 +66,12 @@ import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Delayed_QSplashScreen(QSplashScreen):
 	"""
@@ -93,12 +93,12 @@ class Delayed_QSplashScreen(QSplashScreen):
 
 		self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__waitTime = None
 		self.waitTime = waitTime
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def waitTime(self):
@@ -134,7 +134,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("waitTime"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def setMessage(self, message, textAlignement=Qt.AlignLeft, textColor=Qt.black, waitTime=None):
@@ -149,7 +149,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 
 		self.showMessage(message, textAlignement, textColor)
 
-		# Force QSplashscreen Refresh.
+		# Force QSplashscreen refresh.
 		QApplication.processEvents()
 
 		if self.__waitTime:
@@ -158,5 +158,5 @@ class Delayed_QSplashScreen(QSplashScreen):
 		waitTime and foundations.common.wait(waitTime)
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

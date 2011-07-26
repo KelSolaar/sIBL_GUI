@@ -22,12 +22,12 @@
 #
 #***********************************************************************************************
 #
-# The Following Code Is Protected By GNU GPL V3 Licence.
+# The following code is protected by GNU GPL V3 Licence.
 #
 #***********************************************************************************************
 #
-# If You Are A HDRI Resources Vendor And Are Interested In Making Your Sets SmartIBL Compliant:
-# Please Contact Us At HDRLabs:
+# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
+# Please contact us at HDRLabs:
 # Christian Bloch - blochi@edenfx.com
 # Thomas Mansencal - thomas.mansencal@gmail.com
 #
@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -65,7 +65,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Path Manipulations.
+#***	Path manipulations.
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
@@ -81,7 +81,7 @@ def _setApplicationPackageDirectory():
 _setApplicationPackageDirectory()
 
 #***********************************************************************************************
-#***	Dependencies Globals Manipulation.
+#***	Dependencies globals manipulation.
 #***********************************************************************************************
 import foundations.globals.constants
 import manager.globals.constants
@@ -101,7 +101,7 @@ def _overrideDependenciesGlobals():
 _overrideDependenciesGlobals()
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.common
 import foundations.core as core
@@ -116,17 +116,17 @@ from umbra.ui.widgets.active_QLabel import Active_QLabel
 from umbra.ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 
 #***********************************************************************************************
-#***	Overall Variables.
+#***	Overall variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
-# Starting The Console Handler.
+# Starting the console handler.
 if not hasattr(sys, "frozen") or not (platform.system() == "Windows" or platform.system() == "Microsoft"):
 	RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
 	RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
 	LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
 
-# Defining Logging Formatters.
+# Defining logging formatters.
 RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_DEFAULT_FORMATTER,
 									"Extended" : core.LOGGING_EXTENDED_FORMATTER,
 									"Standard" : core.LOGGING_STANDARD_FORMATTER}
@@ -152,7 +152,7 @@ else:
 	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' Ui File Is Not Available, {1} Will Now Close!".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions.
+#***	Module classes and definitions.
 #***********************************************************************************************
 class Preferences():
 	"""
@@ -169,17 +169,17 @@ class Preferences():
 
 		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__preferencesFile = None
 		self.__preferencesFile = preferencesFile
 
 		self.__settings = QSettings(self.preferencesFile, QSettings.IniFormat)
 
-		# --- Initializing Preferences. ---
+		# --- Initializing preferences. ---
 		self.__getDefaultLayoutsSettings()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def preferencesFile(self):
@@ -275,7 +275,7 @@ class Preferences():
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultLayoutsSettings"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def setKey(self, section, key, value):
@@ -410,7 +410,7 @@ class LayoutActiveLabel(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__dict__.update(kwargs)
 
 class sIBL_GUI(Ui_Type, Ui_Setup):
@@ -437,7 +437,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.closeEvent = self.__closeUi
 
-		# --- Setting Class Attributes. ---
+		# --- Setting class attributes. ---
 		self.__timer = None
 		self.__componentsManager = None
 		self.__coreComponentsManagerUi = None
@@ -466,18 +466,18 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__miscMenu = None
 		self.__workerThreads = []
 
-		# --- Initializing Timer. ---
+		# --- Initializing timer. ---
 		self.__timer = QTimer(self)
 		self.__timer.start(Constants.defaultTimerCycle)
 
-		# --- Initializing Application. ---
+		# --- Initializing application. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
-		# Visual Style Initialization.
+		# Visual style initialization.
 		self.__setVisualStyle()
 		umbra.ui.common.setWindowDefaultIcon(self)
 
-		# Setting Window Title And Toolbar.
+		# Setting window title and toolbar.
 		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
 		self.__initializeToolbar()
 
@@ -492,7 +492,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
-		# --- Activating Component Manager Ui Component. ---
+		# --- Activating Component Manager Ui component. ---
 		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
 		if self.__coreComponentsManagerUi:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"), textColor=Qt.white)
@@ -502,7 +502,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.componentsManagerUi", Constants.applicationName)
 
-		# --- Activating Preferences Manager Component. ---
+		# --- Activating Preferences Manager component. ---
 		self.__corePreferencesManager = self.__componentsManager.getInterface("core.preferencesManager")
 		if self.__corePreferencesManager:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager"), textColor=Qt.white)
@@ -512,7 +512,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.preferencesManager", Constants.applicationName)
 
-		# --- Activating Database Component. ---
+		# --- Activating Database component. ---
 		self.__coreDb = self.__componentsManager.getInterface("core.db")
 		if self.__coreDb:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.db"), textColor=Qt.white)
@@ -521,7 +521,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.db", Constants.applicationName)
 
-		# --- Activating Collections Outliner Component. ---
+		# --- Activating Collections Outliner component. ---
 		self.__coreCollectionsOutliner = self.__componentsManager.getInterface("core.collectionsOutliner")
 		if self.__coreCollectionsOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner"), textColor=Qt.white)
@@ -531,7 +531,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.collectionsOutliner", Constants.applicationName)
 
-		# --- Activating Database Browser Component. ---
+		# --- Activating Database Browser component. ---
 		self.__coreDatabaseBrowser = self.__componentsManager.getInterface("core.databaseBrowser")
 		if self.__coreDatabaseBrowser:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser"), textColor=Qt.white)
@@ -541,7 +541,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.databaseBrowser", Constants.applicationName)
 
-		# --- Activating Inspector Component. ---
+		# --- Activating Inspector component. ---
 		self.__coreInspector = self.__componentsManager.getInterface("core.inspector")
 		if self.__coreInspector:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
@@ -549,7 +549,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreInspector.addWidget()
 			self.__coreInspector.initializeUi()
 
-		# --- Activating Templates Outliner Component. ---
+		# --- Activating Templates Outliner component. ---
 		self.__coreTemplatesOutliner = self.__componentsManager.getInterface("core.templatesOutliner")
 		if self.__coreTemplatesOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner"), textColor=Qt.white)
@@ -559,7 +559,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component Is Not Available, {1} Will Now Close!".format("core.templatesOutliner", Constants.applicationName)
 
-		# --- Activating Others Components. ---
+		# --- Activating Others components. ---
 		deactivatedComponents = self.__settings.getKey("Settings", "deactivatedComponents").toString().split(",")
 		for component in self.__componentsManager.getComponents():
 			if component not in deactivatedComponents:
@@ -574,13 +574,13 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 						interface.addWidget()
 						interface.initializeUi()
 
-		# Hiding Splashscreen.
+		# Hiding splashscreen.
 		LOGGER.debug("> Hiding SplashScreen.")
 		if RuntimeConstants.splashscreen:
 			RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initialization Done.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white)
 			RuntimeConstants.splashscreen.hide()
 
-		# --- Running onStartup Components Methods. ---
+		# --- Running onStartup components methods. ---
 		for component in self.__componentsManager.getComponents():
 			interface = self.__componentsManager.getInterface(component)
 			if interface.activated:
@@ -591,7 +591,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.restoreStartupLayout()
 
 	#***********************************************************************************************
-	#***	Attributes Properties.
+	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
 	def timer(self):
@@ -1350,7 +1350,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("workerThreads"))
 
 	#***********************************************************************************************
-	#***	Class Methods.
+	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def __closeUi(self, event):
@@ -1360,17 +1360,17 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		@param event: QEvent. ( QEvent )
 		"""
 
-		# --- Running onClose Components Methods. ---
+		# --- Running onClose components methods. ---
 		for component in self.__componentsManager.getComponents():
 			interface = self.__componentsManager.getInterface(component)
 			if interface.activated:
 				hasattr(interface, "onClose") and interface.onClose()
 
-		# Storing Current Layout.
+		# Storing current layout.
 		self.storeStartupLayout()
 		self.__settings.settings.sync()
 
-		# Stopping Worker Threads.
+		# Stopping worker threads.
 		for workerThread in self.__workerThreads:
 			if not workerThread.isFinished():
 				LOGGER.debug("> Stopping Worker Thread: '{0}'.".format(workerThread))
@@ -1378,9 +1378,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		foundations.common.closeHandler(LOGGER, self.__loggingFileHandler)
 		foundations.common.closeHandler(LOGGER, self.__loggingSessionHandler)
-		# foundations.common.closeHandler(LOGGER, self.__loggingConsoleHandler)
+		# foundations.common.closeHandler(LOGGER, self.__loggingconsolehandler)
 
-		# Stopping The Timer.
+		# Stopping the timer.
 		self.__timer.stop()
 		self.__timer = None
 
@@ -1446,7 +1446,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 									LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
 									LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
-		# Signals / Slots.
+		# Signals / slots.
 		for layoutActiveLabel in self.__layoutsActiveLabels:
 			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
 
@@ -1471,7 +1471,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action.setShortcut(QKeySequence(layout[1]))
 			self.__layoutMenu.addAction(action)
 
-			# Signals / Slots.
+			# Signals / slots.
 			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
 
 		self.__layoutMenu.addSeparator()
@@ -1481,7 +1481,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
 			self.__layoutMenu.addAction(action)
 
-			# Signals / Slots.
+			# Signals / slots.
 			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
 		layoutsButton.setMenu(self.__layoutMenu)
@@ -1500,7 +1500,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__miscMenu.addAction(apiDisplayMiscAction)
 		self.__miscMenu.addSeparator()
 
-		# Signals / Slots.
+		# Signals / slots.
 		helpDisplayMiscAction.triggered.connect(self.__helpDisplayMiscAction__triggered)
 		apiDisplayMiscAction.triggered.connect(self.__apiDisplayMiscAction__triggered)
 
@@ -1719,7 +1719,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		return path
 
 #***********************************************************************************************
-#***	Overall Definitions..
+#***	Overall definitions..
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
@@ -1728,7 +1728,7 @@ def _run():
 	This Definition Is Called When sIBL_GUI Starts.
 	"""
 
-	# Command Line Parameters Handling.
+	# Command line parameters handling.
 	RuntimeConstants.parameters, RuntimeConstants.args = _getCommandLineParameters(sys.argv)
 
 	if RuntimeConstants.parameters.about:
@@ -1736,14 +1736,14 @@ def _run():
 			sys.stdout.write("{0}\n".format(line))
 		foundations.common.exit(1, LOGGER, [])
 
-	# Redirecting Standard Output And Error Messages.
+	# Redirecting standard output and error messages.
 	sys.stdout = core.StandardMessageHook(LOGGER)
 	sys.stderr = core.StandardMessageHook(LOGGER)
 
-	# Setting Application Verbose Level.
+	# Setting application verbose level.
 	LOGGER.setLevel(logging.DEBUG)
 
-	# Setting User Application Datas Directory.
+	# Setting user application datas directory.
 	if RuntimeConstants.parameters.userApplicationDatasDirectory:
 		RuntimeConstants.userApplicationDatasDirectory = RuntimeConstants.parameters.userApplicationDatasDirectory
 	else:
@@ -1756,7 +1756,7 @@ def _run():
 	LOGGER.debug("> Application Startup Location: '{0}'".format(os.getcwd()))
 	LOGGER.debug("> Session User Application Datas Directory: '{0}'".format(RuntimeConstants.userApplicationDatasDirectory))
 
-	# Getting The Logging File Path.
+	# Getting the logging file path.
 	RuntimeConstants.loggingFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.loggingDirectory, Constants.loggingFile)
 
 	try:
@@ -1771,7 +1771,7 @@ def _run():
 	except:
 		raise OSError, "{0} Logging File Is Not Available, {1} Will Now Close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
-	# Retrieving Framework Verbose Level From Settings File.
+	# Retrieving framework verbose level from settings file.
 	LOGGER.debug("> Initializing {0}!".format(Constants.applicationName))
 	RuntimeConstants.settingsFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile)
 
@@ -1795,7 +1795,7 @@ def _run():
 	for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler):
 		handler and handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
 
-	# Starting The Session Handler.
+	# Starting the session handler.
 	RuntimeConstants.loggingSessionHandlerStream = StreamObject()
 	RuntimeConstants.loggingSessionHandler = logging.StreamHandler(RuntimeConstants.loggingSessionHandlerStream)
 	RuntimeConstants.loggingSessionHandler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
@@ -1810,7 +1810,7 @@ def _run():
 
 	RuntimeConstants.application = QApplication(sys.argv)
 
-	# Initializing SplashScreen.
+	# Initializing splashscreen.
 	if RuntimeConstants.parameters.hideSplashScreen:
 		LOGGER.debug("> SplashScreen Skipped By 'hideSplashScreen' Command Line Parameter.")
 	else:
@@ -1916,5 +1916,5 @@ if __name__ == "__main__":
 	_run()
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************
