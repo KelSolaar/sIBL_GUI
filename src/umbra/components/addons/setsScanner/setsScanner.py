@@ -92,7 +92,7 @@ class SetsScanner_Worker(QThread):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Object Container. ( Object )
 		"""
 
@@ -246,8 +246,8 @@ class SetsScanner_Worker(QThread):
 	def scanIblSetsDirectories(self):
 		"""
 		This Method Scans Ibl Sets Directories.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Scanning Sets Directories For New Ibl Sets!".format(self.__class__.__name__))
@@ -282,7 +282,7 @@ class SetsScanner(Component):
 	def __init__(self, name=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		"""
 
@@ -460,7 +460,7 @@ class SetsScanner(Component):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 

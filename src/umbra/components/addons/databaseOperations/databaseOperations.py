@@ -105,7 +105,7 @@ class DatabaseOperations(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -348,7 +348,7 @@ class DatabaseOperations(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -438,7 +438,7 @@ class DatabaseOperations(UiComponent):
 	def __synchronize_Database_pushButton_clicked(self, checked):
 		"""
 		This Method Is Triggered When Synchronize_Database_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -450,7 +450,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This Method Synchronizes The Database.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		for dbType in self.__dbTypes:

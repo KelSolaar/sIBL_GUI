@@ -101,7 +101,7 @@ CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHa
 def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, apiFile):
 	"""
 	This Definition Gets Sphinx Documentation Api.
-		
+
 	@param sourceDirectory: Source Directory. ( String )
 	@param cloneDirectory: Source Clone Directory. ( String )
 	@param outputDirectory: Content Directory. ( String )

@@ -74,7 +74,7 @@ core.setVerbosityLevel(3)
 def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
 	This Definition Extracts sIBL_GUI Documentation Body For HDRLabs.com.
-		
+
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
 	"""

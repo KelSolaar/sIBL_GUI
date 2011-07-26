@@ -147,10 +147,10 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.Ok):
 	"""
 	This Definition Provides A Standalone Message Box.
-	
+
 	@param type: MessageBox Type. ( String )
 	@param caption: MessageBox Title. ( String )
-	@param message: MessageBox Message. ( String )	
+	@param message: MessageBox Message. ( String )
 	@param icon: Custom Icon. ( QConstant )
 	@param buttons: Custom Buttons. ( QConstant )
 	"""

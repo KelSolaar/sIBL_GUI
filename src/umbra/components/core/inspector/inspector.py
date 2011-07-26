@@ -129,7 +129,7 @@ class Inspector(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -381,7 +381,7 @@ class Inspector(UiComponent):
 	def listViewIconSize(self, value):
 		"""
 		This Method Is The Setter Method For The _listViewIconSize Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -856,7 +856,7 @@ class Inspector(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -1083,7 +1083,7 @@ class Inspector(UiComponent):
 	def __Plates_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets Is Triggered When Plates_listView Model Selection Has Changed.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -1108,7 +1108,7 @@ class Inspector(UiComponent):
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets Is Triggered When coreDatabaseBrowser Database_Browser_listView Model Selection Has Changed.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -1127,7 +1127,7 @@ class Inspector(UiComponent):
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Previous_Ibl_Set_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1137,7 +1137,7 @@ class Inspector(UiComponent):
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Next_Ibl_Set_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1147,7 +1147,7 @@ class Inspector(UiComponent):
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Previous_Plate_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1157,7 +1157,7 @@ class Inspector(UiComponent):
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Next_Plate_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1278,9 +1278,9 @@ class Inspector(UiComponent):
 	def loopThroughIblSets(self, backward=False):
 		"""
 		This Method Loops Through Database Browser Ibl Sets.
-		
+
 		@param backward: Looping Backward. ( Boolean )
-		@return: Method Success. ( Boolean )	
+		@return: Method Success. ( Boolean )
 		"""
 
 		if self.__inspectorIblSet:
@@ -1311,9 +1311,9 @@ class Inspector(UiComponent):
 	def loopThroughPlates(self, backward=False):
 		"""
 		This Method Loops Through Inspector Plates.
-		
+
 		@param backward: Looping Backward. ( Boolean )
-		@return: Method Success. ( Boolean )	
+		@return: Method Success. ( Boolean )
 		"""
 
 		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None

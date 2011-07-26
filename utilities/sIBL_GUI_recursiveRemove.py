@@ -54,7 +54,7 @@ import sys
 def recursiveRemove(rootDirectory, pattern):
 	"""
 	This Definition Recursively Deletes The Matching Items.
-		
+
 	@param rootDirectory: Directory To Recurse. ( String )
 	@param pattern: Pattern To Match. ( String )
 	"""

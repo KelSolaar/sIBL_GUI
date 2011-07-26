@@ -86,7 +86,7 @@ class RawEditingUtilities(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -485,7 +485,7 @@ class RawEditingUtilities(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -660,7 +660,7 @@ class RawEditingUtilities(UiComponent):
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -690,7 +690,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Edits Selected Ibl Sets.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -714,7 +714,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Edits Inspector Ibl Set.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -729,7 +729,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This Method Edits Selected Templates.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -755,7 +755,7 @@ class RawEditingUtilities(UiComponent):
 
 		@param file: File To Edit. ( String )
 		@param customTextEditor: Custom Text Editor. ( String )
-		@return: Process Command. ( String )		
+		@return: Process Command. ( String )
 		"""
 
 		processCommand = None

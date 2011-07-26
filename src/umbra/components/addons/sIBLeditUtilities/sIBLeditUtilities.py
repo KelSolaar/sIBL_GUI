@@ -87,7 +87,7 @@ class sIBLeditUtilities(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -392,7 +392,7 @@ class sIBLeditUtilities(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -546,7 +546,7 @@ class sIBLeditUtilities(UiComponent):
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -576,8 +576,8 @@ class sIBLeditUtilities(UiComponent):
 	def editIblSetInSIBLEdit__(self):
 		"""
 		This Method Edits Selected Ibl Set In sIBLedit.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -596,8 +596,8 @@ class sIBLeditUtilities(UiComponent):
 	def editInspectorIblSetInSIBLEdit__(self):
 		"""
 		This Method Edits Inspector Ibl Set In sIBLedit.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -619,7 +619,7 @@ class sIBLeditUtilities(UiComponent):
 
 		@param path: Path. ( String )
 		@param sIBLedit: sIBLedit. ( String )
-		@return: Process Command. ( String )		
+		@return: Process Command. ( String )
 		"""
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
@@ -629,10 +629,10 @@ class sIBLeditUtilities(UiComponent):
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
 		This Method Edits Provided Ibl Set In sIBLedit.
-		
+
 		@param path: Path. ( String )
 		@param sIBLedit: sIBLedit. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		editCommand = self.getProcessCommand(path, sIBLedit)

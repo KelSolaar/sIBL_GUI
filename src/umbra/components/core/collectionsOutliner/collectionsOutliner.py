@@ -90,7 +90,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -269,7 +269,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def dragEnterEvent(self, event):
 		"""
 		This Method Defines The Drag Enter Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -286,7 +286,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def dragMoveEvent(self, event):
 		"""
 		This Method Defines The Drag Move Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -297,8 +297,8 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def dropEvent(self, event):
 		"""
 		This Method Defines The Drop Event Behavior.
-		
-		@param event: QEvent. ( QEvent )		
+
+		@param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -337,7 +337,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def __QTreeView__clicked(self, index):
 		"""
 		This Method Defines The Behavior When The Model Is Clicked.
-		
+
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
@@ -348,7 +348,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	def __QTreeView__doubleClicked(self, index):
 		"""
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
-		
+
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
@@ -377,7 +377,7 @@ class CollectionsOutliner(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -962,7 +962,7 @@ class CollectionsOutliner(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -1093,7 +1093,7 @@ class CollectionsOutliner(UiComponent):
 
 		Columns:
 		Collections | Sets | Comment
-		
+
 		Rows:
 		* Overall Collection: { _type: "Overall" }
 		** Collection: { _type: "Collection", _datas: dbTypes.DbCollection }
@@ -1323,7 +1323,7 @@ class CollectionsOutliner(UiComponent):
 	def __Collections_Outliner_treeView_model__dataChanged(self, startIndex, endIndex):
 		"""
 		This Method Defines The Behavior When The Collections_Outliner_treeView Model Data Change.
-		
+
 		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
 		"""
@@ -1360,7 +1360,7 @@ class CollectionsOutliner(UiComponent):
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Triggers The Database_Browser_listView Refresh Depending On The Collections Outliner Selected Items.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -1380,8 +1380,8 @@ class CollectionsOutliner(UiComponent):
 	def addContent__(self):
 		"""
 		This Method Adds User Defined Content To The Database.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		collection = self.addCollection__()
@@ -1403,8 +1403,8 @@ class CollectionsOutliner(UiComponent):
 	def addCollection__(self):
 		"""
 		This Method Adds An User Defined Collection To The Database.
-		
-		@return: Collection Name. ( String )		
+
+		@return: Collection Name. ( String )
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter Your Collection Name!")
@@ -1435,7 +1435,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This Method Removes User Selected Collections From The Database.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1461,10 +1461,10 @@ class CollectionsOutliner(UiComponent):
 	def addCollection(self, name, comment="Double Click To Set A Comment!"):
 		"""
 		This Method Adds A Collection To The Database.
-		
+
 		@param name: Collection Name. ( String )
 		@param collection: Collection Name. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if name != self.__overallCollection:
@@ -1485,9 +1485,9 @@ class CollectionsOutliner(UiComponent):
 	def removeCollection(self, collection):
 		"""
 		This Method Removes Provided Collection From The Database.
-		
+
 		@param collection: Collection To Remove. ( DbCollection )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
@@ -1507,7 +1507,7 @@ class CollectionsOutliner(UiComponent):
 	def collectionExists(self, name):
 		"""
 		This Method Returns If Provided Collection Name Exists In The Database.
-		
+
 		@param name: Collection Name. ( String )
 		@return: Collection Exists. ( Boolean )
 		"""
@@ -1518,7 +1518,7 @@ class CollectionsOutliner(UiComponent):
 	def getCollections(self):
 		"""
 		This Method Returns Database Set Collections.
-		
+
 		@return: Database Set Collections. ( List )
 		"""
 
@@ -1528,7 +1528,7 @@ class CollectionsOutliner(UiComponent):
 	def getCollectionsIblSets(self, collections):
 		"""
 		This Method Gets Provided Collections Ibl Sets.
-		
+
 		@param collections: Collections To Get Ibl Sets From. ( List )
 		@return: Ibl Sets List. ( List )
 		"""
@@ -1565,7 +1565,7 @@ class CollectionsOutliner(UiComponent):
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
 		This Method Returns Collections_Outliner_treeView Selected Items.
-		
+
 		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		"""
@@ -1577,7 +1577,7 @@ class CollectionsOutliner(UiComponent):
 	def getSelectedCollections(self):
 		"""
 		This Method Gets Selected Collections.
-	
+
 		@return: View Selected Collections. ( List )
 		"""
 

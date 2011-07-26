@@ -78,7 +78,7 @@ NORMALIZATION = {"document": "document", }
 def reStructuredTextToHtml(fileIn, fileOut):
 	"""
 	This Definition Outputs A reStructuredText File To HTML.
-		
+
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
 	"""

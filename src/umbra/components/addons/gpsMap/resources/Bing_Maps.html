@@ -14,12 +14,12 @@
                 font-size: 1em;
                 line-height: 1.5em;
             }
-            
+
             body {
                 background-color: rgb(64, 64, 64);
                 color: rgb(192, 192, 192);
             }
-            
+
             .infoBox {
                 background-color: rgb(64, 64, 64);
                 border: 2px solid rgb(96, 96, 96);
@@ -38,12 +38,12 @@
             var credentials = "AnCbNkOa0ISfGVJXzetcRsfAuQT_VAnqQaO-iFPyh96RbcH-xmXMv6Zv7fpxargq";
             var defaultLocation = new Microsoft.Maps.Location(50, 0);
             var defaultZoomLevel = 2
-            
+
             function infoBox(html){
                 this.div;
                 this.html = html;
             }
-            
+
             infoBox.prototype.show = function(e){
                 if (this.div == undefined) {
                     this.div = document.createElement("div");
@@ -52,25 +52,25 @@
                     var mapDiv = document.getElementById("mapDiv");
                     mapDiv.appendChild(this.div);
                 }
-                
+
                 var pinLocation = map.tryLocationToPixel(e.target.getLocation(), Microsoft.Maps.PixelReference.control);
-                
+
                 this.div.style.left = pinLocation.x + 4 + "px";
                 this.div.style.top = pinLocation.y + 4 + "px";
                 this.div.style.visibility = "visible";
             };
-            
+
             infoBox.prototype.hide = function(e){
-                if (this.div != undefined) 
+                if (this.div != undefined)
                     this.div.style.visibility = "hidden";
             };
-            
+
             Microsoft.Maps.Pushpin.prototype.setinfoBox = function(infoBox){
                 if (typeof this.infoBox != undefined && this.infoBox != undefined && this.infoBox != null) {
                     this.removeinfoBox();
                 }
                 this.infoBox = infoBox;
-                
+
                 this.mouseoverHandler = Microsoft.Maps.Events.addHandler(this, "mouseover", function(e){
                     infoBox.show(e);
                 });
@@ -78,14 +78,14 @@
                     infoBox.hide(e);
                 });
             }
-            
+
             Microsoft.Maps.Pushpin.prototype.removeinfoBox = function(){
                 this.infoBox = null;
-                
+
                 Microsoft.Maps.Events.removeHandler(this.mouseoverHandler);
                 Microsoft.Maps.Events.removeHandler(this.mouseoutHander);
             }
-            
+
             function getMap(){
                 map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {
                     center: defaultLocation,
@@ -100,18 +100,18 @@
                     zoom: defaultZoomLevel
                 });
             }
-            
+
             function addMarker(coordinates, title, icon, content){
                 var marker = new Microsoft.Maps.Pushpin(coordinates);
 				marker.setOptions({icon:"./Marker.png"});
                 marker.setinfoBox(new infoBox("<img src=\"" + icon + "\" style=\"display:block; float:right; height:128; padding:8px; width:128\" alt=\"\">" + content));
                 map.entities.push(marker);
             }
-            
+
             function removeMarkers(){
                 map.entities.clear();
             }
-            
+
             function setMapType(mapTypeId){
                 switch (mapTypeId) {
                     case "MapTypeId.aerial":
@@ -140,7 +140,7 @@
                     mapTypeId: mapTypeIdObject
                 });
             }
-            
+
             function setCenter(){
                 if (map.entities.getLength()) {
                     if (map.entities.getLength() == 1) {
@@ -166,7 +166,7 @@
                     });
                 }
             }
-            
+
             function setZoom(type){
                 switch (type) {
                     case "In":

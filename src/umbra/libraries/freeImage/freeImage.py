@@ -985,7 +985,7 @@ class Image(object):
 	def __init__(self, imagePath=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param imagePath: Image Path. ( String )
 		"""
 
@@ -1012,7 +1012,7 @@ class Image(object):
 	def library(self):
 		"""
 		This Method Is The Property For The _library Attribute.
-		
+
 		@return: self.__library. ( Library )
 		"""
 
@@ -1023,7 +1023,7 @@ class Image(object):
 	def library(self, value):
 		"""
 		This Method Is The Setter Method For The _library Attribute.
-		
+
 		@param value: Attribute Value. ( Library )
 		"""
 
@@ -1042,7 +1042,7 @@ class Image(object):
 	def errorsCallback(self):
 		"""
 		This Method Is The Property For The _errorsCallback Attribute.
-		
+
 		@return: self.__errorsCallback. ( Object )
 		"""
 
@@ -1053,7 +1053,7 @@ class Image(object):
 	def errorsCallback(self, value):
 		"""
 		This Method Is The Setter Method For The _errorsCallback Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -1072,7 +1072,7 @@ class Image(object):
 	def imagePath(self):
 		"""
 		This Method Is The Property For The _imagePath Attribute.
-		
+
 		@return: self.__imagePath. ( String )
 		"""
 
@@ -1083,7 +1083,7 @@ class Image(object):
 	def imagePath(self, value):
 		"""
 		This Method Is The Setter Method For The _imagePath Attribute.
-		
+
 		@param value: Attribute Value. ( String )
 		"""
 
@@ -1104,7 +1104,7 @@ class Image(object):
 	def bitmap(self):
 		"""
 		This Method Is The Property For The _bitmap Attribute.
-		
+
 		@return: self.__bitmap. ( Object )
 		"""
 
@@ -1115,7 +1115,7 @@ class Image(object):
 	def bitmap(self, value):
 		"""
 		This Method Is The Setter Method For The _bitmap Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -1147,9 +1147,9 @@ class Image(object):
 	def getImageFormat(self, imagePath=None):
 		"""
 		This Method Gets The File Format.
-		
+
 		@param imagePath: Image Path. ( String )
-		@return: File Format. ( Object )		
+		@return: File Format. ( Object )
 		"""
 
 		imagePath = imagePath or self.__imagePath
@@ -1167,9 +1167,9 @@ class Image(object):
 	def load(self, imagePath=None):
 		"""
 		This Method Loads The File.
-		
+
 		@param imagePath: Image Path. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if not self.__imagePath:
@@ -1189,8 +1189,8 @@ class Image(object):
 	def save(self):
 		"""
 		This Method Saves The File.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
@@ -1200,11 +1200,11 @@ class Image(object):
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
 		This Method Saves The Image To The Provided File.
-		
+
 		@param imageFormat: Image Format. ( Integer )
 		@param imagePath: Image Path. ( String )
 		@param flags: Save Flags. ( Integer )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
@@ -1221,10 +1221,10 @@ class Image(object):
 	def convertToType(self, targetType, linearScale=True):
 		"""
 		This Method Converts The Bitmap To Provided Type.
-		
+
 		@param targetType: Target Type. ( Integer )
 		@param linearScale: Linear Scale. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}'!".format(self.__imagePath, targetType))
@@ -1238,9 +1238,9 @@ class Image(object):
 	def convertToLdr(self, gamma=2.2):
 		"""
 		This Method Converts The HDR Bitmap To LDR.
-		
+
 		@param gamma: Image Conversion Gamma. ( Float )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR!".format(self.__imagePath))
@@ -1254,7 +1254,7 @@ class Image(object):
 	def convertToQImage(self):
 		"""
 		This Method Converts The Bitmap To QImage.
-		@return: Converted Image. ( QImage )		
+		@return: Converted Image. ( QImage )
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)

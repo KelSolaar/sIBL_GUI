@@ -92,7 +92,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	def __init__(self, image):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param image: Image. ( QImage )
 		"""
 
@@ -123,7 +123,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	def image(self, value):
 		"""
 		This Method Is The Setter Method For The _image Attribute.
-		
+
 		@param value: Attribute Value. ( QImage )
 		"""
 
@@ -155,7 +155,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	def width(self, value):
 		"""
 		This Method Is The Setter Method For The _width Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -187,7 +187,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	def height(self, value):
 		"""
 		This Method Is The Setter Method For The _height Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -236,7 +236,7 @@ class ImagesPreviewer(object):
 	def __init__(self, container, paths=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Container. ( Object )
 		@param paths: Images Paths. ( List )
 		"""
@@ -545,7 +545,7 @@ class ImagesPreviewer(object):
 	def ui(self, value):
 		"""
 		This Method Is The Setter Method For The _ui Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -575,7 +575,7 @@ class ImagesPreviewer(object):
 	def graphicsSceneBackgroundColor(self, value):
 		"""
 		This Method Is The Setter Method For The _graphicsSceneBackgroundColor Attribute.
-		
+
 		@param value: Attribute Value. ( QColors )
 		"""
 
@@ -605,7 +605,7 @@ class ImagesPreviewer(object):
 	def previewerMargin(self, value):
 		"""
 		This Method Is The Setter Method For The _previewerMargin Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -635,7 +635,7 @@ class ImagesPreviewer(object):
 	def graphicsSceneWidth(self, value):
 		"""
 		This Method Is The Setter Method For The _graphicsSceneWidth Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -665,7 +665,7 @@ class ImagesPreviewer(object):
 	def graphicsSceneHeight(self, value):
 		"""
 		This Method Is The Setter Method For The _graphicsSceneHeight Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -695,7 +695,7 @@ class ImagesPreviewer(object):
 	def minimumZoomFactor(self, value):
 		"""
 		This Method Is The Setter Method For The _minimumZoomFactor Attribute.
-		
+
 		@param value: Attribute Value. ( Float )
 		"""
 
@@ -725,7 +725,7 @@ class ImagesPreviewer(object):
 	def maximumZoomFactor(self, value):
 		"""
 		This Method Is The Setter Method For The _maximumZoomFactor Attribute.
-		
+
 		@param value: Attribute Value. ( Float )
 		"""
 
@@ -755,7 +755,7 @@ class ImagesPreviewer(object):
 	def wheelZoomFactor(self, value):
 		"""
 		This Method Is The Setter Method For The _wheelZoomFactor Attribute.
-		
+
 		@param value: Attribute Value. ( Float )
 		"""
 
@@ -785,7 +785,7 @@ class ImagesPreviewer(object):
 	def keyZoomFactor(self, value):
 		"""
 		This Method Is The Setter Method For The _keyZoomFactor Attribute.
-		
+
 		@param value: Attribute Value. ( Float )
 		"""
 
@@ -815,7 +815,7 @@ class ImagesPreviewer(object):
 	def graphicsView(self, value):
 		"""
 		This Method Is The Setter Method For The _graphicsView Attribute.
-		
+
 		@param value: Attribute Value. ( QGraphicsView )
 		"""
 
@@ -845,7 +845,7 @@ class ImagesPreviewer(object):
 	def graphicsScene(self, value):
 		"""
 		This Method Is The Setter Method For The _graphicsScene Attribute.
-		
+
 		@param value: Attribute Value. ( QGraphicsScene )
 		"""
 
@@ -875,7 +875,7 @@ class ImagesPreviewer(object):
 	def displayGraphicsItem(self, value):
 		"""
 		This Method Is The Setter Method For The _displayGraphicsItem Attribute.
-		
+
 		@param value: Attribute Value. ( QGraphicsItem )
 		"""
 
@@ -999,7 +999,7 @@ class ImagesPreviewer(object):
 	def __Zoom_In_pushButton_clicked(self, checked):
 		"""
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1059,7 +1059,7 @@ class ImagesPreviewer(object):
 	def setImage(self, index=0):
 		"""
 		This Method Sets The Display Image.
-		
+
 		@param index: Index To Display. ( Integer )
 		"""
 
@@ -1088,7 +1088,7 @@ class ImagesPreviewer(object):
 	def loopThroughImages(self, backward=False):
 		"""
 		This Method Loops Through Previewer Images.
-		
+
 		@param backward: Looping Backward. ( Boolean )
 		"""
 
@@ -1110,7 +1110,7 @@ class Preview(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -1725,7 +1725,7 @@ class Preview(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -2041,7 +2041,7 @@ class Preview(UiComponent):
 	def viewIblSetsImages__(self, imageType, *args):
 		"""
 		This Method Launches Selected Ibl Sets Images Previewer.
-		
+
 		@param imageType: Image Type. ( String )
 		@param *args: Arguments. ( * )
 		"""
@@ -2066,7 +2066,7 @@ class Preview(UiComponent):
 	def viewInspectorIblSetImages__(self, imageType, *args):
 		"""
 		This Method Launches Inspector Ibl Set Images Previewer.
-		
+
 		@param imageType: Image Type. ( String )
 		@param *args: Arguments. ( * )
 		"""
@@ -2092,7 +2092,7 @@ class Preview(UiComponent):
 	def viewImages(self, paths, customPreviewer=None):
 		"""
 		This Method Launches An Ibl Set Images Previewer.
-		
+
 		@param paths: Image Paths. ( List )
 		@param customPreviewer: Custom Previewer. ( String )
 		"""
@@ -2118,9 +2118,9 @@ class Preview(UiComponent):
 	def addImagesPreviewer(self, imagesPreviewer):
 		"""
 		This Method Adds An Images Previewer.
-		
+
 		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' Images Previewer.".format(imagesPreviewer))
@@ -2133,7 +2133,7 @@ class Preview(UiComponent):
 	def removeImagesPreviewer(self, imagesPreviewer):
 		"""
 		This Method Removes An Images Previewer.
-		
+
 		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		"""
 
@@ -2147,9 +2147,9 @@ class Preview(UiComponent):
 	def getImagesPreviewer(self, paths):
 		"""
 		This Method Launches An Images Previewer.
-		
+
 		@param paths: Images Paths. ( List )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Launching Images Previewer For '{0}' Image.".format(paths))
@@ -2165,7 +2165,7 @@ class Preview(UiComponent):
 
 		@param paths: Paths To Preview. ( String )
 		@param customPreviewer: Custom Browser. ( String )
-		@return: Process Command. ( String )		
+		@return: Process Command. ( String )
 		"""
 
 		processCommand = None
@@ -2183,10 +2183,10 @@ class Preview(UiComponent):
 	def getIblSetImagesPaths(self, iblSet, imageType):
 		"""
 		This Method Gets Ibl Set Images Paths.
-		
+
 		@param iblSet: Ibl Set. ( DbIblSet )
 		@param imageType: Image Type. ( String )
-		@return: Images Paths. ( List )		
+		@return: Images Paths. ( List )
 		"""
 
 		imagePaths = []

@@ -87,7 +87,7 @@ class LocationsBrowser(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -580,7 +580,7 @@ class LocationsBrowser(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -785,7 +785,7 @@ class LocationsBrowser(UiComponent):
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -814,7 +814,7 @@ class LocationsBrowser(UiComponent):
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
 		This Method Is Called When Open_Output_Directory_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -826,7 +826,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Open Selected Ibl Sets Directories.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -850,7 +850,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Opens Inspector Ibl Set Directory.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -866,7 +866,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Opens Selected Components Directories.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
@@ -890,7 +890,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Opens Selected Templates Directories.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -914,7 +914,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This Method Opens Output Directory.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
@@ -935,7 +935,7 @@ class LocationsBrowser(UiComponent):
 
 		@param directory: Directory To Explore. ( String )
 		@param customBrowser: Custom Browser. ( String )
-		@return: Process Command. ( String )		
+		@return: Process Command. ( String )
 		"""
 
 		processCommand = None
@@ -983,7 +983,7 @@ class LocationsBrowser(UiComponent):
 
 		@param directory: Directory To Explore. ( String )
 		@param customBrowser: Custom Browser. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		browserCommand = self.getProcessCommand(directory, customBrowser)

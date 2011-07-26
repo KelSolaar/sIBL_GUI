@@ -117,7 +117,7 @@ class DownloadManager(QObject):
 	def __init__(self, container, networkAccessManager, downloadDirectory, requests=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Container. ( Object )
 		@param networkAccessManager: Network Access Manager. ( QNetworkAccessManager )
 		@param downloadDirectory: Download Directory. ( String )
@@ -355,7 +355,7 @@ class DownloadManager(QObject):
 	def requests(self, value):
 		"""
 		This Method Is The Setter Method For The _requests Attribute.
-		
+
 		@param value: Attribute Value. ( Dictionary )
 		"""
 
@@ -387,7 +387,7 @@ class DownloadManager(QObject):
 	def downloads(self, value):
 		"""
 		This Method Is The Setter Method For The _downloads Attribute.
-		
+
 		@param value: Attribute Value. ( Dictionary )
 		"""
 
@@ -537,7 +537,7 @@ class DownloadManager(QObject):
 	def ui(self, value):
 		"""
 		This Method Is The Setter Method For The _ui Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -576,7 +576,7 @@ class DownloadManager(QObject):
 	def closeEvent(self, closeEvent):
 		"""
 		This Method Overloads The DownloadManager CloseEvent.
-		
+
 		@param closeEvent: Close Event. ( QCloseEvent )
 		"""
 
@@ -587,7 +587,7 @@ class DownloadManager(QObject):
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
 		This Method Triggers The DownloadManager Close.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -625,7 +625,7 @@ class DownloadManager(QObject):
 	def __downloadProgress(self, bytesReceived, bytesTotal):
 		"""
 		This Method Updates The Download Progress.
-		
+
 		@param bytesReceived: Bytes Received. ( Integer )
 		@param bytesTotal: Bytes Total. ( Integer )
 		"""
@@ -674,8 +674,8 @@ class DownloadManager(QObject):
 	def startDownload(self):
 		"""
 		This Method Triggers The Download.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		self.__downloadStatus = False
@@ -687,8 +687,8 @@ class DownloadManager(QObject):
 	def abortDownload(self):
 		"""
 		This Method Aborts The Current Download.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		self.__currentRequest.abort()
@@ -704,7 +704,7 @@ class RemoteUpdater(object):
 	def __init__(self, container, releases=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param releases: Releases. ( Dictionary )
 		"""
 
@@ -790,7 +790,7 @@ class RemoteUpdater(object):
 	def releases(self, value):
 		"""
 		This Method Is The Setter Method For The _releases Attribute.
-		
+
 		@param value: Attribute Value. ( Dictionary )
 		"""
 
@@ -1241,7 +1241,7 @@ class RemoteUpdater(object):
 	def ui(self, value):
 		"""
 		This Method Is The Setter Method For The _ui Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -1340,7 +1340,7 @@ class RemoteUpdater(object):
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
@@ -1361,7 +1361,7 @@ class RemoteUpdater(object):
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1381,7 +1381,7 @@ class RemoteUpdater(object):
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1392,7 +1392,7 @@ class RemoteUpdater(object):
 	def __Close_pushButton__clicked(self, checked):
 		"""
 		This Method Closes The RemoteUpdater.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -1447,7 +1447,7 @@ class RemoteUpdater(object):
 	def extractZipFile(self, file):
 		"""
 		This Method Uncompress The Provided Zip File.
-		
+
 		@param file: File To Extract. ( String )
 		@return: Extraction Success. ( Boolean )
 		"""
@@ -1468,7 +1468,7 @@ class OnlineUpdater(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -1971,7 +1971,7 @@ class OnlineUpdater(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -2101,7 +2101,7 @@ class OnlineUpdater(UiComponent):
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
 		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
-		
+
 		@param state: Checkbox State. ( Integer )
 		"""
 
@@ -2125,7 +2125,7 @@ class OnlineUpdater(UiComponent):
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
 		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
-		
+
 		@param state: Checkbox State. ( Integer )
 		"""
 
@@ -2136,7 +2136,7 @@ class OnlineUpdater(UiComponent):
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Check_For_New_Releases_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -2215,8 +2215,8 @@ class OnlineUpdater(UiComponent):
 	def checkForNewReleases__(self):
 		"""
 		This Method Checks For New Releases.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		self.__reportUpdateStatus = True
@@ -2230,8 +2230,8 @@ class OnlineUpdater(UiComponent):
 	def checkForNewReleases(self):
 		"""
 		This Method Checks For New Releases.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))

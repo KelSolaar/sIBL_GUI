@@ -95,7 +95,7 @@ class DatabaseBrowser_Worker(QThread):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Object Container. ( Object )
 		"""
 
@@ -280,7 +280,7 @@ class DatabaseBrowser_QListView(QListView):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -365,7 +365,7 @@ class DatabaseBrowser_QListView(QListView):
 	def dragEnterEvent(self, event):
 		"""
 		This Method Defines The Drag Enter Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -382,7 +382,7 @@ class DatabaseBrowser_QListView(QListView):
 	def dragMoveEvent(self, event):
 		"""
 		This Method Defines The Drag Move Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -393,8 +393,8 @@ class DatabaseBrowser_QListView(QListView):
 	def dropEvent(self, event):
 		"""
 		This Method Defines The Drop Event Behavior.
-		
-		@param event: QEvent. ( QEvent )		
+
+		@param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -420,7 +420,7 @@ class DatabaseBrowser_QListView(QListView):
 	def __QListView__doubleClicked(self, index):
 		"""
 		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
-		
+
 		@param index: Clicked Model Item Index. ( QModelIndex )
 		"""
 
@@ -443,7 +443,7 @@ class DatabaseBrowser(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -657,7 +657,7 @@ class DatabaseBrowser(UiComponent):
 	def listViewSpacing(self, value):
 		"""
 		This Method Is The Setter Method For The _listViewSpacing Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -690,7 +690,7 @@ class DatabaseBrowser(UiComponent):
 	def listViewMargin(self, value):
 		"""
 		This Method Is The Setter Method For The _listViewMargin Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -723,7 +723,7 @@ class DatabaseBrowser(UiComponent):
 	def listViewIconSize(self, value):
 		"""
 		This Method Is The Setter Method For The _listViewIconSize Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -1111,7 +1111,7 @@ class DatabaseBrowser(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -1464,7 +1464,7 @@ class DatabaseBrowser(UiComponent):
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
 		"""
 		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
-		
+
 		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
 		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
 		"""
@@ -1483,7 +1483,7 @@ class DatabaseBrowser(UiComponent):
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
 		This Method Scales The Database_Browser_listView Icons.
-		
+
 		@param value: Thumbnails Size. ( Integer )
 		"""
 
@@ -1511,7 +1511,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Adds User Defined Content To The Database.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
@@ -1530,7 +1530,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Adds An User Defined Ibl Set To The Database.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
@@ -1551,8 +1551,8 @@ class DatabaseBrowser(UiComponent):
 	def removeIblSets__(self):
 		"""
 		This Method Removes User Selected Ibl Sets From The Database.
-	
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1578,7 +1578,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This Method Updates User Selected Ibl Sets Locations.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1603,12 +1603,12 @@ class DatabaseBrowser(UiComponent):
 	def addIblSet(self, name, path, collectionId=None, emitSignal=True):
 		"""
 		This Method Adds An Ibl Set To The Database.
-		
-		@param name: Ibl Set Name. ( String )		
-		@param path: Ibl Set Path. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
+
+		@param name: Ibl Set Name. ( String )
+		@param path: Ibl Set Path. ( String )
+		@param collectionId: Target Collection Id. ( Integer )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if not self.iblSetExists(path):
@@ -1628,10 +1628,10 @@ class DatabaseBrowser(UiComponent):
 	def addDirectory(self, directory, collectionId=None):
 		"""
 		This Method Adds Directory Ibl Sets To The Database.
-		
-		@param directory: Directory To Add. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
-		@return: Method Success. ( Boolean )		
+
+		@param directory: Directory To Add. ( String )
+		@param collectionId: Target Collection Id. ( Integer )
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
@@ -1657,10 +1657,10 @@ class DatabaseBrowser(UiComponent):
 	def removeIblSet(self, iblSet, emitSignal=True):
 		"""
 		This Method Removes Provided Ibl Set From The Database.
-		
+
 		@param iblSet: Ibl Set To Remove. ( DbIblSet )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title))
@@ -1676,7 +1676,7 @@ class DatabaseBrowser(UiComponent):
 	def iblSetExists(self, path):
 		"""
 		This Method Returns If Provided Ibl Set Path Exists In The Database.
-		
+
 		@param path: Collection Path. ( String )
 		@return: Collection Exists. ( Boolean )
 		"""
@@ -1688,11 +1688,11 @@ class DatabaseBrowser(UiComponent):
 	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
 		"""
 		This Method Updates Provided Ibl Set Location.
-		
+
 		@param iblSet: Ibl Set To Update. ( DbIblSet )
 		@param iblSet: New Ibl Set File. ( String )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
@@ -1708,7 +1708,7 @@ class DatabaseBrowser(UiComponent):
 	def getIblSets(self):
 		"""
 		This Method Returns Database Ibl Sets.
-		
+
 		@return: Database Ibl Sets Collections. ( List )
 		"""
 
@@ -1718,7 +1718,7 @@ class DatabaseBrowser(UiComponent):
 	def getSelectedItems(self):
 		"""
 		This Method Returns Database_Browser_listView Selected Items.
-		
+
 		@return: View Selected Items. ( List )
 		"""
 
@@ -1728,7 +1728,7 @@ class DatabaseBrowser(UiComponent):
 	def getSelectedIblSets(self):
 		"""
 		This Method Returns Selected Ibl Sets.
-		
+
 		@return: View Selected Ibl Sets. ( List )
 		"""
 

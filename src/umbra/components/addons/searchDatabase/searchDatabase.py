@@ -87,7 +87,7 @@ class SearchDatabase(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -293,7 +293,7 @@ class SearchDatabase(UiComponent):
 	def dockArea(self, value):
 		"""
 		This Method Is The Setter Method For The _dockArea Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -323,7 +323,7 @@ class SearchDatabase(UiComponent):
 	def tagsCloudListWidgetSpacing(self, value):
 		"""
 		This Method Is The Setter Method For The _tagsCloudListWidgetSpacing Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -413,7 +413,7 @@ class SearchDatabase(UiComponent):
 	def coreDatabaseBrowser(self, value):
 		"""
 		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
-		
+
 		@param value: Attribute Value. ( Object )
 		"""
 
@@ -616,7 +616,7 @@ class SearchDatabase(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -723,7 +723,7 @@ class SearchDatabase(UiComponent):
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
 		This Method Is Triggered When Search_Database_lineEdit Text Changes.
-		
+
 		@param text: Current Text Value. ( QString )
 		"""
 
@@ -733,7 +733,7 @@ class SearchDatabase(UiComponent):
 	def __Search_Database_comboBox__activated(self, index):
 		"""
 		This Method Is Triggered When Search_Database_comboBox Index Changes.
-		
+
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
@@ -747,7 +747,7 @@ class SearchDatabase(UiComponent):
 	def __Case_Insensitive_Matching_checkBox__stateChanged(self, state):
 		"""
 		This Method Is Triggered When Case_Insensitive_Matching_checkBox State Changes.
-		
+
 		@param state: Current Checkbox State. ( Integer )
 		"""
 
@@ -757,7 +757,7 @@ class SearchDatabase(UiComponent):
 	def __Time_Low_timeEdit__timeChanged(self, time):
 		"""
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
-		
+
 		@param time: Current Time. ( QTime )
 		"""
 
@@ -768,7 +768,7 @@ class SearchDatabase(UiComponent):
 	def __Time_High_timeEdit__timeChanged(self, time):
 		"""
 		This Method Is Triggered When Time_Low_timeEdit Time Changes.
-		
+
 		@param time: Current Time. ( QTime )
 		"""
 
@@ -779,7 +779,7 @@ class SearchDatabase(UiComponent):
 	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
 		"""
 		This Method Is Triggered When Tags_Cloud_listWidget Is Double Clicked.
-		
+
 		@param listWidgetItem: List Widget Item. ( QlistWidgetItem )
 		"""
 

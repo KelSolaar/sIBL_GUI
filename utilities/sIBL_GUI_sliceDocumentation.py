@@ -80,7 +80,7 @@ CONTENT_SUBSTITUTIONS = {"resources/": "../",
 def sliceDocumentation(fileIn, outputDirectory):
 	"""
 	This Definition Slices Slices Provided Documentation File.
-		
+
 	@param fileIn: File To Convert. ( String )
 	@param outputDirectory: Output Directory. ( String )
 	"""

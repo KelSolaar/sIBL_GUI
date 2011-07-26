@@ -82,7 +82,7 @@ LOGGER = logging.getLogger(Constants.logger)
 def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides An Exception Handler For Component Activation.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
@@ -93,7 +93,7 @@ def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides An Exception Handler For Component Deactivation.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
@@ -104,7 +104,7 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides An Exception Handler For Component Reload.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	"""
@@ -125,7 +125,7 @@ class ComponentsManagerUi(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -599,7 +599,7 @@ class ComponentsManagerUi(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -692,10 +692,10 @@ class ComponentsManagerUi(UiComponent):
 	def __Components_Manager_Ui_treeView_setModel(self):
 		"""
 		This Method Sets The Components_Manager_Ui_treeView Model.
-		
+
 		Columns:
 		Collections | Activated | Categorie | Rank | Version
-		
+
 		Rows:
 		* Path: { _type: "Path" }
 		** Component: { _type: "Component", _datas: profile }
@@ -869,7 +869,7 @@ class ComponentsManagerUi(UiComponent):
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets The Additional_Informations_textEdit Widget.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -898,7 +898,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Stores Deactivated Components In Settings File.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		deactivatedComponents = []
@@ -916,7 +916,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Activates User Selected Components.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		for component in self.getSelectedComponents():
@@ -933,7 +933,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Deactivates User Selected Components.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		for component in self.getSelectedComponents():
@@ -953,7 +953,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This Method Reloads User Selected Components.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedComponents = self.getSelectedComponents()
@@ -972,9 +972,9 @@ class ComponentsManagerUi(UiComponent):
 	def activateComponent(self, component):
 		"""
 		This Method Activates Provided Component.
-		
+
 		@param component: Component. ( Profile )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Activation.".format(component.name))
@@ -993,9 +993,9 @@ class ComponentsManagerUi(UiComponent):
 	def deactivateComponent(self, component):
 		"""
 		This Method Deactivates Provided Component.
-		
+
 		@param component: Component. ( Profile )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Deactivation.".format(component.name))
@@ -1019,7 +1019,7 @@ class ComponentsManagerUi(UiComponent):
 		This Method Reloads Provided Component.
 
 		@param component: Component. ( Profile )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component Reload.".format(component.name))
@@ -1036,7 +1036,7 @@ class ComponentsManagerUi(UiComponent):
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
 		This Method Returns The Components_Manager_Ui_treeView Selected Items.
-		
+
 		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		"""
@@ -1048,7 +1048,7 @@ class ComponentsManagerUi(UiComponent):
 	def getSelectedComponents(self):
 		"""
 		This Method Returns Selected Components.
-		
+
 		@return: View Selected Components. ( List )
 		"""
 

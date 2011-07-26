@@ -88,7 +88,7 @@ class LoaderScriptOptions(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -555,7 +555,7 @@ class LoaderScriptOptions(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -689,7 +689,7 @@ class LoaderScriptOptions(UiComponent):
 	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -713,9 +713,9 @@ class LoaderScriptOptions(UiComponent):
 	def __updateOverrideKeys(self, tableWidget):
 		"""
 		This Method Updates The Loader Script Component Override Keys.
-		
+
 		@param tableWidget: Table Widget. ( QTableWidget )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Updating Override Keys With '{0}' Attributes.".format(tableWidget.objectName()))
@@ -742,7 +742,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This Method Gets Override Keys.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))

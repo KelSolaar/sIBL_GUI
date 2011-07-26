@@ -91,7 +91,7 @@ TOCTREE_TEMPLATE_END = ["Search:\n"
 def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
 	This Definition Gets Sphinx Documentation Index File.
-		
+
 	@param fileIn: File To Convert. ( String )
 	@param fileOut: Output File. ( String )
 	@param contentDirectory: Content Directory. ( String )

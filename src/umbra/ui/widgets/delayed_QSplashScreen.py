@@ -115,7 +115,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 	def waitTime(self, value):
 		"""
 		This Method Is The Setter Method For The _waitTime Attribute.
-		
+
 		@param value: Attribute Value. ( Integer / Float )
 		"""
 

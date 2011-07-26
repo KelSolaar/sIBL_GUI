@@ -254,7 +254,7 @@ class Variable_QPushButton(QPushButton):
 	def __variable_QPushButton__clicked(self, checked):
 		"""
 		This Method Is Called When A Variable QPushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 

@@ -343,7 +343,7 @@ class Active_QLabel(QLabel):
 	def setChecked(self, state):
 		"""
 		This Method Sets The Widget Checked State.
-		
+
 		@param state: New Check State. ( Boolean )
 		"""
 
@@ -358,7 +358,7 @@ class Active_QLabel(QLabel):
 	def isChecked(self):
 		"""
 		This Method Returns The Widget Checked State.
-		
+
 		@return: Checked State. ( Boolean )
 		"""
 
@@ -368,7 +368,7 @@ class Active_QLabel(QLabel):
 	def setMenu(self, menu):
 		"""
 		This Method Sets The Widget Menu.
-		
+
 		@param menu: Menu. ( QMenu )
 		"""
 
@@ -382,7 +382,7 @@ class Active_QLabel(QLabel):
 	def enterEvent(self, event):
 		"""
 		This Method Defines The Mouse Enter Event.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -395,7 +395,7 @@ class Active_QLabel(QLabel):
 	def leaveEvent(self, event):
 		"""
 		This Method Defines The Mouse Leave Event.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -408,7 +408,7 @@ class Active_QLabel(QLabel):
 	def mousePressEvent(self, event):
 		"""
 		This Method Defines The Mouse Press Event.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -424,7 +424,7 @@ class Active_QLabel(QLabel):
 	def mouseReleaseEvent(self, event):
 		"""
 		This Method Defines The Mouse Release Event.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 

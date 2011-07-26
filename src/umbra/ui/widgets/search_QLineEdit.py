@@ -127,7 +127,7 @@ class Search_QLineEdit(QLineEdit):
 	def uiClearImage(self, value):
 		"""
 		This Method Is The Setter Method For The _uiClearImage Attribute.
-		
+
 		@param value: Attribute Value. ( String )
 		"""
 
@@ -160,7 +160,7 @@ class Search_QLineEdit(QLineEdit):
 	def uiClearClickedImage(self, value):
 		"""
 		This Method Is The Setter Method For The _uiClearClickedImage Attribute.
-		
+
 		@param value: Attribute Value. ( String )
 		"""
 
@@ -244,7 +244,7 @@ class Search_QLineEdit(QLineEdit):
 	def resizeEvent(self, event):
 		"""
 		This Method Overloads The Search_QLineEdit ResizeEvent.
-		
+
 		@param event: Resize Event. ( QResizeEvent )
 		"""
 
@@ -280,7 +280,7 @@ class Search_QLineEdit(QLineEdit):
 	def __setClearButtonVisibility(self, text):
 		"""
 		This Method Sets The Clear Button Visibility.
-		
+
 		@param text: Current Text. ( QString )
 		"""
 

@@ -1,6 +1,6 @@
 """
 This Script Generates 2 Lists Of NSIS Commands (Install & Uninstall)For All Files In A Given Directory.
-	 
+
 Usage:
 	sIBL_Generate_NSIS_Installed_Files.py  <Source Directory> <Installation List Name> <UnInstallation List Name>
 Where

@@ -60,13 +60,13 @@ ShowUninstDetails show
 Section -Main SEC0000
 	SetOutPath $INSTDIR
     ReadRegStr $R0 HKLM "${REGKEY}" Path
-    ${If} $R0 == ""        
+    ${If} $R0 == ""
         Goto continue
     ${EndIf}
     MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION "$(^Name) is already installed on this system! $\n$\nPlease click 'OK' to remove the previous installation or 'Cancel' to quit this installer." IDOK uninstall
 	Quit
     uninstall:
-        ExecWait '"$INSTDIR\Uninstall.exe" /S'    
+        ExecWait '"$INSTDIR\Uninstall.exe" /S'
     continue:
 	   SetOverwrite on
 	   !include  "sIBL_GUI_Installed_Files.nsh"

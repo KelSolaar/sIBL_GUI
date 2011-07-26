@@ -85,7 +85,7 @@ class RewiringTool(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -365,7 +365,7 @@ class RewiringTool(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -469,7 +469,7 @@ class RewiringTool(UiComponent):
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Background ToolButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -479,7 +479,7 @@ class RewiringTool(UiComponent):
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
 		This Method Is Called When Lighting ToolButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -534,8 +534,8 @@ class RewiringTool(UiComponent):
 	def getOverrideKeys(self):
 		"""
 		This Method Gets Override Keys.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))

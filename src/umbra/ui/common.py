@@ -102,7 +102,7 @@ class Icon(core.Structure):
 def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui Extended Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -116,7 +116,7 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui Standalone Extended Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -130,7 +130,7 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui Basic Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -144,7 +144,7 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui Standalone Basic Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -158,7 +158,7 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui System Exit Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -172,7 +172,7 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This Definition Provides A Ui Standalone System Exit Exception Handler.
-	
+
 	@param exception: Exception. ( Exception )
 	@param origin: Function / Method Raising The Exception. ( String )
 	@param *args: Arguments. ( * )
@@ -188,8 +188,8 @@ def setWindowDefaultIcon(window):
 	"""
 	This Method Sets The Application Icon To The Provided Window.
 
-	@param window: Window. ( QWidget )	
-	@return: Definition Success. ( Boolean )		
+	@param window: Window. ( QWidget )
+	@return: Definition Success. ( Boolean )
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -205,10 +205,10 @@ def setWindowDefaultIcon(window):
 def centerWidgetOnScreen(widget, screen=None):
 	"""
 	This Definition Centers The Provided Widget Middle Of The Screen.
-	
+
 	@param widget: Current Widget. ( QWidget )
 	@param screen: Screen USed For Centering. ( Integer )
-	@return: Definition Success. ( Boolean )		
+	@return: Definition Success. ( Boolean )
 	"""
 
 	screen = screen and screen or QApplication.desktop().primaryScreen()
@@ -222,7 +222,7 @@ def centerWidgetOnScreen(widget, screen=None):
 def getGraphicItem(path, type):
 		"""
 		This Method Gets A Graphic Display: QIcon, QImage, QPixmap.
-		
+
 		@param path: Image Path. ( String )
 		@param type: QIcon, QImage, QPixmap. ( QObject )
 		@return: Graphic Display. ( Icon, QImage, QPixmap )
@@ -253,7 +253,7 @@ def getGraphicItem(path, type):
 def getIcon(path):
 		"""
 		This Method Gets A QIcon.
-		
+
 		@param path: Icon Image Path. ( String )
 		@return: QIcon. ( QIcon )
 		"""
@@ -265,7 +265,7 @@ def getIcon(path):
 def getPixmap(path):
 		"""
 		This Method Gets A QPixmap.
-		
+
 		@param path: Icon Image Path. ( String )
 		@return: QPixmap. ( QPixmap )
 		"""
@@ -277,7 +277,7 @@ def getPixmap(path):
 def getImage(path):
 		"""
 		This Method Gets A QImage.
-		
+
 		@param path: Icon Image Path. ( String )
 		@return: QImage. ( QImage )
 		"""
@@ -289,7 +289,7 @@ def getImage(path):
 def filterImagePath(path):
 		"""
 		This Method Filters The Image Path.
-		
+
 		@param path: Image Path. ( String )
 		@return: Path. ( String )
 		"""

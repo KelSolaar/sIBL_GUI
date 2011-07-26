@@ -92,7 +92,7 @@ DB_EXCEPTIONS = {
 def commit(session):
 	"""
 	This Definition Commits Changes To The Database.
-	
+
 	@param session: Database Session. ( Session )
 	@return: Database Commit Success. ( Boolean )
 	"""
@@ -109,7 +109,7 @@ def commit(session):
 def addItem(session, item):
 	"""
 	This Definition Adds An Item To The Database.
-	
+
 	@param session: Database Session. ( Session )
 	@param item: Item To Add. ( Db Object )
 	@return: Database Commit Success. ( Boolean )
@@ -151,7 +151,7 @@ def addStandardItem(session, type, name, path, collection):
 def removeItem(session, item):
 	"""
 	This Definition Removes An Item From The Database.
-	
+
 	@param session: Database Session. ( Session )
 	@param item: Item To Remove. ( Db Object )
 	@return: Database Commit Success. ( Boolean )
@@ -282,7 +282,7 @@ def filterIblSets(session, pattern, field, flags=0):
 def iblSetExists(session, path):
 	"""
 	This Method Returns If Ibl Set Exists In The Database.
-	
+
 	@param name: Ibl Set path. ( String )
 	@return: Ibl Set Exists. ( Boolean )
 	"""
@@ -400,7 +400,7 @@ def filterCollections(session, pattern, field, flags=0):
 def collectionExists(session, name):
 	"""
 	This Method Returns If The Collection Exists In The Database.
-	
+
 	@param name: Collection Name. ( String )
 	@return: Collection Exists. ( Boolean )
 	"""
@@ -487,7 +487,7 @@ def filterTemplates(session, pattern, field, flags=0):
 def templateExists(session, path):
 	"""
 	This Method Returns If Template Exists In The Database.
-	
+
 	@param name: Template path. ( String )
 	@return: Template Exists. ( Boolean )
 	"""

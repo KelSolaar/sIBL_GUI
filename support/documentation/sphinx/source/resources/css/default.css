@@ -6,7 +6,7 @@
  *
  * :copyright: Copyright 2007-2011 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
- * 
+ *
  * :Modified By Thomas Mansencal For sIBL_GUI Documentation.
  *
  */
@@ -241,7 +241,7 @@ pre {
 	line-height: 120%;
 	border: 2px solid rgb(160, 96, 64);
 	border-left: none;
-	border-right: none;	
+	border-right: none;
 }
 
 tt {

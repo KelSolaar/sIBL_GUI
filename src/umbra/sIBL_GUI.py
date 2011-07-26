@@ -71,7 +71,7 @@ def _setApplicationPackageDirectory():
 	"""
 	This Definition Sets The Application Package Directory In The Path.
 
-	@return: Definition Success. ( Boolean )		
+	@return: Definition Success. ( Boolean )
 	"""
 
 	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
@@ -91,7 +91,7 @@ def _overrideDependenciesGlobals():
 	"""
 	This Definition Overrides Dependencies Globals.
 
-	@return: Definition Success. ( Boolean )		
+	@return: Definition Success. ( Boolean )
 	"""
 
 	foundations.globals.constants.Constants.logger = manager.globals.constants.Constants.logger = Constants.logger
@@ -196,7 +196,7 @@ class Preferences():
 	def preferencesFile(self, value):
 		"""
 		This Method Is The Setter Method For The _preferencesFile Attribute.
-		
+
 		@param value: Attribute Value. ( String )
 		"""
 
@@ -229,7 +229,7 @@ class Preferences():
 	def settings(self, value):
 		"""
 		This Method Is The Setter Method For The _settings Attribute.
-		
+
 		@param value: Attribute Value. ( QSettings )
 		"""
 
@@ -259,7 +259,7 @@ class Preferences():
 	def defaultLayoutsSettings(self, value):
 		"""
 		This Method Is The Setter Method For The _defaultLayoutsSettings Attribute.
-		
+
 		@param value: Attribute Value. ( QSettings )
 		"""
 
@@ -281,7 +281,7 @@ class Preferences():
 	def setKey(self, section, key, value):
 		"""
 		This Method Stores Provided Key In Settings File.
-	
+
 		@param section: Current Section To Save The Key Into. ( String )
 		@param key: Current Key To Save. ( String )
 		@param value: Current Key Value To Save. ( Object )
@@ -297,7 +297,7 @@ class Preferences():
 	def getKey(self, section, key):
 		"""
 		This Method Gets Key Value From Settings File.
-	
+
 		@param section: Current Section To Retrieve Key From. ( String )
 		@param key: Current Key To Retrieve. ( String )
 		@return: Current Key Value. ( Object )
@@ -326,7 +326,7 @@ class Preferences():
 	def setDefaultPreferences(self):
 		"""
 		This Method Defines The Default Settings File Content.
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing Default Settings!")
@@ -385,8 +385,8 @@ class Preferences():
 	def setDefaultLayouts(self):
 		"""
 		This Method Sets The Default Layouts In The Preferences File.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
@@ -848,7 +848,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	def lastBrowsedPath(self, value):
 		"""
 		This Method Is The Setter Method For The _lastBrowsedPath Attribute.
-		
+
 		@param value: Attribute Value. ( String )
 		"""
 
@@ -1061,7 +1061,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	def verbosityLevel(self, value):
 		"""
 		This Method Is The Setter Method For The _verbosityLevel Attribute.
-		
+
 		@param value: Attribute Value. ( Integer )
 		"""
 
@@ -1393,8 +1393,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	def __componentsInstantiationCallback(self, profile):
 		"""
 		This Method Is A Callback For The Components Instantiation.
-		
-		@param profile: Component Profile. ( Profile )	
+
+		@param profile: Component Profile. ( Profile )
 		"""
 
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
@@ -1634,7 +1634,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		@param name: Layout Name. ( String )
 		@param *args: Arguments. ( * )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Storing Layout '{0}'.".format(name))
@@ -1653,7 +1653,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		@param name: Layout Name. ( String )
 		@param *args: Arguments. ( * )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Restoring Layout '{0}'.".format(name))
@@ -1675,7 +1675,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Restores The Startup Layout.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Restoring Startup Layout.")
@@ -1692,7 +1692,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This Method Stores The Startup Layout.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Storing Startup Layout.")
@@ -1704,7 +1704,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	def storeLastBrowsedPath(self, path):
 		"""
 		This Method Is A Wrapper Method For Storing The Last Browser Path.
-		
+
 		@param path: Provided Path. ( QString )
 		@return: Provided Path. ( QString )
 		"""
@@ -1895,7 +1895,7 @@ def _setUserApplicationDatasDirectory(path):
 	This Definition Sets The Application Datas Directory.
 
 	@param path: Starting Point For The Directories Tree Creation. ( String )
-	@return: Definition Success. ( Boolean )		
+	@return: Definition Success. ( Boolean )
 	"""
 
 	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory

@@ -84,7 +84,7 @@ class PreferencesManager(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -232,7 +232,7 @@ class PreferencesManager(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -316,7 +316,7 @@ class PreferencesManager(UiComponent):
 	def __Logging_Formatters_comboBox__activated(self, index):
 		"""
 		This Method Is Called When The Logging Formatter Is Triggered.
-		
+
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
@@ -342,7 +342,7 @@ class PreferencesManager(UiComponent):
 	def __Verbose_Level_comboBox__activated(self, index):
 		"""
 		This Method Is Called When The Verbose Level ComboBox Is Triggered.
-		
+
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
@@ -368,7 +368,7 @@ class PreferencesManager(UiComponent):
 	def __Restore_Geometry_On_Layout_Change_checkBox__stateChanged(self, state):
 		"""
 		This Method Is Called When Restore_Geometry_On_Layout_Change_checkBox State Changes.
-		
+
 		@param state: Checkbox State. ( Integer )
 		"""
 

@@ -159,7 +159,7 @@ class DbIblSet(DbBase):
 	def setContent(self):
 		"""
 		This Method Initializes The DbIblSet Attributes.
-		
+
 		@return: DbIblSet Initialization Success. ( Boolean )
 		"""
 
@@ -261,7 +261,7 @@ class DbTemplate(DbBase):
 	def setContent(self):
 		"""
 		This Method Initializes The DbTemplate Attributes.
-		
+
 		@return: DbTemplate Initialization Success. ( Boolean )
 		"""
 

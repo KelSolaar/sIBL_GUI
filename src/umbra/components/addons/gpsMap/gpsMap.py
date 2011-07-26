@@ -86,7 +86,7 @@ class Map(QWebView):
 	def __init__(self, parent=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param parent: Widget Parent. ( QObject )
 		"""
 
@@ -96,12 +96,12 @@ class Map(QWebView):
 	def addMarker(self, coordinates, title, icon, content):
 		"""
 		This Method Adds A Marker To The Map.
-		
+
 		@param coordinates: Marker Coordinates. ( Tuple )
 		@param title: Marker Title. ( String )
 		@param icon: Marker Icon. ( String )
 		@param content: Marker Popup Window Content. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' Marker To GPS Map With '{1}' Coordinates.".format(title, coordinates))
@@ -114,7 +114,7 @@ class Map(QWebView):
 		"""
 		This Method Removes The Map Markers.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Removing GPS Map Markers.")
@@ -127,7 +127,7 @@ class Map(QWebView):
 		"""
 		This Method Center The Map.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Centering GPS Map.")
@@ -139,9 +139,9 @@ class Map(QWebView):
 	def setMapType(self, mapTypeId):
 		"""
 		This Method Sets The Map Type.
-		
+
 		@param mapTypeId: GPS Map Type. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Setting GPS Map Type To '{0}'.".format(mapTypeId))
@@ -153,9 +153,9 @@ class Map(QWebView):
 	def setZoom(self, type):
 		"""
 		This Method Sets The Map Zoom.
-		
+
 		@param type: Zoom Type. ( String )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Zooming '{0}' GPS Map.".format(type))
@@ -172,7 +172,7 @@ class GpsMap(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -539,7 +539,7 @@ class GpsMap(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -638,7 +638,7 @@ class GpsMap(UiComponent):
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets Is Triggered When coreDatabaseBrowser_Database_Browser_listView Selection Has Changed.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -649,7 +649,7 @@ class GpsMap(UiComponent):
 	def __Map_Type_comboBox__activated(self, index):
 		"""
 		This Method Is Triggered When Map_Type_comboBox Index Changes.
-		
+
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""
 
@@ -659,7 +659,7 @@ class GpsMap(UiComponent):
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Zoom_In_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -669,7 +669,7 @@ class GpsMap(UiComponent):
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
 		This Method Is Triggered When Zoom_Out_pushButton Is Clicked.
-		
+
 		@param checked: Checked State. ( Boolean )
 		"""
 
@@ -679,7 +679,7 @@ class GpsMap(UiComponent):
 	def __map__loadFinished(self, state):
 		"""
 		This Method Is Triggered When The GPS Map Finishes Loading.
-		
+
 		@param state: Loading State. ( Boolean )
 		"""
 
@@ -691,7 +691,7 @@ class GpsMap(UiComponent):
 		"""
 		This Method Sets Selected Ibl Sets Markers.
 
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -713,7 +713,7 @@ class GpsMap(UiComponent):
 		This Method Sets Ibl Sets Markers.
 
 		@param iblSet: Ibl Set To Display Marker. ( DbIblSet )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if not iblSet.latitude and not iblSet.longitude:

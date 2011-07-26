@@ -95,7 +95,7 @@ class TemplatesOutliner_Worker(QThread):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Object Container. ( Object )
 		"""
 
@@ -281,7 +281,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	def __init__(self, container):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -366,7 +366,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	def dragEnterEvent(self, event):
 		"""
 		This Method Defines The Drag Enter Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -380,7 +380,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	def dragMoveEvent(self, event):
 		"""
 		This Method Defines The Drag Move Event Behavior.
-		
+
 		@param event: QEvent. ( QEvent )
 		"""
 
@@ -391,8 +391,8 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	def dropEvent(self, event):
 		"""
 		This Method Defines The Drop Event Behavior.
-		
-		@param event: QEvent. ( QEvent )		
+
+		@param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -426,7 +426,7 @@ class TemplatesOutliner(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -1157,7 +1157,7 @@ class TemplatesOutliner(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
@@ -1325,10 +1325,10 @@ class TemplatesOutliner(UiComponent):
 	def __Templates_Outliner_treeView_setModel(self):
 		"""
 		This Method Sets The Templates_Outliner_treeView Model.
-		
+
 		Columns:
 		Templates | Release | Software Version
-		
+
 		Rows:
 		* Collection: { _type: "Collection" }
 		** Software: { _type: "Software" }
@@ -1592,7 +1592,7 @@ class TemplatesOutliner(UiComponent):
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This Method Sets The Template_Informations_textEdit Widget.
-		
+
 		@param selectedItems: Selected Items. ( QItemSelection )
 		@param deselectedItems: Deselected Items. ( QItemSelection )
 		"""
@@ -1644,8 +1644,8 @@ class TemplatesOutliner(UiComponent):
 	def addTemplate__(self):
 		"""
 		This Method Adds An User Defined Template To The Database.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT Files (*.{0})".format(self.__extension))))
@@ -1666,8 +1666,8 @@ class TemplatesOutliner(UiComponent):
 	def removeTemplates__(self):
 		"""
 		This Method Removes User Selected Templates From The Database.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1707,8 +1707,8 @@ class TemplatesOutliner(UiComponent):
 	def importDefaultTemplates__(self):
 		"""
 		This Method Imports Default Templates Into The Database.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1721,8 +1721,8 @@ class TemplatesOutliner(UiComponent):
 	def displayHelpFiles__(self):
 		"""
 		This Method Displays User Selected Templates Help Files.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
@@ -1743,8 +1743,8 @@ class TemplatesOutliner(UiComponent):
 	def filterTemplatesVersions__(self):
 		"""
 		This Method Filters Templates By Versions.
-		
-		@return: Method Success. ( Boolean )		
+
+		@return: Method Success. ( Boolean )
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
@@ -1767,12 +1767,12 @@ class TemplatesOutliner(UiComponent):
 	def addTemplate(self, name, path, collectionId=None, emitSignal=True):
 		"""
 		This Method Adds A Template To The Database.
-		
-		@param name: Template Set Name. ( String )		
-		@param path: Template Set Path. ( String )		
-		@param collectionId: Target Collection Id. ( Integer )		
+
+		@param name: Template Set Name. ( String )
+		@param path: Template Set Path. ( String )
+		@param collectionId: Target Collection Id. ( Integer )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
@@ -1790,10 +1790,10 @@ class TemplatesOutliner(UiComponent):
 	def addDirectory(self, directory, collectionId=None):
 		"""
 		This Method Adds Provided Directory Templates To The Database.
-		
+
 		@param directory: Templates Directory. ( String )
 		@param collectionId: Collection Id. ( Integer )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
@@ -1818,9 +1818,9 @@ class TemplatesOutliner(UiComponent):
 	def addDefaultTemplates(self, forceImport=False):
 		"""
 		This Method Adds Default Templates Collections / Templates To The Database.
-		
+
 		@param forceImport: Force Templates Import. ( Boolean )
-		@return: Method Success. ( Boolean )		
+		@return: Method Success. ( Boolean )
 		"""
 
 		if not forceImport and self.getTemplates():
@@ -1847,7 +1847,7 @@ class TemplatesOutliner(UiComponent):
 
 		@param templates: Template To Remove. ( List )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )	
+		@return: Method Success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
@@ -1861,7 +1861,7 @@ class TemplatesOutliner(UiComponent):
 	def templateExists(self, path):
 		"""
 		This Method Returns If Provided Template Path Exists In The Database.
-		
+
 		@param name: Template Path. ( String )
 		@return: Template Exists. ( Boolean )
 		"""
@@ -1873,10 +1873,10 @@ class TemplatesOutliner(UiComponent):
 	def updateTemplateLocation(self, template, emitSignal=True):
 		"""
 		This Method Updates Provided Template Location.
-		
+
 		@param template: Template To Update. ( DbTemplate )
 		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )	
+		@return: Method Success. ( Boolean )
 		"""
 
 		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self.__container.lastBrowsedPath, "Template Files (*{0})".format(self.__extension))))
@@ -1897,7 +1897,7 @@ class TemplatesOutliner(UiComponent):
 		This Method Displays Provided Templates Help File.
 
 		@param template: Template To Display Help File. ( DbTemplate )
-		@return: Method Success. ( Boolean )	
+		@return: Method Success. ( Boolean )
 		"""
 
 		if os.path.exists(template.helpFile):
@@ -1911,7 +1911,7 @@ class TemplatesOutliner(UiComponent):
 	def getTemplates(self):
 		"""
 		This Method Returns Database Templates.
-		
+
 		@return: Database Templates Collections. ( List )
 		"""
 
@@ -1921,7 +1921,7 @@ class TemplatesOutliner(UiComponent):
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
 		This Method Returns The Templates_Outliner_treeView Selected Items.
-		
+
 		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
 		@return: View Selected Items. ( List )
 		"""
@@ -1933,7 +1933,7 @@ class TemplatesOutliner(UiComponent):
 	def getSelectedTemplates(self):
 		"""
 		This Method Returns The Selected Templates.
-		
+
 		@return: View Selected Templates. ( List )
 		"""
 
@@ -1944,7 +1944,7 @@ class TemplatesOutliner(UiComponent):
 	def getCollection(self, collection):
 		"""
 		This Method Gets Template Collection From Provided Collection Name.
-		
+
 		@param collection: Collection Name. ( String )
 		@return: Collection. ( DbCollection )
 		"""
@@ -1955,7 +1955,7 @@ class TemplatesOutliner(UiComponent):
 	def getUniqueCollectionId(self, path):
 		"""
 		This Method Gets An Unique Collection Id Using Provided Path.
-		
+
 		@param path: Template Path. ( String )
 		@return: Unique Id. ( Integer )
 		"""

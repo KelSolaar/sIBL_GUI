@@ -86,7 +86,7 @@ ABOUT_MESSAGE = """
 		<br/>
 		Special Thanks To: Dschaga, Tischbein3, Andy, VolXen, Gwynne, keksonja, Yuri, Rork, Jeff Hanna, Spedler, Lee And Brett.
 		<br/>
-		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle. 
+		Another Big Thanks To Emanuele Santos For Helping Me Out On The Mac Os X Bundle.
 		<br/>
 		Thanks To Marienz From Irc #python For Optimisations Tips.
 		<p>
@@ -145,7 +145,7 @@ class About(UiComponent):
 	def __init__(self, name=None, uiFile=None):
 		"""
 		This Method Initializes The Class.
-		
+
 		@param name: Component Name. ( String )
 		@param uiFile: Ui File. ( String )
 		"""
@@ -385,7 +385,7 @@ class About(UiComponent):
 	def activate(self, container):
 		"""
 		This Method Activates The Component.
-		
+
 		@param container: Container To Attach The Component To. ( QObject )
 		"""
 
