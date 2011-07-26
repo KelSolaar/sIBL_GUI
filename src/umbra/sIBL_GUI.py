@@ -1202,9 +1202,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@property
 	def preferencesActiveLabel (self):
 		"""
-		This Method Is The Property For The _preferencesActiveLabel	 Attribute.
+		This Method Is The Property For The _preferencesActiveLabel Attribute.
 
-		@return: self.__preferencesActiveLabel . ( Active_QLabel )
+		@return: self.__preferencesActiveLabel. ( Active_QLabel )
 		"""
 
 		return self.__preferencesActiveLabel
@@ -1213,7 +1213,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def preferencesActiveLabel (self, value):
 		"""
-		This Method Is The Setter Method For The _preferencesActiveLabel  Attribute.
+		This Method Is The Setter Method For The _preferencesActiveLabel Attribute.
 
 		@param value: Attribute Value. ( Active_QLabel )
 		"""
@@ -1224,7 +1224,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def preferencesActiveLabel (self):
 		"""
-		This Method Is The Deleter Method For The _preferencesActiveLabel  Attribute.
+		This Method Is The Deleter Method For The _preferencesActiveLabel Attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("preferencesActiveLabel "))
@@ -1871,7 +1871,7 @@ def _getCommandLineParameters(argv):
 
 	parser.add_option("-h", "--help", action="help", help="'Display This Help Message And Exit.'")
 	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application About Message.'")
-	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels:  0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
+	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity Levels: 0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
 	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application Logging Formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application Datas Directory'.")
 

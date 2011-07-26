@@ -221,7 +221,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This Method Paints The Image.
 
 		@param painter: QPainter ( QPainter )
-		@param options: QStyleOptionGraphicsItem  ( QStyleOptionGraphicsItem  )
+		@param options: QStyleOptionGraphicsItem ( QStyleOptionGraphicsItem )
 		@param widget: QWidget ( QWidget )
 		"""
 
