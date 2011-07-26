@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -64,7 +64,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -76,12 +76,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
@@ -106,7 +106,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		self.__height = image.height()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def image(self):
@@ -205,7 +205,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("height"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def boundingRect(self):
@@ -286,7 +286,7 @@ class ImagesPreviewer(object):
 		self.fitImage()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -891,7 +891,7 @@ class ImagesPreviewer(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("displayGraphicsItem"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -1147,7 +1147,7 @@ class Preview(UiComponent):
 									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1719,7 +1719,7 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorButtons"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -2214,5 +2214,5 @@ class Preview(UiComponent):
 		return imagePaths
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

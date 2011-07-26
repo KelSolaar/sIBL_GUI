@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 import os
@@ -61,7 +61,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -74,12 +74,12 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class CollectionsOutliner_QTreeView(QTreeView):
 	"""
@@ -110,7 +110,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		self.__previousCollection = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -263,7 +263,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("previousCollection"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
@@ -413,7 +413,7 @@ class CollectionsOutliner(UiComponent):
 		self.__treeViewIndentation = 15
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -956,7 +956,7 @@ class CollectionsOutliner(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewIndentation"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -1585,5 +1585,5 @@ class CollectionsOutliner(UiComponent):
 		return selectedCollections and selectedCollections or []
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

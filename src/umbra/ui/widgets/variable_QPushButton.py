@@ -47,30 +47,30 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Variable_QPushButton(QPushButton):
 	"""
@@ -116,7 +116,7 @@ class Variable_QPushButton(QPushButton):
 		self.clicked.connect(self.__variable_QPushButton__clicked)
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def state(self):
@@ -248,7 +248,7 @@ class Variable_QPushButton(QPushButton):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def __variable_QPushButton__clicked(self, checked):
@@ -297,6 +297,6 @@ class Variable_QPushButton(QPushButton):
 		self.setText(self.__labels[1])
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************
 

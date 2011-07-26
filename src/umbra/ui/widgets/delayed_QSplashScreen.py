@@ -47,18 +47,18 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.common
@@ -66,12 +66,12 @@ import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Delayed_QSplashScreen(QSplashScreen):
 	"""
@@ -98,7 +98,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		self.waitTime = waitTime
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def waitTime(self):
@@ -134,7 +134,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("waitTime"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def setMessage(self, message, textAlignement=Qt.AlignLeft, textColor=Qt.black, waitTime=None):
@@ -158,5 +158,5 @@ class Delayed_QSplashScreen(QSplashScreen):
 		waitTime and foundations.common.wait(waitTime)
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

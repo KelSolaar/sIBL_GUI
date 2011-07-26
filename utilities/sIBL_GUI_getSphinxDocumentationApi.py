@@ -39,10 +39,10 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import importlib
 import logging
@@ -54,7 +54,7 @@ import sys
 from collections import OrderedDict
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.strings as strings
@@ -66,7 +66,7 @@ sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "librar
 import python.pyclbr as moduleBrowser
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -96,7 +96,7 @@ CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHa
 						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE)}
 
 #***********************************************************************************************
-#***	Main Python Code
+#***	Main Python Code.
 #***********************************************************************************************
 def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, apiFile):
 	"""
@@ -197,5 +197,5 @@ if __name__ == "__main__":
 	getSphinxDocumentationApi(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

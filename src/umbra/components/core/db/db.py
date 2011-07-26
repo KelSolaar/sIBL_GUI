@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 import os
@@ -61,7 +61,7 @@ import sqlalchemy.orm
 import shutil
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -74,12 +74,12 @@ from manager.component import Component
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Db(Component):
 	"""
@@ -117,7 +117,7 @@ class Db(Component):
 		self.__dbBackupCount = 6
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -450,7 +450,7 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbBackupCount"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -556,5 +556,5 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Uninitialized!".format(self.name))
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

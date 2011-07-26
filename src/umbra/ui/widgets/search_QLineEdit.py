@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -60,19 +60,19 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
 	"""
@@ -110,7 +110,7 @@ class Search_QLineEdit(QLineEdit):
 		self.textChanged.connect(self.__setClearButtonVisibility)
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def uiClearImage(self):
@@ -238,7 +238,7 @@ class Search_QLineEdit(QLineEdit):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("clearButton"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def resizeEvent(self, event):
@@ -290,6 +290,6 @@ class Search_QLineEdit(QLineEdit):
 			self.__clearButton.hide()
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************
 

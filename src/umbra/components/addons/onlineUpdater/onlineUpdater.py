@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 import os
@@ -63,7 +63,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtNetwork import *
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -78,14 +78,14 @@ from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class ReleaseObject(core.Structure):
 	"""
@@ -158,7 +158,7 @@ class DownloadManager(QObject):
 		self.__ui.show()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -553,7 +553,7 @@ class DownloadManager(QObject):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -743,7 +743,7 @@ class RemoteUpdater(object):
 		self.__ui.show()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def container(self):
@@ -1257,7 +1257,7 @@ class RemoteUpdater(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def initializeUi(self):
@@ -1503,7 +1503,7 @@ class OnlineUpdater(UiComponent):
 		self.__reportUpdateStatus = None
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def uiPath(self):
@@ -1965,7 +1965,7 @@ class OnlineUpdater(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reportUpdateStatus"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def activate(self, container):
@@ -2238,5 +2238,5 @@ class OnlineUpdater(UiComponent):
 		return True
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

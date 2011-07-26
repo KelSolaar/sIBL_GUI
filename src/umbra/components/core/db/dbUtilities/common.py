@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import logging
 import os
@@ -61,7 +61,7 @@ import sqlalchemy.orm
 import sqlalchemy.ext.declarative
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -69,7 +69,7 @@ import umbra.components.core.db.dbUtilities.types as dbTypes
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables
+#***	Global Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -85,7 +85,7 @@ DB_EXCEPTIONS = {
 		}
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -567,5 +567,5 @@ def checkTemplatesTableIntegrity(session):
 	return erroneousTemplates
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

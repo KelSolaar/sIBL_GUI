@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import ctypes
 import logging
@@ -60,7 +60,7 @@ import platform
 import sys
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
@@ -69,12 +69,12 @@ from foundations.library import LibraryHook
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Overall Variables
+#***	Overall Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
-#***	FreeImage Variables
+#***	FreeImage Variables.
 #***********************************************************************************************
 FREEIMAGE_LIBRARY_PATH = os.path.join(os.getcwd(), Constants.freeImageLibrary)
 
@@ -680,7 +680,7 @@ FREEIMAGE_FUNCTIONS = (
 	# Message Output Functions.
 	LibraryHook(name="FreeImage_SetOutputMessageStdCall" , affixe="@4", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetOutputMessage" , affixe="@4", argumentsType=None, returnValue=None),
-	# LibraryHook(name="FreeImage_OutputMessageProc", affixe="@0", argumentsType=None, returnValue=None),
+	# LibraryHook(name="FreeImage_OutputMessageProc" , affixe="@0", argumentsType=None, returnValue=None),
 
 	# Allocate / Clone / Unload Functions.
 	LibraryHook(name="FreeImage_Allocate" , affixe="@24", argumentsType=BPP_1TO32, returnValue=None),
@@ -710,7 +710,7 @@ FREEIMAGE_FUNCTIONS = (
 
 	# Plugin Interface Functions.
 	LibraryHook(name="FreeImage_RegisterLocalPlugin" , affixe="@20", argumentsType=None, returnValue=None),
-	# LibraryHook(name="FreeImage_RegisterExternalPlugin", affixe="@20", argumentsType=None, returnValue=None),
+	# LibraryHook(name="FreeImage_RegisterExternalPlugin" , affixe="@20", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_GetFIFCount" , affixe="@0", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_SetPluginEnabled" , affixe="@8", argumentsType=None, returnValue=None),
 	LibraryHook(name="FreeImage_IsPluginEnabled" , affixe="@4", argumentsType=None, returnValue=None),
@@ -959,7 +959,7 @@ FREEIMAGE_FUNCTIONS = (
  )
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
 	"""
@@ -1006,7 +1006,7 @@ class Image(object):
 			self.load()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def library(self):
@@ -1131,7 +1131,7 @@ class Image(object):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
@@ -1296,5 +1296,5 @@ class Image(object):
 			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP)
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************

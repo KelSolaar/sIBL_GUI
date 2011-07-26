@@ -47,11 +47,11 @@
 """
 
 #***********************************************************************************************
-#***	Python Begin
+#***	Python Begin.
 #***********************************************************************************************
 
 #***********************************************************************************************
-#***	External Imports
+#***	External Imports.
 #***********************************************************************************************
 import functools
 import logging
@@ -65,7 +65,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 #***********************************************************************************************
-#***	Path Manipulations
+#***	Path Manipulations.
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
@@ -81,7 +81,7 @@ def _setApplicationPackageDirectory():
 _setApplicationPackageDirectory()
 
 #***********************************************************************************************
-#***	Dependencies Globals Manipulation
+#***	Dependencies Globals Manipulation.
 #***********************************************************************************************
 import foundations.globals.constants
 import manager.globals.constants
@@ -101,7 +101,7 @@ def _overrideDependenciesGlobals():
 _overrideDependenciesGlobals()
 
 #***********************************************************************************************
-#***	Internal Imports
+#***	Internal Imports.
 #***********************************************************************************************
 import foundations.common
 import foundations.core as core
@@ -116,7 +116,7 @@ from umbra.ui.widgets.active_QLabel import Active_QLabel
 from umbra.ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 
 #***********************************************************************************************
-#***	Overall Variables
+#***	Overall Variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -152,7 +152,7 @@ else:
 	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' Ui File Is Not Available, {1} Will Now Close!".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
-#***	Module Classes And Definitions
+#***	Module Classes And Definitions.
 #***********************************************************************************************
 class Preferences():
 	"""
@@ -179,7 +179,7 @@ class Preferences():
 		self.__getDefaultLayoutsSettings()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def preferencesFile(self):
@@ -275,7 +275,7 @@ class Preferences():
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultLayoutsSettings"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def setKey(self, section, key, value):
@@ -419,7 +419,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	"""
 
 	#***********************************************************************************************
-	#***	Initialization.
+	#***	Initialization..
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
@@ -591,7 +591,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.restoreStartupLayout()
 
 	#***********************************************************************************************
-	#***	Attributes Properties
+	#***	Attributes Properties.
 	#***********************************************************************************************
 	@property
 	def timer(self):
@@ -1350,7 +1350,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("workerThreads"))
 
 	#***********************************************************************************************
-	#***	Class Methods
+	#***	Class Methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def __closeUi(self, event):
@@ -1719,7 +1719,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		return path
 
 #***********************************************************************************************
-#***	Overall Definitions.
+#***	Overall Definitions..
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
@@ -1910,11 +1910,11 @@ def _setUserApplicationDatasDirectory(path):
 		raise OSError, "'{0}' Directory Creation Failed , {1} Will Now Close!".format(userApplicationDatasDirectory, Constants.applicationName)
 
 #***********************************************************************************************
-#***	Launcher
+#***	Launcher.
 #***********************************************************************************************
 if __name__ == "__main__":
 	_run()
 
 #***********************************************************************************************
-#***	Python End
+#***	Python End.
 #***********************************************************************************************
