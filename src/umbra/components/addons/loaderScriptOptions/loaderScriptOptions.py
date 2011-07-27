@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Loader Script Options Component Module.
+	Loader Script options Component Module.
 
 **Others:**
 
@@ -81,19 +81,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoaderScriptOptions(UiComponent):
 	"""
-	This Class Is The LoaderScriptOptions Class.
+	This class is the LoaderScriptOptions class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -127,7 +127,7 @@ class LoaderScriptOptions(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -138,26 +138,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -168,26 +168,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -198,26 +198,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -228,26 +228,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def addonsLoaderScript(self):
 		"""
-		This Method Is The Property For The _addonsLoaderScript Attribute.
+		This method is the property for the _addonsLoaderScript attribute.
 
 		@return: self.__addonsLoaderScript. ( Object )
 		"""
@@ -258,26 +258,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self, value):
 		"""
-		This Method Is The Setter Method For The _addonsLoaderScript Attribute.
+		This method is the setter method for the _addonsLoaderScript attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLoaderScript"))
 
 	@addonsLoaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self):
 		"""
-		This Method Is The Deleter Method For The _addonsLoaderScript Attribute.
+		This method is the deleter method for the _addonsLoaderScript attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLoaderScript"))
 
 	@property
 	def templateCommonAttributesSection(self):
 		"""
-		This Method Is The Property For The _templateCommonAttributesSection Attribute.
+		This method is the property for the _templateCommonAttributesSection attribute.
 
 		@return: self.__templateCommonAttributesSection. ( String )
 		"""
@@ -288,26 +288,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self, value):
 		"""
-		This Method Is The Setter Method For The _templateCommonAttributesSection Attribute.
+		This method is the setter method for the _templateCommonAttributesSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateCommonAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateCommonAttributesSection"))
 
 	@templateCommonAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateCommonAttributesSection(self):
 		"""
-		This Method Is The Deleter Method For The _templateCommonAttributesSection Attribute.
+		This method is the deleter method for the _templateCommonAttributesSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateCommonAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templateCommonAttributesSection"))
 
 	@property
 	def templateAdditionalAttributesSection(self):
 		"""
-		This Method Is The Property For The _templateAdditionalAttributesSection Attribute.
+		This method is the property for the _templateAdditionalAttributesSection attribute.
 
 		@return: self.__templateAdditionalAttributesSection. ( String )
 		"""
@@ -318,26 +318,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self, value):
 		"""
-		This Method Is The Setter Method For The _templateAdditionalAttributesSection Attribute.
+		This method is the setter method for the _templateAdditionalAttributesSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateAdditionalAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateAdditionalAttributesSection"))
 
 	@templateAdditionalAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateAdditionalAttributesSection(self):
 		"""
-		This Method Is The Deleter Method For The _templateAdditionalAttributesSection Attribute.
+		This method is the deleter method for the _templateAdditionalAttributesSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateAdditionalAttributesSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templateAdditionalAttributesSection"))
 
 	@property
 	def templateScriptSection(self):
 		"""
-		This Method Is The Property For The _templateScriptSection Attribute.
+		This method is the property for the _templateScriptSection attribute.
 
 		@return: self.__templateScriptSection. ( String )
 		"""
@@ -348,26 +348,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self, value):
 		"""
-		This Method Is The Setter Method For The _templateScriptSection Attribute.
+		This method is the setter method for the _templateScriptSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateScriptSection"))
 
 	@templateScriptSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templateScriptSection(self):
 		"""
-		This Method Is The Deleter Method For The _templateScriptSection Attribute.
+		This method is the deleter method for the _templateScriptSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templateScriptSection"))
 
 	@property
 	def optionsToolboxesHeaders(self):
 		"""
-		This Method Is The Property For The _optionsToolboxesHeaders Attribute.
+		This method is the property for the _optionsToolboxesHeaders attribute.
 
 		@return: self.__optionsToolboxesHeaders. ( List )
 		"""
@@ -378,26 +378,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self, value):
 		"""
-		This Method Is The Setter Method For The _optionsToolboxesHeaders Attribute.
+		This method is the setter method for the _optionsToolboxesHeaders attribute.
 
-		@param value: Attribute Value. ( List )
+		@param value: Attribute value. ( List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("optionsToolboxesHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("optionsToolboxesHeaders"))
 
 	@optionsToolboxesHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def optionsToolboxesHeaders(self):
 		"""
-		This Method Is The Deleter Method For The _optionsToolboxesHeaders Attribute.
+		This method is the deleter method for the _optionsToolboxesHeaders attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("optionsToolboxesHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("optionsToolboxesHeaders"))
 
 	@property
 	def uiLightGrayColor(self):
 		"""
-		This Method Is The Property For The _uiLightGrayColor Attribute.
+		This method is the property for the _uiLightGrayColor attribute.
 
 		@return: self.__uiLightGrayColor. ( QColor )
 		"""
@@ -408,26 +408,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLightGrayColor Attribute.
+		This method is the setter method for the _uiLightGrayColor attribute.
 
-		@param value: Attribute Value. ( QColor )
+		@param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
-		This Method Is The Deleter Method For The _uiLightGrayColor Attribute.
+		This method is the deleter method for the _uiLightGrayColor attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLightGrayColor"))
 
 	@property
 	def uiDarkGrayColor(self):
 		"""
-		This Method Is The Property For The _uiDarkGrayColor Attribute.
+		This method is the property for the _uiDarkGrayColor attribute.
 
 		@return: self.__uiDarkGrayColor. ( QColor )
 		"""
@@ -438,26 +438,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
-		This Method Is The Setter Method For The _uiDarkGrayColor Attribute.
+		This method is the setter method for the _uiDarkGrayColor attribute.
 
-		@param value: Attribute Value. ( QColor )
+		@param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
-		This Method Is The Deleter Method For The _uiDarkGrayColor Attribute.
+		This method is the deleter method for the _uiDarkGrayColor attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDarkGrayColor"))
 
 	@property
 	def tableWidgetRowHeight(self):
 		"""
-		This Method Is The Property For The _tableWidgetRowHeight Attribute.
+		This method is the property for the _tableWidgetRowHeight attribute.
 
 		@return: self.__tableWidgetRowHeight. ( Integer )
 		"""
@@ -468,26 +468,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self, value):
 		"""
-		This Method Is The Setter Method For The _tableWidgetRowHeight Attribute.
+		This method is the setter method for the _tableWidgetRowHeight attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self):
 		"""
-		This Method Is The Deleter Method For The _tableWidgetRowHeight Attribute.
+		This method is the deleter method for the _tableWidgetRowHeight attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetRowHeight"))
 
 	@property
 	def tableWidgetHeaderHeight(self):
 		"""
-		This Method Is The Property For The _tableWidgetHeaderHeight Attribute.
+		This method is the property for the _tableWidgetHeaderHeight attribute.
 
 		@return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
@@ -498,26 +498,26 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self, value):
 		"""
-		This Method Is The Setter Method For The _tableWidgetHeaderHeight Attribute.
+		This method is the setter method for the _tableWidgetHeaderHeight attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self):
 		"""
-		This Method Is The Deleter Method For The _tableWidgetHeaderHeight Attribute.
+		This method is the deleter method for the _tableWidgetHeaderHeight attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetHeaderHeight"))
 
 	@property
 	def enumSplitter(self):
 		"""
-		This Method Is The Property For The _enumSplitter Attribute.
+		This method is the property for the _enumSplitter attribute.
 
 		@return: self.__enumSplitter. ( String )
 		"""
@@ -528,25 +528,25 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def enumSplitter(self, value):
 		"""
-		This Method Is The Setter Method For The _enumSplitter Attribute.
+		This method is the setter method for the _enumSplitter attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("enumSplitter", value)
-			assert len(value) == 1, "'{0}' Attribute: '{1}' Has Multiples Characters!".format("enumSplitter", value)
-			assert not re.search("\w", value), "'{0}' Attribute: '{1}' Is An AlphaNumeric Character!".format("enumSplitter", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("enumSplitter", value)
+			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enumSplitter", value)
+			assert not re.search("\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("enumSplitter", value)
 		self.__enumSplitter = value
 
 	@enumSplitter.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def enumSplitter(self):
 		"""
-		This Method Is The Deleter Method For The _enumSplitter Attribute.
+		This method is the deleter method for the _enumSplitter attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("enumSplitter"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("enumSplitter"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -554,12 +554,12 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -572,10 +572,10 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -588,10 +588,10 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
@@ -599,10 +599,10 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
@@ -610,20 +610,20 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
@@ -631,9 +631,9 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def __tableWidget_setUi(self, section, tableWidget):
 		"""
-		This Method Defines And Sets Options_TableWidgets.
+		This method defines and sets Options_TableWidgets.
 
-		@param section: Section Attributes. ( Dictionary )
+		@param section: Section attributes. ( Dictionary )
 		@param tableWidget: Table Widget. ( QTableWidget )
 		"""
 
@@ -656,14 +656,14 @@ class LoaderScriptOptions(UiComponent):
 
 		verticalHeaderLabels = []
 		for row, attribute in enumerate(section.keys()):
-			LOGGER.debug("> Current Attribute: '{0}'.".format(attribute))
+			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
 			attributeCompound = foundations.parser.getAttributeCompound(attribute, section[attribute])
 			if attributeCompound.name:
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
 				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
 
-			LOGGER.debug("> Attribute Type: '{0}'.".format(attributeCompound.type))
+			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
@@ -688,10 +688,10 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets Is Triggered When coreTemplatesOutlinerUi_Templates_Outliner_treeView Selection Has Changed.
+		This method sets is triggered when coreTemplatesOutlinerUi_Templates_Outliner_treeView selection has changed.
 
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
+		@param selectedItems: Selected items. ( QItemSelection )
+		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -701,7 +701,7 @@ class LoaderScriptOptions(UiComponent):
 		if not os.path.exists(template.path):
 			return
 
-		LOGGER.debug("> Parsing '{0}' Template For '{1}' and '{2}'Section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+		LOGGER.debug("> Parsing '{0}' template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateParser = Parser(template.path)
 		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
@@ -712,13 +712,13 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def __updateOverrideKeys(self, tableWidget):
 		"""
-		This Method Updates The Loader Script Component Override Keys.
+		This method updates the Loader Script Component override keys.
 
 		@param tableWidget: Table Widget. ( QTableWidget )
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Updating Override Keys With '{0}' Attributes.".format(tableWidget.objectName()))
+		LOGGER.debug("> Updating override keys with '{0}' attributes.".format(tableWidget.objectName()))
 
 		for row in range(tableWidget.rowCount()):
 			widget = tableWidget.cellWidget(row, 0)
@@ -732,7 +732,7 @@ class LoaderScriptOptions(UiComponent):
 				value = str(widget.text())
 			widget._datas.value = value
 
-			LOGGER.debug("> Adding '{0}' Override Key With Value: '{1}'.".format(widget._datas.name, widget._datas.value))
+			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget._datas.name, widget._datas.value))
 			self.__addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
 		return True
 
@@ -740,12 +740,12 @@ class LoaderScriptOptions(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getOverrideKeys(self):
 		"""
-		This Method Gets Override Keys.
+		This method gets override keys.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Updating Loader Script Override Keys!".format(self.__class__.__name__))
+		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))
 
 		success = True
 		success *= self.__updateOverrideKeys(self.ui.Common_Attributes_tableWidget) or False
@@ -754,7 +754,7 @@ class LoaderScriptOptions(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Retrieving Override Keys!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised while retrieving override keys!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python end.

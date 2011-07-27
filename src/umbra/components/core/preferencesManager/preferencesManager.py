@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Preferences Manager Component Module.
+	Preferences manager Component Module.
 
 **Others:**
 
@@ -77,19 +77,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class PreferencesManager(UiComponent):
 	"""
-	This Class Is The PreferencesManager Class.
+	This class is the PreferencesManager class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -108,7 +108,7 @@ class PreferencesManager(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -119,26 +119,26 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -149,26 +149,26 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -179,26 +179,26 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -209,21 +209,21 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -231,12 +231,12 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -249,18 +249,18 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		self.__Logging_Formatters_comboBox_setUi()
 		self.__Verbose_Level_comboBox_setUi()
@@ -275,18 +275,18 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -294,19 +294,19 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def __Logging_Formatters_comboBox_setUi(self):
 		"""
-		This Method Fills The Logging Formatter ComboBox.
+		This method fills the logging formatter combobox.
 		"""
 
 		self.ui.Logging_Formatters_comboBox.clear()
-		LOGGER.debug("> Available Logging Formatters: '{0}'.".format(", ".join(RuntimeConstants.loggingFormatters.keys())))
+		LOGGER.debug("> Available logging formatters: '{0}'.".format(", ".join(RuntimeConstants.loggingFormatters.keys())))
 		self.ui.Logging_Formatters_comboBox.insertItems(0, QStringList (RuntimeConstants.loggingFormatters.keys()))
 		loggingFormatter = self.__settings.getKey("Settings", "loggingFormatter").toString()
 		self.__container.loggingActiveFormatter = loggingFormatter and loggingFormatter or Constants.loggingDefaultFormatter
@@ -315,13 +315,13 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Logging_Formatters_comboBox__activated(self, index):
 		"""
-		This Method Is Called When The Logging Formatter Is Triggered.
+		This method is called when the logging formatter is triggered.
 
-		@param index: ComboBox Activated Item Index. ( Integer )
+		@param index: ComboBox activated item index. ( Integer )
 		"""
 
 		formatter = str(self.ui.Logging_Formatters_comboBox.currentText())
-		LOGGER.debug("> Setting Logging Formatter: '{0}'.".format(formatter))
+		LOGGER.debug("> Setting logging formatter: '{0}'.".format(formatter))
 		RuntimeConstants.loggingActiveFormatter = formatter
 		self.setLoggingFormatter()
 		self.__settings.setKey("Settings", "loggingFormatter", self.ui.Logging_Formatters_comboBox.currentText())
@@ -329,11 +329,11 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox_setUi(self):
 		"""
-		This Method Fills The Verbose_Level_ComboBox.
+		This method fills the Verbose_Level_ComboBox.
 		"""
 
 		self.ui.Verbose_Level_comboBox.clear()
-		LOGGER.debug("> Available Verbose Levels: '{0}'.".format(Constants.verbosityLabels))
+		LOGGER.debug("> Available verbose levels: '{0}'.".format(Constants.verbosityLabels))
 		self.ui.Verbose_Level_comboBox.insertItems(0, QStringList (Constants.verbosityLabels))
 		self.__container.verbosityLevel = self.__settings.getKey("Settings", "verbosityLevel").toInt()[0]
 		self.ui.Verbose_Level_comboBox.setCurrentIndex(self.__container.verbosityLevel)
@@ -341,12 +341,12 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox__activated(self, index):
 		"""
-		This Method Is Called When The Verbose_Level_ComboBox Is Triggered.
+		This method is called when the Verbose_Level_ComboBox is triggered.
 
-		@param index: ComboBox Activated Item Index. ( Integer )
+		@param index: ComboBox activated item index. ( Integer )
 		"""
 
-		LOGGER.debug("> Setting Verbose Level: '{0}'.".format(self.ui.Verbose_Level_comboBox.currentText()))
+		LOGGER.debug("> Setting verbose level: '{0}'.".format(self.ui.Verbose_Level_comboBox.currentText()))
 		self.__container.verbosityLevel = int(self.ui.Verbose_Level_comboBox.currentIndex())
 		core.setVerbosityLevel(int(self.ui.Verbose_Level_comboBox.currentIndex()))
 		self.__settings.setKey("Settings", "verbosityLevel", self.ui.Verbose_Level_comboBox.currentIndex())
@@ -354,32 +354,32 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Restore_Geometry_On_Layout_Change_checkBox_setUi(self):
 		"""
-		This Method Sets The Restore_Geometry_On_Layout_Change_checkBox.
+		This method sets the Restore_Geometry_On_Layout_Change_checkBox.
 		"""
 
 		# Adding settings key if it doesn't exists.
 		self.__settings.getKey("Settings", "restoreGeometryOnLayoutChange").isNull() and self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", Qt.Unchecked)
 
 		restoreGeometryOnLayoutChange = self.__settings.getKey("Settings", "restoreGeometryOnLayoutChange")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Restore_Geometry_On_Layout_Change_checkBox", restoreGeometryOnLayoutChange.toInt()[0]))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Restore_Geometry_On_Layout_Change_checkBox", restoreGeometryOnLayoutChange.toInt()[0]))
 		self.ui.Restore_Geometry_On_Layout_Change_checkBox.setCheckState(restoreGeometryOnLayoutChange.toInt()[0])
 
 	@core.executionTrace
 	def __Restore_Geometry_On_Layout_Change_checkBox__stateChanged(self, state):
 		"""
-		This Method Is Called When Restore_Geometry_On_Layout_Change_checkBox State Changes.
+		This method is called when Restore_Geometry_On_Layout_Change_checkBox state changes.
 
-		@param state: Checkbox State. ( Integer )
+		@param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Restore Geometry On Layout Change State: '{0}'.".format(self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState()))
+		LOGGER.debug("> Restore geometry on layout change state: '{0}'.".format(self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState()))
 		self.__settings.setKey("Settings", "restoreGeometryOnLayoutChange", self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setLoggingFormatter(self):
 		"""
-		This Method Sets The Logging Formatter.
+		This method sets the logging formatter.
 		"""
 
 		for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingSessionHandler):

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Operations Component Module.
+	Database operations Component Module.
 
 **Others:**
 
@@ -79,15 +79,15 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DbType(core.Structure):
 	"""
-	This Is The DbType Class.
+	This is the DbType class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value Pairs )
+		@param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -98,19 +98,19 @@ class DbType(core.Structure):
 
 class DatabaseOperations(UiComponent):
 	"""
-	This Class Is The DatabaseOperations Class.
+	This class is the DatabaseOperations class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -134,7 +134,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -145,26 +145,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -175,26 +175,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def coreDb(self):
 		"""
-		This Method Is The Property For The _coreDb Attribute.
+		This method is the property for the _coreDb attribute.
 
 		@return: self.__coreDb. ( Object )
 		"""
@@ -205,26 +205,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDb Attribute.
+		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This Method Is The Deleter Method For The _coreDb Attribute.
+		This method is the deleter method for the _coreDb attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
 
 	@property
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Property For The _corePreferencesManager Attribute.
+		This method is the property for the _corePreferencesManager attribute.
 
 		@return: self.__corePreferencesManager. ( Object )
 		"""
@@ -235,26 +235,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		This method is the deleter method for the _corePreferencesManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -265,26 +265,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -295,26 +295,26 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def dbTypes(self):
 		"""
-		This Method Is The Property For The _dbTypes Attribute.
+		This method is the property for the _dbTypes attribute.
 
 		@return: self.__dbTypes. ( Tuple )
 		"""
@@ -325,21 +325,21 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbTypes(self, value):
 		"""
-		This Method Is The Setter Method For The _dbTypes Attribute.
+		This method is the setter method for the _dbTypes attribute.
 
-		@param value: Attribute Value. ( Tuple )
+		@param value: Attribute value. ( Tuple )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbTypes"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbTypes"))
 
 	@dbTypes.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbTypes(self):
 		"""
-		This Method Is The Deleter Method For The _dbTypes Attribute.
+		This method is the deleter method for the _dbTypes attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbTypes"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbTypes"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -347,12 +347,12 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -364,7 +364,7 @@ class DatabaseOperations(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+		self.__dbTypes = (DbType(type="Ibl set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
 						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
 		self._activate()
@@ -372,10 +372,10 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -391,24 +391,24 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		if not self.__container.parameters.databaseReadOnly:
 			self.ui.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
-			LOGGER.info("{0} | Database Operations Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database operations capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
@@ -416,20 +416,20 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Database_Operations_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Database_Operations_groupBox.setParent(None)
@@ -437,9 +437,9 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def __synchronize_Database_pushButton_clicked(self, checked):
 		"""
-		This Method Is Triggered When Synchronize_Database_pushButton Is Clicked.
+		This method is triggered when Synchronize_Database_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.synchronizeDatabase()
@@ -448,9 +448,9 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def synchronizeDatabase(self):
 		"""
-		This Method Synchronizes The Database.
+		This method synchronizes the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		for dbType in self.__dbTypes:
@@ -460,12 +460,12 @@ class DatabaseOperations(UiComponent):
 
 				if os.path.exists(item.path):
 					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
-						LOGGER.info("{0} | '{1}' {2} Has Been Synchronized!".format(self.__class__.__name__, item.name, dbType.type))
+						LOGGER.info("{0} | '{1}' {2} Has been synchronized!".format(self.__class__.__name__, item.name, dbType.type))
 				else:
-					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 						dbType.updateLocationMethod(item)
 			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
-		messageBox.messageBox("Information", "Information", "{0} | Database Synchronization Done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
+		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 		return True
 
 #***********************************************************************************************

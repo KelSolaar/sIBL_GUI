@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom Search QLineEdit Module.
+	Custom search QLineEdit Module.
 
 **Others:**
 
@@ -76,19 +76,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
 	"""
-	This Class Is The Search_QLineEdit Class.
+	This class is the Search_QLineEdit class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, uiClearImage=None, uiClearClickedImage=None, parent=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param uiClearImage: Icon Path. ( String )
-		@param parent: Widget Parent. ( QObject )
+		@param uiClearImage: Icon path. ( String )
+		@param parent: Widget parent. ( QObject )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QLineEdit.__init__(self, parent)
 
@@ -115,7 +115,7 @@ class Search_QLineEdit(QLineEdit):
 	@property
 	def uiClearImage(self):
 		"""
-		This Method Is The Property For The _uiClearImage Attribute.
+		This method is the property for the _uiClearImage attribute.
 
 		@return: self.__uiClearImage. ( String )
 		"""
@@ -126,29 +126,29 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiClearImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiClearImage Attribute.
+		This method is the setter method for the _uiClearImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearImage", value)
-			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearImage", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("uiClearImage", value)
+			assert os.path.exists(value), "'{0}' attribute: '{1}' file doesn't exists!".format("uiClearImage", value)
 		self.__uiClearImage = value
 
 	@uiClearImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiClearImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiClearImage Attribute.
+		This method is the deleter method for the _uiClearImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiClearImage"))
 
 	@property
 	def uiClearClickedImage(self):
 		"""
-		This Method Is The Property For The _uiClearClickedImage Attribute.
+		This method is the property for the _uiClearClickedImage attribute.
 
 		@return: self.__uiClearClickedImage. ( String )
 		"""
@@ -159,29 +159,29 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiClearClickedImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiClearClickedImage Attribute.
+		This method is the setter method for the _uiClearClickedImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' Attribute: '{1}' Type Is Not 'str' or 'unicode'!".format("uiClearClickedImage", value)
-			assert os.path.exists(value), "'{0}' Attribute: '{1}' File Doesn't Exists!".format("uiClearClickedImage", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("uiClearClickedImage", value)
+			assert os.path.exists(value), "'{0}' attribute: '{1}' file doesn't exists!".format("uiClearClickedImage", value)
 		self.__uiClearClickedImage = value
 
 	@uiClearClickedImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiClearClickedImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiClearClickedImage Attribute.
+		This method is the deleter method for the _uiClearClickedImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiClearClickedImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiClearClickedImage"))
 
 	@property
 	def parent(self):
 		"""
-		This Method Is The Property For The _parent Attribute.
+		This method is the property for the _parent attribute.
 
 		@return: self.__parent. ( QObject )
 		"""
@@ -191,9 +191,9 @@ class Search_QLineEdit(QLineEdit):
 	@parent.setter
 	def parent(self, value):
 		"""
-		This Method Is The Setter Method For The _parent Attribute.
+		This method is the setter method for the _parent attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
 		self.__parent = value
@@ -202,15 +202,15 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def parent(self):
 		"""
-		This Method Is The Deleter Method For The _parent Attribute.
+		This method is the deleter method for the _parent attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("parent"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("parent"))
 
 	@property
 	def clearButton(self):
 		"""
-		This Method Is The Property For The _clearButton Attribute.
+		This method is the property for the _clearButton attribute.
 
 		@return: self.__clearButton. ( QPushButton )
 		"""
@@ -221,21 +221,21 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self, value):
 		"""
-		This Method Is The Setter Method For The _clearButton Attribute.
+		This method is the setter method for the _clearButton attribute.
 
-		@param value: Attribute Value. ( QPushButton )
+		@param value: Attribute value. ( QPushButton )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("clearButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("clearButton"))
 
 	@clearButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self):
 		"""
-		This Method Is The Deleter Method For The _clearButton Attribute.
+		This method is the deleter method for the _clearButton attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("clearButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("clearButton"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -243,9 +243,9 @@ class Search_QLineEdit(QLineEdit):
 	@core.executionTrace
 	def resizeEvent(self, event):
 		"""
-		This Method Overloads The Search_QLineEdit ResizeEvent.
+		This method overloads the Search_QLineEdit resizeevent.
 
-		@param event: Resize Event. ( QResizeEvent )
+		@param event: Resize event. ( QResizeEvent )
 		"""
 
 		size = self.__clearButton.sizeHint()
@@ -255,7 +255,7 @@ class Search_QLineEdit(QLineEdit):
 	@core.executionTrace
 	def __setClearButtonStyle(self):
 		"""
-		This Method Sets The Clear Button Style.
+		This method sets the clear button style.
 		"""
 
 		self.__clearButton.setCursor(Qt.ArrowCursor)
@@ -279,9 +279,9 @@ class Search_QLineEdit(QLineEdit):
 	@core.executionTrace
 	def __setClearButtonVisibility(self, text):
 		"""
-		This Method Sets The Clear Button Visibility.
+		This method sets the clear button visibility.
 
-		@param text: Current Text. ( QString )
+		@param text: Current text. ( QString )
 		"""
 
 		if text:

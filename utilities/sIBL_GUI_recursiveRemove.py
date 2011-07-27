@@ -32,7 +32,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Recursion Delete.
+	Recursion delete.
 
 **Others:**
 
@@ -53,10 +53,10 @@ import sys
 #***********************************************************************************************
 def recursiveRemove(rootDirectory, pattern):
 	"""
-	This Definition Recursively Deletes The Matching Items.
+	This definition recursively deletes the matching items.
 
-	@param rootDirectory: Directory To Recurse. ( String )
-	@param pattern: Pattern To Match. ( String )
+	@param rootDirectory: Directory to recurse. ( String )
+	@param pattern: Pattern to match. ( String )
 	"""
 
 	if not os.path.exists(rootDirectory):
@@ -69,15 +69,15 @@ def recursiveRemove(rootDirectory, pattern):
 
 def remove(item):
 	"""
-	This Definition Deletes Provided Item.
-	@param item: Item To Delete. ( String )
+	This definition deletes provided item.
+	@param item: Item to delete. ( String )
 	"""
 
 	print("{0} | Removing: '{1}'".format(remove.__name__, item))
 	try:
 		os.remove(item)
 	except:
-		print("{0} | '{1}' Remove Failed!".format(remove.__name__, item))
+		print("{0} | '{1}' remove failed!".format(remove.__name__, item))
 
 if __name__ == "__main__":
 	recursiveRemove(sys.argv[1], sys.argv[2])

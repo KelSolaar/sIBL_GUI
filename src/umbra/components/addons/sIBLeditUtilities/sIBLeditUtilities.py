@@ -41,7 +41,7 @@ import foundations
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	sIBLedit Utilities Component Module.
+	sIBLedit utilities Component Module.
 
 **Others:**
 
@@ -80,19 +80,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class sIBLeditUtilities(UiComponent):
 	"""
-	This Class Is The LocationsBrowser Class.
+	This class is the LocationsBrowser class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -118,7 +118,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -129,26 +129,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -159,26 +159,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -189,26 +189,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -219,26 +219,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Property For The _corePreferencesManager Attribute.
+		This method is the property for the _corePreferencesManager attribute.
 
 		@return: self.__corePreferencesManager. ( Object )
 		"""
@@ -249,26 +249,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		This method is the deleter method for the _corePreferencesManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -279,26 +279,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreInspector(self):
 		"""
-		This Method Is The Property For The _coreInspector Attribute.
+		This method is the property for the _coreInspector attribute.
 
 		@return: self.__coreInspector. ( Object )
 		"""
@@ -309,26 +309,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self, value):
 		"""
-		This Method Is The Setter Method For The _coreInspector Attribute.
+		This method is the setter method for the _coreInspector attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreInspector"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreInspector"))
 
 	@coreInspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self):
 		"""
-		This Method Is The Deleter Method For The _coreInspector Attribute.
+		This method is the deleter method for the _coreInspector attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreInspector"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
 
 	@property
 	def editIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Property For The _editIblSetInSIBLEditAction Attribute.
+		This method is the property for the _editIblSetInSIBLEditAction attribute.
 
 		@return: self.__editIblSetInSIBLEditAction. ( QAction )
 		"""
@@ -339,26 +339,26 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetInSIBLEditAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editIblSetInSIBLEditAction Attribute.
+		This method is the setter method for the _editIblSetInSIBLEditAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetInSIBLEditAction"))
 
 	@editIblSetInSIBLEditAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Deleter Method For The _editIblSetInSIBLEditAction Attribute.
+		This method is the deleter method for the _editIblSetInSIBLEditAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetInSIBLEditAction"))
 
 	@property
 	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Property For The _editInspectorIblSetInSIBLEditAction Attribute.
+		This method is the property for the _editInspectorIblSetInSIBLEditAction attribute.
 
 		@return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
 		"""
@@ -369,21 +369,21 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInSIBLEditAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editInspectorIblSetInSIBLEditAction Attribute.
+		This method is the setter method for the _editInspectorIblSetInSIBLEditAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectorIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInSIBLEditAction"))
 
 	@editInspectorIblSetInSIBLEditAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This Method Is The Deleter Method For The _editInspectorIblSetInSIBLEditAction Attribute.
+		This method is the deleter method for the _editInspectorIblSetInSIBLEditAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectorIblSetInSIBLEditAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInSIBLEditAction"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -391,12 +391,12 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -412,10 +412,10 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -431,10 +431,10 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		self.__sIBLedit_Path_lineEdit_setUi()
 
@@ -447,10 +447,10 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.__sIBLedit_Path_toolButton__clicked)
@@ -461,49 +461,49 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.sIBLedit_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.ui.sIBLedit_Path_groupBox.setParent(None)
 
 	@core.executionTrace
 	def __addActions(self):
 		"""
-		This Method Adds Actions.
+		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__editIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+			self.__editIblSetInSIBLEditAction = QAction("Edit in sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 			self.__editIblSetInSIBLEditAction.triggered.connect(self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetInSIBLEditAction)
 
-			self.__editInspectorIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectorIblSetInSIBLEditAction = QAction("Edit in sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
 			self.__editInspectorIblSetInSIBLEditAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered)
 			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInSIBLEditAction)
 		else:
-			LOGGER.info("{0} | sIBLedit Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __removeActions(self):
 		"""
-		This Method Removes Actions.
+		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetInSIBLEditAction)
@@ -515,9 +515,9 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editIblSetInSIBLEditAction Action.
+		This method is triggered by editIblSetInSIBLEditAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editIblSetInSIBLEdit__()
@@ -525,9 +525,9 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editInspectorIblSetInSIBLEditAction Action.
+		This method is triggered by editInspectorIblSetInSIBLEditAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editInspectorIblSetInSIBLEdit__()
@@ -535,24 +535,24 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
 		"""
-		This Method Fills The sIBLedit_Path_lineEdit.
+		This method fills the sIBLedit_Path_lineEdit.
 		"""
 
 		sIBLeditExecutable = self.__settings.getKey(self.__settingsSection, "sIBLeditExecutable")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
 		self.ui.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
 	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When sIBLedit_Path_toolButton Is Clicked.
+		This method is called when sIBLedit_Path_toolButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
-		sIBLeditExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit Executable:", self.__container.lastBrowsedPath))
+		sIBLeditExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit executable:", self.__container.lastBrowsedPath))
 		if sIBLeditExecutable != "":
-			LOGGER.debug("> Chosen sIBLedit Executable: '{0}'.".format(sIBLeditExecutable))
+			LOGGER.debug("> Chosen sIBLedit executable: '{0}'.".format(sIBLeditExecutable))
 			self.ui.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
@@ -560,14 +560,14 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
-		This Method Is Called When sIBLedit_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
+		This method is called when sIBLedit_Path_lineEdit is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences!")
+			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit Executable File!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit executable file!".format(self.__class__.__name__)
 		else:
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
@@ -575,9 +575,9 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editIblSetInSIBLEdit__(self):
 		"""
-		This Method Edits Selected Ibl Set In sIBLedit.
+		This method edits selected Ibl set in sIBLedit.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -587,17 +587,17 @@ class sIBLeditUtilities(UiComponent):
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
 			else:
-				raise OSError, "{0} | Exception Raised While Sending Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, selectedIblSet.name)
+				raise OSError, "{0} | Exception raised while sending Ibl set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences!".format(self.__class__.__name__))
+			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInSIBLEdit__(self):
 		"""
-		This Method Edits Inspector Ibl Set In sIBLedit.
+		This method edits Inspector Ibl set in sIBLedit.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -607,19 +607,19 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception Raised While Sending Inspector Ibl Set To sIBLedit: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
+				raise OSError, "{0} | Exception raised while sending Inspector Ibl set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | Please Define An 'sIBLedit' Executable In The Preferences!".format(self.__class__.__name__))
+			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, path, sIBLedit):
 		"""
-		This Method Gets Process Command.
+		This method gets process command.
 
 		@param path: Path. ( String )
 		@param sIBLedit: sIBLedit. ( String )
-		@return: Process Command. ( String )
+		@return: Process command. ( String )
 		"""
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
@@ -628,22 +628,22 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
-		This Method Edits Provided Ibl Set In sIBLedit.
+		This method edits provided Ibl set in sIBLedit.
 
 		@param path: Path. ( String )
 		@param sIBLedit: sIBLedit. ( String )
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		editCommand = self.getProcessCommand(path, sIBLedit)
 		if editCommand:
-			LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
-			LOGGER.info("{0} | Launching 'sIBLedit' With '{1}'.".format(self.__class__.__name__, path))
+			LOGGER.debug("> Current edit command: '{0}'.".format(editCommand))
+			LOGGER.info("{0} | Launching 'sIBLedit' with '{1}'.".format(self.__class__.__name__, path))
 			editProcess = QProcess()
 			editProcess.startDetached(editCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python end.

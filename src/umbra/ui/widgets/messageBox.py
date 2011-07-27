@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Message Box Module.
+	Message box Module.
 
 **Others:**
 
@@ -76,17 +76,17 @@ LOGGER = logging.getLogger(Constants.logger)
 @core.executionTrace
 def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	"""
-	This Definition Provides A Fast GUI Message Box.
+	This definition provides a fast gui message box.
 
-	@param title: Current Message Title. ( String )
+	@param title: Current message title. ( String )
 	@param message: Message. ( String )
-	@param icon: Custom Icon. ( QConstant )
-	@param buttons: Custom Buttons. ( QConstant )
-	@return: User Choice. ( Integer )
+	@param icon: Custom icon. ( QConstant )
+	@param buttons: Custom buttons. ( QConstant )
+	@return: User choice. ( Integer )
 	"""
 
-	LOGGER.debug("> Launching messageBox().")
-	LOGGER.debug("> Message Type: '{0}'.".format(type))
+	LOGGER.debug("> Launching messagebox().")
+	LOGGER.debug("> Message type: '{0}'.".format(type))
 	LOGGER.debug("> Title: '{0}'.".format(title))
 	LOGGER.debug("> Message: '{0}'.".format(message))
 
@@ -106,7 +106,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 		else:
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.error("!> {0}".format(message))
-	elif type == "Detailed Error":
+	elif type == "Detailed error":
 		if icon:
 			messageBox.setIcon(icon)
 		else:
@@ -146,13 +146,13 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 @core.executionTrace
 def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.Ok):
 	"""
-	This Definition Provides A Standalone Message Box.
+	This definition provides a standalone message box.
 
-	@param type: MessageBox Type. ( String )
-	@param caption: MessageBox Title. ( String )
-	@param message: MessageBox Message. ( String )
-	@param icon: Custom Icon. ( QConstant )
-	@param buttons: Custom Buttons. ( QConstant )
+	@param type: MessageBox type. ( String )
+	@param caption: MessageBox title. ( String )
+	@param message: MessageBox message. ( String )
+	@param icon: Custom icon. ( QConstant )
+	@param buttons: Custom buttons. ( QConstant )
 	"""
 
 	application = QApplication(sys.argv)

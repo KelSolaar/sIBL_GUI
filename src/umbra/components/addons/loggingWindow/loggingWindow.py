@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Logging Window Component Module.
+	Logging window Component Module.
 
 **Others:**
 
@@ -76,19 +76,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoggingWindow(UiComponent):
 	"""
-	This Class Is The LoggingWindow Class.
+	This class is the LoggingWindow class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -108,7 +108,7 @@ class LoggingWindow(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -119,26 +119,26 @@ class LoggingWindow(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -149,26 +149,26 @@ class LoggingWindow(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -179,26 +179,26 @@ class LoggingWindow(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Property For The _memoryHandlerStackDepth Attribute.
+		This method is the property for the _memoryHandlerStackDepth attribute.
 
 		@return: self.__memoryHandlerStackDepth. ( Integer )
 		"""
@@ -209,21 +209,21 @@ class LoggingWindow(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
-		This Method Is The Setter Method For The _memoryHandlerStackDepth Attribute.
+		This method is the setter method for the _memoryHandlerStackDepth attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("memoryHandlerStackDepth"))
 
 	@memoryHandlerStackDepth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Deleter Method For The _memoryHandlerStackDepth Attribute.
+		This method is the deleter method for the _memoryHandlerStackDepth attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("memoryHandlerStackDepth"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -231,12 +231,12 @@ class LoggingWindow(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -246,10 +246,10 @@ class LoggingWindow(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -259,10 +259,10 @@ class LoggingWindow(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		self.ui.Logging_textEdit.setReadOnly(True)
 		self.ui.Logging_textEdit.setWordWrapMode(QTextOption.NoWrap)
@@ -275,10 +275,10 @@ class LoggingWindow(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__container.timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
@@ -286,20 +286,20 @@ class LoggingWindow(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
@@ -307,7 +307,7 @@ class LoggingWindow(UiComponent):
 	# @core.executionTrace
 	def __Logging_textEdit_setUi(self):
 		"""
-		This Method Sets The Logging_TextEdit Widget.
+		This method sets the Logging_TextEdit Widget.
 		"""
 
 		self.ui.Logging_textEdit.setPlainText(QString("".join(self.__container.loggingSessionHandlerStream.stream)))
@@ -317,7 +317,7 @@ class LoggingWindow(UiComponent):
 	# @core.executionTrace
 	def __Logging_textEdit_refreshUi(self):
 		"""
-		This Method Updates The Logging_TextEdit Widget.
+		This method updates the Logging_TextEdit Widget.
 		"""
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)

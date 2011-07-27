@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Types Module.
+	Database types Module.
 
 **Others:**
 
@@ -81,7 +81,7 @@ DbBase = sqlalchemy.ext.declarative.declarative_base()
 
 class DbIblSet(DbBase):
 	"""
-	This Class Is The DbIblSet Class.
+	This class is the DbIblSet class.
 	"""
 
 	__tablename__ = "Sets"
@@ -127,12 +127,12 @@ class DbIblSet(DbBase):
 			time=None,
 			comment=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
 		@param *:*. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
 		self.name = name
@@ -158,9 +158,9 @@ class DbIblSet(DbBase):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
 		"""
-		This Method Initializes The DbIblSet Attributes.
+		This method initializes the dbiblset attributes.
 
-		@return: DbIblSet Initialization Success. ( Boolean )
+		@return: DbIblSet initialization success. ( Boolean )
 		"""
 
 		parser = Parser(self.path)
@@ -185,11 +185,11 @@ class DbIblSet(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureError("'{0}' no sections found, file structure seems invalid!".format(self.path))
 
 class DbTemplate(DbBase):
 	"""
-	This Class Is The DbTemplate Class.
+	This class is the DbTemplate class.
 	"""
 
 	__tablename__ = "Templates"
@@ -231,12 +231,12 @@ class DbTemplate(DbBase):
 			outputScript=None,
 			comment=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
 		@param *:*. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
 		self.name = name
@@ -260,9 +260,9 @@ class DbTemplate(DbBase):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
 		"""
-		This Method Initializes The DbTemplate Attributes.
+		This method initializes the dbtemplate attributes.
 
-		@return: DbTemplate Initialization Success. ( Boolean )
+		@return: DbTemplate initialization success. ( Boolean )
 		"""
 
 		parser = Parser(self.path)
@@ -285,11 +285,11 @@ class DbTemplate(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' No Sections Found, File Structure Seems Invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureError("'{0}' no sections found, file structure seems invalid!".format(self.path))
 
 class DbCollection(DbBase):
 	"""
-	This Class Is The DbCollection Class.
+	This class is the DbCollection class.
 	"""
 
 	__tablename__ = "Collections"
@@ -302,12 +302,12 @@ class DbCollection(DbBase):
 	@core.executionTrace
 	def __init__(self, name=None, type=None, comment=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
 		@param *:*. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
 		self.name = name

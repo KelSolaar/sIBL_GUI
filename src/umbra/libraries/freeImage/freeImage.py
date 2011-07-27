@@ -40,10 +40,10 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	FreeImage libraryPath Manipulation Module.
+	FreeImage librarypath manipulation Module.
 
 **Others:**
-	Portions Of The Code From FreeImagePy By Michele Petrazzo: http://freeimagepy.sourceforge.net/.
+	Portions of the code from freeimagepy by michele petrazzo: http://freeimagepy.sourceforge.net/.
 """
 
 #***********************************************************************************************
@@ -84,7 +84,7 @@ else:
 	DLL_CALLCONV = ctypes.CFUNCTYPE
 
 """
-Internal Types.
+Internal types.
 """
 VOID	 = ctypes.c_void_p
 INT		 = ctypes.c_int
@@ -98,7 +98,7 @@ DOUBLE	 = ctypes.c_double
 BYTE_P = ctypes.POINTER(BYTE)
 
 """
-System Endian.
+System endian.
 """
 if sys.byteorder == "big":
 	FREEIMAGE_BIGENDIAN = 1
@@ -115,7 +115,7 @@ else:
 
 class RGBQUAD(ctypes.Structure):
 	"""
-	This Class Is The RGBQUAD Class.
+	This class is the RGBQUAD class.
 	"""
 
 	_fields_ = []
@@ -132,7 +132,7 @@ class RGBQUAD(ctypes.Structure):
 
 class RGBTRIPLE(ctypes.Structure):
 	"""
-	This Class Is The RGBTRIPLE Class.
+	This class is the RGBTRIPLE class.
 	"""
 
 	_fields_ = []
@@ -147,14 +147,14 @@ class RGBTRIPLE(ctypes.Structure):
 
 class FIBITMAP(ctypes.Structure):
 	"""
-	This Class Is The FIBITMAP Class.
+	This class is the FIBITMAP class.
 	"""
 
 	_fields_ = [ ("data", ctypes.POINTER(VOID)) ]
 
 class BITMAPINFOHEADER(ctypes.Structure):
 	"""
-	This Class Is The BITMAPINFOHEADER Class.
+	This class is the BITMAPINFOHEADER class.
 	"""
 
 	_fields_ = [ ("biSize", DWORD),
@@ -171,7 +171,7 @@ class BITMAPINFOHEADER(ctypes.Structure):
 
 class BITMAPINFO(ctypes.Structure):
 	"""
-	This Class Is The BITMAPINFO Class.
+	This class is the BITMAPINFO class.
 	"""
 
 	_fields_ = [ ("bmiHeader", BITMAPINFOHEADER),
@@ -179,7 +179,7 @@ class BITMAPINFO(ctypes.Structure):
 
 class FIRGB16(ctypes.Structure):
 	"""
-	This Class Is The FIRGB16 Class.
+	This class is the FIRGB16 class.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -188,7 +188,7 @@ class FIRGB16(ctypes.Structure):
 
 class FIRGBA16(ctypes.Structure):
 	"""
-	This Class Is The FIRGBA16 Class.
+	This class is the FIRGBA16 class.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -198,7 +198,7 @@ class FIRGBA16(ctypes.Structure):
 
 class FIRGBF(ctypes.Structure):
 	"""
-	This Class Is The FIRGBF Class.
+	This class is the FIRGBF class.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -207,7 +207,7 @@ class FIRGBF(ctypes.Structure):
 
 class FIRGBAF(ctypes.Structure):
 	"""
-	This Class Is The FIRGBAF Class.
+	This class is the FIRGBAF class.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -217,14 +217,14 @@ class FIRGBAF(ctypes.Structure):
 
 class FICOMPLEX(ctypes.Structure):
 	"""
-	This Class Is The FICOMPLEX Class.
+	This class is the FICOMPLEX class.
 	"""
 
 	_fields_ = [ ("r", ctypes.c_double),
 				("i", ctypes.c_double) ]
 
 """
-Indexes For Byte Arrays, Masks And Shifts For Treating Pixels As Words.
+Indexes for byte arrays, masks and shifts for treating pixels as words.
 """
 if FREEIMAGE_BIGENDIAN:
 	# Little Endian ( x86 / MS Windows, Linux ): BGR(A) order.
@@ -301,7 +301,7 @@ FI16_565_GREEN_SHIFT	 = 5
 FI16_565_BLUE_SHIFT		 = 0
 
 """
-ICC Profile Support
+ICC Profile support
 """
 FIICC_DEFAULT			 = 0x00
 FIICC_COLOR_IS_CMYK		 = 0x01
@@ -313,7 +313,7 @@ class FIICCPROFILE(ctypes.Structure):
 
 class FREE_IMAGE_FORMAT(object):
 	"""
-	This Class Is Used For I/O Image Format Identifiers.
+	This class is used for i/o image format identifiers.
 	"""
 
 	FIF_UNKNOWN	 = -1
@@ -357,7 +357,7 @@ class FREE_IMAGE_FORMAT(object):
 
 class FREE_IMAGE_TYPE(object):
 	"""
-	This Class Is Used For Images Types.
+	This class is used for images types.
 	"""
 
 	FIT_UNKNOWN	 = 0
@@ -376,7 +376,7 @@ class FREE_IMAGE_TYPE(object):
 
 class FREE_IMAGE_COLOR_TYPE(object):
 	"""
-	This Class Is Used For Image Color Types.
+	This class is used for image color types.
 	"""
 
 	FIC_MINISWHITE = 0
@@ -388,7 +388,7 @@ class FREE_IMAGE_COLOR_TYPE(object):
 
 class FREE_IMAGE_QUANTIZE(object):
 	"""
-	This Class Is Used For Color Quantization Algorithms.
+	This class is used for color Quantization algorithms.
 	"""
 
 	FIQ_WUQUANT = 0
@@ -396,7 +396,7 @@ class FREE_IMAGE_QUANTIZE(object):
 
 class FREE_IMAGE_DITHER(object):
 	"""
-	This Class Is Used For Dithering Algorithms.
+	This class is used for dithering algorithms.
 	"""
 
 	FID_FS			 = 0
@@ -409,7 +409,7 @@ class FREE_IMAGE_DITHER(object):
 
 class FREE_IMAGE_JPEG_OPERATION(object):
 	"""
-	This Class Is Used For Lossless JPEG Transformations.
+	This class is used for lossless jpeg transformations.
 	"""
 
 	FIJPEG_OP_NONE			 = 0
@@ -423,7 +423,7 @@ class FREE_IMAGE_JPEG_OPERATION(object):
 
 class FREE_IMAGE_TMO(object):
 	"""
-	This Class Is Used For Tone Mapping Operators.
+	This class is used for tone mapping operators.
 	"""
 
 	FITMO_DRAGO03	 = 0
@@ -432,7 +432,7 @@ class FREE_IMAGE_TMO(object):
 
 class FREE_IMAGE_FILTER(object):
 	"""
-	This Class Is Used For Upsampling / Downsampling Filters.
+	This class is used for upsampling / downsampling filters.
 	"""
 
 	FILTER_BOX			 = 0
@@ -444,7 +444,7 @@ class FREE_IMAGE_FILTER(object):
 
 class FREE_IMAGE_COLOR_CHANNEL(object):
 	"""
-	This Class Is Used For Color Channels.
+	This class is used for color channels.
 	"""
 	FICC_RGB	 = 0
 	FICC_RED	 = 1
@@ -459,7 +459,7 @@ class FREE_IMAGE_COLOR_CHANNEL(object):
 
 class FREE_IMAGE_MDTYPE(object):
 	"""
-	This Class Is Used For Tags Data Types Informations.
+	This class is used for tags data types informations.
 	"""
 
 	FIDT_NOTYPE		 = 0
@@ -496,7 +496,7 @@ class FREE_IMAGE_MDTYPE(object):
 
 class FREE_IMAGE_MDMODEL(object):
 	"""
-	This Class Is Used For Metadatas Models.
+	This class is used for metadatas Models.
 	"""
 	FIMD_NODATA			 = -1
 	FIMD_COMMENTS		 = 0
@@ -513,20 +513,20 @@ class FREE_IMAGE_MDMODEL(object):
 
 class FIMETADATA(ctypes.Structure):
 	"""
-	This Class Is A Handle To A Metadata Model.
+	This class is a handle to a metadata Model.
 	"""
 
 	_fields_ = [ ("data", VOID), ]
 
 class FITAG(ctypes.Structure):
 	"""
-	This Class Is A Handle To A FreeImage Tag.
+	This class is a handle to a FreeImage tag.
 	"""
 
 	_fields_ = [ ("data", VOID) ]
 
 """
-File IO Routines.
+File io routines.
 """
 
 fi_handle = ctypes.c_void_p
@@ -538,7 +538,7 @@ FI_TellProc = DLL_CALLCONV(ctypes.c_long, fi_handle)
 
 class FreeImageIO(ctypes.Structure):
 	"""
-	This Class Is The FreeImageIO Class.
+	This class is the FreeImageIO class.
 	"""
 
 	_fields_ = [ ('read_proc', FI_ReadProc),
@@ -548,13 +548,13 @@ class FreeImageIO(ctypes.Structure):
 
 class FIMEMORY(ctypes.Structure):
 	"""
-	This Class Is A Handle To A Memory I/O stream
+	This class is a handle to a memory i/o stream
 	"""
 
 	_fields_ = [ ("data", VOID) ]
 
 """
-Load / Save Flag Constants.
+Load / save flag constants.
 """
 BMP_DEFAULT					 = 0
 BMP_SAVE_RLE				 = 1
@@ -636,7 +636,7 @@ XBM_DEFAULT					 = 0
 XPM_DEFAULT					 = 0
 
 """
-Background Filling Options.
+Background filling options.
 """
 FI_COLOR_IS_RGB_COLOR			 = 0x00
 FI_COLOR_IS_RGBA_COLOR			 = 0x01
@@ -645,7 +645,7 @@ FI_COLOR_ALPHA_IS_INDEX			 = 0x04
 FI_COLOR_PALETTE_SEARCH_MASK	 = (FI_COLOR_FIND_EQUAL_COLOR | FI_COLOR_ALPHA_IS_INDEX)
 
 """
-Custom Constants
+Custom constants
 """
 BPP_1 = 1
 BPP_4 = 4
@@ -963,15 +963,15 @@ FREEIMAGE_FUNCTIONS = (
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
 	"""
-	This Is The AttributeCompound Class.
+	This is the AttributeCompound class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: path, width, height, bpp. ( Key / Value Pairs )
+		@param kwargs: path, width, height, bpp. ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -984,12 +984,12 @@ class Image(object):
 	@core.executionTrace
 	def __init__(self, imagePath=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param imagePath: Image Path. ( String )
+		@param imagePath: Image path. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
 		self.__library = foundations.library.Library(FREEIMAGE_LIBRARY_PATH, FREEIMAGE_FUNCTIONS)
@@ -1011,7 +1011,7 @@ class Image(object):
 	@property
 	def library(self):
 		"""
-		This Method Is The Property For The _library Attribute.
+		This method is the property for the _library attribute.
 
 		@return: self.__library. ( Library )
 		"""
@@ -1022,26 +1022,26 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def library(self, value):
 		"""
-		This Method Is The Setter Method For The _library Attribute.
+		This method is the setter method for the _library attribute.
 
-		@param value: Attribute Value. ( Library )
+		@param value: Attribute value. ( Library )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("library"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("library"))
 
 	@library.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def library(self):
 		"""
-		This Method Is The Deleter Method For The _library Attribute.
+		This method is the deleter method for the _library attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("library"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("library"))
 
 	@property
 	def errorsCallback(self):
 		"""
-		This Method Is The Property For The _errorsCallback Attribute.
+		This method is the property for the _errorsCallback attribute.
 
 		@return: self.__errorsCallback. ( Object )
 		"""
@@ -1052,26 +1052,26 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def errorsCallback(self, value):
 		"""
-		This Method Is The Setter Method For The _errorsCallback Attribute.
+		This method is the setter method for the _errorsCallback attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("errorsCallback"))
 
 	@errorsCallback.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
 		"""
-		This Method Is The Deleter Method For The _errorsCallback Attribute.
+		This method is the deleter method for the _errorsCallback attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("errorsCallback"))
 
 	@property
 	def imagePath(self):
 		"""
-		This Method Is The Property For The _imagePath Attribute.
+		This method is the property for the _imagePath attribute.
 
 		@return: self.__imagePath. ( String )
 		"""
@@ -1082,28 +1082,28 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def imagePath(self, value):
 		"""
-		This Method Is The Setter Method For The _imagePath Attribute.
+		This method is the setter method for the _imagePath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
 		if value:
-			assert type(value) is str, "'{0}' Attribute: '{1}' Type Is Not 'str'!".format("imagePath", value)
+			assert type(value) is str, "'{0}' attribute: '{1}' type is not 'str'!".format("imagePath", value)
 		self.__imagePath = value
 
 	@imagePath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def imagePath(self):
 		"""
-		This Method Is The Deleter Method For The _imagePath Attribute.
+		This method is the deleter method for the _imagePath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("imagePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("imagePath"))
 
 	@property
 	def bitmap(self):
 		"""
-		This Method Is The Property For The _bitmap Attribute.
+		This method is the property for the _bitmap attribute.
 
 		@return: self.__bitmap. ( Object )
 		"""
@@ -1114,9 +1114,9 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def bitmap(self, value):
 		"""
-		This Method Is The Setter Method For The _bitmap Attribute.
+		This method is the setter method for the _bitmap attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
 		self.__bitmap = value
@@ -1125,10 +1125,10 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def bitmap(self):
 		"""
-		This Method Is The Deleter Method For The _bitmap Attribute.
+		This method is the deleter method for the _bitmap attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("bitmap"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("bitmap"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1137,19 +1137,19 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def __logLibraryErrors(self, errorCode, message):
 		"""
-		This Method Logs The Library Errors.
+		This method logs the Library errors.
 		"""
 
-		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', Message: '{2}'".format(self.__class__.__name__, errorCode, message)
+		raise foundations.exceptions.LibraryExecutionError, "Exit code '{1}', message: '{2}'".format(self.__class__.__name__, errorCode, message)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getImageFormat(self, imagePath=None):
 		"""
-		This Method Gets The File Format.
+		This method gets the file format.
 
-		@param imagePath: Image Path. ( String )
-		@return: File Format. ( Object )
+		@param imagePath: Image path. ( String )
+		@return: File format. ( Object )
 		"""
 
 		imagePath = imagePath or self.__imagePath
@@ -1166,10 +1166,10 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def load(self, imagePath=None):
 		"""
-		This Method Loads The File.
+		This method loads the file.
 
-		@param imagePath: Image Path. ( String )
-		@return: Method Success. ( Boolean )
+		@param imagePath: Image path. ( String )
+		@return: Method success. ( Boolean )
 		"""
 
 		if not self.__imagePath:
@@ -1179,18 +1179,18 @@ class Image(object):
 		if imageFormat != FREE_IMAGE_FORMAT.FIF_UNKNOWN:
 			if self.__library.FreeImage_FIFSupportsReading(imageFormat):
 				self.__bitmap = self.__library.FreeImage_Load(imageFormat, self.__imagePath, FI_DEFAULT_NULL)
-				self.__bitmap and LOGGER.debug("> '{0}' Image Has Been Loaded!".format(self.__imagePath))
+				self.__bitmap and LOGGER.debug("> '{0}' image has been loaded!".format(self.__imagePath))
 				return True
 			else:
-				raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Read Isn't Supported!".format(imageFormat)
+				raise foundations.exceptions.LibraryExecutionError, "'{0}' format read isn't supported!".format(imageFormat)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def save(self):
 		"""
-		This Method Saves The File.
+		This method saves the file.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
@@ -1199,69 +1199,69 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
-		This Method Saves The Image To The Provided File.
+		This method saves the image to the provided file.
 
-		@param imageFormat: Image Format. ( Integer )
-		@param imagePath: Image Path. ( String )
-		@param flags: Save Flags. ( Integer )
-		@return: Method Success. ( Boolean )
+		@param imageFormat: Image format. ( Integer )
+		@param imagePath: Image path. ( String )
+		@param flags: Save flags. ( Integer )
+		@return: Method success. ( Boolean )
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
 			if not imagePath:
 				return
 			if self.__library.FreeImage_Save(imageFormat, self.__bitmap, ctypes.c_char_p(imagePath), flags):
-				LOGGER.debug("> '{0}' Image Has Been Saved!".format(imagePath))
+				LOGGER.debug("> '{0}' image has been saved!".format(imagePath))
 				return True
 		else:
-			raise foundations.exceptions.LibraryExecutionError, "'{0}' Format Write Isn't Supported!".format(imageFormat)
+			raise foundations.exceptions.LibraryExecutionError, "'{0}' format write isn't supported!".format(imageFormat)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToType(self, targetType, linearScale=True):
 		"""
-		This Method Converts The Bitmap To Provided Type.
+		This method converts the bitmap to provided type.
 
-		@param targetType: Target Type. ( Integer )
-		@param linearScale: Linear Scale. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param targetType: Target type. ( Integer )
+		@param linearScale: Linear scale. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Converting '{0}' Image Bitmap To Type '{1}'!".format(self.__imagePath, targetType))
+		LOGGER.debug("> Converting '{0}' image bitmap to type '{1}'!".format(self.__imagePath, targetType))
 		self.__bitmap = self.__library.FreeImage_ConvertToType(self.__bitmap, targetType, linearScale)
 		if self.__bitmap:
-			LOGGER.debug("> '{0}' Image Bitmap Conversion To Type '{1}' Done!".format(self.__imagePath, targetType))
+			LOGGER.debug("> '{0}' image bitmap conversion to type '{1}' done!".format(self.__imagePath, targetType))
 			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToLdr(self, gamma=2.2):
 		"""
-		This Method Converts The HDR Bitmap To LDR.
+		This method converts the HDR bitmap to LDR.
 
-		@param gamma: Image Conversion Gamma. ( Float )
-		@return: Method Success. ( Boolean )
+		@param gamma: Image conversion gamma. ( Float )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Converting '{0}' HDR Image Bitmap To LDR!".format(self.__imagePath))
+		LOGGER.debug("> Converting '{0}' hDR image bitmap to LDR!".format(self.__imagePath))
 		self.__bitmap = self.__library.FreeImage_HDRLabs_ConvertToLdr(self.__bitmap, ctypes.c_double(gamma))
 		if self.__bitmap:
-			LOGGER.debug("> '{0}' HDR Image Bitmap Conversion To LDR Done!".format(self.__imagePath))
+			LOGGER.debug("> '{0}' hDR image bitmap conversion to LDR done!".format(self.__imagePath))
 			return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
-		This Method Converts The Bitmap To QImage.
-		@return: Converted Image. ( QImage )
+		This method converts the bitmap to QImage.
+		@return: Converted image. ( QImage )
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)
 		(self.__library.FreeImage_GetImageType(self.__bitmap) == FREE_IMAGE_TYPE.FIT_RGBF or self.__library.FreeImage_GetImageType(self.__bitmap) == FREE_IMAGE_TYPE.FIT_RGBAF) and self.convertToLdr(2.2)
 
 		if self.__library.FreeImage_GetImageType(self.__bitmap) == FREE_IMAGE_TYPE.FIT_BITMAP:
-			LOGGER.debug("> Converting '{0}' Image Bitmap To QImage!".format(self.__imagePath))
+			LOGGER.debug("> Converting '{0}' image bitmap to QImage!".format(self.__imagePath))
 
 			from PyQt4.QtGui import QImage
 			from sip import voidptr
@@ -1276,24 +1276,24 @@ class Image(object):
 
 			bitsPointer = ctypes.addressof(bits)
 
-			LOGGER.debug("> Initializing Image From Memory Pointer '{0}' Address.".format(bitsPointer))
-			LOGGER.debug("> Image Width: '{0}'.".format(width))
-			LOGGER.debug("> Image Height: '{0}'.".format(height))
-			LOGGER.debug("> Image Pitch: '{0}'.".format(pitch))
-			LOGGER.debug("> Initializing QImage With Memory Pointer '{0}' Address.".format(bitsPointer))
+			LOGGER.debug("> Initializing image from memory pointer '{0}' address.".format(bitsPointer))
+			LOGGER.debug("> Image width: '{0}'.".format(width))
+			LOGGER.debug("> Image height: '{0}'.".format(height))
+			LOGGER.debug("> Image pitch: '{0}'.".format(pitch))
+			LOGGER.debug("> Initializing QImage with memory pointer '{0}' address.".format(bitsPointer))
 
 			image = QImage(voidptr(bitsPointer, size=height * pitch), width, height, pitch, QImage.Format_RGB32)
 
 			image._datas = ImageInformationsHeader(path=self.__imagePath, width=width, height=height, bpp=bpp)
 
 			# Removing the following line would result in a Python process crash, I need to call 'bits()' method at some point.
-			LOGGER.debug("> Final Memory Pointer With '{0}' Address.".format(image.bits().__int__()))
+			LOGGER.debug("> Final memory pointer with '{0}' address.".format(image.bits().__int__()))
 
-			LOGGER.debug("> '{0}' Image Bitmap Conversion To QImage Done!".format(self.__imagePath))
+			LOGGER.debug("> '{0}' image bitmap conversion to QImage done!".format(self.__imagePath))
 
 			return image
 		else:
-			raise foundations.exceptions.LibraryExecutionError, "Image Bitmap Is Not Of Type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP)
+			raise foundations.exceptions.LibraryExecutionError, "Image bitmap is not of type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP)
 
 #***********************************************************************************************
 #***	Python end.

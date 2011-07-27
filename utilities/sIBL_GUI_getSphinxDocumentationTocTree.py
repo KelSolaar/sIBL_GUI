@@ -32,7 +32,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Gets Sphinx Documentation Toc Tree File.
+	Gets sphinx documentation toc tree file.
 
 **Others:**
 
@@ -78,8 +78,8 @@ TOCTREE_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI |version|'s documentation!\n",
 						"Contents:\n",
 						"\n",
 						".. toctree::\n",
-						"   :maxdepth: 3\n",
-						"   :numbered:\n"]
+						" :maxdepth: 3\n",
+						" :numbered:\n"]
 TOCTREE_TEMPLATE_END = ["Search:\n"
 					"==================\n"
 					"\n"
@@ -90,14 +90,14 @@ TOCTREE_TEMPLATE_END = ["Search:\n"
 #***********************************************************************************************
 def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
-	This Definition Gets Sphinx Documentation Index File.
+	This definition gets sphinx documentation index file.
 
-	@param fileIn: File To Convert. ( String )
-	@param fileOut: Output File. ( String )
-	@param contentDirectory: Content Directory. ( String )
+	@param fileIn: File to convert. ( String )
+	@param fileOut: Output file. ( String )
+	@param contentDirectory: Content directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Building Sphinx Documentation Index '{1}' File!".format(getSphinxDocumentationTocTree.__name__, fileOut))
+	LOGGER.info("{0} | Building sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__, fileOut))
 	file = File(fileIn)
 	file.read()
 
@@ -114,8 +114,8 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 		code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
 		if code in existingFiles:
 			link = "{0}/{1}".format(relativeDirectory, code)
-			datas = "{0}{1}{2} <{3}>\n".format("   ", " " * line.index("-"), item, link)
-			LOGGER.info("{0} | Adding '{1}' Entry To Toc Tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
+			datas = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
+			LOGGER.info("{0} | Adding '{1}' entry to toc tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
 			tocTree.append(datas)
 	tocTree.append("\n")
 

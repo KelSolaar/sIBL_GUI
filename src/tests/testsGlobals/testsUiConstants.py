@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Ui UiConstants Tests Module.
+	Ui uiconstants tests Module.
 
 **Others:**
 
@@ -70,12 +70,12 @@ from umbra.globals.uiConstants import UiConstants
 #***********************************************************************************************
 class UiConstantsTestCase(unittest.TestCase):
 	"""
-	This Class Is The UiConstantsTestCase Class.
+	This class is the UiConstantsTestCase class.
 	"""
 
 	def testRequiredAttributes(self):
 		"""
-		This Method Tests Presence Of Required Attributes.
+		This method tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("frameworkUiFile",
@@ -97,42 +97,42 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkUiFileAttribute(self):
 		"""
-		This Method Tests The "frameworkUiFile" Attribute.
+		This method tests the "frameworkUiFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkUiFile, "\w")
 
 	def testFrameworkWindowsStylesheetFileAttribute(self):
 		"""
-		This Method Tests The "frameworkWindowsStylesheetFile" Attribute.
+		This method tests the "frameworkWindowsStylesheetFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkWindowsStylesheetFile, "\w")
 
 	def testFrameworkDarwinStylesheetFileAttribute(self):
 		"""
-		This Method Tests The "frameworkDarwinStylesheetFile" Attribute.
+		This method tests the "frameworkDarwinStylesheetFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkDarwinStylesheetFile, "\w")
 
 	def testFrameworkLinuxStylesheetFileAttribute(self):
 		"""
-		This Method Tests The "frameworkLinuxStylesheetFile" Attribute.
+		This method tests the "frameworkLinuxStylesheetFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLinuxStylesheetFile, "\w")
 
 	def testFrameworkLayoutsFileAttribute(self):
 		"""
-		This Method Tests The "frameworkLayoutsFile" Attribute.
+		This method tests the "frameworkLayoutsFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLayoutsFile, "\w")
 
 	def testFrameworkApplicationWindowsIconAttribute(self):
 		"""
-		This Method Tests The "frameworkApplicationWindowsIcon" Attribute.
+		This method tests the "frameworkApplicationWindowsIcon" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w")
@@ -140,7 +140,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkApplicationDarwinIconAttribute(self):
 		"""
-		This Method Tests The "frameworkApplicationDarwinIcon" Attribute.
+		This method tests the "frameworkApplicationDarwinIcon" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w")
@@ -148,7 +148,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkLogoPictureAttribute(self):
 		"""
-		This Method Tests The "frameworkLogoPicture" Attribute.
+		This method tests the "frameworkLogoPicture" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLogoPicture, "\w")
@@ -156,7 +156,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkDefaultToolbarIconSizeAttribute(self):
 		"""
-		This Method Tests The "frameworkDefaultToolbarIconSize" Attribute.
+		This method tests the "frameworkDefaultToolbarIconSize" attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.frameworkDefaultToolbarIconSize, int)
@@ -165,21 +165,21 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkStartupLayoutAttribute(self):
 		"""
-		This Method Tests The "frameworkStartupLayout" Attribute.
+		This method tests the "frameworkStartupLayout" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkStartupLayout, "\w")
 
 	def testFrameworkHelpFileAttribute(self):
 		"""
-		This Method Tests The "frameworkHelpFile" Attribute.
+		This method tests the "frameworkHelpFile" attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkHelpFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 def testNativeImageFormatsAttribute(self):
 		"""
-		This Method Tests The "nativeImageFormats" Attribute.
+		This method tests the "nativeImageFormats" attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.nativeImageFormats, dict)
@@ -190,7 +190,7 @@ def testNativeImageFormatsAttribute(self):
 
 def testThirdPartyImageFormatsAttribute(self):
 		"""
-		This Method Tests The "thirdPartyImageFormats" Attribute.
+		This method tests the "thirdPartyImageFormats" attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)

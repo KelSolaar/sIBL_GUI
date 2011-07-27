@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Online Updater Component Module.
+	Online updater Component Module.
 
 **Others:**
 
@@ -89,15 +89,15 @@ REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 #***********************************************************************************************
 class ReleaseObject(core.Structure):
 	"""
-	This Is The ReleaseObject Class.
+	This is the ReleaseObject class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value Pairs )
+		@param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -107,7 +107,7 @@ class ReleaseObject(core.Structure):
 
 class DownloadManager(QObject):
 	"""
-	This Is The DownloadManager Class.
+	This is the DownloadManager class.
 	"""
 
 	# Custom signals definitions.
@@ -116,15 +116,15 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __init__(self, container, networkAccessManager, downloadDirectory, requests=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
 		@param container: Container. ( Object )
-		@param networkAccessManager: Network Access Manager. ( QNetworkAccessManager )
-		@param downloadDirectory: Download Directory. ( String )
-		@param requests: Download Requests. ( List )
+		@param networkAccessManager: Network access manager. ( QNetworkAccessManager )
+		@param downloadDirectory: Download directory. ( String )
+		@param requests: Download requests. ( List )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QObject.__init__(self)
 
@@ -163,7 +163,7 @@ class DownloadManager(QObject):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -174,26 +174,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def networkAccessManager(self):
 		"""
-		This Method Is The Property For The _networkAccessManager Attribute.
+		This method is the property for the _networkAccessManager attribute.
 
 		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -204,26 +204,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This Method Is The Setter Method For The _networkAccessManager Attribute.
+		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute Value. ( QNetworkAccessManager )
+		@param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		This method is the deleter method for the _networkAccessManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
 
 	@property
 	def downloadDirectory(self):
 		"""
-		This Method Is The Property For The _downloadDirectory Attribute.
+		This method is the property for the _downloadDirectory attribute.
 
 		@return: self.__downloadDirectory. ( String )
 		"""
@@ -234,26 +234,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self, value):
 		"""
-		This Method Is The Setter Method For The _downloadDirectory Attribute.
+		This method is the setter method for the _downloadDirectory attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadDirectory"))
 
 	@downloadDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self):
 		"""
-		This Method Is The Deleter Method For The _downloadDirectory Attribute.
+		This method is the deleter method for the _downloadDirectory attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadDirectory"))
 
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -264,26 +264,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
 		"""
-		This Method Is The Property For The _uiResources Attribute.
+		This method is the property for the _uiResources attribute.
 
 		@return: self.__uiResources. ( String )
 		"""
@@ -294,26 +294,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This Method Is The Setter Method For The _uiResources Attribute.
+		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This method is the deleter method for the _uiResources attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
 
 	@property
 	def uiLogoImage(self):
 		"""
-		This Method Is The Property For The _uiLogoImage Attribute.
+		This method is the property for the _uiLogoImage attribute.
 
 		@return: self.__uiLogoImage. ( String )
 		"""
@@ -324,26 +324,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLogoImage Attribute.
+		This method is the setter method for the _uiLogoImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
 
 	@uiLogoImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLogoImage Attribute.
+		This method is the deleter method for the _uiLogoImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
 
 	@property
 	def requests(self):
 		"""
-		This Method Is The Property For The _requests Attribute.
+		This method is the property for the _requests attribute.
 
 		@return: self.__requests. ( List )
 		"""
@@ -354,28 +354,28 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def requests(self, value):
 		"""
-		This Method Is The Setter Method For The _requests Attribute.
+		This method is the setter method for the _requests attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
 		if value:
-			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("requests", value)
+			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
 		self.__requests = value
 
 	@requests.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
-		This Method Is The Deleter Method For The _requests Attribute.
+		This method is the deleter method for the _requests attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("requests"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("requests"))
 
 	@property
 	def downloads(self):
 		"""
-		This Method Is The Property For The _downloads Attribute.
+		This method is the property for the _downloads attribute.
 
 		@return: self.__downloads. ( List )
 		"""
@@ -386,26 +386,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def downloads(self, value):
 		"""
-		This Method Is The Setter Method For The _downloads Attribute.
+		This method is the setter method for the _downloads attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloads"))
 
 	@downloads.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloads(self):
 		"""
-		This Method Is The Deleter Method For The _downloads Attribute.
+		This method is the deleter method for the _downloads attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloads"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloads"))
 
 	@property
 	def currentRequest(self):
 		"""
-		This Method Is The Property For The _currentRequest Attribute.
+		This method is the property for the _currentRequest attribute.
 
 		@return: self.__currentRequest. ( QNetworkReply )
 		"""
@@ -416,26 +416,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentRequest(self, value):
 		"""
-		This Method Is The Setter Method For The _currentRequest Attribute.
+		This method is the setter method for the _currentRequest attribute.
 
-		@param value: Attribute Value. ( QNetworkReply )
+		@param value: Attribute value. ( QNetworkReply )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentRequest"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentRequest"))
 
 	@currentRequest.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentRequest(self):
 		"""
-		This Method Is The Deleter Method For The _currentRequest Attribute.
+		This method is the deleter method for the _currentRequest attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentRequest"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentRequest"))
 
 	@property
 	def currentFile(self):
 		"""
-		This Method Is The Property For The _currentFile Attribute.
+		This method is the property for the _currentFile attribute.
 
 		@return: self.__currentFile. ( QFile )
 		"""
@@ -446,26 +446,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFile(self, value):
 		"""
-		This Method Is The Setter Method For The _currentFile Attribute.
+		This method is the setter method for the _currentFile attribute.
 
-		@param value: Attribute Value. ( QFile )
+		@param value: Attribute value. ( QFile )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFile"))
 
 	@currentFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFile(self):
 		"""
-		This Method Is The Deleter Method For The _currentFile Attribute.
+		This method is the deleter method for the _currentFile attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFile"))
 
 	@property
 	def currentFilePath(self):
 		"""
-		This Method Is The Property For The _currentFilePath Attribute.
+		This method is the property for the _currentFilePath attribute.
 
 		@return: self.__currentFilePath. ( String )
 		"""
@@ -476,26 +476,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFilePath(self, value):
 		"""
-		This Method Is The Setter Method For The _currentFilePath Attribute.
+		This method is the setter method for the _currentFilePath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("currentFilePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFilePath"))
 
 	@currentFilePath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFilePath(self):
 		"""
-		This Method Is The Deleter Method For The _currentFilePath Attribute.
+		This method is the deleter method for the _currentFilePath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("currentFilePath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFilePath"))
 
 	@property
 	def downloadStatus(self):
 		"""
-		This Method Is The Property For The _downloadStatus Attribute.
+		This method is the property for the _downloadStatus attribute.
 
 		@return: self.__downloadStatus. ( QObject )
 		"""
@@ -506,26 +506,26 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadStatus(self, value):
 		"""
-		This Method Is The Setter Method For The _downloadStatus Attribute.
+		This method is the setter method for the _downloadStatus attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadStatus"))
 
 	@downloadStatus.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadStatus(self):
 		"""
-		This Method Is The Deleter Method For The _downloadStatus Attribute.
+		This method is the deleter method for the _downloadStatus attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadStatus"))
 
 	@property
 	def ui(self):
 		"""
-		This Method Is The Property For The _ui Attribute.
+		This method is the property for the _ui attribute.
 
 		@return: self.__ui. ( Object )
 		"""
@@ -536,21 +536,21 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self, value):
 		"""
-		This Method Is The Setter Method For The _ui Attribute.
+		This method is the setter method for the _ui attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ui"))
 
 	@ui.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self):
 		"""
-		This Method Is The Deleter Method For The _ui Attribute.
+		This method is the deleter method for the _ui attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -558,7 +558,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Widget Ui.
+		This method initializes the Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -575,9 +575,9 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
 		"""
-		This Method Overloads The DownloadManager CloseEvent.
+		This method overloads the downloadmanager closeevent.
 
-		@param closeEvent: Close Event. ( QCloseEvent )
+		@param closeEvent: Close event. ( QCloseEvent )
 		"""
 
 		self.__downloadStatus or self.abortDownload()
@@ -586,9 +586,9 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
-		This Method Triggers The DownloadManager Close.
+		This method triggers the downloadmanager close.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.__ui.close()
@@ -596,7 +596,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __downloadNext(self):
 		"""
-		This Method Downloads The Next Request.
+		This method downloads the next request.
 		"""
 
 		if self.__requests:
@@ -606,13 +606,13 @@ class DownloadManager(QObject):
 
 			self.__currentFilePath = os.path.join(self.__downloadDirectory, os.path.basename(str(self.__currentRequest.url().path())))
 			if os.path.exists(self.__currentFilePath):
-				LOGGER.info("{0} | Removing '{1}' Local File From Previous Online Update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+				LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
 				os.remove(self.__currentFilePath)
 
 			self.__currentFile = QFile(self.__currentFilePath)
 
 			if not self.__currentFile.open(QIODevice.WriteOnly):
-				messageBox.messageBox("Warning", "Warning", "{0} | Error While Writing '{1}' File To Disk, Proceeding To Next Download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+				messageBox.messageBox("Warning", "Warning", "{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
 				self.__downloadNext()
 				return
 
@@ -624,13 +624,13 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __downloadProgress(self, bytesReceived, bytesTotal):
 		"""
-		This Method Updates The Download Progress.
+		This method updates the download progress.
 
-		@param bytesReceived: Bytes Received. ( Integer )
-		@param bytesTotal: Bytes Total. ( Integer )
+		@param bytesReceived: Bytes received. ( Integer )
+		@param bytesTotal: Bytes total. ( Integer )
 		"""
 
-		LOGGER.debug("> Updating Download Progress: '{0}' Bytes Received, '{1}' Bytes Total.".format(bytesReceived, bytesTotal))
+		LOGGER.debug("> Updating download progress: '{0}' bytes received, '{1}' bytes total.".format(bytesReceived, bytesTotal))
 
 		self.__ui.Current_File_label.setText("Downloading: '{0}'.".format(os.path.basename(str(self.__currentRequest.url().path()))))
 		self.__ui.Download_progressBar.setRange(0, bytesTotal)
@@ -639,33 +639,33 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __requestReady(self):
 		"""
-		This Method Is Triggered When The Request Is Ready To Write.
+		This method is triggered when the request is ready to write.
 		"""
 
-		LOGGER.debug("> Updating '{0}' File Content.".format(self.__currentFile))
+		LOGGER.debug("> Updating '{0}' file content.".format(self.__currentFile))
 
 		self.__currentFile.write(self.__currentRequest.readAll())
 
 	@core.executionTrace
 	def __downloadComplete(self):
 		"""
-		This Method Is Triggered When The Request Download Is Complete.
+		This method is triggered when the request download is complete.
 		"""
 
-		LOGGER.debug("> '{0}' Download Complete.".format(self.__currentFile))
+		LOGGER.debug("> '{0}' download complete.".format(self.__currentFile))
 
 		self.__currentFile.close()
 		self.__downloads.append(self.__currentFilePath)
-		self.__ui.Current_File_label.setText("'{0}' Downloading Done!".format(os.path.basename(self.__currentFilePath)))
+		self.__ui.Current_File_label.setText("'{0}' downloading done!".format(os.path.basename(self.__currentFilePath)))
 		self.__ui.Download_progressBar.hide()
 		self.__currentRequest.deleteLater();
 
 		if self.__requests:
-			LOGGER.debug("> Proceeding To Next Download Request.")
+			LOGGER.debug("> Proceeding to next download request.")
 			self.__downloadNext()
 		else:
 			self.__downloadStatus = True
-			self.__ui.Current_File_label.setText("Downloads Complete!")
+			self.__ui.Current_File_label.setText("Downloads complete!")
 			self.__ui.Cancel_Close_pushButton.setText("Close")
 			self.emit(SIGNAL("downloadFinished()"))
 
@@ -673,9 +673,9 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def startDownload(self):
 		"""
-		This Method Triggers The Download.
+		This method triggers the download.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		self.__downloadStatus = False
@@ -686,9 +686,9 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def abortDownload(self):
 		"""
-		This Method Aborts The Current Download.
+		This method aborts the current download.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		self.__currentRequest.abort()
@@ -697,18 +697,18 @@ class DownloadManager(QObject):
 
 class RemoteUpdater(object):
 	"""
-	This Class Is The RemoteUpdater Class.
+	This class is the RemoteUpdater class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, container, releases=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
 		@param releases: Releases. ( Dictionary )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
 		self.__container = container
@@ -726,7 +726,7 @@ class RemoteUpdater(object):
 		self.__tableWidgetRowHeight = 30
 		self.__tableWidgetHeaderHeight = 25
 
-		self.__templatesTableWidgetHeaders = ["_datas", "Get It!", "Local Version", "Repository Version", "Release Type", "Comment"]
+		self.__templatesTableWidgetHeaders = ["_datas", "Get it!", "Local version", "Repository version", "Release type", "Comment"]
 
 		self.__applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
 		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
@@ -748,7 +748,7 @@ class RemoteUpdater(object):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -759,26 +759,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def releases(self):
 		"""
-		This Method Is The Property For The _releases Attribute.
+		This method is the property for the _releases attribute.
 
 		@return: self.__releases. ( Dictionary )
 		"""
@@ -789,28 +789,28 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def releases(self, value):
 		"""
-		This Method Is The Setter Method For The _releases Attribute.
+		This method is the setter method for the _releases attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
 		if value:
-			assert type(value) is dict, "'{0}' Attribute: '{1}' Type Is Not 'dict'!".format("releases", value)
+			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("releases", value)
 		self.__releases = value
 
 	@releases.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releases(self):
 		"""
-		This Method Is The Deleter Method For The _releases Attribute.
+		This method is the deleter method for the _releases attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releases"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releases"))
 
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -821,26 +821,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
 		"""
-		This Method Is The Property For The _uiResources Attribute.
+		This method is the property for the _uiResources attribute.
 
 		@return: self.__uiResources. ( String )
 		"""
@@ -851,26 +851,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This Method Is The Setter Method For The _uiResources Attribute.
+		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This method is the deleter method for the _uiResources attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
 
 	@property
 	def uiLogoImage(self):
 		"""
-		This Method Is The Property For The _uiLogoImage Attribute.
+		This method is the property for the _uiLogoImage attribute.
 
 		@return: self.__uiLogoImage. ( String )
 		"""
@@ -881,26 +881,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLogoImage Attribute.
+		This method is the setter method for the _uiLogoImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
 
 	@uiLogoImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLogoImage Attribute.
+		This method is the deleter method for the _uiLogoImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
 
 	@property
 	def uiTemplatesImage(self):
 		"""
-		This Method Is The Property For The _uiTemplatesImage Attribute.
+		This method is the property for the _uiTemplatesImage attribute.
 
 		@return: self.__uiTemplatesImage. ( String )
 		"""
@@ -911,26 +911,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiTemplatesImage Attribute.
+		This method is the setter method for the _uiTemplatesImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiTemplatesImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiTemplatesImage"))
 
 	@uiTemplatesImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiTemplatesImage Attribute.
+		This method is the deleter method for the _uiTemplatesImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiTemplatesImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiTemplatesImage"))
 
 	@property
 	def uiLightGrayColor(self):
 		"""
-		This Method Is The Property For The _uiLightGrayColor Attribute.
+		This method is the property for the _uiLightGrayColor attribute.
 
 		@return: self.__uiLightGrayColor. ( QColor )
 		"""
@@ -941,26 +941,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLightGrayColor Attribute.
+		This method is the setter method for the _uiLightGrayColor attribute.
 
-		@param value: Attribute Value. ( QColor )
+		@param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
-		This Method Is The Deleter Method For The _uiLightGrayColor Attribute.
+		This method is the deleter method for the _uiLightGrayColor attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLightGrayColor"))
 
 	@property
 	def uiDarkGrayColor(self):
 		"""
-		This Method Is The Property For The _uiDarkGrayColor Attribute.
+		This method is the property for the _uiDarkGrayColor attribute.
 
 		@return: self.__uiDarkGrayColor. ( QColor )
 		"""
@@ -971,26 +971,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
-		This Method Is The Setter Method For The _uiDarkGrayColor Attribute.
+		This method is the setter method for the _uiDarkGrayColor attribute.
 
-		@param value: Attribute Value. ( QColor )
+		@param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
-		This Method Is The Deleter Method For The _uiDarkGrayColor Attribute.
+		This method is the deleter method for the _uiDarkGrayColor attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDarkGrayColor"))
 
 	@property
 	def splitter(self):
 		"""
-		This Method Is The Property For The _splitter Attribute.
+		This method is the property for the _splitter attribute.
 
 		@return: self.__splitter. ( String )
 		"""
@@ -1001,26 +1001,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def splitter(self, value):
 		"""
-		This Method Is The Setter Method For The _splitter Attribute.
+		This method is the setter method for the _splitter attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("splitter"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("splitter"))
 
 	@splitter.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def splitter(self):
 		"""
-		This Method Is The Deleter Method For The _splitter Attribute.
+		This method is the deleter method for the _splitter attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("splitter"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("splitter"))
 
 	@property
 	def tableWidgetRowHeight(self):
 		"""
-		This Method Is The Property For The _tableWidgetRowHeight Attribute.
+		This method is the property for the _tableWidgetRowHeight attribute.
 
 		@return: self.__tableWidgetRowHeight. ( Integer )
 		"""
@@ -1031,26 +1031,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self, value):
 		"""
-		This Method Is The Setter Method For The _tableWidgetRowHeight Attribute.
+		This method is the setter method for the _tableWidgetRowHeight attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self):
 		"""
-		This Method Is The Deleter Method For The _tableWidgetRowHeight Attribute.
+		This method is the deleter method for the _tableWidgetRowHeight attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetRowHeight"))
 
 	@property
 	def tableWidgetHeaderHeight(self):
 		"""
-		This Method Is The Property For The _tableWidgetHeaderHeight Attribute.
+		This method is the property for the _tableWidgetHeaderHeight attribute.
 
 		@return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
@@ -1061,26 +1061,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self, value):
 		"""
-		This Method Is The Setter Method For The _tableWidgetHeaderHeight Attribute.
+		This method is the setter method for the _tableWidgetHeaderHeight attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self):
 		"""
-		This Method Is The Deleter Method For The _tableWidgetHeaderHeight Attribute.
+		This method is the deleter method for the _tableWidgetHeaderHeight attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetHeaderHeight"))
 
 	@property
 	def templatesTableWidgetHeaders(self):
 		"""
-		This Method Is The Property For The _templatesTableWidgetHeaders Attribute.
+		This method is the property for the _templatesTableWidgetHeaders attribute.
 
 		@return: self.__templatesTableWidgetHeaders. ( String )
 		"""
@@ -1091,26 +1091,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self, value):
 		"""
-		This Method Is The Setter Method For The _templatesTableWidgetHeaders Attribute.
+		This method is the setter method for the _templatesTableWidgetHeaders attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesTableWidgetHeaders"))
 
 	@templatesTableWidgetHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self):
 		"""
-		This Method Is The Deleter Method For The _templatesTableWidgetHeaders Attribute.
+		This method is the deleter method for the _templatesTableWidgetHeaders attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesTableWidgetHeaders"))
 
 	@property
 	def applicationChangeLogUrl(self):
 		"""
-		This Method Is The Property For The _applicationChangeLogUrl Attribute.
+		This method is the property for the _applicationChangeLogUrl attribute.
 
 		@return: self.__applicationChangeLogUrl. ( String )
 		"""
@@ -1121,26 +1121,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def applicationChangeLogUrl(self, value):
 		"""
-		This Method Is The Setter Method For The _applicationChangeLogUrl Attribute.
+		This method is the setter method for the _applicationChangeLogUrl attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("applicationChangeLogUrl"))
 
 	@applicationChangeLogUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def applicationChangeLogUrl(self):
 		"""
-		This Method Is The Deleter Method For The _applicationChangeLogUrl Attribute.
+		This method is the deleter method for the _applicationChangeLogUrl attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("applicationChangeLogUrl"))
 
 	@property
 	def repositoryUrl(self):
 		"""
-		This Method Is The Property For The _repositoryUrl Attribute.
+		This method is the property for the _repositoryUrl attribute.
 
 		@return: self.__repositoryUrl. ( String )
 		"""
@@ -1151,26 +1151,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This Method Is The Setter Method For The _repositoryUrl Attribute.
+		This method is the setter method for the _repositoryUrl attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("repositoryUrl"))
 
 	@repositoryUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This Method Is The Deleter Method For The _repositoryUrl Attribute.
+		This method is the deleter method for the _repositoryUrl attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("repositoryUrl"))
 
 	@property
 	def downloadManager(self):
 		"""
-		This Method Is The Property For The _downloadManager Attribute.
+		This method is the property for the _downloadManager attribute.
 
 		@return: self.__downloadManager. ( Object )
 		"""
@@ -1181,26 +1181,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadManager(self, value):
 		"""
-		This Method Is The Setter Method For The _downloadManager Attribute.
+		This method is the setter method for the _downloadManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("downloadManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadManager"))
 
 	@downloadManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadManager(self):
 		"""
-		This Method Is The Deleter Method For The _downloadManager Attribute.
+		This method is the deleter method for the _downloadManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("downloadManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadManager"))
 
 	@property
 	def networkAccessManager(self):
 		"""
-		This Method Is The Property For The _networkAccessManager Attribute.
+		This method is the property for the _networkAccessManager attribute.
 
 		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -1211,26 +1211,26 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This Method Is The Setter Method For The _networkAccessManager Attribute.
+		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute Value. ( QNetworkAccessManager )
+		@param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		This method is the deleter method for the _networkAccessManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
 
 	@property
 	def ui(self):
 		"""
-		This Method Is The Property For The _ui Attribute.
+		This method is the property for the _ui attribute.
 
 		@return: self.__ui. ( Object )
 		"""
@@ -1240,9 +1240,9 @@ class RemoteUpdater(object):
 	@ui.setter
 	def ui(self, value):
 		"""
-		This Method Is The Setter Method For The _ui Attribute.
+		This method is the setter method for the _ui attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
 		self.__ui = value
@@ -1251,10 +1251,10 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self):
 		"""
-		This Method Is The Deleter Method For The _ui Attribute.
+		This method is the deleter method for the _ui attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ui"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1262,12 +1262,12 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Remote_Updater Widget Ui.
+		This method initializes the Remote_Updater Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
 
-		LOGGER.debug("> Initializing '{0}' Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
 
 		if Constants.applicationName not in self.__releases:
 			self.__ui.sIBL_GUI_groupBox.hide()
@@ -1339,9 +1339,9 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Get_sIBL_GUI_pushButton Is Clicked.
+		This method is triggered when Get_sIBL_GUI_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
 		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
@@ -1349,7 +1349,7 @@ class RemoteUpdater(object):
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			url = builds["Windows"]
 		elif platform.system() == "Darwin":
-			url = builds["Mac Os X"]
+			url = builds["Mac os x"]
 		elif platform.system() == "Linux":
 			url = builds["Linux"]
 
@@ -1360,9 +1360,9 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Get_Latest_Templates_pushButton Is Clicked.
+		This method is triggered when Get_Latest_Templates_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		requests = []
@@ -1372,7 +1372,7 @@ class RemoteUpdater(object):
 		if requests:
 			downloadDirectory = self.__getTemplatesDownloadDirectory()
 			if downloadDirectory:
-				LOGGER.debug("> Templates Download Directory: '{0}'.".format(downloadDirectory))
+				LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
 				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests])
 				self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
 				self.__downloadManager.startDownload()
@@ -1380,38 +1380,38 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Open_Repository_pushButton Is Clicked.
+		This method is triggered when Open_Repository_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
-		LOGGER.debug("> Opening URL: '{0}'.".format(self.__repositoryUrl))
+		LOGGER.debug("> Opening url: '{0}'.".format(self.__repositoryUrl))
 		QDesktopServices.openUrl(QUrl(QString(self.__repositoryUrl)))
 
 	@core.executionTrace
 	def __Close_pushButton__clicked(self, checked):
 		"""
-		This Method Closes The RemoteUpdater.
+		This method closes the RemoteUpdater.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Closing '{1}' Updater!".format(self.__class__.__name__, Constants.applicationName))
+		LOGGER.info("{0} | Closing '{1}' updater!".format(self.__class__.__name__, Constants.applicationName))
 		self.__ui.close()
 
 	@core.executionTrace
 	def __downloadManager__finished(self):
 		"""
-		This Method Is Triggered When The Download Manager Finishes.
+		This method is triggered when the download manager finishes.
 		"""
 
 		for download in self.__downloadManager.downloads:
 			if download.endswith(".zip"):
 				if self.extractZipFile(download):
-					LOGGER.info("{0} | Removing '{1}' Archive!".format(self.__class__.__name__, download))
+					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
 					os.remove(download)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | Failed Extracting '{1}', Proceeding To Next File!".format(self.__class__.__name__, os.path.basename(download)))
+					messageBox.messageBox("Warning", "Warning", "{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__, os.path.basename(download)))
 				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id)
 			else:
 				if self.__container.addonsLocationsBrowser.activated:
@@ -1420,15 +1420,15 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __getTemplatesDownloadDirectory(self):
 		"""
-		This Method Gets The Templates Directory.
+		This method gets the Templates directory.
 		"""
 
-		LOGGER.debug("> Retrieving Templates Download Directory.")
+		LOGGER.debug("> Retrieving Templates download directory.")
 
 		messageBox = QMessageBox()
 		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
 		messageBox.setIcon(QMessageBox.Question)
-		messageBox.setText("{0} | Which Directory Do You Want To Install The Templates Into?".format(self.__class__.__name__))
+		messageBox.setText("{0} | Which directory do you want to install the Templates into?".format(self.__class__.__name__))
 		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
 		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
 		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
@@ -1440,19 +1440,19 @@ class RemoteUpdater(object):
 		elif reply == 1:
 			return os.path.join(self.__container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
 		elif reply == 2:
-			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates Directory:", self.__container.container.lastBrowsedPath)))
+			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def extractZipFile(self, file):
 		"""
-		This Method Uncompress The Provided Zip File.
+		This method uncompress the provided zip file.
 
-		@param file: File To Extract. ( String )
-		@return: Extraction Success. ( Boolean )
+		@param file: File to extract. ( String )
+		@return: Extraction success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing '{0}' File Uncompress.".format(file))
+		LOGGER.debug("> Initializing '{0}' file uncompress.".format(file))
 
 		pkzip = Pkzip()
 		pkzip.archive = file
@@ -1461,19 +1461,19 @@ class RemoteUpdater(object):
 
 class OnlineUpdater(UiComponent):
 	"""
-	This Class Is The OnlineUpdater Class.
+	This class is the OnlineUpdater class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -1508,7 +1508,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -1519,26 +1519,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -1549,35 +1549,35 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -1587,7 +1587,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -1598,46 +1598,46 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@settings.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Property For The _corePreferencesManager Attribute.
+		This method is the property for the _corePreferencesManager attribute.
 
 		@return: self.__corePreferencesManager. ( Object )
 		"""
@@ -1648,26 +1648,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		This method is the deleter method for the _corePreferencesManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDb(self):
 		"""
-		This Method Is The Property For The _coreDb Attribute.
+		This method is the property for the _coreDb attribute.
 
 		@return: self.__coreDb. ( Object )
 		"""
@@ -1678,26 +1678,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDb Attribute.
+		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This Method Is The Deleter Method For The _coreDb Attribute.
+		This method is the deleter method for the _coreDb attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -1708,26 +1708,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def addonsLocationsBrowser(self):
 		"""
-		This Method Is The Property For The _addonsLocationsBrowser Attribute.
+		This method is the property for the _addonsLocationsBrowser attribute.
 
 		@return: self.__addonsLocationsBrowser. ( Object )
 		"""
@@ -1738,26 +1738,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLocationsBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _addonsLocationsBrowser Attribute.
+		This method is the setter method for the _addonsLocationsBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("addonsLocationsBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLocationsBrowser"))
 
 	@addonsLocationsBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLocationsBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _addonsLocationsBrowser Attribute.
+		This method is the deleter method for the _addonsLocationsBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("addonsLocationsBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLocationsBrowser"))
 
 	@property
 	def ioDirectory(self):
 		"""
-		This Method Is The Property For The _ioDirectory Attribute.
+		This method is the property for the _ioDirectory attribute.
 
 		@return: self.__ioDirectory. ( String )
 		"""
@@ -1768,26 +1768,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self, value):
 		"""
-		This Method Is The Setter Method For The _ioDirectory Attribute.
+		This method is the setter method for the _ioDirectory attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ioDirectory"))
 
 	@ioDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self):
 		"""
-		This Method Is The Deleter Method For The _ioDirectory Attribute.
+		This method is the deleter method for the _ioDirectory attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("ioDirectory"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ioDirectory"))
 
 	@property
 	def repositoryUrl(self):
 		"""
-		This Method Is The Property For The _repositoryUrl Attribute.
+		This method is the property for the _repositoryUrl attribute.
 
 		@return: self.__repositoryUrl. ( String )
 		"""
@@ -1798,26 +1798,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This Method Is The Setter Method For The _repositoryUrl Attribute.
+		This method is the setter method for the _repositoryUrl attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("repositoryUrl"))
 
 	@repositoryUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This Method Is The Deleter Method For The _repositoryUrl Attribute.
+		This method is the deleter method for the _repositoryUrl attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("repositoryUrl"))
 
 	@property
 	def releasesFileUrl(self):
 		"""
-		This Method Is The Property For The _releasesFileUrl Attribute.
+		This method is the property for the _releasesFileUrl attribute.
 
 		@return: self.__releasesFileUrl. ( String )
 		"""
@@ -1828,26 +1828,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self, value):
 		"""
-		This Method Is The Setter Method For The _releasesFileUrl Attribute.
+		This method is the setter method for the _releasesFileUrl attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("releasesFileUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("releasesFileUrl"))
 
 	@releasesFileUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self):
 		"""
-		This Method Is The Deleter Method For The _releasesFileUrl Attribute.
+		This method is the deleter method for the _releasesFileUrl attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releasesFileUrl"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releasesFileUrl"))
 
 	@property
 	def networkAccessManager(self):
 		"""
-		This Method Is The Property For The _networkAccessManager Attribute.
+		This method is the property for the _networkAccessManager attribute.
 
 		@return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -1858,26 +1858,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This Method Is The Setter Method For The _networkAccessManager Attribute.
+		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute Value. ( QNetworkAccessManager )
+		@param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This Method Is The Deleter Method For The _networkAccessManager Attribute.
+		This method is the deleter method for the _networkAccessManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
 
 	@property
 	def releaseReply(self):
 		"""
-		This Method Is The Property For The _releaseReply Attribute.
+		This method is the property for the _releaseReply attribute.
 
 		@return: self.__releaseReply. ( QNetworkReply )
 		"""
@@ -1888,26 +1888,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self, value):
 		"""
-		This Method Is The Setter Method For The _releaseReply Attribute.
+		This method is the setter method for the _releaseReply attribute.
 
-		@param value: Attribute Value. ( QNetworkReply )
+		@param value: Attribute value. ( QNetworkReply )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("releaseReply"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("releaseReply"))
 
 	@releaseReply.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self):
 		"""
-		This Method Is The Deleter Method For The _releaseReply Attribute.
+		This method is the deleter method for the _releaseReply attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("releaseReply"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releaseReply"))
 
 	@property
 	def remoteUpdater(self):
 		"""
-		This Method Is The Property For The _remoteUpdater Attribute.
+		This method is the property for the _remoteUpdater attribute.
 
 		@return: self.__remoteUpdater. ( Object )
 		"""
@@ -1918,26 +1918,26 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self, value):
 		"""
-		This Method Is The Setter Method For The _remoteUpdater Attribute.
+		This method is the setter method for the _remoteUpdater attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("remoteUpdater"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("remoteUpdater"))
 
 	@remoteUpdater.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self):
 		"""
-		This Method Is The Deleter Method For The _remoteUpdater Attribute.
+		This method is the deleter method for the _remoteUpdater attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("remoteUpdater"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("remoteUpdater"))
 
 	@property
 	def reportUpdateStatus(self):
 		"""
-		This Method Is The Property For The _reportUpdateStatus Attribute.
+		This method is the property for the _reportUpdateStatus attribute.
 
 		@return: self.__reportUpdateStatus. ( Boolean )
 		"""
@@ -1948,21 +1948,21 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self, value):
 		"""
-		This Method Is The Setter Method For The _reportUpdateStatus Attribute.
+		This method is the setter method for the _reportUpdateStatus attribute.
 
-		@param value: Attribute Value. ( Boolean )
+		@param value: Attribute value. ( Boolean )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("reportUpdateStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("reportUpdateStatus"))
 
 	@reportUpdateStatus.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self):
 		"""
-		This Method Is The Deleter Method For The _reportUpdateStatus Attribute.
+		This method is the deleter method for the _reportUpdateStatus attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("reportUpdateStatus"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("reportUpdateStatus"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1970,12 +1970,12 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -1999,10 +1999,10 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -2025,12 +2025,12 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater Worker Thread Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online updater worker thread deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
@@ -2043,10 +2043,10 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
@@ -2056,10 +2056,10 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This Method Is Called On Framework Startup.
+		This method is called on framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
 		not self.__container.parameters.deactivateWorkerThreads and self.ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
@@ -2067,77 +2067,77 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Online_Updater_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.ui.Online_Updater_groupBox.setParent(None)
 
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		"""
-		This Method Sets The Check_For_New_Releases_On_Startup_checkBox.
+		This method sets the Check_For_New_Releases_On_Startup_checkBox.
 		"""
 
 		# Adding settings key if it doesn't exists.
 		self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup").isNull() and self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", Qt.Checked)
 
 		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
 
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
-		This Method Is Called When Check_For_New_Releases_On_Startup_checkBox State Changes.
+		This method is called when Check_For_New_Releases_On_Startup_checkBox state changes.
 
-		@param state: Checkbox State. ( Integer )
+		@param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Check For New Releases On Startup State: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
+		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
 		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		"""
-		This Method Sets The Ignore_Non_Existing_Templates_checkBox.
+		This method sets the Ignore_Non_Existing_Templates_checkBox.
 		"""
 
 		# Adding settings key if it doesn't exists.
 		self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates").isNull() and self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", Qt.Checked)
 
 		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
 		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
-		This Method Is Called When Ignore_Non_Existing_Templates_checkBox State Changes.
+		This method is called when Ignore_Non_Existing_Templates_checkBox state changes.
 
-		@param state: Checkbox State. ( Integer )
+		@param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Ignore Non Existing Templates State: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
+		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
 		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
 
 	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Check_For_New_Releases_pushButton Is Clicked.
+		This method is triggered when Check_For_New_Releases_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.checkForNewReleases__()
@@ -2146,7 +2146,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.NetworkError)
 	def __releaseReply__finished(self):
 		"""
-		This Method Is Triggered When The Release Reply Finishes.
+		This method is triggered when the release reply finishes.
 		"""
 
 		if not self.__releaseReply.error():
@@ -2154,7 +2154,7 @@ class OnlineUpdater(UiComponent):
 			while not self.__releaseReply.atEnd ():
 				content.append(str(self.__releaseReply.readLine()))
 
-			LOGGER.debug("> Parsing Releases File Content.")
+			LOGGER.debug("> Parsing releases file content.")
 			parser = Parser()
 			parser.content = content
 			parser.parse()
@@ -2182,7 +2182,7 @@ class OnlineUpdater(UiComponent):
 																		url=parser.getValue("Url", remoteObject),
 																		comment=parser.getValue("Comment", remoteObject))
 						else:
-							LOGGER.info("{0} | '{1}' Repository Remote Object Skipped By '{2}' Command Line Parameter Value!".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
+							LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
 				else:
 					if Constants.releaseVersion != parser.getValue("Release", remoteObject):
 						releases[remoteObject] = ReleaseObject(name=remoteObject,
@@ -2192,20 +2192,20 @@ class OnlineUpdater(UiComponent):
 															type=parser.getValue("Type", remoteObject),
 															comment=None)
 			if releases:
-				LOGGER.debug("> Initialising Remote Updater.")
+				LOGGER.debug("> Initialising remote updater.")
 				self.__remoteUpdater = RemoteUpdater(self, releases)
 			else:
-				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' Is Up To Date!".format(self.__class__.__name__, Constants.applicationName))
+				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise foundations.exceptions.NetworkError("QNetworkAccessManager Error Code: '{0}'.".format(self.__releaseReply.error()))
+			raise foundations.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releaseReply.error()))
 
 	@core.executionTrace
 	def __getReleaseFile(self, url):
 		"""
-		This Method Gets The Release File.
+		This method gets the release file.
 		"""
 
-		LOGGER.debug("> Downloading '{0}' Releases File.".format(url.path()))
+		LOGGER.debug("> Downloading '{0}' releases file.".format(url.path()))
 
 		self.__releaseReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releaseReply.finished.connect(self.__releaseReply__finished)
@@ -2214,24 +2214,24 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def checkForNewReleases__(self):
 		"""
-		This Method Checks For New Releases.
+		This method checks for new releases.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		self.__reportUpdateStatus = True
 		if self.checkForNewReleases():
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Checking For New Releases!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised while checking for new releases!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def checkForNewReleases(self):
 		"""
-		This Method Checks For New Releases.
+		This method checks for new releases.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Browser Component Module.
+	Database browser Component Module.
 
 **Others:**
 
@@ -85,7 +85,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DatabaseBrowser_Worker(QThread):
 	"""
-	This Class Is The DatabaseBrowser_Worker Class.
+	This class is the DatabaseBrowser_Worker class.
 	"""
 
 	# Custom signals definitions.
@@ -94,12 +94,12 @@ class DatabaseBrowser_Worker(QThread):
 	@core.executionTrace
 	def __init__(self, container):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param container: Object Container. ( Object )
+		@param container: Object container. ( Object )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QThread.__init__(self, container)
 
@@ -117,7 +117,7 @@ class DatabaseBrowser_Worker(QThread):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -128,26 +128,26 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def dbSession(self):
 		"""
-		This Method Is The Property For The _dbSession Attribute.
+		This method is the property for the _dbSession attribute.
 
 		@return: self.__dbSession. ( Object )
 		"""
@@ -158,26 +158,26 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This Method Is The Setter Method For The _dbSession Attribute.
+		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This Method Is The Deleter Method For The _dbSession Attribute.
+		This method is the deleter method for the _dbSession attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
 
 	@property
 	def timer(self):
 		"""
-		This Method Is The Property For The _timer Attribute.
+		This method is the property for the _timer attribute.
 
 		@return: self.__timer. ( QTimer )
 		"""
@@ -188,26 +188,26 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self, value):
 		"""
-		This Method Is The Setter Method For The _timer Attribute.
+		This method is the setter method for the _timer attribute.
 
-		@param value: Attribute Value. ( QTimer )
+		@param value: Attribute value. ( QTimer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timer"))
 
 	@timer.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self):
 		"""
-		This Method Is The Deleter Method For The _timer Attribute.
+		This method is the deleter method for the _timer attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timer"))
 
 	@property
 	def timerCycleMultiplier(self):
 		"""
-		This Method Is The Property For The _timerCycleMultiplier Attribute.
+		This method is the property for the _timerCycleMultiplier attribute.
 
 		@return: self.__timerCycleMultiplier. ( Float )
 		"""
@@ -218,21 +218,21 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self, value):
 		"""
-		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
+		This method is the setter method for the _timerCycleMultiplier attribute.
 
-		@param value: Attribute Value. ( Float )
+		@param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timerCycleMultiplier"))
 
 	@timerCycleMultiplier.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self):
 		"""
-		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
+		This method is the deleter method for the _timerCycleMultiplier attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timerCycleMultiplier"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -240,7 +240,7 @@ class DatabaseBrowser_Worker(QThread):
 	@core.executionTrace
 	def run(self):
 		"""
-		This Method Starts The QThread.
+		This method starts the QThread.
 		"""
 
 		self.__timer = QTimer()
@@ -254,7 +254,7 @@ class DatabaseBrowser_Worker(QThread):
 	@core.executionTrace
 	def __updateSets(self):
 		"""
-		This Method Updates Database Sets If They Have Been Modified On Disk.
+		This method updates Database sets if they have been modified on disk.
 		"""
 
 		needModelRefresh = False
@@ -264,27 +264,27 @@ class DatabaseBrowser_Worker(QThread):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Ibl Set File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, iblSet.title))
+						LOGGER.info("{0} | '{1}' ibl set file has been modified and will be updated!".format(self.__class__.__name__, iblSet.title))
 						if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
-							LOGGER.info("{0} | '{1}' Ibl Set Has Been Updated!".format(self.__class__.__name__, iblSet.title))
+							LOGGER.info("{0} | '{1}' ibl set has been updated!".format(self.__class__.__name__, iblSet.title))
 							needModelRefresh = True
 
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
 
 class DatabaseBrowser_QListView(QListView):
 	"""
-	This Class Is The DatabaseBrowser_QListView Class.
+	This class is the DatabaseBrowser_QListView class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, container):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QListView.__init__(self, container)
 
@@ -302,7 +302,7 @@ class DatabaseBrowser_QListView(QListView):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -313,26 +313,26 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -343,37 +343,37 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
 		"""
-		This Method Defines The Drag Enter Event Behavior.
+		This method defines the drag enter event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
 
 		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-			LOGGER.debug("> '{0}' Drag Event Type Accepted!".format("application/x-qabstractitemmodeldatalist"))
+			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-qabstractitemmodeldatalist"))
 			event.accept()
 		elif event.mimeData().hasFormat("text/uri-list"):
-			LOGGER.debug("> '{0}' Drag Event Type Accepted!".format("text/uri-list"))
+			LOGGER.debug("> '{0}' drag event type accepted!".format("text/uri-list"))
 			event.accept()
 		else:
 			event.ignore()
@@ -381,7 +381,7 @@ class DatabaseBrowser_QListView(QListView):
 	@core.executionTrace
 	def dragMoveEvent(self, event):
 		"""
-		This Method Defines The Drag Move Event Behavior.
+		This method defines the drag move event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
@@ -392,46 +392,46 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
-		This Method Defines The Drop Event Behavior.
+		This method defines the drop event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
-				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
+				LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' ibl set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreDatabaseBrowser.addIblSet(name, path)
 					else:
 						if os.path.isdir(path):
-							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
 						else:
-							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
+							raise OSError, "{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path)
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __QListView__doubleClicked(self, index):
 		"""
-		This Method Defines The Behavior When A QStandardItem Is Double Clicked.
+		This method defines the behavior when a QStandardItem is double clicked.
 
-		@param index: Clicked Model Item Index. ( QModelIndex )
+		@param index: Clicked Model item index. ( QModelIndex )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
 			pass
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
 
 class DatabaseBrowser(UiComponent):
 	"""
-	This Class Is The DatabaseBrowser Class.
+	This class is the DatabaseBrowser class.
 	"""
 
 	# Custom signals definitions.
@@ -442,13 +442,13 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -495,7 +495,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -506,26 +506,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
 		"""
-		This Method Is The Property For The _uiResources Attribute.
+		This method is the property for the _uiResources attribute.
 
 		@return: self.__uiResources. ( String )
 		"""
@@ -536,26 +536,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This Method Is The Setter Method For The _uiResources Attribute.
+		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This method is the deleter method for the _uiResources attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
 
 	@property
 	def uiLargestSizeImage(self):
 		"""
-		This Method Is The Property For The _uiLargestSizeImage Attribute.
+		This method is the property for the _uiLargestSizeImage attribute.
 
 		@return: self.__uiLargestSizeImage. ( String )
 		"""
@@ -566,26 +566,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiLargestSizeImage Attribute.
+		This method is the setter method for the _uiLargestSizeImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiLargestSizeImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLargestSizeImage"))
 
 	@uiLargestSizeImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiLargestSizeImage Attribute.
+		This method is the deleter method for the _uiLargestSizeImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiLargestSizeImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLargestSizeImage"))
 
 	@property
 	def uiSmallestSizeImage(self):
 		"""
-		This Method Is The Property For The _uiSmallestSizeImage Attribute.
+		This method is the property for the _uiSmallestSizeImage attribute.
 
 		@return: self.__uiSmallestSizeImage. ( String )
 		"""
@@ -596,26 +596,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiSmallestSizeImage Attribute.
+		This method is the setter method for the _uiSmallestSizeImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSmallestSizeImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiSmallestSizeImage"))
 
 	@uiSmallestSizeImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiSmallestSizeImage Attribute.
+		This method is the deleter method for the _uiSmallestSizeImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSmallestSizeImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiSmallestSizeImage"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -626,26 +626,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def listViewSpacing(self):
 		"""
-		This Method Is The Property For The _listViewSpacing Attribute.
+		This method is the property for the _listViewSpacing attribute.
 
 		@return: self.__listViewSpacing. ( Integer )
 		"""
@@ -656,29 +656,29 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewSpacing(self, value):
 		"""
-		This Method Is The Setter Method For The _listViewSpacing Attribute.
+		This method is the setter method for the _listViewSpacing attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
 		if value:
-			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewSpacing", value)
-			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewSpacing", value)
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
 		self.__listViewSpacing = value
 
 	@listViewSpacing.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewSpacing(self):
 		"""
-		This Method Is The Deleter Method For The _listViewSpacing Attribute.
+		This method is the deleter method for the _listViewSpacing attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("listViewSpacing"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewSpacing"))
 
 	@property
 	def listViewMargin(self):
 		"""
-		This Method Is The Property For The _listViewMargin Attribute.
+		This method is the property for the _listViewMargin attribute.
 
 		@return: self.__listViewMargin. ( Integer )
 		"""
@@ -689,29 +689,29 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewMargin(self, value):
 		"""
-		This Method Is The Setter Method For The _listViewMargin Attribute.
+		This method is the setter method for the _listViewMargin attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
 		if value:
-			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewMargin", value)
-			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewMargin", value)
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
 		self.__listViewMargin = value
 
 	@listViewMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewMargin(self):
 		"""
-		This Method Is The Deleter Method For The _listViewMargin Attribute.
+		This method is the deleter method for the _listViewMargin attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("listViewMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewMargin"))
 
 	@property
 	def listViewIconSize(self):
 		"""
-		This Method Is The Property For The _listViewIconSize Attribute.
+		This method is the property for the _listViewIconSize attribute.
 
 		@return: self.__listViewIconSize. ( Integer )
 		"""
@@ -722,29 +722,29 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This Method Is The Setter Method For The _listViewIconSize Attribute.
+		This method is the setter method for the _listViewIconSize attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
 		if value:
-			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewIconSize", value)
-			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewIconSize", value)
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
 		self.__listViewIconSize = value
 
 	@listViewIconSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This Method Is The Deleter Method For The _listViewIconSize Attribute.
+		This method is the deleter method for the _listViewIconSize attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("listViewIconSize"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewIconSize"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -755,26 +755,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -785,26 +785,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -815,26 +815,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
 	def settingsSeparator(self):
 		"""
-		This Method Is The Property For The _settingsSeparator Attribute.
+		This method is the property for the _settingsSeparator attribute.
 
 		@return: self.__settingsSeparator. ( String )
 		"""
@@ -845,26 +845,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSeparator Attribute.
+		This method is the setter method for the _settingsSeparator attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSeparator"))
 
 	@settingsSeparator.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSeparator Attribute.
+		This method is the deleter method for the _settingsSeparator attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSeparator"))
 
 	@property
 	def extension(self):
 		"""
-		This Method Is The Property For The _extension Attribute.
+		This method is the property for the _extension attribute.
 
 		@return: self.__extension. ( String )
 		"""
@@ -875,26 +875,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This Method Is The Setter Method For The _extension Attribute.
+		This method is the setter method for the _extension attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("extension"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("extension"))
 
 	@extension.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This Method Is The Deleter Method For The _extension Attribute.
+		This method is the deleter method for the _extension attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("extension"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
 
 	@property
 	def coreDb(self):
 		"""
-		This Method Is The Property For The _coreDb Attribute.
+		This method is the property for the _coreDb attribute.
 
 		@return: self.__coreDb. ( Object )
 		"""
@@ -905,26 +905,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDb Attribute.
+		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This Method Is The Deleter Method For The _coreDb Attribute.
+		This method is the deleter method for the _coreDb attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
 
 	@property
 	def coreCollectionsOutliner(self):
 		"""
-		This Method Is The Property For The _coreCollectionsOutliner Attribute.
+		This method is the property for the _coreCollectionsOutliner attribute.
 
 		@return: self.__coreCollectionsOutliner. ( Object )
 		"""
@@ -935,27 +935,27 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreCollectionsOutliner Attribute.
+		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreCollectionsOutliner Attribute.
+		This method is the deleter method for the _coreCollectionsOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreCollectionsOutliner"))
 
 
 	@property
 	def model(self):
 		"""
-		This Method Is The Property For The _model Attribute.
+		This method is the property for the _model attribute.
 
 		@return: self.__model. ( QStandardItemModel )
 		"""
@@ -966,26 +966,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This Method Is The Setter Method For The _model Attribute.
+		This method is the setter method for the _model attribute.
 
-		@param value: Attribute Value. ( QStandardItemModel )
+		@param value: Attribute value. ( QStandardItemModel )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
 
 	@model.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This Method Is The Deleter Method For The _model Attribute.
+		This method is the deleter method for the _model attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
 
 	@property
 	def modelSelection(self):
 		"""
-		This Method Is The Property For The _modelSelection Attribute.
+		This method is the property for the _modelSelection attribute.
 
 		@return: self.__modelSelection. ( Dictionary )
 		"""
@@ -996,26 +996,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self, value):
 		"""
-		This Method Is The Setter Method For The _modelSelection Attribute.
+		This method is the setter method for the _modelSelection attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelSelection"))
 
 	@modelSelection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This Method Is The Deleter Method For The _modelSelection Attribute.
+		This method is the deleter method for the _modelSelection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelSelection"))
 
 	@property
 	def databaseBrowserWorkerThread(self):
 		"""
-		This Method Is The Property For The _databaseBrowserWorkerThread Attribute.
+		This method is the property for the _databaseBrowserWorkerThread attribute.
 
 		@return: self.__databaseBrowserWorkerThread. ( QThread )
 		"""
@@ -1026,26 +1026,26 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowserWorkerThread(self, value):
 		"""
-		This Method Is The Setter Method For The _databaseBrowserWorkerThread Attribute.
+		This method is the setter method for the _databaseBrowserWorkerThread attribute.
 
-		@param value: Attribute Value. ( QThread )
+		@param value: Attribute value. ( QThread )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("databaseBrowserWorkerThread"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("databaseBrowserWorkerThread"))
 
 	@databaseBrowserWorkerThread.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowserWorkerThread(self):
 		"""
-		This Method Is The Deleter Method For The _databaseBrowserWorkerThread Attribute.
+		This method is the deleter method for the _databaseBrowserWorkerThread attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("databaseBrowserWorkerThread"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("databaseBrowserWorkerThread"))
 
 	@property
 	def modelContent(self):
 		"""
-		This Method Is The Property For The _modelContent Attribute.
+		This method is the property for the _modelContent attribute.
 
 		@return: self.__modelContent. ( List )
 		"""
@@ -1056,28 +1056,28 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def modelContent(self, value):
 		"""
-		This Method Is The Setter Method For The _modelContent Attribute.
+		This method is the setter method for the _modelContent attribute.
 
-		@param value: Attribute Value. ( List )
+		@param value: Attribute value. ( List )
 		"""
 
 		if value:
-			assert type(value) is list, "'{0}' Attribute: '{1}' Type Is Not 'list'!".format("content", value)
+			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("content", value)
 		self.__modelContent = value
 
 	@modelContent.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelContent(self):
 		"""
-		This Method Is The Deleter Method For The _modelContent Attribute.
+		This method is the deleter method for the _modelContent attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelContent"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelContent"))
 
 	@property
 	def toolTipText(self):
 		"""
-		This Method Is The Property For The _toolTipText Attribute.
+		This method is the property for the _toolTipText attribute.
 
 		@return: self.__toolTipText. ( String )
 		"""
@@ -1088,21 +1088,21 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def toolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _toolTipText Attribute.
+		This method is the setter method for the _toolTipText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
 
 	@toolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _toolTipText Attribute.
+		This method is the deleter method for the _toolTipText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1110,12 +1110,12 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -1132,18 +1132,18 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
 		self.ui.Database_Browser_Widget_gridLayout.addWidget(self.ui.Database_Browser_listView, 0, 0)
@@ -1153,7 +1153,7 @@ class DatabaseBrowser(UiComponent):
 		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
 		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
 
-		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Database_Browser_listView_setModel()
 
@@ -1168,9 +1168,9 @@ class DatabaseBrowser(UiComponent):
 				self.__databaseBrowserWorkerThread.start()
 				self.__container.workerThreads.append(self.__databaseBrowserWorkerThread)
 			else:
-				LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
-			LOGGER.info("{0} | Ibl Sets Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		self.ui.Thumbnails_Size_horizontalSlider.setValue(self.__listViewIconSize)
 		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
@@ -1193,18 +1193,18 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.centralwidget_gridLayout.addWidget(self.ui)
 
@@ -1212,43 +1212,43 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
-		This Method Is Called On Framework Startup.
+		This method is called on framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			# Wizard if sets table is empty.
 			if not self.getIblSets():
-				if messageBox.messageBox("Question", "Question", "The Database Is Empty, Would You Like To Add Some Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
+				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
-							raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+							raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
 			# Ibl sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' ibl set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateIblSetLocation(iblSet)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
 		else:
-			LOGGER.info("{0} | Database Ibl Sets Wizard And Ibl Sets Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
-		LOGGER.debug("> Stored '{0}' Active Ibl Sets Ids Selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
+		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
 		if activeIblSetsIds:
 			if self.__settingsSeparator in activeIblSetsIds:
 				ids = activeIblSetsIds.split(self.__settingsSeparator)
@@ -1261,10 +1261,10 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def onClose(self):
 		"""
-		This Method Is Called On Framework Close.
+		This method is called on framework close.
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' component framework close method.".format(self.__class__.__name__))
 
 		self.__Database_Browser_listView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
@@ -1272,7 +1272,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setModelDatas(self):
 		"""
-		This Method Sets Database_Browser_listView Model Content.
+		This method sets Database_Browser_listView Model content.
 		"""
 
 		self.__modelContent = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
@@ -1280,17 +1280,17 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setModel(self):
 		"""
-		This Method Sets The Database_Browser_listView Model.
+		This method sets the Database_Browser_listView Model.
 		"""
 
-		LOGGER.debug("> Setting Up '{0}' Model!".format("Database_Browser_listView"))
+		LOGGER.debug("> Setting up '{0}' model!".format("Database_Browser_listView"))
 
 		self.__Database_Browser_listView_storeModelSelection()
 
 		self.__model.clear()
 
 		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self.__modelContent), key=lambda x:(x[1]))]:
-			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
+			LOGGER.debug("> Preparing '{0}' ibl set for '{1}' model.".format(iblSet.name, "Database_Browser_listView"))
 
 			try:
 				iblSetStandardItem = QStandardItem()
@@ -1303,11 +1303,11 @@ class DatabaseBrowser(UiComponent):
 
 				iblSetStandardItem._datas = iblSet
 
-				LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
+				LOGGER.debug("> Adding '{0}' to '{1}' model.".format(iblSet.name, "Database_Browser_listView"))
 				self.__model.appendRow(iblSetStandardItem)
 
 			except Exception as error:
-				LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Ibl Set To '{2}' Model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
+				LOGGER.error("!>{0} | Exception raised while adding '{1}' ibl set to '{2}' model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
 				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Database_Browser_listView_setModel"))
 
 		self.__Database_Browser_listView_restoreModelSelection()
@@ -1317,20 +1317,20 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_refreshModel(self):
 		"""
-		This Method Refreshes The Database_Browser_listView Model.
+		This method refreshes the Database_Browser_listView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
+		LOGGER.debug("> Refreshing '{0}' model!".format("Database_Browser_listView"))
 
 		self.__Database_Browser_listView_setModel()
 
 	@core.executionTrace
 	def __Database_Browser_listView_setView(self):
 		"""
-		This Method Sets The Database_Browser_listView Ui.
+		This method sets the Database_Browser_listView ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
+		LOGGER.debug("> Initializing '{0}' widget!".format("Database_Browser_listView"))
 
 		self.ui.Database_Browser_listView.setAutoScroll(True)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
@@ -1344,10 +1344,10 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setDefaultViewState(self):
 		"""
-		This Method Scales The Database_Browser_listView Item Size.
+		This method scales the Database_Browser_listView item size.
 		"""
 
-		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
+		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
 
 		self.ui.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
 		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
@@ -1355,7 +1355,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_refreshView(self):
 		"""
-		This Method Refreshes The Database_Browser_listView View.
+		This method refreshes the Database_Browser_listView View.
 		"""
 
 		self.__Database_Browser_listView_setDefaultViewState()
@@ -1363,10 +1363,10 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_storeModelSelection(self):
 			"""
-			This Method Stores Database_Browser_listView Model Selection.
+			This method stores Database_Browser_listView Model selection.
 			"""
 
-			LOGGER.debug("> Storing '{0}' Model Selection!".format("Database_Browser_listView"))
+			LOGGER.debug("> Storing '{0}' model selection!".format("Database_Browser_listView"))
 
 			self.__modelSelection = []
 			for item in self.getSelectedIblSets():
@@ -1375,10 +1375,10 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_restoreModelSelection(self):
 			"""
-			This Method Restores Database_Browser_listView Model Selection.
+			This method restores Database_Browser_listView Model selection.
 			"""
 
-			LOGGER.debug("> Restoring '{0}' Model Selection!".format("Database_Browser_listView"))
+			LOGGER.debug("> Restoring '{0}' model selection!".format("Database_Browser_listView"))
 
 			indexes = []
 			for i in range(self.__model.rowCount()):
@@ -1394,23 +1394,23 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addActions(self):
 		"""
-		This Method Sets The Database Browser Actions.
+		This method sets the Database browser actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
+			addContentAction = QAction("Add content ...", self.ui.Database_Browser_listView)
 			addContentAction.triggered.connect(self.__Database_Browser_listView_addContentAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
 
-			addIblSetAction = QAction("Add Ibl Set ...", self.ui.Database_Browser_listView)
+			addIblSetAction = QAction("Add Ibl set ...", self.ui.Database_Browser_listView)
 			addIblSetAction.triggered.connect(self.__Database_Browser_listView_addIblSetAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addIblSetAction)
 
-			removeIblSetsAction = QAction("Remove Ibl Set(s) ...", self.ui.Database_Browser_listView)
+			removeIblSetsAction = QAction("Remove Ibl set(s) ...", self.ui.Database_Browser_listView)
 			removeIblSetsAction.triggered.connect(self.__Database_Browser_listView_removeIblSetsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(removeIblSetsAction)
 
-			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) Location(s) ...", self.ui.Database_Browser_listView)
+			updateIblSetsLocationsAction = QAction("Update Ibl set(s) location(s) ...", self.ui.Database_Browser_listView)
 			updateIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(updateIblSetsLocationsAction)
 
@@ -1418,14 +1418,14 @@ class DatabaseBrowser(UiComponent):
 			separatorAction.setSeparator(True)
 			self.ui.Database_Browser_listView.addAction(separatorAction)
 		else:
-			LOGGER.info("{0} | Ibl Sets Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __Database_Browser_listView_addContentAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By addContentAction Action.
+		This method is triggered by addContentAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addContent__()
@@ -1433,9 +1433,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By addIblSetAction Action.
+		This method is triggered by addIblSetAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addIblSet__()
@@ -1443,9 +1443,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By removeIblSetsAction Action.
+		This method is triggered by removeIblSetsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.removeIblSets__()
@@ -1453,9 +1453,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By updateIblSetsLocationsAction Action.
+		This method is triggered by updateIblSetsLocationsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.updateIblSetsLocation__()
@@ -1463,16 +1463,16 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
 		"""
-		This Method Defines The Behavior When The Database_Browser_listView Model Data Changes.
+		This method defines the behavior when the Database_Browser_listView Model data changes.
 
-		@param startIndex: Edited Item Starting QModelIndex. ( QModelIndex )
-		@param endIndex: Edited Item Ending QModelIndex. ( QModelIndex )
+		@param startIndex: Edited item starting QModelIndex. ( QModelIndex )
+		@param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
 		standardItem = self.__model.itemFromIndex(startIndex)
 		currentTitle = standardItem.text()
 
-		LOGGER.debug("> Updating Ibl Set '{0}' Title To '{1}'.".format(standardItem._datas.title, currentTitle))
+		LOGGER.debug("> Updating Ibl set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
 		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
 		iblSet.title = str(currentTitle)
 		dbCommon.commit(self.__coreDb.dbSession)
@@ -1482,9 +1482,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
-		This Method Scales The Database_Browser_listView Icons.
+		This method scales the Database_Browser_listView icons.
 
-		@param value: Thumbnails Size. ( Integer )
+		@param value: Thumbnails size. ( Integer )
 		"""
 
 		self.__listViewIconSize = value
@@ -1492,13 +1492,13 @@ class DatabaseBrowser(UiComponent):
 		self.__Database_Browser_listView_setDefaultViewState()
 
 		# Storing settings key.
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("listViewIconSize", value))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
 	@core.executionTrace
 	def __coreDb_database__changed(self):
 		"""
-		This Method Is Triggered By The DatabaseBrowser_Worker When The Database Has Changed.
+		This method is triggered by the DatabaseBrowser_Worker when the Database has changed.
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
@@ -1509,57 +1509,57 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def addContent__(self):
 		"""
-		This Method Adds User Defined Content To The Database.
+		This method adds user defined content to the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add Content:", self.__container.lastBrowsedPath)))
+		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
 		if not directory:
 			return
 
-		LOGGER.debug("> Chosen Directory Path: '{0}'.".format(directory))
+		LOGGER.debug("> Chosen directory path: '{0}'.".format(directory))
 		if self.addDirectory(directory):
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def addIblSet__(self):
 		"""
-		This Method Adds An User Defined Ibl Set To The Database.
+		This method adds an user defined Ibl set to the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls Files (*{0})".format(self.__extension))))
+		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
 		if not path:
 			return
 
 		if not self.iblSetExists(path):
-			LOGGER.debug("> Chosen Ibl Set Path: '{0}'.".format(path))
+			LOGGER.debug("> Chosen Ibl set path: '{0}'.".format(path))
 			if self.addIblSet(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, path)
+				raise Exception, "{0} | Exception raised while adding '{1}' ibl set to the Database!".format(self.__class__.__name__, path)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set Already Exists In Database!".format(self.__class__.__name__, path))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' ibl set already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def removeIblSets__(self):
 		"""
-		This Method Removes User Selected Ibl Sets From The Database.
+		This method removes user selected Ibl Sets from the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
 		if not selectedIblSets:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for iblSet in selectedIblSets:
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
@@ -1570,15 +1570,15 @@ class DatabaseBrowser(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception Raised While Removing '{1}' Ibls Sets From The Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+				raise Exception, "{0} | Exception raised while removing '{1}' ibls sets from the Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def updateIblSetsLocation__(self):
 		"""
-		This Method Updates User Selected Ibl Sets Locations.
+		This method updates user selected Ibl Sets locations.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1587,7 +1587,7 @@ class DatabaseBrowser(UiComponent):
 
 		success = True
 		for iblSet in selectedIblSets:
-			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set Location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls Files (*.{0})".format(self.__extension))))
+			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' ibl set location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
 			success *= self.updateIblSetLocation(iblSet, file) or False
 
 		self.emit(SIGNAL("modelDatasRefresh()"))
@@ -1596,45 +1596,45 @@ class DatabaseBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Updating '{1}' Ibls Sets Locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+			raise Exception, "{0} | Exception raised while updating '{1}' ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None, emitSignal=True):
 		"""
-		This Method Adds An Ibl Set To The Database.
+		This method adds an Ibl set to the Database.
 
-		@param name: Ibl Set Name. ( String )
-		@param path: Ibl Set Path. ( String )
-		@param collectionId: Target Collection Id. ( Integer )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param name: Ibl set name. ( String )
+		@param path: Ibl set path. ( String )
+		@param collectionId: Target Collection id. ( Integer )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		if not self.iblSetExists(path):
-			LOGGER.info("{0} | Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, name))
+			LOGGER.info("{0} | Adding '{1}' ibl set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
 				if emitSignal:
 					self.emit(SIGNAL("modelDatasRefresh()"))
 					self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Ibl Set To The Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' ibl set to the Database!".format(self.__class__.__name__, name)
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Ibl Set Already Exists In Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' ibl set already exists in Database!".format(self.__class__.__name__, name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This Method Adds Directory Ibl Sets To The Database.
+		This method adds directory Ibl Sets to the Database.
 
-		@param directory: Directory To Add. ( String )
-		@param collectionId: Target Collection Id. ( Integer )
-		@return: Method Success. ( Boolean )
+		@param directory: Directory to add. ( String )
+		@param collectionId: Target Collection id. ( Integer )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
+		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
 
 		walker = Walker(directory)
 		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
@@ -1650,35 +1650,35 @@ class DatabaseBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet, emitSignal=True):
 		"""
-		This Method Removes Provided Ibl Set From The Database.
+		This method removes provided Ibl set from the Database.
 
-		@param iblSet: Ibl Set To Remove. ( DbIblSet )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param iblSet: Ibl set to remove. ( DbIblSet )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title))
+		LOGGER.info("{0} | Removing '{1}' ibl set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Removing '{1}' Ibl Set From The Database!".format(self.__class__.__name__, iblSet.title)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' ibl set from the Database!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def iblSetExists(self, path):
 		"""
-		This Method Returns If Provided Ibl Set Path Exists In The Database.
+		This method returns if provided Ibl set path exists in the Database.
 
-		@param path: Collection Path. ( String )
-		@return: Collection Exists. ( Boolean )
+		@param path: Collection path. ( String )
+		@return: Collection exists. ( Boolean )
 		"""
 
 		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
@@ -1687,27 +1687,27 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
 		"""
-		This Method Updates Provided Ibl Set Location.
+		This method updates provided Ibl set location.
 
-		@param iblSet: Ibl Set To Update. ( DbIblSet )
-		@param iblSet: New Ibl Set File. ( String )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param iblSet: Ibl set to update. ( DbIblSet )
+		@param iblSet: New Ibl set file. ( String )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Updating '{1}' Ibl Set With New Location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
+		LOGGER.info("{0} | Updating '{1}' ibl set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Ibl Set Location!".format(self.__class__.__name__, iblSet.title)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' ibl set location!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def getIblSets(self):
 		"""
-		This Method Returns Database Ibl Sets.
+		This method returns Database Ibl Sets.
 
 		@return: Database Ibl Sets Collections. ( List )
 		"""
@@ -1717,9 +1717,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self):
 		"""
-		This Method Returns Database_Browser_listView Selected Items.
+		This method returns Database_Browser_listView selected items.
 
-		@return: View Selected Items. ( List )
+		@return: View selected items. ( List )
 		"""
 
 		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
@@ -1727,9 +1727,9 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def getSelectedIblSets(self):
 		"""
-		This Method Returns Selected Ibl Sets.
+		This method returns selected Ibl Sets.
 
-		@return: View Selected Ibl Sets. ( List )
+		@return: View selected Ibl Sets. ( List )
 		"""
 
 		return [item._datas for item in self.getSelectedItems()]
@@ -1738,21 +1738,21 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getFormatedShotDate(self, date, time):
 		"""
-		This Method Returns A Formated Shot Date.
+		This method returns a formated shot date.
 
-		@param date: sIBL Set Date Key Value. ( String )
-		@param time: sIBL Set Time Key Value. ( String )
-		@return: Current Shot Date. ( String )
+		@param date: sIBL set date key value. ( String )
+		@param time: sIBL set time key value. ( String )
+		@return: Current shot date. ( String )
 		"""
 
-		LOGGER.debug("> Formatting Shot Date With '{0}' Date and '{1}' Time.".format(date, time))
+		LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))
 
 		if date and time and date != Constants.nullObject and time != Constants.nullObject:
 			shotTime = time.split(":")
 			shotTime = shotTime[0] + "H" + shotTime[1]
 			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
-			LOGGER.debug("> Formatted Shot Date: '{0}'.".format(shotDate))
+			LOGGER.debug("> Formatted shot date: '{0}'.".format(shotDate))
 			return shotDate
 		else:
 			return Constants.nullObject

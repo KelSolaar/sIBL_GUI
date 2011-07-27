@@ -79,7 +79,7 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	@param fileOut: Output File. ( String )
 	"""
 
-	LOGGER.info("{0} | Extracting 'body' Tag Content From {1}' File!".format(getHDRLabsDocumentation.__name__, fileIn))
+	LOGGER.info("{0} | Extracting 'body' Tag Content From {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))
 	file = File(fileIn)
 	file.read()
 

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	UI Common Module.
+	UI common Module.
 
 **Others:**
 
@@ -82,15 +82,15 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Icon(core.Structure):
 	"""
-	This Is The Icon Class.
+	This is the Icon class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: path ( Key / Value Pairs )
+		@param kwargs: path ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -101,66 +101,66 @@ class Icon(core.Structure):
 @core.executionTrace
 def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui Extended Exception Handler.
+	This definition provides a ui extended exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
-	messageBox.messageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
+	messageBox.messageBox("Detailed error", "Exception", "Exception in '{0}': {1}".format(origin, exception))
 
 @core.executionTrace
 def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui Standalone Extended Exception Handler.
+	This definition provides a ui standalone extended exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
-	messageBox.standaloneMessageBox("Detailed Error", "Exception", "Exception In '{0}': {1}".format(origin, exception))
+	messageBox.standaloneMessageBox("Detailed error", "Exception", "Exception in '{0}': {1}".format(origin, exception))
 
 @core.executionTrace
 def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui Basic Exception Handler.
+	This definition provides a ui basic exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
-	messageBox.messageBox("Detailed Error", "Exception", "{0}".format(exception))
+	messageBox.messageBox("Detailed error", "Exception", "{0}".format(exception))
 
 @core.executionTrace
 def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui Standalone Basic Exception Handler.
+	This definition provides a ui standalone basic exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
-	messageBox.standaloneMessageBox("Detailed Error", "Exception", "{0}".format(exception))
+	messageBox.standaloneMessageBox("Detailed error", "Exception", "{0}".format(exception))
 
 @core.executionTrace
 def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui System Exit Exception Handler.
+	This definition provides a ui system exit exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -171,10 +171,10 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 @core.executionTrace
 def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
-	This Definition Provides A Ui Standalone System Exit Exception Handler.
+	This definition provides a ui standalone system exit exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / Method Raising The Exception. ( String )
+	@param origin: Function / method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -186,10 +186,10 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def setWindowDefaultIcon(window):
 	"""
-	This Method Sets The Application Icon To The Provided Window.
+	This method sets the Application icon to the provided window.
 
 	@param window: Window. ( QWidget )
-	@return: Definition Success. ( Boolean )
+	@return: Definition success. ( Boolean )
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -204,11 +204,11 @@ def setWindowDefaultIcon(window):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def centerWidgetOnScreen(widget, screen=None):
 	"""
-	This Definition Centers The Provided Widget Middle Of The Screen.
+	This definition centers the provided Widget middle of the screen.
 
 	@param widget: Current Widget. ( QWidget )
-	@param screen: Screen USed For Centering. ( Integer )
-	@return: Definition Success. ( Boolean )
+	@param screen: Screen used for centering. ( Integer )
+	@return: Definition success. ( Boolean )
 	"""
 
 	screen = screen and screen or QApplication.desktop().primaryScreen()
@@ -221,11 +221,11 @@ def centerWidgetOnScreen(widget, screen=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicItem(path, type):
 		"""
-		This Method Gets A Graphic Display: QIcon, QImage, QPixmap.
+		This method gets a graphic display: QIcon, QImage, QPixmap.
 
-		@param path: Image Path. ( String )
+		@param path: Image path. ( String )
 		@param type: QIcon, QImage, QPixmap. ( QObject )
-		@return: Graphic Display. ( Icon, QImage, QPixmap )
+		@return: Graphic display. ( Icon, QImage, QPixmap )
 		"""
 
 		if os.path.exists(path):
@@ -252,9 +252,9 @@ def getGraphicItem(path, type):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path):
 		"""
-		This Method Gets A QIcon.
+		This method gets a QIcon.
 
-		@param path: Icon Image Path. ( String )
+		@param path: Icon image path. ( String )
 		@return: QIcon. ( QIcon )
 		"""
 
@@ -264,9 +264,9 @@ def getIcon(path):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path):
 		"""
-		This Method Gets A QPixmap.
+		This method gets a QPixmap.
 
-		@param path: Icon Image Path. ( String )
+		@param path: Icon image path. ( String )
 		@return: QPixmap. ( QPixmap )
 		"""
 
@@ -276,9 +276,9 @@ def getPixmap(path):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path):
 		"""
-		This Method Gets A QImage.
+		This method gets a QImage.
 
-		@param path: Icon Image Path. ( String )
+		@param path: Icon image path. ( String )
 		@return: QImage. ( QImage )
 		"""
 
@@ -288,9 +288,9 @@ def getImage(path):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def filterImagePath(path):
 		"""
-		This Method Filters The Image Path.
+		This method filters the image path.
 
-		@param path: Image Path. ( String )
+		@param path: Image path. ( String )
 		@return: Path. ( String )
 		"""
 

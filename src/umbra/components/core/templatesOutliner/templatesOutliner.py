@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Components Manager Ui Component Module.
+	Components manager ui Component Module.
 
 **Others:**
 
@@ -85,7 +85,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class TemplatesOutliner_Worker(QThread):
 	"""
-	This Class Is The TemplatesOutliner_Worker Class.
+	This class is the TemplatesOutliner_Worker class.
 	"""
 
 	# Custom signals definitions.
@@ -94,12 +94,12 @@ class TemplatesOutliner_Worker(QThread):
 	@core.executionTrace
 	def __init__(self, container):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param container: Object Container. ( Object )
+		@param container: Object container. ( Object )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QThread.__init__(self, container)
 
@@ -117,7 +117,7 @@ class TemplatesOutliner_Worker(QThread):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -128,26 +128,26 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def dbSession(self):
 		"""
-		This Method Is The Property For The _dbSession Attribute.
+		This method is the property for the _dbSession attribute.
 
 		@return: self.__dbSession. ( Object )
 		"""
@@ -158,27 +158,27 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This Method Is The Setter Method For The _dbSession Attribute.
+		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This Method Is The Deleter Method For The _dbSession Attribute.
+		This method is the deleter method for the _dbSession attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dbSession"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
 
 
 	@property
 	def timer(self):
 		"""
-		This Method Is The Property For The _timer Attribute.
+		This method is the property for the _timer attribute.
 
 		@return: self.__timer. ( QTimer )
 		"""
@@ -189,26 +189,26 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self, value):
 		"""
-		This Method Is The Setter Method For The _timer Attribute.
+		This method is the setter method for the _timer attribute.
 
-		@param value: Attribute Value. ( QTimer )
+		@param value: Attribute value. ( QTimer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timer"))
 
 	@timer.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self):
 		"""
-		This Method Is The Deleter Method For The _timer Attribute.
+		This method is the deleter method for the _timer attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timer"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timer"))
 
 	@property
 	def timerCycleMultiplier(self):
 		"""
-		This Method Is The Property For The _timerCycleMultiplier Attribute.
+		This method is the property for the _timerCycleMultiplier attribute.
 
 		@return: self.__timerCycleMultiplier. ( Float )
 		"""
@@ -219,21 +219,21 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self, value):
 		"""
-		This Method Is The Setter Method For The _timerCycleMultiplier Attribute.
+		This method is the setter method for the _timerCycleMultiplier attribute.
 
-		@param value: Attribute Value. ( Float )
+		@param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timerCycleMultiplier"))
 
 	@timerCycleMultiplier.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self):
 		"""
-		This Method Is The Deleter Method For The _timerCycleMultiplier Attribute.
+		This method is the deleter method for the _timerCycleMultiplier attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timerCycleMultiplier"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -241,7 +241,7 @@ class TemplatesOutliner_Worker(QThread):
 	@core.executionTrace
 	def run(self):
 		"""
-		This Method Starts The QThread.
+		This method starts the QThread.
 		"""
 
 		self.__timer = QTimer()
@@ -255,7 +255,7 @@ class TemplatesOutliner_Worker(QThread):
 	@core.executionTrace
 	def updateTemplates(self):
 		"""
-		This Method Updates Database Templates If They Have Been Modified On Disk.
+		This method updates Database Templates if they have been modified on disk.
 		"""
 
 		needModelRefresh = False
@@ -265,27 +265,27 @@ class TemplatesOutliner_Worker(QThread):
 					storedStats = template.osStats.split(",")
 					osStats = os.stat(template.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Template File Has Been Modified And Will Be Updated!".format(self.__class__.__name__, template.name))
+						LOGGER.info("{0} | '{1}' template file has been modified and will be updated!".format(self.__class__.__name__, template.name))
 						if dbCommon.updateTemplateContent(self.__dbSession, template):
-							LOGGER.info("{0} | '{1}' Template Has Been Updated!".format(self.__class__.__name__, template.name))
+							LOGGER.info("{0} | '{1}' template has been updated!".format(self.__class__.__name__, template.name))
 							needModelRefresh = True
 
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
 
 class TemplatesOutliner_QTreeView(QTreeView):
 	"""
-	This Class Is The TemplatesOutliner_QTreeView Class.
+	This class is the TemplatesOutliner_QTreeView class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, container):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QTreeView.__init__(self, container)
 
@@ -303,7 +303,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -314,26 +314,26 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -344,34 +344,34 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
 	def dragEnterEvent(self, event):
 		"""
-		This Method Defines The Drag Enter Event Behavior.
+		This method defines the drag enter event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
 
 		if event.mimeData().hasFormat("text/uri-list"):
-			LOGGER.debug("> '{0}' Drag Event Type Accepted!".format("text/uri-list"))
+			LOGGER.debug("> '{0}' drag event type accepted!".format("text/uri-list"))
 			event.accept()
 		else:
 			event.ignore()
@@ -379,7 +379,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@core.executionTrace
 	def dragMoveEvent(self, event):
 		"""
-		This Method Defines The Drag Move Event Behavior.
+		This method defines the drag move event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
@@ -390,32 +390,32 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
-		This Method Defines The Drop Event Behavior.
+		This method defines the drop event behavior.
 
 		@param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
 			if event.mimeData().hasUrls():
-				LOGGER.debug("> Drag Event Urls List: '{0}'!".format(event.mimeData().urls()))
+				LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
 				for url in event.mimeData().urls():
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' Template Set File Has Been Dropped, Would You Like To Add It To The Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' template set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreTemplatesOutliner.addTemplate(name, path)
 					else:
 						if os.path.isdir(path):
-							if messageBox.messageBox("Question", "Question", "'{0}' Directory Has Been Dropped, Would You Like To Add Its Content To The Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreTemplatesOutliner.addDirectory(path)
 						else:
-							raise OSError, "{0} | Exception Raised While Parsing '{1}' Path: Syntax Is Invalid!".format(self.__class__.__name__, path)
+							raise OSError, "{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path)
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot Perform Action, Database Has Been Set Read Only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
 
 class TemplatesOutliner(UiComponent):
 	"""
-	This Class Is The TemplatesOutliner Class.
+	This class is the TemplatesOutliner class.
 	"""
 
 	# Custom signals definitions.
@@ -425,13 +425,13 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -462,10 +462,10 @@ class TemplatesOutliner(UiComponent):
 		self.__factoryCollection = "Factory"
 		self.__userCollection = "User"
 
-		self.__modelHeaders = [ "Templates", "Release", "Software Version" ]
+		self.__modelHeaders = [ "Templates", "Release", "Software version" ]
 		self.__treeViewIndentation = 15
 		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template To Display Related Informations!<h4>* * *</h4></center>"
+		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template to display related informations!<h4>* * *</h4></center>"
 		self.__templatesInformationsText = """
 											<h4><center>{0}</center></h4>
 											<p>
@@ -482,7 +482,7 @@ class TemplatesOutliner(UiComponent):
 											<b>Comment:</b> {6}
 											</p>
 											<p>
-											<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">Template Manual</span></a>
+											<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
 											</p>
 											</p>
 											"""
@@ -493,7 +493,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -504,26 +504,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
 		"""
-		This Method Is The Property For The _uiResources Attribute.
+		This method is the property for the _uiResources attribute.
 
 		@return: self.__uiResources. ( String )
 		"""
@@ -534,26 +534,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This Method Is The Setter Method For The _uiResources Attribute.
+		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This method is the deleter method for the _uiResources attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
 
 	@property
 	def uiSoftwareAffixe(self):
 		"""
-		This Method Is The Property For The _uiSoftwareAffixe Attribute.
+		This method is the property for the _uiSoftwareAffixe attribute.
 
 		@return: self.__uiSoftwareAffixe. ( String )
 		"""
@@ -564,26 +564,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self, value):
 		"""
-		This Method Is The Setter Method For The _uiSoftwareAffixe Attribute.
+		This method is the setter method for the _uiSoftwareAffixe attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiSoftwareAffixe"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiSoftwareAffixe"))
 
 	@uiSoftwareAffixe.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self):
 		"""
-		This Method Is The Deleter Method For The _uiSoftwareAffixe Attribute.
+		This method is the deleter method for the _uiSoftwareAffixe attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiSoftwareAffixe"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiSoftwareAffixe"))
 
 	@property
 	def uiUnknownSoftwareImage(self):
 		"""
-		This Method Is The Property For The _uiUnknownSoftwareImage Attribute.
+		This method is the property for the _uiUnknownSoftwareImage attribute.
 
 		@return: self.__uiUnknownSoftwareImage. ( String )
 		"""
@@ -594,26 +594,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiUnknownSoftwareImage Attribute.
+		This method is the setter method for the _uiUnknownSoftwareImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiUnknownSoftwareImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiUnknownSoftwareImage"))
 
 	@uiUnknownSoftwareImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiUnknownSoftwareImage Attribute.
+		This method is the deleter method for the _uiUnknownSoftwareImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiUnknownSoftwareImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiUnknownSoftwareImage"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -624,26 +624,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -654,26 +654,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -684,26 +684,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -714,26 +714,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
 	def settingsSeparator(self):
 		"""
-		This Method Is The Property For The _settingsSeparator Attribute.
+		This method is the property for the _settingsSeparator attribute.
 
 		@return: self.__settingsSeparator. ( String )
 		"""
@@ -744,26 +744,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSeparator Attribute.
+		This method is the setter method for the _settingsSeparator attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSeparator"))
 
 	@settingsSeparator.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSeparator Attribute.
+		This method is the deleter method for the _settingsSeparator attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSeparator"))
 
 	@property
 	def coreDb(self):
 		"""
-		This Method Is The Property For The _coreDb Attribute.
+		This method is the property for the _coreDb attribute.
 
 		@return: self.__coreDb. ( Object )
 		"""
@@ -774,26 +774,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDb Attribute.
+		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This Method Is The Deleter Method For The _coreDb Attribute.
+		This method is the deleter method for the _coreDb attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDb"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
 
 	@property
 	def model(self):
 		"""
-		This Method Is The Property For The _model Attribute.
+		This method is the property for the _model attribute.
 
 		@return: self.__model. ( QStandardItemModel )
 		"""
@@ -804,26 +804,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This Method Is The Setter Method For The _model Attribute.
+		This method is the setter method for the _model attribute.
 
-		@param value: Attribute Value. ( QStandardItemModel )
+		@param value: Attribute value. ( QStandardItemModel )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
 
 	@model.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This Method Is The Deleter Method For The _model Attribute.
+		This method is the deleter method for the _model attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
 
 	@property
 	def modelSelection(self):
 		"""
-		This Method Is The Property For The _modelSelection Attribute.
+		This method is the property for the _modelSelection attribute.
 
 		@return: self.__modelSelection. ( Dictionary )
 		"""
@@ -834,26 +834,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self, value):
 		"""
-		This Method Is The Setter Method For The _modelSelection Attribute.
+		This method is the setter method for the _modelSelection attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelSelection"))
 
 	@modelSelection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This Method Is The Deleter Method For The _modelSelection Attribute.
+		This method is the deleter method for the _modelSelection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelSelection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelSelection"))
 
 	@property
 	def templatesOutlinerWorkerThread(self):
 		"""
-		This Method Is The Property For The _templatesOutlinerWorkerThread Attribute.
+		This method is the property for the _templatesOutlinerWorkerThread attribute.
 
 		@return: self.__templatesOutlinerWorkerThread. ( QThread )
 		"""
@@ -864,26 +864,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesOutlinerWorkerThread(self, value):
 		"""
-		This Method Is The Setter Method For The _templatesOutlinerWorkerThread Attribute.
+		This method is the setter method for the _templatesOutlinerWorkerThread attribute.
 
-		@param value: Attribute Value. ( QThread )
+		@param value: Attribute value. ( QThread )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesOutlinerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesOutlinerWorkerThread"))
 
 	@templatesOutlinerWorkerThread.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesOutlinerWorkerThread(self):
 		"""
-		This Method Is The Deleter Method For The _templatesOutlinerWorkerThread Attribute.
+		This method is the deleter method for the _templatesOutlinerWorkerThread attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesOutlinerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesOutlinerWorkerThread"))
 
 	@property
 	def extension(self):
 		"""
-		This Method Is The Property For The _extension Attribute.
+		This method is the property for the _extension attribute.
 
 		@return: self.__extension. ( String )
 		"""
@@ -894,26 +894,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This Method Is The Setter Method For The _extension Attribute.
+		This method is the setter method for the _extension attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("extension"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("extension"))
 
 	@extension.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This Method Is The Deleter Method For The _extension Attribute.
+		This method is the deleter method for the _extension attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("extension"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
 
 	@property
 	def defaultCollections(self):
 		"""
-		This Method Is The Property For The _defaultCollections Attribute.
+		This method is the property for the _defaultCollections attribute.
 
 		@return: self.__defaultCollections. ( Dictionary )
 		"""
@@ -924,26 +924,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollections(self, value):
 		"""
-		This Method Is The Setter Method For The _defaultCollections Attribute.
+		This method is the setter method for the _defaultCollections attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("defaultCollections"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("defaultCollections"))
 
 	@defaultCollections.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollections(self):
 		"""
-		This Method Is The Deleter Method For The _defaultCollections Attribute.
+		This method is the deleter method for the _defaultCollections attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("defaultCollections"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("defaultCollections"))
 
 	@property
 	def factoryCollection(self):
 		"""
-		This Method Is The Property For The _factoryCollection Attribute.
+		This method is the property for the _factoryCollection attribute.
 
 		@return: self.__factoryCollection. ( String )
 		"""
@@ -954,26 +954,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def factoryCollection(self, value):
 		"""
-		This Method Is The Setter Method For The _factoryCollection Attribute.
+		This method is the setter method for the _factoryCollection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("factoryCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryCollection"))
 
 	@factoryCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def factoryCollection(self):
 		"""
-		This Method Is The Deleter Method For The _factoryCollection Attribute.
+		This method is the deleter method for the _factoryCollection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("factoryCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryCollection"))
 
 	@property
 	def userCollection(self):
 		"""
-		This Method Is The Property For The _userCollection Attribute.
+		This method is the property for the _userCollection attribute.
 
 		@return: self.__userCollection. ( String )
 		"""
@@ -984,26 +984,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def userCollection(self, value):
 		"""
-		This Method Is The Setter Method For The _userCollection Attribute.
+		This method is the setter method for the _userCollection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("userCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("userCollection"))
 
 	@userCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def userCollection(self):
 		"""
-		This Method Is The Deleter Method For The _userCollection Attribute.
+		This method is the deleter method for the _userCollection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("userCollection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("userCollection"))
 
 	@property
 	def modelHeaders(self):
 		"""
-		This Method Is The Property For The _modelHeaders Attribute.
+		This method is the property for the _modelHeaders attribute.
 
 		@return: self.__modelHeaders. ( List )
 		"""
@@ -1014,26 +1014,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self, value):
 		"""
-		This Method Is The Setter Method For The _modelHeaders Attribute.
+		This method is the setter method for the _modelHeaders attribute.
 
-		@param value: Attribute Value. ( List )
+		@param value: Attribute value. ( List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("modelHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelHeaders"))
 
 	@modelHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self):
 		"""
-		This Method Is The Deleter Method For The _modelHeaders Attribute.
+		This method is the deleter method for the _modelHeaders attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("modelHeaders"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelHeaders"))
 
 	@property
 	def treeViewIndentation(self):
 		"""
-		This Method Is The Property For The _treeViewIndentation Attribute.
+		This method is the property for the _treeViewIndentation attribute.
 
 		@return: self.__treeViewIndentation. ( Integer )
 		"""
@@ -1044,26 +1044,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This Method Is The Setter Method For The _treeViewIndentation Attribute.
+		This method is the setter method for the _treeViewIndentation attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewIndentation"))
 
 	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This Method Is The Deleter Method For The _treeViewIndentation Attribute.
+		This method is the deleter method for the _treeViewIndentation attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewIndentation"))
 
 	@property
 	def treeViewInnerMargins(self):
 		"""
-		This Method Is The Property For The _treeViewInnerMargins Attribute.
+		This method is the property for the _treeViewInnerMargins attribute.
 
 		@return: self.__treeViewInnerMargins. ( Integer )
 		"""
@@ -1074,26 +1074,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
-		This Method Is The Setter Method For The _treeViewInnerMargins Attribute.
+		This method is the setter method for the _treeViewInnerMargins attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("treeViewInnerMargins"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewInnerMargins"))
 
 	@treeViewInnerMargins.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
-		This Method Is The Deleter Method For The _treeViewInnerMargins Attribute.
+		This method is the deleter method for the _treeViewInnerMargins attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("treeViewInnerMargins"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewInnerMargins"))
 
 	@property
 	def templatesInformationsDefaultText(self):
 		"""
-		This Method Is The Property For The _templatesInformationsDefaultText Attribute.
+		This method is the property for the _templatesInformationsDefaultText attribute.
 
 		@return: self.__templatesInformationsDefaultText. ( String )
 		"""
@@ -1104,26 +1104,26 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self, value):
 		"""
-		This Method Is The Setter Method For The _templatesInformationsDefaultText Attribute.
+		This method is the setter method for the _templatesInformationsDefaultText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesInformationsDefaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesInformationsDefaultText"))
 
 	@templatesInformationsDefaultText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self):
 		"""
-		This Method Is The Deleter Method For The _templatesInformationsDefaultText Attribute.
+		This method is the deleter method for the _templatesInformationsDefaultText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesInformationsDefaultText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesInformationsDefaultText"))
 
 	@property
 	def templatesInformationsText(self):
 		"""
-		This Method Is The Property For The _templatesInformationsText Attribute.
+		This method is the property for the _templatesInformationsText attribute.
 
 		@return: self.__templatesInformationsText. ( String )
 		"""
@@ -1134,21 +1134,21 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self, value):
 		"""
-		This Method Is The Setter Method For The _templatesInformationsText Attribute.
+		This method is the setter method for the _templatesInformationsText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("templatesInformationsText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesInformationsText"))
 
 	@templatesInformationsText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self):
 		"""
-		This Method Is The Deleter Method For The _templatesInformationsText Attribute.
+		This method is the deleter method for the _templatesInformationsText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("templatesInformationsText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesInformationsText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1156,12 +1156,12 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -1179,20 +1179,20 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model Edition Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Templates_Outliner_treeView_setModel()
 
@@ -1216,9 +1216,9 @@ class TemplatesOutliner(UiComponent):
 				self.__templatesOutlinerWorkerThread.start()
 				self.__container.workerThreads.append(self.__templatesOutlinerWorkerThread)
 			else:
-				LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
-			LOGGER.info("{0} | Templates Continuous Scanner Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / slots.
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
@@ -1231,18 +1231,18 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -1250,18 +1250,18 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This Method Is Called On Framework Startup.
+		This method is called on framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework Startup Method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			# Adding default templates.
@@ -1272,15 +1272,15 @@ class TemplatesOutliner(UiComponent):
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template File Is Missing, Would You Like To Update It's Location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateTemplateLocation(template)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
 		else:
-			LOGGER.info("{0} | Database Default Templates Wizard And Templates Integrity Checking Method Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollections = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-		LOGGER.debug("> Stored '{0}' Active Collections Selection: '{1}'.".format(self.__class__.__name__, activeCollections))
+		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollections))
 		if activeCollections:
 			if self.__settingsSeparator in activeCollections:
 				collections = activeCollections.split(self.__settingsSeparator)
@@ -1289,7 +1289,7 @@ class TemplatesOutliner(UiComponent):
 			self.__modelSelection["Collections"] = collections
 
 		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
-		LOGGER.debug("> Stored '{0}' Active Softwares Selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
+		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
 		if activeSoftwares:
 			if self.__settingsSeparator in activeSoftwares:
 				softwares = activeSoftwares.split(self.__settingsSeparator)
@@ -1298,7 +1298,7 @@ class TemplatesOutliner(UiComponent):
 			self.__modelSelection["Softwares"] = softwares
 
 		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
-		LOGGER.debug("> Stored '{0}' Active Templates Ids Selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
+		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
 		if activeTemplatesIds:
 			if self.__settingsSeparator in activeTemplatesIds:
 				ids = activeTemplatesIds.split(self.__settingsSeparator)
@@ -1311,10 +1311,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def onClose(self):
 		"""
-		This Method Is Called On Framework Close.
+		This method is called on framework close.
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework Close Method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' component framework close method.".format(self.__class__.__name__))
 
 		self.__Templates_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
@@ -1324,10 +1324,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setModel(self):
 		"""
-		This Method Sets The Templates_Outliner_treeView Model.
+		This method sets the Templates_Outliner_treeView Model.
 
 		Columns:
-		Templates | Release | Software Version
+		Templates | release | software version
 
 		Rows:
 		* Collection: { _type: "Collection" }
@@ -1335,7 +1335,7 @@ class TemplatesOutliner(UiComponent):
 		*** Template: { _type: "Template", _datas: dbTypes.DbTemplate }
 		"""
 
-		LOGGER.debug("> Setting Up '{0}' Model!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Setting up '{0}' model!".format("Templates_Outliner_treeView"))
 
 		self.__Templates_Outliner_treeView_storeModelSelection()
 
@@ -1350,20 +1350,20 @@ class TemplatesOutliner(UiComponent):
 			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 
 			if softwares:
-				LOGGER.debug("> Preparing '{0}' Collection For '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
+				LOGGER.debug("> Preparing '{0}' collection for '{1}' model.".format(collection.name, "Templates_Outliner_treeView"))
 
 				collectionStandardItem = QStandardItem(QString(collection.name))
 				collectionStandardItem._datas = collection
 				collectionStandardItem._type = "Collection"
 
-				LOGGER.debug("> Adding '{0}' Collection To '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
+				LOGGER.debug("> Adding '{0}' collection to '{1}' model.".format(collection.name, "Templates_Outliner_treeView"))
 				self.__model.appendRow(collectionStandardItem)
 
 				for software in softwares:
 					templates = set((template[0] for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate.id).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
 
 					if templates:
-						LOGGER.debug("> Preparing '{0}' Software For '{1}' Model.".format(software, "Templates_Outliner_treeView"))
+						LOGGER.debug("> Preparing '{0}' software for '{1}' model.".format(software, "Templates_Outliner_treeView"))
 
 						softwareStandardItem = QStandardItem(QString(software))
 						iconPath = os.path.join(self.__uiResources, "{0}{1}".format(software, self.__uiSoftwareAffixe))
@@ -1374,13 +1374,13 @@ class TemplatesOutliner(UiComponent):
 
 						softwareStandardItem._type = "Software"
 
-						LOGGER.debug("> Adding '{0}' Software To '{1}' Model.".format(software, "Templates_Outliner_treeView"))
+						LOGGER.debug("> Adding '{0}' software to '{1}' model.".format(software, "Templates_Outliner_treeView"))
 						collectionStandardItem.appendRow([softwareStandardItem, None, None])
 
 						for template in templates:
 							template = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
 
-							LOGGER.debug("> Preparing '{0}' Template For '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
+							LOGGER.debug("> Preparing '{0}' template for '{1}' model.".format(template.name, "Templates_Outliner_treeView"))
 
 							try:
 								templateStandardItem = QStandardItem(QString("{0} {1}".format(template.renderer, template.title)))
@@ -1394,11 +1394,11 @@ class TemplatesOutliner(UiComponent):
 								templateStandardItem._datas = template
 								templateStandardItem._type = "Template"
 
-								LOGGER.debug("> Adding '{0}' Template To '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
+								LOGGER.debug("> Adding '{0}' template to '{1}' model.".format(template.name, "Templates_Outliner_treeView"))
 								softwareStandardItem.appendRow([templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem])
 
 							except Exception as error:
-								LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Template To '{2}' Model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
+								LOGGER.error("!>{0} | Exception raised while adding '{1}' template to '{2}' model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
 								foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Templates_Outliner_treeView_setModel"))
 
 		self.__Templates_Outliner_treeView_restoreModelSelection()
@@ -1408,20 +1408,20 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshModel(self):
 		"""
-		This Method Refreshes The Templates_Outliner_treeView Model.
+		This method refreshes the Templates_Outliner_treeView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Refreshing '{0}' model!".format("Templates_Outliner_treeView"))
 
 		self.__Templates_Outliner_treeView_setModel()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setView(self):
 		"""
-		This Method Sets The Templates_Outliner_treeView View.
+		This method sets the Templates_Outliner_treeView View.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Widget!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Initializing '{0}' widget!".format("Templates_Outliner_treeView"))
 
 		self.ui.Templates_Outliner_treeView.setAutoScroll(False)
 		self.ui.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -1436,10 +1436,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setDefaultViewState(self):
 		"""
-		This Method Sets Templates_Outliner_treeView Default View State.
+		This method sets Templates_Outliner_treeView default View state.
 		"""
 
-		LOGGER.debug("> Setting '{0}' Default View State!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Setting '{0}' default View state!".format("Templates_Outliner_treeView"))
 
 		self.ui.Templates_Outliner_treeView.expandAll()
 		for column in range(len(self.__modelHeaders)):
@@ -1450,7 +1450,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshView(self):
 		"""
-		This Method Refreshes The Templates_Outliner_treeView View.
+		This method refreshes the Templates_Outliner_treeView View.
 		"""
 
 		self.__Templates_Outliner_treeView_setDefaultViewState()
@@ -1458,10 +1458,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_storeModelSelection(self):
 		"""
-		This Method Stores Templates_Outliner_treeView Model Selection.
+		This method stores Templates_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Storing '{0}' Model Selection!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Storing '{0}' model selection!".format("Templates_Outliner_treeView"))
 
 		self.__modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
 		for item in self.getSelectedItems():
@@ -1475,10 +1475,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_restoreModelSelection(self):
 		"""
-		This Method Restores Templates_Outliner_treeView Model Selection.
+		This method restores Templates_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Restoring '{0}' Model Selection!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Restoring '{0}' model selection!".format("Templates_Outliner_treeView"))
 
 		indexes = []
 		for i in range(self.__model.rowCount()):
@@ -1500,7 +1500,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addActions(self):
 		"""
-		This Method Sets The Templates_Outliner_treeView Actions.
+		This method sets the Templates_Outliner_treeView actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -1508,7 +1508,7 @@ class TemplatesOutliner(UiComponent):
 			addTemplateAction.triggered.connect(self.__Templates_Outliner_treeView_addTemplateAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(addTemplateAction)
 
-			removeTemplatesAction = QAction("Remove Template(s) ...", self.ui.Templates_Outliner_treeView)
+			removeTemplatesAction = QAction("Remove template(s) ...", self.ui.Templates_Outliner_treeView)
 			removeTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_removeTemplatesAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(removeTemplatesAction)
 
@@ -1516,11 +1516,11 @@ class TemplatesOutliner(UiComponent):
 			separatorAction.setSeparator(True)
 			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
 
-			importDefaultTemplatesAction = QAction("Import Default Templates", self.ui.Templates_Outliner_treeView)
+			importDefaultTemplatesAction = QAction("Import default Templates", self.ui.Templates_Outliner_treeView)
 			importDefaultTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(importDefaultTemplatesAction)
 
-			filterTemplatesVersionsAction = QAction("Filter Templates Versions", self.ui.Templates_Outliner_treeView)
+			filterTemplatesVersionsAction = QAction("Filter Templates versions", self.ui.Templates_Outliner_treeView)
 			filterTemplatesVersionsAction.triggered.connect(self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(filterTemplatesVersionsAction)
 
@@ -1528,9 +1528,9 @@ class TemplatesOutliner(UiComponent):
 			separatorAction.setSeparator(True)
 			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
 		else:
-			LOGGER.info("{0} | Templates Database Alteration Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		displayHelpFilesAction = QAction("Display Help File(s) ...", self.ui.Templates_Outliner_treeView)
+		displayHelpFilesAction = QAction("Display help file(s) ...", self.ui.Templates_Outliner_treeView)
 		displayHelpFilesAction.triggered.connect(self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered)
 		self.ui.Templates_Outliner_treeView.addAction(displayHelpFilesAction)
 
@@ -1541,9 +1541,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addTemplateAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By addTemplateAction Action.
+		This method is triggered by addTemplateAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addTemplate__()
@@ -1551,9 +1551,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By removeTemplatesAction Action.
+		This method is triggered by removeTemplatesAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.removeTemplates__()
@@ -1561,9 +1561,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By importDefaultTemplatesAction Action.
+		This method is triggered by importDefaultTemplatesAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.importDefaultTemplates__()
@@ -1571,9 +1571,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By displayHelpFilesAction Action.
+		This method is triggered by displayHelpFilesAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.displayHelpFiles__()
@@ -1581,9 +1581,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By filterTemplatesVersionsAction Action.
+		This method is triggered by filterTemplatesVersionsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.filterTemplatesVersions__()
@@ -1591,13 +1591,13 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets The Template_Informations_textEdit Widget.
+		This method sets the Template_Informations_textEdit Widget.
 
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
+		@param selectedItems: Selected items. ( QItemSelection )
+		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
+		LOGGER.debug("> Initializing '{0}' widget.".format("Template_Informations_textEdit"))
 
 		selectedTemplates = self.getSelectedTemplates()
 		content = []
@@ -1622,9 +1622,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
 		"""
-		This Method Is Triggered When A Link Is Clicked In The Template_Informations_textBrowser Widget.
+		This method is triggered when a link is clicked in the Template_Informations_textBrowser Widget.
 
-		@param url: Url To Explore. ( QUrl )
+		@param url: Url to explore. ( QUrl )
 		"""
 
 		QDesktopServices.openUrl(url)
@@ -1632,7 +1632,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __coreDb_database__changed(self):
 		"""
-		This Method Is Triggered By The TemplatesOutliner_Worker When The Database Has Changed.
+		This method is triggered by the TemplatesOutliner_Worker when the Database has changed.
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
@@ -1643,31 +1643,31 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def addTemplate__(self):
 		"""
-		This Method Adds An User Defined Template To The Database.
+		This method adds an user defined Template to the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT Files (*.{0})".format(self.__extension))))
+		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
 		if not path:
 			return
 
 		if not self.templateExists(path):
-			LOGGER.debug("> Chosen Template Path: '{0}'.".format(path))
+			LOGGER.debug("> Chosen Template path: '{0}'.".format(path))
 			if self.addTemplate(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, path)
+				raise Exception, "{0} | Exception raised while adding '{1}' template to the Database!".format(self.__class__.__name__, path)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template Already Exists In Database!".format(self.__class__.__name__, path))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' template already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def removeTemplates__(self):
 		"""
-		This Method Removes User Selected Templates From The Database.
+		This method removes user selected Templates from the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1684,13 +1684,13 @@ class TemplatesOutliner(UiComponent):
 			else:
 				selectedTemplates.append(item._datas)
 
-		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
-		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot Remove '{1}' Software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
+		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
+		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
 		if not selectedTemplates:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are You Sure You Want To Remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for template in selectedTemplates:
 				success *= self.removeTemplate(template, emitSignal=False) or False
@@ -1700,29 +1700,29 @@ class TemplatesOutliner(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception Raised While Removing '{1}' Templates From The Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
+				raise Exception, "{0} | Exception raised while removing '{1}' templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def importDefaultTemplates__(self):
 		"""
-		This Method Imports Default Templates Into The Database.
+		This method imports default Templates into the Database.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Importing Default Templates Into The Database!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised while importing default Templates into the Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def displayHelpFiles__(self):
 		"""
-		This Method Displays User Selected Templates Help Files.
+		This method displays user selected Templates help files.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
@@ -1736,15 +1736,15 @@ class TemplatesOutliner(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Displaying Templates Help Files!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def filterTemplatesVersions__(self):
 		"""
-		This Method Filters Templates By Versions.
+		This method filters Templates by versions.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
@@ -1760,43 +1760,43 @@ class TemplatesOutliner(UiComponent):
 				if success:
 					return True
 				else:
-					raise Exception, "{0} | Exception Raised While Filtering Templates By Versions!".format(self.__class__.__name__)
+					raise Exception, "{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None, emitSignal=True):
 		"""
-		This Method Adds A Template To The Database.
+		This method adds a Template to the Database.
 
-		@param name: Template Set Name. ( String )
-		@param path: Template Set Path. ( String )
-		@param collectionId: Target Collection Id. ( Integer )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param name: Template set name. ( String )
+		@param path: Template set path. ( String )
+		@param collectionId: Target Collection id. ( Integer )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
-			LOGGER.info("{0} | Adding '{1}' Template To The Database!".format(self.__class__.__name__, name))
+			LOGGER.info("{0} | Adding '{1}' template to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
 				emitSignal and self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Adding '{1}' Template To The Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' template to the Database!".format(self.__class__.__name__, name)
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Template Already Exists In Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' template already exists in Database!".format(self.__class__.__name__, name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This Method Adds Provided Directory Templates To The Database.
+		This method adds provided directory Templates to the Database.
 
-		@param directory: Templates Directory. ( String )
-		@param collectionId: Collection Id. ( Integer )
-		@return: Method Success. ( Boolean )
+		@param directory: Templates directory. ( String )
+		@param collectionId: Collection id. ( Integer )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing Directory '{0}' Walker.".format(directory))
+		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
 
 		walker = Walker(directory)
 		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
@@ -1811,59 +1811,59 @@ class TemplatesOutliner(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Adding '{1}' Directory Content To The Database!".format(self.__class__.__name__, directory)
+			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def addDefaultTemplates(self, forceImport=False):
 		"""
-		This Method Adds Default Templates Collections / Templates To The Database.
+		This method adds default Templates Collections / Templates to the Database.
 
-		@param forceImport: Force Templates Import. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param forceImport: Force Templates import. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		if not forceImport and self.getTemplates():
 			return
 
-		LOGGER.debug("> Adding Default Templates To The Database.")
+		LOGGER.debug("> Adding default Templates to the Database.")
 		for collection, path in self.__defaultCollections.items():
 			if not os.path.exists(path):
 				continue
 
 			if not set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
-				LOGGER.info("{0} | Adding '{1}' Collection To The Database!".format(self.__class__.__name__, collection))
+				LOGGER.info("{0} | Adding '{1}' collection to the Database!".format(self.__class__.__name__, collection))
 				dbCommon.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 			if self.addDirectory(path, self.getCollection(collection).id):
 				return True
 			else:
-				raise Exception, "{0} | Exception Raised While Adding Default Templates To The Database!".format(self.__class__.__name__)
+				raise Exception, "{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def removeTemplate(self, template, emitSignal=True):
 		"""
-		This Method Removes Provided Template From The Database.
+		This method removes provided Template from the Database.
 
-		@param templates: Template To Remove. ( List )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param templates: Template to remove. ( List )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name))
+		LOGGER.info("{0} | Removing '{1}' template from the Database!".format(self.__class__.__name__, template.name))
 		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Removing '{1}' Template From The Database!".format(self.__class__.__name__, template.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' template from the Database!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	def templateExists(self, path):
 		"""
-		This Method Returns If Provided Template Path Exists In The Database.
+		This method returns if provided Template path exists in the Database.
 
-		@param name: Template Path. ( String )
-		@return: Template Exists. ( Boolean )
+		@param name: Template path. ( String )
+		@return: Template exists. ( Boolean )
 		"""
 
 		return dbCommon.templateExists(self.__coreDb.dbSession, path)
@@ -1872,45 +1872,45 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template, emitSignal=True):
 		"""
-		This Method Updates Provided Template Location.
+		This method updates provided Template location.
 
-		@param template: Template To Update. ( DbTemplate )
-		@param emitSignal: Emit Signal. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param template: Template to update. ( DbTemplate )
+		@param emitSignal: Emit signal. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
-		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template Location:".format(template.name), self.__container.lastBrowsedPath, "Template Files (*{0})".format(self.__extension))))
+		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' template location:".format(template.name), self.__container.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
 		if not file:
 			return
 
-		LOGGER.info("{0} | Updating '{1}' Template With New Location '{2}'!".format(self.__class__.__name__, template.name, file))
+		LOGGER.info("{0} | Updating '{1}' template with new location '{2}'!".format(self.__class__.__name__, template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception Raised While Updating '{1}' Template Location!".format(self.__class__.__name__, template.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' template location!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def displayHelpFile(self, template):
 		"""
-		This Method Displays Provided Templates Help File.
+		This method displays provided Templates help file.
 
-		@param template: Template To Display Help File. ( DbTemplate )
-		@return: Method Success. ( Boolean )
+		@param template: Template to display help file. ( DbTemplate )
+		@return: Method success. ( Boolean )
 		"""
 
 		if os.path.exists(template.helpFile):
-			LOGGER.info("{0} | Opening '{1}' Template Help File: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
+			LOGGER.info("{0} | Opening '{1}' template help file: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
 		else:
-			raise OSError, "{0} | Exception Raised While Displaying '{1}' Template Help File: '{2}' File Doesn't Exists!".format(self.__class__.__name__, template.name, template.helpFile)
+			raise OSError, "{0} | Exception raised while displaying '{1}' template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile)
 
 	@core.executionTrace
 	def getTemplates(self):
 		"""
-		This Method Returns Database Templates.
+		This method returns Database Templates.
 
 		@return: Database Templates Collections. ( List )
 		"""
@@ -1920,10 +1920,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
-		This Method Returns The Templates_Outliner_treeView Selected Items.
+		This method returns the Templates_Outliner_treeView selected items.
 
-		@param rowsRootOnly: Return Rows Roots Only. ( Boolean )
-		@return: View Selected Items. ( List )
+		@param rowsRootOnly: Return rows roots only. ( Boolean )
+		@return: View selected items. ( List )
 		"""
 
 		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
@@ -1932,9 +1932,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getSelectedTemplates(self):
 		"""
-		This Method Returns The Selected Templates.
+		This method returns the selected Templates.
 
-		@return: View Selected Templates. ( List )
+		@return: View selected Templates. ( List )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1943,9 +1943,9 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getCollection(self, collection):
 		"""
-		This Method Gets Template Collection From Provided Collection Name.
+		This method gets Template Collection from provided Collection name.
 
-		@param collection: Collection Name. ( String )
+		@param collection: Collection name. ( String )
 		@return: Collection. ( DbCollection )
 		"""
 
@@ -1954,10 +1954,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getUniqueCollectionId(self, path):
 		"""
-		This Method Gets An Unique Collection Id Using Provided Path.
+		This method gets an unique Collection id using provided path.
 
-		@param path: Template Path. ( String )
-		@return: Unique Id. ( Integer )
+		@param path: Template path. ( String )
+		@return: Unique id. ( Integer )
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")

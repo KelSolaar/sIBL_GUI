@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Runtime Constants Module.
+	Runtime constants Module.
 
 **Others:**
 
@@ -59,7 +59,7 @@
 #***********************************************************************************************
 class RuntimeConstants():
 	"""
-	This Class Is The RuntimeConstants Class.
+	This class is the RuntimeConstants class.
 	"""
 
 	parameters = None

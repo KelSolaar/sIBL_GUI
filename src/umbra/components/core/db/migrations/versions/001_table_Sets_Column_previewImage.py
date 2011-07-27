@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Migration Module.
+	Database migration Module.
 
 **Others:**
 
@@ -72,9 +72,9 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 def upgrade(dbEngine):
 	"""
-	This Definition Upgrades The Database.
+	This definition upgrades the Database.
 
-	@param dbEngine: Database Engine. ( Object )
+	@param dbEngine: Database engine. ( Object )
 	"""
 
 	LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
@@ -85,17 +85,17 @@ def upgrade(dbEngine):
 
 	columnName = "previewImage"
 	if columnName not in table.columns:
-		LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' Column To '{2}' Table!".format(__name__, columnName, table))
+		LOGGER.info("{0} | SQLAlchemy Migrate: Adding '{1}' column to '{2}' table!".format(__name__, columnName, table))
 		column = sqlalchemy.Column(columnName, sqlalchemy.String)
 		column.create(table)
 	else:
-		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' Already Exists In '{2}' Table!".format(__name__, columnName, table))
+		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' already exists in '{2}' table!".format(__name__, columnName, table))
 
 def downgrade(dbEngine):
 	"""
-	This Definition Downgrades The Database.
+	This definition downgrades the Database.
 
-	@param dbEngine: Database Engine. ( Object )
+	@param dbEngine: Database engine. ( Object )
 	"""
 
 	pass

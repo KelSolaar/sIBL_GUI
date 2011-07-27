@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Tests Utilities Module.
+	Tests utilities Module.
 
 **Others:**
 

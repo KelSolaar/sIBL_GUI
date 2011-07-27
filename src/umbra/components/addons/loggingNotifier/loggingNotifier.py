@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Logging Notifier Component Module.
+	Logging notifier Component Module.
 
 **Others:**
 
@@ -75,18 +75,18 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	This Class Is The LoggingNotifier Class.
+	This class is the LoggingNotifier class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
+		@param name: Component name. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		Component.__init__(self, name=name)
 
@@ -103,7 +103,7 @@ class LoggingNotifier(Component):
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -114,26 +114,26 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Property For The _memoryHandlerStackDepth Attribute.
+		This method is the property for the _memoryHandlerStackDepth attribute.
 
 		@return: self.__memoryHandlerStackDepth. ( Integer )
 		"""
@@ -144,21 +144,21 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
-		This Method Is The Setter Method For The _memoryHandlerStackDepth Attribute.
+		This method is the setter method for the _memoryHandlerStackDepth attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("memoryHandlerStackDepth"))
 
 	@memoryHandlerStackDepth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
-		This Method Is The Deleter Method For The _memoryHandlerStackDepth Attribute.
+		This method is the deleter method for the _memoryHandlerStackDepth attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("memoryHandlerStackDepth"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -166,12 +166,12 @@ class LoggingNotifier(Component):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.__container = container
 
@@ -180,10 +180,10 @@ class LoggingNotifier(Component):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.__container = None
 
@@ -192,10 +192,10 @@ class LoggingNotifier(Component):
 	@core.executionTrace
 	def initialize(self):
 		"""
-		This Method Initializes The Component.
+		This method initializes the Component.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__container.timer.timeout.connect(self.__statusBar_showLoggingMessages)
@@ -203,10 +203,10 @@ class LoggingNotifier(Component):
 	@core.executionTrace
 	def uninitialize(self):
 		"""
-		This Method Uninitializes The Component.
+		This method uninitializes the Component.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__container.timer.timeout.disconnect(self.__statusBar_showLoggingMessages)
@@ -214,7 +214,7 @@ class LoggingNotifier(Component):
 	# @core.executionTrace
 	def __statusBar_showLoggingMessages(self):
 		"""
-		This Method Updates The Container Status Bar With Logging Messages.
+		This method updates the container status bar with logging messages.
 		"""
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)

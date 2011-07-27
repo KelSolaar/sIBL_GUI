@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Runtime Constants Tests Module.
+	Runtime constants tests Module.
 
 **Others:**
 
@@ -69,12 +69,12 @@ from umbra.globals.runtimeConstants import RuntimeConstants
 #***********************************************************************************************
 class RuntimeConstantsTestCase(unittest.TestCase):
 	"""
-	This Class Is The RuntimeConstantsTestCase Class.
+	This class is the RuntimeConstantsTestCase class.
 	"""
 
 	def testRequiredAttributes(self):
 		"""
-		This Method Tests Presence Of Required Attributes.
+		This method tests presence of required attributes.
 		"""
 
 		requiredAttributes = ("parameters",

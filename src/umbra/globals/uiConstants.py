@@ -55,7 +55,7 @@
 #***********************************************************************************************
 class UiConstants():
 	"""
-	This Class Is The UiConstants Class.
+	This class is the UiConstants class.
 	"""
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"

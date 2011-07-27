@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Raw Editing Utilities Component Module.
+	Raw editing utilities Component Module.
 
 **Others:**
 
@@ -79,19 +79,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class RawEditingUtilities(UiComponent):
 	"""
-	This Class Is The LocationsBrowser Class.
+	This class is the LocationsBrowser class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -121,7 +121,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -132,26 +132,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -162,26 +162,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -192,26 +192,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -222,26 +222,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Property For The _corePreferencesManager Attribute.
+		This method is the property for the _corePreferencesManager attribute.
 
 		@return: self.__corePreferencesManager. ( Object )
 		"""
@@ -252,26 +252,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		This method is the deleter method for the _corePreferencesManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -282,26 +282,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreInspector(self):
 		"""
-		This Method Is The Property For The _coreInspector Attribute.
+		This method is the property for the _coreInspector attribute.
 
 		@return: self.__coreInspector. ( Object )
 		"""
@@ -312,26 +312,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self, value):
 		"""
-		This Method Is The Setter Method For The _coreInspector Attribute.
+		This method is the setter method for the _coreInspector attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreInspector"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreInspector"))
 
 	@coreInspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self):
 		"""
-		This Method Is The Deleter Method For The _coreInspector Attribute.
+		This method is the deleter method for the _coreInspector attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreInspector"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -342,26 +342,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def editIblSetsInTextEditorAction(self):
 		"""
-		This Method Is The Property For The _editIblSetsInTextEditorAction Attribute.
+		This method is the property for the _editIblSetsInTextEditorAction attribute.
 
 		@return: self.__editIblSetsInTextEditorAction. ( QAction )
 		"""
@@ -372,26 +372,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetsInTextEditorAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editIblSetsInTextEditorAction Attribute.
+		This method is the setter method for the _editIblSetsInTextEditorAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editIblSetsInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetsInTextEditorAction"))
 
 	@editIblSetsInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetsInTextEditorAction(self):
 		"""
-		This Method Is The Deleter Method For The _editIblSetsInTextEditorAction Attribute.
+		This method is the deleter method for the _editIblSetsInTextEditorAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editIblSetsInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetsInTextEditorAction"))
 
 	@property
 	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This Method Is The Property For The _editInspectorIblSetInTextEditorAction Attribute.
+		This method is the property for the _editInspectorIblSetInTextEditorAction attribute.
 
 		@return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
 		"""
@@ -402,26 +402,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInTextEditorAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editInspectorIblSetInTextEditorAction Attribute.
+		This method is the setter method for the _editInspectorIblSetInTextEditorAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editInspectorIblSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInTextEditorAction"))
 
 	@editInspectorIblSetInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This Method Is The Deleter Method For The _editInspectorIblSetInTextEditorAction Attribute.
+		This method is the deleter method for the _editInspectorIblSetInTextEditorAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editInspectorIblSetInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInTextEditorAction"))
 
 	@property
 	def editTemplateInTextEditorAction(self):
 		"""
-		This Method Is The Property For The _editTemplateInTextEditorAction Attribute.
+		This method is the property for the _editTemplateInTextEditorAction attribute.
 
 		@return: self.__editTemplateInTextEditorAction. ( QAction )
 		"""
@@ -432,26 +432,26 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editTemplateInTextEditorAction(self, value):
 		"""
-		This Method Is The Setter Method For The _editTemplateInTextEditorAction Attribute.
+		This method is the setter method for the _editTemplateInTextEditorAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("editTemplateInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editTemplateInTextEditorAction"))
 
 	@editTemplateInTextEditorAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editTemplateInTextEditorAction(self):
 		"""
-		This Method Is The Deleter Method For The _editTemplateInTextEditorAction Attribute.
+		This method is the deleter method for the _editTemplateInTextEditorAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("editTemplateInTextEditorAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editTemplateInTextEditorAction"))
 
 	@property
 	def linuxTextEditors(self):
 		"""
-		This Method Is The Property For The _linuxTextEditors Attribute.
+		This method is the property for the _linuxTextEditors attribute.
 
 		@return: self.__linuxTextEditors. ( Tuple )
 		"""
@@ -462,21 +462,21 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxTextEditors(self, value):
 		"""
-		This Method Is The Setter Method For The _linuxTextEditors Attribute.
+		This method is the setter method for the _linuxTextEditors attribute.
 
-		@param value: Attribute Value. ( Tuple )
+		@param value: Attribute value. ( Tuple )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("linuxTextEditors"))
 
 	@linuxTextEditors.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxTextEditors(self):
 		"""
-		This Method Is The Deleter Method For The _linuxTextEditors Attribute.
+		This method is the deleter method for the _linuxTextEditors attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("linuxTextEditors"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -484,12 +484,12 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -506,10 +506,10 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -526,10 +526,10 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 		self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
@@ -542,10 +542,10 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
@@ -556,20 +556,20 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
@@ -577,34 +577,34 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __addActions(self):
 		"""
-		This Method Adds Actions.
+		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+			self.__editIblSetsInTextEditorAction = QAction("Edit in text editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 			self.__editIblSetsInTextEditorAction.triggered.connect(self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
 
-			self.__editInspectorIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectorIblSetInTextEditorAction = QAction("Edit in text editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
 			self.__editInspectorIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered)
 			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInTextEditorAction)
 
-			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+			self.__editTemplateInTextEditorAction = QAction("Edit in text editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 			self.__editTemplateInTextEditorAction.triggered.connect(self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered)
 			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__editTemplateInTextEditorAction)
 
 		else:
-			LOGGER.info("{0} | Text Editing Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __removeActions(self):
 		"""
-		This Method Removes Actions.
+		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetsInTextEditorAction)
@@ -619,9 +619,9 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetsInTextEditorAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editIblSetsInTextEditorAction Action.
+		This method is triggered by editIblSetsInTextEditorAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editIblSetsInTextEditor__()
@@ -629,9 +629,9 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editInspectorIblSetInTextEditorAction Action.
+		This method is triggered by editInspectorIblSetInTextEditorAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editInspectorIblSetInTextEditor__()
@@ -639,9 +639,9 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By editTemplateInTextEditorAction Action.
+		This method is triggered by editTemplateInTextEditorAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editTemplatesInTextEditor__()
@@ -649,24 +649,24 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
 		"""
-		This Method Fills The Custom_Text_Editor_Path_lineEdit.
+		This method fills the Custom_Text_Editor_Path_lineEdit.
 		"""
 
 		customTextEditor = self.__settings.getKey(self.__settingsSection, "customTextEditor")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_Text_Editor_Path_lineEdit", customTextEditor.toString()))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Custom_Text_Editor_Path_lineEdit", customTextEditor.toString()))
 		self.ui.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When Custom_Text_Editor_Path_toolButton Is Clicked.
+		This method is called when Custom_Text_Editor_Path_toolButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
-		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom Text Editor Executable:", self.__container.lastBrowsedPath))
+		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom text editor executable:", self.__container.lastBrowsedPath))
 		if customTextEditorExecutable != "":
-			LOGGER.debug("> Chosen Custom Text Editor Executable: '{0}'.".format(customTextEditorExecutable))
+			LOGGER.debug("> Chosen custom text editor executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
@@ -674,23 +674,23 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
-		This Method Is Called When Custom_Text_Editor_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
+		This method is called when Custom_Text_Editor_Path_lineEdit is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.ui.Custom_Text_Editor_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences!")
+			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid Custom Text Editor Executable File!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid custom text editor executable file!".format(self.__class__.__name__)
 		else:
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	def editIblSetsInTextEditor__(self):
 		"""
-		This Method Edits Selected Ibl Sets.
+		This method edits selected Ibl Sets.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -701,20 +701,20 @@ class RawEditingUtilities(UiComponent):
 			if path:
 				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
+				LOGGER.warning("!> {0} | '{1}' ibl set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception, "{0} | Exception raised while editing '{1}' ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInTextEditor__(self):
 		"""
-		This Method Edits Inspector Ibl Set.
+		This method edits Inspector Ibl Set.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -722,14 +722,14 @@ class RawEditingUtilities(UiComponent):
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Editing Inspector Ibl Set: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while editing Inspector Ibl Set: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	def editTemplatesInTextEditor__(self):
 		"""
-		This Method Edits Selected Templates.
+		This method edits selected Templates.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -740,22 +740,22 @@ class RawEditingUtilities(UiComponent):
 			if path:
 				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
+				LOGGER.warning("!> {0} | '{1}' template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception, "{0} | Exception raised while editing '{1}' templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, file, customTextEditor=None):
 		"""
-		This Method Gets Process Command.
+		This method gets process command.
 
-		@param file: File To Edit. ( String )
-		@param customTextEditor: Custom Text Editor. ( String )
-		@return: Process Command. ( String )
+		@param file: File to edit. ( String )
+		@param customTextEditor: Custom text editor. ( String )
+		@return: Process command. ( String )
 		"""
 
 		processCommand = None
@@ -792,29 +792,29 @@ class RawEditingUtilities(UiComponent):
 						pass
 
 				if not editorFound:
-					raise Exception, "{0} | Exception Raised: No Suitable Linux Editor Found!".format(self.__class__.__name__)
+					raise Exception, "{0} | Exception raised: No suitable Linux editor found!".format(self.__class__.__name__)
 		return processCommand
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editFile(self, file, customTextEditor=None):
 		"""
-		This Method Provides Editing Capability.
+		This method provides editing capability.
 
-		@param file: File To Edit. ( String )
-		@param customTextEditor: Custom Text Editor. ( String )
-		@return: Method Success. ( Boolean )
+		@param file: File to edit. ( String )
+		@param customTextEditor: Custom text editor. ( String )
+		@return: Method success. ( Boolean )
 		"""
 
 		editCommand = self.getProcessCommand(file, customTextEditor)
 		if editCommand:
-			LOGGER.debug("> Current Edit Command: '{0}'.".format(editCommand))
-			LOGGER.info("{0} | Launching Text Editor With '{1}' File.".format(self.__class__.__name__, file))
+			LOGGER.debug("> Current edit command: '{0}'.".format(editCommand))
+			LOGGER.info("{0} | Launching text editor with '{1}' file.".format(self.__class__.__name__, file))
 			editProcess = QProcess()
 			editProcess.startDetached(editCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python end.

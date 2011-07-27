@@ -81,15 +81,15 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Plate(core.Structure):
 	"""
-	This Is The Plate Class.
+	This is the Plate class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: name, icon, previewImage, image ( Key / Value Pairs )
+		@param kwargs: name, icon, previewimage, image ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -99,15 +99,15 @@ class Plate(core.Structure):
 
 class Light(core.Structure):
 	"""
-	This Is The Light Class.
+	This is the Light class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, **kwargs):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value Pairs )
+		@param kwargs: name, color, ucoordinate, vcoordinate ( Key / value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -117,7 +117,7 @@ class Light(core.Structure):
 
 class Inspector(UiComponent):
 	"""
-	This Class Is The Preview Class.
+	This class is the Preview class.
 	"""
 
 	# Custom signals definitions.
@@ -128,13 +128,13 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -169,12 +169,12 @@ class Inspector(UiComponent):
 											<img src="{0}">
 										</td>
 										<td>
-											<p><b>Preview Image Unavailable!<b></p>
-											What Now?
+											<p><b>Preview Image unavailable!<b></p>
+											What now?
 											<ul>
-												<li>Check For An Updated Set On <b>HDRLabs</b> At <a href="http://www.hdrlabs.com/sibl/archive.html"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
-												<li>Contact <b>{1}</b> At <a href="{2}"><span style=" text-decoration: underline; color:#e0e0e0;">{2}</span></a> For An Updated Set.</li>
-												<li>Resize The Background Image To 600x300 Pixels. Save It As A JPEG In Your Set Directory.<br/>Register It In The ."Ibl" File Header Using The "PREVIEWfile" Attribute.</li>
+												<li>Check For an updated set on <b>HDRLabs</b> at <a href="http://www.hdrlabs.com/sibl/archive.html"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/sibl/archive.html</span></a>.</li>
+												<li>Contact <b>{1}</b> At <a href="{2}"><span style=" text-decoration: underline; color:#e0e0e0;">{2}</span></a> for an updated set.</li>
+												<li>Resize The background image to 600x300 pixels. Save it as a jpeg in your set directory.<br/>register it in the ."ibl" file header using the "PREVIEWfile" attribute.</li>
 											</ul>
 										</td>
 									</tr>
@@ -189,8 +189,8 @@ class Inspector(UiComponent):
 											<img src="{0}">
 										</td>
 										<td>
-											<p><b>No Ibl Set To Inspect!<b></p>
-											Please Add some Ibl Set To The Database Or Select A Non Empty Collection!
+											<p><b>No Ibl set to inspect!<b></p>
+											Please add some Ibl set to the Database or select a non empty Collection!
 										</td>
 									</tr>
 								</table>
@@ -219,7 +219,7 @@ class Inspector(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -230,26 +230,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def uiResources(self):
 		"""
-		This Method Is The Property For The _uiResources Attribute.
+		This method is the property for the _uiResources attribute.
 
 		@return: self.__uiResources. ( String )
 		"""
@@ -260,26 +260,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This Method Is The Setter Method For The _uiResources Attribute.
+		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
 
 	@uiResources.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This Method Is The Deleter Method For The _uiResources Attribute.
+		This method is the deleter method for the _uiResources attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
 
 	@property
 	def uiPreviousImage(self):
 		"""
-		This Method Is The Property For The _uiPreviousImage Attribute.
+		This method is the property for the _uiPreviousImage attribute.
 
 		@return: self.__uiPreviousImage. ( String )
 		"""
@@ -290,26 +290,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPreviousImage Attribute.
+		This method is the setter method for the _uiPreviousImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPreviousImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPreviousImage"))
 
 	@uiPreviousImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiPreviousImage Attribute.
+		This method is the deleter method for the _uiPreviousImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPreviousImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPreviousImage"))
 
 	@property
 	def uiNextImage(self):
 		"""
-		This Method Is The Property For The _uiNextImage Attribute.
+		This method is the property for the _uiNextImage attribute.
 
 		@return: self.__uiNextImage. ( String )
 		"""
@@ -320,26 +320,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This Method Is The Setter Method For The _uiNextImage Attribute.
+		This method is the setter method for the _uiNextImage attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiNextImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiNextImage"))
 
 	@uiNextImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This Method Is The Deleter Method For The _uiNextImage Attribute.
+		This method is the deleter method for the _uiNextImage attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiNextImage"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiNextImage"))
 
 	@property
 	def dockArea(self):
 		"""
-		This Method Is The Property For The _dockArea Attribute.
+		This method is the property for the _dockArea attribute.
 
 		@return: self.__dockArea. ( Integer )
 		"""
@@ -350,26 +350,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This Method Is The Setter Method For The _dockArea Attribute.
+		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This Method Is The Deleter Method For The _dockArea Attribute.
+		This method is the deleter method for the _dockArea attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
 	def listViewIconSize(self):
 		"""
-		This Method Is The Property For The _listViewIconSize Attribute.
+		This method is the property for the _listViewIconSize attribute.
 
 		@return: self.__listViewIconSize. ( Integer )
 		"""
@@ -380,29 +380,29 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This Method Is The Setter Method For The _listViewIconSize Attribute.
+		This method is the setter method for the _listViewIconSize attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
 		if value:
-			assert type(value) is int, "'{0}' Attribute: '{1}' Type Is Not 'int'!".format("listViewIconSize", value)
-			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("listViewIconSize", value)
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
 		self.__listViewIconSize = value
 
 	@listViewIconSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This Method Is The Deleter Method For The _listViewIconSize Attribute.
+		This method is the deleter method for the _listViewIconSize attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("listViewIconSize"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewIconSize"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -413,26 +413,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -443,26 +443,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def model(self):
 		"""
-		This Method Is The Property For The _model Attribute.
+		This method is the property for the _model attribute.
 
 		@return: self.__model. ( QStandardItemModel )
 		"""
@@ -473,26 +473,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This Method Is The Setter Method For The _model Attribute.
+		This method is the setter method for the _model attribute.
 
-		@param value: Attribute Value. ( QStandardItemModel )
+		@param value: Attribute value. ( QStandardItemModel )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
 
 	@model.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This Method Is The Deleter Method For The _model Attribute.
+		This method is the deleter method for the _model attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("model"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
 
 	@property
 	def inspectorIblSet(self):
 		"""
-		This Method Is The Property For The _inspectorIblSet Attribute.
+		This method is the property for the _inspectorIblSet attribute.
 
 		@return: self.__inspectorIblSet. ( QStandardItem )
 		"""
@@ -503,26 +503,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSet(self, value):
 		"""
-		This Method Is The Setter Method For The _inspectorIblSet Attribute.
+		This method is the setter method for the _inspectorIblSet attribute.
 
-		@param value: Attribute Value. ( QStandardItem )
+		@param value: Attribute value. ( QStandardItem )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSet"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSet"))
 
 	@inspectorIblSet.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSet(self):
 		"""
-		This Method Is The Deleter Method For The _inspectorIblSet Attribute.
+		This method is the deleter method for the _inspectorIblSet attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSet"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSet"))
 
 	@property
 	def inspectorIblSetParser(self):
 		"""
-		This Method Is The Property For The _inspectorIblSetParser Attribute.
+		This method is the property for the _inspectorIblSetParser attribute.
 
 		@return: self.__inspectorIblSetParser. ( Parser )
 		"""
@@ -533,26 +533,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetParser(self, value):
 		"""
-		This Method Is The Setter Method For The _inspectorIblSetParser Attribute.
+		This method is the setter method for the _inspectorIblSetParser attribute.
 
-		@param value: Attribute Value. ( Parser )
+		@param value: Attribute value. ( Parser )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetParser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetParser"))
 
 	@inspectorIblSetParser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetParser(self):
 		"""
-		This Method Is The Deleter Method For The _inspectorIblSetParser Attribute.
+		This method is the deleter method for the _inspectorIblSetParser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetParser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetParser"))
 
 	@property
 	def inspectorPlates(self):
 		"""
-		This Method Is The Property For The _inspectorPlates Attribute.
+		This method is the property for the _inspectorPlates attribute.
 
 		@return: self.__inspectorPlates. ( Dictionary )
 		"""
@@ -563,26 +563,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self, value):
 		"""
-		This Method Is The Setter Method For The _inspectorPlates Attribute.
+		This method is the setter method for the _inspectorPlates attribute.
 
-		@param value: Attribute Value. ( Dictionary )
+		@param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorPlates"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorPlates"))
 
 	@inspectorPlates.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self):
 		"""
-		This Method Is The Deleter Method For The _inspectorPlates Attribute.
+		This method is the deleter method for the _inspectorPlates attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorPlates"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorPlates"))
 
 	@property
 	def noPreviewImageText(self):
 		"""
-		This Method Is The Property For The _noPreviewImageText Attribute.
+		This method is the property for the _noPreviewImageText attribute.
 
 		@return: self.__noPreviewImageText. ( String )
 		"""
@@ -593,26 +593,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self, value):
 		"""
-		This Method Is The Setter Method For The _noPreviewImageText Attribute.
+		This method is the setter method for the _noPreviewImageText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noPreviewImageText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("noPreviewImageText"))
 
 	@noPreviewImageText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self):
 		"""
-		This Method Is The Deleter Method For The _noPreviewImageText Attribute.
+		This method is the deleter method for the _noPreviewImageText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noPreviewImageText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("noPreviewImageText"))
 
 	@property
 	def noInspectorIblSetText(self):
 		"""
-		This Method Is The Property For The _noInspectorIblSetText Attribute.
+		This method is the property for the _noInspectorIblSetText attribute.
 
 		@return: self.__noInspectorIblSetText. ( String )
 		"""
@@ -623,26 +623,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noInspectorIblSetText(self, value):
 		"""
-		This Method Is The Setter Method For The _noInspectorIblSetText Attribute.
+		This method is the setter method for the _noInspectorIblSetText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("noInspectorIblSetText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("noInspectorIblSetText"))
 
 	@noInspectorIblSetText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noInspectorIblSetText(self):
 		"""
-		This Method Is The Deleter Method For The _noInspectorIblSetText Attribute.
+		This method is the deleter method for the _noInspectorIblSetText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("noInspectorIblSetText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("noInspectorIblSetText"))
 
 	@property
 	def inspectorIblSetToolTipText(self):
 		"""
-		This Method Is The Property For The _inspectorIblSetToolTipText Attribute.
+		This method is the property for the _inspectorIblSetToolTipText attribute.
 
 		@return: self.__inspectorIblSetToolTipText. ( String )
 		"""
@@ -653,26 +653,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetToolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _inspectorIblSetToolTipText Attribute.
+		This method is the setter method for the _inspectorIblSetToolTipText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetToolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetToolTipText"))
 
 	@inspectorIblSetToolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetToolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _inspectorIblSetToolTipText Attribute.
+		This method is the deleter method for the _inspectorIblSetToolTipText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetToolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetToolTipText"))
 
 	@property
 	def inspectorIblSetPlatesToolTipText(self):
 		"""
-		This Method Is The Property For The _inspectorIblSetPlatesToolTipText Attribute.
+		This method is the property for the _inspectorIblSetPlatesToolTipText attribute.
 
 		@return: self.__inspectorIblSetPlatesToolTipText. ( String )
 		"""
@@ -683,26 +683,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetPlatesToolTipText(self, value):
 		"""
-		This Method Is The Setter Method For The _inspectorIblSetPlatesToolTipText Attribute.
+		This method is the setter method for the _inspectorIblSetPlatesToolTipText attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("inspectorIblSetPlatesToolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetPlatesToolTipText"))
 
 	@inspectorIblSetPlatesToolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetPlatesToolTipText(self):
 		"""
-		This Method Is The Deleter Method For The _inspectorIblSetPlatesToolTipText Attribute.
+		This method is the deleter method for the _inspectorIblSetPlatesToolTipText attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("inspectorIblSetPlatesToolTipText"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetPlatesToolTipText"))
 
 	@property
 	def lightLabelRadius(self):
 		"""
-		This Method Is The Property For The _lightLabelRadius Attribute.
+		This method is the property for the _lightLabelRadius attribute.
 
 		@return: self.__lightLabelRadius. ( Integer )
 		"""
@@ -713,26 +713,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self, value):
 		"""
-		This Method Is The Setter Method For The _lightLabelRadius Attribute.
+		This method is the setter method for the _lightLabelRadius attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelRadius"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelRadius"))
 
 	@lightLabelRadius.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self):
 		"""
-		This Method Is The Deleter Method For The _lightLabelRadius Attribute.
+		This method is the deleter method for the _lightLabelRadius attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelRadius"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelRadius"))
 
 	@property
 	def lightLabelTextOffset(self):
 		"""
-		This Method Is The Property For The _lightLabelTextOffset Attribute.
+		This method is the property for the _lightLabelTextOffset attribute.
 
 		@return: self.__lightLabelTextOffset. ( Integer )
 		"""
@@ -743,26 +743,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self, value):
 		"""
-		This Method Is The Setter Method For The _lightLabelTextOffset Attribute.
+		This method is the setter method for the _lightLabelTextOffset attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextOffset"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextOffset"))
 
 	@lightLabelTextOffset.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self):
 		"""
-		This Method Is The Deleter Method For The _lightLabelTextOffset Attribute.
+		This method is the deleter method for the _lightLabelTextOffset attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextOffset"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextOffset"))
 
 	@property
 	def lightLabelTextMargin(self):
 		"""
-		This Method Is The Property For The _lightLabelTextMargin Attribute.
+		This method is the property for the _lightLabelTextMargin attribute.
 
 		@return: self.__lightLabelTextMargin. ( Integer )
 		"""
@@ -773,26 +773,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self, value):
 		"""
-		This Method Is The Setter Method For The _lightLabelTextMargin Attribute.
+		This method is the setter method for the _lightLabelTextMargin attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextMargin"))
 
 	@lightLabelTextMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self):
 		"""
-		This Method Is The Deleter Method For The _lightLabelTextMargin Attribute.
+		This method is the deleter method for the _lightLabelTextMargin attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextMargin"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextMargin"))
 
 	@property
 	def lightLabelTextHeight(self):
 		"""
-		This Method Is The Property For The _lightLabelTextHeight Attribute.
+		This method is the property for the _lightLabelTextHeight attribute.
 
 		@return: self.__lightLabelTextHeight. ( Integer )
 		"""
@@ -803,26 +803,26 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self, value):
 		"""
-		This Method Is The Setter Method For The _lightLabelTextHeight Attribute.
+		This method is the setter method for the _lightLabelTextHeight attribute.
 
-		@param value: Attribute Value. ( Integer )
+		@param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextHeight"))
 
 	@lightLabelTextHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self):
 		"""
-		This Method Is The Deleter Method For The _lightLabelTextHeight Attribute.
+		This method is the deleter method for the _lightLabelTextHeight attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextHeight"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextHeight"))
 
 	@property
 	def lightLabelTextFont(self):
 		"""
-		This Method Is The Property For The _lightLabelTextFont Attribute.
+		This method is the property for the _lightLabelTextFont attribute.
 
 		@return: self.__lightLabelTextFont. ( String )
 		"""
@@ -833,21 +833,21 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self, value):
 		"""
-		This Method Is The Setter Method For The _lightLabelTextFont Attribute.
+		This method is the setter method for the _lightLabelTextFont attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("lightLabelTextFont"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextFont"))
 
 	@lightLabelTextFont.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self):
 		"""
-		This Method Is The Deleter Method For The _lightLabelTextFont Attribute.
+		This method is the deleter method for the _lightLabelTextFont attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("lightLabelTextFont"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextFont"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -855,12 +855,12 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -877,18 +877,18 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Cannot Be Deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 
 		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
@@ -925,18 +925,18 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Ui Cannot Be Uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -944,15 +944,15 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget Cannot Be Removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This Method Sets The Inspector DockWidget Ui.
+		This method sets the Inspector dockwidget ui.
 		"""
 
 		if self.__inspectorIblSet:
@@ -979,7 +979,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This Method Sets The Inspector DockWidget Ui.
+		This method sets the Inspector dockwidget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
@@ -987,7 +987,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This Method Clears The Inspector DockWidget Ui.
+		This method clears the Inspector dockwidget ui.
 		"""
 
 		self.ui.Title_label.setText(QString())
@@ -1000,22 +1000,22 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setModel(self):
 		"""
-		This Method Sets The Plates_listView Model.
+		This method sets the Plates_listView Model.
 		"""
 
-		LOGGER.debug("> Setting Up '{0}' Model!".format("Plates_listView"))
+		LOGGER.debug("> Setting up '{0}' model!".format("Plates_listView"))
 
 		self.__model.clear()
 
 		if self.__inspectorIblSet:
-			LOGGER.debug("> Preparing '{0}' Ibl Set For '{1}' Model.".format(self.__inspectorIblSet.name, "Plates_listView"))
+			LOGGER.debug("> Preparing '{0}' ibl set for '{1}' model.".format(self.__inspectorIblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
 			inspectorIblSetStandardItem.setIcon(umbra.ui.common.getIcon(self.__inspectorIblSet.icon))
 			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 			self.__model.appendRow(inspectorIblSetStandardItem)
 
 			for name, plate in self.__inspectorPlates.items():
-				LOGGER.debug("> Preparing '{0}' Plate For '{1}' Model.".format(name, "Plates_listView"))
+				LOGGER.debug("> Preparing '{0}' plate for '{1}' model.".format(name, "Plates_listView"))
 				try:
 					plateStandardItem = QStandardItem()
 					plateStandardItem.setIcon(umbra.ui.common.getIcon(plate.icon))
@@ -1023,17 +1023,17 @@ class Inspector(UiComponent):
 
 					plateStandardItem._datas = plate
 
-					LOGGER.debug("> Adding '{0}' To '{1}' Model.".format(name, "Plates_listView"))
+					LOGGER.debug("> Adding '{0}' to '{1}' model.".format(name, "Plates_listView"))
 					self.__model.appendRow(plateStandardItem)
 
 				except Exception as error:
-					LOGGER.error("!>{0} | Exception Raised While Adding '{1}' Plate To '{2}' Model!".format(self.__class__.__name__, name, "Plates_listView"))
+					LOGGER.error("!>{0} | Exception raised while adding '{1}' plate to '{2}' model!".format(self.__class__.__name__, name, "Plates_listView"))
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
 
 	@core.executionTrace
 	def __Plates_listView_refreshModel(self):
 		"""
-		This Method Refreshes The Plates_listView Model.
+		This method refreshes the Plates_listView Model.
 		"""
 
 		self.__Plates_listView_setModel()
@@ -1041,10 +1041,10 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setView(self):
 		"""
-		This Method Sets The Plates_listView Ui.
+		This method sets the Plates_listView ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Widget!".format("Plates_listView"))
+		LOGGER.debug("> Initializing '{0}' widget!".format("Plates_listView"))
 
 		self.ui.Plates_listView.setAcceptDrops(False)
 		self.ui.Plates_listView.setAutoScroll(True)
@@ -1063,10 +1063,10 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setDefaultViewState(self):
 		"""
-		This Method Scales The Plates_listView Item Size.
+		This method scales the Plates_listView item size.
 		"""
 
-		LOGGER.debug("> Setting '{0}' View Item Size To: {1}.".format("Plates_listView", self.__listViewIconSize))
+		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Plates_listView", self.__listViewIconSize))
 
 		self.ui.Plates_listView.setEditTriggers(QAbstractItemView.NoEditTriggers)
 		self.ui.Plates_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
@@ -1074,7 +1074,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_addActions(self):
 		"""
-		This Method Sets The Inspector_Overall_frame Actions.
+		This method sets the Inspector_Overall_frame actions.
 		"""
 
 		pass
@@ -1082,10 +1082,10 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets Is Triggered When Plates_listView Model Selection Has Changed.
+		This method sets is triggered when Plates_listView Model selection has changed.
 
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
+		@param selectedItems: Selected items. ( QItemSelection )
+		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
@@ -1099,7 +1099,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
 		"""
-		This Method Sets Is Triggered When coreDatabaseBrowser Model Has Changed.
+		This method sets is triggered when coreDatabaseBrowser Model has changed.
 		"""
 
 		self.__setInspectorIblSet()
@@ -1107,10 +1107,10 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This Method Sets Is Triggered When coreDatabaseBrowser Database_Browser_listView Model Selection Has Changed.
+		This method sets is triggered when coreDatabaseBrowser Database_Browser_listView Model selection has changed.
 
-		@param selectedItems: Selected Items. ( QItemSelection )
-		@param deselectedItems: Deselected Items. ( QItemSelection )
+		@param selectedItems: Selected items. ( QItemSelection )
+		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		self.__setInspectorIblSet()
@@ -1126,9 +1126,9 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Previous_Ibl_Set_pushButton Is Clicked.
+		This method is triggered when Previous_Ibl_Set_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughIblSets(True)
@@ -1136,9 +1136,9 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Next_Ibl_Set_pushButton Is Clicked.
+		This method is triggered when Next_Ibl_Set_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughIblSets()
@@ -1146,9 +1146,9 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Previous_Plate_pushButton Is Clicked.
+		This method is triggered when Previous_Plate_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughPlates(True)
@@ -1156,9 +1156,9 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
-		This Method Is Triggered When Next_Plate_pushButton Is Clicked.
+		This method is triggered when Next_Plate_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughPlates()
@@ -1166,9 +1166,9 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Image_label__linkActivated(self, url):
 		"""
-		This Method Is Triggered When A Link Is Clicked In The Image_label Widget.
+		This method is triggered when a link is clicked in the Image_label Widget.
 
-		@param url: Url To Explore. ( QString )
+		@param url: Url to explore. ( QString )
 		"""
 
 		QDesktopServices.openUrl(QUrl(url))
@@ -1176,7 +1176,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
-		This Method Sets The Inspector Ibl Set.
+		This method sets the Inspector Ibl Set.
 		"""
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -1189,11 +1189,11 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This Method Sets The Inspector Ibl Set Parser.
+		This method Sets the Inspector Ibl set parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):
-			LOGGER.debug("> Parsing Inspector Ibl Set File: '{0}'.".format(self.__inspectorIblSet))
+			LOGGER.debug("> Parsing Inspector Ibl set file: '{0}'.".format(self.__inspectorIblSet))
 			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet.path)
 			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 
@@ -1201,7 +1201,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def __setInspectorIblSetPlates(self):
 		"""
-		This Method Sets The Plates From The Inspector Ibl Set.
+		This method sets the Plates from the Inspector Ibl Set.
 		"""
 
 		if self.__inspectorIblSet:
@@ -1214,12 +1214,12 @@ class Inspector(UiComponent):
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
 																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception Raised While Retrieving Plates: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
+				raise OSError, "{0} | Exception raised while retrieving Plates: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
 		"""
-		This Method Draws An Overlay On .
+		This method draws an overlay on .
 		"""
 
 		painter = QPainter(self.ui.Image_label.pixmap())
@@ -1240,7 +1240,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __drawLightLabel(self, painter, light):
 		"""
-		This Method Draws A Light Label On Provided QPainter.
+		This method draws a light label on provided QPainter.
 
 		@param painter: QPainter. ( QPainter )
 		@param light: Light. ( Light )
@@ -1277,10 +1277,10 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This Method Loops Through Database Browser Ibl Sets.
+		This method loops through Database browser Ibl Sets.
 
-		@param backward: Looping Backward. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param backward: Looping backward. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		if self.__inspectorIblSet:
@@ -1310,10 +1310,10 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
-		This Method Loops Through Inspector Plates.
+		This method loops through Inspector Plates.
 
-		@param backward: Looping Backward. ( Boolean )
-		@return: Method Success. ( Boolean )
+		@param backward: Looping backward. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None

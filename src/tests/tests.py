@@ -42,7 +42,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Tests Suite Module.
+	Tests suite Module.
 
 **Others:**
 
@@ -72,9 +72,9 @@ import unittest
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
-	This Definition Sets The Application Package Directory In The Path.
+	This definition sets the Application package directory in the path.
 
-	@return: Definition Success. ( Boolean )
+	@return: Definition success. ( Boolean )
 	"""
 
 	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom Delayed QSplashScreen Module.
+	Custom delayed QSplashScreen Module.
 
 **Others:**
 
@@ -75,19 +75,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Delayed_QSplashScreen(QSplashScreen):
 	"""
-	This Class Is The sIBL_SplashScreen Class.
+	This class is the sIBL_SplashScreen class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, picture, waitTime=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param picture: Current Picture Path. ( String )
-		@param waitTime Wait Time. ( Integer )
+		@param picture: Current picture path. ( String )
+		@param waitTime wait time. ( Integer )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		QSplashScreen.__init__(self, picture)
 
@@ -103,9 +103,9 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@property
 	def waitTime(self):
 		"""
-		This Method Is The Property For The _waitTime Attribute.
+		This method is the property for the _waitTime attribute.
 
-		@return: self.__waitTime ( Integer / Float )
+		@return: self.__waitTime ( Integer / float )
 		"""
 
 		return self.__waitTime
@@ -114,24 +114,24 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def waitTime(self, value):
 		"""
-		This Method Is The Setter Method For The _waitTime Attribute.
+		This method is the setter method for the _waitTime attribute.
 
-		@param value: Attribute Value. ( Integer / Float )
+		@param value: Attribute value. ( Integer / float )
 		"""
 
 		if value:
-			assert type(value) in (int, float), "'{0}' Attribute: '{1}' Type Is Not 'int' or 'float'!".format("waitTime", value)
-			assert value > 0, "'{0}' Attribute: '{1}' Need To Be Exactly Positive!".format("waitTime", value)
+			assert type(value) in (int, float), "'{0}' attribute: '{1}' type is not 'int' or 'float'!".format("waitTime", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("waitTime", value)
 		self.__waitTime = value
 
 	@waitTime.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def waitTime(self):
 		"""
-		This Method Is The Deleter Method For The _waitTime Attribute.
+		This method is the deleter method for the _waitTime attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("waitTime"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("waitTime"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -139,12 +139,12 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@core.executionTrace
 	def setMessage(self, message, textAlignement=Qt.AlignLeft, textColor=Qt.black, waitTime=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param message: Message To Display On The Splashscreen. ( String )
-		@param textAlignement: Text Message Alignment. ( Object )
-		@param textColor: Text Message Color. ( Object )
-		@param waitTime: Wait Time. ( Float )
+		@param message: Message to display on the splashscreen. ( String )
+		@param textAlignement: Text message alignment. ( Object )
+		@param textColor: Text message color. ( Object )
+		@param waitTime: Wait time. ( Float )
 		"""
 
 		self.showMessage(message, textAlignement, textColor)

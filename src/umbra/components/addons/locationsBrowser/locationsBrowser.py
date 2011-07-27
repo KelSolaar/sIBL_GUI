@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Locations Browser Component Module.
+	Locations browser Component Module.
 
 **Others:**
 
@@ -80,19 +80,19 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LocationsBrowser(UiComponent):
 	"""
-	This Class Is The LocationsBrowser Class.
+	This class is the LocationsBrowser class.
 	"""
 
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
-		This Method Initializes The Class.
+		This method initializes the class.
 
-		@param name: Component Name. ( String )
-		@param uiFile: Ui File. ( String )
+		@param name: Component name. ( String )
+		@param uiFile: Ui file. ( String )
 		"""
 
-		LOGGER.debug("> Initializing '{0}()' Class.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		UiComponent.__init__(self, name=name, uiFile=uiFile)
 
@@ -126,7 +126,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This Method Is The Property For The _uiPath Attribute.
+		This method is the property for the _uiPath attribute.
 
 		@return: self.__uiPath. ( String )
 		"""
@@ -137,26 +137,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This Method Is The Setter Method For The _uiPath Attribute.
+		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
 
 	@uiPath.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This Method Is The Deleter Method For The _uiPath Attribute.
+		This method is the deleter method for the _uiPath attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("uiPath"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
 
 	@property
 	def container(self):
 		"""
-		This Method Is The Property For The _container Attribute.
+		This method is the property for the _container attribute.
 
 		@return: self.__container. ( QObject )
 		"""
@@ -167,26 +167,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This Method Is The Setter Method For The _container Attribute.
+		This method is the setter method for the _container attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This Method Is The Deleter Method For The _container Attribute.
+		This method is the deleter method for the _container attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
 	def settings(self):
 		"""
-		This Method Is The Property For The _settings Attribute.
+		This method is the property for the _settings attribute.
 
 		@return: self.__settings. ( QSettings )
 		"""
@@ -197,26 +197,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This Method Is The Setter Method For The _settings Attribute.
+		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute Value. ( QSettings )
+		@param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This Method Is The Deleter Method For The _settings Attribute.
+		This method is the deleter method for the _settings attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settings"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def settingsSection(self):
 		"""
-		This Method Is The Property For The _settingsSection Attribute.
+		This method is the property for the _settingsSection attribute.
 
 		@return: self.__settingsSection. ( String )
 		"""
@@ -227,26 +227,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This Method Is The Setter Method For The _settingsSection Attribute.
+		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute Value. ( String )
+		@param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This Method Is The Deleter Method For The _settingsSection Attribute.
+		This method is the deleter method for the _settingsSection attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("settingsSection"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
 	def coreComponentsManagerUi(self):
 		"""
-		This Method Is The Property For The _coreComponentsManagerUi Attribute.
+		This method is the property for the _coreComponentsManagerUi attribute.
 
 		@return: self.__coreComponentsManagerUi. ( Object )
 		"""
@@ -257,26 +257,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreComponentsManagerUi(self, value):
 		"""
-		This Method Is The Setter Method For The _coreComponentsManagerUi Attribute.
+		This method is the setter method for the _coreComponentsManagerUi attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreComponentsManagerUi"))
 
 	@coreComponentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreComponentsManagerUi(self):
 		"""
-		This Method Is The Deleter Method For The _coreComponentsManagerUi Attribute.
+		This method is the deleter method for the _coreComponentsManagerUi attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreComponentsManagerUi"))
 
 	@property
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Property For The _corePreferencesManager Attribute.
+		This method is the property for the _corePreferencesManager attribute.
 
 		@return: self.__corePreferencesManager. ( Object )
 		"""
@@ -287,26 +287,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This Method Is The Setter Method For The _corePreferencesManager Attribute.
+		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
 
 	@corePreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This Method Is The Deleter Method For The _corePreferencesManager Attribute.
+		This method is the deleter method for the _corePreferencesManager attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Property For The _coreDatabaseBrowser Attribute.
+		This method is the property for the _coreDatabaseBrowser attribute.
 
 		@return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -317,26 +317,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This Method Is The Setter Method For The _coreDatabaseBrowser Attribute.
+		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This Method Is The Deleter Method For The _coreDatabaseBrowser Attribute.
+		This method is the deleter method for the _coreDatabaseBrowser attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
 
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Property For The _coreTemplatesOutliner Attribute.
+		This method is the property for the _coreTemplatesOutliner attribute.
 
 		@return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -347,26 +347,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This Method Is The Setter Method For The _coreTemplatesOutliner Attribute.
+		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This Method Is The Deleter Method For The _coreTemplatesOutliner Attribute.
+		This method is the deleter method for the _coreTemplatesOutliner attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
 	def addonsLoaderScript(self):
 		"""
-		This Method Is The Property For The _addonsLoaderScript Attribute.
+		This method is the property for the _addonsLoaderScript attribute.
 
 		@return: self.__addonsLoaderScript. ( Object )
 		"""
@@ -377,26 +377,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self, value):
 		"""
-		This Method Is The Setter Method For The _addonsLoaderScript Attribute.
+		This method is the setter method for the _addonsLoaderScript attribute.
 
-		@param value: Attribute Value. ( Object )
+		@param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLoaderScript"))
 
 	@addonsLoaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self):
 		"""
-		This Method Is The Deleter Method For The _addonsLoaderScript Attribute.
+		This method is the deleter method for the _addonsLoaderScript attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLoaderScript"))
 
 	@property
 	def openIblSetsLocationsAction(self):
 		"""
-		This Method Is The Property For The _openIblSetsLocationsAction Attribute.
+		This method is the property for the _openIblSetsLocationsAction attribute.
 
 		@return: self.__openIblSetsLocationsAction. ( QAction )
 		"""
@@ -407,26 +407,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openIblSetsLocationsAction(self, value):
 		"""
-		This Method Is The Setter Method For The _openIblSetsLocationsAction Attribute.
+		This method is the setter method for the _openIblSetsLocationsAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openIblSetsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openIblSetsLocationsAction"))
 
 	@openIblSetsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openIblSetsLocationsAction(self):
 		"""
-		This Method Is The Deleter Method For The _openIblSetsLocationsAction Attribute.
+		This method is the deleter method for the _openIblSetsLocationsAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openIblSetsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openIblSetsLocationsAction"))
 
 	@property
 	def openInspectorIblSetLocationsAction(self):
 		"""
-		This Method Is The Property For The _openInspectorIblSetLocationsAction Attribute.
+		This method is the property for the _openInspectorIblSetLocationsAction attribute.
 
 		@return: self.__openInspectorIblSetLocationsAction. ( QAction )
 		"""
@@ -437,26 +437,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openInspectorIblSetLocationsAction(self, value):
 		"""
-		This Method Is The Setter Method For The _openInspectorIblSetLocationsAction Attribute.
+		This method is the setter method for the _openInspectorIblSetLocationsAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openInspectorIblSetLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openInspectorIblSetLocationsAction"))
 
 	@openInspectorIblSetLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openInspectorIblSetLocationsAction(self):
 		"""
-		This Method Is The Deleter Method For The _openInspectorIblSetLocationsAction Attribute.
+		This method is the deleter method for the _openInspectorIblSetLocationsAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openInspectorIblSetLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openInspectorIblSetLocationsAction"))
 
 	@property
 	def openComponentsLocationsAction(self):
 		"""
-		This Method Is The Property For The _openComponentsLocationsAction Attribute.
+		This method is the property for the _openComponentsLocationsAction attribute.
 
 		@return: self.__openComponentsLocationsAction. ( QAction )
 		"""
@@ -467,26 +467,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openComponentsLocationsAction(self, value):
 		"""
-		This Method Is The Setter Method For The _openComponentsLocationsAction Attribute.
+		This method is the setter method for the _openComponentsLocationsAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openComponentsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openComponentsLocationsAction"))
 
 	@openComponentsLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openComponentsLocationsAction(self):
 		"""
-		This Method Is The Deleter Method For The _openComponentsLocationsAction Attribute.
+		This method is the deleter method for the _openComponentsLocationsAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openComponentsLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openComponentsLocationsAction"))
 
 	@property
 	def openTemplatesLocationsAction(self):
 		"""
-		This Method Is The Property For The _openTemplatesLocationsAction Attribute.
+		This method is the property for the _openTemplatesLocationsAction attribute.
 
 		@return: self.__openTemplatesLocationsAction. ( QAction )
 		"""
@@ -497,26 +497,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openTemplatesLocationsAction(self, value):
 		"""
-		This Method Is The Setter Method For The _openTemplatesLocationsAction Attribute.
+		This method is the setter method for the _openTemplatesLocationsAction attribute.
 
-		@param value: Attribute Value. ( QAction )
+		@param value: Attribute value. ( QAction )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("openTemplatesLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openTemplatesLocationsAction"))
 
 	@openTemplatesLocationsAction.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openTemplatesLocationsAction(self):
 		"""
-		This Method Is The Deleter Method For The _openTemplatesLocationsAction Attribute.
+		This method is the deleter method for the _openTemplatesLocationsAction attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("openTemplatesLocationsAction"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openTemplatesLocationsAction"))
 
 	@property
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This Method Is The Property For The _Open_Output_Directory_pushButton Attribute.
+		This method is the property for the _Open_Output_Directory_pushButton attribute.
 
 		@return: self.__Open_Output_Directory_pushButton. ( QPushButton )
 		"""
@@ -527,26 +527,26 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self, value):
 		"""
-		This Method Is The Setter Method For The _Open_Output_Directory_pushButton Attribute.
+		This method is the setter method for the _Open_Output_Directory_pushButton attribute.
 
-		@param value: Attribute Value. ( QPushButton )
+		@param value: Attribute value. ( QPushButton )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("Open_Output_Directory_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("Open_Output_Directory_pushButton"))
 
 	@Open_Output_Directory_pushButton.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This Method Is The Deleter Method For The _Open_Output_Directory_pushButton Attribute.
+		This method is the deleter method for the _Open_Output_Directory_pushButton attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("Open_Output_Directory_pushButton"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("Open_Output_Directory_pushButton"))
 
 	@property
 	def linuxBrowsers(self):
 		"""
-		This Method Is The Property For The _linuxBrowsers Attribute.
+		This method is the property for the _linuxBrowsers attribute.
 
 		@return: self.__linuxBrowsers. ( QObject )
 		"""
@@ -557,21 +557,21 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self, value):
 		"""
-		This Method Is The Setter Method For The _linuxBrowsers Attribute.
+		This method is the setter method for the _linuxBrowsers attribute.
 
-		@param value: Attribute Value. ( QObject )
+		@param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Read Only!".format("linuxBrowsers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("linuxBrowsers"))
 
 	@linuxBrowsers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self):
 		"""
-		This Method Is The Deleter Method For The _linuxBrowsers Attribute.
+		This method is the deleter method for the _linuxBrowsers attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Attribute Is Not Deletable!".format("linuxBrowsers"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("linuxBrowsers"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -579,12 +579,12 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def activate(self, container):
 		"""
-		This Method Activates The Component.
+		This method activates the Component.
 
-		@param container: Container To Attach The Component To. ( QObject )
+		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -603,10 +603,10 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def deactivate(self):
 		"""
-		This Method Deactivates The Component.
+		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -625,10 +625,10 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This Method Initializes The Component Ui.
+		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
 
 
 		self.__Custom_File_Browser_Path_lineEdit_setUi()
@@ -641,7 +641,7 @@ class LocationsBrowser(UiComponent):
 
 		# LoaderScript addon component specific code.
 		if self.__addonsLoaderScript.activated:
-			self.__Open_Output_Directory_pushButton = QPushButton("Open Output Directory")
+			self.__Open_Output_Directory_pushButton = QPushButton("Open output directory")
 			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
 
 			# Signals / slots.
@@ -650,10 +650,10 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
-		This Method Uninitializes The Component Ui.
+		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' Component Ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
@@ -672,54 +672,54 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This Method Adds The Component Widget To The Container.
+		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This Method Removes The Component Widget From The Container.
+		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
 
 		self.ui.Custom_File_Browser_Path_groupBox.setParent(None)
 
 	@core.executionTrace
 	def __addActions(self):
 		"""
-		This Method Adds Actions.
+		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
 
-		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__openIblSetsLocationsAction = QAction("Open Ibl set(s) location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
 
-		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl Set Location ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl set location ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__openInspectorIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectorIblSetLocationsAction)
 
-		self.__openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
+		self.__openComponentsLocationsAction = QAction("Open component(s) location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
 		self.__openComponentsLocationsAction.triggered.connect(self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered)
 		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__openComponentsLocationsAction)
 
-		self.__openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+		self.__openTemplatesLocationsAction = QAction("Open template(s) location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 		self.__openTemplatesLocationsAction.triggered.connect(self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered)
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__openTemplatesLocationsAction)
 
 	@core.executionTrace
 	def __removeActions(self):
 		"""
-		This Method Removes Actions.
+		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' Component Actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
 
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__openIblSetsLocationsAction)
 		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectorIblSetLocationsAction)
@@ -734,9 +734,9 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_openIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By openIblSetsLocationsAction Action.
+		This method is triggered by openIblSetsLocationsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openIblSetsLocations__()
@@ -744,9 +744,9 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By openInspectorIblSetLocationsAction Action.
+		This method is triggered by openInspectorIblSetLocationsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openInspectorIblSetLocations__()
@@ -754,9 +754,9 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By openComponentsLocationsAction Action.
+		This method is triggered by openComponentsLocationsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openComponentsLocations__()
@@ -764,9 +764,9 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
 		"""
-		This Method Is Triggered By openTemplatesLocationsAction Action.
+		This method is triggered by openTemplatesLocationsAction action.
 
-		@param checked: Action Checked State. ( Boolean )
+		@param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openTemplatesLocations__()
@@ -774,24 +774,24 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
 		"""
-		This Method Fills The Custom_File_Browser_Path_lineEdit.
+		This method fills the Custom_File_Browser_Path_lineEdit.
 		"""
 
 		customFileBrowser = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
-		LOGGER.debug("> Setting '{0}' With Value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customFileBrowser.toString()))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customFileBrowser.toString()))
 		self.ui.Custom_File_Browser_Path_lineEdit.setText(customFileBrowser.toString())
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When Custom_File_Browser_Path_toolButton Is Clicked.
+		This method is called when Custom_File_Browser_Path_toolButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
-		customFileBrowserExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom File Browser Executable:", self.__container.lastBrowsedPath))
+		customFileBrowserExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom file browser executable:", self.__container.lastBrowsedPath))
 		if customFileBrowserExecutable != "":
-			LOGGER.debug("> Chosen Custom File Browser Executable: '{0}'.".format(customFileBrowserExecutable))
+			LOGGER.debug("> Chosen custom file browser executable: '{0}'.".format(customFileBrowserExecutable))
 			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
@@ -799,23 +799,23 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
-		This Method Is Called When Custom_File_Browser_Path_lineEdit Is Edited And Check That Entered Path Is Valid.
+		This method is called when Custom_File_Browser_Path_lineEdit is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_File_Browser_Path_lineEdit.text()))) and str(self.ui.Custom_File_Browser_Path_lineEdit.text()) != "":
-			LOGGER.debug("> Restoring Preferences!")
+			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid Custom File Browser Executable File!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid custom file browser executable file!".format(self.__class__.__name__)
 		else:
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This Method Is Called When Open_Output_Directory_pushButton Is Clicked.
+		This method is called when Open_Output_Directory_pushButton is clicked.
 
-		@param checked: Checked State. ( Boolean )
+		@param checked: Checked state. ( Boolean )
 		"""
 
 		self.openOutputDirectory__()
@@ -824,9 +824,9 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def openIblSetsLocations__(self):
 		"""
-		This Method Open Selected Ibl Sets Directories.
+		This method open selected Ibl Sets directories.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -837,20 +837,20 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Ibl Set File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, iblSet.title))
+				LOGGER.warning("!> {0} | '{1}' ibl set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Opening '{1}' Ibl Sets Directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception, "{0} | Exception raised while opening '{1}' ibl Sets directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def openInspectorIblSetLocations__(self):
 		"""
-		This Method Opens Inspector Ibl Set Directory.
+		This method opens Inspector Ibl set directory.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -858,15 +858,15 @@ class LocationsBrowser(UiComponent):
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception Raised While Opening Inspector Ibl Set Directory: '{1}' Ibl Set File Doesn't Exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while opening Inspector Ibl set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def openComponentsLocations__(self):
 		"""
-		This Method Opens Selected Components Directories.
+		This method opens selected Components directories.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
@@ -877,20 +877,20 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Component File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, component.name))
+				LOGGER.warning("!> {0} | '{1}' component file doesn't exists and will be skipped!".format(self.__class__.__name__, component.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Opening '{1}' Components Directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
+			raise Exception, "{0} | Exception raised while opening '{1}' components directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def openTemplatesLocations__(self):
 		"""
-		This Method Opens Selected Templates Directories.
+		This method opens selected Templates directories.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -901,41 +901,41 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' Template File Doesn't Exists And Will Be Skipped!".format(self.__class__.__name__, template.name))
+				LOGGER.warning("!> {0} | '{1}' template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Opening '{1}' Templates Directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception, "{0} | Exception raised while opening '{1}' templates directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def openOutputDirectory__(self):
 		"""
-		This Method Opens Output Directory.
+		This method opens output directory.
 
-		@return: Method Success. ( Boolean )
+		@return: Method success. ( Boolean )
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
 
 		if not os.path.exists(directory):
-			raise OSError, "{0} | '{1}' Loader Script Output Directory Doesn't Exists!".format(self.__class__.__name__, directory)
+			raise OSError, "{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory)
 
 		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())):
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised While Exploring '{1}' Directory!".format(self.__class__.__name__, directory)
+			raise Exception, "{0} | Exception raised while exploring '{1}' directory!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getProcessCommand(self, directory, customBrowser=None):
 		"""
-		This Method Gets Process Command.
+		This method gets process command.
 
-		@param directory: Directory To Explore. ( String )
-		@param customBrowser: Custom Browser. ( String )
-		@return: Process Command. ( String )
+		@param directory: Directory to explore. ( String )
+		@param customBrowser: Custom browser. ( String )
+		@return: Process command. ( String )
 		"""
 
 		processCommand = None
@@ -972,29 +972,29 @@ class LocationsBrowser(UiComponent):
 						pass
 
 				if not browserFound:
-					raise Exception, "{0} | Exception Raised: No Suitable Linux Browser Found!".format(self.__class__.__name__)
+					raise Exception, "{0} | Exception raised: No suitable Linux browser found!".format(self.__class__.__name__)
 		return processCommand
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def exploreDirectory(self, directory, customBrowser=None):
 		"""
-		This Method Provides Directory Exploring Capability.
+		This method provides directory exploring capability.
 
-		@param directory: Directory To Explore. ( String )
-		@param customBrowser: Custom Browser. ( String )
-		@return: Method Success. ( Boolean )
+		@param directory: Directory to explore. ( String )
+		@param customBrowser: Custom browser. ( String )
+		@return: Method success. ( Boolean )
 		"""
 
 		browserCommand = self.getProcessCommand(directory, customBrowser)
 		if browserCommand:
-			LOGGER.debug("> Current Browser Command: '{0}'.".format(browserCommand))
-			LOGGER.info("{0} | Launching File Browser With '{1}' Directory.".format(self.__class__.__name__, directory))
+			LOGGER.debug("> Current browser command: '{0}'.".format(browserCommand))
+			LOGGER.info("{0} | Launching file browser with '{1}' directory.".format(self.__class__.__name__, directory))
 			browserProcess = QProcess()
 			browserProcess.startDetached(browserCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception Raised: No Suitable Process Command Provided!".format(self.__class__.__name__)
+			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
 
 #***********************************************************************************************
 #***	Python end.

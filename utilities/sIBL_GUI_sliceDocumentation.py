@@ -85,7 +85,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 	@param outputDirectory: Output Directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Slicing '{1}' File!".format(sliceDocumentation.__name__, fileIn))
+	LOGGER.info("{0} | Slicing '{1}' file!".format(sliceDocumentation.__name__, fileIn))
 	file = File(fileIn)
 	file.read()
 
@@ -98,13 +98,13 @@ def sliceDocumentation(fileIn, outputDirectory):
 	index = 0
 	for slice, sliceStart in slices.items():
 		sliceFile = File(os.path.join(outputDirectory, "{0}.{1}".format(slice, OUTPUT_FILES_EXTENSION)))
-		LOGGER.info("{0} | Outputing '{1}' File!".format(sliceDocumentation.__name__, sliceFile.file))
+		LOGGER.info("{0} | Outputing '{1}' file!".format(sliceDocumentation.__name__, sliceFile.file))
 		sliceEnd = index < (len(slices.values()) - 1) and slices.values()[index + 1] - SLICE_ATTRIBUTE_INDENT or len(file.content)
 
 		for i in range(sliceStart, sliceEnd):
 			for item in CONTENT_DELETION:
 				if re.search(item, file.content[i]):
-					LOGGER.info("{0} | Skipping Line '{1}' With '{2}' Content!".format(sliceDocumentation.__name__, i, item))
+					LOGGER.info("{0} | Skipping Line '{1}' with '{2}' content!".format(sliceDocumentation.__name__, i, item))
 					continue
 				line = file.content[i]
 				for pattern, value in CONTENT_SUBSTITUTIONS.items():
@@ -112,7 +112,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 
 				search = re.search("-  `[a-zA-Z0-9_ ]+`_ \(([a-zA-Z0-9_\.]+)\)", line)
 				if search:
-					LOGGER.info("{0} | Updating Line '{1}' Link: '{2}'!".format(sliceDocumentation.__name__, i, search.groups()[0]))
+					LOGGER.info("{0} | Updating Line '{1}' link: '{2}'!".format(sliceDocumentation.__name__, i, search.groups()[0]))
 					line = "-  :ref:`{0}`\n".format(search.groups()[0])
 			sliceFile.content.append(line)
 
