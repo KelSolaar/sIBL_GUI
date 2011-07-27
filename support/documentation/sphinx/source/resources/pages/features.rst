@@ -22,7 +22,7 @@ Some highlights:
 -  SQlite Database.
 -  Online Updater.
 -  Microsoft Bing Maps Gps map.
--  Internal Image Previewer.
+-  Internal Images Previewer.
 
 and much more…
 

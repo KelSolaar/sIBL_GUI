@@ -1423,7 +1423,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		toolbarFont = QFont()
 		toolbarFont.setPointSize(16)
 
-		LOGGER.debug("> Adding Active Labels.")
+		LOGGER.debug("> Adding Active_QLabels.")
 
 		self.__libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
 		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
@@ -1514,10 +1514,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __setLayoutsActiveLabelsShortcuts(self):
 		"""
-		This Method Sets The Layouts Active Labels Shortcuts.
+		This Method Sets The Layouts Active_QLabels Shortcuts.
 		"""
 
-		LOGGER.debug("> Setting Layouts Active Labels Shortcuts.")
+		LOGGER.debug("> Setting Layouts Active_QLabels Shortcuts.")
 
 		for layoutActiveLabel in self.__layoutsActiveLabels:
 			action = QAction(layoutActiveLabel.name, self)
@@ -1528,27 +1528,27 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __getLayoutsActiveLabel(self):
 		"""
-		This Method Returns The Current Layout Active Label Index.
+		This Method Returns The Current Layout Active_QLabel Index.
 
-		@return: Layouts Active Label Index. ( Integer )
+		@return: Layouts Active_QLabel Index. ( Integer )
 		"""
 
-		LOGGER.debug("> Retrieving Current Layout Active Label Index.")
+		LOGGER.debug("> Retrieving Current Layout Active_QLabel Index.")
 
 		for index in range(len(self.__layoutsActiveLabels)):
 			if self.__layoutsActiveLabels[index].object_.isChecked():
-				LOGGER.debug("> Current Layout Active Label Index: '{0}'.".format(index))
+				LOGGER.debug("> Current Layout Active_QLabel Index: '{0}'.".format(index))
 				return index
 
 	@core.executionTrace
 	def __setLayoutsActiveLabel(self, index):
 		"""
-		This Method Sets The Layouts Active Label.
+		This Method Sets The Layouts Active_QLabel.
 
-		@param index: Layouts Active Label. ( Integer )
+		@param index: Layouts Active_QLabel. ( Integer )
 		"""
 
-		LOGGER.debug("> Setting Layouts Active Labels States.")
+		LOGGER.debug("> Setting Layouts Active_QLabels States.")
 
 		for index_ in range(len(self.__layoutsActiveLabels)):
 			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
@@ -1556,10 +1556,10 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __activeLabel__clicked(self, activeLabel):
 		"""
-		This Method Is Triggered When An Active Label Is Clicked.
+		This Method Is Triggered When An Active_QLabel Is Clicked.
 		"""
 
-		LOGGER.debug("> Clicked Active Label: '{0}'.".format(activeLabel))
+		LOGGER.debug("> Clicked Active_QLabel: '{0}'.".format(activeLabel))
 
 		self.restoreLayout(activeLabel)
 		for layoutActivelabel in self.__layoutsActiveLabels:

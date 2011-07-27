@@ -1558,7 +1558,7 @@ class CollectionsOutliner(UiComponent):
 		if not ids:
 			return self.getCollectionId(self.__defaultCollection)
 		else:
-			len(ids) > 1 and LOGGER.warning("!> {0} | Multiple Collection Selected, Using '{1}' Id!".format(self.__class__.__name__, ids[0]))
+			len(ids) > 1 and LOGGER.warning("!> {0} | Multiple Collections Selected, Using '{1}' Id!".format(self.__class__.__name__, ids[0]))
 			return ids[0]
 
 	@core.executionTrace

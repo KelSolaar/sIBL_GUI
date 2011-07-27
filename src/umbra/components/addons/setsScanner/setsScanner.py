@@ -250,7 +250,7 @@ class SetsScanner_Worker(QThread):
 		@return: Method Success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Scanning Sets Directories For New Ibl Sets!".format(self.__class__.__name__))
+		LOGGER.info("{0} | Scanning Ibl Sets Directories For New Ibl Sets!".format(self.__class__.__name__))
 
 		self.__newIblSets = {}
 		paths = [path[0] for path in self.__dbSession.query(dbTypes.DbIblSet.path).all()]
@@ -506,9 +506,9 @@ class SetsScanner(Component):
 				# Signals / slots.
 				self.__setsScannerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			else:
-				LOGGER.info("{0} | 'Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Ibl Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
-			LOGGER.info("{0} | Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Ibl Sets Scanning Capabilities Deactivated By '{1}' Command Line Parameter Value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def uninitialize(self):

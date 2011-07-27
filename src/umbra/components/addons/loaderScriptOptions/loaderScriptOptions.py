@@ -631,7 +631,7 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def __tableWidget_setUi(self, section, tableWidget):
 		"""
-		This Method Defines And Sets Options TableWidgets.
+		This Method Defines And Sets Options_TableWidgets.
 
 		@param section: Section Attributes. ( Dictionary )
 		@param tableWidget: Table Widget. ( QTableWidget )

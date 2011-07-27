@@ -468,7 +468,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When Background ToolButton Is Clicked.
+		This Method Is Called When Background_ToolButton Is Clicked.
 
 		@param checked: Checked State. ( Boolean )
 		"""
@@ -478,7 +478,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When Lighting ToolButton Is Clicked.
+		This Method Is Called When Lighting_ToolButton Is Clicked.
 
 		@param checked: Checked State. ( Boolean )
 		"""
@@ -488,7 +488,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Reflection_Path_toolButton__clicked(self, checked):
 		"""
-		This Method Is Called When Reflection ToolButton Is Clicked.
+		This Method Is Called When Reflection_ToolButton Is Clicked.
 
 		@param checked: Checked State. ( Boolean )
 		"""
@@ -514,7 +514,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __setReWireCustomPath(self, component):
 		"""
-		This Method Sets The ReWire Custom Image Line Edits.
+		This Method Sets The RewiringTool Component Custom Image QLineEdit Widgets.
 
 		@param component: Target Component. ( String )
 		"""

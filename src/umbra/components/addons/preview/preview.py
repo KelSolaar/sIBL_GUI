@@ -946,7 +946,7 @@ class ImagesPreviewer(object):
 
 		event.accept()
 
-		LOGGER.debug("> Removing '{0}' From Image Previewers List.".format(self))
+		LOGGER.debug("> Removing '{0}' From Images Previewers List.".format(self))
 		self.__container.imagesPreviewers.remove(self)
 
 	@core.executionTrace
@@ -2049,7 +2049,7 @@ class Preview(UiComponent):
 		success = True
 		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Images Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 				break
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
 			if paths:
@@ -2075,7 +2075,7 @@ class Preview(UiComponent):
 		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
 		if inspectorIblSet:
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				messageBox.messageBox("Warning", "Warning", "{0} | You Can Only Launch '{1}' Images Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 			paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
 			if paths:
 				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())):
@@ -2111,7 +2111,7 @@ class Preview(UiComponent):
 			if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				return self.getImagesPreviewer(paths)
 			else:
-				LOGGER.warning("!> {0} | You Can Only Launch '{1}' Image Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				LOGGER.warning("!> {0} | You Can Only Launch '{1}' Images Previewer Instances At Same Time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

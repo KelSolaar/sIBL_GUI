@@ -307,7 +307,7 @@ class LoggingWindow(UiComponent):
 	# @core.executionTrace
 	def __Logging_textEdit_setUi(self):
 		"""
-		This Method Sets The Logging TextEdit.
+		This Method Sets The Logging_TextEdit Widget.
 		"""
 
 		self.ui.Logging_textEdit.setPlainText(QString("".join(self.__container.loggingSessionHandlerStream.stream)))
@@ -317,7 +317,7 @@ class LoggingWindow(UiComponent):
 	# @core.executionTrace
 	def __Logging_textEdit_refreshUi(self):
 		"""
-		This Method Updates The Logging TextEdit.
+		This Method Updates The Logging_TextEdit Widget.
 		"""
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)

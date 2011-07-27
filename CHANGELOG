@@ -82,7 +82,7 @@ Change Log
 3.0.9 - Stable
 --------------
 
--  sIBL_GUI has now an Internal Image Previewer: You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: http://www.hdrlabs.com/picturenaut/index.html.
+-  sIBL_GUI has now an Internal Images Previewer: You can quickly check your Ibl Sets images by right-clicking the "Database Browser" and use one of the new "Preview ..." context menu entry. It's also possible to use an External Viewer / Editor by assigning it in the Preferences. Picturenaut is obviously the way to go: http://www.hdrlabs.com/picturenaut/index.html.
 -  Refactored the way Third Party Images formats are loaded by using direct memory access and custom FreeImage library build: Third Party Images loading is now 10 to 20 times faster.
 -  Implemented Ibl Sets database display name edition: Double click an Ibl Set in the Database Browser to edit it's display name.
 -  "-r / --databaseReadOnly" command line parameter properly disable Database Browser, Collections Outliner and Templates Outliner components dragNdrop capabilities and Collections Outliner component editing capabilities.

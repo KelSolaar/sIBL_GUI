@@ -329,7 +329,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox_setUi(self):
 		"""
-		This Method Fills The Verbose Level ComboBox.
+		This Method Fills The Verbose_Level_ComboBox.
 		"""
 
 		self.ui.Verbose_Level_comboBox.clear()
@@ -341,7 +341,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox__activated(self, index):
 		"""
-		This Method Is Called When The Verbose Level ComboBox Is Triggered.
+		This Method Is Called When The Verbose_Level_ComboBox Is Triggered.
 
 		@param index: ComboBox Activated Item Index. ( Integer )
 		"""

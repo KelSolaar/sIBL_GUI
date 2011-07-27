@@ -101,7 +101,7 @@ Some highlights:
 -  SQlite Database.
 -  Online Updater.
 -  Microsoft Bing Maps Gps map.
--  Internal Image Previewer.
+-  Internal Images Previewer.
 
 and much more…
 
@@ -496,10 +496,10 @@ Addons Functionalities:
 -  **Edit In sIBLedit …**: Sends selected Ibl Sets to *sIBLedit*.
 -  **Edit In Text Editor …**: Edits selected Ibl Sets with system or custom user defined text editor.
 -  **Open Ibl Set(s) Location(s) ...**: Opens selected Ibl Sets directories.
--  **View Background Image …**: Views selected Ibl Sets background images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Lighting Image …**: Views selected Ibls Set lighting images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Reflection Image …**: Views selected Ibls Set reflection images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Plates …**: Views selected Ibls Set plates images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
+-  **View Background Image …**: Views selected Ibl Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Lighting Image …**: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Reflection Image …**: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plates …**: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 **\*\*\***
 
@@ -532,10 +532,10 @@ Interactions:
 
 Addons Functionalities:
 
--  **View Background Image Push Button**: Views Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Lighting Image Push Button**: Views Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Reflection Image Push Button**: Views Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Plates Push Button**: Views Inspector Ibl Set plates images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
+-  **View Background Image Push Button**: Views Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Lighting Image Push Button**: Views Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Reflection Image Push Button**: Views Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plates Push Button**: Views Inspector Ibl Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 Context Menu:
 
@@ -548,10 +548,10 @@ Addons Functionalities:
 -  **Edit In sIBLedit …**: Sends Inspector Ibl Set to *sIBLedit*.
 -  **Edit In Text Editor …**: Edits Inspector Ibl Set with system or custom user defined text editor.
 -  **Open Ibl Set(s) Location(s) ...**: Opens Inspector Ibl Sets directory.
--  **View Background Image …**: Views the Inspector Ibl Set background image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
--  **View Plates …**: Views the Ibl Set Inspector plates images in either the Internal Image Previewer or the application defined in the *Preview* component preferences.
+-  **View Background Image …**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plates …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 **\*\*\***
 
@@ -840,13 +840,13 @@ _`Preview` (addons.preview)
 | ..  image:: resources/pictures/sIBL_GUI_Preview.jpg     |
 +---------------------------------------------------------+
 
-The *Preview* component provides image viewing capability to *sIBL_GUI* through the use of the Internal Image Previewer or the application defined in the *Preview* component preferences.
+The *Preview* component provides image viewing capability to *sIBL_GUI* through the use of the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 Interactions:
 
 -  **Custom Previewer Path Line Edit**: User defined Image Viewer / Editor executable path.
 
-The Internal Image Previewer window provides basic informations about the current Image:
+The Internal Images Previewer window provides basic informations about the current Image:
 
 +-----------------------------------------------------------------+
 | ..  image:: resources/pictures/sIBL_GUI_ImagesPreviewer.jpg     |
