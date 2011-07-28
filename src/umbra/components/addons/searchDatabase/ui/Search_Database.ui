@@ -42,7 +42,7 @@
            <item row="0" column="0" colspan="4">
             <widget class="QComboBox" name="Search_Database_comboBox">
              <property name="statusTip">
-              <string>Search Database Combo Box: Database Fields Types.</string>
+              <string>Search Database Combo Box: Database fields types.</string>
              </property>
             </widget>
            </item>
@@ -55,7 +55,7 @@
               <item row="0" column="0">
                <widget class="QListWidget" name="Tags_Cloud_listWidget">
                 <property name="statusTip">
-                 <string>Tags Cloud List Widget: Displays Current Collection Ibl Sets Tags Cloud.</string>
+                 <string>Tags Cloud List Widget: Displays current Collection Ibl Sets tags cloud.</string>
                 </property>
                 <property name="movement">
                  <enum>QListView::Static</enum>
@@ -121,7 +121,7 @@
            <item row="0" column="2">
             <widget class="QCheckBox" name="Case_Insensitive_Matching_checkBox">
              <property name="statusTip">
-              <string>Case Insensitive Check Box: Database Search Will Ignore Case.</string>
+              <string>Case Insensitive Check Box: Database search will ignore case.</string>
              </property>
              <property name="checked">
               <bool>true</bool>
@@ -200,7 +200,7 @@
               </size>
              </property>
              <property name="statusTip">
-              <string>Time Low Time Edit: Time From When To Search.</string>
+              <string>Time Low Time Edit: Time from when to search.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -226,7 +226,7 @@
               </size>
              </property>
              <property name="statusTip">
-              <string>High Time Edit: Time To When To Search.</string>
+              <string>High Time Edit: Time to when to search.</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>

@@ -35,7 +35,7 @@
       <item row="0" column="0">
        <widget class="QPushButton" name="Synchronize_Database_pushButton">
         <property name="statusTip">
-         <string>Synchronize Database Push Button: Forces Database Synchronization.</string>
+         <string>Synchronize Database Push Button: Forces Database synchronization.</string>
         </property>
         <property name="text">
          <string>Synchronise Database</string>

@@ -64,7 +64,7 @@
        <item row="0" column="0">
         <widget class="QGroupBox" name="Your_Version_groupBox">
          <property name="statusTip">
-          <string>Your Version Group Box: Local Application Version.</string>
+          <string>Your Version Group Box: Local Application version.</string>
          </property>
          <property name="title">
           <string>Your Version</string>
@@ -96,7 +96,7 @@
        <item row="0" column="3">
         <widget class="QGroupBox" name="Latest_Version_groupBox">
          <property name="statusTip">
-          <string>Latest Version Group Box: Online Application Version.</string>
+          <string>Latest Version Group Box: Online Application version.</string>
          </property>
          <property name="title">
           <string>Latest Version</string>
@@ -137,7 +137,7 @@
              <bool>true</bool>
             </property>
             <property name="statusTip">
-             <string>Change Log Web View: Application Change Log.</string>
+             <string>Change Log Web View: Application change log.</string>
             </property>
             <property name="url">
              <url>
@@ -156,7 +156,7 @@
        <item row="1" column="0" colspan="2">
         <widget class="QTableWidget" name="Templates_tableWidget">
          <property name="statusTip">
-          <string>Templates Table: Templates Releases.</string>
+          <string>Templates Table: Templates releases.</string>
          </property>
         </widget>
        </item>
@@ -198,7 +198,7 @@
      <item>
       <widget class="QPushButton" name="Get_sIBL_GUI_pushButton">
        <property name="statusTip">
-        <string>Get sIBL_GUI Push Button: Downloads sIBL_GUI Latest Release.</string>
+        <string>Get sIBL_GUI Push Button: Downloads Application latest release.</string>
        </property>
        <property name="text">
         <string>Get sIBL_GUI</string>
@@ -208,7 +208,7 @@
      <item>
       <widget class="QPushButton" name="Get_Latest_Templates_pushButton">
        <property name="statusTip">
-        <string>Get Latest Templates Push Button: Downloads Selected Templates.</string>
+        <string>Get Latest Templates Push Button: Downloads selected Templates.</string>
        </property>
        <property name="text">
         <string>Get Latest Templates</string>
@@ -225,7 +225,7 @@
      <item>
       <widget class="QPushButton" name="Open_Repository_pushButton">
        <property name="statusTip">
-        <string>Open Repository Push Button: Opens Application Repository.</string>
+        <string>Open Repository Push Button: Opens Application repository.</string>
        </property>
        <property name="text">
         <string>Open Repository</string>
@@ -248,7 +248,7 @@
      <item>
       <widget class="QPushButton" name="Close_pushButton">
        <property name="statusTip">
-        <string>Close Push Button: Closes Remote Updater Window.</string>
+        <string>Close Push Button: Closes Remote Updater window.</string>
        </property>
        <property name="text">
         <string>Close</string>

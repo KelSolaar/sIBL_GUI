@@ -53,7 +53,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Zoom In Push Button: Zooms Into The Image.</string>
+         <string>Zoom In Push Button: Zooms into the image.</string>
         </property>
         <property name="text">
          <string/>
@@ -75,7 +75,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Zoom Out Push Button: Zooms Out Of The Image.</string>
+         <string>Zoom Out Push Button: Zooms out of the image.</string>
         </property>
         <property name="text">
          <string/>
@@ -97,7 +97,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Fit Push Button: Zooms Fit The Image.</string>
+         <string>Fit Push Button: Zooms fit the image.</string>
         </property>
         <property name="text">
          <string>Fit</string>
@@ -147,7 +147,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Previous Image Push Button: Navigates To The Previous Image.</string>
+         <string>Previous Image Push Button: Navigates to the previous image.</string>
         </property>
         <property name="text">
          <string/>
@@ -169,7 +169,7 @@
          </size>
         </property>
         <property name="statusTip">
-         <string>Next Image Push Button: Navigates To The Next Image.</string>
+         <string>Next Image Push Button: Navigates to the next image.</string>
         </property>
         <property name="text">
          <string/>

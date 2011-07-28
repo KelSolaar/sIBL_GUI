@@ -46,7 +46,7 @@
       <item row="0" column="1">
        <widget class="QSlider" name="Thumbnails_Size_horizontalSlider">
         <property name="statusTip">
-         <string>Thumbnails Size Horizontal Slider: Adjusts Database Browser Icon Size.</string>
+         <string>Thumbnails Size Horizontal Slider: Adjusts Database Browser icon size.</string>
         </property>
         <property name="minimum">
          <number>24</number>

@@ -57,7 +57,7 @@
    <item row="1" column="0">
     <widget class="QGroupBox" name="Downloads_groupBox">
      <property name="statusTip">
-      <string>Downloads Group Box: Current Downloads.</string>
+      <string>Downloads Group Box: Current downloads.</string>
      </property>
      <property name="title">
       <string/>

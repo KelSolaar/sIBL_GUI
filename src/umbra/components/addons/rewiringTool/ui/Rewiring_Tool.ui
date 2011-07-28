@@ -48,7 +48,7 @@
             <item>
              <widget class="QComboBox" name="Background_comboBox">
               <property name="statusTip">
-               <string>Background Combo Box: Rewires Background With Selected Component.</string>
+               <string>Background Combo Box: Rewires background with selected component.</string>
               </property>
              </widget>
             </item>
@@ -69,7 +69,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Background_Path_lineEdit">
                <property name="statusTip">
-                <string>Background Path Line Edit: Custom Background Component.</string>
+                <string>Background Path Line Edit: Custom background component.</string>
                </property>
               </widget>
              </item>
@@ -115,7 +115,7 @@
             <item>
              <widget class="QComboBox" name="Lighting_comboBox">
               <property name="statusTip">
-               <string>Lighting Combo Box: Rewires Lighting With Selected Component.</string>
+               <string>Lighting Combo Box: Rewires lighting with selected component.</string>
               </property>
              </widget>
             </item>
@@ -136,7 +136,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Lighting_Path_lineEdit">
                <property name="statusTip">
-                <string>Lighting Path Line Edit: Custom Lighting Component.</string>
+                <string>Lighting Path Line Edit: Custom lighting component.</string>
                </property>
               </widget>
              </item>
@@ -182,7 +182,7 @@
             <item>
              <widget class="QComboBox" name="Reflection_comboBox">
               <property name="statusTip">
-               <string>Reflection Combo Box: Rewires Reflection With Selected Component.</string>
+               <string>Reflection Combo Box: Rewires reflection with selected component.</string>
               </property>
              </widget>
             </item>
@@ -203,7 +203,7 @@
              <item row="1" column="0">
               <widget class="QLineEdit" name="Reflection_Path_lineEdit">
                <property name="statusTip">
-                <string>Reflection Path Line Edit: Custom Reflection Component.</string>
+                <string>Reflection Path Line Edit: Custom reflection component.</string>
                </property>
               </widget>
              </item>
