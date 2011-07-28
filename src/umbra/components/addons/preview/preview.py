@@ -1141,10 +1141,10 @@ class Preview(UiComponent):
 		self.__viewIblSetsBackgroundImagesAction = None
 		self.__viewIblSetsPlatesAction = None
 
-		self.__inspectorButtons = {"Background" : {"object" : None, "text": "View background image", "row" : 1, "column" : 3},
-									"Lighting" : {"object" : None, "text": "View lighting image", "row" : 1, "column" : 4},
-									"Reflection" : {"object" : None, "text": "View reflection image", "row" : 1, "column" : 5},
-									"Plates" : {"object" : None, "text": "View Plates", "row" : 1, "column" : 6}}
+		self.__inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
+									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1, "column" : 4},
+									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
+									"Plates" : {"object" : None, "text": "View Plate(s)", "row" : 1, "column" : 6}}
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -1833,19 +1833,19 @@ class Preview(UiComponent):
 		separatorAction.setSeparator(True)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(separatorAction)
 
-		self.__viewIblSetsBackgroundImagesAction = QAction("View background image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsBackgroundImagesAction = QAction("View Background Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__viewIblSetsBackgroundImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsBackgroundImagesAction)
 
-		self.__viewIblSetsLightingImagesAction = QAction("View lighting image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsLightingImagesAction = QAction("View Lighting Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__viewIblSetsLightingImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsLightingImagesAction)
 
-		self.__viewIblSetsReflectionImagesAction = QAction("View reflection image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsReflectionImagesAction = QAction("View Reflection Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__viewIblSetsReflectionImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsReflectionImagesAction)
 
-		self.__viewIblSetsPlatesAction = QAction("View Plates ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__viewIblSetsPlatesAction = QAction("View Plate(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__viewIblSetsPlatesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsPlatesAction)
 
@@ -1853,19 +1853,19 @@ class Preview(UiComponent):
 		separatorAction.setSeparator(True)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(separatorAction)
 
-		self.__viewInspectorIblSetBackgroundImageAction = QAction("View background image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetBackgroundImageAction = QAction("View Background Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__viewInspectorIblSetBackgroundImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetBackgroundImageAction)
 
-		self.__viewInspectorIblSetLightingImageAction = QAction("View lighting image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetLightingImageAction = QAction("View Lighting Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__viewInspectorIblSetLightingImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetLightingImageAction)
 
-		self.__viewInspectorIblSetReflectionImageAction = QAction("View reflection image ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetReflectionImageAction = QAction("View Reflection Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__viewInspectorIblSetReflectionImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetReflectionImageAction)
 
-		self.__viewInspectorIblSetPlatesAction = QAction("View Plates ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__viewInspectorIblSetPlatesAction = QAction("View Plate(s) ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__viewInspectorIblSetPlatesAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetPlatesAction)
 

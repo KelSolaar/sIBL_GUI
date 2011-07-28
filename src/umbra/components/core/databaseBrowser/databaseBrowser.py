@@ -1398,7 +1398,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addContentAction = QAction("Add content ...", self.ui.Database_Browser_listView)
+			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
 			addContentAction.triggered.connect(self.__Database_Browser_listView_addContentAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
 
@@ -1410,7 +1410,7 @@ class DatabaseBrowser(UiComponent):
 			removeIblSetsAction.triggered.connect(self.__Database_Browser_listView_removeIblSetsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(removeIblSetsAction)
 
-			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) location(s) ...", self.ui.Database_Browser_listView)
+			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) Location(s) ...", self.ui.Database_Browser_listView)
 			updateIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(updateIblSetsLocationsAction)
 

@@ -1274,7 +1274,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addContentAction = QAction("Add content ...", self.ui.Collections_Outliner_treeView)
+			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
 			addContentAction.triggered.connect(self.__Collections_Outliner_treeView_addContentAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
 

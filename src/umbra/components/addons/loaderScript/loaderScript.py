@@ -118,7 +118,7 @@ class LoaderScript(UiComponent):
 
 		self.__bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self.__templateScriptSection = "Script"
-		self.__templateIblSetAttributesSection = "Ibl Set attributes"
+		self.__templateIblSetAttributesSection = "Ibl Set Attributes"
 		self.__templateRemoteConnectionSection = "Remote Connection"
 
 		self.__win32ExecutionMethod = "ExecuteSIBLLoaderScript"

@@ -583,15 +583,15 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__editIblSetsInTextEditorAction = QAction("Edit in text editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+			self.__editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 			self.__editIblSetsInTextEditorAction.triggered.connect(self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered)
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
 
-			self.__editInspectorIblSetInTextEditorAction = QAction("Edit in text editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
+			self.__editInspectorIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
 			self.__editInspectorIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered)
 			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInTextEditorAction)
 
-			self.__editTemplateInTextEditorAction = QAction("Edit in text editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 			self.__editTemplateInTextEditorAction.triggered.connect(self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered)
 			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__editTemplateInTextEditorAction)
 

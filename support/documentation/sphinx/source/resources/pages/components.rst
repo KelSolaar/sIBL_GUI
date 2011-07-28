@@ -142,7 +142,7 @@ Addons Functionalities:
 -  **View Background Image …**: Views selected Ibl Sets background images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Lighting Image …**: Views selected Ibls Set lighting images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Reflection Image …**: Views selected Ibls Set reflection images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Plates …**: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plate(s) …**: Views selected Ibls Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 
 
@@ -178,7 +178,7 @@ Addons Functionalities:
 -  **View Background Image Push Button**: Views Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Lighting Image Push Button**: Views Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Reflection Image Push Button**: Views Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Plates Push Button**: Views Inspector Ibl Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plate(s) Push Button**: Views Inspector Ibl Set plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 Context Menu:
 
@@ -194,7 +194,7 @@ Addons Functionalities:
 -  **View Background Image …**: Views the Inspector Ibl Set background image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Lighting Image …**: Views the Inspector Ibl Set lighting image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 -  **View Reflection Image …**: Views the Inspector Ibl Set reflection image in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
--  **View Plates …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
+-  **View Plate(s) …**: Views the Ibl Set Inspector plates images in either the Internal Images Previewer or the application defined in the *Preview* component preferences.
 
 
 

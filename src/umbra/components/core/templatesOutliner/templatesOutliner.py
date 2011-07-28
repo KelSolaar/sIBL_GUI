@@ -1516,11 +1516,11 @@ class TemplatesOutliner(UiComponent):
 			separatorAction.setSeparator(True)
 			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
 
-			importDefaultTemplatesAction = QAction("Import default Templates", self.ui.Templates_Outliner_treeView)
+			importDefaultTemplatesAction = QAction("Import Default Templates", self.ui.Templates_Outliner_treeView)
 			importDefaultTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(importDefaultTemplatesAction)
 
-			filterTemplatesVersionsAction = QAction("Filter Templates versions", self.ui.Templates_Outliner_treeView)
+			filterTemplatesVersionsAction = QAction("Filter Templates Versions", self.ui.Templates_Outliner_treeView)
 			filterTemplatesVersionsAction.triggered.connect(self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(filterTemplatesVersionsAction)
 
@@ -1530,7 +1530,7 @@ class TemplatesOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		displayHelpFilesAction = QAction("Display help file(s) ...", self.ui.Templates_Outliner_treeView)
+		displayHelpFilesAction = QAction("Display Help File(s) ...", self.ui.Templates_Outliner_treeView)
 		displayHelpFilesAction.triggered.connect(self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered)
 		self.ui.Templates_Outliner_treeView.addAction(displayHelpFilesAction)
 

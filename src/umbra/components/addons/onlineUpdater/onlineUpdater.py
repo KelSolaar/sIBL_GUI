@@ -1349,7 +1349,7 @@ class RemoteUpdater(object):
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			url = builds["Windows"]
 		elif platform.system() == "Darwin":
-			url = builds["Mac os x"]
+			url = builds["Mac Os X"]
 		elif platform.system() == "Linux":
 			url = builds["Linux"]
 
