@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Collections outliner core Component Module.
+	Collections Outliner core Component Module.
 
 **Others:**
 
@@ -308,7 +308,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = foundations.strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' ibl set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreDatabaseBrowser.addIblSet(name, path)
 					else:
 						if os.path.isdir(path):
@@ -326,7 +326,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
 						collection = collectionStandardItem._datas
 						for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-							LOGGER.info("> Moving '{0}' ibl set to '{1}' collection.".format(iblSet.title, collection.name))
+							LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(iblSet.title, collection.name))
 							iblSet.collection = collection.id
 						if dbCommon.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
@@ -359,7 +359,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 				if self.model().itemFromIndex(index).column() == self.__coreCollectionsOutliner.modelHeaders.index(self.__coreCollectionsOutliner.setsCountLabel):
 					messageBox.messageBox("Warning", "Warning", "{0} | 'Sets Counts' column is read only!".format(self.__class__.__name__))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' and '{2}' collections attributes are read only!".format(self.__class__.__name__, self.__coreCollectionsOutliner.overallCollection, self.__coreCollectionsOutliner.defaultCollection))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' and '{2}' Collections attributes are read only!".format(self.__class__.__name__, self.__coreCollectionsOutliner.overallCollection, self.__coreCollectionsOutliner.defaultCollection))
 		else:
 			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
 
@@ -966,7 +966,7 @@ class CollectionsOutliner(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -986,7 +986,7 @@ class CollectionsOutliner(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -994,7 +994,7 @@ class CollectionsOutliner(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Collections_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
@@ -1024,7 +1024,7 @@ class CollectionsOutliner(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -1032,7 +1032,7 @@ class CollectionsOutliner(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -1043,15 +1043,15 @@ class CollectionsOutliner(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			not self.getCollections() and self.addCollection(self.__defaultCollection, "Default Collection")
@@ -1077,10 +1077,10 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def onClose(self):
 		"""
-		This method is called on framework close.
+		This method is called on Framework close.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework close method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework close method.".format(self.__class__.__name__))
 
 		self.__Collections_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(id) for id in self.__modelSelection["Collections"])))
@@ -1092,14 +1092,14 @@ class CollectionsOutliner(UiComponent):
 		This method sets the Collections_Outliner_treeView Model.
 
 		Columns:
-		Collections | sets | comment
+		Collections | Sets | Comment
 
 		Rows:
 		* Overall Collection: { _type: "Overall" }
 		** Collection: { _type: "Collection", _datas: dbTypes.DbCollection }
 		"""
 
-		LOGGER.debug("> Setting up '{0}' model!".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Setting up '{0}' Model!".format("Collections_Outliner_treeView"))
 
 		self.__Collections_Outliner_treeView_storeModelSelection()
 
@@ -1109,7 +1109,7 @@ class CollectionsOutliner(UiComponent):
 		self.__model.setColumnCount(len(self.__modelHeaders))
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
 
-		LOGGER.debug("> Preparing '{0}' collection for '{1}' model.".format(self.__overallCollection, "Collections_Outliner_treeView"))
+		LOGGER.debug("> Preparing '{0}' Collection for '{1}' Model.".format(self.__overallCollection, "Collections_Outliner_treeView"))
 
 		overallCollectionStandardItem = QStandardItem(QString(self.__overallCollection))
 		overallCollectionStandardItem.setFlags(readOnlyFlags)
@@ -1123,14 +1123,14 @@ class CollectionsOutliner(UiComponent):
 
 		overallCollectionStandardItem._type = "Overall"
 
-		LOGGER.debug("> Adding '{0}' collection to '{1}'.".format(self.__overallCollection, "Collections_Outliner_treeView"))
+		LOGGER.debug("> Adding '{0}' Collection to '{1}'.".format(self.__overallCollection, "Collections_Outliner_treeView"))
 		self.__model.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
 
 		collections = self.getCollections()
 
 		if collections:
 			for collection in collections:
-				LOGGER.debug("> Preparing '{0}' collection for '{1}' model.".format(collection.name, "Collections_Outliner_treeView"))
+				LOGGER.debug("> Preparing '{0}' Collection for '{1}' Model.".format(collection.name, "Collections_Outliner_treeView"))
 
 				try:
 					collectionStandardItem = QStandardItem(QString(collection.name))
@@ -1148,11 +1148,11 @@ class CollectionsOutliner(UiComponent):
 					collectionStandardItem._datas = collection
 					collectionStandardItem._type = "Collection"
 
-					LOGGER.debug("> Adding '{0}' collection to '{1}' model.".format(collection.name, "Collections_Outliner_treeView"))
+					LOGGER.debug("> Adding '{0}' Collection to '{1}' Model.".format(collection.name, "Collections_Outliner_treeView"))
 					overallCollectionStandardItem.appendRow([collectionStandardItem, collectionSetsCountStandardItem, collectionCommentsStandardItem])
 
 				except Exception as error:
-					LOGGER.error("!>{0} | Exception raised while adding '{1}' collection to '{2}' model!".format(self.__class__.__name__, collection.name, "Collections_Outliner_treeView"))
+					LOGGER.error("!>{0} | Exception raised while adding '{1}' Collection to '{2}' Model!".format(self.__class__.__name__, collection.name, "Collections_Outliner_treeView"))
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Collections_Outliner_treeView"))
 		else:
 			LOGGER.info("{0} | Database has no user defined Collections!".format(self.__class__.__name__))
@@ -1166,7 +1166,7 @@ class CollectionsOutliner(UiComponent):
 		This method refreshes the Collections_Outliner_treeView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' model!".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
 
 		self.__Collections_Outliner_treeView_setModel()
 
@@ -1176,7 +1176,7 @@ class CollectionsOutliner(UiComponent):
 		This method sets the Collections_Outliner_treeView View.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget!".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
 		self.ui.Collections_Outliner_treeView.setIndentation(self.__treeViewIndentation)
@@ -1236,7 +1236,7 @@ class CollectionsOutliner(UiComponent):
 		This method stores Collections_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Storing '{0}' model selection!".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Storing '{0}' Model selection!".format("Collections_Outliner_treeView"))
 
 		self.__modelSelection = { self.__overallCollection:[], "Collections":[] }
 		for item in self.getSelectedItems():
@@ -1251,7 +1251,7 @@ class CollectionsOutliner(UiComponent):
 		This method restores Collections_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Restoring '{0}' model selection!".format("Collections_Outliner_treeView"))
+		LOGGER.debug("> Restoring '{0}' Model selection!".format("Collections_Outliner_treeView"))
 
 		indexes = []
 		for i in range(self.__model.rowCount()):
@@ -1270,7 +1270,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addActions(self):
 		"""
-		This method sets the Collections outliner actions.
+		This method sets the Collections Outliner actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -1282,7 +1282,7 @@ class CollectionsOutliner(UiComponent):
 			addSingleCollectionAction.triggered.connect(self.__Collections_Outliner_treeView_addCollectionAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(addSingleCollectionAction)
 
-			removeCollectionsAction = QAction("Remove collection(s) ...", self.ui.Collections_Outliner_treeView)
+			removeCollectionsAction = QAction("Remove Collection(s) ...", self.ui.Collections_Outliner_treeView)
 			removeCollectionsAction.triggered.connect(self.__Collections_Outliner_treeView_removeCollectionsAction__triggered)
 			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
 		else:
@@ -1322,7 +1322,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Collections_Outliner_treeView_model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method defines the behavior when the Collections_Outliner_treeView Model data change.
+		This method defines the behavior when the Collections_Outliner_treeView Model datas changes.
 
 		@param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		@param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1345,7 +1345,7 @@ class CollectionsOutliner(UiComponent):
 					collection.name = str(currentText)
 					dbCommon.commit(self.__coreDb.dbSession)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' collection name already exists in Database!".format(self.__class__.__name__, currentText))
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__, currentText))
 			elif startIndex.column() == 2:
 				LOGGER.debug("> Updating Collection '{0}' comment to '{1}'.".format(id, currentText))
 				collection = dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
@@ -1359,7 +1359,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method triggers the Database_Browser_listView refresh depending on the Collections outliner selected items.
+		This method triggers the Database_Browser_listView refresh depending on the Collections Outliner selected items.
 
 		@param selectedItems: Selected items. ( QItemSelection )
 		@param deselectedItems: Deselected items. ( QItemSelection )
@@ -1421,9 +1421,9 @@ class CollectionsOutliner(UiComponent):
 						self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(name, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 						return name
 					else:
-						raise Exception, "{0} | Exception raised while adding '{1}' collection to the Database!".format(self.__class__.__name__, name)
+						raise Exception, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' collection already exists in Database!".format(self.__class__.__name__, name))
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 			else:
 				raise foundations.exceptions.UserError, "{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection)
 		else:
@@ -1440,13 +1440,13 @@ class CollectionsOutliner(UiComponent):
 
 		selectedItems = self.getSelectedItems()
 		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
-			messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' or '{2}' collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
 
 		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.name != self.__defaultCollection]
 		if not selectedCollections:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
@@ -1454,7 +1454,7 @@ class CollectionsOutliner(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' collections from the Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
+				raise Exception, "{0} | Exception raised while removing '{1}' Collections from the Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
@@ -1469,14 +1469,14 @@ class CollectionsOutliner(UiComponent):
 
 		if name != self.__overallCollection:
 			if not self.collectionExists(name):
-				LOGGER.info("{0} | Adding '{1}' collection to the Database!".format(self.__class__.__name__, name))
+				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 				if dbCommon.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
 					self.emit(SIGNAL("modelRefresh()"))
 					return True
 				else:
-					raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' collection to the Database!".format(self.__class__.__name__, name)
+					raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
 			else:
-				raise foundations.exceptions.ProgrammingError, "{0} | '{1}' collection already exists in Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name)
 		else:
 			raise foundations.exceptions.ProgrammingError, "{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection)
 
@@ -1492,16 +1492,16 @@ class CollectionsOutliner(UiComponent):
 
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
-			LOGGER.info("{0} | Moving '{1}' ibl set to default Collection!".format(self.__class__.__name__, iblSet.title))
+			LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, iblSet.title))
 			iblSet.collection = self.getCollectionId(self.__defaultCollection)
 
-		LOGGER.info("{0} | Removing '{1}' collection from the Database!".format(self.__class__.__name__, collection.name))
+		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
 			self.emit(SIGNAL("modelRefresh()"))
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' collection from the Database!".format(self.__class__.__name__, collection.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name)
 
 	@core.executionTrace
 	def collectionExists(self, name):
@@ -1549,7 +1549,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getUniqueCollectionId(self):
 		"""
-		This method returns an unique Collection id ( Either first selected Collection or default one).
+		This method returns an unique Collection id (Either first selected Collection or default one).
 
 		@return: Unique id. ( Integer )
 		"""

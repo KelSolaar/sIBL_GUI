@@ -313,7 +313,7 @@ class FIICCPROFILE(ctypes.Structure):
 
 class FREE_IMAGE_FORMAT(object):
 	"""
-	This class is used for i/o image format identifiers.
+	This class is used for I/O image format identifiers.
 	"""
 
 	FIF_UNKNOWN	 = -1
@@ -548,7 +548,7 @@ class FreeImageIO(ctypes.Structure):
 
 class FIMEMORY(ctypes.Structure):
 	"""
-	This class is a handle to a memory i/o stream
+	This class is a handle to a memory I/O stream
 	"""
 
 	_fields_ = [ ("data", VOID) ]
@@ -1243,10 +1243,10 @@ class Image(object):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Converting '{0}' hDR image bitmap to LDR!".format(self.__imagePath))
+		LOGGER.debug("> Converting '{0}' HDR image bitmap to LDR!".format(self.__imagePath))
 		self.__bitmap = self.__library.FreeImage_HDRLabs_ConvertToLdr(self.__bitmap, ctypes.c_double(gamma))
 		if self.__bitmap:
-			LOGGER.debug("> '{0}' hDR image bitmap conversion to LDR done!".format(self.__imagePath))
+			LOGGER.debug("> '{0}' HDR image bitmap conversion to LDR done!".format(self.__imagePath))
 			return True
 
 	@core.executionTrace

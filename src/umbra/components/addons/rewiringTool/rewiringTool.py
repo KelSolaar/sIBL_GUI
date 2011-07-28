@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Rewiring tool addons Component Module.
+	Rewiring Tool addons Component Module.
 
 **Others:**
 
@@ -369,7 +369,7 @@ class RewiringTool(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -385,7 +385,7 @@ class RewiringTool(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -401,7 +401,7 @@ class RewiringTool(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__reWireFramesWidgets = (self.ui.Background_frame, self.ui.Lighting_frame, self.ui.Reflection_frame)
 		self.__reWireComboBoxesWidgets = (self.ui.Background_comboBox, self.ui.Lighting_comboBox, self.ui.Reflection_comboBox)
@@ -430,7 +430,7 @@ class RewiringTool(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__reWireFramesWidgets = None
 		self.__reWireComboBoxesWidgets = None
@@ -450,7 +450,7 @@ class RewiringTool(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -460,7 +460,7 @@ class RewiringTool(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)

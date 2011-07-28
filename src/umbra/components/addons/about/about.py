@@ -79,41 +79,41 @@ ABOUT_MESSAGE = """
 		<img src="{0}">
 		</p>
 		<p>
-		s i b l _ g u i - {1}
+		s I B L _ G U I - {1}
 		</p>
 		*
-		<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing smart ibl world!
+		<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
 		<br/>
-		Special thanks to: Dschaga, tischbein3, andy, volxen, gwynne, keksonja, yuri, rork, jeff hanna, spedler, lee and brett.
+		Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler, Lee and Brett.
 		<br/>
-		Another big thanks to emanuele santos for helping me out on the Mac Os X bundle.
+		Another big thanks to Emanuele Santos for helping me out on the Mac Os X bundle.
 		<br/>
-		Thanks to marienz from irc #python for optimisations tips.
+		Thanks to Marienz from irc #python for optimisations tips.
 		<p>
-		Thanks to all cool guys from cgfeedback, xsibase and cgtalk.
+		Thanks to all cool guys from CGFeedback, XSIBase and CGTalk.
 		</p>
 		<p>
-		Very special thanks to christian for providing me some space on his server!
+		Very special thanks to Christian for providing me some space on his server!
 		</p>
 		<p>
-		This software uses python, Qt, pyqt, FreeImage, sqlalchemy, sqlalchemy-migrate, py2app, pyinstaller and nsis.
+		This software uses Python, Qt, PyQt, FreeImage, SQLAlchemy, SQLAlchemy-migrate, py2app, pyinstaller and NSIS.
 		<br/>
-		Coded with eclipse - pydev - aptana - textmate and git.
+		Coded with Eclipse - Pydev - Aptana - Textmate and Git.
 		</p>
 		<p>
-		Light bulb icon is copyright christian bloch.
+		Light bulb icon is copyright Christian Bloch.
 		</p>
 		<p>
-		If you are a hdri resources vendor and are interested in making your sets smart ibl compliant:
+		If you are a HDRI resources vendor and are interested in making your sets Smart Ibl compliant:
 		<br/>
-		Please contact us at hdrlabs:
+		Please contact us at HDRLabs:
 		<br/>
-		Christian bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
+		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
 		<br/>
-		Thomas mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
+		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
 		</p>
 		<p>
-		sIBL_GUI by thomas mansencal - 2008 - 2011
+		sIBL_GUI by Thomas Mansencal - 2008 - 2011
 		<br/>
 		This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
 		<br/>
@@ -389,7 +389,7 @@ class About(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -406,7 +406,7 @@ class About(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__removeActions()
 
@@ -423,7 +423,7 @@ class About(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -431,7 +431,7 @@ class About(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -439,7 +439,7 @@ class About(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -447,7 +447,7 @@ class About(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def __addActions(self):
@@ -455,7 +455,7 @@ class About(UiComponent):
 		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
 		self.__aboutMiscAction.triggered.connect(self.__miscMenu_aboutMiscAction__triggered)
@@ -467,7 +467,7 @@ class About(UiComponent):
 		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__miscMenu.removeAction(self.__aboutMiscAction)
 

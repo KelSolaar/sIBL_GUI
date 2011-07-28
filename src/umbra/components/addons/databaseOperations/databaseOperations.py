@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database operations Component Module.
+	Database Operations Component Module.
 
 **Others:**
 
@@ -87,7 +87,7 @@ class DbType(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
+		@param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -352,7 +352,7 @@ class DatabaseOperations(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -375,7 +375,7 @@ class DatabaseOperations(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -394,13 +394,13 @@ class DatabaseOperations(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		if not self.__container.parameters.databaseReadOnly:
 			self.ui.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
-			LOGGER.info("{0} | Database operations capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -408,7 +408,7 @@ class DatabaseOperations(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
@@ -419,7 +419,7 @@ class DatabaseOperations(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Database_Operations_groupBox)
 
@@ -429,7 +429,7 @@ class DatabaseOperations(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Database_Operations_groupBox.setParent(None)
@@ -460,9 +460,9 @@ class DatabaseOperations(UiComponent):
 
 				if os.path.exists(item.path):
 					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
-						LOGGER.info("{0} | '{1}' {2} Has been synchronized!".format(self.__class__.__name__, item.name, dbType.type))
+						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__, item.name, dbType.type))
 				else:
-					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} File is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 						dbType.updateLocationMethod(item)
 			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
 		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)

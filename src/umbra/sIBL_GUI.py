@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	sIBL_GUI framework Module.
+	sIBL_GUI Framework Module.
 
 **Others:**
 
@@ -488,7 +488,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__componentsManager.gatherComponents()
 
 		if not self.__componentsManager.components:
-			raise foundations.exceptions.ProgrammingError, "'{0}' manager has no Components, {1} will now close!".format(self.__componentsManager, Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Components Manager has no Components, {1} will now close!".format(self.__componentsManager, Constants.applicationName)
 
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
@@ -500,7 +500,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreComponentsManagerUi.addWidget()
 			self.__coreComponentsManagerUi.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.componentsManagerUi", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.componentsManagerUi", Constants.applicationName)
 
 		# --- Activating Preferences Manager component. ---
 		self.__corePreferencesManager = self.__componentsManager.getInterface("core.preferencesManager")
@@ -510,7 +510,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__corePreferencesManager.addWidget()
 			self.__corePreferencesManager.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.preferencesManager", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.preferencesManager", Constants.applicationName)
 
 		# --- Activating Database component. ---
 		self.__coreDb = self.__componentsManager.getInterface("core.db")
@@ -519,7 +519,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreDb.activate(self)
 			self.__coreDb.initialize()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.db", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.db", Constants.applicationName)
 
 		# --- Activating Collections Outliner component. ---
 		self.__coreCollectionsOutliner = self.__componentsManager.getInterface("core.collectionsOutliner")
@@ -529,7 +529,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreCollectionsOutliner.addWidget()
 			self.__coreCollectionsOutliner.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.collectionsOutliner", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.collectionsOutliner", Constants.applicationName)
 
 		# --- Activating Database Browser component. ---
 		self.__coreDatabaseBrowser = self.__componentsManager.getInterface("core.databaseBrowser")
@@ -539,7 +539,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreDatabaseBrowser.addWidget()
 			self.__coreDatabaseBrowser.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.databaseBrowser", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.databaseBrowser", Constants.applicationName)
 
 		# --- Activating Inspector component. ---
 		self.__coreInspector = self.__componentsManager.getInterface("core.inspector")
@@ -557,7 +557,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreTemplatesOutliner.addWidget()
 			self.__coreTemplatesOutliner.initializeUi()
 		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' component is not available, {1} will now close!".format("core.templatesOutliner", Constants.applicationName)
+			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.templatesOutliner", Constants.applicationName)
 
 		# --- Activating Others components. ---
 		deactivatedComponents = self.__settings.getKey("Settings", "deactivatedComponents").toString().split(",")
@@ -1771,7 +1771,7 @@ def _run():
 	except:
 		raise OSError, "{0} Logging file is not available, {1} will now close!".format(RuntimeConstants.loggingFile, Constants.applicationName)
 
-	# Retrieving framework verbose level from settings file.
+	# Retrieving Framework verbose level from settings file.
 	LOGGER.debug("> Initializing {0}!".format(Constants.applicationName))
 	RuntimeConstants.settingsFile = os.path.join(RuntimeConstants.userApplicationDatasDirectory, Constants.settingsDirectory, Constants.settingsFile)
 
@@ -1850,7 +1850,7 @@ def _getHeaderMessage():
 	@return: Header message ( Tuple )
 	"""
 
-	message = ("{0} | Copyright ( C ) 2008 - 2011 thomas mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName),
+	message = ("{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName),
 				"{0} | This software is released under terms of GNU GPL v3 license.".format(Constants.applicationName),
 				"{0} | http://www.gnu.org/licenses/ ".format(Constants.applicationName),
 				"{0} | Version: {1}".format(Constants.applicationName, Constants.releaseVersion))
@@ -1869,20 +1869,20 @@ def _getCommandLineParameters(argv):
 
 	parser = optparse.OptionParser(formatter=optparse.IndentedHelpFormatter (indent_increment=2, max_help_position=8, width=128, short_first=1), add_help_option=None)
 
-	parser.add_option("-h", "--help", action="help", help="'Display This help message and exit.'")
+	parser.add_option("-h", "--help", action="help", help="'Display this help message and exit.'")
 	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application about message.'")
-	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application Verbosity levels: 0 = critical | 1 = error | 2 = warning | 3 = info | 4 = debug.'")
-	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application Logging formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
+	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application verbosity levels: 0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
+	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application logging formatter: '{0}'.'".format(", ".join(sorted(RuntimeConstants.loggingFormatters.keys()))))
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application datas directory'.")
 
-	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate Worker threads'.")
+	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate worker threads'.")
 
-	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database Directory'.")
-	parser.add_option("-r", "--databaseReadOnly", action="store_true", default=False, dest="databaseReadOnly", help="'Database Read only'.")
+	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database directory'.")
+	parser.add_option("-r", "--databaseReadOnly", action="store_true", default=False, dest="databaseReadOnly", help="'Database read only'.")
 
 	parser.add_option("-o", "--loaderScriptsOutputDirectory", action="store", type="string", dest="loaderScriptsOutputDirectory", help="'Loader Scripts output directory'.")
 
-	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide Splash screen'.")
+	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide splashscreen'.")
 
 	parameters, args = parser.parse_args(argv)
 

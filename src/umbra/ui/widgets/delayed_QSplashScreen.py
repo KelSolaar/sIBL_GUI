@@ -75,7 +75,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Delayed_QSplashScreen(QSplashScreen):
 	"""
-	This class is the sIBL_SplashScreen class.
+	This class is the delayed_QSplashScreen class.
 	"""
 
 	@core.executionTrace

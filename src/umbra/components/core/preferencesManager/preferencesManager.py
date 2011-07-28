@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Preferences manager Component Module.
+	Preferences Manager Component Module.
 
 **Others:**
 
@@ -236,7 +236,7 @@ class PreferencesManager(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -252,7 +252,7 @@ class PreferencesManager(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -260,7 +260,7 @@ class PreferencesManager(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__Logging_Formatters_comboBox_setUi()
 		self.__Verbose_Level_comboBox_setUi()
@@ -278,7 +278,7 @@ class PreferencesManager(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -286,7 +286,7 @@ class PreferencesManager(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -297,12 +297,12 @@ class PreferencesManager(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def __Logging_Formatters_comboBox_setUi(self):
 		"""
-		This method fills the logging formatter combobox.
+		This method fills the Logging_Formatter_comboBox.
 		"""
 
 		self.ui.Logging_Formatters_comboBox.clear()
@@ -315,7 +315,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Logging_Formatters_comboBox__activated(self, index):
 		"""
-		This method is called when the logging formatter is triggered.
+		This method is called when the Logging_Formatter_comboBox is triggered.
 
 		@param index: ComboBox activated item index. ( Integer )
 		"""

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Sets scanner Component Module.
+	Sets Scanner Component Module.
 
 **Others:**
 
@@ -464,7 +464,7 @@ class SetsScanner(Component):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = container
 
@@ -480,7 +480,7 @@ class SetsScanner(Component):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = None
 
@@ -496,7 +496,7 @@ class SetsScanner(Component):
 		This method initializes the Component.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
@@ -516,7 +516,7 @@ class SetsScanner(Component):
 		This method uninitializes the Component.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
@@ -528,10 +528,10 @@ class SetsScanner(Component):
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 
@@ -545,9 +545,9 @@ class SetsScanner(Component):
 			if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self.__setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 				for iblSet, path in self.__setsScannerWorkerThread.newIblSets.items():
 					iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
-					LOGGER.info("{0} | Adding '{1}' ibl set to the Database!".format(self.__class__.__name__, iblSet))
+					LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
 					if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
-						LOGGER.error("!>{0} | Exception raised while adding '{1}' ibl set to the Database!".format(self.__class__.__name__, iblSet))
+						LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
 
 				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 

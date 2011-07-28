@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Raw editing utilities Component Module.
+	Raw Editing Utilities Component Module.
 
 **Others:**
 
@@ -489,7 +489,7 @@ class RawEditingUtilities(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -509,7 +509,7 @@ class RawEditingUtilities(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -529,7 +529,7 @@ class RawEditingUtilities(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
@@ -545,7 +545,7 @@ class RawEditingUtilities(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
@@ -559,7 +559,7 @@ class RawEditingUtilities(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
 
@@ -569,7 +569,7 @@ class RawEditingUtilities(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
@@ -580,7 +580,7 @@ class RawEditingUtilities(UiComponent):
 		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__editIblSetsInTextEditorAction = QAction("Edit in text editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
@@ -604,7 +604,7 @@ class RawEditingUtilities(UiComponent):
 		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetsInTextEditorAction)
@@ -701,12 +701,12 @@ class RawEditingUtilities(UiComponent):
 			if path:
 				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' ibl set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
+				LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while editing '{1}' ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception, "{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
@@ -722,7 +722,7 @@ class RawEditingUtilities(UiComponent):
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception raised while editing Inspector Ibl Set: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	def editTemplatesInTextEditor__(self):
@@ -740,12 +740,12 @@ class RawEditingUtilities(UiComponent):
 			if path:
 				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
+				LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while editing '{1}' templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception, "{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

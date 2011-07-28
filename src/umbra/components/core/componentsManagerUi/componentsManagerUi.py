@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Components manager ui Component Module.
+	Components Manager Ui Component Module.
 
 **Others:**
 
@@ -87,7 +87,7 @@ def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while activating '{1}' component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while activating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
 def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
@@ -98,7 +98,7 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while deactivating '{1}' component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while deactivating '{1}' Component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
 def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
@@ -109,7 +109,7 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 	@param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while reloading '{1}' component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while reloading '{1}' Component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 class ComponentsManagerUi(UiComponent):
 	"""
@@ -603,7 +603,7 @@ class ComponentsManagerUi(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -620,7 +620,7 @@ class ComponentsManagerUi(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -628,7 +628,7 @@ class ComponentsManagerUi(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__model = QStandardItemModel()
 		self.__Components_Manager_Ui_treeView_setModel()
@@ -657,7 +657,7 @@ class ComponentsManagerUi(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -665,7 +665,7 @@ class ComponentsManagerUi(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -676,15 +676,15 @@ class ComponentsManagerUi(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		self.__Components_Manager_Ui_treeView_setActivationsStatus()
 
@@ -694,14 +694,14 @@ class ComponentsManagerUi(UiComponent):
 		This method sets the Components_Manager_Ui_treeView Model.
 
 		Columns:
-		Collections | activated | categorie | rank | version
+		Collections | Activated | Categorie | Rank | Version
 
 		Rows:
 		* Path: { _type: "Path" }
 		** Component: { _type: "Component", _datas: profile }
 		"""
 
-		LOGGER.debug("> Setting up '{0}' model!".format("Components_Manager_Ui_treeView"))
+		LOGGER.debug("> Setting up '{0}' Model!".format("Components_Manager_Ui_treeView"))
 
 		self.__model.clear()
 
@@ -715,7 +715,7 @@ class ComponentsManagerUi(UiComponent):
 				pathStandardItem = QStandardItem(QString(path))
 				pathStandardItem._type = "Path"
 
-				LOGGER.debug("> Adding '{0}' path to '{1}' model.".format(path, "Components_Manager_Ui_treeView"))
+				LOGGER.debug("> Adding '{0}' path to '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
 				self.__model.appendRow(pathStandardItem)
 
 				for component in components:
@@ -739,7 +739,7 @@ class ComponentsManagerUi(UiComponent):
 					componentStandardItem._datas = self.__container.componentsManager.components[component]
 					componentStandardItem._type = "Component"
 
-					LOGGER.debug("> Adding '{0}' component to '{1}'.".format(component, "Components_Manager_Ui_treeView"))
+					LOGGER.debug("> Adding '{0}' Component to '{1}'.".format(component, "Components_Manager_Ui_treeView"))
 					pathStandardItem.appendRow([componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem])
 
 		self.emit(SIGNAL("modelChanged()"))
@@ -750,7 +750,7 @@ class ComponentsManagerUi(UiComponent):
 		This method refreshes the Components_Manager_Ui_treeView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' model!".format("Components_Manager_Ui_treeView"))
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
 
 		self.__Components_Manager_Ui_treeView_setModel()
 
@@ -815,11 +815,11 @@ class ComponentsManagerUi(UiComponent):
 		This method sets the Components_Manager_Ui_treeView actions.
 		"""
 
-		activateComponentsAction = QAction("Activate component(s)", self.ui.Components_Manager_Ui_treeView)
+		activateComponentsAction = QAction("Activate Component(s)", self.ui.Components_Manager_Ui_treeView)
 		activateComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_activateComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(activateComponentsAction)
 
-		deactivateComponentsAction = QAction("Deactivate component(s)", self.ui.Components_Manager_Ui_treeView)
+		deactivateComponentsAction = QAction("Deactivate Component(s)", self.ui.Components_Manager_Ui_treeView)
 		deactivateComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_deactivateComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(deactivateComponentsAction)
 
@@ -827,7 +827,7 @@ class ComponentsManagerUi(UiComponent):
 		separatorAction.setSeparator(True)
 		self.ui.Components_Manager_Ui_treeView.addAction(separatorAction)
 
-		reloadComponentsAction = QAction("Reload component(s)", self.ui.Components_Manager_Ui_treeView)
+		reloadComponentsAction = QAction("Reload Component(s)", self.ui.Components_Manager_Ui_treeView)
 		reloadComponentsAction.triggered.connect(self.__Components_Manager_Ui_treeView_reloadComponentsAction__triggered)
 		self.ui.Components_Manager_Ui_treeView.addAction(reloadComponentsAction)
 
@@ -874,7 +874,7 @@ class ComponentsManagerUi(UiComponent):
 		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget.".format("Additional_Informations_textEdit"))
+		LOGGER.debug("> Initializing '{0}' Widget.".format("Additional_Informations_textEdit"))
 
 		selectedComponents = self.getSelectedComponents()
 		content = []
@@ -923,7 +923,7 @@ class ComponentsManagerUi(UiComponent):
 			if not component.interface.activated:
 				self.activateComponent(component)
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' component is already activated!".format(self.__class__.__name__, component.name))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component is already activated!".format(self.__class__.__name__, component.name))
 		self.__storeDeactivatedComponents()
 		return True
 
@@ -941,9 +941,9 @@ class ComponentsManagerUi(UiComponent):
 				if component.interface.deactivatable:
 					self.deactivateComponent(component)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' component cannot be deactivated!".format(self.__class__.__name__, component.name))
+					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, component.name))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' component is already deactivated!".format(self.__class__.__name__, component.name))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Component is already deactivated!".format(self.__class__.__name__, component.name))
 		self.__storeDeactivatedComponents()
 		return True
 
@@ -965,7 +965,7 @@ class ComponentsManagerUi(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while reloading '{1}' components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
+			raise Exception, "{0} | Exception raised while reloading '{1}' Components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
@@ -977,14 +977,14 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Attempting '{0}' component activation.".format(component.name))
+		LOGGER.debug("> Attempting '{0}' Component activation.".format(component.name))
 		component.interface.activate(self.__container)
 		if component.categorie == "default":
 			component.interface.initialize()
 		elif component.categorie == "ui":
 			component.interface.addWidget()
 			component.interface.initializeUi()
-		LOGGER.info("{0} | '{1}' component has been activated!".format(self.__class__.__name__, component.name))
+		LOGGER.info("{0} | '{1}' Component has been activated!".format(self.__class__.__name__, component.name))
 		self.emit(SIGNAL("modelPartialRefresh()"))
 		return True
 
@@ -998,7 +998,7 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Attempting '{0}' component deactivation.".format(component.name))
+		LOGGER.debug("> Attempting '{0}' Component deactivation.".format(component.name))
 		if component.interface.deactivatable:
 			if component.categorie == "default":
 				component.interface.uninitialize()
@@ -1006,11 +1006,11 @@ class ComponentsManagerUi(UiComponent):
 				component.interface.uninitializeUi()
 				component.interface.removeWidget()
 			component.interface.deactivate()
-			LOGGER.info("{0} | '{1}' component has been deactivated!".format(self.__class__.__name__, component.name))
+			LOGGER.info("{0} | '{1}' Component has been deactivated!".format(self.__class__.__name__, component.name))
 			self.emit(SIGNAL("modelPartialRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.ComponentDeactivationError, "{0} | '{1}' component cannot be deactivated!".format(self.__class__.__name__, component.name)
+			raise foundations.exceptions.ComponentDeactivationError, "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, component.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, Exception)
@@ -1022,13 +1022,13 @@ class ComponentsManagerUi(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Attempting '{0}' component reload.".format(component.name))
+		LOGGER.debug("> Attempting '{0}' Component reload.".format(component.name))
 		if component.interface.activated:
 			self.deactivateComponent(component)
 		self.__container.componentsManager.reloadComponent(component.name)
 		if not component.interface.activated:
 			self.activateComponent(component)
-		LOGGER.info("{0} | '{1}' component has been reloaded!".format(self.__class__.__name__, component.name))
+		LOGGER.info("{0} | '{1}' Component has been reloaded!".format(self.__class__.__name__, component.name))
 		self.emit(SIGNAL("modelPartialRefresh()"))
 		return True
 

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Online updater Component Module.
+	Online Updater Component Module.
 
 **Others:**
 
@@ -97,7 +97,7 @@ class ReleaseObject(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
+		@param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -575,7 +575,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
 		"""
-		This method overloads the downloadmanager closeevent.
+		This method overloads the download Manager close event.
 
 		@param closeEvent: Close event. ( QCloseEvent )
 		"""
@@ -1402,7 +1402,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __downloadManager__finished(self):
 		"""
-		This method is triggered when the download manager finishes.
+		This method is triggered when the download Manager finishes.
 		"""
 
 		for download in self.__downloadManager.downloads:
@@ -1975,7 +1975,7 @@ class OnlineUpdater(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -2002,7 +2002,7 @@ class OnlineUpdater(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -2028,9 +2028,9 @@ class OnlineUpdater(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online updater worker thread deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
@@ -2046,7 +2046,7 @@ class OnlineUpdater(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
@@ -2056,10 +2056,10 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
 		not self.__container.parameters.deactivateWorkerThreads and self.ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
@@ -2070,7 +2070,7 @@ class OnlineUpdater(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Online_Updater_groupBox)
 
@@ -2080,7 +2080,7 @@ class OnlineUpdater(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.ui.Online_Updater_groupBox.setParent(None)
 
@@ -2192,7 +2192,7 @@ class OnlineUpdater(UiComponent):
 															type=parser.getValue("Type", remoteObject),
 															comment=None)
 			if releases:
-				LOGGER.debug("> Initialising remote updater.")
+				LOGGER.debug("> Initializing Remote Updater.")
 				self.__remoteUpdater = RemoteUpdater(self, releases)
 			else:
 				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))

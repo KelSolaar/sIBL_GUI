@@ -119,7 +119,7 @@ class LoaderScript(UiComponent):
 		self.__bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self.__templateScriptSection = "Script"
 		self.__templateIblSetAttributesSection = "Ibl Set attributes"
-		self.__templateRemoteConnectionSection = "Remote connection"
+		self.__templateRemoteConnectionSection = "Remote Connection"
 
 		self.__win32ExecutionMethod = "ExecuteSIBLLoaderScript"
 
@@ -540,7 +540,7 @@ class LoaderScript(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 
@@ -560,7 +560,7 @@ class LoaderScript(UiComponent):
 		This method deactivates the Component.
 		"""
 		raise
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -578,7 +578,7 @@ class LoaderScript(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.ui.Remote_Connection_groupBox.hide()
 		if platform.system() == "Linux" or platform.system() == "Darwin":
@@ -595,7 +595,7 @@ class LoaderScript(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
@@ -608,7 +608,7 @@ class LoaderScript(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -618,7 +618,7 @@ class LoaderScript(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
@@ -656,7 +656,7 @@ class LoaderScript(UiComponent):
 		template = selectedTemplates and selectedTemplates[0] or None
 
 		if template:
-			LOGGER.debug("> Parsing '{0}' template for '{1}' section.".format(template.name, self.__templateRemoteConnectionSection))
+			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name, self.__templateRemoteConnectionSection))
 
 			if os.path.exists(template.path):
 				templateParser = Parser(template.path)
@@ -700,15 +700,15 @@ class LoaderScript(UiComponent):
 			raise foundations.exceptions.UserError, "{0} | In order to output the Loader Script, you need to select a Template!".format(self.__class__.__name__)
 
 		if not os.path.exists(template.path):
-			raise OSError, "{0} | '{1}' template file doesn't exists!".format(self.__class__.__name__, template.name)
+			raise OSError, "{0} | '{1}' Template file doesn't exists!".format(self.__class__.__name__, template.name)
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if not iblSet:
-			raise foundations.exceptions.UserError, "{0} | In order to output the Loader Script, you need to select a set!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__)
 
 		if not os.path.exists(iblSet.path):
-			raise OSError, "{0} | '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, iblSet.title)
+			raise OSError, "{0} | '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, iblSet.title)
 
 		if self.outputLoaderScript(template, iblSet):
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' output done!".format(self.__class__.__name__, template.outputScript))
@@ -838,8 +838,8 @@ class LoaderScript(UiComponent):
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if iblSet:
-			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|path", iblSet.path))
-			overrideKeys["Ibl Set|path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl Set|path", strings.getNormalizedPath(iblSet.path))
+			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))
+			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet.path))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Background|BGfile", iblSet.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet.backgroundImage))

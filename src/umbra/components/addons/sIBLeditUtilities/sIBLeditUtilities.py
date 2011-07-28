@@ -80,7 +80,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class sIBLeditUtilities(UiComponent):
 	"""
-	This class is the LocationsBrowser class.
+	This class is the sIBLeditUtilities class.
 	"""
 
 	@core.executionTrace
@@ -396,7 +396,7 @@ class sIBLeditUtilities(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -415,7 +415,7 @@ class sIBLeditUtilities(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -434,7 +434,7 @@ class sIBLeditUtilities(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__sIBLedit_Path_lineEdit_setUi()
 
@@ -450,7 +450,7 @@ class sIBLeditUtilities(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.__sIBLedit_Path_toolButton__clicked)
@@ -464,7 +464,7 @@ class sIBLeditUtilities(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.sIBLedit_Path_groupBox)
 
@@ -474,7 +474,7 @@ class sIBLeditUtilities(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.ui.sIBLedit_Path_groupBox.setParent(None)
 
@@ -484,7 +484,7 @@ class sIBLeditUtilities(UiComponent):
 		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__editIblSetInSIBLEditAction = QAction("Edit in sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
@@ -503,7 +503,7 @@ class sIBLeditUtilities(UiComponent):
 		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetInSIBLEditAction)
@@ -587,7 +587,7 @@ class sIBLeditUtilities(UiComponent):
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
 			else:
-				raise OSError, "{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
+				raise OSError, "{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
@@ -607,7 +607,7 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+				raise OSError, "{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 

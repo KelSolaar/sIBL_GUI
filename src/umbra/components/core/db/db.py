@@ -460,7 +460,7 @@ class Db(Component):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = container
 
@@ -481,15 +481,15 @@ class Db(Component):
 		This method initializes the Component.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		LOGGER.debug("> Initializing '{0}' sqlite Database.".format(Constants.databaseFile))
+		LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.databaseFile))
 		if self.__container.parameters.databaseDirectory:
 			if os.path.exists(self.__container.parameters.databaseDirectory):
 				self.__dbName = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise OSError, "'{0}' database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName)
+				raise OSError, "'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName)
 		else:
 			self.__dbName = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
@@ -501,7 +501,7 @@ class Db(Component):
 			if not self.__container.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
-					LOGGER.info("{0} | Backing up '{1}' database to '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
+					LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
 					rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
 					rotatingBackup.backup()
 			else:
@@ -553,7 +553,7 @@ class Db(Component):
 		This method uninitializes the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be uninitialized!".format(self.name))
 
 #***********************************************************************************************
 #***	Python end.

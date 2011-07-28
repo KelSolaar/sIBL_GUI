@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Components manager ui Component Module.
+	Templates Outliner Component Module.
 
 **Others:**
 
@@ -265,9 +265,9 @@ class TemplatesOutliner_Worker(QThread):
 					storedStats = template.osStats.split(",")
 					osStats = os.stat(template.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' template file has been modified and will be updated!".format(self.__class__.__name__, template.name))
+						LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(self.__class__.__name__, template.name))
 						if dbCommon.updateTemplateContent(self.__dbSession, template):
-							LOGGER.info("{0} | '{1}' template has been updated!".format(self.__class__.__name__, template.name))
+							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
 							needModelRefresh = True
 
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
@@ -402,7 +402,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' template set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' Template set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreTemplatesOutliner.addTemplate(name, path)
 					else:
 						if os.path.isdir(path):
@@ -465,7 +465,7 @@ class TemplatesOutliner(UiComponent):
 		self.__modelHeaders = [ "Templates", "Release", "Software version" ]
 		self.__treeViewIndentation = 15
 		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
-		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select A Template to display related informations!<h4>* * *</h4></center>"
+		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
 		self.__templatesInformationsText = """
 											<h4><center>{0}</center></h4>
 											<p>
@@ -477,12 +477,12 @@ class TemplatesOutliner(UiComponent):
 											<br/>
 											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
 											<br/>
-											<b>Output Script:</b> {5}
+											<b>Output script:</b> {5}
 											<p>
 											<b>Comment:</b> {6}
 											</p>
 											<p>
-											<b>Help File:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
+											<b>Help file:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
 											</p>
 											</p>
 											"""
@@ -1161,7 +1161,7 @@ class TemplatesOutliner(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -1182,7 +1182,7 @@ class TemplatesOutliner(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -1190,7 +1190,7 @@ class TemplatesOutliner(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
@@ -1234,7 +1234,7 @@ class TemplatesOutliner(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -1242,7 +1242,7 @@ class TemplatesOutliner(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -1253,15 +1253,15 @@ class TemplatesOutliner(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			# Adding default templates.
@@ -1272,7 +1272,7 @@ class TemplatesOutliner(UiComponent):
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateTemplateLocation(template)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
@@ -1311,10 +1311,10 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def onClose(self):
 		"""
-		This method is called on framework close.
+		This method is called on Framework close.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework close method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework close method.".format(self.__class__.__name__))
 
 		self.__Templates_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
@@ -1327,7 +1327,7 @@ class TemplatesOutliner(UiComponent):
 		This method sets the Templates_Outliner_treeView Model.
 
 		Columns:
-		Templates | release | software version
+		Templates | Release | Software version
 
 		Rows:
 		* Collection: { _type: "Collection" }
@@ -1335,7 +1335,7 @@ class TemplatesOutliner(UiComponent):
 		*** Template: { _type: "Template", _datas: dbTypes.DbTemplate }
 		"""
 
-		LOGGER.debug("> Setting up '{0}' model!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Setting up '{0}' Model!".format("Templates_Outliner_treeView"))
 
 		self.__Templates_Outliner_treeView_storeModelSelection()
 
@@ -1350,20 +1350,20 @@ class TemplatesOutliner(UiComponent):
 			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 
 			if softwares:
-				LOGGER.debug("> Preparing '{0}' collection for '{1}' model.".format(collection.name, "Templates_Outliner_treeView"))
+				LOGGER.debug("> Preparing '{0}' Collection for '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
 
 				collectionStandardItem = QStandardItem(QString(collection.name))
 				collectionStandardItem._datas = collection
 				collectionStandardItem._type = "Collection"
 
-				LOGGER.debug("> Adding '{0}' collection to '{1}' model.".format(collection.name, "Templates_Outliner_treeView"))
+				LOGGER.debug("> Adding '{0}' Collection to '{1}' Model.".format(collection.name, "Templates_Outliner_treeView"))
 				self.__model.appendRow(collectionStandardItem)
 
 				for software in softwares:
 					templates = set((template[0] for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate.id).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
 
 					if templates:
-						LOGGER.debug("> Preparing '{0}' software for '{1}' model.".format(software, "Templates_Outliner_treeView"))
+						LOGGER.debug("> Preparing '{0}' software for '{1}' Model.".format(software, "Templates_Outliner_treeView"))
 
 						softwareStandardItem = QStandardItem(QString(software))
 						iconPath = os.path.join(self.__uiResources, "{0}{1}".format(software, self.__uiSoftwareAffixe))
@@ -1374,13 +1374,13 @@ class TemplatesOutliner(UiComponent):
 
 						softwareStandardItem._type = "Software"
 
-						LOGGER.debug("> Adding '{0}' software to '{1}' model.".format(software, "Templates_Outliner_treeView"))
+						LOGGER.debug("> Adding '{0}' software to '{1}' Model.".format(software, "Templates_Outliner_treeView"))
 						collectionStandardItem.appendRow([softwareStandardItem, None, None])
 
 						for template in templates:
 							template = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
 
-							LOGGER.debug("> Preparing '{0}' template for '{1}' model.".format(template.name, "Templates_Outliner_treeView"))
+							LOGGER.debug("> Preparing '{0}' Template for '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
 
 							try:
 								templateStandardItem = QStandardItem(QString("{0} {1}".format(template.renderer, template.title)))
@@ -1394,11 +1394,11 @@ class TemplatesOutliner(UiComponent):
 								templateStandardItem._datas = template
 								templateStandardItem._type = "Template"
 
-								LOGGER.debug("> Adding '{0}' template to '{1}' model.".format(template.name, "Templates_Outliner_treeView"))
+								LOGGER.debug("> Adding '{0}' Template to '{1}' Model.".format(template.name, "Templates_Outliner_treeView"))
 								softwareStandardItem.appendRow([templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem])
 
 							except Exception as error:
-								LOGGER.error("!>{0} | Exception raised while adding '{1}' template to '{2}' model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
+								LOGGER.error("!>{0} | Exception raised while adding '{1}' Template to '{2}' Model!".format(self.__class__.__name__, template.name, "Templates_Outliner_treeView"))
 								foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Templates_Outliner_treeView_setModel"))
 
 		self.__Templates_Outliner_treeView_restoreModelSelection()
@@ -1411,7 +1411,7 @@ class TemplatesOutliner(UiComponent):
 		This method refreshes the Templates_Outliner_treeView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' model!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
 
 		self.__Templates_Outliner_treeView_setModel()
 
@@ -1421,7 +1421,7 @@ class TemplatesOutliner(UiComponent):
 		This method sets the Templates_Outliner_treeView View.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Templates_Outliner_treeView"))
 
 		self.ui.Templates_Outliner_treeView.setAutoScroll(False)
 		self.ui.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -1461,7 +1461,7 @@ class TemplatesOutliner(UiComponent):
 		This method stores Templates_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Storing '{0}' model selection!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Storing '{0}' Model selection!".format("Templates_Outliner_treeView"))
 
 		self.__modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
 		for item in self.getSelectedItems():
@@ -1478,7 +1478,7 @@ class TemplatesOutliner(UiComponent):
 		This method restores Templates_Outliner_treeView Model selection.
 		"""
 
-		LOGGER.debug("> Restoring '{0}' model selection!".format("Templates_Outliner_treeView"))
+		LOGGER.debug("> Restoring '{0}' Model selection!".format("Templates_Outliner_treeView"))
 
 		indexes = []
 		for i in range(self.__model.rowCount()):
@@ -1508,7 +1508,7 @@ class TemplatesOutliner(UiComponent):
 			addTemplateAction.triggered.connect(self.__Templates_Outliner_treeView_addTemplateAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(addTemplateAction)
 
-			removeTemplatesAction = QAction("Remove template(s) ...", self.ui.Templates_Outliner_treeView)
+			removeTemplatesAction = QAction("Remove Template(s) ...", self.ui.Templates_Outliner_treeView)
 			removeTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_removeTemplatesAction__triggered)
 			self.ui.Templates_Outliner_treeView.addAction(removeTemplatesAction)
 
@@ -1597,7 +1597,7 @@ class TemplatesOutliner(UiComponent):
 		@param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget.".format("Template_Informations_textEdit"))
+		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
 
 		selectedTemplates = self.getSelectedTemplates()
 		content = []
@@ -1657,9 +1657,9 @@ class TemplatesOutliner(UiComponent):
 			if self.addTemplate(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while adding '{1}' template to the Database!".format(self.__class__.__name__, path)
+				raise Exception, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, path)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' template already exists in Database!".format(self.__class__.__name__, path))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1684,13 +1684,13 @@ class TemplatesOutliner(UiComponent):
 			else:
 				selectedTemplates.append(item._datas)
 
-		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
+		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
 		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
 		if not selectedTemplates:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 			success = True
 			for template in selectedTemplates:
 				success *= self.removeTemplate(template, emitSignal=False) or False
@@ -1700,7 +1700,7 @@ class TemplatesOutliner(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
+				raise Exception, "{0} | Exception raised while removing '{1}' Templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1776,14 +1776,14 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
-			LOGGER.info("{0} | Adding '{1}' template to the Database!".format(self.__class__.__name__, name))
+			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
 				emitSignal and self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' template to the Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name)
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' template already exists in Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1832,7 +1832,7 @@ class TemplatesOutliner(UiComponent):
 				continue
 
 			if not set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
-				LOGGER.info("{0} | Adding '{1}' collection to the Database!".format(self.__class__.__name__, collection))
+				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
 				dbCommon.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
 			if self.addDirectory(path, self.getCollection(collection).id):
 				return True
@@ -1850,12 +1850,12 @@ class TemplatesOutliner(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Removing '{1}' template from the Database!".format(self.__class__.__name__, template.name))
+		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
 		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' template from the Database!".format(self.__class__.__name__, template.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	def templateExists(self, path):
@@ -1879,16 +1879,16 @@ class TemplatesOutliner(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' template location:".format(template.name), self.__container.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
+		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template location:".format(template.name), self.__container.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
 		if not file:
 			return
 
-		LOGGER.info("{0} | Updating '{1}' template with new location '{2}'!".format(self.__class__.__name__, template.name, file))
+		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__, template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' template location!".format(self.__class__.__name__, template.name)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -1901,11 +1901,11 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		if os.path.exists(template.helpFile):
-			LOGGER.info("{0} | Opening '{1}' template help file: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
+			LOGGER.info("{0} | Opening '{1}' Template help file: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
 		else:
-			raise OSError, "{0} | Exception raised while displaying '{1}' template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile)
+			raise OSError, "{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile)
 
 	@core.executionTrace
 	def getTemplates(self):

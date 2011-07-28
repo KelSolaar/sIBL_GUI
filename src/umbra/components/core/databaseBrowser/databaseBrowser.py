@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database browser Component Module.
+	Database Browser Component Module.
 
 **Others:**
 
@@ -264,9 +264,9 @@ class DatabaseBrowser_Worker(QThread):
 					storedStats = iblSet.osStats.split(",")
 					osStats = os.stat(iblSet.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' ibl set file has been modified and will be updated!".format(self.__class__.__name__, iblSet.title))
+						LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(self.__class__.__name__, iblSet.title))
 						if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
-							LOGGER.info("{0} | '{1}' ibl set has been updated!".format(self.__class__.__name__, iblSet.title))
+							LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
 							needModelRefresh = True
 
 		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
@@ -404,7 +404,7 @@ class DatabaseBrowser_QListView(QListView):
 					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 					if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
 						name = strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' ibl set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.__coreDatabaseBrowser.addIblSet(name, path)
 					else:
 						if os.path.isdir(path):
@@ -1115,7 +1115,7 @@ class DatabaseBrowser(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -1135,7 +1135,7 @@ class DatabaseBrowser(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -1143,7 +1143,7 @@ class DatabaseBrowser(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
 		self.ui.Database_Browser_Widget_gridLayout.addWidget(self.ui.Database_Browser_listView, 0, 0)
@@ -1196,7 +1196,7 @@ class DatabaseBrowser(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -1204,7 +1204,7 @@ class DatabaseBrowser(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.centralwidget_gridLayout.addWidget(self.ui)
 
@@ -1215,21 +1215,21 @@ class DatabaseBrowser(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def onStartup(self):
 		"""
-		This method is called on framework startup.
+		This method is called on Framework startup.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			# Wizard if sets table is empty.
 			if not self.getIblSets():
-				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
@@ -1240,7 +1240,7 @@ class DatabaseBrowser(UiComponent):
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' ibl set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 							self.updateIblSetLocation(iblSet)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
@@ -1261,10 +1261,10 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def onClose(self):
 		"""
-		This method is called on framework close.
+		This method is called on Framework close.
 		"""
 
-		LOGGER.debug("> Calling '{0}' component framework close method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework close method.".format(self.__class__.__name__))
 
 		self.__Database_Browser_listView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
@@ -1283,14 +1283,14 @@ class DatabaseBrowser(UiComponent):
 		This method sets the Database_Browser_listView Model.
 		"""
 
-		LOGGER.debug("> Setting up '{0}' model!".format("Database_Browser_listView"))
+		LOGGER.debug("> Setting up '{0}' Model!".format("Database_Browser_listView"))
 
 		self.__Database_Browser_listView_storeModelSelection()
 
 		self.__model.clear()
 
 		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self.__modelContent), key=lambda x:(x[1]))]:
-			LOGGER.debug("> Preparing '{0}' ibl set for '{1}' model.".format(iblSet.name, "Database_Browser_listView"))
+			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 
 			try:
 				iblSetStandardItem = QStandardItem()
@@ -1303,11 +1303,11 @@ class DatabaseBrowser(UiComponent):
 
 				iblSetStandardItem._datas = iblSet
 
-				LOGGER.debug("> Adding '{0}' to '{1}' model.".format(iblSet.name, "Database_Browser_listView"))
+				LOGGER.debug("> Adding '{0}' to '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 				self.__model.appendRow(iblSetStandardItem)
 
 			except Exception as error:
-				LOGGER.error("!>{0} | Exception raised while adding '{1}' ibl set to '{2}' model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
+				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to '{2}' Model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
 				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Database_Browser_listView_setModel"))
 
 		self.__Database_Browser_listView_restoreModelSelection()
@@ -1320,7 +1320,7 @@ class DatabaseBrowser(UiComponent):
 		This method refreshes the Database_Browser_listView Model.
 		"""
 
-		LOGGER.debug("> Refreshing '{0}' model!".format("Database_Browser_listView"))
+		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
 
 		self.__Database_Browser_listView_setModel()
 
@@ -1330,7 +1330,7 @@ class DatabaseBrowser(UiComponent):
 		This method sets the Database_Browser_listView ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget!".format("Database_Browser_listView"))
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
 		self.ui.Database_Browser_listView.setAutoScroll(True)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
@@ -1366,7 +1366,7 @@ class DatabaseBrowser(UiComponent):
 			This method stores Database_Browser_listView Model selection.
 			"""
 
-			LOGGER.debug("> Storing '{0}' model selection!".format("Database_Browser_listView"))
+			LOGGER.debug("> Storing '{0}' Model selection!".format("Database_Browser_listView"))
 
 			self.__modelSelection = []
 			for item in self.getSelectedIblSets():
@@ -1378,7 +1378,7 @@ class DatabaseBrowser(UiComponent):
 			This method restores Database_Browser_listView Model selection.
 			"""
 
-			LOGGER.debug("> Restoring '{0}' model selection!".format("Database_Browser_listView"))
+			LOGGER.debug("> Restoring '{0}' Model selection!".format("Database_Browser_listView"))
 
 			indexes = []
 			for i in range(self.__model.rowCount()):
@@ -1394,7 +1394,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addActions(self):
 		"""
-		This method sets the Database browser actions.
+		This method sets the Database Browser actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -1463,7 +1463,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method defines the behavior when the Database_Browser_listView Model data changes.
+		This method defines the behavior when the Database_Browser_listView Model datas changes.
 
 		@param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		@param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1542,9 +1542,9 @@ class DatabaseBrowser(UiComponent):
 			if self.addIblSet(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while adding '{1}' ibl set to the Database!".format(self.__class__.__name__, path)
+				raise Exception, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, path)
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' ibl set already exists in Database!".format(self.__class__.__name__, path))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1570,7 +1570,7 @@ class DatabaseBrowser(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' ibls sets from the Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+				raise Exception, "{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1587,7 +1587,7 @@ class DatabaseBrowser(UiComponent):
 
 		success = True
 		for iblSet in selectedIblSets:
-			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' ibl set location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
+			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
 			success *= self.updateIblSetLocation(iblSet, file) or False
 
 		self.emit(SIGNAL("modelDatasRefresh()"))
@@ -1596,7 +1596,7 @@ class DatabaseBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while updating '{1}' ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+			raise Exception, "{0} | Exception raised while updating '{1}' Ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
@@ -1612,16 +1612,16 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		if not self.iblSetExists(path):
-			LOGGER.info("{0} | Adding '{1}' ibl set to the Database!".format(self.__class__.__name__, name))
+			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
 				if emitSignal:
 					self.emit(SIGNAL("modelDatasRefresh()"))
 					self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' ibl set to the Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name)
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' ibl set already exists in Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1663,14 +1663,14 @@ class DatabaseBrowser(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Removing '{1}' ibl set from the Database!".format(self.__class__.__name__, iblSet.title))
+		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' ibl set from the Database!".format(self.__class__.__name__, iblSet.title)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def iblSetExists(self, path):
@@ -1695,14 +1695,14 @@ class DatabaseBrowser(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.info("{0} | Updating '{1}' ibl set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
+		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			if emitSignal:
 				self.emit(SIGNAL("modelDatasRefresh()"))
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' ibl set location!".format(self.__class__.__name__, iblSet.title)
+			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def getIblSets(self):

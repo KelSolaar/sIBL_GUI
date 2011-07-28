@@ -946,7 +946,7 @@ class ImagesPreviewer(object):
 
 		event.accept()
 
-		LOGGER.debug("> Removing '{0}' from images previewers list.".format(self))
+		LOGGER.debug("> Removing '{0}' from Images Previewers list.".format(self))
 		self.__container.imagesPreviewers.remove(self)
 
 	@core.executionTrace
@@ -1087,7 +1087,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def loopThroughImages(self, backward=False):
 		"""
-		This method loops through previewer images.
+		This method loops through Images Previewer images.
 
 		@param backward: Looping backward. ( Boolean )
 		"""
@@ -1729,7 +1729,7 @@ class Preview(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -1751,7 +1751,7 @@ class Preview(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
@@ -1774,7 +1774,7 @@ class Preview(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__Custom_Previewer_Path_lineEdit_setUi()
 
@@ -1791,7 +1791,7 @@ class Preview(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__removeActions()
 		self.__removeInspectorButtons()
@@ -1806,7 +1806,7 @@ class Preview(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Previewer_Path_groupBox)
 
@@ -1816,7 +1816,7 @@ class Preview(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Previewer_Path_groupBox.setParent(None)
@@ -1827,7 +1827,7 @@ class Preview(UiComponent):
 		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		separatorAction = QAction(self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		separatorAction.setSeparator(True)
@@ -1875,7 +1875,7 @@ class Preview(UiComponent):
 		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsBackgroundImagesAction)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsLightingImagesAction)
@@ -2017,7 +2017,7 @@ class Preview(UiComponent):
 
 		customPreviewerExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom previewer executable:", self.__container.lastBrowsedPath))
 		if customPreviewerExecutable != "":
-			LOGGER.debug("> Chosen custom previewer executable: '{0}'.".format(customPreviewerExecutable))
+			LOGGER.debug("> Chosen custom Images Previewer executable: '{0}'.".format(customPreviewerExecutable))
 			self.ui.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
@@ -2032,7 +2032,7 @@ class Preview(UiComponent):
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid custom previewer executable file!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError, "{0} | Invalid custom Images Previewer executable file!".format(self.__class__.__name__)
 		else:
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
@@ -2040,7 +2040,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def viewIblSetsImages__(self, imageType, *args):
 		"""
-		This method launches selected Ibl Sets images previewer.
+		This method launches selected Ibl Sets Images Previewer.
 
 		@param imageType: Image type. ( String )
 		@param *args: Arguments. ( * )
@@ -2055,11 +2055,11 @@ class Preview(UiComponent):
 			if paths:
 				success *= self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())) or False
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' ibl set has no '{2}' image type and will be skipped!".format(self.__class__.__name__, iblSet.title, imageType))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(self.__class__.__name__, iblSet.title, imageType))
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while displaying '{1}' ibl set image(s)!".format(self.__class__.__name__, iblSet.title)
+			raise Exception, "{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
@@ -2085,7 +2085,7 @@ class Preview(UiComponent):
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -2123,7 +2123,7 @@ class Preview(UiComponent):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Adding '{0}' images previewer.".format(imagesPreviewer))
+		LOGGER.debug("> Adding '{0}' Images Previewer.".format(imagesPreviewer))
 
 		self.__imagesPreviewers.append(imagesPreviewer)
 		return True
@@ -2137,7 +2137,7 @@ class Preview(UiComponent):
 		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		"""
 
-		LOGGER.debug("> Removing '{0}' images previewer.".format(imagesPreviewer))
+		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
 
 		self.__imagesPreviewers.remove(imagesPreviewer)
 		return True

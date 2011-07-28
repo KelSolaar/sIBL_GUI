@@ -419,13 +419,13 @@ def addCollection(session, collection, type, comment):
 	@return: Database commit success. ( Boolean )
 	"""
 
-	LOGGER.debug("> Adding: '{0}' collection of type '{1}' to the Database.".format(collection, type))
+	LOGGER.debug("> Adding: '{0}' Collection of type '{1}' to the Database.".format(collection, type))
 
 	if not filterCollections(session, "^{0}$".format(collection), "name"):
 		dbItem = dbTypes.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, dbItem)
 	else:
-		LOGGER.warning("!> {0} | '{1}' collection already exists in Database!".format(core.getModule(addCollection).__name__, collection))
+		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(core.getModule(addCollection).__name__, collection))
 		return False
 
 @core.executionTrace

@@ -158,7 +158,7 @@ class DbIblSet(DbBase):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
 		"""
-		This method initializes the dbiblset attributes.
+		This method initializes the DbIblSet attributes.
 
 		@return: DbIblSet initialization success. ( Boolean )
 		"""
@@ -260,7 +260,7 @@ class DbTemplate(DbBase):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
 	def setContent(self):
 		"""
-		This method initializes the dbtemplate attributes.
+		This method initializes the DbTemplate attributes.
 
 		@return: DbTemplate initialization success. ( Boolean )
 		"""

@@ -89,7 +89,7 @@ class Plate(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, icon, previewImage, image ( Key / Value pairs )
+		@param kwargs: name, icon, previewimage, image ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -107,7 +107,7 @@ class Light(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
+		@param kwargs: name, color, ucoordinate, vcoordinate ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -860,7 +860,7 @@ class Inspector(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
@@ -880,7 +880,7 @@ class Inspector(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -888,7 +888,7 @@ class Inspector(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 
 		self.ui.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
@@ -928,7 +928,7 @@ class Inspector(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -936,7 +936,7 @@ class Inspector(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
@@ -947,7 +947,7 @@ class Inspector(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
 
 	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
@@ -1003,19 +1003,19 @@ class Inspector(UiComponent):
 		This method sets the Plates_listView Model.
 		"""
 
-		LOGGER.debug("> Setting up '{0}' model!".format("Plates_listView"))
+		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
 
 		self.__model.clear()
 
 		if self.__inspectorIblSet:
-			LOGGER.debug("> Preparing '{0}' ibl set for '{1}' model.".format(self.__inspectorIblSet.name, "Plates_listView"))
+			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(self.__inspectorIblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
 			inspectorIblSetStandardItem.setIcon(umbra.ui.common.getIcon(self.__inspectorIblSet.icon))
 			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 			self.__model.appendRow(inspectorIblSetStandardItem)
 
 			for name, plate in self.__inspectorPlates.items():
-				LOGGER.debug("> Preparing '{0}' plate for '{1}' model.".format(name, "Plates_listView"))
+				LOGGER.debug("> Preparing '{0}' plate for '{1}' Model.".format(name, "Plates_listView"))
 				try:
 					plateStandardItem = QStandardItem()
 					plateStandardItem.setIcon(umbra.ui.common.getIcon(plate.icon))
@@ -1023,11 +1023,11 @@ class Inspector(UiComponent):
 
 					plateStandardItem._datas = plate
 
-					LOGGER.debug("> Adding '{0}' to '{1}' model.".format(name, "Plates_listView"))
+					LOGGER.debug("> Adding '{0}' to '{1}' Model.".format(name, "Plates_listView"))
 					self.__model.appendRow(plateStandardItem)
 
 				except Exception as error:
-					LOGGER.error("!>{0} | Exception raised while adding '{1}' plate to '{2}' model!".format(self.__class__.__name__, name, "Plates_listView"))
+					LOGGER.error("!>{0} | Exception raised while adding '{1}' plate to '{2}' Model!".format(self.__class__.__name__, name, "Plates_listView"))
 					foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "Plates_listView"))
 
 	@core.executionTrace
@@ -1044,7 +1044,7 @@ class Inspector(UiComponent):
 		This method sets the Plates_listView ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' widget!".format("Plates_listView"))
+		LOGGER.debug("> Initializing '{0}' Widget!".format("Plates_listView"))
 
 		self.ui.Plates_listView.setAcceptDrops(False)
 		self.ui.Plates_listView.setAutoScroll(True)
@@ -1214,7 +1214,7 @@ class Inspector(UiComponent):
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
 																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception raised while retrieving Plates: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
+				raise OSError, "{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
@@ -1277,7 +1277,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughIblSets(self, backward=False):
 		"""
-		This method loops through Database browser Ibl Sets.
+		This method loops through Database Browser Ibl Sets.
 
 		@param backward: Looping backward. ( Boolean )
 		@return: Method success. ( Boolean )

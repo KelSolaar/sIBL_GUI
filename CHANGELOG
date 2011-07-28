@@ -381,7 +381,7 @@ Change Log
 0.9.7 - Beta
 ------------
 
--  sIBL_GUI behavior with corrupted sIBL Sets should be better.
+-  sIBL_GUI behavior with corrupted Ibl Sets should be better.
 -  Started Mac Os X Code (There is no sIBL_GUI packaged version for now).
 -  Managed to half pack the Linux Release (You still need to download QT Libraries, refer to the Help File - Manual).
 -  Updated sIBL_GUI Help File - Manual.
@@ -409,7 +409,7 @@ Change Log
 -  Template folder is now recursively scanned, so you can add as many folders you want in, try avoid using same Template names.
 -  Refactored the way sIBL_GUI is verbosing, each method/definition now output something. Using the Debug Verbose Level will slow down performances.
 -  Some Code optimisations/refactoring.
--  Infos in overlay if you keep your mouse over a sIBL Set in the ListView.
+-  Infos in overlay if you keep your mouse over a Ibl Set in the ListView.
 -  Search function available.
 -  Improved filtering methods and behavior of sIBL_GUI.
 

@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Logging notifier Component Module.
+	Logging Notifier Component Module.
 
 **Others:**
 
@@ -171,7 +171,7 @@ class LoggingNotifier(Component):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = container
 
@@ -183,7 +183,7 @@ class LoggingNotifier(Component):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = None
 
@@ -195,7 +195,7 @@ class LoggingNotifier(Component):
 		This method initializes the Component.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__container.timer.timeout.connect(self.__statusBar_showLoggingMessages)
@@ -206,7 +206,7 @@ class LoggingNotifier(Component):
 		This method uninitializes the Component.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.__container.timer.timeout.disconnect(self.__statusBar_showLoggingMessages)

@@ -105,7 +105,7 @@ Choose a directory where are stored some Ibl Sets and they will be added to the 
 _`Interface`
 ------------
 
-*sIBL_GUI* interface is customizable and comes with 3 main layouts directly available from the main toolbar:
+*sIBL_GUI* Interface is customizable and comes with 3 main layouts directly available from the main toolbar:
 
 -  `Library Layout`_
 -  `Inspect Layout`_

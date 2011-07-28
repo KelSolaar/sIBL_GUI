@@ -76,7 +76,7 @@ LOGGER = logging.getLogger(Constants.logger)
 @core.executionTrace
 def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	"""
-	This definition provides a fast gui message box.
+	This definition provides a fast GUI message box.
 
 	@param title: Current message title. ( String )
 	@param message: Message. ( String )
@@ -106,7 +106,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 		else:
 			messageBox.setIcon(QMessageBox.Critical)
 		LOGGER.error("!> {0}".format(message))
-	elif type == "Detailed error":
+	elif type == "Detailed Error":
 		if icon:
 			messageBox.setIcon(icon)
 		else:

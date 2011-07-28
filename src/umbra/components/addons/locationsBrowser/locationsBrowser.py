@@ -40,7 +40,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Locations browser Component Module.
+	Locations Browser Component Module.
 
 **Others:**
 
@@ -584,7 +584,7 @@ class LocationsBrowser(UiComponent):
 		@param container: Container to attach the Component to. ( QObject )
 		"""
 
-		LOGGER.debug("> Activating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
@@ -606,7 +606,7 @@ class LocationsBrowser(UiComponent):
 		This method deactivates the Component.
 		"""
 
-		LOGGER.debug("> Deactivating '{0}' component.".format(self.__class__.__name__))
+		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
 		self.__container = None
@@ -628,7 +628,7 @@ class LocationsBrowser(UiComponent):
 		This method initializes the Component ui.
 		"""
 
-		LOGGER.debug("> Initializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 
 		self.__Custom_File_Browser_Path_lineEdit_setUi()
@@ -653,7 +653,7 @@ class LocationsBrowser(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		LOGGER.debug("> Uninitializing '{0}' component ui.".format(self.__class__.__name__))
+		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / slots.
 		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
@@ -675,7 +675,7 @@ class LocationsBrowser(UiComponent):
 		This method adds the Component Widget to the container.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
 
@@ -685,7 +685,7 @@ class LocationsBrowser(UiComponent):
 		This method removes the Component Widget from the container.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component Widget.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.ui.Custom_File_Browser_Path_groupBox.setParent(None)
 
@@ -695,7 +695,7 @@ class LocationsBrowser(UiComponent):
 		This method adds actions.
 		"""
 
-		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
@@ -705,11 +705,11 @@ class LocationsBrowser(UiComponent):
 		self.__openInspectorIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectorIblSetLocationsAction)
 
-		self.__openComponentsLocationsAction = QAction("Open component(s) location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
+		self.__openComponentsLocationsAction = QAction("Open Component(s) location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
 		self.__openComponentsLocationsAction.triggered.connect(self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered)
 		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__openComponentsLocationsAction)
 
-		self.__openTemplatesLocationsAction = QAction("Open template(s) location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
+		self.__openTemplatesLocationsAction = QAction("Open Template(s) location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
 		self.__openTemplatesLocationsAction.triggered.connect(self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered)
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__openTemplatesLocationsAction)
 
@@ -719,7 +719,7 @@ class LocationsBrowser(UiComponent):
 		This method removes actions.
 		"""
 
-		LOGGER.debug("> Removing '{0}' component actions.".format(self.__class__.__name__))
+		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__openIblSetsLocationsAction)
 		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectorIblSetLocationsAction)
@@ -837,12 +837,12 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' ibl set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
+				LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' ibl Sets directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception, "{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
@@ -858,7 +858,7 @@ class LocationsBrowser(UiComponent):
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -877,12 +877,12 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' component file doesn't exists and will be skipped!".format(self.__class__.__name__, component.name))
+				LOGGER.warning("!> {0} | '{1}' Component file doesn't exists and will be skipped!".format(self.__class__.__name__, component.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' components directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
+			raise Exception, "{0} | Exception raised while opening '{1}' Components directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -901,12 +901,12 @@ class LocationsBrowser(UiComponent):
 			if path:
 				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
-				LOGGER.warning("!> {0} | '{1}' template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
+				LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' templates directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception, "{0} | Exception raised while opening '{1}' Templates directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)

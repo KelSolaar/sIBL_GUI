@@ -90,13 +90,13 @@ Context Menu:
 | ..  image:: ../pictures/sIBL_GUI_ComponentsManagerContextMenu.jpg            |
 +------------------------------------------------------------------------------+
 
--  **Activate Component(s)**: Activates selected component(s).
--  **Dectivate Component(s)**: Deactivates selected component(s).
--  **Reload Component(s)**: Reloads selected component(s) (Deactivates the component, reloads component code, activates back the component).
+-  **Activate Component(s)**: Activates selected Component(s).
+-  **Dectivate Component(s)**: Deactivates selected Component(s).
+-  **Reload Component(s)**: Reloads selected Component(s) (Deactivates the component, reloads component code, activates back the component).
 
 Addons Functionalities:
 
--  **Open Component(s) Location(s) ...**: Opens component(s) directory(s).
+-  **Open Component(s) Location(s) ...**: Opens Component(s) directory(s).
 
 
 
