@@ -89,7 +89,7 @@ class Plate(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, icon, previewimage, image ( Key / value pairs )
+		@param kwargs: name, icon, previewImage, image ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -107,7 +107,7 @@ class Light(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, color, ucoordinate, vcoordinate ( Key / value pairs )
+		@param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -189,8 +189,8 @@ class Inspector(UiComponent):
 											<img src="{0}">
 										</td>
 										<td>
-											<p><b>No Ibl set to inspect!<b></p>
-											Please add some Ibl set to the Database or select a non empty Collection!
+											<p><b>No Ibl Set to inspect!<b></p>
+											Please add some Ibl Set to the Database or select a non empty Collection!
 										</td>
 									</tr>
 								</table>
@@ -1189,11 +1189,11 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This method Sets the Inspector Ibl set parser.
+		This method Sets the Inspector Ibl Set parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):
-			LOGGER.debug("> Parsing Inspector Ibl set file: '{0}'.".format(self.__inspectorIblSet))
+			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
 			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet.path)
 			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 

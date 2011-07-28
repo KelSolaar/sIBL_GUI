@@ -127,7 +127,7 @@ Interactions:
 | ..  image:: ../pictures/sIBL_GUI_ToolbarContextMenu.jpg            |
 +--------------------------------------------------------------------+
 
-**Central Widget icon**: Shows / hides the *Database Browser* component widget Ui.
+**Central Widget icon**: Shows / Hides the *Database Browser* component widget Ui.
 
 **Layouts icon**: Raises a context menu where the user can store / restore up to 5 custom layouts and recall them whenever needed:
 

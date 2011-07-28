@@ -697,11 +697,11 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' component actions.".format(self.__class__.__name__))
 
-		self.__openIblSetsLocationsAction = QAction("Open Ibl set(s) location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
+		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
 		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
 
-		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl set location ...", self.__coreInspector.ui.Inspector_Overall_frame)
+		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl Set location ...", self.__coreInspector.ui.Inspector_Overall_frame)
 		self.__openInspectorIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectorIblSetLocationsAction)
 
@@ -848,7 +848,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def openInspectorIblSetLocations__(self):
 		"""
-		This method opens Inspector Ibl set directory.
+		This method opens Inspector Ibl Set directory.
 
 		@return: Method success. ( Boolean )
 		"""
@@ -858,7 +858,7 @@ class LocationsBrowser(UiComponent):
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)

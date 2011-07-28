@@ -90,7 +90,7 @@ class Icon(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: path ( Key / value pairs )
+		@param kwargs: path ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -104,7 +104,7 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui extended exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -118,7 +118,7 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui standalone extended exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -132,7 +132,7 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui basic exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -146,7 +146,7 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui standalone basic exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -160,7 +160,7 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui system exit exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -174,7 +174,7 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	This definition provides a ui standalone system exit exception handler.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""

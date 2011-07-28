@@ -575,7 +575,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editIblSetInSIBLEdit__(self):
 		"""
-		This method edits selected Ibl set in sIBLedit.
+		This method edits selected Ibl Set in sIBLedit.
 
 		@return: Method success. ( Boolean )
 		"""
@@ -587,7 +587,7 @@ class sIBLeditUtilities(UiComponent):
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
 			else:
-				raise OSError, "{0} | Exception raised while sending Ibl set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
+				raise OSError, "{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
@@ -595,7 +595,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInSIBLEdit__(self):
 		"""
-		This method edits Inspector Ibl set in sIBLedit.
+		This method edits Inspector Ibl Set in sIBLedit.
 
 		@return: Method success. ( Boolean )
 		"""
@@ -607,7 +607,7 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception raised while sending Inspector Ibl set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+				raise OSError, "{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
@@ -628,7 +628,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
-		This method edits provided Ibl set in sIBLedit.
+		This method edits provided Ibl Set in sIBLedit.
 
 		@param path: Path. ( String )
 		@param sIBLedit: sIBLedit. ( String )

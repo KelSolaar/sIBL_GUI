@@ -2065,7 +2065,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def viewInspectorIblSetImages__(self, imageType, *args):
 		"""
-		This method launches Inspector Ibl set Images Previewer.
+		This method launches Inspector Ibl Set Images Previewer.
 
 		@param imageType: Image type. ( String )
 		@param *args: Arguments. ( * )
@@ -2081,17 +2081,17 @@ class Preview(UiComponent):
 				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())):
 					return True
 				else:
-					raise Exception, "{0} | Exception raised while displaying '{1}' inspector Ibl set image(s)!".format(self.__class__.__name__, inspectorIblSet.title)
+					raise Exception, "{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(self.__class__.__name__, inspectorIblSet.title)
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' ibl set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def viewImages(self, paths, customPreviewer=None):
 		"""
-		This method launches an Ibl set Images Previewer.
+		This method launches an Ibl Set Images Previewer.
 
 		@param paths: Image paths. ( List )
 		@param customPreviewer: Custom previewer. ( String )
@@ -2182,7 +2182,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getIblSetImagesPaths(self, iblSet, imageType):
 		"""
-		This method gets Ibl set images paths.
+		This method gets Ibl Set images paths.
 
 		@param iblSet: Ibl Set. ( DbIblSet )
 		@param imageType: Image type. ( String )
@@ -2201,7 +2201,7 @@ class Preview(UiComponent):
 			path and imagePaths.append(path)
 		elif imageType == "Plates":
 			if os.path.exists(iblSet.path):
-				LOGGER.debug("> Parsing Inspector Ibl set file: '{0}'.".format(iblSet))
+				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
 				parser = Parser(iblSet.path)
 				parser.read() and parser.parse()
 				for section in parser.sections:

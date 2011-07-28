@@ -1235,7 +1235,7 @@ class DatabaseBrowser(UiComponent):
 						if not self.addDirectory(directory):
 							raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
-			# Ibl sets table integrity checking.
+			# Ibl Sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
@@ -1402,15 +1402,15 @@ class DatabaseBrowser(UiComponent):
 			addContentAction.triggered.connect(self.__Database_Browser_listView_addContentAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addContentAction)
 
-			addIblSetAction = QAction("Add Ibl set ...", self.ui.Database_Browser_listView)
+			addIblSetAction = QAction("Add Ibl Set ...", self.ui.Database_Browser_listView)
 			addIblSetAction.triggered.connect(self.__Database_Browser_listView_addIblSetAction__triggered)
 			self.ui.Database_Browser_listView.addAction(addIblSetAction)
 
-			removeIblSetsAction = QAction("Remove Ibl set(s) ...", self.ui.Database_Browser_listView)
+			removeIblSetsAction = QAction("Remove Ibl Set(s) ...", self.ui.Database_Browser_listView)
 			removeIblSetsAction.triggered.connect(self.__Database_Browser_listView_removeIblSetsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(removeIblSetsAction)
 
-			updateIblSetsLocationsAction = QAction("Update Ibl set(s) location(s) ...", self.ui.Database_Browser_listView)
+			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) location(s) ...", self.ui.Database_Browser_listView)
 			updateIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered)
 			self.ui.Database_Browser_listView.addAction(updateIblSetsLocationsAction)
 
@@ -1472,7 +1472,7 @@ class DatabaseBrowser(UiComponent):
 		standardItem = self.__model.itemFromIndex(startIndex)
 		currentTitle = standardItem.text()
 
-		LOGGER.debug("> Updating Ibl set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
+		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
 		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
 		iblSet.title = str(currentTitle)
 		dbCommon.commit(self.__coreDb.dbSession)
@@ -1528,7 +1528,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def addIblSet__(self):
 		"""
-		This method adds an user defined Ibl set to the Database.
+		This method adds an user defined Ibl Set to the Database.
 
 		@return: Method success. ( Boolean )
 		"""
@@ -1538,7 +1538,7 @@ class DatabaseBrowser(UiComponent):
 			return
 
 		if not self.iblSetExists(path):
-			LOGGER.debug("> Chosen Ibl set path: '{0}'.".format(path))
+			LOGGER.debug("> Chosen Ibl Set path: '{0}'.".format(path))
 			if self.addIblSet(strings.getSplitextBasename(path), path):
 				return True
 			else:
@@ -1602,10 +1602,10 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None, emitSignal=True):
 		"""
-		This method adds an Ibl set to the Database.
+		This method adds an Ibl Set to the Database.
 
-		@param name: Ibl set name. ( String )
-		@param path: Ibl set path. ( String )
+		@param name: Ibl Set name. ( String )
+		@param path: Ibl Set path. ( String )
 		@param collectionId: Target Collection id. ( Integer )
 		@param emitSignal: Emit signal. ( Boolean )
 		@return: Method success. ( Boolean )
@@ -1656,9 +1656,9 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet, emitSignal=True):
 		"""
-		This method removes provided Ibl set from the Database.
+		This method removes provided Ibl Set from the Database.
 
-		@param iblSet: Ibl set to remove. ( DbIblSet )
+		@param iblSet: Ibl Set to remove. ( DbIblSet )
 		@param emitSignal: Emit signal. ( Boolean )
 		@return: Method success. ( Boolean )
 		"""
@@ -1675,7 +1675,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def iblSetExists(self, path):
 		"""
-		This method returns if provided Ibl set path exists in the Database.
+		This method returns if provided Ibl Set path exists in the Database.
 
 		@param path: Collection path. ( String )
 		@return: Collection exists. ( Boolean )
@@ -1687,10 +1687,10 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
 		"""
-		This method updates provided Ibl set location.
+		This method updates provided Ibl Set location.
 
-		@param iblSet: Ibl set to update. ( DbIblSet )
-		@param iblSet: New Ibl set file. ( String )
+		@param iblSet: Ibl Set to update. ( DbIblSet )
+		@param iblSet: New Ibl Set file. ( String )
 		@param emitSignal: Emit signal. ( Boolean )
 		@return: Method success. ( Boolean )
 		"""

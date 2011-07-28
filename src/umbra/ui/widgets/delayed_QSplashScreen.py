@@ -105,7 +105,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method is the property for the _waitTime attribute.
 
-		@return: self.__waitTime ( Integer / float )
+		@return: self.__waitTime ( Integer / Float )
 		"""
 
 		return self.__waitTime
@@ -116,7 +116,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method is the setter method for the _waitTime attribute.
 
-		@param value: Attribute value. ( Integer / float )
+		@param value: Attribute value. ( Integer / Float )
 		"""
 
 		if value:

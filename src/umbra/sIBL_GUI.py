@@ -405,7 +405,7 @@ class LayoutActiveLabel(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, object_, layout, shortcut. ( Key / value pairs )
+		@param kwargs: name, object_, layout, shortcut. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)

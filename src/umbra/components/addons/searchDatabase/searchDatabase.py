@@ -811,7 +811,7 @@ class SearchDatabase(UiComponent):
 
 		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
 
-		LOGGER.debug("> Time range filtered Ibl set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
+		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
 
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent
@@ -867,7 +867,7 @@ class SearchDatabase(UiComponent):
 			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousModelContent if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
 			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
-		LOGGER.debug("> Pattern filtered Ibl set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
+		LOGGER.debug("> Pattern filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
 
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent

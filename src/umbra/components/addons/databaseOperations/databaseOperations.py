@@ -87,7 +87,7 @@ class DbType(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / value pairs )
+		@param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -364,7 +364,7 @@ class DatabaseOperations(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		self.__dbTypes = (DbType(type="Ibl set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
+		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
 						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
 		self._activate()

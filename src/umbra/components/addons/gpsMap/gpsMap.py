@@ -117,7 +117,7 @@ class Map(QWebView):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Removing gps map markers.")
+		LOGGER.debug("> Removing GPS map markers.")
 
 		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
 		return True
@@ -130,7 +130,7 @@ class Map(QWebView):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Centering gps map.")
+		LOGGER.debug("> Centering GPS map.")
 
 		self.page().mainFrame().evaluateJavaScript("setCenter()")
 		return True
@@ -144,7 +144,7 @@ class Map(QWebView):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Setting gps map type to '{0}'.".format(mapTypeId))
+		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
 
 		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
 		return True
@@ -158,7 +158,7 @@ class Map(QWebView):
 		@return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Zooming '{0}' gps map.".format(type))
+		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))
 
 		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
 		return True
@@ -678,7 +678,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __map__loadFinished(self, state):
 		"""
-		This method is triggered when the gps map finishes loading.
+		This method is triggered when the GPS map finishes loading.
 
 		@param state: Loading state. ( Boolean )
 		"""
@@ -704,7 +704,7 @@ class GpsMap(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while setting '{1}' gps markers!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+			raise Exception, "{0} | Exception raised while setting '{1}' GPS markers!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -712,14 +712,14 @@ class GpsMap(UiComponent):
 		"""
 		This method Sets Ibl Sets markers.
 
-		@param iblSet: Ibl set to display marker. ( DbIblSet )
+		@param iblSet: Ibl Set to display marker. ( DbIblSet )
 		@return: Method success. ( Boolean )
 		"""
 
 		if not iblSet.latitude and not iblSet.longitude:
 			return True
 
-		LOGGER.debug("> Ibl set '{0}' provides geo coordinates.".format(iblSet.name))
+		LOGGER.debug("> Ibl Set '{0}' provides GEO coordinates.".format(iblSet.name))
 		shotDateString = "<b>Shot Date: </b>{0}".format(self.__coreDatabaseBrowser.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
 		content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
 		return self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)

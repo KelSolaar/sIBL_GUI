@@ -118,7 +118,7 @@ class LoaderScript(UiComponent):
 
 		self.__bindingIdentifierPattern = "@[a-zA-Z0-9_]*"
 		self.__templateScriptSection = "Script"
-		self.__templateIblSetAttributesSection = "Ibl set attributes"
+		self.__templateIblSetAttributesSection = "Ibl Set attributes"
 		self.__templateRemoteConnectionSection = "Remote connection"
 
 		self.__win32ExecutionMethod = "ExecuteSIBLLoaderScript"
@@ -838,8 +838,8 @@ class LoaderScript(UiComponent):
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if iblSet:
-			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl set|path", iblSet.path))
-			overrideKeys["Ibl set|path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl set|path", strings.getNormalizedPath(iblSet.path))
+			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|path", iblSet.path))
+			overrideKeys["Ibl Set|path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl Set|path", strings.getNormalizedPath(iblSet.path))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Background|BGfile", iblSet.backgroundImage))
 			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet.backgroundImage))
@@ -875,12 +875,12 @@ class LoaderScript(UiComponent):
 		LOGGER.debug("> Binding Templates file attributes.")
 		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self.__templateScriptSection) for attribute, value in templateSections[section].items()))
 
-		LOGGER.debug("> Parsing Ibl set file: '{0}'.".format(iblSet))
+		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
 		iblSetParser = Parser(iblSet)
 		iblSetParser.read() and iblSetParser.parse()
 		iblSetSections = dict.copy(iblSetParser.sections)
 
-		LOGGER.debug("> Flattening Ibl set file attributes.")
+		LOGGER.debug("> Flattening Ibl Set file attributes.")
 		flattenedIblAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()))
 
 		for attribute in flattenedIblAttributes:

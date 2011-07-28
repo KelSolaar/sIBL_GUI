@@ -74,12 +74,12 @@ from umbra.globals.constants import Constants
 LOGGER = logging.getLogger(Constants.logger)
 
 DB_EXCEPTIONS = {
-			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl set's Ibl file is missing!",
-			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl set's icon is missing!",
-			"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl set's preview image is missing!",
-			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl set's background image is missing!",
-			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl set's lighting image is missing!",
-			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl set's reflection image is missing!",
+			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's file is missing!",
+			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's icon is missing!",
+			"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl Set's preview image is missing!",
+			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's background image is missing!",
+			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's lighting image is missing!",
+			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's reflection image is missing!",
 			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template file is missing!",
 			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template help file is missing!"
 		}
@@ -241,7 +241,7 @@ def filterItems(session, items, pattern, field, flags=0):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def itemExists(session, items, pattern, field, flags=0):
 	"""
-	This definition returns if item exists in the Database.
+	This definition returns if provided item exists in the Database.
 
 	@param session: Database session. ( Session )
 	@param items: Database items. ( List )
@@ -281,10 +281,10 @@ def filterIblSets(session, pattern, field, flags=0):
 @core.executionTrace
 def iblSetExists(session, path):
 	"""
-	This method returns if Ibl set exists in the Database.
+	This method returns if provided Ibl Set exists in the Database.
 
-	@param name: Ibl set path. ( String )
-	@return: Ibl set exists. ( Boolean )
+	@param name: Ibl Set path. ( String )
+	@return: Ibl Set exists. ( Boolean )
 	"""
 
 	return filterIblSets(session, "^{0}$".format(re.escape(path)), "path") and True or False
@@ -292,11 +292,11 @@ def iblSetExists(session, path):
 @core.executionTrace
 def addIblSet(session, name, path, collection):
 	"""
-	This definition adds a new Ibl set to the Database.
+	This definition adds a new Ibl Set to the Database.
 
 	@param session: Database session. ( Session )
-	@param name: Ibl set name. ( String )
-	@param path: Ibl set path. ( String )
+	@param name: Ibl Set name. ( String )
+	@param path: Ibl Set path. ( String )
 	@param collection: Collection id. ( String )
 	@return: Database commit success. ( Boolean )
 	"""
@@ -306,10 +306,10 @@ def addIblSet(session, name, path, collection):
 @core.executionTrace
 def removeIblSet(session, id):
 	"""
-	This definition removes an Ibl set from the Database.
+	This definition removes an Ibl Set from the Database.
 
 	@param session: Database session. ( Session )
-	@param id: Ibl set id. ( String )
+	@param id: Ibl Set id. ( String )
 	@return: Database commit success. ( Boolean )
 	"""
 
@@ -318,10 +318,10 @@ def removeIblSet(session, id):
 @core.executionTrace
 def updateIblSetContent(session, iblSet):
 	"""
-	This definition update an Ibl set content.
+	This definition update an Ibl Set content.
 
 	@param session: Database session. ( Session )
-	@param iblSet: Ibl set to set content. ( DbIblSet )
+	@param iblSet: Ibl Set to set content. ( DbIblSet )
 	@return: Database commit success. ( Boolean )
 	"""
 
@@ -330,11 +330,11 @@ def updateIblSetContent(session, iblSet):
 @core.executionTrace
 def updateIblSetLocation(session, iblSet, path):
 	"""
-	This definition updates an Ibl set location.
+	This definition updates an Ibl Set location.
 
 	@param session: Database session. ( Session )
-	@param iblSet: Ibl set to update. ( DbIblSet )
-	@param path: Ibl set path. ( Path )
+	@param iblSet: Ibl Set to update. ( DbIblSet )
+	@param path: Ibl Set path. ( Path )
 	@return: Database commit success. ( Boolean )
 	"""
 
@@ -486,7 +486,7 @@ def filterTemplates(session, pattern, field, flags=0):
 @core.executionTrace
 def templateExists(session, path):
 	"""
-	This method returns if Template exists in the Database.
+	This method returns if provided Template exists in the Database.
 
 	@param name: Template path. ( String )
 	@return: Template exists. ( Boolean )

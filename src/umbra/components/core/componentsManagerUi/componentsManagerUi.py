@@ -84,7 +84,7 @@ def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	This definition provides an exception handler for Component activation.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while activating '{1}' component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
@@ -95,7 +95,7 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	This definition provides an exception handler for Component deactivation.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while deactivating '{1}' component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
@@ -106,7 +106,7 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 	This definition provides an exception handler for Component reload.
 
 	@param exception: Exception. ( Exception )
-	@param origin: Function / method raising the exception. ( String )
+	@param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while reloading '{1}' component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)

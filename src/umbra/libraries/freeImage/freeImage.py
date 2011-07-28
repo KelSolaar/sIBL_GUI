@@ -257,7 +257,7 @@ if FREEIMAGE_BIGENDIAN:
 		FI_RGBA_ALPHA_SHIFT	 = 0
 else:
 	if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR:
-		# Big Endian ( PPC / none ): BGR(A) order.
+		# Big Endian ( PPC / None ): BGR(A) order.
 		FI_RGBA_RED			 = 2
 		FI_RGBA_GREEN		 = 1
 		FI_RGBA_BLUE		 = 0
@@ -971,7 +971,7 @@ class ImageInformationsHeader(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: path, width, height, bpp. ( Key / value pairs )
+		@param kwargs: path, width, height, bpp. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)

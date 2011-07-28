@@ -97,7 +97,7 @@ class ReleaseObject(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / value pairs )
+		@param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
