@@ -100,42 +100,42 @@ class UiConstantsTestCase(unittest.TestCase):
 		This method tests the "frameworkUiFile" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkUiFile, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkUiFile, "\w+")
 
 	def testFrameworkWindowsStylesheetFileAttribute(self):
 		"""
 		This method tests the "frameworkWindowsStylesheetFile" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkWindowsStylesheetFile, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkWindowsStylesheetFile, "\w+")
 
 	def testFrameworkDarwinStylesheetFileAttribute(self):
 		"""
 		This method tests the "frameworkDarwinStylesheetFile" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkDarwinStylesheetFile, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkDarwinStylesheetFile, "\w+")
 
 	def testFrameworkLinuxStylesheetFileAttribute(self):
 		"""
 		This method tests the "frameworkLinuxStylesheetFile" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLinuxStylesheetFile, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkLinuxStylesheetFile, "\w+")
 
 	def testFrameworkLayoutsFileAttribute(self):
 		"""
 		This method tests the "frameworkLayoutsFile" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLayoutsFile, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkLayoutsFile, "\w+")
 
 	def testFrameworkApplicationWindowsIconAttribute(self):
 		"""
 		This method tests the "frameworkApplicationWindowsIcon" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w+")
 		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkApplicationDarwinIconAttribute(self):
@@ -143,7 +143,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		This method tests the "frameworkApplicationDarwinIcon" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w+")
 		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkLogoPictureAttribute(self):
@@ -151,7 +151,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		This method tests the "frameworkLogoPicture" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLogoPicture, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkLogoPicture, "\w+")
 		self.assertRegexpMatches(UiConstants.frameworkLogoPicture, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testFrameworkDefaultToolbarIconSizeAttribute(self):
@@ -168,7 +168,7 @@ class UiConstantsTestCase(unittest.TestCase):
 		This method tests the "frameworkStartupLayout" attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkStartupLayout, "\w")
+		self.assertRegexpMatches(UiConstants.frameworkStartupLayout, "\w+")
 
 	def testFrameworkHelpFileAttribute(self):
 		"""

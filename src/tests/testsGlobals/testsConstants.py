@@ -109,7 +109,7 @@ class ConstantsTestCase(unittest.TestCase):
 		This method tests the "applicationName" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.applicationName, "\w")
+		self.assertRegexpMatches(Constants.applicationName, "\w+")
 
 	def testReleaseVersionAttribute(self):
 		"""
@@ -123,7 +123,7 @@ class ConstantsTestCase(unittest.TestCase):
 		This method tests the "logger" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.logger, "\w")
+		self.assertRegexpMatches(Constants.logger, "\w+")
 
 	def testVerbosityLevelAttribute(self):
 		"""
@@ -185,42 +185,42 @@ class ConstantsTestCase(unittest.TestCase):
 		This method tests the "applicationDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.applicationDirectory, "\w")
+		self.assertRegexpMatches(Constants.applicationDirectory, "\w+")
 
 	def testProviderDirectoryAttribute(self):
 		"""
 		This method tests the "providerDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.providerDirectory, "\w")
+		self.assertRegexpMatches(Constants.providerDirectory, "\w+")
 
 	def testSettingsDirectoryAttribute(self):
 		"""
 		This method tests the "settingsDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.settingsDirectory, "\w")
+		self.assertRegexpMatches(Constants.settingsDirectory, "\w+")
 
 	def testUserComponentsDirectoryAttribute(self):
 		"""
 		This method tests the "userComponentsDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.userComponentsDirectory, "\w")
+		self.assertRegexpMatches(Constants.userComponentsDirectory, "\w+")
 
 	def testLoggingDirectoryAttribute(self):
 		"""
 		This method tests the "loggingDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.loggingDirectory, "\w")
+		self.assertRegexpMatches(Constants.loggingDirectory, "\w+")
 
 	def testIoDirectoryAttribute(self):
 		"""
 		This method tests the "ioDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.ioDirectory, "\w")
+		self.assertRegexpMatches(Constants.ioDirectory, "\w+")
 
 	def testPreferencesDirectoriesAttribute(self):
 		"""
@@ -234,35 +234,35 @@ class ConstantsTestCase(unittest.TestCase):
 		This method tests the "coreComponentsDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.coreComponentsDirectory, "\w")
+		self.assertRegexpMatches(Constants.coreComponentsDirectory, "\w+")
 
 	def testAddonsComponentsDirectoryAttribute(self):
 		"""
 		This method tests the "addonsComponentsDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.addonsComponentsDirectory, "\w")
+		self.assertRegexpMatches(Constants.addonsComponentsDirectory, "\w+")
 
 	def testLibrariesDirectoryAttribute(self):
 		"""
 		This method tests the "librariesDirectory" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.librariesDirectory, "\w")
+		self.assertRegexpMatches(Constants.librariesDirectory, "\w+")
 
 	def testSettingsFileAttribute(self):
 		"""
 		This method tests the "settingsFile" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.settingsFile, "\w")
+		self.assertRegexpMatches(Constants.settingsFile, "\w+")
 
 	def testLoggingFileAttribute(self):
 		"""
 		This method tests the "settingsFile" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.loggingFile, "\w")
+		self.assertRegexpMatches(Constants.loggingFile, "\w+")
 
 	def testDefaultTimerCycleAttribute(self):
 		"""
@@ -278,7 +278,7 @@ class ConstantsTestCase(unittest.TestCase):
 		This method tests the "nullObject" attribute.
 		"""
 
-		self.assertRegexpMatches(Constants.nullObject, "\w")
+		self.assertRegexpMatches(Constants.nullObject, "\w+")
 
 if __name__ == "__main__":
 	unittest.main()
