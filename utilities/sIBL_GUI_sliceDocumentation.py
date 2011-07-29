@@ -24,6 +24,7 @@
 #
 # The following code is protected by GNU GPL V3 Licence.
 #
+#***********************************************************************************************
 
 """
 **sIBL_GUI_sliceDocumentation.py
@@ -32,17 +33,17 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Slices Provided Documentation File.
+	Slices provided documentation file.
 
 **Others:**
 
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -51,14 +52,14 @@ import sys
 from collections import OrderedDict
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
 from foundations.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -75,14 +76,14 @@ CONTENT_SUBSTITUTIONS = {"resources/": "../",
 						"     \|":"            |" }
 
 #***********************************************************************************************
-#***	Main Python Code.
+#***	Main Python code.
 #***********************************************************************************************
 def sliceDocumentation(fileIn, outputDirectory):
 	"""
-	This Definition Slices Slices Provided Documentation File.
+	This Definition slices provided documentation file.
 
-	@param fileIn: File To Convert. ( String )
-	@param outputDirectory: Output Directory. ( String )
+	@param fileIn: File to convert. ( String )
+	@param outputDirectory: Output directory. ( String )
 	"""
 
 	LOGGER.info("{0} | Slicing '{1}' file!".format(sliceDocumentation.__name__, fileIn))
@@ -123,5 +124,5 @@ if __name__ == "__main__":
 	sliceDocumentation(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

@@ -12,7 +12,7 @@ export DOCUMENTATION=$APPLICATION/support/documentation
 export HELP=$APPLICATION/support/documentation/help
 export SPHINX=$APPLICATION/support/documentation/sphinx
 
-#! Inline Documentation Build.
+#! Inline documentation build.
 echo ----------------------------------------------------------------
 echo Inline Documentation Build - Begin
 echo ----------------------------------------------------------------
@@ -21,7 +21,7 @@ echo ----------------------------------------------------------------
 echo Inline Documentation Build - End
 echo ----------------------------------------------------------------
 
-#! HDRLabs Documentation Build.
+#! HDRLabs documentation build.
 echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - Begin
 echo ----------------------------------------------------------------
@@ -30,7 +30,7 @@ echo ----------------------------------------------------------------
 echo HDRLabs Documentation Build - End
 echo ----------------------------------------------------------------
 
-#! Sphinx Documentation Build.
+#! Sphinx documentation build.
 echo ----------------------------------------------------------------
 echo Sphinx Documentation Build - Begin
 echo ----------------------------------------------------------------

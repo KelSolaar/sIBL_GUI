@@ -24,6 +24,7 @@
 #
 # The following code is protected by GNU GPL V3 Licence.
 #
+#***********************************************************************************************
 
 """
 **sIBL_GUI_getDependenciesInformations.py
@@ -32,17 +33,17 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Get Dependencies Informations.
+	Get dependencies informations.
 
 **Others:**
 
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import subprocess
@@ -50,14 +51,14 @@ import sys
 from collections import OrderedDict
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
 from foundations.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -75,9 +76,13 @@ DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY), ("Manager", 
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 
 #***********************************************************************************************
-#***	Main Python Code.
+#***	Main Python code.
 #***********************************************************************************************
 def getDependenciesInformations():
+	"""
+	This definition gets sIBL_GUI dependencies informations file.
+	"""
+
 	content = ["[Dependencies]\n"]
 	for dependency, path in DEPENDENCIES.items():
 		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
@@ -91,5 +96,5 @@ if __name__ == "__main__":
 	getDependenciesInformations()
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

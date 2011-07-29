@@ -24,6 +24,7 @@
 #
 # The following code is protected by GNU GPL V3 Licence.
 #
+#***********************************************************************************************
 
 """
 **sIBL_GUI_getSphinxDocumentationTocTree.py
@@ -32,17 +33,17 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Gets sphinx documentation toc tree file.
+	Gets Sphinx documentation Toc Tree file.
 
 **Others:**
 
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import glob
 import logging
@@ -52,7 +53,7 @@ import sys
 from collections import OrderedDict
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 import foundations.strings as strings
@@ -60,7 +61,7 @@ from foundations.io import File
 from foundations.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -86,18 +87,18 @@ TOCTREE_TEMPLATE_END = ["Search:\n"
 					"* :ref:`search`\n"]
 
 #***********************************************************************************************
-#***	Main Python Code.
+#***	Main Python code.
 #***********************************************************************************************
 def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
-	This definition gets sphinx documentation index file.
+	This definition gets Sphinx documentation index file.
 
 	@param fileIn: File to convert. ( String )
 	@param fileOut: Output file. ( String )
 	@param contentDirectory: Content directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Building sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__, fileOut))
+	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__, fileOut))
 	file = File(fileIn)
 	file.read()
 
@@ -115,7 +116,7 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 		if code in existingFiles:
 			link = "{0}/{1}".format(relativeDirectory, code)
 			datas = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
-			LOGGER.info("{0} | Adding '{1}' entry to toc tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
+			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
 			tocTree.append(datas)
 	tocTree.append("\n")
 
@@ -131,5 +132,5 @@ if __name__ == "__main__":
 	getSphinxDocumentationTocTree(sys.argv[1], sys.argv[2], sys.argv[3])
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

@@ -24,6 +24,7 @@
 #
 # The following code is protected by GNU GPL V3 Licence.
 #
+#***********************************************************************************************
 
 """
 **sIBL_GUI_reStructuredTextToHtml.py
@@ -32,31 +33,31 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Converts a textile file to html.
+	Converts a reStructuredText file to html.
 
 **Others:**
 
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
 import sys
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
 from foundations.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -73,17 +74,17 @@ TIDY_SETTINGS_FILE = "tidy/tidySettings.rc"
 NORMALIZATION = {"document": "document", }
 
 #***********************************************************************************************
-#***	Main Python Code.
+#***	Main Python code.
 #***********************************************************************************************
 def reStructuredTextToHtml(fileIn, fileOut):
 	"""
-	This definition outputs a restructuredtext file to html.
+	This definition outputs a reStructuredText file to html.
 
 	@param fileIn: File to convert. ( String )
 	@param fileOut: Output file. ( String )
 	"""
 
-	LOGGER.info("{0} | Converting '{1}' restructuredtext file to html!".format(reStructuredTextToHtml.__name__, fileIn))
+	LOGGER.info("{0} | Converting '{1}' reStructuredText file to html!".format(reStructuredTextToHtml.__name__, fileIn))
 	os.system("{0} --stylesheet-path='{1}' '{2}' > '{3}'".format(RST2HTML, os.path.join(os.path.dirname(__file__), CSS_FILE), fileIn, fileOut))
 
 
@@ -100,5 +101,5 @@ if __name__ == "__main__":
 	reStructuredTextToHtml(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

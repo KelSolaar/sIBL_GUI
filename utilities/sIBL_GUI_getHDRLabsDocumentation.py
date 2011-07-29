@@ -24,6 +24,7 @@
 #
 # The following code is protected by GNU GPL V3 Licence.
 #
+#***********************************************************************************************
 
 """
 **sIBL_GUI_getHDRLabsDocumentation.py
@@ -32,17 +33,17 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Extracts sIBL_GUI Documentation Body For HDRLabs.com.
+	Extracts sIBL_GUI documentation body for HDRLabs.com.
 
 **Others:**
 
 """
 
 #***********************************************************************************************
-#***	Python Begin.
+#***	Python begin.
 #***********************************************************************************************
 #***********************************************************************************************
-#***	External Imports.
+#***	External imports.
 #***********************************************************************************************
 import logging
 import os
@@ -51,14 +52,14 @@ import re
 from xml.etree import ElementTree
 
 #***********************************************************************************************
-#***	Internal Imports.
+#***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
 from foundations.io import File
 from foundations.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global Variables.
+#***	Global variables.
 #***********************************************************************************************
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -69,25 +70,25 @@ LOGGER.addHandler(LOGGING_CONSOLE_HANDLER)
 core.setVerbosityLevel(3)
 
 #***********************************************************************************************
-#***	Main Python Code.
+#***	Main Python code.
 #***********************************************************************************************
 def getHDRLabsDocumentation(fileIn, fileOut):
 	"""
-	This Definition Extracts sIBL_GUI Documentation Body For HDRLabs.com.
+	This definition extracts sIBL_GUI Documentation body for HDRLabs.com.
 
-	@param fileIn: File To Convert. ( String )
-	@param fileOut: Output File. ( String )
+	@param fileIn: File to convert. ( String )
+	@param fileOut: Output file. ( String )
 	"""
 
-	LOGGER.info("{0} | Extracting 'body' Tag Content From {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))
+	LOGGER.info("{0} | Extracting 'body' tag content from {1}' file!".format(getHDRLabsDocumentation.__name__, fileIn))
 	file = File(fileIn)
 	file.read()
 
-	LOGGER.info("{0} | Building 'ElementTree' Parsing Tree!".format(getHDRLabsDocumentation.__name__))
+	LOGGER.info("{0} | Building 'ElementTree' parsing tree!".format(getHDRLabsDocumentation.__name__))
 	element = ElementTree.fromstringlist(file.content)
 	tree = ElementTree.ElementTree(element)
 
-	LOGGER.info("{0} | Processing 'body' Datas!".format(getHDRLabsDocumentation.__name__))
+	LOGGER.info("{0} | Processing 'body' datas!".format(getHDRLabsDocumentation.__name__))
 	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 2)) for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n") if not re.search("<html:body.*", line) and not re.search("</html:body.*", line)]
 
 	file = File(fileOut)
@@ -98,5 +99,5 @@ if __name__ == "__main__":
 	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
 
 #***********************************************************************************************
-#***	Python End.
+#***	Python end.
 #***********************************************************************************************

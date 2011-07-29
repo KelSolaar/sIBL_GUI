@@ -12,7 +12,7 @@ export DISTRIBUTION=$RELEASES/dist
 export BUILD=$RELEASES/build
 export UTILITIES=$APPLICATION/utilities
 
-#! Darwin Build.
+#! Darwin build.
 echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
@@ -23,7 +23,7 @@ echo ----------------------------------------------------------------
 echo Build - End
 echo ----------------------------------------------------------------
 
-#! Darwin Release.
+#! Darwin release.
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
@@ -94,31 +94,31 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - Begin
 echo ----------------------------------------------------------------
-#! Maya_Arnold_Standard Textile Template Documentation Removal.
+#! Maya_Arnold_Standard template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_Arnold_Standard/help/Maya_Arnold_Standard Template Manual"
 
-#! Maya_MR_Lightsmith Textile Template Documentation Removal.
+#! Maya_MR_Lightsmith template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_MR_Lightsmith/help/Maya_MR_Lightsmith Template Manual"
 
-#! Maya_MR_Standard Textile Template Documentation Removal.
+#! Maya_MR_Standard template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_MR_Standard/help/Maya_MR_Standard Template Manual"
 
-#! Maya_RfM_Standard Textile Template Documentation Removal.
+#! Maya_RfM_Standard template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_RfM_Standard/help/Maya_RfM_Standard Template Manual"
 
-#! Maya_VRay_Dome_Light Textile Template Documentation Removal.
+#! Maya_VRay_Dome_Light template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_VRay_Dome_Light/help/Maya_VRay_Dome_Light Template Manual"
 
-#! Maya_VRay_Lightsmith Textile Template Documentation Removal.
+#! Maya_VRay_Lightsmith template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_VRay_Lightsmith/help/Maya_VRay_Lightsmith Template Manual"
 
-#! Maya_VRay_Standard Textile Template Documentation Removal.
+#! Maya_VRay_Standard template documentation removal.
 rm "$DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/Maya_VRay_Standard/help/Maya_VRay_Standard Template Manual"
 echo ----------------------------------------------------------------
 echo Templates Textile Files Cleanup - End
 echo ----------------------------------------------------------------
 
-#! sIBL_GUI Cleanup.
+#! sIBL_GUI cleanup.
 echo ----------------------------------------------------------------
 echo Cleanup - Begin
 echo ----------------------------------------------------------------
