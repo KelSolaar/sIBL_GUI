@@ -8,7 +8,6 @@ from paste.deploy.loadwsgi import ConfigLoader
 from migrate.versioning.shell import main
 from {{ locals().pop('repository_name') }}.model import migrations
 
-
 if '-c' in sys.argv:
     pos = sys.argv.index('-c')
     conf_path = sys.argv[pos + 1]

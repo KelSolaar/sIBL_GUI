@@ -71,7 +71,6 @@ def _get_argvemulator():
             else:
                 print "Unhandled event:", event
 
-
         def _quit( self ):
             self.quitting = 1
 
@@ -107,12 +106,10 @@ def _argv_emulation():
 _argv_emulation()
 
 
-
 def _chdir_resource():
     import os
     os.chdir( os.environ['RESOURCEPATH'] )
 _chdir_resource()
-
 
 def _disable_linecache():
     import linecache
@@ -121,7 +118,6 @@ def _disable_linecache():
     linecache.orig_getline = linecache.getline
     linecache.getline = fake_getline
 _disable_linecache()
-
 
 def _run( *scripts ):
     global __file__
@@ -136,6 +132,5 @@ def _run( *scripts ):
         path = os.path.join( base, script )
         sys.argv[0] = __file__ = path
         execfile( path, globals(), globals() )
-
 
 _run( 'sIBL_GUI.py' )

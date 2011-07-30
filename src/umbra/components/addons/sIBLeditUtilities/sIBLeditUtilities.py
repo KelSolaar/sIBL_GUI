@@ -1,31 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import foundations
-
-#***********************************************************************************************
-#
-# Copyright (C) 2008 - 2011 - Thomas Mansencal - thomas.mansencal@gmail.com
-#
-#***********************************************************************************************
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-#***********************************************************************************************
-#
-# The following code is protected by GNU GPL V3 Licence.
-#
-#***********************************************************************************************
 #
 # If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
 # Please contact us at HDRLabs:
@@ -48,10 +23,6 @@ import foundations
 """
 
 #***********************************************************************************************
-#***	Python begin.
-#***********************************************************************************************
-
-#***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
 import logging
@@ -71,8 +42,15 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
-#***	Global variables.
+#***	Module attributes.
 #***********************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
+
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
@@ -645,6 +623,3 @@ class sIBLeditUtilities(UiComponent):
 		else:
 			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
 
-#***********************************************************************************************
-#***	Python end.
-#***********************************************************************************************

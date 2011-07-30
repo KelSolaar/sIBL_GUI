@@ -86,13 +86,11 @@ pygments_style = "sphinx"
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-
 # -- Options for HTML output ---------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = "default"
-
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -167,7 +165,6 @@ html_static_path = [".static", "resources/css"]
 # Output file base name for HTML help builder.
 htmlhelp_basename = "sIBL_GUIdoc"
 
-
 # -- Options for LaTeX output --------------------------------------------------
 
 # The paper size ("letter" or "a4").
@@ -206,7 +203,6 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_domain_indices = True
 
-
 # -- Options for manual page output --------------------------------------------
 
 # One entry per manual page. List of tuples
@@ -215,7 +211,6 @@ man_pages = [
     ("index", "sibl_gui", u"sIBL_GUI Documentation",
      [u"Thomas Mansencal"], 1)
 ]
-
 
 # Example configuration for intersphinx: refer to the Python standard library.
 # intersphinx_mapping = {"http://docs.python.org/": None}
