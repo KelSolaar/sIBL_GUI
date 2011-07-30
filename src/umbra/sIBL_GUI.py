@@ -1851,7 +1851,7 @@ def _getHeaderMessage():
 	"""
 
 	message = ("{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName),
-				"{0} | This software is released under terms of GNU GPL v3 license.".format(Constants.applicationName),
+				"{0} | This software is released under terms of GNU GPL V3 license.".format(Constants.applicationName),
 				"{0} | http://www.gnu.org/licenses/ ".format(Constants.applicationName),
 				"{0} | Version: {1}".format(Constants.applicationName, Constants.releaseVersion))
 	return message
