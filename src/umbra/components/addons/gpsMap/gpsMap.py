@@ -591,7 +591,7 @@ class GpsMap(UiComponent):
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
@@ -604,7 +604,7 @@ class GpsMap(UiComponent):
 		This method uninitializes the Component ui.
 		"""
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)

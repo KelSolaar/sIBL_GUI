@@ -1220,7 +1220,7 @@ class TemplatesOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
 		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)

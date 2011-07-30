@@ -266,7 +266,7 @@ class PreferencesManager(UiComponent):
 		self.__Verbose_Level_comboBox_setUi()
 		self.__Restore_Geometry_On_Layout_Change_checkBox_setUi()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Logging_Formatters_comboBox.activated.connect(self.__Logging_Formatters_comboBox__activated)
 		self.ui.Verbose_Level_comboBox.activated.connect(self.__Verbose_Level_comboBox__activated)
 		self.ui.Restore_Geometry_On_Layout_Change_checkBox.stateChanged.connect(self.__Restore_Geometry_On_Layout_Change_checkBox__stateChanged)

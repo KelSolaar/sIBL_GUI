@@ -112,7 +112,7 @@ class Variable_QPushButton(QPushButton):
 		else:
 			self.__setFalseState()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.clicked.connect(self.__variable_QPushButton__clicked)
 
 	#***********************************************************************************************

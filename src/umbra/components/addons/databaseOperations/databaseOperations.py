@@ -396,7 +396,7 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		if not self.__container.parameters.databaseReadOnly:
 			self.ui.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
@@ -410,7 +410,7 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
 
 	@core.executionTrace

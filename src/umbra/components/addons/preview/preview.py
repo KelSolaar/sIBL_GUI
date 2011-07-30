@@ -929,7 +929,7 @@ class ImagesPreviewer(object):
 
 		self.__ui.Images_Previewer_frame_gridLayout.addWidget(self.__graphicsView)
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Previous_Image_pushButton.clicked.connect(self.__Previous_Image_pushButton__clicked)
 		self.ui.Next_Image_pushButton.clicked.connect(self.__Next_Image_pushButton__clicked)
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
@@ -1781,7 +1781,7 @@ class Preview(UiComponent):
 		self.__addActions()
 		self.__addInspectorButtons()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.connect(self.__Custom_Previewer_Path_toolButton__clicked)
 		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.connect(self.__Custom_Previewer_Path_lineEdit__editFinished)
 
@@ -1796,7 +1796,7 @@ class Preview(UiComponent):
 		self.__removeActions()
 		self.__removeInspectorButtons()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Custom_Previewer_Path_toolButton.clicked.disconnect(self.__Custom_Previewer_Path_toolButton__clicked)
 		self.ui.Custom_Previewer_Path_lineEdit.editingFinished.disconnect(self.__Custom_Previewer_Path_lineEdit__editFinished)
 

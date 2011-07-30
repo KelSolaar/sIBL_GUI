@@ -635,7 +635,7 @@ class LocationsBrowser(UiComponent):
 
 		self.__addActions()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Custom_File_Browser_Path_toolButton.clicked.connect(self.__Custom_File_Browser_Path_toolButton__clicked)
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
@@ -644,7 +644,7 @@ class LocationsBrowser(UiComponent):
 			self.__Open_Output_Directory_pushButton = QPushButton("Open output directory")
 			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
 
-			# Signals / slots.
+			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.connect(self.__Open_Output_Directory_pushButton__clicked)
 
 	@core.executionTrace
@@ -655,13 +655,13 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
 		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript addon component specific code.
 		if self.__addonsLoaderScript.activated:
-			# Signals / slots.
+			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.disconnect(self.__Open_Output_Directory_pushButton__clicked)
 
 			self.__Open_Output_Directory_pushButton.setParent(None)

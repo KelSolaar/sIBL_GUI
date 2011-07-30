@@ -672,7 +672,7 @@ class SearchDatabase(UiComponent):
 		self.__completer.setMaxVisibleItems(self.__completerVisibleItemsCount)
 		self.ui.Search_Database_lineEdit.setCompleter(self.__completer)
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
 		self.ui.Search_Database_comboBox.activated.connect(self.__Search_Database_comboBox__activated)
 		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
@@ -688,7 +688,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.__Search_Database_lineEdit__textChanged)
 		self.ui.Search_Database_comboBox.activated.disconnect(self.__Search_Database_comboBox__activated)
 		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.__Case_Insensitive_Matching_checkBox__stateChanged)

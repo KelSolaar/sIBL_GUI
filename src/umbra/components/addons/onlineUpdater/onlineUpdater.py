@@ -569,7 +569,7 @@ class DownloadManager(QObject):
 
 		self.__ui.closeEvent = self.closeEvent
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
 
 	@core.executionTrace
@@ -616,7 +616,7 @@ class DownloadManager(QObject):
 				self.__downloadNext()
 				return
 
-			# Signals / slots.
+			# Signals / Slots.
 			self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
 			self.__currentRequest.finished.connect(self.__downloadComplete)
 			self.__currentRequest.readyRead.connect(self.__requestReady)
@@ -1330,7 +1330,7 @@ class RemoteUpdater(object):
 			self.__ui.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
 			self.__ui.Templates_tableWidget.resizeColumnsToContents()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.__Get_sIBL_GUI_pushButton__clicked)
 		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
 		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
@@ -2035,7 +2035,7 @@ class OnlineUpdater(UiComponent):
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
@@ -2048,7 +2048,7 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)

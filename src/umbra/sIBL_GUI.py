@@ -1446,7 +1446,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 									LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
 									LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
-		# Signals / slots.
+		# Signals / Slots.
 		for layoutActiveLabel in self.__layoutsActiveLabels:
 			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
 
@@ -1471,7 +1471,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action.setShortcut(QKeySequence(layout[1]))
 			self.__layoutMenu.addAction(action)
 
-			# Signals / slots.
+			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
 
 		self.__layoutMenu.addSeparator()
@@ -1481,7 +1481,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
 			self.__layoutMenu.addAction(action)
 
-			# Signals / slots.
+			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
 		layoutsButton.setMenu(self.__layoutMenu)
@@ -1500,7 +1500,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__miscMenu.addAction(apiDisplayMiscAction)
 		self.__miscMenu.addSeparator()
 
-		# Signals / slots.
+		# Signals / Slots.
 		helpDisplayMiscAction.triggered.connect(self.__helpDisplayMiscAction__triggered)
 		apiDisplayMiscAction.triggered.connect(self.__apiDisplayMiscAction__triggered)
 

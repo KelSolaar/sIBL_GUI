@@ -197,7 +197,7 @@ class LoggingNotifier(Component):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__statusBar_showLoggingMessages)
 
 	@core.executionTrace
@@ -208,7 +208,7 @@ class LoggingNotifier(Component):
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__container.timer.timeout.disconnect(self.__statusBar_showLoggingMessages)
 
 	# @core.executionTrace

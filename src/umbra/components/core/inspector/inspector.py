@@ -908,7 +908,7 @@ class Inspector(UiComponent):
 		self.ui.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Inspector_Overall_frame_addActions()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.modelChanged.connect(self.__coreDatabaseBrowser__modelChanged)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)

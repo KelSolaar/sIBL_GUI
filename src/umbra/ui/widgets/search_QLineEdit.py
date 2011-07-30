@@ -105,7 +105,7 @@ class Search_QLineEdit(QLineEdit):
 		self.__setClearButtonStyle()
 		self.__setClearButtonVisibility(self.text())
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__clearButton.clicked.connect(self.clear)
 		self.textChanged.connect(self.__setClearButtonVisibility)
 
@@ -266,7 +266,7 @@ class Search_QLineEdit(QLineEdit):
 			self.__clearButton.setIcon(QIcon(pixmap))
 			self.__clearButton.setMaximumSize(pixmap.size())
 
-			# Signals / slots.
+			# Signals / Slots.
 			self.__clearButton.pressed.connect(functools.partial(self.__clearButton.setIcon, QIcon(clickedPixmap)))
 			self.__clearButton.released.connect(functools.partial(self.__clearButton.setIcon, QIcon(pixmap)))
 		else:

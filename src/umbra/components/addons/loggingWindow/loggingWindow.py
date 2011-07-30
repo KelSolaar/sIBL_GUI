@@ -269,7 +269,7 @@ class LoggingWindow(UiComponent):
 		self.ui.Logging_textEdit.setFontFamily("Courier")
 		self.__Logging_textEdit_setUi()
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace
@@ -280,7 +280,7 @@ class LoggingWindow(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.__container.timer.timeout.disconnect(self.__Logging_textEdit_refreshUi)
 
 	@core.executionTrace

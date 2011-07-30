@@ -1176,7 +1176,7 @@ class DatabaseBrowser(UiComponent):
 		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
 		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
 		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelDatas)

@@ -416,7 +416,7 @@ class RewiringTool(UiComponent):
 			self.__reWireComboBoxesWidgets[index].addItems([parameter[0] for parameter in self.__rewiringParameters])
 			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Background_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
 		self.ui.Lighting_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
 		self.ui.Reflection_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
@@ -436,7 +436,7 @@ class RewiringTool(UiComponent):
 		self.__reWireComboBoxesWidgets = None
 		self.__reWireLineEditWidgets = None
 
-		# Signals / slots.
+		# Signals / Slots.
 		self.ui.Background_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
 		self.ui.Lighting_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
 		self.ui.Reflection_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)

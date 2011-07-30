@@ -503,7 +503,7 @@ class SetsScanner(Component):
 				self.__setsScannerWorkerThread = SetsScanner_Worker(self)
 				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
 
-				# Signals / slots.
+				# Signals / Slots.
 				self.__setsScannerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			else:
 				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
@@ -520,7 +520,7 @@ class SetsScanner(Component):
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
-				# Signals / slots.
+				# Signals / Slots.
 				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.__coreDb_database__changed)
 
 				self.__setsScannerWorkerThread = None
