@@ -1,12 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# If you are a HDRI resources vendor and are interested in making your sets SmartIBL compliant:
-# Please contact us at HDRLabs:
-# Christian Bloch - blochi@edenfx.com
-# Thomas Mansencal - thomas.mansencal@gmail.com
-#
-#***********************************************************************************************
 
 """
 **001_table_Sets_sqlalchemy.Column_previewImage.py**
