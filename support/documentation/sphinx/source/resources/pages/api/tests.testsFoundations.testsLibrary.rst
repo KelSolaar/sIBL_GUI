@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: LibraryTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: SetNamespaceTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetNamespaceTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: RemoveNamespaceTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

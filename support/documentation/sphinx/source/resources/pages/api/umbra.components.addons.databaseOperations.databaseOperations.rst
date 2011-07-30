@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: DbType
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DatabaseOperations
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

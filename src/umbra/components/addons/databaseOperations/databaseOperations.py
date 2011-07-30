@@ -58,7 +58,7 @@ class DbType(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / Value pairs )
+		:param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -76,8 +76,8 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -106,7 +106,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -117,7 +117,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -136,7 +136,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -147,7 +147,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -166,7 +166,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -177,7 +177,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -196,7 +196,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -207,7 +207,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -226,7 +226,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -237,7 +237,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -256,7 +256,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -267,7 +267,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -286,7 +286,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the property for the _dbTypes attribute.
 
-		@return: self.__dbTypes. ( Tuple )
+		:return: self.__dbTypes. ( Tuple )
 		"""
 
 		return self.__dbTypes
@@ -297,7 +297,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is the setter method for the _dbTypes attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbTypes"))
@@ -319,7 +319,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -409,7 +409,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method is triggered when Synchronize_Database_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.synchronizeDatabase()
@@ -420,7 +420,7 @@ class DatabaseOperations(UiComponent):
 		"""
 		This method synchronizes the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		for dbType in self.__dbTypes:

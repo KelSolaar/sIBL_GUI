@@ -67,7 +67,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method initializes the class.
 
-		@param container: Object container. ( Object )
+		:param container: Object container. ( Object )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -90,7 +90,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -101,7 +101,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -120,7 +120,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the property for the _dbSession attribute.
 
-		@return: self.__dbSession. ( Object )
+		:return: self.__dbSession. ( Object )
 		"""
 
 		return self.__dbSession
@@ -131,7 +131,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
@@ -150,7 +150,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the property for the _timer attribute.
 
-		@return: self.__timer. ( QTimer )
+		:return: self.__timer. ( QTimer )
 		"""
 
 		return self.__timer
@@ -161,7 +161,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the setter method for the _timer attribute.
 
-		@param value: Attribute value. ( QTimer )
+		:param value: Attribute value. ( QTimer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timer"))
@@ -180,7 +180,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the property for the _timerCycleMultiplier attribute.
 
-		@return: self.__timerCycleMultiplier. ( Float )
+		:return: self.__timerCycleMultiplier. ( Float )
 		"""
 
 		return self.__timerCycleMultiplier
@@ -191,7 +191,7 @@ class TemplatesOutliner_Worker(QThread):
 		"""
 		This method is the setter method for the _timerCycleMultiplier attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timerCycleMultiplier"))
@@ -252,7 +252,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method initializes the class.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -274,7 +274,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -285,7 +285,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -304,7 +304,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -315,7 +315,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -336,7 +336,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drag enter event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if event.mimeData().hasFormat("text/uri-list"):
@@ -350,7 +350,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drag move event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		pass
@@ -361,7 +361,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drop event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -396,8 +396,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -464,7 +464,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -475,7 +475,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -494,7 +494,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -505,7 +505,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -524,7 +524,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _uiSoftwareAffixe attribute.
 
-		@return: self.__uiSoftwareAffixe. ( String )
+		:return: self.__uiSoftwareAffixe. ( String )
 		"""
 
 		return self.__uiSoftwareAffixe
@@ -535,7 +535,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiSoftwareAffixe attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiSoftwareAffixe"))
@@ -554,7 +554,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _uiUnknownSoftwareImage attribute.
 
-		@return: self.__uiUnknownSoftwareImage. ( String )
+		:return: self.__uiUnknownSoftwareImage. ( String )
 		"""
 
 		return self.__uiUnknownSoftwareImage
@@ -565,7 +565,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiUnknownSoftwareImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiUnknownSoftwareImage"))
@@ -584,7 +584,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -595,7 +595,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -614,7 +614,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -625,7 +625,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -644,7 +644,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -655,7 +655,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -674,7 +674,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -685,7 +685,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -704,7 +704,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _settingsSeparator attribute.
 
-		@return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator. ( String )
 		"""
 
 		return self.__settingsSeparator
@@ -715,7 +715,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settingsSeparator attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSeparator"))
@@ -734,7 +734,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -745,7 +745,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -764,7 +764,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _model attribute.
 
-		@return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( QStandardItemModel )
 		"""
 
 		return self.__model
@@ -775,7 +775,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _model attribute.
 
-		@param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
@@ -794,7 +794,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _modelSelection attribute.
 
-		@return: self.__modelSelection. ( Dictionary )
+		:return: self.__modelSelection. ( Dictionary )
 		"""
 
 		return self.__modelSelection
@@ -805,7 +805,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _modelSelection attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelSelection"))
@@ -824,7 +824,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _templatesOutlinerWorkerThread attribute.
 
-		@return: self.__templatesOutlinerWorkerThread. ( QThread )
+		:return: self.__templatesOutlinerWorkerThread. ( QThread )
 		"""
 
 		return self.__templatesOutlinerWorkerThread
@@ -835,7 +835,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _templatesOutlinerWorkerThread attribute.
 
-		@param value: Attribute value. ( QThread )
+		:param value: Attribute value. ( QThread )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesOutlinerWorkerThread"))
@@ -854,7 +854,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _extension attribute.
 
-		@return: self.__extension. ( String )
+		:return: self.__extension. ( String )
 		"""
 
 		return self.__extension
@@ -865,7 +865,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _extension attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("extension"))
@@ -884,7 +884,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _defaultCollections attribute.
 
-		@return: self.__defaultCollections. ( Dictionary )
+		:return: self.__defaultCollections. ( Dictionary )
 		"""
 
 		return self.__defaultCollections
@@ -895,7 +895,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _defaultCollections attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("defaultCollections"))
@@ -914,7 +914,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _factoryCollection attribute.
 
-		@return: self.__factoryCollection. ( String )
+		:return: self.__factoryCollection. ( String )
 		"""
 
 		return self.__factoryCollection
@@ -925,7 +925,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _factoryCollection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryCollection"))
@@ -944,7 +944,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _userCollection attribute.
 
-		@return: self.__userCollection. ( String )
+		:return: self.__userCollection. ( String )
 		"""
 
 		return self.__userCollection
@@ -955,7 +955,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _userCollection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("userCollection"))
@@ -974,7 +974,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _modelHeaders attribute.
 
-		@return: self.__modelHeaders. ( List )
+		:return: self.__modelHeaders. ( List )
 		"""
 
 		return self.__modelHeaders
@@ -985,7 +985,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _modelHeaders attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelHeaders"))
@@ -1004,7 +1004,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _treeViewIndentation attribute.
 
-		@return: self.__treeViewIndentation. ( Integer )
+		:return: self.__treeViewIndentation. ( Integer )
 		"""
 
 		return self.__treeViewIndentation
@@ -1015,7 +1015,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _treeViewIndentation attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewIndentation"))
@@ -1034,7 +1034,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _treeViewInnerMargins attribute.
 
-		@return: self.__treeViewInnerMargins. ( Integer )
+		:return: self.__treeViewInnerMargins. ( Integer )
 		"""
 
 		return self.__treeViewInnerMargins
@@ -1045,7 +1045,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _treeViewInnerMargins attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewInnerMargins"))
@@ -1064,7 +1064,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _templatesInformationsDefaultText attribute.
 
-		@return: self.__templatesInformationsDefaultText. ( String )
+		:return: self.__templatesInformationsDefaultText. ( String )
 		"""
 
 		return self.__templatesInformationsDefaultText
@@ -1075,7 +1075,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _templatesInformationsDefaultText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesInformationsDefaultText"))
@@ -1094,7 +1094,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the property for the _templatesInformationsText attribute.
 
-		@return: self.__templatesInformationsText. ( String )
+		:return: self.__templatesInformationsText. ( String )
 		"""
 
 		return self.__templatesInformationsText
@@ -1105,7 +1105,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is the setter method for the _templatesInformationsText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesInformationsText"))
@@ -1127,7 +1127,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1512,7 +1512,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered by addTemplateAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addTemplate__()
@@ -1522,7 +1522,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered by removeTemplatesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.removeTemplates__()
@@ -1532,7 +1532,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered by importDefaultTemplatesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.importDefaultTemplates__()
@@ -1542,7 +1542,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered by displayHelpFilesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.displayHelpFiles__()
@@ -1552,7 +1552,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered by filterTemplatesVersionsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.filterTemplatesVersions__()
@@ -1562,8 +1562,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method sets the Template_Informations_textEdit Widget.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Template_Informations_textEdit"))
@@ -1593,7 +1593,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method is triggered when a link is clicked in the Template_Informations_textBrowser Widget.
 
-		@param url: Url to explore. ( QUrl )
+		:param url: Url to explore. ( QUrl )
 		"""
 
 		QDesktopServices.openUrl(url)
@@ -1614,7 +1614,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method adds an user defined Template to the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
@@ -1636,7 +1636,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method removes user selected Templates from the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1677,7 +1677,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method imports default Templates into the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1691,7 +1691,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method displays user selected Templates help files.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.getSelectedTemplates()
@@ -1713,7 +1713,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method filters Templates by versions.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
@@ -1737,11 +1737,11 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method adds a Template to the Database.
 
-		@param name: Template set name. ( String )
-		@param path: Template set path. ( String )
-		@param collectionId: Target Collection id. ( Integer )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param name: Template set name. ( String )
+		:param path: Template set path. ( String )
+		:param collectionId: Target Collection id. ( Integer )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
@@ -1760,9 +1760,9 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method adds provided directory Templates to the Database.
 
-		@param directory: Templates directory. ( String )
-		@param collectionId: Collection id. ( Integer )
-		@return: Method success. ( Boolean )
+		:param directory: Templates directory. ( String )
+		:param collectionId: Collection id. ( Integer )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
@@ -1788,8 +1788,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method adds default Templates Collections / Templates to the Database.
 
-		@param forceImport: Force Templates import. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param forceImport: Force Templates import. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if not forceImport and self.getTemplates():
@@ -1814,9 +1814,9 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method removes provided Template from the Database.
 
-		@param templates: Template to remove. ( List )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param templates: Template to remove. ( List )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
@@ -1831,8 +1831,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method returns if provided Template path exists in the Database.
 
-		@param name: Template path. ( String )
-		@return: Template exists. ( Boolean )
+		:param name: Template path. ( String )
+		:return: Template exists. ( Boolean )
 		"""
 
 		return dbCommon.templateExists(self.__coreDb.dbSession, path)
@@ -1843,9 +1843,9 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method updates provided Template location.
 
-		@param template: Template to update. ( DbTemplate )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param template: Template to update. ( DbTemplate )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template location:".format(template.name), self.__container.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
@@ -1865,8 +1865,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method displays provided Templates help file.
 
-		@param template: Template to display help file. ( DbTemplate )
-		@return: Method success. ( Boolean )
+		:param template: Template to display help file. ( DbTemplate )
+		:return: Method success. ( Boolean )
 		"""
 
 		if os.path.exists(template.helpFile):
@@ -1881,7 +1881,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method returns Database Templates.
 
-		@return: Database Templates Collections. ( List )
+		:return: Database Templates Collections. ( List )
 		"""
 
 		return [template for template in dbCommon.getTemplates(self.__coreDb.dbSession)]
@@ -1891,8 +1891,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method returns the Templates_Outliner_treeView selected items.
 
-		@param rowsRootOnly: Return rows roots only. ( Boolean )
-		@return: View selected items. ( List )
+		:param rowsRootOnly: Return rows roots only. ( Boolean )
+		:return: View selected items. ( List )
 		"""
 
 		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
@@ -1903,7 +1903,7 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method returns the selected Templates.
 
-		@return: View selected Templates. ( List )
+		:return: View selected Templates. ( List )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1914,8 +1914,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method gets Template Collection from provided Collection name.
 
-		@param collection: Collection name. ( String )
-		@return: Collection. ( DbCollection )
+		:param collection: Collection name. ( String )
+		:return: Collection. ( DbCollection )
 		"""
 
 		return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
@@ -1925,8 +1925,8 @@ class TemplatesOutliner(UiComponent):
 		"""
 		This method gets an unique Collection id using provided path.
 
-		@param path: Template path. ( String )
-		@return: Unique id. ( Integer )
+		:param path: Template path. ( String )
+		:return: Unique id. ( Integer )
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")

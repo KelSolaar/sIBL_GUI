@@ -45,7 +45,7 @@ def upgrade(dbEngine):
 	"""
 	This definition upgrades the Database.
 
-	@param dbEngine: Database engine. ( Object )
+	:param dbEngine: Database engine. ( Object )
 	"""
 
 	LOGGER.info("{0} | SQLAlchemy Migrate: Upgrading Database!".format(__name__))
@@ -66,7 +66,7 @@ def downgrade(dbEngine):
 	"""
 	This definition downgrades the Database.
 
-	@param dbEngine: Database engine. ( Object )
+	:param dbEngine: Database engine. ( Object )
 	"""
 
 	pass

@@ -57,8 +57,8 @@ class RewiringTool(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -94,7 +94,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -105,7 +105,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -124,7 +124,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -135,7 +135,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -154,7 +154,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -165,7 +165,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -184,7 +184,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -195,7 +195,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -214,7 +214,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _reWireFramesWidgets attribute.
 
-		@return: self.__reWireFramesWidgets. ( Tuple )
+		:return: self.__reWireFramesWidgets. ( Tuple )
 		"""
 
 		return self.__reWireFramesWidgets
@@ -225,7 +225,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _reWireFramesWidgets attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("reWireFramesWidgets"))
@@ -244,7 +244,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _reWireComboBoxesWidgets attribute.
 
-		@return: self.__reWireComboBoxesWidgets. ( Tuple )
+		:return: self.__reWireComboBoxesWidgets. ( Tuple )
 		"""
 
 		return self.__reWireComboBoxesWidgets
@@ -255,7 +255,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _reWireComboBoxesWidgets attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("reWireComboBoxesWidgets"))
@@ -274,7 +274,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _reWireLineEditWidgets attribute.
 
-		@return: self.__reWireLineEditWidgets. ( Tuple )
+		:return: self.__reWireLineEditWidgets. ( Tuple )
 		"""
 
 		return self.__reWireLineEditWidgets
@@ -285,7 +285,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _reWireLineEditWidgets attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("reWireLineEditWidgets"))
@@ -304,7 +304,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the property for the _rewiringParameters attribute.
 
-		@return: self.__rewiringParameters. ( Tuple )
+		:return: self.__rewiringParameters. ( Tuple )
 		"""
 
 		return self.__rewiringParameters
@@ -315,7 +315,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is the setter method for the _rewiringParameters attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("rewiringParameters"))
@@ -337,7 +337,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -441,7 +441,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is called when Background_ToolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__setReWireCustomPath("Background")
@@ -451,7 +451,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is called when Lighting_ToolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__setReWireCustomPath("Lighting")
@@ -461,7 +461,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method is called when Reflection_ToolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__setReWireCustomPath("Reflection")
@@ -471,7 +471,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method shows / hides rewire Widget frames.
 
-		@param index: ComboBox index. ( Tuple )
+		:param index: ComboBox index. ( Tuple )
 		"""
 
 		for index in range(len(self.__reWireComboBoxesWidgets)):
@@ -487,7 +487,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method sets the RewiringTool Component custom image QLineEdit Widgets.
 
-		@param component: Target Component. ( String )
+		:param component: Target Component. ( String )
 		"""
 
 		customFile = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self.__container.lastBrowsedPath))
@@ -506,7 +506,7 @@ class RewiringTool(UiComponent):
 		"""
 		This method gets override keys.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))

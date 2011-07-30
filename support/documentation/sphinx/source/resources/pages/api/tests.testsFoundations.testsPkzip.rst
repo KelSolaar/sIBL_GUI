@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: PkzipTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -58,7 +58,7 @@ class Map(QWebView):
 		"""
 		This method initializes the class.
 
-		@param parent: Widget parent. ( QObject )
+		:param parent: Widget parent. ( QObject )
 		"""
 
 		QWebView.__init__(self, parent)
@@ -68,11 +68,11 @@ class Map(QWebView):
 		"""
 		This method adds a marker to the map.
 
-		@param coordinates: Marker coordinates. ( Tuple )
-		@param title: Marker title. ( String )
-		@param icon: Marker icon. ( String )
-		@param content: Marker popup window content. ( String )
-		@return: Method success. ( Boolean )
+		:param coordinates: Marker coordinates. ( Tuple )
+		:param title: Marker title. ( String )
+		:param icon: Marker icon. ( String )
+		:param content: Marker popup window content. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
@@ -85,7 +85,7 @@ class Map(QWebView):
 		"""
 		This method removes the map markers.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Removing GPS map markers.")
@@ -98,7 +98,7 @@ class Map(QWebView):
 		"""
 		This method center the map.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Centering GPS map.")
@@ -111,8 +111,8 @@ class Map(QWebView):
 		"""
 		This method sets the map type.
 
-		@param mapTypeId: GPS map type. ( String )
-		@return: Method success. ( Boolean )
+		:param mapTypeId: GPS map type. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
@@ -125,8 +125,8 @@ class Map(QWebView):
 		"""
 		This method sets the map zoom.
 
-		@param type: Zoom type. ( String )
-		@return: Method success. ( Boolean )
+		:param type: Zoom type. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))
@@ -144,8 +144,8 @@ class GpsMap(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -178,7 +178,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -189,7 +189,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -208,7 +208,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -219,7 +219,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -238,7 +238,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _uiZoomInImage attribute.
 
-		@return: self.__uiZoomInImage. ( String )
+		:return: self.__uiZoomInImage. ( String )
 		"""
 
 		return self.__uiZoomInImage
@@ -249,7 +249,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _uiZoomInImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomInImage"))
@@ -268,7 +268,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _uiZoomOutImage attribute.
 
-		@return: self.__uiZoomOutImage. ( String )
+		:return: self.__uiZoomOutImage. ( String )
 		"""
 
 		return self.__uiZoomOutImage
@@ -279,7 +279,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _uiZoomOutImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomOutImage"))
@@ -298,7 +298,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _gpsMapHtmlFile attribute.
 
-		@return: self.__gpsMapHtmlFile. ( String )
+		:return: self.__gpsMapHtmlFile. ( String )
 		"""
 
 		return self.__gpsMapHtmlFile
@@ -309,7 +309,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _gpsMapHtmlFile attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("gpsMapHtmlFile"))
@@ -328,7 +328,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _gpsMapBaseSize attribute.
 
-		@return: self.__gpsMapBaseSize. ( QSize() )
+		:return: self.__gpsMapBaseSize. ( QSize() )
 		"""
 
 		return self.__gpsMapBaseSize
@@ -339,7 +339,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _gpsMapBaseSize attribute.
 
-		@param value: Attribute value. ( QSize() )
+		:param value: Attribute value. ( QSize() )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("gpsMapBaseSize"))
@@ -358,7 +358,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -369,7 +369,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -388,7 +388,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -399,7 +399,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -418,7 +418,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -429,7 +429,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -448,7 +448,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _map attribute.
 
-		@return: self.__map. ( QObject )
+		:return: self.__map. ( QObject )
 		"""
 
 		return self.__map
@@ -459,7 +459,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _map attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("map"))
@@ -478,7 +478,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the property for the _mapTypeIds attribute.
 
-		@return: self.__mapTypeIds. ( Tuple )
+		:return: self.__mapTypeIds. ( Tuple )
 		"""
 
 		return self.__mapTypeIds
@@ -489,7 +489,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is the setter method for the _mapTypeIds attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("mapTypeIds"))
@@ -511,7 +511,7 @@ class GpsMap(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -610,8 +610,8 @@ class GpsMap(UiComponent):
 		"""
 		This method sets is triggered when coreDatabaseBrowser_Database_Browser_listView selection has changed.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		self.setMarkers__()
@@ -621,7 +621,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is triggered when Map_Type_comboBox index changes.
 
-		@param index: ComboBox activated item index. ( Integer )
+		:param index: ComboBox activated item index. ( Integer )
 		"""
 
 		self.__map.setMapType(self.__mapTypeIds[index][1])
@@ -631,7 +631,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is triggered when Zoom_In_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__map.setZoom("In")
@@ -641,7 +641,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is triggered when Zoom_Out_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__map.setZoom("Out")
@@ -651,7 +651,7 @@ class GpsMap(UiComponent):
 		"""
 		This method is triggered when the GPS map finishes loading.
 
-		@param state: Loading state. ( Boolean )
+		:param state: Loading state. ( Boolean )
 		"""
 
 		self.setMarkers__()
@@ -662,7 +662,7 @@ class GpsMap(UiComponent):
 		"""
 		This method Sets selected Ibl Sets markers.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -683,8 +683,8 @@ class GpsMap(UiComponent):
 		"""
 		This method Sets Ibl Sets markers.
 
-		@param iblSet: Ibl Set to display marker. ( DbIblSet )
-		@return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to display marker. ( DbIblSet )
+		:return: Method success. ( Boolean )
 		"""
 
 		if not iblSet.latitude and not iblSet.longitude:

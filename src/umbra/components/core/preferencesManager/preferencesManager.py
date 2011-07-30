@@ -56,8 +56,8 @@ class PreferencesManager(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -81,7 +81,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -92,7 +92,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -111,7 +111,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -122,7 +122,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -141,7 +141,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -152,7 +152,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -171,7 +171,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -182,7 +182,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -204,7 +204,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -288,7 +288,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is called when the Logging_Formatter_comboBox is triggered.
 
-		@param index: ComboBox activated item index. ( Integer )
+		:param index: ComboBox activated item index. ( Integer )
 		"""
 
 		formatter = str(self.ui.Logging_Formatters_comboBox.currentText())
@@ -314,7 +314,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is called when the Verbose_Level_ComboBox is triggered.
 
-		@param index: ComboBox activated item index. ( Integer )
+		:param index: ComboBox activated item index. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting verbose level: '{0}'.".format(self.ui.Verbose_Level_comboBox.currentText()))
@@ -340,7 +340,7 @@ class PreferencesManager(UiComponent):
 		"""
 		This method is called when Restore_Geometry_On_Layout_Change_checkBox state changes.
 
-		@param state: Checkbox state. ( Integer )
+		:param state: Checkbox state. ( Integer )
 		"""
 
 		LOGGER.debug("> Restore geometry on layout change state: '{0}'.".format(self.ui.Restore_Geometry_On_Layout_Change_checkBox.checkState()))

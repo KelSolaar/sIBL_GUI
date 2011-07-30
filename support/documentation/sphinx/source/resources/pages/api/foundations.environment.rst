@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Environment
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

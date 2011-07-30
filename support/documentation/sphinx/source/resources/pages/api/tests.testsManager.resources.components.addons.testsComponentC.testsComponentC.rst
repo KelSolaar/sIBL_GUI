@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: TestsComponentC
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

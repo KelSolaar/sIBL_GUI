@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Walker
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

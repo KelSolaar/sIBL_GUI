@@ -58,8 +58,8 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -94,7 +94,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -105,7 +105,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -124,7 +124,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -135,7 +135,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -154,7 +154,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -165,7 +165,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -184,7 +184,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -195,7 +195,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -214,7 +214,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -225,7 +225,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -244,7 +244,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -255,7 +255,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -274,7 +274,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _coreInspector attribute.
 
-		@return: self.__coreInspector. ( Object )
+		:return: self.__coreInspector. ( Object )
 		"""
 
 		return self.__coreInspector
@@ -285,7 +285,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _coreInspector attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreInspector"))
@@ -304,7 +304,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -315,7 +315,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -334,7 +334,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _editIblSetsInTextEditorAction attribute.
 
-		@return: self.__editIblSetsInTextEditorAction. ( QAction )
+		:return: self.__editIblSetsInTextEditorAction. ( QAction )
 		"""
 
 		return self.__editIblSetsInTextEditorAction
@@ -345,7 +345,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _editIblSetsInTextEditorAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetsInTextEditorAction"))
@@ -364,7 +364,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _editInspectorIblSetInTextEditorAction attribute.
 
-		@return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
+		:return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
 		"""
 
 		return self.__editInspectorIblSetInTextEditorAction
@@ -375,7 +375,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _editInspectorIblSetInTextEditorAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInTextEditorAction"))
@@ -394,7 +394,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _editTemplateInTextEditorAction attribute.
 
-		@return: self.__editTemplateInTextEditorAction. ( QAction )
+		:return: self.__editTemplateInTextEditorAction. ( QAction )
 		"""
 
 		return self.__editTemplateInTextEditorAction
@@ -405,7 +405,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _editTemplateInTextEditorAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editTemplateInTextEditorAction"))
@@ -424,7 +424,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the property for the _linuxTextEditors attribute.
 
-		@return: self.__linuxTextEditors. ( Tuple )
+		:return: self.__linuxTextEditors. ( Tuple )
 		"""
 
 		return self.__linuxTextEditors
@@ -435,7 +435,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is the setter method for the _linuxTextEditors attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("linuxTextEditors"))
@@ -457,7 +457,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -592,7 +592,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is triggered by editIblSetsInTextEditorAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editIblSetsInTextEditor__()
@@ -602,7 +602,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is triggered by editInspectorIblSetInTextEditorAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editInspectorIblSetInTextEditor__()
@@ -612,7 +612,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is triggered by editTemplateInTextEditorAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editTemplatesInTextEditor__()
@@ -632,7 +632,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method is called when Custom_Text_Editor_Path_toolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom text editor executable:", self.__container.lastBrowsedPath))
@@ -661,7 +661,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method edits selected Ibl Sets.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -685,7 +685,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method edits Inspector Ibl Set.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -700,7 +700,7 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method edits selected Templates.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -724,9 +724,9 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method gets process command.
 
-		@param file: File to edit. ( String )
-		@param customTextEditor: Custom text editor. ( String )
-		@return: Process command. ( String )
+		:param file: File to edit. ( String )
+		:param customTextEditor: Custom text editor. ( String )
+		:return: Process command. ( String )
 		"""
 
 		processCommand = None
@@ -772,9 +772,9 @@ class RawEditingUtilities(UiComponent):
 		"""
 		This method provides editing capability.
 
-		@param file: File to edit. ( String )
-		@param customTextEditor: Custom text editor. ( String )
-		@return: Method success. ( Boolean )
+		:param file: File to edit. ( String )
+		:param customTextEditor: Custom text editor. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		editCommand = self.getProcessCommand(file, customTextEditor)

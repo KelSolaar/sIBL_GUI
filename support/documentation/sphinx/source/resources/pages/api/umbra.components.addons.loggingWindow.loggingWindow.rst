@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: LoggingWindow
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

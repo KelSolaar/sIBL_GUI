@@ -60,8 +60,8 @@ def sliceDocumentation(fileIn, outputDirectory):
 	"""
 	This Definition slices provided documentation file.
 
-	@param fileIn: File to convert. ( String )
-	@param outputDirectory: Output directory. ( String )
+	:param fileIn: File to convert. ( String )
+	:param outputDirectory: Output directory. ( String )
 	"""
 
 	LOGGER.info("{0} | Slicing '{1}' file!".format(sliceDocumentation.__name__, fileIn))

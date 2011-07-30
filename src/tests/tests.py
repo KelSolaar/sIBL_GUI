@@ -38,7 +38,7 @@ def _setApplicationPackageDirectory():
 	"""
 	This definition sets the Application package directory in the path.
 
-	@return: Definition success. ( Boolean )
+	:return: Definition success. ( Boolean )
 	"""
 
 	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))

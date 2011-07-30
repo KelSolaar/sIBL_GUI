@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: Image_QGraphicsItem
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: ImagesPreviewer
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Preview
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

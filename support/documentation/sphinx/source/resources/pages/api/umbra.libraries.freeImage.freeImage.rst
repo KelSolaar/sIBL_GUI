@@ -7,114 +7,114 @@ Classes
 -------
 
 .. autoclass:: RGBQUAD
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: RGBTRIPLE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIBITMAP
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: BITMAPINFOHEADER
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: BITMAPINFO
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIRGB16
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIRGBA16
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIRGBF
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIRGBAF
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FICOMPLEX
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIICCPROFILE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_FORMAT
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_TYPE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_COLOR_TYPE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_QUANTIZE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_DITHER
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_JPEG_OPERATION
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_TMO
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_FILTER
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_COLOR_CHANNEL
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_MDTYPE
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FREE_IMAGE_MDMODEL
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIMETADATA
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FITAG
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FreeImageIO
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: FIMEMORY
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: ImageInformationsHeader
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Image
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

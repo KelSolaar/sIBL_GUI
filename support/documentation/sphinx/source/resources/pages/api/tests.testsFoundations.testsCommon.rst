@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: GetSystemApplicationDatasDirectoryTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetUserApplicationDatasDirectoryTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

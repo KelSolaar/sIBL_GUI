@@ -62,7 +62,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method initializes the class.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -88,7 +88,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -99,7 +99,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -118,7 +118,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -129,7 +129,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -148,7 +148,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -159,7 +159,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -178,7 +178,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _coreCollectionsOutliner attribute.
 
-		@return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -189,7 +189,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
@@ -208,7 +208,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the property for the _previousCollection attribute.
 
-		@return: self.__previousCollection. ( String )
+		:return: self.__previousCollection. ( String )
 		"""
 
 		return self.__previousCollection
@@ -219,7 +219,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method is the setter method for the _previousCollection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("previousCollection"))
@@ -241,7 +241,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drag enter event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
@@ -258,7 +258,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drag move event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		pass
@@ -269,7 +269,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the drop event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -309,7 +309,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the behavior when the Model is clicked.
 
-		@param index: Clicked Model item index. ( QModelIndex )
+		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
 		self.__previousCollection = self.model().itemFromIndex(self.model().sibling(index.row(), 0, index)).text()
@@ -320,7 +320,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 		This method defines the behavior when a QStandardItem is double clicked.
 
-		@param index: Clicked Model item index. ( QModelIndex )
+		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -349,8 +349,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -391,7 +391,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -402,7 +402,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -421,7 +421,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -432,7 +432,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -451,7 +451,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _uiDefaultCollectionImage attribute.
 
-		@return: self.__uiDefaultCollectionImage. ( String )
+		:return: self.__uiDefaultCollectionImage. ( String )
 		"""
 
 		return self.__uiDefaultCollectionImage
@@ -462,7 +462,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiDefaultCollectionImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDefaultCollectionImage"))
@@ -481,7 +481,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _uiUserCollectionImage attribute.
 
-		@return: self.__uiUserCollectionImage. ( String )
+		:return: self.__uiUserCollectionImage. ( String )
 		"""
 
 		return self.__uiUserCollectionImage
@@ -492,7 +492,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _uiUserCollectionImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiUserCollectionImage"))
@@ -511,7 +511,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -522,7 +522,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -541,7 +541,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -552,7 +552,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -571,7 +571,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -582,7 +582,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -601,7 +601,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -612,7 +612,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -631,7 +631,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _settingsSeparator attribute.
 
-		@return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator. ( String )
 		"""
 
 		return self.__settingsSeparator
@@ -642,7 +642,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _settingsSeparator attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSeparator"))
@@ -661,7 +661,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -672,7 +672,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -691,7 +691,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -702,7 +702,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -721,7 +721,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _model attribute.
 
-		@return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( QStandardItemModel )
 		"""
 
 		return self.__model
@@ -732,7 +732,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _model attribute.
 
-		@param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
@@ -751,7 +751,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _modelSelection attribute.
 
-		@return: self.__modelSelection. ( Dictionary )
+		:return: self.__modelSelection. ( Dictionary )
 		"""
 
 		return self.__modelSelection
@@ -762,7 +762,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _modelSelection attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelSelection"))
@@ -781,7 +781,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _overallCollection attribute.
 
-		@return: self.__overallCollection. ( String )
+		:return: self.__overallCollection. ( String )
 		"""
 
 		return self.__overallCollection
@@ -792,7 +792,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _overallCollection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("overallCollection"))
@@ -811,7 +811,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _defaultCollection attribute.
 
-		@return: self.__defaultCollection. ( String )
+		:return: self.__defaultCollection. ( String )
 		"""
 
 		return self.__defaultCollection
@@ -822,7 +822,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _defaultCollection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("defaultCollection"))
@@ -841,7 +841,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _setsCountLabel attribute.
 
-		@return: self.__setsCountLabel. ( String )
+		:return: self.__setsCountLabel. ( String )
 		"""
 
 		return self.__setsCountLabel
@@ -852,7 +852,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _setsCountLabel attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("setsCountLabel"))
@@ -871,7 +871,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _modelHeaders attribute.
 
-		@return: self.__modelHeaders. ( List )
+		:return: self.__modelHeaders. ( List )
 		"""
 
 		return self.__modelHeaders
@@ -882,7 +882,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _modelHeaders attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelHeaders"))
@@ -901,7 +901,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the property for the _treeViewIndentation attribute.
 
-		@return: self.__treeViewIndentation. ( Integer )
+		:return: self.__treeViewIndentation. ( Integer )
 		"""
 
 		return self.__treeViewIndentation
@@ -912,7 +912,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is the setter method for the _treeViewIndentation attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewIndentation"))
@@ -934,7 +934,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1264,7 +1264,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is triggered by addContentAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addContent__()
@@ -1274,7 +1274,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is triggered by addSingleCollectionAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addCollection__()
@@ -1284,7 +1284,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method is triggered by removeCollectionsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.removeCollections__()
@@ -1295,8 +1295,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method defines the behavior when the Collections_Outliner_treeView Model datas changes.
 
-		@param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		@param endIndex: Edited item ending QModelIndex. ( QModelIndex )
+		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
+		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
 		standardItem = self.__model.itemFromIndex(startIndex)
@@ -1331,8 +1331,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method triggers the Database_Browser_listView refresh depending on the Collections Outliner selected items.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 		self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
@@ -1351,7 +1351,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method adds user defined content to the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		collection = self.addCollection__()
@@ -1374,7 +1374,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method adds an user defined Collection to the Database.
 
-		@return: Collection name. ( String )
+		:return: Collection name. ( String )
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name!")
@@ -1405,7 +1405,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method removes user selected Collections from the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1432,9 +1432,9 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method adds a Collection to the Database.
 
-		@param name: Collection name. ( String )
-		@param collection: Collection name. ( String )
-		@return: Method success. ( Boolean )
+		:param name: Collection name. ( String )
+		:param collection: Collection name. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		if name != self.__overallCollection:
@@ -1456,8 +1456,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method removes provided Collection from the Database.
 
-		@param collection: Collection to remove. ( DbCollection )
-		@return: Method success. ( Boolean )
+		:param collection: Collection to remove. ( DbCollection )
+		:return: Method success. ( Boolean )
 		"""
 
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
@@ -1478,8 +1478,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method returns if provided Collection name exists in the Database.
 
-		@param name: Collection name. ( String )
-		@return: Collection exists. ( Boolean )
+		:param name: Collection name. ( String )
+		:return: Collection exists. ( Boolean )
 		"""
 
 		return dbCommon.collectionExists(self.__coreDb.dbSession, name)
@@ -1489,7 +1489,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method returns Database set Collections.
 
-		@return: Database set Collections. ( List )
+		:return: Database set Collections. ( List )
 		"""
 
 		return [collection for collection in dbCommon.filterCollections(self.__coreDb.dbSession, "Sets", "type")]
@@ -1499,8 +1499,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method gets provided Collections Ibl Sets.
 
-		@param collections: Collections to get Ibl Sets from. ( List )
-		@return: Ibl Sets list. ( List )
+		:param collections: Collections to get Ibl Sets from. ( List )
+		:return: Ibl Sets list. ( List )
 		"""
 
 		return dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
@@ -1510,8 +1510,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method returns provided Collection id.
 
-		@param collection: Collection to get the id from. ( String )
-		@return: Provided Collection id. ( Integer )
+		:param collection: Collection to get the id from. ( String )
+		:return: Provided Collection id. ( Integer )
 		"""
 
 		return self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
@@ -1521,7 +1521,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method returns an unique Collection id (Either first selected Collection or default one).
 
-		@return: Unique id. ( Integer )
+		:return: Unique id. ( Integer )
 		"""
 
 		ids = [collection.id for collection in self.getSelectedCollections()]
@@ -1536,8 +1536,8 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method returns Collections_Outliner_treeView selected items.
 
-		@param rowsRootOnly: Return rows roots only. ( Boolean )
-		@return: View selected items. ( List )
+		:param rowsRootOnly: Return rows roots only. ( Boolean )
+		:return: View selected items. ( List )
 		"""
 
 		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
@@ -1548,7 +1548,7 @@ class CollectionsOutliner(UiComponent):
 		"""
 		This method gets selected Collections.
 
-		@return: View selected Collections. ( List )
+		:return: View selected Collections. ( List )
 		"""
 
 		selectedCollections = [item._datas for item in self.getSelectedItems() if item._type == "Collection"]

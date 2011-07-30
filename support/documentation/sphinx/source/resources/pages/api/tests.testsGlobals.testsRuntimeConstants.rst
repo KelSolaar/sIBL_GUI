@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: RuntimeConstantsTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

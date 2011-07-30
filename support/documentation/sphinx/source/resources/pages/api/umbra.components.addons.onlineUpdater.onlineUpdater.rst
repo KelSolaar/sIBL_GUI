@@ -7,18 +7,18 @@ Classes
 -------
 
 .. autoclass:: ReleaseObject
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DownloadManager
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: RemoteUpdater
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: OnlineUpdater
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

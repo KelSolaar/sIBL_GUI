@@ -59,8 +59,8 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -99,7 +99,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -110,7 +110,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -129,7 +129,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -140,7 +140,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -159,7 +159,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -170,7 +170,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -189,7 +189,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -200,7 +200,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -219,7 +219,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _coreComponentsManagerUi attribute.
 
-		@return: self.__coreComponentsManagerUi. ( Object )
+		:return: self.__coreComponentsManagerUi. ( Object )
 		"""
 
 		return self.__coreComponentsManagerUi
@@ -230,7 +230,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _coreComponentsManagerUi attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreComponentsManagerUi"))
@@ -249,7 +249,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -260,7 +260,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -279,7 +279,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -290,7 +290,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -309,7 +309,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -320,7 +320,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -339,7 +339,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _addonsLoaderScript attribute.
 
-		@return: self.__addonsLoaderScript. ( Object )
+		:return: self.__addonsLoaderScript. ( Object )
 		"""
 
 		return self.__addonsLoaderScript
@@ -350,7 +350,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _addonsLoaderScript attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLoaderScript"))
@@ -369,7 +369,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _openIblSetsLocationsAction attribute.
 
-		@return: self.__openIblSetsLocationsAction. ( QAction )
+		:return: self.__openIblSetsLocationsAction. ( QAction )
 		"""
 
 		return self.__openIblSetsLocationsAction
@@ -380,7 +380,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _openIblSetsLocationsAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openIblSetsLocationsAction"))
@@ -399,7 +399,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _openInspectorIblSetLocationsAction attribute.
 
-		@return: self.__openInspectorIblSetLocationsAction. ( QAction )
+		:return: self.__openInspectorIblSetLocationsAction. ( QAction )
 		"""
 
 		return self.__openInspectorIblSetLocationsAction
@@ -410,7 +410,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _openInspectorIblSetLocationsAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openInspectorIblSetLocationsAction"))
@@ -429,7 +429,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _openComponentsLocationsAction attribute.
 
-		@return: self.__openComponentsLocationsAction. ( QAction )
+		:return: self.__openComponentsLocationsAction. ( QAction )
 		"""
 
 		return self.__openComponentsLocationsAction
@@ -440,7 +440,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _openComponentsLocationsAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openComponentsLocationsAction"))
@@ -459,7 +459,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _openTemplatesLocationsAction attribute.
 
-		@return: self.__openTemplatesLocationsAction. ( QAction )
+		:return: self.__openTemplatesLocationsAction. ( QAction )
 		"""
 
 		return self.__openTemplatesLocationsAction
@@ -470,7 +470,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _openTemplatesLocationsAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openTemplatesLocationsAction"))
@@ -489,7 +489,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _Open_Output_Directory_pushButton attribute.
 
-		@return: self.__Open_Output_Directory_pushButton. ( QPushButton )
+		:return: self.__Open_Output_Directory_pushButton. ( QPushButton )
 		"""
 
 		return self.__Open_Output_Directory_pushButton
@@ -500,7 +500,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _Open_Output_Directory_pushButton attribute.
 
-		@param value: Attribute value. ( QPushButton )
+		:param value: Attribute value. ( QPushButton )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("Open_Output_Directory_pushButton"))
@@ -519,7 +519,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the property for the _linuxBrowsers attribute.
 
-		@return: self.__linuxBrowsers. ( QObject )
+		:return: self.__linuxBrowsers. ( QObject )
 		"""
 
 		return self.__linuxBrowsers
@@ -530,7 +530,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is the setter method for the _linuxBrowsers attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("linuxBrowsers"))
@@ -552,7 +552,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -706,7 +706,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is triggered by openIblSetsLocationsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openIblSetsLocations__()
@@ -716,7 +716,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is triggered by openInspectorIblSetLocationsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openInspectorIblSetLocations__()
@@ -726,7 +726,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is triggered by openComponentsLocationsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openComponentsLocations__()
@@ -736,7 +736,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is triggered by openTemplatesLocationsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.openTemplatesLocations__()
@@ -756,7 +756,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is called when Custom_File_Browser_Path_toolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		customFileBrowserExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom file browser executable:", self.__container.lastBrowsedPath))
@@ -785,7 +785,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method is called when Open_Output_Directory_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.openOutputDirectory__()
@@ -796,7 +796,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method open selected Ibl Sets directories.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -820,7 +820,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method opens Inspector Ibl Set directory.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -836,7 +836,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method opens selected Components directories.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
@@ -860,7 +860,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method opens selected Templates directories.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -884,7 +884,7 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method opens output directory.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
@@ -903,9 +903,9 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method gets process command.
 
-		@param directory: Directory to explore. ( String )
-		@param customBrowser: Custom browser. ( String )
-		@return: Process command. ( String )
+		:param directory: Directory to explore. ( String )
+		:param customBrowser: Custom browser. ( String )
+		:return: Process command. ( String )
 		"""
 
 		processCommand = None
@@ -951,9 +951,9 @@ class LocationsBrowser(UiComponent):
 		"""
 		This method provides directory exploring capability.
 
-		@param directory: Directory to explore. ( String )
-		@param customBrowser: Custom browser. ( String )
-		@return: Method success. ( Boolean )
+		:param directory: Directory to explore. ( String )
+		:param customBrowser: Custom browser. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		browserCommand = self.getProcessCommand(directory, customBrowser)

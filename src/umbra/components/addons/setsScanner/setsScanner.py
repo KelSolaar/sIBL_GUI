@@ -64,7 +64,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method initializes the class.
 
-		@param container: Object container. ( Object )
+		:param container: Object container. ( Object )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -86,7 +86,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -97,7 +97,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -116,7 +116,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the property for the _dbSession attribute.
 
-		@return: self.__dbSession. ( Object )
+		:return: self.__dbSession. ( Object )
 		"""
 
 		return self.__dbSession
@@ -127,7 +127,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
@@ -146,7 +146,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the property for the _extension attribute.
 
-		@return: self.__extension. ( String )
+		:return: self.__extension. ( String )
 		"""
 
 		return self.__extension
@@ -157,7 +157,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the setter method for the _extension attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("extension"))
@@ -176,7 +176,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the property for the _newIblSets attribute.
 
-		@return: self.__newIblSets. ( Dictionary )
+		:return: self.__newIblSets. ( Dictionary )
 		"""
 
 		return self.__newIblSets
@@ -187,7 +187,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method is the setter method for the _newIblSets attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("newIblSets"))
@@ -218,7 +218,7 @@ class SetsScanner_Worker(QThread):
 		"""
 		This method scans Ibl Sets directories.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Scanning Ibl Sets directories for new Ibl Sets!".format(self.__class__.__name__))
@@ -254,7 +254,7 @@ class SetsScanner(Component):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
+		:param name: Component name. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -279,7 +279,7 @@ class SetsScanner(Component):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -290,7 +290,7 @@ class SetsScanner(Component):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -309,7 +309,7 @@ class SetsScanner(Component):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -320,7 +320,7 @@ class SetsScanner(Component):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -339,7 +339,7 @@ class SetsScanner(Component):
 		"""
 		This method is the property for the _coreCollectionsOutliner attribute.
 
-		@return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -350,7 +350,7 @@ class SetsScanner(Component):
 		"""
 		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
@@ -369,7 +369,7 @@ class SetsScanner(Component):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -380,7 +380,7 @@ class SetsScanner(Component):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -399,7 +399,7 @@ class SetsScanner(Component):
 		"""
 		This method is the property for the _setsScannerWorkerThread attribute.
 
-		@return: self.__setsScannerWorkerThread. ( QThread )
+		:return: self.__setsScannerWorkerThread. ( QThread )
 		"""
 
 		return self.__setsScannerWorkerThread
@@ -410,7 +410,7 @@ class SetsScanner(Component):
 		"""
 		This method is the setter method for the _setsScannerWorkerThread attribute.
 
-		@param value: Attribute value. ( QThread )
+		:param value: Attribute value. ( QThread )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("setsScannerWorkerThread"))
@@ -432,7 +432,7 @@ class SetsScanner(Component):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))

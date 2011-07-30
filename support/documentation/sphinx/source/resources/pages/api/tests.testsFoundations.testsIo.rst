@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: FileTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: SetLocalDirectoryTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

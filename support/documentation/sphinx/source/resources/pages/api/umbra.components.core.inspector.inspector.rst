@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: Plate
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Light
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Inspector
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

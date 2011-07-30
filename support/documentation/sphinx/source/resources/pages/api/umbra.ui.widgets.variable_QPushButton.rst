@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Variable_QPushButton
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

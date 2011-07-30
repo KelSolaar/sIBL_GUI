@@ -22,10 +22,10 @@ Classes
 -------
 
 .. autoclass:: StandardMessageHook
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Structure
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

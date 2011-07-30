@@ -66,8 +66,8 @@ class LoaderScript(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -107,7 +107,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -118,7 +118,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -137,7 +137,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -148,7 +148,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -167,7 +167,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -178,7 +178,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -197,7 +197,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -208,7 +208,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -227,7 +227,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -238,7 +238,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -257,7 +257,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _ioDirectory attribute.
 
-		@return: self.__ioDirectory. ( String )
+		:return: self.__ioDirectory. ( String )
 		"""
 
 		return self.__ioDirectory
@@ -268,7 +268,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _ioDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ioDirectory"))
@@ -287,7 +287,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _bindingIdentifierPattern attribute.
 
-		@return: self.__bindingIdentifierPattern. ( String )
+		:return: self.__bindingIdentifierPattern. ( String )
 		"""
 
 		return self.__bindingIdentifierPattern
@@ -298,7 +298,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _bindingIdentifierPattern attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("bindingIdentifierPattern"))
@@ -317,7 +317,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _templateScriptSection attribute.
 
-		@return: self.__templateScriptSection. ( String )
+		:return: self.__templateScriptSection. ( String )
 		"""
 
 		return self.__templateScriptSection
@@ -328,7 +328,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _templateScriptSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateScriptSection"))
@@ -347,7 +347,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _templateIblSetAttributesSection attribute.
 
-		@return: self.__templateIblSetAttributesSection. ( String )
+		:return: self.__templateIblSetAttributesSection. ( String )
 		"""
 
 		return self.__templateIblSetAttributesSection
@@ -358,7 +358,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _templateIblSetAttributesSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateIblSetAttributesSection"))
@@ -377,7 +377,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _templateRemoteConnectionSection attribute.
 
-		@return: self.__templateRemoteConnectionSection. ( String )
+		:return: self.__templateRemoteConnectionSection. ( String )
 		"""
 
 		return self.__templateRemoteConnectionSection
@@ -388,7 +388,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _templateRemoteConnectionSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateRemoteConnectionSection"))
@@ -407,7 +407,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _overrideKeys attribute.
 
-		@return: self.__overrideKeys. ( Dictionary )
+		:return: self.__overrideKeys. ( Dictionary )
 		"""
 
 		return self.__overrideKeys
@@ -418,7 +418,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _overrideKeys attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		if value:
@@ -439,7 +439,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _defaultStringSeparator attribute.
 
-		@return: self.__defaultStringSeparator. ( String )
+		:return: self.__defaultStringSeparator. ( String )
 		"""
 
 		return self.__defaultStringSeparator
@@ -450,7 +450,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _defaultStringSeparator attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -473,7 +473,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the property for the _unnamedLightName attribute.
 
-		@return: self.__unnamedLightName. ( String )
+		:return: self.__unnamedLightName. ( String )
 		"""
 
 		return self.__unnamedLightName
@@ -484,7 +484,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is the setter method for the _unnamedLightName attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -508,7 +508,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -599,7 +599,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is triggered when Output_Loader_Script_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.outputLoaderScript__()
@@ -609,7 +609,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method is triggered when Send_To_Software_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.sendLoaderScriptToSoftware__()
@@ -619,8 +619,8 @@ class LoaderScript(UiComponent):
 		"""
 		This method is triggered when coreTemplatesOutlinerUi_Templates_Outliner_treeView selection has changed.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -656,7 +656,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method outputs the Loader Script.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing Loader Script output.")
@@ -693,7 +693,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method sends the output Loader Script to associated package.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if self.outputLoaderScript__():
@@ -716,9 +716,9 @@ class LoaderScript(UiComponent):
 		"""
 		This method outputs the Loader Script.
 
-		@param template: Template. ( DbTemplate )
-		@param iblSet: Ibl Set. ( DbIblSet )
-		@return: Method success. ( Boolean )
+		:param template: Template. ( DbTemplate )
+		:param iblSet: Ibl Set. ( DbIblSet )
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__overrideKeys = self.getDefaultOverrideKeys()
@@ -750,9 +750,9 @@ class LoaderScript(UiComponent):
 		"""
 		This method sends the Loader Script to associated package.
 
-		@param template: Template. ( DbTemplate )
-		@param loaderScriptPath: Loader Script path. ( String )
-		@return: Method success. ( Boolean )
+		:param template: Template. ( DbTemplate )
+		:param loaderScriptPath: Loader Script path. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Starting remote connection!".format(self.__class__.__name__))
@@ -792,7 +792,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method gets default override keys.
 
-		@return: Override keys. ( Dictionary )
+		:return: Override keys. ( Dictionary )
 		"""
 
 		LOGGER.debug("> Constructing default override keys.")
@@ -828,10 +828,10 @@ class LoaderScript(UiComponent):
 		"""
 		This method builds a Loader Script.
 
-		@param template: Template path. ( String )
-		@param iblSet: iblSet path. ( String )
-		@param overrideKeys: Override keys. ( Dictionary )
-		@return: Loader Script. ( List )
+		:param template: Template path. ( String )
+		:param iblSet: iblSet path. ( String )
+		:param overrideKeys: Override keys. ( Dictionary )
+		:return: Loader Script. ( List )
 		"""
 
 		LOGGER.debug("> Parsing Template file: '{0}'.".format(template))

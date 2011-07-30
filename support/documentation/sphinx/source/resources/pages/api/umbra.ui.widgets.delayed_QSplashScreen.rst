@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Delayed_QSplashScreen
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

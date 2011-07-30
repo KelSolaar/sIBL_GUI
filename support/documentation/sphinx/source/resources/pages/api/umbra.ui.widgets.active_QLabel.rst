@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Active_QLabel
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

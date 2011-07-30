@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Pkzip
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

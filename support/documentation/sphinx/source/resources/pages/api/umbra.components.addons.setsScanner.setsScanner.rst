@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: SetsScanner_Worker
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: SetsScanner
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

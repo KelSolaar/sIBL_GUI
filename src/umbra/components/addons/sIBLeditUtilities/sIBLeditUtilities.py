@@ -59,8 +59,8 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -91,7 +91,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -102,7 +102,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -121,7 +121,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -132,7 +132,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -151,7 +151,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -162,7 +162,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -181,7 +181,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -192,7 +192,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -211,7 +211,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -222,7 +222,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -241,7 +241,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -252,7 +252,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -271,7 +271,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _coreInspector attribute.
 
-		@return: self.__coreInspector. ( Object )
+		:return: self.__coreInspector. ( Object )
 		"""
 
 		return self.__coreInspector
@@ -282,7 +282,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _coreInspector attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreInspector"))
@@ -301,7 +301,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _editIblSetInSIBLEditAction attribute.
 
-		@return: self.__editIblSetInSIBLEditAction. ( QAction )
+		:return: self.__editIblSetInSIBLEditAction. ( QAction )
 		"""
 
 		return self.__editIblSetInSIBLEditAction
@@ -312,7 +312,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _editIblSetInSIBLEditAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetInSIBLEditAction"))
@@ -331,7 +331,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the property for the _editInspectorIblSetInSIBLEditAction attribute.
 
-		@return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
+		:return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
 		"""
 
 		return self.__editInspectorIblSetInSIBLEditAction
@@ -342,7 +342,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is the setter method for the _editInspectorIblSetInSIBLEditAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInSIBLEditAction"))
@@ -364,7 +364,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -488,7 +488,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is triggered by editIblSetInSIBLEditAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editIblSetInSIBLEdit__()
@@ -498,7 +498,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is triggered by editInspectorIblSetInSIBLEditAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.editInspectorIblSetInSIBLEdit__()
@@ -518,7 +518,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method is called when sIBLedit_Path_toolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		sIBLeditExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit executable:", self.__container.lastBrowsedPath))
@@ -548,7 +548,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method edits selected Ibl Set in sIBLedit.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -568,7 +568,7 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method edits Inspector Ibl Set in sIBLedit.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -588,9 +588,9 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method gets process command.
 
-		@param path: Path. ( String )
-		@param sIBLedit: sIBLedit. ( String )
-		@return: Process command. ( String )
+		:param path: Path. ( String )
+		:param sIBLedit: sIBLedit. ( String )
+		:return: Process command. ( String )
 		"""
 
 		return "\"{0}\" \"{1}\"".format(sIBLedit, path)
@@ -601,9 +601,9 @@ class sIBLeditUtilities(UiComponent):
 		"""
 		This method edits provided Ibl Set in sIBLedit.
 
-		@param path: Path. ( String )
-		@param sIBLedit: sIBLedit. ( String )
-		@return: Method success. ( Boolean )
+		:param path: Path. ( String )
+		:param sIBLedit: sIBLedit. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		editCommand = self.getProcessCommand(path, sIBLedit)

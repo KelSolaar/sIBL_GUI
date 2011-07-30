@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: sIBLeditUtilities
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

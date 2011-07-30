@@ -56,12 +56,12 @@ class Active_QLabel(QLabel):
 		"""
 		This method initializes the class.
 
-		@param defaultPixmap: Label default pixmap. ( QPixmap )
-		@param hoverPixmap: Label hover pixmap. ( QPixmap )
-		@param activePixmap: Label active pixmap. ( QPixmap )
-		@param checkable: Checkable state. ( Boolean )
-		@param checked: Checked state. ( Boolean )
-		@param parent: Widget parent. ( QObject )
+		:param defaultPixmap: Label default pixmap. ( QPixmap )
+		:param hoverPixmap: Label hover pixmap. ( QPixmap )
+		:param activePixmap: Label active pixmap. ( QPixmap )
+		:param checkable: Checkable state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
+		:param parent: Widget parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -93,7 +93,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _defaultPixmap attribute.
 
-		@return: self.__defaultPixmap. ( QPixmap )
+		:return: self.__defaultPixmap. ( QPixmap )
 		"""
 
 		return self.__defaultPixmap
@@ -104,7 +104,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _defaultPixmap attribute.
 
-		@param value: Attribute value. ( QPixmap )
+		:param value: Attribute value. ( QPixmap )
 		"""
 
 		if value:
@@ -125,7 +125,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _hoverPixmap attribute.
 
-		@return: self.__hoverPixmap. ( QPixmap )
+		:return: self.__hoverPixmap. ( QPixmap )
 		"""
 
 		return self.__hoverPixmap
@@ -136,7 +136,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _hoverPixmap attribute.
 
-		@param value: Attribute value. ( QPixmap )
+		:param value: Attribute value. ( QPixmap )
 		"""
 
 		if value:
@@ -157,7 +157,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _activePixmap attribute.
 
-		@return: self.__activePixmap. ( QPixmap )
+		:return: self.__activePixmap. ( QPixmap )
 		"""
 
 		return self.__activePixmap
@@ -168,7 +168,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _activePixmap attribute.
 
-		@param value: Attribute value. ( QPixmap )
+		:param value: Attribute value. ( QPixmap )
 		"""
 
 		if value:
@@ -189,7 +189,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _checkable attribute.
 
-		@return: self.__checkable. ( Boolean )
+		:return: self.__checkable. ( Boolean )
 		"""
 
 		return self.__checkable
@@ -200,7 +200,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _checkable attribute.
 
-		@param value: Attribute value. ( Boolean )
+		:param value: Attribute value. ( Boolean )
 		"""
 
 		if value:
@@ -221,7 +221,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _checked attribute.
 
-		@return: self.__checked. ( Boolean )
+		:return: self.__checked. ( Boolean )
 		"""
 
 		return self.__checked
@@ -232,7 +232,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _checked attribute.
 
-		@param value: Attribute value. ( Boolean )
+		:param value: Attribute value. ( Boolean )
 		"""
 
 		if value:
@@ -253,7 +253,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _parent attribute.
 
-		@return: self.__parent. ( QObject )
+		:return: self.__parent. ( QObject )
 		"""
 
 		return self.__parent
@@ -263,7 +263,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _parent attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		self.__parent = value
@@ -282,7 +282,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the property for the _menu attribute.
 
-		@return: self.__menu. ( QMenu )
+		:return: self.__menu. ( QMenu )
 		"""
 
 		return self.__menu
@@ -293,7 +293,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method is the setter method for the _menu attribute.
 
-		@param value: Attribute value. ( QMenu )
+		:param value: Attribute value. ( QMenu )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("menu "))
@@ -315,7 +315,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method sets the Widget checked state.
 
-		@param state: New check state. ( Boolean )
+		:param state: New check state. ( Boolean )
 		"""
 
 		if state:
@@ -330,7 +330,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method returns the Widget checked state.
 
-		@return: Checked state. ( Boolean )
+		:return: Checked state. ( Boolean )
 		"""
 
 		return self.__checked
@@ -340,7 +340,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method sets the Widget menu.
 
-		@param menu: Menu. ( QMenu )
+		:param menu: Menu. ( QMenu )
 		"""
 
 		self.__menu = menu
@@ -354,7 +354,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method defines the mouse enter event.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if self.__checkable:
@@ -367,7 +367,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method defines the mouse leave event.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if self.__checkable:
@@ -380,7 +380,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method defines the mouse press event.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		self.emit(SIGNAL("clicked()"))
@@ -396,7 +396,7 @@ class Active_QLabel(QLabel):
 		"""
 		This method defines the mouse release event.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		not self.__checkable and	self.setPixmap(self.__defaultPixmap)

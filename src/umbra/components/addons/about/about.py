@@ -117,8 +117,8 @@ class About(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -144,7 +144,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -155,7 +155,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -174,7 +174,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -185,7 +185,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -204,7 +204,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _uiLogoImage attribute.
 
-		@return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage. ( String )
 		"""
 
 		return self.__uiLogoImage
@@ -215,7 +215,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _uiLogoImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
@@ -234,7 +234,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _uiGpl3Image attribute.
 
-		@return: self.__uiGpl3Image. ( String )
+		:return: self.__uiGpl3Image. ( String )
 		"""
 
 		return self.__uiGpl3Image
@@ -245,7 +245,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _uiGpl3Image attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiGpl3Image"))
@@ -264,7 +264,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -275,7 +275,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -294,7 +294,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _miscMenu attribute.
 
-		@return: self.__miscMenu. ( QMenu )
+		:return: self.__miscMenu. ( QMenu )
 		"""
 
 		return self.__miscMenu
@@ -305,7 +305,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _miscMenu attribute.
 
-		@param value: Attribute value. ( QMenu )
+		:param value: Attribute value. ( QMenu )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("miscMenu"))
@@ -324,7 +324,7 @@ class About(UiComponent):
 		"""
 		This method is the property for the _aboutMiscAction attribute.
 
-		@return: self.__aboutMiscAction. ( QAction )
+		:return: self.__aboutMiscAction. ( QAction )
 		"""
 
 		return self.__aboutMiscAction
@@ -335,7 +335,7 @@ class About(UiComponent):
 		"""
 		This method is the setter method for the _aboutMiscAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("aboutMiscAction"))
@@ -357,7 +357,7 @@ class About(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -449,7 +449,7 @@ class About(UiComponent):
 		"""
 		This method is triggered by aboutMiscAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' window.".format("About"))

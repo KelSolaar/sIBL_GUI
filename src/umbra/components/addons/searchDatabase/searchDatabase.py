@@ -59,8 +59,8 @@ class SearchDatabase(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -104,7 +104,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -115,7 +115,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -134,7 +134,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -145,7 +145,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -164,7 +164,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _uiSearchImage attribute.
 
-		@return: self.__uiSearchImage. ( String )
+		:return: self.__uiSearchImage. ( String )
 		"""
 
 		return self.__uiSearchImage
@@ -175,7 +175,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _uiSearchImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiSearchImage"))
@@ -194,7 +194,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _uiClearImage attribute.
 
-		@return: self.__uiClearImage. ( String )
+		:return: self.__uiClearImage. ( String )
 		"""
 
 		return self.__uiClearImage
@@ -205,7 +205,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _uiClearImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiClearImage"))
@@ -224,7 +224,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _uiClearClickedImage attribute.
 
-		@return: self.__uiClearClickedImage. ( String )
+		:return: self.__uiClearClickedImage. ( String )
 		"""
 
 		return self.__uiClearClickedImage
@@ -235,7 +235,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _uiClearClickedImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiClearClickedImage"))
@@ -254,7 +254,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -265,7 +265,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -284,7 +284,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _tagsCloudListWidgetSpacing attribute.
 
-		@return: self.__tagsCloudListWidgetSpacing. ( Integer )
+		:return: self.__tagsCloudListWidgetSpacing. ( Integer )
 		"""
 
 		return self.__tagsCloudListWidgetSpacing
@@ -295,7 +295,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _tagsCloudListWidgetSpacing attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tagsCloudListWidgetSpacing"))
@@ -314,7 +314,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -325,7 +325,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -344,7 +344,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -355,7 +355,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -374,7 +374,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -385,7 +385,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -404,7 +404,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _coreCollectionsOutliner attribute.
 
-		@return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -415,7 +415,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
@@ -434,7 +434,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QCompleter )
+		:return: self.__container. ( QCompleter )
 		"""
 
 		return self.__container
@@ -445,7 +445,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QCompleter )
+		:param value: Attribute value. ( QCompleter )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("completer"))
@@ -464,7 +464,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( Integer )
+		:return: self.__container. ( Integer )
 		"""
 
 		return self.__container
@@ -475,7 +475,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("completerVisibleItemsCount"))
@@ -494,7 +494,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _tagsCloudField attribute.
 
-		@return: self.__tagsCloudField. ( String )
+		:return: self.__tagsCloudField. ( String )
 		"""
 
 		return self.__tagsCloudField
@@ -505,7 +505,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _tagsCloudField attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tagsCloudField"))
@@ -524,7 +524,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _databaseFields attribute.
 
-		@return: self.__databaseFields. ( List )
+		:return: self.__databaseFields. ( List )
 		"""
 
 		return self.__databaseFields
@@ -535,7 +535,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _databaseFields attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("databaseFields"))
@@ -554,7 +554,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the property for the _cloudExcludedTags attribute.
 
-		@return: self.__cloudExcludedTags. ( List )
+		:return: self.__cloudExcludedTags. ( List )
 		"""
 
 		return self.__cloudExcludedTags
@@ -565,7 +565,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is the setter method for the _cloudExcludedTags attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("cloudExcludedTags"))
@@ -588,7 +588,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -695,7 +695,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Search_Database_lineEdit text changes.
 
-		@param text: Current text value. ( QString )
+		:param text: Current text value. ( QString )
 		"""
 
 		self.setSearchMatchingIblsSets()
@@ -705,7 +705,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Search_Database_comboBox index changes.
 
-		@param index: ComboBox activated item index. ( Integer )
+		:param index: ComboBox activated item index. ( Integer )
 		"""
 
 		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
@@ -719,7 +719,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Case_Insensitive_Matching_checkBox state changes.
 
-		@param state: Current checkbox state. ( Integer )
+		:param state: Current checkbox state. ( Integer )
 		"""
 
 		self.setSearchMatchingIblsSets()
@@ -729,7 +729,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Time_Low_timeEdit time changes.
 
-		@param time: Current time. ( QTime )
+		:param time: Current time. ( QTime )
 		"""
 
 		self.ui.Time_Low_timeEdit.time() >= self.ui.Time_High_timeEdit.time() and self.ui.Time_Low_timeEdit.setTime(self.ui.Time_High_timeEdit.time().addSecs(-60))
@@ -740,7 +740,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Time_Low_timeEdit time changes.
 
-		@param time: Current time. ( QTime )
+		:param time: Current time. ( QTime )
 		"""
 
 		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime(self.ui.Time_Low_timeEdit.time().addSecs(60))
@@ -751,7 +751,7 @@ class SearchDatabase(UiComponent):
 		"""
 		This method is triggered when Tags_Cloud_listWidget is double clicked.
 
-		@param listWidgetItem: List Widget item. ( QlistWidgetItem )
+		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
 		"""
 
 		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))

@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: Map
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GpsMap
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

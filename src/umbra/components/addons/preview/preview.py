@@ -64,7 +64,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method initializes the class.
 
-		@param image: Image. ( QImage )
+		:param image: Image. ( QImage )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -84,7 +84,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the property for the _image attribute.
 
-		@return: self.__image. ( QImage )
+		:return: self.__image. ( QImage )
 		"""
 
 		return self.__image
@@ -95,7 +95,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the setter method for the _image attribute.
 
-		@param value: Attribute value. ( QImage )
+		:param value: Attribute value. ( QImage )
 		"""
 
 		if value:
@@ -116,7 +116,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the property for the _width attribute.
 
-		@return: self.__width. ( Integer )
+		:return: self.__width. ( Integer )
 		"""
 
 		return self.__width
@@ -127,7 +127,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the setter method for the _width attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -148,7 +148,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the property for the _height attribute.
 
-		@return: self.__height. ( Integer )
+		:return: self.__height. ( Integer )
 		"""
 
 		return self.__height
@@ -159,7 +159,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method is the setter method for the _height attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -191,9 +191,9 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 		This method paints the image.
 
-		@param painter: QPainter ( QPainter )
-		@param options: QStyleOptionGraphicsItem ( QStyleOptionGraphicsItem )
-		@param widget: QWidget ( QWidget )
+		:param painter: QPainter ( QPainter )
+		:param options: QStyleOptionGraphicsItem ( QStyleOptionGraphicsItem )
+		:param widget: QWidget ( QWidget )
 		"""
 
 		painter.drawImage(-(self.__image.width() / 2), -(self.__image.height() / 2), self.__image)
@@ -208,8 +208,8 @@ class ImagesPreviewer(object):
 		"""
 		This method initializes the class.
 
-		@param container: Container. ( Object )
-		@param paths: Images paths. ( List )
+		:param container: Container. ( Object )
+		:param paths: Images paths. ( List )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -264,7 +264,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -275,7 +275,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -294,7 +294,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _paths attribute.
 
-		@return: self.__paths. ( List )
+		:return: self.__paths. ( List )
 		"""
 
 		return self.__paths
@@ -305,7 +305,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _paths attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		if value:
@@ -326,7 +326,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -337,7 +337,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -356,7 +356,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -367,7 +367,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -386,7 +386,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiPreviousImage attribute.
 
-		@return: self.__uiPreviousImage. ( String )
+		:return: self.__uiPreviousImage. ( String )
 		"""
 
 		return self.__uiPreviousImage
@@ -397,7 +397,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiPreviousImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPreviousImage"))
@@ -416,7 +416,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiNextImage attribute.
 
-		@return: self.__uiNextImage. ( String )
+		:return: self.__uiNextImage. ( String )
 		"""
 
 		return self.__uiNextImage
@@ -427,7 +427,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiNextImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiNextImage"))
@@ -446,7 +446,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiZoomOutImage attribute.
 
-		@return: self.__uiZoomOutImage. ( String )
+		:return: self.__uiZoomOutImage. ( String )
 		"""
 
 		return self.__uiZoomOutImage
@@ -457,7 +457,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiZoomOutImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomOutImage"))
@@ -476,7 +476,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _uiZoomInImage attribute.
 
-		@return: self.__uiZoomInImage. ( String )
+		:return: self.__uiZoomInImage. ( String )
 		"""
 
 		return self.__uiZoomInImage
@@ -487,7 +487,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _uiZoomInImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomInImage"))
@@ -506,7 +506,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _ui attribute.
 
-		@return: self.__ui. ( Object )
+		:return: self.__ui. ( Object )
 		"""
 
 		return self.__ui
@@ -517,7 +517,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _ui attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ui"))
@@ -536,7 +536,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _graphicsSceneBackgroundColor attribute.
 
-		@return: self.__graphicsSceneBackgroundColor. ( QColors )
+		:return: self.__graphicsSceneBackgroundColor. ( QColors )
 		"""
 
 		return self.__graphicsSceneBackgroundColor
@@ -547,7 +547,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _graphicsSceneBackgroundColor attribute.
 
-		@param value: Attribute value. ( QColors )
+		:param value: Attribute value. ( QColors )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("graphicsSceneBackgroundColor"))
@@ -566,7 +566,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _previewerMargin attribute.
 
-		@return: self.__previewerMargin. ( Integer )
+		:return: self.__previewerMargin. ( Integer )
 		"""
 
 		return self.__previewerMargin
@@ -577,7 +577,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _previewerMargin attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("previewerMargin"))
@@ -596,7 +596,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _graphicsSceneWidth attribute.
 
-		@return: self.__graphicsSceneWidth. ( Integer )
+		:return: self.__graphicsSceneWidth. ( Integer )
 		"""
 
 		return self.__graphicsSceneWidth
@@ -607,7 +607,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _graphicsSceneWidth attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("graphicsSceneWidth"))
@@ -626,7 +626,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _graphicsSceneHeight attribute.
 
-		@return: self.__graphicsSceneHeight. ( Object )
+		:return: self.__graphicsSceneHeight. ( Object )
 		"""
 
 		return self.__graphicsSceneHeight
@@ -637,7 +637,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _graphicsSceneHeight attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("graphicsSceneHeight"))
@@ -656,7 +656,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _minimumZoomFactor attribute.
 
-		@return: self.__minimumZoomFactor. ( Float )
+		:return: self.__minimumZoomFactor. ( Float )
 		"""
 
 		return self.__minimumZoomFactor
@@ -667,7 +667,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _minimumZoomFactor attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("minimumZoomFactor"))
@@ -686,7 +686,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _maximumZoomFactor attribute.
 
-		@return: self.__maximumZoomFactor. ( Float )
+		:return: self.__maximumZoomFactor. ( Float )
 		"""
 
 		return self.__maximumZoomFactor
@@ -697,7 +697,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _maximumZoomFactor attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("maximumZoomFactor"))
@@ -716,7 +716,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _wheelZoomFactor attribute.
 
-		@return: self.__wheelZoomFactor. ( Float )
+		:return: self.__wheelZoomFactor. ( Float )
 		"""
 
 		return self.__wheelZoomFactor
@@ -727,7 +727,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _wheelZoomFactor attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("wheelZoomFactor"))
@@ -746,7 +746,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _keyZoomFactor attribute.
 
-		@return: self.__keyZoomFactor. ( Float )
+		:return: self.__keyZoomFactor. ( Float )
 		"""
 
 		return self.__keyZoomFactor
@@ -757,7 +757,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _keyZoomFactor attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("keyZoomFactor"))
@@ -776,7 +776,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _graphicsView attribute.
 
-		@return: self.__graphicsView. ( QGraphicsView )
+		:return: self.__graphicsView. ( QGraphicsView )
 		"""
 
 		return self.__graphicsView
@@ -787,7 +787,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _graphicsView attribute.
 
-		@param value: Attribute value. ( QGraphicsView )
+		:param value: Attribute value. ( QGraphicsView )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("graphicsView"))
@@ -806,7 +806,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _graphicsScene attribute.
 
-		@return: self.__graphicsScene. ( QGraphicsScene )
+		:return: self.__graphicsScene. ( QGraphicsScene )
 		"""
 
 		return self.__graphicsScene
@@ -817,7 +817,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _graphicsScene attribute.
 
-		@param value: Attribute value. ( QGraphicsScene )
+		:param value: Attribute value. ( QGraphicsScene )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("graphicsScene"))
@@ -836,7 +836,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the property for the _displayGraphicsItem attribute.
 
-		@return: self.__displayGraphicsItem. ( QGraphicsItem )
+		:return: self.__displayGraphicsItem. ( QGraphicsItem )
 		"""
 
 		return self.__displayGraphicsItem
@@ -847,7 +847,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is the setter method for the _displayGraphicsItem attribute.
 
-		@param value: Attribute value. ( QGraphicsItem )
+		:param value: Attribute value. ( QGraphicsItem )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("displayGraphicsItem"))
@@ -912,7 +912,7 @@ class ImagesPreviewer(object):
 		"""
 		This method redefines the ui close event.
 
-		@param event: QEvent ( QEvent )
+		:param event: QEvent ( QEvent )
 		"""
 
 		event.accept()
@@ -925,7 +925,7 @@ class ImagesPreviewer(object):
 		"""
 		This method redefines wheelevent.
 
-		@param event: QEvent ( QEvent )
+		:param event: QEvent ( QEvent )
 		"""
 
 		self.scaleView(pow(1.5, event.delta() / self.__wheelZoomFactor))
@@ -935,7 +935,7 @@ class ImagesPreviewer(object):
 		"""
 		This method redefines keypressevent.
 
-		@param event: QEvent ( QEvent )
+		:param event: QEvent ( QEvent )
 		"""
 
 		key = event.key()
@@ -951,7 +951,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is triggered when Previous_Image_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughImages(True)
@@ -961,7 +961,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is triggered when Next_Image_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughImages()
@@ -971,7 +971,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is triggered when Zoom_In_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.scaleView(self.__keyZoomFactor)
@@ -981,7 +981,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is triggered when Zoom_Out_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.scaleView(1 / self.__keyZoomFactor)
@@ -991,7 +991,7 @@ class ImagesPreviewer(object):
 		"""
 		This method is triggered when Zoom_Fit_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.fitImage()
@@ -1001,7 +1001,7 @@ class ImagesPreviewer(object):
 		"""
 		This method scales the QGraphicsView.
 
-		@param scaleFactor: Float ( Float )
+		:param scaleFactor: Float ( Float )
 		"""
 
 		graphicsView = self.__ui.findChild(QGraphicsView)
@@ -1031,7 +1031,7 @@ class ImagesPreviewer(object):
 		"""
 		This method sets the display image.
 
-		@param index: Index to display. ( Integer )
+		:param index: Index to display. ( Integer )
 		"""
 
 		if self.__paths:
@@ -1060,7 +1060,7 @@ class ImagesPreviewer(object):
 		"""
 		This method loops through Images Previewer images.
 
-		@param backward: Looping backward. ( Boolean )
+		:param backward: Looping backward. ( Boolean )
 		"""
 
 		index = self.__paths.index(self.__displayGraphicsItem.image._datas.path)
@@ -1082,8 +1082,8 @@ class Preview(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -1125,7 +1125,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -1136,7 +1136,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -1155,7 +1155,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -1166,7 +1166,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -1185,7 +1185,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -1196,7 +1196,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -1215,7 +1215,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -1226,7 +1226,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -1245,7 +1245,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -1256,7 +1256,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -1275,7 +1275,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -1286,7 +1286,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -1305,7 +1305,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -1316,7 +1316,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -1335,7 +1335,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _coreInspector attribute.
 
-		@return: self.__coreInspector. ( Object )
+		:return: self.__coreInspector. ( Object )
 		"""
 
 		return self.__coreInspector
@@ -1346,7 +1346,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _coreInspector attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreInspector"))
@@ -1365,7 +1365,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _imagesPreviewers attribute.
 
-		@return: self.__imagesPreviewers. ( List )
+		:return: self.__imagesPreviewers. ( List )
 		"""
 
 		return self.__imagesPreviewers
@@ -1376,7 +1376,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _imagesPreviewers attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("imagesPreviewers"))
@@ -1395,7 +1395,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _maximumImagesPreviewersInstances attribute.
 
-		@return: self.__maximumImagesPreviewersInstances. ( Integer )
+		:return: self.__maximumImagesPreviewersInstances. ( Integer )
 		"""
 
 		return self.__maximumImagesPreviewersInstances
@@ -1406,7 +1406,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _maximumImagesPreviewersInstances attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("maximumImagesPreviewersInstances"))
@@ -1425,7 +1425,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewIblSetsBackgroundImagesAction attribute.
 
-		@return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
+		:return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
 		"""
 
 		return self.__viewIblSetsBackgroundImagesAction
@@ -1436,7 +1436,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewIblSetsBackgroundImagesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsBackgroundImagesAction"))
@@ -1455,7 +1455,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewIblSetsLightingImagesAction attribute.
 
-		@return: self.__viewIblSetsLightingImagesAction. ( QAction )
+		:return: self.__viewIblSetsLightingImagesAction. ( QAction )
 		"""
 
 		return self.__viewIblSetsLightingImagesAction
@@ -1466,7 +1466,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewIblSetsLightingImagesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsLightingImagesAction"))
@@ -1485,7 +1485,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewIblSetsReflectionImagesAction attribute.
 
-		@return: self.__viewIblSetsReflectionImagesAction. ( QAction )
+		:return: self.__viewIblSetsReflectionImagesAction. ( QAction )
 		"""
 
 		return self.__viewIblSetsReflectionImagesAction
@@ -1496,7 +1496,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewIblSetsReflectionImagesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsReflectionImagesAction"))
@@ -1515,7 +1515,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewIblSetsPlatesAction attribute.
 
-		@return: self.__viewIblSetsPlatesAction. ( QAction )
+		:return: self.__viewIblSetsPlatesAction. ( QAction )
 		"""
 
 		return self.__viewIblSetsPlatesAction
@@ -1526,7 +1526,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewIblSetsPlatesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsPlatesAction"))
@@ -1544,7 +1544,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewInspectorIblSetBackgroundImagesAction attribute.
 
-		@return: self.__viewInspectorIblSetBackgroundImagesAction. ( QAction )
+		:return: self.__viewInspectorIblSetBackgroundImagesAction. ( QAction )
 		"""
 
 		return self.__viewInspectorIblSetBackgroundImagesAction
@@ -1555,7 +1555,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewInspectorIblSetBackgroundImagesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetBackgroundImagesAction"))
@@ -1574,7 +1574,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewInspectorIblSetLightingImagesAction attribute.
 
-		@return: self.__viewInspectorIblSetLightingImagesAction. ( QAction )
+		:return: self.__viewInspectorIblSetLightingImagesAction. ( QAction )
 		"""
 
 		return self.__viewInspectorIblSetLightingImagesAction
@@ -1585,7 +1585,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewInspectorIblSetLightingImagesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetLightingImagesAction"))
@@ -1604,7 +1604,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewInspectorIblSetReflectionImageAction attribute.
 
-		@return: self.__viewInspectorIblSetReflectionImageAction. ( QAction )
+		:return: self.__viewInspectorIblSetReflectionImageAction. ( QAction )
 		"""
 
 		return self.__viewInspectorIblSetReflectionImageAction
@@ -1615,7 +1615,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewInspectorIblSetReflectionImageAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetReflectionImageAction"))
@@ -1634,7 +1634,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _viewInspectorIblSetPlatesAction attribute.
 
-		@return: self.__viewInspectorIblSetPlatesAction. ( QAction )
+		:return: self.__viewInspectorIblSetPlatesAction. ( QAction )
 		"""
 
 		return self.__viewInspectorIblSetPlatesAction
@@ -1645,7 +1645,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _viewInspectorIblSetPlatesAction attribute.
 
-		@param value: Attribute value. ( QAction )
+		:param value: Attribute value. ( QAction )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetPlatesAction"))
@@ -1664,7 +1664,7 @@ class Preview(UiComponent):
 		"""
 		This method is the property for the _inspectorButtons attribute.
 
-		@return: self.__inspectorButtons. ( Dictionary )
+		:return: self.__inspectorButtons. ( Dictionary )
 		"""
 
 		return self.__inspectorButtons
@@ -1675,7 +1675,7 @@ class Preview(UiComponent):
 		"""
 		This method is the setter method for the _inspectorButtons attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorButtons"))
@@ -1697,7 +1697,7 @@ class Preview(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1893,7 +1893,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewIblSetsBackgroundImagesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Background")
@@ -1903,7 +1903,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewIblSetsLightingImagesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Lighting")
@@ -1913,7 +1913,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewIblSetsReflectionImagesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Reflection")
@@ -1923,7 +1923,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewPlatesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Plates")
@@ -1933,7 +1933,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewInspectorIblSetBackgroundImageAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Background")
@@ -1943,7 +1943,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewInspectorIblSetLightingImageAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Lighting")
@@ -1953,7 +1953,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewInspectorIblSetReflectionImageAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Reflection")
@@ -1963,7 +1963,7 @@ class Preview(UiComponent):
 		"""
 		This method is triggered by viewInspectorIblSetPlatesAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.viewIblSetsImages__("Plates")
@@ -1983,7 +1983,7 @@ class Preview(UiComponent):
 		"""
 		This method is called when Custom_Previewer_Path_toolButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		customPreviewerExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom previewer executable:", self.__container.lastBrowsedPath))
@@ -2013,7 +2013,7 @@ class Preview(UiComponent):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
 
-		@param imageType: Image type. ( String )
+		:param imageType: Image type. ( String )
 		@param *args: Arguments. ( * )
 		"""
 
@@ -2038,7 +2038,7 @@ class Preview(UiComponent):
 		"""
 		This method launches Inspector Ibl Set Images Previewer.
 
-		@param imageType: Image type. ( String )
+		:param imageType: Image type. ( String )
 		@param *args: Arguments. ( * )
 		"""
 
@@ -2064,8 +2064,8 @@ class Preview(UiComponent):
 		"""
 		This method launches an Ibl Set Images Previewer.
 
-		@param paths: Image paths. ( List )
-		@param customPreviewer: Custom previewer. ( String )
+		:param paths: Image paths. ( List )
+		:param customPreviewer: Custom previewer. ( String )
 		"""
 
 		if customPreviewer:
@@ -2090,8 +2090,8 @@ class Preview(UiComponent):
 		"""
 		This method adds an Images Previewer.
 
-		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
-		@return: Method success. ( Boolean )
+		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Adding '{0}' Images Previewer.".format(imagesPreviewer))
@@ -2105,7 +2105,7 @@ class Preview(UiComponent):
 		"""
 		This method removes an Images Previewer.
 
-		@param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
+		:param imagesPreviewer: Images Previewer. ( ImagesPreviewer )
 		"""
 
 		LOGGER.debug("> Removing '{0}' Images Previewer.".format(imagesPreviewer))
@@ -2119,8 +2119,8 @@ class Preview(UiComponent):
 		"""
 		This method launches an Images Previewer.
 
-		@param paths: Images paths. ( List )
-		@return: Method success. ( Boolean )
+		:param paths: Images paths. ( List )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Launching Images Previewer for '{0}' image.".format(paths))
@@ -2134,9 +2134,9 @@ class Preview(UiComponent):
 		"""
 		This method gets process command.
 
-		@param paths: Paths to preview. ( String )
-		@param customPreviewer: Custom browser. ( String )
-		@return: Process command. ( String )
+		:param paths: Paths to preview. ( String )
+		:param customPreviewer: Custom browser. ( String )
+		:return: Process command. ( String )
 		"""
 
 		processCommand = None
@@ -2155,9 +2155,9 @@ class Preview(UiComponent):
 		"""
 		This method gets Ibl Set images paths.
 
-		@param iblSet: Ibl Set. ( DbIblSet )
-		@param imageType: Image type. ( String )
-		@return: Images paths. ( List )
+		:param iblSet: Ibl Set. ( DbIblSet )
+		:param imageType: Image type. ( String )
+		:return: Images paths. ( List )
 		"""
 
 		imagePaths = []

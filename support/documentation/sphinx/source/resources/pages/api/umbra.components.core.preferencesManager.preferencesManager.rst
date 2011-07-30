@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: PreferencesManager
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

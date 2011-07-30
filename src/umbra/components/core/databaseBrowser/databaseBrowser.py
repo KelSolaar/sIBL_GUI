@@ -67,7 +67,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method initializes the class.
 
-		@param container: Object container. ( Object )
+		:param container: Object container. ( Object )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -90,7 +90,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -101,7 +101,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -120,7 +120,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the property for the _dbSession attribute.
 
-		@return: self.__dbSession. ( Object )
+		:return: self.__dbSession. ( Object )
 		"""
 
 		return self.__dbSession
@@ -131,7 +131,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
@@ -150,7 +150,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the property for the _timer attribute.
 
-		@return: self.__timer. ( QTimer )
+		:return: self.__timer. ( QTimer )
 		"""
 
 		return self.__timer
@@ -161,7 +161,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the setter method for the _timer attribute.
 
-		@param value: Attribute value. ( QTimer )
+		:param value: Attribute value. ( QTimer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timer"))
@@ -180,7 +180,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the property for the _timerCycleMultiplier attribute.
 
-		@return: self.__timerCycleMultiplier. ( Float )
+		:return: self.__timerCycleMultiplier. ( Float )
 		"""
 
 		return self.__timerCycleMultiplier
@@ -191,7 +191,7 @@ class DatabaseBrowser_Worker(QThread):
 		"""
 		This method is the setter method for the _timerCycleMultiplier attribute.
 
-		@param value: Attribute value. ( Float )
+		:param value: Attribute value. ( Float )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timerCycleMultiplier"))
@@ -252,7 +252,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method initializes the class.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -274,7 +274,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -285,7 +285,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -304,7 +304,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -315,7 +315,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -336,7 +336,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method defines the drag enter event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
@@ -353,7 +353,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method defines the drag move event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		pass
@@ -364,7 +364,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method defines the drop event behavior.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -391,7 +391,7 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method defines the behavior when a QStandardItem is double clicked.
 
-		@param index: Clicked Model item index. ( QModelIndex )
+		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -414,8 +414,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -467,7 +467,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -478,7 +478,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -497,7 +497,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -508,7 +508,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -527,7 +527,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _uiLargestSizeImage attribute.
 
-		@return: self.__uiLargestSizeImage. ( String )
+		:return: self.__uiLargestSizeImage. ( String )
 		"""
 
 		return self.__uiLargestSizeImage
@@ -538,7 +538,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _uiLargestSizeImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLargestSizeImage"))
@@ -557,7 +557,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _uiSmallestSizeImage attribute.
 
-		@return: self.__uiSmallestSizeImage. ( String )
+		:return: self.__uiSmallestSizeImage. ( String )
 		"""
 
 		return self.__uiSmallestSizeImage
@@ -568,7 +568,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _uiSmallestSizeImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiSmallestSizeImage"))
@@ -587,7 +587,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -598,7 +598,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -617,7 +617,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _listViewSpacing attribute.
 
-		@return: self.__listViewSpacing. ( Integer )
+		:return: self.__listViewSpacing. ( Integer )
 		"""
 
 		return self.__listViewSpacing
@@ -628,7 +628,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _listViewSpacing attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -650,7 +650,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _listViewMargin attribute.
 
-		@return: self.__listViewMargin. ( Integer )
+		:return: self.__listViewMargin. ( Integer )
 		"""
 
 		return self.__listViewMargin
@@ -661,7 +661,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _listViewMargin attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -683,7 +683,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _listViewIconSize attribute.
 
-		@return: self.__listViewIconSize. ( Integer )
+		:return: self.__listViewIconSize. ( Integer )
 		"""
 
 		return self.__listViewIconSize
@@ -694,7 +694,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _listViewIconSize attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -716,7 +716,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -727,7 +727,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -746,7 +746,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -757,7 +757,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -776,7 +776,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -787,7 +787,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -806,7 +806,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _settingsSeparator attribute.
 
-		@return: self.__settingsSeparator. ( String )
+		:return: self.__settingsSeparator. ( String )
 		"""
 
 		return self.__settingsSeparator
@@ -817,7 +817,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _settingsSeparator attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSeparator"))
@@ -836,7 +836,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _extension attribute.
 
-		@return: self.__extension. ( String )
+		:return: self.__extension. ( String )
 		"""
 
 		return self.__extension
@@ -847,7 +847,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _extension attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("extension"))
@@ -866,7 +866,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -877,7 +877,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -896,7 +896,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _coreCollectionsOutliner attribute.
 
-		@return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -907,7 +907,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
@@ -926,7 +926,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _model attribute.
 
-		@return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( QStandardItemModel )
 		"""
 
 		return self.__model
@@ -937,7 +937,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _model attribute.
 
-		@param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
@@ -956,7 +956,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _modelSelection attribute.
 
-		@return: self.__modelSelection. ( Dictionary )
+		:return: self.__modelSelection. ( Dictionary )
 		"""
 
 		return self.__modelSelection
@@ -967,7 +967,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _modelSelection attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelSelection"))
@@ -986,7 +986,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _databaseBrowserWorkerThread attribute.
 
-		@return: self.__databaseBrowserWorkerThread. ( QThread )
+		:return: self.__databaseBrowserWorkerThread. ( QThread )
 		"""
 
 		return self.__databaseBrowserWorkerThread
@@ -997,7 +997,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _databaseBrowserWorkerThread attribute.
 
-		@param value: Attribute value. ( QThread )
+		:param value: Attribute value. ( QThread )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("databaseBrowserWorkerThread"))
@@ -1016,7 +1016,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _modelContent attribute.
 
-		@return: self.__modelContent. ( List )
+		:return: self.__modelContent. ( List )
 		"""
 
 		return self.__modelContent
@@ -1027,7 +1027,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _modelContent attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		if value:
@@ -1048,7 +1048,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the property for the _toolTipText attribute.
 
-		@return: self.__toolTipText. ( String )
+		:return: self.__toolTipText. ( String )
 		"""
 
 		return self.__toolTipText
@@ -1059,7 +1059,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is the setter method for the _toolTipText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
@@ -1081,7 +1081,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1394,7 +1394,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is triggered by addContentAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addContent__()
@@ -1404,7 +1404,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is triggered by addIblSetAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.addIblSet__()
@@ -1414,7 +1414,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is triggered by removeIblSetsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.removeIblSets__()
@@ -1424,7 +1424,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method is triggered by updateIblSetsLocationsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.updateIblSetsLocation__()
@@ -1434,8 +1434,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method defines the behavior when the Database_Browser_listView Model datas changes.
 
-		@param startIndex: Edited item starting QModelIndex. ( QModelIndex )
-		@param endIndex: Edited item ending QModelIndex. ( QModelIndex )
+		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
+		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
 		standardItem = self.__model.itemFromIndex(startIndex)
@@ -1453,7 +1453,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method scales the Database_Browser_listView icons.
 
-		@param value: Thumbnails size. ( Integer )
+		:param value: Thumbnails size. ( Integer )
 		"""
 
 		self.__listViewIconSize = value
@@ -1480,7 +1480,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method adds user defined content to the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
@@ -1499,7 +1499,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method adds an user defined Ibl Set to the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
@@ -1521,7 +1521,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method removes user selected Ibl Sets from the Database.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1547,7 +1547,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method updates user selected Ibl Sets locations.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1573,11 +1573,11 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method adds an Ibl Set to the Database.
 
-		@param name: Ibl Set name. ( String )
-		@param path: Ibl Set path. ( String )
-		@param collectionId: Target Collection id. ( Integer )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param name: Ibl Set name. ( String )
+		:param path: Ibl Set path. ( String )
+		:param collectionId: Target Collection id. ( Integer )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if not self.iblSetExists(path):
@@ -1598,9 +1598,9 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method adds directory Ibl Sets to the Database.
 
-		@param directory: Directory to add. ( String )
-		@param collectionId: Target Collection id. ( Integer )
-		@return: Method success. ( Boolean )
+		:param directory: Directory to add. ( String )
+		:param collectionId: Target Collection id. ( Integer )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
@@ -1627,9 +1627,9 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method removes provided Ibl Set from the Database.
 
-		@param iblSet: Ibl Set to remove. ( DbIblSet )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to remove. ( DbIblSet )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
@@ -1646,8 +1646,8 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method returns if provided Ibl Set path exists in the Database.
 
-		@param path: Collection path. ( String )
-		@return: Collection exists. ( Boolean )
+		:param path: Collection path. ( String )
+		:return: Collection exists. ( Boolean )
 		"""
 
 		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
@@ -1658,10 +1658,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method updates provided Ibl Set location.
 
-		@param iblSet: Ibl Set to update. ( DbIblSet )
-		@param iblSet: New Ibl Set file. ( String )
-		@param emitSignal: Emit signal. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param iblSet: Ibl Set to update. ( DbIblSet )
+		:param iblSet: New Ibl Set file. ( String )
+		:param emitSignal: Emit signal. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
@@ -1678,7 +1678,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method returns Database Ibl Sets.
 
-		@return: Database Ibl Sets Collections. ( List )
+		:return: Database Ibl Sets Collections. ( List )
 		"""
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
@@ -1688,7 +1688,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method returns Database_Browser_listView selected items.
 
-		@return: View selected items. ( List )
+		:return: View selected items. ( List )
 		"""
 
 		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
@@ -1698,7 +1698,7 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method returns selected Ibl Sets.
 
-		@return: View selected Ibl Sets. ( List )
+		:return: View selected Ibl Sets. ( List )
 		"""
 
 		return [item._datas for item in self.getSelectedItems()]
@@ -1709,9 +1709,9 @@ class DatabaseBrowser(UiComponent):
 		"""
 		This method returns a formated shot date.
 
-		@param date: sIBL set date key value. ( String )
-		@param time: sIBL set time key value. ( String )
-		@return: Current shot date. ( String )
+		:param date: sIBL set date key value. ( String )
+		:param time: sIBL set time key value. ( String )
+		:return: Current shot date. ( String )
 		"""
 
 		LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))

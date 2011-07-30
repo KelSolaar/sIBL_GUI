@@ -62,7 +62,7 @@ class Db(Component):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
+		:param name: Component name. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -95,7 +95,7 @@ class Db(Component):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -106,7 +106,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -125,7 +125,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbName attribute.
 
-		@return: self.__dbName. ( String )
+		:return: self.__dbName. ( String )
 		"""
 
 		return self.__dbName
@@ -136,7 +136,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbName attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbName"))
@@ -155,7 +155,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbEngine attribute.
 
-		@return: self.__dbEngine. ( Object )
+		:return: self.__dbEngine. ( Object )
 		"""
 
 		return self.__dbEngine
@@ -166,7 +166,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbEngine attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbEngine"))
@@ -185,7 +185,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbCatalog attribute.
 
-		@return: self.__dbCatalog. ( Object )
+		:return: self.__dbCatalog. ( Object )
 		"""
 
 		return self.__dbCatalog
@@ -196,7 +196,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbCatalog attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbCatalog"))
@@ -215,7 +215,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbSession attribute.
 
-		@return: self.__dbSession. ( Object )
+		:return: self.__dbSession. ( Object )
 		"""
 
 		return self.__dbSession
@@ -226,7 +226,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbSession attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSession"))
@@ -245,7 +245,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbSessionMaker attribute.
 
-		@return: self.__dbSessionMaker. ( Object )
+		:return: self.__dbSessionMaker. ( Object )
 		"""
 
 		return self.__dbSessionMaker
@@ -256,7 +256,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbSessionMaker attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbSessionMaker"))
@@ -275,7 +275,7 @@ class Db(Component):
 		"""
 		This method is the property for the _connectionString attribute.
 
-		@return: self.__connectionString. ( String )
+		:return: self.__connectionString. ( String )
 		"""
 
 		return self.__connectionString
@@ -286,7 +286,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _connectionString attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("connectionString"))
@@ -305,7 +305,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbMigrationsRepositoryDirectory attribute.
 
-		@return: self.__dbMigrationsRepositoryDirectory. ( String )
+		:return: self.__dbMigrationsRepositoryDirectory. ( String )
 		"""
 
 		return self.__dbMigrationsRepositoryDirectory
@@ -316,7 +316,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbMigrationsRepositoryDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbMigrationsRepositoryDirectory"))
@@ -335,7 +335,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbMigrationsTemplatesDirectory attribute.
 
-		@return: self.__dbMigrationsTemplatesDirectory. ( String )
+		:return: self.__dbMigrationsTemplatesDirectory. ( String )
 		"""
 
 		return self.__dbMigrationsTemplatesDirectory
@@ -346,7 +346,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbMigrationsTemplatesDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbMigrationsTemplatesDirectory"))
@@ -365,7 +365,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbBackupDirectory attribute.
 
-		@return: self.__dbBackupDirectory. ( String )
+		:return: self.__dbBackupDirectory. ( String )
 		"""
 
 		return self.__dbBackupDirectory
@@ -376,7 +376,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbBackupDirectory attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbBackupDirectory"))
@@ -395,7 +395,7 @@ class Db(Component):
 		"""
 		This method is the property for the _dbBackupCount attribute.
 
-		@return: self.__dbBackupCount. ( String )
+		:return: self.__dbBackupCount. ( String )
 		"""
 
 		return self.__dbBackupCount
@@ -406,7 +406,7 @@ class Db(Component):
 		"""
 		This method is the setter method for the _dbBackupCount attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dbBackupCount"))
@@ -428,7 +428,7 @@ class Db(Component):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))

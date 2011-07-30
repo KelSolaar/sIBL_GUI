@@ -7,22 +7,22 @@ Classes
 -------
 
 .. autoclass:: Ui_Setup
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Ui_Type
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Preferences
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: LayoutActiveLabel
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: sIBL_GUI
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

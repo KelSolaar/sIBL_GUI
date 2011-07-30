@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: EnvironmentTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: About
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

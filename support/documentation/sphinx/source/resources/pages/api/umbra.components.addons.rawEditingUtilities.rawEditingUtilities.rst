@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: RawEditingUtilities
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

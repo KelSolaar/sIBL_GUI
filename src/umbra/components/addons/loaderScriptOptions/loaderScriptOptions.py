@@ -60,8 +60,8 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -100,7 +100,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -111,7 +111,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -130,7 +130,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -141,7 +141,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -160,7 +160,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -171,7 +171,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -190,7 +190,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -201,7 +201,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -220,7 +220,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _addonsLoaderScript attribute.
 
-		@return: self.__addonsLoaderScript. ( Object )
+		:return: self.__addonsLoaderScript. ( Object )
 		"""
 
 		return self.__addonsLoaderScript
@@ -231,7 +231,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _addonsLoaderScript attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLoaderScript"))
@@ -250,7 +250,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _templateCommonAttributesSection attribute.
 
-		@return: self.__templateCommonAttributesSection. ( String )
+		:return: self.__templateCommonAttributesSection. ( String )
 		"""
 
 		return self.__templateCommonAttributesSection
@@ -261,7 +261,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _templateCommonAttributesSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateCommonAttributesSection"))
@@ -280,7 +280,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _templateAdditionalAttributesSection attribute.
 
-		@return: self.__templateAdditionalAttributesSection. ( String )
+		:return: self.__templateAdditionalAttributesSection. ( String )
 		"""
 
 		return self.__templateAdditionalAttributesSection
@@ -291,7 +291,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _templateAdditionalAttributesSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateAdditionalAttributesSection"))
@@ -310,7 +310,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _templateScriptSection attribute.
 
-		@return: self.__templateScriptSection. ( String )
+		:return: self.__templateScriptSection. ( String )
 		"""
 
 		return self.__templateScriptSection
@@ -321,7 +321,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _templateScriptSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateScriptSection"))
@@ -340,7 +340,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _optionsToolboxesHeaders attribute.
 
-		@return: self.__optionsToolboxesHeaders. ( List )
+		:return: self.__optionsToolboxesHeaders. ( List )
 		"""
 
 		return self.__optionsToolboxesHeaders
@@ -351,7 +351,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _optionsToolboxesHeaders attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("optionsToolboxesHeaders"))
@@ -370,7 +370,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _uiLightGrayColor attribute.
 
-		@return: self.__uiLightGrayColor. ( QColor )
+		:return: self.__uiLightGrayColor. ( QColor )
 		"""
 
 		return self.__uiLightGrayColor
@@ -381,7 +381,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _uiLightGrayColor attribute.
 
-		@param value: Attribute value. ( QColor )
+		:param value: Attribute value. ( QColor )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLightGrayColor"))
@@ -400,7 +400,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _uiDarkGrayColor attribute.
 
-		@return: self.__uiDarkGrayColor. ( QColor )
+		:return: self.__uiDarkGrayColor. ( QColor )
 		"""
 
 		return self.__uiDarkGrayColor
@@ -411,7 +411,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _uiDarkGrayColor attribute.
 
-		@param value: Attribute value. ( QColor )
+		:param value: Attribute value. ( QColor )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDarkGrayColor"))
@@ -430,7 +430,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _tableWidgetRowHeight attribute.
 
-		@return: self.__tableWidgetRowHeight. ( Integer )
+		:return: self.__tableWidgetRowHeight. ( Integer )
 		"""
 
 		return self.__tableWidgetRowHeight
@@ -441,7 +441,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _tableWidgetRowHeight attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetRowHeight"))
@@ -460,7 +460,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _tableWidgetHeaderHeight attribute.
 
-		@return: self.__tableWidgetHeaderHeight. ( Integer )
+		:return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
 
 		return self.__tableWidgetHeaderHeight
@@ -471,7 +471,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _tableWidgetHeaderHeight attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetHeaderHeight"))
@@ -490,7 +490,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the property for the _enumSplitter attribute.
 
-		@return: self.__enumSplitter. ( String )
+		:return: self.__enumSplitter. ( String )
 		"""
 
 		return self.__enumSplitter
@@ -501,7 +501,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method is the setter method for the _enumSplitter attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -527,7 +527,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -604,8 +604,8 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method defines and sets Options_TableWidgets.
 
-		@param section: Section attributes. ( Dictionary )
-		@param tableWidget: Table Widget. ( QTableWidget )
+		:param section: Section attributes. ( Dictionary )
+		:param tableWidget: Table Widget. ( QTableWidget )
 		"""
 
 		LOGGER.debug("> Updating '{0}'.".format(tableWidget.objectName()))
@@ -661,8 +661,8 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method sets is triggered when coreTemplatesOutlinerUi_Templates_Outliner_treeView selection has changed.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -685,8 +685,8 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method updates the Loader Script Component override keys.
 
-		@param tableWidget: Table Widget. ( QTableWidget )
-		@return: Method success. ( Boolean )
+		:param tableWidget: Table Widget. ( QTableWidget )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Updating override keys with '{0}' attributes.".format(tableWidget.objectName()))
@@ -713,7 +713,7 @@ class LoaderScriptOptions(UiComponent):
 		"""
 		This method gets override keys.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))

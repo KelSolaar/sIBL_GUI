@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: CollectionsOutliner_QTreeView
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: CollectionsOutliner
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

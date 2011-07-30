@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: ComponentsManagerUi
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

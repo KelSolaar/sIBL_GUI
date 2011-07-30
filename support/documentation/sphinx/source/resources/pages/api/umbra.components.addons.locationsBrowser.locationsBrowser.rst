@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: LocationsBrowser
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

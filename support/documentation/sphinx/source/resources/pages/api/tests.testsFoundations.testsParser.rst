@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: ParserTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetAttributeCompoundTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

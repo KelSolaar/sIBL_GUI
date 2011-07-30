@@ -61,7 +61,7 @@ class Icon(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: path ( Key / Value pairs )
+		:param kwargs: path ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -74,8 +74,8 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui extended exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -88,8 +88,8 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui standalone extended exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -102,8 +102,8 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui basic exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -116,8 +116,8 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui standalone basic exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -130,8 +130,8 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui system exit exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -144,8 +144,8 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides a ui standalone system exit exception handler.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	@param *args: Arguments. ( * )
 	@param **kwargs: Arguments. ( * )
 	"""
@@ -159,8 +159,8 @@ def setWindowDefaultIcon(window):
 	"""
 	This method sets the Application icon to the provided window.
 
-	@param window: Window. ( QWidget )
-	@return: Definition success. ( Boolean )
+	:param window: Window. ( QWidget )
+	:return: Definition success. ( Boolean )
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
@@ -177,9 +177,9 @@ def centerWidgetOnScreen(widget, screen=None):
 	"""
 	This definition centers the provided Widget middle of the screen.
 
-	@param widget: Current Widget. ( QWidget )
-	@param screen: Screen used for centering. ( Integer )
-	@return: Definition success. ( Boolean )
+	:param widget: Current Widget. ( QWidget )
+	:param screen: Screen used for centering. ( Integer )
+	:return: Definition success. ( Boolean )
 	"""
 
 	screen = screen and screen or QApplication.desktop().primaryScreen()
@@ -194,9 +194,9 @@ def getGraphicItem(path, type):
 		"""
 		This method gets a graphic display: QIcon, QImage, QPixmap.
 
-		@param path: Image path. ( String )
-		@param type: QIcon, QImage, QPixmap. ( QObject )
-		@return: Graphic display. ( Icon, QImage, QPixmap )
+		:param path: Image path. ( String )
+		:param type: QIcon, QImage, QPixmap. ( QObject )
+		:return: Graphic display. ( Icon, QImage, QPixmap )
 		"""
 
 		if os.path.exists(path):
@@ -225,8 +225,8 @@ def getIcon(path):
 		"""
 		This method gets a QIcon.
 
-		@param path: Icon image path. ( String )
-		@return: QIcon. ( QIcon )
+		:param path: Icon image path. ( String )
+		:return: QIcon. ( QIcon )
 		"""
 
 		return getGraphicItem(path, QIcon)
@@ -237,8 +237,8 @@ def getPixmap(path):
 		"""
 		This method gets a QPixmap.
 
-		@param path: Icon image path. ( String )
-		@return: QPixmap. ( QPixmap )
+		:param path: Icon image path. ( String )
+		:return: QPixmap. ( QPixmap )
 		"""
 
 		return getGraphicItem(path, QPixmap)
@@ -249,8 +249,8 @@ def getImage(path):
 		"""
 		This method gets a QImage.
 
-		@param path: Icon image path. ( String )
-		@return: QImage. ( QImage )
+		:param path: Icon image path. ( String )
+		:return: QImage. ( QImage )
 		"""
 
 		return getGraphicItem(path, QImage)
@@ -261,8 +261,8 @@ def filterImagePath(path):
 		"""
 		This method filters the image path.
 
-		@param path: Image path. ( String )
-		@return: Path. ( String )
+		:param path: Image path. ( String )
+		:return: Path. ( String )
 		"""
 
 		if os.path.exists(path):

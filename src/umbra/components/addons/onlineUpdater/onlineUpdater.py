@@ -68,7 +68,7 @@ class ReleaseObject(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / Value pairs )
+		:param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -89,10 +89,10 @@ class DownloadManager(QObject):
 		"""
 		This method initializes the class.
 
-		@param container: Container. ( Object )
-		@param networkAccessManager: Network access manager. ( QNetworkAccessManager )
-		@param downloadDirectory: Download directory. ( String )
-		@param requests: Download requests. ( List )
+		:param container: Container. ( Object )
+		:param networkAccessManager: Network access manager. ( QNetworkAccessManager )
+		:param downloadDirectory: Download directory. ( String )
+		:param requests: Download requests. ( List )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -136,7 +136,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -147,7 +147,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -166,7 +166,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _networkAccessManager attribute.
 
-		@return: self.__networkAccessManager. ( QNetworkAccessManager )
+		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
 		return self.__networkAccessManager
@@ -177,7 +177,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute value. ( QNetworkAccessManager )
+		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
@@ -196,7 +196,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _downloadDirectory attribute.
 
-		@return: self.__downloadDirectory. ( String )
+		:return: self.__downloadDirectory. ( String )
 		"""
 
 		return self.__downloadDirectory
@@ -207,7 +207,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _downloadDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadDirectory"))
@@ -226,7 +226,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -237,7 +237,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -256,7 +256,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -267,7 +267,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -286,7 +286,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _uiLogoImage attribute.
 
-		@return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage. ( String )
 		"""
 
 		return self.__uiLogoImage
@@ -297,7 +297,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _uiLogoImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
@@ -316,7 +316,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _requests attribute.
 
-		@return: self.__requests. ( List )
+		:return: self.__requests. ( List )
 		"""
 
 		return self.__requests
@@ -327,7 +327,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _requests attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		if value:
@@ -348,7 +348,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _downloads attribute.
 
-		@return: self.__downloads. ( List )
+		:return: self.__downloads. ( List )
 		"""
 
 		return self.__downloads
@@ -359,7 +359,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _downloads attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloads"))
@@ -378,7 +378,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _currentRequest attribute.
 
-		@return: self.__currentRequest. ( QNetworkReply )
+		:return: self.__currentRequest. ( QNetworkReply )
 		"""
 
 		return self.__currentRequest
@@ -389,7 +389,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _currentRequest attribute.
 
-		@param value: Attribute value. ( QNetworkReply )
+		:param value: Attribute value. ( QNetworkReply )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentRequest"))
@@ -408,7 +408,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _currentFile attribute.
 
-		@return: self.__currentFile. ( QFile )
+		:return: self.__currentFile. ( QFile )
 		"""
 
 		return self.__currentFile
@@ -419,7 +419,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _currentFile attribute.
 
-		@param value: Attribute value. ( QFile )
+		:param value: Attribute value. ( QFile )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFile"))
@@ -438,7 +438,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _currentFilePath attribute.
 
-		@return: self.__currentFilePath. ( String )
+		:return: self.__currentFilePath. ( String )
 		"""
 
 		return self.__currentFilePath
@@ -449,7 +449,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _currentFilePath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFilePath"))
@@ -468,7 +468,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _downloadStatus attribute.
 
-		@return: self.__downloadStatus. ( QObject )
+		:return: self.__downloadStatus. ( QObject )
 		"""
 
 		return self.__downloadStatus
@@ -479,7 +479,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _downloadStatus attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadStatus"))
@@ -498,7 +498,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the property for the _ui attribute.
 
-		@return: self.__ui. ( Object )
+		:return: self.__ui. ( Object )
 		"""
 
 		return self.__ui
@@ -509,7 +509,7 @@ class DownloadManager(QObject):
 		"""
 		This method is the setter method for the _ui attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ui"))
@@ -548,7 +548,7 @@ class DownloadManager(QObject):
 		"""
 		This method overloads the download Manager close event.
 
-		@param closeEvent: Close event. ( QCloseEvent )
+		:param closeEvent: Close event. ( QCloseEvent )
 		"""
 
 		self.__downloadStatus or self.abortDownload()
@@ -559,7 +559,7 @@ class DownloadManager(QObject):
 		"""
 		This method triggers the downloadmanager close.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.__ui.close()
@@ -597,8 +597,8 @@ class DownloadManager(QObject):
 		"""
 		This method updates the download progress.
 
-		@param bytesReceived: Bytes received. ( Integer )
-		@param bytesTotal: Bytes total. ( Integer )
+		:param bytesReceived: Bytes received. ( Integer )
+		:param bytesTotal: Bytes total. ( Integer )
 		"""
 
 		LOGGER.debug("> Updating download progress: '{0}' bytes received, '{1}' bytes total.".format(bytesReceived, bytesTotal))
@@ -646,7 +646,7 @@ class DownloadManager(QObject):
 		"""
 		This method triggers the download.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__downloadStatus = False
@@ -659,7 +659,7 @@ class DownloadManager(QObject):
 		"""
 		This method aborts the current download.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__currentRequest.abort()
@@ -676,7 +676,7 @@ class RemoteUpdater(object):
 		"""
 		This method initializes the class.
 
-		@param releases: Releases. ( Dictionary )
+		:param releases: Releases. ( Dictionary )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -721,7 +721,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -732,7 +732,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -751,7 +751,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _releases attribute.
 
-		@return: self.__releases. ( Dictionary )
+		:return: self.__releases. ( Dictionary )
 		"""
 
 		return self.__releases
@@ -762,7 +762,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _releases attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		if value:
@@ -783,7 +783,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -794,7 +794,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -813,7 +813,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -824,7 +824,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -843,7 +843,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiLogoImage attribute.
 
-		@return: self.__uiLogoImage. ( String )
+		:return: self.__uiLogoImage. ( String )
 		"""
 
 		return self.__uiLogoImage
@@ -854,7 +854,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiLogoImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
@@ -873,7 +873,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiTemplatesImage attribute.
 
-		@return: self.__uiTemplatesImage. ( String )
+		:return: self.__uiTemplatesImage. ( String )
 		"""
 
 		return self.__uiTemplatesImage
@@ -884,7 +884,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiTemplatesImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiTemplatesImage"))
@@ -903,7 +903,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiLightGrayColor attribute.
 
-		@return: self.__uiLightGrayColor. ( QColor )
+		:return: self.__uiLightGrayColor. ( QColor )
 		"""
 
 		return self.__uiLightGrayColor
@@ -914,7 +914,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiLightGrayColor attribute.
 
-		@param value: Attribute value. ( QColor )
+		:param value: Attribute value. ( QColor )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLightGrayColor"))
@@ -933,7 +933,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _uiDarkGrayColor attribute.
 
-		@return: self.__uiDarkGrayColor. ( QColor )
+		:return: self.__uiDarkGrayColor. ( QColor )
 		"""
 
 		return self.__uiDarkGrayColor
@@ -944,7 +944,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _uiDarkGrayColor attribute.
 
-		@param value: Attribute value. ( QColor )
+		:param value: Attribute value. ( QColor )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDarkGrayColor"))
@@ -963,7 +963,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _splitter attribute.
 
-		@return: self.__splitter. ( String )
+		:return: self.__splitter. ( String )
 		"""
 
 		return self.__splitter
@@ -974,7 +974,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _splitter attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("splitter"))
@@ -993,7 +993,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _tableWidgetRowHeight attribute.
 
-		@return: self.__tableWidgetRowHeight. ( Integer )
+		:return: self.__tableWidgetRowHeight. ( Integer )
 		"""
 
 		return self.__tableWidgetRowHeight
@@ -1004,7 +1004,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _tableWidgetRowHeight attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetRowHeight"))
@@ -1023,7 +1023,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _tableWidgetHeaderHeight attribute.
 
-		@return: self.__tableWidgetHeaderHeight. ( Integer )
+		:return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
 
 		return self.__tableWidgetHeaderHeight
@@ -1034,7 +1034,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _tableWidgetHeaderHeight attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetHeaderHeight"))
@@ -1053,7 +1053,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _templatesTableWidgetHeaders attribute.
 
-		@return: self.__templatesTableWidgetHeaders. ( String )
+		:return: self.__templatesTableWidgetHeaders. ( String )
 		"""
 
 		return self.__templatesTableWidgetHeaders
@@ -1064,7 +1064,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _templatesTableWidgetHeaders attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesTableWidgetHeaders"))
@@ -1083,7 +1083,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _applicationChangeLogUrl attribute.
 
-		@return: self.__applicationChangeLogUrl. ( String )
+		:return: self.__applicationChangeLogUrl. ( String )
 		"""
 
 		return self.__applicationChangeLogUrl
@@ -1094,7 +1094,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _applicationChangeLogUrl attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("applicationChangeLogUrl"))
@@ -1113,7 +1113,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _repositoryUrl attribute.
 
-		@return: self.__repositoryUrl. ( String )
+		:return: self.__repositoryUrl. ( String )
 		"""
 
 		return self.__repositoryUrl
@@ -1124,7 +1124,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _repositoryUrl attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("repositoryUrl"))
@@ -1143,7 +1143,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _downloadManager attribute.
 
-		@return: self.__downloadManager. ( Object )
+		:return: self.__downloadManager. ( Object )
 		"""
 
 		return self.__downloadManager
@@ -1154,7 +1154,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _downloadManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadManager"))
@@ -1173,7 +1173,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _networkAccessManager attribute.
 
-		@return: self.__networkAccessManager. ( QNetworkAccessManager )
+		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
 		return self.__networkAccessManager
@@ -1184,7 +1184,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute value. ( QNetworkAccessManager )
+		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
@@ -1203,7 +1203,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the property for the _ui attribute.
 
-		@return: self.__ui. ( Object )
+		:return: self.__ui. ( Object )
 		"""
 
 		return self.__ui
@@ -1213,7 +1213,7 @@ class RemoteUpdater(object):
 		"""
 		This method is the setter method for the _ui attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		self.__ui = value
@@ -1312,7 +1312,7 @@ class RemoteUpdater(object):
 		"""
 		This method is triggered when Get_sIBL_GUI_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
 		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
@@ -1333,7 +1333,7 @@ class RemoteUpdater(object):
 		"""
 		This method is triggered when Get_Latest_Templates_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		requests = []
@@ -1353,7 +1353,7 @@ class RemoteUpdater(object):
 		"""
 		This method is triggered when Open_Repository_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(self.__repositoryUrl))
@@ -1364,7 +1364,7 @@ class RemoteUpdater(object):
 		"""
 		This method closes the RemoteUpdater.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		LOGGER.info("{0} | Closing '{1}' updater!".format(self.__class__.__name__, Constants.applicationName))
@@ -1419,8 +1419,8 @@ class RemoteUpdater(object):
 		"""
 		This method uncompress the provided zip file.
 
-		@param file: File to extract. ( String )
-		@return: Extraction success. ( Boolean )
+		:param file: File to extract. ( String )
+		:return: Extraction success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' file uncompress.".format(file))
@@ -1440,8 +1440,8 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -1481,7 +1481,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -1492,7 +1492,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -1511,7 +1511,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -1522,7 +1522,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -1550,7 +1550,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -1560,7 +1560,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _settingsSection attribute.
 
-		@return: self.__settingsSection. ( String )
+		:return: self.__settingsSection. ( String )
 		"""
 
 		return self.__settingsSection
@@ -1571,7 +1571,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _settingsSection attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settingsSection"))
@@ -1591,7 +1591,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -1610,7 +1610,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -1621,7 +1621,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -1640,7 +1640,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -1651,7 +1651,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -1670,7 +1670,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -1681,7 +1681,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -1700,7 +1700,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _addonsLocationsBrowser attribute.
 
-		@return: self.__addonsLocationsBrowser. ( Object )
+		:return: self.__addonsLocationsBrowser. ( Object )
 		"""
 
 		return self.__addonsLocationsBrowser
@@ -1711,7 +1711,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _addonsLocationsBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("addonsLocationsBrowser"))
@@ -1730,7 +1730,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _ioDirectory attribute.
 
-		@return: self.__ioDirectory. ( String )
+		:return: self.__ioDirectory. ( String )
 		"""
 
 		return self.__ioDirectory
@@ -1741,7 +1741,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _ioDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ioDirectory"))
@@ -1760,7 +1760,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _repositoryUrl attribute.
 
-		@return: self.__repositoryUrl. ( String )
+		:return: self.__repositoryUrl. ( String )
 		"""
 
 		return self.__repositoryUrl
@@ -1771,7 +1771,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _repositoryUrl attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("repositoryUrl"))
@@ -1790,7 +1790,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _releasesFileUrl attribute.
 
-		@return: self.__releasesFileUrl. ( String )
+		:return: self.__releasesFileUrl. ( String )
 		"""
 
 		return self.__releasesFileUrl
@@ -1801,7 +1801,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _releasesFileUrl attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("releasesFileUrl"))
@@ -1820,7 +1820,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _networkAccessManager attribute.
 
-		@return: self.__networkAccessManager. ( QNetworkAccessManager )
+		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
 
 		return self.__networkAccessManager
@@ -1831,7 +1831,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _networkAccessManager attribute.
 
-		@param value: Attribute value. ( QNetworkAccessManager )
+		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
@@ -1850,7 +1850,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _releaseReply attribute.
 
-		@return: self.__releaseReply. ( QNetworkReply )
+		:return: self.__releaseReply. ( QNetworkReply )
 		"""
 
 		return self.__releaseReply
@@ -1861,7 +1861,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _releaseReply attribute.
 
-		@param value: Attribute value. ( QNetworkReply )
+		:param value: Attribute value. ( QNetworkReply )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("releaseReply"))
@@ -1880,7 +1880,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _remoteUpdater attribute.
 
-		@return: self.__remoteUpdater. ( Object )
+		:return: self.__remoteUpdater. ( Object )
 		"""
 
 		return self.__remoteUpdater
@@ -1891,7 +1891,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _remoteUpdater attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("remoteUpdater"))
@@ -1910,7 +1910,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the property for the _reportUpdateStatus attribute.
 
-		@return: self.__reportUpdateStatus. ( Boolean )
+		:return: self.__reportUpdateStatus. ( Boolean )
 		"""
 
 		return self.__reportUpdateStatus
@@ -1921,7 +1921,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is the setter method for the _reportUpdateStatus attribute.
 
-		@param value: Attribute value. ( Boolean )
+		:param value: Attribute value. ( Boolean )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("reportUpdateStatus"))
@@ -1943,7 +1943,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -2073,7 +2073,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is called when Check_For_New_Releases_On_Startup_checkBox state changes.
 
-		@param state: Checkbox state. ( Integer )
+		:param state: Checkbox state. ( Integer )
 		"""
 
 		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
@@ -2097,7 +2097,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is called when Ignore_Non_Existing_Templates_checkBox state changes.
 
-		@param state: Checkbox state. ( Integer )
+		:param state: Checkbox state. ( Integer )
 		"""
 
 		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
@@ -2108,7 +2108,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method is triggered when Check_For_New_Releases_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.checkForNewReleases__()
@@ -2187,7 +2187,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method checks for new releases.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__reportUpdateStatus = True
@@ -2202,7 +2202,7 @@ class OnlineUpdater(UiComponent):
 		"""
 		This method checks for new releases.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))

@@ -53,10 +53,10 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method initializes the class.
 
-		@param state: Current button state. ( Boolean )
-		@param colors: Button colors. ( Tuple )
-		@param labels: Button texts. ( Tuple )
-		@param parent: Widget parent. ( QObject )
+		:param state: Current button state. ( Boolean )
+		:param colors: Button colors. ( Tuple )
+		:param labels: Button texts. ( Tuple )
+		:param parent: Widget parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -94,7 +94,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the property for the _state attribute.
 
-		@return: self.__state. ( Boolean )
+		:return: self.__state. ( Boolean )
 		"""
 
 		return self.__state
@@ -105,7 +105,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the setter method for the _state attribute.
 
-		@param value: Attribute value. ( Boolean )
+		:param value: Attribute value. ( Boolean )
 		"""
 
 		if value:
@@ -126,7 +126,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the property for the _colors attribute.
 
-		@return: self.__colors. ( Tuple )
+		:return: self.__colors. ( Tuple )
 		"""
 
 		return self.__colors
@@ -137,7 +137,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the setter method for the _colors attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 		if value:
 			assert type(value) is tuple, "'{0}' attribute: '{1}' type is not 'tuple'!".format("colors", value)
@@ -160,7 +160,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the property for the _labels attribute.
 
-		@return: self.__labels. ( Tuple )
+		:return: self.__labels. ( Tuple )
 		"""
 
 		return self.__labels
@@ -171,7 +171,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the setter method for the _labels attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 		if value:
 			assert type(value) is tuple, "'{0}' attribute: '{1}' type is not 'tuple'!".format("labels", value)
@@ -194,7 +194,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the property for the _parent attribute.
 
-		@return: self.__parent. ( QObject )
+		:return: self.__parent. ( QObject )
 		"""
 
 		return self.__parent
@@ -204,7 +204,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is the setter method for the _parent attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		self.__parent = value
@@ -226,7 +226,7 @@ class Variable_QPushButton(QPushButton):
 		"""
 		This method is called when a Variable_QPushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		if self.__state:

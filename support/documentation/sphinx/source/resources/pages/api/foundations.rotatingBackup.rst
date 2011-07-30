@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: RotatingBackup
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

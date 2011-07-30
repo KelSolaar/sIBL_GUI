@@ -54,7 +54,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method initializes the class.
 
-		@param picture: Current picture path. ( String )
+		:param picture: Current picture path. ( String )
 		@param waitTime wait time. ( Integer )
 		"""
 
@@ -76,7 +76,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method is the property for the _waitTime attribute.
 
-		@return: self.__waitTime ( Integer / Float )
+		:return: self.__waitTime ( Integer / Float )
 		"""
 
 		return self.__waitTime
@@ -87,7 +87,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method is the setter method for the _waitTime attribute.
 
-		@param value: Attribute value. ( Integer / Float )
+		:param value: Attribute value. ( Integer / Float )
 		"""
 
 		if value:
@@ -112,10 +112,10 @@ class Delayed_QSplashScreen(QSplashScreen):
 		"""
 		This method initializes the class.
 
-		@param message: Message to display on the splashscreen. ( String )
-		@param textAlignement: Text message alignment. ( Object )
-		@param textColor: Text message color. ( Object )
-		@param waitTime: Wait time. ( Float )
+		:param message: Message to display on the splashscreen. ( String )
+		:param textAlignement: Text message alignment. ( Object )
+		:param textColor: Text message color. ( Object )
+		:param waitTime: Wait time. ( Float )
 		"""
 
 		self.showMessage(message, textAlignement, textColor)

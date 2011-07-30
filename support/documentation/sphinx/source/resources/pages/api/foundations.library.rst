@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: LibraryHook
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Library
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

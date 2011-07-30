@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: LoaderScript
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

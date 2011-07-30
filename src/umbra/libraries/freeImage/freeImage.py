@@ -942,7 +942,7 @@ class ImageInformationsHeader(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: path, width, height, bpp. ( Key / Value pairs )
+		:param kwargs: path, width, height, bpp. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -957,7 +957,7 @@ class Image(object):
 		"""
 		This method initializes the class.
 
-		@param imagePath: Image path. ( String )
+		:param imagePath: Image path. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -984,7 +984,7 @@ class Image(object):
 		"""
 		This method is the property for the _library attribute.
 
-		@return: self.__library. ( Library )
+		:return: self.__library. ( Library )
 		"""
 
 		return self.__library
@@ -995,7 +995,7 @@ class Image(object):
 		"""
 		This method is the setter method for the _library attribute.
 
-		@param value: Attribute value. ( Library )
+		:param value: Attribute value. ( Library )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("library"))
@@ -1014,7 +1014,7 @@ class Image(object):
 		"""
 		This method is the property for the _errorsCallback attribute.
 
-		@return: self.__errorsCallback. ( Object )
+		:return: self.__errorsCallback. ( Object )
 		"""
 
 		return self.__errorsCallback
@@ -1025,7 +1025,7 @@ class Image(object):
 		"""
 		This method is the setter method for the _errorsCallback attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("errorsCallback"))
@@ -1044,7 +1044,7 @@ class Image(object):
 		"""
 		This method is the property for the _imagePath attribute.
 
-		@return: self.__imagePath. ( String )
+		:return: self.__imagePath. ( String )
 		"""
 
 		return self.__imagePath
@@ -1055,7 +1055,7 @@ class Image(object):
 		"""
 		This method is the setter method for the _imagePath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -1076,7 +1076,7 @@ class Image(object):
 		"""
 		This method is the property for the _bitmap attribute.
 
-		@return: self.__bitmap. ( Object )
+		:return: self.__bitmap. ( Object )
 		"""
 
 		return self.__bitmap
@@ -1087,7 +1087,7 @@ class Image(object):
 		"""
 		This method is the setter method for the _bitmap attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		self.__bitmap = value
@@ -1119,8 +1119,8 @@ class Image(object):
 		"""
 		This method gets the file format.
 
-		@param imagePath: Image path. ( String )
-		@return: File format. ( Object )
+		:param imagePath: Image path. ( String )
+		:return: File format. ( Object )
 		"""
 
 		imagePath = imagePath or self.__imagePath
@@ -1139,8 +1139,8 @@ class Image(object):
 		"""
 		This method loads the file.
 
-		@param imagePath: Image path. ( String )
-		@return: Method success. ( Boolean )
+		:param imagePath: Image path. ( String )
+		:return: Method success. ( Boolean )
 		"""
 
 		if not self.__imagePath:
@@ -1161,7 +1161,7 @@ class Image(object):
 		"""
 		This method saves the file.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		return self.saveAs(self.getImageFormat(self.__imagePath), self.__imagePath, FI_DEFAULT_NULL)
@@ -1172,10 +1172,10 @@ class Image(object):
 		"""
 		This method saves the image to the provided file.
 
-		@param imageFormat: Image format. ( Integer )
-		@param imagePath: Image path. ( String )
-		@param flags: Save flags. ( Integer )
-		@return: Method success. ( Boolean )
+		:param imageFormat: Image format. ( Integer )
+		:param imagePath: Image path. ( String )
+		:param flags: Save flags. ( Integer )
+		:return: Method success. ( Boolean )
 		"""
 
 		if self.__library.FreeImage_FIFSupportsWriting(imageFormat):
@@ -1193,9 +1193,9 @@ class Image(object):
 		"""
 		This method converts the bitmap to provided type.
 
-		@param targetType: Target type. ( Integer )
-		@param linearScale: Linear scale. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param targetType: Target type. ( Integer )
+		:param linearScale: Linear scale. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Converting '{0}' image bitmap to type '{1}'!".format(self.__imagePath, targetType))
@@ -1210,8 +1210,8 @@ class Image(object):
 		"""
 		This method converts the HDR bitmap to LDR.
 
-		@param gamma: Image conversion gamma. ( Float )
-		@return: Method success. ( Boolean )
+		:param gamma: Image conversion gamma. ( Float )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Converting '{0}' HDR image bitmap to LDR!".format(self.__imagePath))
@@ -1225,7 +1225,7 @@ class Image(object):
 	def convertToQImage(self):
 		"""
 		This method converts the bitmap to QImage.
-		@return: Converted image. ( QImage )
+		:return: Converted image. ( QImage )
 		"""
 
 		bpp = self.__library.FreeImage_GetBPP(self.__bitmap)

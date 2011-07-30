@@ -49,11 +49,11 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 	"""
 	This definition provides a fast GUI message box.
 
-	@param title: Current message title. ( String )
-	@param message: Message. ( String )
-	@param icon: Custom icon. ( QConstant )
-	@param buttons: Custom buttons. ( QConstant )
-	@return: User choice. ( Integer )
+	:param title: Current message title. ( String )
+	:param message: Message. ( String )
+	:param icon: Custom icon. ( QConstant )
+	:param buttons: Custom buttons. ( QConstant )
+	:return: User choice. ( Integer )
 	"""
 
 	LOGGER.debug("> Launching messagebox().")
@@ -119,11 +119,11 @@ def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.
 	"""
 	This definition provides a standalone message box.
 
-	@param type: MessageBox type. ( String )
-	@param caption: MessageBox title. ( String )
-	@param message: MessageBox message. ( String )
-	@param icon: Custom icon. ( QConstant )
-	@param buttons: Custom buttons. ( QConstant )
+	:param type: MessageBox type. ( String )
+	:param caption: MessageBox title. ( String )
+	:param message: MessageBox message. ( String )
+	:param icon: Custom icon. ( QConstant )
+	:param buttons: Custom buttons. ( QConstant )
 	"""
 
 	application = QApplication(sys.argv)

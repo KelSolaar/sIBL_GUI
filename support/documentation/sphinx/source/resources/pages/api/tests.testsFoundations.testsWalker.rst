@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: WalkerTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

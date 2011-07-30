@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: LoggingNotifier
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: ConstantsTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

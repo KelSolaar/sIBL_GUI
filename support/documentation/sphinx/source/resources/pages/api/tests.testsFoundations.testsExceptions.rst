@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: ExceptionsTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

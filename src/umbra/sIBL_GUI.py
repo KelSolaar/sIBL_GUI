@@ -35,7 +35,7 @@ def _setApplicationPackageDirectory():
 	"""
 	This definition sets the Application package directory in the path.
 
-	@return: Definition success. ( Boolean )
+	:return: Definition success. ( Boolean )
 	"""
 
 	applicationPackageDirectory = os.path.normpath(os.path.join(sys.path[0], "../"))
@@ -55,7 +55,7 @@ def _overrideDependenciesGlobals():
 	"""
 	This definition overrides dependencies globals.
 
-	@return: Definition success. ( Boolean )
+	:return: Definition success. ( Boolean )
 	"""
 
 	foundations.globals.constants.Constants.logger = manager.globals.constants.Constants.logger = Constants.logger
@@ -135,7 +135,7 @@ class Preferences():
 		"""
 		This method initializes the class.
 
-		@param preferencesFile: Current preferences file path. ( String )
+		:param preferencesFile: Current preferences file path. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -157,7 +157,7 @@ class Preferences():
 		"""
 		This method is the property for the _preferencesFile attribute.
 
-		@return: self.__preferencesFile. ( String )
+		:return: self.__preferencesFile. ( String )
 		"""
 
 		return self.__preferencesFile
@@ -168,7 +168,7 @@ class Preferences():
 		"""
 		This method is the setter method for the _preferencesFile attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -190,7 +190,7 @@ class Preferences():
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -201,7 +201,7 @@ class Preferences():
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -220,7 +220,7 @@ class Preferences():
 		"""
 		This method is the property for the _defaultLayoutsSettings attribute.
 
-		@return: self.__defaultLayoutsSettings. ( QSettings )
+		:return: self.__defaultLayoutsSettings. ( QSettings )
 		"""
 
 		return self.__defaultLayoutsSettings
@@ -231,7 +231,7 @@ class Preferences():
 		"""
 		This method is the setter method for the _defaultLayoutsSettings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("defaultLayoutsSettings"))
@@ -253,9 +253,9 @@ class Preferences():
 		"""
 		This method stores provided key in settings file.
 
-		@param section: Current section to save the key into. ( String )
-		@param key: Current key to save. ( String )
-		@param value: Current key value to save. ( Object )
+		:param section: Current section to save the key into. ( String )
+		:param key: Current key to save. ( String )
+		:param value: Current key value to save. ( Object )
 		"""
 
 		LOGGER.debug("> Saving '{0}' in '{1}' section with value: '{2}' in settings file.".format(key, section, value))
@@ -269,9 +269,9 @@ class Preferences():
 		"""
 		This method gets key value from settings file.
 
-		@param section: Current section to retrieve key from. ( String )
-		@param key: Current key to retrieve. ( String )
-		@return: Current key value. ( Object )
+		:param section: Current section to retrieve key from. ( String )
+		:param key: Current key to retrieve. ( String )
+		:return: Current key value. ( Object )
 		"""
 
 		LOGGER.debug("> Retrieving '{0}' in '{1}' section.".format(key, section))
@@ -297,7 +297,7 @@ class Preferences():
 	def setDefaultPreferences(self):
 		"""
 		This method defines the default settings file content.
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing default settings!")
@@ -357,7 +357,7 @@ class Preferences():
 		"""
 		This method sets the default layouts in the preferences file.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		for layout in ("setsCentric", "inspectCentric", "templatesCentric", "preferencesCentric"):
@@ -376,7 +376,7 @@ class LayoutActiveLabel(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, object_, layout, shortcut. ( Key / Value pairs )
+		:param kwargs: name, object_, layout, shortcut. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -569,7 +569,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _timer attribute.
 
-		@return: self.__timer. ( QTimer )
+		:return: self.__timer. ( QTimer )
 		"""
 
 		return self.__timer
@@ -580,7 +580,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _timer attribute.
 
-		@param value: Attribute value. ( QTimer )
+		:param value: Attribute value. ( QTimer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("timer"))
@@ -599,7 +599,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _componentsManager attribute.
 
-		@return: self.__componentsManager. ( Object )
+		:return: self.__componentsManager. ( Object )
 		"""
 
 		return self.__componentsManager
@@ -610,7 +610,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _componentsManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("componentsManager"))
@@ -629,7 +629,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _coreComponentsManagerUi attribute.
 
-		@return: self.__coreComponentsManagerUi. ( Object )
+		:return: self.__coreComponentsManagerUi. ( Object )
 		"""
 
 		return self.__coreComponentsManagerUi
@@ -640,7 +640,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _coreComponentsManagerUi attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreComponentsManagerUi"))
@@ -659,7 +659,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _corePreferencesManager attribute.
 
-		@return: self.__corePreferencesManager. ( Object )
+		:return: self.__corePreferencesManager. ( Object )
 		"""
 
 		return self.__corePreferencesManager
@@ -670,7 +670,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _corePreferencesManager attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
@@ -689,7 +689,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _coreDb attribute.
 
-		@return: self.__coreDb. ( Object )
+		:return: self.__coreDb. ( Object )
 		"""
 
 		return self.__coreDb
@@ -700,7 +700,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _coreDb attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDb"))
@@ -719,7 +719,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _coreCollectionsOutliner attribute.
 
-		@return: self.__coreCollectionsOutliner. ( Object )
+		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
 
 		return self.__coreCollectionsOutliner
@@ -730,7 +730,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _coreCollectionsOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreCollectionsOutliner"))
@@ -749,7 +749,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -760,7 +760,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -779,7 +779,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _coreTemplatesOutliner attribute.
 
-		@return: self.__coreTemplatesOutliner. ( Object )
+		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
 
 		return self.__coreTemplatesOutliner
@@ -790,7 +790,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _coreTemplatesOutliner attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreTemplatesOutliner"))
@@ -809,7 +809,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _lastBrowsedPath attribute.
 
-		@return: self.__lastBrowsedPath. ( String )
+		:return: self.__lastBrowsedPath. ( String )
 		"""
 
 		return self.__lastBrowsedPath
@@ -820,7 +820,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _lastBrowsedPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -842,7 +842,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _userApplicationDatasDirectory attribute.
 
-		@return: self.__userApplicationDatasDirectory. ( String )
+		:return: self.__userApplicationDatasDirectory. ( String )
 		"""
 
 		return self.__userApplicationDatasDirectory
@@ -853,7 +853,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _userApplicationDatasDirectory attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("userApplicationDatasDirectory"))
@@ -872,7 +872,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _loggingSessionHandler attribute.
 
-		@return: self.__loggingSessionHandler. ( Handler )
+		:return: self.__loggingSessionHandler. ( Handler )
 		"""
 
 		return self.__loggingSessionHandler
@@ -883,7 +883,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _loggingSessionHandler attribute.
 
-		@param value: Attribute value. ( Handler )
+		:param value: Attribute value. ( Handler )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("loggingSessionHandler"))
@@ -902,7 +902,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _loggingFileHandler attribute.
 
-		@return: self.__loggingFileHandler. ( Handler )
+		:return: self.__loggingFileHandler. ( Handler )
 		"""
 
 		return self.__loggingFileHandler
@@ -913,7 +913,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _loggingFileHandler attribute.
 
-		@param value: Attribute value. ( Handler )
+		:param value: Attribute value. ( Handler )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("loggingFileHandler"))
@@ -932,7 +932,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _loggingConsoleHandler attribute.
 
-		@return: self.__loggingConsoleHandler. ( Handler )
+		:return: self.__loggingConsoleHandler. ( Handler )
 		"""
 
 		return self.__loggingConsoleHandler
@@ -943,7 +943,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _loggingConsoleHandler attribute.
 
-		@param value: Attribute value. ( Handler )
+		:param value: Attribute value. ( Handler )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("loggingConsoleHandler"))
@@ -962,7 +962,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _loggingSessionHandlerStream attribute.
 
-		@return: self.__loggingSessionHandlerStream. ( StreamObject )
+		:return: self.__loggingSessionHandlerStream. ( StreamObject )
 		"""
 
 		return self.__loggingSessionHandlerStream
@@ -973,7 +973,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _loggingSessionHandlerStream attribute.
 
-		@param value: Attribute value. ( StreamObject )
+		:param value: Attribute value. ( StreamObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("loggingSessionHandlerStream"))
@@ -992,7 +992,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -1003,7 +1003,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -1022,7 +1022,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _verbosityLevel attribute.
 
-		@return: self.__verbosityLevel. ( Integer )
+		:return: self.__verbosityLevel. ( Integer )
 		"""
 
 		return self.__verbosityLevel
@@ -1033,7 +1033,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _verbosityLevel attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -1055,7 +1055,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _parameters attribute.
 
-		@return: self.__parameters. ( Object )
+		:return: self.__parameters. ( Object )
 		"""
 
 		return self.__parameters
@@ -1066,7 +1066,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _parameters attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("parameters"))
@@ -1085,7 +1085,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _libraryActiveLabel attribute.
 
-		@return: self.__libraryActiveLabel . ( Active_QLabel )
+		:return: self.__libraryActiveLabel . ( Active_QLabel )
 		"""
 
 		return self.__libraryActiveLabel
@@ -1096,7 +1096,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _libraryActiveLabel attribute.
 
-		@param value: Attribute value. ( Active_QLabel )
+		:param value: Attribute value. ( Active_QLabel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("libraryActiveLabel "))
@@ -1115,7 +1115,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _inspectActiveLabel attribute.
 
-		@return: self.__inspectActiveLabel . ( Active_QLabel )
+		:return: self.__inspectActiveLabel . ( Active_QLabel )
 		"""
 
 		return self.__inspectActiveLabel
@@ -1126,7 +1126,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _inspectActiveLabel attribute.
 
-		@param value: Attribute value. ( Active_QLabel )
+		:param value: Attribute value. ( Active_QLabel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectActiveLabel "))
@@ -1145,7 +1145,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _exportActiveLabel attribute.
 
-		@return: self.__exportActiveLabel . ( Active_QLabel )
+		:return: self.__exportActiveLabel . ( Active_QLabel )
 		"""
 
 		return self.__exportActiveLabel
@@ -1156,7 +1156,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _exportActiveLabel attribute.
 
-		@param value: Attribute value. ( Active_QLabel )
+		:param value: Attribute value. ( Active_QLabel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("exportActiveLabel "))
@@ -1175,7 +1175,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _preferencesActiveLabel attribute.
 
-		@return: self.__preferencesActiveLabel. ( Active_QLabel )
+		:return: self.__preferencesActiveLabel. ( Active_QLabel )
 		"""
 
 		return self.__preferencesActiveLabel
@@ -1186,7 +1186,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _preferencesActiveLabel attribute.
 
-		@param value: Attribute value. ( Active_QLabel )
+		:param value: Attribute value. ( Active_QLabel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("preferencesActiveLabel "))
@@ -1205,7 +1205,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _layoutsActiveLabels attribute.
 
-		@return: self.__layoutsActiveLabels. ( Tuple )
+		:return: self.__layoutsActiveLabels. ( Tuple )
 		"""
 
 		return self.__layoutsActiveLabels
@@ -1216,7 +1216,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _layoutsActiveLabels attribute.
 
-		@param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("layoutsActiveLabels"))
@@ -1235,7 +1235,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _layoutMenu attribute.
 
-		@return: self.__layoutMenu. ( QMenu )
+		:return: self.__layoutMenu. ( QMenu )
 		"""
 
 		return self.__layoutMenu
@@ -1246,7 +1246,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _layoutMenu attribute.
 
-		@param value: Attribute value. ( QMenu )
+		:param value: Attribute value. ( QMenu )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("layoutMenu"))
@@ -1265,7 +1265,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _miscMenu attribute.
 
-		@return: self.__miscMenu. ( QMenu )
+		:return: self.__miscMenu. ( QMenu )
 		"""
 
 		return self.__miscMenu
@@ -1276,7 +1276,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _miscMenu attribute.
 
-		@param value: Attribute value. ( QMenu )
+		:param value: Attribute value. ( QMenu )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("miscMenu"))
@@ -1295,7 +1295,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for the _workerThreads attribute.
 
-		@return: self.__workerThreads. ( List )
+		:return: self.__workerThreads. ( List )
 		"""
 
 		return self.__workerThreads
@@ -1306,7 +1306,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for the _workerThreads attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("workerThreads"))
@@ -1328,7 +1328,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is called when close event is fired.
 
-		@param event: QEvent. ( QEvent )
+		:param event: QEvent. ( QEvent )
 		"""
 
 		# --- Running onClose components methods. ---
@@ -1365,7 +1365,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is a callback for the Components instantiation.
 
-		@param profile: Component Profile. ( Profile )
+		:param profile: Component Profile. ( Profile )
 		"""
 
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
@@ -1501,7 +1501,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method returns the current layout Active_QLabel index.
 
-		@return: Layouts Active_QLabel index. ( Integer )
+		:return: Layouts Active_QLabel index. ( Integer )
 		"""
 
 		LOGGER.debug("> Retrieving current layout Active_QLabel index.")
@@ -1516,7 +1516,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method sets the layouts Active_QLabel.
 
-		@param index: Layouts Active_QLabel. ( Integer )
+		:param index: Layouts Active_QLabel. ( Integer )
 		"""
 
 		LOGGER.debug("> Setting layouts Active_QLabels states.")
@@ -1554,7 +1554,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is triggered by helpDisplayMiscAction action.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkHelpFile))
@@ -1565,7 +1565,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is triggered by apiDisplayMiscAction action.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkApiFile))
@@ -1603,9 +1603,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is called when storing a layout.
 
-		@param name: Layout name. ( String )
+		:param name: Layout name. ( String )
 		@param *args: Arguments. ( * )
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Storing layout '{0}'.".format(name))
@@ -1622,9 +1622,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is called when restoring a layout.
 
-		@param name: Layout name. ( String )
+		:param name: Layout name. ( String )
 		@param *args: Arguments. ( * )
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Restoring layout '{0}'.".format(name))
@@ -1646,7 +1646,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method restores the startup layout.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Restoring startup layout.")
@@ -1663,7 +1663,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method stores the startup layout.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Storing startup layout.")
@@ -1676,8 +1676,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		"""
 		This method is a wrapper method for storing the last browser path.
 
-		@param path: Provided path. ( QString )
-		@return: Provided path. ( QString )
+		:param path: Provided path. ( QString )
+		:return: Provided path. ( QString )
 		"""
 
 		path = str(path)
@@ -1818,7 +1818,7 @@ def _getHeaderMessage():
 	"""
 	This definition builds the header message.
 
-	@return: Header message ( Tuple )
+	:return: Header message ( Tuple )
 	"""
 
 	message = ("{0} | Copyright ( C ) 2008 - 2011 Thomas Mansencal - thomas.mansencal@gmail.com".format(Constants.applicationName),
@@ -1832,8 +1832,8 @@ def _getCommandLineParameters(argv):
 	"""
 	This definition process command line parameters.
 
-	@param argv: Command line parameters. ( String )
-	@return: Settings, arguments ( Parser instance )
+	:param argv: Command line parameters. ( String )
+	:return: Settings, arguments ( Parser instance )
 	"""
 
 	argv = argv or sys.argv[1:]
@@ -1865,8 +1865,8 @@ def _setUserApplicationDatasDirectory(path):
 	"""
 	This definition sets the Application datas directory.
 
-	@param path: Starting point for the directories tree creation. ( String )
-	@return: Definition success. ( Boolean )
+	:param path: Starting point for the directories tree creation. ( String )
+	:return: Definition success. ( Boolean )
 	"""
 
 	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory

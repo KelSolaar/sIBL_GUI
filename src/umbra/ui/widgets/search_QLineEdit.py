@@ -55,8 +55,8 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method initializes the class.
 
-		@param uiClearImage: Icon path. ( String )
-		@param parent: Widget parent. ( QObject )
+		:param uiClearImage: Icon path. ( String )
+		:param parent: Widget parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -88,7 +88,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the property for the _uiClearImage attribute.
 
-		@return: self.__uiClearImage. ( String )
+		:return: self.__uiClearImage. ( String )
 		"""
 
 		return self.__uiClearImage
@@ -99,7 +99,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the setter method for the _uiClearImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -121,7 +121,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the property for the _uiClearClickedImage attribute.
 
-		@return: self.__uiClearClickedImage. ( String )
+		:return: self.__uiClearClickedImage. ( String )
 		"""
 
 		return self.__uiClearClickedImage
@@ -132,7 +132,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the setter method for the _uiClearClickedImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		if value:
@@ -154,7 +154,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the property for the _parent attribute.
 
-		@return: self.__parent. ( QObject )
+		:return: self.__parent. ( QObject )
 		"""
 
 		return self.__parent
@@ -164,7 +164,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the setter method for the _parent attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		self.__parent = value
@@ -183,7 +183,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the property for the _clearButton attribute.
 
-		@return: self.__clearButton. ( QPushButton )
+		:return: self.__clearButton. ( QPushButton )
 		"""
 
 		return self.__clearButton
@@ -194,7 +194,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method is the setter method for the _clearButton attribute.
 
-		@param value: Attribute value. ( QPushButton )
+		:param value: Attribute value. ( QPushButton )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("clearButton"))
@@ -216,7 +216,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method overloads the Search_QLineEdit resizeevent.
 
-		@param event: Resize event. ( QResizeEvent )
+		:param event: Resize event. ( QResizeEvent )
 		"""
 
 		size = self.__clearButton.sizeHint()
@@ -252,7 +252,7 @@ class Search_QLineEdit(QLineEdit):
 		"""
 		This method sets the clear button visibility.
 
-		@param text: Current text. ( QString )
+		:param text: Current text. ( QString )
 		"""
 
 		if text:

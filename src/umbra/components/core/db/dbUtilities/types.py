@@ -131,7 +131,7 @@ class DbIblSet(DbBase):
 		"""
 		This method initializes the DbIblSet attributes.
 
-		@return: DbIblSet initialization success. ( Boolean )
+		:return: DbIblSet initialization success. ( Boolean )
 		"""
 
 		parser = Parser(self.path)
@@ -233,7 +233,7 @@ class DbTemplate(DbBase):
 		"""
 		This method initializes the DbTemplate attributes.
 
-		@return: DbTemplate initialization success. ( Boolean )
+		:return: DbTemplate initialization success. ( Boolean )
 		"""
 
 		parser = Parser(self.path)

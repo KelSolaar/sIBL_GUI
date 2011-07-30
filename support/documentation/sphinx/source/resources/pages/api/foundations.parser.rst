@@ -12,10 +12,10 @@ Classes
 -------
 
 .. autoclass:: AttributeCompound
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Parser
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

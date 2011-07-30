@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: StreamObject
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: StreamObjectTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

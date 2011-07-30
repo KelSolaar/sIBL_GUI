@@ -7,10 +7,10 @@ Classes
 -------
 
 .. autoclass:: Profile
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Manager
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: DbIblSet
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DbTemplate
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DbCollection
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

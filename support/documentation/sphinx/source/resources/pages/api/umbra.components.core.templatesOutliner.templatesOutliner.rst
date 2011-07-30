@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: TemplatesOutliner_Worker
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: TemplatesOutliner_QTreeView
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: TemplatesOutliner
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

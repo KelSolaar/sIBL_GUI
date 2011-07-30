@@ -36,6 +36,6 @@ Classes
 -------
 
 .. autoclass:: Icon
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -60,7 +60,7 @@ class Plate(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, icon, previewimage, image ( Key / Value pairs )
+		:param kwargs: name, icon, previewimage, image ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -78,7 +78,7 @@ class Light(core.Structure):
 		"""
 		This method initializes the class.
 
-		@param kwargs: name, color, ucoordinate, vcoordinate ( Key / Value pairs )
+		:param kwargs: name, color, ucoordinate, vcoordinate ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
@@ -101,8 +101,8 @@ class Inspector(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -192,7 +192,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -203,7 +203,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -222,7 +222,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -233,7 +233,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -252,7 +252,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _uiPreviousImage attribute.
 
-		@return: self.__uiPreviousImage. ( String )
+		:return: self.__uiPreviousImage. ( String )
 		"""
 
 		return self.__uiPreviousImage
@@ -263,7 +263,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _uiPreviousImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPreviousImage"))
@@ -282,7 +282,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _uiNextImage attribute.
 
-		@return: self.__uiNextImage. ( String )
+		:return: self.__uiNextImage. ( String )
 		"""
 
 		return self.__uiNextImage
@@ -293,7 +293,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _uiNextImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiNextImage"))
@@ -312,7 +312,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -323,7 +323,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -342,7 +342,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _listViewIconSize attribute.
 
-		@return: self.__listViewIconSize. ( Integer )
+		:return: self.__listViewIconSize. ( Integer )
 		"""
 
 		return self.__listViewIconSize
@@ -353,7 +353,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _listViewIconSize attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		if value:
@@ -375,7 +375,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -386,7 +386,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -405,7 +405,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _coreDatabaseBrowser attribute.
 
-		@return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
 
 		return self.__coreDatabaseBrowser
@@ -416,7 +416,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _coreDatabaseBrowser attribute.
 
-		@param value: Attribute value. ( Object )
+		:param value: Attribute value. ( Object )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
@@ -435,7 +435,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _model attribute.
 
-		@return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( QStandardItemModel )
 		"""
 
 		return self.__model
@@ -446,7 +446,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _model attribute.
 
-		@param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
@@ -465,7 +465,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _inspectorIblSet attribute.
 
-		@return: self.__inspectorIblSet. ( QStandardItem )
+		:return: self.__inspectorIblSet. ( QStandardItem )
 		"""
 
 		return self.__inspectorIblSet
@@ -476,7 +476,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _inspectorIblSet attribute.
 
-		@param value: Attribute value. ( QStandardItem )
+		:param value: Attribute value. ( QStandardItem )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSet"))
@@ -495,7 +495,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _inspectorIblSetParser attribute.
 
-		@return: self.__inspectorIblSetParser. ( Parser )
+		:return: self.__inspectorIblSetParser. ( Parser )
 		"""
 
 		return self.__inspectorIblSetParser
@@ -506,7 +506,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _inspectorIblSetParser attribute.
 
-		@param value: Attribute value. ( Parser )
+		:param value: Attribute value. ( Parser )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetParser"))
@@ -525,7 +525,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _inspectorPlates attribute.
 
-		@return: self.__inspectorPlates. ( Dictionary )
+		:return: self.__inspectorPlates. ( Dictionary )
 		"""
 
 		return self.__inspectorPlates
@@ -536,7 +536,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _inspectorPlates attribute.
 
-		@param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Dictionary )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorPlates"))
@@ -555,7 +555,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _noPreviewImageText attribute.
 
-		@return: self.__noPreviewImageText. ( String )
+		:return: self.__noPreviewImageText. ( String )
 		"""
 
 		return self.__noPreviewImageText
@@ -566,7 +566,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _noPreviewImageText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("noPreviewImageText"))
@@ -585,7 +585,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _noInspectorIblSetText attribute.
 
-		@return: self.__noInspectorIblSetText. ( String )
+		:return: self.__noInspectorIblSetText. ( String )
 		"""
 
 		return self.__noInspectorIblSetText
@@ -596,7 +596,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _noInspectorIblSetText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("noInspectorIblSetText"))
@@ -615,7 +615,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _inspectorIblSetToolTipText attribute.
 
-		@return: self.__inspectorIblSetToolTipText. ( String )
+		:return: self.__inspectorIblSetToolTipText. ( String )
 		"""
 
 		return self.__inspectorIblSetToolTipText
@@ -626,7 +626,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _inspectorIblSetToolTipText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetToolTipText"))
@@ -645,7 +645,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _inspectorIblSetPlatesToolTipText attribute.
 
-		@return: self.__inspectorIblSetPlatesToolTipText. ( String )
+		:return: self.__inspectorIblSetPlatesToolTipText. ( String )
 		"""
 
 		return self.__inspectorIblSetPlatesToolTipText
@@ -656,7 +656,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _inspectorIblSetPlatesToolTipText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetPlatesToolTipText"))
@@ -675,7 +675,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _lightLabelRadius attribute.
 
-		@return: self.__lightLabelRadius. ( Integer )
+		:return: self.__lightLabelRadius. ( Integer )
 		"""
 
 		return self.__lightLabelRadius
@@ -686,7 +686,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _lightLabelRadius attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelRadius"))
@@ -705,7 +705,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _lightLabelTextOffset attribute.
 
-		@return: self.__lightLabelTextOffset. ( Integer )
+		:return: self.__lightLabelTextOffset. ( Integer )
 		"""
 
 		return self.__lightLabelTextOffset
@@ -716,7 +716,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _lightLabelTextOffset attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextOffset"))
@@ -735,7 +735,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _lightLabelTextMargin attribute.
 
-		@return: self.__lightLabelTextMargin. ( Integer )
+		:return: self.__lightLabelTextMargin. ( Integer )
 		"""
 
 		return self.__lightLabelTextMargin
@@ -746,7 +746,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _lightLabelTextMargin attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextMargin"))
@@ -765,7 +765,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _lightLabelTextHeight attribute.
 
-		@return: self.__lightLabelTextHeight. ( Integer )
+		:return: self.__lightLabelTextHeight. ( Integer )
 		"""
 
 		return self.__lightLabelTextHeight
@@ -776,7 +776,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _lightLabelTextHeight attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextHeight"))
@@ -795,7 +795,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for the _lightLabelTextFont attribute.
 
-		@return: self.__lightLabelTextFont. ( String )
+		:return: self.__lightLabelTextFont. ( String )
 		"""
 
 		return self.__lightLabelTextFont
@@ -806,7 +806,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for the _lightLabelTextFont attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("lightLabelTextFont"))
@@ -828,7 +828,7 @@ class Inspector(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1054,8 +1054,8 @@ class Inspector(UiComponent):
 		"""
 		This method sets is triggered when Plates_listView Model selection has changed.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
@@ -1079,8 +1079,8 @@ class Inspector(UiComponent):
 		"""
 		This method sets is triggered when coreDatabaseBrowser Database_Browser_listView Model selection has changed.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		self.__setInspectorIblSet()
@@ -1098,7 +1098,7 @@ class Inspector(UiComponent):
 		"""
 		This method is triggered when Previous_Ibl_Set_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughIblSets(True)
@@ -1108,7 +1108,7 @@ class Inspector(UiComponent):
 		"""
 		This method is triggered when Next_Ibl_Set_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughIblSets()
@@ -1118,7 +1118,7 @@ class Inspector(UiComponent):
 		"""
 		This method is triggered when Previous_Plate_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughPlates(True)
@@ -1128,7 +1128,7 @@ class Inspector(UiComponent):
 		"""
 		This method is triggered when Next_Plate_pushButton is clicked.
 
-		@param checked: Checked state. ( Boolean )
+		:param checked: Checked state. ( Boolean )
 		"""
 
 		self.loopThroughPlates()
@@ -1138,7 +1138,7 @@ class Inspector(UiComponent):
 		"""
 		This method is triggered when a link is clicked in the Image_label Widget.
 
-		@param url: Url to explore. ( QString )
+		:param url: Url to explore. ( QString )
 		"""
 
 		QDesktopServices.openUrl(QUrl(url))
@@ -1212,8 +1212,8 @@ class Inspector(UiComponent):
 		"""
 		This method draws a light label on provided QPainter.
 
-		@param painter: QPainter. ( QPainter )
-		@param light: Light. ( Light )
+		:param painter: QPainter. ( QPainter )
+		:param light: Light. ( Light )
 		"""
 
 		width = painter.window().width()
@@ -1249,8 +1249,8 @@ class Inspector(UiComponent):
 		"""
 		This method loops through Database Browser Ibl Sets.
 
-		@param backward: Looping backward. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param backward: Looping backward. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		if self.__inspectorIblSet:
@@ -1282,8 +1282,8 @@ class Inspector(UiComponent):
 		"""
 		This method loops through Inspector Plates.
 
-		@param backward: Looping backward. ( Boolean )
-		@return: Method success. ( Boolean )
+		:param backward: Looping backward. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		index = self.ui.Plates_listView.selectedIndexes() and self.ui.Plates_listView.selectedIndexes()[0] or None

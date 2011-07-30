@@ -7,14 +7,14 @@ Classes
 -------
 
 .. autoclass:: DatabaseBrowser_Worker
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DatabaseBrowser_QListView
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: DatabaseBrowser
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

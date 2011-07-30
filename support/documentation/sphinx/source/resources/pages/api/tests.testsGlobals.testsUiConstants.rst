@@ -14,6 +14,6 @@ Classes
 -------
 
 .. autoclass:: UiConstantsTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

@@ -54,8 +54,8 @@ def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides an exception handler for Component activation.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while activating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
@@ -65,8 +65,8 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides an exception handler for Component deactivation.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while deactivating '{1}' Component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
@@ -76,8 +76,8 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 	"""
 	This definition provides an exception handler for Component reload.
 
-	@param exception: Exception. ( Exception )
-	@param origin: Function / Method raising the exception. ( String )
+	:param exception: Exception. ( Exception )
+	:param origin: Function / Method raising the exception. ( String )
 	"""
 
 	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while reloading '{1}' Component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
@@ -97,8 +97,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method initializes the class.
 
-		@param name: Component name. ( String )
-		@param uiFile: Ui file. ( String )
+		:param name: Component name. ( String )
+		:param uiFile: Ui file. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -148,7 +148,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _uiPath attribute.
 
-		@return: self.__uiPath. ( String )
+		:return: self.__uiPath. ( String )
 		"""
 
 		return self.__uiPath
@@ -159,7 +159,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _uiPath attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
@@ -178,7 +178,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _uiResources attribute.
 
-		@return: self.__uiResources. ( String )
+		:return: self.__uiResources. ( String )
 		"""
 
 		return self.__uiResources
@@ -189,7 +189,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _uiResources attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
@@ -208,7 +208,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _uiActivatedImage attribute.
 
-		@return: self.__uiActivatedImage. ( String )
+		:return: self.__uiActivatedImage. ( String )
 		"""
 
 		return self.__uiActivatedImage
@@ -219,7 +219,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _uiActivatedImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiActivatedImage"))
@@ -238,7 +238,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _uiDeactivatedImage attribute.
 
-		@return: self.__uiDeactivatedImage. ( String )
+		:return: self.__uiDeactivatedImage. ( String )
 		"""
 
 		return self.__uiDeactivatedImage
@@ -249,7 +249,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _uiDeactivatedImage attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDeactivatedImage"))
@@ -268,7 +268,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _uiCategorieAffixe attribute.
 
-		@return: self.__uiCategorieAffixe. ( String )
+		:return: self.__uiCategorieAffixe. ( String )
 		"""
 
 		return self.__uiCategorieAffixe
@@ -279,7 +279,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _uiCategorieAffixe attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiCategorieAffixe"))
@@ -298,7 +298,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _dockArea attribute.
 
-		@return: self.__dockArea. ( Integer )
+		:return: self.__dockArea. ( Integer )
 		"""
 
 		return self.__dockArea
@@ -309,7 +309,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _dockArea attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
@@ -328,7 +328,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _container attribute.
 
-		@return: self.__container. ( QObject )
+		:return: self.__container. ( QObject )
 		"""
 
 		return self.__container
@@ -339,7 +339,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _container attribute.
 
-		@param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QObject )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
@@ -358,7 +358,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _settings attribute.
 
-		@return: self.__settings. ( QSettings )
+		:return: self.__settings. ( QSettings )
 		"""
 
 		return self.__settings
@@ -369,7 +369,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _settings attribute.
 
-		@param value: Attribute value. ( QSettings )
+		:param value: Attribute value. ( QSettings )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
@@ -388,7 +388,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _model attribute.
 
-		@return: self.__model. ( QStandardItemModel )
+		:return: self.__model. ( QStandardItemModel )
 		"""
 
 		return self.__model
@@ -399,7 +399,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _model attribute.
 
-		@param value: Attribute value. ( QStandardItemModel )
+		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("model"))
@@ -418,7 +418,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _modelHeaders attribute.
 
-		@return: self.__modelHeaders. ( List )
+		:return: self.__modelHeaders. ( List )
 		"""
 
 		return self.__modelHeaders
@@ -429,7 +429,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _modelHeaders attribute.
 
-		@param value: Attribute value. ( List )
+		:param value: Attribute value. ( List )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("modelHeaders"))
@@ -448,7 +448,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _treeWidgetIndentation attribute.
 
-		@return: self.__treeWidgetIndentation. ( Integer )
+		:return: self.__treeWidgetIndentation. ( Integer )
 		"""
 
 		return self.__treeWidgetIndentation
@@ -459,7 +459,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _treeWidgetIndentation attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeWidgetIndentation"))
@@ -478,7 +478,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _treeViewInnerMargins attribute.
 
-		@return: self.__treeViewInnerMargins. ( Integer )
+		:return: self.__treeViewInnerMargins. ( Integer )
 		"""
 
 		return self.__treeViewInnerMargins
@@ -489,7 +489,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _treeViewInnerMargins attribute.
 
-		@param value: Attribute value. ( Integer )
+		:param value: Attribute value. ( Integer )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("treeViewInnerMargins"))
@@ -508,7 +508,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _componentsInformationsDefaultText attribute.
 
-		@return: self.__componentsInformationsDefaultText. ( String )
+		:return: self.__componentsInformationsDefaultText. ( String )
 		"""
 
 		return self.__componentsInformationsDefaultText
@@ -519,7 +519,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _componentsInformationsDefaultText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("componentsInformationsDefaultText"))
@@ -538,7 +538,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the property for the _componentsInformationsText attribute.
 
-		@return: self.__componentsInformationsText. ( String )
+		:return: self.__componentsInformationsText. ( String )
 		"""
 
 		return self.__componentsInformationsText
@@ -549,7 +549,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is the setter method for the _componentsInformationsText attribute.
 
-		@param value: Attribute value. ( String )
+		:param value: Attribute value. ( String )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("componentsInformationsText"))
@@ -571,7 +571,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method activates the Component.
 
-		@param container: Container to attach the Component to. ( QObject )
+		:param container: Container to attach the Component to. ( QObject )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -811,7 +811,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is triggered by activateComponentsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.activateComponents__()
@@ -821,7 +821,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is triggered by deactivateComponentsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.deactivateComponents__()
@@ -831,7 +831,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method is triggered by reloadComponentsAction action.
 
-		@param checked: Action checked state. ( Boolean )
+		:param checked: Action checked state. ( Boolean )
 		"""
 
 		self.reloadComponents__()
@@ -841,8 +841,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method sets the Additional_Informations_textEdit Widget.
 
-		@param selectedItems: Selected items. ( QItemSelection )
-		@param deselectedItems: Deselected items. ( QItemSelection )
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget.".format("Additional_Informations_textEdit"))
@@ -869,7 +869,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method stores deactivated Components in settings file.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		deactivatedComponents = []
@@ -887,7 +887,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method activates user selected Components.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		for component in self.getSelectedComponents():
@@ -904,7 +904,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method deactivates user selected Components.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		for component in self.getSelectedComponents():
@@ -924,7 +924,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method reloads user selected Components.
 
-		@return: Method success. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		selectedComponents = self.getSelectedComponents()
@@ -944,8 +944,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method activates provided Component.
 
-		@param component: Component. ( Profile )
-		@return: Method success. ( Boolean )
+		:param component: Component. ( Profile )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component activation.".format(component.name))
@@ -965,8 +965,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method deactivates provided Component.
 
-		@param component: Component. ( Profile )
-		@return: Method success. ( Boolean )
+		:param component: Component. ( Profile )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component deactivation.".format(component.name))
@@ -989,8 +989,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method reloads provided Component.
 
-		@param component: Component. ( Profile )
-		@return: Method success. ( Boolean )
+		:param component: Component. ( Profile )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Attempting '{0}' Component reload.".format(component.name))
@@ -1008,8 +1008,8 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method returns the Components_Manager_Ui_treeView selected items.
 
-		@param rowsRootOnly: Return rows roots only. ( Boolean )
-		@return: View selected items. ( List )
+		:param rowsRootOnly: Return rows roots only. ( Boolean )
+		:return: View selected items. ( List )
 		"""
 
 		selectedIndexes = self.ui.Components_Manager_Ui_treeView.selectedIndexes()
@@ -1020,7 +1020,7 @@ class ComponentsManagerUi(UiComponent):
 		"""
 		This method returns selected Components.
 
-		@return: View selected Components. ( List )
+		:return: View selected Components. ( List )
 		"""
 
 		selectedComponents = [item._datas for item in self.getSelectedItems() if item._type == "Component"]

@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: SearchDatabase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

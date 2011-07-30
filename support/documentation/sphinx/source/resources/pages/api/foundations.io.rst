@@ -12,6 +12,6 @@ Classes
 -------
 
 .. autoclass:: File
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

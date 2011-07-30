@@ -12,10 +12,10 @@ Classes
 -------
 
 .. autoclass:: ProfileTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: ManagerTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

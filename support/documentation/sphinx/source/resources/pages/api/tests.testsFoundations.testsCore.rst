@@ -7,26 +7,26 @@ Classes
 -------
 
 .. autoclass:: StandardMessageHookTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: SetVerbosityLevelTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetFrameTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetCodeLayerNameTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetModuleTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
 .. autoclass:: GetObjectNameTestCase
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

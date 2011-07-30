@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Db
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 

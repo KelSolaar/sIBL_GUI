@@ -71,9 +71,9 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	"""
 	This definition gets Sphinx documentation index file.
 
-	@param fileIn: File to convert. ( String )
-	@param fileOut: Output file. ( String )
-	@param contentDirectory: Content directory. ( String )
+	:param fileIn: File to convert. ( String )
+	:param fileOut: Output file. ( String )
+	:param contentDirectory: Content directory. ( String )
 	"""
 
 	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__, fileOut))

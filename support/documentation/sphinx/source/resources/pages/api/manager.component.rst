@@ -7,6 +7,6 @@ Classes
 -------
 
 .. autoclass:: Component
-   :show-inheritance:
-   :members:
+	:show-inheritance:
+	:members:
 
