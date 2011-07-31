@@ -3,6 +3,11 @@ _`umbra.components.addons.databaseOperations.databaseOperations`
 
 .. automodule:: umbra.components.addons.databaseOperations.databaseOperations
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.addons.databaseOperations.databaseOperations.LOGGER
+
 Classes
 -------
 

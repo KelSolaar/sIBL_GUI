@@ -3,6 +3,11 @@ _`umbra.sIBL_GUI`
 
 .. automodule:: umbra.sIBL_GUI
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.sIBL_GUI.LOGGER
+
 Classes
 -------
 

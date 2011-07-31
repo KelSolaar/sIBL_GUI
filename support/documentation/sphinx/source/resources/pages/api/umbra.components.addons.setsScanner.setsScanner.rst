@@ -3,6 +3,11 @@ _`umbra.components.addons.setsScanner.setsScanner`
 
 .. automodule:: umbra.components.addons.setsScanner.setsScanner
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.addons.setsScanner.setsScanner.LOGGER
+
 Classes
 -------
 

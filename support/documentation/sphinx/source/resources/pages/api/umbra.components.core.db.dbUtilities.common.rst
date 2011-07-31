@@ -3,6 +3,13 @@ _`umbra.components.core.db.dbUtilities.common`
 
 .. automodule:: umbra.components.core.db.dbUtilities.common
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.core.db.dbUtilities.common.LOGGER
+
+.. attribute:: umbra.components.core.db.dbUtilities.common.DB_EXCEPTIONS
+
 Functions
 ---------
 

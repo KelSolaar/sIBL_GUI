@@ -3,6 +3,11 @@ _`umbra.components.core.inspector.inspector`
 
 .. automodule:: umbra.components.core.inspector.inspector
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.core.inspector.inspector.LOGGER
+
 Classes
 -------
 

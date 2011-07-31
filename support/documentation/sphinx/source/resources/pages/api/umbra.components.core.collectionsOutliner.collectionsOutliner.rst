@@ -3,6 +3,11 @@ _`umbra.components.core.collectionsOutliner.collectionsOutliner`
 
 .. automodule:: umbra.components.core.collectionsOutliner.collectionsOutliner
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.core.collectionsOutliner.collectionsOutliner.LOGGER
+
 Classes
 -------
 

@@ -3,6 +3,11 @@ _`foundations.io`
 
 .. automodule:: foundations.io
 
+Module Attributes
+-----------------
+
+.. attribute:: foundations.io.LOGGER
+
 Functions
 ---------
 

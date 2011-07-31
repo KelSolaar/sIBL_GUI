@@ -3,6 +3,13 @@ _`umbra.components.core.db.dbUtilities.types`
 
 .. automodule:: umbra.components.core.db.dbUtilities.types
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.core.db.dbUtilities.types.LOGGER
+
+.. attribute:: umbra.components.core.db.dbUtilities.types.DbBase
+
 Classes
 -------
 

@@ -3,6 +3,11 @@ _`umbra.ui.widgets.delayed_QSplashScreen`
 
 .. automodule:: umbra.ui.widgets.delayed_QSplashScreen
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.ui.widgets.delayed_QSplashScreen.LOGGER
+
 Classes
 -------
 

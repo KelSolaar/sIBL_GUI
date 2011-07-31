@@ -3,6 +3,11 @@ _`manager.componentsManager`
 
 .. automodule:: manager.componentsManager
 
+Module Attributes
+-----------------
+
+.. attribute:: manager.componentsManager.LOGGER
+
 Classes
 -------
 

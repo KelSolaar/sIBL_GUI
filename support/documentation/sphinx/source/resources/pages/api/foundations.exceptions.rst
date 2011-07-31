@@ -3,6 +3,11 @@ _`foundations.exceptions`
 
 .. automodule:: foundations.exceptions
 
+Module Attributes
+-----------------
+
+.. attribute:: foundations.exceptions.LOGGER
+
 Functions
 ---------
 

@@ -1347,9 +1347,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 				LOGGER.debug("> Stopping worker thread: '{0}'.".format(workerThread))
 				workerThread.exit()
 
-		foundations.common.closeHandler(LOGGER, self.__loggingFileHandler)
-		foundations.common.closeHandler(LOGGER, self.__loggingSessionHandler)
-		# foundations.common.closeHandler(LOGGER, self.__loggingconsolehandler)
+		foundations.common.removeLoggingHandler(LOGGER, self.__loggingFileHandler)
+		foundations.common.removeLoggingHandler(LOGGER, self.__loggingSessionHandler)
+		# foundations.common.removeLoggingHandler(LOGGER, self.__loggingconsolehandler)
 
 		# Stopping the timer.
 		self.__timer.stop()
@@ -1809,7 +1809,7 @@ def _exit():
 	LOGGER.info("{0} | Session ended at: {1}".format(Constants.applicationName, time.strftime('%X - %x')))
 	LOGGER.info(Constants.loggingSeparators)
 
-	foundations.common.closeHandler(LOGGER, RuntimeConstants.loggingConsoleHandler)
+	foundations.common.removeLoggingHandler(LOGGER, RuntimeConstants.loggingConsoleHandler)
 
 	QApplication.exit()
 

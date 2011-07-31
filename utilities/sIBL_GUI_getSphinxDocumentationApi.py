@@ -93,7 +93,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 	LOGGER.info("{0} | Building Sphinx documentation API!".format(getSphinxDocumentationApi.__name__))
 
-	not sourceDirectory in sys.path and sys.path.append(sourceDirectory)
+	not cloneDirectory in sys.path and sys.path.append(sourceDirectory)
 
 	walker = Walker(sourceDirectory)
 	walker.walk(filtersIn=("\.py$",))
@@ -133,8 +133,6 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 			sourceFile.content = content
 		sourceFile.write()
 
-		not directory in sys.path and sys.path.append(directory)
-
 		if "__init__.py" in file:
 			continue
 
@@ -150,15 +148,23 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 		functions = OrderedDict()
 		classes = OrderedDict()
+		moduleAttributes = OrderedDict()
 		for member, object in moduleBrowser._readmodule(module, [source, ]).items():
-			if not "methods" in object.__dict__.keys():
+			if object.__class__ == moduleBrowser.Function:
 				if not member.startswith("_"):
 					functions[member] = [".. autofunction:: {0}\n".format(member)]
-
-			else:
+			elif object.__class__ == moduleBrowser.Class:
 				classes[member] = [".. autoclass:: {0}\n".format(member),
 									"	:show-inheritance:\n",
 									"	:members:\n"]
+			elif object.__class__ == moduleBrowser.Global:
+				if not member.startswith("_"):
+					moduleAttributes[member] = [".. attribute:: {0}.{1}\n".format(module, member)]
+
+		moduleAttributes and rstFile.content.append("Module Attributes\n-----------------\n\n")
+		for moduleAttribute in moduleAttributes.values():
+			rstFile.content.extend(moduleAttribute)
+			rstFile.content.append("\n")
 
 		functions and rstFile.content.append("Functions\n---------\n\n")
 		for function in functions.values():
@@ -173,8 +179,8 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		rstFile.write()
 		modules.append(module)
 
-	testsModules = [module for module in modules if "tests" in module]
 	modules = [module for module in modules if not "tests" in module]
+	testsModules = [module for module in modules if "tests" in module]
 
 	apiFile = File(apiFile)
 	apiFile.content.extend(TOCTREE_TEMPLATE_BEGIN)

@@ -3,6 +3,13 @@ _`umbra.components.addons.onlineUpdater.onlineUpdater`
 
 .. automodule:: umbra.components.addons.onlineUpdater.onlineUpdater
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.components.addons.onlineUpdater.onlineUpdater.LOGGER
+
+.. attribute:: umbra.components.addons.onlineUpdater.onlineUpdater.REPOSITORY_URL
+
 Classes
 -------
 

@@ -3,6 +3,11 @@ _`umbra.ui.common`
 
 .. automodule:: umbra.ui.common
 
+Module Attributes
+-----------------
+
+.. attribute:: umbra.ui.common.LOGGER
+
 Functions
 ---------
 

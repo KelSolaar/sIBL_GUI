@@ -3,6 +3,11 @@ _`foundations.common`
 
 .. automodule:: foundations.common
 
+Module Attributes
+-----------------
+
+.. attribute:: foundations.common.LOGGER
+
 Functions
 ---------
 
@@ -10,7 +15,7 @@ Functions
 
 .. autofunction:: getUserApplicationDatasDirectory
 
-.. autofunction:: closeHandler
+.. autofunction:: removeLoggingHandler
 
 .. autofunction:: exit
 
