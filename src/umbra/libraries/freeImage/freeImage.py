@@ -982,7 +982,7 @@ class Image(object):
 	@property
 	def library(self):
 		"""
-		This method is the property for the _library attribute.
+		This method is the property for the __library attribute.
 
 		:return: self.__library. ( Library )
 		"""
@@ -993,7 +993,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def library(self, value):
 		"""
-		This method is the setter method for the _library attribute.
+		This method is the setter method for the __library attribute.
 
 		:param value: Attribute value. ( Library )
 		"""
@@ -1004,7 +1004,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def library(self):
 		"""
-		This method is the deleter method for the _library attribute.
+		This method is the deleter method for the __library attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("library"))
@@ -1012,7 +1012,7 @@ class Image(object):
 	@property
 	def errorsCallback(self):
 		"""
-		This method is the property for the _errorsCallback attribute.
+		This method is the property for the __errorsCallback attribute.
 
 		:return: self.__errorsCallback. ( Object )
 		"""
@@ -1023,7 +1023,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def errorsCallback(self, value):
 		"""
-		This method is the setter method for the _errorsCallback attribute.
+		This method is the setter method for the __errorsCallback attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1034,7 +1034,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def errorsCallback(self):
 		"""
-		This method is the deleter method for the _errorsCallback attribute.
+		This method is the deleter method for the __errorsCallback attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("errorsCallback"))
@@ -1042,7 +1042,7 @@ class Image(object):
 	@property
 	def imagePath(self):
 		"""
-		This method is the property for the _imagePath attribute.
+		This method is the property for the __imagePath attribute.
 
 		:return: self.__imagePath. ( String )
 		"""
@@ -1053,7 +1053,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def imagePath(self, value):
 		"""
-		This method is the setter method for the _imagePath attribute.
+		This method is the setter method for the __imagePath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1066,7 +1066,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def imagePath(self):
 		"""
-		This method is the deleter method for the _imagePath attribute.
+		This method is the deleter method for the __imagePath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("imagePath"))
@@ -1074,7 +1074,7 @@ class Image(object):
 	@property
 	def bitmap(self):
 		"""
-		This method is the property for the _bitmap attribute.
+		This method is the property for the __bitmap attribute.
 
 		:return: self.__bitmap. ( Object )
 		"""
@@ -1085,7 +1085,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def bitmap(self, value):
 		"""
-		This method is the setter method for the _bitmap attribute.
+		This method is the setter method for the __bitmap attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1096,7 +1096,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def bitmap(self):
 		"""
-		This method is the deleter method for the _bitmap attribute.
+		This method is the deleter method for the __bitmap attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("bitmap"))

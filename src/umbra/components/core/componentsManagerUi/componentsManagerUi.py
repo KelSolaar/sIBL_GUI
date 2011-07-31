@@ -146,7 +146,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -157,7 +157,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -168,7 +168,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -176,7 +176,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -187,7 +187,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -198,7 +198,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -206,7 +206,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def uiActivatedImage(self):
 		"""
-		This method is the property for the _uiActivatedImage attribute.
+		This method is the property for the __uiActivatedImage attribute.
 
 		:return: self.__uiActivatedImage. ( String )
 		"""
@@ -217,7 +217,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiActivatedImage(self, value):
 		"""
-		This method is the setter method for the _uiActivatedImage attribute.
+		This method is the setter method for the __uiActivatedImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -228,7 +228,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiActivatedImage(self):
 		"""
-		This method is the deleter method for the _uiActivatedImage attribute.
+		This method is the deleter method for the __uiActivatedImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiActivatedImage"))
@@ -236,7 +236,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def uiDeactivatedImage(self):
 		"""
-		This method is the property for the _uiDeactivatedImage attribute.
+		This method is the property for the __uiDeactivatedImage attribute.
 
 		:return: self.__uiDeactivatedImage. ( String )
 		"""
@@ -247,7 +247,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDeactivatedImage(self, value):
 		"""
-		This method is the setter method for the _uiDeactivatedImage attribute.
+		This method is the setter method for the __uiDeactivatedImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -258,7 +258,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDeactivatedImage(self):
 		"""
-		This method is the deleter method for the _uiDeactivatedImage attribute.
+		This method is the deleter method for the __uiDeactivatedImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDeactivatedImage"))
@@ -266,7 +266,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def uiCategorieAffixe(self):
 		"""
-		This method is the property for the _uiCategorieAffixe attribute.
+		This method is the property for the __uiCategorieAffixe attribute.
 
 		:return: self.__uiCategorieAffixe. ( String )
 		"""
@@ -277,7 +277,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiCategorieAffixe(self, value):
 		"""
-		This method is the setter method for the _uiCategorieAffixe attribute.
+		This method is the setter method for the __uiCategorieAffixe attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -288,7 +288,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiCategorieAffixe(self):
 		"""
-		This method is the deleter method for the _uiCategorieAffixe attribute.
+		This method is the deleter method for the __uiCategorieAffixe attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiCategorieAffixe"))
@@ -296,7 +296,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the _dockArea attribute.
+		This method is the property for the __dockArea attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -307,7 +307,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the _dockArea attribute.
+		This method is the setter method for the __dockArea attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -318,7 +318,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the _dockArea attribute.
+		This method is the deleter method for the __dockArea attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -326,7 +326,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -337,7 +337,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -348,7 +348,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -356,7 +356,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -367,7 +367,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -378,7 +378,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -386,7 +386,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def model(self):
 		"""
-		This method is the property for the _model attribute.
+		This method is the property for the __model attribute.
 
 		:return: self.__model. ( QStandardItemModel )
 		"""
@@ -397,7 +397,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for the _model attribute.
+		This method is the setter method for the __model attribute.
 
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
@@ -408,7 +408,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for the _model attribute.
+		This method is the deleter method for the __model attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
@@ -416,7 +416,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def modelHeaders(self):
 		"""
-		This method is the property for the _modelHeaders attribute.
+		This method is the property for the __modelHeaders attribute.
 
 		:return: self.__modelHeaders. ( List )
 		"""
@@ -427,7 +427,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self, value):
 		"""
-		This method is the setter method for the _modelHeaders attribute.
+		This method is the setter method for the __modelHeaders attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -438,7 +438,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self):
 		"""
-		This method is the deleter method for the _modelHeaders attribute.
+		This method is the deleter method for the __modelHeaders attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelHeaders"))
@@ -446,7 +446,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def treeWidgetIndentation(self):
 		"""
-		This method is the property for the _treeWidgetIndentation attribute.
+		This method is the property for the __treeWidgetIndentation attribute.
 
 		:return: self.__treeWidgetIndentation. ( Integer )
 		"""
@@ -457,7 +457,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeWidgetIndentation(self, value):
 		"""
-		This method is the setter method for the _treeWidgetIndentation attribute.
+		This method is the setter method for the __treeWidgetIndentation attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -468,7 +468,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeWidgetIndentation(self):
 		"""
-		This method is the deleter method for the _treeWidgetIndentation attribute.
+		This method is the deleter method for the __treeWidgetIndentation attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeWidgetIndentation"))
@@ -476,7 +476,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def treeViewInnerMargins(self):
 		"""
-		This method is the property for the _treeViewInnerMargins attribute.
+		This method is the property for the __treeViewInnerMargins attribute.
 
 		:return: self.__treeViewInnerMargins. ( Integer )
 		"""
@@ -487,7 +487,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
-		This method is the setter method for the _treeViewInnerMargins attribute.
+		This method is the setter method for the __treeViewInnerMargins attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -498,7 +498,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
-		This method is the deleter method for the _treeViewInnerMargins attribute.
+		This method is the deleter method for the __treeViewInnerMargins attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewInnerMargins"))
@@ -506,7 +506,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def componentsInformationsDefaultText(self):
 		"""
-		This method is the property for the _componentsInformationsDefaultText attribute.
+		This method is the property for the __componentsInformationsDefaultText attribute.
 
 		:return: self.__componentsInformationsDefaultText. ( String )
 		"""
@@ -517,7 +517,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def componentsInformationsDefaultText(self, value):
 		"""
-		This method is the setter method for the _componentsInformationsDefaultText attribute.
+		This method is the setter method for the __componentsInformationsDefaultText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -528,7 +528,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def componentsInformationsDefaultText(self):
 		"""
-		This method is the deleter method for the _componentsInformationsDefaultText attribute.
+		This method is the deleter method for the __componentsInformationsDefaultText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("componentsInformationsDefaultText"))
@@ -536,7 +536,7 @@ class ComponentsManagerUi(UiComponent):
 	@property
 	def componentsInformationsText(self):
 		"""
-		This method is the property for the _componentsInformationsText attribute.
+		This method is the property for the __componentsInformationsText attribute.
 
 		:return: self.__componentsInformationsText. ( String )
 		"""
@@ -547,7 +547,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def componentsInformationsText(self, value):
 		"""
-		This method is the setter method for the _componentsInformationsText attribute.
+		This method is the setter method for the __componentsInformationsText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -558,7 +558,7 @@ class ComponentsManagerUi(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def componentsInformationsText(self):
 		"""
-		This method is the deleter method for the _componentsInformationsText attribute.
+		This method is the deleter method for the __componentsInformationsText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("componentsInformationsText"))

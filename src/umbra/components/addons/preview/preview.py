@@ -82,7 +82,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def image(self):
 		"""
-		This method is the property for the _image attribute.
+		This method is the property for the __image attribute.
 
 		:return: self.__image. ( QImage )
 		"""
@@ -93,7 +93,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def image(self, value):
 		"""
-		This method is the setter method for the _image attribute.
+		This method is the setter method for the __image attribute.
 
 		:param value: Attribute value. ( QImage )
 		"""
@@ -106,7 +106,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def image(self):
 		"""
-		This method is the deleter method for the _image attribute.
+		This method is the deleter method for the __image attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("image"))
@@ -114,7 +114,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def width(self):
 		"""
-		This method is the property for the _width attribute.
+		This method is the property for the __width attribute.
 
 		:return: self.__width. ( Integer )
 		"""
@@ -125,7 +125,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def width(self, value):
 		"""
-		This method is the setter method for the _width attribute.
+		This method is the setter method for the __width attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -138,7 +138,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def width(self):
 		"""
-		This method is the deleter method for the _width attribute.
+		This method is the deleter method for the __width attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("width"))
@@ -146,7 +146,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@property
 	def height(self):
 		"""
-		This method is the property for the _height attribute.
+		This method is the property for the __height attribute.
 
 		:return: self.__height. ( Integer )
 		"""
@@ -157,7 +157,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def height(self, value):
 		"""
-		This method is the setter method for the _height attribute.
+		This method is the setter method for the __height attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -170,7 +170,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def height(self):
 		"""
-		This method is the deleter method for the _height attribute.
+		This method is the deleter method for the __height attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("height"))
@@ -262,7 +262,7 @@ class ImagesPreviewer(object):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -273,7 +273,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -284,7 +284,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -292,7 +292,7 @@ class ImagesPreviewer(object):
 	@property
 	def paths(self):
 		"""
-		This method is the property for the _paths attribute.
+		This method is the property for the __paths attribute.
 
 		:return: self.__paths. ( List )
 		"""
@@ -303,7 +303,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def paths(self, value):
 		"""
-		This method is the setter method for the _paths attribute.
+		This method is the setter method for the __paths attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -316,7 +316,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def paths(self):
 		"""
-		This method is the deleter method for the _paths attribute.
+		This method is the deleter method for the __paths attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("paths"))
@@ -324,7 +324,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -335,7 +335,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -346,7 +346,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -354,7 +354,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -365,7 +365,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -376,7 +376,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -384,7 +384,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiPreviousImage(self):
 		"""
-		This method is the property for the _uiPreviousImage attribute.
+		This method is the property for the __uiPreviousImage attribute.
 
 		:return: self.__uiPreviousImage. ( String )
 		"""
@@ -395,7 +395,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This method is the setter method for the _uiPreviousImage attribute.
+		This method is the setter method for the __uiPreviousImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -406,7 +406,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This method is the deleter method for the _uiPreviousImage attribute.
+		This method is the deleter method for the __uiPreviousImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPreviousImage"))
@@ -414,7 +414,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiNextImage(self):
 		"""
-		This method is the property for the _uiNextImage attribute.
+		This method is the property for the __uiNextImage attribute.
 
 		:return: self.__uiNextImage. ( String )
 		"""
@@ -425,7 +425,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This method is the setter method for the _uiNextImage attribute.
+		This method is the setter method for the __uiNextImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -436,7 +436,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This method is the deleter method for the _uiNextImage attribute.
+		This method is the deleter method for the __uiNextImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiNextImage"))
@@ -444,7 +444,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiZoomOutImage(self):
 		"""
-		This method is the property for the _uiZoomOutImage attribute.
+		This method is the property for the __uiZoomOutImage attribute.
 
 		:return: self.__uiZoomOutImage. ( String )
 		"""
@@ -455,7 +455,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self, value):
 		"""
-		This method is the setter method for the _uiZoomOutImage attribute.
+		This method is the setter method for the __uiZoomOutImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -466,7 +466,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self):
 		"""
-		This method is the deleter method for the _uiZoomOutImage attribute.
+		This method is the deleter method for the __uiZoomOutImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomOutImage"))
@@ -474,7 +474,7 @@ class ImagesPreviewer(object):
 	@property
 	def uiZoomInImage(self):
 		"""
-		This method is the property for the _uiZoomInImage attribute.
+		This method is the property for the __uiZoomInImage attribute.
 
 		:return: self.__uiZoomInImage. ( String )
 		"""
@@ -485,7 +485,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self, value):
 		"""
-		This method is the setter method for the _uiZoomInImage attribute.
+		This method is the setter method for the __uiZoomInImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -496,7 +496,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self):
 		"""
-		This method is the deleter method for the _uiZoomInImage attribute.
+		This method is the deleter method for the __uiZoomInImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomInImage"))
@@ -504,7 +504,7 @@ class ImagesPreviewer(object):
 	@property
 	def ui(self):
 		"""
-		This method is the property for the _ui attribute.
+		This method is the property for the __ui attribute.
 
 		:return: self.__ui. ( Object )
 		"""
@@ -515,7 +515,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self, value):
 		"""
-		This method is the setter method for the _ui attribute.
+		This method is the setter method for the __ui attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -526,7 +526,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self):
 		"""
-		This method is the deleter method for the _ui attribute.
+		This method is the deleter method for the __ui attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
@@ -534,7 +534,7 @@ class ImagesPreviewer(object):
 	@property
 	def graphicsSceneBackgroundColor(self):
 		"""
-		This method is the property for the _graphicsSceneBackgroundColor attribute.
+		This method is the property for the __graphicsSceneBackgroundColor attribute.
 
 		:return: self.__graphicsSceneBackgroundColor. ( QColors )
 		"""
@@ -545,7 +545,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self, value):
 		"""
-		This method is the setter method for the _graphicsSceneBackgroundColor attribute.
+		This method is the setter method for the __graphicsSceneBackgroundColor attribute.
 
 		:param value: Attribute value. ( QColors )
 		"""
@@ -556,7 +556,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneBackgroundColor(self):
 		"""
-		This method is the deleter method for the _graphicsSceneBackgroundColor attribute.
+		This method is the deleter method for the __graphicsSceneBackgroundColor attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("graphicsSceneBackgroundColor"))
@@ -564,7 +564,7 @@ class ImagesPreviewer(object):
 	@property
 	def previewerMargin(self):
 		"""
-		This method is the property for the _previewerMargin attribute.
+		This method is the property for the __previewerMargin attribute.
 
 		:return: self.__previewerMargin. ( Integer )
 		"""
@@ -575,7 +575,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def previewerMargin(self, value):
 		"""
-		This method is the setter method for the _previewerMargin attribute.
+		This method is the setter method for the __previewerMargin attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -586,7 +586,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def previewerMargin(self):
 		"""
-		This method is the deleter method for the _previewerMargin attribute.
+		This method is the deleter method for the __previewerMargin attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("previewerMargin"))
@@ -594,7 +594,7 @@ class ImagesPreviewer(object):
 	@property
 	def graphicsSceneWidth(self):
 		"""
-		This method is the property for the _graphicsSceneWidth attribute.
+		This method is the property for the __graphicsSceneWidth attribute.
 
 		:return: self.__graphicsSceneWidth. ( Integer )
 		"""
@@ -605,7 +605,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self, value):
 		"""
-		This method is the setter method for the _graphicsSceneWidth attribute.
+		This method is the setter method for the __graphicsSceneWidth attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -616,7 +616,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneWidth(self):
 		"""
-		This method is the deleter method for the _graphicsSceneWidth attribute.
+		This method is the deleter method for the __graphicsSceneWidth attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("graphicsSceneWidth"))
@@ -624,7 +624,7 @@ class ImagesPreviewer(object):
 	@property
 	def graphicsSceneHeight(self):
 		"""
-		This method is the property for the _graphicsSceneHeight attribute.
+		This method is the property for the __graphicsSceneHeight attribute.
 
 		:return: self.__graphicsSceneHeight. ( Object )
 		"""
@@ -635,7 +635,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self, value):
 		"""
-		This method is the setter method for the _graphicsSceneHeight attribute.
+		This method is the setter method for the __graphicsSceneHeight attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -646,7 +646,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsSceneHeight(self):
 		"""
-		This method is the deleter method for the _graphicsSceneHeight attribute.
+		This method is the deleter method for the __graphicsSceneHeight attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("graphicsSceneHeight"))
@@ -654,7 +654,7 @@ class ImagesPreviewer(object):
 	@property
 	def minimumZoomFactor(self):
 		"""
-		This method is the property for the _minimumZoomFactor attribute.
+		This method is the property for the __minimumZoomFactor attribute.
 
 		:return: self.__minimumZoomFactor. ( Float )
 		"""
@@ -665,7 +665,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self, value):
 		"""
-		This method is the setter method for the _minimumZoomFactor attribute.
+		This method is the setter method for the __minimumZoomFactor attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -676,7 +676,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def minimumZoomFactor(self):
 		"""
-		This method is the deleter method for the _minimumZoomFactor attribute.
+		This method is the deleter method for the __minimumZoomFactor attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("minimumZoomFactor"))
@@ -684,7 +684,7 @@ class ImagesPreviewer(object):
 	@property
 	def maximumZoomFactor(self):
 		"""
-		This method is the property for the _maximumZoomFactor attribute.
+		This method is the property for the __maximumZoomFactor attribute.
 
 		:return: self.__maximumZoomFactor. ( Float )
 		"""
@@ -695,7 +695,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self, value):
 		"""
-		This method is the setter method for the _maximumZoomFactor attribute.
+		This method is the setter method for the __maximumZoomFactor attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -706,7 +706,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def maximumZoomFactor(self):
 		"""
-		This method is the deleter method for the _maximumZoomFactor attribute.
+		This method is the deleter method for the __maximumZoomFactor attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("maximumZoomFactor"))
@@ -714,7 +714,7 @@ class ImagesPreviewer(object):
 	@property
 	def wheelZoomFactor(self):
 		"""
-		This method is the property for the _wheelZoomFactor attribute.
+		This method is the property for the __wheelZoomFactor attribute.
 
 		:return: self.__wheelZoomFactor. ( Float )
 		"""
@@ -725,7 +725,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self, value):
 		"""
-		This method is the setter method for the _wheelZoomFactor attribute.
+		This method is the setter method for the __wheelZoomFactor attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -736,7 +736,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def wheelZoomFactor(self):
 		"""
-		This method is the deleter method for the _wheelZoomFactor attribute.
+		This method is the deleter method for the __wheelZoomFactor attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("wheelZoomFactor"))
@@ -744,7 +744,7 @@ class ImagesPreviewer(object):
 	@property
 	def keyZoomFactor(self):
 		"""
-		This method is the property for the _keyZoomFactor attribute.
+		This method is the property for the __keyZoomFactor attribute.
 
 		:return: self.__keyZoomFactor. ( Float )
 		"""
@@ -755,7 +755,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self, value):
 		"""
-		This method is the setter method for the _keyZoomFactor attribute.
+		This method is the setter method for the __keyZoomFactor attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -766,7 +766,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def keyZoomFactor(self):
 		"""
-		This method is the deleter method for the _keyZoomFactor attribute.
+		This method is the deleter method for the __keyZoomFactor attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("keyZoomFactor"))
@@ -774,7 +774,7 @@ class ImagesPreviewer(object):
 	@property
 	def graphicsView(self):
 		"""
-		This method is the property for the _graphicsView attribute.
+		This method is the property for the __graphicsView attribute.
 
 		:return: self.__graphicsView. ( QGraphicsView )
 		"""
@@ -785,7 +785,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsView(self, value):
 		"""
-		This method is the setter method for the _graphicsView attribute.
+		This method is the setter method for the __graphicsView attribute.
 
 		:param value: Attribute value. ( QGraphicsView )
 		"""
@@ -796,7 +796,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsView(self):
 		"""
-		This method is the deleter method for the _graphicsView attribute.
+		This method is the deleter method for the __graphicsView attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("graphicsView"))
@@ -804,7 +804,7 @@ class ImagesPreviewer(object):
 	@property
 	def graphicsScene(self):
 		"""
-		This method is the property for the _graphicsScene attribute.
+		This method is the property for the __graphicsScene attribute.
 
 		:return: self.__graphicsScene. ( QGraphicsScene )
 		"""
@@ -815,7 +815,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsScene(self, value):
 		"""
-		This method is the setter method for the _graphicsScene attribute.
+		This method is the setter method for the __graphicsScene attribute.
 
 		:param value: Attribute value. ( QGraphicsScene )
 		"""
@@ -826,7 +826,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def graphicsScene(self):
 		"""
-		This method is the deleter method for the _graphicsScene attribute.
+		This method is the deleter method for the __graphicsScene attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("graphicsScene"))
@@ -834,7 +834,7 @@ class ImagesPreviewer(object):
 	@property
 	def displayGraphicsItem(self):
 		"""
-		This method is the property for the _displayGraphicsItem attribute.
+		This method is the property for the __displayGraphicsItem attribute.
 
 		:return: self.__displayGraphicsItem. ( QGraphicsItem )
 		"""
@@ -845,7 +845,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self, value):
 		"""
-		This method is the setter method for the _displayGraphicsItem attribute.
+		This method is the setter method for the __displayGraphicsItem attribute.
 
 		:param value: Attribute value. ( QGraphicsItem )
 		"""
@@ -856,7 +856,7 @@ class ImagesPreviewer(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def displayGraphicsItem(self):
 		"""
-		This method is the deleter method for the _displayGraphicsItem attribute.
+		This method is the deleter method for the __displayGraphicsItem attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("displayGraphicsItem"))
@@ -1123,7 +1123,7 @@ class Preview(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -1134,7 +1134,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1145,7 +1145,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -1153,7 +1153,7 @@ class Preview(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -1164,7 +1164,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1175,7 +1175,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -1183,7 +1183,7 @@ class Preview(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -1194,7 +1194,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -1205,7 +1205,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -1213,7 +1213,7 @@ class Preview(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -1224,7 +1224,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -1235,7 +1235,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -1243,7 +1243,7 @@ class Preview(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the _settingsSection attribute.
+		This method is the property for the __settingsSection attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -1254,7 +1254,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the _settingsSection attribute.
+		This method is the setter method for the __settingsSection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1265,7 +1265,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the _settingsSection attribute.
+		This method is the deleter method for the __settingsSection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -1273,7 +1273,7 @@ class Preview(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the _corePreferencesManager attribute.
+		This method is the property for the __corePreferencesManager attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -1284,7 +1284,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the _corePreferencesManager attribute.
+		This method is the setter method for the __corePreferencesManager attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1295,7 +1295,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the _corePreferencesManager attribute.
+		This method is the deleter method for the __corePreferencesManager attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -1303,7 +1303,7 @@ class Preview(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -1314,7 +1314,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1325,7 +1325,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -1333,7 +1333,7 @@ class Preview(UiComponent):
 	@property
 	def coreInspector(self):
 		"""
-		This method is the property for the _coreInspector attribute.
+		This method is the property for the __coreInspector attribute.
 
 		:return: self.__coreInspector. ( Object )
 		"""
@@ -1344,7 +1344,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self, value):
 		"""
-		This method is the setter method for the _coreInspector attribute.
+		This method is the setter method for the __coreInspector attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1355,7 +1355,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self):
 		"""
-		This method is the deleter method for the _coreInspector attribute.
+		This method is the deleter method for the __coreInspector attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
@@ -1363,7 +1363,7 @@ class Preview(UiComponent):
 	@property
 	def imagesPreviewers(self):
 		"""
-		This method is the property for the _imagesPreviewers attribute.
+		This method is the property for the __imagesPreviewers attribute.
 
 		:return: self.__imagesPreviewers. ( List )
 		"""
@@ -1374,7 +1374,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def imagesPreviewers(self, value):
 		"""
-		This method is the setter method for the _imagesPreviewers attribute.
+		This method is the setter method for the __imagesPreviewers attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -1385,7 +1385,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def imagesPreviewers(self):
 		"""
-		This method is the deleter method for the _imagesPreviewers attribute.
+		This method is the deleter method for the __imagesPreviewers attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("imagesPreviewers"))
@@ -1393,7 +1393,7 @@ class Preview(UiComponent):
 	@property
 	def maximumImagesPreviewersInstances(self):
 		"""
-		This method is the property for the _maximumImagesPreviewersInstances attribute.
+		This method is the property for the __maximumImagesPreviewersInstances attribute.
 
 		:return: self.__maximumImagesPreviewersInstances. ( Integer )
 		"""
@@ -1404,7 +1404,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def maximumImagesPreviewersInstances(self, value):
 		"""
-		This method is the setter method for the _maximumImagesPreviewersInstances attribute.
+		This method is the setter method for the __maximumImagesPreviewersInstances attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -1415,7 +1415,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def maximumImagesPreviewersInstances(self):
 		"""
-		This method is the deleter method for the _maximumImagesPreviewersInstances attribute.
+		This method is the deleter method for the __maximumImagesPreviewersInstances attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("maximumImagesPreviewersInstances"))
@@ -1423,7 +1423,7 @@ class Preview(UiComponent):
 	@property
 	def viewIblSetsBackgroundImagesAction(self):
 		"""
-		This method is the property for the _viewIblSetsBackgroundImagesAction attribute.
+		This method is the property for the __viewIblSetsBackgroundImagesAction attribute.
 
 		:return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
 		"""
@@ -1434,7 +1434,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsBackgroundImagesAction(self, value):
 		"""
-		This method is the setter method for the _viewIblSetsBackgroundImagesAction attribute.
+		This method is the setter method for the __viewIblSetsBackgroundImagesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1445,7 +1445,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsBackgroundImagesAction(self):
 		"""
-		This method is the deleter method for the _viewIblSetsBackgroundImagesAction attribute.
+		This method is the deleter method for the __viewIblSetsBackgroundImagesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsBackgroundImagesAction"))
@@ -1453,7 +1453,7 @@ class Preview(UiComponent):
 	@property
 	def viewIblSetsLightingImagesAction(self):
 		"""
-		This method is the property for the _viewIblSetsLightingImagesAction attribute.
+		This method is the property for the __viewIblSetsLightingImagesAction attribute.
 
 		:return: self.__viewIblSetsLightingImagesAction. ( QAction )
 		"""
@@ -1464,7 +1464,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsLightingImagesAction(self, value):
 		"""
-		This method is the setter method for the _viewIblSetsLightingImagesAction attribute.
+		This method is the setter method for the __viewIblSetsLightingImagesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1475,7 +1475,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsLightingImagesAction(self):
 		"""
-		This method is the deleter method for the _viewIblSetsLightingImagesAction attribute.
+		This method is the deleter method for the __viewIblSetsLightingImagesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsLightingImagesAction"))
@@ -1483,7 +1483,7 @@ class Preview(UiComponent):
 	@property
 	def viewIblSetsReflectionImagesAction(self):
 		"""
-		This method is the property for the _viewIblSetsReflectionImagesAction attribute.
+		This method is the property for the __viewIblSetsReflectionImagesAction attribute.
 
 		:return: self.__viewIblSetsReflectionImagesAction. ( QAction )
 		"""
@@ -1494,7 +1494,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsReflectionImagesAction(self, value):
 		"""
-		This method is the setter method for the _viewIblSetsReflectionImagesAction attribute.
+		This method is the setter method for the __viewIblSetsReflectionImagesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1505,7 +1505,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsReflectionImagesAction(self):
 		"""
-		This method is the deleter method for the _viewIblSetsReflectionImagesAction attribute.
+		This method is the deleter method for the __viewIblSetsReflectionImagesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsReflectionImagesAction"))
@@ -1513,7 +1513,7 @@ class Preview(UiComponent):
 	@property
 	def viewIblSetsPlatesAction(self):
 		"""
-		This method is the property for the _viewIblSetsPlatesAction attribute.
+		This method is the property for the __viewIblSetsPlatesAction attribute.
 
 		:return: self.__viewIblSetsPlatesAction. ( QAction )
 		"""
@@ -1524,7 +1524,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsPlatesAction(self, value):
 		"""
-		This method is the setter method for the _viewIblSetsPlatesAction attribute.
+		This method is the setter method for the __viewIblSetsPlatesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1535,14 +1535,14 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewIblSetsPlatesAction(self):
 		"""
-		This method is the deleter method for the _viewIblSetsPlatesAction attribute.
+		This method is the deleter method for the __viewIblSetsPlatesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsPlatesAction"))
 	@property
 	def viewInspectorIblSetBackgroundImagesAction(self):
 		"""
-		This method is the property for the _viewInspectorIblSetBackgroundImagesAction attribute.
+		This method is the property for the __viewInspectorIblSetBackgroundImagesAction attribute.
 
 		:return: self.__viewInspectorIblSetBackgroundImagesAction. ( QAction )
 		"""
@@ -1553,7 +1553,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetBackgroundImagesAction(self, value):
 		"""
-		This method is the setter method for the _viewInspectorIblSetBackgroundImagesAction attribute.
+		This method is the setter method for the __viewInspectorIblSetBackgroundImagesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1564,7 +1564,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetBackgroundImagesAction(self):
 		"""
-		This method is the deleter method for the _viewInspectorIblSetBackgroundImagesAction attribute.
+		This method is the deleter method for the __viewInspectorIblSetBackgroundImagesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetBackgroundImagesAction"))
@@ -1572,7 +1572,7 @@ class Preview(UiComponent):
 	@property
 	def viewInspectorIblSetLightingImagesAction(self):
 		"""
-		This method is the property for the _viewInspectorIblSetLightingImagesAction attribute.
+		This method is the property for the __viewInspectorIblSetLightingImagesAction attribute.
 
 		:return: self.__viewInspectorIblSetLightingImagesAction. ( QAction )
 		"""
@@ -1583,7 +1583,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetLightingImagesAction(self, value):
 		"""
-		This method is the setter method for the _viewInspectorIblSetLightingImagesAction attribute.
+		This method is the setter method for the __viewInspectorIblSetLightingImagesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1594,7 +1594,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetLightingImagesAction(self):
 		"""
-		This method is the deleter method for the _viewInspectorIblSetLightingImagesAction attribute.
+		This method is the deleter method for the __viewInspectorIblSetLightingImagesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetLightingImagesAction"))
@@ -1602,7 +1602,7 @@ class Preview(UiComponent):
 	@property
 	def viewInspectorIblSetReflectionImageAction(self):
 		"""
-		This method is the property for the _viewInspectorIblSetReflectionImageAction attribute.
+		This method is the property for the __viewInspectorIblSetReflectionImageAction attribute.
 
 		:return: self.__viewInspectorIblSetReflectionImageAction. ( QAction )
 		"""
@@ -1613,7 +1613,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetReflectionImageAction(self, value):
 		"""
-		This method is the setter method for the _viewInspectorIblSetReflectionImageAction attribute.
+		This method is the setter method for the __viewInspectorIblSetReflectionImageAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1624,7 +1624,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetReflectionImageAction(self):
 		"""
-		This method is the deleter method for the _viewInspectorIblSetReflectionImageAction attribute.
+		This method is the deleter method for the __viewInspectorIblSetReflectionImageAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetReflectionImageAction"))
@@ -1632,7 +1632,7 @@ class Preview(UiComponent):
 	@property
 	def viewInspectorIblSetPlatesAction(self):
 		"""
-		This method is the property for the _viewInspectorIblSetPlatesAction attribute.
+		This method is the property for the __viewInspectorIblSetPlatesAction attribute.
 
 		:return: self.__viewInspectorIblSetPlatesAction. ( QAction )
 		"""
@@ -1643,7 +1643,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetPlatesAction(self, value):
 		"""
-		This method is the setter method for the _viewInspectorIblSetPlatesAction attribute.
+		This method is the setter method for the __viewInspectorIblSetPlatesAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -1654,7 +1654,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def viewInspectorIblSetPlatesAction(self):
 		"""
-		This method is the deleter method for the _viewInspectorIblSetPlatesAction attribute.
+		This method is the deleter method for the __viewInspectorIblSetPlatesAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetPlatesAction"))
@@ -1662,7 +1662,7 @@ class Preview(UiComponent):
 	@property
 	def inspectorButtons(self):
 		"""
-		This method is the property for the _inspectorButtons attribute.
+		This method is the property for the __inspectorButtons attribute.
 
 		:return: self.__inspectorButtons. ( Dictionary )
 		"""
@@ -1673,7 +1673,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorButtons(self, value):
 		"""
-		This method is the setter method for the _inspectorButtons attribute.
+		This method is the setter method for the __inspectorButtons attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -1684,7 +1684,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorButtons(self):
 		"""
-		This method is the deleter method for the _inspectorButtons attribute.
+		This method is the deleter method for the __inspectorButtons attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorButtons"))

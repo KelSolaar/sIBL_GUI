@@ -104,7 +104,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -115,7 +115,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -126,7 +126,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -134,7 +134,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -145,7 +145,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -156,7 +156,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -164,7 +164,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the _coreDb attribute.
+		This method is the property for the __coreDb attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -175,7 +175,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the _coreDb attribute.
+		This method is the setter method for the __coreDb attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -186,7 +186,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the _coreDb attribute.
+		This method is the deleter method for the __coreDb attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -194,7 +194,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the _corePreferencesManager attribute.
+		This method is the property for the __corePreferencesManager attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -205,7 +205,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the _corePreferencesManager attribute.
+		This method is the setter method for the __corePreferencesManager attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -216,7 +216,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the _corePreferencesManager attribute.
+		This method is the deleter method for the __corePreferencesManager attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -224,7 +224,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -235,7 +235,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -246,7 +246,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -254,7 +254,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the property for the _coreTemplatesOutliner attribute.
+		This method is the property for the __coreTemplatesOutliner attribute.
 
 		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -265,7 +265,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This method is the setter method for the _coreTemplatesOutliner attribute.
+		This method is the setter method for the __coreTemplatesOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -276,7 +276,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the deleter method for the _coreTemplatesOutliner attribute.
+		This method is the deleter method for the __coreTemplatesOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
@@ -284,7 +284,7 @@ class DatabaseOperations(UiComponent):
 	@property
 	def dbTypes(self):
 		"""
-		This method is the property for the _dbTypes attribute.
+		This method is the property for the __dbTypes attribute.
 
 		:return: self.__dbTypes. ( Tuple )
 		"""
@@ -295,7 +295,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbTypes(self, value):
 		"""
-		This method is the setter method for the _dbTypes attribute.
+		This method is the setter method for the __dbTypes attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -306,7 +306,7 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbTypes(self):
 		"""
-		This method is the deleter method for the _dbTypes attribute.
+		This method is the deleter method for the __dbTypes attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbTypes"))

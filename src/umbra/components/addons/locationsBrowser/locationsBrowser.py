@@ -97,7 +97,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -108,7 +108,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -119,7 +119,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -127,7 +127,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -138,7 +138,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -149,7 +149,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -157,7 +157,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -168,7 +168,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -179,7 +179,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -187,7 +187,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the _settingsSection attribute.
+		This method is the property for the __settingsSection attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -198,7 +198,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the _settingsSection attribute.
+		This method is the setter method for the __settingsSection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -209,7 +209,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the _settingsSection attribute.
+		This method is the deleter method for the __settingsSection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -217,7 +217,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def coreComponentsManagerUi(self):
 		"""
-		This method is the property for the _coreComponentsManagerUi attribute.
+		This method is the property for the __coreComponentsManagerUi attribute.
 
 		:return: self.__coreComponentsManagerUi. ( Object )
 		"""
@@ -228,7 +228,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreComponentsManagerUi(self, value):
 		"""
-		This method is the setter method for the _coreComponentsManagerUi attribute.
+		This method is the setter method for the __coreComponentsManagerUi attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -239,7 +239,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreComponentsManagerUi(self):
 		"""
-		This method is the deleter method for the _coreComponentsManagerUi attribute.
+		This method is the deleter method for the __coreComponentsManagerUi attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreComponentsManagerUi"))
@@ -247,7 +247,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the _corePreferencesManager attribute.
+		This method is the property for the __corePreferencesManager attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -258,7 +258,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the _corePreferencesManager attribute.
+		This method is the setter method for the __corePreferencesManager attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -269,7 +269,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the _corePreferencesManager attribute.
+		This method is the deleter method for the __corePreferencesManager attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -277,7 +277,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -288,7 +288,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -299,7 +299,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -307,7 +307,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the property for the _coreTemplatesOutliner attribute.
+		This method is the property for the __coreTemplatesOutliner attribute.
 
 		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -318,7 +318,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This method is the setter method for the _coreTemplatesOutliner attribute.
+		This method is the setter method for the __coreTemplatesOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -329,7 +329,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the deleter method for the _coreTemplatesOutliner attribute.
+		This method is the deleter method for the __coreTemplatesOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
@@ -337,7 +337,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def addonsLoaderScript(self):
 		"""
-		This method is the property for the _addonsLoaderScript attribute.
+		This method is the property for the __addonsLoaderScript attribute.
 
 		:return: self.__addonsLoaderScript. ( Object )
 		"""
@@ -348,7 +348,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self, value):
 		"""
-		This method is the setter method for the _addonsLoaderScript attribute.
+		This method is the setter method for the __addonsLoaderScript attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -359,7 +359,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLoaderScript(self):
 		"""
-		This method is the deleter method for the _addonsLoaderScript attribute.
+		This method is the deleter method for the __addonsLoaderScript attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLoaderScript"))
@@ -367,7 +367,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def openIblSetsLocationsAction(self):
 		"""
-		This method is the property for the _openIblSetsLocationsAction attribute.
+		This method is the property for the __openIblSetsLocationsAction attribute.
 
 		:return: self.__openIblSetsLocationsAction. ( QAction )
 		"""
@@ -378,7 +378,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openIblSetsLocationsAction(self, value):
 		"""
-		This method is the setter method for the _openIblSetsLocationsAction attribute.
+		This method is the setter method for the __openIblSetsLocationsAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -389,7 +389,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openIblSetsLocationsAction(self):
 		"""
-		This method is the deleter method for the _openIblSetsLocationsAction attribute.
+		This method is the deleter method for the __openIblSetsLocationsAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openIblSetsLocationsAction"))
@@ -397,7 +397,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def openInspectorIblSetLocationsAction(self):
 		"""
-		This method is the property for the _openInspectorIblSetLocationsAction attribute.
+		This method is the property for the __openInspectorIblSetLocationsAction attribute.
 
 		:return: self.__openInspectorIblSetLocationsAction. ( QAction )
 		"""
@@ -408,7 +408,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openInspectorIblSetLocationsAction(self, value):
 		"""
-		This method is the setter method for the _openInspectorIblSetLocationsAction attribute.
+		This method is the setter method for the __openInspectorIblSetLocationsAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -419,7 +419,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openInspectorIblSetLocationsAction(self):
 		"""
-		This method is the deleter method for the _openInspectorIblSetLocationsAction attribute.
+		This method is the deleter method for the __openInspectorIblSetLocationsAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openInspectorIblSetLocationsAction"))
@@ -427,7 +427,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def openComponentsLocationsAction(self):
 		"""
-		This method is the property for the _openComponentsLocationsAction attribute.
+		This method is the property for the __openComponentsLocationsAction attribute.
 
 		:return: self.__openComponentsLocationsAction. ( QAction )
 		"""
@@ -438,7 +438,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openComponentsLocationsAction(self, value):
 		"""
-		This method is the setter method for the _openComponentsLocationsAction attribute.
+		This method is the setter method for the __openComponentsLocationsAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -449,7 +449,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openComponentsLocationsAction(self):
 		"""
-		This method is the deleter method for the _openComponentsLocationsAction attribute.
+		This method is the deleter method for the __openComponentsLocationsAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openComponentsLocationsAction"))
@@ -457,7 +457,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def openTemplatesLocationsAction(self):
 		"""
-		This method is the property for the _openTemplatesLocationsAction attribute.
+		This method is the property for the __openTemplatesLocationsAction attribute.
 
 		:return: self.__openTemplatesLocationsAction. ( QAction )
 		"""
@@ -468,7 +468,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openTemplatesLocationsAction(self, value):
 		"""
-		This method is the setter method for the _openTemplatesLocationsAction attribute.
+		This method is the setter method for the __openTemplatesLocationsAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -479,7 +479,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def openTemplatesLocationsAction(self):
 		"""
-		This method is the deleter method for the _openTemplatesLocationsAction attribute.
+		This method is the deleter method for the __openTemplatesLocationsAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openTemplatesLocationsAction"))
@@ -487,7 +487,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This method is the property for the _Open_Output_Directory_pushButton attribute.
+		This method is the property for the __Open_Output_Directory_pushButton attribute.
 
 		:return: self.__Open_Output_Directory_pushButton. ( QPushButton )
 		"""
@@ -498,7 +498,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self, value):
 		"""
-		This method is the setter method for the _Open_Output_Directory_pushButton attribute.
+		This method is the setter method for the __Open_Output_Directory_pushButton attribute.
 
 		:param value: Attribute value. ( QPushButton )
 		"""
@@ -509,7 +509,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def Open_Output_Directory_pushButton(self):
 		"""
-		This method is the deleter method for the _Open_Output_Directory_pushButton attribute.
+		This method is the deleter method for the __Open_Output_Directory_pushButton attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("Open_Output_Directory_pushButton"))
@@ -517,7 +517,7 @@ class LocationsBrowser(UiComponent):
 	@property
 	def linuxBrowsers(self):
 		"""
-		This method is the property for the _linuxBrowsers attribute.
+		This method is the property for the __linuxBrowsers attribute.
 
 		:return: self.__linuxBrowsers. ( QObject )
 		"""
@@ -528,7 +528,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self, value):
 		"""
-		This method is the setter method for the _linuxBrowsers attribute.
+		This method is the setter method for the __linuxBrowsers attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -539,7 +539,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxBrowsers(self):
 		"""
-		This method is the deleter method for the _linuxBrowsers attribute.
+		This method is the deleter method for the __linuxBrowsers attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("linuxBrowsers"))

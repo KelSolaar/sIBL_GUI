@@ -79,7 +79,7 @@ class PreferencesManager(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -90,7 +90,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -101,7 +101,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -109,7 +109,7 @@ class PreferencesManager(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the _dockArea attribute.
+		This method is the property for the __dockArea attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -120,7 +120,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the _dockArea attribute.
+		This method is the setter method for the __dockArea attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -131,7 +131,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the _dockArea attribute.
+		This method is the deleter method for the __dockArea attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -139,7 +139,7 @@ class PreferencesManager(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -150,7 +150,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -161,7 +161,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -169,7 +169,7 @@ class PreferencesManager(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -180,7 +180,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -191,7 +191,7 @@ class PreferencesManager(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))

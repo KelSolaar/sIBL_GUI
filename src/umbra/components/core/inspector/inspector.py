@@ -190,7 +190,7 @@ class Inspector(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -201,7 +201,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -212,7 +212,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -220,7 +220,7 @@ class Inspector(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -231,7 +231,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -242,7 +242,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -250,7 +250,7 @@ class Inspector(UiComponent):
 	@property
 	def uiPreviousImage(self):
 		"""
-		This method is the property for the _uiPreviousImage attribute.
+		This method is the property for the __uiPreviousImage attribute.
 
 		:return: self.__uiPreviousImage. ( String )
 		"""
@@ -261,7 +261,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self, value):
 		"""
-		This method is the setter method for the _uiPreviousImage attribute.
+		This method is the setter method for the __uiPreviousImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -272,7 +272,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPreviousImage(self):
 		"""
-		This method is the deleter method for the _uiPreviousImage attribute.
+		This method is the deleter method for the __uiPreviousImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPreviousImage"))
@@ -280,7 +280,7 @@ class Inspector(UiComponent):
 	@property
 	def uiNextImage(self):
 		"""
-		This method is the property for the _uiNextImage attribute.
+		This method is the property for the __uiNextImage attribute.
 
 		:return: self.__uiNextImage. ( String )
 		"""
@@ -291,7 +291,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self, value):
 		"""
-		This method is the setter method for the _uiNextImage attribute.
+		This method is the setter method for the __uiNextImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -302,7 +302,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiNextImage(self):
 		"""
-		This method is the deleter method for the _uiNextImage attribute.
+		This method is the deleter method for the __uiNextImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiNextImage"))
@@ -310,7 +310,7 @@ class Inspector(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the _dockArea attribute.
+		This method is the property for the __dockArea attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -321,7 +321,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the _dockArea attribute.
+		This method is the setter method for the __dockArea attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -332,7 +332,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the _dockArea attribute.
+		This method is the deleter method for the __dockArea attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -340,7 +340,7 @@ class Inspector(UiComponent):
 	@property
 	def listViewIconSize(self):
 		"""
-		This method is the property for the _listViewIconSize attribute.
+		This method is the property for the __listViewIconSize attribute.
 
 		:return: self.__listViewIconSize. ( Integer )
 		"""
@@ -351,7 +351,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This method is the setter method for the _listViewIconSize attribute.
+		This method is the setter method for the __listViewIconSize attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -365,7 +365,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This method is the deleter method for the _listViewIconSize attribute.
+		This method is the deleter method for the __listViewIconSize attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewIconSize"))
@@ -373,7 +373,7 @@ class Inspector(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -384,7 +384,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -395,7 +395,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -403,7 +403,7 @@ class Inspector(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -414,7 +414,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -425,7 +425,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -433,7 +433,7 @@ class Inspector(UiComponent):
 	@property
 	def model(self):
 		"""
-		This method is the property for the _model attribute.
+		This method is the property for the __model attribute.
 
 		:return: self.__model. ( QStandardItemModel )
 		"""
@@ -444,7 +444,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for the _model attribute.
+		This method is the setter method for the __model attribute.
 
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
@@ -455,7 +455,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for the _model attribute.
+		This method is the deleter method for the __model attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
@@ -463,7 +463,7 @@ class Inspector(UiComponent):
 	@property
 	def inspectorIblSet(self):
 		"""
-		This method is the property for the _inspectorIblSet attribute.
+		This method is the property for the __inspectorIblSet attribute.
 
 		:return: self.__inspectorIblSet. ( QStandardItem )
 		"""
@@ -474,7 +474,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSet(self, value):
 		"""
-		This method is the setter method for the _inspectorIblSet attribute.
+		This method is the setter method for the __inspectorIblSet attribute.
 
 		:param value: Attribute value. ( QStandardItem )
 		"""
@@ -485,7 +485,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSet(self):
 		"""
-		This method is the deleter method for the _inspectorIblSet attribute.
+		This method is the deleter method for the __inspectorIblSet attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSet"))
@@ -493,7 +493,7 @@ class Inspector(UiComponent):
 	@property
 	def inspectorIblSetParser(self):
 		"""
-		This method is the property for the _inspectorIblSetParser attribute.
+		This method is the property for the __inspectorIblSetParser attribute.
 
 		:return: self.__inspectorIblSetParser. ( Parser )
 		"""
@@ -504,7 +504,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetParser(self, value):
 		"""
-		This method is the setter method for the _inspectorIblSetParser attribute.
+		This method is the setter method for the __inspectorIblSetParser attribute.
 
 		:param value: Attribute value. ( Parser )
 		"""
@@ -515,7 +515,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetParser(self):
 		"""
-		This method is the deleter method for the _inspectorIblSetParser attribute.
+		This method is the deleter method for the __inspectorIblSetParser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetParser"))
@@ -523,7 +523,7 @@ class Inspector(UiComponent):
 	@property
 	def inspectorPlates(self):
 		"""
-		This method is the property for the _inspectorPlates attribute.
+		This method is the property for the __inspectorPlates attribute.
 
 		:return: self.__inspectorPlates. ( Dictionary )
 		"""
@@ -534,7 +534,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self, value):
 		"""
-		This method is the setter method for the _inspectorPlates attribute.
+		This method is the setter method for the __inspectorPlates attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -545,7 +545,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorPlates(self):
 		"""
-		This method is the deleter method for the _inspectorPlates attribute.
+		This method is the deleter method for the __inspectorPlates attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorPlates"))
@@ -553,7 +553,7 @@ class Inspector(UiComponent):
 	@property
 	def noPreviewImageText(self):
 		"""
-		This method is the property for the _noPreviewImageText attribute.
+		This method is the property for the __noPreviewImageText attribute.
 
 		:return: self.__noPreviewImageText. ( String )
 		"""
@@ -564,7 +564,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self, value):
 		"""
-		This method is the setter method for the _noPreviewImageText attribute.
+		This method is the setter method for the __noPreviewImageText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -575,7 +575,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noPreviewImageText(self):
 		"""
-		This method is the deleter method for the _noPreviewImageText attribute.
+		This method is the deleter method for the __noPreviewImageText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("noPreviewImageText"))
@@ -583,7 +583,7 @@ class Inspector(UiComponent):
 	@property
 	def noInspectorIblSetText(self):
 		"""
-		This method is the property for the _noInspectorIblSetText attribute.
+		This method is the property for the __noInspectorIblSetText attribute.
 
 		:return: self.__noInspectorIblSetText. ( String )
 		"""
@@ -594,7 +594,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noInspectorIblSetText(self, value):
 		"""
-		This method is the setter method for the _noInspectorIblSetText attribute.
+		This method is the setter method for the __noInspectorIblSetText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -605,7 +605,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def noInspectorIblSetText(self):
 		"""
-		This method is the deleter method for the _noInspectorIblSetText attribute.
+		This method is the deleter method for the __noInspectorIblSetText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("noInspectorIblSetText"))
@@ -613,7 +613,7 @@ class Inspector(UiComponent):
 	@property
 	def inspectorIblSetToolTipText(self):
 		"""
-		This method is the property for the _inspectorIblSetToolTipText attribute.
+		This method is the property for the __inspectorIblSetToolTipText attribute.
 
 		:return: self.__inspectorIblSetToolTipText. ( String )
 		"""
@@ -624,7 +624,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetToolTipText(self, value):
 		"""
-		This method is the setter method for the _inspectorIblSetToolTipText attribute.
+		This method is the setter method for the __inspectorIblSetToolTipText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -635,7 +635,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetToolTipText(self):
 		"""
-		This method is the deleter method for the _inspectorIblSetToolTipText attribute.
+		This method is the deleter method for the __inspectorIblSetToolTipText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetToolTipText"))
@@ -643,7 +643,7 @@ class Inspector(UiComponent):
 	@property
 	def inspectorIblSetPlatesToolTipText(self):
 		"""
-		This method is the property for the _inspectorIblSetPlatesToolTipText attribute.
+		This method is the property for the __inspectorIblSetPlatesToolTipText attribute.
 
 		:return: self.__inspectorIblSetPlatesToolTipText. ( String )
 		"""
@@ -654,7 +654,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetPlatesToolTipText(self, value):
 		"""
-		This method is the setter method for the _inspectorIblSetPlatesToolTipText attribute.
+		This method is the setter method for the __inspectorIblSetPlatesToolTipText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -665,7 +665,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def inspectorIblSetPlatesToolTipText(self):
 		"""
-		This method is the deleter method for the _inspectorIblSetPlatesToolTipText attribute.
+		This method is the deleter method for the __inspectorIblSetPlatesToolTipText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectorIblSetPlatesToolTipText"))
@@ -673,7 +673,7 @@ class Inspector(UiComponent):
 	@property
 	def lightLabelRadius(self):
 		"""
-		This method is the property for the _lightLabelRadius attribute.
+		This method is the property for the __lightLabelRadius attribute.
 
 		:return: self.__lightLabelRadius. ( Integer )
 		"""
@@ -684,7 +684,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self, value):
 		"""
-		This method is the setter method for the _lightLabelRadius attribute.
+		This method is the setter method for the __lightLabelRadius attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -695,7 +695,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelRadius(self):
 		"""
-		This method is the deleter method for the _lightLabelRadius attribute.
+		This method is the deleter method for the __lightLabelRadius attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelRadius"))
@@ -703,7 +703,7 @@ class Inspector(UiComponent):
 	@property
 	def lightLabelTextOffset(self):
 		"""
-		This method is the property for the _lightLabelTextOffset attribute.
+		This method is the property for the __lightLabelTextOffset attribute.
 
 		:return: self.__lightLabelTextOffset. ( Integer )
 		"""
@@ -714,7 +714,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self, value):
 		"""
-		This method is the setter method for the _lightLabelTextOffset attribute.
+		This method is the setter method for the __lightLabelTextOffset attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -725,7 +725,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextOffset(self):
 		"""
-		This method is the deleter method for the _lightLabelTextOffset attribute.
+		This method is the deleter method for the __lightLabelTextOffset attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextOffset"))
@@ -733,7 +733,7 @@ class Inspector(UiComponent):
 	@property
 	def lightLabelTextMargin(self):
 		"""
-		This method is the property for the _lightLabelTextMargin attribute.
+		This method is the property for the __lightLabelTextMargin attribute.
 
 		:return: self.__lightLabelTextMargin. ( Integer )
 		"""
@@ -744,7 +744,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self, value):
 		"""
-		This method is the setter method for the _lightLabelTextMargin attribute.
+		This method is the setter method for the __lightLabelTextMargin attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -755,7 +755,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextMargin(self):
 		"""
-		This method is the deleter method for the _lightLabelTextMargin attribute.
+		This method is the deleter method for the __lightLabelTextMargin attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextMargin"))
@@ -763,7 +763,7 @@ class Inspector(UiComponent):
 	@property
 	def lightLabelTextHeight(self):
 		"""
-		This method is the property for the _lightLabelTextHeight attribute.
+		This method is the property for the __lightLabelTextHeight attribute.
 
 		:return: self.__lightLabelTextHeight. ( Integer )
 		"""
@@ -774,7 +774,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self, value):
 		"""
-		This method is the setter method for the _lightLabelTextHeight attribute.
+		This method is the setter method for the __lightLabelTextHeight attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -785,7 +785,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextHeight(self):
 		"""
-		This method is the deleter method for the _lightLabelTextHeight attribute.
+		This method is the deleter method for the __lightLabelTextHeight attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextHeight"))
@@ -793,7 +793,7 @@ class Inspector(UiComponent):
 	@property
 	def lightLabelTextFont(self):
 		"""
-		This method is the property for the _lightLabelTextFont attribute.
+		This method is the property for the __lightLabelTextFont attribute.
 
 		:return: self.__lightLabelTextFont. ( String )
 		"""
@@ -804,7 +804,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self, value):
 		"""
-		This method is the setter method for the _lightLabelTextFont attribute.
+		This method is the setter method for the __lightLabelTextFont attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -815,7 +815,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def lightLabelTextFont(self):
 		"""
-		This method is the deleter method for the _lightLabelTextFont attribute.
+		This method is the deleter method for the __lightLabelTextFont attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("lightLabelTextFont"))

@@ -86,7 +86,7 @@ class Search_QLineEdit(QLineEdit):
 	@property
 	def uiClearImage(self):
 		"""
-		This method is the property for the _uiClearImage attribute.
+		This method is the property for the __uiClearImage attribute.
 
 		:return: self.__uiClearImage. ( String )
 		"""
@@ -97,7 +97,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiClearImage(self, value):
 		"""
-		This method is the setter method for the _uiClearImage attribute.
+		This method is the setter method for the __uiClearImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -111,7 +111,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiClearImage(self):
 		"""
-		This method is the deleter method for the _uiClearImage attribute.
+		This method is the deleter method for the __uiClearImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiClearImage"))
@@ -119,7 +119,7 @@ class Search_QLineEdit(QLineEdit):
 	@property
 	def uiClearClickedImage(self):
 		"""
-		This method is the property for the _uiClearClickedImage attribute.
+		This method is the property for the __uiClearClickedImage attribute.
 
 		:return: self.__uiClearClickedImage. ( String )
 		"""
@@ -130,7 +130,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def uiClearClickedImage(self, value):
 		"""
-		This method is the setter method for the _uiClearClickedImage attribute.
+		This method is the setter method for the __uiClearClickedImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -144,7 +144,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiClearClickedImage(self):
 		"""
-		This method is the deleter method for the _uiClearClickedImage attribute.
+		This method is the deleter method for the __uiClearClickedImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiClearClickedImage"))
@@ -152,7 +152,7 @@ class Search_QLineEdit(QLineEdit):
 	@property
 	def parent(self):
 		"""
-		This method is the property for the _parent attribute.
+		This method is the property for the __parent attribute.
 
 		:return: self.__parent. ( QObject )
 		"""
@@ -162,7 +162,7 @@ class Search_QLineEdit(QLineEdit):
 	@parent.setter
 	def parent(self, value):
 		"""
-		This method is the setter method for the _parent attribute.
+		This method is the setter method for the __parent attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -173,7 +173,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def parent(self):
 		"""
-		This method is the deleter method for the _parent attribute.
+		This method is the deleter method for the __parent attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("parent"))
@@ -181,7 +181,7 @@ class Search_QLineEdit(QLineEdit):
 	@property
 	def clearButton(self):
 		"""
-		This method is the property for the _clearButton attribute.
+		This method is the property for the __clearButton attribute.
 
 		:return: self.__clearButton. ( QPushButton )
 		"""
@@ -192,7 +192,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self, value):
 		"""
-		This method is the setter method for the _clearButton attribute.
+		This method is the setter method for the __clearButton attribute.
 
 		:param value: Attribute value. ( QPushButton )
 		"""
@@ -203,7 +203,7 @@ class Search_QLineEdit(QLineEdit):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def clearButton(self):
 		"""
-		This method is the deleter method for the _clearButton attribute.
+		This method is the deleter method for the __clearButton attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("clearButton"))

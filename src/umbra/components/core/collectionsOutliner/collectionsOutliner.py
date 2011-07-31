@@ -86,7 +86,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -97,7 +97,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -108,7 +108,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -116,7 +116,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the _coreDb attribute.
+		This method is the property for the __coreDb attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -127,7 +127,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the _coreDb attribute.
+		This method is the setter method for the __coreDb attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -138,7 +138,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the _coreDb attribute.
+		This method is the deleter method for the __coreDb attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -146,7 +146,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -157,7 +157,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -168,7 +168,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -176,7 +176,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@property
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the property for the _coreCollectionsOutliner attribute.
+		This method is the property for the __coreCollectionsOutliner attribute.
 
 		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
@@ -187,7 +187,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self, value):
 		"""
-		This method is the setter method for the _coreCollectionsOutliner attribute.
+		This method is the setter method for the __coreCollectionsOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -198,7 +198,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the deleter method for the _coreCollectionsOutliner attribute.
+		This method is the deleter method for the __coreCollectionsOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreCollectionsOutliner"))
@@ -206,7 +206,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@property
 	def previousCollection(self):
 		"""
-		This method is the property for the _previousCollection attribute.
+		This method is the property for the __previousCollection attribute.
 
 		:return: self.__previousCollection. ( String )
 		"""
@@ -217,7 +217,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def previousCollection(self, value):
 		"""
-		This method is the setter method for the _previousCollection attribute.
+		This method is the setter method for the __previousCollection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -228,7 +228,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def previousCollection(self):
 		"""
-		This method is the deleter method for the _previousCollection attribute.
+		This method is the deleter method for the __previousCollection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("previousCollection"))
@@ -389,7 +389,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -400,7 +400,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -411,7 +411,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -419,7 +419,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -430,7 +430,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -441,7 +441,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -449,7 +449,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def uiDefaultCollectionImage(self):
 		"""
-		This method is the property for the _uiDefaultCollectionImage attribute.
+		This method is the property for the __uiDefaultCollectionImage attribute.
 
 		:return: self.__uiDefaultCollectionImage. ( String )
 		"""
@@ -460,7 +460,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDefaultCollectionImage(self, value):
 		"""
-		This method is the setter method for the _uiDefaultCollectionImage attribute.
+		This method is the setter method for the __uiDefaultCollectionImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -471,7 +471,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDefaultCollectionImage(self):
 		"""
-		This method is the deleter method for the _uiDefaultCollectionImage attribute.
+		This method is the deleter method for the __uiDefaultCollectionImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDefaultCollectionImage"))
@@ -479,7 +479,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def uiUserCollectionImage(self):
 		"""
-		This method is the property for the _uiUserCollectionImage attribute.
+		This method is the property for the __uiUserCollectionImage attribute.
 
 		:return: self.__uiUserCollectionImage. ( String )
 		"""
@@ -490,7 +490,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUserCollectionImage(self, value):
 		"""
-		This method is the setter method for the _uiUserCollectionImage attribute.
+		This method is the setter method for the __uiUserCollectionImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -501,7 +501,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUserCollectionImage(self):
 		"""
-		This method is the deleter method for the _uiUserCollectionImage attribute.
+		This method is the deleter method for the __uiUserCollectionImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiUserCollectionImage"))
@@ -509,7 +509,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the _dockArea attribute.
+		This method is the property for the __dockArea attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -520,7 +520,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the _dockArea attribute.
+		This method is the setter method for the __dockArea attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -531,7 +531,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the _dockArea attribute.
+		This method is the deleter method for the __dockArea attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -539,7 +539,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -550,7 +550,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -561,7 +561,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -569,7 +569,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -580,7 +580,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -591,7 +591,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -599,7 +599,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the _settingsSection attribute.
+		This method is the property for the __settingsSection attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -610,7 +610,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the _settingsSection attribute.
+		This method is the setter method for the __settingsSection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -621,7 +621,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the _settingsSection attribute.
+		This method is the deleter method for the __settingsSection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -629,7 +629,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for the _settingsSeparator attribute.
+		This method is the property for the __settingsSeparator attribute.
 
 		:return: self.__settingsSeparator. ( String )
 		"""
@@ -640,7 +640,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for the _settingsSeparator attribute.
+		This method is the setter method for the __settingsSeparator attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -651,7 +651,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for the _settingsSeparator attribute.
+		This method is the deleter method for the __settingsSeparator attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSeparator"))
@@ -659,7 +659,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the _coreDb attribute.
+		This method is the property for the __coreDb attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -670,7 +670,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the _coreDb attribute.
+		This method is the setter method for the __coreDb attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -681,7 +681,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the _coreDb attribute.
+		This method is the deleter method for the __coreDb attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -689,7 +689,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -700,7 +700,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -711,7 +711,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -719,7 +719,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def model(self):
 		"""
-		This method is the property for the _model attribute.
+		This method is the property for the __model attribute.
 
 		:return: self.__model. ( QStandardItemModel )
 		"""
@@ -730,7 +730,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for the _model attribute.
+		This method is the setter method for the __model attribute.
 
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
@@ -741,7 +741,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for the _model attribute.
+		This method is the deleter method for the __model attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
@@ -749,7 +749,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def modelSelection(self):
 		"""
-		This method is the property for the _modelSelection attribute.
+		This method is the property for the __modelSelection attribute.
 
 		:return: self.__modelSelection. ( Dictionary )
 		"""
@@ -760,7 +760,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self, value):
 		"""
-		This method is the setter method for the _modelSelection attribute.
+		This method is the setter method for the __modelSelection attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -771,7 +771,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This method is the deleter method for the _modelSelection attribute.
+		This method is the deleter method for the __modelSelection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelSelection"))
@@ -779,7 +779,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def overallCollection(self):
 		"""
-		This method is the property for the _overallCollection attribute.
+		This method is the property for the __overallCollection attribute.
 
 		:return: self.__overallCollection. ( String )
 		"""
@@ -790,7 +790,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def overallCollection(self, value):
 		"""
-		This method is the setter method for the _overallCollection attribute.
+		This method is the setter method for the __overallCollection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -801,7 +801,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def overallCollection(self):
 		"""
-		This method is the deleter method for the _overallCollection attribute.
+		This method is the deleter method for the __overallCollection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("overallCollection"))
@@ -809,7 +809,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def defaultCollection(self):
 		"""
-		This method is the property for the _defaultCollection attribute.
+		This method is the property for the __defaultCollection attribute.
 
 		:return: self.__defaultCollection. ( String )
 		"""
@@ -820,7 +820,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollection(self, value):
 		"""
-		This method is the setter method for the _defaultCollection attribute.
+		This method is the setter method for the __defaultCollection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -831,7 +831,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollection(self):
 		"""
-		This method is the deleter method for the _defaultCollection attribute.
+		This method is the deleter method for the __defaultCollection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("defaultCollection"))
@@ -839,7 +839,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def setsCountLabel(self):
 		"""
-		This method is the property for the _setsCountLabel attribute.
+		This method is the property for the __setsCountLabel attribute.
 
 		:return: self.__setsCountLabel. ( String )
 		"""
@@ -850,7 +850,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def setsCountLabel(self, value):
 		"""
-		This method is the setter method for the _setsCountLabel attribute.
+		This method is the setter method for the __setsCountLabel attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -861,7 +861,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def setsCountLabel(self):
 		"""
-		This method is the deleter method for the _setsCountLabel attribute.
+		This method is the deleter method for the __setsCountLabel attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("setsCountLabel"))
@@ -869,7 +869,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def modelHeaders(self):
 		"""
-		This method is the property for the _modelHeaders attribute.
+		This method is the property for the __modelHeaders attribute.
 
 		:return: self.__modelHeaders. ( List )
 		"""
@@ -880,7 +880,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self, value):
 		"""
-		This method is the setter method for the _modelHeaders attribute.
+		This method is the setter method for the __modelHeaders attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -891,7 +891,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self):
 		"""
-		This method is the deleter method for the _modelHeaders attribute.
+		This method is the deleter method for the __modelHeaders attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelHeaders"))
@@ -899,7 +899,7 @@ class CollectionsOutliner(UiComponent):
 	@property
 	def treeViewIndentation(self):
 		"""
-		This method is the property for the _treeViewIndentation attribute.
+		This method is the property for the __treeViewIndentation attribute.
 
 		:return: self.__treeViewIndentation. ( Integer )
 		"""
@@ -910,7 +910,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for the _treeViewIndentation attribute.
+		This method is the setter method for the __treeViewIndentation attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -921,7 +921,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for the _treeViewIndentation attribute.
+		This method is the deleter method for the __treeViewIndentation attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewIndentation"))

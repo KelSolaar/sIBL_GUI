@@ -91,7 +91,7 @@ class Active_QLabel(QLabel):
 	@property
 	def defaultPixmap(self):
 		"""
-		This method is the property for the _defaultPixmap attribute.
+		This method is the property for the __defaultPixmap attribute.
 
 		:return: self.__defaultPixmap. ( QPixmap )
 		"""
@@ -102,7 +102,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def defaultPixmap(self, value):
 		"""
-		This method is the setter method for the _defaultPixmap attribute.
+		This method is the setter method for the __defaultPixmap attribute.
 
 		:param value: Attribute value. ( QPixmap )
 		"""
@@ -115,7 +115,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultPixmap(self):
 		"""
-		This method is the deleter method for the _defaultPixmap attribute.
+		This method is the deleter method for the __defaultPixmap attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("defaultPixmap"))
@@ -123,7 +123,7 @@ class Active_QLabel(QLabel):
 	@property
 	def hoverPixmap(self):
 		"""
-		This method is the property for the _hoverPixmap attribute.
+		This method is the property for the __hoverPixmap attribute.
 
 		:return: self.__hoverPixmap. ( QPixmap )
 		"""
@@ -134,7 +134,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def hoverPixmap(self, value):
 		"""
-		This method is the setter method for the _hoverPixmap attribute.
+		This method is the setter method for the __hoverPixmap attribute.
 
 		:param value: Attribute value. ( QPixmap )
 		"""
@@ -147,7 +147,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def hoverPixmap(self):
 		"""
-		This method is the deleter method for the _hoverPixmap attribute.
+		This method is the deleter method for the __hoverPixmap attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("hoverPixmap"))
@@ -155,7 +155,7 @@ class Active_QLabel(QLabel):
 	@property
 	def activePixmap(self):
 		"""
-		This method is the property for the _activePixmap attribute.
+		This method is the property for the __activePixmap attribute.
 
 		:return: self.__activePixmap. ( QPixmap )
 		"""
@@ -166,7 +166,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def activePixmap(self, value):
 		"""
-		This method is the setter method for the _activePixmap attribute.
+		This method is the setter method for the __activePixmap attribute.
 
 		:param value: Attribute value. ( QPixmap )
 		"""
@@ -179,7 +179,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def activePixmap(self):
 		"""
-		This method is the deleter method for the _activePixmap attribute.
+		This method is the deleter method for the __activePixmap attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("activePixmap"))
@@ -187,7 +187,7 @@ class Active_QLabel(QLabel):
 	@property
 	def checkable(self):
 		"""
-		This method is the property for the _checkable attribute.
+		This method is the property for the __checkable attribute.
 
 		:return: self.__checkable. ( Boolean )
 		"""
@@ -198,7 +198,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def checkable(self, value):
 		"""
-		This method is the setter method for the _checkable attribute.
+		This method is the setter method for the __checkable attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -211,7 +211,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def checkable(self):
 		"""
-		This method is the deleter method for the _checkable attribute.
+		This method is the deleter method for the __checkable attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("checkable"))
@@ -219,7 +219,7 @@ class Active_QLabel(QLabel):
 	@property
 	def checked(self):
 		"""
-		This method is the property for the _checked attribute.
+		This method is the property for the __checked attribute.
 
 		:return: self.__checked. ( Boolean )
 		"""
@@ -230,7 +230,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def checked(self, value):
 		"""
-		This method is the setter method for the _checked attribute.
+		This method is the setter method for the __checked attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -243,7 +243,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def checked(self):
 		"""
-		This method is the deleter method for the _checked attribute.
+		This method is the deleter method for the __checked attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("checked"))
@@ -251,7 +251,7 @@ class Active_QLabel(QLabel):
 	@property
 	def parent(self):
 		"""
-		This method is the property for the _parent attribute.
+		This method is the property for the __parent attribute.
 
 		:return: self.__parent. ( QObject )
 		"""
@@ -261,7 +261,7 @@ class Active_QLabel(QLabel):
 	@parent.setter
 	def parent(self, value):
 		"""
-		This method is the setter method for the _parent attribute.
+		This method is the setter method for the __parent attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -272,7 +272,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def parent(self):
 		"""
-		This method is the deleter method for the _parent attribute.
+		This method is the deleter method for the __parent attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("parent"))
@@ -280,7 +280,7 @@ class Active_QLabel(QLabel):
 	@property
 	def menu(self):
 		"""
-		This method is the property for the _menu attribute.
+		This method is the property for the __menu attribute.
 
 		:return: self.__menu. ( QMenu )
 		"""
@@ -291,7 +291,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def menu(self, value):
 		"""
-		This method is the setter method for the _menu attribute.
+		This method is the setter method for the __menu attribute.
 
 		:param value: Attribute value. ( QMenu )
 		"""
@@ -302,7 +302,7 @@ class Active_QLabel(QLabel):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def menu(self):
 		"""
-		This method is the deleter method for the _menu attribute.
+		This method is the deleter method for the __menu attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("menu"))

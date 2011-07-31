@@ -88,7 +88,7 @@ class DatabaseBrowser_Worker(QThread):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -99,7 +99,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -110,7 +110,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -118,7 +118,7 @@ class DatabaseBrowser_Worker(QThread):
 	@property
 	def dbSession(self):
 		"""
-		This method is the property for the _dbSession attribute.
+		This method is the property for the __dbSession attribute.
 
 		:return: self.__dbSession. ( Object )
 		"""
@@ -129,7 +129,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This method is the setter method for the _dbSession attribute.
+		This method is the setter method for the __dbSession attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -140,7 +140,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This method is the deleter method for the _dbSession attribute.
+		This method is the deleter method for the __dbSession attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
@@ -148,7 +148,7 @@ class DatabaseBrowser_Worker(QThread):
 	@property
 	def timer(self):
 		"""
-		This method is the property for the _timer attribute.
+		This method is the property for the __timer attribute.
 
 		:return: self.__timer. ( QTimer )
 		"""
@@ -159,7 +159,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self, value):
 		"""
-		This method is the setter method for the _timer attribute.
+		This method is the setter method for the __timer attribute.
 
 		:param value: Attribute value. ( QTimer )
 		"""
@@ -170,7 +170,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self):
 		"""
-		This method is the deleter method for the _timer attribute.
+		This method is the deleter method for the __timer attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timer"))
@@ -178,7 +178,7 @@ class DatabaseBrowser_Worker(QThread):
 	@property
 	def timerCycleMultiplier(self):
 		"""
-		This method is the property for the _timerCycleMultiplier attribute.
+		This method is the property for the __timerCycleMultiplier attribute.
 
 		:return: self.__timerCycleMultiplier. ( Float )
 		"""
@@ -189,7 +189,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self, value):
 		"""
-		This method is the setter method for the _timerCycleMultiplier attribute.
+		This method is the setter method for the __timerCycleMultiplier attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -200,7 +200,7 @@ class DatabaseBrowser_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self):
 		"""
-		This method is the deleter method for the _timerCycleMultiplier attribute.
+		This method is the deleter method for the __timerCycleMultiplier attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timerCycleMultiplier"))
@@ -272,7 +272,7 @@ class DatabaseBrowser_QListView(QListView):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -283,7 +283,7 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -294,7 +294,7 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -302,7 +302,7 @@ class DatabaseBrowser_QListView(QListView):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -313,7 +313,7 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -324,7 +324,7 @@ class DatabaseBrowser_QListView(QListView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -465,7 +465,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -476,7 +476,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -487,7 +487,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -495,7 +495,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -506,7 +506,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -517,7 +517,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -525,7 +525,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def uiLargestSizeImage(self):
 		"""
-		This method is the property for the _uiLargestSizeImage attribute.
+		This method is the property for the __uiLargestSizeImage attribute.
 
 		:return: self.__uiLargestSizeImage. ( String )
 		"""
@@ -536,7 +536,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self, value):
 		"""
-		This method is the setter method for the _uiLargestSizeImage attribute.
+		This method is the setter method for the __uiLargestSizeImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -547,7 +547,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLargestSizeImage(self):
 		"""
-		This method is the deleter method for the _uiLargestSizeImage attribute.
+		This method is the deleter method for the __uiLargestSizeImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLargestSizeImage"))
@@ -555,7 +555,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def uiSmallestSizeImage(self):
 		"""
-		This method is the property for the _uiSmallestSizeImage attribute.
+		This method is the property for the __uiSmallestSizeImage attribute.
 
 		:return: self.__uiSmallestSizeImage. ( String )
 		"""
@@ -566,7 +566,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self, value):
 		"""
-		This method is the setter method for the _uiSmallestSizeImage attribute.
+		This method is the setter method for the __uiSmallestSizeImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -577,7 +577,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSmallestSizeImage(self):
 		"""
-		This method is the deleter method for the _uiSmallestSizeImage attribute.
+		This method is the deleter method for the __uiSmallestSizeImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiSmallestSizeImage"))
@@ -585,7 +585,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the _dockArea attribute.
+		This method is the property for the __dockArea attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -596,7 +596,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the _dockArea attribute.
+		This method is the setter method for the __dockArea attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -607,7 +607,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the _dockArea attribute.
+		This method is the deleter method for the __dockArea attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -615,7 +615,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def listViewSpacing(self):
 		"""
-		This method is the property for the _listViewSpacing attribute.
+		This method is the property for the __listViewSpacing attribute.
 
 		:return: self.__listViewSpacing. ( Integer )
 		"""
@@ -626,7 +626,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewSpacing(self, value):
 		"""
-		This method is the setter method for the _listViewSpacing attribute.
+		This method is the setter method for the __listViewSpacing attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -640,7 +640,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewSpacing(self):
 		"""
-		This method is the deleter method for the _listViewSpacing attribute.
+		This method is the deleter method for the __listViewSpacing attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewSpacing"))
@@ -648,7 +648,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def listViewMargin(self):
 		"""
-		This method is the property for the _listViewMargin attribute.
+		This method is the property for the __listViewMargin attribute.
 
 		:return: self.__listViewMargin. ( Integer )
 		"""
@@ -659,7 +659,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewMargin(self, value):
 		"""
-		This method is the setter method for the _listViewMargin attribute.
+		This method is the setter method for the __listViewMargin attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -673,7 +673,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewMargin(self):
 		"""
-		This method is the deleter method for the _listViewMargin attribute.
+		This method is the deleter method for the __listViewMargin attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewMargin"))
@@ -681,7 +681,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def listViewIconSize(self):
 		"""
-		This method is the property for the _listViewIconSize attribute.
+		This method is the property for the __listViewIconSize attribute.
 
 		:return: self.__listViewIconSize. ( Integer )
 		"""
@@ -692,7 +692,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def listViewIconSize(self, value):
 		"""
-		This method is the setter method for the _listViewIconSize attribute.
+		This method is the setter method for the __listViewIconSize attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -706,7 +706,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def listViewIconSize(self):
 		"""
-		This method is the deleter method for the _listViewIconSize attribute.
+		This method is the deleter method for the __listViewIconSize attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewIconSize"))
@@ -714,7 +714,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -725,7 +725,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -736,7 +736,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -744,7 +744,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -755,7 +755,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -766,7 +766,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -774,7 +774,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the _settingsSection attribute.
+		This method is the property for the __settingsSection attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -785,7 +785,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the _settingsSection attribute.
+		This method is the setter method for the __settingsSection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -796,7 +796,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the _settingsSection attribute.
+		This method is the deleter method for the __settingsSection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -804,7 +804,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for the _settingsSeparator attribute.
+		This method is the property for the __settingsSeparator attribute.
 
 		:return: self.__settingsSeparator. ( String )
 		"""
@@ -815,7 +815,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for the _settingsSeparator attribute.
+		This method is the setter method for the __settingsSeparator attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -826,7 +826,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for the _settingsSeparator attribute.
+		This method is the deleter method for the __settingsSeparator attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSeparator"))
@@ -834,7 +834,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def extension(self):
 		"""
-		This method is the property for the _extension attribute.
+		This method is the property for the __extension attribute.
 
 		:return: self.__extension. ( String )
 		"""
@@ -845,7 +845,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for the _extension attribute.
+		This method is the setter method for the __extension attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -856,7 +856,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for the _extension attribute.
+		This method is the deleter method for the __extension attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
@@ -864,7 +864,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the _coreDb attribute.
+		This method is the property for the __coreDb attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -875,7 +875,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the _coreDb attribute.
+		This method is the setter method for the __coreDb attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -886,7 +886,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the _coreDb attribute.
+		This method is the deleter method for the __coreDb attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -894,7 +894,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the property for the _coreCollectionsOutliner attribute.
+		This method is the property for the __coreCollectionsOutliner attribute.
 
 		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
@@ -905,7 +905,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self, value):
 		"""
-		This method is the setter method for the _coreCollectionsOutliner attribute.
+		This method is the setter method for the __coreCollectionsOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -916,7 +916,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the deleter method for the _coreCollectionsOutliner attribute.
+		This method is the deleter method for the __coreCollectionsOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreCollectionsOutliner"))
@@ -924,7 +924,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def model(self):
 		"""
-		This method is the property for the _model attribute.
+		This method is the property for the __model attribute.
 
 		:return: self.__model. ( QStandardItemModel )
 		"""
@@ -935,7 +935,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for the _model attribute.
+		This method is the setter method for the __model attribute.
 
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
@@ -946,7 +946,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for the _model attribute.
+		This method is the deleter method for the __model attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
@@ -954,7 +954,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def modelSelection(self):
 		"""
-		This method is the property for the _modelSelection attribute.
+		This method is the property for the __modelSelection attribute.
 
 		:return: self.__modelSelection. ( Dictionary )
 		"""
@@ -965,7 +965,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self, value):
 		"""
-		This method is the setter method for the _modelSelection attribute.
+		This method is the setter method for the __modelSelection attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -976,7 +976,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This method is the deleter method for the _modelSelection attribute.
+		This method is the deleter method for the __modelSelection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelSelection"))
@@ -984,7 +984,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def databaseBrowserWorkerThread(self):
 		"""
-		This method is the property for the _databaseBrowserWorkerThread attribute.
+		This method is the property for the __databaseBrowserWorkerThread attribute.
 
 		:return: self.__databaseBrowserWorkerThread. ( QThread )
 		"""
@@ -995,7 +995,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowserWorkerThread(self, value):
 		"""
-		This method is the setter method for the _databaseBrowserWorkerThread attribute.
+		This method is the setter method for the __databaseBrowserWorkerThread attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
@@ -1006,7 +1006,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def databaseBrowserWorkerThread(self):
 		"""
-		This method is the deleter method for the _databaseBrowserWorkerThread attribute.
+		This method is the deleter method for the __databaseBrowserWorkerThread attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("databaseBrowserWorkerThread"))
@@ -1014,7 +1014,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def modelContent(self):
 		"""
-		This method is the property for the _modelContent attribute.
+		This method is the property for the __modelContent attribute.
 
 		:return: self.__modelContent. ( List )
 		"""
@@ -1025,7 +1025,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def modelContent(self, value):
 		"""
-		This method is the setter method for the _modelContent attribute.
+		This method is the setter method for the __modelContent attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -1038,7 +1038,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelContent(self):
 		"""
-		This method is the deleter method for the _modelContent attribute.
+		This method is the deleter method for the __modelContent attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelContent"))
@@ -1046,7 +1046,7 @@ class DatabaseBrowser(UiComponent):
 	@property
 	def toolTipText(self):
 		"""
-		This method is the property for the _toolTipText attribute.
+		This method is the property for the __toolTipText attribute.
 
 		:return: self.__toolTipText. ( String )
 		"""
@@ -1057,7 +1057,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def toolTipText(self, value):
 		"""
-		This method is the setter method for the _toolTipText attribute.
+		This method is the setter method for the __toolTipText attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1068,7 +1068,7 @@ class DatabaseBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def toolTipText(self):
 		"""
-		This method is the deleter method for the _toolTipText attribute.
+		This method is the deleter method for the __toolTipText attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))

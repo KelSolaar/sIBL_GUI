@@ -92,7 +92,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -103,7 +103,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -114,7 +114,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -122,7 +122,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -133,7 +133,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -144,7 +144,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -152,7 +152,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the _settings attribute.
+		This method is the property for the __settings attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -163,7 +163,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the _settings attribute.
+		This method is the setter method for the __settings attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -174,7 +174,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the _settings attribute.
+		This method is the deleter method for the __settings attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -182,7 +182,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the _settingsSection attribute.
+		This method is the property for the __settingsSection attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -193,7 +193,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the _settingsSection attribute.
+		This method is the setter method for the __settingsSection attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -204,7 +204,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the _settingsSection attribute.
+		This method is the deleter method for the __settingsSection attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -212,7 +212,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the _corePreferencesManager attribute.
+		This method is the property for the __corePreferencesManager attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -223,7 +223,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the _corePreferencesManager attribute.
+		This method is the setter method for the __corePreferencesManager attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -234,7 +234,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the _corePreferencesManager attribute.
+		This method is the deleter method for the __corePreferencesManager attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -242,7 +242,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -253,7 +253,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -264,7 +264,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -272,7 +272,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def coreInspector(self):
 		"""
-		This method is the property for the _coreInspector attribute.
+		This method is the property for the __coreInspector attribute.
 
 		:return: self.__coreInspector. ( Object )
 		"""
@@ -283,7 +283,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self, value):
 		"""
-		This method is the setter method for the _coreInspector attribute.
+		This method is the setter method for the __coreInspector attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -294,7 +294,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self):
 		"""
-		This method is the deleter method for the _coreInspector attribute.
+		This method is the deleter method for the __coreInspector attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
@@ -302,7 +302,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the property for the _coreTemplatesOutliner attribute.
+		This method is the property for the __coreTemplatesOutliner attribute.
 
 		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -313,7 +313,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This method is the setter method for the _coreTemplatesOutliner attribute.
+		This method is the setter method for the __coreTemplatesOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -324,7 +324,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the deleter method for the _coreTemplatesOutliner attribute.
+		This method is the deleter method for the __coreTemplatesOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
@@ -332,7 +332,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def editIblSetsInTextEditorAction(self):
 		"""
-		This method is the property for the _editIblSetsInTextEditorAction attribute.
+		This method is the property for the __editIblSetsInTextEditorAction attribute.
 
 		:return: self.__editIblSetsInTextEditorAction. ( QAction )
 		"""
@@ -343,7 +343,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetsInTextEditorAction(self, value):
 		"""
-		This method is the setter method for the _editIblSetsInTextEditorAction attribute.
+		This method is the setter method for the __editIblSetsInTextEditorAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -354,7 +354,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetsInTextEditorAction(self):
 		"""
-		This method is the deleter method for the _editIblSetsInTextEditorAction attribute.
+		This method is the deleter method for the __editIblSetsInTextEditorAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetsInTextEditorAction"))
@@ -362,7 +362,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This method is the property for the _editInspectorIblSetInTextEditorAction attribute.
+		This method is the property for the __editInspectorIblSetInTextEditorAction attribute.
 
 		:return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
 		"""
@@ -373,7 +373,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInTextEditorAction(self, value):
 		"""
-		This method is the setter method for the _editInspectorIblSetInTextEditorAction attribute.
+		This method is the setter method for the __editInspectorIblSetInTextEditorAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -384,7 +384,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInTextEditorAction(self):
 		"""
-		This method is the deleter method for the _editInspectorIblSetInTextEditorAction attribute.
+		This method is the deleter method for the __editInspectorIblSetInTextEditorAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInTextEditorAction"))
@@ -392,7 +392,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def editTemplateInTextEditorAction(self):
 		"""
-		This method is the property for the _editTemplateInTextEditorAction attribute.
+		This method is the property for the __editTemplateInTextEditorAction attribute.
 
 		:return: self.__editTemplateInTextEditorAction. ( QAction )
 		"""
@@ -403,7 +403,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editTemplateInTextEditorAction(self, value):
 		"""
-		This method is the setter method for the _editTemplateInTextEditorAction attribute.
+		This method is the setter method for the __editTemplateInTextEditorAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -414,7 +414,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editTemplateInTextEditorAction(self):
 		"""
-		This method is the deleter method for the _editTemplateInTextEditorAction attribute.
+		This method is the deleter method for the __editTemplateInTextEditorAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editTemplateInTextEditorAction"))
@@ -422,7 +422,7 @@ class RawEditingUtilities(UiComponent):
 	@property
 	def linuxTextEditors(self):
 		"""
-		This method is the property for the _linuxTextEditors attribute.
+		This method is the property for the __linuxTextEditors attribute.
 
 		:return: self.__linuxTextEditors. ( Tuple )
 		"""
@@ -433,7 +433,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxTextEditors(self, value):
 		"""
-		This method is the setter method for the _linuxTextEditors attribute.
+		This method is the setter method for the __linuxTextEditors attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -444,7 +444,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def linuxTextEditors(self):
 		"""
-		This method is the deleter method for the _linuxTextEditors attribute.
+		This method is the deleter method for the __linuxTextEditors attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("linuxTextEditors"))

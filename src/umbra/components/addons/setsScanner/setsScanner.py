@@ -84,7 +84,7 @@ class SetsScanner_Worker(QThread):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -95,7 +95,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -106,7 +106,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -114,7 +114,7 @@ class SetsScanner_Worker(QThread):
 	@property
 	def dbSession(self):
 		"""
-		This method is the property for the _dbSession attribute.
+		This method is the property for the __dbSession attribute.
 
 		:return: self.__dbSession. ( Object )
 		"""
@@ -125,7 +125,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This method is the setter method for the _dbSession attribute.
+		This method is the setter method for the __dbSession attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -136,7 +136,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This method is the deleter method for the _dbSession attribute.
+		This method is the deleter method for the __dbSession attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
@@ -144,7 +144,7 @@ class SetsScanner_Worker(QThread):
 	@property
 	def extension(self):
 		"""
-		This method is the property for the _extension attribute.
+		This method is the property for the __extension attribute.
 
 		:return: self.__extension. ( String )
 		"""
@@ -155,7 +155,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for the _extension attribute.
+		This method is the setter method for the __extension attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -166,7 +166,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for the _extension attribute.
+		This method is the deleter method for the __extension attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
@@ -174,7 +174,7 @@ class SetsScanner_Worker(QThread):
 	@property
 	def newIblSets(self):
 		"""
-		This method is the property for the _newIblSets attribute.
+		This method is the property for the __newIblSets attribute.
 
 		:return: self.__newIblSets. ( Dictionary )
 		"""
@@ -185,7 +185,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def newIblSets(self, value):
 		"""
-		This method is the setter method for the _newIblSets attribute.
+		This method is the setter method for the __newIblSets attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -196,7 +196,7 @@ class SetsScanner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def newIblSets(self):
 		"""
-		This method is the deleter method for the _newIblSets attribute.
+		This method is the deleter method for the __newIblSets attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("newIblSets"))
@@ -277,7 +277,7 @@ class SetsScanner(Component):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -288,7 +288,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -299,7 +299,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -307,7 +307,7 @@ class SetsScanner(Component):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the _coreDb attribute.
+		This method is the property for the __coreDb attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -318,7 +318,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the _coreDb attribute.
+		This method is the setter method for the __coreDb attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -329,7 +329,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the _coreDb attribute.
+		This method is the deleter method for the __coreDb attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -337,7 +337,7 @@ class SetsScanner(Component):
 	@property
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the property for the _coreCollectionsOutliner attribute.
+		This method is the property for the __coreCollectionsOutliner attribute.
 
 		:return: self.__coreCollectionsOutliner. ( Object )
 		"""
@@ -348,7 +348,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self, value):
 		"""
-		This method is the setter method for the _coreCollectionsOutliner attribute.
+		This method is the setter method for the __coreCollectionsOutliner attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -359,7 +359,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreCollectionsOutliner(self):
 		"""
-		This method is the deleter method for the _coreCollectionsOutliner attribute.
+		This method is the deleter method for the __coreCollectionsOutliner attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreCollectionsOutliner"))
@@ -367,7 +367,7 @@ class SetsScanner(Component):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the _coreDatabaseBrowser attribute.
+		This method is the property for the __coreDatabaseBrowser attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -378,7 +378,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the _coreDatabaseBrowser attribute.
+		This method is the setter method for the __coreDatabaseBrowser attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -389,7 +389,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the _coreDatabaseBrowser attribute.
+		This method is the deleter method for the __coreDatabaseBrowser attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -397,7 +397,7 @@ class SetsScanner(Component):
 	@property
 	def setsScannerWorkerThread(self):
 		"""
-		This method is the property for the _setsScannerWorkerThread attribute.
+		This method is the property for the __setsScannerWorkerThread attribute.
 
 		:return: self.__setsScannerWorkerThread. ( QThread )
 		"""
@@ -408,7 +408,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def setsScannerWorkerThread(self, value):
 		"""
-		This method is the setter method for the _setsScannerWorkerThread attribute.
+		This method is the setter method for the __setsScannerWorkerThread attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
@@ -419,7 +419,7 @@ class SetsScanner(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def setsScannerWorkerThread(self):
 		"""
-		This method is the deleter method for the _setsScannerWorkerThread attribute.
+		This method is the deleter method for the __setsScannerWorkerThread attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("setsScannerWorkerThread"))

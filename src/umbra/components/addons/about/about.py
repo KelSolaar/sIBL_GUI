@@ -142,7 +142,7 @@ class About(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the _uiPath attribute.
+		This method is the property for the __uiPath attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -153,7 +153,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the _uiPath attribute.
+		This method is the setter method for the __uiPath attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -164,7 +164,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the _uiPath attribute.
+		This method is the deleter method for the __uiPath attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -172,7 +172,7 @@ class About(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the _uiResources attribute.
+		This method is the property for the __uiResources attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -183,7 +183,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the _uiResources attribute.
+		This method is the setter method for the __uiResources attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -194,7 +194,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the _uiResources attribute.
+		This method is the deleter method for the __uiResources attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -202,7 +202,7 @@ class About(UiComponent):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for the _uiLogoImage attribute.
+		This method is the property for the __uiLogoImage attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -213,7 +213,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for the _uiLogoImage attribute.
+		This method is the setter method for the __uiLogoImage attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -224,7 +224,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for the _uiLogoImage attribute.
+		This method is the deleter method for the __uiLogoImage attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
@@ -232,7 +232,7 @@ class About(UiComponent):
 	@property
 	def uiGpl3Image(self):
 		"""
-		This method is the property for the _uiGpl3Image attribute.
+		This method is the property for the __uiGpl3Image attribute.
 
 		:return: self.__uiGpl3Image. ( String )
 		"""
@@ -243,7 +243,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self, value):
 		"""
-		This method is the setter method for the _uiGpl3Image attribute.
+		This method is the setter method for the __uiGpl3Image attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -254,7 +254,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiGpl3Image(self):
 		"""
-		This method is the deleter method for the _uiGpl3Image attribute.
+		This method is the deleter method for the __uiGpl3Image attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiGpl3Image"))
@@ -262,7 +262,7 @@ class About(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -273,7 +273,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -284,7 +284,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -292,7 +292,7 @@ class About(UiComponent):
 	@property
 	def miscMenu(self):
 		"""
-		This method is the property for the _miscMenu attribute.
+		This method is the property for the __miscMenu attribute.
 
 		:return: self.__miscMenu. ( QMenu )
 		"""
@@ -303,7 +303,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def miscMenu(self, value):
 		"""
-		This method is the setter method for the _miscMenu attribute.
+		This method is the setter method for the __miscMenu attribute.
 
 		:param value: Attribute value. ( QMenu )
 		"""
@@ -314,7 +314,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def miscMenu(self):
 		"""
-		This method is the deleter method for the _miscMenu attribute.
+		This method is the deleter method for the __miscMenu attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("miscMenu"))
@@ -322,7 +322,7 @@ class About(UiComponent):
 	@property
 	def aboutMiscAction(self):
 		"""
-		This method is the property for the _aboutMiscAction attribute.
+		This method is the property for the __aboutMiscAction attribute.
 
 		:return: self.__aboutMiscAction. ( QAction )
 		"""
@@ -333,7 +333,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def aboutMiscAction(self, value):
 		"""
-		This method is the setter method for the _aboutMiscAction attribute.
+		This method is the setter method for the __aboutMiscAction attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -344,7 +344,7 @@ class About(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def aboutMiscAction(self):
 		"""
-		This method is the deleter method for the _aboutMiscAction attribute.
+		This method is the deleter method for the __aboutMiscAction attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("aboutMiscAction"))

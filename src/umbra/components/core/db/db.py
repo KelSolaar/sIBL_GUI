@@ -93,7 +93,7 @@ class Db(Component):
 	@property
 	def container(self):
 		"""
-		This method is the property for the _container attribute.
+		This method is the property for the __container attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -104,7 +104,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the _container attribute.
+		This method is the setter method for the __container attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -115,7 +115,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the _container attribute.
+		This method is the deleter method for the __container attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -123,7 +123,7 @@ class Db(Component):
 	@property
 	def dbName(self):
 		"""
-		This method is the property for the _dbName attribute.
+		This method is the property for the __dbName attribute.
 
 		:return: self.__dbName. ( String )
 		"""
@@ -134,7 +134,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self, value):
 		"""
-		This method is the setter method for the _dbName attribute.
+		This method is the setter method for the __dbName attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -145,7 +145,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbName(self):
 		"""
-		This method is the deleter method for the _dbName attribute.
+		This method is the deleter method for the __dbName attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbName"))
@@ -153,7 +153,7 @@ class Db(Component):
 	@property
 	def dbEngine(self):
 		"""
-		This method is the property for the _dbEngine attribute.
+		This method is the property for the __dbEngine attribute.
 
 		:return: self.__dbEngine. ( Object )
 		"""
@@ -164,7 +164,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self, value):
 		"""
-		This method is the setter method for the _dbEngine attribute.
+		This method is the setter method for the __dbEngine attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -175,7 +175,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbEngine(self):
 		"""
-		This method is the deleter method for the _dbEngine attribute.
+		This method is the deleter method for the __dbEngine attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbEngine"))
@@ -183,7 +183,7 @@ class Db(Component):
 	@property
 	def dbCatalog(self):
 		"""
-		This method is the property for the _dbCatalog attribute.
+		This method is the property for the __dbCatalog attribute.
 
 		:return: self.__dbCatalog. ( Object )
 		"""
@@ -194,7 +194,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self, value):
 		"""
-		This method is the setter method for the _dbCatalog attribute.
+		This method is the setter method for the __dbCatalog attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -205,7 +205,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbCatalog(self):
 		"""
-		This method is the deleter method for the _dbCatalog attribute.
+		This method is the deleter method for the __dbCatalog attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbCatalog"))
@@ -213,7 +213,7 @@ class Db(Component):
 	@property
 	def dbSession(self):
 		"""
-		This method is the property for the _dbSession attribute.
+		This method is the property for the __dbSession attribute.
 
 		:return: self.__dbSession. ( Object )
 		"""
@@ -224,7 +224,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This method is the setter method for the _dbSession attribute.
+		This method is the setter method for the __dbSession attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -235,7 +235,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This method is the deleter method for the _dbSession attribute.
+		This method is the deleter method for the __dbSession attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
@@ -243,7 +243,7 @@ class Db(Component):
 	@property
 	def dbSessionMaker(self):
 		"""
-		This method is the property for the _dbSessionMaker attribute.
+		This method is the property for the __dbSessionMaker attribute.
 
 		:return: self.__dbSessionMaker. ( Object )
 		"""
@@ -254,7 +254,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self, value):
 		"""
-		This method is the setter method for the _dbSessionMaker attribute.
+		This method is the setter method for the __dbSessionMaker attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -265,7 +265,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSessionMaker(self):
 		"""
-		This method is the deleter method for the _dbSessionMaker attribute.
+		This method is the deleter method for the __dbSessionMaker attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSessionMaker"))
@@ -273,7 +273,7 @@ class Db(Component):
 	@property
 	def connectionString(self):
 		"""
-		This method is the property for the _connectionString attribute.
+		This method is the property for the __connectionString attribute.
 
 		:return: self.__connectionString. ( String )
 		"""
@@ -284,7 +284,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def connectionString(self, value):
 		"""
-		This method is the setter method for the _connectionString attribute.
+		This method is the setter method for the __connectionString attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -295,7 +295,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def connectionString(self):
 		"""
-		This method is the deleter method for the _connectionString attribute.
+		This method is the deleter method for the __connectionString attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("connectionString"))
@@ -303,7 +303,7 @@ class Db(Component):
 	@property
 	def dbMigrationsRepositoryDirectory(self):
 		"""
-		This method is the property for the _dbMigrationsRepositoryDirectory attribute.
+		This method is the property for the __dbMigrationsRepositoryDirectory attribute.
 
 		:return: self.__dbMigrationsRepositoryDirectory. ( String )
 		"""
@@ -314,7 +314,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsRepositoryDirectory(self, value):
 		"""
-		This method is the setter method for the _dbMigrationsRepositoryDirectory attribute.
+		This method is the setter method for the __dbMigrationsRepositoryDirectory attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -325,7 +325,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsRepositoryDirectory(self):
 		"""
-		This method is the deleter method for the _dbMigrationsRepositoryDirectory attribute.
+		This method is the deleter method for the __dbMigrationsRepositoryDirectory attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbMigrationsRepositoryDirectory"))
@@ -333,7 +333,7 @@ class Db(Component):
 	@property
 	def dbMigrationsTemplatesDirectory(self):
 		"""
-		This method is the property for the _dbMigrationsTemplatesDirectory attribute.
+		This method is the property for the __dbMigrationsTemplatesDirectory attribute.
 
 		:return: self.__dbMigrationsTemplatesDirectory. ( String )
 		"""
@@ -344,7 +344,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsTemplatesDirectory(self, value):
 		"""
-		This method is the setter method for the _dbMigrationsTemplatesDirectory attribute.
+		This method is the setter method for the __dbMigrationsTemplatesDirectory attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -355,7 +355,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbMigrationsTemplatesDirectory(self):
 		"""
-		This method is the deleter method for the _dbMigrationsTemplatesDirectory attribute.
+		This method is the deleter method for the __dbMigrationsTemplatesDirectory attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbMigrationsTemplatesDirectory"))
@@ -363,7 +363,7 @@ class Db(Component):
 	@property
 	def dbBackupDirectory(self):
 		"""
-		This method is the property for the _dbBackupDirectory attribute.
+		This method is the property for the __dbBackupDirectory attribute.
 
 		:return: self.__dbBackupDirectory. ( String )
 		"""
@@ -374,7 +374,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupDirectory(self, value):
 		"""
-		This method is the setter method for the _dbBackupDirectory attribute.
+		This method is the setter method for the __dbBackupDirectory attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -385,7 +385,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupDirectory(self):
 		"""
-		This method is the deleter method for the _dbBackupDirectory attribute.
+		This method is the deleter method for the __dbBackupDirectory attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbBackupDirectory"))
@@ -393,7 +393,7 @@ class Db(Component):
 	@property
 	def dbBackupCount(self):
 		"""
-		This method is the property for the _dbBackupCount attribute.
+		This method is the property for the __dbBackupCount attribute.
 
 		:return: self.__dbBackupCount. ( String )
 		"""
@@ -404,7 +404,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupCount(self, value):
 		"""
-		This method is the setter method for the _dbBackupCount attribute.
+		This method is the setter method for the __dbBackupCount attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -415,7 +415,7 @@ class Db(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbBackupCount(self):
 		"""
-		This method is the deleter method for the _dbBackupCount attribute.
+		This method is the deleter method for the __dbBackupCount attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbBackupCount"))
