@@ -64,13 +64,16 @@ TOCTREE_TEMPLATE_BEGIN = ["Api\n",
 						"Modules Summary:\n",
 						"\n",
 						".. toctree::\n",
+						"   :maxdepth: 1\n",
 						"\n"]
 
 TOCTREE_TEMPLATE_END = []
 
 STATEMENTS_UPDATE_MESSAGGE = "#***********************************************************************************************\n" \
-				"#***\tStatements updated for auto-documentation purpose.\n" \
-				"#***********************************************************************************************"
+							"#***\tSphinx: Statements updated for auto-documentation purpose.\n" \
+							"#***********************************************************************************************"
+
+DECORATORS_COMMENT_MESSAGE = "#***\tSphinx: Decorator commented for auto-documentation purpose."
 
 CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler": "{0}\n\tpass\n".format(STATEMENTS_UPDATE_MESSAGGE),
 						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE)}
@@ -117,6 +120,10 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 			for pattern, value in CONTENT_SUBSTITUTIONS.items():
 				if re.search(pattern, line):
 					sourceFile.content[i] = value
+			if re.search("^[ \t]*@\w+", line):
+				if not re.search("^[ \t]*@property", line) and not re.search("^[ \t]*@\w+\.setter", line) and not re.search("^[ \t]*@\w+\.deleter", line):
+					indent = re.search("^([ \t]*)", line)
+					sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
 		if trimStartIndex and trimEndIndex:
 			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__, module))
@@ -166,9 +173,14 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		rstFile.write()
 		modules.append(module)
 
+	testsModules = [module for module in modules if "tests" in module]
+	modules = [module for module in modules if not "tests" in module]
+
 	apiFile = File(apiFile)
 	apiFile.content.extend(TOCTREE_TEMPLATE_BEGIN)
 	for module in modules:
+		apiFile.content.append("   {0} <{1}>\n".format(module, "api/{0}".format(module)))
+	for module in testsModules:
 		apiFile.content.append("   {0} <{1}>\n".format(module, "api/{0}".format(module)))
 	apiFile.content.extend(TOCTREE_TEMPLATE_END)
 	apiFile.write()

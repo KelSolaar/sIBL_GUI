@@ -6,7 +6,7 @@ _`foundations.common`
 Functions
 ---------
 
-.. autofunction:: getSystemApplicationDatasDirectory(getSystemApplicationDatasDirectory)
+.. autofunction:: getSystemApplicationDatasDirectory
 
 .. autofunction:: getUserApplicationDatasDirectory
 

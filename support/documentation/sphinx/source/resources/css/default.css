@@ -208,22 +208,22 @@ div.admonition ul, div.admonition ol {
 }
 
 div.note {
-	background-color: #eee;
-	border: 1px solid #ccc;
+	background-color: rgb(64, 64, 64);
+	border: 2px solid rgb(160, 96, 64);
 }
 
 div.seealso {
-	background-color: #ffc;
-	border: 1px solid #ff6;
+	background-color: rgb(64, 64, 64);
+	border: 2px solid rgb(160, 96, 64);
 }
 
 div.topic {
-	background-color: #eee;
+	background-color: rgb(64, 64, 64);
 }
 
 div.warning {
-	background-color: #ffe4e4;
-	border: 1px solid #f66;
+	background-color: rgb(160, 96, 64);
+	border: 2px solid rgb(160, 64, 48);
 }
 
 p.admonition-title {
@@ -235,31 +235,31 @@ p.admonition-title:after {
 }
 
 pre {
-	padding: 5px;
-	background-color: rgb(100, 75, 55);
-	color: rgb(224, 224, 224);
-	line-height: 120%;
+	background-color: rgb(64, 64, 64);
 	border: 2px solid rgb(160, 96, 64);
 	border-left: none;
 	border-right: none;
+	color: rgb(224, 224, 224);
+	line-height: 120%;
+	padding: 5px;
 }
 
 tt {
-	background-color: #ecf0f3;
+	background-color: rgb(64, 64, 64);
 	padding: 0 1px 0 1px;
 	font-size: 0.95em;
 }
 
 th {
-	background-color: #ede;
+	background-color: rgb(64, 64, 64);
 }
 
 .warning tt {
-	background: #efc2c2;
+	background: rgb(160, 96, 64);
 }
 
 .note tt {
-	background: #d6d6d6;
+	background: rgb(64, 64, 64);
 }
 
 .viewcode-back {
@@ -267,9 +267,9 @@ th {
 }
 
 div.viewcode-block:target {
-	background-color: #f4debf;
-	border-top: 1px solid #ac9;
-	border-bottom: 1px solid #ac9;
+	background-color: rgb(96, 64, 48);
+	border-top: 2px solid rgb(160, 96, 64);
+	border-bottom: 2px solid rgb(160, 96, 64);
 }
 
 table.docutils td, table.docutils th {
@@ -277,5 +277,5 @@ table.docutils td, table.docutils th {
 	border-color: rgb(96, 96, 96);
 	border-style: solid;
 	border-width: 2px;
-	padding: 0px 0px 0px 0px;
+	padding: 4px;
 }

@@ -4,6 +4,7 @@ Api
 Modules Summary:
 
 .. toctree::
+   :maxdepth: 1
 
    foundations.common <api/foundations.common>
    foundations.core <api/foundations.core>
@@ -23,32 +24,6 @@ Modules Summary:
    manager.componentsManager <api/manager.componentsManager>
    manager.globals.constants <api/manager.globals.constants>
    manager.uiComponent <api/manager.uiComponent>
-   tests.tests <api/tests.tests>
-   tests.testsFoundations.testsCommon <api/tests.testsFoundations.testsCommon>
-   tests.testsFoundations.testsCore <api/tests.testsFoundations.testsCore>
-   tests.testsFoundations.testsEnvironment <api/tests.testsFoundations.testsEnvironment>
-   tests.testsFoundations.testsExceptions <api/tests.testsFoundations.testsExceptions>
-   tests.testsFoundations.testsGlobals.testsConstants <api/tests.testsFoundations.testsGlobals.testsConstants>
-   tests.testsFoundations.testsIo <api/tests.testsFoundations.testsIo>
-   tests.testsFoundations.testsLibrary <api/tests.testsFoundations.testsLibrary>
-   tests.testsFoundations.testsNamespace <api/tests.testsFoundations.testsNamespace>
-   tests.testsFoundations.testsParser <api/tests.testsFoundations.testsParser>
-   tests.testsFoundations.testsPkzip <api/tests.testsFoundations.testsPkzip>
-   tests.testsFoundations.testsRotatingBackup <api/tests.testsFoundations.testsRotatingBackup>
-   tests.testsFoundations.testsStreamObject <api/tests.testsFoundations.testsStreamObject>
-   tests.testsFoundations.testsStrings <api/tests.testsFoundations.testsStrings>
-   tests.testsFoundations.testsWalker <api/tests.testsFoundations.testsWalker>
-   tests.testsGlobals.testsConstants <api/tests.testsGlobals.testsConstants>
-   tests.testsGlobals.testsRuntimeConstants <api/tests.testsGlobals.testsRuntimeConstants>
-   tests.testsGlobals.testsUiConstants <api/tests.testsGlobals.testsUiConstants>
-   tests.testsManager.resources.components.addons.testsComponentC.testsComponentC <api/tests.testsManager.resources.components.addons.testsComponentC.testsComponentC>
-   tests.testsManager.resources.components.core.testsComponentA.testsComponentA <api/tests.testsManager.resources.components.core.testsComponentA.testsComponentA>
-   tests.testsManager.resources.components.core.testsComponentB.testsComponentB <api/tests.testsManager.resources.components.core.testsComponentB.testsComponentB>
-   tests.testsManager.testsComponent <api/tests.testsManager.testsComponent>
-   tests.testsManager.testsComponentsManager <api/tests.testsManager.testsComponentsManager>
-   tests.testsManager.testsGlobals.testsConstants <api/tests.testsManager.testsGlobals.testsConstants>
-   tests.testsManager.testsUiComponent <api/tests.testsManager.testsUiComponent>
-   tests.utilities <api/tests.utilities>
    umbra.components.addons.about.about <api/umbra.components.addons.about.about>
    umbra.components.addons.databaseOperations.databaseOperations <api/umbra.components.addons.databaseOperations.databaseOperations>
    umbra.components.addons.gpsMap.gpsMap <api/umbra.components.addons.gpsMap.gpsMap>
@@ -85,3 +60,29 @@ Modules Summary:
    umbra.ui.widgets.messageBox <api/umbra.ui.widgets.messageBox>
    umbra.ui.widgets.search_QLineEdit <api/umbra.ui.widgets.search_QLineEdit>
    umbra.ui.widgets.variable_QPushButton <api/umbra.ui.widgets.variable_QPushButton>
+   tests.tests <api/tests.tests>
+   tests.testsFoundations.testsCommon <api/tests.testsFoundations.testsCommon>
+   tests.testsFoundations.testsCore <api/tests.testsFoundations.testsCore>
+   tests.testsFoundations.testsEnvironment <api/tests.testsFoundations.testsEnvironment>
+   tests.testsFoundations.testsExceptions <api/tests.testsFoundations.testsExceptions>
+   tests.testsFoundations.testsGlobals.testsConstants <api/tests.testsFoundations.testsGlobals.testsConstants>
+   tests.testsFoundations.testsIo <api/tests.testsFoundations.testsIo>
+   tests.testsFoundations.testsLibrary <api/tests.testsFoundations.testsLibrary>
+   tests.testsFoundations.testsNamespace <api/tests.testsFoundations.testsNamespace>
+   tests.testsFoundations.testsParser <api/tests.testsFoundations.testsParser>
+   tests.testsFoundations.testsPkzip <api/tests.testsFoundations.testsPkzip>
+   tests.testsFoundations.testsRotatingBackup <api/tests.testsFoundations.testsRotatingBackup>
+   tests.testsFoundations.testsStreamObject <api/tests.testsFoundations.testsStreamObject>
+   tests.testsFoundations.testsStrings <api/tests.testsFoundations.testsStrings>
+   tests.testsFoundations.testsWalker <api/tests.testsFoundations.testsWalker>
+   tests.testsGlobals.testsConstants <api/tests.testsGlobals.testsConstants>
+   tests.testsGlobals.testsRuntimeConstants <api/tests.testsGlobals.testsRuntimeConstants>
+   tests.testsGlobals.testsUiConstants <api/tests.testsGlobals.testsUiConstants>
+   tests.testsManager.resources.components.addons.testsComponentC.testsComponentC <api/tests.testsManager.resources.components.addons.testsComponentC.testsComponentC>
+   tests.testsManager.resources.components.core.testsComponentA.testsComponentA <api/tests.testsManager.resources.components.core.testsComponentA.testsComponentA>
+   tests.testsManager.resources.components.core.testsComponentB.testsComponentB <api/tests.testsManager.resources.components.core.testsComponentB.testsComponentB>
+   tests.testsManager.testsComponent <api/tests.testsManager.testsComponent>
+   tests.testsManager.testsComponentsManager <api/tests.testsManager.testsComponentsManager>
+   tests.testsManager.testsGlobals.testsConstants <api/tests.testsManager.testsGlobals.testsConstants>
+   tests.testsManager.testsUiComponent <api/tests.testsManager.testsUiComponent>
+   tests.utilities <api/tests.utilities>

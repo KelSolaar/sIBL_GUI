@@ -4,7 +4,7 @@ Welcome to sIBL_GUI |version|'s documentation!
 Contents:
 
 .. toctree::
- :maxdepth: 3
+ :maxdepth: 2
  :numbered:
 
  Introduction <resources/pages/introduction>
@@ -20,4 +20,6 @@ Contents:
 Search:
 ==================
 
+* :ref:`genindex`
+* :ref:`modindex`
 * :ref:`search`

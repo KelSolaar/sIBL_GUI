@@ -57,12 +57,14 @@ TOCTREE_TEMPLATE_BEGIN = ["Welcome to sIBL_GUI |version|'s documentation!\n",
 						"Contents:\n",
 						"\n",
 						".. toctree::\n",
-						" :maxdepth: 3\n",
+						" :maxdepth: 2\n",
 						" :numbered:\n"]
-TOCTREE_TEMPLATE_END = ["Search:\n"
-					"==================\n"
-					"\n"
-					"* :ref:`search`\n"]
+TOCTREE_TEMPLATE_END = ["Search:\n",
+					"==================\n",
+					"\n",
+					"* :ref:`genindex`\n",
+					"* :ref:`modindex`\n",
+					"* :ref:`search`\n", ]
 
 #***********************************************************************************************
 #***	Main Python code.
