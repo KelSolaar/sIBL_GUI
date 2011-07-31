@@ -2014,7 +2014,7 @@ class Preview(UiComponent):
 		This method launches selected Ibl Sets Images Previewer.
 
 		:param imageType: Image type. ( String )
-		@param *args: Arguments. ( * )
+		:param *args: Arguments. ( * )
 		"""
 
 		success = True
@@ -2039,7 +2039,7 @@ class Preview(UiComponent):
 		This method launches Inspector Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
-		@param *args: Arguments. ( * )
+		:param *args: Arguments. ( * )
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet

@@ -100,7 +100,7 @@ class DbIblSet(DbBase):
 		"""
 		This method initializes the class.
 
-		@param *:*. ( String )
+		:param *:*. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -204,7 +204,7 @@ class DbTemplate(DbBase):
 		"""
 		This method initializes the class.
 
-		@param *:*. ( String )
+		:param *:*. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -275,7 +275,7 @@ class DbCollection(DbBase):
 		"""
 		This method initializes the class.
 
-		@param *:*. ( String )
+		:param *:*. ( String )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

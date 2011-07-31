@@ -1604,7 +1604,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This method is called when storing a layout.
 
 		:param name: Layout name. ( String )
-		@param *args: Arguments. ( * )
+		:param *args: Arguments. ( * )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1623,7 +1623,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This method is called when restoring a layout.
 
 		:param name: Layout name. ( String )
-		@param *args: Arguments. ( * )
+		:param *args: Arguments. ( * )
 		:return: Method success. ( Boolean )
 		"""
 

@@ -76,8 +76,8 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -90,8 +90,8 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -104,8 +104,8 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -118,8 +118,8 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -132,8 +132,8 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	uiExtendedExceptionHandler(exception, origin, *args, **kwargs)
@@ -146,8 +146,8 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	@param *args: Arguments. ( * )
-	@param **kwargs: Arguments. ( * )
+	:param *args: Arguments. ( * )
+	:param **kwargs: Arguments. ( * )
 	"""
 
 	uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs)
