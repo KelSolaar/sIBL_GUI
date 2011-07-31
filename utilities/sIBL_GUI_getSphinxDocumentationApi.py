@@ -75,8 +75,9 @@ STATEMENTS_UPDATE_MESSAGGE = "#*************************************************
 
 DECORATORS_COMMENT_MESSAGE = "#***\tSphinx: Decorator commented for auto-documentation purpose."
 
-CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler": "{0}\n\tpass\n".format(STATEMENTS_UPDATE_MESSAGGE),
-						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE)}
+CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler.*": "{0}\n\tpass".format(STATEMENTS_UPDATE_MESSAGGE),
+						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
+						"This method initializes the class.\n" : ".. Sphinx: Statements updated for auto-documentation purpose.\n"}
 
 #***********************************************************************************************
 #***	Main Python code.
@@ -119,7 +120,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 				trimEndIndex = i
 			for pattern, value in CONTENT_SUBSTITUTIONS.items():
 				if re.search(pattern, line):
-					sourceFile.content[i] = value
+					sourceFile.content[i] = re.sub(pattern, value, line)
 			if re.search("^[ \t]*@\w+", line):
 				if not re.search("^[ \t]*@property", line) and not re.search("^[ \t]*@\w+\.setter", line) and not re.search("^[ \t]*@\w+\.deleter", line):
 					indent = re.search("^([ \t]*)", line)
@@ -179,8 +180,8 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		rstFile.write()
 		modules.append(module)
 
-	modules = [module for module in modules if not "tests" in module]
 	testsModules = [module for module in modules if "tests" in module]
+	modules = [module for module in modules if not "tests" in module]
 
 	apiFile = File(apiFile)
 	apiFile.content.extend(TOCTREE_TEMPLATE_BEGIN)
