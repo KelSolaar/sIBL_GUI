@@ -925,7 +925,7 @@ class LocationsBrowser(UiComponent):
 				processCommand = "\"{0}\" \"{1}\"".format(customBrowser, directory)
 			else:
 				environmentVariable = Environment("PATH")
-				paths = environmentVariable.getPath().split(":")
+				paths = environmentVariable.getValue().split(":")
 
 				browserFound = False
 				for browser in self.__linuxBrowsers:

@@ -746,7 +746,7 @@ class RawEditingUtilities(UiComponent):
 				processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 			else:
 				environmentVariable = Environment("PATH")
-				paths = environmentVariable.getPath().split(":")
+				paths = environmentVariable.getValue().split(":")
 
 				editorFound = False
 				for editor in self.__linuxTextEditors:

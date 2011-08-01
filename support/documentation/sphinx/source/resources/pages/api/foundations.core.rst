@@ -20,6 +20,8 @@ Module Attributes
 
 .. attribute:: foundations.core.UNDEFINED_CODE_LAYER
 
+.. attribute:: foundations.core.UNDEFINED_MODULE
+
 .. attribute:: foundations.core.UNDEFINED_OBJECT
 
 Functions
