@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LocationsBrowser(UiComponent):
 	"""
-	This class is the LocationsBrowser class.
+	This class is the **LocationsBrowser** class.
 	"""
 
 	@core.executionTrace
@@ -704,7 +704,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_openIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by openIblSetsLocationsAction action.
+		This method is triggered by **openIblSetsLocationsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -714,7 +714,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by openInspectorIblSetLocationsAction action.
+		This method is triggered by **openInspectorIblSetLocationsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -724,7 +724,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by openComponentsLocationsAction action.
+		This method is triggered by **openComponentsLocationsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -734,7 +734,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by openTemplatesLocationsAction action.
+		This method is triggered by **openTemplatesLocationsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -744,7 +744,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
 		"""
-		This method fills the Custom_File_Browser_Path_lineEdit.
+		This method fills **Custom_File_Browser_Path_lineEdit** Widget.
 		"""
 
 		customFileBrowser = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
@@ -754,7 +754,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when Custom_File_Browser_Path_toolButton is clicked.
+		This method is called when **Custom_File_Browser_Path_toolButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -769,7 +769,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Custom_File_Browser_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when Custom_File_Browser_Path_lineEdit is edited and check that entered path is valid.
+		This method is called when **Custom_File_Browser_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_File_Browser_Path_lineEdit.text()))) and str(self.ui.Custom_File_Browser_Path_lineEdit.text()) != "":
@@ -783,7 +783,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This method is called when Open_Output_Directory_pushButton is clicked.
+		This method is called when **Open_Output_Directory_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -818,7 +818,7 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def openInspectorIblSetLocations__(self):
 		"""
-		This method opens Inspector Ibl Set directory.
+		This method opens **coreInspector** Ibl Set directory.
 
 		:return: Method success. ( Boolean )
 		"""

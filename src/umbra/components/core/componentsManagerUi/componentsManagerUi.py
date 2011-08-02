@@ -84,7 +84,7 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 
 class ComponentsManagerUi(UiComponent):
 	"""
-	This class is the ComponentsManagerUi class.
+	This class is the **ComponentsManagerUi** class.
 	"""
 
 	# Custom signals definitions.
@@ -662,7 +662,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_setModel(self):
 		"""
-		This method sets the Components_Manager_Ui_treeView Model.
+		This method sets the **Components_Manager_Ui_treeView** Model.
 
 		Columns:
 		Collections | Activated | Categorie | Rank | Version
@@ -718,7 +718,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_refreshModel(self):
 		"""
-		This method refreshes the Components_Manager_Ui_treeView Model.
+		This method refreshes the **Components_Manager_Ui_treeView** Model.
 		"""
 
 		LOGGER.debug("> Refreshing '{0}' Model!".format("Components_Manager_Ui_treeView"))
@@ -728,7 +728,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_setView(self):
 		"""
-		This method sets the Components_Manager_Ui_treeView View.
+		This method sets the **Components_Manager_Ui_treeView** View.
 		"""
 
 		LOGGER.debug("> Refreshing '{0}' ui!".format(self.__class__.__name__))
@@ -747,7 +747,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_setDefaultViewState(self):
 		"""
-		This method sets Components_Manager_Ui_treeView default View state.
+		This method sets **Components_Manager_Ui_treeView** default View state.
 		"""
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Components_Manager_Ui_treeView"))
@@ -761,7 +761,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_setActivationsStatus(self):
 		"""
-		This method sets the Components_Manager_Ui_treeView activations status.
+		This method sets the **Components_Manager_Ui_treeView** activations status.
 		"""
 
 		for i in range(self.__model.rowCount()):
@@ -775,7 +775,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_refreshView(self):
 		"""
-		This method refreshes the Components_Manager_Ui_treeView View.
+		This method refreshes the **Components_Manager_Ui_treeView** View.
 		"""
 
 		self.__Components_Manager_Ui_treeView_setDefaultViewState()
@@ -783,7 +783,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_addActions(self):
 		"""
-		This method sets the Components_Manager_Ui_treeView actions.
+		This method sets the **Components_Manager_Ui_treeView** actions.
 		"""
 
 		activateComponentsAction = QAction("Activate Component(s)", self.ui.Components_Manager_Ui_treeView)
@@ -809,7 +809,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_activateComponentsAction__triggered(self, checked):
 		"""
-		This method is triggered by activateComponentsAction action.
+		This method is triggered by **activateComponentsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -819,7 +819,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_deactivateComponentsAction__triggered(self, checked):
 		"""
-		This method is triggered by deactivateComponentsAction action.
+		This method is triggered by **deactivateComponentsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -829,7 +829,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_reloadComponentsAction__triggered(self, checked):
 		"""
-		This method is triggered by reloadComponentsAction action.
+		This method is triggered by **reloadComponentsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -839,7 +839,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets the Additional_Informations_textEdit Widget.
+		This method sets the **Additional_Informations_textEdit** Widget.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1006,7 +1006,7 @@ class ComponentsManagerUi(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
-		This method returns the Components_Manager_Ui_treeView selected items.
+		This method returns the **Components_Manager_Ui_treeView** selected items.
 
 		:param rowsRootOnly: Return rows roots only. ( Boolean )
 		:return: View selected items. ( List )

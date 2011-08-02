@@ -109,7 +109,7 @@ ABOUT_MESSAGE = """
 #***********************************************************************************************
 class About(UiComponent):
 	"""
-	This class is the About class.
+	This class is the **About** class.
 	"""
 
 	@core.executionTrace
@@ -447,7 +447,7 @@ class About(UiComponent):
 	@core.executionTrace
 	def __miscMenu_aboutMiscAction__triggered(self, checked):
 		"""
-		This method is triggered by aboutMiscAction action.
+		This method is triggered by **aboutMiscAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -458,8 +458,7 @@ class About(UiComponent):
 
 		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResources, self.__uiLogoImage),
 					Constants.releaseVersion.replace(".", " . "),
-					os.path.join(self.__uiResources, self.__uiGpl3Image)
-					)
+					os.path.join(self.__uiResources, self.__uiGpl3Image))
 
 		self.ui.About_label.setText(aboutMessage)
 

@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Plate(core.Structure):
 	"""
-	This is the Plate class.
+	This is the **Plate** class.
 	"""
 
 	@core.executionTrace
@@ -70,7 +70,7 @@ class Plate(core.Structure):
 
 class Light(core.Structure):
 	"""
-	This is the Light class.
+	This is the **Light** class.
 	"""
 
 	@core.executionTrace
@@ -88,7 +88,7 @@ class Light(core.Structure):
 
 class Inspector(UiComponent):
 	"""
-	This class is the Preview class.
+	This class is the **Preview** class.
 	"""
 
 	# Custom signals definitions.
@@ -922,7 +922,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This method sets the Inspector dockwidget ui.
+		This method sets the **coreInspector** dockwidget ui.
 		"""
 
 		if self.__inspectorIblSet:
@@ -949,7 +949,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This method sets the Inspector dockwidget ui.
+		This method sets the **coreInspector** dockwidget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
@@ -957,7 +957,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This method clears the Inspector dockwidget ui.
+		This method clears the **coreInspector** dockwidget ui.
 		"""
 
 		self.ui.Title_label.setText(QString())
@@ -970,7 +970,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setModel(self):
 		"""
-		This method sets the Plates_listView Model.
+		This method sets the **Plates_listView** Model.
 		"""
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Plates_listView"))
@@ -1003,7 +1003,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_refreshModel(self):
 		"""
-		This method refreshes the Plates_listView Model.
+		This method refreshes the **Plates_listView** Model.
 		"""
 
 		self.__Plates_listView_setModel()
@@ -1011,7 +1011,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setView(self):
 		"""
-		This method sets the Plates_listView ui.
+		This method sets the **Plates_listView** ui.
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Plates_listView"))
@@ -1033,7 +1033,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_setDefaultViewState(self):
 		"""
-		This method scales the Plates_listView item size.
+		This method scales the **Plates_listView** item size.
 		"""
 
 		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Plates_listView", self.__listViewIconSize))
@@ -1044,7 +1044,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_addActions(self):
 		"""
-		This method sets the Inspector_Overall_frame actions.
+		This method sets the **Inspector_Overall_frame** actions.
 		"""
 
 		pass
@@ -1052,7 +1052,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when Plates_listView Model selection has changed.
+		This method sets is triggered when **Plates_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1069,7 +1069,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
 		"""
-		This method sets is triggered when coreDatabaseBrowser Model has changed.
+		This method sets is triggered when **coreDatabaseBrowser** Model has changed.
 		"""
 
 		self.__setInspectorIblSet()
@@ -1077,7 +1077,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when coreDatabaseBrowser Database_Browser_listView Model selection has changed.
+		This method sets is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1096,7 +1096,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Previous_Ibl_Set_pushButton is clicked.
+		This method is triggered when **Previous_Ibl_Set_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1106,7 +1106,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Next_Ibl_Set_pushButton is clicked.
+		This method is triggered when **Next_Ibl_Set_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1116,7 +1116,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Previous_Plate_pushButton is clicked.
+		This method is triggered when **Previous_Plate_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1126,7 +1126,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Next_Plate_pushButton is clicked.
+		This method is triggered when **Next_Plate_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1136,7 +1136,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Image_label__linkActivated(self, url):
 		"""
-		This method is triggered when a link is clicked in the Image_label Widget.
+		This method is triggered when a link is clicked in the **Image_label** Widget.
 
 		:param url: Url to explore. ( QString )
 		"""
@@ -1146,7 +1146,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
-		This method sets the Inspector Ibl Set.
+		This method sets the **coreInspector** Ibl Set.
 		"""
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -1159,7 +1159,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This method Sets the Inspector Ibl Set parser.
+		This method Sets the **coreInspector** Ibl Set parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):
@@ -1171,7 +1171,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def __setInspectorIblSetPlates(self):
 		"""
-		This method sets the Plates from the Inspector Ibl Set.
+		This method sets the Plates from the **coreInspector** Ibl Set.
 		"""
 
 		if self.__inspectorIblSet:
@@ -1280,7 +1280,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
-		This method loops through Inspector Plates.
+		This method loops through **coreInspector** Ibl Set Plates.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )

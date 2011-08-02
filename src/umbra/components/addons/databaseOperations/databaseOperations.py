@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DbType(core.Structure):
 	"""
-	This is the DbType class.
+	This is the **DbType** class.
 	"""
 
 	@core.executionTrace
@@ -68,7 +68,7 @@ class DbType(core.Structure):
 
 class DatabaseOperations(UiComponent):
 	"""
-	This class is the DatabaseOperations class.
+	This class is the **DatabaseOperations** class.
 	"""
 
 	@core.executionTrace
@@ -407,7 +407,7 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def __synchronize_Database_pushButton_clicked(self, checked):
 		"""
-		This method is triggered when Synchronize_Database_pushButton is clicked.
+		This method is triggered when **Synchronize_Database_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

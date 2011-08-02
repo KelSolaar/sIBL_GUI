@@ -52,7 +52,7 @@ DbBase = sqlalchemy.ext.declarative.declarative_base()
 
 class DbIblSet(DbBase):
 	"""
-	This class is the DbIblSet class.
+	This class is the **DbIblSet** class.
 	"""
 
 	__tablename__ = "Sets"
@@ -160,7 +160,7 @@ class DbIblSet(DbBase):
 
 class DbTemplate(DbBase):
 	"""
-	This class is the DbTemplate class.
+	This class is the **DbTemplate** class.
 	"""
 
 	__tablename__ = "Templates"
@@ -260,7 +260,7 @@ class DbTemplate(DbBase):
 
 class DbCollection(DbBase):
 	"""
-	This class is the DbCollection class.
+	This class is the **DbCollection** class.
 	"""
 
 	__tablename__ = "Collections"

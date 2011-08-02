@@ -58,7 +58,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoaderScript(UiComponent):
 	"""
-	This class is the LoaderScript class.
+	This class is the **LoaderScript** class.
 	"""
 
 	@core.executionTrace
@@ -558,7 +558,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
 		self.ui.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -571,7 +571,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
 		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -597,7 +597,7 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	def __Output_Loader_Script_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Output_Loader_Script_pushButton is clicked.
+		This method is triggered when **Output_Loader_Script_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -607,7 +607,7 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	def __Send_To_Software_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Send_To_Software_pushButton is clicked.
+		This method is triggered when **Send_To_Software_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -615,9 +615,9 @@ class LoaderScript(UiComponent):
 		self.sendLoaderScriptToSoftware__()
 
 	@core.executionTrace
-	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when coreTemplatesOutlinerUi_Templates_Outliner_treeView selection has changed.
+		This method is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

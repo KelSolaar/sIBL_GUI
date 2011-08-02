@@ -39,7 +39,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class ConstantsTestCase(unittest.TestCase):
 	"""
-	This class is the ConstantsTests class.
+	This class is the **ConstantsTests** class.
 	"""
 
 	def testRequiredAttributes(self):
@@ -76,28 +76,28 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testApplicationNameAttribute(self):
 		"""
-		This method tests the "applicationName" attribute.
+		This method tests **applicationName** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.applicationName, "\w+")
 
 	def testReleaseVersionAttribute(self):
 		"""
-		This method tests the "releaseVersion" attribute.
+		This method tests **releaseVersion** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.releaseVersion, "[0-9]\.[0-9]\.[0-9]")
 
 	def testLoggerAttribute(self):
 		"""
-		This method tests the "logger" attribute.
+		This method tests **logger** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.logger, "\w+")
 
 	def testVerbosityLevelAttribute(self):
 		"""
-		This method tests the "verbosityLevel" attribute.
+		This method tests **verbosityLevel** attribute.
 		"""
 
 		self.assertIsInstance(Constants.verbosityLevel, int)
@@ -106,14 +106,14 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testLoggingDefaultFormaterAttribute(self):
 		"""
-		This method tests the "loggingDefaultFormatter" attribute.
+		This method tests **loggingDefaultFormatter** attribute.
 		"""
 
 		self.assertIsInstance(Constants.loggingDefaultFormatter, str)
 
 	def testVerbosityLabelsAttribute(self):
 		"""
-		This method tests the "verbosityLabels" attribute.
+		This method tests **verbosityLabels** attribute.
 		"""
 
 		self.assertIsInstance(Constants.verbosityLabels, tuple)
@@ -122,14 +122,14 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testLoggingSeparatorsAttribute(self):
 		"""
-		This method tests the "loggingSeparators" attribute.
+		This method tests **loggingSeparators** attribute.
 		"""
 
 		self.assertIsInstance(Constants.loggingSeparators, str)
 
 	def testEncodingFormatAttribute(self):
 		"""
-		This method tests the "encodingFormat" attribute.
+		This method tests **encodingFormat** attribute.
 		"""
 
 		validEncodings = ("ascii",
@@ -140,7 +140,7 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testEncodingErrorAttribute(self):
 		"""
-		This method tests the "encodingError" attribute.
+		This method tests **encodingError** attribute.
 		"""
 
 		validEncodings = ("strict",
@@ -152,91 +152,91 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testApplicationDirectoryAttribute(self):
 		"""
-		This method tests the "applicationDirectory" attribute.
+		This method tests **applicationDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.applicationDirectory, "\w+")
 
 	def testProviderDirectoryAttribute(self):
 		"""
-		This method tests the "providerDirectory" attribute.
+		This method tests **providerDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.providerDirectory, "\w+")
 
 	def testSettingsDirectoryAttribute(self):
 		"""
-		This method tests the "settingsDirectory" attribute.
+		This method tests **settingsDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.settingsDirectory, "\w+")
 
 	def testUserComponentsDirectoryAttribute(self):
 		"""
-		This method tests the "userComponentsDirectory" attribute.
+		This method tests **userComponentsDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.userComponentsDirectory, "\w+")
 
 	def testLoggingDirectoryAttribute(self):
 		"""
-		This method tests the "loggingDirectory" attribute.
+		This method tests **loggingDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.loggingDirectory, "\w+")
 
 	def testIoDirectoryAttribute(self):
 		"""
-		This method tests the "ioDirectory" attribute.
+		This method tests **ioDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.ioDirectory, "\w+")
 
 	def testPreferencesDirectoriesAttribute(self):
 		"""
-		This method tests the "preferencesDirectories" attribute.
+		This method tests **preferencesDirectories** attribute.
 		"""
 
 		self.assertIsInstance(Constants.preferencesDirectories, tuple)
 
 	def testCoreComponentsDirectoryAttribute(self):
 		"""
-		This method tests the "coreComponentsDirectory" attribute.
+		This method tests **coreComponentsDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.coreComponentsDirectory, "\w+")
 
 	def testAddonsComponentsDirectoryAttribute(self):
 		"""
-		This method tests the "addonsComponentsDirectory" attribute.
+		This method tests **addonsComponentsDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.addonsComponentsDirectory, "\w+")
 
 	def testLibrariesDirectoryAttribute(self):
 		"""
-		This method tests the "librariesDirectory" attribute.
+		This method tests **librariesDirectory** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.librariesDirectory, "\w+")
 
 	def testSettingsFileAttribute(self):
 		"""
-		This method tests the "settingsFile" attribute.
+		This method tests **settingsFile** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.settingsFile, "\w+")
 
 	def testLoggingFileAttribute(self):
 		"""
-		This method tests the "settingsFile" attribute.
+		This method tests **settingsFile** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.loggingFile, "\w+")
 
 	def testDefaultTimerCycleAttribute(self):
 		"""
-		This method tests the "defaultTimerCycle" attribute.
+		This method tests **defaultTimerCycle** attribute.
 		"""
 
 		self.assertIsInstance(Constants.defaultTimerCycle, int)
@@ -245,7 +245,7 @@ class ConstantsTestCase(unittest.TestCase):
 
 	def testNullObjectAttribute(self):
 		"""
-		This method tests the "nullObject" attribute.
+		This method tests **nullObject** attribute.
 		"""
 
 		self.assertRegexpMatches(Constants.nullObject, "\w+")

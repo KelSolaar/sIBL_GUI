@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoaderScriptOptions(UiComponent):
 	"""
-	This class is the LoaderScriptOptions class.
+	This class is the **LoaderScriptOptions** class.
 	"""
 
 	@core.executionTrace
@@ -565,7 +565,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def uninitializeUi(self):
@@ -576,7 +576,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 	@core.executionTrace
 	def addWidget(self):
@@ -657,9 +657,9 @@ class LoaderScriptOptions(UiComponent):
 		tableWidget.show()
 
 	@core.executionTrace
-	def __coreTemplatesOutlinerUi_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when coreTemplatesOutlinerUi_Templates_Outliner_treeView selection has changed.
+		This method sets is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

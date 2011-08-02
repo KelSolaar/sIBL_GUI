@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DatabaseBrowser_Worker(QThread):
 	"""
-	This class is the DatabaseBrowser_Worker class.
+	This class is the **DatabaseBrowser_Worker** class.
 	"""
 
 	# Custom signals definitions.
@@ -244,7 +244,7 @@ class DatabaseBrowser_Worker(QThread):
 
 class DatabaseBrowser_QListView(QListView):
 	"""
-	This class is the DatabaseBrowser_QListView class.
+	This class is the **DatabaseBrowser_QListView** class.
 	"""
 
 	@core.executionTrace
@@ -401,7 +401,7 @@ class DatabaseBrowser_QListView(QListView):
 
 class DatabaseBrowser(UiComponent):
 	"""
-	This class is the DatabaseBrowser class.
+	This class is the **DatabaseBrowser** class.
 	"""
 
 	# Custom signals definitions.
@@ -1241,7 +1241,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setModelDatas(self):
 		"""
-		This method sets Database_Browser_listView Model content.
+		This method sets **Database_Browser_listView** Model content.
 		"""
 
 		self.__modelContent = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
@@ -1249,7 +1249,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setModel(self):
 		"""
-		This method sets the Database_Browser_listView Model.
+		This method sets the **Database_Browser_listView** Model.
 		"""
 
 		LOGGER.debug("> Setting up '{0}' Model!".format("Database_Browser_listView"))
@@ -1286,7 +1286,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_refreshModel(self):
 		"""
-		This method refreshes the Database_Browser_listView Model.
+		This method refreshes the **Database_Browser_listView** Model.
 		"""
 
 		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
@@ -1296,7 +1296,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setView(self):
 		"""
-		This method sets the Database_Browser_listView ui.
+		This method sets the **Database_Browser_listView** ui.
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
@@ -1313,7 +1313,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_setDefaultViewState(self):
 		"""
-		This method scales the Database_Browser_listView item size.
+		This method scales the **Database_Browser_listView** item size.
 		"""
 
 		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
@@ -1324,7 +1324,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_refreshView(self):
 		"""
-		This method refreshes the Database_Browser_listView View.
+		This method refreshes the **Database_Browser_listView** View.
 		"""
 
 		self.__Database_Browser_listView_setDefaultViewState()
@@ -1332,7 +1332,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_storeModelSelection(self):
 			"""
-			This method stores Database_Browser_listView Model selection.
+			This method stores **Database_Browser_listView** Model selection.
 			"""
 
 			LOGGER.debug("> Storing '{0}' Model selection!".format("Database_Browser_listView"))
@@ -1344,7 +1344,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_restoreModelSelection(self):
 			"""
-			This method restores Database_Browser_listView Model selection.
+			This method restores **Database_Browser_listView** Model selection.
 			"""
 
 			LOGGER.debug("> Restoring '{0}' Model selection!".format("Database_Browser_listView"))
@@ -1392,7 +1392,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by addContentAction action.
+		This method is triggered by **addContentAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1402,7 +1402,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
 		"""
-		This method is triggered by addIblSetAction action.
+		This method is triggered by **addIblSetAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1412,7 +1412,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
 		"""
-		This method is triggered by removeIblSetsAction action.
+		This method is triggered by **removeIblSetsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1422,7 +1422,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by updateIblSetsLocationsAction action.
+		This method is triggered by **updateIblSetsLocationsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1432,7 +1432,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method defines the behavior when the Database_Browser_listView Model datas changes.
+		This method defines the behavior when the **Database_Browser_listView** Model datas changes.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1451,7 +1451,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
-		This method scales the Database_Browser_listView icons.
+		This method scales the **Database_Browser_listView** icons.
 
 		:param value: Thumbnails size. ( Integer )
 		"""
@@ -1467,7 +1467,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __coreDb_database__changed(self):
 		"""
-		This method is triggered by the DatabaseBrowser_Worker when the Database has changed.
+		This method is triggered by the **DatabaseBrowser_Worker** when the Database has changed.
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
@@ -1686,7 +1686,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self):
 		"""
-		This method returns Database_Browser_listView selected items.
+		This method returns **Database_Browser_listView** selected items.
 
 		:return: View selected items. ( List )
 		"""

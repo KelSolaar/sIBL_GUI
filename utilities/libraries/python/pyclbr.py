@@ -27,7 +27,7 @@ The dictionary of methods uses the method names as keys and the line
 numbers on which the method was defined as values.
 If the name of a super class is not recognized, the corresponding
 entry in the list of super classes is not a class instance but a
-string giving the name of the super class.	Since import statements
+string giving the name of the **super** class.	Since import statements
 are recognized and imported modules are scanned as well, this
 shouldn't happen often.
 

@@ -104,14 +104,14 @@ RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_DEFAULT_FORMATTER,
 
 class Ui_Setup():
 	"""
-	This class is the Ui_Setup class.
+	This class is the **Ui_Setup** class.
 	"""
 
 	pass
 
 class Ui_Type():
 	"""
-	This class is the Ui_Type class.
+	This class is the **Ui_Type** class.
 	"""
 
 	pass
@@ -127,7 +127,7 @@ else:
 #***********************************************************************************************
 class Preferences():
 	"""
-	This class is the Preferences class.
+	This class is the **Preferences** class.
 	"""
 
 	@core.executionTrace
@@ -368,7 +368,7 @@ class Preferences():
 
 class LayoutActiveLabel(core.Structure):
 	"""
-	This is the LayoutActiveLabel class.
+	This is the **LayoutActiveLabel** class.
 	"""
 
 	@core.executionTrace
@@ -463,7 +463,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
-		# --- Activating Component Manager Ui component. ---
+		# --- Activating "core.componentsManagerUi" component. ---
 		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
 		if self.__coreComponentsManagerUi:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"), textColor=Qt.white)
@@ -473,7 +473,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.componentsManagerUi", Constants.applicationName)
 
-		# --- Activating Preferences Manager component. ---
+		# --- Activating "core.preferencesManager" component. ---
 		self.__corePreferencesManager = self.__componentsManager.getInterface("core.preferencesManager")
 		if self.__corePreferencesManager:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager"), textColor=Qt.white)
@@ -483,7 +483,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.preferencesManager", Constants.applicationName)
 
-		# --- Activating Database component. ---
+		# --- Activating "core.db" component. ---
 		self.__coreDb = self.__componentsManager.getInterface("core.db")
 		if self.__coreDb:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.db"), textColor=Qt.white)
@@ -492,7 +492,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.db", Constants.applicationName)
 
-		# --- Activating Collections Outliner component. ---
+		# --- Activating "core.collectionsOutliner" component. ---
 		self.__coreCollectionsOutliner = self.__componentsManager.getInterface("core.collectionsOutliner")
 		if self.__coreCollectionsOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner"), textColor=Qt.white)
@@ -502,7 +502,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.collectionsOutliner", Constants.applicationName)
 
-		# --- Activating Database Browser component. ---
+		# --- Activating "core.databaseBrowser" component. ---
 		self.__coreDatabaseBrowser = self.__componentsManager.getInterface("core.databaseBrowser")
 		if self.__coreDatabaseBrowser:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser"), textColor=Qt.white)
@@ -512,7 +512,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		else:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.databaseBrowser", Constants.applicationName)
 
-		# --- Activating Inspector component. ---
+		# --- Activating "core.inspector" component. ---
 		self.__coreInspector = self.__componentsManager.getInterface("core.inspector")
 		if self.__coreInspector:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
@@ -520,7 +520,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			self.__coreInspector.addWidget()
 			self.__coreInspector.initializeUi()
 
-		# --- Activating Templates Outliner component. ---
+		# --- Activating "core.templatesOutliner" component. ---
 		self.__coreTemplatesOutliner = self.__componentsManager.getInterface("core.templatesOutliner")
 		if self.__coreTemplatesOutliner:
 			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner"), textColor=Qt.white)
@@ -1373,7 +1373,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __initializeToolbar(self):
 		"""
-		This method initializes sIBL_GUI toolbar.
+		This method initializes Application toolbar.
 		"""
 
 		LOGGER.debug("> Initializing Application toolbar.")
@@ -1485,7 +1485,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __setLayoutsActiveLabelsShortcuts(self):
 		"""
-		This method sets the layouts Active_QLabels shortcuts.
+		This method sets the layouts **Active_QLabels** shortcuts.
 		"""
 
 		LOGGER.debug("> Setting layouts Active_QLabels shortcuts.")
@@ -1499,7 +1499,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __getLayoutsActiveLabel(self):
 		"""
-		This method returns the current layout Active_QLabel index.
+		This method returns the current layout **Active_QLabel** index.
 
 		:return: Layouts Active_QLabel index. ( Integer )
 		"""
@@ -1514,7 +1514,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __setLayoutsActiveLabel(self, index):
 		"""
-		This method sets the layouts Active_QLabel.
+		This method sets the layouts **Active_QLabel**.
 
 		:param index: Layouts Active_QLabel. ( Integer )
 		"""
@@ -1527,7 +1527,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __activeLabel__clicked(self, activeLabel):
 		"""
-		This method is triggered when an Active_QLabel is clicked.
+		This method is triggered when an **Active_QLabel** is clicked.
 		"""
 
 		LOGGER.debug("> Clicked Active_QLabel: '{0}'.".format(activeLabel))
@@ -1539,7 +1539,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __centralWidgetButton__clicked(self):
 		"""
-		This method sets the Central Widget visibility.
+		This method sets the **Central** Widget visibility.
 		"""
 
 		LOGGER.debug("> Central Widget button clicked!")
@@ -1552,7 +1552,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __helpDisplayMiscAction__triggered(self, checked):
 		"""
-		This method is triggered by helpDisplayMiscAction action.
+		This method is triggered by **helpDisplayMiscAction** action.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1563,7 +1563,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 	@core.executionTrace
 	def __apiDisplayMiscAction__triggered(self, checked):
 		"""
-		This method is triggered by apiDisplayMiscAction action.
+		This method is triggered by **apiDisplayMiscAction** action.
 
 		:param checked: Checked state. ( Boolean )
 		"""

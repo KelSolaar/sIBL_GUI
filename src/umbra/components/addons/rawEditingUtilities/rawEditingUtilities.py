@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class RawEditingUtilities(UiComponent):
 	"""
-	This class is the LocationsBrowser class.
+	This class is the **LocationsBrowser** class.
 	"""
 
 	@core.executionTrace
@@ -590,7 +590,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetsInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by editIblSetsInTextEditorAction action.
+		This method is triggered by **editIblSetsInTextEditorAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -600,7 +600,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by editInspectorIblSetInTextEditorAction action.
+		This method is triggered by **editInspectorIblSetInTextEditorAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -610,7 +610,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by editTemplateInTextEditorAction action.
+		This method is triggered by **editTemplateInTextEditorAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -620,7 +620,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
 		"""
-		This method fills the Custom_Text_Editor_Path_lineEdit.
+		This method fills **Custom_Text_Editor_Path_lineEdit** Widget.
 		"""
 
 		customTextEditor = self.__settings.getKey(self.__settingsSection, "customTextEditor")
@@ -630,7 +630,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when Custom_Text_Editor_Path_toolButton is clicked.
+		This method is called when **Custom_Text_Editor_Path_toolButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -645,7 +645,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Custom_Text_Editor_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when Custom_Text_Editor_Path_lineEdit is edited and check that entered path is valid.
+		This method is called when **Custom_Text_Editor_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.ui.Custom_Text_Editor_Path_lineEdit.text()) != "":
@@ -683,7 +683,7 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInTextEditor__(self):
 		"""
-		This method edits Inspector Ibl Set.
+		This method edits **coreInspector** Ibl Set.
 
 		:return: Method success. ( Boolean )
 		"""

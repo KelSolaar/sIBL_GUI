@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
-	This class is the Image_QGraphicsItem class.
+	This class is the **Image_QGraphicsItem** class.
 	"""
 
 	@core.executionTrace
@@ -200,7 +200,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 class ImagesPreviewer(object):
 	"""
-	This is the ImagesPreviewer class.
+	This is the **ImagesPreviewer** class.
 	"""
 
 	@core.executionTrace
@@ -949,7 +949,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Previous_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Previous_Image_pushButton is clicked.
+		This method is triggered when **Previous_Image_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -959,7 +959,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Next_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Next_Image_pushButton is clicked.
+		This method is triggered when **Next_Image_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -969,7 +969,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_In_pushButton_clicked(self, checked):
 		"""
-		This method is triggered when Zoom_In_pushButton is clicked.
+		This method is triggered when **Zoom_In_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -979,7 +979,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Zoom_Out_pushButton is clicked.
+		This method is triggered when **Zoom_Out_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -989,7 +989,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_Fit_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Zoom_Fit_pushButton is clicked.
+		This method is triggered when **Zoom_Fit_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1074,7 +1074,7 @@ class ImagesPreviewer(object):
 
 class Preview(UiComponent):
 	"""
-	This class is the Preview class.
+	This class is the **Preview** class.
 	"""
 
 	@core.executionTrace
@@ -1871,7 +1871,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __addInspectorButtons(self):
 		"""
-		This method adds buttons to the Inspector Component.
+		This method adds buttons to the **coreInspector** Component.
 		"""
 
 		self.__coreInspector.ui.Inspector_Options_groupBox.show()
@@ -1882,7 +1882,7 @@ class Preview(UiComponent):
 
 	def __removeInspectorButtons(self):
 		"""
-		This method removes buttons from the Inspector Component.
+		This method removes buttons from the **coreInspector** Component.
 		"""
 
 		for value in self.__inspectorButtons.values():
@@ -1891,7 +1891,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by viewIblSetsBackgroundImagesAction action.
+		This method is triggered by **viewIblSetsBackgroundImagesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1901,7 +1901,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by viewIblSetsLightingImagesAction action.
+		This method is triggered by **viewIblSetsLightingImagesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1911,7 +1911,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by viewIblSetsReflectionImagesAction action.
+		This method is triggered by **viewIblSetsReflectionImagesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1921,7 +1921,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by viewPlatesAction action.
+		This method is triggered by **viewPlatesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1931,7 +1931,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
 		"""
-		This method is triggered by viewInspectorIblSetBackgroundImageAction action.
+		This method is triggered by **viewInspectorIblSetBackgroundImageAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1941,7 +1941,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
 		"""
-		This method is triggered by viewInspectorIblSetLightingImageAction action.
+		This method is triggered by **viewInspectorIblSetLightingImageAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1951,7 +1951,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
 		"""
-		This method is triggered by viewInspectorIblSetReflectionImageAction action.
+		This method is triggered by **viewInspectorIblSetReflectionImageAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1961,7 +1961,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by viewInspectorIblSetPlatesAction action.
+		This method is triggered by **viewInspectorIblSetPlatesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1971,7 +1971,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
 		"""
-		This method fills the Custom_Previewer_Path_lineEdit.
+		This method fills **Custom_Previewer_Path_lineEdit** Widget.
 		"""
 
 		customPreviewer = self.__settings.getKey(self.__settingsSection, "customPreviewer")
@@ -1981,7 +1981,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Custom_Previewer_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when Custom_Previewer_Path_toolButton is clicked.
+		This method is called when **Custom_Previewer_Path_toolButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1996,7 +1996,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when Custom_Previewer_Path_lineEdit is edited and check that entered path is valid.
+		This method is called when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Previewer_Path_lineEdit.text()))) and str(self.ui.Custom_Previewer_Path_lineEdit.text()) != "":
@@ -2036,7 +2036,7 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def viewInspectorIblSetImages__(self, imageType, *args):
 		"""
-		This method launches Inspector Ibl Set Images Previewer.
+		This method launches **coreInspector** Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param *args: Arguments. ( * )

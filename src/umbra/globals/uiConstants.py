@@ -29,7 +29,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class UiConstants():
 	"""
-	This class is the UiConstants class.
+	This class is the **UiConstants** class.
 	"""
 
 	frameworkUiFile = "./ui/sIBL_GUI.ui"

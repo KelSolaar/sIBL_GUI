@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class sIBLeditUtilities(UiComponent):
 	"""
-	This class is the sIBLeditUtilities class.
+	This class is the **sIBLeditUtilities** class.
 	"""
 
 	@core.executionTrace
@@ -486,7 +486,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This method is triggered by editIblSetInSIBLEditAction action.
+		This method is triggered by **editIblSetInSIBLEditAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -496,7 +496,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This method is triggered by editInspectorIblSetInSIBLEditAction action.
+		This method is triggered by **editInspectorIblSetInSIBLEditAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -506,7 +506,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
 		"""
-		This method fills the sIBLedit_Path_lineEdit.
+		This method fills **sIBLedit_Path_lineEdit** Widget.
 		"""
 
 		sIBLeditExecutable = self.__settings.getKey(self.__settingsSection, "sIBLeditExecutable")
@@ -516,7 +516,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when sIBLedit_Path_toolButton is clicked.
+		This method is called when **sIBLedit_Path_toolButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -531,7 +531,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __sIBLedit_Path_lineEdit__editFinished(self):
 		"""
-		This method is called when sIBLedit_Path_lineEdit is edited and check that entered path is valid.
+		This method is called when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
 		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
@@ -566,7 +566,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInSIBLEdit__(self):
 		"""
-		This method edits Inspector Ibl Set in sIBLedit.
+		This method edits **coreInspector** Ibl Set in sIBLedit.
 
 		:return: Method success. ( Boolean )
 		"""

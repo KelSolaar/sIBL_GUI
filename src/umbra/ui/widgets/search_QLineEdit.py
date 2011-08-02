@@ -47,7 +47,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
 	"""
-	This class is the Search_QLineEdit class.
+	This class is the **Search_QLineEdit** class.
 	"""
 
 	@core.executionTrace
@@ -214,7 +214,7 @@ class Search_QLineEdit(QLineEdit):
 	@core.executionTrace
 	def resizeEvent(self, event):
 		"""
-		This method overloads the Search_QLineEdit resizeevent.
+		This method overloads the **Search_QLineEdit** Widget resize event.
 
 		:param event: Resize event. ( QResizeEvent )
 		"""

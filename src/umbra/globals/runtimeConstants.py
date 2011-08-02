@@ -29,7 +29,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class RuntimeConstants():
 	"""
-	This class is the RuntimeConstants class.
+	This class is the **RuntimeConstants** class.
 	"""
 
 	parameters = None

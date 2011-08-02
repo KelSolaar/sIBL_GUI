@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class TemplatesOutliner_Worker(QThread):
 	"""
-	This class is the TemplatesOutliner_Worker class.
+	This class is the **TemplatesOutliner_Worker** class.
 	"""
 
 	# Custom signals definitions.
@@ -244,7 +244,7 @@ class TemplatesOutliner_Worker(QThread):
 
 class TemplatesOutliner_QTreeView(QTreeView):
 	"""
-	This class is the TemplatesOutliner_QTreeView class.
+	This class is the **TemplatesOutliner_QTreeView** class.
 	"""
 
 	@core.executionTrace
@@ -384,7 +384,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 class TemplatesOutliner(UiComponent):
 	"""
-	This class is the TemplatesOutliner class.
+	This class is the **TemplatesOutliner** class.
 	"""
 
 	# Custom signals definitions.
@@ -1293,7 +1293,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setModel(self):
 		"""
-		This method sets the Templates_Outliner_treeView Model.
+		This method sets the **Templates_Outliner_treeView** Model.
 
 		Columns:
 		Templates | Release | Software version
@@ -1377,7 +1377,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshModel(self):
 		"""
-		This method refreshes the Templates_Outliner_treeView Model.
+		This method refreshes the **Templates_Outliner_treeView** Model.
 		"""
 
 		LOGGER.debug("> Refreshing '{0}' Model!".format("Templates_Outliner_treeView"))
@@ -1387,7 +1387,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setView(self):
 		"""
-		This method sets the Templates_Outliner_treeView View.
+		This method sets the **Templates_Outliner_treeView** View.
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Templates_Outliner_treeView"))
@@ -1405,7 +1405,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setDefaultViewState(self):
 		"""
-		This method sets Templates_Outliner_treeView default View state.
+		This method sets **Templates_Outliner_treeView** default View state.
 		"""
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Templates_Outliner_treeView"))
@@ -1419,7 +1419,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshView(self):
 		"""
-		This method refreshes the Templates_Outliner_treeView View.
+		This method refreshes the **Templates_Outliner_treeView** View.
 		"""
 
 		self.__Templates_Outliner_treeView_setDefaultViewState()
@@ -1427,7 +1427,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_storeModelSelection(self):
 		"""
-		This method stores Templates_Outliner_treeView Model selection.
+		This method stores **Templates_Outliner_treeView** Model selection.
 		"""
 
 		LOGGER.debug("> Storing '{0}' Model selection!".format("Templates_Outliner_treeView"))
@@ -1444,7 +1444,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_restoreModelSelection(self):
 		"""
-		This method restores Templates_Outliner_treeView Model selection.
+		This method restores **Templates_Outliner_treeView** Model selection.
 		"""
 
 		LOGGER.debug("> Restoring '{0}' Model selection!".format("Templates_Outliner_treeView"))
@@ -1469,7 +1469,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addActions(self):
 		"""
-		This method sets the Templates_Outliner_treeView actions.
+		This method sets the **Templates_Outliner_treeView** actions.
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
@@ -1510,7 +1510,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addTemplateAction__triggered(self, checked):
 		"""
-		This method is triggered by addTemplateAction action.
+		This method is triggered by **addTemplateAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1520,7 +1520,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by removeTemplatesAction action.
+		This method is triggered by **removeTemplatesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1530,7 +1530,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by importDefaultTemplatesAction action.
+		This method is triggered by **importDefaultTemplatesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1540,7 +1540,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by displayHelpFilesAction action.
+		This method is triggered by **displayHelpFilesAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1550,7 +1550,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
-		This method is triggered by filterTemplatesVersionsAction action.
+		This method is triggered by **filterTemplatesVersionsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1560,7 +1560,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets the Template_Informations_textEdit Widget.
+		This method sets the **Template_Informations_textEdit** Widget.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1591,7 +1591,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
 		"""
-		This method is triggered when a link is clicked in the Template_Informations_textBrowser Widget.
+		This method is triggered when a link is clicked in the **Template_Informations_textBrowser** Widget.
 
 		:param url: Url to explore. ( QUrl )
 		"""
@@ -1601,7 +1601,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __coreDb_database__changed(self):
 		"""
-		This method is triggered by the TemplatesOutliner_Worker when the Database has changed.
+		This method is triggered by the **TemplatesOutliner_Worker** when the Database has changed.
 		"""
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
@@ -1889,7 +1889,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
-		This method returns the Templates_Outliner_treeView selected items.
+		This method returns the **Templates_Outliner_treeView** selected items.
 
 		:param rowsRootOnly: Return rows roots only. ( Boolean )
 		:return: View selected items. ( List )

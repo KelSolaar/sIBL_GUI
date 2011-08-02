@@ -48,7 +48,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class PreferencesManager(UiComponent):
 	"""
-	This class is the PreferencesManager class.
+	This class is the **PreferencesManager** class.
 	"""
 
 	@core.executionTrace
@@ -273,7 +273,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Logging_Formatters_comboBox_setUi(self):
 		"""
-		This method fills the Logging_Formatter_comboBox.
+		This method fills **Logging_Formatter_comboBox** Widget.
 		"""
 
 		self.ui.Logging_Formatters_comboBox.clear()
@@ -286,7 +286,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Logging_Formatters_comboBox__activated(self, index):
 		"""
-		This method is called when the Logging_Formatter_comboBox is triggered.
+		This method is called when the **Logging_Formatter_comboBox** is triggered.
 
 		:param index: ComboBox activated item index. ( Integer )
 		"""
@@ -300,7 +300,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox_setUi(self):
 		"""
-		This method fills the Verbose_Level_ComboBox.
+		This method fills **Verbose_Level_ComboBox** Widget.
 		"""
 
 		self.ui.Verbose_Level_comboBox.clear()
@@ -312,7 +312,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Verbose_Level_comboBox__activated(self, index):
 		"""
-		This method is called when the Verbose_Level_ComboBox is triggered.
+		This method is called when the **Verbose_Level_ComboBox** Widget is triggered.
 
 		:param index: ComboBox activated item index. ( Integer )
 		"""
@@ -325,7 +325,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Restore_Geometry_On_Layout_Change_checkBox_setUi(self):
 		"""
-		This method sets the Restore_Geometry_On_Layout_Change_checkBox.
+		This method sets the **Restore_Geometry_On_Layout_Change_checkBox** Widget.
 		"""
 
 		# Adding settings key if it doesn't exists.
@@ -338,7 +338,7 @@ class PreferencesManager(UiComponent):
 	@core.executionTrace
 	def __Restore_Geometry_On_Layout_Change_checkBox__stateChanged(self, state):
 		"""
-		This method is called when Restore_Geometry_On_Layout_Change_checkBox state changes.
+		This method is called when **Restore_Geometry_On_Layout_Change_checkBox** state changes.
 
 		:param state: Checkbox state. ( Integer )
 		"""

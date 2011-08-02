@@ -39,7 +39,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class RuntimeConstantsTestCase(unittest.TestCase):
 	"""
-	This class is the RuntimeConstantsTestCase class.
+	This class is the **RuntimeConstantsTestCase** class.
 	"""
 
 	def testRequiredAttributes(self):

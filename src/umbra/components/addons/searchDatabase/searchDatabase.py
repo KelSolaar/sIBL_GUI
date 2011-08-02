@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class SearchDatabase(UiComponent):
 	"""
-	This class is the SearchDatabase class.
+	This class is the **SearchDatabase** class.
 	"""
 
 	@core.executionTrace
@@ -693,7 +693,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):
 		"""
-		This method is triggered when Search_Database_lineEdit text changes.
+		This method is triggered when **Search_Database_lineEdit** text changes.
 
 		:param text: Current text value. ( QString )
 		"""
@@ -703,7 +703,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Search_Database_comboBox__activated(self, index):
 		"""
-		This method is triggered when Search_Database_comboBox index changes.
+		This method is triggered when **Search_Database_comboBox** index changes.
 
 		:param index: ComboBox activated item index. ( Integer )
 		"""
@@ -717,7 +717,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Case_Insensitive_Matching_checkBox__stateChanged(self, state):
 		"""
-		This method is triggered when Case_Insensitive_Matching_checkBox state changes.
+		This method is triggered when **Case_Insensitive_Matching_checkBox** state changes.
 
 		:param state: Current checkbox state. ( Integer )
 		"""
@@ -727,7 +727,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Time_Low_timeEdit__timeChanged(self, time):
 		"""
-		This method is triggered when Time_Low_timeEdit time changes.
+		This method is triggered when **Time_Low_timeEdit** time changes.
 
 		:param time: Current time. ( QTime )
 		"""
@@ -738,7 +738,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Time_High_timeEdit__timeChanged(self, time):
 		"""
-		This method is triggered when Time_Low_timeEdit time changes.
+		This method is triggered when **Time_Low_timeEdit** time changes.
 
 		:param time: Current time. ( QTime )
 		"""
@@ -749,7 +749,7 @@ class SearchDatabase(UiComponent):
 	@core.executionTrace
 	def __Tags_Cloud_listWidget__doubleClicked(self, listWidgetItem):
 		"""
-		This method is triggered when Tags_Cloud_listWidget is double clicked.
+		This method is triggered when **Tags_Cloud_listWidget** is double clicked.
 
 		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
 		"""
@@ -760,7 +760,7 @@ class SearchDatabase(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTimeMatchingIblSets(self):
 		"""
-		This method gets the time matching sets and updates coreDatabaseBrowser Model content.
+		This method gets the time matching sets and updates **coreDatabaseBrowser** Model content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent
@@ -793,7 +793,7 @@ class SearchDatabase(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def setSearchMatchingIblsSets(self):
 		"""
-		This method gets the pattern matching sets and updates coreDatabaseBrowser Model content.
+		This method gets the pattern matching sets and updates **coreDatabaseBrowser** Model content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent

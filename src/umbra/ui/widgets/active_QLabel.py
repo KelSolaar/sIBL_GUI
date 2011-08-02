@@ -45,7 +45,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Active_QLabel(QLabel):
 	"""
-	This class is the Active_QLabel class.
+	This class is the **Active_QLabel** class.
 	"""
 
 	# Custom signals definitions.

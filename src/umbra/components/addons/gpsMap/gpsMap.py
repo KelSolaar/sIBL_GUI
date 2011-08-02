@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Map(QWebView):
 	"""
-	This class is the QWebView class.
+	This class is the **QWebView** class.
 	"""
 
 	@core.executionTrace
@@ -136,7 +136,7 @@ class Map(QWebView):
 
 class GpsMap(UiComponent):
 	"""
-	This class is the GpsMap class.
+	This class is the **GpsMap** class.
 	"""
 
 	@core.executionTrace
@@ -608,7 +608,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when coreDatabaseBrowser_Database_Browser_listView selection has changed.
+		This method sets is triggered when **coreDatabaseBrowser.Database_Browser_listView** selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -619,7 +619,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __Map_Type_comboBox__activated(self, index):
 		"""
-		This method is triggered when Map_Type_comboBox index changes.
+		This method is triggered when **Map_Type_comboBox** index changes.
 
 		:param index: ComboBox activated item index. ( Integer )
 		"""
@@ -629,7 +629,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Zoom_In_pushButton is clicked.
+		This method is triggered when **Zoom_In_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -639,7 +639,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Zoom_Out_pushButton is clicked.
+		This method is triggered when **Zoom_Out_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

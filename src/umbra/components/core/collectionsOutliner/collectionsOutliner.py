@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class CollectionsOutliner_QTreeView(QTreeView):
 	"""
-	This class is the CollectionsOutliner_QTreeView class.
+	This class is the **CollectionsOutliner_QTreeView** class.
 	"""
 
 	@core.executionTrace
@@ -307,7 +307,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@core.executionTrace
 	def __QTreeView__clicked(self, index):
 		"""
-		This method defines the behavior when the Model is clicked.
+		This method defines the behavior when the **Model** is clicked.
 
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""
@@ -336,7 +336,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 class CollectionsOutliner(UiComponent):
 	"""
-	This class is the CollectionsOutliner class.
+	This class is the **CollectionsOutliner** class.
 	"""
 
 	# Custom signals definitions.
@@ -1060,7 +1060,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setModel(self):
 		"""
-		This method sets the Collections_Outliner_treeView Model.
+		This method sets the **Collections_Outliner_treeView** Model.
 
 		Columns:
 		Collections | Sets | Comment
@@ -1134,7 +1134,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_refreshModel(self):
 		"""
-		This method refreshes the Collections_Outliner_treeView Model.
+		This method refreshes the **Collections_Outliner_treeView** Model.
 		"""
 
 		LOGGER.debug("> Refreshing '{0}' Model!".format("Collections_Outliner_treeView"))
@@ -1144,7 +1144,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setView(self):
 		"""
-		This method sets the Collections_Outliner_treeView View.
+		This method sets the **Collections_Outliner_treeView** View.
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
@@ -1161,7 +1161,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setDefaultViewState(self):
 		"""
-		This method sets Collections_Outliner_treeView default View state.
+		This method sets **Collections_Outliner_treeView** default View state.
 		"""
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Collections_Outliner_treeView"))
@@ -1175,7 +1175,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setIblSetsCounts(self):
 		"""
-		This method Sets the Collections_Outliner_treeView Ibl Sets counts.
+		This method Sets the **Collections_Outliner_treeView** Ibl Sets counts.
 		"""
 
 		# Disconnecting model "dataChanged()" signal.
@@ -1196,7 +1196,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_refreshView(self):
 		"""
-		This method refreshes the Collections_Outliner_treeView View.
+		This method refreshes the **Collections_Outliner_treeView** View.
 		"""
 
 		self.__Collections_Outliner_treeView_setDefaultViewState()
@@ -1204,7 +1204,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_storeModelSelection(self):
 		"""
-		This method stores Collections_Outliner_treeView Model selection.
+		This method stores **Collections_Outliner_treeView** Model selection.
 		"""
 
 		LOGGER.debug("> Storing '{0}' Model selection!".format("Collections_Outliner_treeView"))
@@ -1219,7 +1219,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_restoreModelSelection(self):
 		"""
-		This method restores Collections_Outliner_treeView Model selection.
+		This method restores **Collections_Outliner_treeView** Model selection.
 		"""
 
 		LOGGER.debug("> Restoring '{0}' Model selection!".format("Collections_Outliner_treeView"))
@@ -1262,7 +1262,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by addContentAction action.
+		This method is triggered by **addContentAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1272,7 +1272,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
 		"""
-		This method is triggered by addSingleCollectionAction action.
+		This method is triggered by **addSingleCollectionAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1282,7 +1282,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
 		"""
-		This method is triggered by removeCollectionsAction action.
+		This method is triggered by **removeCollectionsAction** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1293,7 +1293,7 @@ class CollectionsOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __Collections_Outliner_treeView_model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method defines the behavior when the Collections_Outliner_treeView Model datas changes.
+		This method defines the behavior when the **Collections_Outliner_treeView** Model datas changes.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1329,7 +1329,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method triggers the Database_Browser_listView refresh depending on the Collections Outliner selected items.
+		This method triggers the **Database_Browser_listView** refresh depending on the Collections Outliner selected items.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1340,7 +1340,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_setModelContent(self):
 		"""
-		This method sets coreDatabaseBrowser Model content.
+		This method sets **coreDatabaseBrowser** Model content.
 		"""
 
 		self.__coreDatabaseBrowser.modelContent = self.getCollectionsIblSets(self.getSelectedItems())
@@ -1534,7 +1534,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def getSelectedItems(self, rowsRootOnly=True):
 		"""
-		This method returns Collections_Outliner_treeView selected items.
+		This method returns **Collections_Outliner_treeView** selected items.
 
 		:param rowsRootOnly: Return rows roots only. ( Boolean )
 		:return: View selected items. ( List )

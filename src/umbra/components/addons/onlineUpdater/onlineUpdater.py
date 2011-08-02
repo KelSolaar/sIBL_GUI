@@ -60,7 +60,7 @@ REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 #***********************************************************************************************
 class ReleaseObject(core.Structure):
 	"""
-	This is the ReleaseObject class.
+	This is the **ReleaseObject** class.
 	"""
 
 	@core.executionTrace
@@ -78,7 +78,7 @@ class ReleaseObject(core.Structure):
 
 class DownloadManager(QObject):
 	"""
-	This is the DownloadManager class.
+	This is the **DownloadManager** class.
 	"""
 
 	# Custom signals definitions.
@@ -668,7 +668,7 @@ class DownloadManager(QObject):
 
 class RemoteUpdater(object):
 	"""
-	This class is the RemoteUpdater class.
+	This class is the **RemoteUpdater** class.
 	"""
 
 	@core.executionTrace
@@ -1233,7 +1233,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def initializeUi(self):
 		"""
-		This method initializes the Remote_Updater Widget ui.
+		This method initializes the **Remote_Updater** Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -1310,7 +1310,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Get_sIBL_GUI_pushButton is clicked.
+		This method is triggered when **Get_sIBL_GUI_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1331,7 +1331,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Get_Latest_Templates_pushButton is clicked.
+		This method is triggered when **Get_Latest_Templates_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1351,7 +1351,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Open_Repository_pushButton is clicked.
+		This method is triggered when **Open_Repository_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1432,7 +1432,7 @@ class RemoteUpdater(object):
 
 class OnlineUpdater(UiComponent):
 	"""
-	This class is the OnlineUpdater class.
+	This class is the **OnlineUpdater** class.
 	"""
 
 	@core.executionTrace
@@ -2058,7 +2058,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
 		"""
-		This method sets the Check_For_New_Releases_On_Startup_checkBox.
+		This method sets the **Check_For_New_Releases_On_Startup_checkBox** Widget.
 		"""
 
 		# Adding settings key if it doesn't exists.
@@ -2071,7 +2071,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
 		"""
-		This method is called when Check_For_New_Releases_On_Startup_checkBox state changes.
+		This method is called when **Check_For_New_Releases_On_Startup_checkBox** state changes.
 
 		:param state: Checkbox state. ( Integer )
 		"""
@@ -2082,7 +2082,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
 		"""
-		This method sets the Ignore_Non_Existing_Templates_checkBox.
+		This method sets the **Ignore_Non_Existing_Templates_checkBox** Widget.
 		"""
 
 		# Adding settings key if it doesn't exists.
@@ -2095,7 +2095,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
 		"""
-		This method is called when Ignore_Non_Existing_Templates_checkBox state changes.
+		This method is called when **Ignore_Non_Existing_Templates_checkBox** state changes.
 
 		:param state: Checkbox state. ( Integer )
 		"""
@@ -2106,7 +2106,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when Check_For_New_Releases_pushButton is clicked.
+		This method is triggered when **Check_For_New_Releases_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

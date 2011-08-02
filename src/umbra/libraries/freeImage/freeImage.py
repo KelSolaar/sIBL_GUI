@@ -86,7 +86,7 @@ else:
 
 class RGBQUAD(ctypes.Structure):
 	"""
-	This class is the RGBQUAD class.
+	This class is the **RGBQUAD** class.
 	"""
 
 	_fields_ = []
@@ -103,7 +103,7 @@ class RGBQUAD(ctypes.Structure):
 
 class RGBTRIPLE(ctypes.Structure):
 	"""
-	This class is the RGBTRIPLE class.
+	This class is the **RGBTRIPLE** class.
 	"""
 
 	_fields_ = []
@@ -118,14 +118,14 @@ class RGBTRIPLE(ctypes.Structure):
 
 class FIBITMAP(ctypes.Structure):
 	"""
-	This class is the FIBITMAP class.
+	This class is the **FIBITMAP** class.
 	"""
 
 	_fields_ = [ ("data", ctypes.POINTER(VOID)) ]
 
 class BITMAPINFOHEADER(ctypes.Structure):
 	"""
-	This class is the BITMAPINFOHEADER class.
+	This class is the **BITMAPINFOHEADER** class.
 	"""
 
 	_fields_ = [ ("biSize", DWORD),
@@ -142,7 +142,7 @@ class BITMAPINFOHEADER(ctypes.Structure):
 
 class BITMAPINFO(ctypes.Structure):
 	"""
-	This class is the BITMAPINFO class.
+	This class is the **BITMAPINFO** class.
 	"""
 
 	_fields_ = [ ("bmiHeader", BITMAPINFOHEADER),
@@ -150,7 +150,7 @@ class BITMAPINFO(ctypes.Structure):
 
 class FIRGB16(ctypes.Structure):
 	"""
-	This class is the FIRGB16 class.
+	This class is the **FIRGB16** class.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -159,7 +159,7 @@ class FIRGB16(ctypes.Structure):
 
 class FIRGBA16(ctypes.Structure):
 	"""
-	This class is the FIRGBA16 class.
+	This class is the **FIRGBA16** class.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -169,7 +169,7 @@ class FIRGBA16(ctypes.Structure):
 
 class FIRGBF(ctypes.Structure):
 	"""
-	This class is the FIRGBF class.
+	This class is the **FIRGBF** class.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -178,7 +178,7 @@ class FIRGBF(ctypes.Structure):
 
 class FIRGBAF(ctypes.Structure):
 	"""
-	This class is the FIRGBAF class.
+	This class is the **FIRGBAF** class.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -188,7 +188,7 @@ class FIRGBAF(ctypes.Structure):
 
 class FICOMPLEX(ctypes.Structure):
 	"""
-	This class is the FICOMPLEX class.
+	This class is the **FICOMPLEX** class.
 	"""
 
 	_fields_ = [ ("r", ctypes.c_double),
@@ -509,7 +509,7 @@ FI_TellProc = DLL_CALLCONV(ctypes.c_long, fi_handle)
 
 class FreeImageIO(ctypes.Structure):
 	"""
-	This class is the FreeImageIO class.
+	This class is the **FreeImageIO** class.
 	"""
 
 	_fields_ = [ ('read_proc', FI_ReadProc),
@@ -934,7 +934,7 @@ FREEIMAGE_FUNCTIONS = (
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
 	"""
-	This is the AttributeCompound class.
+	This is the **AttributeCompound** class.
 	"""
 
 	@core.executionTrace

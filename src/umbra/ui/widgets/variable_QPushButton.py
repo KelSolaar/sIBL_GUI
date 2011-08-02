@@ -45,7 +45,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Variable_QPushButton(QPushButton):
 	"""
-	This class is the Variable_QPushButton class.
+	This class is the **Variable_QPushButton** class.
 	"""
 
 	@core.executionTrace
@@ -224,7 +224,7 @@ class Variable_QPushButton(QPushButton):
 	@core.executionTrace
 	def __variable_QPushButton__clicked(self, checked):
 		"""
-		This method is called when a Variable_QPushButton is clicked.
+		This method is called when a **Variable_QPushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

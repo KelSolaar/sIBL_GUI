@@ -40,7 +40,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class UiConstantsTestCase(unittest.TestCase):
 	"""
-	This class is the UiConstantsTestCase class.
+	This class is the **UiConstantsTestCase** class.
 	"""
 
 	def testRequiredAttributes(self):
@@ -67,42 +67,42 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkUiFileAttribute(self):
 		"""
-		This method tests the "frameworkUiFile" attribute.
+		This method tests **frameworkUiFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkUiFile, "\w+")
 
 	def testFrameworkWindowsStylesheetFileAttribute(self):
 		"""
-		This method tests the "frameworkWindowsStylesheetFile" attribute.
+		This method tests **frameworkWindowsStylesheetFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkWindowsStylesheetFile, "\w+")
 
 	def testFrameworkDarwinStylesheetFileAttribute(self):
 		"""
-		This method tests the "frameworkDarwinStylesheetFile" attribute.
+		This method tests **frameworkDarwinStylesheetFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkDarwinStylesheetFile, "\w+")
 
 	def testFrameworkLinuxStylesheetFileAttribute(self):
 		"""
-		This method tests the "frameworkLinuxStylesheetFile" attribute.
+		This method tests **frameworkLinuxStylesheetFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLinuxStylesheetFile, "\w+")
 
 	def testFrameworkLayoutsFileAttribute(self):
 		"""
-		This method tests the "frameworkLayoutsFile" attribute.
+		This method tests **frameworkLayoutsFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLayoutsFile, "\w+")
 
 	def testFrameworkApplicationWindowsIconAttribute(self):
 		"""
-		This method tests the "frameworkApplicationWindowsIcon" attribute.
+		This method tests **frameworkApplicationWindowsIcon** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w+")
@@ -110,7 +110,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkApplicationDarwinIconAttribute(self):
 		"""
-		This method tests the "frameworkApplicationDarwinIcon" attribute.
+		This method tests **frameworkApplicationDarwinIcon** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w+")
@@ -118,7 +118,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkLogoPictureAttribute(self):
 		"""
-		This method tests the "frameworkLogoPicture" attribute.
+		This method tests **frameworkLogoPicture** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkLogoPicture, "\w+")
@@ -126,7 +126,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkDefaultToolbarIconSizeAttribute(self):
 		"""
-		This method tests the "frameworkDefaultToolbarIconSize" attribute.
+		This method tests **frameworkDefaultToolbarIconSize** attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.frameworkDefaultToolbarIconSize, int)
@@ -135,21 +135,21 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkStartupLayoutAttribute(self):
 		"""
-		This method tests the "frameworkStartupLayout" attribute.
+		This method tests **frameworkStartupLayout** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkStartupLayout, "\w+")
 
 	def testFrameworkHelpFileAttribute(self):
 		"""
-		This method tests the "frameworkHelpFile" attribute.
+		This method tests **frameworkHelpFile** attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.frameworkHelpFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 def testNativeImageFormatsAttribute(self):
 		"""
-		This method tests the "nativeImageFormats" attribute.
+		This method tests **nativeImageFormats** attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.nativeImageFormats, dict)
@@ -160,7 +160,7 @@ def testNativeImageFormatsAttribute(self):
 
 def testThirdPartyImageFormatsAttribute(self):
 		"""
-		This method tests the "thirdPartyImageFormats" attribute.
+		This method tests **thirdPartyImageFormats** attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)

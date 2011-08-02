@@ -46,7 +46,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	This class is the LoggingNotifier class.
+	This class is the **LoggingNotifier** class.
 	"""
 
 	@core.executionTrace

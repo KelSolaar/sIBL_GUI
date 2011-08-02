@@ -53,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class SetsScanner_Worker(QThread):
 	"""
-	This class is the SetsScanner_Worker class.
+	This class is the **SetsScanner_Worker** class.
 	"""
 
 	# Custom signals definitions.
@@ -246,7 +246,7 @@ class SetsScanner_Worker(QThread):
 
 class SetsScanner(Component):
 	"""
-	This class is the SetsScanner class.
+	This class is the **SetsScanner** class.
 	"""
 
 	@core.executionTrace
@@ -509,7 +509,7 @@ class SetsScanner(Component):
 	@core.executionTrace
 	def __coreDb_database__changed(self):
 		"""
-		This method is triggered by the SetsScanner_Worker when the Database has changed.
+		This method is triggered by the **SetsScanner_Worker** when the Database has changed.
 		"""
 
 		if self.__setsScannerWorkerThread.newIblSets:

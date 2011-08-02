@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Db(Component):
 	"""
-	This class is the Db class.
+	This class is the **Db** class.
 	"""
 
 	@core.executionTrace

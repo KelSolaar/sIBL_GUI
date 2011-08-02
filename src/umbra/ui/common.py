@@ -53,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Icon(core.Structure):
 	"""
-	This is the Icon class.
+	This is the **Icon** class.
 	"""
 
 	@core.executionTrace
