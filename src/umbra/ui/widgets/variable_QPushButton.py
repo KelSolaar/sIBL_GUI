@@ -92,7 +92,7 @@ class Variable_QPushButton(QPushButton):
 	@property
 	def state(self):
 		"""
-		This method is the property for the __state attribute.
+		This method is the property for **self.__state** attribute.
 
 		:return: self.__state. ( Boolean )
 		"""
@@ -103,7 +103,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def state(self, value):
 		"""
-		This method is the setter method for the __state attribute.
+		This method is the setter method for **self.__state** attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -116,7 +116,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def state(self):
 		"""
-		This method is the deleter method for the __state attribute.
+		This method is the deleter method for **self.__state** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("state"))
@@ -124,7 +124,7 @@ class Variable_QPushButton(QPushButton):
 	@property
 	def colors(self):
 		"""
-		This method is the property for the __colors attribute.
+		This method is the property for **self.__colors** attribute.
 
 		:return: self.__colors. ( Tuple )
 		"""
@@ -135,7 +135,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def colors(self, value):
 		"""
-		This method is the setter method for the __colors attribute.
+		This method is the setter method for **self.__colors** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -150,7 +150,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def colors(self):
 		"""
-		This method is the deleter method for the __colors attribute.
+		This method is the deleter method for **self.__colors** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("colors"))
@@ -158,7 +158,7 @@ class Variable_QPushButton(QPushButton):
 	@property
 	def labels(self):
 		"""
-		This method is the property for the __labels attribute.
+		This method is the property for **self.__labels** attribute.
 
 		:return: self.__labels. ( Tuple )
 		"""
@@ -169,7 +169,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def labels(self, value):
 		"""
-		This method is the setter method for the __labels attribute.
+		This method is the setter method for **self.__labels** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -184,7 +184,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def labels(self):
 		"""
-		This method is the deleter method for the __labels attribute.
+		This method is the deleter method for **self.__labels** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("labels"))
@@ -192,7 +192,7 @@ class Variable_QPushButton(QPushButton):
 	@property
 	def parent(self):
 		"""
-		This method is the property for the __parent attribute.
+		This method is the property for **self.__parent** attribute.
 
 		:return: self.__parent. ( QObject )
 		"""
@@ -202,7 +202,7 @@ class Variable_QPushButton(QPushButton):
 	@parent.setter
 	def parent(self, value):
 		"""
-		This method is the setter method for the __parent attribute.
+		This method is the setter method for **self.__parent** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -213,7 +213,7 @@ class Variable_QPushButton(QPushButton):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def parent(self):
 		"""
-		This method is the deleter method for the __parent attribute.
+		This method is the deleter method for **self.__parent** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("parent"))

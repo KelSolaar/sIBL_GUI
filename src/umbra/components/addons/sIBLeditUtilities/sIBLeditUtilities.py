@@ -89,7 +89,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -100,7 +100,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -111,7 +111,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -119,7 +119,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -130,7 +130,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -141,7 +141,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -149,7 +149,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the __settings attribute.
+		This method is the property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -160,7 +160,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the __settings attribute.
+		This method is the setter method for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -171,7 +171,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the __settings attribute.
+		This method is the deleter method for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -179,7 +179,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the __settingsSection attribute.
+		This method is the property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -190,7 +190,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the __settingsSection attribute.
+		This method is the setter method for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -201,7 +201,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the __settingsSection attribute.
+		This method is the deleter method for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -209,7 +209,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the __corePreferencesManager attribute.
+		This method is the property for **self.__corePreferencesManager** attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -220,7 +220,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the __corePreferencesManager attribute.
+		This method is the setter method for **self.__corePreferencesManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -231,7 +231,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the __corePreferencesManager attribute.
+		This method is the deleter method for **self.__corePreferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -239,7 +239,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the __coreDatabaseBrowser attribute.
+		This method is the property for **self.__coreDatabaseBrowser** attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -250,7 +250,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the __coreDatabaseBrowser attribute.
+		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -261,7 +261,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the __coreDatabaseBrowser attribute.
+		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -269,7 +269,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def coreInspector(self):
 		"""
-		This method is the property for the __coreInspector attribute.
+		This method is the property for **self.__coreInspector** attribute.
 
 		:return: self.__coreInspector. ( Object )
 		"""
@@ -280,7 +280,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self, value):
 		"""
-		This method is the setter method for the __coreInspector attribute.
+		This method is the setter method for **self.__coreInspector** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -291,7 +291,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreInspector(self):
 		"""
-		This method is the deleter method for the __coreInspector attribute.
+		This method is the deleter method for **self.__coreInspector** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
@@ -299,7 +299,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def editIblSetInSIBLEditAction(self):
 		"""
-		This method is the property for the __editIblSetInSIBLEditAction attribute.
+		This method is the property for **self.__editIblSetInSIBLEditAction** attribute.
 
 		:return: self.__editIblSetInSIBLEditAction. ( QAction )
 		"""
@@ -310,7 +310,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetInSIBLEditAction(self, value):
 		"""
-		This method is the setter method for the __editIblSetInSIBLEditAction attribute.
+		This method is the setter method for **self.__editIblSetInSIBLEditAction** attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -321,7 +321,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editIblSetInSIBLEditAction(self):
 		"""
-		This method is the deleter method for the __editIblSetInSIBLEditAction attribute.
+		This method is the deleter method for **self.__editIblSetInSIBLEditAction** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetInSIBLEditAction"))
@@ -329,7 +329,7 @@ class sIBLeditUtilities(UiComponent):
 	@property
 	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This method is the property for the __editInspectorIblSetInSIBLEditAction attribute.
+		This method is the property for **self.__editInspectorIblSetInSIBLEditAction** attribute.
 
 		:return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
 		"""
@@ -340,7 +340,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInSIBLEditAction(self, value):
 		"""
-		This method is the setter method for the __editInspectorIblSetInSIBLEditAction attribute.
+		This method is the setter method for **self.__editInspectorIblSetInSIBLEditAction** attribute.
 
 		:param value: Attribute value. ( QAction )
 		"""
@@ -351,7 +351,7 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def editInspectorIblSetInSIBLEditAction(self):
 		"""
-		This method is the deleter method for the __editInspectorIblSetInSIBLEditAction attribute.
+		This method is the deleter method for **self.__editInspectorIblSetInSIBLEditAction** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInSIBLEditAction"))

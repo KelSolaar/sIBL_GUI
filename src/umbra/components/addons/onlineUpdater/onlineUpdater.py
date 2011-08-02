@@ -134,7 +134,7 @@ class DownloadManager(QObject):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -145,7 +145,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -156,7 +156,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -164,7 +164,7 @@ class DownloadManager(QObject):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for the __networkAccessManager attribute.
+		This method is the property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -175,7 +175,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for the __networkAccessManager attribute.
+		This method is the setter method for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -186,7 +186,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for the __networkAccessManager attribute.
+		This method is the deleter method for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
@@ -194,7 +194,7 @@ class DownloadManager(QObject):
 	@property
 	def downloadDirectory(self):
 		"""
-		This method is the property for the __downloadDirectory attribute.
+		This method is the property for **self.__downloadDirectory** attribute.
 
 		:return: self.__downloadDirectory. ( String )
 		"""
@@ -205,7 +205,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self, value):
 		"""
-		This method is the setter method for the __downloadDirectory attribute.
+		This method is the setter method for **self.__downloadDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -216,7 +216,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadDirectory(self):
 		"""
-		This method is the deleter method for the __downloadDirectory attribute.
+		This method is the deleter method for **self.__downloadDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadDirectory"))
@@ -224,7 +224,7 @@ class DownloadManager(QObject):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -235,7 +235,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -246,7 +246,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -254,7 +254,7 @@ class DownloadManager(QObject):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the __uiResources attribute.
+		This method is the property for **self.__uiResources** attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -265,7 +265,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the __uiResources attribute.
+		This method is the setter method for **self.__uiResources** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -276,7 +276,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the __uiResources attribute.
+		This method is the deleter method for **self.__uiResources** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -284,7 +284,7 @@ class DownloadManager(QObject):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for the __uiLogoImage attribute.
+		This method is the property for **self.__uiLogoImage** attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -295,7 +295,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for the __uiLogoImage attribute.
+		This method is the setter method for **self.__uiLogoImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -306,7 +306,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for the __uiLogoImage attribute.
+		This method is the deleter method for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
@@ -314,7 +314,7 @@ class DownloadManager(QObject):
 	@property
 	def requests(self):
 		"""
-		This method is the property for the __requests attribute.
+		This method is the property for **self.__requests** attribute.
 
 		:return: self.__requests. ( List )
 		"""
@@ -325,7 +325,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def requests(self, value):
 		"""
-		This method is the setter method for the __requests attribute.
+		This method is the setter method for **self.__requests** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -338,7 +338,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def requests(self):
 		"""
-		This method is the deleter method for the __requests attribute.
+		This method is the deleter method for **self.__requests** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("requests"))
@@ -346,7 +346,7 @@ class DownloadManager(QObject):
 	@property
 	def downloads(self):
 		"""
-		This method is the property for the __downloads attribute.
+		This method is the property for **self.__downloads** attribute.
 
 		:return: self.__downloads. ( List )
 		"""
@@ -357,7 +357,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def downloads(self, value):
 		"""
-		This method is the setter method for the __downloads attribute.
+		This method is the setter method for **self.__downloads** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -368,7 +368,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloads(self):
 		"""
-		This method is the deleter method for the __downloads attribute.
+		This method is the deleter method for **self.__downloads** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloads"))
@@ -376,7 +376,7 @@ class DownloadManager(QObject):
 	@property
 	def currentRequest(self):
 		"""
-		This method is the property for the __currentRequest attribute.
+		This method is the property for **self.__currentRequest** attribute.
 
 		:return: self.__currentRequest. ( QNetworkReply )
 		"""
@@ -387,7 +387,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentRequest(self, value):
 		"""
-		This method is the setter method for the __currentRequest attribute.
+		This method is the setter method for **self.__currentRequest** attribute.
 
 		:param value: Attribute value. ( QNetworkReply )
 		"""
@@ -398,7 +398,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentRequest(self):
 		"""
-		This method is the deleter method for the __currentRequest attribute.
+		This method is the deleter method for **self.__currentRequest** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentRequest"))
@@ -406,7 +406,7 @@ class DownloadManager(QObject):
 	@property
 	def currentFile(self):
 		"""
-		This method is the property for the __currentFile attribute.
+		This method is the property for **self.__currentFile** attribute.
 
 		:return: self.__currentFile. ( QFile )
 		"""
@@ -417,7 +417,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFile(self, value):
 		"""
-		This method is the setter method for the __currentFile attribute.
+		This method is the setter method for **self.__currentFile** attribute.
 
 		:param value: Attribute value. ( QFile )
 		"""
@@ -428,7 +428,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFile(self):
 		"""
-		This method is the deleter method for the __currentFile attribute.
+		This method is the deleter method for **self.__currentFile** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFile"))
@@ -436,7 +436,7 @@ class DownloadManager(QObject):
 	@property
 	def currentFilePath(self):
 		"""
-		This method is the property for the __currentFilePath attribute.
+		This method is the property for **self.__currentFilePath** attribute.
 
 		:return: self.__currentFilePath. ( String )
 		"""
@@ -447,7 +447,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFilePath(self, value):
 		"""
-		This method is the setter method for the __currentFilePath attribute.
+		This method is the setter method for **self.__currentFilePath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -458,7 +458,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def currentFilePath(self):
 		"""
-		This method is the deleter method for the __currentFilePath attribute.
+		This method is the deleter method for **self.__currentFilePath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFilePath"))
@@ -466,7 +466,7 @@ class DownloadManager(QObject):
 	@property
 	def downloadStatus(self):
 		"""
-		This method is the property for the __downloadStatus attribute.
+		This method is the property for **self.__downloadStatus** attribute.
 
 		:return: self.__downloadStatus. ( QObject )
 		"""
@@ -477,7 +477,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadStatus(self, value):
 		"""
-		This method is the setter method for the __downloadStatus attribute.
+		This method is the setter method for **self.__downloadStatus** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -488,7 +488,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadStatus(self):
 		"""
-		This method is the deleter method for the __downloadStatus attribute.
+		This method is the deleter method for **self.__downloadStatus** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadStatus"))
@@ -496,7 +496,7 @@ class DownloadManager(QObject):
 	@property
 	def ui(self):
 		"""
-		This method is the property for the __ui attribute.
+		This method is the property for **self.__ui** attribute.
 
 		:return: self.__ui. ( Object )
 		"""
@@ -507,7 +507,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self, value):
 		"""
-		This method is the setter method for the __ui attribute.
+		This method is the setter method for **self.__ui** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -518,7 +518,7 @@ class DownloadManager(QObject):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self):
 		"""
-		This method is the deleter method for the __ui attribute.
+		This method is the deleter method for **self.__ui** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
@@ -719,7 +719,7 @@ class RemoteUpdater(object):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -730,7 +730,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -741,7 +741,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -749,7 +749,7 @@ class RemoteUpdater(object):
 	@property
 	def releases(self):
 		"""
-		This method is the property for the __releases attribute.
+		This method is the property for **self.__releases** attribute.
 
 		:return: self.__releases. ( Dictionary )
 		"""
@@ -760,7 +760,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def releases(self, value):
 		"""
-		This method is the setter method for the __releases attribute.
+		This method is the setter method for **self.__releases** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -773,7 +773,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releases(self):
 		"""
-		This method is the deleter method for the __releases attribute.
+		This method is the deleter method for **self.__releases** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releases"))
@@ -781,7 +781,7 @@ class RemoteUpdater(object):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -792,7 +792,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -803,7 +803,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -811,7 +811,7 @@ class RemoteUpdater(object):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the __uiResources attribute.
+		This method is the property for **self.__uiResources** attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -822,7 +822,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the __uiResources attribute.
+		This method is the setter method for **self.__uiResources** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -833,7 +833,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the __uiResources attribute.
+		This method is the deleter method for **self.__uiResources** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -841,7 +841,7 @@ class RemoteUpdater(object):
 	@property
 	def uiLogoImage(self):
 		"""
-		This method is the property for the __uiLogoImage attribute.
+		This method is the property for **self.__uiLogoImage** attribute.
 
 		:return: self.__uiLogoImage. ( String )
 		"""
@@ -852,7 +852,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self, value):
 		"""
-		This method is the setter method for the __uiLogoImage attribute.
+		This method is the setter method for **self.__uiLogoImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -863,7 +863,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLogoImage(self):
 		"""
-		This method is the deleter method for the __uiLogoImage attribute.
+		This method is the deleter method for **self.__uiLogoImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
@@ -871,7 +871,7 @@ class RemoteUpdater(object):
 	@property
 	def uiTemplatesImage(self):
 		"""
-		This method is the property for the __uiTemplatesImage attribute.
+		This method is the property for **self.__uiTemplatesImage** attribute.
 
 		:return: self.__uiTemplatesImage. ( String )
 		"""
@@ -882,7 +882,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self, value):
 		"""
-		This method is the setter method for the __uiTemplatesImage attribute.
+		This method is the setter method for **self.__uiTemplatesImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -893,7 +893,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiTemplatesImage(self):
 		"""
-		This method is the deleter method for the __uiTemplatesImage attribute.
+		This method is the deleter method for **self.__uiTemplatesImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiTemplatesImage"))
@@ -901,7 +901,7 @@ class RemoteUpdater(object):
 	@property
 	def uiLightGrayColor(self):
 		"""
-		This method is the property for the __uiLightGrayColor attribute.
+		This method is the property for **self.__uiLightGrayColor** attribute.
 
 		:return: self.__uiLightGrayColor. ( QColor )
 		"""
@@ -912,7 +912,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self, value):
 		"""
-		This method is the setter method for the __uiLightGrayColor attribute.
+		This method is the setter method for **self.__uiLightGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -923,7 +923,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiLightGrayColor(self):
 		"""
-		This method is the deleter method for the __uiLightGrayColor attribute.
+		This method is the deleter method for **self.__uiLightGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLightGrayColor"))
@@ -931,7 +931,7 @@ class RemoteUpdater(object):
 	@property
 	def uiDarkGrayColor(self):
 		"""
-		This method is the property for the __uiDarkGrayColor attribute.
+		This method is the property for **self.__uiDarkGrayColor** attribute.
 
 		:return: self.__uiDarkGrayColor. ( QColor )
 		"""
@@ -942,7 +942,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self, value):
 		"""
-		This method is the setter method for the __uiDarkGrayColor attribute.
+		This method is the setter method for **self.__uiDarkGrayColor** attribute.
 
 		:param value: Attribute value. ( QColor )
 		"""
@@ -953,7 +953,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiDarkGrayColor(self):
 		"""
-		This method is the deleter method for the __uiDarkGrayColor attribute.
+		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDarkGrayColor"))
@@ -961,7 +961,7 @@ class RemoteUpdater(object):
 	@property
 	def splitter(self):
 		"""
-		This method is the property for the __splitter attribute.
+		This method is the property for **self.__splitter** attribute.
 
 		:return: self.__splitter. ( String )
 		"""
@@ -972,7 +972,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def splitter(self, value):
 		"""
-		This method is the setter method for the __splitter attribute.
+		This method is the setter method for **self.__splitter** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -983,7 +983,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def splitter(self):
 		"""
-		This method is the deleter method for the __splitter attribute.
+		This method is the deleter method for **self.__splitter** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("splitter"))
@@ -991,7 +991,7 @@ class RemoteUpdater(object):
 	@property
 	def tableWidgetRowHeight(self):
 		"""
-		This method is the property for the __tableWidgetRowHeight attribute.
+		This method is the property for **self.__tableWidgetRowHeight** attribute.
 
 		:return: self.__tableWidgetRowHeight. ( Integer )
 		"""
@@ -1002,7 +1002,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self, value):
 		"""
-		This method is the setter method for the __tableWidgetRowHeight attribute.
+		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -1013,7 +1013,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetRowHeight(self):
 		"""
-		This method is the deleter method for the __tableWidgetRowHeight attribute.
+		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetRowHeight"))
@@ -1021,7 +1021,7 @@ class RemoteUpdater(object):
 	@property
 	def tableWidgetHeaderHeight(self):
 		"""
-		This method is the property for the __tableWidgetHeaderHeight attribute.
+		This method is the property for **self.__tableWidgetHeaderHeight** attribute.
 
 		:return: self.__tableWidgetHeaderHeight. ( Integer )
 		"""
@@ -1032,7 +1032,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self, value):
 		"""
-		This method is the setter method for the __tableWidgetHeaderHeight attribute.
+		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -1043,7 +1043,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def tableWidgetHeaderHeight(self):
 		"""
-		This method is the deleter method for the __tableWidgetHeaderHeight attribute.
+		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetHeaderHeight"))
@@ -1051,7 +1051,7 @@ class RemoteUpdater(object):
 	@property
 	def templatesTableWidgetHeaders(self):
 		"""
-		This method is the property for the __templatesTableWidgetHeaders attribute.
+		This method is the property for **self.__templatesTableWidgetHeaders** attribute.
 
 		:return: self.__templatesTableWidgetHeaders. ( String )
 		"""
@@ -1062,7 +1062,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self, value):
 		"""
-		This method is the setter method for the __templatesTableWidgetHeaders attribute.
+		This method is the setter method for **self.__templatesTableWidgetHeaders** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1073,7 +1073,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesTableWidgetHeaders(self):
 		"""
-		This method is the deleter method for the __templatesTableWidgetHeaders attribute.
+		This method is the deleter method for **self.__templatesTableWidgetHeaders** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesTableWidgetHeaders"))
@@ -1081,7 +1081,7 @@ class RemoteUpdater(object):
 	@property
 	def applicationChangeLogUrl(self):
 		"""
-		This method is the property for the __applicationChangeLogUrl attribute.
+		This method is the property for **self.__applicationChangeLogUrl** attribute.
 
 		:return: self.__applicationChangeLogUrl. ( String )
 		"""
@@ -1092,7 +1092,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def applicationChangeLogUrl(self, value):
 		"""
-		This method is the setter method for the __applicationChangeLogUrl attribute.
+		This method is the setter method for **self.__applicationChangeLogUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1103,7 +1103,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def applicationChangeLogUrl(self):
 		"""
-		This method is the deleter method for the __applicationChangeLogUrl attribute.
+		This method is the deleter method for **self.__applicationChangeLogUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("applicationChangeLogUrl"))
@@ -1111,7 +1111,7 @@ class RemoteUpdater(object):
 	@property
 	def repositoryUrl(self):
 		"""
-		This method is the property for the __repositoryUrl attribute.
+		This method is the property for **self.__repositoryUrl** attribute.
 
 		:return: self.__repositoryUrl. ( String )
 		"""
@@ -1122,7 +1122,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This method is the setter method for the __repositoryUrl attribute.
+		This method is the setter method for **self.__repositoryUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1133,7 +1133,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This method is the deleter method for the __repositoryUrl attribute.
+		This method is the deleter method for **self.__repositoryUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("repositoryUrl"))
@@ -1141,7 +1141,7 @@ class RemoteUpdater(object):
 	@property
 	def downloadManager(self):
 		"""
-		This method is the property for the __downloadManager attribute.
+		This method is the property for **self.__downloadManager** attribute.
 
 		:return: self.__downloadManager. ( Object )
 		"""
@@ -1152,7 +1152,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadManager(self, value):
 		"""
-		This method is the setter method for the __downloadManager attribute.
+		This method is the setter method for **self.__downloadManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1163,7 +1163,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def downloadManager(self):
 		"""
-		This method is the deleter method for the __downloadManager attribute.
+		This method is the deleter method for **self.__downloadManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadManager"))
@@ -1171,7 +1171,7 @@ class RemoteUpdater(object):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for the __networkAccessManager attribute.
+		This method is the property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -1182,7 +1182,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for the __networkAccessManager attribute.
+		This method is the setter method for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -1193,7 +1193,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for the __networkAccessManager attribute.
+		This method is the deleter method for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
@@ -1201,7 +1201,7 @@ class RemoteUpdater(object):
 	@property
 	def ui(self):
 		"""
-		This method is the property for the __ui attribute.
+		This method is the property for **self.__ui** attribute.
 
 		:return: self.__ui. ( Object )
 		"""
@@ -1211,7 +1211,7 @@ class RemoteUpdater(object):
 	@ui.setter
 	def ui(self, value):
 		"""
-		This method is the setter method for the __ui attribute.
+		This method is the setter method for **self.__ui** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1222,7 +1222,7 @@ class RemoteUpdater(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ui(self):
 		"""
-		This method is the deleter method for the __ui attribute.
+		This method is the deleter method for **self.__ui** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
@@ -1479,7 +1479,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -1490,7 +1490,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1501,7 +1501,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -1509,7 +1509,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -1520,7 +1520,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -1531,7 +1531,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -1540,7 +1540,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -1548,7 +1548,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the __settings attribute.
+		This method is the property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -1558,7 +1558,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the __settingsSection attribute.
+		This method is the property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -1569,7 +1569,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the __settingsSection attribute.
+		This method is the setter method for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1580,7 +1580,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the __settingsSection attribute.
+		This method is the deleter method for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -1589,7 +1589,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the __settings attribute.
+		This method is the setter method for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -1600,7 +1600,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the __settings attribute.
+		This method is the deleter method for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -1608,7 +1608,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def corePreferencesManager(self):
 		"""
-		This method is the property for the __corePreferencesManager attribute.
+		This method is the property for **self.__corePreferencesManager** attribute.
 
 		:return: self.__corePreferencesManager. ( Object )
 		"""
@@ -1619,7 +1619,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self, value):
 		"""
-		This method is the setter method for the __corePreferencesManager attribute.
+		This method is the setter method for **self.__corePreferencesManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1630,7 +1630,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def corePreferencesManager(self):
 		"""
-		This method is the deleter method for the __corePreferencesManager attribute.
+		This method is the deleter method for **self.__corePreferencesManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
@@ -1638,7 +1638,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the __coreDb attribute.
+		This method is the property for **self.__coreDb** attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -1649,7 +1649,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the __coreDb attribute.
+		This method is the setter method for **self.__coreDb** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1660,7 +1660,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the __coreDb attribute.
+		This method is the deleter method for **self.__coreDb** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -1668,7 +1668,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the property for the __coreTemplatesOutliner attribute.
+		This method is the property for **self.__coreTemplatesOutliner** attribute.
 
 		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -1679,7 +1679,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This method is the setter method for the __coreTemplatesOutliner attribute.
+		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1690,7 +1690,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the deleter method for the __coreTemplatesOutliner attribute.
+		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
@@ -1698,7 +1698,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def addonsLocationsBrowser(self):
 		"""
-		This method is the property for the __addonsLocationsBrowser attribute.
+		This method is the property for **self.__addonsLocationsBrowser** attribute.
 
 		:return: self.__addonsLocationsBrowser. ( Object )
 		"""
@@ -1709,7 +1709,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLocationsBrowser(self, value):
 		"""
-		This method is the setter method for the __addonsLocationsBrowser attribute.
+		This method is the setter method for **self.__addonsLocationsBrowser** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1720,7 +1720,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def addonsLocationsBrowser(self):
 		"""
-		This method is the deleter method for the __addonsLocationsBrowser attribute.
+		This method is the deleter method for **self.__addonsLocationsBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLocationsBrowser"))
@@ -1728,7 +1728,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def ioDirectory(self):
 		"""
-		This method is the property for the __ioDirectory attribute.
+		This method is the property for **self.__ioDirectory** attribute.
 
 		:return: self.__ioDirectory. ( String )
 		"""
@@ -1739,7 +1739,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self, value):
 		"""
-		This method is the setter method for the __ioDirectory attribute.
+		This method is the setter method for **self.__ioDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1750,7 +1750,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def ioDirectory(self):
 		"""
-		This method is the deleter method for the __ioDirectory attribute.
+		This method is the deleter method for **self.__ioDirectory** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ioDirectory"))
@@ -1758,7 +1758,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def repositoryUrl(self):
 		"""
-		This method is the property for the __repositoryUrl attribute.
+		This method is the property for **self.__repositoryUrl** attribute.
 
 		:return: self.__repositoryUrl. ( String )
 		"""
@@ -1769,7 +1769,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self, value):
 		"""
-		This method is the setter method for the __repositoryUrl attribute.
+		This method is the setter method for **self.__repositoryUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1780,7 +1780,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def repositoryUrl(self):
 		"""
-		This method is the deleter method for the __repositoryUrl attribute.
+		This method is the deleter method for **self.__repositoryUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("repositoryUrl"))
@@ -1788,7 +1788,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def releasesFileUrl(self):
 		"""
-		This method is the property for the __releasesFileUrl attribute.
+		This method is the property for **self.__releasesFileUrl** attribute.
 
 		:return: self.__releasesFileUrl. ( String )
 		"""
@@ -1799,7 +1799,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self, value):
 		"""
-		This method is the setter method for the __releasesFileUrl attribute.
+		This method is the setter method for **self.__releasesFileUrl** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1810,7 +1810,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releasesFileUrl(self):
 		"""
-		This method is the deleter method for the __releasesFileUrl attribute.
+		This method is the deleter method for **self.__releasesFileUrl** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releasesFileUrl"))
@@ -1818,7 +1818,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def networkAccessManager(self):
 		"""
-		This method is the property for the __networkAccessManager attribute.
+		This method is the property for **self.__networkAccessManager** attribute.
 
 		:return: self.__networkAccessManager. ( QNetworkAccessManager )
 		"""
@@ -1829,7 +1829,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self, value):
 		"""
-		This method is the setter method for the __networkAccessManager attribute.
+		This method is the setter method for **self.__networkAccessManager** attribute.
 
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
@@ -1840,7 +1840,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def networkAccessManager(self):
 		"""
-		This method is the deleter method for the __networkAccessManager attribute.
+		This method is the deleter method for **self.__networkAccessManager** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
@@ -1848,7 +1848,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def releaseReply(self):
 		"""
-		This method is the property for the __releaseReply attribute.
+		This method is the property for **self.__releaseReply** attribute.
 
 		:return: self.__releaseReply. ( QNetworkReply )
 		"""
@@ -1859,7 +1859,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self, value):
 		"""
-		This method is the setter method for the __releaseReply attribute.
+		This method is the setter method for **self.__releaseReply** attribute.
 
 		:param value: Attribute value. ( QNetworkReply )
 		"""
@@ -1870,7 +1870,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self):
 		"""
-		This method is the deleter method for the __releaseReply attribute.
+		This method is the deleter method for **self.__releaseReply** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releaseReply"))
@@ -1878,7 +1878,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def remoteUpdater(self):
 		"""
-		This method is the property for the __remoteUpdater attribute.
+		This method is the property for **self.__remoteUpdater** attribute.
 
 		:return: self.__remoteUpdater. ( Object )
 		"""
@@ -1889,7 +1889,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self, value):
 		"""
-		This method is the setter method for the __remoteUpdater attribute.
+		This method is the setter method for **self.__remoteUpdater** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -1900,7 +1900,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def remoteUpdater(self):
 		"""
-		This method is the deleter method for the __remoteUpdater attribute.
+		This method is the deleter method for **self.__remoteUpdater** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("remoteUpdater"))
@@ -1908,7 +1908,7 @@ class OnlineUpdater(UiComponent):
 	@property
 	def reportUpdateStatus(self):
 		"""
-		This method is the property for the __reportUpdateStatus attribute.
+		This method is the property for **self.__reportUpdateStatus** attribute.
 
 		:return: self.__reportUpdateStatus. ( Boolean )
 		"""
@@ -1919,7 +1919,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self, value):
 		"""
-		This method is the setter method for the __reportUpdateStatus attribute.
+		This method is the setter method for **self.__reportUpdateStatus** attribute.
 
 		:param value: Attribute value. ( Boolean )
 		"""
@@ -1930,7 +1930,7 @@ class OnlineUpdater(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reportUpdateStatus(self):
 		"""
-		This method is the deleter method for the __reportUpdateStatus attribute.
+		This method is the deleter method for **self.__reportUpdateStatus** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("reportUpdateStatus"))

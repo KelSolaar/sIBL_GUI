@@ -92,7 +92,7 @@ class RewiringTool(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -103,7 +103,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -114,7 +114,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -122,7 +122,7 @@ class RewiringTool(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the __dockArea attribute.
+		This method is the property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -133,7 +133,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the __dockArea attribute.
+		This method is the setter method for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -144,7 +144,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the __dockArea attribute.
+		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -152,7 +152,7 @@ class RewiringTool(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -163,7 +163,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -174,7 +174,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -182,7 +182,7 @@ class RewiringTool(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the __coreDatabaseBrowser attribute.
+		This method is the property for **self.__coreDatabaseBrowser** attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -193,7 +193,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the __coreDatabaseBrowser attribute.
+		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -204,7 +204,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the __coreDatabaseBrowser attribute.
+		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -212,7 +212,7 @@ class RewiringTool(UiComponent):
 	@property
 	def reWireFramesWidgets(self):
 		"""
-		This method is the property for the __reWireFramesWidgets attribute.
+		This method is the property for **self.__reWireFramesWidgets** attribute.
 
 		:return: self.__reWireFramesWidgets. ( Tuple )
 		"""
@@ -223,7 +223,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self, value):
 		"""
-		This method is the setter method for the __reWireFramesWidgets attribute.
+		This method is the setter method for **self.__reWireFramesWidgets** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -234,7 +234,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireFramesWidgets(self):
 		"""
-		This method is the deleter method for the __reWireFramesWidgets attribute.
+		This method is the deleter method for **self.__reWireFramesWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("reWireFramesWidgets"))
@@ -242,7 +242,7 @@ class RewiringTool(UiComponent):
 	@property
 	def reWireComboBoxesWidgets(self):
 		"""
-		This method is the property for the __reWireComboBoxesWidgets attribute.
+		This method is the property for **self.__reWireComboBoxesWidgets** attribute.
 
 		:return: self.__reWireComboBoxesWidgets. ( Tuple )
 		"""
@@ -253,7 +253,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self, value):
 		"""
-		This method is the setter method for the __reWireComboBoxesWidgets attribute.
+		This method is the setter method for **self.__reWireComboBoxesWidgets** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -264,7 +264,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireComboBoxesWidgets(self):
 		"""
-		This method is the deleter method for the __reWireComboBoxesWidgets attribute.
+		This method is the deleter method for **self.__reWireComboBoxesWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("reWireComboBoxesWidgets"))
@@ -272,7 +272,7 @@ class RewiringTool(UiComponent):
 	@property
 	def reWireLineEditWidgets(self):
 		"""
-		This method is the property for the __reWireLineEditWidgets attribute.
+		This method is the property for **self.__reWireLineEditWidgets** attribute.
 
 		:return: self.__reWireLineEditWidgets. ( Tuple )
 		"""
@@ -283,7 +283,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self, value):
 		"""
-		This method is the setter method for the __reWireLineEditWidgets attribute.
+		This method is the setter method for **self.__reWireLineEditWidgets** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -294,7 +294,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def reWireLineEditWidgets(self):
 		"""
-		This method is the deleter method for the __reWireLineEditWidgets attribute.
+		This method is the deleter method for **self.__reWireLineEditWidgets** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("reWireLineEditWidgets"))
@@ -302,7 +302,7 @@ class RewiringTool(UiComponent):
 	@property
 	def rewiringParameters(self):
 		"""
-		This method is the property for the __rewiringParameters attribute.
+		This method is the property for **self.__rewiringParameters** attribute.
 
 		:return: self.__rewiringParameters. ( Tuple )
 		"""
@@ -313,7 +313,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self, value):
 		"""
-		This method is the setter method for the __rewiringParameters attribute.
+		This method is the setter method for **self.__rewiringParameters** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -324,7 +324,7 @@ class RewiringTool(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def rewiringParameters(self):
 		"""
-		This method is the deleter method for the __rewiringParameters attribute.
+		This method is the deleter method for **self.__rewiringParameters** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("rewiringParameters"))

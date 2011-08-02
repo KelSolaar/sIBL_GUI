@@ -176,7 +176,7 @@ class GpsMap(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -187,7 +187,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -198,7 +198,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -206,7 +206,7 @@ class GpsMap(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the __uiResources attribute.
+		This method is the property for **self.__uiResources** attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -217,7 +217,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the __uiResources attribute.
+		This method is the setter method for **self.__uiResources** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -228,7 +228,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the __uiResources attribute.
+		This method is the deleter method for **self.__uiResources** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -236,7 +236,7 @@ class GpsMap(UiComponent):
 	@property
 	def uiZoomInImage(self):
 		"""
-		This method is the property for the __uiZoomInImage attribute.
+		This method is the property for **self.__uiZoomInImage** attribute.
 
 		:return: self.__uiZoomInImage. ( String )
 		"""
@@ -247,7 +247,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self, value):
 		"""
-		This method is the setter method for the __uiZoomInImage attribute.
+		This method is the setter method for **self.__uiZoomInImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -258,7 +258,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomInImage(self):
 		"""
-		This method is the deleter method for the __uiZoomInImage attribute.
+		This method is the deleter method for **self.__uiZoomInImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomInImage"))
@@ -266,7 +266,7 @@ class GpsMap(UiComponent):
 	@property
 	def uiZoomOutImage(self):
 		"""
-		This method is the property for the __uiZoomOutImage attribute.
+		This method is the property for **self.__uiZoomOutImage** attribute.
 
 		:return: self.__uiZoomOutImage. ( String )
 		"""
@@ -277,7 +277,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self, value):
 		"""
-		This method is the setter method for the __uiZoomOutImage attribute.
+		This method is the setter method for **self.__uiZoomOutImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -288,7 +288,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiZoomOutImage(self):
 		"""
-		This method is the deleter method for the __uiZoomOutImage attribute.
+		This method is the deleter method for **self.__uiZoomOutImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomOutImage"))
@@ -296,7 +296,7 @@ class GpsMap(UiComponent):
 	@property
 	def gpsMapHtmlFile(self):
 		"""
-		This method is the property for the __gpsMapHtmlFile attribute.
+		This method is the property for **self.__gpsMapHtmlFile** attribute.
 
 		:return: self.__gpsMapHtmlFile. ( String )
 		"""
@@ -307,7 +307,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def gpsMapHtmlFile(self, value):
 		"""
-		This method is the setter method for the __gpsMapHtmlFile attribute.
+		This method is the setter method for **self.__gpsMapHtmlFile** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -318,7 +318,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def gpsMapHtmlFile(self):
 		"""
-		This method is the deleter method for the __gpsMapHtmlFile attribute.
+		This method is the deleter method for **self.__gpsMapHtmlFile** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("gpsMapHtmlFile"))
@@ -326,7 +326,7 @@ class GpsMap(UiComponent):
 	@property
 	def gpsMapBaseSize(self):
 		"""
-		This method is the property for the __gpsMapBaseSize attribute.
+		This method is the property for **self.__gpsMapBaseSize** attribute.
 
 		:return: self.__gpsMapBaseSize. ( QSize() )
 		"""
@@ -337,7 +337,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def gpsMapBaseSize(self, value):
 		"""
-		This method is the setter method for the __gpsMapBaseSize attribute.
+		This method is the setter method for **self.__gpsMapBaseSize** attribute.
 
 		:param value: Attribute value. ( QSize() )
 		"""
@@ -348,7 +348,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def gpsMapBaseSize(self):
 		"""
-		This method is the deleter method for the __gpsMapBaseSize attribute.
+		This method is the deleter method for **self.__gpsMapBaseSize** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("gpsMapBaseSize"))
@@ -356,7 +356,7 @@ class GpsMap(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the __dockArea attribute.
+		This method is the property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -367,7 +367,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the __dockArea attribute.
+		This method is the setter method for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -378,7 +378,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the __dockArea attribute.
+		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -386,7 +386,7 @@ class GpsMap(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -397,7 +397,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -408,7 +408,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -416,7 +416,7 @@ class GpsMap(UiComponent):
 	@property
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the property for the __coreDatabaseBrowser attribute.
+		This method is the property for **self.__coreDatabaseBrowser** attribute.
 
 		:return: self.__coreDatabaseBrowser. ( Object )
 		"""
@@ -427,7 +427,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self, value):
 		"""
-		This method is the setter method for the __coreDatabaseBrowser attribute.
+		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -438,7 +438,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDatabaseBrowser(self):
 		"""
-		This method is the deleter method for the __coreDatabaseBrowser attribute.
+		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
@@ -446,7 +446,7 @@ class GpsMap(UiComponent):
 	@property
 	def map(self):
 		"""
-		This method is the property for the __map attribute.
+		This method is the property for **self.__map** attribute.
 
 		:return: self.__map. ( QObject )
 		"""
@@ -457,7 +457,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def map(self, value):
 		"""
-		This method is the setter method for the __map attribute.
+		This method is the setter method for **self.__map** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -468,7 +468,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def map(self):
 		"""
-		This method is the deleter method for the __map attribute.
+		This method is the deleter method for **self.__map** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("map"))
@@ -476,7 +476,7 @@ class GpsMap(UiComponent):
 	@property
 	def mapTypeIds(self):
 		"""
-		This method is the property for the __mapTypeIds attribute.
+		This method is the property for **self.__mapTypeIds** attribute.
 
 		:return: self.__mapTypeIds. ( Tuple )
 		"""
@@ -487,7 +487,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def mapTypeIds(self, value):
 		"""
-		This method is the setter method for the __mapTypeIds attribute.
+		This method is the setter method for **self.__mapTypeIds** attribute.
 
 		:param value: Attribute value. ( Tuple )
 		"""
@@ -498,7 +498,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def mapTypeIds(self):
 		"""
-		This method is the deleter method for the __mapTypeIds attribute.
+		This method is the deleter method for **self.__mapTypeIds** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("mapTypeIds"))

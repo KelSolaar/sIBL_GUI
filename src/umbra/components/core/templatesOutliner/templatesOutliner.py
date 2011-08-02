@@ -88,7 +88,7 @@ class TemplatesOutliner_Worker(QThread):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -99,7 +99,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -110,7 +110,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -118,7 +118,7 @@ class TemplatesOutliner_Worker(QThread):
 	@property
 	def dbSession(self):
 		"""
-		This method is the property for the __dbSession attribute.
+		This method is the property for **self.__dbSession** attribute.
 
 		:return: self.__dbSession. ( Object )
 		"""
@@ -129,7 +129,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self, value):
 		"""
-		This method is the setter method for the __dbSession attribute.
+		This method is the setter method for **self.__dbSession** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -140,7 +140,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dbSession(self):
 		"""
-		This method is the deleter method for the __dbSession attribute.
+		This method is the deleter method for **self.__dbSession** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dbSession"))
@@ -148,7 +148,7 @@ class TemplatesOutliner_Worker(QThread):
 	@property
 	def timer(self):
 		"""
-		This method is the property for the __timer attribute.
+		This method is the property for **self.__timer** attribute.
 
 		:return: self.__timer. ( QTimer )
 		"""
@@ -159,7 +159,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self, value):
 		"""
-		This method is the setter method for the __timer attribute.
+		This method is the setter method for **self.__timer** attribute.
 
 		:param value: Attribute value. ( QTimer )
 		"""
@@ -170,7 +170,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timer(self):
 		"""
-		This method is the deleter method for the __timer attribute.
+		This method is the deleter method for **self.__timer** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timer"))
@@ -178,7 +178,7 @@ class TemplatesOutliner_Worker(QThread):
 	@property
 	def timerCycleMultiplier(self):
 		"""
-		This method is the property for the __timerCycleMultiplier attribute.
+		This method is the property for **self.__timerCycleMultiplier** attribute.
 
 		:return: self.__timerCycleMultiplier. ( Float )
 		"""
@@ -189,7 +189,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self, value):
 		"""
-		This method is the setter method for the __timerCycleMultiplier attribute.
+		This method is the setter method for **self.__timerCycleMultiplier** attribute.
 
 		:param value: Attribute value. ( Float )
 		"""
@@ -200,7 +200,7 @@ class TemplatesOutliner_Worker(QThread):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def timerCycleMultiplier(self):
 		"""
-		This method is the deleter method for the __timerCycleMultiplier attribute.
+		This method is the deleter method for **self.__timerCycleMultiplier** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("timerCycleMultiplier"))
@@ -272,7 +272,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -283,7 +283,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -294,7 +294,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -302,7 +302,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@property
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the property for the __coreTemplatesOutliner attribute.
+		This method is the property for **self.__coreTemplatesOutliner** attribute.
 
 		:return: self.__coreTemplatesOutliner. ( Object )
 		"""
@@ -313,7 +313,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self, value):
 		"""
-		This method is the setter method for the __coreTemplatesOutliner attribute.
+		This method is the setter method for **self.__coreTemplatesOutliner** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -324,7 +324,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreTemplatesOutliner(self):
 		"""
-		This method is the deleter method for the __coreTemplatesOutliner attribute.
+		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
@@ -462,7 +462,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def uiPath(self):
 		"""
-		This method is the property for the __uiPath attribute.
+		This method is the property for **self.__uiPath** attribute.
 
 		:return: self.__uiPath. ( String )
 		"""
@@ -473,7 +473,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self, value):
 		"""
-		This method is the setter method for the __uiPath attribute.
+		This method is the setter method for **self.__uiPath** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -484,7 +484,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiPath(self):
 		"""
-		This method is the deleter method for the __uiPath attribute.
+		This method is the deleter method for **self.__uiPath** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
@@ -492,7 +492,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def uiResources(self):
 		"""
-		This method is the property for the __uiResources attribute.
+		This method is the property for **self.__uiResources** attribute.
 
 		:return: self.__uiResources. ( String )
 		"""
@@ -503,7 +503,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self, value):
 		"""
-		This method is the setter method for the __uiResources attribute.
+		This method is the setter method for **self.__uiResources** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -514,7 +514,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiResources(self):
 		"""
-		This method is the deleter method for the __uiResources attribute.
+		This method is the deleter method for **self.__uiResources** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
@@ -522,7 +522,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the property for the __uiSoftwareAffixe attribute.
+		This method is the property for **self.__uiSoftwareAffixe** attribute.
 
 		:return: self.__uiSoftwareAffixe. ( String )
 		"""
@@ -533,7 +533,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self, value):
 		"""
-		This method is the setter method for the __uiSoftwareAffixe attribute.
+		This method is the setter method for **self.__uiSoftwareAffixe** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -544,7 +544,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiSoftwareAffixe(self):
 		"""
-		This method is the deleter method for the __uiSoftwareAffixe attribute.
+		This method is the deleter method for **self.__uiSoftwareAffixe** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiSoftwareAffixe"))
@@ -552,7 +552,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the property for the __uiUnknownSoftwareImage attribute.
+		This method is the property for **self.__uiUnknownSoftwareImage** attribute.
 
 		:return: self.__uiUnknownSoftwareImage. ( String )
 		"""
@@ -563,7 +563,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self, value):
 		"""
-		This method is the setter method for the __uiUnknownSoftwareImage attribute.
+		This method is the setter method for **self.__uiUnknownSoftwareImage** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -574,7 +574,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uiUnknownSoftwareImage(self):
 		"""
-		This method is the deleter method for the __uiUnknownSoftwareImage attribute.
+		This method is the deleter method for **self.__uiUnknownSoftwareImage** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiUnknownSoftwareImage"))
@@ -582,7 +582,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def dockArea(self):
 		"""
-		This method is the property for the __dockArea attribute.
+		This method is the property for **self.__dockArea** attribute.
 
 		:return: self.__dockArea. ( Integer )
 		"""
@@ -593,7 +593,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self, value):
 		"""
-		This method is the setter method for the __dockArea attribute.
+		This method is the setter method for **self.__dockArea** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -604,7 +604,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def dockArea(self):
 		"""
-		This method is the deleter method for the __dockArea attribute.
+		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
@@ -612,7 +612,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -623,7 +623,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -634,7 +634,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -642,7 +642,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def settings(self):
 		"""
-		This method is the property for the __settings attribute.
+		This method is the property for **self.__settings** attribute.
 
 		:return: self.__settings. ( QSettings )
 		"""
@@ -653,7 +653,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self, value):
 		"""
-		This method is the setter method for the __settings attribute.
+		This method is the setter method for **self.__settings** attribute.
 
 		:param value: Attribute value. ( QSettings )
 		"""
@@ -664,7 +664,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settings(self):
 		"""
-		This method is the deleter method for the __settings attribute.
+		This method is the deleter method for **self.__settings** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
@@ -672,7 +672,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def settingsSection(self):
 		"""
-		This method is the property for the __settingsSection attribute.
+		This method is the property for **self.__settingsSection** attribute.
 
 		:return: self.__settingsSection. ( String )
 		"""
@@ -683,7 +683,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self, value):
 		"""
-		This method is the setter method for the __settingsSection attribute.
+		This method is the setter method for **self.__settingsSection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -694,7 +694,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSection(self):
 		"""
-		This method is the deleter method for the __settingsSection attribute.
+		This method is the deleter method for **self.__settingsSection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
@@ -702,7 +702,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def settingsSeparator(self):
 		"""
-		This method is the property for the __settingsSeparator attribute.
+		This method is the property for **self.__settingsSeparator** attribute.
 
 		:return: self.__settingsSeparator. ( String )
 		"""
@@ -713,7 +713,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self, value):
 		"""
-		This method is the setter method for the __settingsSeparator attribute.
+		This method is the setter method for **self.__settingsSeparator** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -724,7 +724,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def settingsSeparator(self):
 		"""
-		This method is the deleter method for the __settingsSeparator attribute.
+		This method is the deleter method for **self.__settingsSeparator** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSeparator"))
@@ -732,7 +732,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def coreDb(self):
 		"""
-		This method is the property for the __coreDb attribute.
+		This method is the property for **self.__coreDb** attribute.
 
 		:return: self.__coreDb. ( Object )
 		"""
@@ -743,7 +743,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self, value):
 		"""
-		This method is the setter method for the __coreDb attribute.
+		This method is the setter method for **self.__coreDb** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
@@ -754,7 +754,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def coreDb(self):
 		"""
-		This method is the deleter method for the __coreDb attribute.
+		This method is the deleter method for **self.__coreDb** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDb"))
@@ -762,7 +762,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def model(self):
 		"""
-		This method is the property for the __model attribute.
+		This method is the property for **self.__model** attribute.
 
 		:return: self.__model. ( QStandardItemModel )
 		"""
@@ -773,7 +773,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self, value):
 		"""
-		This method is the setter method for the __model attribute.
+		This method is the setter method for **self.__model** attribute.
 
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
@@ -784,7 +784,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def model(self):
 		"""
-		This method is the deleter method for the __model attribute.
+		This method is the deleter method for **self.__model** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("model"))
@@ -792,7 +792,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def modelSelection(self):
 		"""
-		This method is the property for the __modelSelection attribute.
+		This method is the property for **self.__modelSelection** attribute.
 
 		:return: self.__modelSelection. ( Dictionary )
 		"""
@@ -803,7 +803,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self, value):
 		"""
-		This method is the setter method for the __modelSelection attribute.
+		This method is the setter method for **self.__modelSelection** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -814,7 +814,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelSelection(self):
 		"""
-		This method is the deleter method for the __modelSelection attribute.
+		This method is the deleter method for **self.__modelSelection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelSelection"))
@@ -822,7 +822,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def templatesOutlinerWorkerThread(self):
 		"""
-		This method is the property for the __templatesOutlinerWorkerThread attribute.
+		This method is the property for **self.__templatesOutlinerWorkerThread** attribute.
 
 		:return: self.__templatesOutlinerWorkerThread. ( QThread )
 		"""
@@ -833,7 +833,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesOutlinerWorkerThread(self, value):
 		"""
-		This method is the setter method for the __templatesOutlinerWorkerThread attribute.
+		This method is the setter method for **self.__templatesOutlinerWorkerThread** attribute.
 
 		:param value: Attribute value. ( QThread )
 		"""
@@ -844,7 +844,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesOutlinerWorkerThread(self):
 		"""
-		This method is the deleter method for the __templatesOutlinerWorkerThread attribute.
+		This method is the deleter method for **self.__templatesOutlinerWorkerThread** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesOutlinerWorkerThread"))
@@ -852,7 +852,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def extension(self):
 		"""
-		This method is the property for the __extension attribute.
+		This method is the property for **self.__extension** attribute.
 
 		:return: self.__extension. ( String )
 		"""
@@ -863,7 +863,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self, value):
 		"""
-		This method is the setter method for the __extension attribute.
+		This method is the setter method for **self.__extension** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -874,7 +874,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def extension(self):
 		"""
-		This method is the deleter method for the __extension attribute.
+		This method is the deleter method for **self.__extension** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
@@ -882,7 +882,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def defaultCollections(self):
 		"""
-		This method is the property for the __defaultCollections attribute.
+		This method is the property for **self.__defaultCollections** attribute.
 
 		:return: self.__defaultCollections. ( Dictionary )
 		"""
@@ -893,7 +893,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollections(self, value):
 		"""
-		This method is the setter method for the __defaultCollections attribute.
+		This method is the setter method for **self.__defaultCollections** attribute.
 
 		:param value: Attribute value. ( Dictionary )
 		"""
@@ -904,7 +904,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def defaultCollections(self):
 		"""
-		This method is the deleter method for the __defaultCollections attribute.
+		This method is the deleter method for **self.__defaultCollections** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("defaultCollections"))
@@ -912,7 +912,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def factoryCollection(self):
 		"""
-		This method is the property for the __factoryCollection attribute.
+		This method is the property for **self.__factoryCollection** attribute.
 
 		:return: self.__factoryCollection. ( String )
 		"""
@@ -923,7 +923,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def factoryCollection(self, value):
 		"""
-		This method is the setter method for the __factoryCollection attribute.
+		This method is the setter method for **self.__factoryCollection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -934,7 +934,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def factoryCollection(self):
 		"""
-		This method is the deleter method for the __factoryCollection attribute.
+		This method is the deleter method for **self.__factoryCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryCollection"))
@@ -942,7 +942,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def userCollection(self):
 		"""
-		This method is the property for the __userCollection attribute.
+		This method is the property for **self.__userCollection** attribute.
 
 		:return: self.__userCollection. ( String )
 		"""
@@ -953,7 +953,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def userCollection(self, value):
 		"""
-		This method is the setter method for the __userCollection attribute.
+		This method is the setter method for **self.__userCollection** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -964,7 +964,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def userCollection(self):
 		"""
-		This method is the deleter method for the __userCollection attribute.
+		This method is the deleter method for **self.__userCollection** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("userCollection"))
@@ -972,7 +972,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def modelHeaders(self):
 		"""
-		This method is the property for the __modelHeaders attribute.
+		This method is the property for **self.__modelHeaders** attribute.
 
 		:return: self.__modelHeaders. ( List )
 		"""
@@ -983,7 +983,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self, value):
 		"""
-		This method is the setter method for the __modelHeaders attribute.
+		This method is the setter method for **self.__modelHeaders** attribute.
 
 		:param value: Attribute value. ( List )
 		"""
@@ -994,7 +994,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def modelHeaders(self):
 		"""
-		This method is the deleter method for the __modelHeaders attribute.
+		This method is the deleter method for **self.__modelHeaders** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("modelHeaders"))
@@ -1002,7 +1002,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def treeViewIndentation(self):
 		"""
-		This method is the property for the __treeViewIndentation attribute.
+		This method is the property for **self.__treeViewIndentation** attribute.
 
 		:return: self.__treeViewIndentation. ( Integer )
 		"""
@@ -1013,7 +1013,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for the __treeViewIndentation attribute.
+		This method is the setter method for **self.__treeViewIndentation** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -1024,7 +1024,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for the __treeViewIndentation attribute.
+		This method is the deleter method for **self.__treeViewIndentation** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewIndentation"))
@@ -1032,7 +1032,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def treeViewInnerMargins(self):
 		"""
-		This method is the property for the __treeViewInnerMargins attribute.
+		This method is the property for **self.__treeViewInnerMargins** attribute.
 
 		:return: self.__treeViewInnerMargins. ( Integer )
 		"""
@@ -1043,7 +1043,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self, value):
 		"""
-		This method is the setter method for the __treeViewInnerMargins attribute.
+		This method is the setter method for **self.__treeViewInnerMargins** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -1054,7 +1054,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def treeViewInnerMargins(self):
 		"""
-		This method is the deleter method for the __treeViewInnerMargins attribute.
+		This method is the deleter method for **self.__treeViewInnerMargins** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("treeViewInnerMargins"))
@@ -1062,7 +1062,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the property for the __templatesInformationsDefaultText attribute.
+		This method is the property for **self.__templatesInformationsDefaultText** attribute.
 
 		:return: self.__templatesInformationsDefaultText. ( String )
 		"""
@@ -1073,7 +1073,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self, value):
 		"""
-		This method is the setter method for the __templatesInformationsDefaultText attribute.
+		This method is the setter method for **self.__templatesInformationsDefaultText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1084,7 +1084,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsDefaultText(self):
 		"""
-		This method is the deleter method for the __templatesInformationsDefaultText attribute.
+		This method is the deleter method for **self.__templatesInformationsDefaultText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesInformationsDefaultText"))
@@ -1092,7 +1092,7 @@ class TemplatesOutliner(UiComponent):
 	@property
 	def templatesInformationsText(self):
 		"""
-		This method is the property for the __templatesInformationsText attribute.
+		This method is the property for **self.__templatesInformationsText** attribute.
 
 		:return: self.__templatesInformationsText. ( String )
 		"""
@@ -1103,7 +1103,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self, value):
 		"""
-		This method is the setter method for the __templatesInformationsText attribute.
+		This method is the setter method for **self.__templatesInformationsText** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
@@ -1114,7 +1114,7 @@ class TemplatesOutliner(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def templatesInformationsText(self):
 		"""
-		This method is the deleter method for the __templatesInformationsText attribute.
+		This method is the deleter method for **self.__templatesInformationsText** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesInformationsText"))

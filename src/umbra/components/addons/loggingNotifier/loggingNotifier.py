@@ -74,7 +74,7 @@ class LoggingNotifier(Component):
 	@property
 	def container(self):
 		"""
-		This method is the property for the __container attribute.
+		This method is the property for **self.__container** attribute.
 
 		:return: self.__container. ( QObject )
 		"""
@@ -85,7 +85,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self, value):
 		"""
-		This method is the setter method for the __container attribute.
+		This method is the setter method for **self.__container** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
@@ -96,7 +96,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def container(self):
 		"""
-		This method is the deleter method for the __container attribute.
+		This method is the deleter method for **self.__container** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
@@ -104,7 +104,7 @@ class LoggingNotifier(Component):
 	@property
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the property for the __memoryHandlerStackDepth attribute.
+		This method is the property for **self.__memoryHandlerStackDepth** attribute.
 
 		:return: self.__memoryHandlerStackDepth. ( Integer )
 		"""
@@ -115,7 +115,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self, value):
 		"""
-		This method is the setter method for the __memoryHandlerStackDepth attribute.
+		This method is the setter method for **self.__memoryHandlerStackDepth** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -126,7 +126,7 @@ class LoggingNotifier(Component):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def memoryHandlerStackDepth(self):
 		"""
-		This method is the deleter method for the __memoryHandlerStackDepth attribute.
+		This method is the deleter method for **self.__memoryHandlerStackDepth** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("memoryHandlerStackDepth"))

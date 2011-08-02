@@ -74,7 +74,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@property
 	def waitTime(self):
 		"""
-		This method is the property for the __waitTime attribute.
+		This method is the property for **self.__waitTime** attribute.
 
 		:return: self.__waitTime ( Integer / Float )
 		"""
@@ -85,7 +85,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
 	def waitTime(self, value):
 		"""
-		This method is the setter method for the __waitTime attribute.
+		This method is the setter method for **self.__waitTime** attribute.
 
 		:param value: Attribute value. ( Integer / Float )
 		"""
@@ -99,7 +99,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def waitTime(self):
 		"""
-		This method is the deleter method for the __waitTime attribute.
+		This method is the deleter method for **self.__waitTime** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("waitTime"))
