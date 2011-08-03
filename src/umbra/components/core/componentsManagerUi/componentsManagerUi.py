@@ -29,6 +29,7 @@ import traceback
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import manager.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -58,7 +59,7 @@ def _componentActivationErrorHandler(exception, origin, *args, **kwargs):
 	:param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while activating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(manager.exceptions.ComponentActivationError("{0} | An exception occurred while activating '{1}' Component:\n{2}".format(core.getModule(_componentActivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
 def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
@@ -69,7 +70,7 @@ def _componentDeactivationErrorHandler(exception, origin, *args, **kwargs):
 	:param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while deactivating '{1}' Component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(manager.exceptions.ComponentDeactivationError("{0} | An exception occurred while deactivating '{1}' Component:\n{2}".format(core.getModule(_componentDeactivationErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 @core.executionTrace
 def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
@@ -80,7 +81,7 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 	:param origin: Function / Method raising the exception. ( String )
 	"""
 
-	umbra.ui.common.uiBasicExceptionHandler(Exception("{0} | An exception occurred while reloading '{1}' Component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
+	umbra.ui.common.uiBasicExceptionHandler(manager.exceptions.ComponentReloadError("{0} | An exception occurred while reloading '{1}' Component:\n{2}".format(core.getModule(_componentReloadErrorHandler).__name__, args[1].name, traceback.format_exc())), origin, *args, **kwargs)
 
 class ComponentsManagerUi(UiComponent):
 	"""
@@ -939,7 +940,7 @@ class ComponentsManagerUi(UiComponent):
 			raise Exception, "{0} | Exception raised while reloading '{1}' Components!".format(self.__class__.__name__, ", ". join((component.name for component in selectedComponents)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, foundations.exceptions.ComponentActivationError)
+	@foundations.exceptions.exceptionsHandler(_componentActivationErrorHandler, False, manager.exceptions.ComponentActivationError)
 	def activateComponent(self, component):
 		"""
 		This method activates provided Component.
@@ -960,7 +961,7 @@ class ComponentsManagerUi(UiComponent):
 		return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, foundations.exceptions.ComponentDeactivationError)
+	@foundations.exceptions.exceptionsHandler(_componentDeactivationErrorHandler, False, manager.exceptions.ComponentDeactivationError)
 	def deactivateComponent(self, component):
 		"""
 		This method deactivates provided Component.
@@ -984,7 +985,7 @@ class ComponentsManagerUi(UiComponent):
 			raise foundations.exceptions.ComponentDeactivationError, "{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, component.name)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(_componentReloadErrorHandler, False, manager.exceptions.ComponentReloadError)
 	def reloadComponent(self, component):
 		"""
 		This method reloads provided Component.

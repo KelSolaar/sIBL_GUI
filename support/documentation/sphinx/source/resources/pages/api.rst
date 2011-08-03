@@ -22,6 +22,7 @@ Modules Summary:
    foundations.walker <api/foundations.walker>
    manager.component <api/manager.component>
    manager.componentsManager <api/manager.componentsManager>
+   manager.exceptions <api/manager.exceptions>
    manager.globals.constants <api/manager.globals.constants>
    manager.uiComponent <api/manager.uiComponent>
    umbra.components.addons.about.about <api/umbra.components.addons.about.about>
@@ -83,6 +84,7 @@ Modules Summary:
    tests.testsManager.resources.components.core.testsComponentB.testsComponentB <api/tests.testsManager.resources.components.core.testsComponentB.testsComponentB>
    tests.testsManager.testsComponent <api/tests.testsManager.testsComponent>
    tests.testsManager.testsComponentsManager <api/tests.testsManager.testsComponentsManager>
+   tests.testsManager.testsExceptions <api/tests.testsManager.testsExceptions>
    tests.testsManager.testsGlobals.testsConstants <api/tests.testsManager.testsGlobals.testsConstants>
    tests.testsManager.testsUiComponent <api/tests.testsManager.testsUiComponent>
    tests.utilities <api/tests.utilities>

@@ -94,18 +94,6 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: ComponentActivationError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: ComponentDeactivationError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: ComponentReloadError
-	:show-inheritance:
-	:members:
-
 .. autoclass:: AbstractLibraryError
 	:show-inheritance:
 	:members:

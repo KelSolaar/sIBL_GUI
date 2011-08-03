@@ -530,7 +530,7 @@ class LoaderScript(UiComponent):
 		"""
 		This method deactivates the Component.
 		"""
-		raise
+
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.uiFile = None
