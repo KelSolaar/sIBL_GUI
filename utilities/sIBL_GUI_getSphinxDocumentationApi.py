@@ -122,7 +122,10 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
 			if re.search("^[ \t]*@\w+", line):
-				if not re.search("^[ \t]*@property", line) and not re.search("^[ \t]*@\w+\.setter", line) and not re.search("^[ \t]*@\w+\.deleter", line):
+				if not re.search("^[ \t]*@property", line) and \
+					not re.search("^[ \t]*@\w+\.setter", line) and \
+					not re.search("^[ \t]*@\w+\.deleter", line) and \
+					not re.search("^[ \t]*@exceptionsHandler", line):
 					indent = re.search("^([ \t]*)", line)
 					sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 

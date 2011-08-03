@@ -18,11 +18,23 @@ Functions
 Classes
 -------
 
-.. autoclass:: FileStructureError
+.. autoclass:: AbstractError
 	:show-inheritance:
 	:members:
 
-.. autoclass:: AttributeStructureError
+.. autoclass:: AbstractParsingError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: FileStructureParsingError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AttributeStructureParsingError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractOsError
 	:show-inheritance:
 	:members:
 
@@ -34,6 +46,10 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractObjectError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: ObjectTypeError
 	:show-inheritance:
 	:members:
@@ -42,7 +58,15 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractDatabaseError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: DatabaseOperationError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractUserError
 	:show-inheritance:
 	:members:
 
@@ -54,11 +78,19 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AbstractNetworkError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: NetworkError
 	:show-inheritance:
 	:members:
 
 .. autoclass:: SocketConnectionError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractComponentError
 	:show-inheritance:
 	:members:
 
@@ -71,6 +103,10 @@ Classes
 	:members:
 
 .. autoclass:: ComponentReloadError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractLibraryError
 	:show-inheritance:
 	:members:
 

@@ -126,7 +126,7 @@ class DbIblSet(DbBase):
 		self.comment = comment
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
 		This method initializes the DbIblSet attributes.
@@ -156,7 +156,7 @@ class DbIblSet(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' no sections found, file structure seems invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureParsingError("'{0}' no sections found, file structure seems invalid!".format(self.path))
 
 class DbTemplate(DbBase):
 	"""
@@ -228,7 +228,7 @@ class DbTemplate(DbBase):
 		self.comment = comment
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileStructureParsingError)
 	def setContent(self):
 		"""
 		This method initializes the DbTemplate attributes.
@@ -256,7 +256,7 @@ class DbTemplate(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureError("'{0}' no sections found, file structure seems invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureParsingError("'{0}' no sections found, file structure seems invalid!".format(self.path))
 
 class DbCollection(DbBase):
 	"""
