@@ -844,4 +844,3 @@ class SearchDatabase(UiComponent):
 			self.__coreDatabaseBrowser.modelContent = modelContent
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 		return True
-

@@ -100,4 +100,3 @@ def sliceDocumentation(fileIn, outputDirectory):
 
 if __name__ == "__main__":
 	sliceDocumentation(sys.argv[1], sys.argv[2])
-

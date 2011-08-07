@@ -2183,4 +2183,3 @@ class Preview(UiComponent):
 			if not os.path.exists(path):
 				imagePaths.remove(path) and LOGGER.warning("!> {0} | '{1}' image file doesn't exists and will be skipped!".format(self.__class__.__name__, path))
 		return imagePaths
-

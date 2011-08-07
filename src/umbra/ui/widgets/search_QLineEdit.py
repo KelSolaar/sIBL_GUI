@@ -259,4 +259,3 @@ class Search_QLineEdit(QLineEdit):
 			self.__clearButton.show()
 		else:
 			self.__clearButton.hide()
-

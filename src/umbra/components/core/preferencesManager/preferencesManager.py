@@ -355,4 +355,3 @@ class PreferencesManager(UiComponent):
 
 		for handler in (RuntimeConstants.loggingConsoleHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingSessionHandler):
 			handler and handler.setFormatter(RuntimeConstants.loggingFormatters[RuntimeConstants.loggingActiveFormatter])
-

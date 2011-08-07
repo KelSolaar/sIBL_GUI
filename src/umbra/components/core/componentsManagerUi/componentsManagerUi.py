@@ -1026,4 +1026,3 @@ class ComponentsManagerUi(UiComponent):
 
 		selectedComponents = [item._datas for item in self.getSelectedItems() if item._type == "Component"]
 		return selectedComponents and selectedComponents or []
-

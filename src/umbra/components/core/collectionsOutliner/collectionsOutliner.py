@@ -1553,4 +1553,3 @@ class CollectionsOutliner(UiComponent):
 
 		selectedCollections = [item._datas for item in self.getSelectedItems() if item._type == "Collection"]
 		return selectedCollections and selectedCollections or []
-

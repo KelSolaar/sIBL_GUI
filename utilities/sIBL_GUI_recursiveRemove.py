@@ -63,4 +63,3 @@ def remove(item):
 
 if __name__ == "__main__":
 	recursiveRemove(sys.argv[1], sys.argv[2])
-

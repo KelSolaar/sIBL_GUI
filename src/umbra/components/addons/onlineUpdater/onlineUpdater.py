@@ -2207,4 +2207,3 @@ class OnlineUpdater(UiComponent):
 
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
 		return True
-

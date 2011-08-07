@@ -1301,4 +1301,3 @@ class Inspector(UiComponent):
 		else:
 			self.ui.Plates_listView.setCurrentIndex(self.__model.index(0, 0))
 		return True
-

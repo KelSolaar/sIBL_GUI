@@ -72,4 +72,3 @@ def getDependenciesInformations():
 
 if __name__ == "__main__":
 	getDependenciesInformations()
-

@@ -76,4 +76,3 @@ def reStructuredTextToHtml(fileIn, fileOut):
 
 if __name__ == "__main__":
 	reStructuredTextToHtml(sys.argv[1], sys.argv[2])
-

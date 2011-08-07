@@ -75,4 +75,3 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 
 if __name__ == "__main__":
 	getHDRLabsDocumentation(sys.argv[1], sys.argv[2])
-

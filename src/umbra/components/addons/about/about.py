@@ -463,4 +463,3 @@ class About(UiComponent):
 		self.ui.About_label.setText(aboutMessage)
 
 		self.ui.show()
-

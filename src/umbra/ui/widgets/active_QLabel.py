@@ -400,4 +400,3 @@ class Active_QLabel(QLabel):
 		"""
 
 		not self.__checkable and	self.setPixmap(self.__defaultPixmap)
-

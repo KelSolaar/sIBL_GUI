@@ -56,4 +56,3 @@ class RuntimeConstants():
 
 	splashscreenPicture = None
 	splashscreen = None
-

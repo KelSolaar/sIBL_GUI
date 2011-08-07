@@ -70,4 +70,3 @@ def downgrade(dbEngine):
 	"""
 
 	pass
-

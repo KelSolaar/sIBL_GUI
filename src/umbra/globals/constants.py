@@ -91,4 +91,3 @@ class Constants():
 
 	defaultTimerCycle = 125
 	nullObject = "None"
-

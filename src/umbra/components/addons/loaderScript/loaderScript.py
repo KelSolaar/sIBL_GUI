@@ -895,4 +895,3 @@ class LoaderScript(UiComponent):
 							line = line.replace(parameter, attribute.value and attribute.value or "-1")
 			bindedLoaderScript.append(line)
 		return bindedLoaderScript
-

@@ -1725,4 +1725,3 @@ class DatabaseBrowser(UiComponent):
 			return shotDate
 		else:
 			return Constants.nullObject
-

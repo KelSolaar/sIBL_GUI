@@ -295,4 +295,3 @@ class LoggingWindow(UiComponent):
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
 			self.__Logging_textEdit_setUi()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
-

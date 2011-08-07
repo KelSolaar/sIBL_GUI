@@ -437,4 +437,3 @@ class DatabaseOperations(UiComponent):
 			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
 		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 		return True
-

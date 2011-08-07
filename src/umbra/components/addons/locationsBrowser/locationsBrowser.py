@@ -965,4 +965,3 @@ class LocationsBrowser(UiComponent):
 			return True
 		else:
 			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
-

@@ -171,4 +171,3 @@ def testThirdPartyImageFormatsAttribute(self):
 
 if __name__ == "__main__":
 	unittest.main()
-

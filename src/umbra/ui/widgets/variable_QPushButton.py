@@ -266,4 +266,3 @@ class Variable_QPushButton(QPushButton):
 
 		self.setChecked(False)
 		self.setText(self.__labels[1])
-

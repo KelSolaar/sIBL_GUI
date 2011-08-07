@@ -116,18 +116,19 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		for i, line in enumerate(sourceFile.content):
 			if re.search("__name__ +\=\= +\"__main__\"", line):
 				trimStartIndex = i
-			if trimStartIndex and (line.startswith("\n") or line.startswith("	 ") or line.startswith("\t")):
+			if trimStartIndex and re.search(r"^\s*$", line):
 				trimEndIndex = i
 			for pattern, value in CONTENT_SUBSTITUTIONS.items():
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
-			if re.search("^[ \t]*@\w+", line):
-				if not re.search("^[ \t]*@property", line) and \
-					not re.search("^[ \t]*@\w+\.setter", line) and \
-					not re.search("^[ \t]*@\w+\.deleter", line) and \
-					not re.search("^[ \t]*@exceptionsHandler", line):
-					indent = re.search("^([ \t]*)", line)
-					sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
+			if i < len(sourceFile.content):
+				if re.search("^[ \t]*@\w+", line) and (re.search("^[ \t]*def \w+", sourceFile.content[i + 1]) or re.search("^[ \t]*class \w+", sourceFile.content[i + 1]) or re.search("^[ \t]*@\w+", sourceFile.content[i + 1])):
+					if not re.search("^[ \t]*@property", line) and \
+						not re.search("^[ \t]*@\w+\.setter", line) and \
+						not re.search("^[ \t]*@\w+\.deleter", line) and \
+						not re.search("^[ \t]*@exceptionsHandler", line):
+						indent = re.search("^([ \t]*)", line)
+						sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
 		if trimStartIndex and trimEndIndex:
 			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__, module))
@@ -197,7 +198,3 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 if __name__ == "__main__":
 	getSphinxDocumentationApi(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
-
-#***********************************************************************************************
-#***	Python end.
-#***********************************************************************************************

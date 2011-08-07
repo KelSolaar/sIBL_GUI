@@ -525,4 +525,3 @@ class RewiringTool(UiComponent):
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox._datas, getattr(iblSet, parameter[2])))
 				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet, parameter[2])))
 		return True
-

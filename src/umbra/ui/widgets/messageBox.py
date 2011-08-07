@@ -128,4 +128,3 @@ def standaloneMessageBox(type, caption, message, icon=None, buttons=QMessageBox.
 
 	application = QApplication(sys.argv)
 	messageBox(type, caption, message, icon, buttons)
-

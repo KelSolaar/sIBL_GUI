@@ -127,4 +127,3 @@ class Delayed_QSplashScreen(QSplashScreen):
 			waitTime = self.__waitTime
 
 		waitTime and foundations.common.wait(waitTime)
-

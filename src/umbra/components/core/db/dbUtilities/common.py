@@ -536,4 +536,3 @@ def checkTemplatesTableIntegrity(session):
 			if not os.path.exists(template.helpFile):
 				erroneousTemplates[template] = "INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION"
 	return erroneousTemplates
-

@@ -194,4 +194,3 @@ class LoggingNotifier(Component):
 			for index in range(self.__memoryHandlerStackDepth, memoryHandlerStackDepth):
 				self.__container.statusBar.showMessage(self.__container.loggingSessionHandlerStream.stream[index])
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
-

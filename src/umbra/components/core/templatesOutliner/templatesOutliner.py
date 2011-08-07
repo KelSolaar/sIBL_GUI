@@ -1931,4 +1931,3 @@ class TemplatesOutliner(UiComponent):
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
-

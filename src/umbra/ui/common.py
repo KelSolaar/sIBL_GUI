@@ -275,4 +275,3 @@ def filterImagePath(path):
 						return UiConstants.frameworkFormatErrorImage
 		else:
 			return UiConstants.frameworkMissingImage
-

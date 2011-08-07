@@ -523,4 +523,3 @@ class SetsScanner(Component):
 				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
 
 		self.__setsScannerWorkerThread.exit()
-

@@ -525,4 +525,3 @@ class Db(Component):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be uninitialized!".format(self.name))
-
