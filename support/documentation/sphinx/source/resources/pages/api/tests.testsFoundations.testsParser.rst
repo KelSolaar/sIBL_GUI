@@ -14,9 +14,25 @@ Module Attributes
 
 .. attribute:: tests.testsFoundations.testsParser.TEMPLATE_FILE
 
-.. attribute:: tests.testsFoundations.testsParser.FILES
+.. attribute:: tests.testsFoundations.testsParser.DEFAULTS_FILE
 
-.. attribute:: tests.testsFoundations.testsParser.SECTIONS_AND_ATTRIBUTES
+.. attribute:: tests.testsFoundations.testsParser.STRIPPING_FILE
+
+.. attribute:: tests.testsFoundations.testsParser.PARSING_ERRORS_FILE
+
+.. attribute:: tests.testsFoundations.testsParser.STANDARD_FILES
+
+.. attribute:: tests.testsFoundations.testsParser.STANDARD_FILES_RAW_SECTIONS
+
+.. attribute:: tests.testsFoundations.testsParser.STANDARD_FILES_SECTIONS_AND_ATTRIBUTES
+
+.. attribute:: tests.testsFoundations.testsParser.DEFAULTS_FILE_SECTIONS_AND_ATTRIBUTES
+
+.. attribute:: tests.testsFoundations.testsParser.STRIPPING_FILE_SECTIONS_AND_ATTRIBUTES_STRIPPED
+
+.. attribute:: tests.testsFoundations.testsParser.STRIPPING_FILE_SECTIONS_AND_ATTRIBUTES_NON_STRIPPED
+
+.. attribute:: tests.testsFoundations.testsParser.PARSING_ERRORS_LINES_AND_VALUES
 
 .. attribute:: tests.testsFoundations.testsParser.RANDOM_ATTRIBUTES
 
