@@ -1872,9 +1872,9 @@ def _setUserApplicationDatasDirectory(path):
 	userApplicationDatasDirectory = RuntimeConstants.userApplicationDatasDirectory
 
 	LOGGER.debug("> Current Application datas directory '{0}'.".format(userApplicationDatasDirectory))
-	if io.setLocalDirectory(userApplicationDatasDirectory):
+	if io.setDirectory(userApplicationDatasDirectory):
 		for directory in Constants.preferencesDirectories:
-			if not io.setLocalDirectory(os.path.join(userApplicationDatasDirectory, directory)):
+			if not io.setDirectory(os.path.join(userApplicationDatasDirectory, directory)):
 				raise OSError, "'{0}' directory creation failed , {1} will now close!".format(os.path.join(userApplicationDatasDirectory, directory), Constants.applicationName)
 		return True
 	else:

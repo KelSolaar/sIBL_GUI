@@ -11,7 +11,11 @@ Module Attributes
 Functions
 ---------
 
-.. autofunction:: setLocalDirectory
+.. autofunction:: setDirectory
+
+.. autofunction:: copy
+
+.. autofunction:: remove
 
 Classes
 -------

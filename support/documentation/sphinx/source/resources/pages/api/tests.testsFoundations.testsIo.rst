@@ -19,7 +19,15 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: SetLocalDirectoryTestCase
+.. autoclass:: SetDirectoryTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: CopyTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: RemoveTestCase
 	:show-inheritance:
 	:members:
 
