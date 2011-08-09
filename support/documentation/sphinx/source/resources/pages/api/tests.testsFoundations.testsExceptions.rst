@@ -15,3 +15,7 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: AttributeStructureParsingErrorTestCase
+	:show-inheritance:
+	:members:
+
