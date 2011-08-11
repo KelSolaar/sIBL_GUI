@@ -1944,6 +1944,7 @@ class OnlineUpdater(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1965,12 +1966,14 @@ class OnlineUpdater(UiComponent):
 
 		self.__reportUpdateStatus = True
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -1991,7 +1994,7 @@ class OnlineUpdater(UiComponent):
 
 		self.__reportUpdateStatus = None
 
-		self._deactivate()
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

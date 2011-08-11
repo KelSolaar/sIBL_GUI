@@ -205,6 +205,7 @@ class LoggingWindow(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -212,12 +213,14 @@ class LoggingWindow(UiComponent):
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -225,7 +228,7 @@ class LoggingWindow(UiComponent):
 		self.uiFile = None
 		self.__container = None
 
-		self._deactivate()
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

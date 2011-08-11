@@ -589,6 +589,7 @@ class SearchDatabase(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -601,12 +602,14 @@ class SearchDatabase(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -619,7 +622,7 @@ class SearchDatabase(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreCollectionsOutliner = None
 
-		self._deactivate()
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

@@ -573,6 +573,7 @@ class ComponentsManagerUi(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -583,7 +584,7 @@ class ComponentsManagerUi(UiComponent):
 
 		self.__settings = self.__container.settings
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

@@ -1128,6 +1128,7 @@ class TemplatesOutliner(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -1140,9 +1141,9 @@ class TemplatesOutliner(UiComponent):
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 
-		self.__defaultCollections = { self.__factoryCollection: os.path.join(os.getcwd(), Constants.templatesDirectory), self.__userCollection: os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory) }
+		self.__defaultCollections = {self.__factoryCollection: os.path.join(os.getcwd(), Constants.templatesDirectory), self.__userCollection: os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory)}
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1161,7 +1162,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.databaseReadOnly and	LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Templates_Outliner_treeView_setModel()
 

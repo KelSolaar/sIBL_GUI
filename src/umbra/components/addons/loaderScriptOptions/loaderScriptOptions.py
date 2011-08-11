@@ -528,6 +528,7 @@ class LoaderScriptOptions(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -538,12 +539,14 @@ class LoaderScriptOptions(UiComponent):
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -554,7 +557,7 @@ class LoaderScriptOptions(UiComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
-		self._deactivate()
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

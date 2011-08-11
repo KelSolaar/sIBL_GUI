@@ -358,6 +358,7 @@ class About(UiComponent):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
@@ -369,12 +370,14 @@ class About(UiComponent):
 
 		self.__addActions()
 
-		self._activate()
+		return UiComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
@@ -386,7 +389,7 @@ class About(UiComponent):
 		self.__container = None
 		self.__miscMenu = None
 
-		self._deactivate()
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

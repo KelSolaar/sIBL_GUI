@@ -140,25 +140,28 @@ class LoggingNotifier(Component):
 		This method activates the Component.
 
 		:param container: Container to attach the Component to. ( QObject )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = container
 
-		self._activate()
+		return Component.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__container = None
 
-		self._deactivate()
+		return Component.deactivate(self)
 
 	@core.executionTrace
 	def initialize(self):
