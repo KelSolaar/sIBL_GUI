@@ -599,6 +599,8 @@ class ComponentsManagerUi(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -623,6 +625,8 @@ class ComponentsManagerUi(UiComponent):
 		self.modelRefresh.connect(self.__Components_Manager_Ui_treeView_refreshModel)
 		self.modelPartialRefresh.connect(self.__Components_Manager_Ui_treeView_setActivationsStatus)
 
+		return True
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
@@ -636,11 +640,15 @@ class ComponentsManagerUi(UiComponent):
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

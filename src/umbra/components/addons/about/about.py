@@ -395,33 +395,49 @@ class About(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		return True
 
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		return True
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
+
+		return True
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
+
+		return True
 
 	@core.executionTrace
 	def __addActions(self):

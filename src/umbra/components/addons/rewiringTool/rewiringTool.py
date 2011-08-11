@@ -373,6 +373,8 @@ class RewiringTool(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -398,10 +400,14 @@ class RewiringTool(UiComponent):
 		self.ui.Lighting_Path_toolButton.clicked.connect(self.__Lighting_Path_toolButton__clicked)
 		self.ui.Reflection_Path_toolButton.clicked.connect(self.__Reflection_Path_toolButton__clicked)
 
+		return True
+
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -418,26 +424,36 @@ class RewiringTool(UiComponent):
 		self.ui.Lighting_Path_toolButton.clicked.disconnect(self.__Lighting_Path_toolButton__clicked)
 		self.ui.Reflection_Path_toolButton.clicked.disconnect(self.__Reflection_Path_toolButton__clicked)
 
+		return True
+
 	@core.executionTrace
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
+		return True
+
 	@core.executionTrace
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
+
+		return True
 
 	@core.executionTrace
 	def __Background_Path_toolButton__clicked(self, checked):

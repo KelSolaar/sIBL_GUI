@@ -1111,6 +1111,8 @@ class DatabaseBrowser(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -1159,6 +1161,8 @@ class DatabaseBrowser(UiComponent):
 				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			self.__model.dataChanged.connect(self.__Database_Browser_listView_model__dataChanged)
 
+		return True
+
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def uninitializeUi(self):
@@ -1172,11 +1176,15 @@ class DatabaseBrowser(UiComponent):
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.centralwidget_gridLayout.addWidget(self.ui)
+
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

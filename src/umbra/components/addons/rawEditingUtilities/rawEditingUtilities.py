@@ -501,6 +501,8 @@ class RawEditingUtilities(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -513,10 +515,14 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 
+		return True
+
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -527,26 +533,36 @@ class RawEditingUtilities(UiComponent):
 
 		self.__removeActions()
 
+		return True
+
 	@core.executionTrace
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
 
+		return True
+
 	@core.executionTrace
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
+
+		return True
 
 	@core.executionTrace
 	def __addActions(self):

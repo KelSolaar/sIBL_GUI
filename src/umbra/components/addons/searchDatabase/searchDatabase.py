@@ -628,6 +628,8 @@ class SearchDatabase(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -654,10 +656,14 @@ class SearchDatabase(UiComponent):
 		self.ui.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
 		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
 
+		return True
+
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -672,26 +678,36 @@ class SearchDatabase(UiComponent):
 
 		self.__completer = None
 
+		return True
+
 	@core.executionTrace
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
 
+		return True
+
 	@core.executionTrace
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
 		self.__container.removeDockWidget(self.ui)
 		self.ui.setParent(None)
+
+		return True
 
 	@core.executionTrace
 	def __Search_Database_lineEdit__textChanged(self, text):

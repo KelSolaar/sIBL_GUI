@@ -530,6 +530,8 @@ class DownloadManager(QObject):
 	def initializeUi(self):
 		"""
 		This method initializes the Widget ui.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -542,6 +544,8 @@ class DownloadManager(QObject):
 
 		# Signals / Slots.
 		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
+
+		return True
 
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
@@ -1234,6 +1238,8 @@ class RemoteUpdater(object):
 	def initializeUi(self):
 		"""
 		This method initializes the **Remote_Updater** Widget ui.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -1306,6 +1312,8 @@ class RemoteUpdater(object):
 		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
 		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
 		self.__ui.Close_pushButton.clicked.connect(self.__Close_pushButton__clicked)
+
+		return True
 
 	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
@@ -2000,6 +2008,8 @@ class OnlineUpdater(UiComponent):
 	def initializeUi(self):
 		"""
 		This method initializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -2014,10 +2024,14 @@ class OnlineUpdater(UiComponent):
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
+		return True
+
 	@core.executionTrace
 	def uninitializeUi(self):
 		"""
 		This method uninitializes the Component ui.
+		
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
@@ -2026,6 +2040,8 @@ class OnlineUpdater(UiComponent):
 		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
 		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
 		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
+
+		return True
 
 	@core.executionTrace
 	def onStartup(self):
@@ -2042,6 +2058,8 @@ class OnlineUpdater(UiComponent):
 	def addWidget(self):
 		"""
 		This method adds the Component Widget to the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
@@ -2052,6 +2070,8 @@ class OnlineUpdater(UiComponent):
 	def removeWidget(self):
 		"""
 		This method removes the Component Widget from the container.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
