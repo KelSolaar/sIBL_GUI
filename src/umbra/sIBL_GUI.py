@@ -463,87 +463,37 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
-		# --- Activating "core.componentsManagerUi" component. ---
-		self.__coreComponentsManagerUi = self.__componentsManager.getInterface("core.componentsManagerUi")
-		if self.__coreComponentsManagerUi:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.componentsManagerUi"), textColor=Qt.white)
-			self.__coreComponentsManagerUi.activate(self)
-			self.__coreComponentsManagerUi.addWidget()
-			self.__coreComponentsManagerUi.initializeUi()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.componentsManagerUi", Constants.applicationName)
+		# --- Activating mandatory Components. ---
+		for component in ("core.componentsManagerUi", "core.preferencesManager", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"):
+			profile = self.__componentsManager.components[component]
+			interface = self.__componentsManager.getInterface(component)
+			setattr(self, "_{0}__{1}".format(self.__class__.__name__, Manager.getComponentAttributeName(component)), interface)
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, component), textColor=Qt.white)
+			interface.activate(self)
+			if profile.categorie == "default":
+				interface.initialize()
+			elif profile.categorie == "ui":
+				interface.addWidget()
+				interface.initializeUi()
 
-		# --- Activating "core.preferencesManager" component. ---
-		self.__corePreferencesManager = self.__componentsManager.getInterface("core.preferencesManager")
-		if self.__corePreferencesManager:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.preferencesManager"), textColor=Qt.white)
-			self.__corePreferencesManager.activate(self)
-			self.__corePreferencesManager.addWidget()
-			self.__corePreferencesManager.initializeUi()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.preferencesManager", Constants.applicationName)
-
-		# --- Activating "core.db" component. ---
-		self.__coreDb = self.__componentsManager.getInterface("core.db")
-		if self.__coreDb:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.db"), textColor=Qt.white)
-			self.__coreDb.activate(self)
-			self.__coreDb.initialize()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.db", Constants.applicationName)
-
-		# --- Activating "core.collectionsOutliner" component. ---
-		self.__coreCollectionsOutliner = self.__componentsManager.getInterface("core.collectionsOutliner")
-		if self.__coreCollectionsOutliner:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.collectionsOutliner"), textColor=Qt.white)
-			self.__coreCollectionsOutliner.activate(self)
-			self.__coreCollectionsOutliner.addWidget()
-			self.__coreCollectionsOutliner.initializeUi()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.collectionsOutliner", Constants.applicationName)
-
-		# --- Activating "core.databaseBrowser" component. ---
-		self.__coreDatabaseBrowser = self.__componentsManager.getInterface("core.databaseBrowser")
-		if self.__coreDatabaseBrowser:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.databaseBrowser"), textColor=Qt.white)
-			self.__coreDatabaseBrowser.activate(self)
-			self.__coreDatabaseBrowser.addWidget()
-			self.__coreDatabaseBrowser.initializeUi()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.databaseBrowser", Constants.applicationName)
-
-		# --- Activating "core.inspector" component. ---
-		self.__coreInspector = self.__componentsManager.getInterface("core.inspector")
-		if self.__coreInspector:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.inspector"), textColor=Qt.white)
-			self.__coreInspector.activate(self)
-			self.__coreInspector.addWidget()
-			self.__coreInspector.initializeUi()
-
-		# --- Activating "core.templatesOutliner" component. ---
-		self.__coreTemplatesOutliner = self.__componentsManager.getInterface("core.templatesOutliner")
-		if self.__coreTemplatesOutliner:
-			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, "core.templatesOutliner"), textColor=Qt.white)
-			self.__coreTemplatesOutliner.activate(self)
-			self.__coreTemplatesOutliner.addWidget()
-			self.__coreTemplatesOutliner.initializeUi()
-		else:
-			raise foundations.exceptions.ProgrammingError, "'{0}' Component is not available, {1} will now close!".format("core.templatesOutliner", Constants.applicationName)
-
-		# --- Activating Others components. ---
+		# --- Activating others Components. ---
 		deactivatedComponents = self.__settings.getKey("Settings", "deactivatedComponents").toString().split(",")
 		for component in self.__componentsManager.getComponents():
-			if component not in deactivatedComponents:
-				profile = self.__componentsManager.components[component]
-				interface = self.__componentsManager.getInterface(component)
-				if not interface.activated:
-					RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, component), textColor=Qt.white)
-					interface.activate(self)
-					if profile.categorie == "default":
-						interface.initialize()
-					elif profile.categorie == "ui":
-						interface.addWidget()
-						interface.initializeUi()
+			if component in deactivatedComponents:
+				continue
+
+			profile = self.__componentsManager.components[component]
+			interface = self.__componentsManager.getInterface(component)
+			if interface.activated:
+				continue
+
+			RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Activating {2}.".format(self.__class__.__name__, Constants.releaseVersion, component), textColor=Qt.white)
+			interface.activate(self)
+			if profile.categorie == "default":
+				interface.initialize()
+			elif profile.categorie == "ui":
+				interface.addWidget()
+				interface.initializeUi()
 
 		# Hiding splashscreen.
 		LOGGER.debug("> Hiding splashscreen.")
