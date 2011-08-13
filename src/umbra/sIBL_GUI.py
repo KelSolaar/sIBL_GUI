@@ -381,9 +381,6 @@ class LayoutActiveLabel(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
-
 class sIBL_GUI(Ui_Type, Ui_Setup):
 	"""
 	This class is the Main class for sIBL_GUI.

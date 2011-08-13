@@ -65,9 +65,6 @@ class Plate(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
-
 class Light(core.Structure):
 	"""
 	This is the **Light** class.
@@ -82,9 +79,6 @@ class Light(core.Structure):
 		"""
 
 		core.Structure.__init__(self, **kwargs)
-
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
 
 class Inspector(UiComponent):
 	"""

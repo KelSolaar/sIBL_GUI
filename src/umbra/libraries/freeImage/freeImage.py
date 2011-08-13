@@ -946,9 +946,6 @@ class ImageInformationsHeader(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
-
 class Image(object):
 
 	@core.executionTrace

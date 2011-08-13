@@ -11,6 +11,10 @@ Module Attributes
 Classes
 -------
 
+.. autoclass:: Components
+	:show-inheritance:
+	:members:
+
 .. autoclass:: Profile
 	:show-inheritance:
 	:members:

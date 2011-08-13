@@ -63,9 +63,6 @@ class DbType(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
-
 class DatabaseOperations(UiComponent):
 	"""
 	This class is the **DatabaseOperations** class.

@@ -73,9 +73,6 @@ class ReleaseObject(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-		# --- Setting class attributes. ---
-		self.__dict__.update(kwargs)
-
 class DownloadManager(QObject):
 	"""
 	This is the **DownloadManager** class.
