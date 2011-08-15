@@ -690,38 +690,39 @@ class ComponentsManagerUi(UiComponent):
 		self.__model.setColumnCount(len(self.__modelHeaders))
 
 		for path in self.__container.componentsManager.paths:
-			components = [component for component in self.__container.componentsManager.components if os.path.normpath(self.__container.componentsManager.paths[path]) in os.path.normpath(self.__container.componentsManager.components[component].path)]
+			components = [component for component in self.__container.componentsManager.components if os.path.normpath(path) in os.path.normpath(self.__container.componentsManager.components[component].path)]
+			if not components:
+				break
 
-			if components:
-				pathStandardItem = QStandardItem(QString(path))
-				pathStandardItem._type = "Path"
+			pathStandardItem = QStandardItem(QString(os.path.basename(path).title()))
+			pathStandardItem._type = "Path"
 
-				LOGGER.debug("> Adding '{0}' path to '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
-				self.__model.appendRow(pathStandardItem)
+			LOGGER.debug("> Adding '{0}' path to '{1}' Model.".format(path, "Components_Manager_Ui_treeView"))
+			self.__model.appendRow(pathStandardItem)
 
-				for component in components:
-					componentStandardItem = QStandardItem(QString(strings.getNiceName(self.__container.componentsManager.components[component].module)))
-					iconPath = os.path.join(self.__uiResources, "{0}{1}".format(strings.getNiceName(self.__container.componentsManager.components[component].categorie), self.__uiCategorieAffixe))
-					componentStandardItem.setIcon(QIcon(iconPath))
+			for component in components:
+				componentStandardItem = QStandardItem(QString(strings.getNiceName(self.__container.componentsManager.components[component].module)))
+				iconPath = os.path.join(self.__uiResources, "{0}{1}".format(strings.getNiceName(self.__container.componentsManager.components[component].categorie), self.__uiCategorieAffixe))
+				componentStandardItem.setIcon(QIcon(iconPath))
 
-					componentActivationStandardItem = QStandardItem(QString(str(self.__container.componentsManager.components[component].interface.activated)))
-					iconPath = self.__container.componentsManager.components[component].interface.activated and os.path.join(self.__uiResources, self.__uiActivatedImage) or os.path.join(self.__uiResources, self.__uiDeactivatedImage)
-					componentActivationStandardItem.setIcon(QIcon(iconPath))
+				componentActivationStandardItem = QStandardItem(QString(str(self.__container.componentsManager.components[component].interface.activated)))
+				iconPath = self.__container.componentsManager.components[component].interface.activated and os.path.join(self.__uiResources, self.__uiActivatedImage) or os.path.join(self.__uiResources, self.__uiDeactivatedImage)
+				componentActivationStandardItem.setIcon(QIcon(iconPath))
 
-					componentCategorieStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].categorie and strings.getNiceName(self.__container.componentsManager.components[component].categorie) or ""))
-					componentCategorieStandardItem.setTextAlignment(Qt.AlignCenter)
+				componentCategorieStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].categorie and strings.getNiceName(self.__container.componentsManager.components[component].categorie) or ""))
+				componentCategorieStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentRankStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].rank or ""))
-					componentRankStandardItem.setTextAlignment(Qt.AlignCenter)
+				componentRankStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].rank or ""))
+				componentRankStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentVersionStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].version or ""))
-					componentVersionStandardItem.setTextAlignment(Qt.AlignCenter)
+				componentVersionStandardItem = QStandardItem(QString(self.__container.componentsManager.components[component].version or ""))
+				componentVersionStandardItem.setTextAlignment(Qt.AlignCenter)
 
-					componentStandardItem._datas = self.__container.componentsManager.components[component]
-					componentStandardItem._type = "Component"
+				componentStandardItem._datas = self.__container.componentsManager.components[component]
+				componentStandardItem._type = "Component"
 
-					LOGGER.debug("> Adding '{0}' Component to '{1}'.".format(component, "Components_Manager_Ui_treeView"))
-					pathStandardItem.appendRow([componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem])
+				LOGGER.debug("> Adding '{0}' Component to '{1}'.".format(component, "Components_Manager_Ui_treeView"))
+				pathStandardItem.appendRow([componentStandardItem, componentActivationStandardItem, componentCategorieStandardItem, componentRankStandardItem, componentVersionStandardItem])
 
 		self.emit(SIGNAL("modelChanged()"))
 

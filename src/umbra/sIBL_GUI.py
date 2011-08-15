@@ -452,8 +452,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		# --- Initializing Components Manager. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Components manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
-		self.__componentsManager = Manager({ "Core" : os.path.join(os.getcwd(), Constants.coreComponentsDirectory), "Addons" : os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), "User" : os.path.join(self.__userApplicationDatasDirectory, Constants.userComponentsDirectory) })
-		self.__componentsManager.gatherComponents()
+		self.__componentsManager = Manager((os.path.join(os.getcwd(), Constants.coreComponentsDirectory), os.path.join(os.getcwd(), Constants.addonsComponentsDirectory), os.path.join(self.__userApplicationDatasDirectory, Constants.userComponentsDirectory)))
+		self.__componentsManager.registerComponents()
 
 		if not self.__componentsManager.components:
 			raise foundations.exceptions.ProgrammingError, "'{0}' Components Manager has no Components, {1} will now close!".format(self.__componentsManager, Constants.applicationName)

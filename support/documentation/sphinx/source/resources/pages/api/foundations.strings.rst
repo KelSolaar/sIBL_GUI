@@ -17,6 +17,10 @@ Functions
 
 .. autofunction:: getSplitextBasename
 
+.. autofunction:: getCommonAncestor
+
+.. autofunction:: getCommonPathsAncestor
+
 .. autofunction:: getWords
 
 .. autofunction:: filterWords

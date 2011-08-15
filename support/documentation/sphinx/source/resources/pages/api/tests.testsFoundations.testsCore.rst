@@ -30,3 +30,11 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: NestedAttributeTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: StructureTestCase
+	:show-inheritance:
+	:members:
+

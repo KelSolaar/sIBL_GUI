@@ -8,6 +8,8 @@ Module Attributes
 
 .. attribute:: tests.testsManager.testsComponentsManager.RESOURCES_DIRECTORY
 
+.. attribute:: tests.testsManager.testsComponentsManager.SINGLE_COMPONENT
+
 .. attribute:: tests.testsManager.testsComponentsManager.COMPONENTS_DIRECTORY
 
 .. attribute:: tests.testsManager.testsComponentsManager.COMPONENTS

@@ -15,6 +15,26 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: ComponentProfileError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ComponentModuleError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ComponentRegistrationError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ComponentInterfaceError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ComponentInstantiationError
+	:show-inheritance:
+	:members:
+
 .. autoclass:: ComponentActivationError
 	:show-inheritance:
 	:members:

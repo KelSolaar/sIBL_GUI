@@ -18,6 +18,14 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: GetCommonAncestorTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: GetCommonPathsAncestorTestCase
+	:show-inheritance:
+	:members:
+
 .. autoclass:: GetWordsTestCase
 	:show-inheritance:
 	:members:
