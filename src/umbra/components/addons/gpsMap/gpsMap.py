@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	GPS Map Component Module.
+	This module defines the :class:`GpsMap` Component Interface class and the :class:`Map` class.
 
 **Others:**
 
@@ -50,7 +50,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Map(QWebView):
 	"""
-	This class is the **QWebView** class.
+	| This class is a `QWebView <http://doc.qt.nokia.com/4.7/qwebview.html>`_ subclass used for the GPS map.
+	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined in the Component resources html file through Javascript evaluation.
 	"""
 
 	@core.executionTrace
@@ -96,7 +97,7 @@ class Map(QWebView):
 	@core.executionTrace
 	def setCenter(self):
 		"""
-		This method center the map.
+		This method centers the map.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -110,7 +111,13 @@ class Map(QWebView):
 	def setMapType(self, mapTypeId):
 		"""
 		This method sets the map type.
-
+		
+		Available map types:
+			
+			- MapTypeId.auto
+			- MapTypeId.aerial
+			- MapTypeId.road
+			
 		:param mapTypeId: GPS map type. ( String )
 		:return: Method success. ( Boolean )
 		"""
@@ -136,7 +143,8 @@ class Map(QWebView):
 
 class GpsMap(UiComponent):
 	"""
-	This class is the **GpsMap** class.
+	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
+	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_.
 	"""
 
 	@core.executionTrace
@@ -679,7 +687,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def setMarkers__(self):
 		"""
-		This method Sets selected Ibl Sets markers.
+		This method sets selected Ibl Sets markers.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -700,7 +708,7 @@ class GpsMap(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setMarker(self, iblSet):
 		"""
-		This method Sets Ibl Sets markers.
+		This method sets provided Ibl Set marker.
 
 		:param iblSet: Ibl Set to display marker. ( DbIblSet )
 		:return: Method success. ( Boolean )
