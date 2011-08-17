@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Operations Component Module.
+	This module defines the :class:`DatabaseOperations` Component Interface class and others helper objects.
 
 **Others:**
 
@@ -50,7 +50,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DbType(core.Structure):
 	"""
-	This is the **DbType** class.
+	| This class represents a storage object for manipulation methods associated to a given Database type.
+	| See :mod:`umbra.components.core.db.dbUtilities.types` module for more informations about the available Database types.
 	"""
 
 	@core.executionTrace
@@ -58,14 +59,15 @@ class DbType(core.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: type, getmethod, updatecontentmethod, modelcontainer, updatelocationmethod ( Key / Value pairs )
+		:param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
 
 class DatabaseOperations(UiComponent):
 	"""
-	This class is the **DatabaseOperations** class.
+	| This class is the :mod:`umbra.components.addons.databaseOperations.databaseOperations` Component Interface class.
+	| It provides various methods to operate on the Database.
 	"""
 
 	@core.executionTrace
@@ -434,7 +436,8 @@ class DatabaseOperations(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def synchronizeDatabase(self):
 		"""
-		This method synchronizes the Database.
+		| This method synchronizes the Database.
+		| Each type defined by :meth:`DatabaseOperations.dbTypes` attribute will have its instances checked and updated by their associated methods.
 
 		:return: Method success. ( Boolean )
 		"""
