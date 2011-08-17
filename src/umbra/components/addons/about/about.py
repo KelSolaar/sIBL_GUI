@@ -110,7 +110,7 @@ ABOUT_MESSAGE = """
 class About(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
-	| This class creates the **About sIBL_GUI ...** miscellaneous menu action and associated **sIBL_GUI - About** window.
+	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
 	| The message displayed by the **sIBL_GUI - About** window is defined by the :attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
