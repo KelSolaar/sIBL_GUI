@@ -1162,7 +1162,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This method Sets the **coreInspector** Ibl Set parser.
+		This method sets the **coreInspector** Ibl Set parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):

@@ -1184,7 +1184,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setIblSetsCounts(self):
 		"""
-		This method Sets the **Collections_Outliner_treeView** Ibl Sets counts.
+		This method sets the **Collections_Outliner_treeView** Ibl Sets counts.
 		"""
 
 		# Disconnecting model "dataChanged()" signal.
