@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	About Component Module.
+	This module defines the :class:`About` Component Interface class.
 
 **Others:**
 
@@ -109,7 +109,9 @@ ABOUT_MESSAGE = """
 #***********************************************************************************************
 class About(UiComponent):
 	"""
-	This class is the **About** class.
+	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
+	| This class creates the **About sIBL_GUI ...** miscellaneous menu action and associated **sIBL_GUI - About** window.
+	| The message displayed by the **sIBL_GUI - About** window is defined by the :attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
 	@core.executionTrace
