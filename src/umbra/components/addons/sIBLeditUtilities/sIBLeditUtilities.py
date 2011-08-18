@@ -510,7 +510,7 @@ class sIBLeditUtilities(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.editIblSetInSIBLEdit__()
+		self.editIblSetInSIBLEdit_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
@@ -520,7 +520,7 @@ class sIBLeditUtilities(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.editInspectorIblSetInSIBLEdit__()
+		self.editInspectorIblSetInSIBLEdit_ui()
 
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
@@ -563,7 +563,7 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
-	def editIblSetInSIBLEdit__(self):
+	def editIblSetInSIBLEdit_ui(self):
 		"""
 		This method edits selected Ibl Set in sIBLedit.
 
@@ -583,7 +583,7 @@ class sIBLeditUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
-	def editInspectorIblSetInSIBLEdit__(self):
+	def editInspectorIblSetInSIBLEdit_ui(self):
 		"""
 		This method edits **coreInspector** Ibl Set in sIBLedit.
 

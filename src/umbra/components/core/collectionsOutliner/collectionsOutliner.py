@@ -1276,7 +1276,7 @@ class CollectionsOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.addContent__()
+		self.addContent_ui()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
@@ -1286,7 +1286,7 @@ class CollectionsOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.addCollection__()
+		self.addCollection_ui()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
@@ -1296,7 +1296,7 @@ class CollectionsOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.removeCollections__()
+		self.removeCollections_ui()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -1356,14 +1356,14 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def addContent__(self):
+	def addContent_ui(self):
 		"""
 		This method adds user defined content to the Database.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		collection = self.addCollection__()
+		collection = self.addCollection_ui()
 		if not collection:
 			return
 
@@ -1379,7 +1379,7 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
-	def addCollection__(self):
+	def addCollection_ui(self):
 		"""
 		This method adds an user defined Collection to the Database.
 
@@ -1410,7 +1410,7 @@ class CollectionsOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def removeCollections__(self):
+	def removeCollections_ui(self):
 		"""
 		This method removes user selected Collections from the Database.
 

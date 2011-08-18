@@ -1901,7 +1901,7 @@ class Preview(UiComponent):
 		for key, value in self.__inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
 			self.__coreInspector.ui.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
-			value["object"].clicked.connect(functools.partial(self.viewIblSetsImages__, key))
+			value["object"].clicked.connect(functools.partial(self.viewIblSetsImages_ui, key))
 
 	def __removeInspectorButtons(self):
 		"""
@@ -1919,7 +1919,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Background")
+		self.viewIblSetsImages_ui("Background")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
@@ -1929,7 +1929,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Lighting")
+		self.viewIblSetsImages_ui("Lighting")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
@@ -1939,7 +1939,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Reflection")
+		self.viewIblSetsImages_ui("Reflection")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
@@ -1949,7 +1949,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Plates")
+		self.viewIblSetsImages_ui("Plates")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
@@ -1959,7 +1959,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Background")
+		self.viewIblSetsImages_ui("Background")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
@@ -1969,7 +1969,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Lighting")
+		self.viewIblSetsImages_ui("Lighting")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
@@ -1979,7 +1979,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Reflection")
+		self.viewIblSetsImages_ui("Reflection")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
@@ -1989,7 +1989,7 @@ class Preview(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.viewIblSetsImages__("Plates")
+		self.viewIblSetsImages_ui("Plates")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):
@@ -2032,7 +2032,7 @@ class Preview(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def viewIblSetsImages__(self, imageType, *args):
+	def viewIblSetsImages_ui(self, imageType, *args):
 		"""
 		This method launches selected Ibl Sets Images Previewer.
 
@@ -2057,7 +2057,7 @@ class Preview(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
-	def viewInspectorIblSetImages__(self, imageType, *args):
+	def viewInspectorIblSetImages_ui(self, imageType, *args):
 		"""
 		This method launches **coreInspector** Ibl Set Images Previewer.
 

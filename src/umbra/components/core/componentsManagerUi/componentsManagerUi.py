@@ -825,7 +825,7 @@ class ComponentsManagerUi(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.activateComponents__()
+		self.activateComponents_ui()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_deactivateComponentsAction__triggered(self, checked):
@@ -835,7 +835,7 @@ class ComponentsManagerUi(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.deactivateComponents__()
+		self.deactivateComponents_ui()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_reloadComponentsAction__triggered(self, checked):
@@ -845,7 +845,7 @@ class ComponentsManagerUi(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.reloadComponents__()
+		self.reloadComponents_ui()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -894,7 +894,7 @@ class ComponentsManagerUi(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def activateComponents__(self):
+	def activateComponents_ui(self):
 		"""
 		This method activates user selected Components.
 
@@ -911,7 +911,7 @@ class ComponentsManagerUi(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def deactivateComponents__(self):
+	def deactivateComponents_ui(self):
 		"""
 		This method deactivates user selected Components.
 
@@ -931,7 +931,7 @@ class ComponentsManagerUi(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def reloadComponents__(self):
+	def reloadComponents_ui(self):
 		"""
 		This method reloads user selected Components.
 

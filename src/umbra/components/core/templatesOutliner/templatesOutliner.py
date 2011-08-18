@@ -1522,7 +1522,7 @@ class TemplatesOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.addTemplate__()
+		self.addTemplate_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
@@ -1532,7 +1532,7 @@ class TemplatesOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.removeTemplates__()
+		self.removeTemplates_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
@@ -1542,7 +1542,7 @@ class TemplatesOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.importDefaultTemplates__()
+		self.importDefaultTemplates_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
@@ -1552,7 +1552,7 @@ class TemplatesOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.displayHelpFiles__()
+		self.displayHelpFiles_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered(self, checked):
@@ -1562,7 +1562,7 @@ class TemplatesOutliner(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.filterTemplatesVersions__()
+		self.filterTemplatesVersions_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1617,7 +1617,7 @@ class TemplatesOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def addTemplate__(self):
+	def addTemplate_ui(self):
 		"""
 		This method adds an user defined Template to the Database.
 
@@ -1639,7 +1639,7 @@ class TemplatesOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def removeTemplates__(self):
+	def removeTemplates_ui(self):
 		"""
 		This method removes user selected Templates from the Database.
 
@@ -1680,7 +1680,7 @@ class TemplatesOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def importDefaultTemplates__(self):
+	def importDefaultTemplates_ui(self):
 		"""
 		This method imports default Templates into the Database.
 
@@ -1694,7 +1694,7 @@ class TemplatesOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def displayHelpFiles__(self):
+	def displayHelpFiles_ui(self):
 		"""
 		This method displays user selected Templates help files.
 
@@ -1716,7 +1716,7 @@ class TemplatesOutliner(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def filterTemplatesVersions__(self):
+	def filterTemplatesVersions_ui(self):
 		"""
 		This method filters Templates by versions.
 

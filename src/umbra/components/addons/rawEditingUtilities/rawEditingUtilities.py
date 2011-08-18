@@ -614,7 +614,7 @@ class RawEditingUtilities(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.editIblSetsInTextEditor__()
+		self.editIblSetsInTextEditor_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
@@ -624,7 +624,7 @@ class RawEditingUtilities(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.editInspectorIblSetInTextEditor__()
+		self.editInspectorIblSetInTextEditor_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
@@ -634,7 +634,7 @@ class RawEditingUtilities(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.editTemplatesInTextEditor__()
+		self.editTemplatesInTextEditor_ui()
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
@@ -676,7 +676,7 @@ class RawEditingUtilities(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
-	def editIblSetsInTextEditor__(self):
+	def editIblSetsInTextEditor_ui(self):
 		"""
 		This method edits selected Ibl Sets.
 
@@ -700,7 +700,7 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
-	def editInspectorIblSetInTextEditor__(self):
+	def editInspectorIblSetInTextEditor_ui(self):
 		"""
 		This method edits **coreInspector** Ibl Set.
 
@@ -715,7 +715,7 @@ class RawEditingUtilities(UiComponent):
 			raise OSError, "{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
 
 	@core.executionTrace
-	def editTemplatesInTextEditor__(self):
+	def editTemplatesInTextEditor_ui(self):
 		"""
 		This method edits selected Templates.
 

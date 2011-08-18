@@ -2131,7 +2131,7 @@ class OnlineUpdater(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.checkForNewReleases__()
+		self.checkForNewReleases_ui()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.NetworkError)
@@ -2203,7 +2203,7 @@ class OnlineUpdater(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def checkForNewReleases__(self):
+	def checkForNewReleases_ui(self):
 		"""
 		This method checks for new releases.
 

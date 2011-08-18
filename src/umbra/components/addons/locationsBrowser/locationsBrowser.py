@@ -728,7 +728,7 @@ class LocationsBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.openIblSetsLocations__()
+		self.openIblSetsLocations_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
@@ -738,7 +738,7 @@ class LocationsBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.openInspectorIblSetLocations__()
+		self.openInspectorIblSetLocations_ui()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
@@ -748,7 +748,7 @@ class LocationsBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.openComponentsLocations__()
+		self.openComponentsLocations_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
@@ -758,7 +758,7 @@ class LocationsBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.openTemplatesLocations__()
+		self.openTemplatesLocations_ui()
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):
@@ -807,11 +807,11 @@ class LocationsBrowser(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.openOutputDirectory__()
+		self.openOutputDirectory_ui()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def openIblSetsLocations__(self):
+	def openIblSetsLocations_ui(self):
 		"""
 		This method open selected Ibl Sets directories.
 
@@ -835,7 +835,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
-	def openInspectorIblSetLocations__(self):
+	def openInspectorIblSetLocations_ui(self):
 		"""
 		This method opens **coreInspector** Ibl Set directory.
 
@@ -851,7 +851,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def openComponentsLocations__(self):
+	def openComponentsLocations_ui(self):
 		"""
 		This method opens selected Components directories.
 
@@ -875,7 +875,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def openTemplatesLocations__(self):
+	def openTemplatesLocations_ui(self):
 		"""
 		This method opens selected Templates directories.
 
@@ -899,7 +899,7 @@ class LocationsBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
-	def openOutputDirectory__(self):
+	def openOutputDirectory_ui(self):
 		"""
 		This method opens output directory.
 

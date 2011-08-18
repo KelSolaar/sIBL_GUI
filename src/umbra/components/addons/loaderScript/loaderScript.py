@@ -621,7 +621,7 @@ class LoaderScript(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.outputLoaderScript__()
+		self.outputLoaderScript_ui()
 
 	@core.executionTrace
 	def __Send_To_Software_pushButton__clicked(self, checked):
@@ -631,7 +631,7 @@ class LoaderScript(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.sendLoaderScriptToSoftware__()
+		self.sendLoaderScriptToSoftware_ui()
 
 	@core.executionTrace
 	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
@@ -671,7 +671,7 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception)
-	def outputLoaderScript__(self):
+	def outputLoaderScript_ui(self):
 		"""
 		This method outputs the Loader Script.
 
@@ -708,14 +708,14 @@ class LoaderScript(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def sendLoaderScriptToSoftware__(self):
+	def sendLoaderScriptToSoftware_ui(self):
 		"""
 		This method sends the output Loader Script to associated package.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		if self.outputLoaderScript__():
+		if self.outputLoaderScript_ui():
 			selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
 			template = selectedTemplates and selectedTemplates[0] or None
 			if not template:

@@ -1406,7 +1406,7 @@ class DatabaseBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.addContent__()
+		self.addContent_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
@@ -1416,7 +1416,7 @@ class DatabaseBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.addIblSet__()
+		self.addIblSet_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
@@ -1426,7 +1426,7 @@ class DatabaseBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.removeIblSets__()
+		self.removeIblSets_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
@@ -1436,7 +1436,7 @@ class DatabaseBrowser(UiComponent):
 		:param checked: Action checked state. ( Boolean )
 		"""
 
-		self.updateIblSetsLocation__()
+		self.updateIblSetsLocation_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
@@ -1485,7 +1485,7 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def addContent__(self):
+	def addContent_ui(self):
 		"""
 		This method adds user defined content to the Database.
 
@@ -1504,7 +1504,7 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def addIblSet__(self):
+	def addIblSet_ui(self):
 		"""
 		This method adds an user defined Ibl Set to the Database.
 
@@ -1526,7 +1526,7 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def removeIblSets__(self):
+	def removeIblSets_ui(self):
 		"""
 		This method removes user selected Ibl Sets from the Database.
 
@@ -1552,7 +1552,7 @@ class DatabaseBrowser(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	def updateIblSetsLocation__(self):
+	def updateIblSetsLocation_ui(self):
 		"""
 		This method updates user selected Ibl Sets locations.
 
