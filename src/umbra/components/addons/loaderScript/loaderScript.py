@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Loader Script Component Module.
+	This module defines the :class:`LoaderScript` Component Interface class.
 
 **Others:**
 
@@ -58,7 +58,17 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoaderScript(UiComponent):
 	"""
-	This class is the **LoaderScript** class.
+	| This class is the :mod:`umbra.components.addons.loaderScript.loaderScript` Component Interface class.
+	| It provides the glue between the Ibl Sets, the Templates and the 3d package.
+	
+	A typical operation is the following:
+	
+		- Retrieve both Ibl Set and Template files.
+		- Parse Ibl Set and Template files.
+		- Retrieve override keys defined by the user and / or another Component. 
+		- Generate the Loader Script.
+		- Write the Loader Script.
+		- Establish a connection with the 3d package and trigger the Loader Script execution.
 	"""
 
 	@core.executionTrace
@@ -676,6 +686,8 @@ class LoaderScript(UiComponent):
 		This method outputs the Loader Script.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		LOGGER.debug("> Initializing Loader Script output.")
@@ -710,9 +722,11 @@ class LoaderScript(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def sendLoaderScriptToSoftware_ui(self):
 		"""
-		This method sends the output Loader Script to associated package.
+		This method sends the Loader Script to associated 3d package.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		if self.outputLoaderScript_ui():
@@ -767,7 +781,7 @@ class LoaderScript(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.SocketConnectionError)
 	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):
 		"""
-		This method sends the Loader Script to associated package.
+		This method sends the Loader Script to associated 3d package.
 
 		:param template: Template. ( DbTemplate )
 		:param loaderScriptPath: Loader Script path. ( String )
