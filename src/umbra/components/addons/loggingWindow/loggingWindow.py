@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Logging Window Component Module.
+	This module defines the :class:`LoggingWindow` Component Interface class.
 
 **Others:**
 
@@ -47,7 +47,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoggingWindow(UiComponent):
 	"""
-	This class is the **LoggingWindow** class.
+	| This class is the :mod:`umbra.components.addons.loggingWindow.loggingWindow` Component Interface class.
+	| It displays Application logging messages in a dedicated `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
 	"""
 
 	@core.executionTrace

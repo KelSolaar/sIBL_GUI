@@ -144,7 +144,7 @@ class Map(QWebView):
 class GpsMap(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
-	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_.
+	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
 	"""
 
 	@core.executionTrace
