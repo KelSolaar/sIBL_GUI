@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Logging Notifier Component Module.
+	This module defines the :class:`LoggingNotifier` Component Interface class.
 
 **Others:**
 
@@ -46,7 +46,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoggingNotifier(Component):
 	"""
-	This class is the **LoggingNotifier** class.
+	| This class is the :mod:`umbra.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
+	| It displays logging messages in the Application status bar.
 	"""
 
 	@core.executionTrace
