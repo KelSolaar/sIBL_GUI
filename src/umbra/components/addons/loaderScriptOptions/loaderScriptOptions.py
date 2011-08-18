@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Loader Script Options Component Module.
+	This module defines the :class:`LoaderScriptOptions` Component Interface class.
 
 **Others:**
 
@@ -52,7 +52,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LoaderScriptOptions(UiComponent):
 	"""
-	This class is the **LoaderScriptOptions** class.
+	| This class is the :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
+	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that the user can configure the behavior of the Loader Script.
 	"""
 
 	@core.executionTrace
