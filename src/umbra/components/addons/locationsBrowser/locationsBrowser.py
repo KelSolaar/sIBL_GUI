@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Locations Browser Component Module.
+	This module defines the :class:`LocationsBrowser` Component Interface class.
 
 **Others:**
 
@@ -51,7 +51,26 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class LocationsBrowser(UiComponent):
 	"""
-	This class is the **LocationsBrowser** class.
+	| This class is the :mod:`umbra.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
+	| It provides methods to explore operating system directories.
+	| By default the Component will use current operating system file browsers but the user can define a custom file browser in the Application preferences.
+	
+	Defaults file browsers:
+	
+		- Windows:
+			
+			- Explorer
+		
+		- Mac Os X:
+			
+			- Finder
+		
+		- Linux:
+			
+			- Nautilus
+			- Dolphin
+			- Konqueror
+			- Thunar
 	"""
 
 	@core.executionTrace
@@ -816,6 +835,8 @@ class LocationsBrowser(UiComponent):
 		This method open selected Ibl Sets directories.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -840,6 +861,8 @@ class LocationsBrowser(UiComponent):
 		This method opens **coreInspector** Ibl Set directory.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -856,6 +879,8 @@ class LocationsBrowser(UiComponent):
 		This method opens selected Components directories.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
@@ -880,6 +905,8 @@ class LocationsBrowser(UiComponent):
 		This method opens selected Templates directories.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -904,6 +931,8 @@ class LocationsBrowser(UiComponent):
 		This method opens output directory.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
