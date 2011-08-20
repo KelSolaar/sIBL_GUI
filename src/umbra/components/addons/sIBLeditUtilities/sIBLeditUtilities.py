@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import foundations
 
 """
 **sIBLeditUtilities.py**
@@ -9,7 +8,7 @@ import foundations
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	sIBLedit utilities Component Module.
+	This module defines the :class:`sIBLeditUtilities` Component Interface class.
 
 **Others:**
 
@@ -51,7 +50,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class sIBLeditUtilities(UiComponent):
 	"""
-	This class is the **sIBLeditUtilities** class.
+	| This class is the :mod:`umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
+	| It provides methods to link the Application to sIBLedit.
 	"""
 
 	@core.executionTrace
@@ -568,6 +568,8 @@ class sIBLeditUtilities(UiComponent):
 		This method edits selected Ibl Set in sIBLedit.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -585,9 +587,11 @@ class sIBLeditUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInSIBLEdit_ui(self):
 		"""
-		This method edits **coreInspector** Ibl Set in sIBLedit.
+		This method edits :mod:`umbra.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
