@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Online Updater Component Module.
+	This module defines the :class:`OnlineUpdater` Component Interface class and others online update related objects.
 
 **Others:**
 
@@ -60,7 +60,7 @@ REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 #***********************************************************************************************
 class ReleaseObject(core.Structure):
 	"""
-	This is the **ReleaseObject** class.
+	This class represents a storage object for a :class:`RemoteUpdater` class release.
 	"""
 
 	@core.executionTrace
@@ -68,14 +68,15 @@ class ReleaseObject(core.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: name, repositoryversion, localversion, type, url, comment. ( Key / Value pairs )
+		:param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
 
 class DownloadManager(QObject):
 	"""
-	This is the **DownloadManager** class.
+	| This class defines the Application download manager.
+	| Once initialized with a `QNetworkAccessManager <http://doc.qt.nokia.com/4.7/qnetworkaccessmanager.html>`_ instance, a download directory and a list of requests ( List of online resources / files ), this class can proceed of the download of those requests using the :meth:`DownloadManager.startDownload` method.
 	"""
 
 	# Custom signals definitions.
@@ -669,7 +670,8 @@ class DownloadManager(QObject):
 
 class RemoteUpdater(object):
 	"""
-	This class is the **RemoteUpdater** class.
+	| This class defines the Application remote updater.
+	| The remote updater is initialized with a list of available online releases ( List of :class:`ReleaseObject` class instances ).
 	"""
 
 	@core.executionTrace
@@ -1437,7 +1439,8 @@ class RemoteUpdater(object):
 
 class OnlineUpdater(UiComponent):
 	"""
-	This class is the **OnlineUpdater** class.
+	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
+	| This Component provides online updating capabilities to the Application available through various options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component.
 	"""
 
 	@core.executionTrace
@@ -2208,6 +2211,8 @@ class OnlineUpdater(UiComponent):
 		This method checks for new releases.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		self.__reportUpdateStatus = True
