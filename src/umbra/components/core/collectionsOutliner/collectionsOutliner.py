@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Collections Outliner core Component Module.
+	This module defines the :class:`CollectionsOutliner` Component Interface class and the :class:`CollectionsOutliner_QTreeView` class.
 
 **Others:**
 
@@ -54,7 +54,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class CollectionsOutliner_QTreeView(QTreeView):
 	"""
-	This class is the **CollectionsOutliner_QTreeView** class.
+	| This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Collections.
+	| It provides support for drag'n'drop by reimplementing relevant methods.
 	"""
 
 	@core.executionTrace
@@ -336,7 +337,8 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 class CollectionsOutliner(UiComponent):
 	"""
-	This class is the **CollectionsOutliner** class.
+	| This class is the :mod:`umbra.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
+	| It defines methods for Database Collections management.
 	"""
 
 	# Custom signals definitions.
@@ -1361,6 +1363,8 @@ class CollectionsOutliner(UiComponent):
 		This method adds user defined content to the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		collection = self.addCollection_ui()
@@ -1384,6 +1388,8 @@ class CollectionsOutliner(UiComponent):
 		This method adds an user defined Collection to the Database.
 
 		:return: Collection name. ( String )
+
+		:note: This method may request user interaction.
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name!")
@@ -1415,6 +1421,8 @@ class CollectionsOutliner(UiComponent):
 		This method removes user selected Collections from the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedItems = self.getSelectedItems()
