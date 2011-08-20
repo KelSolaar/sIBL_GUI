@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Raw Editing Utilities Component Module.
+	This module defines the :class:`RawEditingUtilities` Component Interface class.
 
 **Others:**
 
@@ -50,7 +50,26 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class RawEditingUtilities(UiComponent):
 	"""
-	This class is the **LocationsBrowser** class.
+	| This class is the :mod:`umbra.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
+	| It provides methods to edit Application related text files.
+	| By default the Component will use current operating system editor but the user can define a custom file editor through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
+
+	Defaults file editors:
+
+		- Windows:
+
+			- Notepad
+
+		- Mac Os X:
+
+			- TextEdit
+
+		- Linux:
+
+			- Gedit
+			- Kwrite
+			- Nedit
+			- Mousepad
 	"""
 
 	@core.executionTrace
@@ -681,6 +700,8 @@ class RawEditingUtilities(UiComponent):
 		This method edits selected Ibl Sets.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -705,6 +726,8 @@ class RawEditingUtilities(UiComponent):
 		This method edits **coreInspector** Ibl Set.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -720,6 +743,8 @@ class RawEditingUtilities(UiComponent):
 		This method edits selected Templates.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()

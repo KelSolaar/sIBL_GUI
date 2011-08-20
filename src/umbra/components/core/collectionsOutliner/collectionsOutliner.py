@@ -1349,7 +1349,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_setModelContent(self):
 		"""
-		This method sets **coreDatabaseBrowser** Model content.
+		This method sets :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
 		self.__coreDatabaseBrowser.modelContent = self.getCollectionsIblSets(self.getSelectedItems())

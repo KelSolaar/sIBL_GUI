@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Sets Scanner Component Module.
+	This module defines the :class:`SetsScanner` Component Interface class.
 
 **Others:**
 
@@ -53,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class SetsScanner_Worker(QThread):
 	"""
-	This class is the **SetsScanner_Worker** class.
+	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to retrieve new Ibl Sets from Database registered directories parents.
 	"""
 
 	# Custom signals definitions.
@@ -246,7 +246,8 @@ class SetsScanner_Worker(QThread):
 
 class SetsScanner(Component):
 	"""
-	This class is the **SetsScanner** class.
+	| This class is the :mod:`umbra.components.addons.setsScanner.setsScanner` Component Interface class.
+	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets from Database registered directories parents.
 	"""
 
 	@core.executionTrace

@@ -1072,7 +1072,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
 		"""
-		This method sets is triggered when **coreDatabaseBrowser** Model has changed.
+		This method sets is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model has changed.
 		"""
 
 		self.__setInspectorIblSet()

@@ -1440,7 +1440,7 @@ class RemoteUpdater(object):
 class OnlineUpdater(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
-	| This Component provides online updating capabilities to the Application available through various options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component.
+	| This Component provides online updating capabilities to the Application available through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
 	@core.executionTrace

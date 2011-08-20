@@ -53,6 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 class LoaderScriptOptions(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
+	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
 	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that the user can configure the behavior of the Loader Script.
 	"""
 

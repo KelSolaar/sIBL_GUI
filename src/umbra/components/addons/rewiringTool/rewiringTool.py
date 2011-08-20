@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Rewiring Tool addons Component Module.
+	This module defines the :class:`RewiringTool` Component Interface class.
 
 **Others:**
 
@@ -49,7 +49,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class RewiringTool(UiComponent):
 	"""
-	This class is the **RewiringTool** class.
+	| This class is the :mod:`umbra.components.addons.rewiringTool.rewiringTool` Component Interface class.
+	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
 	"""
 
 	@core.executionTrace

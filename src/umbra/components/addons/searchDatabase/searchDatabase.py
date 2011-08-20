@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Search Database Component Module.
+	This module defines the :class:`SearchDatabase` Component Interface class.
 
 **Others:**
 
@@ -51,7 +51,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class SearchDatabase(UiComponent):
 	"""
-	This class is the **SearchDatabase** class.
+	| This class is the :mod:`umbra.components.addons.searchDatabase.searchDatabase` Component Interface class.
+	| It provides methods for the user to search into the Database using various filters.
 	"""
 
 	@core.executionTrace
@@ -779,7 +780,7 @@ class SearchDatabase(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTimeMatchingIblSets(self):
 		"""
-		This method gets the time matching sets and updates **coreDatabaseBrowser** Model content.
+		This method gets the time matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent
@@ -797,7 +798,7 @@ class SearchDatabase(UiComponent):
 				continue
 
 			timeTokens = iblSet.time.split(":")
-			int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour()* 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour()*60 + timeHigh.minute() and filteredSets.append(iblSet)
+			int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour() * 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredSets.append(iblSet)
 
 		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
 
@@ -812,7 +813,7 @@ class SearchDatabase(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
 	def setSearchMatchingIblsSets(self):
 		"""
-		This method gets the pattern matching sets and updates **coreDatabaseBrowser** Model content.
+		This method gets the pattern matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent

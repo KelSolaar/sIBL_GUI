@@ -53,20 +53,20 @@ class LocationsBrowser(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
-	| By default the Component will use current operating system file browsers but the user can define a custom file browser in the Application preferences.
-	
+	| By default the Component will use current operating system file browsers but the user can define a custom file browser through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
+
 	Defaults file browsers:
-	
+
 		- Windows:
-			
+
 			- Explorer
-		
+
 		- Mac Os X:
-			
+
 			- Finder
-		
+
 		- Linux:
-			
+
 			- Nautilus
 			- Dolphin
 			- Konqueror
