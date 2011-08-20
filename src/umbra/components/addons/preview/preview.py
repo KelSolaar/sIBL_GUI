@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Preview Component Module.
+	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class and others images preview related objects.
 
 **Others:**
 
@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
-	This class is the **Image_QGraphicsItem** class.
+	This class is a `QGraphicsItem <http://doc.qt.nokia.com/4.7/qgraphicsitem.html>`_ subclass used to display provided `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 	"""
 
 	@core.executionTrace
@@ -200,7 +200,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 class ImagesPreviewer(object):
 	"""
-	This is the **ImagesPreviewer** class.
+	| This class provides the Application images previewer.
+	| It defines methods to navigate through the list of provided images ( List of images paths ), zoom in / out and fit the displayed image, etc...
 	"""
 
 	@core.executionTrace
@@ -2037,7 +2038,9 @@ class Preview(UiComponent):
 		This method launches selected Ibl Sets Images Previewer.
 
 		:param imageType: Image type. ( String )
-		:param *args: Arguments. ( * )
+		:param \*args: Arguments. ( \* )
+
+		:note: This method may request user interaction.
 		"""
 
 		success = True
@@ -2062,7 +2065,9 @@ class Preview(UiComponent):
 		This method launches **coreInspector** Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
-		:param *args: Arguments. ( * )
+		:param \*args: Arguments. ( \* )
+
+		:note: This method may request user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
