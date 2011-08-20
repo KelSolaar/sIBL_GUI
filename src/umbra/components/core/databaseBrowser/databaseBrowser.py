@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database Browser Component Module.
+	This module defines the :class:`DatabaseBrowser` class and others helper objects.
 
 **Others:**
 
@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class DatabaseBrowser_Worker(QThread):
 	"""
-	This class is the **DatabaseBrowser_Worker** class.
+	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to track modified Ibl Sets and update the Database accordingly.
 	"""
 
 	# Custom signals definitions.
@@ -244,7 +244,8 @@ class DatabaseBrowser_Worker(QThread):
 
 class DatabaseBrowser_QListView(QListView):
 	"""
-	This class is the **DatabaseBrowser_QListView** class.
+	| This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
+	| It provides support for drag'n'drop by reimplementing relevant methods.
 	"""
 
 	@core.executionTrace
@@ -401,7 +402,8 @@ class DatabaseBrowser_QListView(QListView):
 
 class DatabaseBrowser(UiComponent):
 	"""
-	This class is the **DatabaseBrowser** class.
+	| This class is the :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Interface class.
+	| It defines methods for Database Ibl Sets management.
 	"""
 
 	# Custom signals definitions.
@@ -1490,6 +1492,8 @@ class DatabaseBrowser(UiComponent):
 		This method adds user defined content to the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
@@ -1509,6 +1513,8 @@ class DatabaseBrowser(UiComponent):
 		This method adds an user defined Ibl Set to the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
@@ -1531,6 +1537,8 @@ class DatabaseBrowser(UiComponent):
 		This method removes user selected Ibl Sets from the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1557,6 +1565,8 @@ class DatabaseBrowser(UiComponent):
 		This method updates user selected Ibl Sets locations.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
