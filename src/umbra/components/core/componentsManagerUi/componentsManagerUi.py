@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Components Manager Ui Component Module.
+	This module defines the :class:`ComponentsManagerUi` Component Interface class and the :class:`CollectionsOutliner_QTreeView` class.
 
 **Others:**
 
@@ -85,7 +85,8 @@ def _componentReloadErrorHandler(exception, origin, *args, **kwargs):
 
 class ComponentsManagerUi(UiComponent):
 	"""
-	This class is the **ComponentsManagerUi** class.
+	| This class is the :mod:`umbra.components.core.componentsManagerUi.componentsManagerUi` Component Interface class.
+	| It defines methods to interact with the :class:`manager.componentsManager.Manager` class Application instance Components.
 	"""
 
 	# Custom signals definitions.
@@ -899,6 +900,8 @@ class ComponentsManagerUi(UiComponent):
 		This method activates user selected Components.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		for component in self.getSelectedComponents():
@@ -916,6 +919,8 @@ class ComponentsManagerUi(UiComponent):
 		This method deactivates user selected Components.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		for component in self.getSelectedComponents():
@@ -936,6 +941,8 @@ class ComponentsManagerUi(UiComponent):
 		This method reloads user selected Components.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedComponents = self.getSelectedComponents()
