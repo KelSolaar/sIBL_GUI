@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**001_table_Sets_sqlalchemy.Column_previewImage.py**
+**001_table_Sets_Column_previewImage.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database migration Module.
+	This module defines the *001* version Application Database migrations objects: :func:`upgrade` and :func:`downgrade` definitions.
 
 **Others:**
 
