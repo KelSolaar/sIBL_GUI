@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Preferences Manager Component Module.
+	This module defines the :class:`PreferencesManager` Component Interface class.
 
 **Others:**
 
@@ -48,7 +48,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class PreferencesManager(UiComponent):
 	"""
-	This class is the **PreferencesManager** class.
+	| This class is the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component Interface class.
+	| It exposes Application preferences inside a dedicated `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
 	"""
 
 	@core.executionTrace
