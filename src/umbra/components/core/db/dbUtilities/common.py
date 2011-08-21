@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Common Database Module.
+	This module defines Application Database manipulations objects.
 
 **Others:**
 
@@ -20,9 +20,6 @@
 import logging
 import os
 import re
-import sqlalchemy
-import sqlalchemy.orm
-import sqlalchemy.ext.declarative
 
 #***********************************************************************************************
 #***	Internal imports.
@@ -44,16 +41,14 @@ __status__ = "Production"
 
 LOGGER = logging.getLogger(Constants.logger)
 
-DB_EXCEPTIONS = {
-			"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's file is missing!",
-			"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's icon is missing!",
-			"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl Set's preview image is missing!",
-			"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's background image is missing!",
-			"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's lighting image is missing!",
-			"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's reflection image is missing!",
-			"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template file is missing!",
-			"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template help file is missing!"
-		}
+DB_EXCEPTIONS = {"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's file is missing!",
+				"INEXISTING_IBL_SET_ICON_EXCEPTION" : "Ibl Set's icon is missing!",
+				"INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION" : "Ibl Set's preview image is missing!",
+				"INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION" : "Ibl Set's background image is missing!",
+				"INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION" : "Ibl Set's lighting image is missing!",
+				"INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION" : "Ibl Set's reflection image is missing!",
+				"INEXISTING_TEMPLATE_FILE_EXCEPTION" : "Template file is missing!",
+				"INEXISTING_TEMPLATE_HELP_FILE_EXCEPTION" : "Template help file is missing!"}
 
 #***********************************************************************************************
 #***	Module classes and definitions.
