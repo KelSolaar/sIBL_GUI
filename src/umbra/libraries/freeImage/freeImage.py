@@ -99,7 +99,7 @@ class RGBQUAD(ctypes.Structure):
 					 ("rgbGreen", BYTE),
 					 ("rgbBlue", BYTE)]
 
-	_fields_ += [ ("rgbReserved", BYTE) ]
+	_fields_ += [("rgbReserved", BYTE)]
 
 class RGBTRIPLE(ctypes.Structure):
 	"""
@@ -121,14 +121,14 @@ class FIBITMAP(ctypes.Structure):
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
 	"""
 
-	_fields_ = [ ("data", ctypes.POINTER(VOID)) ]
+	_fields_ = [("data", ctypes.POINTER(VOID))]
 
 class BITMAPINFOHEADER(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **BITMAPINFOHEADER** C / C++ object.
 	"""
 
-	_fields_ = [ ("biSize", DWORD),
+	_fields_ = [("biSize", DWORD),
 				 ("biWidth", LONG),
 				 ("biHeight", LONG),
 				 ("biPlanes", WORD),
@@ -138,61 +138,61 @@ class BITMAPINFOHEADER(ctypes.Structure):
 				 ("biXPelsPerMeter", LONG),
 				 ("biYPelsPerMeter", LONG),
 				 ("biClrUsed", DWORD),
-				 ("biClrImportant", DWORD) ]
+				 ("biClrImportant", DWORD)]
 
 class BITMAPINFO(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **BITMAPINFO** C / C++ object.
 	"""
 
-	_fields_ = [ ("bmiHeader", BITMAPINFOHEADER),
-				("bmiColors[1]", RGBQUAD) ]
+	_fields_ = [("bmiHeader", BITMAPINFOHEADER),
+				("bmiColors", RGBQUAD)]
 
 class FIRGB16(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGB16** C / C++ object.
 	"""
 
-	_fields_ = [ ("red", WORD),
+	_fields_ = [("red", WORD),
 				("green", WORD),
-				("blue", WORD) ]
+				("blue", WORD)]
 
 class FIRGBA16(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBA16** C / C++ object.
 	"""
 
-	_fields_ = [ ("red", WORD),
+	_fields_ = [("red", WORD),
 				("green", WORD),
 				("blue", WORD),
-				("alpha", WORD) ]
+				("alpha", WORD)]
 
 class FIRGBF(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBF** C / C++ object.
 	"""
 
-	_fields_ = [ ("red", ctypes.c_float),
+	_fields_ = [("red", ctypes.c_float),
 				("green", ctypes.c_float),
-				("blue", ctypes.c_float) ]
+				("blue", ctypes.c_float)]
 
 class FIRGBAF(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBAF** C / C++ object.
 	"""
 
-	_fields_ = [ ("red", ctypes.c_float),
+	_fields_ = [("red", ctypes.c_float),
 				("green", ctypes.c_float),
 				("blue", ctypes.c_float),
-				("alpha", ctypes.c_float) ]
+				("alpha", ctypes.c_float)]
 
 class FICOMPLEX(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FICOMPLEX** C / C++ object.
 	"""
 
-	_fields_ = [ ("r", ctypes.c_double),
-				("i", ctypes.c_double) ]
+	_fields_ = [("r", ctypes.c_double),
+				("i", ctypes.c_double)]
 
 """
 Indexes for byte arrays, masks and shifts for treating pixels as words.
@@ -282,9 +282,9 @@ class FIICCPROFILE(ctypes.Structure):
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
 	"""
 
-	_fields_ = [ ("flags", WORD),
+	_fields_ = [("flags", WORD),
 				("size", DWORD),
-				("data", VOID) ]
+				("data", VOID)]
 
 class FREE_IMAGE_FORMAT(object):
 	"""
@@ -453,7 +453,7 @@ class FREE_IMAGE_MDTYPE(object):
 	FIDT_IFD		 = 13
 	FIDT_PALETTE	 = 14
 
-	FIDTToType = { FIDT_NOTYPE : VOID,
+	FIDTToType = {FIDT_NOTYPE : VOID,
 				FIDT_BYTE : ctypes.c_ubyte,
 				FIDT_ASCII : ctypes.c_char_p,
 				FIDT_SHORT : ctypes.c_ushort,
@@ -467,7 +467,7 @@ class FREE_IMAGE_MDTYPE(object):
 				FIDT_FLOAT : ctypes.c_float,
 				FIDT_DOUBLE : ctypes.c_double,
 				FIDT_IFD : ctypes.c_uint,
-				FIDT_PALETTE : RGBQUAD }
+				FIDT_PALETTE : RGBQUAD}
 
 class FREE_IMAGE_MDMODEL(object):
 	"""
@@ -491,14 +491,14 @@ class FIMETADATA(ctypes.Structure):
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
 	"""
 
-	_fields_ = [ ("data", VOID), ]
+	_fields_ = [("data", VOID), ]
 
 class FITAG(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
 	"""
 
-	_fields_ = [ ("data", VOID) ]
+	_fields_ = [("data", VOID)]
 
 """
 File io routines.
@@ -516,17 +516,17 @@ class FreeImageIO(ctypes.Structure):
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
 	"""
 
-	_fields_ = [ ('read_proc', FI_ReadProc),
+	_fields_ = [('read_proc', FI_ReadProc),
 				('write_proc', FI_WriteProc),
 				('seek_proc', FI_SeekProc),
-				('tell_proc', FI_TellProc) ]
+				('tell_proc', FI_TellProc)]
 
 class FIMEMORY(ctypes.Structure):
 	"""
 	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
 	"""
 
-	_fields_ = [ ("data", VOID) ]
+	_fields_ = [("data", VOID)]
 
 """
 Load / save flag constants.

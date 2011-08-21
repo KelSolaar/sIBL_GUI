@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**active_QLabel.py
+**active_QLabel.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

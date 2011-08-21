@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**variable_QPushButton.py
+**variable_QPushButton.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.

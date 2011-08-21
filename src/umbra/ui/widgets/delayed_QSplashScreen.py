@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**delayed_QSplashScreen.py
+**delayed_QSplashScreen.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
