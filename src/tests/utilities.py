@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Tests utilities Module.
+	This module defines tests suite logging configuration.
 
 **Others:**
 

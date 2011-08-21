@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Tests suite Module.
+	This module runs the tests suite.
 
 **Others:**
 
@@ -20,6 +20,10 @@
 import os
 import sys
 import unittest
+
+#***********************************************************************************************
+#***	Internal imports.
+#***********************************************************************************************
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -36,7 +40,7 @@ __status__ = "Production"
 #***********************************************************************************************
 def _setApplicationPackageDirectory():
 	"""
-	This definition sets the Application package directory in the path.
+	This definition sets the package directory in the path.
 
 	:return: Definition success. ( Boolean )
 	"""
@@ -48,6 +52,12 @@ def _setApplicationPackageDirectory():
 _setApplicationPackageDirectory()
 
 def testsSuite():
+	"""
+	This definitions runs the tests suite.
+	
+	:return: Tests suite. ( TestSuite )
+	"""
+
 	testsLoader = unittest.TestLoader()
 	return testsLoader.discover(os.path.dirname(__file__))
 

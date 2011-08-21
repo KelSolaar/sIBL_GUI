@@ -56,24 +56,24 @@ class UiConstants():
 
 	frameworkSplashScreenImage = "./resources/sIBL_GUI_SpashScreen.png"
 	"""Application splashscreen image: '**./resources/sIBL_GUI_SpashScreen.png**' ( String )"""
-	frameworkLogoPicture = "./resources/sIBL_GUI_Logo.png"
+	frameworkLogoImage = "./resources/sIBL_GUI_Logo.png"
 	"""Application logo image: '**./resources/sIBL_GUI_Logo.png**' ( String )"""
 
 	frameworkDefaultToolbarIconSize = 32
 	"""Application toolbar icons size: '**32**' ( Integer )"""
 
-	frameworCentralWidgetIcon = "./resources/Central_Widget.png"
+	frameworkCentralWidgetIcon = "./resources/Central_Widget.png"
 	"""Application **Central Widget** icon: '**./resources/Central_Widget.png**' ( String )"""
-	frameworCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
+	frameworkCentralWidgetHoverIcon = "./resources/Central_Widget_Hover.png"
 	"""Application **Central Widget** hover icon: '**./resources/Central_Widget_Hover.png**' ( String )"""
-	frameworCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
+	frameworkCentralWidgetActiveIcon = "./resources/Central_Widget_Active.png"
 	"""Application **Central Widget** active icon: '**./resources/Central_Widget_Active.png**' ( String )"""
 
-	frameworLayoutIcon = "./resources/Layout.png"
+	frameworkLayoutIcon = "./resources/Layout.png"
 	"""Application **Layout** icon: '**./resources/Layout.png**' ( String )"""
-	frameworLayoutHoverIcon = "./resources/Layout_Hover.png"
+	frameworkLayoutHoverIcon = "./resources/Layout_Hover.png"
 	"""Application **Layout** hover icon: '**./resources/Layout_Hover.png**' ( String )"""
-	frameworLayoutActiveIcon = "./resources/Layout_Active.png"
+	frameworkLayoutActiveIcon = "./resources/Layout_Active.png"
 	"""Application **Layout** active icon: '**./resources/Layout_Active.png**' ( String )"""
 
 	frameworMiscellaneousIcon = "./resources/Miscellaneous.png"

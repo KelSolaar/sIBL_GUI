@@ -1330,7 +1330,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Adding Application logo.")
 		logoLabel = QLabel()
 		logoLabel.setObjectName("Application_Logo_label")
-		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoPicture))
+		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoImage))
 		self.toolBar.addWidget(logoLabel)
 
 		spacer = QLabel()
@@ -1369,14 +1369,14 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding Central Widget button.")
-		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworCentralWidgetIcon), QPixmap(UiConstants.frameworCentralWidgetHoverIcon), QPixmap(UiConstants.frameworCentralWidgetActiveIcon))
+		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworkCentralWidgetIcon), QPixmap(UiConstants.frameworkCentralWidgetHoverIcon), QPixmap(UiConstants.frameworkCentralWidgetActiveIcon))
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 		self.toolBar.addWidget(centralWidgetButton)
 
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 
 		LOGGER.debug("> Adding layout button.")
-		layoutButton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
+		layoutButton = Active_QLabel(QPixmap(UiConstants.frameworkLayoutIcon), QPixmap(UiConstants.frameworkLayoutHoverIcon), QPixmap(UiConstants.frameworkLayoutActiveIcon), parent=self)
 		layoutButton.setObjectName("Layout_activeLabel")
 		self.toolBar.addWidget(layoutButton)
 
@@ -1734,8 +1734,8 @@ def _run():
 	else:
 		LOGGER.debug("> Initializing splashscreen.")
 
-		RuntimeConstants.splashscreenPicture = QPixmap(UiConstants.frameworkSplashScreenImage)
-		RuntimeConstants.splashscreen = Delayed_QSplashScreen(RuntimeConstants.splashscreenPicture)
+		RuntimeConstants.splashscreenImage = QPixmap(UiConstants.frameworkSplashScreenImage)
+		RuntimeConstants.splashscreen = Delayed_QSplashScreen(RuntimeConstants.splashscreenImage)
 		RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing {0}.".format(Constants.applicationName, Constants.releaseVersion), textColor=Qt.white)
 		RuntimeConstants.splashscreen.show()
 

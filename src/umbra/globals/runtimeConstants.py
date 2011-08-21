@@ -70,7 +70,7 @@ class RuntimeConstants():
 	settings = None
 	"""Application settings instance."""
 
-	splashscreenPicture = None
+	splashscreenImage = None
 	"""Application splashscreen picture."""
 	splashscreen = None
 	"""Application splashscreen instance."""

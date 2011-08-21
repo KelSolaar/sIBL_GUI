@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Runtime constants tests Module.
+	This module defines units tests for :mod:`umbra.globals.runtimeConstants` module.
 
 **Others:**
 
@@ -39,7 +39,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class RuntimeConstantsTestCase(unittest.TestCase):
 	"""
-	This class is the **RuntimeConstantsTestCase** class.
+	This class defines :class:`umbra.globals.runtimeConstants.RuntimeConstants` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
@@ -53,6 +53,8 @@ class RuntimeConstantsTestCase(unittest.TestCase):
 								"loggingFileHandler",
 								"loggingSessionHandler",
 								"loggingSessionHandlerStream",
+								"loggingFormatters",
+								"loggingActiveFormatter",
 								"verbosityLevel",
 								"loggingFile",
 								"application",
@@ -60,7 +62,9 @@ class RuntimeConstantsTestCase(unittest.TestCase):
 								"uiFile",
 								"ui",
 								"settingsFile",
-								"settings")
+								"settings",
+								"splashscreenImage",
+								"splashscreen")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, RuntimeConstants.__dict__)
