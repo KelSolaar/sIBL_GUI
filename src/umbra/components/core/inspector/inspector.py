@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**preview.py**
+**inspector.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Inspector Component Module.
+	This module defines the :class:`DatabaseBrowser` Component Interface class and others helpers objects.
 
 **Others:**
 
@@ -52,7 +52,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Plate(core.Structure):
 	"""
-	This is the **Plate** class.
+	This class represents a storage object for an Ibl Set plate.
 	"""
 
 	@core.executionTrace
@@ -60,14 +60,14 @@ class Plate(core.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: name, icon, previewimage, image ( Key / Value pairs )
+		:param kwargs: name, icon, previewImage, image ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
 
 class Light(core.Structure):
 	"""
-	This is the **Light** class.
+	This class represents a storage object for an Ibl Set light.
 	"""
 
 	@core.executionTrace
@@ -75,14 +75,15 @@ class Light(core.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: name, color, ucoordinate, vcoordinate ( Key / Value pairs )
+		:param kwargs: name, color, uCoordinate, vCoordinate ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
 
 class Inspector(UiComponent):
 	"""
-	This class is the **Preview** class.
+	| This class is the :mod:`umbra.components.core.inspector.inspector` Component Interface class.
+	| It offers a large preview of the current inspected Ibl Set, and a way to navigate into the current selected Database Collection.
 	"""
 
 	# Custom signals definitions.
