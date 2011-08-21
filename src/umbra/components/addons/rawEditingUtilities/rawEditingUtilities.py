@@ -701,7 +701,7 @@ class RawEditingUtilities(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -723,11 +723,11 @@ class RawEditingUtilities(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def editInspectorIblSetInTextEditor_ui(self):
 		"""
-		This method edits **coreInspector** Ibl Set.
+		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -744,7 +744,7 @@ class RawEditingUtilities(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()

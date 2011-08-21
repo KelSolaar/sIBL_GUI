@@ -1625,7 +1625,7 @@ class TemplatesOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
@@ -1649,7 +1649,7 @@ class TemplatesOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1692,7 +1692,7 @@ class TemplatesOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1730,7 +1730,7 @@ class TemplatesOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)

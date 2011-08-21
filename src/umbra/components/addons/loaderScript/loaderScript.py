@@ -687,7 +687,7 @@ class LoaderScript(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		LOGGER.debug("> Initializing Loader Script output.")
@@ -726,7 +726,7 @@ class LoaderScript(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		if self.outputLoaderScript_ui():

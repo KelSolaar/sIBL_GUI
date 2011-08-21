@@ -691,7 +691,7 @@ class GpsMap(UiComponent):
 
 		:return: Method success. ( Boolean )
 		
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()

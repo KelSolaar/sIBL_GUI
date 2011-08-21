@@ -836,7 +836,7 @@ class LocationsBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -858,11 +858,11 @@ class LocationsBrowser(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
 	def openInspectorIblSetLocations_ui(self):
 		"""
-		This method opens **coreInspector** Ibl Set directory.
+		This method opens :mod:`umbra.components.core.inspector.inspector` Component Ibl Set directory.
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
@@ -880,7 +880,7 @@ class LocationsBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
@@ -906,7 +906,7 @@ class LocationsBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -932,7 +932,7 @@ class LocationsBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory

@@ -1364,7 +1364,7 @@ class CollectionsOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		collection = self.addCollection_ui()
@@ -1389,7 +1389,7 @@ class CollectionsOutliner(UiComponent):
 
 		:return: Collection name. ( String )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		collectionInformations, state = QInputDialog.getText(self, "Add Collection", "Enter your Collection name!")
@@ -1422,7 +1422,7 @@ class CollectionsOutliner(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedItems = self.getSelectedItems()

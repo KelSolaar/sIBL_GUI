@@ -2212,7 +2212,7 @@ class OnlineUpdater(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		self.__reportUpdateStatus = True

@@ -569,7 +569,7 @@ class sIBLeditUtilities(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
@@ -591,7 +591,7 @@ class sIBLeditUtilities(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())

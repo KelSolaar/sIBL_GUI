@@ -1895,7 +1895,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __addInspectorButtons(self):
 		"""
-		This method adds buttons to the **coreInspector** Component.
+		This method adds buttons to the :mod:`umbra.components.core.inspector.inspector` Component.
 		"""
 
 		self.__coreInspector.ui.Inspector_Options_groupBox.show()
@@ -1906,7 +1906,7 @@ class Preview(UiComponent):
 
 	def __removeInspectorButtons(self):
 		"""
-		This method removes buttons from the **coreInspector** Component.
+		This method removes buttons from the :mod:`umbra.components.core.inspector.inspector` Component.
 		"""
 
 		for value in self.__inspectorButtons.values():
@@ -2040,7 +2040,7 @@ class Preview(UiComponent):
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		success = True
@@ -2062,12 +2062,12 @@ class Preview(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
 	def viewInspectorIblSetImages_ui(self, imageType, *args):
 		"""
-		This method launches **coreInspector** Ibl Set Images Previewer.
+		This method launches :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Images Previewer.
 
 		:param imageType: Image type. ( String )
 		:param \*args: Arguments. ( \* )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		inspectorIblSet = self.__coreInspector.inspectorIblSet

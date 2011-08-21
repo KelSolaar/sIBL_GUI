@@ -1493,7 +1493,7 @@ class DatabaseBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
@@ -1514,7 +1514,7 @@ class DatabaseBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
@@ -1538,7 +1538,7 @@ class DatabaseBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()
@@ -1566,7 +1566,7 @@ class DatabaseBrowser(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedIblSets = self.getSelectedIblSets()

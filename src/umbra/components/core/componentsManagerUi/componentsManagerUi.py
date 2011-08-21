@@ -901,7 +901,7 @@ class ComponentsManagerUi(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		for component in self.getSelectedComponents():
@@ -920,7 +920,7 @@ class ComponentsManagerUi(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		for component in self.getSelectedComponents():
@@ -942,7 +942,7 @@ class ComponentsManagerUi(UiComponent):
 
 		:return: Method success. ( Boolean )
 
-		:note: This method may request user interaction.
+		:note: This method may require user interaction.
 		"""
 
 		selectedComponents = self.getSelectedComponents()

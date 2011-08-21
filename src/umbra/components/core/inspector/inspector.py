@@ -926,7 +926,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_setUi(self):
 		"""
-		This method sets the **coreInspector** dockwidget ui.
+		This method sets the :mod:`umbra.components.core.inspector.inspector` Component dockwidget ui.
 		"""
 
 		if self.__inspectorIblSet:
@@ -953,7 +953,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_refreshUi(self):
 		"""
-		This method sets the **coreInspector** dockwidget ui.
+		This method sets the :mod:`umbra.components.core.inspector.inspector` Component dockwidget ui.
 		"""
 
 		self.__Inspector_DockWidget_setUi()
@@ -961,7 +961,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Inspector_DockWidget_clearUi(self):
 		"""
-		This method clears the **coreInspector** dockwidget ui.
+		This method clears the :mod:`umbra.components.core.inspector.inspector` Component dockwidget ui.
 		"""
 
 		self.ui.Title_label.setText(QString())
@@ -1150,7 +1150,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSet(self):
 		"""
-		This method sets the **coreInspector** Ibl Set.
+		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		selectedIblSet = self.__coreDatabaseBrowser.getSelectedIblSets()
@@ -1163,7 +1163,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __setInspectorIblSetParser(self):
 		"""
-		This method sets the **coreInspector** Ibl Set parser.
+		This method sets the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set parser.
 		"""
 
 		if os.path.exists(self.__inspectorIblSet.path):
@@ -1175,7 +1175,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
 	def __setInspectorIblSetPlates(self):
 		"""
-		This method sets the Plates from the **coreInspector** Ibl Set.
+		This method sets the Plates from the :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
 		"""
 
 		if self.__inspectorIblSet:
@@ -1284,7 +1284,7 @@ class Inspector(UiComponent):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
 	def loopThroughPlates(self, backward=False):
 		"""
-		This method loops through **coreInspector** Ibl Set Plates.
+		This method loops through :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Plates.
 
 		:param backward: Looping backward. ( Boolean )
 		:return: Method success. ( Boolean )
