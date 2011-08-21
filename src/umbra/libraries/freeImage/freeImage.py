@@ -8,10 +8,10 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	FreeImage librarypath manipulation Module.
+	This module provides FreeImage library ( http://freeimage.sourceforge.net/ ) bindings.
 
 **Others:**
-	Portions of the code from freeimagepy by michele petrazzo: http://freeimagepy.sourceforge.net/.
+	Portions of the code from FreeImagePy by Michele Petrazzo: http://freeimagepy.sourceforge.net/.
 """
 
 #***********************************************************************************************
@@ -86,7 +86,7 @@ else:
 
 class RGBQUAD(ctypes.Structure):
 	"""
-	This class is the **RGBQUAD** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **RGBQUAD** C / C++ object.
 	"""
 
 	_fields_ = []
@@ -103,7 +103,7 @@ class RGBQUAD(ctypes.Structure):
 
 class RGBTRIPLE(ctypes.Structure):
 	"""
-	This class is the **RGBTRIPLE** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **RGBTRIPLE** C / C++ object.
 	"""
 
 	_fields_ = []
@@ -118,14 +118,14 @@ class RGBTRIPLE(ctypes.Structure):
 
 class FIBITMAP(ctypes.Structure):
 	"""
-	This class is the **FIBITMAP** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIBITMAP** C / C++ object.
 	"""
 
 	_fields_ = [ ("data", ctypes.POINTER(VOID)) ]
 
 class BITMAPINFOHEADER(ctypes.Structure):
 	"""
-	This class is the **BITMAPINFOHEADER** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **BITMAPINFOHEADER** C / C++ object.
 	"""
 
 	_fields_ = [ ("biSize", DWORD),
@@ -142,7 +142,7 @@ class BITMAPINFOHEADER(ctypes.Structure):
 
 class BITMAPINFO(ctypes.Structure):
 	"""
-	This class is the **BITMAPINFO** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **BITMAPINFO** C / C++ object.
 	"""
 
 	_fields_ = [ ("bmiHeader", BITMAPINFOHEADER),
@@ -150,7 +150,7 @@ class BITMAPINFO(ctypes.Structure):
 
 class FIRGB16(ctypes.Structure):
 	"""
-	This class is the **FIRGB16** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGB16** C / C++ object.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -159,7 +159,7 @@ class FIRGB16(ctypes.Structure):
 
 class FIRGBA16(ctypes.Structure):
 	"""
-	This class is the **FIRGBA16** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBA16** C / C++ object.
 	"""
 
 	_fields_ = [ ("red", WORD),
@@ -169,7 +169,7 @@ class FIRGBA16(ctypes.Structure):
 
 class FIRGBF(ctypes.Structure):
 	"""
-	This class is the **FIRGBF** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBF** C / C++ object.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -178,7 +178,7 @@ class FIRGBF(ctypes.Structure):
 
 class FIRGBAF(ctypes.Structure):
 	"""
-	This class is the **FIRGBAF** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIRGBAF** C / C++ object.
 	"""
 
 	_fields_ = [ ("red", ctypes.c_float),
@@ -188,7 +188,7 @@ class FIRGBAF(ctypes.Structure):
 
 class FICOMPLEX(ctypes.Structure):
 	"""
-	This class is the **FICOMPLEX** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FICOMPLEX** C / C++ object.
 	"""
 
 	_fields_ = [ ("r", ctypes.c_double),
@@ -278,6 +278,10 @@ FIICC_DEFAULT			 = 0x00
 FIICC_COLOR_IS_CMYK		 = 0x01
 
 class FIICCPROFILE(ctypes.Structure):
+	"""
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIICCPROFILE** C / C++ object.
+	"""
+
 	_fields_ = [ ("flags", WORD),
 				("size", DWORD),
 				("data", VOID) ]
@@ -484,14 +488,14 @@ class FREE_IMAGE_MDMODEL(object):
 
 class FIMETADATA(ctypes.Structure):
 	"""
-	This class is a handle to a metadata Model.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMETADATA** C / C++ object.
 	"""
 
 	_fields_ = [ ("data", VOID), ]
 
 class FITAG(ctypes.Structure):
 	"""
-	This class is a handle to a FreeImage tag.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FITAG** C / C++ object.
 	"""
 
 	_fields_ = [ ("data", VOID) ]
@@ -509,7 +513,7 @@ FI_TellProc = DLL_CALLCONV(ctypes.c_long, fi_handle)
 
 class FreeImageIO(ctypes.Structure):
 	"""
-	This class is the **FreeImageIO** class.
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FreeImageIO** C / C++ object.
 	"""
 
 	_fields_ = [ ('read_proc', FI_ReadProc),
@@ -519,7 +523,7 @@ class FreeImageIO(ctypes.Structure):
 
 class FIMEMORY(ctypes.Structure):
 	"""
-	This class is a handle to a memory I/O stream
+	This class is a :class:`ctypes.Structure` subclass representing FreeImage **FIMEMORY** C / C++ object.
 	"""
 
 	_fields_ = [ ("data", VOID) ]
@@ -933,7 +937,7 @@ FREEIMAGE_FUNCTIONS = (
 #***********************************************************************************************
 class ImageInformationsHeader(core.Structure):
 	"""
-	This is the **AttributeCompound** class.
+	This class represents a storage object for image informations header.
 	"""
 
 	@core.executionTrace
@@ -947,6 +951,9 @@ class ImageInformationsHeader(core.Structure):
 		core.Structure.__init__(self, **kwargs)
 
 class Image(object):
+	"""
+	This class provides various methods to manipulate images files.
+	"""
 
 	@core.executionTrace
 	def __init__(self, imagePath=None):
@@ -1220,7 +1227,8 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def convertToQImage(self):
 		"""
-		This method converts the bitmap to QImage.
+		This method converts the bitmap to `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
+
 		:return: Converted image. ( QImage )
 		"""
 
