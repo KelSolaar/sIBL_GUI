@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Message box Module.
+	This module defines the :func:`messageBox` and :func:`standaloneMessageBox` functions.
 
 **Others:**
 

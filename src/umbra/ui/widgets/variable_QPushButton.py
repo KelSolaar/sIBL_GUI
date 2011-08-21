@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom variable QPushButton Module.
+	This module defines the :class:`Variable_QPushButton` class.
 
 **Others:**
 
@@ -45,7 +45,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Variable_QPushButton(QPushButton):
 	"""
-	This class is the **Variable_QPushButton** class.
+	This class is a `QPushButton <http://doc.qt.nokia.com/4.7/qpushbutton.html>`_ subclass providing a button with different colors and labels depending on its clicked state.
 	"""
 
 	@core.executionTrace

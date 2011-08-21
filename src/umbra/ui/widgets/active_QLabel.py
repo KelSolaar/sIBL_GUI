@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom active QLabel.
+	This module defines the :class:`Active_QLabel` class.
 
 **Others:**
 
@@ -45,7 +45,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Active_QLabel(QLabel):
 	"""
-	This class is the **Active_QLabel** class.
+	This class is a `QLabel <http://doc.qt.nokia.com/4.7/qlabel.html>`_ subclass providing a clickable label with hovering capabilities.
 	"""
 
 	# Custom signals definitions.

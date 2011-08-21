@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom delayed QSplashScreen Module.
+	This module defines the :class:`Delayed_QSplashScreen` class.
 
 **Others:**
 
@@ -46,7 +46,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Delayed_QSplashScreen(QSplashScreen):
 	"""
-	This class is the **delayed_QSplashScreen** class.
+	This class is a `QSplashScreen <http://doc.qt.nokia.com/4.7/qsplashscreen.html>`_ subclass providing delayed messages capabilities.
 	"""
 
 	@core.executionTrace
@@ -55,7 +55,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		This method initializes the class.
 
 		:param picture: Current picture path. ( String )
-		@param waitTime wait time. ( Integer )
+		:param waitTime: wait time. ( Integer )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -115,7 +115,7 @@ class Delayed_QSplashScreen(QSplashScreen):
 		:param message: Message to display on the splashscreen. ( String )
 		:param textAlignement: Text message alignment. ( Object )
 		:param textColor: Text message color. ( Object )
-		:param waitTime: Wait time. ( Float )
+		:param waitTime: Wait time. ( Integer )
 		"""
 
 		self.showMessage(message, textAlignement, textColor)

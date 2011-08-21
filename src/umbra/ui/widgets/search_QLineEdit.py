@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**search_QLineEdit.py
+**search_QLineEdit.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Custom search QLineEdit Module.
+	This module defines the :class:`Search_QLineEdit` class.
 
 **Others:**
 
@@ -47,7 +47,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Search_QLineEdit(QLineEdit):
 	"""
-	This class is the **Search_QLineEdit** class.
+	This class is a `QLineEdit <http://doc.qt.nokia.com/4.7/qlinedit.html>`_ subclass providing a search field with clearing capabilities.
 	"""
 
 	@core.executionTrace
