@@ -8,7 +8,9 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	sIBL_GUI Framework Module.
+	| This module is the main **Umbra** package module.
+	| It defines various classes, methods and definitions to run, maintain and exit the Application.
+	| The main Application object is the :class:`sIBL_GUI` class.
 
 **Others:**
 
@@ -104,14 +106,14 @@ RuntimeConstants.loggingFormatters = {"Default" :core.LOGGING_DEFAULT_FORMATTER,
 
 class Ui_Setup():
 	"""
-	This class is the **Ui_Setup** class.
+	This class defines the Application ui setup methods.
 	"""
 
 	pass
 
 class Ui_Type():
 	"""
-	This class is the **Ui_Type** class.
+	This class defines the Application ui type base class ( `QMainWindow <http://doc.qt.nokia.com/4.7/qmainwindow.html>`_ ).
 	"""
 
 	pass
@@ -127,7 +129,8 @@ else:
 #***********************************************************************************************
 class Preferences():
 	"""
-	This class is the **Preferences** class.
+	| This class provides methods to manipulate Application preferences / settings.
+	| Those are stored and retrieved using a `QSettings <http://doc.qt.nokia.com/4.7/qsettings.html>`_ class.
 	"""
 
 	@core.executionTrace
@@ -368,7 +371,7 @@ class Preferences():
 
 class LayoutActiveLabel(core.Structure):
 	"""
-	This is the **LayoutActiveLabel** class.
+	This class represents a storage object for layout active labels attributes.
 	"""
 
 	@core.executionTrace
@@ -376,14 +379,14 @@ class LayoutActiveLabel(core.Structure):
 		"""
 		This method initializes the class.
 
-		:param kwargs: name, object_, layout, shortcut. ( Key / Value pairs )
+		:param \*\*kwargs: name, object, layout, shortcut. ( Key / Value pairs )
 		"""
 
 		core.Structure.__init__(self, **kwargs)
 
 class sIBL_GUI(Ui_Type, Ui_Setup):
 	"""
-	This class is the Main class for sIBL_GUI.
+	This class is the main class of the Application.
 	"""
 
 	#***********************************************************************************************
@@ -1551,7 +1554,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This method is called when storing a layout.
 
 		:param name: Layout name. ( String )
-		:param *args: Arguments. ( * )
+		:param \*args: Arguments. ( \* )
 		:return: Method success. ( Boolean )
 		"""
 
@@ -1570,7 +1573,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		This method is called when restoring a layout.
 
 		:param name: Layout name. ( String )
-		:param *args: Arguments. ( * )
+		:param \*args: Arguments. ( \* )
 		:return: Method success. ( Boolean )
 		"""
 
