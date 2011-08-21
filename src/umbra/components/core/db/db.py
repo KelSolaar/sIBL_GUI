@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Database backup Component Module.
+	This module defines the :class:`Db` class and others helper objects.
 
 **Others:**
 
@@ -31,7 +31,6 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
 import umbra.components.core.db.dbUtilities.types as dbTypes
-import umbra.ui.widgets.messageBox as messageBox
 from foundations.rotatingBackup import RotatingBackup
 from foundations.walker import Walker
 from manager.component import Component
@@ -54,7 +53,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Db(Component):
 	"""
-	This class is the **Db** class.
+	| This class is the :mod:`umbra.components.core.db.db` Component Interface class.
+	| It provides Application Database creation and session, proceed to its backup using the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""
 
 	@core.executionTrace
