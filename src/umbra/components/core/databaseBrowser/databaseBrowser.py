@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseBrowser` class and others helper objects.
+	This module defines the :class:`DatabaseBrowser` Component Interface class, the :class:`DatabaseBrowser_QListView` class and the the :class:`DatabaseBrowser_Worker` worker thread class.
 
 **Others:**
 
