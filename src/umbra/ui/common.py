@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	UI common Module.
+	This module defines common ui manipulation related objects.
 
 **Others:**
 
@@ -53,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class Icon(core.Structure):
 	"""
-	This is the **Icon** class.
+	This class represents a storage object for icon.
 	"""
 
 	@core.executionTrace
@@ -73,8 +73,8 @@ def uiExtendedExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -87,8 +87,8 @@ def uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -101,8 +101,8 @@ def uiBasicExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -115,8 +115,8 @@ def uiStandaloneBasicExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	foundations.exceptions.defaultExceptionsHandler(exception, origin, *args, **kwargs)
@@ -129,8 +129,8 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	uiExtendedExceptionHandler(exception, origin, *args, **kwargs)
@@ -143,8 +143,8 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 
 	:param exception: Exception. ( Exception )
 	:param origin: Function / Method raising the exception. ( String )
-	:param *args: Arguments. ( * )
-	:param **kwargs: Arguments. ( * )
+	:param \*args: Arguments. ( \* )
+	:param \*\*kwargs: Arguments. ( \* )
 	"""
 
 	uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs)
@@ -189,7 +189,7 @@ def centerWidgetOnScreen(widget, screen=None):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getGraphicItem(path, type):
 		"""
-		This method gets a graphic display: QIcon, QImage, QPixmap.
+		This method gets a graphic display: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_, `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
@@ -220,7 +220,7 @@ def getGraphicItem(path, type):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getIcon(path):
 		"""
-		This method gets a QIcon.
+		This method gets a `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_.
 
 		:param path: Icon image path. ( String )
 		:return: QIcon. ( QIcon )
@@ -232,7 +232,7 @@ def getIcon(path):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getPixmap(path):
 		"""
-		This method gets a QPixmap.
+		This method gets a `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Icon image path. ( String )
 		:return: QPixmap. ( QPixmap )
@@ -244,7 +244,7 @@ def getPixmap(path):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getImage(path):
 		"""
-		This method gets a QImage.
+		This method gets a `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 
 		:param path: Icon image path. ( String )
 		:return: QImage. ( QImage )
