@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**componentsManagerUi.py**
+**templatesOutliner.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Templates Outliner Component Module.
+	This module defines the :class:`TemplatesOutliner` Component Interface class, the :class:`TemplatesOutliner_QTreeView` class and the the :class:`TemplatesOutliner_Worker` worker thread class.
 
 **Others:**
 
@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 class TemplatesOutliner_Worker(QThread):
 	"""
-	This class is the **TemplatesOutliner_Worker** class.
+	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to track modified Templates and update the Database accordingly.
 	"""
 
 	# Custom signals definitions.
@@ -244,7 +244,8 @@ class TemplatesOutliner_Worker(QThread):
 
 class TemplatesOutliner_QTreeView(QTreeView):
 	"""
-	This class is the **TemplatesOutliner_QTreeView** class.
+	| This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Templates.
+	| It provides support for drag'n'drop by reimplementing relevant methods.
 	"""
 
 	@core.executionTrace
@@ -384,7 +385,8 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 class TemplatesOutliner(UiComponent):
 	"""
-	This class is the **TemplatesOutliner** class.
+	| This class is the :mod:`umbra.components.core.templatesOutliner.templatesOutliner` Component Interface class.
+	| It defines methods for Database Templates management.
 	"""
 
 	# Custom signals definitions.
@@ -1622,6 +1624,8 @@ class TemplatesOutliner(UiComponent):
 		This method adds an user defined Template to the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
@@ -1644,6 +1648,8 @@ class TemplatesOutliner(UiComponent):
 		This method removes user selected Templates from the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		selectedItems = self.getSelectedItems()
@@ -1685,6 +1691,8 @@ class TemplatesOutliner(UiComponent):
 		This method imports default Templates into the Database.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		if self.addDefaultTemplates(forceImport=True):
@@ -1721,6 +1729,8 @@ class TemplatesOutliner(UiComponent):
 		This method filters Templates by versions.
 
 		:return: Method success. ( Boolean )
+
+		:note: This method may request user interaction.
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
