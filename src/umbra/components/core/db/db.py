@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Db` class and others helper objects.
+	This module defines the :class:`Db` Component Interface class.
 
 **Others:**
 
