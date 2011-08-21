@@ -1376,11 +1376,11 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 
 		LOGGER.debug("> Adding layout button.")
-		layoutsButton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
-		layoutsButton.setObjectName("Layouts_activeLabel")
-		self.toolBar.addWidget(layoutsButton)
+		layoutButton = Active_QLabel(QPixmap(UiConstants.frameworLayoutIcon), QPixmap(UiConstants.frameworLayoutHoverIcon), QPixmap(UiConstants.frameworLayoutActiveIcon), parent=self)
+		layoutButton.setObjectName("Layout_activeLabel")
+		self.toolBar.addWidget(layoutButton)
 
-		self.__layoutMenu = QMenu("Layout", layoutsButton)
+		self.__layoutMenu = QMenu("Layout", layoutButton)
 
 		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
 
@@ -1402,7 +1402,7 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 			# Signals / Slots.
 			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 
-		layoutsButton.setMenu(self.__layoutMenu)
+		layoutButton.setMenu(self.__layoutMenu)
 
 		LOGGER.debug("> Adding miscellaneous button.")
 		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
@@ -1734,7 +1734,7 @@ def _run():
 	else:
 		LOGGER.debug("> Initializing splashscreen.")
 
-		RuntimeConstants.splashscreenPicture = QPixmap(UiConstants.frameworkSplashScreenPicture)
+		RuntimeConstants.splashscreenPicture = QPixmap(UiConstants.frameworkSplashScreenImage)
 		RuntimeConstants.splashscreen = Delayed_QSplashScreen(RuntimeConstants.splashscreenPicture)
 		RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing {0}.".format(Constants.applicationName, Constants.releaseVersion), textColor=Qt.white)
 		RuntimeConstants.splashscreen.show()

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Runtime constants Module.
+	This module defines **Umbra** package runtime constants through the :class:`RuntimeConstants` class.
 
 **Others:**
 
@@ -29,30 +29,48 @@ __status__ = "Production"
 #***********************************************************************************************
 class RuntimeConstants():
 	"""
-	This class is the **RuntimeConstants** class.
+	This class provides **Umbra** package runtime constants.
 	"""
 
 	parameters = None
+	"""Application startup parameters."""
 	args = None
+	"""Application startup arguments."""
 
 	loggingConsoleHandler = None
+	"""Logging console handler instance."""
 	loggingFileHandler = None
+	"""Logging file handler instance."""
 	loggingSessionHandler = None
+	"""Logging session handler instance."""
 	loggingSessionHandlerStream = None
+	"""Logging session handler stream."""
 	loggingFormatters = None
+	"""Logging formatters."""
 	loggingActiveFormatter = None
+	"""Logging current formatter."""
 
 	verbosityLevel = None
+	"""Logging current verbosity level."""
 	loggingFile = None
+	"""Application logging file."""
 
 	application = None
+	"""Application instance."""
 	userApplicationDatasDirectory = None
+	"""Application user datas directory."""
 
 	uiFile = None
+	"""Application ui file."""
 	ui = None
+	"""Application ui instance."""
 
 	settingsFile = None
+	"""Application settings file."""
 	settings = None
+	"""Application settings instance."""
 
 	splashscreenPicture = None
+	"""Application splashscreen picture."""
 	splashscreen = None
+	"""Application splashscreen instance."""
