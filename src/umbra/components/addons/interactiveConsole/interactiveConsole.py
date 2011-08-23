@@ -54,6 +54,9 @@ class InteractiveConsole(UiComponent):
 	| This class is the :mod:`umbra.components.addons.interactiveConsole.interactiveConsole` Component Interface class.
 	"""
 
+	# Custom signals definitions.
+	datasChanged = pyqtSignal()
+
 	@core.executionTrace
 	def __init__(self, name=None, uiFile=None):
 		"""
@@ -283,6 +286,7 @@ class InteractiveConsole(UiComponent):
 		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Interactive_Console_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Input_pushButton.clicked.connect(self.__Evaluate_Input_pushButton__clicked)
+		self.datasChanged.connect(self.__Interactive_Console_Output_textEdit_refreshUi)
 
 		return True
 
@@ -299,6 +303,7 @@ class InteractiveConsole(UiComponent):
 		# Signals / Slots.
 		self.__container.timer.timeout.disconnect(self.__Interactive_Console_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Input_pushButton.clicked.disconnect(self.__Evaluate_Input_pushButton__clicked)
+		self.datasChanged.disconnect(self.__Interactive_Console_Output_textEdit_refreshUi)
 
 		return True
 
@@ -362,7 +367,7 @@ class InteractiveConsole(UiComponent):
 
 		self.__console.runcode(str(self.ui.Interactive_Console_Input_textEdit.toPlainText()))
 
-		self.__Interactive_Console_Output_textEdit_refreshUi()
+		self.emit(SIGNAL("datasChanged()"))
 
 	def __getsLocals(self):
 		"""
