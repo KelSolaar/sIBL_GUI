@@ -18,7 +18,6 @@
 #***	External imports.
 #***********************************************************************************************
 import code
-import inspect
 import logging
 import os
 from PyQt4.QtCore import *
@@ -33,6 +32,7 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
+from umbra.ui.highlighters import PythonHighlighter
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -283,6 +283,8 @@ class InteractiveConsole(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.ui.Interactive_Console_Input_textEdit.highlighter = PythonHighlighter(self.ui.Interactive_Console_Input_textEdit.document())
+
 		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Interactive_Console_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Input_pushButton.clicked.connect(self.__Evaluate_Input_pushButton__clicked)
@@ -299,6 +301,8 @@ class InteractiveConsole(UiComponent):
 		"""
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		self.ui.Interactive_Console_Input_textEdit.highlighter = None
 
 		# Signals / Slots.
 		self.__container.timer.timeout.disconnect(self.__Interactive_Console_Output_textEdit_refreshUi)
