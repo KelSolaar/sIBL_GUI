@@ -11,6 +11,7 @@
 	This module defines the :class:`PythonHighligher` class.
 
 **Others:**
+	Portions of the code from Pyguin by Lee Harr: http://code.google.com/p/pynguin/.
 
 """
 
