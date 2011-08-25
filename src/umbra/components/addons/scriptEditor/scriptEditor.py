@@ -32,7 +32,7 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
-from umbra.ui.highlighters import PythonHighlighter
+from umbra.ui.highlighters import LoggingHighlighter, PythonHighlighter
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -284,6 +284,7 @@ class ScriptEditor(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.ui.Script_Editor_Input_textEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_textEdit.document())
+		self.ui.Script_Editor_Output_textEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_textEdit.document())
 
 		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Script_Editor_Output_textEdit_refreshUi)
@@ -343,10 +344,19 @@ class ScriptEditor(UiComponent):
 	# @core.executionTrace
 	def __Script_Editor_Output_textEdit_setUi(self):
 		"""
-		This method sets the **Logging_TextEdit** Widget.
+		This method sets the **Script_Editor_Output_textEdit** Widget.
 		"""
 
-		self.ui.Script_Editor_Output_textEdit.setPlainText(QString("".join(self.__container.loggingSessionHandlerStream.stream)))
+		for line in self.__container.loggingSessionHandlerStream.stream:
+			self.ui.Script_Editor_Output_textEdit.append(line.rstrip())
+		self.__Script_Editor_Output_textEdit__setDefaultViewState()
+
+	# @core.executionTrace
+	def __Script_Editor_Output_textEdit__setDefaultViewState(self):
+		"""
+		This method sets the **Script_Editor_Output_textEdit** Widget.
+		"""
+
 		self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
 		self.ui.Script_Editor_Output_textEdit.ensureCursorVisible()
 
@@ -358,7 +368,9 @@ class ScriptEditor(UiComponent):
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
-			self.__Script_Editor_Output_textEdit_setUi()
+			for line in self.__container.loggingSessionHandlerStream.stream[self.__memoryHandlerStackDepth:memoryHandlerStackDepth]:
+				self.ui.Script_Editor_Output_textEdit.append(line.rstrip())
+			self.__Script_Editor_Output_textEdit__setDefaultViewState()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
 	@core.executionTrace
