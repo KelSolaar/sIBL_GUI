@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**interactiveConsole.py**
+**scriptEditor.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`InteractiveConsole` Component Interface class.
+	This module defines the :class:`ScriptEditor` Component Interface class.
 
 **Others:**
 
@@ -49,9 +49,9 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class InteractiveConsole(UiComponent):
+class ScriptEditor(UiComponent):
 	"""
-	| This class is the :mod:`umbra.components.addons.interactiveConsole.interactiveConsole` Component Interface class.
+	| This class is the :mod:`umbra.components.addons.scriptEditor.scriptEditor` Component Interface class.
 	"""
 
 	# Custom signals definitions.
@@ -73,7 +73,7 @@ class InteractiveConsole(UiComponent):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Interactive_Console.ui"
+		self.__uiPath = "ui/Script_Editor.ui"
 		self.__dockArea = 8
 
 		self.__container = None
@@ -283,12 +283,12 @@ class InteractiveConsole(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Interactive_Console_Input_textEdit.highlighter = PythonHighlighter(self.ui.Interactive_Console_Input_textEdit.document())
+		self.ui.Script_Editor_Input_textEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_textEdit.document())
 
 		# Signals / Slots.
-		self.__container.timer.timeout.connect(self.__Interactive_Console_Output_textEdit_refreshUi)
+		self.__container.timer.timeout.connect(self.__Script_Editor_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Input_pushButton.clicked.connect(self.__Evaluate_Input_pushButton__clicked)
-		self.datasChanged.connect(self.__Interactive_Console_Output_textEdit_refreshUi)
+		self.datasChanged.connect(self.__Script_Editor_Output_textEdit_refreshUi)
 
 		return True
 
@@ -302,12 +302,12 @@ class InteractiveConsole(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Interactive_Console_Input_textEdit.highlighter = None
+		self.ui.Script_Editor_Input_textEdit.highlighter = None
 
 		# Signals / Slots.
-		self.__container.timer.timeout.disconnect(self.__Interactive_Console_Output_textEdit_refreshUi)
+		self.__container.timer.timeout.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Input_pushButton.clicked.disconnect(self.__Evaluate_Input_pushButton__clicked)
-		self.datasChanged.disconnect(self.__Interactive_Console_Output_textEdit_refreshUi)
+		self.datasChanged.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
 
 		return True
 
@@ -341,24 +341,24 @@ class InteractiveConsole(UiComponent):
 		return True
 
 	# @core.executionTrace
-	def __Interactive_Console_Output_textEdit_setUi(self):
+	def __Script_Editor_Output_textEdit_setUi(self):
 		"""
 		This method sets the **Logging_TextEdit** Widget.
 		"""
 
-		self.ui.Interactive_Console_Output_textEdit.setPlainText(QString("".join(self.__container.loggingSessionHandlerStream.stream)))
-		self.ui.Interactive_Console_Output_textEdit.moveCursor(QTextCursor.End)
-		self.ui.Interactive_Console_Output_textEdit.ensureCursorVisible()
+		self.ui.Script_Editor_Output_textEdit.setPlainText(QString("".join(self.__container.loggingSessionHandlerStream.stream)))
+		self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
+		self.ui.Script_Editor_Output_textEdit.ensureCursorVisible()
 
 	# @core.executionTrace
-	def __Interactive_Console_Output_textEdit_refreshUi(self):
+	def __Script_Editor_Output_textEdit_refreshUi(self):
 		"""
-		This method updates the **Interactive_Console_Output_textEdit** Widget.
+		This method updates the **Script_Editor_Output_textEdit** Widget.
 		"""
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
-			self.__Interactive_Console_Output_textEdit_setUi()
+			self.__Script_Editor_Output_textEdit_setUi()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
 	@core.executionTrace
@@ -369,7 +369,7 @@ class InteractiveConsole(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.__console.runcode(str(self.ui.Interactive_Console_Input_textEdit.toPlainText()))
+		self.__console.runcode(str(self.ui.Script_Editor_Input_textEdit.toPlainText()))
 
 		self.emit(SIGNAL("datasChanged()"))
 

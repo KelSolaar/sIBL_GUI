@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Interactive_Console_DockWidget</class>
- <widget class="QDockWidget" name="Interactive_Console_DockWidget">
+ <class>Script_Editor_DockWidget</class>
+ <widget class="QDockWidget" name="Script_Editor_DockWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,12 +11,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Interactive Console</string>
+   <string>Script Editor</string>
   </property>
-  <widget class="QWidget" name="Interactive_Console_dockWidgetContents">
-   <layout class="QGridLayout" name="Interactive_Console_dockWidgetContents_gridLayout">
+  <widget class="QWidget" name="Script_Editor_dockWidgetContents">
+   <layout class="QGridLayout" name="Script_Editor_dockWidgetContents_gridLayout">
     <item row="0" column="0">
-     <widget class="QTextEdit" name="Interactive_Console_Output_textEdit">
+     <widget class="QTextEdit" name="Script_Editor_Output_textEdit">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -24,7 +24,7 @@
        </size>
       </property>
       <property name="statusTip">
-       <string>Interactive Console Output Text Edit: Displays interactive console output.</string>
+       <string>Script Editor Output Text Edit: Displays interactive console output.</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
@@ -35,9 +35,9 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QTextEdit" name="Interactive_Console_Input_textEdit">
+     <widget class="QTextEdit" name="Script_Editor_Input_textEdit">
       <property name="statusTip">
-       <string>Interactive Console Input Text Edit: Allows interactive console interaction.</string>
+       <string>Script Editor Input Text Edit: Allows interactive console interaction.</string>
       </property>
      </widget>
     </item>
