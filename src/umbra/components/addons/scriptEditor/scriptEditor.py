@@ -20,6 +20,7 @@
 import code
 import logging
 import os
+import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -348,7 +349,8 @@ class ScriptEditor(UiComponent):
 		"""
 
 		for line in self.__container.loggingSessionHandlerStream.stream:
-			self.ui.Script_Editor_Output_textEdit.append(line.rstrip())
+			self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
+			self.ui.Script_Editor_Output_textEdit.insertPlainText(line)
 		self.__Script_Editor_Output_textEdit__setDefaultViewState()
 
 	# @core.executionTrace
@@ -369,7 +371,8 @@ class ScriptEditor(UiComponent):
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
 			for line in self.__container.loggingSessionHandlerStream.stream[self.__memoryHandlerStackDepth:memoryHandlerStackDepth]:
-				self.ui.Script_Editor_Output_textEdit.append(line.rstrip())
+				self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
+				self.ui.Script_Editor_Output_textEdit.insertPlainText(line)
 			self.__Script_Editor_Output_textEdit__setDefaultViewState()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
@@ -381,6 +384,7 @@ class ScriptEditor(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
+		sys.stdout.write(str(self.ui.Script_Editor_Input_textEdit.toPlainText()))
 		self.__console.runcode(str(self.ui.Script_Editor_Input_textEdit.toPlainText()))
 
 		self.emit(SIGNAL("datasChanged()"))
