@@ -271,34 +271,11 @@ class LoggingHighlighter(Highlighter):
 		:param block: Text block. ( QString )
 		"""
 
-		self.setCurrentBlockState(0)
-
 		if block.trimmed().isEmpty():
 			self.setFormat(0, len(block), self.formats.null)
 			return
 
-		self.setFormat(0, len(block), self.formats.default)
-
-		startIndex = 0
-		if self.previousBlockState() != 1:
-			startIndex = block.indexOf(self.__multiLineStringStart)
-
-		if startIndex > -1:
-			self.highlightText(block, 0, startIndex)
-		else:
-			self.highlightText(block, 0, len(block))
-
-		while startIndex >= 0:
-			endIndex = block.indexOf(self.__multiLineStringEnd, startIndex + len(self.__multiLineStringStart.pattern()))
-			if endIndex == -1:
-				self.setCurrentBlockState(1)
-				commentLength = block.length() - startIndex
-			else:
-				commentLength = endIndex - startIndex + self.__multiLineStringEnd.matchedLength()
-				self.highlightText(block, endIndex, len(block))
-
-			self.setFormat(startIndex, commentLength, self.formats.multiLineString)
-			startIndex = block.indexOf(self.__multiLineStringStart, startIndex + commentLength)
+		self.highlightText(block, 0, len(block))
 
 class PythonHighlighter(Highlighter):
 	"""
