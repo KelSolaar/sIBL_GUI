@@ -254,14 +254,14 @@ class LoggingHighlighter(Highlighter):
 
 		self.rules = []
 
-		self.rules.append(Rule(pattern=QRegExp(r"^CRITICAL\s*:.*$"), format=self.formats.loggingCritical))
-		self.rules.append(Rule(pattern=QRegExp(r"^ERROR\s*:.*$"), format=self.formats.loggingError))
-		self.rules.append(Rule(pattern=QRegExp(r"^WARNING\s*:.*$"), format=self.formats.loggingWarning))
-		self.rules.append(Rule(pattern=QRegExp(r"^INFO\s*:.*$"), format=self.formats.loggingInfo))
-		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:.*$"), format=self.formats.loggingDebug))
+		self.rules.append(Rule(pattern=QRegExp(r"^CRITICAL\s*:.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*CRITICAL\s*:.*$"), format=self.formats.loggingCritical))
+		self.rules.append(Rule(pattern=QRegExp(r"^ERROR\s*:.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*ERROR\s*:.*$"), format=self.formats.loggingError))
+		self.rules.append(Rule(pattern=QRegExp(r"^WARNING\s*:.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*WARNING\s*:.*$"), format=self.formats.loggingWarning))
+		self.rules.append(Rule(pattern=QRegExp(r"^INFO\s*:.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*INFO\s*:.*$"), format=self.formats.loggingInfo))
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*DEBUG\s*:.*$"), format=self.formats.loggingDebug))
 
-		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s--->>>.*$"), format=self.formats.loggingDebugTraceIn))
-		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s---<<<.*$"), format=self.formats.loggingDebugTraceOut))
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s--->>>.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*DEBUG\s*:\s--->>>.*$"), format=self.formats.loggingDebugTraceIn))
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s---<<<.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*DEBUG\s*:\s---<<<.*$"), format=self.formats.loggingDebugTraceOut))
 
 	# @core.executionTrace
 	def highlightBlock(self, block):
