@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`PythonHighligher` class.
+	This module defines the highlighters class.
 
 **Others:**
 	Portions of the code from Pyguin by Lee Harr: http://code.google.com/p/pynguin/.
@@ -74,9 +74,9 @@ class Formats(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-class PythonHighlighter(QSyntaxHighlighter):
+class Highlighter(QSyntaxHighlighter):
 	"""
-	This class is a `QSyntaxHighlighter <http://doc.qt.nokia.com/4.7/qsyntaxhighlighter.html>`_ subclass providing syntax highlighting for Python documents.
+	This class is a `QSyntaxHighlighter <http://doc.qt.nokia.com/4.7/qsyntaxhighlighter.html>`_ subclass used as a base for highlighters classes.
 	"""
 
 	@core.executionTrace
@@ -93,13 +93,6 @@ class PythonHighlighter(QSyntaxHighlighter):
 
 		self.__formats = None
 		self.__rules = None
-		self.__keywords = None
-		self.__multiLineStringStart = None
-		self.__multiLineStringEnd = None
-
-		self.__setKeywords()
-		self.__setFormats()
-		self.__setRules()
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -168,6 +161,173 @@ class PythonHighlighter(QSyntaxHighlighter):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("rules"))
 
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	# @core.executionTrace
+	def highlightBlock(self, block):
+		"""
+		This method highlights provided text block.
+
+		:param block: Text block. ( QString )
+		"""
+		pass
+
+	# @core.executionTrace
+	def highlightText(self, text, start, end):
+		"""
+		This method highlights provided text.
+
+		:param text: Text. ( QString )
+		:param start: Text start index. ( Integer )
+		:param end: Text end index. ( Integer )
+		:return: Method success. ( Boolean )
+		"""
+
+		for rule in self.__rules:
+			index = rule.pattern.indexIn(text, start)
+			while index >= start and index < end:
+				length = rule.pattern.matchedLength()
+				self.setFormat(index, min(length, end - index), rule.format)
+				index = rule.pattern.indexIn(text, index + length)
+		return True
+
+class LoggingHighlighter(Highlighter):
+	"""
+	This class is a :class:`Highlighter` subclass subclass providing syntax highlighting for Application logging documents.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent):
+		"""
+		This method initializes the class.
+
+		:param parent: Syntax highlighter parent. ( QObject )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QSyntaxHighlighter.__init__(self, parent)
+
+		self.__setFormats()
+		self.__setRules()
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __setFormats(self):
+		"""
+		This method sets the highlighting formats.
+		"""
+
+		self.formats = Formats(default=QTextCharFormat())
+		self.formats.default.setForeground(QColor(192, 192, 192))
+
+		self.formats.null = QTextCharFormat(self.formats.default)
+		self.formats.null.setFontPointSize(self.formats.default.font().pointSize() / 4.0)
+
+		self.formats.loggingCritical = QTextCharFormat(self.formats.default)
+		self.formats.loggingCritical.setForeground(QColor(48, 48, 48))
+		self.formats.loggingCritical.setBackground(QColor(255, 64, 64))
+		self.formats.loggingError = QTextCharFormat(self.formats.default)
+		self.formats.loggingError.setForeground(QColor(255, 64, 64))
+		self.formats.loggingWarning = QTextCharFormat(self.formats.default)
+		self.formats.loggingWarning.setForeground(QColor(255, 128, 0))
+		self.formats.loggingInfo = QTextCharFormat(self.formats.default)
+		self.formats.loggingDebug = QTextCharFormat(self.formats.default)
+		self.formats.loggingDebug.setFontItalic(True)
+
+		self.formats.loggingDebugTraceIn = QTextCharFormat(self.formats.loggingDebug)
+		self.formats.loggingDebugTraceIn.setForeground(QColor(128, 160, 192))
+		self.formats.loggingDebugTraceOut = QTextCharFormat(self.formats.loggingDebug)
+		self.formats.loggingDebugTraceOut.setForeground(QColor(192, 160, 128))
+
+	@core.executionTrace
+	def __setRules(self):
+		"""
+		This method sets the highlighting rules.
+		"""
+
+		self.__multiLineStringStart = QRegExp(r"\"\"\"|'''")
+		self.__multiLineStringEnd = QRegExp(r"\"\"\"|'''")
+
+		self.rules = []
+
+		self.rules.append(Rule(pattern=QRegExp(r"^CRITICAL\s*:.*$"), format=self.formats.loggingCritical))
+		self.rules.append(Rule(pattern=QRegExp(r"^ERROR\s*:.*$"), format=self.formats.loggingError))
+		self.rules.append(Rule(pattern=QRegExp(r"^WARNING\s*:.*$"), format=self.formats.loggingWarning))
+		self.rules.append(Rule(pattern=QRegExp(r"^INFO\s*:.*$"), format=self.formats.loggingInfo))
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:.*$"), format=self.formats.loggingDebug))
+
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s--->>>.*$"), format=self.formats.loggingDebugTraceIn))
+		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s---<<<.*$"), format=self.formats.loggingDebugTraceOut))
+
+	# @core.executionTrace
+	def highlightBlock(self, block):
+		"""
+		This method highlights provided text block.
+
+		:param block: Text block. ( QString )
+		"""
+
+		self.setCurrentBlockState(0)
+
+		if block.trimmed().isEmpty():
+			self.setFormat(0, len(block), self.formats.null)
+			return
+
+		self.setFormat(0, len(block), self.formats.default)
+
+		startIndex = 0
+		if self.previousBlockState() != 1:
+			startIndex = block.indexOf(self.__multiLineStringStart)
+
+		if startIndex > -1:
+			self.highlightText(block, 0, startIndex)
+		else:
+			self.highlightText(block, 0, len(block))
+
+		while startIndex >= 0:
+			endIndex = block.indexOf(self.__multiLineStringEnd, startIndex + len(self.__multiLineStringStart.pattern()))
+			if endIndex == -1:
+				self.setCurrentBlockState(1)
+				commentLength = block.length() - startIndex
+			else:
+				commentLength = endIndex - startIndex + self.__multiLineStringEnd.matchedLength()
+				self.highlightText(block, endIndex, len(block))
+
+			self.setFormat(startIndex, commentLength, self.formats.multiLineString)
+			startIndex = block.indexOf(self.__multiLineStringStart, startIndex + commentLength)
+
+class PythonHighlighter(Highlighter):
+	"""
+	This class is a :class:`Highlighter` subclass providing syntax highlighting for Python documents.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent):
+		"""
+		This method initializes the class.
+
+		:param parent: Syntax highlighter parent. ( QObject )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QSyntaxHighlighter.__init__(self, parent)
+
+		self.__keywords = None
+		self.__multiLineStringStart = None
+		self.__multiLineStringEnd = None
+
+		self.__setKeywords()
+		self.__setFormats()
+		self.__setRules()
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
 	@property
 	def keywords(self):
 		"""
@@ -281,70 +441,70 @@ class PythonHighlighter(QSyntaxHighlighter):
 		This method sets the highlighting formats.
 		"""
 
-		self.__formats = Formats(default=QTextCharFormat())
-		self.__formats.default.setForeground(QColor(192, 192, 192))
+		self.formats = Formats(default=QTextCharFormat())
+		self.formats.default.setForeground(QColor(192, 192, 192))
 
-		self.__formats.null = QTextCharFormat(self.__formats.default)
-		self.__formats.null.setFontPointSize(self.__formats.default.font().pointSize() / 4.0)
+		self.formats.null = QTextCharFormat(self.formats.default)
+		self.formats.null.setFontPointSize(self.formats.default.font().pointSize() / 4.0)
 
-		self.__formats.keyword = QTextCharFormat(self.__formats.default)
-		self.__formats.keyword.setForeground(QBrush(QColor(205, 170, 105)))
-		self.__formats.keyword.setFontWeight(QFont.Bold)
+		self.formats.keyword = QTextCharFormat(self.formats.default)
+		self.formats.keyword.setForeground(QBrush(QColor(205, 170, 105)))
+		self.formats.keyword.setFontWeight(QFont.Bold)
 
-		self.__formats.numericConstant = QTextCharFormat(self.__formats.default)
-		self.__formats.numericConstant.setForeground(QColor(205, 105, 75))
-		self.__formats.numericIntegerDecimal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericIntegerLongDecimal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericIntegerHexadecimal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericIntegerLongHexadecimal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericIntegerOctal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericIntegerLongOctal = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericFloat = QTextCharFormat(self.__formats.numericConstant)
-		self.__formats.numericComplex = QTextCharFormat(self.__formats.numericConstant)
+		self.formats.numericConstant = QTextCharFormat(self.formats.default)
+		self.formats.numericConstant.setForeground(QColor(205, 105, 75))
+		self.formats.numericIntegerDecimal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericIntegerLongDecimal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericIntegerHexadecimal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericIntegerLongHexadecimal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericIntegerOctal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericIntegerLongOctal = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericFloat = QTextCharFormat(self.formats.numericConstant)
+		self.formats.numericComplex = QTextCharFormat(self.formats.numericConstant)
 
-		self.__formats.modifierGlobal = QTextCharFormat(self.__formats.default)
-		self.__formats.modifierGlobal.setForeground(QBrush(QColor(250, 240, 150)))
-		self.__formats.modifierSpecialGlobal = QTextCharFormat(self.__formats.modifierGlobal)
+		self.formats.modifierGlobal = QTextCharFormat(self.formats.default)
+		self.formats.modifierGlobal.setForeground(QBrush(QColor(250, 240, 150)))
+		self.formats.modifierSpecialGlobal = QTextCharFormat(self.formats.modifierGlobal)
 
-		self.__formats.operator = QTextCharFormat(self.__formats.keyword)
-		self.__formats.operatorComparison = QTextCharFormat(self.__formats.operator)
-		self.__formats.operatorAssignement = QTextCharFormat(self.__formats.operator)
-		self.__formats.operatorAssignementAugmented = QTextCharFormat(self.__formats.operator)
-		self.__formats.operatorArithmetic = QTextCharFormat(self.__formats.operator)
+		self.formats.operator = QTextCharFormat(self.formats.keyword)
+		self.formats.operatorComparison = QTextCharFormat(self.formats.operator)
+		self.formats.operatorAssignement = QTextCharFormat(self.formats.operator)
+		self.formats.operatorAssignementAugmented = QTextCharFormat(self.formats.operator)
+		self.formats.operatorArithmetic = QTextCharFormat(self.formats.operator)
 
-		self.__formats.entity = QTextCharFormat(self.__formats.default)
-		self.__formats.entity.setForeground(QBrush(QColor(155, 110, 165)))
-		self.__formats.entityClass = QTextCharFormat(self.__formats.entity)
-		self.__formats.entityFunction = QTextCharFormat(self.__formats.entity)
-		self.__formats.entityDecorator = QTextCharFormat(self.__formats.entity)
+		self.formats.entity = QTextCharFormat(self.formats.default)
+		self.formats.entity.setForeground(QBrush(QColor(155, 110, 165)))
+		self.formats.entityClass = QTextCharFormat(self.formats.entity)
+		self.formats.entityFunction = QTextCharFormat(self.formats.entity)
+		self.formats.entityDecorator = QTextCharFormat(self.formats.entity)
 
-		self.__formats.builtins = QTextCharFormat(self.__formats.default)
-		self.__formats.builtins.setForeground(QBrush(QColor(115, 135, 175)))
-		self.__formats.builtinsExceptions = QTextCharFormat(self.__formats.builtins)
-		self.__formats.builtinsFunctions = QTextCharFormat(self.__formats.builtins)
-		self.__formats.builtinsMiscellaneous = QTextCharFormat(self.__formats.builtins)
-		self.__formats.builtinsObjectMethods = QTextCharFormat(self.__formats.builtins)
-		self.__formats.magicMethods = QTextCharFormat(self.__formats.builtins)
+		self.formats.builtins = QTextCharFormat(self.formats.default)
+		self.formats.builtins.setForeground(QBrush(QColor(115, 135, 175)))
+		self.formats.builtinsExceptions = QTextCharFormat(self.formats.builtins)
+		self.formats.builtinsFunctions = QTextCharFormat(self.formats.builtins)
+		self.formats.builtinsMiscellaneous = QTextCharFormat(self.formats.builtins)
+		self.formats.builtinsObjectMethods = QTextCharFormat(self.formats.builtins)
+		self.formats.magicMethods = QTextCharFormat(self.formats.builtins)
 
-		self.__formats.magicObject = QTextCharFormat(self.__formats.default)
-		self.__formats.magicObject.setFontWeight(QFont.Bold)
+		self.formats.magicObject = QTextCharFormat(self.formats.default)
+		self.formats.magicObject.setFontWeight(QFont.Bold)
 
-		self.__formats.decoratorArgument = QTextCharFormat(self.__formats.default)
-		self.__formats.decoratorArgument.setForeground(QColor(115, 135, 175))
-		self.__formats.decoratorArgument.setFontItalic(True)
+		self.formats.decoratorArgument = QTextCharFormat(self.formats.default)
+		self.formats.decoratorArgument.setForeground(QColor(115, 135, 175))
+		self.formats.decoratorArgument.setFontItalic(True)
 
-		self.__formats.singleLineComment = QTextCharFormat(self.__formats.default)
-		self.__formats.singleLineComment.setForeground(QColor(128, 128, 128))
+		self.formats.singleLineComment = QTextCharFormat(self.formats.default)
+		self.formats.singleLineComment.setForeground(QColor(128, 128, 128))
 
-		self.__formats.multiLineString = QTextCharFormat(self.__formats.default)
-		self.__formats.multiLineString.setForeground(QColor(205, 105, 75))
-		self.__formats.multiLineString.setFontItalic(True)
+		self.formats.multiLineString = QTextCharFormat(self.formats.default)
+		self.formats.multiLineString.setForeground(QColor(205, 105, 75))
+		self.formats.multiLineString.setFontItalic(True)
 
-		self.__formats.quotation = QTextCharFormat(self.__formats.default)
-		self.__formats.quotation.setForeground(QColor(145, 160, 105))
-		self.__formats.quotation.setFontItalic(True)
-		self.__formats.doubleQuotation = QTextCharFormat(self.__formats.quotation)
-		self.__formats.singleQuotation = QTextCharFormat(self.__formats.quotation)
+		self.formats.quotation = QTextCharFormat(self.formats.default)
+		self.formats.quotation.setForeground(QColor(145, 160, 105))
+		self.formats.quotation.setFontItalic(True)
+		self.formats.doubleQuotation = QTextCharFormat(self.formats.quotation)
+		self.formats.singleQuotation = QTextCharFormat(self.formats.quotation)
 
 	@core.executionTrace
 	def __setRules(self):
@@ -355,48 +515,48 @@ class PythonHighlighter(QSyntaxHighlighter):
 		self.__multiLineStringStart = QRegExp(r"\"\"\"|'''")
 		self.__multiLineStringEnd = QRegExp(r"\"\"\"|'''")
 
-		self.__rules = map(lambda i: Rule(pattern=QRegExp(r"\b{0}\b".format(i)), format=self.__formats.keyword), self.__keywords)
+		self.rules = map(lambda i: Rule(pattern=QRegExp(r"\b{0}\b".format(i)), format=self.formats.keyword), self.__keywords)
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?[1-9]+\d*|0\b"), format=self.__formats.numericIntegerDecimal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b([-+]?[1-9]+\d*|0)L\b"), format=self.__formats.numericIntegerLongDecimal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+L\b"), format=self.__formats.numericIntegerLongHexadecimal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+\b"), format=self.__formats.numericIntegerHexadecimal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+L\b"), format=self.__formats.numericIntegerLongHexadecimal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?0[0-7]+\b"), format=self.__formats.numericIntegerOctal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[-+]?0[0-7]+L\b"), format=self.__formats.numericIntegerLongOctal))
-		self.__rules.append(Rule(pattern=QRegExp(r"[-+]?\d*\.?\d+([eE][-+]?\d+)?"), format=self.__formats.numericFloat))
-		self.__rules.append(Rule(pattern=QRegExp(r"[-+]?\d*\.?\d+([eE][-+]?\d+)?\s*\s*[-+]?\d*\.?\d+([eE][-+]?\d+)?[jJ]"), format=self.__formats.numericComplex))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?[1-9]+\d*|0\b"), format=self.formats.numericIntegerDecimal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b([-+]?[1-9]+\d*|0)L\b"), format=self.formats.numericIntegerLongDecimal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+L\b"), format=self.formats.numericIntegerLongHexadecimal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+\b"), format=self.formats.numericIntegerHexadecimal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?0x[a-fA-F\d]+L\b"), format=self.formats.numericIntegerLongHexadecimal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?0[0-7]+\b"), format=self.formats.numericIntegerOctal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?0[0-7]+L\b"), format=self.formats.numericIntegerLongOctal))
+		self.rules.append(Rule(pattern=QRegExp(r"[-+]?\d*\.?\d+([eE][-+]?\d+)?"), format=self.formats.numericFloat))
+		self.rules.append(Rule(pattern=QRegExp(r"[-+]?\d*\.?\d+([eE][-+]?\d+)?\s*\s*[-+]?\d*\.?\d+([eE][-+]?\d+)?[jJ]"), format=self.formats.numericComplex))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(global)\b"), format=self.__formats.modifierGlobal))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b[A-Z_]+\b"), format=self.__formats.modifierSpecialGlobal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(global)\b"), format=self.formats.modifierGlobal))
+		self.rules.append(Rule(pattern=QRegExp(r"\b[A-Z_]+\b"), format=self.formats.modifierSpecialGlobal))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"<\=|>\=|\=\=|<|>|\!\="), format=self.__formats.operatorComparison))
-		self.__rules.append(Rule(pattern=QRegExp(r"\="), format=self.__formats.operatorAssignement))
-		self.__rules.append(Rule(pattern=QRegExp(r"\+\=|-\=|\*\=|/\=|//\=|%\=|&\=|\|\=|\^\=|>>\=|<<\=|\*\*\="), format=self.__formats.operatorAssignementAugmented))
-		self.__rules.append(Rule(pattern=QRegExp(r"\+|\-|\*|\*\*|/|//|%|<<|>>|&|\||\^|~"), format=self.__formats.operatorArithmetic))
+		self.rules.append(Rule(pattern=QRegExp(r"<\=|>\=|\=\=|<|>|\!\="), format=self.formats.operatorComparison))
+		self.rules.append(Rule(pattern=QRegExp(r"\="), format=self.formats.operatorAssignement))
+		self.rules.append(Rule(pattern=QRegExp(r"\+\=|-\=|\*\=|/\=|//\=|%\=|&\=|\|\=|\^\=|>>\=|<<\=|\*\*\="), format=self.formats.operatorAssignementAugmented))
+		self.rules.append(Rule(pattern=QRegExp(r"\+|\-|\*|\*\*|/|//|%|<<|>>|&|\||\^|~"), format=self.formats.operatorArithmetic))
 
 		# This rules don't work: QRegExp lacks of lookbehind support.		
-		self.__rules.append(Rule(pattern=QRegExp(r"(?<=class\s)\w+(?=\s?\(\)\s?:)"), format=self.__formats.entityClass))
-		self.__rules.append(Rule(pattern=QRegExp(r"(?<=def\s)\w+(?=\s?\(\)\s?:)"), format=self.__formats.entityFunction))
+		self.rules.append(Rule(pattern=QRegExp(r"(?<=class\s)\w+(?=\s?\(\)\s?:)"), format=self.formats.entityClass))
+		self.rules.append(Rule(pattern=QRegExp(r"(?<=def\s)\w+(?=\s?\(\)\s?:)"), format=self.formats.entityFunction))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"@[\w\.]+"), format=self.__formats.entityDecorator))
+		self.rules.append(Rule(pattern=QRegExp(r"@[\w\.]+"), format=self.formats.entityDecorator))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(ArithmeticError|AssertionError|AttributeError|BufferError|BytesWarning|CodecRegistryError|DeprecationWarning|EOFError|EnvironmentError|FloatingPointError|FutureWarning|GetPassWarning|IOError|ImportError|ImportWarning|IndentationError|IndexError|ItimerError|KeyError|LookupError|MemoryError|NameError|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|ReferenceError|RuntimeError|RuntimeWarning|StandardError|StopIteration|SyntaxError|SyntaxWarning|SystemError|TabError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError|ZipImportError|_OptionError|error|error)\b"), format=self.__formats.builtinsExceptions))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(abs|all|any|apply|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|license|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b"), format=self.__formats.builtinsFunctions))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(Ellipsis|False|None|True|__(debug|doc|import|name|package)__)\b"), format=self.__formats.builtinsMiscellaneous))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(__(class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook)__)\b"), format=self.__formats.builtinsObjectMethods))
-		self.__rules.append(Rule(pattern=QRegExp(r"\b__(abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor)__\b"), format=self.__formats.magicMethods))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(ArithmeticError|AssertionError|AttributeError|BufferError|BytesWarning|CodecRegistryError|DeprecationWarning|EOFError|EnvironmentError|FloatingPointError|FutureWarning|GetPassWarning|IOError|ImportError|ImportWarning|IndentationError|IndexError|ItimerError|KeyError|LookupError|MemoryError|NameError|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|ReferenceError|RuntimeError|RuntimeWarning|StandardError|StopIteration|SyntaxError|SyntaxWarning|SystemError|TabError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError|ZipImportError|_OptionError|error|error)\b"), format=self.formats.builtinsExceptions))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(abs|all|any|apply|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|license|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b"), format=self.formats.builtinsFunctions))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(Ellipsis|False|None|True|__(debug|doc|import|name|package)__)\b"), format=self.formats.builtinsMiscellaneous))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(__(class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook)__)\b"), format=self.formats.builtinsObjectMethods))
+		self.rules.append(Rule(pattern=QRegExp(r"\b__(abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor)__\b"), format=self.formats.magicMethods))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\b(?:(?!__(debug|doc|import|name|package|class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook__|abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor))__\w+__)\b"), format=self.__formats.magicObject))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(?:(?!__(debug|doc|import|name|package|class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook__|abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor))__\w+__)\b"), format=self.formats.magicObject))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\bself\b"), format=self.__formats.decoratorArgument))
+		self.rules.append(Rule(pattern=QRegExp(r"\bself\b"), format=self.formats.decoratorArgument))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"#.*$\n?"), format=self.__formats.singleLineComment))
+		self.rules.append(Rule(pattern=QRegExp(r"#.*$\n?"), format=self.formats.singleLineComment))
 
-		self.__rules.append(Rule(pattern=QRegExp(r"\"[^\n\"]*\""), format=self.__formats.doubleQuotation))
-		self.__rules.append(Rule(pattern=QRegExp(r"'[^\n']*'"), format=self.__formats.singleQuotation))
+		self.rules.append(Rule(pattern=QRegExp(r"\"[^\n\"]*\""), format=self.formats.doubleQuotation))
+		self.rules.append(Rule(pattern=QRegExp(r"'[^\n']*'"), format=self.formats.singleQuotation))
 
-	@core.executionTrace
+	# @core.executionTrace
 	def highlightBlock(self, block):
 		"""
 		This method highlights provided text block.
@@ -407,10 +567,10 @@ class PythonHighlighter(QSyntaxHighlighter):
 		self.setCurrentBlockState(0)
 
 		if block.trimmed().isEmpty():
-			self.setFormat(0, len(block), self.__formats.null)
+			self.setFormat(0, len(block), self.formats.null)
 			return
 
-		self.setFormat(0, len(block), self.__formats.default)
+		self.setFormat(0, len(block), self.formats.default)
 
 		startIndex = 0
 		if self.previousBlockState() != 1:
@@ -430,25 +590,5 @@ class PythonHighlighter(QSyntaxHighlighter):
 				commentLength = endIndex - startIndex + self.__multiLineStringEnd.matchedLength()
 				self.highlightText(block, endIndex, len(block))
 
-			self.setFormat(startIndex, commentLength, self.__formats.multiLineString)
+			self.setFormat(startIndex, commentLength, self.formats.multiLineString)
 			startIndex = block.indexOf(self.__multiLineStringStart, startIndex + commentLength)
-
-	@core.executionTrace
-	def highlightText(self, text, start, end):
-		"""
-		This method highlights provided text.
-
-		:param text: Text. ( QString )
-		:param start: Text start index. ( Integer )
-		:param end: Text end index. ( Integer )
-		:return: Method success. ( Boolean )
-		"""
-
-		for rule in self.__rules:
-			index = rule.pattern.indexIn(text, start)
-			while index >= start and index < end:
-				length = rule.pattern.matchedLength()
-				self.setFormat(index, min(length, end - index), rule.format)
-				index = rule.pattern.indexIn(text, index + length)
-		return True
-
