@@ -390,45 +390,49 @@ class ScriptEditor(UiComponent):
 
 		self.__fileLabel = Menu_QLabel("File", self)
 		self.__fileMenu = QMenu()
-		loadScriptAction = QAction("&Load script ...", self.__fileMenu)
+		loadScriptAction = QAction("&Load script ...", self.__container)
 		loadScriptAction.setShortcut(QKeySequence(QKeySequence.Open))
 		self.__fileMenu.addAction(loadScriptAction)
-		sourceScriptAction = QAction("&Source script ...", self.__fileMenu)
+		sourceScriptAction = QAction("&Source script ...", self.__container)
 		self.__fileMenu.addAction(sourceScriptAction)
-		saveScriptAction = QAction("&Save script ...", self.__fileMenu)
+		saveScriptAction = QAction("&Save script ...", self.__container)
 		saveScriptAction.setShortcut(QKeySequence(QKeySequence.Save))
 		self.__fileMenu.addAction(saveScriptAction)
+		self.__fileLabel.setMenu(self.__fileMenu)
+		self.__toolBar.addWidget(self.__fileLabel)
+
 		# Signals / Slots.
 		loadScriptAction.triggered.connect(self.__loadScriptAction__triggered)
 		sourceScriptAction.triggered.connect(self.__sourceScriptAction__triggered)
 		saveScriptAction.triggered.connect(self.__saveScriptAction__triggered)
-		self.__fileLabel.setMenu(self.__fileMenu)
-		self.__toolBar.addWidget(self.__fileLabel)
 
 		self.__editLabel = Menu_QLabel("Edit", self)
 		self.__editMenu = QMenu()
-		undoAction = QAction("&Undo", self.__editMenu)
+		undoAction = QAction("&Undo", self.__container)
 		undoAction.setShortcut(QKeySequence(QKeySequence.Undo))
 		self.__editMenu.addAction(undoAction)
-		redoAction = QAction("&Redo", self.__editMenu)
+		redoAction = QAction("&Redo", self.__container)
 		redoAction.setShortcut(QKeySequence(QKeySequence.Redo))
 		self.__editMenu.addAction(redoAction)
 		self.__editMenu.addSeparator()
-		cutAction = QAction("Cu&t", self.__editMenu)
+		cutAction = QAction("Cu&t", self.__container)
 		cutAction.setShortcut(QKeySequence(QKeySequence.Cut))
 		self.__editMenu.addAction(cutAction)
-		copyAction = QAction("&Copy", self.__editMenu)
+		copyAction = QAction("&Copy", self.__container)
 		copyAction.setShortcut(QKeySequence(QKeySequence.Copy))
 		self.__editMenu.addAction(copyAction)
-		pasteAction = QAction("&Paste", self.__editMenu)
+		pasteAction = QAction("&Paste", self.__container)
 		pasteAction.setShortcut(QKeySequence(QKeySequence.Paste))
 		self.__editMenu.addAction(pasteAction)
-		deleteAction = QAction("Delete", self.__editMenu)
+		deleteAction = QAction("Delete", self.__container)
 		self.__editMenu.addAction(deleteAction)
 		self.__editMenu.addSeparator()
-		selectAllAction = QAction("Select All", self.__editMenu)
+		selectAllAction = QAction("Select All", self.__container)
 		selectAllAction.setShortcut(QKeySequence(QKeySequence.SelectAll))
 		self.__editMenu.addAction(selectAllAction)
+		self.__editLabel.setMenu(self.__editMenu)
+		self.__toolBar.addWidget(self.__editLabel)
+
 		# Signals / Slots.
 		undoAction.triggered.connect(self.__undoAction__triggered)
 		redoAction.triggered.connect(self.__redoAction__triggered)
@@ -437,19 +441,21 @@ class ScriptEditor(UiComponent):
 		pasteAction.triggered.connect(self.__pasteAction__triggered)
 		deleteAction.triggered.connect(self.__deleteAction__triggered)
 		selectAllAction.triggered.connect(self.__selectAllAction__triggered)
-		self.__editLabel.setMenu(self.__editMenu)
-		self.__toolBar.addWidget(self.__editLabel)
 
 		self.__commandLabel = Menu_QLabel("Command", self)
 		self.__commandMenu = QMenu()
-		evaluateSelectionAction = QAction("&Evaluate Selection", self.__commandMenu)
+		evaluateSelectionAction = QAction("&Evaluate Selection", self.__container)
 		evaluateSelectionAction.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_Enter))
 		self.__commandMenu.addAction(evaluateSelectionAction)
-		evaluateScriptAction = QAction("Evaluate &Script", self.__commandMenu)
+		evaluateScriptAction = QAction("Evaluate &Script", self.__container)
 		evaluateScriptAction.setShortcut(QKeySequence(Qt.SHIFT + Qt.CTRL + Qt.Key_Enter))
 		self.__commandMenu.addAction(evaluateScriptAction)
 		self.__commandLabel.setMenu(self.__commandMenu)
 		self.__toolBar.addWidget(self.__commandLabel)
+
+		# Signals / Slots.
+		evaluateSelectionAction.triggered.connect(self.__evaluateSelectionAction__triggered)
+		evaluateScriptAction.triggered.connect(self.__evaluateScriptAction__triggered)
 
 	# @core.executionTrace
 	def __Script_Editor_Output_textEdit_setUi(self):
@@ -584,6 +590,26 @@ class ScriptEditor(UiComponent):
 		"""
 
 		print "selectAllAction"
+
+	@core.executionTrace
+	def __evaluateSelectionAction__triggered(self, checked):
+		"""
+		This method is triggered by **evaluateSelectionAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "evaluateSelectionAction"
+
+	@core.executionTrace
+	def __evaluateScriptAction__triggered(self, checked):
+		"""
+		This method is triggered by **evaluateScript** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "evaluateScript"
 
 	@core.executionTrace
 	def __Evaluate_Script_pushButton__clicked(self, checked):
