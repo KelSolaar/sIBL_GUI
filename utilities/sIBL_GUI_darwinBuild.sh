@@ -17,7 +17,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,umbra.libraries.freeImage.freeImage,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "code,foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,umbra.components.core.db.dbUtilities.common,umbra.components.core.db.dbUtilities.types,umbra.libraries.freeImage.freeImage,umbra.ui.highlighters,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End
@@ -27,58 +27,19 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
-mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-cp $SOURCE/ui/sIBL_GUI.ui $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-cp $SOURCE/ui/sIBL_GUI_Layouts.rc $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-cp $SOURCE/ui/Windows_styleSheet.qss $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-cp $SOURCE/ui/Darwin_styleSheet.qss $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-cp $SOURCE/ui/Linux_styleSheet.qss $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
 cp $SOURCE/resources/Icon_Light_512.icns $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
+mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
+uiResources=( "sIBL_GUI.ui" "sIBL_GUI_Layouts.rc" "Windows_styleSheet.qss" "Darwin_styleSheet.qss" "Linux_styleSheet.qss" )
+for uiResource in "${uiResources[@]}"
+do
+	cp $SOURCE/ui/$uiResource $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
+done
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Central_Widget.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Central_Widget_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Central_Widget_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Close_Cross.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Close_Cross_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Export.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Export_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Export_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Horizontal_Scrollbar_Grip.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Icon_Light.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Inspect.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Inspect_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Inspect_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Layout.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Layout_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Layout_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Library.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Library_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Library_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Miscellaneous.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Miscellaneous_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Miscellaneous_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Preferences.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Preferences_Active.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Preferences_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Resize_Grip.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/sIBL_GUI_Logo.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/sIBL_GUI_SpashScreen.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Small_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Small_Left_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Small_Right_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Small_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Thumbnail_Format_Not_Supported_Yet.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Thumbnail_Not_Found.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Tiny_Down_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Tiny_Up_Arrow.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/TreeView_Branch_Closed.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/TreeView_Branch_End.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/TreeView_Branch_More.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/TreeView_Branch_Open.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/TreeView_VLine.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Undock_Window.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Undock_Window_Hover.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-cp $SOURCE/resources/Vertical_Scrollbar_Grip.png $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+resources=( "Central_Widget.png" "Central_Widget_Active.png" "Central_Widget_Hover.png" "Close_Cross.png" "Close_Cross_Hover.png" "Export.png" "Export_Active.png" "Export_Hover.png" "Horizontal_Scrollbar_Grip.png" "Icon_Light.png" "Inspect.png" "Inspect_Active.png" "Inspect_Hover.png" "Layout.png" "Layout_Active.png" "Layout_Hover.png" "Library.png" "Library_Active.png" "Library_Hover.png" "Miscellaneous.png" "Miscellaneous_Active.png" "Miscellaneous_Hover.png" "Preferences.png" "Preferences_Active.png" "Preferences_Hover.png" "Resize_Grip.png" "sIBL_GUI_Logo.png" "sIBL_GUI_SpashScreen.png" "Small_Down_Arrow.png" "Small_Left_Arrow.png" "Small_Right_Arrow.png" "Small_Up_Arrow.png" "Thumbnail_Format_Not_Supported_Yet.png" "Thumbnail_Not_Found.png" "Tiny_Down_Arrow.png" "Tiny_Up_Arrow.png" "TreeView_Branch_Closed.png" "TreeView_Branch_End.png" "TreeView_Branch_More.png" "TreeView_Branch_Open.png" "TreeView_VLine.png" "Undock_Window.png" "Undock_Window_Hover.png" "Vertical_Scrollbar_Grip.png" )
+for resource in "${resources[@]}"
+do
+	cp $SOURCE/resources/$resource $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+done
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates
 cp -r $SOURCE/templates/Maya/* $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/
 cp -r $SOURCE/components $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
