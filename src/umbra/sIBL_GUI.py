@@ -448,9 +448,9 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		self.__setVisualStyle()
 		umbra.ui.common.setWindowDefaultIcon(self)
 
-		# Setting window title and toolbar.
+		# Setting window title and toolBar.
 		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
-		self.__initializeToolbar()
+		self.__initializeToolBar()
 
 		# --- Initializing Components Manager. ---
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Initializing Components manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
@@ -1321,12 +1321,12 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		RuntimeConstants.splashscreen and RuntimeConstants.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
 
 	@core.executionTrace
-	def __initializeToolbar(self):
+	def __initializeToolBar(self):
 		"""
-		This method initializes Application toolbar.
+		This method initializes Application toolBar.
 		"""
 
-		LOGGER.debug("> Initializing Application toolbar.")
+		LOGGER.debug("> Initializing Application toolBar.")
 
 		self.toolBar.setIconSize(QSize(UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize))
 
@@ -1341,8 +1341,8 @@ class sIBL_GUI(Ui_Type, Ui_Setup):
 		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 		self.toolBar.addWidget(spacer)
 
-		toolbarFont = QFont()
-		toolbarFont.setPointSize(16)
+		toolBarFont = QFont()
+		toolBarFont.setPointSize(16)
 
 		LOGGER.debug("> Adding Active_QLabels.")
 
