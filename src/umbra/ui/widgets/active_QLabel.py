@@ -399,4 +399,4 @@ class Active_QLabel(QLabel):
 		:param event: QEvent. ( QEvent )
 		"""
 
-		not self.__checkable and	self.setPixmap(self.__defaultPixmap)
+		not self.__checkable and self.setPixmap(self.__defaultPixmap)
