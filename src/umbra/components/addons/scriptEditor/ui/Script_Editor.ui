@@ -2,49 +2,66 @@
 <ui version="4.0">
  <class>Script_Editor_DockWidget</class>
  <widget class="QDockWidget" name="Script_Editor_DockWidget">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>280</width>
-    <height>242</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Script Editor</string>
   </property>
   <widget class="QWidget" name="Script_Editor_dockWidgetContents">
-   <layout class="QGridLayout" name="Script_Editor_dockWidgetContents_gridLayout">
-    <item row="0" column="0">
-     <widget class="QTextEdit" name="Script_Editor_Output_textEdit">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>128</height>
-       </size>
-      </property>
-      <property name="statusTip">
-       <string>Script Editor Output Text Edit: Displays interactive console output.</string>
-      </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" colspan="2">
+     <widget class="QFrame" name="toolBar_frame">
       <property name="frameShape">
-       <enum>QFrame::Box</enum>
+       <enum>QFrame::StyledPanel</enum>
       </property>
-      <property name="acceptRichText">
-       <bool>false</bool>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
       </property>
+      <layout class="QGridLayout" name="toolBar_frame_gridLayout">
+       <property name="margin">
+        <number>0</number>
+       </property>
+      </layout>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QTextEdit" name="Script_Editor_Input_textEdit">
-      <property name="statusTip">
-       <string>Script Editor Input Text Edit: Allows interactive console interaction.</string>
+    <item row="1" column="0" colspan="2">
+     <widget class="QSplitter" name="Script_Editor_splitter">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
+      <widget class="QTextEdit" name="Script_Editor_Output_textEdit">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>128</height>
+        </size>
+       </property>
+       <property name="statusTip">
+        <string>Script Editor Output Text Edit: Displays interactive console output.</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Box</enum>
+       </property>
+       <property name="acceptRichText">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="Script_Editor_Input_textEdit">
+       <property name="statusTip">
+        <string>Script Editor Input Text Edit: Allows interactive console interaction.</string>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QPushButton" name="Evaluate_Input_pushButton">
+     <widget class="QPushButton" name="Evaluate_Selection_pushButton">
       <property name="text">
-       <string>Evaluate Input</string>
+       <string>Evaluate Selection</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="Evaluate_Script_pushButton">
+      <property name="text">
+       <string>Evaluate Script</string>
       </property>
      </widget>
     </item>

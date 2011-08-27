@@ -34,6 +34,7 @@ from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.highlighters import LoggingHighlighter, PythonHighlighter
+from umbra.ui.widgets.menu_QLabel import Menu_QLabel
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -81,6 +82,7 @@ class ScriptEditor(UiComponent):
 
 		self.__locals = None
 		self.__memoryHandlerStackDepth = None
+		self.__toolBar = None
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -235,6 +237,36 @@ class ScriptEditor(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("memoryHandlerStackDepth"))
 
+	@property
+	def toolBar(self):
+		"""
+		This method is the property for **self.__toolBar** attribute.
+
+		:return: self.__toolBar. ( QToolbar )
+		"""
+
+		return self.__toolBar
+
+	@toolBar.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolBar(self, value):
+		"""
+		This method is the setter method for **self.__toolBar** attribute.
+
+		:param value: Attribute value. ( QToolbar )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolBar"))
+
+	@toolBar.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolBar(self):
+		"""
+		This method is the deleter method for **self.__toolBar** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolBar"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -284,12 +316,16 @@ class ScriptEditor(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.__toolBar = QToolBar()
+		self.ui.toolBar_frame_gridLayout.addWidget(self.__toolBar)
+		self.__initializeToolbar()
+
 		self.ui.Script_Editor_Input_textEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_textEdit.document())
 		self.ui.Script_Editor_Output_textEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_textEdit.document())
 
 		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Script_Editor_Output_textEdit_refreshUi)
-		self.ui.Evaluate_Input_pushButton.clicked.connect(self.__Evaluate_Input_pushButton__clicked)
+		self.ui.Evaluate_Script_pushButton.clicked.connect(self.__Evaluate_Script_pushButton__clicked)
 		self.datasChanged.connect(self.__Script_Editor_Output_textEdit_refreshUi)
 
 		return True
@@ -304,11 +340,15 @@ class ScriptEditor(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
+		self.__toolBar.setParent(None)
+		self.__toolBar = None
+
 		self.ui.Script_Editor_Input_textEdit.highlighter = None
+		self.ui.Script_Editor_Output_textEdit.highlighter = None
 
 		# Signals / Slots.
 		self.__container.timer.timeout.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
-		self.ui.Evaluate_Input_pushButton.clicked.disconnect(self.__Evaluate_Input_pushButton__clicked)
+		self.ui.Evaluate_Script_pushButton.clicked.disconnect(self.__Evaluate_Script_pushButton__clicked)
 		self.datasChanged.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
 
 		return True
@@ -341,6 +381,75 @@ class ScriptEditor(UiComponent):
 		self.ui.setParent(None)
 
 		return True
+
+	@core.executionTrace
+	def __initializeToolbar(self):
+		"""
+		This method initializes Component toolBar.
+		"""
+
+		self.__fileLabel = Menu_QLabel("File", self)
+		self.__fileMenu = QMenu()
+		loadScriptAction = QAction("&Load script ...", self.__fileMenu)
+		loadScriptAction.setShortcut(QKeySequence(QKeySequence.Open))
+		self.__fileMenu.addAction(loadScriptAction)
+		sourceScriptAction = QAction("&Source script ...", self.__fileMenu)
+		self.__fileMenu.addAction(sourceScriptAction)
+		saveScriptAction = QAction("&Save script ...", self.__fileMenu)
+		saveScriptAction.setShortcut(QKeySequence(QKeySequence.Save))
+		self.__fileMenu.addAction(saveScriptAction)
+		# Signals / Slots.
+		loadScriptAction.triggered.connect(self.__loadScriptAction__triggered)
+		sourceScriptAction.triggered.connect(self.__sourceScriptAction__triggered)
+		saveScriptAction.triggered.connect(self.__saveScriptAction__triggered)
+		self.__fileLabel.setMenu(self.__fileMenu)
+		self.__toolBar.addWidget(self.__fileLabel)
+
+		self.__editLabel = Menu_QLabel("Edit", self)
+		self.__editMenu = QMenu()
+		undoAction = QAction("&Undo", self.__editMenu)
+		undoAction.setShortcut(QKeySequence(QKeySequence.Undo))
+		self.__editMenu.addAction(undoAction)
+		redoAction = QAction("&Redo", self.__editMenu)
+		redoAction.setShortcut(QKeySequence(QKeySequence.Redo))
+		self.__editMenu.addAction(redoAction)
+		self.__editMenu.addSeparator()
+		cutAction = QAction("Cu&t", self.__editMenu)
+		cutAction.setShortcut(QKeySequence(QKeySequence.Cut))
+		self.__editMenu.addAction(cutAction)
+		copyAction = QAction("&Copy", self.__editMenu)
+		copyAction.setShortcut(QKeySequence(QKeySequence.Copy))
+		self.__editMenu.addAction(copyAction)
+		pasteAction = QAction("&Paste", self.__editMenu)
+		pasteAction.setShortcut(QKeySequence(QKeySequence.Paste))
+		self.__editMenu.addAction(pasteAction)
+		deleteAction = QAction("Delete", self.__editMenu)
+		self.__editMenu.addAction(deleteAction)
+		self.__editMenu.addSeparator()
+		selectAllAction = QAction("Select All", self.__editMenu)
+		selectAllAction.setShortcut(QKeySequence(QKeySequence.SelectAll))
+		self.__editMenu.addAction(selectAllAction)
+		# Signals / Slots.
+		undoAction.triggered.connect(self.__undoAction__triggered)
+		redoAction.triggered.connect(self.__redoAction__triggered)
+		cutAction.triggered.connect(self.__cutAction__triggered)
+		copyAction.triggered.connect(self.__copyAction__triggered)
+		pasteAction.triggered.connect(self.__pasteAction__triggered)
+		deleteAction.triggered.connect(self.__deleteAction__triggered)
+		selectAllAction.triggered.connect(self.__selectAllAction__triggered)
+		self.__editLabel.setMenu(self.__editMenu)
+		self.__toolBar.addWidget(self.__editLabel)
+
+		self.__commandLabel = Menu_QLabel("Command", self)
+		self.__commandMenu = QMenu()
+		evaluateSelectionAction = QAction("&Evaluate Selection", self.__commandMenu)
+		evaluateSelectionAction.setShortcut(QKeySequence(Qt.CTRL + Qt.Key_Enter))
+		self.__commandMenu.addAction(evaluateSelectionAction)
+		evaluateScriptAction = QAction("Evaluate &Script", self.__commandMenu)
+		evaluateScriptAction.setShortcut(QKeySequence(Qt.SHIFT + Qt.CTRL + Qt.Key_Enter))
+		self.__commandMenu.addAction(evaluateScriptAction)
+		self.__commandLabel.setMenu(self.__commandMenu)
+		self.__toolBar.addWidget(self.__commandLabel)
 
 	# @core.executionTrace
 	def __Script_Editor_Output_textEdit_setUi(self):
@@ -377,9 +486,109 @@ class ScriptEditor(UiComponent):
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
 
 	@core.executionTrace
-	def __Evaluate_Input_pushButton__clicked(self, checked):
+	def __loadScriptAction__triggered(self, checked):
 		"""
-		This method is triggered when **Evaluate_Input_pushButton** is clicked.
+		This method is triggered by **loadScriptAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "loadScriptAction"
+
+	@core.executionTrace
+	def __sourceScriptAction__triggered(self, checked):
+		"""
+		This method is triggered by **sourceScriptAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "sourceScriptAction"
+
+	@core.executionTrace
+	def __saveScriptAction__triggered(self, checked):
+		"""
+		This method is triggered by **saveScriptAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "saveScriptAction"
+
+	@core.executionTrace
+	def __undoAction__triggered(self, checked):
+		"""
+		This method is triggered by **undoAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "undoAction"
+
+	@core.executionTrace
+	def __redoAction__triggered(self, checked):
+		"""
+		This method is triggered by **redoAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "redoAction"
+
+	@core.executionTrace
+	def __cutAction__triggered(self, checked):
+		"""
+		This method is triggered by **cutAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "cutAction"
+
+	@core.executionTrace
+	def __copyAction__triggered(self, checked):
+		"""
+		This method is triggered by **copyAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "copyAction"
+
+	@core.executionTrace
+	def __pasteAction__triggered(self, checked):
+		"""
+		This method is triggered by **pasteAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "pasteAction"
+
+	@core.executionTrace
+	def __deleteAction__triggered(self, checked):
+		"""
+		This method is triggered by **deleteAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "deleteAction"
+
+	@core.executionTrace
+	def __selectAllAction__triggered(self, checked):
+		"""
+		This method is triggered by **selectAllAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		print "selectAllAction"
+
+	@core.executionTrace
+	def __Evaluate_Script_pushButton__clicked(self, checked):
+		"""
+		This method is triggered when **Evaluate_Script_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -389,6 +598,7 @@ class ScriptEditor(UiComponent):
 
 		self.emit(SIGNAL("datasChanged()"))
 
+	@core.executionTrace
 	def __getsLocals(self):
 		"""
 		This method gets the locals for the interactive console.
