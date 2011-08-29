@@ -65,6 +65,10 @@ class LinesNumbers_QWidget(QWidget):
 		self.__editor = editor
 
 		self.__margin = 16
+		self.__separatorWidth = 2
+		self.__backgroundColor = QColor(64, 64, 64)
+		self.__color = QColor(192, 192, 192)
+		self.__separatorColor = QColor(88, 88, 88)
 
 		self.setEditorViewportMargins(0)
 
@@ -134,6 +138,135 @@ class LinesNumbers_QWidget(QWidget):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("margin"))
 
+	@property
+	def separatorWidth(self):
+		"""
+		This method is the property for **self.__separatorWidth** attribute.
+
+		:return: self.__separatorWidth. ( Integer )
+		"""
+
+		return self.__separatorWidth
+
+	@separatorWidth.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def separatorWidth(self, value):
+		"""
+		This method is the setter method for **self.__separatorWidth** attribute.
+
+		:param value: Attribute value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("separatorWidth", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("separatorWidth", value)
+		self.__separatorWidth = value
+
+	@separatorWidth.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def separatorWidth(self):
+		"""
+		This method is the deleter method for **self.__separatorWidth** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("separatorWidth"))
+
+	@property
+	def backgroundColor(self):
+		"""
+		This method is the property for **self.__backgroundColor** attribute.
+
+		:return: self.__backgroundColor. ( QColor )
+		"""
+
+		return self.__backgroundColor
+
+	@backgroundColor.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def backgroundColor(self, value):
+		"""
+		This method is the setter method for **self.__backgroundColor** attribute.
+
+		:param value: Attribute value. ( QColor )
+		"""
+
+		if value:
+			assert type(value) is QColor, "'{0}' attribute: '{1}' type is not 'QColor'!".format("backgroundColor", value)
+		self.__backgroundColor = value
+
+	@backgroundColor.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def backgroundColor(self):
+		"""
+		This method is the deleter method for **self.__backgroundColor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("backgroundColor"))
+
+	@property
+	def color(self):
+		"""
+		This method is the property for **self.__color** attribute.
+
+		:return: self.__color. ( QColor )
+		"""
+
+		return self.__color
+
+	@color.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def color(self, value):
+		"""
+		This method is the setter method for **self.__color** attribute.
+
+		:param value: Attribute value. ( QColor )
+		"""
+
+		if value:
+			assert type(value) is QColor, "'{0}' attribute: '{1}' type is not 'QColor'!".format("color", value)
+		self.__color = value
+
+	@color.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def color(self):
+		"""
+		This method is the deleter method for **self.__color** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("color"))
+
+	@property
+	def separatorColor(self):
+		"""
+		This method is the property for **self.__separatorColor** attribute.
+
+		:return: self.__separatorColor. ( QColor )
+		"""
+
+		return self.__separatorColor
+
+	@separatorColor.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def separatorColor(self, value):
+		"""
+		This method is the setter method for **self.__separatorColor** attribute.
+
+		:param value: Attribute value. ( QColor )
+		"""
+
+		if value:
+			assert type(value) is QColor, "'{0}' attribute: '{1}' type is not 'QColor'!".format("separatorColor", value)
+		self.__separatorColor = value
+
+	@separatorColor.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def separatorColor(self):
+		"""
+		This method is the deleter method for **self.__separatorColor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("separatorColor"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -156,17 +289,24 @@ class LinesNumbers_QWidget(QWidget):
 		"""
 
 		painter = QPainter(self)
-		painter.fillRect(event.rect(), QColor(96, 96, 96))
+		painter.fillRect(event.rect(), self.__backgroundColor)
+
+		topRightCorner = event.rect().topRight()
+		bottomRightCorner = event.rect().bottomRight()
+		pen = QPen(QBrush(), self.__separatorWidth)
+		pen.setColor(self.__separatorColor)
+		painter.setPen(pen)
+		painter.drawLine(topRightCorner.x(), topRightCorner.y(), bottomRightCorner.x(), bottomRightCorner.y())
 
 		block = self.__editor.firstVisibleBlock()
 		blockNumber = block.blockNumber();
 		top = int(self.__editor.blockBoundingGeometry(block).translated(self.__editor.contentOffset()).top())
 		bottom = top + int(self.__editor.blockBoundingRect(block).height())
 
+		painter.setPen(self.__color)
 		while block.isValid() and top <= event.rect().bottom():
 			if block.isVisible() and bottom >= event.rect().top():
 				number = str(blockNumber + 1)
-				painter.setPen(QColor(192, 192, 192))
 				painter.drawText(-self.__margin / 4, top, self.width(), self.__editor.fontMetrics().height(), Qt.AlignRight, number)
 			block = block.next()
 
@@ -246,6 +386,8 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		# --- Setting class attributes. ---
 		self.__marginArea_LinesNumbers_widget = None
 
+		self.__highlightColor = QColor(56, 56, 56)
+
 		self.initializeUi()
 		self.highlightCurrentLine()
 
@@ -283,6 +425,38 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("marginArea_LinesNumbers_widget"))
+
+	@property
+	def highlightColor(self):
+		"""
+		This method is the property for **self.__highlightColor** attribute.
+
+		:return: self.__highlightColor. ( QColor )
+		"""
+
+		return self.__highlightColor
+
+	@highlightColor.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def highlightColor(self, value):
+		"""
+		This method is the setter method for **self.__highlightColor** attribute.
+
+		:param value: Attribute value. ( QColor )
+		"""
+
+		if value:
+			assert type(value) is QColor, "'{0}' attribute: '{1}' type is not 'QColor'!".format("highlightColor", value)
+		self.__highlightColor = value
+
+	@highlightColor.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def highlightColor(self):
+		"""
+		This method is the deleter method for **self.__highlightColor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("highlightColor"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -326,7 +500,7 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		extraSelections = []
 		if not self.isReadOnly():
 			selection = QTextEdit.ExtraSelection()
-			lineColor = QColor(Qt.yellow).lighter(160)
+			lineColor = self.__highlightColor
 			selection.format.setBackground(lineColor)
 			selection.format.setProperty(QTextFormat.FullWidthSelection, True)
 			selection.cursor = self.textCursor()
