@@ -61,7 +61,7 @@ QSizeGrip {
 }
 
 /* Various. */
-QCheckBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QSpinBox, QTreeView, QTextEdit, QTextBrowser {
+QCheckBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QPlainTextEdit, QSpinBox, QTreeView, QTextEdit, QTextBrowser {
 	background-color: rgb(48, 48, 48);
 }
 
@@ -396,6 +396,11 @@ Menu_QLabel:hover {
 
 #Image_frame {
 	padding: 8px;
+}
+
+/* Addon Component "Script Editor". */
+#Lines_Numbers_textEdit {
+	background-color: rgb(96, 96, 96);
 }
 
 /* Addon Component "Search Database". */

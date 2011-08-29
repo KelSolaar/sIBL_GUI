@@ -34,6 +34,7 @@ from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.highlighters import LoggingHighlighter, PythonHighlighter
+from umbra.ui.widgets.codeEditor_QPlainTextEdit import CodeEditor_QPlainTextEdit
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -320,17 +321,16 @@ class ScriptEditor(UiComponent):
 		self.ui.menuBar_frame_gridLayout.addWidget(self.__menuBar)
 		self.__initializeMenuBar()
 
-		self.ui.Script_Editor_Input_textEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_textEdit.document())
-		self.ui.Script_Editor_Output_textEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_textEdit.document())
+		self.ui.Script_Editor_Input_plainTextEdit = CodeEditor_QPlainTextEdit(self)
+		self.ui.Script_Editor_gridLayout.addWidget(self.ui.Script_Editor_Input_plainTextEdit, 0, 0)
 
-		self.__Lines_Numbers_textEdit_setUi()
+		self.ui.Script_Editor_Input_plainTextEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_plainTextEdit.document())
+		self.ui.Script_Editor_Output_plainTextEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_plainTextEdit.document())
 
 		# Signals / Slots.
-		self.__container.timer.timeout.connect(self.__Script_Editor_Output_textEdit_refreshUi)
+		self.__container.timer.timeout.connect(self.__Script_Editor_Output_plainTextEdit_refreshUi)
 		self.ui.Evaluate_Script_pushButton.clicked.connect(self.__Evaluate_Script_pushButton__clicked)
-		self.datasChanged.connect(self.__Script_Editor_Output_textEdit_refreshUi)
-		self.ui.Script_Editor_Input_textEdit.textChanged.connect(self.__Script_Editor_Input_textEdit__textChanged)
-		self.ui.Script_Editor_Input_textEdit.verticalScrollBar().valueChanged.connect(self.__Script_Editor_Input_textEdit_verticalScrollBar__valueChanged)
+		self.datasChanged.connect(self.__Script_Editor_Output_plainTextEdit_refreshUi)
 
 		return True
 
@@ -347,15 +347,14 @@ class ScriptEditor(UiComponent):
 		self.__menuBar.setParent(None)
 		self.__menuBar = None
 
-		self.ui.Script_Editor_Input_textEdit.highlighter = None
-		self.ui.Script_Editor_Output_textEdit.highlighter = None
+		self.ui.Script_Editor_Input_plainTextEdit.highlighter = None
+		self.ui.Script_Editor_Output_plainTextEdit.highlighter = None
+		self.ui.Script_Editor_Input_plainTextEdit = None
 
 		# Signals / Slots.
-		self.__container.timer.timeout.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
+		self.__container.timer.timeout.disconnect(self.__Script_Editor_Output_plainTextEdit_refreshUi)
 		self.ui.Evaluate_Script_pushButton.clicked.disconnect(self.__Evaluate_Script_pushButton__clicked)
-		self.datasChanged.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
-		self.ui.Script_Editor_Input_textEdit.textChanged.disconnect(self.__Script_Editor_Input_textEdit__textChanged)
-		self.ui.Script_Editor_Input_textEdit.verticalScrollBar().valueChanged.disconnect(self.__Script_Editor_Input_textEdit_verticalScrollBar__valueChanged)
+		self.datasChanged.disconnect(self.__Script_Editor_Output_plainTextEdit_refreshUi)
 
 		return True
 
@@ -458,75 +457,38 @@ class ScriptEditor(UiComponent):
 		evaluateScriptAction.triggered.connect(self.__evaluateScriptAction__triggered)
 
 	# @core.executionTrace
-	def __Script_Editor_Output_textEdit_setUi(self):
+	def __Script_Editor_Output_plainTextEdit_setUi(self):
 		"""
-		This method sets the **Script_Editor_Output_textEdit** Widget.
+		This method sets the **Script_Editor_Output_plainTextEdit** Widget.
 		"""
 
 		for line in self.__container.loggingSessionHandlerStream.stream:
-			self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
-			self.ui.Script_Editor_Output_textEdit.insertPlainText(line)
-		self.__Script_Editor_Output_textEdit__setDefaultViewState()
+			self.ui.Script_Editor_Output_plainTextEdit.moveCursor(QTextCursor.End)
+			self.ui.Script_Editor_Output_plainTextEdit.insertPlainText(line)
+		self.__Script_Editor_Output_plainTextEdit__setDefaultViewState()
 
 	# @core.executionTrace
-	def __Script_Editor_Output_textEdit__setDefaultViewState(self):
+	def __Script_Editor_Output_plainTextEdit__setDefaultViewState(self):
 		"""
-		This method sets the **Script_Editor_Output_textEdit** Widget.
+		This method sets the **Script_Editor_Output_plainTextEdit** Widget.
 		"""
 
-		self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
-		self.ui.Script_Editor_Output_textEdit.ensureCursorVisible()
+		self.ui.Script_Editor_Output_plainTextEdit.moveCursor(QTextCursor.End)
+		self.ui.Script_Editor_Output_plainTextEdit.ensureCursorVisible()
 
 	# @core.executionTrace
-	def __Script_Editor_Output_textEdit_refreshUi(self):
+	def __Script_Editor_Output_plainTextEdit_refreshUi(self):
 		"""
-		This method updates the **Script_Editor_Output_textEdit** Widget.
+		This method updates the **Script_Editor_Output_plainTextEdit** Widget.
 		"""
 
 		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
 			for line in self.__container.loggingSessionHandlerStream.stream[self.__memoryHandlerStackDepth:memoryHandlerStackDepth]:
-				self.ui.Script_Editor_Output_textEdit.moveCursor(QTextCursor.End)
-				self.ui.Script_Editor_Output_textEdit.insertPlainText(line)
-			self.__Script_Editor_Output_textEdit__setDefaultViewState()
+				self.ui.Script_Editor_Output_plainTextEdit.moveCursor(QTextCursor.End)
+				self.ui.Script_Editor_Output_plainTextEdit.insertPlainText(line)
+			self.__Script_Editor_Output_plainTextEdit__setDefaultViewState()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
-
-	@core.executionTrace
-	def __Lines_Numbers_textEdit_setUi(self):
-		"""
-		This method sets the **Lines_Numbers_textEdit** Widget.
-		"""
-
-		self.ui.Lines_Numbers_textEdit.document().clear()
-		for i in range(self.ui.Script_Editor_Input_textEdit.document().lineCount()):
-				self.ui.Lines_Numbers_textEdit.setAlignment(Qt.AlignRight)
-				self.ui.Lines_Numbers_textEdit.append(str(i + 1))
-				self.ui.Lines_Numbers_textEdit.verticalScrollBar().setValue(self.ui.Script_Editor_Input_textEdit.verticalScrollBar().value())
-
-	@core.executionTrace
-	def __Lines_Numbers_textEdit_refreshUi(self):
-		"""
-		This method refreshes the **Lines_Numbers_textEdit** Widget.
-		"""
-
-		if self.ui.Script_Editor_Input_textEdit.document().lineCount() != self.ui.Lines_Numbers_textEdit.document().lineCount():
-			self.__Lines_Numbers_textEdit_setUi()
-
-	@core.executionTrace
-	def __Script_Editor_Input_textEdit__textChanged(self):
-		"""
-		This method is triggered when **Script_Editor_Input_textEdit** widget text changed.
-		"""
-
-		self.__Lines_Numbers_textEdit_refreshUi()
-
-	@core.executionTrace
-	def __Script_Editor_Input_textEdit_verticalScrollBar__valueChanged(self, value):
-		"""
-		This method is triggered when **Script_Editor_Input_textEdit.verticalScrollbar** widget value changed.
-		"""
-
-		self.ui.Lines_Numbers_textEdit.verticalScrollBar().setValue(value)
 
 	@core.executionTrace
 	def __loadScriptAction__triggered(self, checked):
@@ -679,12 +641,12 @@ class ScriptEditor(UiComponent):
 	@core.executionTrace
 	def evaluateScript(self):
 		"""
-		This method evaluates **Script_Editor_Input_textEdit** widget content in the interactive console.
+		This method evaluates **Script_Editor_Input_plainTextEdit** widget content in the interactive console.
 
 		:return: Method success. ( Boolean )
 		"""
 
-		if self.evaluateCode(str(self.ui.Script_Editor_Input_textEdit.toPlainText())):
+		if self.evaluateCode(str(self.ui.Script_Editor_Input_plainTextEdit.toPlainText())):
 			self.emit(SIGNAL("datasChanged()"))
 			return True
 
