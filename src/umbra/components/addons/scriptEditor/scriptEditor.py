@@ -34,7 +34,6 @@ from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
 from umbra.ui.highlighters import LoggingHighlighter, PythonHighlighter
-from umbra.ui.widgets.menu_QLabel import Menu_QLabel
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -82,7 +81,7 @@ class ScriptEditor(UiComponent):
 
 		self.__locals = None
 		self.__memoryHandlerStackDepth = None
-		self.__toolBar = None
+		self.__menuBar = None
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -238,34 +237,34 @@ class ScriptEditor(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("memoryHandlerStackDepth"))
 
 	@property
-	def toolBar(self):
+	def menuBar(self):
 		"""
-		This method is the property for **self.__toolBar** attribute.
+		This method is the property for **self.__menuBar** attribute.
 
-		:return: self.__toolBar. ( QToolbar )
+		:return: self.__menuBar. ( QToolbar )
 		"""
 
-		return self.__toolBar
+		return self.__menuBar
 
-	@toolBar.setter
+	@menuBar.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolBar(self, value):
+	def menuBar(self, value):
 		"""
-		This method is the setter method for **self.__toolBar** attribute.
+		This method is the setter method for **self.__menuBar** attribute.
 
 		:param value: Attribute value. ( QToolbar )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolBar"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("menuBar"))
 
-	@toolBar.deleter
+	@menuBar.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolBar(self):
+	def menuBar(self):
 		"""
-		This method is the deleter method for **self.__toolBar** attribute.
+		This method is the deleter method for **self.__menuBar** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolBar"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("menuBar"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -316,17 +315,22 @@ class ScriptEditor(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__toolBar = QToolBar()
-		self.ui.toolBar_frame_gridLayout.addWidget(self.__toolBar)
-		self.__initializeToolbar()
+		self.__menuBar = QMenuBar()
+		self.__menuBar.setNativeMenuBar(False)
+		self.ui.menuBar_frame_gridLayout.addWidget(self.__menuBar)
+		self.__initializeMenuBar()
 
 		self.ui.Script_Editor_Input_textEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_textEdit.document())
 		self.ui.Script_Editor_Output_textEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_textEdit.document())
+
+		self.__Lines_Numbers_textEdit_setUi()
 
 		# Signals / Slots.
 		self.__container.timer.timeout.connect(self.__Script_Editor_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Script_pushButton.clicked.connect(self.__Evaluate_Script_pushButton__clicked)
 		self.datasChanged.connect(self.__Script_Editor_Output_textEdit_refreshUi)
+		self.ui.Script_Editor_Input_textEdit.textChanged.connect(self.__Script_Editor_Input_textEdit__textChanged)
+		self.ui.Script_Editor_Input_textEdit.verticalScrollBar().valueChanged.connect(self.__Script_Editor_Input_textEdit_verticalScrollBar__valueChanged)
 
 		return True
 
@@ -340,8 +344,8 @@ class ScriptEditor(UiComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__toolBar.setParent(None)
-		self.__toolBar = None
+		self.__menuBar.setParent(None)
+		self.__menuBar = None
 
 		self.ui.Script_Editor_Input_textEdit.highlighter = None
 		self.ui.Script_Editor_Output_textEdit.highlighter = None
@@ -350,6 +354,8 @@ class ScriptEditor(UiComponent):
 		self.__container.timer.timeout.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
 		self.ui.Evaluate_Script_pushButton.clicked.disconnect(self.__Evaluate_Script_pushButton__clicked)
 		self.datasChanged.disconnect(self.__Script_Editor_Output_textEdit_refreshUi)
+		self.ui.Script_Editor_Input_textEdit.textChanged.disconnect(self.__Script_Editor_Input_textEdit__textChanged)
+		self.ui.Script_Editor_Input_textEdit.verticalScrollBar().valueChanged.disconnect(self.__Script_Editor_Input_textEdit_verticalScrollBar__valueChanged)
 
 		return True
 
@@ -383,13 +389,12 @@ class ScriptEditor(UiComponent):
 		return True
 
 	@core.executionTrace
-	def __initializeToolbar(self):
+	def __initializeMenuBar(self):
 		"""
-		This method initializes Component toolBar.
+		This method initializes Component menuBar.
 		"""
 
-		self.__fileLabel = Menu_QLabel("File", self.ui)
-		self.__fileMenu = QMenu()
+		self.__fileMenu = QMenu("&File")
 		loadScriptAction = QAction("&Load script ...", self)
 		loadScriptAction.setShortcut(QKeySequence(QKeySequence.Open))
 		self.__fileMenu.addAction(loadScriptAction)
@@ -398,16 +403,14 @@ class ScriptEditor(UiComponent):
 		saveScriptAction = QAction("&Save script ...", self)
 		saveScriptAction.setShortcut(QKeySequence(QKeySequence.Save))
 		self.__fileMenu.addAction(saveScriptAction)
-		self.__fileLabel.setMenu(self.__fileMenu)
-		self.__toolBar.addWidget(self.__fileLabel)
+		self.__menuBar.addMenu(self.__fileMenu)
 
 		# Signals / Slots.
 		loadScriptAction.triggered.connect(self.__loadScriptAction__triggered)
 		sourceScriptAction.triggered.connect(self.__sourceScriptAction__triggered)
 		saveScriptAction.triggered.connect(self.__saveScriptAction__triggered)
 
-		self.__editLabel = Menu_QLabel("Edit", self.ui)
-		self.__editMenu = QMenu()
+		self.__editMenu = QMenu("&Edit")
 		undoAction = QAction("&Undo", self)
 		undoAction.setShortcut(QKeySequence(QKeySequence.Undo))
 		self.__editMenu.addAction(undoAction)
@@ -430,8 +433,7 @@ class ScriptEditor(UiComponent):
 		selectAllAction = QAction("Select All", self)
 		selectAllAction.setShortcut(QKeySequence(QKeySequence.SelectAll))
 		self.__editMenu.addAction(selectAllAction)
-		self.__editLabel.setMenu(self.__editMenu)
-		self.__toolBar.addWidget(self.__editLabel)
+		self.__menuBar.addMenu(self.__editMenu)
 
 		# Signals / Slots.
 		undoAction.triggered.connect(self.__undoAction__triggered)
@@ -442,16 +444,14 @@ class ScriptEditor(UiComponent):
 		deleteAction.triggered.connect(self.__deleteAction__triggered)
 		selectAllAction.triggered.connect(self.__selectAllAction__triggered)
 
-		self.__commandLabel = Menu_QLabel("Command", self.ui)
-		self.__commandMenu = QMenu()
+		self.__commandMenu = QMenu("&Command")
 		evaluateSelectionAction = QAction("&Evaluate Selection", self)
 		evaluateSelectionAction.setShortcut(QKeySequence(Qt.ControlModifier + Qt.Key_Return))
 		self.__commandMenu.addAction(evaluateSelectionAction)
 		evaluateScriptAction = QAction("Evaluate &Script", self)
 		evaluateScriptAction.setShortcut(QKeySequence(Qt.SHIFT + Qt.CTRL + Qt.Key_Return))
 		self.__commandMenu.addAction(evaluateScriptAction)
-		self.__commandLabel.setMenu(self.__commandMenu)
-		self.__toolBar.addWidget(self.__commandLabel)
+		self.__menuBar.addMenu(self.__commandMenu)
 
 		# Signals / Slots.
 		evaluateSelectionAction.triggered.connect(self.__evaluateSelectionAction__triggered)
@@ -490,6 +490,43 @@ class ScriptEditor(UiComponent):
 				self.ui.Script_Editor_Output_textEdit.insertPlainText(line)
 			self.__Script_Editor_Output_textEdit__setDefaultViewState()
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth
+
+	@core.executionTrace
+	def __Lines_Numbers_textEdit_setUi(self):
+		"""
+		This method sets the **Lines_Numbers_textEdit** Widget.
+		"""
+
+		self.ui.Lines_Numbers_textEdit.document().clear()
+		for i in range(self.ui.Script_Editor_Input_textEdit.document().lineCount()):
+				self.ui.Lines_Numbers_textEdit.setAlignment(Qt.AlignRight)
+				self.ui.Lines_Numbers_textEdit.append(str(i + 1))
+				self.ui.Lines_Numbers_textEdit.verticalScrollBar().setValue(self.ui.Script_Editor_Input_textEdit.verticalScrollBar().value())
+
+	@core.executionTrace
+	def __Lines_Numbers_textEdit_refreshUi(self):
+		"""
+		This method refreshes the **Lines_Numbers_textEdit** Widget.
+		"""
+
+		if self.ui.Script_Editor_Input_textEdit.document().lineCount() != self.ui.Lines_Numbers_textEdit.document().lineCount():
+			self.__Lines_Numbers_textEdit_setUi()
+
+	@core.executionTrace
+	def __Script_Editor_Input_textEdit__textChanged(self):
+		"""
+		This method is triggered when **Script_Editor_Input_textEdit** widget text changed.
+		"""
+
+		self.__Lines_Numbers_textEdit_refreshUi()
+
+	@core.executionTrace
+	def __Script_Editor_Input_textEdit_verticalScrollBar__valueChanged(self, value):
+		"""
+		This method is triggered when **Script_Editor_Input_textEdit.verticalScrollbar** widget value changed.
+		"""
+
+		self.ui.Lines_Numbers_textEdit.verticalScrollBar().setValue(value)
 
 	@core.executionTrace
 	def __loadScriptAction__triggered(self, checked):
@@ -609,7 +646,7 @@ class ScriptEditor(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		print "evaluateScript"
+		self.evaluateScript()
 
 	@core.executionTrace
 	def __Evaluate_Script_pushButton__clicked(self, checked):
@@ -619,10 +656,7 @@ class ScriptEditor(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		sys.stdout.write(str(self.ui.Script_Editor_Input_textEdit.toPlainText()))
-		self.__console.runcode(str(self.ui.Script_Editor_Input_textEdit.toPlainText()))
-
-		self.emit(SIGNAL("datasChanged()"))
+		self.evaluateScript()
 
 	@core.executionTrace
 	def __getsLocals(self):
@@ -639,5 +673,31 @@ class ScriptEditor(UiComponent):
 
 		self.__locals[Constants.applicationName] = self.__container
 		self.__locals["componentsManager"] = self.__container.componentsManager
+
+		return True
+
+	@core.executionTrace
+	def evaluateScript(self):
+		"""
+		This method evaluates **Script_Editor_Input_textEdit** widget content in the interactive console.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		if self.evaluateCode(str(self.ui.Script_Editor_Input_textEdit.toPlainText())):
+			self.emit(SIGNAL("datasChanged()"))
+			return True
+
+	@core.executionTrace
+	def evaluateCode(self, code):
+		"""
+		This method evaluates provided code in the interactive console.
+
+		:param code: Code to evaluate. ( String )
+		:return: Method success. ( Boolean )
+		"""
+
+		sys.stdout.write(code)
+		self.__console.runcode(code)
 
 		return True

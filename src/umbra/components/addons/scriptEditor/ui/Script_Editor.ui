@@ -6,16 +6,10 @@
    <string>Script Editor</string>
   </property>
   <widget class="QWidget" name="Script_Editor_dockWidgetContents">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QFrame" name="toolBar_frame">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="toolBar_frame_gridLayout">
+   <layout class="QGridLayout" name="Script_Editor_dockWidgetContents_gridLayout">
+    <item row="0" column="0">
+     <widget class="QFrame" name="menuBar_frame">
+      <layout class="QGridLayout" name="menuBar_frame_gridLayout">
        <property name="margin">
         <number>0</number>
        </property>
@@ -43,27 +37,77 @@
        <property name="acceptRichText">
         <bool>false</bool>
        </property>
-      </widget>
-      <widget class="QTextEdit" name="Script_Editor_Input_textEdit">
-       <property name="statusTip">
-        <string>Script Editor Input Text Edit: Allows interactive console interaction.</string>
+       <property name="textInteractionFlags">
+        <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
        </property>
       </widget>
+      <widget class="QWidget" name="">
+       <layout class="QHBoxLayout" name="Script_Editor_Input_horizontalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTextEdit" name="Lines_Numbers_textEdit">
+          <property name="maximumSize">
+           <size>
+            <width>32</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="statusTip">
+           <string>Lines Numbers Text Edit: Displays &quot;Script_Editor_Input_textEdit&quot; QTextEdit lines numbers.</string>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::NoTextInteraction</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="Script_Editor_Input_textEdit">
+          <property name="statusTip">
+           <string>Script Editor Input Text Edit: Allows interactive console interaction.</string>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="Evaluate_Selection_pushButton">
-      <property name="text">
-       <string>Evaluate Selection</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="Evaluate_Script_pushButton">
-      <property name="text">
-       <string>Evaluate Script</string>
-      </property>
-     </widget>
+    <item row="2" column="0" colspan="2">
+     <layout class="QHBoxLayout" name="Buttons_horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="Evaluate_Selection_pushButton">
+        <property name="statusTip">
+         <string>Evaluate Selection Push Button: Evaluates selected &quot;Script_Editor_Input_textEdit&quot; QTextEdit content as Python code.</string>
+        </property>
+        <property name="text">
+         <string>Evaluate Selection</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Evaluate_Script_pushButton">
+        <property name="statusTip">
+         <string>Evaluate Script Push Button: Evaluates &quot;Script_Editor_Input_textEdit&quot; QTextEdit content as Python code.</string>
+        </property>
+        <property name="text">
+         <string>Evaluate Script</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
