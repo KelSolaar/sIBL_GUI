@@ -325,6 +325,7 @@ class LinesNumbers_QWidget(QWidget):
 		return self.__margin + self.__editor.fontMetrics().width(str(max(1, self.__editor.blockCount())))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setEditorViewportMargins(self, newBlocksCount):
 		"""
 		This method sets the editor viewport margins.
@@ -337,6 +338,7 @@ class LinesNumbers_QWidget(QWidget):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def updateRectangle(self, rectangle, scrollY):
 		"""
 		This method updates the provided widget rectangle.
@@ -356,6 +358,7 @@ class LinesNumbers_QWidget(QWidget):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def updateGeometry(self):
 		"""
 		This method updates the widget geometry.
@@ -385,6 +388,7 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 
 		# --- Setting class attributes. ---
 		self.__marginArea_LinesNumbers_widget = None
+		self.__completer = None
 
 		self.__highlightColor = QColor(56, 56, 56)
 
@@ -425,6 +429,38 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("marginArea_LinesNumbers_widget"))
+
+	@property
+	def completer(self):
+		"""
+		This method is the property for **self.__container** attribute.
+
+		:return: self.__container. ( QCompleter )
+		"""
+
+		return self.__container
+
+	@completer.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completer(self, value):
+		"""
+		This method is the setter method for **self.__container** attribute.
+
+		:param value: Attribute value. ( QCompleter )
+		"""
+
+		if value:
+			assert type(value) is QCompleter, "'{0}' attribute: '{1}' type is not 'QCompleter'!".format("completer", value)
+		self.__completer = value
+
+	@completer.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def completer(self):
+		"""
+		This method is the deleter method for **self.__container** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("completer"))
 
 	@property
 	def highlightColor(self):
@@ -490,6 +526,7 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		self.__marginArea_LinesNumbers_widget.updateGeometry()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def highlightCurrentLine(self):
 		"""
 		This method highlights the current line.
@@ -509,3 +546,57 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 
 		self.setExtraSelections(extraSelections)
 		return True
+
+	def setCompleter(self, completer):
+		if self.__completer:
+			self.disconnect(self.__completer, 0, self, 0)
+		if not completer:
+			return
+
+		completer.setWidget(self)
+		completer.setCompletionMode(QCompleter.PopupCompletion)
+		completer.setCaseSensitivity(Qt.CaseInsensitive)
+		self.__completer = completer
+		self.__completer.activated.connect(self.insertCompletion)
+
+	def insertCompletion(self, completion):
+		textCursor = self.textCursor()
+		extra = (completion.length() - self.__completer.completionPrefix().length())
+		textCursor.movePosition(QTextCursor.Left)
+		textCursor.movePosition(QTextCursor.EndOfWord)
+		textCursor.insertText(completion.right(extra))
+		self.setTextCursor(textCursor)
+
+	def textUnderCursor(self):
+		tc = self.textCursor()
+		tc.select(QTextCursor.WordUnderCursor)
+		return tc.selectedText()
+
+	def focusInEvent(self, event):
+		if self.__completer:
+			self.__completer.setWidget(self);
+		QPlainTextEdit.focusInEvent(self, event)
+
+	def keyPressEvent(self, event):
+		if self.__completer and self.__completer.popup().isVisible():
+			if event.key() in (Qt.Key_Enter, Qt.Key_Return, Qt.Key_Escape, Qt.Key_Tab, Qt.Key_Backtab):
+				event.ignore()
+				return
+
+		if event.modifiers() in (Qt.ControlModifier, Qt.MetaModifier) and event.key() == Qt.Key_Space:
+			if not self.__completer:
+				return
+			completionPrefix = self.textUnderCursor()
+			if completionPrefix.length() >= 1 :
+				self.__completer.setCompletionPrefix(completionPrefix)
+				popup = self.__completer.popup()
+				popup.setCurrentIndex(self.__completer.completionModel().index(0, 0))
+
+				completerRectangle = self.cursorRect()
+				completerRectangle.setWidth(self.__completer.popup().sizeHintForColumn(0) + self.__completer.popup().verticalScrollBar().sizeHint().width())
+				self.__completer.complete(completerRectangle)
+		else:
+			if self.__completer:
+				self.__completer.popup().hide()
+			QPlainTextEdit.keyPressEvent(self, event)
+

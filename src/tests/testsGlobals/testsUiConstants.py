@@ -88,7 +88,8 @@ class UiConstantsTestCase(unittest.TestCase):
 								"frameworkHelpFile",
 								"frameworkApiFile",
 								"nativeImageFormats",
-								"thirdPartyImageFormats",)
+								"thirdPartyImageFormats",
+								"pythonTokensFile")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, UiConstants.__dict__)
@@ -395,6 +396,13 @@ class UiConstantsTestCase(unittest.TestCase):
 				self.assertIsInstance(key, str)
 				self.assertIsInstance(value, str)
 				self.assertTrue(re.compile(value))
+
+	def testPythonTokensFileAttribute(self):
+		"""
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.pythonTokensFile` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.pythonTokensFile, "\w+")
 
 if __name__ == "__main__":
 	unittest.main()

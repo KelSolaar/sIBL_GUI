@@ -30,6 +30,7 @@ from PyQt4.QtGui import *
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
+from foundations.parser import Parser
 import umbra.ui.widgets.messageBox as messageBox
 from umbra.globals.constants import Constants
 from umbra.globals.uiConstants import UiConstants
@@ -272,3 +273,20 @@ def filterImagePath(path):
 						return UiConstants.frameworkFormatErrorImage
 		else:
 			return UiConstants.frameworkMissingImage
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, OSError)
+def getTokensParser(tokensFile):
+	"""
+	This method returns a tokens parser.
+
+	:param tokensFile: Tokens file. ( String )
+	:return: Tokens. ( Parser )
+	"""
+
+	if not os.path.exists(tokensFile):
+		raise OSError("'{0}' tokens file doesn't exists!".format(tokensFile))
+
+	parser = Parser(tokensFile)
+	parser.read() and parser.parse(orderedDictionary=False)
+	return parser

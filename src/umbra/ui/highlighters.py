@@ -8,10 +8,10 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the highlighters class.
+	This module defines the Application highlighters classes.
 
 **Others:**
-	Portions of the code from Pyguin by Lee Harr: http://code.google.com/p/pynguin/ and PyQtWiki: http://diotavelli.net/PyQtWiki/Python%20syntax%20highlighting
+	Portions of the code from PyQtWiki: http://diotavelli.net/PyQtWiki/Python%20syntax%20highlighting
 
 """
 
@@ -122,6 +122,7 @@ class Highlighter(QSyntaxHighlighter):
 
 		QSyntaxHighlighter.__init__(self, parent)
 
+		# --- Setting class attributes. ---
 		self.__formats = None
 		self.__rules = None
 
@@ -517,7 +518,7 @@ class PythonHighlighter(Highlighter):
 
 		self.rules.append(Rule(pattern=QRegExp(r"@[\w\.]+"), format=self.formats.entityDecorator))
 
-		self.rules.append(Rule(pattern=QRegExp(r"\b(ArithmeticError|AssertionError|AttributeError|BufferError|BytesWarning|CodecRegistryError|DeprecationWarning|EOFError|EnvironmentError|FloatingPointError|FutureWarning|GetPassWarning|IOError|ImportError|ImportWarning|IndentationError|IndexError|ItimerError|KeyError|LookupError|MemoryError|NameError|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|ReferenceError|RuntimeError|RuntimeWarning|StandardError|StopIteration|SyntaxError|SyntaxWarning|SystemError|TabError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError|ZipImportError|_OptionError|error)\b"), format=self.formats.builtinsExceptions))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(ArithmeticError|AssertionError|AttributeError|BaseException|BufferError|BytesWarning|DeprecationWarning|EOFError|EnvironmentError|Exception|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|KeyError|KeyboardInterrupt|LookupError|MemoryError|NameError|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|ReferenceError|RuntimeError|RuntimeWarning|StandardError|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError)\b"), format=self.formats.builtinsExceptions))
 		self.rules.append(Rule(pattern=QRegExp(r"\b(abs|all|any|apply|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|license|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b"), format=self.formats.builtinsFunctions))
 		self.rules.append(Rule(pattern=QRegExp(r"\b(Ellipsis|False|None|True|__(debug|doc|import|name|package)__)\b"), format=self.formats.builtinsMiscellaneous))
 		self.rules.append(Rule(pattern=QRegExp(r"\b(__(class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook)__)\b"), format=self.formats.builtinsObjectMethods))

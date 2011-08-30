@@ -33,6 +33,7 @@ from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeConstants import RuntimeConstants
 from umbra.globals.uiConstants import UiConstants
+from umbra.ui.completers import PythonCompleter
 from umbra.ui.highlighters import LoggingHighlighter, PythonHighlighter
 from umbra.ui.widgets.codeEditor_QPlainTextEdit import CodeEditor_QPlainTextEdit
 
@@ -325,6 +326,7 @@ class ScriptEditor(UiComponent):
 		self.ui.Script_Editor_gridLayout.addWidget(self.ui.Script_Editor_Input_plainTextEdit, 0, 0)
 
 		self.ui.Script_Editor_Input_plainTextEdit.highlighter = PythonHighlighter(self.ui.Script_Editor_Input_plainTextEdit.document())
+		self.ui.Script_Editor_Input_plainTextEdit.setCompleter(PythonCompleter())
 		self.ui.Script_Editor_Output_plainTextEdit.highlighter = LoggingHighlighter(self.ui.Script_Editor_Output_plainTextEdit.document())
 
 		# Signals / Slots.
