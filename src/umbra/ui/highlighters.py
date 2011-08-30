@@ -11,7 +11,7 @@
 	This module defines the highlighters class.
 
 **Others:**
-	Portions of the code from Pyguin by Lee Harr: http://code.google.com/p/pynguin/.
+	Portions of the code from Pyguin by Lee Harr: http://code.google.com/p/pynguin/ and PyQtWiki: http://diotavelli.net/PyQtWiki/Python%20syntax%20highlighting
 
 """
 
@@ -44,6 +44,37 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
+@core.executionTrace
+def getFormat(**kwargs):
+	"""
+	This definition returns a `QTextCharFormat <http://doc.qt.nokia.com/4.7/qtextcharformat.html>`_ format.
+	
+	:param \*\*kwargs: Format settings. ( Key / Value pairs )
+	:return: Format. ( QTextCharFormat )
+	"""
+
+	settings = core.Structure(**{"format" : QTextCharFormat(),
+								"backgroundColor" : None,
+								"color" : None,
+								"fontWeight" : None,
+								"fontPointSize" : None,
+								"italic" : False})
+	settings.update(kwargs)
+
+	format = QTextCharFormat(settings.format)
+	if settings.backgroundColor:
+		format.setBackground(settings.backgroundColor)
+	if settings.color:
+		format.setForeground(settings.color)
+	if settings.fontWeight:
+		format.setFontWeight(settings.fontWeight)
+	if settings.fontPointSize:
+		format.setFontPointSize(settings.fontPointSize)
+	if settings.italic:
+		format.setFontItalic(True)
+
+	return format
+
 class Rule(core.Structure):
 	"""
 	This class represents a storage object for highlighters rule. 
@@ -171,6 +202,7 @@ class Highlighter(QSyntaxHighlighter):
 
 		:param block: Text block. ( QString )
 		"""
+
 		pass
 
 	# @core.executionTrace
@@ -221,27 +253,16 @@ class LoggingHighlighter(Highlighter):
 		This method sets the highlighting formats.
 		"""
 
-		self.formats = Formats(default=QTextCharFormat())
-		self.formats.default.setForeground(QColor(192, 192, 192))
+		self.formats = Formats(default=getFormat(color=QColor(192, 192, 192)))
 
-		self.formats.null = QTextCharFormat(self.formats.default)
-		self.formats.null.setFontPointSize(self.formats.default.font().pointSize() / 4.0)
+		self.formats.loggingCritical = getFormat(format=self.formats.default, color=QColor(48, 48, 48), backgroundColor=QColor(255, 64, 64))
+		self.formats.loggingError = getFormat(format=self.formats.default, color=QColor(255, 64, 64))
+		self.formats.loggingWarning = getFormat(format=self.formats.default, color=QColor(255, 128, 0))
+		self.formats.loggingInfo = getFormat(format=self.formats.default)
+		self.formats.loggingDebug = getFormat(format=self.formats.default, italic=True)
 
-		self.formats.loggingCritical = QTextCharFormat(self.formats.default)
-		self.formats.loggingCritical.setForeground(QColor(48, 48, 48))
-		self.formats.loggingCritical.setBackground(QColor(255, 64, 64))
-		self.formats.loggingError = QTextCharFormat(self.formats.default)
-		self.formats.loggingError.setForeground(QColor(255, 64, 64))
-		self.formats.loggingWarning = QTextCharFormat(self.formats.default)
-		self.formats.loggingWarning.setForeground(QColor(255, 128, 0))
-		self.formats.loggingInfo = QTextCharFormat(self.formats.default)
-		self.formats.loggingDebug = QTextCharFormat(self.formats.default)
-		self.formats.loggingDebug.setFontItalic(True)
-
-		self.formats.loggingDebugTraceIn = QTextCharFormat(self.formats.loggingDebug)
-		self.formats.loggingDebugTraceIn.setForeground(QColor(128, 160, 192))
-		self.formats.loggingDebugTraceOut = QTextCharFormat(self.formats.loggingDebug)
-		self.formats.loggingDebugTraceOut.setForeground(QColor(192, 160, 128))
+		self.formats.loggingDebugTraceIn = getFormat(format=self.formats.loggingDebug, color=QColor(128, 160, 192))
+		self.formats.loggingDebugTraceOut = getFormat(format=self.formats.loggingDebug, color=QColor(QColor(192, 160, 128)))
 
 	@core.executionTrace
 	def __setRules(self):
@@ -249,8 +270,8 @@ class LoggingHighlighter(Highlighter):
 		This method sets the highlighting rules.
 		"""
 
-		self.__multiLineStringStart = QRegExp(r"\"\"\"|'''")
-		self.__multiLineStringEnd = QRegExp(r"\"\"\"|'''")
+		self.__multiLineSingleString = QRegExp(r"\"\"\"|'''")
+		self.__multiLineDoubleString = QRegExp(r"\"\"\"|'''")
 
 		self.rules = []
 
@@ -270,10 +291,6 @@ class LoggingHighlighter(Highlighter):
 
 		:param block: Text block. ( QString )
 		"""
-
-		if block.trimmed().isEmpty():
-			self.setFormat(0, len(block), self.formats.null)
-			return
 
 		self.highlightText(block, 0, len(block))
 
@@ -295,8 +312,8 @@ class PythonHighlighter(Highlighter):
 		QSyntaxHighlighter.__init__(self, parent)
 
 		self.__keywords = None
-		self.__multiLineStringStart = None
-		self.__multiLineStringEnd = None
+		self.__multiLineSingleString = None
+		self.__multiLineDoubleString = None
 
 		self.__setKeywords()
 		self.__setFormats()
@@ -338,68 +355,68 @@ class PythonHighlighter(Highlighter):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("keywords"))
 
 	@property
-	def multiLineStringStart(self):
+	def multiLineSingleString(self):
 		"""
-		This method is the property for **self.__multiLineStringStart** attribute.
+		This method is the property for **self.__multiLineSingleString** attribute.
 
-		:return: self.__multiLineStringStart. ( QRegExp )
+		:return: self.__multiLineSingleString. ( QRegExp )
 		"""
 
-		return self.__multiLineStringStart
+		return self.__multiLineSingleString
 
-	@multiLineStringStart.setter
+	@multiLineSingleString.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def multiLineStringStart(self, value):
+	def multiLineSingleString(self, value):
 		"""
-		This method is the setter method for **self.__multiLineStringStart** attribute.
+		This method is the setter method for **self.__multiLineSingleString** attribute.
 
 		:param value: Attribute value. ( QRegExp )
 		"""
 
 		if value:
-			assert type(value) is QRegExp, "'{0}' attribute: '{1}' type is not 'QRegExp'!".format("multiLineStringStart", value)
-		self.__multiLineStringStart = value
+			assert type(value) is QRegExp, "'{0}' attribute: '{1}' type is not 'QRegExp'!".format("multiLineSingleString", value)
+		self.__multiLineSingleString = value
 
-	@multiLineStringStart.deleter
+	@multiLineSingleString.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def multiLineStringStart(self):
+	def multiLineSingleString(self):
 		"""
-		This method is the deleter method for **self.__multiLineStringStart** attribute.
+		This method is the deleter method for **self.__multiLineSingleString** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("multiLineStringStart"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("multiLineSingleString"))
 
 	@property
-	def multiLineStringEnd(self):
+	def multiLineDoubleString(self):
 		"""
-		This method is the property for **self.__multiLineStringEnd** attribute.
+		This method is the property for **self.__multiLineDoubleString** attribute.
 
-		:return: self.__multiLineStringEnd. ( QRegExp )
+		:return: self.__multiLineDoubleString. ( QRegExp )
 		"""
 
-		return self.__multiLineStringEnd
+		return self.__multiLineDoubleString
 
-	@multiLineStringEnd.setter
+	@multiLineDoubleString.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def multiLineStringEnd(self, value):
+	def multiLineDoubleString(self, value):
 		"""
-		This method is the setter method for **self.__multiLineStringEnd** attribute.
+		This method is the setter method for **self.__multiLineDoubleString** attribute.
 
 		:param value: Attribute value. ( QRegExp )
 		"""
 
 		if value:
-			assert type(value) is QRegExp, "'{0}' attribute: '{1}' type is not 'QRegExp'!".format("multiLineStringEnd", value)
-		self.__multiLineStringEnd = value
+			assert type(value) is QRegExp, "'{0}' attribute: '{1}' type is not 'QRegExp'!".format("multiLineDoubleString", value)
+		self.__multiLineDoubleString = value
 
-	@multiLineStringEnd.deleter
+	@multiLineDoubleString.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def multiLineStringEnd(self):
+	def multiLineDoubleString(self):
 		"""
-		This method is the deleter method for **self.__multiLineStringEnd** attribute.
+		This method is the deleter method for **self.__multiLineDoubleString** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("multiLineStringEnd"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("multiLineDoubleString"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -418,70 +435,52 @@ class PythonHighlighter(Highlighter):
 		This method sets the highlighting formats.
 		"""
 
-		self.formats = Formats(default=QTextCharFormat())
-		self.formats.default.setForeground(QColor(192, 192, 192))
+		self.formats = Formats(default=getFormat(color=QColor(192, 192, 192)))
 
-		self.formats.null = QTextCharFormat(self.formats.default)
-		self.formats.null.setFontPointSize(self.formats.default.font().pointSize() / 4.0)
+		self.formats.keyword = getFormat(format=self.formats.default, color=QColor(205, 170, 105), bold=True)
 
-		self.formats.keyword = QTextCharFormat(self.formats.default)
-		self.formats.keyword.setForeground(QBrush(QColor(205, 170, 105)))
-		self.formats.keyword.setFontWeight(QFont.Bold)
+		self.formats.numericConstant = getFormat(format=self.formats.default, color=QColor(205, 105, 75))
+		self.formats.numericIntegerDecimal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericIntegerLongDecimal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericIntegerHexadecimal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericIntegerLongHexadecimal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericIntegerOctal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericIntegerLongOctal = getFormat(format=self.formats.numericConstant)
+		self.formats.numericFloat = getFormat(format=self.formats.numericConstant)
+		self.formats.numericComplex = getFormat(format=self.formats.numericConstant)
 
-		self.formats.numericConstant = QTextCharFormat(self.formats.default)
-		self.formats.numericConstant.setForeground(QColor(205, 105, 75))
-		self.formats.numericIntegerDecimal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericIntegerLongDecimal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericIntegerHexadecimal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericIntegerLongHexadecimal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericIntegerOctal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericIntegerLongOctal = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericFloat = QTextCharFormat(self.formats.numericConstant)
-		self.formats.numericComplex = QTextCharFormat(self.formats.numericConstant)
+		self.formats.modifierGlobal = getFormat(format=self.formats.default, color=QColor(250, 240, 150))
+		self.formats.modifierSpecialGlobal = getFormat(format=self.formats.modifierGlobal)
 
-		self.formats.modifierGlobal = QTextCharFormat(self.formats.default)
-		self.formats.modifierGlobal.setForeground(QBrush(QColor(250, 240, 150)))
-		self.formats.modifierSpecialGlobal = QTextCharFormat(self.formats.modifierGlobal)
+		self.formats.operator = getFormat(format=self.formats.keyword)
+		self.formats.operatorComparison = getFormat(format=self.formats.operator)
+		self.formats.operatorAssignement = getFormat(format=self.formats.operator)
+		self.formats.operatorAssignementAugmented = getFormat(format=self.formats.operator)
+		self.formats.operatorArithmetic = getFormat(format=self.formats.operator)
 
-		self.formats.operator = QTextCharFormat(self.formats.keyword)
-		self.formats.operatorComparison = QTextCharFormat(self.formats.operator)
-		self.formats.operatorAssignement = QTextCharFormat(self.formats.operator)
-		self.formats.operatorAssignementAugmented = QTextCharFormat(self.formats.operator)
-		self.formats.operatorArithmetic = QTextCharFormat(self.formats.operator)
+		self.formats.entity = getFormat(format=self.formats.default, color=QColor(155, 110, 165))
+		self.formats.entityClass = getFormat(format=self.formats.entity)
+		self.formats.entityFunction = getFormat(format=self.formats.entity)
+		self.formats.entityDecorator = getFormat(format=self.formats.entity)
 
-		self.formats.entity = QTextCharFormat(self.formats.default)
-		self.formats.entity.setForeground(QBrush(QColor(155, 110, 165)))
-		self.formats.entityClass = QTextCharFormat(self.formats.entity)
-		self.formats.entityFunction = QTextCharFormat(self.formats.entity)
-		self.formats.entityDecorator = QTextCharFormat(self.formats.entity)
+		self.formats.builtins = getFormat(format=self.formats.default, color=QColor(115, 135, 175))
+		self.formats.builtinsExceptions = getFormat(format=self.formats.builtins)
+		self.formats.builtinsFunctions = getFormat(format=self.formats.builtins)
+		self.formats.builtinsMiscellaneous = getFormat(format=self.formats.builtins)
+		self.formats.builtinsObjectMethods = getFormat(format=self.formats.builtins)
+		self.formats.magicMethods = getFormat(format=self.formats.builtins)
 
-		self.formats.builtins = QTextCharFormat(self.formats.default)
-		self.formats.builtins.setForeground(QBrush(QColor(115, 135, 175)))
-		self.formats.builtinsExceptions = QTextCharFormat(self.formats.builtins)
-		self.formats.builtinsFunctions = QTextCharFormat(self.formats.builtins)
-		self.formats.builtinsMiscellaneous = QTextCharFormat(self.formats.builtins)
-		self.formats.builtinsObjectMethods = QTextCharFormat(self.formats.builtins)
-		self.formats.magicMethods = QTextCharFormat(self.formats.builtins)
+		self.formats.magicObject = getFormat(format=self.formats.default, fontWeight=QFont.Bold)
 
-		self.formats.magicObject = QTextCharFormat(self.formats.default)
-		self.formats.magicObject.setFontWeight(QFont.Bold)
+		self.formats.decoratorArgument = getFormat(format=self.formats.default, color=QColor(115, 135, 175), italic=True)
 
-		self.formats.decoratorArgument = QTextCharFormat(self.formats.default)
-		self.formats.decoratorArgument.setForeground(QColor(115, 135, 175))
-		self.formats.decoratorArgument.setFontItalic(True)
+		self.formats.singleLineComment = getFormat(format=self.formats.default, color=QColor(128, 128, 128))
 
-		self.formats.singleLineComment = QTextCharFormat(self.formats.default)
-		self.formats.singleLineComment.setForeground(QColor(128, 128, 128))
+		self.formats.multiLineString = getFormat(format=self.formats.default, color=QColor(205, 105, 75), italic=True)
 
-		self.formats.multiLineString = QTextCharFormat(self.formats.default)
-		self.formats.multiLineString.setForeground(QColor(205, 105, 75))
-		self.formats.multiLineString.setFontItalic(True)
-
-		self.formats.quotation = QTextCharFormat(self.formats.default)
-		self.formats.quotation.setForeground(QColor(145, 160, 105))
-		self.formats.quotation.setFontItalic(True)
-		self.formats.doubleQuotation = QTextCharFormat(self.formats.quotation)
-		self.formats.singleQuotation = QTextCharFormat(self.formats.quotation)
+		self.formats.quotation = getFormat(format=self.formats.default, color=QColor(145, 160, 105), italic=True)
+		self.formats.doubleQuotation = getFormat(format=self.formats.quotation)
+		self.formats.singleQuotation = getFormat(format=self.formats.quotation)
 
 	@core.executionTrace
 	def __setRules(self):
@@ -489,8 +488,8 @@ class PythonHighlighter(Highlighter):
 		This method sets the highlighting rules.
 		"""
 
-		self.__multiLineStringStart = QRegExp(r"\"\"\"|'''")
-		self.__multiLineStringEnd = QRegExp(r"\"\"\"|'''")
+		self.__multiLineSingleString = QRegExp(r"^\s*\"\"\"|\"\"\"\s*$")
+		self.__multiLineDoubleString = QRegExp(r"^\s*'''|'''\s*$")
 
 		self.rules = map(lambda i: Rule(pattern=QRegExp(r"\b{0}\b".format(i)), format=self.formats.keyword), self.__keywords)
 
@@ -541,31 +540,42 @@ class PythonHighlighter(Highlighter):
 		:param block: Text block. ( QString )
 		"""
 
+		self.highlightText(block, 0, len(block))
 		self.setCurrentBlockState(0)
 
-		if block.trimmed().isEmpty():
-			self.setFormat(0, len(block), self.formats.null)
-			return
+		not self.highlightMultilineBlock(block, self.__multiLineSingleString, 1, self.formats.multiLineString) and self.highlightMultilineBlock(block, self.__multiLineDoubleString, 2, self.formats.multiLineString)
 
-		self.setFormat(0, len(block), self.formats.default)
+	# @core.executionTrace
+	def highlightMultilineBlock(self, block, pattern, state, format):
+		"""
+		This method highlights provided multiline text block.
 
-		startIndex = 0
-		if self.previousBlockState() != 1:
-			startIndex = block.indexOf(self.__multiLineStringStart)
+		:param block: Text block. ( QString )
+		:param pattern: Regex pattern. ( QRegExp )
+		:param state: Block state. ( Integer )
+		:param format: Format. ( QTextCharFormat )
+		:return: Current block matching state. ( Boolean )
+		"""
 
-		if startIndex > -1:
-			self.highlightText(block, 0, startIndex)
+		if self.previousBlockState() == state:
+			start = 0
+			extend = 0
 		else:
-			self.highlightText(block, 0, len(block))
+			start = pattern.indexIn(block)
+			extend = pattern.matchedLength()
 
-		while startIndex >= 0:
-			endIndex = block.indexOf(self.__multiLineStringEnd, startIndex + len(self.__multiLineStringStart.pattern()))
-			if endIndex == -1:
-				self.setCurrentBlockState(1)
-				commentLength = block.length() - startIndex
+		while start >= 0:
+			end = pattern.indexIn(block, start + extend)
+			if end >= extend:
+				length = end - start + extend + pattern.matchedLength()
+				self.setCurrentBlockState(0)
 			else:
-				commentLength = endIndex - startIndex + self.__multiLineStringEnd.matchedLength()
-				self.highlightText(block, endIndex, len(block))
+				self.setCurrentBlockState(state)
+				length = block.length() - start + extend
+			self.setFormat(start, length, format)
+			start = pattern.indexIn(block, start + length)
 
-			self.setFormat(startIndex, commentLength, self.formats.multiLineString)
-			startIndex = block.indexOf(self.__multiLineStringStart, startIndex + commentLength)
+		if self.currentBlockState() == state:
+			return True
+		else:
+			return False
