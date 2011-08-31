@@ -64,44 +64,46 @@ class PythonCompleter(QCompleter):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
-		self.__words = self.getPythonTokens()
+		self.__pythonTokens = self.getPythonTokens()
 
-		QCompleter.__init__(self, self.__words, parent)
+		QCompleter.__init__(self, self.__pythonTokens, parent)
+
+		self.setCaseSensitivity(Qt.CaseSensitive)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def words(self):
+	def pythonTokens(self):
 		"""
-		This method is the property for **self.__words** attribute.
+		This method is the property for **self.__pythonTokens** attribute.
 
-		:return: self.__words. ( List / Tuple )
+		:return: self.__pythonTokens. ( List / Tuple )
 		"""
 
-		return self.__words
+		return self.__pythonTokens
 
-	@words.setter
+	@pythonTokens.setter
 	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def words(self, value):
+	def pythonTokens(self, value):
 		"""
-		This method is the setter method for **self.__words** attribute.
+		This method is the setter method for **self.__pythonTokens** attribute.
 
 		:param value: Attribute value. ( List / Tuple )
 		"""
 
 		if value:
-			assert type(value) in (list, tuple), "'{0}' attribute: '{1}' type is not 'list' or 'tuple'!".format("words", value)
-		self.__words = value
+			assert type(value) in (list, tuple), "'{0}' attribute: '{1}' type is not 'list' or 'tuple'!".format("pythonTokens", value)
+		self.__pythonTokens = value
 
-	@words.deleter
+	@pythonTokens.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def words(self):
+	def pythonTokens(self):
 		"""
-		This method is the deleter method for **self.__words** attribute.
+		This method is the deleter method for **self.__pythonTokens** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("words"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("pythonTokens"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -110,7 +112,7 @@ class PythonCompleter(QCompleter):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getPythonTokens(self, splitter="|"):
 		"""
-		This method is the property for **self.__rules** attribute.
+		This method gets the Python tokens.
 
 		:param splitters: Splitter character. ( String )
 		:return: Python tokens. ( Dictionary )
@@ -118,3 +120,18 @@ class PythonCompleter(QCompleter):
 
 		sections = umbra.ui.common.getTokensParser(PYTHON_TOKENS_FILE).sections
 		return [token for section in sections["Tokens"].values() for token in section.split(splitter)]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def updateModel(self, words):
+		"""
+		This method updates the completer model.
+
+		:param words: Words to update the completer with. ( Tuple / List )
+		:return: Method success. ( Boolean )
+		"""
+
+		extendedWords = self.__pythonTokens[:]
+		extendedWords.extend((word for word in words if word not in self.__pythonTokens))
+		self.setModel(QStringListModel(extendedWords))
+		return True
