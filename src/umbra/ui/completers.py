@@ -64,7 +64,7 @@ class PythonCompleter(QCompleter):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
-		self.setPythonTokens()
+		self.__setPythonTokens()
 
 		QCompleter.__init__(self, self.__pythonTokens, parent)
 
@@ -111,7 +111,7 @@ class PythonCompleter(QCompleter):
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setPythonTokens(self, splitter="|"):
+	def __setPythonTokens(self, splitter="|"):
 		"""
 		This method sets the Python tokens.
 
