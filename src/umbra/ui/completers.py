@@ -64,11 +64,12 @@ class PythonCompleter(QCompleter):
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
 		# --- Setting class attributes. ---
-		self.__pythonTokens = self.getPythonTokens()
+		self.setPythonTokens()
 
 		QCompleter.__init__(self, self.__pythonTokens, parent)
 
 		self.setCaseSensitivity(Qt.CaseSensitive)
+		self.setCompletionMode(QCompleter.PopupCompletion)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -110,16 +111,17 @@ class PythonCompleter(QCompleter):
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getPythonTokens(self, splitter="|"):
+	def setPythonTokens(self, splitter="|"):
 		"""
-		This method gets the Python tokens.
+		This method sets the Python tokens.
 
 		:param splitters: Splitter character. ( String )
-		:return: Python tokens. ( Dictionary )
+		:return: Method success. ( Boolean )
 		"""
 
 		sections = umbra.ui.common.getTokensParser(PYTHON_TOKENS_FILE).sections
-		return [token for section in sections["Tokens"].values() for token in section.split(splitter)]
+		self.__pythonTokens = [token for section in sections["Tokens"].values() for token in section.split(splitter)]
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -132,6 +134,6 @@ class PythonCompleter(QCompleter):
 		"""
 
 		extendedWords = self.__pythonTokens[:]
-		extendedWords.extend((word for word in words if word not in self.__pythonTokens))
+		extendedWords.extend((word for word in set(words) if word not in self.__pythonTokens))
 		self.setModel(QStringListModel(extendedWords))
 		return True

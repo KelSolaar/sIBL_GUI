@@ -27,6 +27,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -393,7 +394,7 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		self.__highlightColor = QColor(56, 56, 56)
 
 		self.initializeUi()
-		self.highlightCurrentLine()
+		self.__highlightCurrentLine()
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -450,7 +451,7 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		"""
 
 		if value:
-			assert type(value) is QCompleter, "'{0}' attribute: '{1}' type is not 'QCompleter'!".format("completer", value)
+			assert issubclass(value.__class__, QCompleter), "'{0}' attribute: '{1}' type is not 'QCompleter'!".format("completer", value)
 		self.__completer = value
 
 	@completer.deleter
@@ -510,24 +511,13 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		# Signals / Slots.
 		self.blockCountChanged.connect(self.__marginArea_LinesNumbers_widget.setEditorViewportMargins)
 		self.updateRequest.connect(self.__marginArea_LinesNumbers_widget.updateRectangle)
-		self.cursorPositionChanged.connect(self.highlightCurrentLine)
+		self.cursorPositionChanged.connect(self.__highlightCurrentLine)
 
 		return True
 
 	@core.executionTrace
-	def resizeEvent(self, event):
-		"""
-		This method reimplements the Widget **resizeEvent** method.
-		
-		:param event: Event. ( QEvent )
-		"""
-
-		QPlainTextEdit.resizeEvent(self, event)
-		self.__marginArea_LinesNumbers_widget.updateGeometry()
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def highlightCurrentLine(self):
+	def __highlightCurrentLine(self):
 		"""
 		This method highlights the current line.
 		
@@ -547,37 +537,55 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 		self.setExtraSelections(extraSelections)
 		return True
 
-	def setCompleter(self, completer):
-		if self.__completer:
-			self.disconnect(self.__completer, 0, self, 0)
-		if not completer:
-			return
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __insertCompletion(self, completion):
+		"""
+		This method inserts the completion text in the current document.
 
-		completer.setWidget(self)
-		completer.setCompletionMode(QCompleter.PopupCompletion)
-		completer.setCaseSensitivity(Qt.CaseInsensitive)
-		self.__completer = completer
-		self.__completer.activated.connect(self.insertCompletion)
+		:param completion: Completion text. ( QString )
+		:return: Method success. ( Boolean )		
+		"""
 
-	def insertCompletion(self, completion):
 		textCursor = self.textCursor()
 		extra = (completion.length() - self.__completer.completionPrefix().length())
 		textCursor.movePosition(QTextCursor.Left)
 		textCursor.movePosition(QTextCursor.EndOfWord)
 		textCursor.insertText(completion.right(extra))
 		self.setTextCursor(textCursor)
+		return True
 
-	def textUnderCursor(self):
-		tc = self.textCursor()
-		tc.select(QTextCursor.WordUnderCursor)
-		return tc.selectedText()
+	@core.executionTrace
+	def resizeEvent(self, event):
+		"""
+		This method reimplements the Widget **resizeEvent** method.
+		
+		:param event: Event. ( QEvent )
+		"""
 
+		QPlainTextEdit.resizeEvent(self, event)
+		self.__marginArea_LinesNumbers_widget.updateGeometry()
+
+	@core.executionTrace
 	def focusInEvent(self, event):
+		"""
+		This method reimplements the Widget **focusInEvent** method.
+		
+		:param event: Event. ( QEvent )
+		"""
+
 		if self.__completer:
 			self.__completer.setWidget(self);
 		QPlainTextEdit.focusInEvent(self, event)
 
+	@core.executionTrace
 	def keyPressEvent(self, event):
+		"""
+		This method reimplements the Widget **keyPressEvent** method.
+		
+		:param event: Event. ( QEvent )
+		"""
+
 		if self.__completer and self.__completer.popup().isVisible():
 			if event.key() in (Qt.Key_Enter, Qt.Key_Return, Qt.Key_Escape, Qt.Key_Tab, Qt.Key_Backtab):
 				event.ignore()
@@ -588,6 +596,9 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 				return
 			completionPrefix = self.textUnderCursor()
 			if completionPrefix.length() >= 1 :
+				words = self.getWords()
+				words.remove(completionPrefix)
+				self.__completer.updateModel(words)
 				self.__completer.setCompletionPrefix(completionPrefix)
 				popup = self.__completer.popup()
 				popup.setCurrentIndex(self.__completer.completionModel().index(0, 0))
@@ -600,3 +611,54 @@ class CodeEditor_QPlainTextEdit(QPlainTextEdit):
 				self.__completer.popup().hide()
 			QPlainTextEdit.keyPressEvent(self, event)
 
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setCompleter(self, completer):
+		"""
+		This method sets provided completer as the current completer.
+
+		:param completer: Completer. ( QCompleter )
+		:return: Method success. ( Boolean )		
+		"""
+
+		# Signals / Slots.
+		if self.__completer:
+			self.__completer.activated.disconnect(self.__insertCompletion)
+
+		self.completer = completer
+		self.__completer.setWidget(self)
+
+		# Signals / Slots.
+		self.__completer.activated.connect(self.__insertCompletion)
+
+		return True
+
+	@core.executionTrace
+	def getWords(self):
+		"""
+		This method returns the document words.
+		
+		:return: Document words. ( List )		
+		"""
+
+		words = []
+		block = self.firstVisibleBlock()
+		while block.isValid():
+			blockWords = foundations.strings.getWords(str(block.text()))
+			if blockWords:
+				words.extend(blockWords)
+			block = block.next()
+		return words
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def textUnderCursor(self):
+		"""
+		This method returns the text under cursor.
+		
+		:return: Text under cursor. ( QString )		
+		"""
+
+		textCursor = self.textCursor()
+		textCursor.select(QTextCursor.WordUnderCursor)
+		return textCursor.selectedText()
