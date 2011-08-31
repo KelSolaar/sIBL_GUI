@@ -19,6 +19,7 @@
 #***	External imports.
 #***********************************************************************************************
 import logging
+import os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -27,7 +28,10 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import umbra.ui.common
+from foundations.parser import Parser
 from umbra.globals.constants import Constants
+from umbra.globals.uiConstants import UiConstants
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -40,6 +44,8 @@ __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
 LOGGER = logging.getLogger(Constants.logger)
+
+PYTHON_TOKENS_FILE = os.path.join(os.getcwd(), UiConstants.pythonTokensFile)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -197,6 +203,7 @@ class Highlighter(QSyntaxHighlighter):
 	#***	Class methods.
 	#***********************************************************************************************
 	# @core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, NotImplementedError)
 	def highlightBlock(self, block):
 		"""
 		This method highlights provided text block.
@@ -204,9 +211,10 @@ class Highlighter(QSyntaxHighlighter):
 		:param block: Text block. ( QString )
 		"""
 
-		pass
+		raise NotImplementedError("'{0}' must be implemented by '{1}' subclasses!".format(self.highlightBlock.__name__, self.__class__.__name__))
 
 	# @core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def highlightText(self, text, start, end):
 		"""
 		This method highlights provided text.
@@ -252,6 +260,8 @@ class LoggingHighlighter(Highlighter):
 	def __setFormats(self):
 		"""
 		This method sets the highlighting formats.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		self.formats = Formats(default=getFormat(color=QColor(192, 192, 192)))
@@ -265,10 +275,14 @@ class LoggingHighlighter(Highlighter):
 		self.formats.loggingDebugTraceIn = getFormat(format=self.formats.loggingDebug, color=QColor(128, 160, 192))
 		self.formats.loggingDebugTraceOut = getFormat(format=self.formats.loggingDebug, color=QColor(QColor(192, 160, 128)))
 
+		return True
+
 	@core.executionTrace
 	def __setRules(self):
 		"""
 		This method sets the highlighting rules.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__multiLineSingleString = QRegExp(r"\"\"\"|'''")
@@ -284,6 +298,8 @@ class LoggingHighlighter(Highlighter):
 
 		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s--->>>.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*DEBUG\s*:\s--->>>.*$"), format=self.formats.loggingDebugTraceIn))
 		self.rules.append(Rule(pattern=QRegExp(r"^DEBUG\s*:\s---<<<.*$|^[\d-]+\s+[\d:,]+\s*-\s*[\da-fA-F]+\s*-\s*DEBUG\s*:\s---<<<.*$"), format=self.formats.loggingDebugTraceOut))
+
+		return True
 
 	# @core.executionTrace
 	def highlightBlock(self, block):
@@ -312,49 +328,16 @@ class PythonHighlighter(Highlighter):
 
 		QSyntaxHighlighter.__init__(self, parent)
 
-		self.__keywords = None
 		self.__multiLineSingleString = None
 		self.__multiLineDoubleString = None
 
-		self.__setKeywords()
+		self.__setPythonTokens()
 		self.__setFormats()
 		self.__setRules()
 
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def keywords(self):
-		"""
-		This method is the property for **self.__keywords** attribute.
-
-		:return: self.__keywords. ( Tuple / List )
-		"""
-
-		return self.__keywords
-
-	@keywords.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def keywords(self, value):
-		"""
-		This method is the setter method for **self.__keywords** attribute.
-
-		:param value: Attribute value. ( Tuple / List )
-		"""
-
-		if value:
-			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("keywords", value)
-		self.__keywords = value
-
-	@keywords.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def keywords(self):
-		"""
-		This method is the deleter method for **self.__keywords** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("keywords"))
-
 	@property
 	def multiLineSingleString(self):
 		"""
@@ -419,21 +402,74 @@ class PythonHighlighter(Highlighter):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("multiLineDoubleString"))
 
+	@property
+	def pythonTokens(self):
+		"""
+		This method is the property for **self.__pythonTokens** attribute.
+
+		:return: self.__pythonTokens. ( Parser )
+		"""
+
+		return self.__pythonTokens
+
+	@pythonTokens.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def pythonTokens(self, value):
+		"""
+		This method is the setter method for **self.__pythonTokens** attribute.
+
+		:param value: Attribute value. ( Parser )
+		"""
+
+		if value:
+			assert type(value) is Parser, "'{0}' attribute: '{1}' type is not 'Parser'!".format("pythonTokens", value)
+		self.__pythonTokens = value
+
+	@pythonTokens.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def pythonTokens(self):
+		"""
+		This method is the deleter method for **self.__pythonTokens** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("pythonTokens"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def __setKeywords(self):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __setPythonTokens(self):
 		"""
-		This method sets the highlighting keywords.
+		This method sets the Python tokens.
+
+		:return: Method success. ( Boolean )
 		"""
 
-		self.__keywords = ("and", "as", "assert", "break", "class", "continue", "def", "del", "elif", "else", "except", "exec", "finally", "for", "from", "global", "if", "import", "in", "is", "lambda", "not", "or", "pass", "print", "raise", "return", "try", "while", "with", "yield")
+		self.__pythonTokens = umbra.ui.common.getTokensParser(PYTHON_TOKENS_FILE)
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __setKeywords(self, splitter="|"):
+		"""
+		This method sets the highlighting keywords.
+
+		:param splitters: Splitter character. ( String )
+		:return: Method success. ( Boolean )
+		"""
+
+		self.__keywords = self.__pythonTokens.getValue("keywords", "Tokens").split(splitter)
+
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def __setFormats(self):
 		"""
 		This method sets the highlighting formats.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		self.formats = Formats(default=getFormat(color=QColor(192, 192, 192)))
@@ -483,16 +519,22 @@ class PythonHighlighter(Highlighter):
 		self.formats.doubleQuotation = getFormat(format=self.formats.quotation)
 		self.formats.singleQuotation = getFormat(format=self.formats.quotation)
 
+		return True
+
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def __setRules(self):
 		"""
 		This method sets the highlighting rules.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		self.__multiLineSingleString = QRegExp(r"^\s*\"\"\"|\"\"\"\s*$")
 		self.__multiLineDoubleString = QRegExp(r"^\s*'''|'''\s*$")
 
-		self.rules = map(lambda i: Rule(pattern=QRegExp(r"\b{0}\b".format(i)), format=self.formats.keyword), self.__keywords)
+		self.rules = []
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("keywords", "Tokens"))), format=self.formats.keyword))
 
 		self.rules.append(Rule(pattern=QRegExp(r"\b[-+]?[1-9]+\d*|0\b"), format=self.formats.numericIntegerDecimal))
 		self.rules.append(Rule(pattern=QRegExp(r"\b([-+]?[1-9]+\d*|0)L\b"), format=self.formats.numericIntegerLongDecimal))
@@ -518,13 +560,13 @@ class PythonHighlighter(Highlighter):
 
 		self.rules.append(Rule(pattern=QRegExp(r"@[\w\.]+"), format=self.formats.entityDecorator))
 
-		self.rules.append(Rule(pattern=QRegExp(r"\b(ArithmeticError|AssertionError|AttributeError|BaseException|BufferError|BytesWarning|DeprecationWarning|EOFError|EnvironmentError|Exception|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|KeyError|KeyboardInterrupt|LookupError|MemoryError|NameError|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|ReferenceError|RuntimeError|RuntimeWarning|StandardError|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError)\b"), format=self.formats.builtinsExceptions))
-		self.rules.append(Rule(pattern=QRegExp(r"\b(abs|all|any|apply|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|execfile|exit|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|license|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b"), format=self.formats.builtinsFunctions))
-		self.rules.append(Rule(pattern=QRegExp(r"\b(Ellipsis|False|None|True|__(debug|doc|import|name|package)__)\b"), format=self.formats.builtinsMiscellaneous))
-		self.rules.append(Rule(pattern=QRegExp(r"\b(__(class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook)__)\b"), format=self.formats.builtinsObjectMethods))
-		self.rules.append(Rule(pattern=QRegExp(r"\b__(abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor)__\b"), format=self.formats.magicMethods))
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("builtinsExceptions", "Tokens"))), format=self.formats.builtinsExceptions))
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("builtinsFunctions", "Tokens"))), format=self.formats.builtinsFunctions))
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("builtinsMiscellaneous", "Tokens"))), format=self.formats.builtinsMiscellaneous))
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("builtinsObjectMethods", "Tokens"))), format=self.formats.builtinsObjectMethods))
+		self.rules.append(Rule(pattern=QRegExp(r"\b({0})\b".format(self.__pythonTokens.getValue("magicMethods", "Tokens"))), format=self.formats.magicMethods))
 
-		self.rules.append(Rule(pattern=QRegExp(r"\b(?:(?!__(debug|doc|import|name|package|class|delattr|doc|format|getattribute|hash|init|new|reduce|reduce_ex|repr|setattr|sizeof|str|subclasshook__|abs|add|and|call|cmp|coerce|complex|contains|delattr|delete|delitem|delslice|del|divmod|div|enter|eq|exit|float|floordiv|getattribute|getattr|getitem|getslice|get|ge|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imod|imul|index|init|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|len|le|long|lshift|lt|mod|mul|neg|new|ne|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rtruediv|rxor|setattr|setitem|setslice|set|str|sub|truediv|unicode|xor))__\w+__)\b"), format=self.formats.magicObject))
+		self.rules.append(Rule(pattern=QRegExp(r"\b(?:(?!({0}|{1}|{2}))\w+__)\b".format(self.__pythonTokens.getValue("builtinsMiscellaneous", "Tokens"), self.__pythonTokens.getValue("builtinsObjectMethods", "Tokens"), self.__pythonTokens.getValue("magicMethods", "Tokens"))), format=self.formats.magicObject))
 
 		self.rules.append(Rule(pattern=QRegExp(r"\bself\b"), format=self.formats.decoratorArgument))
 
@@ -532,6 +574,8 @@ class PythonHighlighter(Highlighter):
 
 		self.rules.append(Rule(pattern=QRegExp(r"\"[^\n\"]*\""), format=self.formats.doubleQuotation))
 		self.rules.append(Rule(pattern=QRegExp(r"'[^\n']*'"), format=self.formats.singleQuotation))
+
+		return True
 
 	# @core.executionTrace
 	def highlightBlock(self, block):
@@ -547,6 +591,7 @@ class PythonHighlighter(Highlighter):
 		not self.highlightMultilineBlock(block, self.__multiLineSingleString, 1, self.formats.multiLineString) and self.highlightMultilineBlock(block, self.__multiLineDoubleString, 2, self.formats.multiLineString)
 
 	# @core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def highlightMultilineBlock(self, block, pattern, state, format):
 		"""
 		This method highlights provided multiline text block.
