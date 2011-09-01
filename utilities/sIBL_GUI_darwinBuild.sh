@@ -17,7 +17,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "code,foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,umbra.components.core.db.dbUtilities.common,umbra.components.core.db.dbUtilities.types,umbra.libraries.freeImage.freeImage,umbra.ui.highlighters,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "code,foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,umbra.components.core.db.dbUtilities.common,umbra.components.core.db.dbUtilities.types,umbra.libraries.freeImage.freeImage,umbra.ui.completers,umbra.ui.highlighters,umbra.ui.widgets.codeEditor_QPlainTextEdit,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End
@@ -27,25 +27,25 @@ echo ----------------------------------------------------------------
 echo ----------------------------------------------------------------
 echo Release - Begin
 echo ----------------------------------------------------------------
-cp $SOURCE/resources/Icon_Light_512.icns $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
-mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
-uiResources=( "sIBL_GUI.ui" "sIBL_GUI_Layouts.rc" "Windows_styleSheet.qss" "Darwin_styleSheet.qss" "Linux_styleSheet.qss" )
-for uiResource in "${uiResources[@]}"
+cp $SOURCE/resources/images/Icon_Light_512.icns $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
+mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources/images
+images=( "Central_Widget.png" "Central_Widget_Active.png" "Central_Widget_Hover.png" "Close_Cross.png" "Close_Cross_Hover.png" "Export.png" "Export_Active.png" "Export_Hover.png" "Horizontal_Scrollbar_Grip.png" "Icon_Light.png" "Inspect.png" "Inspect_Active.png" "Inspect_Hover.png" "Layout.png" "Layout_Active.png" "Layout_Hover.png" "Library.png" "Library_Active.png" "Library_Hover.png" "Miscellaneous.png" "Miscellaneous_Active.png" "Miscellaneous_Hover.png" "Preferences.png" "Preferences_Active.png" "Preferences_Hover.png" "Resize_Grip.png" "sIBL_GUI_Logo.png" "sIBL_GUI_SpashScreen.png" "Small_Down_Arrow.png" "Small_Left_Arrow.png" "Small_Right_Arrow.png" "Small_Up_Arrow.png" "Thumbnail_Format_Not_Supported_Yet.png" "Thumbnail_Not_Found.png" "Tiny_Down_Arrow.png" "Tiny_Up_Arrow.png" "TreeView_Branch_Closed.png" "TreeView_Branch_End.png" "TreeView_Branch_More.png" "TreeView_Branch_Open.png" "TreeView_VLine.png" "Undock_Window.png" "Undock_Window_Hover.png" "Vertical_Scrollbar_Grip.png" )
+for image in "${images[@]}"
 do
-	cp $SOURCE/ui/$uiResource $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/ui
+	cp $SOURCE/resources/images/$image $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources/images
 done
-mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
-resources=( "Central_Widget.png" "Central_Widget_Active.png" "Central_Widget_Hover.png" "Close_Cross.png" "Close_Cross_Hover.png" "Export.png" "Export_Active.png" "Export_Hover.png" "Horizontal_Scrollbar_Grip.png" "Icon_Light.png" "Inspect.png" "Inspect_Active.png" "Inspect_Hover.png" "Layout.png" "Layout_Active.png" "Layout_Hover.png" "Library.png" "Library_Active.png" "Library_Hover.png" "Miscellaneous.png" "Miscellaneous_Active.png" "Miscellaneous_Hover.png" "Preferences.png" "Preferences_Active.png" "Preferences_Hover.png" "Resize_Grip.png" "sIBL_GUI_Logo.png" "sIBL_GUI_SpashScreen.png" "Small_Down_Arrow.png" "Small_Left_Arrow.png" "Small_Right_Arrow.png" "Small_Up_Arrow.png" "Thumbnail_Format_Not_Supported_Yet.png" "Thumbnail_Not_Found.png" "Tiny_Down_Arrow.png" "Tiny_Up_Arrow.png" "TreeView_Branch_Closed.png" "TreeView_Branch_End.png" "TreeView_Branch_More.png" "TreeView_Branch_Open.png" "TreeView_VLine.png" "Undock_Window.png" "Undock_Window_Hover.png" "Vertical_Scrollbar_Grip.png" )
-for resource in "${resources[@]}"
+resourcesDirectories=( "layouts" "others" "styles" )
+for directory in "${resourcesDirectories[@]}"
 do
-	cp $SOURCE/resources/$resource $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources
+	cp -r $SOURCE/resources/$directory $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources/
 done
+cp $SOURCE/resources/sIBL_GUI.ui $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/resources/sIBL_GUI.ui
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates
 cp -r $SOURCE/templates/Maya/* $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/templates/
 cp -r $SOURCE/components $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
 mkdir -p $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources
 cp -r $SOURCE/libraries/freeImage/resources/libfreeimage.dylib $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/libraries/freeImage/resources/
-cp -f ./support/__boot__.py $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
+#! cp -f ./support/__boot__.py $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
 cp -f ./support/qt.conf $DISTRIBUTION/sIBL_GUI.app/Contents/Resources/
 cp -r ./support/imageformats $DISTRIBUTION/sIBL_GUI.app/Contents/MacOs
 echo ----------------------------------------------------------------
