@@ -600,7 +600,7 @@ class ScriptEditor(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		print "evaluateSelectionAction"
+		self.evaluateSelection()
 
 	@core.executionTrace
 	def __evaluateScriptAction__triggered(self, checked):
@@ -639,6 +639,18 @@ class ScriptEditor(UiComponent):
 		self.__locals["componentsManager"] = self.__container.componentsManager
 
 		return True
+
+	@core.executionTrace
+	def evaluateSelection(self):
+		"""
+		This method evaluates **Script_Editor_Input_plainTextEdit** widget selected content in the interactive console.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		if self.evaluateCode(str(self.ui.Script_Editor_Input_plainTextEdit.textCursor().selectedText().replace(QChar(QChar.ParagraphSeparator), QString("\n")))):
+			self.emit(SIGNAL("datasChanged()"))
+			return True
 
 	@core.executionTrace
 	def evaluateScript(self):
