@@ -34,7 +34,7 @@ from foundations.parser import Parser
 import umbra.ui.widgets.messageBox as messageBox
 from umbra.globals.constants import Constants
 from umbra.globals.uiConstants import UiConstants
-from umbra.globals.runtimeConstants import RuntimeConstants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.libraries.freeImage.freeImage import Image
 
 #***********************************************************************************************
@@ -135,7 +135,7 @@ def uiSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 
 	uiExtendedExceptionHandler(exception, origin, *args, **kwargs)
-	foundations.common.exit(1, LOGGER, [RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler])
+	foundations.common.exit(1, LOGGER, [RuntimeGlobals.loggingSessionHandler, RuntimeGlobals.loggingFileHandler, RuntimeGlobals.loggingConsoleHandler])
 
 @core.executionTrace
 def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
@@ -149,7 +149,7 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	"""
 
 	uiStandaloneExtendedExceptionHandler(exception, origin, *args, **kwargs)
-	foundations.common.exit(1, LOGGER, [RuntimeConstants.loggingSessionHandler, RuntimeConstants.loggingFileHandler, RuntimeConstants.loggingConsoleHandler])
+	foundations.common.exit(1, LOGGER, [RuntimeGlobals.loggingSessionHandler, RuntimeGlobals.loggingFileHandler, RuntimeGlobals.loggingConsoleHandler])
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

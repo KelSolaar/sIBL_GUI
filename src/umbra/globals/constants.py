@@ -38,13 +38,13 @@ class Constants():
 	This class provides **Umbra** package default constants.
 	"""
 
-	applicationName = "sIBL_GUI"
-	"""Package Application name: '**sIBL_GUI**' ( String )"""
-	releaseVersion = "4.0.0"
-	"""Package release version: '**4.0.0**' ( String )"""
+	applicationName = "Umbra"
+	"""Package Application name: '**Umbra**' ( String )"""
+	releaseVersion = "1.0.0"
+	"""Package release version: '**1.0.0**' ( String )"""
 
-	logger = "sIBL_GUI_Logger"
-	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
+	logger = "Umbra_Logger"
+	"""Package logger name: '**Umbra_Logger**' ( String )"""
 	verbosityLevel = 3
 	"""Default logging verbosity level: '**3**' ( Integer )"""
 	verbosityLabels = ("Critical", "Error", "Warning", "Info", "Debug")
@@ -59,8 +59,8 @@ class Constants():
 	encodingError = "ignore"
 	"""Default encoding error behavior: '**ignore**' ( String )"""
 
-	applicationDirectory = "sIBL_GUI"
-	"""Package Application directory: '**sIBL_GUI**' ( String )"""
+	applicationDirectory = "Umbra"
+	"""Package Application directory: '**Umbra**' ( String )"""
 	if platform.system() == "Windows" or platform.system() == "Microsoft" or platform.system() == "Darwin":
 		providerDirectory = "HDRLabs"
 		"""Package provider directory: '**HDRLabs** on Windows / Darwin, **.HDRLabs** on Linux' ( String )"""
@@ -68,46 +68,28 @@ class Constants():
 		providerDirectory = ".HDRLabs"
 		"""Package provider directory: '**HDRLabs** on Windows / Darwin, **.HDRLabs** on Linux' ( String )"""
 
-	databaseDirectory = "database"
-	"""Application Database directory: '**database**' ( String )"""
-	databaseMigrationsDirectory = "migrations"
-	"""Application Database migrations directory: '**migrations**' ( String )"""
-	databaseMigrationsFilesDirectory = "versions"
-	"""Application Database migrations files versions directory: '**versions**' ( String )"""
-	databaseMigrationsTemplatesDirectory = "templates"
-	"""Application Database migrations templates files directory: '**templates**' ( String )"""
 	settingsDirectory = "settings"
 	"""Application settings directory: '**settings**' ( String )"""
 	userComponentsDirectory = "components"
 	"""Application user components directory: '**components**' ( String )"""
 	loggingDirectory = "logging"
 	"""Application logging directory: '**logging**' ( String )"""
-	templatesDirectory = "templates"
-	"""Application templates directory: '**templates**' ( String )"""
 	ioDirectory = "io"
 	"""Application io directory: '**io**' ( String )"""
 
-	preferencesDirectories = (databaseDirectory,
-								settingsDirectory,
+	preferencesDirectories = (settingsDirectory,
 								userComponentsDirectory,
 								loggingDirectory,
-								templatesDirectory,
 								ioDirectory)
 	"""Application preferences directories ( Tuple )"""
-	coreComponentsDirectory = "components/core"
-	"""Application core components directory: '**components/core**' ( String )"""
-	addonsComponentsDirectory = "components/addons"
-	"""Application addons components directory: '**components/addons**' ( String )"""
 
-	databaseFile = "sIBL_Database.sqlite"
-	"""Application Database file: '**sIBL_Database.sqlite**' ( String )"""
-	settingsFile = "sIBL_Settings.rc"
-	"""Application settings file: '**sIBL_Settings.rc**' ( String )"""
-	loggingFile = "sIBL_Logging.log"
-	"""Application logging file: '**sIBL_Logging.log**' ( String )"""
+	factoryComponentsDirectory = "components/factory"
+	"""Application core components directory: '**components/factory**' ( String )"""
 
-	databaseMigrationsFilesExtension = "py"
-	"""Application Database migrations files extension: '**py**' ( String )"""
+	settingsFile = "Umbra_Settings.rc"
+	"""Application settings file: '**Umbra_Settings.rc**' ( String )"""
+	loggingFile = "Umbra_Logging.log"
+	"""Application logging file: '**Umbra_Logging.log**' ( String )"""
 
 	librariesDirectory = "libraries"
 	"""Application libraries directory: '**libraries**' ( String )"""

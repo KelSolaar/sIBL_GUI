@@ -25,7 +25,7 @@ import sys
 #***********************************************************************************************
 import foundations.core as core
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeConstants import RuntimeConstants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -40,9 +40,9 @@ __status__ = "Production"
 LOGGER = logging.getLogger(Constants.logger)
 
 # Starting the console handler.
-RuntimeConstants.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
-RuntimeConstants.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
-LOGGER.addHandler(RuntimeConstants.loggingConsoleHandler)
+RuntimeGlobals.loggingConsoleHandler = logging.StreamHandler(sys.__stdout__)
+RuntimeGlobals.loggingConsoleHandler.setFormatter(core.LOGGING_DEFAULT_FORMATTER)
+LOGGER.addHandler(RuntimeGlobals.loggingConsoleHandler)
 
 #***********************************************************************************************
 #***	Module classes and definitions.

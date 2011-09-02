@@ -51,7 +51,7 @@ Modules Summary:
    umbra.components.core.preferencesManager.preferencesManager <api/umbra.components.core.preferencesManager.preferencesManager>
    umbra.components.core.templatesOutliner.templatesOutliner <api/umbra.components.core.templatesOutliner.templatesOutliner>
    umbra.globals.constants <api/umbra.globals.constants>
-   umbra.globals.runtimeConstants <api/umbra.globals.runtimeConstants>
+   umbra.globals.runtimeGlobals <api/umbra.globals.runtimeGlobals>
    umbra.globals.uiConstants <api/umbra.globals.uiConstants>
    umbra.libraries.freeImage.freeImage <api/umbra.libraries.freeImage.freeImage>
    umbra.sIBL_GUI <api/umbra.sIBL_GUI>
@@ -77,7 +77,7 @@ Modules Summary:
    tests.testsFoundations.testsStrings <api/tests.testsFoundations.testsStrings>
    tests.testsFoundations.testsWalker <api/tests.testsFoundations.testsWalker>
    tests.testsGlobals.testsConstants <api/tests.testsGlobals.testsConstants>
-   tests.testsGlobals.testsRuntimeConstants <api/tests.testsGlobals.testsRuntimeConstants>
+   tests.testsGlobals.testsRuntimeGlobals <api/tests.testsGlobals.testsRuntimeGlobals>
    tests.testsGlobals.testsUiConstants <api/tests.testsGlobals.testsUiConstants>
    tests.testsManager.resources.components.addons.testsComponentC.testsComponentC <api/tests.testsManager.resources.components.addons.testsComponentC.testsComponentC>
    tests.testsManager.resources.components.core.testsComponentA.testsComponentA <api/tests.testsManager.resources.components.core.testsComponentA.testsComponentA>

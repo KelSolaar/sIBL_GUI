@@ -1,12 +1,12 @@
-_`tests.testsGlobals.testsRuntimeConstants`
+_`tests.testsGlobals.testsRuntimeGlobals`
 ===========================================
 
-.. automodule:: tests.testsGlobals.testsRuntimeConstants
+.. automodule:: tests.testsGlobals.testsRuntimeGlobals
 
 Classes
 -------
 
-.. autoclass:: RuntimeConstantsTestCase
+.. autoclass:: RuntimeGlobalsTestCase
 	:show-inheritance:
 	:members:
 

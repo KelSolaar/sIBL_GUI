@@ -1,0 +1,12 @@
+[Component]
+Name = factory.preferencesManager
+Module = preferencesManager
+Object = PreferencesManager
+Rank = 10
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Preferences Manager Factory Component.

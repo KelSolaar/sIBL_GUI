@@ -26,7 +26,7 @@ from PyQt4.QtGui import *
 #***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
-from umbra.globals.runtimeConstants import RuntimeConstants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -82,7 +82,7 @@ def messageBox(type, title, message, icon=None, buttons=QMessageBox.Ok):
 			messageBox.setIcon(icon)
 		else:
 			messageBox.setIcon(QMessageBox.Critical)
-		RuntimeConstants.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeConstants.loggingSessionHandlerStream.stream))
+		RuntimeGlobals.loggingSessionHandlerStream and messageBox.setDetailedText("".join(RuntimeGlobals.loggingSessionHandlerStream.stream))
 		textEdit = messageBox.findChild(QTextEdit)
 		if textEdit:
 			textEdit.setCurrentFont(QFont("Courier"))

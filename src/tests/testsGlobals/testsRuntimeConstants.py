@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-**testsRuntimeConstants.py**
+**testsRuntimeGlobals.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`umbra.globals.runtimeConstants` module.
+	This module defines units tests for :mod:`umbra.globals.runtimeGlobals` module.
 
 **Others:**
 
@@ -22,7 +22,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal imports.
 #***********************************************************************************************
-from umbra.globals.runtimeConstants import RuntimeConstants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -37,9 +37,9 @@ __status__ = "Production"
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class RuntimeConstantsTestCase(unittest.TestCase):
+class RuntimeGlobalsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`umbra.globals.runtimeConstants.RuntimeConstants` class units tests methods.
+	This class defines :class:`umbra.globals.runtimeGlobals.RuntimeGlobals` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
@@ -67,7 +67,7 @@ class RuntimeConstantsTestCase(unittest.TestCase):
 								"splashscreen")
 
 		for attribute in requiredAttributes:
-			self.assertIn(attribute, RuntimeConstants.__dict__)
+			self.assertIn(attribute, RuntimeGlobals.__dict__)
 
 if __name__ == "__main__":
 	unittest.main()

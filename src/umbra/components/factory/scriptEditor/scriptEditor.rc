@@ -1,0 +1,12 @@
+[Component]
+Name = factory.scriptEditor
+Module = scriptEditor
+Object = ScriptEditor
+Rank = 5
+Version = 1.0
+
+[Informations]
+Author = Thomas Mansencal
+Email = thomas.mansencal@gmail.com
+Url = http://www.hdrlabs.com/
+Description = Script Editor Factory Component.

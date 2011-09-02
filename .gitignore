@@ -15,7 +15,8 @@ releases/Darwin/
 releases/Linux/
 releases/repository/
 releases/Windows/
-src/resources/builders/
+src/sibl_gui/resources/images/builders/
+src/umbra/resources/images/builders/
 support/documentation/sphinx/build
 support/documentation/sphinx/source/resources/src
 utilities/dmgCanvas/

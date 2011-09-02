@@ -44,7 +44,7 @@ QSplitter::handle:pressed {
 	spacing: 8px;
 }
 
-#Application_Logo_label, #Logo_Spacer_label, #Library_activeLabel, #Inspect_activeLabel, #Export_activeLabel, #Preferences_activeLabel, #Central_Widget_activeLabel, #Layout_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_activeLabel, #qt_toolbar_ext_button {
+#Application_Logo_label, #Logo_Spacer_label, #Development_activeLabel, #Preferences_activeLabel, #Layout_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_activeLabel, #qt_toolbar_ext_button {
 	background-color: transparent;
 }
 
@@ -375,41 +375,8 @@ QToolTip {
 	padding: 8px;
 }
 
-/* Menu_QLabel. */
-Menu_QLabel {
-	padding: 2px;
-}
-
-Menu_QLabel:pressed {
-	background-color: rgb(96, 96, 96);
-}
-
-Menu_QLabel:hover {
-	background-color: rgb(96, 96, 96);
-	border: 1px solid rgb(48, 48, 48);
-}
-
 /* Components. */
-/* Core Component "Inspector". */
-#Inspector_Overall_frame {
-	background-color: rgb(48, 48, 48);
-}
-
-#Image_frame {
-	padding: 8px;
-}
-
-/* Addon Component "Script Editor". */
+/* Factory Component "Script Editor". */
 #Lines_Numbers_textEdit {
 	background-color: rgb(96, 96, 96);
-}
-
-/* Addon Component "Search Database". */
-#Clear_Field_button {
-	background-color: rgb(48, 48, 48);
-}
-
-#Tags_Cloud_listWidget::item {
-	border: 0px;
-	padding: 2px;
 }

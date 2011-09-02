@@ -1,12 +1,12 @@
-_`umbra.globals.runtimeConstants`
+_`umbra.globals.runtimeGlobals`
 =================================
 
-.. automodule:: umbra.globals.runtimeConstants
+.. automodule:: umbra.globals.runtimeGlobals
 
 Classes
 -------
 
-.. autoclass:: RuntimeConstants
+.. autoclass:: RuntimeGlobals
 	:show-inheritance:
 	:members:
 
