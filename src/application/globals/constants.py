@@ -99,6 +99,9 @@ class Constants():
 	addonsComponentsDirectory = "components/addons"
 	"""Application addons components directory: '**components/addons**' ( String )"""
 
+	resourcesDirectory = "resources"
+	"""Application resources directory: '**resources**' ( String )"""
+
 	databaseFile = "sIBL_Database.sqlite"
 	"""Application Database file: '**sIBL_Database.sqlite**' ( String )"""
 	settingsFile = "sIBL_Settings.rc"

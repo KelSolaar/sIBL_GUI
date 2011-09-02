@@ -86,6 +86,9 @@ class Constants():
 	factoryComponentsDirectory = "components/factory"
 	"""Application core components directory: '**components/factory**' ( String )"""
 
+	resourcesDirectory = "resources"
+	"""Application resources directory: '**resources**' ( String )"""
+
 	settingsFile = "Umbra_Settings.rc"
 	"""Application settings file: '**Umbra_Settings.rc**' ( String )"""
 	loggingFile = "Umbra_Logging.log"

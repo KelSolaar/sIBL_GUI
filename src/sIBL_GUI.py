@@ -19,7 +19,18 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
+import os
+
+#***********************************************************************************************
+#***	Internal imports.
+#***********************************************************************************************
+from application.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
+RuntimeGlobals.resourcesPaths.append(os.path.join(os.path.dirname(__file__), Constants.resourcesDirectory))
+
 import umbra.engine
+
+umbra.engine._run()
 
 #***********************************************************************************************
 #***	Path manipulations.
@@ -109,7 +120,7 @@ import umbra.engine
 #
 #	pass
 #
-#RuntimeGlobals.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
+#RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.frameworkUiFile)
 #if os.path.exists(RuntimeGlobals.uiFile):
 #	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeGlobals.uiFile)
 #else:
@@ -284,7 +295,7 @@ import umbra.engine
 #		"""
 #
 #		LOGGER.debug("> Accessing '{0}' layouts settings file!".format(UiConstants.frameworkLayoutsFile))
-#		self.__defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
+#		self.__defaultLayoutsSettings = QSettings(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 #
 #	@core.executionTrace
 #	@foundations.exceptions.exceptionsHandler(None, False, Exception)

@@ -118,7 +118,8 @@ class Ui_Type():
 
 	pass
 
-RuntimeGlobals.uiFile = os.path.join(os.getcwd(), UiConstants.frameworkUiFile)
+RuntimeGlobals.resourcesPaths.append(os.path.join(os.path.dirname(__file__), Constants.resourcesDirectory))
+RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.frameworkUiFile)
 if os.path.exists(RuntimeGlobals.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeGlobals.uiFile)
 else:
@@ -293,7 +294,7 @@ class Preferences():
 		"""
 
 		LOGGER.debug("> Accessing '{0}' layouts settings file!".format(UiConstants.frameworkLayoutsFile))
-		self.__defaultLayoutsSettings = QSettings(os.path.join(os.getcwd(), UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
+		self.__defaultLayoutsSettings = QSettings(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -386,9 +387,12 @@ class Umbra(Ui_Type, Ui_Setup):
 	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
-	def __init__(self, paths, components):
+	def __init__(self, paths, components=None):
 		"""
 		This method initializes the class.
+
+		:param paths: Components paths. ( QString )
+		:param components: Mandatory components names. ( QString )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
@@ -448,6 +452,7 @@ class Umbra(Ui_Type, Ui_Setup):
 		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 
 		# --- Activating mandatory Components. ---
+		components = components or []
 		for component in components:
 			profile = self.__componentsManager.components[component]
 			interface = self.__componentsManager.getInterface(component)
@@ -1078,7 +1083,7 @@ class Umbra(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Adding Application logo.")
 		logoLabel = QLabel()
 		logoLabel.setObjectName("Application_Logo_label")
-		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoImage))
+		logoLabel.setPixmap(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLogoImage)))
 		self.toolBar.addWidget(logoLabel)
 
 		spacer = QLabel()
@@ -1091,11 +1096,15 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Adding Active_QLabels.")
 
-		self.__developmentActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkDevelopmentIcon), QPixmap(UiConstants.frameworkDevelopmentHoverIcon), QPixmap(UiConstants.frameworkDevelopmentActiveIcon), True)
+		self.__developmentActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentActiveIcon)), True)
 		self.__developmentActiveLabel.setObjectName("Development_activeLabel")
 		self.toolBar.addWidget(self.__developmentActiveLabel)
 
-		self.__preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
+		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesActiveIcon)), True)
 		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
@@ -1107,7 +1116,9 @@ class Umbra(Ui_Type, Ui_Setup):
 			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding layout button.")
-		layoutButton = Active_QLabel(QPixmap(UiConstants.frameworkLayoutIcon), QPixmap(UiConstants.frameworkLayoutHoverIcon), QPixmap(UiConstants.frameworkLayoutActiveIcon), parent=self)
+		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutHoverIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutActiveIcon)), parent=self)
 		layoutButton.setObjectName("Layout_activeLabel")
 		self.toolBar.addWidget(layoutButton)
 
@@ -1136,7 +1147,9 @@ class Umbra(Ui_Type, Ui_Setup):
 		layoutButton.setMenu(self.__layoutMenu)
 
 		LOGGER.debug("> Adding miscellaneous button.")
-		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
+		miscellaneousButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousIcon)),
+										QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousHoverIcon)),
+										QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousActiveIcon)), parent=self)
 		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
 		self.toolBar.addWidget(miscellaneousButton)
 
@@ -1247,13 +1260,13 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
 			RuntimeGlobals.application.setStyle(UiConstants.frameworkWindowsStyle)
-			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkWindowsStylesheetFile))
 		elif platform.system() == "Darwin":
 			RuntimeGlobals.application.setStyle(UiConstants.frameworkDarwinStyle)
-			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkDarwinStylesheetFile))
 		elif platform.system() == "Linux":
 			RuntimeGlobals.application.setStyle(UiConstants.frameworkLinuxStyle)
-			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkLinuxStylesheetFile))
 
 		if os.path.exists(styleSheetFile.file):
 			LOGGER.debug("> Reading style sheet file: '{0}'.".format(styleSheetFile.file))
@@ -1359,9 +1372,13 @@ class Umbra(Ui_Type, Ui_Setup):
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
-def _run(paths, components):
+def _run(engine, paths, components=None):
 	"""
 	This definition is called when **Umbra** starts.
+
+	:param paths: Components paths. ( QString )
+	:param components: Mandatory components names. ( QString )
+	:return: Definition success. ( Boolean )
 	"""
 
 	# Command line parameters handling.
@@ -1452,16 +1469,16 @@ def _run(paths, components):
 	else:
 		LOGGER.debug("> Initializing splashscreen.")
 
-		RuntimeGlobals.splashscreenImage = QPixmap(UiConstants.frameworkSplashScreenImage)
+		RuntimeGlobals.splashscreenImage = QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkSplashScreenImage))
 		RuntimeGlobals.splashscreen = Delayed_QSplashScreen(RuntimeGlobals.splashscreenImage)
 		RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing {0}.".format(Constants.applicationName, Constants.releaseVersion), textColor=Qt.white)
 		RuntimeGlobals.splashscreen.show()
 
-	RuntimeGlobals.ui = Umbra(paths, components)
+	RuntimeGlobals.ui = engine(paths, components)
 	RuntimeGlobals.ui.show()
 	RuntimeGlobals.ui.raise_()
 
-	sys.exit(RuntimeGlobals.application.exec_())
+	return sys.exit(RuntimeGlobals.application.exec_())
 
 @core.executionTrace
 def _exit():
@@ -1511,13 +1528,6 @@ def _getCommandLineParameters(argv):
 	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application logging formatter: '{0}'.'".format(", ".join(sorted(RuntimeGlobals.loggingFormatters.keys()))))
 	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application datas directory'.")
 
-	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate worker threads'.")
-
-	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database directory'.")
-	parser.add_option("-r", "--databaseReadOnly", action="store_true", default=False, dest="databaseReadOnly", help="'Database read only'.")
-
-	parser.add_option("-o", "--loaderScriptsOutputDirectory", action="store", type="string", dest="loaderScriptsOutputDirectory", help="'Loader Scripts output directory'.")
-
 	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide splashscreen'.")
 
 	parameters, args = parser.parse_args(argv)
@@ -1549,4 +1559,4 @@ def _setUserApplicationDatasDirectory(path):
 #***	Launcher.
 #***********************************************************************************************
 if __name__ == "__main__":
-	_run((os.path.join(os.getcwd(), Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))
+	_run(Umbra, (os.path.join(os.getcwd(), Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))

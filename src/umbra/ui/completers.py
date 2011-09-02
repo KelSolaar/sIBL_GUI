@@ -43,7 +43,7 @@ __status__ = "Production"
 
 LOGGER = logging.getLogger(Constants.logger)
 
-PYTHON_TOKENS_FILE = os.path.join(os.getcwd(), UiConstants.pythonTokensFile)
+PYTHON_TOKENS_FILE = umbra.ui.common.getResourcePath(UiConstants.pythonTokensFile)
 
 #***********************************************************************************************
 #***	Module classes and definitions.

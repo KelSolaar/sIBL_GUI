@@ -32,8 +32,8 @@ class UiConstants():
 	This class provides **Umbra** package ui constants.
 	"""
 
-	frameworkUiFile = "Umbra.ui"
-	"""Application ui file: '**Umbra.ui**' ( String )"""
+	frameworkUiFile = "sIBL_GUI.ui"
+	"""Application ui file: '**sIBL_GUI.ui**' ( String )"""
 
 	frameworkWindowsStylesheetFile = "styles/Windows_styleSheet.qss"
 	"""Application Windows Os stylesheet file: '**styles/Windows_styleSheet.qss**' ( String )"""
@@ -48,7 +48,7 @@ class UiConstants():
 	frameworkLinuxStyle = "plastique"
 	"""Application Linux Os style: '**plastique**' ( String )"""
 
-	frameworkLayoutsFile = "layouts/Defaults_Layouts.rc"
+	frameworkLayoutsFile = "layouts/sIBL_GUI_Layouts.rc"
 	"""Application defaults layouts file: '**layouts/Defaults_Layouts.rc**' ( String )"""
 
 	frameworkApplicationWindowsIcon = "images/Icon_Light.png"
@@ -56,13 +56,20 @@ class UiConstants():
 	frameworkApplicationDarwinIcon = "images/Icon_Light.png"
 	"""Application Mac Os X Os layouts file: '**images/Icon_Light.png**' ( String )"""
 
-	frameworkSplashScreenImage = "images/Umbra_SpashScreen.png"
-	"""Application splashscreen image: '**images/Umbra_SpashScreen.png**' ( String )"""
-	frameworkLogoImage = "images/Umbra_Logo.png"
-	"""Application logo image: '**images/Umbra_Logo.png**' ( String )"""
+	frameworkSplashScreenImage = "images/sIBL_GUI_SpashScreen.png"
+	"""Application splashscreen image: '**images/sIBL_GUI_SpashScreen.png**' ( String )"""
+	frameworkLogoImage = "images/sIBL_GUI_Logo.png"
+	"""Application logo image: '**images/sIBL_GUI_Logo.png**' ( String )"""
 
 	frameworkDefaultToolbarIconSize = 32
 	"""Application toolbar icons size: '**32**' ( Integer )"""
+
+	frameworkCentralWidgetIcon = "images/Central_Widget.png"
+	"""Application **Central Widget** icon: '**images/Central_Widget.png**' ( String )"""
+	frameworkCentralWidgetHoverIcon = "images/Central_Widget_Hover.png"
+	"""Application **Central Widget** hover icon: '**images/Central_Widget_Hover.png**' ( String )"""
+	frameworkCentralWidgetActiveIcon = "images/Central_Widget_Active.png"
+	"""Application **Central Widget** active icon: '**images/Central_Widget_Active.png**' ( String )"""
 
 	frameworkLayoutIcon = "images/Layout.png"
 	"""Application **Layout** icon: '**images/Layout.png**' ( String )"""
@@ -78,12 +85,26 @@ class UiConstants():
 	frameworMiscellaneousActiveIcon = "images/Miscellaneous_Active.png"
 	"""Application **Miscellaneous** active icon: '**images/Miscellaneous_Active.png**' ( String )"""
 
-	frameworkDevelopmentIcon = "images/Development.png"
-	"""Application **Development** icon: '**images/Development.png**' ( String )"""
-	frameworkDevelopmentHoverIcon = "images/Development_Hover.png"
-	"""Application **Development** hover icon: '**images/Development_Hover.png**' ( String )"""
-	frameworkDevelopmentActiveIcon = "images/Development_Active.png"
-	"""Application **Development** active icon: '**images/Development_Active.png**' ( String )"""
+	frameworkLibraryIcon = "images/Library.png"
+	"""Application **Library** icon: '**images/Library.png**' ( String )"""
+	frameworkLibraryHoverIcon = "images/Library_Hover.png"
+	"""Application **Library** hover icon: '**images/Library_Hover.png**' ( String )"""
+	frameworkLibraryActiveIcon = "images/Library_Active.png"
+	"""Application **Library** active icon: '**images/Library_Active.png**' ( String )"""
+
+	frameworkInspectIcon = "images/Inspect.png"
+	"""Application **Inspect** icon: '**images/Inspect.png**' ( String )"""
+	frameworkInspectHoverIcon = "images/Inspect_Hover.png"
+	"""Application **Inspect** hover icon: '**images/Inspect_Hover.png**' ( String )"""
+	frameworkInspectActiveIcon = "images/Inspect_Active.png"
+	"""Application **Inspect** active icon: '**images/Inspect_Active.png**' ( String )"""
+
+	frameworkExportIcon = "images/Export.png"
+	"""Application **Export** icon: '**images/Export.png**' ( String )"""
+	frameworkExportHoverIcon = "images/Export_Hover.png"
+	"""Application **Export** hover icon: '**images/Export_Hover.png**' ( String )"""
+	frameworkExportActiveIcon = "images/Export_Active.png"
+	"""Application **Export** active icon: '**images/Export_Active.png**' ( String )"""
 
 	frameworkPreferencesIcon = "images/Preferences.png"
 	"""Application **Preferences** icon: '**images/Preferences.png**' ( String )"""
@@ -91,6 +112,11 @@ class UiConstants():
 	"""Application **Preferences** hover icon: '**images/Preferences_Hover.png**' ( String )"""
 	frameworkPreferencesActiveIcon = "images/Preferences_Active.png"
 	"""Application **Preferences** active icon: '**images/Preferences_Active.png**' ( String )"""
+
+	frameworkFormatErrorImage = "images/Thumbnail_Format_Not_Supported_Yet.png"
+	"""Application format error image thumbnail: '**images/Thumbnail_Format_Not_Supported_Yet.png**' ( String )"""
+	frameworkMissingImage = "images/Thumbnail_Not_Found.png"
+	"""Application missing image thumbnail: '**images/Thumbnail_Not_Found.png**' ( String )"""
 
 	frameworkStartupLayout = "startupCentric"
 	"""Application startup layout: '**startupCentric**' ( String )"""
@@ -100,8 +126,18 @@ class UiConstants():
 	frameworkApiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 	"""Application online api file: '**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html**' ( String )"""
 
-	restoreGeometryOnLayoutChange = False
-	"""Restore geometry on layout change: '**False**' ( Boolean )"""
+	nativeImageFormats = { "Bmp" : "\.[bB][mM][pP]",
+							"Jpeg" : "\.[jJ][pP][eE][gG]",
+							"Jpg" : "\.[jJ][pP][gG]",
+							"Png" : "\.[pP][nN][gG]" }
+	"""Application native image file formats. ( Dictionary )"""
+
+	thirdPartyImageFormats = { "Exr" : ("\.[eE][xX][rR]"),
+								"Hdr" : ("\.[hH][dD][rR]"),
+								"Tif" : ("\.[tT][iI][fF]"),
+								"Tiff" : ("\.[tT][iI][fF][fF]"),
+								"Tga" : ("\.[tT][gG][aA]")}
+	"""Application third party image file formats. ( Dictionary )"""
 
 	pythonTokensFile = "others/Python_Tokens.rc"
 	"""Python tokens file: '**others/Python_Tokens.rc**' ( String )"""

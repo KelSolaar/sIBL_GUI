@@ -152,6 +152,23 @@ def uiStandaloneSystemExitExceptionHandler(exception, origin, *args, **kwargs):
 	foundations.common.exit(1, LOGGER, [RuntimeGlobals.loggingSessionHandler, RuntimeGlobals.loggingFileHandler, RuntimeGlobals.loggingConsoleHandler])
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, OSError)
+def getResourcePath(name):
+	"""
+	This definition returns the resource file path matching the provided name.
+
+	:param name: Resource name. ( String )
+	:return: Resource path. ( String )
+	"""
+
+	for path in RuntimeGlobals.resourcesPaths:
+		path = os.path.join(path, name)
+		if os.path.exists(path):
+			return path
+
+	raise OSError("No resource file path found for '{0}' name!".format(name))
+
+@core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def setWindowDefaultIcon(window):
 	"""
@@ -162,9 +179,9 @@ def setWindowDefaultIcon(window):
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationWindowsIcon)))
+		window.setWindowIcon(QIcon(getResourcePath(UiConstants.frameworkApplicationWindowsIcon)))
 	elif platform.system() == "Darwin":
-		window.setWindowIcon(QIcon(os.path.join(os.getcwd(), UiConstants.frameworkApplicationDarwinIcon)))
+		window.setWindowIcon(QIcon(getResourcePath(UiConstants.frameworkApplicationDarwinIcon)))
 	elif platform.system() == "Linux":
 		pass
 	return True
