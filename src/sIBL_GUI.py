@@ -18,8 +18,12 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
-import os
+import functools
 import logging
+import os
+import sys
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 
 #***********************************************************************************************
 #***	Internal imports.
@@ -42,6 +46,8 @@ RuntimeGlobals.resourcesPaths.append(os.path.join(sibl_gui.__path__[0], sibl_gui
 #***	Internal imports.
 #***********************************************************************************************
 import umbra.engine
+import umbra.ui.common
+from umbra.ui.widgets.active_QLabel import Active_QLabel
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -56,10 +62,187 @@ __status__ = "Production"
 LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
 
 #***********************************************************************************************
+#***	Module classes and definitions.
+#***********************************************************************************************
+class sIBL_GUI(umbra.engine.Umbra):
+	"""
+	This class is the main class of the **sibl_gui** package.
+	"""
+
+	def __init__(self, paths, components=None):
+		"""
+		This method initializes the class.
+
+		:param paths: Components paths. ( QString )
+		:param components: Mandatory components names. ( QString )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		umbra.engine.Umbra.__init__(self, paths, components)
+
+		# --- Setting class attributes. ---
+
+	def initializeToolBar(self):
+		"""
+		This method initializes Application toolBar.
+		"""
+
+		LOGGER.debug("> Initializing Application toolBar.")
+
+		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize, umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
+
+		LOGGER.debug("> Adding Application logo.")
+		logoLabel = QLabel()
+		logoLabel.setObjectName("Application_Logo_label")
+		logoLabel.setPixmap(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.logoImage)))
+		self.toolBar.addWidget(logoLabel)
+
+		spacer = QLabel()
+		spacer.setObjectName("Logo_Spacer_label")
+		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+		self.toolBar.addWidget(spacer)
+
+		toolBarFont = QFont()
+		toolBarFont.setPointSize(16)
+
+		LOGGER.debug("> Adding Active_QLabels.")
+
+		self.__libraryActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
+		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
+		self.toolBar.addWidget(self.__libraryActiveLabel)
+
+		self.__inspectActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
+														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
+														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
+		self.__inspectActiveLabel.setObjectName("Inspect_activeLabel")
+		self.toolBar.addWidget(self.__inspectActiveLabel)
+
+		self.__exportActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
+												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
+												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
+		self.__exportActiveLabel.setObjectName("Export_activeLabel")
+		self.toolBar.addWidget(self.__exportActiveLabel)
+
+		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
+		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
+		self.toolBar.addWidget(self.__preferencesActiveLabel)
+
+		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object_=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+									umbra.ui.common.LayoutActiveLabel(name="Inspect", object_=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
+									umbra.ui.common.LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
+									umbra.ui.common.LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+
+		# Signals / Slots.
+		for layoutActiveLabel in self.layoutsActiveLabels:
+			layoutActiveLabel.object_.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
+
+		LOGGER.debug("> Adding Central Widget button.")
+		centralWidgetButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
+											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
+											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
+		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
+		self.toolBar.addWidget(centralWidgetButton)
+
+		centralWidgetButton.clicked.connect(self.centralWidgetButton__clicked)
+
+		LOGGER.debug("> Adding layout button.")
+		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutHoverIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutActiveIcon)), parent=self)
+		layoutButton.setObjectName("Layout_activeLabel")
+		self.toolBar.addWidget(layoutButton)
+
+		self.layoutMenu = QMenu("Layout", layoutButton)
+
+		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
+
+		for layout in userLayouts:
+			action = QAction("Restore layout {0}".format(layout[0]), self)
+			action.setShortcut(QKeySequence(layout[1]))
+			self.layoutMenu.addAction(action)
+
+			# Signals / Slots.
+			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
+
+		self.layoutMenu.addSeparator()
+
+		for layout in userLayouts:
+			action = QAction("Store layout {0}".format(layout[0]), self)
+			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
+			self.layoutMenu.addAction(action)
+
+			# Signals / Slots.
+			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
+
+		layoutButton.setMenu(self.layoutMenu)
+
+		LOGGER.debug("> Adding miscellaneous button.")
+		miscellaneousButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousIcon)),
+											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousHoverIcon)),
+											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousActiveIcon)), parent=self)
+		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
+		self.toolBar.addWidget(miscellaneousButton)
+
+		helpDisplayMiscAction = QAction("Help content ...", self)
+		apiDisplayMiscAction = QAction("Api content ...", self)
+
+		self.miscMenu = QMenu("Miscellaneous", miscellaneousButton)
+
+		self.miscMenu.addAction(helpDisplayMiscAction)
+		self.miscMenu.addAction(apiDisplayMiscAction)
+		self.miscMenu.addSeparator()
+
+		# Signals / Slots.
+		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction__triggered)
+		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction__triggered)
+
+		miscellaneousButton.setMenu(self.miscMenu)
+
+		spacer = QLabel()
+		spacer.setObjectName("Closure_Spacer_activeLabel")
+		spacer.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Expanding)
+		self.toolBar.addWidget(spacer)
+
+	def centralWidgetButton__clicked(self):
+		"""
+		This method sets the **Central** Widget visibility.
+		"""
+
+		LOGGER.debug("> Central Widget button clicked!")
+
+		if self.centralwidget.isVisible():
+			self.centralwidget.hide()
+		else:
+			self.centralwidget.show()
+
+# @core.executionTrace
+def extendCommandLineParametersParser(parser):
+	"""
+	This definition returns the command line parameters parser.
+
+	:param parser: Command line parameters parser. ( Parser )
+	:return: Definition success. ( Boolean )
+	"""
+
+	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate worker threads'.")
+	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database directory'.")
+	parser.add_option("-r", "--databaseReadOnly", action="store_true", default=False, dest="databaseReadOnly", help="'Database read only'.")
+	parser.add_option("-o", "--loaderScriptsOutputDirectory", action="store", type="string", dest="loaderScriptsOutputDirectory", help="'Loader Scripts output directory'.")
+
+	return True
+
+#***********************************************************************************************
 #***	Launcher.
 #***********************************************************************************************
 if __name__ == "__main__":
-	umbra.engine._run(umbra.engine.Umbra, (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
+	commandLineParametersParser = umbra.engine.getCommandLineParametersParser()
+	extendCommandLineParametersParser(commandLineParametersParser)
+	umbra.engine._run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
 					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory)))
 
@@ -465,9 +648,9 @@ if __name__ == "__main__":
 #		self.__inspectActiveLabel = None
 #		self.__exportActiveLabel = None
 #		self.__preferencesActiveLabel = None
-#		self.__layoutsActiveLabels = None
-#		self.__layoutMenu = None
-#		self.__miscMenu = None
+#		self.layoutsActiveLabels = None
+#		self.layoutMenu = None
+#		self.miscMenu = None
 #		self.__workerThreads = []
 #
 #		# --- Initializing timer. ---
@@ -478,12 +661,12 @@ if __name__ == "__main__":
 #		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 #
 #		# Visual style initialization.
-#		self.__setVisualStyle()
+#		self.setVisualStyle()
 #		umbra.ui.common.setWindowDefaultIcon(self)
 #
 #		# Setting window title and toolBar.
 #		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
-#		self.__initializeToolBar()
+#		self.initializeToolBar()
 #
 #		# --- Initializing Components Manager. ---
 #		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing Components manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
@@ -497,7 +680,7 @@ if __name__ == "__main__":
 #		self.__componentsManager.instantiateComponents(self.__componentsInstantiationCallback)
 #
 #		# --- Activating mandatory Components. ---
-#		for component in ("core.componentsManagerUi", "core.preferencesManager", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"):
+#		for component in ("factory.componentsManagerUi", "factory.preferencesManager", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"):
 #			profile = self.__componentsManager.components[component]
 #			interface = self.__componentsManager.getInterface(component)
 #			setattr(self, "_{0}__{1}".format(self.__class__.__name__, Manager.getComponentAttributeName(component)), interface)
@@ -1186,18 +1369,18 @@ if __name__ == "__main__":
 #	@property
 #	def layoutsActiveLabels(self):
 #		"""
-#		This method is the property for **self.__layoutsActiveLabels** attribute.
+#		This method is the property for **self.layoutsActiveLabels** attribute.
 #
-#		:return: self.__layoutsActiveLabels. ( Tuple )
+#		:return: self.layoutsActiveLabels. ( Tuple )
 #		"""
 #
-#		return self.__layoutsActiveLabels
+#		return self.layoutsActiveLabels
 #
 #	@layoutsActiveLabels.setter
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def layoutsActiveLabels(self, value):
 #		"""
-#		This method is the setter method for **self.__layoutsActiveLabels** attribute.
+#		This method is the setter method for **self.layoutsActiveLabels** attribute.
 #
 #		:param value: Attribute value. ( Tuple )
 #		"""
@@ -1208,7 +1391,7 @@ if __name__ == "__main__":
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def layoutsActiveLabels(self):
 #		"""
-#		This method is the deleter method for **self.__layoutsActiveLabels** attribute.
+#		This method is the deleter method for **self.layoutsActiveLabels** attribute.
 #		"""
 #
 #		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("layoutsActiveLabels"))
@@ -1216,18 +1399,18 @@ if __name__ == "__main__":
 #	@property
 #	def layoutMenu(self):
 #		"""
-#		This method is the property for **self.__layoutMenu** attribute.
+#		This method is the property for **self.layoutMenu** attribute.
 #
-#		:return: self.__layoutMenu. ( QMenu )
+#		:return: self.layoutMenu. ( QMenu )
 #		"""
 #
-#		return self.__layoutMenu
+#		return self.layoutMenu
 #
 #	@layoutMenu.setter
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def layoutMenu(self, value):
 #		"""
-#		This method is the setter method for **self.__layoutMenu** attribute.
+#		This method is the setter method for **self.layoutMenu** attribute.
 #
 #		:param value: Attribute value. ( QMenu )
 #		"""
@@ -1238,7 +1421,7 @@ if __name__ == "__main__":
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def layoutMenu(self):
 #		"""
-#		This method is the deleter method for **self.__layoutMenu** attribute.
+#		This method is the deleter method for **self.layoutMenu** attribute.
 #		"""
 #
 #		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("layoutMenu"))
@@ -1246,18 +1429,18 @@ if __name__ == "__main__":
 #	@property
 #	def miscMenu(self):
 #		"""
-#		This method is the property for **self.__miscMenu** attribute.
+#		This method is the property for **self.miscMenu** attribute.
 #
-#		:return: self.__miscMenu. ( QMenu )
+#		:return: self.miscMenu. ( QMenu )
 #		"""
 #
-#		return self.__miscMenu
+#		return self.miscMenu
 #
 #	@miscMenu.setter
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def miscMenu(self, value):
 #		"""
-#		This method is the setter method for **self.__miscMenu** attribute.
+#		This method is the setter method for **self.miscMenu** attribute.
 #
 #		:param value: Attribute value. ( QMenu )
 #		"""
@@ -1268,7 +1451,7 @@ if __name__ == "__main__":
 #	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 #	def miscMenu(self):
 #		"""
-#		This method is the deleter method for **self.__miscMenu** attribute.
+#		This method is the deleter method for **self.miscMenu** attribute.
 #		"""
 #
 #		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("miscMenu"))
@@ -1354,7 +1537,7 @@ if __name__ == "__main__":
 #		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
 #
 #	@core.executionTrace
-#	def __initializeToolBar(self):
+#	def initializeToolBar(self):
 #		"""
 #		This method initializes Application toolBar.
 #		"""
@@ -1395,50 +1578,50 @@ if __name__ == "__main__":
 #		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 #		self.toolBar.addWidget(self.__preferencesActiveLabel)
 #
-#		self.__layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+#		self.layoutsActiveLabels = (LayoutActiveLabel(name="Library", object_=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
 #									LayoutActiveLabel(name="Inspect", object_=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
 #									LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
 #									LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 #
 #		# Signals / Slots.
-#		for layoutActiveLabel in self.__layoutsActiveLabels:
-#			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
+#		for layoutActiveLabel in self.layoutsActiveLabels:
+#			layoutActiveLabel.object_.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
 #
 #		LOGGER.debug("> Adding Central Widget button.")
 #		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.centralWidgetIcon), QPixmap(UiConstants.centralWidgetHoverIcon), QPixmap(UiConstants.centralWidgetActiveIcon))
 #		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 #		self.toolBar.addWidget(centralWidgetButton)
 #
-#		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
+#		centralWidgetButton.clicked.connect(self.centralWidgetButton__clicked)
 #
 #		LOGGER.debug("> Adding layout button.")
 #		layoutButton = Active_QLabel(QPixmap(UiConstants.layoutIcon), QPixmap(UiConstants.layoutHoverIcon), QPixmap(UiConstants.layoutActiveIcon), parent=self)
 #		layoutButton.setObjectName("Layout_activeLabel")
 #		self.toolBar.addWidget(layoutButton)
 #
-#		self.__layoutMenu = QMenu("Layout", layoutButton)
+#		self.layoutMenu = QMenu("Layout", layoutButton)
 #
 #		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
 #
 #		for layout in userLayouts:
 #			action = QAction("Restore layout {0}".format(layout[0]), self)
 #			action.setShortcut(QKeySequence(layout[1]))
-#			self.__layoutMenu.addAction(action)
+#			self.layoutMenu.addAction(action)
 #
 #			# Signals / Slots.
 #			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
 #
-#		self.__layoutMenu.addSeparator()
+#		self.layoutMenu.addSeparator()
 #
 #		for layout in userLayouts:
 #			action = QAction("Store layout {0}".format(layout[0]), self)
 #			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
-#			self.__layoutMenu.addAction(action)
+#			self.layoutMenu.addAction(action)
 #
 #			# Signals / Slots.
 #			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
 #
-#		layoutButton.setMenu(self.__layoutMenu)
+#		layoutButton.setMenu(self.layoutMenu)
 #
 #		LOGGER.debug("> Adding miscellaneous button.")
 #		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.miscellaneousIcon), QPixmap(UiConstants.miscellaneousHoverIcon), QPixmap(UiConstants.miscellaneousActiveIcon), parent=self)
@@ -1448,17 +1631,17 @@ if __name__ == "__main__":
 #		helpDisplayMiscAction = QAction("Help content ...", self)
 #		apiDisplayMiscAction = QAction("Api content ...", self)
 #
-#		self.__miscMenu = QMenu("Miscellaneous", miscellaneousButton)
+#		self.miscMenu = QMenu("Miscellaneous", miscellaneousButton)
 #
-#		self.__miscMenu.addAction(helpDisplayMiscAction)
-#		self.__miscMenu.addAction(apiDisplayMiscAction)
-#		self.__miscMenu.addSeparator()
+#		self.miscMenu.addAction(helpDisplayMiscAction)
+#		self.miscMenu.addAction(apiDisplayMiscAction)
+#		self.miscMenu.addSeparator()
 #
 #		# Signals / Slots.
-#		helpDisplayMiscAction.triggered.connect(self.__helpDisplayMiscAction__triggered)
-#		apiDisplayMiscAction.triggered.connect(self.__apiDisplayMiscAction__triggered)
+#		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction__triggered)
+#		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction__triggered)
 #
-#		miscellaneousButton.setMenu(self.__miscMenu)
+#		miscellaneousButton.setMenu(self.miscMenu)
 #
 #		spacer = QLabel()
 #		spacer.setObjectName("Closure_Spacer_activeLabel")
@@ -1473,7 +1656,7 @@ if __name__ == "__main__":
 #
 #		LOGGER.debug("> Setting layouts Active_QLabels shortcuts.")
 #
-#		for layoutActiveLabel in self.__layoutsActiveLabels:
+#		for layoutActiveLabel in self.layoutsActiveLabels:
 #			action = QAction(layoutActiveLabel.name, self)
 #			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
 #			self.addAction(action)
@@ -1489,8 +1672,8 @@ if __name__ == "__main__":
 #
 #		LOGGER.debug("> Retrieving current layout Active_QLabel index.")
 #
-#		for index in range(len(self.__layoutsActiveLabels)):
-#			if self.__layoutsActiveLabels[index].object_.isChecked():
+#		for index in range(len(self.layoutsActiveLabels)):
+#			if self.layoutsActiveLabels[index].object_.isChecked():
 #				LOGGER.debug("> Current layout Active_QLabel index: '{0}'.".format(index))
 #				return index
 #
@@ -1504,11 +1687,11 @@ if __name__ == "__main__":
 #
 #		LOGGER.debug("> Setting layouts Active_QLabels states.")
 #
-#		for index_ in range(len(self.__layoutsActiveLabels)):
-#			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
+#		for index_ in range(len(self.layoutsActiveLabels)):
+#			self.layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
 #
 #	@core.executionTrace
-#	def __activeLabel__clicked(self, activeLabel):
+#	def layoutActiveLabel__clicked(self, activeLabel):
 #		"""
 #		This method is triggered when an **Active_QLabel** is clicked.
 #		"""
@@ -1516,11 +1699,11 @@ if __name__ == "__main__":
 #		LOGGER.debug("> Clicked Active_QLabel: '{0}'.".format(activeLabel))
 #
 #		self.restoreLayout(activeLabel)
-#		for layoutActivelabel in self.__layoutsActiveLabels:
+#		for layoutActivelabel in self.layoutsActiveLabels:
 #			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
 #
 #	@core.executionTrace
-#	def __centralWidgetButton__clicked(self):
+#	def centralWidgetButton__clicked(self):
 #		"""
 #		This method sets the **Central** Widget visibility.
 #		"""
@@ -1533,7 +1716,7 @@ if __name__ == "__main__":
 #			self.centralwidget.show()
 #
 #	@core.executionTrace
-#	def __helpDisplayMiscAction__triggered(self, checked):
+#	def helpDisplayMiscAction__triggered(self, checked):
 #		"""
 #		This method is triggered by **helpDisplayMiscAction** action.
 #
@@ -1544,7 +1727,7 @@ if __name__ == "__main__":
 #		QDesktopServices.openUrl(QUrl(QString(UiConstants.helpFile)))
 #
 #	@core.executionTrace
-#	def __apiDisplayMiscAction__triggered(self, checked):
+#	def apiDisplayMiscAction__triggered(self, checked):
 #		"""
 #		This method is triggered by **apiDisplayMiscAction** action.
 #
@@ -1556,7 +1739,7 @@ if __name__ == "__main__":
 #
 #	@core.executionTrace
 #	@foundations.exceptions.exceptionsHandler(None, False, OSError)
-#	def __setVisualStyle(self):
+#	def setVisualStyle(self):
 #		"""
 #		This method sets the Application visual style.
 #		"""
@@ -1683,7 +1866,7 @@ if __name__ == "__main__":
 #	"""
 #
 #	# Command line parameters handling.
-#	RuntimeGlobals.parameters, RuntimeGlobals.args = _getCommandLineParameters(sys.argv)
+#	RuntimeGlobals.parameters,  RuntimeGlobals.arguments = _getCommandLineParameters(sys.argv)
 #
 #	if RuntimeGlobals.parameters.about:
 #		for line in _getHeaderMessage():

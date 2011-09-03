@@ -33,7 +33,7 @@ import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.parser
 import foundations.strings as strings
-import umbra.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File

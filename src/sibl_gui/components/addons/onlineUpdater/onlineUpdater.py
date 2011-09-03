@@ -32,7 +32,7 @@ from PyQt4.QtNetwork import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import umbra.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
@@ -1962,7 +1962,7 @@ class OnlineUpdater(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLocationsBrowser = self.__container.componentsManager.components["addons.locationsBrowser"].interface

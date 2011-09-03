@@ -29,7 +29,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import umbra.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit

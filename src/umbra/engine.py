@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	| This module is the main **Umbra** package module.
+	| This module is the main **umbra** package module.
 	| It defines various classes, methods and definitions to run, maintain and exit the Application.
 	| The main Application object is the :class:`Umbra` class.
 
@@ -24,6 +24,7 @@ import logging
 import os
 import optparse
 import platform
+import re
 import sys
 import time
 from PyQt4 import uic
@@ -129,29 +130,11 @@ else:
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LayoutActiveLabel(core.Structure):
-	"""
-	This class represents a storage object for layout active labels attributes.
-	"""
-
-	@core.executionTrace
-	def __init__(self, **kwargs):
-		"""
-		This method initializes the class.
-
-		:param \*\*kwargs: name, object, layout, shortcut. ( Key / Value pairs )
-		"""
-
-		core.Structure.__init__(self, **kwargs)
-
 class Umbra(Ui_Type, Ui_Setup):
 	"""
-	This class is the main class of the Application.
+	This class is the main class of the **umbra** package.
 	"""
 
-	#***********************************************************************************************
-	#***	Initialization..
-	#***********************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.ProgrammingError, Exception)
 	def __init__(self, paths, components=None):
@@ -200,12 +183,12 @@ class Umbra(Ui_Type, Ui_Setup):
 		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing interface.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
 
 		# Visual style initialization.
-		self.__setVisualStyle()
+		self.setVisualStyle()
 		umbra.ui.common.setWindowDefaultIcon(self)
 
 		# Setting window title and toolBar.
 		self.setWindowTitle("{0} - {1}".format(Constants.applicationName, Constants.releaseVersion))
-		self.__initializeToolBar()
+		self.initializeToolBar()
 
 		# --- Initializing Components Manager. ---
 		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing Components manager.".format(self.__class__.__name__, Constants.releaseVersion), textColor=Qt.white, waitTime=0.25)
@@ -672,7 +655,7 @@ class Umbra(Ui_Type, Ui_Setup):
 		"""
 		This method is the property for **self.__layoutsActiveLabels** attribute.
 
-		:return: self.__layoutsActiveLabels. ( Tuple )
+		:return: self.__layoutsActiveLabels. ( Tuple / List )
 		"""
 
 		return self.__layoutsActiveLabels
@@ -683,10 +666,12 @@ class Umbra(Ui_Type, Ui_Setup):
 		"""
 		This method is the setter method for **self.__layoutsActiveLabels** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( Tuple / List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("layoutsActiveLabels"))
+		if value:
+			assert type(value) in (list, tuple), "'{0}' attribute: '{1}' type is not 'list' or 'tuple'!".format("layoutsActiveLabels", value)
+		self.__layoutsActiveLabels = value
 
 	@layoutsActiveLabels.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -716,7 +701,9 @@ class Umbra(Ui_Type, Ui_Setup):
 		:param value: Attribute value. ( QMenu )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("layoutMenu"))
+		if value:
+			assert issubclass(value.__class__, QMenu), "'{0}' attribute: '{1}' type is not 'QMenu'!".format("layoutMenu", value)
+		self.__layoutMenu = value
 
 	@layoutMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -746,7 +733,9 @@ class Umbra(Ui_Type, Ui_Setup):
 		:param value: Attribute value. ( QMenu )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("miscMenu"))
+		if value:
+			assert issubclass(value.__class__, QMenu), "'{0}' attribute: '{1}' type is not 'QMenu'!".format("miscMenu", value)
+		self.__miscMenu = value
 
 	@miscMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -838,7 +827,113 @@ class Umbra(Ui_Type, Ui_Setup):
 		RuntimeGlobals.splashscreen and RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Instantiating {2} Component.".format(self.__class__.__name__, Constants.releaseVersion, profile.name), textColor=Qt.white)
 
 	@core.executionTrace
-	def __initializeToolBar(self):
+	def __setLayoutsActiveLabelsShortcuts(self):
+		"""
+		This method sets the layouts **Active_QLabels** shortcuts.
+		"""
+
+		LOGGER.debug("> Setting layouts Active_QLabels shortcuts.")
+
+		for layoutActiveLabel in self.__layoutsActiveLabels:
+			action = QAction(layoutActiveLabel.name, self)
+			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
+			self.addAction(action)
+			action.triggered.connect(functools.partial(self.restoreLayout, layoutActiveLabel.layout))
+
+	@core.executionTrace
+	def __getLayoutsActiveLabel(self):
+		"""
+		This method returns the current layout **Active_QLabel** index.
+
+		:return: Layouts Active_QLabel index. ( Integer )
+		"""
+
+		LOGGER.debug("> Retrieving current layout Active_QLabel index.")
+
+		for index in range(len(self.__layoutsActiveLabels)):
+			if self.__layoutsActiveLabels[index].object_.isChecked():
+				LOGGER.debug("> Current layout Active_QLabel index: '{0}'.".format(index))
+				return index
+
+	@core.executionTrace
+	def __setLayoutsActiveLabel(self, index):
+		"""
+		This method sets the layouts **Active_QLabel**.
+
+		:param index: Layouts Active_QLabel. ( Integer )
+		"""
+
+		LOGGER.debug("> Setting layouts Active_QLabels states.")
+
+		for index_ in range(len(self.__layoutsActiveLabels)):
+			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
+
+	@core.executionTrace
+	def layoutActiveLabel__clicked(self, activeLabel):
+		"""
+		This method is triggered when a layout **Active_QLabel** is clicked.
+		"""
+
+		LOGGER.debug("> Clicked Active_QLabel: '{0}'.".format(activeLabel))
+
+		self.restoreLayout(activeLabel)
+		for layoutActivelabel in self.__layoutsActiveLabels:
+			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
+
+	@core.executionTrace
+	def helpDisplayMiscAction__triggered(self, checked):
+		"""
+		This method is triggered by **helpDisplayMiscAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.helpFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.helpFile)))
+
+	@core.executionTrace
+	def apiDisplayMiscAction__triggered(self, checked):
+		"""
+		This method is triggered by **apiDisplayMiscAction** action.
+
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.apiFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.apiFile)))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	def setVisualStyle(self):
+		"""
+		This method sets the Application visual style.
+		"""
+
+		LOGGER.debug("> Setting Application visual style.")
+
+		if platform.system() == "Windows" or platform.system() == "Microsoft":
+			RuntimeGlobals.application.setStyle(UiConstants.windowsStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.windowsStylesheetFile))
+		elif platform.system() == "Darwin":
+			RuntimeGlobals.application.setStyle(UiConstants.darwinStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.darwinStylesheetFile))
+		elif platform.system() == "Linux":
+			RuntimeGlobals.application.setStyle(UiConstants.linuxStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.linuxStylesheetFile))
+
+		if os.path.exists(styleSheetFile.file):
+			LOGGER.debug("> Reading style sheet file: '{0}'.".format(styleSheetFile.file))
+			styleSheetFile.read()
+			for i, line in enumerate(styleSheetFile.content):
+				search = re.search("url\((?P<url>.*)\)", line)
+				if search:
+					styleSheetFile.content[i] = line.replace(search.group("url"), umbra.ui.common.getResourcePath(search.group("url")))
+			RuntimeGlobals.application.setStyleSheet(QString("".join(styleSheetFile.content)))
+		else:
+			raise OSError, "{0} | '{1}' stylesheet file is not available, visual style will not be applied!".format(self.__class__.__name__, styleSheetFile.file)
+
+	@core.executionTrace
+	def initializeToolBar(self):
 		"""
 		This method initializes Application toolBar.
 		"""
@@ -875,12 +970,12 @@ class Umbra(Ui_Type, Ui_Setup):
 		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
-		self.__layoutsActiveLabels = (LayoutActiveLabel(name="Development", object_=self.__developmentActiveLabel, layout="developmentCentric", shortcut=Qt.Key_9),
-									LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+		self.__layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Development", object_=self.__developmentActiveLabel, layout="developmentCentric", shortcut=Qt.Key_9),
+									umbra.ui.common.LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.__layoutsActiveLabels:
-			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__layoutActiveLabel__clicked, layoutActiveLabel.layout))
+			layoutActiveLabel.object_.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding layout button.")
 		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.layoutIcon)),
@@ -930,8 +1025,8 @@ class Umbra(Ui_Type, Ui_Setup):
 		self.__miscMenu.addSeparator()
 
 		# Signals / Slots.
-		helpDisplayMiscAction.triggered.connect(self.__helpDisplayMiscAction__triggered)
-		apiDisplayMiscAction.triggered.connect(self.__apiDisplayMiscAction__triggered)
+		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction__triggered)
+		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction__triggered)
 
 		miscellaneousButton.setMenu(self.__miscMenu)
 
@@ -939,108 +1034,6 @@ class Umbra(Ui_Type, Ui_Setup):
 		spacer.setObjectName("Closure_Spacer_activeLabel")
 		spacer.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Expanding)
 		self.toolBar.addWidget(spacer)
-
-	@core.executionTrace
-	def __setLayoutsActiveLabelsShortcuts(self):
-		"""
-		This method sets the layouts **Active_QLabels** shortcuts.
-		"""
-
-		LOGGER.debug("> Setting layouts Active_QLabels shortcuts.")
-
-		for layoutActiveLabel in self.__layoutsActiveLabels:
-			action = QAction(layoutActiveLabel.name, self)
-			action.setShortcut(QKeySequence(layoutActiveLabel.shortcut))
-			self.addAction(action)
-			action.triggered.connect(functools.partial(self.restoreLayout, layoutActiveLabel.layout))
-
-	@core.executionTrace
-	def __getLayoutsActiveLabel(self):
-		"""
-		This method returns the current layout **Active_QLabel** index.
-
-		:return: Layouts Active_QLabel index. ( Integer )
-		"""
-
-		LOGGER.debug("> Retrieving current layout Active_QLabel index.")
-
-		for index in range(len(self.__layoutsActiveLabels)):
-			if self.__layoutsActiveLabels[index].object_.isChecked():
-				LOGGER.debug("> Current layout Active_QLabel index: '{0}'.".format(index))
-				return index
-
-	@core.executionTrace
-	def __setLayoutsActiveLabel(self, index):
-		"""
-		This method sets the layouts **Active_QLabel**.
-
-		:param index: Layouts Active_QLabel. ( Integer )
-		"""
-
-		LOGGER.debug("> Setting layouts Active_QLabels states.")
-
-		for index_ in range(len(self.__layoutsActiveLabels)):
-			self.__layoutsActiveLabels[index_].object_.setChecked(index == index_ and True or False)
-
-	@core.executionTrace
-	def __layoutActiveLabel__clicked(self, activeLabel):
-		"""
-		This method is triggered when a layout **Active_QLabel** is clicked.
-		"""
-
-		LOGGER.debug("> Clicked Active_QLabel: '{0}'.".format(activeLabel))
-
-		self.restoreLayout(activeLabel)
-		for layoutActivelabel in self.__layoutsActiveLabels:
-			layoutActivelabel.layout is not activeLabel and layoutActivelabel.object_.setChecked(False)
-
-	@core.executionTrace
-	def __helpDisplayMiscAction__triggered(self, checked):
-		"""
-		This method is triggered by **helpDisplayMiscAction** action.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.helpFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.helpFile)))
-
-	@core.executionTrace
-	def __apiDisplayMiscAction__triggered(self, checked):
-		"""
-		This method is triggered by **apiDisplayMiscAction** action.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.apiFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.apiFile)))
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, OSError)
-	def __setVisualStyle(self):
-		"""
-		This method sets the Application visual style.
-		"""
-
-		LOGGER.debug("> Setting Application visual style.")
-
-		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			RuntimeGlobals.application.setStyle(UiConstants.windowsStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.windowsStylesheetFile))
-		elif platform.system() == "Darwin":
-			RuntimeGlobals.application.setStyle(UiConstants.darwinStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.darwinStylesheetFile))
-		elif platform.system() == "Linux":
-			RuntimeGlobals.application.setStyle(UiConstants.linuxStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.linuxStylesheetFile))
-
-		if os.path.exists(styleSheetFile.file):
-			LOGGER.debug("> Reading style sheet file: '{0}'.".format(styleSheetFile.file))
-			styleSheetFile.read()
-			RuntimeGlobals.application.setStyleSheet(QString("".join(styleSheetFile.content)))
-		else:
-			raise OSError, "{0} | '{1}' stylesheet file is not available, visual style will not be applied!".format(self.__class__.__name__, styleSheetFile.file)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1139,18 +1132,19 @@ class Umbra(Ui_Type, Ui_Setup):
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
-def _run(engine, paths, components=None):
+def _run(engine, parameters, paths, components=None):
 	"""
-	This definition is called when **Umbra** starts.
+	This definition is called when **umbra** starts.
 
 	:param engine: Engine. ( QObject )
+	:param parameters: Command line parameters. ( Tuple )
 	:param paths: Components paths. ( QString )
 	:param components: Mandatory components names. ( QString )
 	:return: Definition success. ( Boolean )
 	"""
 
 	# Command line parameters handling.
-	RuntimeGlobals.parameters, RuntimeGlobals.args = _getCommandLineParameters(sys.argv)
+	RuntimeGlobals.parameters, RuntimeGlobals.args = parameters
 
 	if RuntimeGlobals.parameters.about:
 		for line in _getHeaderMessage():
@@ -1251,7 +1245,7 @@ def _run(engine, paths, components=None):
 @core.executionTrace
 def _exit():
 	"""
-	This definition is called when **Umbra** closes.
+	This definition is called when **umbra** closes.
 	"""
 
 	LOGGER.info("{0} | Closing interface! ".format(Constants.applicationName))
@@ -1278,31 +1272,6 @@ def _getHeaderMessage():
 	return message
 
 @core.executionTrace
-def _getCommandLineParameters(argv):
-	"""
-	This definition process command line parameters.
-
-	:param argv: Command line parameters. ( String )
-	:return: Settings, arguments ( Parser instance )
-	"""
-
-	argv = argv or sys.argv[1:]
-
-	parser = optparse.OptionParser(formatter=optparse.IndentedHelpFormatter (indent_increment=2, max_help_position=8, width=128, short_first=1), add_help_option=None)
-
-	parser.add_option("-h", "--help", action="help", help="'Display this help message and exit.'")
-	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application about message.'")
-	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application verbosity levels: 0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
-	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application logging formatter: '{0}'.'".format(", ".join(sorted(RuntimeGlobals.loggingFormatters.keys()))))
-	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application datas directory'.")
-
-	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide splashscreen'.")
-
-	parameters, args = parser.parse_args(argv)
-
-	return parameters, args
-
-@core.executionTrace
 @foundations.exceptions.exceptionsHandler(umbra.ui.common.uiStandaloneSystemExitExceptionHandler, False, OSError)
 def _setUserApplicationDatasDirectory(path):
 	"""
@@ -1323,8 +1292,27 @@ def _setUserApplicationDatasDirectory(path):
 	else:
 		raise OSError, "'{0}' directory creation failed , {1} will now close!".format(userApplicationDatasDirectory, Constants.applicationName)
 
+@core.executionTrace
+def getCommandLineParametersParser():
+	"""
+	This definition returns the command line parameters parser.
+
+	:return: Parser. ( Parser )
+	"""
+
+	parser = optparse.OptionParser(formatter=optparse.IndentedHelpFormatter (indent_increment=2, max_help_position=8, width=128, short_first=1), add_help_option=None)
+
+	parser.add_option("-h", "--help", action="help", help="'Display this help message and exit.'")
+	parser.add_option("-a", "--about", action="store_true", default=False, dest="about", help="'Display Application about message.'")
+	parser.add_option("-v", "--verbose", action="store", type="int", dest="verbosityLevel", help="'Application verbosity levels: 0 = Critical | 1 = Error | 2 = Warning | 3 = Info | 4 = Debug.'")
+	parser.add_option("-f", "--loggingFormatter", action="store", type="string", dest="loggingFormater", help="'Application logging formatter: '{0}'.'".format(", ".join(sorted(RuntimeGlobals.loggingFormatters.keys()))))
+	parser.add_option("-u", "--userApplicationDatasDirectory", action="store", type="string", dest="userApplicationDatasDirectory", help="'User Application datas directory'.")
+	parser.add_option("-s", "--hideSplashScreen", action="store_true", default=False, dest="hideSplashScreen", help="'Hide splashscreen'.")
+
+	return parser
+
 #***********************************************************************************************
 #***	Launcher.
 #***********************************************************************************************
 if __name__ == "__main__":
-	_run(Umbra, (os.path.join(umbra.__path__[0], Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))
+	_run(Umbra, getCommandLineParametersParser().parse_args(sys.argv), (os.path.join(umbra.__path__[0], Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))

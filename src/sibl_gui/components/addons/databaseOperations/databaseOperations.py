@@ -27,7 +27,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import umbra.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -330,7 +330,7 @@ class DatabaseOperations(UiComponent):
 		self.__settingsSection = self.name
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 

@@ -375,7 +375,7 @@ class sIBLeditUtilities(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 

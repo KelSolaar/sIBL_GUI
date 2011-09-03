@@ -32,7 +32,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
-import umbra.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker

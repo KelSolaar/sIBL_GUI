@@ -34,7 +34,7 @@ class RuntimeGlobals():
 
 	parameters = None
 	"""Application startup parameters."""
-	args = None
+	arguments = None
 	"""Application startup arguments."""
 
 	loggingConsoleHandler = None

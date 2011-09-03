@@ -29,8 +29,8 @@ import shutil
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
-import umbra.components.core.db.dbUtilities.types as dbTypes
 from foundations.rotatingBackup import RotatingBackup
 from foundations.walker import Walker
 from manager.component import Component

@@ -261,6 +261,7 @@ class Preferences():
 	def setDefaultPreferences(self):
 		"""
 		This method defines the default settings file content.
+		
 		:return: Method success. ( Boolean )
 		"""
 
@@ -269,18 +270,23 @@ class Preferences():
 		for key in self.__defaultSettings.allKeys():
 			self.__settings.setValue(key, self.__defaultSettings.value(key))
 
-		self.setDefaultLayouts()
+		self.setDefaultLayouts(True, ("startupCentric",))
 		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setDefaultLayouts(self):
+	def setDefaultLayouts(self, ignoredLayouts=None):
 		"""
 		This method sets the default layouts in the preferences file.
 
+		:param ignoredLayouts: Ignored layouts. ( Tuple / List )
 		:return: Method success. ( Boolean )
 		"""
 
 		for key in self.__defaultLayoutsSettings.allKeys():
+			if ignoredLayouts:
+				for layout in ignoredLayouts:
+					if layout in key:
+						continue
 			self.__settings.setValue(key, self.__defaultLayoutsSettings.value(key))
 		return True

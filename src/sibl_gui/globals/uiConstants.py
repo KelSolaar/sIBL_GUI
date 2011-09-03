@@ -48,6 +48,9 @@ class UiConstants():
 	linuxStyle = "plastique"
 	"""Application Linux Os style: '**plastique**' ( String )"""
 
+	settingsFile = "preferences/Default_Settings.rc"
+	"""Application defaults settings file: '**preferences/Default_Settings.rc**' ( String )"""
+
 	layoutsFile = "layouts/Default_Layouts.rc"
 	"""Application defaults layouts file: '**layouts/Default_Layouts.rc**' ( String )"""
 

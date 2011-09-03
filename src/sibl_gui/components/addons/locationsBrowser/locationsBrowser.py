@@ -28,7 +28,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import umbra.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
 from foundations.environment import Environment
 from manager.uiComponent import UiComponent
@@ -582,8 +582,8 @@ class LocationsBrowser(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__coreComponentsManagerUi = self.__container.componentsManager.components["core.componentsManagerUi"].interface
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__coreComponentsManagerUi = self.__container.componentsManager.components["factory.componentsManagerUi"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface

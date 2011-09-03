@@ -26,7 +26,7 @@ import re
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import umbra.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************

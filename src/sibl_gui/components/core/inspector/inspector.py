@@ -30,6 +30,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import sibl_gui.ui.common
 import umbra.ui.common
 from foundations.parser import Parser
 from manager.uiComponent import UiComponent
@@ -835,7 +836,7 @@ class Inspector(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		return UiComponent.activate(self)
@@ -934,10 +935,10 @@ class Inspector(UiComponent):
 			self.ui.Title_label.setText("<center><b>{0}</b> - {1}</center>".format(self.__inspectorIblSet.title, self.__inspectorIblSet.location))
 
 			if self.__inspectorIblSet.previewImage:
-				self.ui.Image_label.setPixmap(umbra.ui.common.getPixmap(self.__inspectorIblSet.previewImage))
+				self.ui.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(self.__inspectorIblSet.previewImage))
 				self.__drawInspectorIblSetOverlay()
 			else:
-				self.ui.Image_label.setText(self.__noPreviewImageText.format(umbra.ui.common.filterImagePath(self.__inspectorIblSet.icon), self.__inspectorIblSet.author, self.__inspectorIblSet.link))
+				self.ui.Image_label.setText(self.__noPreviewImageText.format(sibl_gui.ui.common.filterImagePath(self.__inspectorIblSet.icon), self.__inspectorIblSet.author, self.__inspectorIblSet.link))
 
 			self.ui.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 
@@ -965,7 +966,7 @@ class Inspector(UiComponent):
 		"""
 
 		self.ui.Title_label.setText(QString())
-		self.ui.Image_label.setText(self.__noInspectorIblSetText.format(umbra.ui.common.filterImagePath("")))
+		self.ui.Image_label.setText(self.__noInspectorIblSetText.format(sibl_gui.ui.common.filterImagePath("")))
 		self.ui.Image_label.setToolTip(QString())
 		self.ui.Details_label.setText(QString())
 
@@ -984,7 +985,7 @@ class Inspector(UiComponent):
 		if self.__inspectorIblSet:
 			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(self.__inspectorIblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
-			inspectorIblSetStandardItem.setIcon(umbra.ui.common.getIcon(self.__inspectorIblSet.icon))
+			inspectorIblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(self.__inspectorIblSet.icon))
 			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, self.__coreDatabaseBrowser.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 			self.__model.appendRow(inspectorIblSetStandardItem)
 
@@ -992,7 +993,7 @@ class Inspector(UiComponent):
 				LOGGER.debug("> Preparing '{0}' plate for '{1}' Model.".format(name, "Plates_listView"))
 				try:
 					plateStandardItem = QStandardItem()
-					plateStandardItem.setIcon(umbra.ui.common.getIcon(plate.icon))
+					plateStandardItem.setIcon(sibl_gui.ui.common.getIcon(plate.icon))
 					plateStandardItem.setToolTip(self.__inspectorIblSetPlatesToolTipText.format(plate.name))
 
 					plateStandardItem._datas = plate
@@ -1066,7 +1067,7 @@ class Inspector(UiComponent):
 		item = index and self.__model.itemFromIndex(index) or None
 		if item:
 			if hasattr(item, "_datas"):
-				self.ui.Image_label.setPixmap(umbra.ui.common.getPixmap(item._datas.previewImage))
+				self.ui.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(item._datas.previewImage))
 			else:
 				self.emit(SIGNAL("uiRefresh()"))
 

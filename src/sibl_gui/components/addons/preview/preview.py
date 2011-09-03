@@ -32,7 +32,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import umbra.libraries.freeImage.freeImage as freeImage
+import sibl_gui.libraries.freeImage.freeImage as freeImage
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
@@ -1714,7 +1714,7 @@ class Preview(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["core.preferencesManager"].interface
+		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 

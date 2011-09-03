@@ -51,6 +51,21 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
+class LayoutActiveLabel(core.Structure):
+	"""
+	This class represents a storage object for layout active labels attributes.
+	"""
+
+	@core.executionTrace
+	def __init__(self, **kwargs):
+		"""
+		This method initializes the class.
+
+		:param \*\*kwargs: name, object, layout, shortcut. ( Key / Value pairs )
+		"""
+
+		core.Structure.__init__(self, **kwargs)
+
 class Icon(core.Structure):
 	"""
 	This class represents a storage object for icon.
@@ -163,6 +178,7 @@ def getResourcePath(name):
 	for path in RuntimeGlobals.resourcesPaths:
 		path = os.path.join(path, name)
 		if os.path.exists(path):
+			LOGGER.debug("> '{0}' resource path: '{1}'.".format(name, path))
 			return path
 
 	raise OSError("No resource file path found for '{0}' name!".format(name))

@@ -28,7 +28,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-from application.libraries.freeImage.freeImage import Image
+from sibl_gui.libraries.freeImage.freeImage import Image
 from umbra.globals.constants import Constants
 from umbra.globals.uiConstants import UiConstants
 

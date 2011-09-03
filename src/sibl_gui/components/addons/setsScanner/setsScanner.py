@@ -29,8 +29,8 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace
-import umbra.components.core.db.dbUtilities.common as dbCommon
-import umbra.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
 from manager.component import Component
