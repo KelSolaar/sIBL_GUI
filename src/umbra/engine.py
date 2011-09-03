@@ -1193,7 +1193,7 @@ def _run(engine, parameters, paths, components=None):
 	RuntimeGlobals.settings = Preferences(RuntimeGlobals.settingsFile)
 
 	LOGGER.debug("> Retrieving default layouts.")
-	RuntimeGlobals.settings.setDefaultLayouts()
+	RuntimeGlobals.settings.setDefaultLayouts(("startupCentric",))
 
 	os.path.exists(RuntimeGlobals.settingsFile) or RuntimeGlobals.settings.setDefaultPreferences()
 

@@ -28,9 +28,10 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
+from sibl_gui.globals.uiConstants import UiConstants
 from umbra.globals.constants import Constants
-from umbra.globals.uiConstants import UiConstants
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -89,9 +90,9 @@ def getGraphicItem(path, type):
 						elif type == QPixmap:
 							return QPixmap(image)
 				else:
-					return type(UiConstants.formatErrorImage)
+					return type(umbra.ui.common.getResourcePath(UiConstants.formatErrorImage))
 		else:
-			return type(UiConstants.missingImage)
+			return type(umbra.ui.common.getResourcePath(UiConstants.missingImage))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -146,6 +147,6 @@ def filterImagePath(path):
 			else:
 				for extension in UiConstants.thirdPartyImageFormats.values():
 					if re.search(extension, path):
-						return UiConstants.formatErrorImage
+						return umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 		else:
-			return UiConstants.missingImage
+			return umbra.ui.common.getResourcePath(UiConstants.missingImage)

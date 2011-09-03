@@ -270,7 +270,7 @@ class Preferences():
 		for key in self.__defaultSettings.allKeys():
 			self.__settings.setValue(key, self.__defaultSettings.value(key))
 
-		self.setDefaultLayouts(True, ("startupCentric",))
+		self.setDefaultLayouts()
 		return True
 
 	@core.executionTrace
@@ -285,8 +285,7 @@ class Preferences():
 
 		for key in self.__defaultLayoutsSettings.allKeys():
 			if ignoredLayouts:
-				for layout in ignoredLayouts:
-					if layout in key:
-						continue
+				if (layout for layout in ignoredLayouts if layout in key):
+					continue
 			self.__settings.setValue(key, self.__defaultLayoutsSettings.value(key))
 		return True
