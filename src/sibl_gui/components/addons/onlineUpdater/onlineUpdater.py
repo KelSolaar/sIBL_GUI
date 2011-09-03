@@ -1414,9 +1414,9 @@ class RemoteUpdater(object):
 		reply = messageBox.exec_()
 
 		if reply == 0:
-			return os.path.join(os.getcwd(), Constants.templatesDirectory)
+			return os.path.join(sibl_gui.__path__[0], Constants.resourcesDirectory, Constants.templatesDirectory)
 		elif reply == 1:
-			return os.path.join(self.__container.container.userApplicationDatasDirectory, Constants.templatesDirectory)
+			return os.path.join(self.__container.container.userApplicationDatasDirectory, os.path.basename(Constants.templatesDirectory))
 		elif reply == 2:
 			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
 

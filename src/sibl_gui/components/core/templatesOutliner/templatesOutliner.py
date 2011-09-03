@@ -33,11 +33,13 @@ import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import sibl_gui.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
 from foundations.walker import Walker
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -1143,7 +1145,10 @@ class TemplatesOutliner(UiComponent):
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 
-		self.__defaultCollections = {self.__factoryCollection: os.path.join(os.getcwd(), Constants.templatesDirectory), self.__userCollection: os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory)}
+		RuntimeGlobals.templatesFactoryDirectory = os.path.join(sibl_gui.__path__[0], Constants.resourcesDirectory, Constants.templatesDirectory)
+		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory)
+
+		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
 		return UiComponent.activate(self)
 

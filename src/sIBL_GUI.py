@@ -30,17 +30,19 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import sibl_gui.globals.constants
 import sibl_gui.globals.uiConstants
+import sibl_gui.globals.runtimeGlobals
 import umbra.globals.constants
 import umbra.globals.uiConstants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+import umbra.globals.runtimeGlobals
 
 #***********************************************************************************************
 #***	Dependencies globals manipulation.
 #***********************************************************************************************
 umbra.globals.constants.Constants.__dict__.update(sibl_gui.globals.constants.Constants.__dict__)
 umbra.globals.uiConstants.UiConstants.__dict__.update(sibl_gui.globals.uiConstants.UiConstants.__dict__)
+umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtimeGlobals.RuntimeGlobals.__dict__)
 
-RuntimeGlobals.resourcesPaths.append(os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory))
+umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths.append(os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory))
 
 import foundations.globals.constants
 import manager.globals.constants
@@ -83,7 +85,7 @@ LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
 #***********************************************************************************************
 class sIBL_GUI(umbra.engine.Umbra):
 	"""
-	This class is the main class of the **sibl_gui** package.
+	This class is the main class of the **sIBL_GUI** package.
 	"""
 
 	@core.executionTrace
@@ -101,6 +103,137 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		# --- Setting class attributes. ---
 
+		self.__libraryActiveLabel = None
+		self.__inspectActiveLabel = None
+		self.__exportActiveLabel = None
+		self.__preferencesActiveLabel = None
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def libraryActiveLabel (self):
+		"""
+		This method is the property for **self.__libraryActiveLabel** attribute.
+
+		:return: self.__libraryActiveLabel . ( Active_QLabel )
+		"""
+
+		return self.__libraryActiveLabel
+
+	@libraryActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def libraryActiveLabel (self, value):
+		"""
+		This method is the setter method for **self.__libraryActiveLabel** attribute.
+
+		:param value: Attribute value. ( Active_QLabel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("libraryActiveLabel "))
+
+	@libraryActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def libraryActiveLabel (self):
+		"""
+		This method is the deleter method for **self.__libraryActiveLabel** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("libraryActiveLabel "))
+
+	@property
+	def inspectActiveLabel (self):
+		"""
+		This method is the property for **self.__inspectActiveLabel** attribute.
+
+		:return: self.__inspectActiveLabel . ( Active_QLabel )
+		"""
+
+		return self.__inspectActiveLabel
+
+	@inspectActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectActiveLabel (self, value):
+		"""
+		This method is the setter method for **self.__inspectActiveLabel** attribute.
+
+		:param value: Attribute value. ( Active_QLabel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectActiveLabel "))
+
+	@inspectActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def inspectActiveLabel (self):
+		"""
+		This method is the deleter method for **self.__inspectActiveLabel** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectActiveLabel "))
+
+	@property
+	def exportActiveLabel (self):
+		"""
+		This method is the property for **self.__exportActiveLabel** attribute.
+
+		:return: self.__exportActiveLabel . ( Active_QLabel )
+		"""
+
+		return self.__exportActiveLabel
+
+	@exportActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def exportActiveLabel (self, value):
+		"""
+		This method is the setter method for **self.__exportActiveLabel** attribute.
+
+		:param value: Attribute value. ( Active_QLabel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("exportActiveLabel "))
+
+	@exportActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def exportActiveLabel (self):
+		"""
+		This method is the deleter method for **self.__exportActiveLabel** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("exportActiveLabel "))
+
+	@property
+	def preferencesActiveLabel (self):
+		"""
+		This method is the property for **self.__preferencesActiveLabel** attribute.
+
+		:return: self.__preferencesActiveLabel. ( Active_QLabel )
+		"""
+
+		return self.__preferencesActiveLabel
+
+	@preferencesActiveLabel .setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def preferencesActiveLabel (self, value):
+		"""
+		This method is the setter method for **self.__preferencesActiveLabel** attribute.
+
+		:param value: Attribute value. ( Active_QLabel )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("preferencesActiveLabel "))
+
+	@preferencesActiveLabel .deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def preferencesActiveLabel (self):
+		"""
+		This method is the deleter method for **self.__preferencesActiveLabel** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("preferencesActiveLabel "))
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
 	@core.executionTrace
 	def initializeToolBar(self):
 		"""
@@ -151,14 +284,14 @@ class sIBL_GUI(umbra.engine.Umbra):
 		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
-		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object_=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
-									umbra.ui.common.LayoutActiveLabel(name="Inspect", object_=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
-									umbra.ui.common.LayoutActiveLabel(name="Export", object_=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
-									umbra.ui.common.LayoutActiveLabel(name="Preferences", object_=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
+									umbra.ui.common.LayoutActiveLabel(name="Export", object=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
+									umbra.ui.common.LayoutActiveLabel(name="Preferences", object=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.layoutsActiveLabels:
-			layoutActiveLabel.object_.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
+			layoutActiveLabel.object.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding Central Widget button.")
 		centralWidgetButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),

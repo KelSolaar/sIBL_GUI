@@ -33,6 +33,7 @@ import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
@@ -1277,7 +1278,7 @@ class DatabaseBrowser(UiComponent):
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
 				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
-				iblSetStandardItem.setIcon(umbra.ui.common.getIcon(iblSet.icon))
+				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
 
 				self.__container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
 
