@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`umbra.globals.runtimeGlobals` module.
+	This module defines units tests for :mod:`sibl_gui.globals.runtimeGlobals` module.
 
 **Others:**
 
@@ -22,7 +22,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal imports.
 #***********************************************************************************************
-from umbra.globals.runtimeGlobals import RuntimeGlobals
+from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -39,7 +39,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class RuntimeGlobalsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`umbra.globals.runtimeGlobals.RuntimeGlobals` class units tests methods.
+	This class defines :class:`sibl_gui.globals.runtimeGlobals.RuntimeGlobals` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
@@ -47,24 +47,8 @@ class RuntimeGlobalsTestCase(unittest.TestCase):
 		This method tests presence of required attributes.
 		"""
 
-		requiredAttributes = ("parameters",
-								"args",
-								"loggingConsoleHandler",
-								"loggingFileHandler",
-								"loggingSessionHandler",
-								"loggingSessionHandlerStream",
-								"loggingFormatters",
-								"loggingActiveFormatter",
-								"verbosityLevel",
-								"loggingFile",
-								"application",
-								"userApplicationDatasDirectory",
-								"uiFile",
-								"ui",
-								"settingsFile",
-								"settings",
-								"splashscreenImage",
-								"splashscreen")
+		requiredAttributes = ("templatesFactoryDirectory",
+								"templatesUserDirectory")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, RuntimeGlobals.__dict__)

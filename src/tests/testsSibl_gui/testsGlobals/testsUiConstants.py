@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines units tests for :mod:`umbra.globals.uiConstants` module.
+	This module defines units tests for :mod:`sibl_gui.globals.uiConstants` module.
 
 **Others:**
 
@@ -23,7 +23,7 @@ import unittest
 #***********************************************************************************************
 #***	Internal imports.
 #***********************************************************************************************
-from umbra.globals.uiConstants import UiConstants
+from sibl_gui.globals.uiConstants import UiConstants
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -40,7 +40,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class UiConstantsTestCase(unittest.TestCase):
 	"""
-	This class defines :class:`umbra.globals.uiConstants.UiConstants` class units tests methods.
+	This class defines :class:`sibl_gui.globals.uiConstants.UiConstants` class units tests methods.
 	"""
 
 	def testRequiredAttributes(self):
@@ -54,6 +54,7 @@ class UiConstantsTestCase(unittest.TestCase):
 								"linuxStylesheetFile",
 								"windowsStyle",
 								"darwinStyle",
+								"settingsFile",
 								"linuxStyle",
 								"layoutsFile",
 								"applicationWindowsIcon",
@@ -94,290 +95,297 @@ class UiConstantsTestCase(unittest.TestCase):
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, UiConstants.__dict__)
 
-	def testFrameworkUiFileAttribute(self):
+	def testUiFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.uiFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.uiFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.uiFile, "\w+")
 
-	def testFrameworkWindowsStylesheetFileAttribute(self):
+	def testWindowsStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.windowsStylesheetFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.windowsStylesheetFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.windowsStylesheetFile, "\w+")
 
-	def testFrameworkDarwinStylesheetFileAttribute(self):
+	def testDarwinStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.darwinStylesheetFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.darwinStylesheetFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.darwinStylesheetFile, "\w+")
 
-	def testFrameworkLinuxStylesheetFileAttribute(self):
+	def testLinuxStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.linuxStylesheetFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.linuxStylesheetFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.linuxStylesheetFile, "\w+")
 
-	def testFrameworkWindowsStyleAttribute(self):
+	def testWindowsStyleAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.windowsStyle` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.windowsStyle` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.windowsStyle, "\w+")
 
-	def testFrameworkDarwinStyleAttribute(self):
+	def testDarwinStyleAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.darwinStyle` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.darwinStyle` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.darwinStyle, "\w+")
 
-	def testFrameworkLinuxStyleAttribute(self):
+	def testSettingsFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.linuxStyle` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.settingsFile` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.settingsFile, "\w+")
+
+	def testLinuxStyleAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.linuxStyle` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.linuxStyle, "\w+")
 
-	def testFrameworkLayoutsFileAttribute(self):
+	def testLayoutsFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutsFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutsFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.layoutsFile, "\w+")
 
-	def testFrameworkApplicationWindowsIconAttribute(self):
+	def testApplicationWindowsIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.applicationWindowsIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.applicationWindowsIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\w+")
 		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\.[pP][nN][gG]$")
 
-	def testFrameworkApplicationDarwinIconAttribute(self):
+	def testApplicationDarwinIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.applicationDarwinIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.applicationDarwinIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\w+")
 		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\.[pP][nN][gG]$")
 
-	def testFrameworkSplashscreemImageAttribute(self):
+	def testSplashscreemImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.splashScreenImage` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.splashScreenImage` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.splashScreenImage, "\w+")
 		self.assertRegexpMatches(UiConstants.splashScreenImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
-	def testFrameworkLogoImageAttribute(self):
+	def testLogoImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.logoImage` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.logoImage` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.logoImage, "\w+")
 		self.assertRegexpMatches(UiConstants.logoImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
-	def testFrameworkDefaultToolbarIconSizeAttribute(self):
+	def testDefaultToolbarIconSizeAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.defaultToolbarIconSize` attribute.
 		"""
 
 		self.assertIsInstance(UiConstants.defaultToolbarIconSize, int)
 		self.assertGreaterEqual(UiConstants.defaultToolbarIconSize, 8)
 		self.assertLessEqual(UiConstants.defaultToolbarIconSize, 128)
 
-	def testFrameworkCentralWidgetIconAttribute(self):
+	def testCentralWidgetIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.centralWidgetIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.centralWidgetIcon, "\w+")
 
-	def testFrameworkCentralWidgetHoverIconAttribute(self):
+	def testCentralWidgetHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.centralWidgetHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.centralWidgetHoverIcon, "\w+")
 
-	def testFrameworkCentralWidgetActiveIconAttribute(self):
+	def testCentralWidgetActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.centralWidgetActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.centralWidgetActiveIcon, "\w+")
 
-	def testFrameworLayoutIconAttribute(self):
+	def testLayoutIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.layoutIcon, "\w+")
 
-	def testFrameworLayoutHoverIconAttribute(self):
+	def testLayoutHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.layoutHoverIcon, "\w+")
 
-	def testFrameworLayoutActiveIconAttribute(self):
+	def testLayoutActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.layoutActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.layoutActiveIcon, "\w+")
 
-	def testFrameworMiscellaneousIconAttribute(self):
+	def testMiscellaneousIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.miscellaneousIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.miscellaneousIcon, "\w+")
 
-	def testFrameworMiscellaneousHoverIconAttribute(self):
+	def testMiscellaneousHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.miscellaneousHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.miscellaneousHoverIcon, "\w+")
 
-	def testFrameworMiscellaneousActiveIconAttribute(self):
+	def testMiscellaneousActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.miscellaneousActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.miscellaneousActiveIcon, "\w+")
 
-	def testFrameworkLibraryIconAttribute(self):
+	def testLibraryIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.libraryIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.libraryIcon, "\w+")
 
-	def testFrameworkLibraryHoverIconAttribute(self):
+	def testLibraryHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.libraryHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.libraryHoverIcon, "\w+")
 
-	def testFrameworkLibraryActiveIconAttribute(self):
+	def testLibraryActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.libraryActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.libraryActiveIcon, "\w+")
 
-	def testFrameworkInspectIconAttribute(self):
+	def testInspectIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.inspectIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.inspectIcon, "\w+")
 
-	def testFrameworkInspectHoverIconAttribute(self):
+	def testInspectHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.inspectHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.inspectHoverIcon, "\w+")
 
-	def testFrameworkInspectActiveIconAttribute(self):
+	def testInspectActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.inspectActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.inspectActiveIcon, "\w+")
 
-	def testFrameworkExportIconAttribute(self):
+	def testExportIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.exportIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.exportIcon, "\w+")
 
-	def testFrameworkExportHoverIconAttribute(self):
+	def testExportHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.exportHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.exportHoverIcon, "\w+")
 
-	def testFrameworkExportActiveIconAttribute(self):
+	def testExportActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.exportActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.exportActiveIcon, "\w+")
 
-	def testFrameworkPreferencesIconAttribute(self):
+	def testPreferencesIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.preferencesIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.preferencesIcon, "\w+")
 
-	def testFrameworkPreferencesHoverIconAttribute(self):
+	def testPreferencesHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesHoverIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.preferencesHoverIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.preferencesHoverIcon, "\w+")
 
-	def testFrameworkPreferencesActiveIconAttribute(self):
+	def testPreferencesActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesActiveIcon` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.preferencesActiveIcon` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.preferencesActiveIcon, "\w+")
 
-	def testFrameworkFormatErrorImageAttribute(self):
+	def testFormatErrorImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.formatErrorImage` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.formatErrorImage` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.formatErrorImage, "\w+")
 		self.assertRegexpMatches(UiConstants.formatErrorImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
-	def testFrameworkMissingImageAttribute(self):
+	def testMissingImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.missingImage` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.missingImage` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.missingImage, "\w+")
 		self.assertRegexpMatches(UiConstants.missingImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
-	def testFrameworkStartupLayoutAttribute(self):
+	def testStartupLayoutAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.startupLayout` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.startupLayout` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.startupLayout, "\w+")
 
-	def testFrameworkHelpFileAttribute(self):
+	def testHelpFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.helpFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.helpFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.helpFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
-	def testFrameworkApiFileAttribute(self):
+	def testApiFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.apiFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.apiFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.apiFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 	def testNativeImageFormatsAttribute(self):
 			"""
-			This method tests :attr:`umbra.globals.uiConstants.UiConstants.nativeImageFormats` attribute.
+			This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.nativeImageFormats` attribute.
 			"""
 
 			self.assertIsInstance(UiConstants.nativeImageFormats, dict)
@@ -388,7 +396,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testThirdPartyImageFormatsAttribute(self):
 			"""
-			This method tests :attr:`umbra.globals.uiConstants.UiConstants.thirdPartyImageFormats` attribute.
+			This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.thirdPartyImageFormats` attribute.
 			"""
 
 			self.assertIsInstance(UiConstants.thirdPartyImageFormats, dict)
@@ -399,7 +407,7 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testPythonTokensFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.pythonTokensFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.pythonTokensFile` attribute.
 		"""
 
 		self.assertRegexpMatches(UiConstants.pythonTokensFile, "\w+")

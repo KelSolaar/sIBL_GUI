@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **Umbra** package ui constants through the :class:`UiConstants` class.
+	This module defines **sIBL_GUI** package ui constants through the :class:`UiConstants` class.
 
 **Others:**
 
@@ -29,7 +29,7 @@ __status__ = "Production"
 #***********************************************************************************************
 class UiConstants():
 	"""
-	This class provides **Umbra** package ui constants.
+	This class provides **sIBL_GUI** package ui constants.
 	"""
 
 	uiFile = "sIBL_GUI.ui"

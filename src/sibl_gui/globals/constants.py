@@ -110,4 +110,3 @@ class Constants():
 	elif platform.system() == "Linux":
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
 		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows, '**freeImage/resources/libfreeimage.dylib** on Darwin, **freeImage/resources/libfreeimage.so** on Linux' ( String )"""
-
