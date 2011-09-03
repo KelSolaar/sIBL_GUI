@@ -15,7 +15,7 @@ releases/Darwin/
 releases/Linux/
 releases/repository/
 releases/Windows/
-src/application/resources/images/builders/
+src/sibl_gui/resources/images/builders/
 src/umbra/resources/images/builders/
 support/documentation/sphinx/build
 support/documentation/sphinx/source/resources/src

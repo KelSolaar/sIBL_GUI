@@ -8,8 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	| This module is the main **Umbra** package module.
-	| It defines various classes, methods and definitions to run, maintain and exit the Application.
+	| This module defines various classes, methods and definitions to run, maintain and exit the Application.
 	| The main Application object is the :class:`sIBL_GUI` class.
 
 **Others:**
@@ -20,17 +19,49 @@
 #***	External imports.
 #***********************************************************************************************
 import os
+import logging
 
 #***********************************************************************************************
 #***	Internal imports.
 #***********************************************************************************************
-from application.globals.constants import Constants
+import sibl_gui.globals.constants
+import sibl_gui.globals.uiConstants
+import umbra.globals.constants
+import umbra.globals.uiConstants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
-RuntimeGlobals.resourcesPaths.append(os.path.join(os.path.dirname(__file__), Constants.resourcesDirectory))
 
+#***********************************************************************************************
+#***	Dependencies globals manipulation.
+#***********************************************************************************************
+umbra.globals.constants.Constants.__dict__.update(sibl_gui.globals.constants.Constants.__dict__)
+umbra.globals.uiConstants.UiConstants.__dict__.update(sibl_gui.globals.uiConstants.UiConstants.__dict__)
+
+RuntimeGlobals.resourcesPaths.append(os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory))
+
+#***********************************************************************************************
+#***	Internal imports.
+#***********************************************************************************************
 import umbra.engine
 
-umbra.engine._run()
+#***********************************************************************************************
+#***	Module attributes.
+#***********************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
+
+LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
+
+#***********************************************************************************************
+#***	Launcher.
+#***********************************************************************************************
+if __name__ == "__main__":
+	umbra.engine._run(umbra.engine.Umbra, (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
+					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
+					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory)))
 
 #***********************************************************************************************
 #***	Path manipulations.
@@ -120,11 +151,11 @@ umbra.engine._run()
 #
 #	pass
 #
-#RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.frameworkUiFile)
+#RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.uiFile)
 #if os.path.exists(RuntimeGlobals.uiFile):
 #	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeGlobals.uiFile)
 #else:
-#	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' ui file is not available, {1} will now close!".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
+#	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' ui file is not available, {1} will now close!".format(UiConstants.uiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -294,8 +325,8 @@ umbra.engine._run()
 #		This method gets the default layouts settings.
 #		"""
 #
-#		LOGGER.debug("> Accessing '{0}' layouts settings file!".format(UiConstants.frameworkLayoutsFile))
-#		self.__defaultLayoutsSettings = QSettings(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
+#		LOGGER.debug("> Accessing '{0}' layouts settings file!".format(UiConstants.layoutsFile))
+#		self.__defaultLayoutsSettings = QSettings(umbra.ui.common.getResourcePath(UiConstants.layoutsFile), QSettings.IniFormat)
 #
 #	@core.executionTrace
 #	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1330,12 +1361,12 @@ umbra.engine._run()
 #
 #		LOGGER.debug("> Initializing Application toolBar.")
 #
-#		self.toolBar.setIconSize(QSize(UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize))
+#		self.toolBar.setIconSize(QSize(UiConstants.defaultToolbarIconSize, UiConstants.defaultToolbarIconSize))
 #
 #		LOGGER.debug("> Adding Application logo.")
 #		logoLabel = QLabel()
 #		logoLabel.setObjectName("Application_Logo_label")
-#		logoLabel.setPixmap(QPixmap(UiConstants.frameworkLogoImage))
+#		logoLabel.setPixmap(QPixmap(UiConstants.logoImage))
 #		self.toolBar.addWidget(logoLabel)
 #
 #		spacer = QLabel()
@@ -1348,19 +1379,19 @@ umbra.engine._run()
 #
 #		LOGGER.debug("> Adding Active_QLabels.")
 #
-#		self.__libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkLibraryIcon), QPixmap(UiConstants.frameworkLibraryHoverIcon), QPixmap(UiConstants.frameworkLibraryActiveIcon), True)
+#		self.__libraryActiveLabel = Active_QLabel(QPixmap(UiConstants.libraryIcon), QPixmap(UiConstants.libraryHoverIcon), QPixmap(UiConstants.libraryActiveIcon), True)
 #		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
 #		self.toolBar.addWidget(self.__libraryActiveLabel)
 #
-#		self.__inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkInspectIcon), QPixmap(UiConstants.frameworkInspectHoverIcon), QPixmap(UiConstants.frameworkInspectActiveIcon), True)
+#		self.__inspectActiveLabel = Active_QLabel(QPixmap(UiConstants.inspectIcon), QPixmap(UiConstants.inspectHoverIcon), QPixmap(UiConstants.inspectActiveIcon), True)
 #		self.__inspectActiveLabel.setObjectName("Inspect_activeLabel")
 #		self.toolBar.addWidget(self.__inspectActiveLabel)
 #
-#		self.__exportActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkExportIcon), QPixmap(UiConstants.frameworkExportHoverIcon), QPixmap(UiConstants.frameworkExportActiveIcon), True)
+#		self.__exportActiveLabel = Active_QLabel(QPixmap(UiConstants.exportIcon), QPixmap(UiConstants.exportHoverIcon), QPixmap(UiConstants.exportActiveIcon), True)
 #		self.__exportActiveLabel.setObjectName("Export_activeLabel")
 #		self.toolBar.addWidget(self.__exportActiveLabel)
 #
-#		self.__preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.frameworkPreferencesIcon), QPixmap(UiConstants.frameworkPreferencesHoverIcon), QPixmap(UiConstants.frameworkPreferencesActiveIcon), True)
+#		self.__preferencesActiveLabel = Active_QLabel(QPixmap(UiConstants.preferencesIcon), QPixmap(UiConstants.preferencesHoverIcon), QPixmap(UiConstants.preferencesActiveIcon), True)
 #		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 #		self.toolBar.addWidget(self.__preferencesActiveLabel)
 #
@@ -1374,14 +1405,14 @@ umbra.engine._run()
 #			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__activeLabel__clicked, layoutActiveLabel.layout))
 #
 #		LOGGER.debug("> Adding Central Widget button.")
-#		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.frameworkCentralWidgetIcon), QPixmap(UiConstants.frameworkCentralWidgetHoverIcon), QPixmap(UiConstants.frameworkCentralWidgetActiveIcon))
+#		centralWidgetButton = Active_QLabel(QPixmap(UiConstants.centralWidgetIcon), QPixmap(UiConstants.centralWidgetHoverIcon), QPixmap(UiConstants.centralWidgetActiveIcon))
 #		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 #		self.toolBar.addWidget(centralWidgetButton)
 #
 #		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 #
 #		LOGGER.debug("> Adding layout button.")
-#		layoutButton = Active_QLabel(QPixmap(UiConstants.frameworkLayoutIcon), QPixmap(UiConstants.frameworkLayoutHoverIcon), QPixmap(UiConstants.frameworkLayoutActiveIcon), parent=self)
+#		layoutButton = Active_QLabel(QPixmap(UiConstants.layoutIcon), QPixmap(UiConstants.layoutHoverIcon), QPixmap(UiConstants.layoutActiveIcon), parent=self)
 #		layoutButton.setObjectName("Layout_activeLabel")
 #		self.toolBar.addWidget(layoutButton)
 #
@@ -1410,7 +1441,7 @@ umbra.engine._run()
 #		layoutButton.setMenu(self.__layoutMenu)
 #
 #		LOGGER.debug("> Adding miscellaneous button.")
-#		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.frameworMiscellaneousIcon), QPixmap(UiConstants.frameworMiscellaneousHoverIcon), QPixmap(UiConstants.frameworMiscellaneousActiveIcon), parent=self)
+#		miscellaneousButton = Active_QLabel(QPixmap(UiConstants.miscellaneousIcon), QPixmap(UiConstants.miscellaneousHoverIcon), QPixmap(UiConstants.miscellaneousActiveIcon), parent=self)
 #		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
 #		self.toolBar.addWidget(miscellaneousButton)
 #
@@ -1509,8 +1540,8 @@ umbra.engine._run()
 #		:param checked: Checked state. ( Boolean )
 #		"""
 #
-#		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkHelpFile))
-#		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
+#		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.helpFile))
+#		QDesktopServices.openUrl(QUrl(QString(UiConstants.helpFile)))
 #
 #	@core.executionTrace
 #	def __apiDisplayMiscAction__triggered(self, checked):
@@ -1520,8 +1551,8 @@ umbra.engine._run()
 #		:param checked: Checked state. ( Boolean )
 #		"""
 #
-#		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkApiFile))
-#		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
+#		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.apiFile))
+#		QDesktopServices.openUrl(QUrl(QString(UiConstants.apiFile)))
 #
 #	@core.executionTrace
 #	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -1533,14 +1564,14 @@ umbra.engine._run()
 #		LOGGER.debug("> Setting Application visual style.")
 #
 #		if platform.system() == "Windows" or platform.system() == "Microsoft":
-#			RuntimeGlobals.application.setStyle(UiConstants.frameworkWindowsStyle)
-#			styleSheetFile = io.File(UiConstants.frameworkWindowsStylesheetFile)
+#			RuntimeGlobals.application.setStyle(UiConstants.windowsStyle)
+#			styleSheetFile = io.File(UiConstants.windowsStylesheetFile)
 #		elif platform.system() == "Darwin":
-#			RuntimeGlobals.application.setStyle(UiConstants.frameworkDarwinStyle)
-#			styleSheetFile = io.File(UiConstants.frameworkDarwinStylesheetFile)
+#			RuntimeGlobals.application.setStyle(UiConstants.darwinStyle)
+#			styleSheetFile = io.File(UiConstants.darwinStylesheetFile)
 #		elif platform.system() == "Linux":
-#			RuntimeGlobals.application.setStyle(UiConstants.frameworkLinuxStyle)
-#			styleSheetFile = io.File(UiConstants.frameworkLinuxStylesheetFile)
+#			RuntimeGlobals.application.setStyle(UiConstants.linuxStyle)
+#			styleSheetFile = io.File(UiConstants.linuxStylesheetFile)
 #
 #		if os.path.exists(styleSheetFile.file):
 #			LOGGER.debug("> Reading style sheet file: '{0}'.".format(styleSheetFile.file))
@@ -1603,8 +1634,8 @@ umbra.engine._run()
 #
 #		LOGGER.debug("> Restoring startup layout.")
 #
-#		if self.restoreLayout(UiConstants.frameworkStartupLayout):
-#			not self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
+#		if self.restoreLayout(UiConstants.startupLayout):
+#			not self.__corePreferencesManager.ui.Restore_Geometry_On_Layout_Change_checkBox.isChecked() and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.startupLayout)).toByteArray())
 #			return True
 #		else:
 #			raise Exception, "{0} | Exception raised while restoring startup layout!".format(self.__class__.__name__)
@@ -1620,7 +1651,7 @@ umbra.engine._run()
 #
 #		LOGGER.debug("> Storing startup layout.")
 #
-#		return self.storeLayout(UiConstants.frameworkStartupLayout)
+#		return self.storeLayout(UiConstants.startupLayout)
 #
 #	@core.executionTrace
 #	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1739,7 +1770,7 @@ umbra.engine._run()
 #	else:
 #		LOGGER.debug("> Initializing splashscreen.")
 #
-#		RuntimeGlobals.splashscreenImage = QPixmap(UiConstants.frameworkSplashScreenImage)
+#		RuntimeGlobals.splashscreenImage = QPixmap(UiConstants.splashScreenImage)
 #		RuntimeGlobals.splashscreen = Delayed_QSplashScreen(RuntimeGlobals.splashscreenImage)
 #		RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing {0}.".format(Constants.applicationName, Constants.releaseVersion), textColor=Qt.white)
 #		RuntimeGlobals.splashscreen.show()

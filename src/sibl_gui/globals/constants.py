@@ -45,19 +45,6 @@ class Constants():
 
 	logger = "sIBL_GUI_Logger"
 	"""Package logger name: '**sIBL_GUI_Logger**' ( String )"""
-	verbosityLevel = 3
-	"""Default logging verbosity level: '**3**' ( Integer )"""
-	verbosityLabels = ("Critical", "Error", "Warning", "Info", "Debug")
-	"""Logging verbosity labels: ('**Critical**', '**Error**', '**Warning**', '**Info**', '**Debug**') ( Tuple )"""
-	loggingDefaultFormatter = "Default"
-	"""Default logging formatter name: '**Default**' ( String )"""
-	loggingSeparators = "*" * 96
-	"""Logging separators: '*' * 96 ( String )"""
-
-	encodingFormat = "utf-8"
-	"""Default encoding format: '**utf-8**' ( String )"""
-	encodingError = "ignore"
-	"""Default encoding error behavior: '**ignore**' ( String )"""
 
 	applicationDirectory = "sIBL_GUI"
 	"""Package Application directory: '**sIBL_GUI**' ( String )"""
@@ -102,12 +89,12 @@ class Constants():
 	resourcesDirectory = "resources"
 	"""Application resources directory: '**resources**' ( String )"""
 
-	databaseFile = "sIBL_Database.sqlite"
-	"""Application Database file: '**sIBL_Database.sqlite**' ( String )"""
-	settingsFile = "sIBL_Settings.rc"
-	"""Application settings file: '**sIBL_Settings.rc**' ( String )"""
-	loggingFile = "sIBL_Logging.log"
-	"""Application logging file: '**sIBL_Logging.log**' ( String )"""
+	databaseFile = "sIBL_GUI_Database.sqlite"
+	"""Application Database file: '**sIBL_GUI_Database.sqlite**' ( String )"""
+	settingsFile = "sIBL_GUI_Settings.rc"
+	"""Application settings file: '**sIBL_GUI_Settings.rc**' ( String )"""
+	loggingFile = "sIBL_GUI_Logging.log"
+	"""Application logging file: '**sIBL_GUI_Logging.log**' ( String )"""
 
 	databaseMigrationsFilesExtension = "py"
 	"""Application Database migrations files extension: '**py**' ( String )"""
@@ -124,7 +111,3 @@ class Constants():
 		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
 		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows, '**freeImage/resources/libfreeimage.dylib** on Darwin, **freeImage/resources/libfreeimage.so** on Linux' ( String )"""
 
-	defaultTimerCycle = 125
-	"""Default timer cycle length in milliseconds: '**125**' ( Integer )"""
-	nullObject = "None"
-	"""Default null object string: '**None**' ( String )"""

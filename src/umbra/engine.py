@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-**Umbra.py**
+**engine.py**
 
 **Platform:**
 	Windows, Linux, Mac Os X.
@@ -78,6 +78,7 @@ from foundations.streamObject import StreamObject
 from manager.componentsManager import Manager
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.uiConstants import UiConstants
+from umbra.preferences import Preferences
 from umbra.ui.widgets.active_QLabel import Active_QLabel
 from umbra.ui.widgets.delayed_QSplashScreen import Delayed_QSplashScreen
 
@@ -118,250 +119,16 @@ class Ui_Type():
 
 	pass
 
-RuntimeGlobals.resourcesPaths.append(os.path.join(os.path.dirname(__file__), Constants.resourcesDirectory))
-RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.frameworkUiFile)
+RuntimeGlobals.resourcesPaths.append(os.path.join(umbra.__path__[0], Constants.resourcesDirectory))
+RuntimeGlobals.uiFile = umbra.ui.common.getResourcePath(UiConstants.uiFile)
 if os.path.exists(RuntimeGlobals.uiFile):
 	Ui_Setup, Ui_Type = uic.loadUiType(RuntimeGlobals.uiFile)
 else:
-	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' ui file is not available, {1} will now close!".format(UiConstants.frameworkUiFile, Constants.applicationName)), Constants.applicationName)
+	umbra.ui.common.uiStandaloneSystemExitExceptionHandler(OSError("'{0}' ui file is not available, {1} will now close!".format(UiConstants.uiFile, Constants.applicationName)), Constants.applicationName)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class Preferences():
-	"""
-	| This class provides methods to manipulate Application preferences / settings.
-	| Those are stored and retrieved using a `QSettings <http://doc.qt.nokia.com/4.7/qsettings.html>`_ class.
-	"""
-
-	@core.executionTrace
-	def __init__(self, preferencesFile=None):
-		"""
-		This method initializes the class.
-
-		:param preferencesFile: Current preferences file path. ( String )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		# --- Setting class attributes. ---
-		self.__preferencesFile = None
-		self.__preferencesFile = preferencesFile
-
-		self.__settings = QSettings(self.preferencesFile, QSettings.IniFormat)
-
-		# --- Initializing preferences. ---
-		self.__getDefaultLayoutsSettings()
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def preferencesFile(self):
-		"""
-		This method is the property for **self.__preferencesFile** attribute.
-
-		:return: self.__preferencesFile. ( String )
-		"""
-
-		return self.__preferencesFile
-
-	@preferencesFile.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def preferencesFile(self, value):
-		"""
-		This method is the setter method for **self.__preferencesFile** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		if value:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("preferencesFile", value)
-			assert os.path.exists(value), "'{0}' attribute: '{1}' file doesn't exists!".format("preferencesFile", value)
-		self.__preferencesFile = value
-
-	@preferencesFile.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def preferencesFile(self):
-		"""
-		This method is the deleter method for **self.__preferencesFile** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("preferencesFile"))
-
-	@property
-	def settings(self):
-		"""
-		This method is the property for **self.__settings** attribute.
-
-		:return: self.__settings. ( QSettings )
-		"""
-
-		return self.__settings
-
-	@settings.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def settings(self, value):
-		"""
-		This method is the setter method for **self.__settings** attribute.
-
-		:param value: Attribute value. ( QSettings )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
-
-	@settings.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def settings(self):
-		"""
-		This method is the deleter method for **self.__settings** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
-
-	@property
-	def defaultLayoutsSettings(self):
-		"""
-		This method is the property for **self.__defaultLayoutsSettings** attribute.
-
-		:return: self.__defaultLayoutsSettings. ( QSettings )
-		"""
-
-		return self.__defaultLayoutsSettings
-
-	@defaultLayoutsSettings.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def defaultLayoutsSettings(self, value):
-		"""
-		This method is the setter method for **self.__defaultLayoutsSettings** attribute.
-
-		:param value: Attribute value. ( QSettings )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("defaultLayoutsSettings"))
-
-	@defaultLayoutsSettings.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def defaultLayoutsSettings(self):
-		"""
-		This method is the deleter method for **self.__defaultLayoutsSettings** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("defaultLayoutsSettings"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def setKey(self, section, key, value):
-		"""
-		This method stores provided key in settings file.
-
-		:param section: Current section to save the key into. ( String )
-		:param key: Current key to save. ( String )
-		:param value: Current key value to save. ( Object )
-		"""
-
-		LOGGER.debug("> Saving '{0}' in '{1}' section with value: '{2}' in settings file.".format(key, section, value))
-
-		self.__settings.beginGroup(section)
-		self.__settings.setValue(key , QVariant(value))
-		self.__settings.endGroup()
-
-	@core.executionTrace
-	def getKey(self, section, key):
-		"""
-		This method gets key value from settings file.
-
-		:param section: Current section to retrieve key from. ( String )
-		:param key: Current key to retrieve. ( String )
-		:return: Current key value. ( Object )
-		"""
-
-		LOGGER.debug("> Retrieving '{0}' in '{1}' section.".format(key, section))
-
-		self.__settings.beginGroup(section)
-		value = self.__settings.value(key)
-		LOGGER.debug("> Key value: '{0}'.".format(value))
-		self.__settings.endGroup()
-
-		return value
-
-	@core.executionTrace
-	def __getDefaultLayoutsSettings(self):
-		"""
-		This method gets the default layouts settings.
-		"""
-
-		LOGGER.debug("> Accessing '{0}' layouts settings file!".format(UiConstants.frameworkLayoutsFile))
-		self.__defaultLayoutsSettings = QSettings(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutsFile), QSettings.IniFormat)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setDefaultPreferences(self):
-		"""
-		This method defines the default settings file content.
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Initializing default settings!")
-
-		self.__settings.beginGroup("Settings")
-		self.__settings.setValue("verbosityLevel", QVariant("3"))
-		self.__settings.setValue("restoreGeometryOnLayoutChange", Qt.Unchecked)
-		self.__settings.setValue("deactivatedComponents", QVariant(""))
-		self.__settings.endGroup()
-		self.__settings.beginGroup("Layouts")
-		self.__settings.setValue("startupCentric_geometry", self.__defaultLayoutsSettings.value("startupCentric/geometry"))
-		self.__settings.setValue("startupCentric_windowState", self.__defaultLayoutsSettings.value("startupCentric/windowState"))
-		self.__settings.setValue("startupCentric_centralWidget", self.__defaultLayoutsSettings.value("startupCentric/centralWidget"))
-		self.__settings.setValue("startupCentric_activeLabel", self.__defaultLayoutsSettings.value("startupCentric/activeLabel"))
-		self.__settings.setValue("developmentCentric_geometry", self.__defaultLayoutsSettings.value("developmentCentric/geometry"))
-		self.__settings.setValue("developmentCentric_windowState", self.__defaultLayoutsSettings.value("developmentCentric/windowState"))
-		self.__settings.setValue("developmentCentric_centralWidget", self.__defaultLayoutsSettings.value("developmentCentric/centralWidget"))
-		self.__settings.setValue("developmentCentric_activeLabel", self.__defaultLayoutsSettings.value("developmentCentric/activeLabel"))
-		self.__settings.setValue("preferencesCentric_geometry", self.__defaultLayoutsSettings.value("preferencesCentric/geometry"))
-		self.__settings.setValue("preferencesCentric_windowState", self.__defaultLayoutsSettings.value("preferencesCentric/windowState"))
-		self.__settings.setValue("preferencesCentric_centralWidget", self.__defaultLayoutsSettings.value("preferencesCentric/centralWidget"))
-		self.__settings.setValue("preferencesCentric_activeLabel", self.__defaultLayoutsSettings.value("preferencesCentric/activeLabel"))
-		self.__settings.setValue("one_geometry", "")
-		self.__settings.setValue("one_windowState", "")
-		self.__settings.setValue("one_centralWidget", True)
-		self.__settings.setValue("one_activeLabel", "")
-		self.__settings.setValue("two_geometry", "")
-		self.__settings.setValue("two_windowState", "")
-		self.__settings.setValue("two_centralWidget", True)
-		self.__settings.setValue("two_activeLabel", "")
-		self.__settings.setValue("three_geometry", "")
-		self.__settings.setValue("three_windowState", "")
-		self.__settings.setValue("three_centralWidget", True)
-		self.__settings.setValue("three_activeLabel", "")
-		self.__settings.setValue("four_geometry", "")
-		self.__settings.setValue("four_windowState", "")
-		self.__settings.setValue("four_centralWidget", True)
-		self.__settings.setValue("four_activeLabel", "")
-		self.__settings.setValue("five_geometry", "")
-		self.__settings.setValue("five_windowState", "")
-		self.__settings.setValue("five_centralWidget", True)
-		self.__settings.setValue("five_activeLabel", "")
-		self.__settings.endGroup()
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setDefaultLayouts(self):
-		"""
-		This method sets the default layouts in the preferences file.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		for layout in ("developmentCentric", "preferencesCentric"):
-				for type in ("geometry", "windowState", "centralWidget", "activeLabel"):
-					LOGGER.debug("> Updating preferences file '{0}_{1}' layout attribute!".format(layout, type))
-					self.setKey("Layouts", "{0}_{1}".format(layout, type), self.__defaultLayoutsSettings.value("{0}/{1}".format(layout, type)))
-		return True
-
 class LayoutActiveLabel(core.Structure):
 	"""
 	This class represents a storage object for layout active labels attributes.
@@ -1078,12 +845,12 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Initializing Application toolBar.")
 
-		self.toolBar.setIconSize(QSize(UiConstants.frameworkDefaultToolbarIconSize, UiConstants.frameworkDefaultToolbarIconSize))
+		self.toolBar.setIconSize(QSize(UiConstants.defaultToolbarIconSize, UiConstants.defaultToolbarIconSize))
 
 		LOGGER.debug("> Adding Application logo.")
 		logoLabel = QLabel()
 		logoLabel.setObjectName("Application_Logo_label")
-		logoLabel.setPixmap(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLogoImage)))
+		logoLabel.setPixmap(QPixmap(umbra.ui.common.getResourcePath(UiConstants.logoImage)))
 		self.toolBar.addWidget(logoLabel)
 
 		spacer = QLabel()
@@ -1096,15 +863,15 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Adding Active_QLabels.")
 
-		self.__developmentActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentHoverIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkDevelopmentActiveIcon)), True)
+		self.__developmentActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.developmentIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.developmentHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.developmentActiveIcon)), True)
 		self.__developmentActiveLabel.setObjectName("Development_activeLabel")
 		self.toolBar.addWidget(self.__developmentActiveLabel)
 
-		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesHoverIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkPreferencesActiveIcon)), True)
+		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.preferencesIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.preferencesHoverIcon)),
+													QPixmap(umbra.ui.common.getResourcePath(UiConstants.preferencesActiveIcon)), True)
 		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
@@ -1116,9 +883,9 @@ class Umbra(Ui_Type, Ui_Setup):
 			layoutActiveLabel.object_.clicked.connect(functools.partial(self.__layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
 		LOGGER.debug("> Adding layout button.")
-		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutIcon)),
-									QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutHoverIcon)),
-									QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkLayoutActiveIcon)), parent=self)
+		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.layoutIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(UiConstants.layoutHoverIcon)),
+									QPixmap(umbra.ui.common.getResourcePath(UiConstants.layoutActiveIcon)), parent=self)
 		layoutButton.setObjectName("Layout_activeLabel")
 		self.toolBar.addWidget(layoutButton)
 
@@ -1147,9 +914,9 @@ class Umbra(Ui_Type, Ui_Setup):
 		layoutButton.setMenu(self.__layoutMenu)
 
 		LOGGER.debug("> Adding miscellaneous button.")
-		miscellaneousButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousIcon)),
-										QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousHoverIcon)),
-										QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworMiscellaneousActiveIcon)), parent=self)
+		miscellaneousButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(UiConstants.miscellaneousIcon)),
+										QPixmap(umbra.ui.common.getResourcePath(UiConstants.miscellaneousHoverIcon)),
+										QPixmap(umbra.ui.common.getResourcePath(UiConstants.miscellaneousActiveIcon)), parent=self)
 		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
 		self.toolBar.addWidget(miscellaneousButton)
 
@@ -1235,8 +1002,8 @@ class Umbra(Ui_Type, Ui_Setup):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkHelpFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkHelpFile)))
+		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.helpFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.helpFile)))
 
 	@core.executionTrace
 	def __apiDisplayMiscAction__triggered(self, checked):
@@ -1246,8 +1013,8 @@ class Umbra(Ui_Type, Ui_Setup):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.frameworkApiFile))
-		QDesktopServices.openUrl(QUrl(QString(UiConstants.frameworkApiFile)))
+		LOGGER.debug("> Opening url: '{0}'.".format(UiConstants.apiFile))
+		QDesktopServices.openUrl(QUrl(QString(UiConstants.apiFile)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -1259,14 +1026,14 @@ class Umbra(Ui_Type, Ui_Setup):
 		LOGGER.debug("> Setting Application visual style.")
 
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			RuntimeGlobals.application.setStyle(UiConstants.frameworkWindowsStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkWindowsStylesheetFile))
+			RuntimeGlobals.application.setStyle(UiConstants.windowsStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.windowsStylesheetFile))
 		elif platform.system() == "Darwin":
-			RuntimeGlobals.application.setStyle(UiConstants.frameworkDarwinStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkDarwinStylesheetFile))
+			RuntimeGlobals.application.setStyle(UiConstants.darwinStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.darwinStylesheetFile))
 		elif platform.system() == "Linux":
-			RuntimeGlobals.application.setStyle(UiConstants.frameworkLinuxStyle)
-			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.frameworkLinuxStylesheetFile))
+			RuntimeGlobals.application.setStyle(UiConstants.linuxStyle)
+			styleSheetFile = io.File(umbra.ui.common.getResourcePath(UiConstants.linuxStylesheetFile))
 
 		if os.path.exists(styleSheetFile.file):
 			LOGGER.debug("> Reading style sheet file: '{0}'.".format(styleSheetFile.file))
@@ -1329,8 +1096,8 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Restoring startup layout.")
 
-		if self.restoreLayout(UiConstants.frameworkStartupLayout):
-			not self.__settings._datas.restoreGeometryOnLayoutChange and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.frameworkStartupLayout)).toByteArray())
+		if self.restoreLayout(UiConstants.startupLayout):
+			not self.__settings._datas.restoreGeometryOnLayoutChange and self.restoreGeometry(self.__settings.getKey("Layouts", "{0}_geometry".format(UiConstants.startupLayout)).toByteArray())
 			return True
 		else:
 			raise Exception, "{0} | Exception raised while restoring startup layout!".format(self.__class__.__name__)
@@ -1346,7 +1113,7 @@ class Umbra(Ui_Type, Ui_Setup):
 
 		LOGGER.debug("> Storing startup layout.")
 
-		return self.storeLayout(UiConstants.frameworkStartupLayout)
+		return self.storeLayout(UiConstants.startupLayout)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1376,6 +1143,7 @@ def _run(engine, paths, components=None):
 	"""
 	This definition is called when **Umbra** starts.
 
+	:param engine: Engine. ( QObject )
 	:param paths: Components paths. ( QString )
 	:param components: Mandatory components names. ( QString )
 	:return: Definition success. ( Boolean )
@@ -1469,7 +1237,7 @@ def _run(engine, paths, components=None):
 	else:
 		LOGGER.debug("> Initializing splashscreen.")
 
-		RuntimeGlobals.splashscreenImage = QPixmap(umbra.ui.common.getResourcePath(UiConstants.frameworkSplashScreenImage))
+		RuntimeGlobals.splashscreenImage = QPixmap(umbra.ui.common.getResourcePath(UiConstants.splashScreenImage))
 		RuntimeGlobals.splashscreen = Delayed_QSplashScreen(RuntimeGlobals.splashscreenImage)
 		RuntimeGlobals.splashscreen.setMessage("{0} - {1} | Initializing {0}.".format(Constants.applicationName, Constants.releaseVersion), textColor=Qt.white)
 		RuntimeGlobals.splashscreen.show()
@@ -1559,4 +1327,4 @@ def _setUserApplicationDatasDirectory(path):
 #***	Launcher.
 #***********************************************************************************************
 if __name__ == "__main__":
-	_run(Umbra, (os.path.join(os.getcwd(), Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))
+	_run(Umbra, (os.path.join(umbra.__path__[0], Constants.factoryComponentsDirectory),), ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi"))

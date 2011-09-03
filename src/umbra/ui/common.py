@@ -30,12 +30,11 @@ from PyQt4.QtGui import *
 import foundations.common
 import foundations.core as core
 import foundations.exceptions
-from foundations.parser import Parser
 import umbra.ui.widgets.messageBox as messageBox
+from foundations.parser import Parser
 from umbra.globals.constants import Constants
 from umbra.globals.uiConstants import UiConstants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
-from umbra.libraries.freeImage.freeImage import Image
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -179,9 +178,9 @@ def setWindowDefaultIcon(window):
 	"""
 
 	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		window.setWindowIcon(QIcon(getResourcePath(UiConstants.frameworkApplicationWindowsIcon)))
+		window.setWindowIcon(QIcon(getResourcePath(UiConstants.applicationWindowsIcon)))
 	elif platform.system() == "Darwin":
-		window.setWindowIcon(QIcon(getResourcePath(UiConstants.frameworkApplicationDarwinIcon)))
+		window.setWindowIcon(QIcon(getResourcePath(UiConstants.applicationDarwinIcon)))
 	elif platform.system() == "Linux":
 		pass
 	return True
@@ -202,94 +201,6 @@ def centerWidgetOnScreen(widget, screen=None):
 	desktopHeight = QApplication.desktop().screenGeometry(screen).height()
 	widget.move(desktopWidth / 2 - widget.width() / 2, desktopHeight / 2 - widget.height() / 2)
 	return True
-
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getGraphicItem(path, type):
-		"""
-		This method gets a graphic display: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_, `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
-
-		:param path: Image path. ( String )
-		:param type: QIcon, QImage, QPixmap. ( QObject )
-		:return: Graphic display. ( Icon, QImage, QPixmap )
-		"""
-
-		if os.path.exists(path):
-			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
-					return type(path)
-			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
-						image = Image(str(path))
-						image = image.convertToQImage()
-						if type == QIcon:
-							return QIcon(QPixmap(image))
-						elif type == QImage:
-							return image
-						elif type == QPixmap:
-							return QPixmap(image)
-				else:
-					return type(UiConstants.frameworkFormatErrorImage)
-		else:
-			return type(UiConstants.frameworkMissingImage)
-
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIcon(path):
-		"""
-		This method gets a `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_.
-
-		:param path: Icon image path. ( String )
-		:return: QIcon. ( QIcon )
-		"""
-
-		return getGraphicItem(path, QIcon)
-
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getPixmap(path):
-		"""
-		This method gets a `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
-
-		:param path: Icon image path. ( String )
-		:return: QPixmap. ( QPixmap )
-		"""
-
-		return getGraphicItem(path, QPixmap)
-
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getImage(path):
-		"""
-		This method gets a `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
-
-		:param path: Icon image path. ( String )
-		:return: QImage. ( QImage )
-		"""
-
-		return getGraphicItem(path, QImage)
-
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def filterImagePath(path):
-		"""
-		This method filters the image path.
-
-		:param path: Image path. ( String )
-		:return: Path. ( String )
-		"""
-
-		if os.path.exists(path):
-			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
-					return path
-			else:
-				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
-						return UiConstants.frameworkFormatErrorImage
-		else:
-			return UiConstants.frameworkMissingImage
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, OSError)

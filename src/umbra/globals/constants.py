@@ -96,15 +96,6 @@ class Constants():
 
 	librariesDirectory = "libraries"
 	"""Application libraries directory: '**libraries**' ( String )"""
-	if platform.system() == "Windows" or platform.system() == "Microsoft":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/FreeImage.dll")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows, '**freeImage/resources/libfreeimage.dylib** on Darwin, **freeImage/resources/libfreeimage.so** on Linux' ( String )"""
-	elif platform.system() == "Darwin":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.dylib")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows, '**freeImage/resources/libfreeimage.dylib** on Darwin, **freeImage/resources/libfreeimage.so** on Linux' ( String )"""
-	elif platform.system() == "Linux":
-		freeImageLibrary = os.path.join(librariesDirectory, "freeImage/resources/libfreeimage.so")
-		"""FreeImage library path: '**freeImage/resources/FreeImage.dll** on Windows, '**freeImage/resources/libfreeimage.dylib** on Darwin, **freeImage/resources/libfreeimage.so** on Linux' ( String )"""
 
 	defaultTimerCycle = 125
 	"""Default timer cycle length in milliseconds: '**125**' ( Integer )"""

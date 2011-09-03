@@ -48,45 +48,45 @@ class UiConstantsTestCase(unittest.TestCase):
 		This method tests presence of required attributes.
 		"""
 
-		requiredAttributes = ("frameworkUiFile",
-								"frameworkWindowsStylesheetFile",
-								"frameworkDarwinStylesheetFile",
-								"frameworkLinuxStylesheetFile",
-								"frameworkWindowsStyle",
-								"frameworkDarwinStyle",
-								"frameworkLinuxStyle",
-								"frameworkLayoutsFile",
-								"frameworkApplicationWindowsIcon",
-								"frameworkApplicationDarwinIcon",
-								"frameworkSplashScreenImage",
-								"frameworkLogoImage",
-								"frameworkDefaultToolbarIconSize",
-								"frameworkCentralWidgetIcon",
-								"frameworkCentralWidgetHoverIcon",
-								"frameworkCentralWidgetActiveIcon",
-								"frameworkLayoutIcon",
-								"frameworkLayoutHoverIcon",
-								"frameworkLayoutActiveIcon",
-								"frameworMiscellaneousIcon",
-								"frameworMiscellaneousHoverIcon",
-								"frameworMiscellaneousActiveIcon",
-								"frameworkLibraryIcon",
-								"frameworkLibraryHoverIcon",
-								"frameworkLibraryActiveIcon",
-								"frameworkInspectIcon",
-								"frameworkInspectHoverIcon",
-								"frameworkInspectActiveIcon",
-								"frameworkExportIcon",
-								"frameworkExportHoverIcon",
-								"frameworkExportActiveIcon",
-								"frameworkPreferencesIcon",
-								"frameworkPreferencesHoverIcon",
-								"frameworkPreferencesActiveIcon",
-								"frameworkFormatErrorImage",
-								"frameworkMissingImage",
-								"frameworkStartupLayout",
-								"frameworkHelpFile",
-								"frameworkApiFile",
+		requiredAttributes = ("uiFile",
+								"windowsStylesheetFile",
+								"darwinStylesheetFile",
+								"linuxStylesheetFile",
+								"windowsStyle",
+								"darwinStyle",
+								"linuxStyle",
+								"layoutsFile",
+								"applicationWindowsIcon",
+								"applicationDarwinIcon",
+								"splashScreenImage",
+								"logoImage",
+								"defaultToolbarIconSize",
+								"centralWidgetIcon",
+								"centralWidgetHoverIcon",
+								"centralWidgetActiveIcon",
+								"layoutIcon",
+								"layoutHoverIcon",
+								"layoutActiveIcon",
+								"miscellaneousIcon",
+								"miscellaneousHoverIcon",
+								"miscellaneousActiveIcon",
+								"libraryIcon",
+								"libraryHoverIcon",
+								"libraryActiveIcon",
+								"inspectIcon",
+								"inspectHoverIcon",
+								"inspectActiveIcon",
+								"exportIcon",
+								"exportHoverIcon",
+								"exportActiveIcon",
+								"preferencesIcon",
+								"preferencesHoverIcon",
+								"preferencesActiveIcon",
+								"formatErrorImage",
+								"missingImage",
+								"startupLayout",
+								"helpFile",
+								"apiFile",
 								"nativeImageFormats",
 								"thirdPartyImageFormats",
 								"pythonTokensFile")
@@ -96,284 +96,284 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testFrameworkUiFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkUiFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.uiFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkUiFile, "\w+")
+		self.assertRegexpMatches(UiConstants.uiFile, "\w+")
 
 	def testFrameworkWindowsStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkWindowsStylesheetFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.windowsStylesheetFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkWindowsStylesheetFile, "\w+")
+		self.assertRegexpMatches(UiConstants.windowsStylesheetFile, "\w+")
 
 	def testFrameworkDarwinStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkDarwinStylesheetFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.darwinStylesheetFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkDarwinStylesheetFile, "\w+")
+		self.assertRegexpMatches(UiConstants.darwinStylesheetFile, "\w+")
 
 	def testFrameworkLinuxStylesheetFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLinuxStylesheetFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.linuxStylesheetFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLinuxStylesheetFile, "\w+")
+		self.assertRegexpMatches(UiConstants.linuxStylesheetFile, "\w+")
 
 	def testFrameworkWindowsStyleAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkWindowsStyle` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.windowsStyle` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkWindowsStyle, "\w+")
+		self.assertRegexpMatches(UiConstants.windowsStyle, "\w+")
 
 	def testFrameworkDarwinStyleAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkDarwinStyle` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.darwinStyle` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkDarwinStyle, "\w+")
+		self.assertRegexpMatches(UiConstants.darwinStyle, "\w+")
 
 	def testFrameworkLinuxStyleAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLinuxStyle` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.linuxStyle` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLinuxStyle, "\w+")
+		self.assertRegexpMatches(UiConstants.linuxStyle, "\w+")
 
 	def testFrameworkLayoutsFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLayoutsFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutsFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLayoutsFile, "\w+")
+		self.assertRegexpMatches(UiConstants.layoutsFile, "\w+")
 
 	def testFrameworkApplicationWindowsIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkApplicationWindowsIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.applicationWindowsIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkApplicationWindowsIcon, "\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.applicationWindowsIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkApplicationDarwinIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkApplicationDarwinIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.applicationDarwinIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkApplicationDarwinIcon, "\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.applicationDarwinIcon, "\.[pP][nN][gG]$")
 
 	def testFrameworkSplashscreemImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkSplashScreenImage` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.splashScreenImage` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkSplashScreenImage, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkSplashScreenImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.splashScreenImage, "\w+")
+		self.assertRegexpMatches(UiConstants.splashScreenImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testFrameworkLogoImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLogoImage` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.logoImage` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLogoImage, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkLogoImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.logoImage, "\w+")
+		self.assertRegexpMatches(UiConstants.logoImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testFrameworkDefaultToolbarIconSizeAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkDefaultToolbarIconSize` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize` attribute.
 		"""
 
-		self.assertIsInstance(UiConstants.frameworkDefaultToolbarIconSize, int)
-		self.assertGreaterEqual(UiConstants.frameworkDefaultToolbarIconSize, 8)
-		self.assertLessEqual(UiConstants.frameworkDefaultToolbarIconSize, 128)
+		self.assertIsInstance(UiConstants.defaultToolbarIconSize, int)
+		self.assertGreaterEqual(UiConstants.defaultToolbarIconSize, 8)
+		self.assertLessEqual(UiConstants.defaultToolbarIconSize, 128)
 
 	def testFrameworkCentralWidgetIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkCentralWidgetIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkCentralWidgetIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.centralWidgetIcon, "\w+")
 
 	def testFrameworkCentralWidgetHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkCentralWidgetHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkCentralWidgetHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.centralWidgetHoverIcon, "\w+")
 
 	def testFrameworkCentralWidgetActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkCentralWidgetActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkCentralWidgetActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.centralWidgetActiveIcon, "\w+")
 
 	def testFrameworLayoutIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLayoutIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLayoutIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.layoutIcon, "\w+")
 
 	def testFrameworLayoutHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLayoutHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLayoutHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.layoutHoverIcon, "\w+")
 
 	def testFrameworLayoutActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLayoutActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.layoutActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLayoutActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.layoutActiveIcon, "\w+")
 
 	def testFrameworMiscellaneousIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworMiscellaneousIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworMiscellaneousIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.miscellaneousIcon, "\w+")
 
 	def testFrameworMiscellaneousHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworMiscellaneousHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworMiscellaneousHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.miscellaneousHoverIcon, "\w+")
 
 	def testFrameworMiscellaneousActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworMiscellaneousActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.miscellaneousActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworMiscellaneousActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.miscellaneousActiveIcon, "\w+")
 
 	def testFrameworkLibraryIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLibraryIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLibraryIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.libraryIcon, "\w+")
 
 	def testFrameworkLibraryHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLibraryHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLibraryHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.libraryHoverIcon, "\w+")
 
 	def testFrameworkLibraryActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkLibraryActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.libraryActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkLibraryActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.libraryActiveIcon, "\w+")
 
 	def testFrameworkInspectIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkInspectIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkInspectIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.inspectIcon, "\w+")
 
 	def testFrameworkInspectHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkInspectHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkInspectHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.inspectHoverIcon, "\w+")
 
 	def testFrameworkInspectActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkInspectActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.inspectActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkInspectActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.inspectActiveIcon, "\w+")
 
 	def testFrameworkExportIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkExportIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkExportIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.exportIcon, "\w+")
 
 	def testFrameworkExportHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkExportHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkExportHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.exportHoverIcon, "\w+")
 
 	def testFrameworkExportActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkExportActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.exportActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkExportActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.exportActiveIcon, "\w+")
 
 	def testFrameworkPreferencesIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkPreferencesIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkPreferencesIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.preferencesIcon, "\w+")
 
 	def testFrameworkPreferencesHoverIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkPreferencesHoverIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesHoverIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkPreferencesHoverIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.preferencesHoverIcon, "\w+")
 
 	def testFrameworkPreferencesActiveIconAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkPreferencesActiveIcon` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.preferencesActiveIcon` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkPreferencesActiveIcon, "\w+")
+		self.assertRegexpMatches(UiConstants.preferencesActiveIcon, "\w+")
 
 	def testFrameworkFormatErrorImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkFormatErrorImage` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.formatErrorImage` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkFormatErrorImage, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkFormatErrorImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.formatErrorImage, "\w+")
+		self.assertRegexpMatches(UiConstants.formatErrorImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testFrameworkMissingImageAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkMissingImage` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.missingImage` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkMissingImage, "\w+")
-		self.assertRegexpMatches(UiConstants.frameworkMissingImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
+		self.assertRegexpMatches(UiConstants.missingImage, "\w+")
+		self.assertRegexpMatches(UiConstants.missingImage, "\.[bB][mM][pP]$|\.[jJ][pP][eE][gG]$|\.[jJ][pP][gG]|\.[pP][nN][gG]$")
 
 	def testFrameworkStartupLayoutAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkStartupLayout` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.startupLayout` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkStartupLayout, "\w+")
+		self.assertRegexpMatches(UiConstants.startupLayout, "\w+")
 
 	def testFrameworkHelpFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkHelpFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.helpFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkHelpFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
+		self.assertRegexpMatches(UiConstants.helpFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 	def testFrameworkApiFileAttribute(self):
 		"""
-		This method tests :attr:`umbra.globals.uiConstants.UiConstants.frameworkApiFile` attribute.
+		This method tests :attr:`umbra.globals.uiConstants.UiConstants.apiFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.frameworkApiFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
+		self.assertRegexpMatches(UiConstants.apiFile, "(http|ftp|https)://([a-zA-Z0-9\-\.]+)/?")
 
 	def testNativeImageFormatsAttribute(self):
 			"""
