@@ -1145,7 +1145,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 
-		RuntimeGlobals.templatesFactoryDirectory = os.path.join(sibl_gui.__path__[0], Constants.resourcesDirectory, Constants.templatesDirectory)
+		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
 		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory)
 
 		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
