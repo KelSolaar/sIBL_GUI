@@ -558,7 +558,7 @@ class sIBLeditUtilities(UiComponent):
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid sIBLedit executable file!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Invalid sIBLedit executable file!".format(self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
@@ -580,7 +580,7 @@ class sIBLeditUtilities(UiComponent):
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
 			else:
-				raise OSError, "{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name)
+				raise OSError("{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
@@ -602,7 +602,7 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError, "{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+				raise OSError("{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
@@ -638,4 +638,4 @@ class sIBLeditUtilities(UiComponent):
 			editProcess.startDetached(editCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))

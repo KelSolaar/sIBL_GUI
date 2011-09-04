@@ -815,7 +815,7 @@ class LocationsBrowser(UiComponent):
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid custom file browser executable file!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Invalid custom file browser executable file!".format(self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
 
@@ -853,7 +853,7 @@ class LocationsBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception("{0} | Exception raised while opening '{1}' Ibl Sets directories!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
@@ -871,7 +871,7 @@ class LocationsBrowser(UiComponent):
 		if inspectorIblSet:
 			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -897,7 +897,7 @@ class LocationsBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' Components directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents))
+			raise Exception("{0} | Exception raised while opening '{1}' Components directories!".format(self.__class__.__name__, ", ".join(component.name for component in selectedComponents)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -923,7 +923,7 @@ class LocationsBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while opening '{1}' Templates directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception("{0} | Exception raised while opening '{1}' Templates directories!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
@@ -939,12 +939,12 @@ class LocationsBrowser(UiComponent):
 		directory = self.__container.parameters.loaderScriptsOutputDirectory and self.__container.parameters.loaderScriptsOutputDirectory or self.__addonsLoaderScript.ioDirectory
 
 		if not os.path.exists(directory):
-			raise OSError, "{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory)
+			raise OSError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
 
 		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())):
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while exploring '{1}' directory!".format(self.__class__.__name__, directory)
+			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -991,7 +991,7 @@ class LocationsBrowser(UiComponent):
 						pass
 
 				if not browserFound:
-					raise Exception, "{0} | Exception raised: No suitable Linux browser found!".format(self.__class__.__name__)
+					raise Exception("{0} | Exception raised: No suitable Linux browser found!".format(self.__class__.__name__))
 		return processCommand
 
 	@core.executionTrace
@@ -1013,4 +1013,4 @@ class LocationsBrowser(UiComponent):
 			browserProcess.startDetached(browserCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))

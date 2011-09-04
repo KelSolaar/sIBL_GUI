@@ -2030,7 +2030,7 @@ class Preview(UiComponent):
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid custom Images Previewer executable file!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Invalid custom Images Previewer executable file!".format(self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.ui.Custom_Previewer_Path_lineEdit.text())
 
@@ -2059,7 +2059,7 @@ class Preview(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(self.__class__.__name__, iblSet.title)
+			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
@@ -2083,11 +2083,11 @@ class Preview(UiComponent):
 				if self.viewImages(paths, str(self.ui.Custom_Previewer_Path_lineEdit.text())):
 					return True
 				else:
-					raise Exception, "{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(self.__class__.__name__, inspectorIblSet.title)
+					raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(self.__class__.__name__, inspectorIblSet.title))
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
-			raise OSError, "{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -2108,7 +2108,7 @@ class Preview(UiComponent):
 				editProcess.startDetached(previewCommand)
 				return True
 			else:
-				raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
+				raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
 		else:
 			if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				return self.getImagesPreviewer(paths)

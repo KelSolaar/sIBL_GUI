@@ -386,9 +386,9 @@ class DatabaseBrowser_QListView(QListView):
 							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
 						else:
-							raise OSError, "{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path)
+							raise OSError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -402,7 +402,7 @@ class DatabaseBrowser_QListView(QListView):
 		if not self.__container.parameters.databaseReadOnly:
 			pass
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 class DatabaseBrowser(UiComponent):
 	"""
@@ -1217,7 +1217,7 @@ class DatabaseBrowser(UiComponent):
 					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
-							raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
+							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
 
 			# Ibl Sets table integrity checking.
 			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
@@ -1508,7 +1508,7 @@ class DatabaseBrowser(UiComponent):
 		if self.addDirectory(directory):
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
+			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1530,7 +1530,7 @@ class DatabaseBrowser(UiComponent):
 			if self.addIblSet(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, path)
+				raise Exception("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, path))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, path))
 
@@ -1560,7 +1560,7 @@ class DatabaseBrowser(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+				raise Exception("{0} | Exception raised while removing '{1}' Ibls sets from the Database!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1588,7 +1588,7 @@ class DatabaseBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while updating '{1}' Ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
+			raise Exception("{0} | Exception raised while updating '{1}' Ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
@@ -1611,9 +1611,9 @@ class DatabaseBrowser(UiComponent):
 					self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name)
+				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError("{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1642,7 +1642,7 @@ class DatabaseBrowser(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
+			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1662,7 +1662,7 @@ class DatabaseBrowser(UiComponent):
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title)
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
 	def iblSetExists(self, path):
@@ -1694,7 +1694,7 @@ class DatabaseBrowser(UiComponent):
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title)
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
 	def getIblSets(self):

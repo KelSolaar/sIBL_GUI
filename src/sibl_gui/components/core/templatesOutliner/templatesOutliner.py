@@ -383,9 +383,9 @@ class TemplatesOutliner_QTreeView(QTreeView):
 							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreTemplatesOutliner.addDirectory(path)
 						else:
-							raise OSError, "{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path)
+							raise OSError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 class TemplatesOutliner(UiComponent):
 	"""
@@ -1644,7 +1644,7 @@ class TemplatesOutliner(UiComponent):
 			if self.addTemplate(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, path)
+				raise Exception("{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, path))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
 
@@ -1689,7 +1689,7 @@ class TemplatesOutliner(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' Templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates)))
+				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1705,7 +1705,7 @@ class TemplatesOutliner(UiComponent):
 		if self.addDefaultTemplates(forceImport=True):
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while importing default Templates into the Database!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1727,7 +1727,7 @@ class TemplatesOutliner(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised while displaying Templates help files!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1753,7 +1753,7 @@ class TemplatesOutliner(UiComponent):
 				if success:
 					return True
 				else:
-					raise Exception, "{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__)
+					raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
@@ -1774,9 +1774,9 @@ class TemplatesOutliner(UiComponent):
 				emitSignal and self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name)
+				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name)
+			raise foundations.exceptions.ProgrammingError("{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1804,7 +1804,7 @@ class TemplatesOutliner(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
+			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1830,7 +1830,7 @@ class TemplatesOutliner(UiComponent):
 			if self.addDirectory(path, self.getCollection(collection).id):
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__)
+				raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1848,7 +1848,7 @@ class TemplatesOutliner(UiComponent):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name)
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
 
 	@core.executionTrace
 	def templateExists(self, path):
@@ -1881,7 +1881,7 @@ class TemplatesOutliner(UiComponent):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name)
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)
@@ -1898,7 +1898,7 @@ class TemplatesOutliner(UiComponent):
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
 		else:
-			raise OSError, "{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile)
+			raise OSError("{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile))
 
 	@core.executionTrace
 	def getTemplates(self):

@@ -748,4 +748,4 @@ class LoaderScriptOptions(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while retrieving override keys!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised while retrieving override keys!".format(self.__class__.__name__))

@@ -692,7 +692,7 @@ class RawEditingUtilities(UiComponent):
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError, "{0} | Invalid custom text editor executable file!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Invalid custom text editor executable file!".format(self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
@@ -719,7 +719,7 @@ class RawEditingUtilities(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets))
+			raise Exception("{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
@@ -737,7 +737,7 @@ class RawEditingUtilities(UiComponent):
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError, "{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title)
+			raise OSError("{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	def editTemplatesInTextEditor_ui(self):
@@ -762,7 +762,7 @@ class RawEditingUtilities(UiComponent):
 		if success:
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates))
+			raise Exception("{0} | Exception raised while editing '{1}' Templates!".format(self.__class__.__name__, ", ".join(template.name for template in selectedTemplates)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -809,7 +809,7 @@ class RawEditingUtilities(UiComponent):
 						pass
 
 				if not editorFound:
-					raise Exception, "{0} | Exception raised: No suitable Linux editor found!".format(self.__class__.__name__)
+					raise Exception("{0} | Exception raised: No suitable Linux editor found!".format(self.__class__.__name__))
 		return processCommand
 
 	@core.executionTrace
@@ -831,4 +831,4 @@ class RawEditingUtilities(UiComponent):
 			editProcess.startDetached(editCommand)
 			return True
 		else:
-			raise Exception, "{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__)
+			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))

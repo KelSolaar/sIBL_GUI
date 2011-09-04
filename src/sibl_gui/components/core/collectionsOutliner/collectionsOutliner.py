@@ -290,7 +290,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
 						else:
-							raise OSError, "{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path)
+							raise OSError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 			else:
 				indexAt = self.indexAt(event.pos())
 				itemAt = self.model().itemFromIndex(indexAt)
@@ -306,7 +306,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 						if dbCommon.commit(self.__coreDb.dbSession):
 							self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def __QTreeView__clicked(self, index):
@@ -336,7 +336,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' and '{2}' Collections attributes are read only!".format(self.__class__.__name__, self.__coreCollectionsOutliner.overallCollection, self.__coreCollectionsOutliner.defaultCollection))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 class CollectionsOutliner(UiComponent):
 	"""
@@ -1337,7 +1337,7 @@ class CollectionsOutliner(UiComponent):
 				collection.comment = str(currentText)
 				dbCommon.commit(self.__coreDb.dbSession)
 		else:
-			raise foundations.exceptions.UserError, "{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__))
 		self.emit(SIGNAL("modelRefresh()"))
 
 	@core.executionTrace
@@ -1382,7 +1382,7 @@ class CollectionsOutliner(UiComponent):
 		if self.__coreDatabaseBrowser.addDirectory(directory, self.getCollectionId(collection)):
 			return True
 		else:
-			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
+			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
@@ -1409,13 +1409,13 @@ class CollectionsOutliner(UiComponent):
 						self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(name, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 						return name
 					else:
-						raise Exception, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
+						raise Exception("{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 			else:
-				raise foundations.exceptions.UserError, "{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection)
+				raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection))
 		else:
-			raise foundations.exceptions.UserError, "{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(self.__class__.__name__)
+			raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1444,7 +1444,7 @@ class CollectionsOutliner(UiComponent):
 			if success:
 				return True
 			else:
-				raise Exception, "{0} | Exception raised while removing '{1}' Collections from the Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
+				raise Exception("{0} | Exception raised while removing '{1}' Collections from the Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
@@ -1464,11 +1464,11 @@ class CollectionsOutliner(UiComponent):
 					self.emit(SIGNAL("modelRefresh()"))
 					return True
 				else:
-					raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
+					raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 			else:
-				raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name)
+				raise foundations.exceptions.ProgrammingError("{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.ProgrammingError, "{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection)
+			raise foundations.exceptions.ProgrammingError("{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1491,7 +1491,7 @@ class CollectionsOutliner(UiComponent):
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name)
+			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 
 	@core.executionTrace
 	def collectionExists(self, name):

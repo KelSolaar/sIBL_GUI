@@ -464,7 +464,7 @@ class Db(Component):
 				self.__dbName = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise OSError, "'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName)
+				raise OSError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName))
 		else:
 			self.__dbName = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)

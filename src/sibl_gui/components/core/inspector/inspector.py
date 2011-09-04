@@ -1191,7 +1191,7 @@ class Inspector(UiComponent):
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
 																image=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEfile", section))))
 			else:
-				raise OSError, "{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, self.__inspectorIblSet.title)
+				raise OSError("{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, self.__inspectorIblSet.title))
 
 	@core.executionTrace
 	def __drawInspectorIblSetOverlay(self):
