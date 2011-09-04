@@ -43,7 +43,7 @@ umbra.globals.uiConstants.UiConstants.__dict__.update(sibl_gui.globals.uiConstan
 umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtimeGlobals.RuntimeGlobals.__dict__)
 
 for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory), os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
-	os.path.exists(path) and umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths.append(path)
+	(os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths) and umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths.append(path)
 
 import foundations.globals.constants
 import manager.globals.constants
@@ -405,6 +405,6 @@ if __name__ == "__main__":
 					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
 					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
 					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
-		os.path.exists(path) and componentsPaths.append(path)
+		(os.path.exists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
 	umbra.engine.run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"))
