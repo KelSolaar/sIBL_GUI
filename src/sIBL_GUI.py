@@ -397,4 +397,5 @@ if __name__ == "__main__":
 	extendCommandLineParametersParser(commandLineParametersParser)
 	umbra.engine._run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
 					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
-					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory)))
+					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory)),
+					("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"))
