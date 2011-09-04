@@ -29,7 +29,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.common as dbCommon
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -43,6 +43,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "SearchDatabase"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

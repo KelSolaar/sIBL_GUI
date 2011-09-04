@@ -1,14 +1,14 @@
-_`umbra.components.core.db.dbUtilities.common`
+_`umbra.components.core.db.utilities.common`
 ==============================================
 
-.. automodule:: umbra.components.core.db.dbUtilities.common
+.. automodule:: umbra.components.core.db.utilities.common
 
 Module Attributes
 -----------------
 
-.. attribute:: umbra.components.core.db.dbUtilities.common.LOGGER
+.. attribute:: umbra.components.core.db.utilities.common.LOGGER
 
-.. attribute:: umbra.components.core.db.dbUtilities.common.DB_EXCEPTIONS
+.. attribute:: umbra.components.core.db.utilities.common.DB_EXCEPTIONS
 
 Functions
 ---------

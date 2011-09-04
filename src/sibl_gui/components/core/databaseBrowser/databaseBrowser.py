@@ -33,7 +33,7 @@ import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
@@ -50,6 +50,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "DatabaseBrowser_Worker", "DatabaseBrowser_QListView", "DatabaseBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

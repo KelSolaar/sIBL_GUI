@@ -33,6 +33,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.libraries.freeImage.freeImage as freeImage
+import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
@@ -48,6 +49,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "Image_QGraphicsItem", "ImagesPreviewer", "Preview"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -1041,7 +1044,7 @@ class ImagesPreviewer(object):
 
 		if self.__paths:
 			path = self.__paths[index]
-			image = umbra.ui.common.getImage(path)
+			image = sibl_gui.ui.common.getImage(path)
 			if not hasattr(image, "_datas"):
 				image._datas = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
 

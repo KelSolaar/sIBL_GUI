@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines **sIBL_GUI** package runtime constants through the :class:`RuntimeGlobals` class.
+	This module defines **sIBL_GUI** package runtime globals through the :class:`RuntimeGlobals` class.
 
 **Others:**
 
@@ -23,6 +23,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["RuntimeGlobals"]
 
 #***********************************************************************************************
 #***	Module classes and definitions.

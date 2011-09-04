@@ -79,6 +79,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "sIBL_GUI", "extendCommandLineParametersParser"]
+
 LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
 
 #***********************************************************************************************
@@ -405,4 +407,4 @@ if __name__ == "__main__":
 					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
 		os.path.exists(path) and componentsPaths.append(path)
 
-	umbra.engine._run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"))
+	umbra.engine.run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"))

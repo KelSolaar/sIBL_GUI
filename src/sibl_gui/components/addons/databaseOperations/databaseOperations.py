@@ -27,7 +27,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -43,6 +43,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "DbType", "DatabaseOperations"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
@@ -51,7 +53,7 @@ LOGGER = logging.getLogger(Constants.logger)
 class DbType(core.Structure):
 	"""
 	| This class represents a storage object for manipulation methods associated to a given Database type.
-	| See :mod:`umbra.components.core.db.dbUtilities.types` module for more informations about the available Database types.
+	| See :mod:`umbra.components.core.db.utilities.types` module for more informations about the available Database types.
 	"""
 
 	@core.executionTrace

@@ -26,7 +26,7 @@ import re
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import sibl_gui.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.utilities.types as dbTypes
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -38,6 +38,40 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER",
+			"DB_EXCEPTIONS"
+			"commit",
+			"addItem",
+			"addStandardItem",
+			"removeItem",
+			"removeStandardItem",
+			"updateItemContent",
+			"updateItemLocation",
+			"filterItems",
+			"itemExists",
+			"getIblSets",
+			"filterIblSets",
+			"iblSetExists",
+			"addIblSet",
+			"removeIblSet",
+			"updateIblSetContent",
+			"updateIblSetLocation",
+			"checkIblSetsTableIntegrity",
+			"getCollections",
+			"filterCollections",
+			"collectionExists",
+			"addCollection",
+			"removeCollection",
+			"getCollectionsIblSets",
+			"getTemplates",
+			"filterTemplates",
+			"templateExists",
+			"addTemplate",
+			"removeTemplate",
+			"updateTemplateContent",
+			"updateTemplateLocation",
+			"checkTemplatesTableIntegrity"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

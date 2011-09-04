@@ -29,8 +29,8 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
-import sibl_gui.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walker import Walker
 from manager.component import Component
@@ -45,6 +45,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "SetsScanner_Worker", "SetsScanner"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

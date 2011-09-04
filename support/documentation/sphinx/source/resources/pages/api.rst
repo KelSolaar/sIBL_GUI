@@ -44,8 +44,8 @@ Modules Summary:
    umbra.components.core.componentsManagerUi.componentsManagerUi <api/umbra.components.core.componentsManagerUi.componentsManagerUi>
    umbra.components.core.databaseBrowser.databaseBrowser <api/umbra.components.core.databaseBrowser.databaseBrowser>
    umbra.components.core.db.db <api/umbra.components.core.db.db>
-   umbra.components.core.db.dbUtilities.common <api/umbra.components.core.db.dbUtilities.common>
-   umbra.components.core.db.dbUtilities.types <api/umbra.components.core.db.dbUtilities.types>
+   umbra.components.core.db.utilities.common <api/umbra.components.core.db.utilities.common>
+   umbra.components.core.db.utilities.types <api/umbra.components.core.db.utilities.types>
    umbra.components.core.db.migrations.versions.001_table_Sets_Column_previewImage <api/umbra.components.core.db.migrations.versions.001_table_Sets_Column_previewImage>
    umbra.components.core.inspector.inspector <api/umbra.components.core.inspector.inspector>
    umbra.components.core.preferencesManager.preferencesManager <api/umbra.components.core.preferencesManager.preferencesManager>

@@ -32,7 +32,7 @@ from PyQt4.QtNetwork import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
@@ -51,6 +51,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "REPOSITORY_URL", "ReleaseObject", "DownloadManager", "RemoteUpdater", "OnlineUpdater"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

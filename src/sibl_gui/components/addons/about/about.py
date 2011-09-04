@@ -41,6 +41,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "ABOUT_MESSAGE", "About"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 ABOUT_MESSAGE = """

@@ -43,6 +43,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["LOGGER", "Icon", "getGraphicItem", "getIcon", "getPixmap", "getImage", "filterImagePath"]
+
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************

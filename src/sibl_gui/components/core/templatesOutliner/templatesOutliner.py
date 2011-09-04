@@ -32,9 +32,8 @@ import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
-import sibl_gui.components.core.db.dbUtilities.common as dbCommon
-import sibl_gui.components.core.db.dbUtilities.types as dbTypes
-import sibl_gui.ui.common
+import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
@@ -51,6 +50,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "TemplatesOutliner_Worker", "TemplatesOutliner_QTreeView", "TemplatesOutliner"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

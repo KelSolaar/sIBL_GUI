@@ -1,14 +1,14 @@
-_`umbra.components.core.db.dbUtilities.types`
+_`umbra.components.core.db.utilities.types`
 =============================================
 
-.. automodule:: umbra.components.core.db.dbUtilities.types
+.. automodule:: umbra.components.core.db.utilities.types
 
 Module Attributes
 -----------------
 
-.. attribute:: umbra.components.core.db.dbUtilities.types.LOGGER
+.. attribute:: umbra.components.core.db.utilities.types.LOGGER
 
-.. attribute:: umbra.components.core.db.dbUtilities.types.DbBase
+.. attribute:: umbra.components.core.db.utilities.types.DbBase
 
 Classes
 -------

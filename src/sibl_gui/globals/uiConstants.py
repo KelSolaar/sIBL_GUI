@@ -24,6 +24,8 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
+__all__ = ["UiConstants"]
+
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************

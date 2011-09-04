@@ -29,7 +29,7 @@ import shutil
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import sibl_gui.components.core.db.dbUtilities.types as dbTypes
+import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
 from foundations.walker import Walker
@@ -45,6 +45,8 @@ __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
 __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
+
+__all__ = ["LOGGER", "Db"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
