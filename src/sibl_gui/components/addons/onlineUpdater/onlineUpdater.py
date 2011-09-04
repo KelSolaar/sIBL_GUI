@@ -33,6 +33,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parser import Parser
