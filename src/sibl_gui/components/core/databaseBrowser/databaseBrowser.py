@@ -32,6 +32,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
+import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import sibl_gui.ui.common
 import umbra.ui.common
@@ -1588,7 +1589,7 @@ class DatabaseBrowser(UiComponent):
 			raise Exception, "{0} | Exception raised while updating '{1}' Ibls sets locations!".format(self.__class__.__name__, ", ". join((iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
 	def addIblSet(self, name, path, collectionId=None, emitSignal=True):
 		"""
 		This method adds an Ibl Set to the Database.
@@ -1608,7 +1609,7 @@ class DatabaseBrowser(UiComponent):
 					self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name)
+				raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name)
 		else:
 			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Ibl Set already exists in Database!".format(self.__class__.__name__, name)
 
@@ -1642,7 +1643,7 @@ class DatabaseBrowser(UiComponent):
 			raise Exception, "{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet, emitSignal=True):
 		"""
 		This method removes provided Ibl Set from the Database.
@@ -1659,7 +1660,7 @@ class DatabaseBrowser(UiComponent):
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title)
+			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def iblSetExists(self, path):
@@ -1673,7 +1674,7 @@ class DatabaseBrowser(UiComponent):
 		return dbCommon.iblSetExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
 		"""
 		This method updates provided Ibl Set location.
@@ -1691,7 +1692,7 @@ class DatabaseBrowser(UiComponent):
 				self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title)
+			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title)
 
 	@core.executionTrace
 	def getIblSets(self):

@@ -31,6 +31,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.strings as strings
+import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import sibl_gui.ui.common
@@ -1754,7 +1755,7 @@ class TemplatesOutliner(UiComponent):
 					raise Exception, "{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None, emitSignal=True):
 		"""
 		This method adds a Template to the Database.
@@ -1772,7 +1773,7 @@ class TemplatesOutliner(UiComponent):
 				emitSignal and self.emit(SIGNAL("modelRefresh()"))
 				return True
 			else:
-				raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name)
+				raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name)
 		else:
 			raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name)
 
@@ -1831,7 +1832,7 @@ class TemplatesOutliner(UiComponent):
 				raise Exception, "{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeTemplate(self, template, emitSignal=True):
 		"""
 		This method removes provided Template from the Database.
@@ -1846,7 +1847,7 @@ class TemplatesOutliner(UiComponent):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name)
+			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	def templateExists(self, path):
@@ -1860,7 +1861,7 @@ class TemplatesOutliner(UiComponent):
 		return dbCommon.templateExists(self.__coreDb.dbSession, path)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template, emitSignal=True):
 		"""
 		This method updates provided Template location.
@@ -1879,7 +1880,7 @@ class TemplatesOutliner(UiComponent):
 			emitSignal and self.emit(SIGNAL("modelRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name)
+			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, OSError)

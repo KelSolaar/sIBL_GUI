@@ -30,6 +30,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings
+import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.dbUtilities.common as dbCommon
 import sibl_gui.components.core.db.dbUtilities.types as dbTypes
 import umbra.ui.common
@@ -1444,7 +1445,7 @@ class CollectionsOutliner(UiComponent):
 				raise Exception, "{0} | Exception raised while removing '{1}' Collections from the Database!".format(self.__class__.__name__, ", ". join((collection.name for collection in selectedCollections)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
 	def addCollection(self, name, comment="Double click to set a comment!"):
 		"""
 		This method adds a Collection to the Database.
@@ -1461,14 +1462,14 @@ class CollectionsOutliner(UiComponent):
 					self.emit(SIGNAL("modelRefresh()"))
 					return True
 				else:
-					raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
+					raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name)
 			else:
 				raise foundations.exceptions.ProgrammingError, "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name)
 		else:
 			raise foundations.exceptions.ProgrammingError, "{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
 		This method removes provided Collection from the Database.
@@ -1488,7 +1489,7 @@ class CollectionsOutliner(UiComponent):
 			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
 			return True
 		else:
-			raise foundations.exceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name)
+			raise dbExceptions.DatabaseOperationError, "{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name)
 
 	@core.executionTrace
 	def collectionExists(self, name):
