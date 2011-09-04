@@ -799,8 +799,8 @@ class SearchDatabase(UiComponent):
 			if not iblSet.time:
 				continue
 
-			timeTokens = iblSet.time.split(":")
-			int(timeTokens[0]) * 60 + int(timeTokens[1]) >= timeLow.hour() * 60 + timeLow.minute() and int(timeTokens[0]) * 60 + int(timeTokens[1]) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredSets.append(iblSet)
+			hours, minutes, seconds = iblSet.time.split(":")
+			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredSets.append(iblSet)
 
 		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
 

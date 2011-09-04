@@ -1737,14 +1737,13 @@ class DatabaseBrowser(UiComponent):
 		:return: Current shot date. ( String )
 		"""
 
-		LOGGER.debug("> Formatting shot date with '{0}' date and '{1}' time.".format(date, time))
+		LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
 
 		if date and time and date != Constants.nullObject and time != Constants.nullObject:
-			shotTime = time.split(":")
-			shotTime = shotTime[0] + "H" + shotTime[1]
+			shotTime = "{0}H{1}".format(*time.split(":"))
 			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
-			LOGGER.debug("> Formatted shot date: '{0}'.".format(shotDate))
+			LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
 			return shotDate
 		else:
 			return Constants.nullObject
