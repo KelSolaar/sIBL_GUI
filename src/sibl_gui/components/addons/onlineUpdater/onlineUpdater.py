@@ -39,6 +39,7 @@ from foundations.parser import Parser
 from foundations.pkzip import Pkzip
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
@@ -1414,9 +1415,9 @@ class RemoteUpdater(object):
 		reply = messageBox.exec_()
 
 		if reply == 0:
-			return os.path.join(sibl_gui.__path__[0], Constants.resourcesDirectory, Constants.templatesDirectory)
+			return os.path.join(RuntimeGlobals.templatesFactoryDirectory)
 		elif reply == 1:
-			return os.path.join(self.__container.container.userApplicationDatasDirectory, os.path.basename(Constants.templatesDirectory))
+			return os.path.join(RuntimeGlobals.templatesUserDirectory)
 		elif reply == 2:
 			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
 
