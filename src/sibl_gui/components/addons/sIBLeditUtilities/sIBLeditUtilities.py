@@ -563,7 +563,7 @@ class sIBLeditUtilities(UiComponent):
 			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError)
 	def editIblSetInSIBLEdit_ui(self):
 		"""
 		This method edits selected Ibl Set in sIBLedit.
@@ -580,12 +580,12 @@ class sIBLeditUtilities(UiComponent):
 			if selectedIblSet:
 				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
 			else:
-				raise OSError("{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name))
+				raise foundations.exceptions.FileExistsError("{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError)
 	def editInspectorIblSetInSIBLEdit_ui(self):
 		"""
 		This method edits :mod:`umbra.components.core.inspector.inspector` Component inspected Ibl Set in sIBLedit.
@@ -602,7 +602,7 @@ class sIBLeditUtilities(UiComponent):
 			if inspectorIblSet:
 				return self.editIblSetInSIBLedit(inspectorIblSet.path, sIBLedit)
 			else:
-				raise OSError("{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+				raise foundations.exceptions.FileExistsError("{0} | Exception raised while sending Inspector Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 		else:
 			messageBox.messageBox("Warning", "Warning", "{0} | Please define an 'sIBLedit' executable in the preferences!".format(self.__class__.__name__))
 

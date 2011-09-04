@@ -2062,7 +2062,7 @@ class Preview(UiComponent):
 			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError, Exception)
 	def viewInspectorIblSetImages_ui(self, imageType, *args):
 		"""
 		This method launches :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Images Previewer.
@@ -2087,7 +2087,7 @@ class Preview(UiComponent):
 			else:
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
 		else:
-			raise OSError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+			raise foundations.exceptions.FileExistsError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

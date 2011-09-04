@@ -722,7 +722,7 @@ class RawEditingUtilities(UiComponent):
 			raise Exception("{0} | Exception raised while editing '{1}' Ibl Sets!".format(self.__class__.__name__, ", ".join(iblSet.title for iblSet in selectedIblSets)))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError)
 	def editInspectorIblSetInTextEditor_ui(self):
 		"""
 		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
@@ -737,7 +737,7 @@ class RawEditingUtilities(UiComponent):
 		if inspectorIblSet:
 			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
-			raise OSError("{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+			raise foundations.exceptions.FileExistsError("{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	def editTemplatesInTextEditor_ui(self):

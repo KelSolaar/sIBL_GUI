@@ -17,7 +17,7 @@ echo ----------------------------------------------------------------
 echo Build - Begin
 echo ----------------------------------------------------------------
 rm -rf $BUILD $DISTRIBUTION
-python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "code,foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,sibl_gui.components.core.db.utilities.common,sibl_gui.components.core.db.exceptions,sibl_gui.components.core.db.utilities.types,sibl_gui.libraries.freeImage.freeImage,sibl_gui.ui.common,umbra.ui.completers,umbra.ui.highlighters,umbra.ui.widgets.codeEditor_QPlainTextEdit,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
+python $UTILITIES/sIBL_GUI_darwinSetup.py py2app --includes "code,foundations.pkzip,foundations.strings,foundations.rotatingBackup,migrate.exceptions,migrate.versioning.api,PyQt4.QtNetwork,PyQt4.QtWebKit,sibl_gui.components.core.db.utilities.common,sibl_gui.components.core.db.exceptions,sibl_gui.components.core.db.utilities.types,sibl_gui.exceptions,sibl_gui.libraries.freeImage.freeImage,sibl_gui.ui.common,umbra.exceptions,umbra.ui.completers,umbra.ui.highlighters,umbra.ui.widgets.codeEditor_QPlainTextEdit,umbra.ui.widgets.search_QLineEdit,umbra.ui.widgets.variable_QPushButton,sip,sqlalchemy,sqlalchemy.databases,sqlalchemy.ext.declarative,sqlalchemy.ext,sqlalchemy.orm" --no-strip
 rm -rf `find $DISTRIBUTION/sIBL_GUI.app/ -name *debug*`
 echo ----------------------------------------------------------------
 echo Build - End

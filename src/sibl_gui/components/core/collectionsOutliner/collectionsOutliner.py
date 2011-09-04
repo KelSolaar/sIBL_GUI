@@ -268,7 +268,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DirectoryExistsError, foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
 		This method defines the drop event behavior.
@@ -290,7 +290,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreDatabaseBrowser.addDirectory(path)
 						else:
-							raise OSError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
+							raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 			else:
 				indexAt = self.indexAt(event.pos())
 				itemAt = self.model().itemFromIndex(indexAt)

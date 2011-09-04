@@ -33,6 +33,7 @@ import foundations.exceptions
 import foundations.namespace as namespace
 import foundations.parser
 import foundations.strings as strings
+import sibl_gui.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File
@@ -681,7 +682,7 @@ class LoaderScript(UiComponent):
 			self.ui.Remote_Connection_groupBox.hide()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, OSError, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, foundations.exceptions.FileExistsError, Exception)
 	def outputLoaderScript_ui(self):
 		"""
 		This method outputs the Loader Script.
@@ -703,7 +704,7 @@ class LoaderScript(UiComponent):
 			raise foundations.exceptions.UserError("{0} | In order to output the Loader Script, you need to select a Template!".format(self.__class__.__name__))
 
 		if not os.path.exists(template.path):
-			raise OSError("{0} | '{1}' Template file doesn't exists!".format(self.__class__.__name__, template.name))
+			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(self.__class__.__name__, template.name))
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
@@ -711,7 +712,7 @@ class LoaderScript(UiComponent):
 			raise foundations.exceptions.UserError("{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__))
 
 		if not os.path.exists(iblSet.path):
-			raise OSError("{0} | '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, iblSet.title))
+			raise foundations.exceptions.FileExistsError("{0} | '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, iblSet.title))
 
 		if self.outputLoaderScript(template, iblSet):
 			messageBox.messageBox("Information", "Information", "{0} | '{1}' output done!".format(self.__class__.__name__, template.outputScript))
@@ -745,7 +746,7 @@ class LoaderScript(UiComponent):
 			raise Exception("{0} | Exception raised while outputing Loader Script!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.DirectoryExistsError)
 	def outputLoaderScript(self, template, iblSet):
 		"""
 		This method outputs the Loader Script.
@@ -767,7 +768,7 @@ class LoaderScript(UiComponent):
 			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
 				loaderScript = File(os.path.join(self.__container.parameters.loaderScriptsOutputDirectory, template.outputScript))
 			else:
-				raise OSError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory))
+				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory))
 		else:
 			loaderScript = File(os.path.join(self.__ioDirectory, template.outputScript))
 
@@ -779,7 +780,7 @@ class LoaderScript(UiComponent):
 			return True
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.SocketConnectionError)
+	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.SocketConnectionError)
 	def sendLoaderScriptToSoftware(self, template, loaderScriptPath):
 		"""
 		This method sends the Loader Script to associated 3d package.
@@ -806,7 +807,7 @@ class LoaderScript(UiComponent):
 				connection.close()
 				LOGGER.info("{0} | Ending remote connection!".format(self.__class__.__name__))
 			except Exception as error:
-				raise foundations.exceptions.SocketConnectionError("{0} | Socket connection error: '{1}'!".format(self.__class__.__name__, error))
+				raise sibl_gui.exceptions.SocketConnectionError("{0} | Socket connection error: '{1}'!".format(self.__class__.__name__, error))
 		elif connectionType.value == "Win32":
 			if platform.system() == "Windows" or platform.system() == "Microsoft":
 				try:
@@ -817,7 +818,7 @@ class LoaderScript(UiComponent):
 					LOGGER.debug("> Current connection command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
-					raise foundations.exceptions.SocketConnectionError("{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
+					raise sibl_gui.exceptions.SocketConnectionError("{0} | Win32 OLE server connection error: '{1}'!".format(self.__class__.__name__, error))
 		return True
 
 	@core.executionTrace

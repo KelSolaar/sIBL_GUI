@@ -450,7 +450,7 @@ class Db(Component):
 		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, OSError, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.DirectoryExistsError, Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -464,7 +464,7 @@ class Db(Component):
 				self.__dbName = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise OSError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName))
+				raise foundations.exceptions.DirectoryExistsError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName))
 		else:
 			self.__dbName = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)

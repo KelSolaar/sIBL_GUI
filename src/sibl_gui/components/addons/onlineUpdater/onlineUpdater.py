@@ -2140,7 +2140,7 @@ class OnlineUpdater(UiComponent):
 		self.checkForNewReleases_ui()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.NetworkError)
+	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError)
 	def __releaseReply__finished(self):
 		"""
 		This method is triggered when the release reply finishes.
@@ -2194,7 +2194,7 @@ class OnlineUpdater(UiComponent):
 			else:
 				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise foundations.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releaseReply.error()))
+			raise sibl_gui.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releaseReply.error()))
 
 	@core.executionTrace
 	def __getReleaseFile(self, url):

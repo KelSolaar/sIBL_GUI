@@ -361,7 +361,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, OSError, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DirectoryExistsError, foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
 		This method defines the drop event behavior.
@@ -383,7 +383,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 								self.__coreTemplatesOutliner.addDirectory(path)
 						else:
-							raise OSError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
+							raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
@@ -1884,7 +1884,7 @@ class TemplatesOutliner(UiComponent):
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, OSError)
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
 		This method displays provided Templates help file.
@@ -1898,7 +1898,7 @@ class TemplatesOutliner(UiComponent):
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
 		else:
-			raise OSError("{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile))
+			raise foundations.exceptions.FileExistsError("{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile))
 
 	@core.executionTrace
 	def getTemplates(self):
