@@ -1,5 +1,6 @@
 [Component]
 Name = core.collectionsOutliner
+Title = Collections Outliner
 Module = collectionsOutliner
 Object = CollectionsOutliner
 Rank = 20

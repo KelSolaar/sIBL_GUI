@@ -1,5 +1,6 @@
 [Component]
 Name = addons.rawEditingUtilities
+Title = Raw Editing Utilities
 Module = rawEditingUtilities
 Object = RawEditingUtilities
 Rank = 80

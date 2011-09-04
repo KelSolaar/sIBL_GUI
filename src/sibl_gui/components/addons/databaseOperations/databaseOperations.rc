@@ -1,5 +1,6 @@
 [Component]
 Name = addons.databaseOperations
+Title = Database Operations
 Module = databaseOperations
 Object = DatabaseOperations
 Rank = 70

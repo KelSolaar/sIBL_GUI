@@ -1,5 +1,6 @@
 [Component]
 Name = addons.rewiringTool
+Title = Rewiring Tool
 Module = rewiringTool
 Object = RewiringTool
 Rank = 85

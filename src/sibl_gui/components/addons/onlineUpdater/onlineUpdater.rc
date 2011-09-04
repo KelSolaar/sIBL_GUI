@@ -1,5 +1,6 @@
 [Component]
 Name = addons.onlineUpdater
+Title = Online Updater
 Module = onlineUpdater
 Object = OnlineUpdater
 Rank = 95

@@ -1,5 +1,6 @@
 [Component]
 Name = addons.searchDatabase
+Title = Search Database
 Module = searchDatabase
 Object = SearchDatabase
 Rank = 75

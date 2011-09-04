@@ -1,5 +1,6 @@
 [Component]
 Name = addons.sIBLeditUtilities
+Title = sIBLedit Utilities
 Module = sIBLeditUtilities
 Object = sIBLeditUtilities
 Rank = 75

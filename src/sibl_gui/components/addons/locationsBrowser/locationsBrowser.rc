@@ -1,5 +1,6 @@
 [Component]
 Name = addons.locationsBrowser
+Title = Locations Browser
 Module = locationsBrowser
 Object = LocationsBrowser
 Rank = 80

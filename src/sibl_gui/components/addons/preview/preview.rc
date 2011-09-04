@@ -1,5 +1,6 @@
 [Component]
 Name = addons.preview
+Title = Preview
 Module = preview
 Object = Preview
 Rank = 85

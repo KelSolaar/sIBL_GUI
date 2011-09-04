@@ -1,5 +1,6 @@
 [Component]
 Name = core.inspector
+Title = Inspector
 Module = inspector
 Object = Inspector
 Rank = 30

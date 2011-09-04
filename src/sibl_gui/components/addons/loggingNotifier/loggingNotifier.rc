@@ -1,5 +1,6 @@
 [Component]
 Name = addons.loggingNotifier
+Title = Logging Notifier
 Module = loggingNotifier
 Object = LoggingNotifier
 Rank = 70

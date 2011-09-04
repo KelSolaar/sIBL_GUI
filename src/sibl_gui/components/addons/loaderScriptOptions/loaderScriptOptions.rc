@@ -1,5 +1,6 @@
 [Component]
 Name = addons.loaderScriptOptions
+Title = Loader Script Options
 Module = loaderScriptOptions
 Object = LoaderScriptOptions
 Rank = 80

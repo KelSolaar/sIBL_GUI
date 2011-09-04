@@ -1,5 +1,6 @@
 [Component]
 Name = core.databaseBrowser
+Title = Database Browser
 Module = databaseBrowser
 Object = DatabaseBrowser
 Rank = 25

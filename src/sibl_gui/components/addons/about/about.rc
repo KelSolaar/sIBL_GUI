@@ -1,5 +1,6 @@
 [Component]
 Name = addons.about
+Title = About
 Module = about
 Object = About
 Rank = 95

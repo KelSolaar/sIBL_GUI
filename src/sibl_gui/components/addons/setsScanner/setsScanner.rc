@@ -1,5 +1,6 @@
 [Component]
 Name = addons.setsScanner
+Title = Sets Scanner
 Module = setsScanner
 Object = SetsScanner
 Rank = 80

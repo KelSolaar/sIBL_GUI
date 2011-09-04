@@ -1,5 +1,6 @@
 [Component]
 Name = addons.loaderScript
+Title = Loader Script
 Module = loaderScript
 Object = LoaderScript
 Rank = 75
