@@ -32,7 +32,7 @@ import foundations.namespace
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
-from foundations.walker import Walker
+from foundations.walkers import OsWalker
 from manager.component import Component
 from umbra.globals.constants import Constants
 
@@ -231,9 +231,9 @@ class SetsScanner_Worker(QThread):
 		needModelRefresh = False
 		for directory in directories:
 			if os.path.exists(directory):
-				walker = Walker(directory)
-				walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
-				for iblSet, path in walker.files.items():
+				osWalker = OsWalker(directory)
+				osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+				for iblSet, path in osWalker.files.items():
 					if not dbCommon.filterIblSets(self.__dbSession, "^{0}$".format(re.escape(path)), "path"):
 						needModelRefresh = True
 						self.__newIblSets[iblSet] = path

@@ -283,7 +283,7 @@ Change Log
 -------------
 
 -  Updated sIBL_GUI Help / Manual.
--  Tweaked the Walker so it correctly return files with multiple "." in their name.
+-  Tweaked the OsWalker so it correctly return files with multiple "." in their name.
 -  Splashscreen now stays on top of other windows.
 
 1.9.0 - Alpha

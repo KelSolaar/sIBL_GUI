@@ -33,7 +33,7 @@ import foundations.core as core
 import foundations.strings as strings
 from foundations.io import File
 from foundations.globals.constants import Constants
-from foundations.walker import Walker
+from foundations.walkers import OsWalker
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "libraries"))
 import python.pyclbr as moduleBrowser
@@ -96,11 +96,11 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 
 	not cloneDirectory in sys.path and sys.path.append(sourceDirectory)
 
-	walker = Walker(sourceDirectory)
-	walker.walk(filtersIn=("\.py$",))
+	osWalker = OsWalker(sourceDirectory)
+	osWalker.walk(filtersIn=("\.py$",))
 
 	modules = []
-	for file in sorted(walker.files.values()):
+	for file in sorted(osWalker.files.values()):
 		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
 		module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))), strings.getSplitextBasename(file)).strip(".")
 		LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))

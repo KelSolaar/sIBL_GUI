@@ -32,7 +32,7 @@ import foundations.exceptions
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
-from foundations.walker import Walker
+from foundations.walkers import OsWalker
 from manager.component import Component
 from umbra.globals.constants import Constants
 
@@ -492,9 +492,9 @@ class Db(Component):
 				LOGGER.debug("> SQLAlchemy Migrate repository directory already exists!")
 
 			LOGGER.debug("> Copying migrations files to SQLAlchemy Migrate repository.")
-			walker = Walker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
-			walker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
-			for file in walker.files.values():
+			osWalker = OsWalker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
+			osWalker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
+			for file in osWalker.files.values():
 				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
 
 			if os.path.exists(self.__dbName):

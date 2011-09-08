@@ -37,7 +37,7 @@ import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
-from foundations.walker import Walker
+from foundations.walkers import OsWalker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -1789,13 +1789,13 @@ class TemplatesOutliner(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
+		LOGGER.debug("> Initializing directory '{0}' osWalker.".format(directory))
 
-		walker = Walker(directory)
-		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+		osWalker = OsWalker(directory)
+		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
 		success = True
-		for template, path in walker.files.items():
+		for template, path in osWalker.files.items():
 			if not self.templateExists(path):
 				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, emitSignal=False) or False
 

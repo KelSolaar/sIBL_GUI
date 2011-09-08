@@ -37,7 +37,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from foundations.walker import Walker
+from foundations.walkers import OsWalker
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
@@ -1626,13 +1626,13 @@ class DatabaseBrowser(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Initializing directory '{0}' walker.".format(directory))
+		LOGGER.debug("> Initializing directory '{0}' osWalker.".format(directory))
 
-		walker = Walker(directory)
-		walker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+		osWalker = OsWalker(directory)
+		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
 		success = True
-		for iblSet, path in walker.files.items():
+		for iblSet, path in osWalker.files.items():
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(), emitSignal=False) or False
 
