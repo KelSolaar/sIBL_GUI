@@ -27,7 +27,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import foundations.parser
+import foundations.parsers
 import foundations.strings as strings
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
@@ -542,8 +542,8 @@ class RewiringTool(UiComponent):
 			parameter = self.__rewiringParameters[comboBox.currentIndex()]
 			if comboBox.currentText() == "Custom image":
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox._datas, str(self.__reWireLineEditWidgets[index].text())))
-				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self.__reWireLineEditWidgets[index].text())))
+				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = foundations.parsers.getAttributeCompound(parameter[1], strings.getNormalizedPath(str(self.__reWireLineEditWidgets[index].text())))
 			else:
 				LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(comboBox._datas, getattr(iblSet, parameter[2])))
-				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet, parameter[2]) and foundations.parser.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet, parameter[2])))
+				self.__addonsLoaderScript.overrideKeys[comboBox._datas] = getattr(iblSet, parameter[2]) and foundations.parsers.getAttributeCompound(parameter[1], strings.getNormalizedPath(getattr(iblSet, parameter[2])))
 		return True

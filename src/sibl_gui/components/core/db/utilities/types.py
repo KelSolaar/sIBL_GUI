@@ -27,9 +27,9 @@ from sqlalchemy import ForeignKey
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import foundations.parser
+import foundations.parsers
 from umbra.globals.constants import Constants
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -151,7 +151,7 @@ class DbIblSet(DbBase):
 		:return: Method success. ( Boolean )
 		"""
 
-		parser = Parser(self.path)
+		parser = SectionsFileParser(self.path)
 		parser.read() and parser.parse()
 
 		if parser.sections:
@@ -268,22 +268,22 @@ class DbTemplate(DbBase):
 		:return: Method success. ( Boolean )
 		"""
 
-		parser = Parser(self.path)
+		parser = SectionsFileParser(self.path)
 		parser.read() and parser.parse(rawSections=("Script"))
 
 		if parser.sections:
-			self.helpFile = foundations.parser.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value and os.path.join(os.path.dirname(self.path), foundations.parser.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value) or None
-			self.title = foundations.parser.getAttributeCompound("Name", parser.getValue("Name", "Template", encode=True)).value
-			self.author = foundations.parser.getAttributeCompound("Author", parser.getValue("Author", "Template", encode=True)).value
-			self.email = foundations.parser.getAttributeCompound("Email", parser.getValue("Email", "Template", encode=True)).value
-			self.url = foundations.parser.getAttributeCompound("Url", parser.getValue("Url", "Template", encode=True)).value
-			self.release = foundations.parser.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value
-			self.date = foundations.parser.getAttributeCompound("Date", parser.getValue("Date", "Template", encode=True)).value
-			self.software = foundations.parser.getAttributeCompound("Software", parser.getValue("Software", "Template", encode=True)).value
-			self.version = foundations.parser.getAttributeCompound("Version", parser.getValue("Version", "Template", encode=True)).value
-			self.renderer = foundations.parser.getAttributeCompound("Renderer", parser.getValue("Renderer", "Template", encode=True)).value
-			self.outputScript = foundations.parser.getAttributeCompound("OutputScript", parser.getValue("OutputScript", "Template", encode=True)).value
-			self.comment = foundations.parser.getAttributeCompound("Comment", parser.getValue("Comment", "Template", encode=True)).value
+			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value and os.path.join(os.path.dirname(self.path), foundations.parsers.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value) or None
+			self.title = foundations.parsers.getAttributeCompound("Name", parser.getValue("Name", "Template", encode=True)).value
+			self.author = foundations.parsers.getAttributeCompound("Author", parser.getValue("Author", "Template", encode=True)).value
+			self.email = foundations.parsers.getAttributeCompound("Email", parser.getValue("Email", "Template", encode=True)).value
+			self.url = foundations.parsers.getAttributeCompound("Url", parser.getValue("Url", "Template", encode=True)).value
+			self.release = foundations.parsers.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value
+			self.date = foundations.parsers.getAttributeCompound("Date", parser.getValue("Date", "Template", encode=True)).value
+			self.software = foundations.parsers.getAttributeCompound("Software", parser.getValue("Software", "Template", encode=True)).value
+			self.version = foundations.parsers.getAttributeCompound("Version", parser.getValue("Version", "Template", encode=True)).value
+			self.renderer = foundations.parsers.getAttributeCompound("Renderer", parser.getValue("Renderer", "Template", encode=True)).value
+			self.outputScript = foundations.parsers.getAttributeCompound("OutputScript", parser.getValue("OutputScript", "Template", encode=True)).value
+			self.comment = foundations.parsers.getAttributeCompound("Comment", parser.getValue("Comment", "Template", encode=True)).value
 
 			return True
 

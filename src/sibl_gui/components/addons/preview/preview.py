@@ -36,7 +36,7 @@ import sibl_gui.libraries.freeImage.freeImage as freeImage
 import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
@@ -2204,7 +2204,7 @@ class Preview(UiComponent):
 		elif imageType == "Plates":
 			if os.path.exists(iblSet.path):
 				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
-				parser = Parser(iblSet.path)
+				parser = SectionsFileParser(iblSet.path)
 				parser.read() and parser.parse()
 				for section in parser.sections:
 					if re.search("Plate[0-9]+", section):

@@ -28,9 +28,9 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import foundations.parser
+import foundations.parsers
 import foundations.strings as strings
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
@@ -651,7 +651,7 @@ class LoaderScriptOptions(UiComponent):
 		verticalHeaderLabels = []
 		for row, attribute in enumerate(section.keys()):
 			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
-			attributeCompound = foundations.parser.getAttributeCompound(attribute, section[attribute])
+			attributeCompound = foundations.parsers.getAttributeCompound(attribute, section[attribute])
 			if attributeCompound.name:
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
@@ -696,7 +696,7 @@ class LoaderScriptOptions(UiComponent):
 			return
 
 		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
-		templateParser = Parser(template.path)
+		templateParser = SectionsFileParser(template.path)
 		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
 		self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)

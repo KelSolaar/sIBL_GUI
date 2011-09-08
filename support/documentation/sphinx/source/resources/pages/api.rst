@@ -14,7 +14,7 @@ Modules Summary:
    foundations.io <api/foundations.io>
    foundations.library <api/foundations.library>
    foundations.namespace <api/foundations.namespace>
-   foundations.parser <api/foundations.parser>
+   foundations.parsers <api/foundations.parsers>
    foundations.pkzip <api/foundations.pkzip>
    foundations.rotatingBackup <api/foundations.rotatingBackup>
    foundations.streamObject <api/foundations.streamObject>

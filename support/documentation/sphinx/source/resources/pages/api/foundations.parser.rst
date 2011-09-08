@@ -1,12 +1,12 @@
-_`foundations.parser`
+_`foundations.parsers`
 =====================
 
-.. automodule:: foundations.parser
+.. automodule:: foundations.parsers
 
 Module Attributes
 -----------------
 
-.. attribute:: foundations.parser.LOGGER
+.. attribute:: foundations.parsers.LOGGER
 
 Functions
 ---------

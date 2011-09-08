@@ -31,13 +31,13 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.namespace as namespace
-import foundations.parser
+import foundations.parsers
 import foundations.strings as strings
 import sibl_gui.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
@@ -661,17 +661,17 @@ class LoaderScript(UiComponent):
 			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name, self.__templateRemoteConnectionSection))
 
 			if os.path.exists(template.path):
-				templateParser = Parser(template.path)
+				templateParser = SectionsFileParser(template.path)
 				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 
 				if self.__templateRemoteConnectionSection in templateParser.sections:
 					LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
 					self.ui.Remote_Connection_groupBox.show()
-					connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+					connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote connection type: 'Socket'.")
-						self.ui.Software_Port_spinBox.setValue(int(foundations.parser.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
-						self.ui.Address_lineEdit.setText(QString(foundations.parser.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
+						self.ui.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
+						self.ui.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
 						self.ui.Remote_Connection_Options_frame.show()
 					elif connectionType.value == "Win32":
 						LOGGER.debug("> Remote connection: 'Win32'.")
@@ -791,15 +791,15 @@ class LoaderScript(UiComponent):
 		"""
 
 		LOGGER.info("{0} | Starting remote connection!".format(self.__class__.__name__))
-		templateParser = Parser(template.path)
+		templateParser = SectionsFileParser(template.path)
 		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-		connectionType = foundations.parser.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+		connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 
 		if connectionType.value == "Socket":
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
-				socketCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 				LOGGER.debug("> Current socket command: '%s'.", socketCommand)
 				connection.send(socketCommand)
 				dataBack = connection.recv(8192)
@@ -812,9 +812,9 @@ class LoaderScript(UiComponent):
 			if platform.system() == "Windows" or platform.system() == "Microsoft":
 				try:
 					import win32com.client
-					connection = win32com.client.Dispatch(foundations.parser.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
+					connection = win32com.client.Dispatch(foundations.parsers.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
 					connection._FlagAsMethod(self.__win32ExecutionMethod)
-					connectionCommand = foundations.parser.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+					connectionCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 					LOGGER.debug("> Current connection command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
@@ -839,22 +839,22 @@ class LoaderScript(UiComponent):
 
 		if template:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Template|Path", template.path))
-			overrideKeys["Template|Path"] = foundations.parser.getAttributeCompound("Template|Path", template.path)
+			overrideKeys["Template|Path"] = foundations.parsers.getAttributeCompound("Template|Path", template.path)
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if iblSet:
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Ibl Set|Path", iblSet.path))
-			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parser.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet.path))
+			overrideKeys["Ibl Set|Path"] = iblSet.path and foundations.parsers.getAttributeCompound("Ibl Set|Path", strings.getNormalizedPath(iblSet.path))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Background|BGfile", iblSet.backgroundImage))
-			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parser.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet.backgroundImage))
+			overrideKeys["Background|BGfile"] = iblSet.backgroundImage and foundations.parsers.getAttributeCompound("Background|BGfile", strings.getNormalizedPath(iblSet.backgroundImage))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Enviroment|EVfile", iblSet.lightingImage))
-			overrideKeys["Enviroment|EVfile"] = iblSet.lightingImage and foundations.parser.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet.lightingImage))
+			overrideKeys["Enviroment|EVfile"] = iblSet.lightingImage and foundations.parsers.getAttributeCompound("Enviroment|EVfile", strings.getNormalizedPath(iblSet.lightingImage))
 
 			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format("Reflection|REFfile", iblSet.reflectionImage))
-			overrideKeys["Reflection|REFfile"] = iblSet.reflectionImage and foundations.parser.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet.reflectionImage))
+			overrideKeys["Reflection|REFfile"] = iblSet.reflectionImage and foundations.parsers.getAttributeCompound("Reflection|REFfile", strings.getNormalizedPath(iblSet.reflectionImage))
 		return overrideKeys
 
 	@core.executionTrace
@@ -870,7 +870,7 @@ class LoaderScript(UiComponent):
 		"""
 
 		LOGGER.debug("> Parsing Template file: '{0}'.".format(template))
-		templateParser = Parser(template)
+		templateParser = SectionsFileParser(template)
 		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
 		templateSections = dict.copy(templateParser.sections)
 
@@ -879,15 +879,15 @@ class LoaderScript(UiComponent):
 			del templateSections[self.__templateIblSetAttributesSection][attribute]
 
 		LOGGER.debug("> Binding Templates file attributes.")
-		bindedAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self.__templateScriptSection) for attribute, value in templateSections[section].items()))
+		bindedAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self.__templateScriptSection) for attribute, value in templateSections[section].items()))
 
 		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
-		iblSetParser = Parser(iblSet)
+		iblSetParser = SectionsFileParser(iblSet)
 		iblSetParser.read() and iblSetParser.parse()
 		iblSetSections = dict.copy(iblSetParser.sections)
 
 		LOGGER.debug("> Flattening Ibl Set file attributes.")
-		flattenedIblAttributes = dict(((attribute, foundations.parser.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()))
+		flattenedIblAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()))
 
 		for attribute in flattenedIblAttributes:
 			if attribute in bindedAttributes.keys():

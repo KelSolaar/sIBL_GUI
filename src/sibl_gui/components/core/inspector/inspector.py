@@ -32,7 +32,7 @@ import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.ui.common
 import umbra.ui.common
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 
@@ -493,7 +493,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the property for **self.__inspectorIblSetParser** attribute.
 
-		:return: self.__inspectorIblSetParser. ( Parser )
+		:return: self.__inspectorIblSetParser. ( SectionsFileParser )
 		"""
 
 		return self.__inspectorIblSetParser
@@ -504,7 +504,7 @@ class Inspector(UiComponent):
 		"""
 		This method is the setter method for **self.__inspectorIblSetParser** attribute.
 
-		:param value: Attribute value. ( Parser )
+		:param value: Attribute value. ( SectionsFileParser )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectorIblSetParser"))
@@ -1171,7 +1171,7 @@ class Inspector(UiComponent):
 
 		if os.path.exists(self.__inspectorIblSet.path):
 			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
-			self.__inspectorIblSetParser = Parser(self.__inspectorIblSet.path)
+			self.__inspectorIblSetParser = SectionsFileParser(self.__inspectorIblSet.path)
 			self.__inspectorIblSetParser.read() and self.__inspectorIblSetParser.parse()
 
 	@core.executionTrace

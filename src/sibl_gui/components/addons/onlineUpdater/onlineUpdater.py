@@ -36,7 +36,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from foundations.parser import Parser
+from foundations.parsers import SectionsFileParser
 from foundations.pkzip import Pkzip
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
@@ -2153,7 +2153,7 @@ class OnlineUpdater(UiComponent):
 				content.append(str(self.__releaseReply.readLine()))
 
 			LOGGER.debug("> Parsing releases file content.")
-			parser = Parser()
+			parser = SectionsFileParser()
 			parser.content = content
 			parser.parse()
 
