@@ -44,7 +44,7 @@ QSplitter::handle:pressed {
 	spacing: 8px;
 }
 
-#Application_Logo_label, #Logo_Spacer_label, #Library_activeLabel, #Inspect_activeLabel, #Export_activeLabel, #Preferences_activeLabel, #Central_Widget_activeLabel, #Layout_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_activeLabel, #qt_toolbar_ext_button {
+#Application_Logo_label, #Logo_Spacer_label, #Library_activeLabel, #Inspect_activeLabel, #Export_activeLabel, #Preferences_activeLabel, #Central_Widget_activeLabel, #Custom_Layouts_activeLabel, #Miscellaneous_activeLabel, #Closure_Spacer_label, #qt_toolbar_ext_button {
 	background-color: transparent;
 }
 

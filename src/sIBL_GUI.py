@@ -238,54 +238,32 @@ class sIBL_GUI(umbra.engine.Umbra):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def initializeToolBar(self):
+	def getLayoutsActiveLabels(self):
 		"""
-		This method initializes Application toolBar.
+		This method returns the default layouts active labels widgets.
+
+		:return: Method success. ( Boolean )
 		"""
-
-		LOGGER.debug("> Initializing Application toolBar.")
-
-		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize, umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
-
-		LOGGER.debug("> Adding Application logo.")
-		logoLabel = QLabel()
-		logoLabel.setObjectName("Application_Logo_label")
-		logoLabel.setPixmap(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.logoImage)))
-		self.toolBar.addWidget(logoLabel)
-
-		spacer = QLabel()
-		spacer.setObjectName("Logo_Spacer_label")
-		spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-		self.toolBar.addWidget(spacer)
-
-		toolBarFont = QFont()
-		toolBarFont.setPointSize(16)
-
-		LOGGER.debug("> Adding Active_QLabels.")
 
 		self.__libraryActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
 		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
-		self.toolBar.addWidget(self.__libraryActiveLabel)
 
 		self.__inspectActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
 		self.__inspectActiveLabel.setObjectName("Inspect_activeLabel")
-		self.toolBar.addWidget(self.__inspectActiveLabel)
 
 		self.__exportActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
 		self.__exportActiveLabel.setObjectName("Export_activeLabel")
-		self.toolBar.addWidget(self.__exportActiveLabel)
 
 		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
 		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
-		self.toolBar.addWidget(self.__preferencesActiveLabel)
 
 		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
 									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
@@ -296,72 +274,58 @@ class sIBL_GUI(umbra.engine.Umbra):
 		for layoutActiveLabel in self.layoutsActiveLabels:
 			layoutActiveLabel.object.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
-		LOGGER.debug("> Adding Central Widget button.")
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getCentralWidgetActiveLabel(self):
+		"""
+		This method provides the default **Central_Widget_activeLabel** widget.
+
+		:return: Central Widget active label. ( Active_QLabel )
+		"""
+
 		centralWidgetButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
 											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
 											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
-		self.toolBar.addWidget(centralWidgetButton)
-
-		centralWidgetButton.clicked.connect(self.centralWidgetButton__clicked)
-
-		LOGGER.debug("> Adding layout button.")
-		layoutButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutIcon)),
-									QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutHoverIcon)),
-									QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.layoutActiveIcon)), parent=self)
-		layoutButton.setObjectName("Layout_activeLabel")
-		self.toolBar.addWidget(layoutButton)
-
-		self.layoutMenu = QMenu("Layout", layoutButton)
-
-		userLayouts = (("1", Qt.Key_1, "one"), ("2", Qt.Key_2, "two"), ("3", Qt.Key_3, "three"), ("4", Qt.Key_4, "four"), ("5", Qt.Key_5, "five"))
-
-		for layout in userLayouts:
-			action = QAction("Restore layout {0}".format(layout[0]), self)
-			action.setShortcut(QKeySequence(layout[1]))
-			self.layoutMenu.addAction(action)
-
-			# Signals / Slots.
-			action.triggered.connect(functools.partial(self.restoreLayout, layout[2]))
-
-		self.layoutMenu.addSeparator()
-
-		for layout in userLayouts:
-			action = QAction("Store layout {0}".format(layout[0]), self)
-			action.setShortcut(QKeySequence(Qt.CTRL + layout[1]))
-			self.layoutMenu.addAction(action)
-
-			# Signals / Slots.
-			action.triggered.connect(functools.partial(self.storeLayout, layout[2]))
-
-		layoutButton.setMenu(self.layoutMenu)
-
-		LOGGER.debug("> Adding miscellaneous button.")
-		miscellaneousButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousHoverIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.miscellaneousActiveIcon)), parent=self)
-		miscellaneousButton.setObjectName("Miscellaneous_activeLabel")
-		self.toolBar.addWidget(miscellaneousButton)
-
-		helpDisplayMiscAction = QAction("Help content ...", self)
-		apiDisplayMiscAction = QAction("Api content ...", self)
-
-		self.miscMenu = QMenu("Miscellaneous", miscellaneousButton)
-
-		self.miscMenu.addAction(helpDisplayMiscAction)
-		self.miscMenu.addAction(apiDisplayMiscAction)
-		self.miscMenu.addSeparator()
 
 		# Signals / Slots.
-		helpDisplayMiscAction.triggered.connect(self.helpDisplayMiscAction__triggered)
-		apiDisplayMiscAction.triggered.connect(self.apiDisplayMiscAction__triggered)
+		centralWidgetButton.clicked.connect(self.centralWidgetButton__clicked)
+		return centralWidgetButton
 
-		miscellaneousButton.setMenu(self.miscMenu)
+	@core.executionTrace
+	def initializeToolBar(self):
+		"""
+		This method initializes Application toolBar.
+		"""
 
-		spacer = QLabel()
-		spacer.setObjectName("Closure_Spacer_activeLabel")
-		spacer.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Expanding)
-		self.toolBar.addWidget(spacer)
+		LOGGER.debug("> Initializing Application toolBar!")
+		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize, umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
+
+		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
+		self.toolBar.addWidget(self.getApplicationLogoLabel())
+
+		LOGGER.debug("> Adding 'Logo_Spacer_label' widget!")
+		self.toolBar.addWidget(self.getLogoSpacerLabel())
+
+		LOGGER.debug("> Adding 'Development_activeLabel', 'Preferences_activeLabel' widgets!")
+		self.getLayoutsActiveLabels()
+		for activeLabel in self.layoutsActiveLabels:
+			self.toolBar.addWidget(activeLabel.object)
+
+		LOGGER.debug("> Adding 'Central_Widget_activeLabel' widget!")
+		self.toolBar.addWidget(self.getCentralWidgetActiveLabel())
+
+		LOGGER.debug("> Adding 'Custom_Layouts_activeLabel' widget!")
+		self.toolBar.addWidget(self.getCustomLayoutsActiveLabel())
+
+		LOGGER.debug("> Adding 'Miscellaneous_activeLabel' widget!")
+		self.toolBar.addWidget(self.getMiscellaneousActiveLabel())
+
+		LOGGER.debug("> Adding 'Closure_Spacer_label' widget!")
+		self.toolBar.addWidget(self.getClosureSpacerLabel())
+		return True
 
 	@core.executionTrace
 	def centralWidgetButton__clicked(self):
