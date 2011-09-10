@@ -2153,41 +2153,41 @@ class OnlineUpdater(UiComponent):
 				content.append(str(self.__releaseReply.readLine()))
 
 			LOGGER.debug("> Parsing releases file content.")
-			parser = SectionsFileParser()
-			parser.content = content
-			parser.parse()
+			sectionsFileParser = SectionsFileParser()
+			sectionsFileParser.content = content
+			sectionsFileParser.parse()
 
 			releases = {}
-			for remoteObject in parser.sections:
+			for remoteObject in sectionsFileParser.sections:
 				if remoteObject != Constants.applicationName:
 						dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(remoteObject), "name")
 						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted(((dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates), reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
 						if not self.__container.parameters.databaseReadOnly:
 							if dbTemplate:
-								if dbTemplate.release != parser.getValue("Release", remoteObject):
+								if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
-																		repositoryVersion=parser.getValue("Release", remoteObject),
+																		repositoryVersion=sectionsFileParser.getValue("Release", remoteObject),
 																		localVersion=dbTemplate.release,
-																		type=parser.getValue("Type", remoteObject),
-																		url=parser.getValue("Url", remoteObject),
-																		comment=parser.getValue("Comment", remoteObject))
+																		type=sectionsFileParser.getValue("Type", remoteObject),
+																		url=sectionsFileParser.getValue("Url", remoteObject),
+																		comment=sectionsFileParser.getValue("Comment", remoteObject))
 							else:
 								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked():
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
-																		repositoryVersion=parser.getValue("Release", remoteObject),
+																		repositoryVersion=sectionsFileParser.getValue("Release", remoteObject),
 																		localVersion=None,
-																		type=parser.getValue("Type", remoteObject),
-																		url=parser.getValue("Url", remoteObject),
-																		comment=parser.getValue("Comment", remoteObject))
+																		type=sectionsFileParser.getValue("Type", remoteObject),
+																		url=sectionsFileParser.getValue("Url", remoteObject),
+																		comment=sectionsFileParser.getValue("Comment", remoteObject))
 						else:
 							LOGGER.info("{0} | '{1}' repository remote object skipped by '{2}' command line parameter value!".format(self.__class__.__name__, remoteObject, "databaseReadOnly"))
 				else:
-					if Constants.releaseVersion != parser.getValue("Release", remoteObject):
+					if Constants.releaseVersion != sectionsFileParser.getValue("Release", remoteObject):
 						releases[remoteObject] = ReleaseObject(name=remoteObject,
-															repositoryVersion=parser.getValue("Release", remoteObject),
+															repositoryVersion=sectionsFileParser.getValue("Release", remoteObject),
 															localVersion=Constants.releaseVersion,
-															url=parser.getValue("Url", remoteObject),
-															type=parser.getValue("Type", remoteObject),
+															url=sectionsFileParser.getValue("Url", remoteObject),
+															type=sectionsFileParser.getValue("Type", remoteObject),
 															comment=None)
 			if releases:
 				LOGGER.debug("> Initializing Remote Updater.")

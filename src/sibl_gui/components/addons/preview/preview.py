@@ -1952,11 +1952,11 @@ class Preview(UiComponent):
 		elif imageType == "Plates":
 			if os.path.exists(iblSet.path):
 				LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(iblSet))
-				parser = SectionsFileParser(iblSet.path)
-				parser.read() and parser.parse()
-				for section in parser.sections:
+				sectionsFileParser = SectionsFileParser(iblSet.path)
+				sectionsFileParser.read() and sectionsFileParser.parse()
+				for section in sectionsFileParser.sections:
 					if re.search("Plate[0-9]+", section):
-						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), parser.getValue("PLATEfile", section))))
+						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), sectionsFileParser.getValue("PLATEfile", section))))
 
 		for path in imagePaths[:]:
 			if not os.path.exists(path):

@@ -151,24 +151,24 @@ class DbIblSet(DbBase):
 		:return: Method success. ( Boolean )
 		"""
 
-		parser = SectionsFileParser(self.path)
-		parser.read() and parser.parse()
+		sectionsFileParser = SectionsFileParser(self.path)
+		sectionsFileParser.read() and sectionsFileParser.parse()
 
-		if parser.sections:
-			self.title = parser.getValue("Name", "Header", encode=True)
-			self.author = parser.getValue("Author", "Header", encode=True)
-			self.link = parser.getValue("Link", "Header", encode=True)
-			self.icon = parser.getValue("ICOfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("ICOfile", "Header", encode=True))) or None
-			self.previewImage = parser.getValue("PREVIEWfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("PREVIEWfile", "Header", encode=True))) or None
-			self.backgroundImage = parser.getValue("BGfile", "Background", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("BGfile", "Background", encode=True))) or None
-			self.lightingImage = parser.getValue("EVfile", "Enviroment", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("EVfile", "Enviroment", encode=True))) or None
-			self.reflectionImage = parser.getValue("REFfile", "Reflection", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), parser.getValue("REFfile", "Reflection", encode=True))) or None
-			self.location = parser.getValue("Location", "Header", encode=True)
-			self.latitude = parser.getValue("GEOlat", "Header", encode=True)
-			self.longitude = parser.getValue("GEOlong", "Header", encode=True)
-			self.date = parser.getValue("Date", "Header", encode=True)
-			self.time = parser.getValue("Time", "Header", encode=True)
-			self.comment = parser.getValue("Comment", "Header", encode=True)
+		if sectionsFileParser.sections:
+			self.title = sectionsFileParser.getValue("Name", "Header", encode=True)
+			self.author = sectionsFileParser.getValue("Author", "Header", encode=True)
+			self.link = sectionsFileParser.getValue("Link", "Header", encode=True)
+			self.icon = sectionsFileParser.getValue("ICOfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), sectionsFileParser.getValue("ICOfile", "Header", encode=True))) or None
+			self.previewImage = sectionsFileParser.getValue("PREVIEWfile", "Header", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), sectionsFileParser.getValue("PREVIEWfile", "Header", encode=True))) or None
+			self.backgroundImage = sectionsFileParser.getValue("BGfile", "Background", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), sectionsFileParser.getValue("BGfile", "Background", encode=True))) or None
+			self.lightingImage = sectionsFileParser.getValue("EVfile", "Enviroment", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), sectionsFileParser.getValue("EVfile", "Enviroment", encode=True))) or None
+			self.reflectionImage = sectionsFileParser.getValue("REFfile", "Reflection", encode=True) and os.path.normpath(os.path.join(os.path.dirname(self.path), sectionsFileParser.getValue("REFfile", "Reflection", encode=True))) or None
+			self.location = sectionsFileParser.getValue("Location", "Header", encode=True)
+			self.latitude = sectionsFileParser.getValue("GEOlat", "Header", encode=True)
+			self.longitude = sectionsFileParser.getValue("GEOlong", "Header", encode=True)
+			self.date = sectionsFileParser.getValue("Date", "Header", encode=True)
+			self.time = sectionsFileParser.getValue("Time", "Header", encode=True)
+			self.comment = sectionsFileParser.getValue("Comment", "Header", encode=True)
 
 			return True
 
@@ -268,22 +268,22 @@ class DbTemplate(DbBase):
 		:return: Method success. ( Boolean )
 		"""
 
-		parser = SectionsFileParser(self.path)
-		parser.read() and parser.parse(rawSections=("Script"))
+		sectionsFileParser = SectionsFileParser(self.path)
+		sectionsFileParser.read() and sectionsFileParser.parse(rawSections=("Script"))
 
-		if parser.sections:
-			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value and os.path.join(os.path.dirname(self.path), foundations.parsers.getAttributeCompound("HelpFile", parser.getValue("HelpFile", "Template", encode=True)).value) or None
-			self.title = foundations.parsers.getAttributeCompound("Name", parser.getValue("Name", "Template", encode=True)).value
-			self.author = foundations.parsers.getAttributeCompound("Author", parser.getValue("Author", "Template", encode=True)).value
-			self.email = foundations.parsers.getAttributeCompound("Email", parser.getValue("Email", "Template", encode=True)).value
-			self.url = foundations.parsers.getAttributeCompound("Url", parser.getValue("Url", "Template", encode=True)).value
-			self.release = foundations.parsers.getAttributeCompound("Release", parser.getValue("Release", "Template", encode=True)).value
-			self.date = foundations.parsers.getAttributeCompound("Date", parser.getValue("Date", "Template", encode=True)).value
-			self.software = foundations.parsers.getAttributeCompound("Software", parser.getValue("Software", "Template", encode=True)).value
-			self.version = foundations.parsers.getAttributeCompound("Version", parser.getValue("Version", "Template", encode=True)).value
-			self.renderer = foundations.parsers.getAttributeCompound("Renderer", parser.getValue("Renderer", "Template", encode=True)).value
-			self.outputScript = foundations.parsers.getAttributeCompound("OutputScript", parser.getValue("OutputScript", "Template", encode=True)).value
-			self.comment = foundations.parsers.getAttributeCompound("Comment", parser.getValue("Comment", "Template", encode=True)).value
+		if sectionsFileParser.sections:
+			self.helpFile = foundations.parsers.getAttributeCompound("HelpFile", sectionsFileParser.getValue("HelpFile", "Template", encode=True)).value and os.path.join(os.path.dirname(self.path), foundations.parsers.getAttributeCompound("HelpFile", sectionsFileParser.getValue("HelpFile", "Template", encode=True)).value) or None
+			self.title = foundations.parsers.getAttributeCompound("Name", sectionsFileParser.getValue("Name", "Template", encode=True)).value
+			self.author = foundations.parsers.getAttributeCompound("Author", sectionsFileParser.getValue("Author", "Template", encode=True)).value
+			self.email = foundations.parsers.getAttributeCompound("Email", sectionsFileParser.getValue("Email", "Template", encode=True)).value
+			self.url = foundations.parsers.getAttributeCompound("Url", sectionsFileParser.getValue("Url", "Template", encode=True)).value
+			self.release = foundations.parsers.getAttributeCompound("Release", sectionsFileParser.getValue("Release", "Template", encode=True)).value
+			self.date = foundations.parsers.getAttributeCompound("Date", sectionsFileParser.getValue("Date", "Template", encode=True)).value
+			self.software = foundations.parsers.getAttributeCompound("Software", sectionsFileParser.getValue("Software", "Template", encode=True)).value
+			self.version = foundations.parsers.getAttributeCompound("Version", sectionsFileParser.getValue("Version", "Template", encode=True)).value
+			self.renderer = foundations.parsers.getAttributeCompound("Renderer", sectionsFileParser.getValue("Renderer", "Template", encode=True)).value
+			self.outputScript = foundations.parsers.getAttributeCompound("OutputScript", sectionsFileParser.getValue("OutputScript", "Template", encode=True)).value
+			self.comment = foundations.parsers.getAttributeCompound("Comment", sectionsFileParser.getValue("Comment", "Template", encode=True)).value
 
 			return True
 
