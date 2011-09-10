@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseBrowser` Component Interface class and others helpers objects.
+	This module defines the :class:`Inspector` Component Interface class and others helpers objects.
 
 **Others:**
 
@@ -1225,9 +1225,9 @@ class Inspector(UiComponent):
 
 		width = painter.window().width()
 		height = painter.window().height()
-		
+
 		lightColorRed, lightColorGreen, lightColorBlue = light.color
-	
+
 		painter.setBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 200))
 		painter.setPen(QPen(QBrush(QColor(lightColorRed, lightColorGreen, lightColorBlue, 200)), 2))
 		font = QFont(self.__lightLabelTextFont, self.__lightLabelTextHeight)

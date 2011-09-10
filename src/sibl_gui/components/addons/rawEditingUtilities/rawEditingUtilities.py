@@ -101,10 +101,6 @@ class RawEditingUtilities(UiComponent):
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
 
-		self.__editIblSetsInTextEditorAction = None
-		self.__editInspectorIblSetInTextEditorAction = None
-		self.__editTemplateInTextEditorAction = None
-
 		self.__linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
 
 	#***********************************************************************************************
@@ -351,96 +347,6 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
-	def editIblSetsInTextEditorAction(self):
-		"""
-		This method is the property for **self.__editIblSetsInTextEditorAction** attribute.
-
-		:return: self.__editIblSetsInTextEditorAction. ( QAction )
-		"""
-
-		return self.__editIblSetsInTextEditorAction
-
-	@editIblSetsInTextEditorAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editIblSetsInTextEditorAction(self, value):
-		"""
-		This method is the setter method for **self.__editIblSetsInTextEditorAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetsInTextEditorAction"))
-
-	@editIblSetsInTextEditorAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editIblSetsInTextEditorAction(self):
-		"""
-		This method is the deleter method for **self.__editIblSetsInTextEditorAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetsInTextEditorAction"))
-
-	@property
-	def editInspectorIblSetInTextEditorAction(self):
-		"""
-		This method is the property for **self.__editInspectorIblSetInTextEditorAction** attribute.
-
-		:return: self.__editInspectorIblSetInTextEditorAction. ( QAction )
-		"""
-
-		return self.__editInspectorIblSetInTextEditorAction
-
-	@editInspectorIblSetInTextEditorAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectorIblSetInTextEditorAction(self, value):
-		"""
-		This method is the setter method for **self.__editInspectorIblSetInTextEditorAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInTextEditorAction"))
-
-	@editInspectorIblSetInTextEditorAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectorIblSetInTextEditorAction(self):
-		"""
-		This method is the deleter method for **self.__editInspectorIblSetInTextEditorAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInTextEditorAction"))
-
-	@property
-	def editTemplateInTextEditorAction(self):
-		"""
-		This method is the property for **self.__editTemplateInTextEditorAction** attribute.
-
-		:return: self.__editTemplateInTextEditorAction. ( QAction )
-		"""
-
-		return self.__editTemplateInTextEditorAction
-
-	@editTemplateInTextEditorAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editTemplateInTextEditorAction(self, value):
-		"""
-		This method is the setter method for **self.__editTemplateInTextEditorAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editTemplateInTextEditorAction"))
-
-	@editTemplateInTextEditorAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editTemplateInTextEditorAction(self):
-		"""
-		This method is the deleter method for **self.__editTemplateInTextEditorAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editTemplateInTextEditorAction"))
-
-	@property
 	def linuxTextEditors(self):
 		"""
 		This method is the property for **self.__linuxTextEditors** attribute.
@@ -594,18 +500,9 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__editIblSetsInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-			self.__editIblSetsInTextEditorAction.triggered.connect(self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered)
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetsInTextEditorAction)
-
-			self.__editInspectorIblSetInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectorIblSetInTextEditorAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered)
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInTextEditorAction)
-
-			self.__editTemplateInTextEditorAction = QAction("Edit In Text Editor ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-			self.__editTemplateInTextEditorAction.triggered.connect(self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered)
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__editTemplateInTextEditorAction)
-
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ...", slot=self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered))
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In Text Editor ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered))
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ...", slot=self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered))
 		else:
 			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -618,19 +515,20 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetsInTextEditorAction)
-			self.__editIblSetsInTextEditorAction = None
-
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectorIblSetInTextEditorAction)
-			self.__editInspectorIblSetInTextEditorAction = None
-
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__editTemplateInTextEditorAction)
-			self.__editTemplateInTextEditorAction = None
+			editIblSetsInTextEditorAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ..."
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetsInTextEditorAction))
+			self.__container.actionsManager.unregisterAction(editIblSetsInTextEditorAction)
+			editInspectorIblSetInTextEditorAction = "Actions|Umbra|Components|core.inspector|Edit In Text Editor ..."
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInTextEditorAction))
+			self.__container.actionsManager.unregisterAction(editInspectorIblSetInTextEditorAction)
+			editTemplateInTextEditorAction = "Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ..."
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(editTemplateInTextEditorAction))
+			self.__container.actionsManager.unregisterAction(editTemplateInTextEditorAction)
 
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetsInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by **editIblSetsInTextEditorAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -640,7 +538,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by **editInspectorIblSetInTextEditorAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -650,7 +548,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
 		"""
-		This method is triggered by **editTemplateInTextEditorAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

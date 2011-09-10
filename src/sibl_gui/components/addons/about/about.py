@@ -323,36 +323,6 @@ class About(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("miscellaneousMenu"))
 
-	@property
-	def aboutMiscAction(self):
-		"""
-		This method is the property for **self.__aboutMiscAction** attribute.
-
-		:return: self.__aboutMiscAction. ( QAction )
-		"""
-
-		return self.__aboutMiscAction
-
-	@aboutMiscAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def aboutMiscAction(self, value):
-		"""
-		This method is the setter method for **self.__aboutMiscAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("aboutMiscAction"))
-
-	@aboutMiscAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def aboutMiscAction(self):
-		"""
-		This method is the deleter method for **self.__aboutMiscAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("aboutMiscAction"))
-
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -451,9 +421,7 @@ class About(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
-		self.__aboutMiscAction.triggered.connect(self.__miscellaneousMenu_aboutMiscAction__triggered)
-		self.__miscellaneousMenu.addAction(self.__aboutMiscAction)
+		self.__miscellaneousMenu.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName), slot=self.__miscellaneousMenu_aboutAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -463,14 +431,14 @@ class About(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__miscellaneousMenu.removeAction(self.__aboutMiscAction)
-
-		self.__aboutMiscAction = None
+		aboutAction = "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName)
+		self.__miscellaneousMenu.removeAction(self.__container.actionsManager.getAction(aboutAction))
+		self.__container.actionsManager.unregisterAction(aboutAction)
 
 	@core.executionTrace
-	def __miscellaneousMenu_aboutMiscAction__triggered(self, checked):
+	def __miscellaneousMenu_aboutAction__triggered(self, checked):
 		"""
-		This method is triggered by **aboutMiscAction** action.
+		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

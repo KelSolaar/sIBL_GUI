@@ -103,10 +103,6 @@ class LocationsBrowser(UiComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
-		self.__openIblSetsLocationsAction = None
-		self.__openComponentsLocationsAction = None
-		self.__openTemplatesLocationsAction = None
-
 		self.__Open_Output_Directory_pushButton = None
 
 		self.__linuxBrowsers = ("nautilus", "dolphin", "konqueror", "thunar")
@@ -385,126 +381,6 @@ class LocationsBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLoaderScript"))
 
 	@property
-	def openIblSetsLocationsAction(self):
-		"""
-		This method is the property for **self.__openIblSetsLocationsAction** attribute.
-
-		:return: self.__openIblSetsLocationsAction. ( QAction )
-		"""
-
-		return self.__openIblSetsLocationsAction
-
-	@openIblSetsLocationsAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openIblSetsLocationsAction(self, value):
-		"""
-		This method is the setter method for **self.__openIblSetsLocationsAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openIblSetsLocationsAction"))
-
-	@openIblSetsLocationsAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openIblSetsLocationsAction(self):
-		"""
-		This method is the deleter method for **self.__openIblSetsLocationsAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openIblSetsLocationsAction"))
-
-	@property
-	def openInspectorIblSetLocationsAction(self):
-		"""
-		This method is the property for **self.__openInspectorIblSetLocationsAction** attribute.
-
-		:return: self.__openInspectorIblSetLocationsAction. ( QAction )
-		"""
-
-		return self.__openInspectorIblSetLocationsAction
-
-	@openInspectorIblSetLocationsAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openInspectorIblSetLocationsAction(self, value):
-		"""
-		This method is the setter method for **self.__openInspectorIblSetLocationsAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openInspectorIblSetLocationsAction"))
-
-	@openInspectorIblSetLocationsAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openInspectorIblSetLocationsAction(self):
-		"""
-		This method is the deleter method for **self.__openInspectorIblSetLocationsAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openInspectorIblSetLocationsAction"))
-
-	@property
-	def openComponentsLocationsAction(self):
-		"""
-		This method is the property for **self.__openComponentsLocationsAction** attribute.
-
-		:return: self.__openComponentsLocationsAction. ( QAction )
-		"""
-
-		return self.__openComponentsLocationsAction
-
-	@openComponentsLocationsAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openComponentsLocationsAction(self, value):
-		"""
-		This method is the setter method for **self.__openComponentsLocationsAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openComponentsLocationsAction"))
-
-	@openComponentsLocationsAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openComponentsLocationsAction(self):
-		"""
-		This method is the deleter method for **self.__openComponentsLocationsAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openComponentsLocationsAction"))
-
-	@property
-	def openTemplatesLocationsAction(self):
-		"""
-		This method is the property for **self.__openTemplatesLocationsAction** attribute.
-
-		:return: self.__openTemplatesLocationsAction. ( QAction )
-		"""
-
-		return self.__openTemplatesLocationsAction
-
-	@openTemplatesLocationsAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openTemplatesLocationsAction(self, value):
-		"""
-		This method is the setter method for **self.__openTemplatesLocationsAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("openTemplatesLocationsAction"))
-
-	@openTemplatesLocationsAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def openTemplatesLocationsAction(self):
-		"""
-		This method is the deleter method for **self.__openTemplatesLocationsAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("openTemplatesLocationsAction"))
-
-	@property
 	def Open_Output_Directory_pushButton(self):
 		"""
 		This method is the property for **self.__Open_Output_Directory_pushButton** attribute.
@@ -706,21 +582,10 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__openIblSetsLocationsAction = QAction("Open Ibl Set(s) Location(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__openIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__openIblSetsLocationsAction)
-
-		self.__openInspectorIblSetLocationsAction = QAction("Open Ibl Set location ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__openInspectorIblSetLocationsAction.triggered.connect(self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__openInspectorIblSetLocationsAction)
-
-		self.__openComponentsLocationsAction = QAction("Open Component(s) Location(s) ...", self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView)
-		self.__openComponentsLocationsAction.triggered.connect(self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered)
-		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__openComponentsLocationsAction)
-
-		self.__openTemplatesLocationsAction = QAction("Open Template(s) Location(s) ...", self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView)
-		self.__openTemplatesLocationsAction.triggered.connect(self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__openTemplatesLocationsAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Open Ibl Set location ...", slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
+		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -730,20 +595,23 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__openIblSetsLocationsAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__openInspectorIblSetLocationsAction)
-		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__openComponentsLocationsAction)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__openTemplatesLocationsAction)
-
-		self.__openIblSetsLocationsAction = None
-		self.__openInspectorIblSetLocationsAction = None
-		self.__openComponentsLocationsAction = None
-		self.__openTemplatesLocationsAction = None
+		openIblSetsLocationsAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(openIblSetsLocationsAction))
+		self.__container.actionsManager.unregisterAction(openIblSetsLocationsAction)
+		openInspectorIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(openInspectorIblSetLocationsAction))
+		self.__container.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
+		openComponentsLocationsAction = "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
+		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__container.actionsManager.getAction(openComponentsLocationsAction))
+		self.__container.actionsManager.unregisterAction(openComponentsLocationsAction)
+		openTemplatesLocationsAction = "Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ..."
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(openTemplatesLocationsAction))
+		self.__container.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
 	@core.executionTrace
 	def __Database_Browser_listView_openIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **openIblSetsLocationsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -753,7 +621,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **openInspectorIblSetLocationsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -763,7 +631,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **openComponentsLocationsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -773,7 +641,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **openTemplatesLocationsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

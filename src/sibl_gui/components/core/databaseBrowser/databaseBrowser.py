@@ -1382,21 +1382,10 @@ class DatabaseBrowser(UiComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addContentAction = QAction("Add Content ...", self.ui.Database_Browser_listView)
-			addContentAction.triggered.connect(self.__Database_Browser_listView_addContentAction__triggered)
-			self.ui.Database_Browser_listView.addAction(addContentAction)
-
-			addIblSetAction = QAction("Add Ibl Set ...", self.ui.Database_Browser_listView)
-			addIblSetAction.triggered.connect(self.__Database_Browser_listView_addIblSetAction__triggered)
-			self.ui.Database_Browser_listView.addAction(addIblSetAction)
-
-			removeIblSetsAction = QAction("Remove Ibl Set(s) ...", self.ui.Database_Browser_listView)
-			removeIblSetsAction.triggered.connect(self.__Database_Browser_listView_removeIblSetsAction__triggered)
-			self.ui.Database_Browser_listView.addAction(removeIblSetsAction)
-
-			updateIblSetsLocationsAction = QAction("Update Ibl Set(s) Location(s) ...", self.ui.Database_Browser_listView)
-			updateIblSetsLocationsAction.triggered.connect(self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered)
-			self.ui.Database_Browser_listView.addAction(updateIblSetsLocationsAction)
+			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
+			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
+			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
+			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
 
 			separatorAction = QAction(self.ui.Database_Browser_listView)
 			separatorAction.setSeparator(True)
@@ -1407,7 +1396,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by **addContentAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1417,7 +1406,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
 		"""
-		This method is triggered by **addIblSetAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1427,7 +1416,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
 		"""
-		This method is triggered by **removeIblSetsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1437,7 +1426,7 @@ class DatabaseBrowser(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
-		This method is triggered by **updateIblSetsLocationsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1580,6 +1569,8 @@ class DatabaseBrowser(UiComponent):
 		success = True
 		for iblSet in selectedIblSets:
 			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
+			if not file:
+				continue
 			success *= self.updateIblSetLocation(iblSet, file) or False
 
 		self.emit(SIGNAL("modelDatasRefresh()"))

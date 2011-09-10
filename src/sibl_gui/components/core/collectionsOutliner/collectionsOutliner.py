@@ -1259,24 +1259,16 @@ class CollectionsOutliner(UiComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addContentAction = QAction("Add Content ...", self.ui.Collections_Outliner_treeView)
-			addContentAction.triggered.connect(self.__Collections_Outliner_treeView_addContentAction__triggered)
-			self.ui.Collections_Outliner_treeView.addAction(addContentAction)
-
-			addSingleCollectionAction = QAction("Add Collection ...", self.ui.Collections_Outliner_treeView)
-			addSingleCollectionAction.triggered.connect(self.__Collections_Outliner_treeView_addCollectionAction__triggered)
-			self.ui.Collections_Outliner_treeView.addAction(addSingleCollectionAction)
-
-			removeCollectionsAction = QAction("Remove Collection(s) ...", self.ui.Collections_Outliner_treeView)
-			removeCollectionsAction.triggered.connect(self.__Collections_Outliner_treeView_removeCollectionsAction__triggered)
-			self.ui.Collections_Outliner_treeView.addAction(removeCollectionsAction)
+			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Content ...", slot=self.__Collections_Outliner_treeView_addContentAction__triggered))
+			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...", slot=self.__Collections_Outliner_treeView_addCollectionAction__triggered))
+			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...", slot=self.__Collections_Outliner_treeView_removeCollectionsAction__triggered))
 		else:
 			LOGGER.info("{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addContentAction__triggered(self, checked):
 		"""
-		This method is triggered by **addContentAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1286,7 +1278,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
 		"""
-		This method is triggered by **addSingleCollectionAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1296,7 +1288,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
 		"""
-		This method is triggered by **removeCollectionsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

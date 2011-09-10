@@ -1489,25 +1489,15 @@ class TemplatesOutliner(UiComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			addTemplateAction = QAction("Add Template ...", self.ui.Templates_Outliner_treeView)
-			addTemplateAction.triggered.connect(self.__Templates_Outliner_treeView_addTemplateAction__triggered)
-			self.ui.Templates_Outliner_treeView.addAction(addTemplateAction)
-
-			removeTemplatesAction = QAction("Remove Template(s) ...", self.ui.Templates_Outliner_treeView)
-			removeTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_removeTemplatesAction__triggered)
-			self.ui.Templates_Outliner_treeView.addAction(removeTemplatesAction)
+			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__Templates_Outliner_treeView_addTemplateAction__triggered))
+			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__Templates_Outliner_treeView_removeTemplatesAction__triggered))
 
 			separatorAction = QAction(self.ui.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
 			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
 
-			importDefaultTemplatesAction = QAction("Import Default Templates", self.ui.Templates_Outliner_treeView)
-			importDefaultTemplatesAction.triggered.connect(self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered)
-			self.ui.Templates_Outliner_treeView.addAction(importDefaultTemplatesAction)
-
-			filterTemplatesVersionsAction = QAction("Filter Templates Versions", self.ui.Templates_Outliner_treeView)
-			filterTemplatesVersionsAction.triggered.connect(self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered)
-			self.ui.Templates_Outliner_treeView.addAction(filterTemplatesVersionsAction)
+			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered))
+			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered))
 
 			separatorAction = QAction(self.ui.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
@@ -1515,9 +1505,7 @@ class TemplatesOutliner(UiComponent):
 		else:
 			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		displayHelpFilesAction = QAction("Display Help File(s) ...", self.ui.Templates_Outliner_treeView)
-		displayHelpFilesAction.triggered.connect(self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered)
-		self.ui.Templates_Outliner_treeView.addAction(displayHelpFilesAction)
+		self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered))
 
 		separatorAction = QAction(self.ui.Templates_Outliner_treeView)
 		separatorAction.setSeparator(True)
@@ -1526,7 +1514,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addTemplateAction__triggered(self, checked):
 		"""
-		This method is triggered by **addTemplateAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1536,7 +1524,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **removeTemplatesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1546,7 +1534,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **importDefaultTemplatesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1556,7 +1544,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **displayHelpFilesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1566,7 +1554,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered(self, checked):
 		"""
-		This method is triggered by **filterTemplatesVersionsAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

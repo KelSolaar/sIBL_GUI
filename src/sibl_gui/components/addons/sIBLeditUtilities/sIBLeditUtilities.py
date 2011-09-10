@@ -81,9 +81,6 @@ class sIBLeditUtilities(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
-		self.__editIblSetInSIBLEditAction = None
-		self.__editInspectorIblSetInSIBLEditAction = None
-
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
@@ -297,66 +294,6 @@ class sIBLeditUtilities(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreInspector"))
 
-	@property
-	def editIblSetInSIBLEditAction(self):
-		"""
-		This method is the property for **self.__editIblSetInSIBLEditAction** attribute.
-
-		:return: self.__editIblSetInSIBLEditAction. ( QAction )
-		"""
-
-		return self.__editIblSetInSIBLEditAction
-
-	@editIblSetInSIBLEditAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editIblSetInSIBLEditAction(self, value):
-		"""
-		This method is the setter method for **self.__editIblSetInSIBLEditAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editIblSetInSIBLEditAction"))
-
-	@editIblSetInSIBLEditAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editIblSetInSIBLEditAction(self):
-		"""
-		This method is the deleter method for **self.__editIblSetInSIBLEditAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editIblSetInSIBLEditAction"))
-
-	@property
-	def editInspectorIblSetInSIBLEditAction(self):
-		"""
-		This method is the property for **self.__editInspectorIblSetInSIBLEditAction** attribute.
-
-		:return: self.__editInspectorIblSetInSIBLEditAction. ( QAction )
-		"""
-
-		return self.__editInspectorIblSetInSIBLEditAction
-
-	@editInspectorIblSetInSIBLEditAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectorIblSetInSIBLEditAction(self, value):
-		"""
-		This method is the setter method for **self.__editInspectorIblSetInSIBLEditAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editInspectorIblSetInSIBLEditAction"))
-
-	@editInspectorIblSetInSIBLEditAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editInspectorIblSetInSIBLEditAction(self):
-		"""
-		This method is the deleter method for **self.__editInspectorIblSetInSIBLEditAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editInspectorIblSetInSIBLEditAction"))
-
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -401,7 +338,7 @@ class sIBLeditUtilities(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
-		return UiComponent.activate(self)
+		return UiComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -478,13 +415,8 @@ class sIBLeditUtilities(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__editIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-			self.__editIblSetInSIBLEditAction.triggered.connect(self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered)
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__editIblSetInSIBLEditAction)
-
-			self.__editInspectorIblSetInSIBLEditAction = QAction("Edit In sIBLedit ...", self.__coreInspector.ui.Inspector_Overall_frame)
-			self.__editInspectorIblSetInSIBLEditAction.triggered.connect(self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered)
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__editInspectorIblSetInSIBLEditAction)
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...", slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered))
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -497,16 +429,17 @@ class sIBLeditUtilities(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__editIblSetInSIBLEditAction)
-			self.__editIblSetInSIBLEditAction = None
-
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__editInspectorIblSetInSIBLEditAction)
-			self.__editInspectorIblSetInSIBLEditAction = None
+			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ..."
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetInSIBLEditAction))
+			self.__container.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
+			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInSIBLEditAction))
+			self.__container.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This method is triggered by **editIblSetInSIBLEditAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -516,7 +449,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
 		"""
-		This method is triggered by **editInspectorIblSetInSIBLEditAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""

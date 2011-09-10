@@ -1115,11 +1115,6 @@ class Preview(UiComponent):
 		self.__imagesPreviewers = None
 		self.__maximumImagesPreviewersInstances = 5
 
-		self.__viewIblSetsLightingImagesAction = None
-		self.__viewIblSetsReflectionImagesAction = None
-		self.__viewIblSetsBackgroundImagesAction = None
-		self.__viewIblSetsPlatesAction = None
-
 		self.__inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
 									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1, "column" : 4},
 									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
@@ -1429,245 +1424,6 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("maximumImagesPreviewersInstances"))
 
 	@property
-	def viewIblSetsBackgroundImagesAction(self):
-		"""
-		This method is the property for **self.__viewIblSetsBackgroundImagesAction** attribute.
-
-		:return: self.__viewIblSetsBackgroundImagesAction. ( QAction )
-		"""
-
-		return self.__viewIblSetsBackgroundImagesAction
-
-	@viewIblSetsBackgroundImagesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsBackgroundImagesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewIblSetsBackgroundImagesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsBackgroundImagesAction"))
-
-	@viewIblSetsBackgroundImagesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsBackgroundImagesAction(self):
-		"""
-		This method is the deleter method for **self.__viewIblSetsBackgroundImagesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsBackgroundImagesAction"))
-
-	@property
-	def viewIblSetsLightingImagesAction(self):
-		"""
-		This method is the property for **self.__viewIblSetsLightingImagesAction** attribute.
-
-		:return: self.__viewIblSetsLightingImagesAction. ( QAction )
-		"""
-
-		return self.__viewIblSetsLightingImagesAction
-
-	@viewIblSetsLightingImagesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsLightingImagesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewIblSetsLightingImagesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsLightingImagesAction"))
-
-	@viewIblSetsLightingImagesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsLightingImagesAction(self):
-		"""
-		This method is the deleter method for **self.__viewIblSetsLightingImagesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsLightingImagesAction"))
-
-	@property
-	def viewIblSetsReflectionImagesAction(self):
-		"""
-		This method is the property for **self.__viewIblSetsReflectionImagesAction** attribute.
-
-		:return: self.__viewIblSetsReflectionImagesAction. ( QAction )
-		"""
-
-		return self.__viewIblSetsReflectionImagesAction
-
-	@viewIblSetsReflectionImagesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsReflectionImagesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewIblSetsReflectionImagesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsReflectionImagesAction"))
-
-	@viewIblSetsReflectionImagesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsReflectionImagesAction(self):
-		"""
-		This method is the deleter method for **self.__viewIblSetsReflectionImagesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsReflectionImagesAction"))
-
-	@property
-	def viewIblSetsPlatesAction(self):
-		"""
-		This method is the property for **self.__viewIblSetsPlatesAction** attribute.
-
-		:return: self.__viewIblSetsPlatesAction. ( QAction )
-		"""
-
-		return self.__viewIblSetsPlatesAction
-
-	@viewIblSetsPlatesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsPlatesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewIblSetsPlatesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewIblSetsPlatesAction"))
-
-	@viewIblSetsPlatesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewIblSetsPlatesAction(self):
-		"""
-		This method is the deleter method for **self.__viewIblSetsPlatesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewIblSetsPlatesAction"))
-	@property
-	def viewInspectorIblSetBackgroundImagesAction(self):
-		"""
-		This method is the property for **self.__viewInspectorIblSetBackgroundImagesAction** attribute.
-
-		:return: self.__viewInspectorIblSetBackgroundImagesAction. ( QAction )
-		"""
-
-		return self.__viewInspectorIblSetBackgroundImagesAction
-
-	@viewInspectorIblSetBackgroundImagesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetBackgroundImagesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewInspectorIblSetBackgroundImagesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetBackgroundImagesAction"))
-
-	@viewInspectorIblSetBackgroundImagesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetBackgroundImagesAction(self):
-		"""
-		This method is the deleter method for **self.__viewInspectorIblSetBackgroundImagesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetBackgroundImagesAction"))
-
-	@property
-	def viewInspectorIblSetLightingImagesAction(self):
-		"""
-		This method is the property for **self.__viewInspectorIblSetLightingImagesAction** attribute.
-
-		:return: self.__viewInspectorIblSetLightingImagesAction. ( QAction )
-		"""
-
-		return self.__viewInspectorIblSetLightingImagesAction
-
-	@viewInspectorIblSetLightingImagesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetLightingImagesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewInspectorIblSetLightingImagesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetLightingImagesAction"))
-
-	@viewInspectorIblSetLightingImagesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetLightingImagesAction(self):
-		"""
-		This method is the deleter method for **self.__viewInspectorIblSetLightingImagesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetLightingImagesAction"))
-
-	@property
-	def viewInspectorIblSetReflectionImageAction(self):
-		"""
-		This method is the property for **self.__viewInspectorIblSetReflectionImageAction** attribute.
-
-		:return: self.__viewInspectorIblSetReflectionImageAction. ( QAction )
-		"""
-
-		return self.__viewInspectorIblSetReflectionImageAction
-
-	@viewInspectorIblSetReflectionImageAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetReflectionImageAction(self, value):
-		"""
-		This method is the setter method for **self.__viewInspectorIblSetReflectionImageAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetReflectionImageAction"))
-
-	@viewInspectorIblSetReflectionImageAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetReflectionImageAction(self):
-		"""
-		This method is the deleter method for **self.__viewInspectorIblSetReflectionImageAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetReflectionImageAction"))
-
-	@property
-	def viewInspectorIblSetPlatesAction(self):
-		"""
-		This method is the property for **self.__viewInspectorIblSetPlatesAction** attribute.
-
-		:return: self.__viewInspectorIblSetPlatesAction. ( QAction )
-		"""
-
-		return self.__viewInspectorIblSetPlatesAction
-
-	@viewInspectorIblSetPlatesAction.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetPlatesAction(self, value):
-		"""
-		This method is the setter method for **self.__viewInspectorIblSetPlatesAction** attribute.
-
-		:param value: Attribute value. ( QAction )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("viewInspectorIblSetPlatesAction"))
-
-	@viewInspectorIblSetPlatesAction.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def viewInspectorIblSetPlatesAction(self):
-		"""
-		This method is the deleter method for **self.__viewInspectorIblSetPlatesAction** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("viewInspectorIblSetPlatesAction"))
-
-	@property
 	def inspectorButtons(self):
 		"""
 		This method is the property for **self.__inspectorButtons** attribute.
@@ -1831,41 +1587,19 @@ class Preview(UiComponent):
 		separatorAction.setSeparator(True)
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(separatorAction)
 
-		self.__viewIblSetsBackgroundImagesAction = QAction("View Background Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__viewIblSetsBackgroundImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsBackgroundImagesAction)
-
-		self.__viewIblSetsLightingImagesAction = QAction("View Lighting Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__viewIblSetsLightingImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsLightingImagesAction)
-
-		self.__viewIblSetsReflectionImagesAction = QAction("View Reflection Image ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__viewIblSetsReflectionImagesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsReflectionImagesAction)
-
-		self.__viewIblSetsPlatesAction = QAction("View Plate(s) ...", self.__coreDatabaseBrowser.ui.Database_Browser_listView)
-		self.__viewIblSetsPlatesAction.triggered.connect(self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__viewIblSetsPlatesAction)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Background Image ...", slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered))
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...", slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered))
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...", slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered))
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...", slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered))
 
 		separatorAction = QAction(self.__coreInspector.ui.Inspector_Overall_frame)
 		separatorAction.setSeparator(True)
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(separatorAction)
 
-		self.__viewInspectorIblSetBackgroundImageAction = QAction("View Background Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectorIblSetBackgroundImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetBackgroundImageAction)
-
-		self.__viewInspectorIblSetLightingImageAction = QAction("View Lighting Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectorIblSetLightingImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetLightingImageAction)
-
-		self.__viewInspectorIblSetReflectionImageAction = QAction("View Reflection Image ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectorIblSetReflectionImageAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetReflectionImageAction)
-
-		self.__viewInspectorIblSetPlatesAction = QAction("View Plate(s) ...", self.__coreInspector.ui.Inspector_Overall_frame)
-		self.__viewInspectorIblSetPlatesAction.triggered.connect(self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered)
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__viewInspectorIblSetPlatesAction)
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Background Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered))
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Lighting Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered))
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Reflection Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered))
+		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Plate(s) ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -1875,25 +1609,31 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsBackgroundImagesAction)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsLightingImagesAction)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsReflectionImagesAction)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__viewIblSetsPlatesAction)
+		viewIblSetsBackgroundImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Background Image ..."
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(viewIblSetsBackgroundImagesAction))
+		self.__container.actionsManager.unregisterAction(viewIblSetsBackgroundImagesAction)
+		viewIblSetsLightingImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ..."
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(viewIblSetsLightingImagesAction))
+		self.__container.actionsManager.unregisterAction(viewIblSetsLightingImagesAction)
+		viewIblSetsReflectionImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ..."
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(viewIblSetsReflectionImagesAction))
+		self.__container.actionsManager.unregisterAction(viewIblSetsReflectionImagesAction)
+		viewIblSetsPlatesAction = "Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ..."
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(viewIblSetsPlatesAction))
+		self.__container.actionsManager.unregisterAction(viewIblSetsPlatesAction)
 
-		self.__viewIblSetsBackgroundImagesAction = None
-		self.__viewIblSetsLightingImagesAction = None
-		self.__viewIblSetsReflectionImagesAction = None
-		self.__viewIblSetsPlatesAction = None
-
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetBackgroundImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetLightingImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetReflectionImageAction)
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__viewInspectorIblSetPlatesAction)
-
-		self.__viewInspectorIblSetBackgroundImageAction = None
-		self.__viewInspectorIblSetLightingImageAction = None
-		self.__viewInspectorIblSetReflectionImageAction = None
-		self.__viewInspectorIblSetPlatesAction = None
+		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
+		self.__container.actionsManager.unregisterAction(viewInspectorIblSetBackgroundImageAction)
+		viewInspectorIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(viewInspectorIblSetLightingImageAction))
+		self.__container.actionsManager.unregisterAction(viewInspectorIblSetLightingImageAction)
+		viewInspectorIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(viewInspectorIblSetReflectionImageAction))
+		self.__container.actionsManager.unregisterAction(viewInspectorIblSetReflectionImageAction)
+		viewInspectorIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
+		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(viewInspectorIblSetPlatesAction))
+		self.__container.actionsManager.unregisterAction(viewInspectorIblSetPlatesAction)
 
 	@core.executionTrace
 	def __addInspectorButtons(self):
@@ -1918,7 +1658,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewIblSetsBackgroundImagesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1928,7 +1668,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewIblSetsLightingImagesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1938,7 +1678,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewIblSetsReflectionImagesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1948,7 +1688,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewPlatesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1958,7 +1698,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewInspectorIblSetBackgroundImageAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1968,7 +1708,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewInspectorIblSetLightingImageAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1978,7 +1718,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewInspectorIblSetReflectionImageAction** action.
+		This method is triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
@@ -1988,7 +1728,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
 		"""
-		This method is triggered by **viewInspectorIblSetPlatesAction** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		"""
