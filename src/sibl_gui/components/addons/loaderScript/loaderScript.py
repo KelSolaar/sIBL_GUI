@@ -661,17 +661,17 @@ class LoaderScript(UiComponent):
 			LOGGER.debug("> Parsing '{0}' Template for '{1}' section.".format(template.name, self.__templateRemoteConnectionSection))
 
 			if os.path.exists(template.path):
-				templateParser = SectionsFileParser(template.path)
-				templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
+				templateSectionsFileParser = SectionsFileParser(template.path)
+				templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 
-				if self.__templateRemoteConnectionSection in templateParser.sections:
+				if self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 					LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
 					self.ui.Remote_Connection_groupBox.show()
-					connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+					connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote connection type: 'Socket'.")
-						self.ui.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", templateParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
-						self.ui.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress", templateParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
+						self.ui.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", templateSectionsFileParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
+						self.ui.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress", templateSectionsFileParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
 						self.ui.Remote_Connection_Options_frame.show()
 					elif connectionType.value == "Win32":
 						LOGGER.debug("> Remote connection: 'Win32'.")
@@ -791,15 +791,15 @@ class LoaderScript(UiComponent):
 		"""
 
 		LOGGER.info("{0} | Starting remote connection!".format(self.__class__.__name__))
-		templateParser = SectionsFileParser(template.path)
-		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-		connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
+		templateSectionsFileParser = SectionsFileParser(template.path)
+		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
+		connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 
 		if connectionType.value == "Socket":
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
-				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateSectionsFileParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 				LOGGER.debug("> Current socket command: '%s'.", socketCommand)
 				connection.send(socketCommand)
 				dataBack = connection.recv(8192)
@@ -812,9 +812,9 @@ class LoaderScript(UiComponent):
 			if platform.system() == "Windows" or platform.system() == "Microsoft":
 				try:
 					import win32com.client
-					connection = win32com.client.Dispatch(foundations.parsers.getAttributeCompound("TargetApplication", templateParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
+					connection = win32com.client.Dispatch(foundations.parsers.getAttributeCompound("TargetApplication", templateSectionsFileParser.getValue("TargetApplication", self.__templateRemoteConnectionSection)).value)
 					connection._FlagAsMethod(self.__win32ExecutionMethod)
-					connectionCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
+					connectionCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateSectionsFileParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 					LOGGER.debug("> Current connection command: '%s'.", connectionCommand)
 					getattr(connection, self.__win32ExecutionMethod)(connectionCommand)
 				except Exception as error:
@@ -870,9 +870,9 @@ class LoaderScript(UiComponent):
 		"""
 
 		LOGGER.debug("> Parsing Template file: '{0}'.".format(template))
-		templateParser = SectionsFileParser(template)
-		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
-		templateSections = dict.copy(templateParser.sections)
+		templateSectionsFileParser = SectionsFileParser(template)
+		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
+		templateSections = dict.copy(templateSectionsFileParser.sections)
 
 		for attribute, value in dict.copy(templateSections[self.__templateIblSetAttributesSection]).items():
 			templateSections[self.__templateIblSetAttributesSection][namespace.removeNamespace(attribute, rootOnly=True)] = value
@@ -882,9 +882,9 @@ class LoaderScript(UiComponent):
 		bindedAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value)) for section in templateSections.keys() if section not in (self.__templateScriptSection) for attribute, value in templateSections[section].items()))
 
 		LOGGER.debug("> Parsing Ibl Set file: '{0}'.".format(iblSet))
-		iblSetParser = SectionsFileParser(iblSet)
-		iblSetParser.read() and iblSetParser.parse()
-		iblSetSections = dict.copy(iblSetParser.sections)
+		iblSetSectionsFileParser = SectionsFileParser(iblSet)
+		iblSetSectionsFileParser.read() and iblSetSectionsFileParser.parse()
+		iblSetSections = dict.copy(iblSetSectionsFileParser.sections)
 
 		LOGGER.debug("> Flattening Ibl Set file attributes.")
 		flattenedIblAttributes = dict(((attribute, foundations.parsers.getAttributeCompound(attribute, value)) for section in iblSetSections.keys() for attribute, value in iblSetSections[section].items()))
@@ -899,14 +899,14 @@ class LoaderScript(UiComponent):
 			for section in iblSetSections:
 				if re.search("Light[0-9]+", section):
 					dynamicLights.append(section)
-					lightName = iblSetParser.getValue("LIGHTname", section)
+					lightName = iblSetSectionsFileParser.getValue("LIGHTname", section)
 					dynamicLights.append(lightName and lightName or self.__unnamedLightName)
-					lightColorTokens = iblSetParser.getValue("LIGHTcolor", section).split(",")
+					lightColorTokens = iblSetSectionsFileParser.getValue("LIGHTcolor", section).split(",")
 					for color in lightColorTokens:
 						dynamicLights.append(color)
-					dynamicLights.append(iblSetParser.getValue("LIGHTmulti", section))
-					dynamicLights.append(iblSetParser.getValue("LIGHTu", section))
-					dynamicLights.append(iblSetParser.getValue("LIGHTv", section))
+					dynamicLights.append(iblSetSectionsFileParser.getValue("LIGHTmulti", section))
+					dynamicLights.append(iblSetSectionsFileParser.getValue("LIGHTu", section))
+					dynamicLights.append(iblSetSectionsFileParser.getValue("LIGHTv", section))
 
 			LOGGER.debug("> Adding '{0}' custom attribute with value: '{1}'.".format("Lights|DynamicLights", ", ".join(dynamicLights)))
 			bindedAttributes["Lights|DynamicLights"].value = self.__defaultStringSeparator.join(dynamicLights)
@@ -917,7 +917,7 @@ class LoaderScript(UiComponent):
 				bindedAttributes[attribute].value = overrideKeys[attribute] and overrideKeys[attribute].value or None
 
 		LOGGER.debug("> Updating Loader Script content.")
-		loaderScript = templateParser.sections[self.__templateScriptSection][namespace.setNamespace("Script", templateParser.rawSectionContentIdentifier)]
+		loaderScript = templateSectionsFileParser.sections[self.__templateScriptSection][templateSectionsFileParser.rawSectionContentIdentifier]
 
 		bindedLoaderScript = []
 		for line in loaderScript:
