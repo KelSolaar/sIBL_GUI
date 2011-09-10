@@ -441,6 +441,7 @@ class About(UiComponent):
 		This method is triggered by **'Actions|Umbra|ToolBar|Miscellaneous|About {0} ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' window.".format("About"))
@@ -454,3 +455,4 @@ class About(UiComponent):
 		self.ui.About_label.setText(aboutMessage)
 
 		self.ui.show()
+		return True

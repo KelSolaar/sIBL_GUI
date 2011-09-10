@@ -1271,9 +1271,10 @@ class CollectionsOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.addContent_ui()
+		return self.addContent_ui()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_addCollectionAction__triggered(self, checked):
@@ -1281,9 +1282,10 @@ class CollectionsOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.addCollection_ui()
+		return self.addCollection_ui()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_removeCollectionsAction__triggered(self, checked):
@@ -1291,9 +1293,10 @@ class CollectionsOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.removeCollections_ui()
+		return self.removeCollections_ui()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)

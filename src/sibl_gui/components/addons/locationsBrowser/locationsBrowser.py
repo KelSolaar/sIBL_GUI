@@ -614,9 +614,10 @@ class LocationsBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.openIblSetsLocations_ui()
+		return self.openIblSetsLocations_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered(self, checked):
@@ -624,9 +625,10 @@ class LocationsBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Open Ibl Set location ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.openInspectorIblSetLocations_ui()
+		return self.openInspectorIblSetLocations_ui()
 
 	@core.executionTrace
 	def __Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered(self, checked):
@@ -634,9 +636,10 @@ class LocationsBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.openComponentsLocations_ui()
+		return self.openComponentsLocations_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_openTemplatesLocationsAction__triggered(self, checked):
@@ -644,9 +647,10 @@ class LocationsBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.openTemplatesLocations_ui()
+		return self.openTemplatesLocations_ui()
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_lineEdit_setUi(self):

@@ -1661,9 +1661,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Background")
+		return self.viewIblSetsImages_ui("Background")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsLightingImagesAction__triggered(self, checked):
@@ -1671,9 +1672,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Lighting")
+		return self.viewIblSetsImages_ui("Lighting")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered(self, checked):
@@ -1681,9 +1683,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Reflection")
+		return self.viewIblSetsImages_ui("Reflection")
 
 	@core.executionTrace
 	def __Database_Browser_listView_viewIblSetsPlatesAction__triggered(self, checked):
@@ -1691,9 +1694,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Plates")
+		return self.viewIblSetsImages_ui("Plates")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered(self, checked):
@@ -1701,9 +1705,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Background Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Background")
+		return self.viewIblSetsImages_ui("Background")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered(self, checked):
@@ -1711,9 +1716,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Lighting Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Lighting")
+		return self.viewIblSetsImages_ui("Lighting")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered(self, checked):
@@ -1721,9 +1727,10 @@ class Preview(UiComponent):
 		This method is triggered by **'"Actions|Umbra|Components|core.inspector|View Reflection Image ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Reflection")
+		return self.viewIblSetsImages_ui("Reflection")
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered(self, checked):
@@ -1731,9 +1738,10 @@ class Preview(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|View Plate(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.viewIblSetsImages_ui("Plates")
+		return self.viewIblSetsImages_ui("Plates")
 
 	@core.executionTrace
 	def __Custom_Previewer_Path_lineEdit_setUi(self):

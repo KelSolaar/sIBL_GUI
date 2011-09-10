@@ -531,9 +531,10 @@ class RawEditingUtilities(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.editIblSetsInTextEditor_ui()
+		return self.editIblSetsInTextEditor_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
@@ -541,9 +542,10 @@ class RawEditingUtilities(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.editInspectorIblSetInTextEditor_ui()
+		return self.editInspectorIblSetInTextEditor_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
@@ -551,9 +553,10 @@ class RawEditingUtilities(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.editTemplatesInTextEditor_ui()
+		return self.editTemplatesInTextEditor_ui()
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):

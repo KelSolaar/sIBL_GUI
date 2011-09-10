@@ -1399,9 +1399,10 @@ class DatabaseBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.addContent_ui()
+		return self.addContent_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
@@ -1409,9 +1410,10 @@ class DatabaseBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.addIblSet_ui()
+		return self.addIblSet_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
@@ -1419,9 +1421,10 @@ class DatabaseBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.removeIblSets_ui()
+		return self.removeIblSets_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
@@ -1429,9 +1432,10 @@ class DatabaseBrowser(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.updateIblSetsLocation_ui()
+		return self.updateIblSetsLocation_ui()
 
 	@core.executionTrace
 	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):

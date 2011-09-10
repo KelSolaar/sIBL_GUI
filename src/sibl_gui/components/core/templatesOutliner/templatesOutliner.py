@@ -1517,9 +1517,10 @@ class TemplatesOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Add Template ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.addTemplate_ui()
+		return self.addTemplate_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_removeTemplatesAction__triggered(self, checked):
@@ -1527,9 +1528,10 @@ class TemplatesOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.removeTemplates_ui()
+		return self.removeTemplates_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_importDefaultTemplatesAction__triggered(self, checked):
@@ -1537,9 +1539,10 @@ class TemplatesOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Import Default Templates'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.importDefaultTemplates_ui()
+		return self.importDefaultTemplates_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_displayHelpFilesAction__triggered(self, checked):
@@ -1547,9 +1550,10 @@ class TemplatesOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.displayHelpFiles_ui()
+		return self.displayHelpFiles_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered(self, checked):
@@ -1557,9 +1561,10 @@ class TemplatesOutliner(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.filterTemplatesVersions_ui()
+		return self.filterTemplatesVersions_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):

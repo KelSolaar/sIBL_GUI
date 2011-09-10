@@ -442,9 +442,10 @@ class sIBLeditUtilities(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.editIblSetInSIBLEdit_ui()
+		return self.editIblSetInSIBLEdit_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered(self, checked):
@@ -452,9 +453,10 @@ class sIBLeditUtilities(UiComponent):
 		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
+		:return: Method success. ( Boolean )
 		"""
 
-		self.editInspectorIblSetInSIBLEdit_ui()
+		return self.editInspectorIblSetInSIBLEdit_ui()
 
 	@core.executionTrace
 	def __sIBLedit_Path_lineEdit_setUi(self):
