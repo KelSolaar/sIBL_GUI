@@ -138,7 +138,7 @@ class About(UiComponent):
 		self.__uiGpl3Image = "GPL_V3.png"
 
 		self.__container = None
-		self.__miscMenu = None
+		self.__miscellaneousMenu = None
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -294,34 +294,34 @@ class About(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
 	@property
-	def miscMenu(self):
+	def miscellaneousMenu(self):
 		"""
-		This method is the property for **self.__miscMenu** attribute.
+		This method is the property for **self.__miscellaneousMenu** attribute.
 
-		:return: self.__miscMenu. ( QMenu )
+		:return: self.__miscellaneousMenu. ( QMenu )
 		"""
 
-		return self.__miscMenu
+		return self.__miscellaneousMenu
 
-	@miscMenu.setter
+	@miscellaneousMenu.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def miscMenu(self, value):
+	def miscellaneousMenu(self, value):
 		"""
-		This method is the setter method for **self.__miscMenu** attribute.
+		This method is the setter method for **self.__miscellaneousMenu** attribute.
 
 		:param value: Attribute value. ( QMenu )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("miscellaneousMenu"))
 
-	@miscMenu.deleter
+	@miscellaneousMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def miscMenu(self):
+	def miscellaneousMenu(self):
 		"""
-		This method is the deleter method for **self.__miscMenu** attribute.
+		This method is the deleter method for **self.__miscellaneousMenu** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("miscMenu"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("miscellaneousMenu"))
 
 	@property
 	def aboutMiscAction(self):
@@ -370,7 +370,7 @@ class About(UiComponent):
 		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
-		self.__miscMenu = self.__container.miscMenu
+		self.__miscellaneousMenu = self.__container.miscellaneousMenu
 
 		self.__addActions()
 
@@ -391,7 +391,7 @@ class About(UiComponent):
 		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
 		self.__container = None
-		self.__miscMenu = None
+		self.__miscellaneousMenu = None
 
 		return UiComponent.deactivate(self)
 
@@ -452,8 +452,8 @@ class About(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		self.__aboutMiscAction = QAction("About {0} ...".format(Constants.applicationName), self)
-		self.__aboutMiscAction.triggered.connect(self.__miscMenu_aboutMiscAction__triggered)
-		self.__miscMenu.addAction(self.__aboutMiscAction)
+		self.__aboutMiscAction.triggered.connect(self.__miscellaneousMenu_aboutMiscAction__triggered)
+		self.__miscellaneousMenu.addAction(self.__aboutMiscAction)
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -463,12 +463,12 @@ class About(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__miscMenu.removeAction(self.__aboutMiscAction)
+		self.__miscellaneousMenu.removeAction(self.__aboutMiscAction)
 
 		self.__aboutMiscAction = None
 
 	@core.executionTrace
-	def __miscMenu_aboutMiscAction__triggered(self, checked):
+	def __miscellaneousMenu_aboutMiscAction__triggered(self, checked):
 		"""
 		This method is triggered by **aboutMiscAction** action.
 

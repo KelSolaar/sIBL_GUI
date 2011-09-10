@@ -104,136 +104,6 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		umbra.engine.Umbra.__init__(self, paths, components)
 
-		# --- Setting class attributes. ---
-
-		self.__libraryActiveLabel = None
-		self.__inspectActiveLabel = None
-		self.__exportActiveLabel = None
-		self.__preferencesActiveLabel = None
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def libraryActiveLabel (self):
-		"""
-		This method is the property for **self.__libraryActiveLabel** attribute.
-
-		:return: self.__libraryActiveLabel . ( Active_QLabel )
-		"""
-
-		return self.__libraryActiveLabel
-
-	@libraryActiveLabel .setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def libraryActiveLabel (self, value):
-		"""
-		This method is the setter method for **self.__libraryActiveLabel** attribute.
-
-		:param value: Attribute value. ( Active_QLabel )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("libraryActiveLabel "))
-
-	@libraryActiveLabel .deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def libraryActiveLabel (self):
-		"""
-		This method is the deleter method for **self.__libraryActiveLabel** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("libraryActiveLabel "))
-
-	@property
-	def inspectActiveLabel (self):
-		"""
-		This method is the property for **self.__inspectActiveLabel** attribute.
-
-		:return: self.__inspectActiveLabel . ( Active_QLabel )
-		"""
-
-		return self.__inspectActiveLabel
-
-	@inspectActiveLabel .setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def inspectActiveLabel (self, value):
-		"""
-		This method is the setter method for **self.__inspectActiveLabel** attribute.
-
-		:param value: Attribute value. ( Active_QLabel )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("inspectActiveLabel "))
-
-	@inspectActiveLabel .deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def inspectActiveLabel (self):
-		"""
-		This method is the deleter method for **self.__inspectActiveLabel** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("inspectActiveLabel "))
-
-	@property
-	def exportActiveLabel (self):
-		"""
-		This method is the property for **self.__exportActiveLabel** attribute.
-
-		:return: self.__exportActiveLabel . ( Active_QLabel )
-		"""
-
-		return self.__exportActiveLabel
-
-	@exportActiveLabel .setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def exportActiveLabel (self, value):
-		"""
-		This method is the setter method for **self.__exportActiveLabel** attribute.
-
-		:param value: Attribute value. ( Active_QLabel )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("exportActiveLabel "))
-
-	@exportActiveLabel .deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def exportActiveLabel (self):
-		"""
-		This method is the deleter method for **self.__exportActiveLabel** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("exportActiveLabel "))
-
-	@property
-	def preferencesActiveLabel (self):
-		"""
-		This method is the property for **self.__preferencesActiveLabel** attribute.
-
-		:return: self.__preferencesActiveLabel. ( Active_QLabel )
-		"""
-
-		return self.__preferencesActiveLabel
-
-	@preferencesActiveLabel .setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def preferencesActiveLabel (self, value):
-		"""
-		This method is the setter method for **self.__preferencesActiveLabel** attribute.
-
-		:param value: Attribute value. ( Active_QLabel )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("preferencesActiveLabel "))
-
-	@preferencesActiveLabel .deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def preferencesActiveLabel (self):
-		"""
-		This method is the deleter method for **self.__preferencesActiveLabel** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("preferencesActiveLabel "))
-
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -245,30 +115,30 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.__libraryActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
+		libraryActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
-		self.__libraryActiveLabel.setObjectName("Library_activeLabel")
+		libraryActiveLabel.setObjectName("Library_activeLabel")
 
-		self.__inspectActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
+		inspectActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
-		self.__inspectActiveLabel.setObjectName("Inspect_activeLabel")
+		inspectActiveLabel.setObjectName("Inspect_activeLabel")
 
-		self.__exportActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
+		exportActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
-		self.__exportActiveLabel.setObjectName("Export_activeLabel")
+		exportActiveLabel.setObjectName("Export_activeLabel")
 
-		self.__preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
+		preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
-		self.__preferencesActiveLabel.setObjectName("Preferences_activeLabel")
+		preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 
-		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=self.__libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
-									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=self.__inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
-									umbra.ui.common.LayoutActiveLabel(name="Export", object=self.__exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
-									umbra.ui.common.LayoutActiveLabel(name="Preferences", object=self.__preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
+									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
+									umbra.ui.common.LayoutActiveLabel(name="Export", object=exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
+									umbra.ui.common.LayoutActiveLabel(name="Preferences", object=preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.layoutsActiveLabels:
