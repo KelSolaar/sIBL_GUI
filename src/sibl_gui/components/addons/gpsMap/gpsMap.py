@@ -638,7 +638,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when **coreDatabaseBrowser.Database_Browser_listView** selection has changed.
+		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

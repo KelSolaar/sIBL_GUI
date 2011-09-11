@@ -1059,7 +1059,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Plates_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when **Plates_listView** Model selection has changed.
+		This method is triggered when **Plates_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1076,7 +1076,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
 		"""
-		This method sets is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model has changed.
+		This method is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model has changed.
 		"""
 
 		self.__setInspectorIblSet()
@@ -1084,7 +1084,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method sets is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
+		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
