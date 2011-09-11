@@ -28,6 +28,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.io as io
 import foundations.parsers
 import foundations.strings as strings
 from foundations.parsers import SectionsFileParser
@@ -83,6 +84,10 @@ class LoaderScriptOptions(UiComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
+		self.__namespaceSplitter = "|"
+
+		self.__templatesSettingsDirectory = "templates/"
+		self.__currentTemplateSettingsFile = None
 		self.__templateCommonAttributesSection = "Common Attributes"
 		self.__templateAdditionalAttributesSection = "Additional Attributes"
 		self.__templateScriptSection = "Script"
@@ -248,6 +253,100 @@ class LoaderScriptOptions(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("addonsLoaderScript"))
+
+	@property
+	def namespaceSplitter(self):
+		"""
+		This method is the property for **self.__namespaceSplitter** attribute.
+
+		:return: self.__namespaceSplitter. ( String )
+		"""
+
+		return self.__namespaceSplitter
+
+	@namespaceSplitter.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def namespaceSplitter(self, value):
+		"""
+		This method is the setter method for **self.__namespaceSplitter** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		if value:
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("namespaceSplitter", value)
+			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("namespaceSplitter", value)
+			assert not re.search("\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("namespaceSplitter", value)
+		self.__namespaceSplitter = value
+
+	@namespaceSplitter.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def namespaceSplitter(self):
+		"""
+		This method is the deleter method for **self.__namespaceSplitter** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("namespaceSplitter"))
+
+	@property
+	def templatesSettingsDirectory(self):
+		"""
+		This method is the property for **self.__templatesSettingsDirectory** attribute.
+
+		:return: self.__templatesSettingsDirectory. ( String )
+		"""
+
+		return self.__templatesSettingsDirectory
+
+	@templatesSettingsDirectory.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def templatesSettingsDirectory(self, value):
+		"""
+		This method is the setter method for **self.__templatesSettingsDirectory** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesSettingsDirectory"))
+
+	@templatesSettingsDirectory.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def templatesSettingsDirectory(self):
+		"""
+		This method is the deleter method for **self.__templatesSettingsDirectory** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesSettingsDirectory"))
+
+	@property
+	def currentTemplateSettingsFile(self):
+		"""
+		This method is the property for **self.__currentTemplateSettingsFile** attribute.
+
+		:return: self.__currentTemplateSettingsFile. ( String )
+		"""
+
+		return self.__currentTemplateSettingsFile
+
+	@currentTemplateSettingsFile.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def currentTemplateSettingsFile(self, value):
+		"""
+		This method is the setter method for **self.__currentTemplateSettingsFile** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentTemplateSettingsFile"))
+
+	@currentTemplateSettingsFile.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def currentTemplateSettingsFile(self):
+		"""
+		This method is the deleter method for **self.__currentTemplateSettingsFile** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentTemplateSettingsFile"))
 
 	@property
 	def templateCommonAttributesSection(self):
@@ -543,6 +642,9 @@ class LoaderScriptOptions(UiComponent):
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
+		self.__templatesSettingsDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
+		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
+
 		return UiComponent.activate(self)
 
 	@core.executionTrace
@@ -561,6 +663,8 @@ class LoaderScriptOptions(UiComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
+		self.__templatesSettingsDirectory = os.path.basename(os.path.abspath(self.__templatesSettingsDirectory))
+
 		return UiComponent.deactivate(self)
 
 	@core.executionTrace
@@ -574,7 +678,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
 
 		return True
 
@@ -589,7 +693,7 @@ class LoaderScriptOptions(UiComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
 
 		return True
 
@@ -623,12 +727,13 @@ class LoaderScriptOptions(UiComponent):
 		return True
 
 	@core.executionTrace
-	def __tableWidget_setUi(self, section, tableWidget):
+	def __tableWidget_setUi(self, section, tableWidget, settings):
 		"""
-		This method defines and sets Options_TableWidgets.
+		This method defines and sets the provided table widget.
 
 		:param section: Section attributes. ( Dictionary )
 		:param tableWidget: Table Widget. ( QTableWidget )
+		:param settings: Attributes settings. ( Dictionary )
 		"""
 
 		LOGGER.debug("> Updating '{0}'.".format(tableWidget.objectName()))
@@ -651,27 +756,45 @@ class LoaderScriptOptions(UiComponent):
 		verticalHeaderLabels = []
 		for row, attribute in enumerate(section.keys()):
 			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
+
+			settingsValue = attribute in settings.keys() and settings[attribute] or None
+			LOGGER.debug("> Settings value: '{0}'.".format(settingsValue or Constants.nullObject))
+
 			attributeCompound = foundations.parsers.getAttributeCompound(attribute, section[attribute])
 			if attributeCompound.name:
 				verticalHeaderLabels.append(attributeCompound.alias)
 			else:
 				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
-
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
-				state = int(attributeCompound.value) and True or False
+				state = int(settingsValue or attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
+
+				# Signals / Slots.
+				item.clicked.connect(self.__tableWidget__valueChanged)
 			elif attributeCompound.type == "Float":
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
-				item.setValue(float(attributeCompound.value))
+				item.setValue(float(settingsValue or attributeCompound.value))
+
+				# Signals / Slots.
+				item.valueChanged.connect(self.__tableWidget__valueChanged)
 			elif attributeCompound.type == "Enum":
 				item = QComboBox()
-				item.addItems([enumItem.strip() for enumItem in attributeCompound.value.split(self.__enumSplitter)])
+				comboBoxItems = [enumItem.strip() for enumItem in attributeCompound.value.split(self.__enumSplitter)]
+				item.addItems(comboBoxItems)
+				if settingsValue in comboBoxItems:
+					item.setCurrentIndex(comboBoxItems.index(settingsValue))
+
+				# Signals / Slots.
+				item.currentIndexChanged.connect(self.__tableWidget__valueChanged)
 			elif attributeCompound.type == "String":
-				item = QLineEdit(QString(attributeCompound.value))
+				item = QLineEdit(QString(settingsValue or attributeCompound.value))
+
+				# Signals / Slots.
+				item.editingFinished.connect(self.__tableWidget__valueChanged)
 
 			item._datas = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
@@ -680,12 +803,10 @@ class LoaderScriptOptions(UiComponent):
 		tableWidget.show()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def __commonAndAdditionalAttributesTablesWidgets_setUi(self):
 		"""
-		This method sets is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** selection has changed.
-
-		:param selectedItems: Selected items. ( QItemSelection )
-		:param deselectedItems: Deselected items. ( QItemSelection )
+		This method sets the **Common_Attributes_tableWidget** and  **Additional_Attributes_tableWidget** widgets.
 		"""
 
 		selectedTemplates = self.__coreTemplatesOutliner.getSelectedTemplates()
@@ -695,12 +816,56 @@ class LoaderScriptOptions(UiComponent):
 		if not os.path.exists(template.path):
 			return
 
-		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
-		templateParser = SectionsFileParser(template.path)
-		templateParser.read() and templateParser.parse(rawSections=(self.__templateScriptSection))
+		LOGGER.debug("> Attempting to read Template settings file.")
+		commonAttributesSettings = {}
+		additionalAttributesSettings = {}
+		templateSettingsDirectory = os.path.join(self.__templatesSettingsDirectory, template.software, template.name)
+		currentTemplateSettingsDirectory = os.path.join(templateSettingsDirectory, template.release)
+		if not os.path.exists(currentTemplateSettingsDirectory):
+			io.setDirectory(currentTemplateSettingsDirectory)
+		else:
+			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search("\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
+				self.__currentTemplateSettingsFile = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
+				if not os.path.exists(self.__currentTemplateSettingsFile):
+					continue
 
-		self.__tableWidget_setUi(templateParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget)
-		self.__tableWidget_setUi(templateParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget)
+				LOGGER.debug("> Accessing Template settings file: '{0}'.".format(self.__currentTemplateSettingsFile))
+				templateSettingsSectionsFileParser = SectionsFileParser(self.__currentTemplateSettingsFile)
+				templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
+				commonAttributesSettings.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
+				additionalAttributesSettings.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
+				break
+
+		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+		templateSectionsFileParser = SectionsFileParser(template.path)
+		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
+
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget, commonAttributesSettings)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget, additionalAttributesSettings)
+
+	@core.executionTrace
+	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This method is triggered when **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** selection has changed.
+
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
+		"""
+
+		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
+
+	@core.executionTrace
+	def __tableWidget__valueChanged(self, *args):
+		"""
+		This method is triggered when a **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** widget value has changed.
+
+		:param \*args: Arguments. ( \* )
+		"""
+
+		templateSettingsSectionsFileParser = SectionsFileParser(self.__currentTemplateSettingsFile)
+		templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
+		for section in templateSettingsSectionsFileParser.sections:
+			print section
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
