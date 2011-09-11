@@ -821,26 +821,34 @@ class LoaderScriptOptions(UiComponent):
 		if not os.path.exists(template.path):
 			return
 
-		LOGGER.debug("> Attempting to read Template settings file.")
+		LOGGER.debug("> Attempting to read '{0}' Template settings file.".format(template.name))
 		commonAttributesOverrides = {}
 		additionalAttributesOverrides = {}
 		templateSettingsDirectory = os.path.join(self.__templatesSettingsDirectory, template.software, template.name)
 		currentTemplateSettingsDirectory = os.path.join(templateSettingsDirectory, template.release)
 		self.__templateSettingsFile = os.path.join(templateSettingsDirectory, template.release, os.path.basename(template.path))
+
 		if not os.path.exists(currentTemplateSettingsDirectory):
 			io.setDirectory(currentTemplateSettingsDirectory)
+
+		templateSettingsFile = None
+		if os.path.exists(self.__templateSettingsFile):
+			templateSettingsFile = self.__templateSettingsFile
 		else:
 			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search("\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
-				templateSettingsFile = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
-				if not os.path.exists(templateSettingsFile):
-					continue
+				path = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
+				if os.path.exists(path):
+					templateSettingsFile = path
+					break
 
-				LOGGER.debug("> Accessing Template settings file: '{0}'.".format(templateSettingsFile))
-				templateSettingsSectionsFileParser = SectionsFileParser(templateSettingsFile)
-				templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
-				commonAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
-				additionalAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
-				break
+		if templateSettingsFile:
+			LOGGER.debug("> Accessing '{0}' Template settings file: '{1}'.".format(template.name, templateSettingsFile))
+			templateSettingsSectionsFileParser = SectionsFileParser(templateSettingsFile)
+			templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
+			commonAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
+			additionalAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
+		else:
+			LOGGER.debug("> No Template settings file found for : '{0}'.".format(template.name))
 
 		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateSectionsFileParser = SectionsFileParser(template.path)
