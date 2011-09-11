@@ -20,6 +20,7 @@
 import logging
 import os
 import re
+from collections import OrderedDict
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -87,7 +88,7 @@ class LoaderScriptOptions(UiComponent):
 		self.__namespaceSplitter = "|"
 
 		self.__templatesSettingsDirectory = "templates/"
-		self.__currentTemplateSettingsFile = None
+		self.__templateSettingsFile = None
 		self.__templateCommonAttributesSection = "Common Attributes"
 		self.__templateAdditionalAttributesSection = "Additional Attributes"
 		self.__templateScriptSection = "Script"
@@ -319,34 +320,34 @@ class LoaderScriptOptions(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesSettingsDirectory"))
 
 	@property
-	def currentTemplateSettingsFile(self):
+	def templateSettingsFile(self):
 		"""
-		This method is the property for **self.__currentTemplateSettingsFile** attribute.
+		This method is the property for **self.__templateSettingsFile** attribute.
 
-		:return: self.__currentTemplateSettingsFile. ( String )
+		:return: self.__templateSettingsFile. ( String )
 		"""
 
-		return self.__currentTemplateSettingsFile
+		return self.__templateSettingsFile
 
-	@currentTemplateSettingsFile.setter
+	@templateSettingsFile.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentTemplateSettingsFile(self, value):
+	def templateSettingsFile(self, value):
 		"""
-		This method is the setter method for **self.__currentTemplateSettingsFile** attribute.
+		This method is the setter method for **self.__templateSettingsFile** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentTemplateSettingsFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templateSettingsFile"))
 
-	@currentTemplateSettingsFile.deleter
+	@templateSettingsFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentTemplateSettingsFile(self):
+	def templateSettingsFile(self):
 		"""
-		This method is the deleter method for **self.__currentTemplateSettingsFile** attribute.
+		This method is the deleter method for **self.__templateSettingsFile** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentTemplateSettingsFile"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templateSettingsFile"))
 
 	@property
 	def templateCommonAttributesSection(self):
@@ -644,6 +645,7 @@ class LoaderScriptOptions(UiComponent):
 
 		self.__templatesSettingsDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
+		self.__templateSettingsFile = None
 
 		return UiComponent.activate(self)
 
@@ -664,6 +666,7 @@ class LoaderScriptOptions(UiComponent):
 		self.__addonsLoaderScript = None
 
 		self.__templatesSettingsDirectory = os.path.basename(os.path.abspath(self.__templatesSettingsDirectory))
+		self.__templateSettingsFile = None
 
 		return UiComponent.deactivate(self)
 
@@ -676,6 +679,8 @@ class LoaderScriptOptions(UiComponent):
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
+
+		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
 		# Signals / Slots.
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
@@ -727,13 +732,13 @@ class LoaderScriptOptions(UiComponent):
 		return True
 
 	@core.executionTrace
-	def __tableWidget_setUi(self, section, tableWidget, settings):
+	def __tableWidget_setUi(self, section, tableWidget, overrides):
 		"""
 		This method defines and sets the provided table widget.
 
 		:param section: Section attributes. ( Dictionary )
 		:param tableWidget: Table Widget. ( QTableWidget )
-		:param settings: Attributes settings. ( Dictionary )
+		:param overrides: Attributes overrides. ( Dictionary )
 		"""
 
 		LOGGER.debug("> Updating '{0}'.".format(tableWidget.objectName()))
@@ -757,8 +762,8 @@ class LoaderScriptOptions(UiComponent):
 		for row, attribute in enumerate(section.keys()):
 			LOGGER.debug("> Current attribute: '{0}'.".format(attribute))
 
-			settingsValue = attribute in settings.keys() and settings[attribute] or None
-			LOGGER.debug("> Settings value: '{0}'.".format(settingsValue or Constants.nullObject))
+			overridesValue = attribute in overrides.keys() and overrides[attribute] or None
+			LOGGER.debug("> Settings value: '{0}'.".format(overridesValue or Constants.nullObject))
 
 			attributeCompound = foundations.parsers.getAttributeCompound(attribute, section[attribute])
 			if attributeCompound.name:
@@ -767,7 +772,7 @@ class LoaderScriptOptions(UiComponent):
 				verticalHeaderLabels.append(strings.getNiceName(attributeCompound.name))
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
-				state = int(settingsValue or attributeCompound.value) and True or False
+				state = int(overridesValue or attributeCompound.value) and True or False
 				item = Variable_QPushButton(state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
 
@@ -777,7 +782,7 @@ class LoaderScriptOptions(UiComponent):
 				item = QDoubleSpinBox()
 				item.setMinimum(0)
 				item.setMaximum(65535)
-				item.setValue(float(settingsValue or attributeCompound.value))
+				item.setValue(float(overridesValue or attributeCompound.value))
 
 				# Signals / Slots.
 				item.valueChanged.connect(self.__tableWidget__valueChanged)
@@ -785,13 +790,13 @@ class LoaderScriptOptions(UiComponent):
 				item = QComboBox()
 				comboBoxItems = [enumItem.strip() for enumItem in attributeCompound.value.split(self.__enumSplitter)]
 				item.addItems(comboBoxItems)
-				if settingsValue in comboBoxItems:
-					item.setCurrentIndex(comboBoxItems.index(settingsValue))
+				if overridesValue in comboBoxItems:
+					item.setCurrentIndex(comboBoxItems.index(overridesValue))
 
 				# Signals / Slots.
 				item.currentIndexChanged.connect(self.__tableWidget__valueChanged)
 			elif attributeCompound.type == "String":
-				item = QLineEdit(QString(settingsValue or attributeCompound.value))
+				item = QLineEdit(QString(overridesValue or attributeCompound.value))
 
 				# Signals / Slots.
 				item.editingFinished.connect(self.__tableWidget__valueChanged)
@@ -817,31 +822,32 @@ class LoaderScriptOptions(UiComponent):
 			return
 
 		LOGGER.debug("> Attempting to read Template settings file.")
-		commonAttributesSettings = {}
-		additionalAttributesSettings = {}
+		commonAttributesOverrides = {}
+		additionalAttributesOverrides = {}
 		templateSettingsDirectory = os.path.join(self.__templatesSettingsDirectory, template.software, template.name)
 		currentTemplateSettingsDirectory = os.path.join(templateSettingsDirectory, template.release)
+		self.__templateSettingsFile = os.path.join(templateSettingsDirectory, template.release, os.path.basename(template.path))
 		if not os.path.exists(currentTemplateSettingsDirectory):
 			io.setDirectory(currentTemplateSettingsDirectory)
 		else:
 			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search("\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
-				self.__currentTemplateSettingsFile = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
-				if not os.path.exists(self.__currentTemplateSettingsFile):
+				templateSettingsFile = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
+				if not os.path.exists(templateSettingsFile):
 					continue
 
-				LOGGER.debug("> Accessing Template settings file: '{0}'.".format(self.__currentTemplateSettingsFile))
-				templateSettingsSectionsFileParser = SectionsFileParser(self.__currentTemplateSettingsFile)
+				LOGGER.debug("> Accessing Template settings file: '{0}'.".format(templateSettingsFile))
+				templateSettingsSectionsFileParser = SectionsFileParser(templateSettingsFile)
 				templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
-				commonAttributesSettings.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
-				additionalAttributesSettings.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
+				commonAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
+				additionalAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
 				break
 
 		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateSectionsFileParser = SectionsFileParser(template.path)
 		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget, commonAttributesSettings)
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget, additionalAttributesSettings)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget, commonAttributesOverrides)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
 	@core.executionTrace
 	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -862,10 +868,24 @@ class LoaderScriptOptions(UiComponent):
 		:param \*args: Arguments. ( \* )
 		"""
 
-		templateSettingsSectionsFileParser = SectionsFileParser(self.__currentTemplateSettingsFile)
-		templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
-		for section in templateSettingsSectionsFileParser.sections:
-			print section
+		LOGGER.debug("> Preparing Template settings file.")
+		templateSettingsSectionsFileParser = SectionsFileParser(self.__templateSettingsFile)
+		templateSettingsSectionsFileParser.sections = OrderedDict()
+		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection, self.ui.Common_Attributes_tableWidget), (self.__templateAdditionalAttributesSection, self.ui.Additional_Attributes_tableWidget)]).items():
+			templateSettingsSectionsFileParser.sections[section] = OrderedDict()
+			for row in range(tableWidget.rowCount()):
+				widget = tableWidget.cellWidget(row, 0)
+				if type(widget) is Variable_QPushButton:
+					value = widget.text() == "True" and "1" or "0"
+				elif type(widget) is QDoubleSpinBox:
+					value = str(widget.value())
+				elif type(widget) is QComboBox:
+					value = str(widget.currentText())
+				else:
+					value = str(widget.text())
+				templateSettingsSectionsFileParser.sections[section][foundations.namespace.removeNamespace(widget._datas.name)] = value
+		LOGGER.debug("> Writing Template settings file.")
+		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
