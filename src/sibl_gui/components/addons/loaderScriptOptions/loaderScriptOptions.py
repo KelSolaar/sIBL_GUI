@@ -828,8 +828,7 @@ class LoaderScriptOptions(UiComponent):
 		currentTemplateSettingsDirectory = os.path.join(templateSettingsDirectory, template.release)
 		self.__templateSettingsFile = os.path.join(templateSettingsDirectory, template.release, os.path.basename(template.path))
 
-		if not os.path.exists(currentTemplateSettingsDirectory):
-			io.setDirectory(currentTemplateSettingsDirectory)
+		not os.path.exists(currentTemplateSettingsDirectory) and io.setDirectory(currentTemplateSettingsDirectory)
 
 		templateSettingsFile = None
 		if os.path.exists(self.__templateSettingsFile):
