@@ -875,7 +875,7 @@ class LoaderScriptOptions(UiComponent):
 		:param \*args: Arguments. ( \* )
 		"""
 
-		LOGGER.debug("> Preparing Template settings file.")
+		LOGGER.debug("> Initializing '{0}' Template settings file content.".format(self.__templateSettingsFile))
 		templateSettingsSectionsFileParser = SectionsFileParser(self.__templateSettingsFile)
 		templateSettingsSectionsFileParser.sections = OrderedDict()
 		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection, self.ui.Common_Attributes_tableWidget), (self.__templateAdditionalAttributesSection, self.ui.Additional_Attributes_tableWidget)]).items():
@@ -891,7 +891,6 @@ class LoaderScriptOptions(UiComponent):
 				else:
 					value = str(widget.text())
 				templateSettingsSectionsFileParser.sections[section][foundations.namespace.removeNamespace(widget._datas.name)] = value
-		LOGGER.debug("> Writing Template settings file.")
 		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace
