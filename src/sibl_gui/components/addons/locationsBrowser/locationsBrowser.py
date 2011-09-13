@@ -32,6 +32,7 @@ import umbra.ui.common
 from foundations.environment import Environment
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -670,7 +671,7 @@ class LocationsBrowser(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		customFileBrowserExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom file browser executable:", self.__container.lastBrowsedPath))
+		customFileBrowserExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom file browser executable:", RuntimeGlobals.lastBrowsedPath))
 		if customFileBrowserExecutable != "":
 			LOGGER.debug("> Chosen custom file browser executable: '{0}'.".format(customFileBrowserExecutable))
 			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))

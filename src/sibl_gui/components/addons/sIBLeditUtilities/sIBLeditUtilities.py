@@ -31,6 +31,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -476,7 +477,7 @@ class sIBLeditUtilities(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		sIBLeditExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit executable:", self.__container.lastBrowsedPath))
+		sIBLeditExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit executable:", RuntimeGlobals.lastBrowsedPath))
 		if sIBLeditExecutable != "":
 			LOGGER.debug("> Chosen sIBLedit executable: '{0}'.".format(sIBLeditExecutable))
 			self.ui.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))

@@ -29,8 +29,10 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.parsers
 import foundations.strings as strings
+import umbra.ui.common
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -512,7 +514,7 @@ class RewiringTool(UiComponent):
 		:param component: Target Component. ( String )
 		"""
 
-		customFile = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", self.__container.lastBrowsedPath))
+		customFile = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom " + component + " File:", RuntimeGlobals.lastBrowsedPath))
 		LOGGER.debug("> Chosen custom '{0}': '{1}'.".format(component, customFile))
 		if customFile != "":
 			if component == "Background":

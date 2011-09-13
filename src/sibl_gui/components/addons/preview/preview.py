@@ -39,6 +39,7 @@ import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -1761,7 +1762,7 @@ class Preview(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		customPreviewerExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom previewer executable:", self.__container.lastBrowsedPath))
+		customPreviewerExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom previewer executable:", RuntimeGlobals.lastBrowsedPath))
 		if customPreviewerExecutable != "":
 			LOGGER.debug("> Chosen custom Images Previewer executable: '{0}'.".format(customPreviewerExecutable))
 			self.ui.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))

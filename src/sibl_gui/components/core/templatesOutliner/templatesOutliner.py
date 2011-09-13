@@ -1628,7 +1628,7 @@ class TemplatesOutliner(UiComponent):
 		:note: This method may require user interaction.
 		"""
 
-		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", self.__container.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
+		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", RuntimeGlobals.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
 		if not path:
 			return
 
@@ -1865,7 +1865,7 @@ class TemplatesOutliner(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template location:".format(template.name), self.__container.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
+		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template location:".format(template.name), RuntimeGlobals.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
 		if not file:
 			return
 

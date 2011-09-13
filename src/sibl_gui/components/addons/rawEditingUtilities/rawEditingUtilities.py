@@ -32,6 +32,7 @@ import umbra.ui.common
 from foundations.environment import Environment
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -576,7 +577,7 @@ class RawEditingUtilities(UiComponent):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		customTextEditorExecutable = self.__container.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom text editor executable:", self.__container.lastBrowsedPath))
+		customTextEditorExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom text editor executable:", RuntimeGlobals.lastBrowsedPath))
 		if customTextEditorExecutable != "":
 			LOGGER.debug("> Chosen custom text editor executable: '{0}'.".format(customTextEditorExecutable))
 			self.ui.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))

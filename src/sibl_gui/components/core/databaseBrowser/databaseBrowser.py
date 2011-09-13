@@ -40,6 +40,7 @@ import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -1214,7 +1215,7 @@ class DatabaseBrowser(UiComponent):
 			# Wizard if sets table is empty.
 			if not self.getIblSets():
 				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-					directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
+					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
 							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
@@ -1493,7 +1494,7 @@ class DatabaseBrowser(UiComponent):
 		:note: This method may require user interaction.
 		"""
 
-		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
+		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
 			return
 
@@ -1514,7 +1515,7 @@ class DatabaseBrowser(UiComponent):
 		:note: This method may require user interaction.
 		"""
 
-		path = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", self.__container.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
+		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Ibl Set:", RuntimeGlobals.lastBrowsedPath, "Ibls files (*{0})".format(self.__extension))))
 		if not path:
 			return
 
@@ -1572,7 +1573,7 @@ class DatabaseBrowser(UiComponent):
 
 		success = True
 		for iblSet in selectedIblSets:
-			file = self.__container.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), self.__container.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
+			file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), RuntimeGlobals.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
 			if not file:
 				continue
 			success *= self.updateIblSetLocation(iblSet, file) or False

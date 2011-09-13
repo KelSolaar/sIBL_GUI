@@ -37,6 +37,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
+from umbra.globals.runtimeGlobals import RuntimeGlobals
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -1369,7 +1370,7 @@ class CollectionsOutliner(UiComponent):
 		if not collection:
 			return
 
-		directory = self.__container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", self.__container.lastBrowsedPath)))
+		directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
 		if not directory:
 			return
 
