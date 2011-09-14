@@ -2051,12 +2051,15 @@ class OnlineUpdater(UiComponent):
 	def onStartup(self):
 		"""
 		This method is called on Framework startup.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
 		not self.__container.parameters.deactivateWorkerThreads and self.ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		return True
 
 	@core.executionTrace
 	def addWidget(self):

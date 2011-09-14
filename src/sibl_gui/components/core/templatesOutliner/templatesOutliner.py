@@ -1244,6 +1244,8 @@ class TemplatesOutliner(UiComponent):
 	def onStartup(self):
 		"""
 		This method is called on Framework startup.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
@@ -1292,11 +1294,14 @@ class TemplatesOutliner(UiComponent):
 			self.__modelSelection["Templates"] = [int(id) for id in ids]
 
 		self.__Templates_Outliner_treeView_restoreModelSelection()
+		return True
 
 	@core.executionTrace
 	def onClose(self):
 		"""
 		This method is called on Framework close.
+
+		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Calling '{0}' Component Framework close method.".format(self.__class__.__name__))
@@ -1305,6 +1310,7 @@ class TemplatesOutliner(UiComponent):
 		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
 		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Softwares"]))
+		return True
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setModel(self):
