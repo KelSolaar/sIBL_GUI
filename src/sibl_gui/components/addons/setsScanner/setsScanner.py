@@ -510,7 +510,7 @@ class SetsScanner(Component):
 		:return: Method success. ( Boolean )		
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 		return True

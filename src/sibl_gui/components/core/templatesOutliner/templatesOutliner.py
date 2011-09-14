@@ -1248,7 +1248,7 @@ class TemplatesOutliner(UiComponent):
 		:return: Method success. ( Boolean )		
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework startup method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
 			# Adding default templates.
@@ -1304,7 +1304,7 @@ class TemplatesOutliner(UiComponent):
 		:return: Method success. ( Boolean )		
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework close method.".format(self.__class__.__name__))
+		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
 		self.__Templates_Outliner_treeView_storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__modelSelection["Templates"]))
