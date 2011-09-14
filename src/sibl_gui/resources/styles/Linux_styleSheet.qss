@@ -385,7 +385,11 @@ QToolTip {
 	padding: 8px;
 }
 
-/* Addon Component "Script Editor". */
+/* Factory Component "Script Editor". */
+#Script_Editor_tabWidget {
+	border: 0px;
+}
+
 #Lines_Numbers_textEdit {
 	background-color: rgb(96, 96, 96);
 }
