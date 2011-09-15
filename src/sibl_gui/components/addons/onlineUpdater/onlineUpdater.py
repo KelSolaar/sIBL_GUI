@@ -1567,6 +1567,26 @@ class OnlineUpdater(UiComponent):
 
 		return self.__settings
 
+	@settings.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self, value):
+		"""
+		This method is the setter method for **self.__settings** attribute.
+
+		:param value: Attribute value. ( QSettings )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
+
+	@settings.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def settings(self):
+		"""
+		This method is the deleter method for **self.__settings** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
+
 	@property
 	def settingsSection(self):
 		"""
@@ -1596,26 +1616,6 @@ class OnlineUpdater(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
-
-	@settings.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def settings(self, value):
-		"""
-		This method is the setter method for **self.__settings** attribute.
-
-		:param value: Attribute value. ( QSettings )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("settings"))
-
-	@settings.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def settings(self):
-		"""
-		This method is the deleter method for **self.__settings** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settings"))
 
 	@property
 	def corePreferencesManager(self):
