@@ -115,22 +115,22 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:return: Method success. ( Boolean )
 		"""
 
-		libraryActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
+		libraryActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
 		libraryActiveLabel.setObjectName("Library_activeLabel")
 
-		inspectActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
+		inspectActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
 														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
 		inspectActiveLabel.setObjectName("Inspect_activeLabel")
 
-		exportActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
+		exportActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
 		exportActiveLabel.setObjectName("Export_activeLabel")
 
-		preferencesActiveLabel = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
+		preferencesActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
 		preferencesActiveLabel.setObjectName("Preferences_activeLabel")
@@ -155,7 +155,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:return: Central Widget active label. ( Active_QLabel )
 		"""
 
-		centralWidgetButton = Active_QLabel(QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
+		centralWidgetButton = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
 											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
 											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")

@@ -773,7 +773,7 @@ class LoaderScriptOptions(UiComponent):
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(overridesValue or attributeCompound.value) and True or False
-				item = Variable_QPushButton(state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
+				item = Variable_QPushButton(self, state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
 				item.setChecked(state)
 
 				# Signals / Slots.

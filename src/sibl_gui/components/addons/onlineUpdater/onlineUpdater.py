@@ -1289,7 +1289,7 @@ class RemoteUpdater(object):
 					tableWidgetItem._datas = templatesReleases[release]
 					self.__ui.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
-					tableWidgetItem = Variable_QPushButton(True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
+					tableWidgetItem = Variable_QPushButton(self, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
 					self.__ui.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)

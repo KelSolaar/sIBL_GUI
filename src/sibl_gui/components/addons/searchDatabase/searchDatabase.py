@@ -637,7 +637,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Search_Database_lineEdit = Search_QLineEdit(os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
+		self.ui.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
 		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
 		self.ui.Tags_Cloud_groupBox.hide()
 		self.ui.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
