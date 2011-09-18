@@ -97,7 +97,7 @@
      <item>
       <widget class="QPushButton" name="Cancel_Close_pushButton">
        <property name="statusTip">
-        <string>Cancel / Close Push Button: Cancel / Close The Download Manager / Current Download.</string>
+        <string>Cancel / Close Push Button: Cancel / Closes the &quot;Downloads Manager&quot; / current download.</string>
        </property>
        <property name="text">
         <string>Cancel</string>
