@@ -10,7 +10,7 @@ QWidget {
 
 /* QMainWindow. */
 QMainWindow::separator {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 	height: 2px;
 	width: 2px;
 }
@@ -21,7 +21,7 @@ QMainWindow::separator:hover {
 
 /* QSplitter. */
 QSplitter::handle {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 }
 
 QSplitter::handle:horizontal {
@@ -50,7 +50,7 @@ QSplitter::handle:pressed {
 /* QStatusBar. */
 QStatusBar {
 	background-color: rgb(64, 64, 64);
-	border-top: 2px solid rgb(48, 48, 48);
+	border-top: 2px solid rgb(40, 40, 40);
 }
 
 QSizeGrip {
@@ -62,7 +62,7 @@ QSizeGrip {
 
 /* Various. */
 QCheckBox, QDateTimeEdit, QDoubleSpinBox, QListView, QLineEdit, QPlainTextEdit, QSpinBox, QTreeView, QTextEdit, QTextBrowser {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 }
 
 QComboBox, QPushButton, QToolButton {
@@ -70,7 +70,7 @@ QComboBox, QPushButton, QToolButton {
 }
 
 QTableView {
-	gridline-color: rgb(48, 48, 48);
+	gridline-color: rgb(40, 40, 40);
 }
 
 /* QDockWidget. */
@@ -104,14 +104,14 @@ QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
 
 /* QScrollBar. */
 QScrollBar:horizontal {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 	border: 2px solid rgb(56, 56, 56);
 	height: 20px;
 	margin: 0px 20px 0 20px;
 }
 
 QScrollBar:vertical {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 	border: 2px solid rgb(56, 56, 56);
 	width: 20px;
 	margin: 20px 0px 20px 0;
@@ -275,7 +275,7 @@ QTreeView::branch:hover, QTreeView::item:hover {
 /* QListView. */
 QListView::item {
 	background-color: rgb(64, 64, 64);
-	border: 4px solid rgb(48, 48, 48);
+	border: 4px solid rgb(40, 40, 40);
 	padding: 4px;
 }
 
@@ -341,7 +341,7 @@ QGroupBox::title {
 
 /* QSlider. */
 QSlider::groove:horizontal {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 	border: 2px solid rgb(56, 56, 56);
 	border-radius: 4px;
 	height: 10px;
@@ -377,7 +377,7 @@ QToolTip {
 /* Components. */
 /* Core Component "Inspector". */
 #Inspector_Overall_frame {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 }
 
 #Image_frame {
@@ -395,7 +395,7 @@ QToolTip {
 
 /* Addon Component "Search Database". */
 #Clear_Field_button {
-	background-color: rgb(48, 48, 48);
+	background-color: rgb(40, 40, 40);
 }
 
 #Tags_Cloud_listWidget::item {
