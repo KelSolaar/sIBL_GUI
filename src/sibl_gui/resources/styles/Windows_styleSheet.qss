@@ -393,6 +393,10 @@ QToolTip {
 	background-color: rgb(96, 96, 96);
 }
 
+#Case_Sensitive_checkBox, #Whole_Word_checkBox, #Regular_Expressions_checkBox, #Backward_Search_checkBox, #Wrap_Search_checkBox {
+	background-color: rgb(64, 64, 64);
+}
+
 /* Addon Component "Search Database". */
 #Clear_Field_button {
 	background-color: rgb(40, 40, 40);
