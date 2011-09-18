@@ -552,7 +552,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
 		"""
-		This method overloads the download Manager close event.
+		This method overloads the download manager close event.
 
 		:param closeEvent: Close event. ( QCloseEvent )
 		"""
@@ -563,7 +563,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
-		This method triggers the downloadmanager close.
+		This method is triggered when **Cancel_Close_pushButton** is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
