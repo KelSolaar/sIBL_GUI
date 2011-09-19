@@ -394,7 +394,7 @@ QToolTip {
 	background-color: rgb(96, 96, 96);
 }
 
-#Case_Sensitive_checkBox, #Whole_Word_checkBox, #Regular_Expressions_checkBox, #Backward_Search_checkBox, #Wrap_Search_checkBox {
+#Case_Sensitive_checkBox, #Whole_Word_checkBox, #Regular_Expressions_checkBox, #Backward_Search_checkBox, #Wrap_Around_checkBox {
 	background-color: rgb(64, 64, 64);
 }
 
