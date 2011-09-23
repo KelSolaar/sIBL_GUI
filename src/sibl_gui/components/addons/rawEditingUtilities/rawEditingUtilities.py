@@ -572,7 +572,7 @@ class RawEditingUtilities(UiComponent):
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_Text_Editor_Path_toolButton** is clicked.
+		This method is called when **Custom_Text_Editor_Path_toolButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

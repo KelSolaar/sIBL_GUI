@@ -958,7 +958,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Previous_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Image_pushButton** is clicked.
+		This method is triggered when **Previous_Image_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -968,7 +968,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Next_Image_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Image_pushButton** is clicked.
+		This method is triggered when **Next_Image_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -978,7 +978,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_In_pushButton_clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_In_pushButton** is clicked.
+		This method is triggered when **Zoom_In_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -988,7 +988,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_Out_pushButton** is clicked.
+		This method is triggered when **Zoom_Out_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -998,7 +998,7 @@ class ImagesPreviewer(object):
 	@core.executionTrace
 	def __Zoom_Fit_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_Fit_pushButton** is clicked.
+		This method is triggered when **Zoom_Fit_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1757,7 +1757,7 @@ class Preview(UiComponent):
 	@core.executionTrace
 	def __Custom_Previewer_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_Previewer_Path_toolButton** is clicked.
+		This method is called when **Custom_Previewer_Path_toolButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

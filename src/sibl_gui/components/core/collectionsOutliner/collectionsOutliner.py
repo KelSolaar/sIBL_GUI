@@ -312,7 +312,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@core.executionTrace
 	def __QTreeView__clicked(self, index):
 		"""
-		This method defines the behavior when the **Model** is clicked.
+		This method defines the behavior when the **Model** widget is clicked.
 
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""

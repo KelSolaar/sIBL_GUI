@@ -563,7 +563,7 @@ class DownloadManager(QObject):
 	@core.executionTrace
 	def __Cancel_Close_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Cancel_Close_pushButton** is clicked.
+		This method is triggered when **Cancel_Close_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1321,7 +1321,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Get_sIBL_GUI_pushButton** is clicked.
+		This method is triggered when **Get_sIBL_GUI_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1342,7 +1342,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Get_Latest_Templates_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Get_Latest_Templates_pushButton** is clicked.
+		This method is triggered when **Get_Latest_Templates_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1362,7 +1362,7 @@ class RemoteUpdater(object):
 	@core.executionTrace
 	def __Open_Repository_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Open_Repository_pushButton** is clicked.
+		This method is triggered when **Open_Repository_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -2136,7 +2136,7 @@ class OnlineUpdater(UiComponent):
 	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Check_For_New_Releases_pushButton** is clicked.
+		This method is triggered when **Check_For_New_Releases_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

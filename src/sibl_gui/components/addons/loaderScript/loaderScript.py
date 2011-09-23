@@ -628,7 +628,7 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	def __Output_Loader_Script_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Output_Loader_Script_pushButton** is clicked.
+		This method is triggered when **Output_Loader_Script_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -638,7 +638,7 @@ class LoaderScript(UiComponent):
 	@core.executionTrace
 	def __Send_To_Software_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Send_To_Software_pushButton** is clicked.
+		This method is triggered when **Send_To_Software_pushButton** widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
