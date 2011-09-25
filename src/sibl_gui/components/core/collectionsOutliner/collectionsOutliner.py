@@ -312,7 +312,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@core.executionTrace
 	def __QTreeView__clicked(self, index):
 		"""
-		This method defines the behavior when the **Model** widget is clicked.
+		This method defines the behavior when the **Model** Widget is clicked.
 
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""
@@ -1182,7 +1182,7 @@ class CollectionsOutliner(UiComponent):
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setDefaultViewState(self):
 		"""
-		This method sets **Collections_Outliner_treeView** default View state.
+		This method sets **Collections_Outliner_treeView** Widget default View state.
 		"""
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Collections_Outliner_treeView"))

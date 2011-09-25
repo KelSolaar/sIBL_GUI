@@ -472,7 +472,7 @@ class sIBLeditUtilities(UiComponent):
 	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **sIBLedit_Path_toolButton** widget is clicked.
+		This method is called when **sIBLedit_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

@@ -427,7 +427,7 @@ class DatabaseOperations(UiComponent):
 	@core.executionTrace
 	def __synchronize_Database_pushButton_clicked(self, checked):
 		"""
-		This method is triggered when **Synchronize_Database_pushButton** widget is clicked.
+		This method is triggered when **Synchronize_Database_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

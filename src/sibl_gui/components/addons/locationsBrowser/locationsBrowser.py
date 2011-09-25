@@ -666,7 +666,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Custom_File_Browser_Path_toolButton** widget is clicked.
+		This method is called when **Custom_File_Browser_Path_toolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -695,7 +695,7 @@ class LocationsBrowser(UiComponent):
 	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
 		"""
-		This method is called when **Open_Output_Directory_pushButton** widget is clicked.
+		This method is called when **Open_Output_Directory_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

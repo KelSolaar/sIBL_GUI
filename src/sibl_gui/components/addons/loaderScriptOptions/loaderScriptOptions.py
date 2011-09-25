@@ -870,7 +870,7 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def __tableWidget__valueChanged(self, *args):
 		"""
-		This method is triggered when a **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** widget value has changed.
+		This method is triggered when a **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** Widget value has changed.
 
 		:param \*args: Arguments. ( \* )
 		"""

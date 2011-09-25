@@ -1103,7 +1103,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Ibl_Set_pushButton** widget is clicked.
+		This method is triggered when **Previous_Ibl_Set_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1113,7 +1113,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Ibl_Set_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Ibl_Set_pushButton** widget is clicked.
+		This method is triggered when **Next_Ibl_Set_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1123,7 +1123,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Previous_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Previous_Plate_pushButton** widget is clicked.
+		This method is triggered when **Previous_Plate_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -1133,7 +1133,7 @@ class Inspector(UiComponent):
 	@core.executionTrace
 	def __Next_Plate_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Next_Plate_pushButton** widget is clicked.
+		This method is triggered when **Next_Plate_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

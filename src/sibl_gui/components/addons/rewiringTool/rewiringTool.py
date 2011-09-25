@@ -463,7 +463,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Background_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Background_ToolButton** widget is clicked.
+		This method is called when **Background_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -473,7 +473,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Lighting_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Lighting_ToolButton** widget is clicked.
+		This method is called when **Lighting_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -483,7 +483,7 @@ class RewiringTool(UiComponent):
 	@core.executionTrace
 	def __Reflection_Path_toolButton__clicked(self, checked):
 		"""
-		This method is called when **Reflection_ToolButton** widget is clicked.
+		This method is called when **Reflection_ToolButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

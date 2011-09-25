@@ -659,7 +659,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __Zoom_In_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_In_pushButton** widget is clicked.
+		This method is triggered when **Zoom_In_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""
@@ -669,7 +669,7 @@ class GpsMap(UiComponent):
 	@core.executionTrace
 	def __Zoom_Out_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Zoom_Out_pushButton** widget is clicked.
+		This method is triggered when **Zoom_Out_pushButton** Widget is clicked.
 
 		:param checked: Checked state. ( Boolean )
 		"""

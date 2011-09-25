@@ -1427,7 +1427,7 @@ class TemplatesOutliner(UiComponent):
 	@core.executionTrace
 	def __Templates_Outliner_treeView_setDefaultViewState(self):
 		"""
-		This method sets **Templates_Outliner_treeView** default View state.
+		This method sets **Templates_Outliner_treeView** Widget default View state.
 		"""
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Templates_Outliner_treeView"))
