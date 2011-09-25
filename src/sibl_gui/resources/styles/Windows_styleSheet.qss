@@ -401,8 +401,8 @@ QToolTip {
 	background-color: rgb(64, 64, 64);
 }
 
-#Lines_Columns_QLabel {
-	margin: 2px 8px 2px 8px;
+#Lines_Columns_label {
+	margin: 4px 8px 4px 8px;
 }
 
 /* Addon Component "Search Database". */
