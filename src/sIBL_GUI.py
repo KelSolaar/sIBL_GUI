@@ -92,17 +92,18 @@ class sIBL_GUI(umbra.engine.Umbra):
 	"""
 
 	@core.executionTrace
-	def __init__(self, paths, components=None):
+	def __init__(self, componentsPaths, requisiteComponents=None, visibleComponents=None):
 		"""
 		This method initializes the class.
 
-		:param paths: Components paths. ( QString )
-		:param components: Mandatory components names. ( QString )
+		:param componentsPaths: Components componentsPaths. ( Tuple / List )
+		:param requisiteComponents: Requisite components names. ( Tuple / List )
+		:param visibleComponents: Visible components names. ( Tuple / List )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.engine.Umbra.__init__(self, paths, components)
+		umbra.engine.Umbra.__init__(self, componentsPaths, requisiteComponents, visibleComponents)
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -241,4 +242,4 @@ if __name__ == "__main__":
 					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
 		(os.path.exists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
-	umbra.engine.run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"))
+	umbra.engine.run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"), ("core.databaseBrowser",))
