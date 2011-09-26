@@ -106,6 +106,57 @@ QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
 	padding: 1px -1px -1px 1px;
 }
 
+/* QTabWidget. */
+QTabWidget::pane {
+
+}
+
+QTabBar::tab {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(64, 64, 64), stop: 1 rgb(56, 56, 56));
+	border: 2px solid rgb(48, 48, 48);
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 2px;
+}
+
+QTabBar::tab:hover {
+	background-color: rgb(64, 64, 64);
+}
+
+QTabBar::tab:selected {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(88, 88, 88), stop: 1 rgb(84, 84, 84));
+}
+
+QTabBar::tab:selected {
+	border-color: rgb(56, 56, 56);
+}
+
+QTabBar::tab:first:selected {
+	margin-left: 2px;
+}
+
+QTabBar::tab:last:selected {
+	margin-right: 2px;
+}
+
+QTabBar::tab:only-one {
+	margin-left: 2px;
+}
+ 
+QTabBar::close-button {
+	image: url(images/Close_Cross.png);
+}
+
+QTabBar::close-button:hover {
+	image: url(images/Close_Cross_Hover.png);
+}
+
+QTabBar::close-button:pressed {
+	padding: 1px -1px -1px 1px;
+}
+
 /* QScrollBar. */
 QScrollBar:horizontal {
 	background-color: rgb(40, 40, 40);
