@@ -55,24 +55,7 @@ class RawEditingUtilities(UiComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
-	| By default the Component will use current operating system editor but the user can define a custom file editor through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
-
-	Defaults file editors:
-
-		- Windows:
-
-			- Notepad
-
-		- Mac Os X:
-
-			- TextEdit
-
-		- Linux:
-
-			- Gedit
-			- Kwrite
-			- Nedit
-			- Mousepad
+	| By default the Component will use the **factory.scriptEditor** Component but the user can define a custom file editor through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
 	@core.executionTrace
@@ -97,12 +80,13 @@ class RawEditingUtilities(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
+		self.__factoryScriptEditor = None
 		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
 
-		self.__linuxTextEditors = ("gedit", "kwrite", "nedit", "mousepad")
+		self.__editLayout = "editCentric"
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -228,6 +212,36 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
+	def factoryScriptEditor(self):
+		"""
+		This method is the property for **self.__factoryScriptEditor** attribute.
+
+		:return: self.__factoryScriptEditor. ( Object )
+		"""
+
+		return self.__factoryScriptEditor
+
+	@factoryScriptEditor.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def factoryScriptEditor(self, value):
+		"""
+		This method is the setter method for **self.__factoryScriptEditor** attribute.
+
+		:param value: Attribute value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryScriptEditor"))
+
+	@factoryScriptEditor.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def factoryScriptEditor(self):
+		"""
+		This method is the deleter method for **self.__factoryScriptEditor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryScriptEditor"))
+
+	@property
 	def factoryPreferencesManager(self):
 		"""
 		This method is the property for **self.__factoryPreferencesManager** attribute.
@@ -348,34 +362,34 @@ class RawEditingUtilities(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
 	@property
-	def linuxTextEditors(self):
+	def editLayout(self):
 		"""
-		This method is the property for **self.__linuxTextEditors** attribute.
+		This method is the property for **self.__editLayout** attribute.
 
-		:return: self.__linuxTextEditors. ( Tuple )
+		:return: self.__editLayout. ( String )
 		"""
 
-		return self.__linuxTextEditors
+		return self.__editLayout
 
-	@linuxTextEditors.setter
+	@editLayout.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def linuxTextEditors(self, value):
+	def editLayout(self, value):
 		"""
-		This method is the setter method for **self.__linuxTextEditors** attribute.
+		This method is the setter method for **self.__editLayout** attribute.
 
-		:param value: Attribute value. ( Tuple )
+		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editLayout"))
 
-	@linuxTextEditors.deleter
+	@editLayout.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def linuxTextEditors(self):
+	def editLayout(self):
 		"""
-		This method is the deleter method for **self.__linuxTextEditors** attribute.
+		This method is the deleter method for **self.__editLayout** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("linuxTextEditors"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editLayout"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -396,6 +410,7 @@ class RawEditingUtilities(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
+		self.__factoryScriptEditor = self.__container.componentsManager.components["factory.scriptEditor"].interface
 		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
@@ -418,6 +433,7 @@ class RawEditingUtilities(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
+		self.__factoryScriptEditor = None
 		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
@@ -501,9 +517,9 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ...", slot=self.__Database_Browser_listView_editIblSetsInTextEditorAction__triggered))
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In Text Editor ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered))
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ...", slot=self.__Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered))
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...", slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered))
+			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered))
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...", slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
 		else:
 			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -516,20 +532,20 @@ class RawEditingUtilities(UiComponent):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			editIblSetsInTextEditorAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ..."
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetsInTextEditorAction))
-			self.__container.actionsManager.unregisterAction(editIblSetsInTextEditorAction)
-			editInspectorIblSetInTextEditorAction = "Actions|Umbra|Components|core.inspector|Edit In Text Editor ..."
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInTextEditorAction))
-			self.__container.actionsManager.unregisterAction(editInspectorIblSetInTextEditorAction)
-			editTemplateInTextEditorAction = "Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ..."
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(editTemplateInTextEditorAction))
-			self.__container.actionsManager.unregisterAction(editTemplateInTextEditorAction)
+			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
+			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetsFilesAction))
+			self.__container.actionsManager.unregisterAction(editIblSetsFilesAction)
+			editInspectorIblSetsFilesAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ..."
+			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetsFilesAction))
+			self.__container.actionsManager.unregisterAction(editInspectorIblSetsFilesAction)
+			editTemplatesFilesAction = "Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ..."
+			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(editTemplatesFilesAction))
+			self.__container.actionsManager.unregisterAction(editTemplatesFilesAction)
 
 	@core.executionTrace
-	def __Database_Browser_listView_editIblSetsInTextEditorAction__triggered(self, checked):
+	def __Database_Browser_listView_editIblSetsFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit In Text Editor ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -538,9 +554,9 @@ class RawEditingUtilities(UiComponent):
 		return self.editIblSetsInTextEditor_ui()
 
 	@core.executionTrace
-	def __Inspector_Overall_frame_editInspectorIblSetInTextEditorAction__triggered(self, checked):
+	def __Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit In Text Editor ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -549,9 +565,9 @@ class RawEditingUtilities(UiComponent):
 		return self.editInspectorIblSetInTextEditor_ui()
 
 	@core.executionTrace
-	def __Templates_Outliner_treeView_editTemplateInTextEditorAction__triggered(self, checked):
+	def __Templates_Outliner_treeView_editTemplatesFilesAction__triggered(self, checked):
 		"""
-		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Edit In Text Editor ...'** action.
+		This method is triggered by **'Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...'** action.
 
 		:param checked: Action checked state. ( Boolean )
 		:return: Method success. ( Boolean )
@@ -668,7 +684,7 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getProcessCommand(self, file, customTextEditor=None):
+	def getProcessCommand(self, file, customTextEditor):
 		"""
 		This method gets process command.
 
@@ -680,38 +696,11 @@ class RawEditingUtilities(UiComponent):
 		processCommand = None
 		file = os.path.normpath(file)
 		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			if customTextEditor:
-				processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
-			else:
-				processCommand = "notepad.exe \"{0}\"".format(file)
+			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 		elif platform.system() == "Darwin":
-			if customTextEditor:
-				processCommand = "open -a \"{0}\" \"{1}\"".format(customTextEditor, file)
-			else:
-				processCommand = "open -e \"{0}\"".format(file)
+			processCommand = "open -a \"{0}\" \"{1}\"".format(customTextEditor, file)
 		elif platform.system() == "Linux":
-			if customTextEditor:
-				processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
-			else:
-				environmentVariable = Environment("PATH")
-				paths = environmentVariable.getValue().split(":")
-
-				editorFound = False
-				for editor in self.__linuxTextEditors:
-					if editorFound:
-						break
-
-					try:
-						for path in paths:
-							if os.path.exists(os.path.join(path, editor)):
-								processCommand = "\"{0}\" \"{1}\"".format(editor, file)
-								editorFound = True
-								raise StopIteration
-					except StopIteration:
-						pass
-
-				if not editorFound:
-					raise Exception("{0} | Exception raised: No suitable Linux editor found!".format(self.__class__.__name__))
+			processCommand = "\"{0}\" \"{1}\"".format(customTextEditor, file)
 		return processCommand
 
 	@core.executionTrace
@@ -725,12 +714,16 @@ class RawEditingUtilities(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		editCommand = self.getProcessCommand(file, customTextEditor)
-		if editCommand:
-			LOGGER.debug("> Current edit command: '{0}'.".format(editCommand))
-			LOGGER.info("{0} | Launching text editor with '{1}' file.".format(self.__class__.__name__, file))
-			editProcess = QProcess()
-			editProcess.startDetached(editCommand)
-			return True
+		if customTextEditor:
+			editCommand = self.getProcessCommand(file, customTextEditor)
+			if editCommand:
+				LOGGER.debug("> Current edit command: '{0}'.".format(editCommand))
+				LOGGER.info("{0} | Launching text editor with '{1}' file.".format(self.__class__.__name__, file))
+				editProcess = QProcess()
+				editProcess.startDetached(editCommand)
+				return True
+			else:
+				raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
 		else:
-			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
+			self.__container.restoreLayout(self.__editLayout)
+			return self.__factoryScriptEditor.loadFile(file)
