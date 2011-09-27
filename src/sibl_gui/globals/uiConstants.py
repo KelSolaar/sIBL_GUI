@@ -111,6 +111,13 @@ class UiConstants():
 	exportActiveIcon = "images/Export_Active.png"
 	"""Application **Export** active icon: '**images/Export_Active.png**' ( String )"""
 
+	editIcon = "images/Edit.png"
+	"""Application **Edit** icon: '**images/Edit.png**' ( String )"""
+	editHoverIcon = "images/Edit_Hover.png"
+	"""Application **Edit** hover icon: '**images/Edit_Hover.png**' ( String )"""
+	editActiveIcon = "images/Edit_Active.png"
+	"""Application **Edit** active icon: '**images/Edit_Active.png**' ( String )"""
+
 	preferencesIcon = "images/Preferences.png"
 	"""Application **Preferences** icon: '**images/Preferences.png**' ( String )"""
 	preferencesHoverIcon = "images/Preferences_Hover.png"

@@ -82,6 +82,9 @@ class UiConstantsTestCase(unittest.TestCase):
 								"exportIcon",
 								"exportHoverIcon",
 								"exportActiveIcon",
+								"editIcon",
+								"editHoverIcon",
+								"editActiveIcon",
 								"preferencesIcon",
 								"preferencesHoverIcon",
 								"preferencesActiveIcon",
@@ -326,6 +329,27 @@ class UiConstantsTestCase(unittest.TestCase):
 		"""
 
 		self.assertRegexpMatches(UiConstants.exportActiveIcon, "\w+")
+
+	def testEditIconAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.editIcon` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.editIcon, "\w+")
+
+	def testEditHoverIconAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.editHoverIcon` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.editHoverIcon, "\w+")
+
+	def testEditActiveIconAttribute(self):
+		"""
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.editActiveIcon` attribute.
+		"""
+
+		self.assertRegexpMatches(UiConstants.editActiveIcon, "\w+")
 
 	def testPreferencesIconAttribute(self):
 		"""

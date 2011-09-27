@@ -131,14 +131,20 @@ class sIBL_GUI(umbra.engine.Umbra):
 												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
 		exportActiveLabel.setObjectName("Export_activeLabel")
 
+		editActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editIcon)),
+												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editHoverIcon)),
+												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editActiveIcon)), True)
+		editActiveLabel.setObjectName("Edit_activeLabel")
+
 		preferencesActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
 													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
 		preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 
-		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_7),
-									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_8),
-									umbra.ui.common.LayoutActiveLabel(name="Export", object=exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_9),
+		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_6),
+									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_7),
+									umbra.ui.common.LayoutActiveLabel(name="Export", object=exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_8),
+									umbra.ui.common.LayoutActiveLabel(name="Edit", object=editActiveLabel, layout="editCentric", shortcut=Qt.Key_9),
 									umbra.ui.common.LayoutActiveLabel(name="Preferences", object=preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
 
 		# Signals / Slots.
@@ -180,7 +186,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		LOGGER.debug("> Adding 'Logo_Spacer_label' widget!")
 		self.toolBar.addWidget(self.getLogoSpacerLabel())
 
-		LOGGER.debug("> Adding 'Development_activeLabel', 'Preferences_activeLabel' widgets!")
+		LOGGER.debug("> Adding 'Library_activeLabel', 'Inspect_activeLabel', 'Export_activeLabel', 'Edit_activeLabel', 'Preferences_activeLabel' widgets!")
 		self.getLayoutsActiveLabels()
 		for activeLabel in self.layoutsActiveLabels:
 			self.toolBar.addWidget(activeLabel.object)
