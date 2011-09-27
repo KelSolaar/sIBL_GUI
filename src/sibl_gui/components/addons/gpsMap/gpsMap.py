@@ -636,6 +636,19 @@ class GpsMap(UiComponent):
 		return True
 
 	@core.executionTrace
+	def onClose(self):
+		"""
+		This method is called on Framework close.
+
+		:return: Method success. ( Boolean )		
+		"""
+
+		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
+
+		self.__map.stop()
+		return True
+
+	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** selection has changed.
