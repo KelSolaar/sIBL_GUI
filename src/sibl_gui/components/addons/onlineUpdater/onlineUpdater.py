@@ -2215,7 +2215,7 @@ class OnlineUpdater(UiComponent):
 		self.__releaseReply.finished.connect(self.__releaseReply__finished)
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, sibl_gui.exceptions.NetworkError, Exception)
 	def checkForNewReleases_ui(self):
 		"""
 		This method checks for new releases.
@@ -2225,6 +2225,9 @@ class OnlineUpdater(UiComponent):
 		:note: This method may require user interaction.
 		"""
 
+		if not self.__networkAccessManager.networkAccessible():
+			raise sibl_gui.exceptions.NetworkError("{0} | Network is not accessible!".format(self.__class__.__name__))
+	
 		self.__reportUpdateStatus = True
 		if self.checkForNewReleases():
 			return True
@@ -2232,7 +2235,7 @@ class OnlineUpdater(UiComponent):
 			raise Exception("{0} | Exception raised while checking for new releases!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError, Exception)
 	def checkForNewReleases(self):
 		"""
 		This method checks for new releases.
@@ -2240,5 +2243,8 @@ class OnlineUpdater(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
+		if not self.__networkAccessManager.networkAccessible():
+			raise sibl_gui.exceptions.NetworkError("{0} | Network is not accessible!".format(self.__class__.__name__))
+	
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
 		return True
