@@ -121,7 +121,7 @@ class Inspector(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__corePreferencesManager = None
+		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 
 		self.__model = None
@@ -838,7 +838,7 @@ class Inspector(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
+		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
 		return UiComponent.activate(self)

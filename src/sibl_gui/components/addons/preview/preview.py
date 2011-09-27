@@ -1109,7 +1109,7 @@ class Preview(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__corePreferencesManager = None
+		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
@@ -1275,34 +1275,34 @@ class Preview(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
-	def corePreferencesManager(self):
+	def factoryPreferencesManager(self):
 		"""
-		This method is the property for **self.__corePreferencesManager** attribute.
+		This method is the property for **self.__factoryPreferencesManager** attribute.
 
-		:return: self.__corePreferencesManager. ( Object )
+		:return: self.__factoryPreferencesManager. ( Object )
 		"""
 
-		return self.__corePreferencesManager
+		return self.__factoryPreferencesManager
 
-	@corePreferencesManager.setter
+	@factoryPreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def corePreferencesManager(self, value):
+	def factoryPreferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__corePreferencesManager** attribute.
+		This method is the setter method for **self.__factoryPreferencesManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryPreferencesManager"))
 
-	@corePreferencesManager.deleter
+	@factoryPreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def corePreferencesManager(self):
+	def factoryPreferencesManager(self):
 		"""
-		This method is the deleter method for **self.__corePreferencesManager** attribute.
+		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryPreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -1474,7 +1474,7 @@ class Preview(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
+		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 
@@ -1498,7 +1498,7 @@ class Preview(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__corePreferencesManager = None
+		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
@@ -1557,7 +1557,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Previewer_Path_groupBox)
+		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Previewer_Path_groupBox)
 
 		return True
 
@@ -1571,7 +1571,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__corePreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
+		self.__factoryPreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
 		self.ui.Custom_Previewer_Path_groupBox.setParent(None)
 
 		return True

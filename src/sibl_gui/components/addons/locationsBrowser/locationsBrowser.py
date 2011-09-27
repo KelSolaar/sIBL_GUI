@@ -97,8 +97,8 @@ class LocationsBrowser(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__coreComponentsManagerUi = None
-		self.__corePreferencesManager = None
+		self.__factoryComponentsManagerUi = None
+		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
@@ -232,64 +232,64 @@ class LocationsBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
 
 	@property
-	def coreComponentsManagerUi(self):
+	def factoryComponentsManagerUi(self):
 		"""
-		This method is the property for **self.__coreComponentsManagerUi** attribute.
+		This method is the property for **self.__factoryComponentsManagerUi** attribute.
 
-		:return: self.__coreComponentsManagerUi. ( Object )
+		:return: self.__factoryComponentsManagerUi. ( Object )
 		"""
 
-		return self.__coreComponentsManagerUi
+		return self.__factoryComponentsManagerUi
 
-	@coreComponentsManagerUi.setter
+	@factoryComponentsManagerUi.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreComponentsManagerUi(self, value):
+	def factoryComponentsManagerUi(self, value):
 		"""
-		This method is the setter method for **self.__coreComponentsManagerUi** attribute.
+		This method is the setter method for **self.__factoryComponentsManagerUi** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryComponentsManagerUi"))
 
-	@coreComponentsManagerUi.deleter
+	@factoryComponentsManagerUi.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreComponentsManagerUi(self):
+	def factoryComponentsManagerUi(self):
 		"""
-		This method is the deleter method for **self.__coreComponentsManagerUi** attribute.
+		This method is the deleter method for **self.__factoryComponentsManagerUi** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreComponentsManagerUi"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryComponentsManagerUi"))
 
 	@property
-	def corePreferencesManager(self):
+	def factoryPreferencesManager(self):
 		"""
-		This method is the property for **self.__corePreferencesManager** attribute.
+		This method is the property for **self.__factoryPreferencesManager** attribute.
 
-		:return: self.__corePreferencesManager. ( Object )
+		:return: self.__factoryPreferencesManager. ( Object )
 		"""
 
-		return self.__corePreferencesManager
+		return self.__factoryPreferencesManager
 
-	@corePreferencesManager.setter
+	@factoryPreferencesManager.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def corePreferencesManager(self, value):
+	def factoryPreferencesManager(self, value):
 		"""
-		This method is the setter method for **self.__corePreferencesManager** attribute.
+		This method is the setter method for **self.__factoryPreferencesManager** attribute.
 
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryPreferencesManager"))
 
-	@corePreferencesManager.deleter
+	@factoryPreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def corePreferencesManager(self):
+	def factoryPreferencesManager(self):
 		"""
-		This method is the deleter method for **self.__corePreferencesManager** attribute.
+		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("corePreferencesManager"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryPreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -460,8 +460,8 @@ class LocationsBrowser(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
-		self.__coreComponentsManagerUi = self.__container.componentsManager.components["factory.componentsManagerUi"].interface
-		self.__corePreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
+		self.__factoryComponentsManagerUi = self.__container.componentsManager.components["factory.componentsManagerUi"].interface
+		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
@@ -484,8 +484,8 @@ class LocationsBrowser(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
-		self.__coreComponentsManagerUi = None
-		self.__corePreferencesManager = None
+		self.__factoryComponentsManagerUi = None
+		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
@@ -557,7 +557,7 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__corePreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
+		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
 
 		return True
 
@@ -585,7 +585,7 @@ class LocationsBrowser(UiComponent):
 
 		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
 		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Open Ibl Set location ...", slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
-		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
+		self.__factoryComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
@@ -603,7 +603,7 @@ class LocationsBrowser(UiComponent):
 		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(openInspectorIblSetLocationsAction))
 		self.__container.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
 		openComponentsLocationsAction = "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
-		self.__coreComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__container.actionsManager.getAction(openComponentsLocationsAction))
+		self.__factoryComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__container.actionsManager.getAction(openComponentsLocationsAction))
 		self.__container.actionsManager.unregisterAction(openComponentsLocationsAction)
 		openTemplatesLocationsAction = "Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ..."
 		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(openTemplatesLocationsAction))
@@ -757,7 +757,7 @@ class LocationsBrowser(UiComponent):
 		:note: This method may require user interaction.
 		"""
 
-		selectedComponents = self.__coreComponentsManagerUi.getSelectedComponents()
+		selectedComponents = self.__factoryComponentsManagerUi.getSelectedComponents()
 
 		success = True
 		for component in selectedComponents:
