@@ -16,7 +16,7 @@ QMainWindow::separator {
 }
 
 QMainWindow::separator:hover {
-     background-color: rgb(96, 96, 96);
+	background-color: rgb(96, 96, 96);
 }
 
 /* QSplitter. */
@@ -33,7 +33,7 @@ QSplitter::handle:vertical {
 }
 
 QSplitter::handle:pressed {
-     background-color: rgb(96, 96, 96);
+	background-color: rgb(96, 96, 96);
 }
 
 /* Toolbar. */
@@ -84,7 +84,7 @@ QDockWidget {
 }
 
 QDockWidget::title {
- 	background-color: rgb(64, 64, 64);
+	background-color: rgb(64, 64, 64);
 	padding: 8px;
 	text-align: middle;
 }
@@ -95,11 +95,11 @@ QDockWidget::close-button, QDockWidget::float-button {
 }
 
 QDockWidget::close-button:hover {
-     image: url(images/Close_Cross_Hover.png);
+	image: url(images/Close_Cross_Hover.png);
 }
 
 QDockWidget::float-button:hover {
-    image: url(images/Undock_Window_Hover.png);
+	image: url(images/Undock_Window_Hover.png);
 }
 
 QDockWidget::close-button:pressed, QDockWidget::float-button:pressed {
@@ -389,7 +389,14 @@ QDateTimeEdit::down-arrow, QDoubleSpinBox::down-arrow, QSpinBox::down-arrow  {
 }
 
 /* QGroupBox. */
+QGroupBox {
+	border: 1px solid rgb(40, 40, 40);
+	border-radius: 4px;
+	margin-top: 6px;
+}
+
 QGroupBox::title {
+	padding: 0 4px;
 	subcontrol-origin: margin;
 	subcontrol-position: top center;
 }
