@@ -455,6 +455,6 @@ class DatabaseOperations(UiComponent):
 				else:
 					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 						dbType.updateLocationMethod(item)
-			dbType.modelContainer.emit(SIGNAL("modelRefresh"))
+			dbType.modelContainer.modelRefresh.emit()
 		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 		return True

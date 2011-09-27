@@ -808,7 +808,7 @@ class SearchDatabase(UiComponent):
 
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent
-			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
+			self.__coreDatabaseBrowser.modelRefresh.emit()
 		return True
 
 	@core.executionTrace
@@ -864,5 +864,5 @@ class SearchDatabase(UiComponent):
 
 		if previousModelContent != modelContent:
 			self.__coreDatabaseBrowser.modelContent = modelContent
-			self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
+			self.__coreDatabaseBrowser.modelRefresh.emit()
 		return True

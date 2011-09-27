@@ -1071,7 +1071,7 @@ class Inspector(UiComponent):
 			if hasattr(item, "_datas"):
 				self.ui.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(item._datas.previewImage))
 			else:
-				self.emit(SIGNAL("uiRefresh()"))
+				self.uiRefresh.emit()
 
 	@core.executionTrace
 	def __coreDatabaseBrowser__modelChanged(self):
@@ -1093,12 +1093,12 @@ class Inspector(UiComponent):
 		self.__setInspectorIblSet()
 
 		self.__setInspectorIblSetPlates()
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 		if self.__inspectorIblSet:
-			self.emit(SIGNAL("uiRefresh()"))
+			self.uiRefresh.emit()
 		else:
-			self.emit(SIGNAL("uiClear()"))
+			self.uiClear.emit()
 
 	@core.executionTrace
 	def __Previous_Ibl_Set_pushButton__clicked(self, checked):
@@ -1282,7 +1282,7 @@ class Inspector(UiComponent):
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:
-			self.emit(SIGNAL("uiClear()"))
+			self.uiClear.emit()
 		return True
 
 	@core.executionTrace

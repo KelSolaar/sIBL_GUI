@@ -245,7 +245,7 @@ class DatabaseBrowser_Worker(QThread):
 							LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
 							needModelRefresh = True
 
-		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
+		needModelRefresh and self.databaseChanged.emit()
 
 class DatabaseBrowser_QListView(QListView):
 	"""
@@ -1281,6 +1281,7 @@ class DatabaseBrowser(UiComponent):
 		self.__model.clear()
 
 		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self.__modelContent), key=lambda x:(x[1]))]:
+
 			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
 
 			try:
@@ -1303,7 +1304,7 @@ class DatabaseBrowser(UiComponent):
 
 		self.__Database_Browser_listView_restoreModelSelection()
 
-		self.emit(SIGNAL("modelChanged()"))
+		self.modelChanged.emit()
 
 	@core.executionTrace
 	def __Database_Browser_listView_refreshModel(self):
@@ -1461,7 +1462,7 @@ class DatabaseBrowser(UiComponent):
 		iblSet.title = str(currentTitle)
 		dbCommon.commit(self.__coreDb.dbSession)
 
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
@@ -1487,7 +1488,7 @@ class DatabaseBrowser(UiComponent):
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1554,8 +1555,8 @@ class DatabaseBrowser(UiComponent):
 			for iblSet in selectedIblSets:
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
 
-			self.emit(SIGNAL("modelDatasRefresh()"))
-			self.emit(SIGNAL("modelRefresh()"))
+			self.modelDatasRefresh.emit()
+			self.modelRefresh.emit()
 
 			if success:
 				return True
@@ -1584,8 +1585,8 @@ class DatabaseBrowser(UiComponent):
 				continue
 			success *= self.updateIblSetLocation(iblSet, file) or False
 
-		self.emit(SIGNAL("modelDatasRefresh()"))
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelDatasRefresh.emit()
+		self.modelRefresh.emit()
 
 		if success:
 			return True
@@ -1609,8 +1610,8 @@ class DatabaseBrowser(UiComponent):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
 				if emitSignal:
-					self.emit(SIGNAL("modelDatasRefresh()"))
-					self.emit(SIGNAL("modelRefresh()"))
+					self.modelDatasRefresh.emit()
+					self.modelRefresh.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
@@ -1638,8 +1639,8 @@ class DatabaseBrowser(UiComponent):
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(), emitSignal=False) or False
 
-		self.emit(SIGNAL("modelDatasRefresh()"))
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelDatasRefresh.emit()
+		self.modelRefresh.emit()
 
 		if success:
 			return True
@@ -1660,8 +1661,8 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
 			if emitSignal:
-				self.emit(SIGNAL("modelDatasRefresh()"))
-				self.emit(SIGNAL("modelRefresh()"))
+				self.modelDatasRefresh.emit()
+				self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
@@ -1692,8 +1693,8 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
 			if emitSignal:
-				self.emit(SIGNAL("modelDatasRefresh()"))
-				self.emit(SIGNAL("modelRefresh()"))
+				self.modelDatasRefresh.emit()
+				self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))

@@ -243,7 +243,7 @@ class SetsScanner_Worker(QThread):
 		self.__dbSession.close()
 
 		LOGGER.info("{0} | Scanning done!".format(self.__class__.__name__))
-		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
+		needModelRefresh and self.databaseChanged.emit()
 		return True
 
 class SetsScanner(Component):
@@ -529,6 +529,6 @@ class SetsScanner(Component):
 					if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 						LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
 
-				self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
+				self.__coreDatabaseBrowser.modelRefresh.emit()
 
 		self.__setsScannerWorkerThread.exit()

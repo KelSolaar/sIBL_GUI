@@ -244,7 +244,7 @@ class TemplatesOutliner_Worker(QThread):
 							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
 							needModelRefresh = True
 
-		needModelRefresh and self.emit(SIGNAL("databaseChanged()"))
+		needModelRefresh and self.databaseChanged.emit()
 
 class TemplatesOutliner_QTreeView(QTreeView):
 	"""
@@ -1394,7 +1394,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.__Templates_Outliner_treeView_restoreModelSelection()
 
-		self.emit(SIGNAL("modelChanged()"))
+		self.modelChanged.emit()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshModel(self):
@@ -1621,7 +1621,7 @@ class TemplatesOutliner(UiComponent):
 
 		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1683,7 +1683,7 @@ class TemplatesOutliner(UiComponent):
 			for template in selectedTemplates:
 				success *= self.removeTemplate(template, emitSignal=False) or False
 
-			self.emit(SIGNAL("modelRefresh()"))
+			self.modelRefresh.emit()
 
 			if success:
 				return True
@@ -1747,7 +1747,7 @@ class TemplatesOutliner(UiComponent):
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
 
-				self.emit(SIGNAL("modelRefresh()"))
+				self.modelRefresh.emit()
 
 				if success:
 					return True
@@ -1770,7 +1770,7 @@ class TemplatesOutliner(UiComponent):
 		if not dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(re.escape(path)), "path"):
 			LOGGER.info("{0} | Adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addTemplate(self.__coreDb.dbSession, name, path, collectionId or self.getUniqueCollectionId(path)):
-				emitSignal and self.emit(SIGNAL("modelRefresh()"))
+				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
@@ -1798,7 +1798,7 @@ class TemplatesOutliner(UiComponent):
 			if not self.templateExists(path):
 				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, emitSignal=False) or False
 
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 		if success:
 			return True
@@ -1844,7 +1844,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.info("{0} | Removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
 		if dbCommon.removeTemplate(self.__coreDb.dbSession, str(template.id)) :
-			emitSignal and self.emit(SIGNAL("modelRefresh()"))
+			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
@@ -1877,7 +1877,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__, template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
-			emitSignal and self.emit(SIGNAL("modelRefresh()"))
+			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))

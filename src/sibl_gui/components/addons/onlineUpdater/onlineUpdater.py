@@ -644,7 +644,7 @@ class DownloadManager(QObject):
 			self.__downloadStatus = True
 			self.__ui.Current_File_label.setText("Downloads complete!")
 			self.__ui.Cancel_Close_pushButton.setText("Close")
-			self.emit(SIGNAL("downloadFinished()"))
+			self.downloadFinished.emit()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -672,24 +672,27 @@ class DownloadManager(QObject):
 		self.__currentRequest.deleteLater()
 		return True
 
-class RemoteUpdater(object):
+class RemoteUpdater(QObject):
 	"""
 	| This class defines the Application remote updater.
 	| The remote updater is initialized with a list of available online releases ( List of :class:`ReleaseObject` class instances ).
 	"""
 
 	@core.executionTrace
-	def __init__(self, container, releases=None):
+	def __init__(self, parent=None, releases=None):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param releases: Releases. ( Dictionary )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
+		QObject.__init__(self, parent)
+
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 		self.__releases = None
 		self.releases = releases
 		self.__uiPath = "ui/Remote_Updater.ui"
@@ -1289,7 +1292,7 @@ class RemoteUpdater(object):
 					tableWidgetItem._datas = templatesReleases[release]
 					self.__ui.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
-					tableWidgetItem = Variable_QPushButton(self, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
+					tableWidgetItem = Variable_QPushButton(self.__ui, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
 					self.__ui.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)

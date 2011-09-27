@@ -1150,7 +1150,7 @@ class CollectionsOutliner(UiComponent):
 			LOGGER.info("{0} | Database has no user defined Collections!".format(self.__class__.__name__))
 
 		self.__Collections_Outliner_treeView_restoreModelSelection()
-		self.emit(SIGNAL("modelChanged()"))
+		self.modelChanged.emit()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_refreshModel(self):
@@ -1340,7 +1340,7 @@ class CollectionsOutliner(UiComponent):
 				dbCommon.commit(self.__coreDb.dbSession)
 		else:
 			raise foundations.exceptions.UserError("{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__))
-		self.emit(SIGNAL("modelRefresh()"))
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1350,8 +1350,8 @@ class CollectionsOutliner(UiComponent):
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
-		self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
-		self.__coreDatabaseBrowser.emit(SIGNAL("modelRefresh()"))
+		self.__coreDatabaseBrowser.modelDatasRefresh.emit()
+		self.__coreDatabaseBrowser.modelRefresh.emit()
 
 	@core.executionTrace
 	def __coreDatabaseBrowser_Database_Browser_listView_setModelContent(self):
@@ -1463,7 +1463,7 @@ class CollectionsOutliner(UiComponent):
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 				if dbCommon.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
-					self.emit(SIGNAL("modelRefresh()"))
+					self.modelRefresh.emit()
 					return True
 				else:
 					raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
@@ -1489,8 +1489,8 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
-			self.emit(SIGNAL("modelRefresh()"))
-			self.__coreDatabaseBrowser.emit(SIGNAL("modelDatasRefresh()"))
+			self.modelRefresh.emit()
+			self.__coreDatabaseBrowser.modelDatasRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
