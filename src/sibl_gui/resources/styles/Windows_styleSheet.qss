@@ -116,8 +116,7 @@ QTabBar::tab {
 	border: 2px solid rgb(48, 48, 48);
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-right: 4px;
 	padding: 2px;
 }
 
@@ -133,16 +132,8 @@ QTabBar::tab:selected {
 	border-color: rgb(56, 56, 56);
 }
 
-QTabBar::tab:first:selected {
-	margin-left: 2px;
-}
-
 QTabBar::tab:last:selected {
-	margin-right: 2px;
-}
-
-QTabBar::tab:only-one {
-	margin-left: 2px;
+	margin-right: 4px;
 }
  
 QTabBar::close-button {
