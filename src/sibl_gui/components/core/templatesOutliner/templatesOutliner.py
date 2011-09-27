@@ -370,20 +370,22 @@ class TemplatesOutliner_QTreeView(QTreeView):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			if event.mimeData().hasUrls():
-				LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
-				for url in event.mimeData().urls():
-					path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-					if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
-						name = strings.getSplitextBasename(path)
-						if messageBox.messageBox("Question", "Question", "'{0}' Template set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self.__coreTemplatesOutliner.addTemplate(name, path)
+			if not event.mimeData().hasUrls():
+				return
+
+			LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
+			for url in event.mimeData().urls():
+				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+				if re.search("\.{0}$".format(self.__coreTemplatesOutliner.extension), str(url.path())):
+					name = strings.getSplitextBasename(path)
+					if messageBox.messageBox("Question", "Question", "'{0}' Template set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						self.__coreTemplatesOutliner.addTemplate(name, path)
+				else:
+					if os.path.isdir(path):
+						if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+							self.__coreTemplatesOutliner.addDirectory(path)
 					else:
-						if os.path.isdir(path):
-							if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-								self.__coreTemplatesOutliner.addDirectory(path)
-						else:
-							raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
+						raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
