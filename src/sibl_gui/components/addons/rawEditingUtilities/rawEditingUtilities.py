@@ -20,6 +20,7 @@
 import logging
 import os
 import platform
+import re
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -28,8 +29,9 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.strings as strings
 import umbra.ui.common
-from foundations.environment import Environment
+import umbra.ui.widgets.messageBox as messageBox
 from manager.uiComponent import UiComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -80,13 +82,13 @@ class RawEditingUtilities(UiComponent):
 		self.__settings = None
 		self.__settingsSection = None
 
+		self.__editLayout = "editCentric"
+
 		self.__factoryScriptEditor = None
 		self.__factoryPreferencesManager = None
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
-
-		self.__editLayout = "editCentric"
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -210,6 +212,36 @@ class RawEditingUtilities(UiComponent):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("settingsSection"))
+
+	@property
+	def editLayout(self):
+		"""
+		This method is the property for **self.__editLayout** attribute.
+
+		:return: self.__editLayout. ( String )
+		"""
+
+		return self.__editLayout
+
+	@editLayout.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self, value):
+		"""
+		This method is the setter method for **self.__editLayout** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editLayout"))
+
+	@editLayout.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self):
+		"""
+		This method is the deleter method for **self.__editLayout** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editLayout"))
 
 	@property
 	def factoryScriptEditor(self):
@@ -361,36 +393,6 @@ class RawEditingUtilities(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
-	@property
-	def editLayout(self):
-		"""
-		This method is the property for **self.__editLayout** attribute.
-
-		:return: self.__editLayout. ( String )
-		"""
-
-		return self.__editLayout
-
-	@editLayout.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editLayout(self, value):
-		"""
-		This method is the setter method for **self.__editLayout** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editLayout"))
-
-	@editLayout.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editLayout(self):
-		"""
-		This method is the deleter method for **self.__editLayout** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editLayout"))
-
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -458,6 +460,7 @@ class RawEditingUtilities(UiComponent):
 		# Signals / Slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+		self.__container.contentDropped.connect(self.__application__contentDropped)
 
 		return True
 
@@ -474,6 +477,7 @@ class RawEditingUtilities(UiComponent):
 		# Signals / Slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+		self.__container.contentDropped.disconnect(self.__application__contentDropped)
 
 		self.__removeActions()
 
@@ -613,6 +617,24 @@ class RawEditingUtilities(UiComponent):
 			raise foundations.exceptions.UserError("{0} | Invalid custom text editor executable file!".format(self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
+
+	@core.executionTrace
+	def __application__contentDropped(self, event):
+		"""
+		This method is triggered when content is dropped in the Application.
+		
+		:param event: Event. ( QEvent )
+		"""
+
+		if not event.mimeData().hasUrls():
+			return
+
+		LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
+
+		for url in event.mimeData().urls():
+			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+			if not re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())) and not re.search("\.{0}$".format(self.coreTemplatesOutliner.extension), str(url.path())) and not os.path.isdir(path):
+				self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	def editIblSetsInTextEditor_ui(self):

@@ -265,8 +265,6 @@ class DatabaseBrowser_QListView(QListView):
 
 		QListView.__init__(self, container)
 
-		self.setAcceptDrops(True)
-
 		# --- Setting class attributes. ---
 		self.__container = container
 
@@ -338,62 +336,6 @@ class DatabaseBrowser_QListView(QListView):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def dragEnterEvent(self, event):
-		"""
-		This method defines the drag enter event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-qabstractitemmodeldatalist"))
-			event.accept()
-		elif event.mimeData().hasFormat("text/uri-list"):
-			LOGGER.debug("> '{0}' drag event type accepted!".format("text/uri-list"))
-			event.accept()
-		else:
-			event.ignore()
-
-	@core.executionTrace
-	def dragMoveEvent(self, event):
-		"""
-		This method defines the drag move event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		pass
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DirectoryExistsError, foundations.exceptions.UserError)
-	def dropEvent(self, event):
-		"""
-		This method defines the drop event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		if not self.__container.parameters.databaseReadOnly:
-			if not event.mimeData().hasUrls():
-				return
-
-			LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
-			for url in event.mimeData().urls():
-				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-				if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
-					name = strings.getSplitextBasename(path)
-					if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-						self.__coreDatabaseBrowser.addIblSet(name, path)
-				else:
-					if os.path.isdir(path):
-						if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self.__coreDatabaseBrowser.addDirectory(path)
-					else:
-						raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
-		else:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
-
-	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __QListView__doubleClicked(self, index):
 		"""
@@ -450,6 +392,9 @@ class DatabaseBrowser(UiComponent):
 
 		self.__extension = "ibl"
 
+		self.__editLayout = "editCentric"
+
+		self.__factoryScriptEditor = None
 		self.__coreDb = None
 		self.__coreCollectionsOutliner = None
 
@@ -871,6 +816,66 @@ class DatabaseBrowser(UiComponent):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("extension"))
 
 	@property
+	def editLayout(self):
+		"""
+		This method is the property for **self.__editLayout** attribute.
+
+		:return: self.__editLayout. ( String )
+		"""
+
+		return self.__editLayout
+
+	@editLayout.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self, value):
+		"""
+		This method is the setter method for **self.__editLayout** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("editLayout"))
+
+	@editLayout.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editLayout(self):
+		"""
+		This method is the deleter method for **self.__editLayout** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("editLayout"))
+
+	@property
+	def factoryScriptEditor(self):
+		"""
+		This method is the property for **self.__factoryScriptEditor** attribute.
+
+		:return: self.__factoryScriptEditor. ( Object )
+		"""
+
+		return self.__factoryScriptEditor
+
+	@factoryScriptEditor.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def factoryScriptEditor(self, value):
+		"""
+		This method is the setter method for **self.__factoryScriptEditor** attribute.
+
+		:param value: Attribute value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("factoryScriptEditor"))
+
+	@factoryScriptEditor.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def factoryScriptEditor(self):
+		"""
+		This method is the deleter method for **self.__factoryScriptEditor** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("factoryScriptEditor"))
+
+	@property
 	def coreDb(self):
 		"""
 		This method is the property for **self.__coreDb** attribute.
@@ -1102,6 +1107,7 @@ class DatabaseBrowser(UiComponent):
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
 
+		self.__factoryScriptEditor = self.__container.componentsManager.components["factory.scriptEditor"].interface
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
@@ -1169,7 +1175,7 @@ class DatabaseBrowser(UiComponent):
 			if not self.__container.parameters.deactivateWorkerThreads:
 				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			self.__model.dataChanged.connect(self.__Database_Browser_listView_model__dataChanged)
-
+			self.__container.contentDropped.connect(self.__application__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -1491,6 +1497,45 @@ class DatabaseBrowser(UiComponent):
 		# Ensure that db objects modified by the worker thread will refresh properly.
 		self.__coreDb.dbSession.expire_all()
 		self.modelRefresh.emit()
+
+	@core.executionTrace
+	def __application__contentDropped(self, event):
+		"""
+		This method is triggered when content is dropped in the Application.
+		
+		:param event: Event. ( QEvent )
+		"""
+
+		if not event.mimeData().hasUrls():
+			return
+
+		LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
+
+		if not self.__container.parameters.databaseReadOnly:
+			for url in event.mimeData().urls():
+				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+				if re.search("\.{0}$".format(self.__extension), str(url.path())):
+					name = strings.getSplitextBasename(path)
+					choice = messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or 'Edit' it in the Script Editor?".format(name), buttons=QMessageBox.Cancel, customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
+					if choice == 0:
+						self.addIblSet(name, path)
+					elif choice == 1:
+						self.__factoryScriptEditor.loadFile(path)
+						self.__container.restoreLayout(self.__editLayout)
+				else:
+					if not os.path.isdir(path):
+						return
+
+					osWalker = OsWalker(path)
+					osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
+
+					if not osWalker.files:
+						return
+
+					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+						self.addDirectory(path)
+		else:
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)

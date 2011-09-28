@@ -105,10 +105,26 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		umbra.engine.Umbra.__init__(self, componentsPaths, requisiteComponents, visibleComponents)
 
+		self.setOverrides()
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	def setOverrides(self):
+		"""
+		This method sets Application overrides.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
+		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__application__contentDropped)
+
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLayoutsActiveLabels(self):
 		"""
 		This method returns the default layouts active labels widgets.

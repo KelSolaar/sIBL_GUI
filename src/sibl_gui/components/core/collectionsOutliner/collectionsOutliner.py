@@ -252,9 +252,6 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
 			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-qabstractitemmodeldatalist"))
 			event.accept()
-		elif event.mimeData().hasFormat("text/uri-list"):
-			LOGGER.debug("> '{0}' drag event type accepted!".format("text/uri-list"))
-			event.accept()
 		else:
 			event.ignore()
 
@@ -278,38 +275,21 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			if not event.mimeData().hasUrls():
+			indexAt = self.indexAt(event.pos())
+			itemAt = self.model().itemFromIndex(indexAt)
+
+			if not itemAt:
 				return
 
-			LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
-			for url in event.mimeData().urls():
-				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-				if re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())):
-					name = foundations.strings.getSplitextBasename(path)
-					if messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to add it to the Database?".format(name), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-						self.__coreDatabaseBrowser.addIblSet(name, path)
-				else:
-					if os.path.isdir(path):
-						if messageBox.messageBox("Question", "Question", "'{0}' directory has been dropped, would you like to add its content to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-							self.__coreDatabaseBrowser.addDirectory(path)
-					else:
-						raise foundations.exceptions.DirectoryExistsError("{0} | Exception raised while parsing '{1}' path: Syntax is invalid!".format(self.__class__.__name__, path))
-			else:
-				indexAt = self.indexAt(event.pos())
-				itemAt = self.model().itemFromIndex(indexAt)
-
-				if not itemAt:
-					return
-
-				LOGGER.debug("> Item at drop position: '{0}'.".format(itemAt))
-				collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
-				if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
-					collection = collectionStandardItem._datas
-					for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-						LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(iblSet.title, collection.name))
-						iblSet.collection = collection.id
-					if dbCommon.commit(self.__coreDb.dbSession):
-						self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+			LOGGER.debug("> Item at drop position: '{0}'.".format(itemAt))
+			collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
+			if collectionStandardItem.text() != self.__coreCollectionsOutliner.overallCollection:
+				collection = collectionStandardItem._datas
+				for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
+					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(iblSet.title, collection.name))
+					iblSet.collection = collection.id
+				if dbCommon.commit(self.__coreDb.dbSession):
+					self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
