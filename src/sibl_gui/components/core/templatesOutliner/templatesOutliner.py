@@ -248,8 +248,7 @@ class TemplatesOutliner_Worker(QThread):
 
 class TemplatesOutliner_QTreeView(QTreeView):
 	"""
-	| This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Templates.
-	| It provides support for drag'n'drop by reimplementing relevant methods.
+	This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Templates.
 	"""
 
 	@core.executionTrace
@@ -1605,6 +1604,7 @@ class TemplatesOutliner(UiComponent):
 		self.modelRefresh.emit()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __application__contentDropped(self, event):
 		"""
 		This method is triggered when content is dropped in the Application.

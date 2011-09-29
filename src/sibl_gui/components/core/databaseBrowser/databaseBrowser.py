@@ -249,8 +249,7 @@ class DatabaseBrowser_Worker(QThread):
 
 class DatabaseBrowser_QListView(QListView):
 	"""
-	| This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
-	| It provides support for drag'n'drop by reimplementing relevant methods.
+	This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
 	"""
 
 	@core.executionTrace
@@ -1499,6 +1498,7 @@ class DatabaseBrowser(UiComponent):
 		self.modelRefresh.emit()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __application__contentDropped(self, event):
 		"""
 		This method is triggered when content is dropped in the Application.
