@@ -1332,10 +1332,11 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
 		self.ui.Database_Browser_listView.setAutoScroll(True)
-		self.ui.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
 		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
+		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
+		self.ui.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
 
 		self.__Database_Browser_listView_setDefaultViewState()
 
