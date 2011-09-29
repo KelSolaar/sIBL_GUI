@@ -579,7 +579,7 @@ class GpsMap(UiComponent):
 		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
 		self.ui.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
@@ -596,7 +596,7 @@ class GpsMap(UiComponent):
 		"""
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
 		self.ui.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
 		self.ui.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
@@ -649,9 +649,9 @@ class GpsMap(UiComponent):
 		return True
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** selection has changed.
+		This method is triggered when **coreDatabaseBrowser.ui.Database_Browser_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

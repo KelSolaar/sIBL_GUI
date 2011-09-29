@@ -575,7 +575,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
 		self.ui.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 		return True
 
@@ -592,7 +592,7 @@ class LoaderScript(UiComponent):
 		# Signals / Slots.
 		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
 		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 		return True
 
@@ -646,9 +646,9 @@ class LoaderScript(UiComponent):
 		self.sendLoaderScriptToSoftware_ui()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** selection has changed.
+		This method is triggered when **coreTemplatesOutliner.ui.Templates_Outliner_treeView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

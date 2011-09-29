@@ -882,7 +882,7 @@ class Inspector(UiComponent):
 		# Signals / Slots.
 		self.ui.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.modelChanged.connect(self.__coreDatabaseBrowser__modelChanged)
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged)
 		self.ui.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.ui.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
 		self.ui.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
@@ -1082,9 +1082,9 @@ class Inspector(UiComponent):
 		self.__setInspectorIblSet()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
+		This method is triggered when **coreDatabaseBrowser.ui.Database_Browser_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

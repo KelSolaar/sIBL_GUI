@@ -859,7 +859,7 @@ class LoaderScriptOptions(UiComponent):
 	@core.executionTrace
 	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** selection has changed.
+		This method is triggered when **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** Widget selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
