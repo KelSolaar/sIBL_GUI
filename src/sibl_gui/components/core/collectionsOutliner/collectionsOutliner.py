@@ -74,8 +74,6 @@ class CollectionsOutliner_QTreeView(QTreeView):
 
 		QTreeView.__init__(self, container)
 
-		self.setAcceptDrops(True)
-
 		# --- Setting class attributes. ---
 		self.__container = container
 
@@ -1116,7 +1114,6 @@ class CollectionsOutliner(UiComponent):
 
 					collectionSetsCountStandardItem = QStandardItem(QString(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count())))
 					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
-					collectionSetsCountStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
 					collectionCommentsStandardItem = QStandardItem(QString(collection.comment))
 					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
@@ -1155,6 +1152,7 @@ class CollectionsOutliner(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
 		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
+		self.ui.Collections_Outliner_treeView.setDragDropMode(QAbstractItemView.DropOnly)
 		self.ui.Collections_Outliner_treeView.setIndentation(self.__treeViewIndentation)
 		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Collections_Outliner_treeView.setSortingEnabled(True)

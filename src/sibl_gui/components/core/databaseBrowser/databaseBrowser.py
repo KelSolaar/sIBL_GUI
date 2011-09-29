@@ -1298,7 +1298,7 @@ class DatabaseBrowser(UiComponent):
 
 				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
 
-				self.__container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled | Qt.ItemIsDragEnabled)
+				self.__container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
 				iblSetStandardItem._datas = iblSet
 
@@ -1332,6 +1332,7 @@ class DatabaseBrowser(UiComponent):
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
 		self.ui.Database_Browser_listView.setAutoScroll(True)
+		self.ui.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
 		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
 		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
@@ -1521,7 +1522,7 @@ class DatabaseBrowser(UiComponent):
 						self.addIblSet(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__container.restoreLayout(self.__editLayout)
+						self.__container.currentLayout != self.__editLayout and self.__container.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return

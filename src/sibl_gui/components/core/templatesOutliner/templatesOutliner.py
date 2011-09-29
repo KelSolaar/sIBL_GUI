@@ -1396,6 +1396,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.ui.Templates_Outliner_treeView.setAutoScroll(False)
 		self.ui.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+		self.ui.Templates_Outliner_treeView.setDragDropMode(QAbstractItemView.DragOnly)
 		self.ui.Templates_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.ui.Templates_Outliner_treeView.setIndentation(self.__treeViewIndentation)
 		self.ui.Templates_Outliner_treeView.setSortingEnabled(True)
@@ -1627,7 +1628,7 @@ class TemplatesOutliner(UiComponent):
 						self.addTemplate(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__container.restoreLayout(self.__editLayout)
+						self.__container.currentLayout != self.__editLayout and self.__container.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return

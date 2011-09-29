@@ -461,6 +461,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__container.contentDropped.connect(self.__application__contentDropped)
+		self.__factoryScriptEditor.ui.Script_Editor_tabWidget.contentDropped.connect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		return True
 
@@ -478,6 +479,7 @@ class RawEditingUtilities(UiComponent):
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
 		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__container.contentDropped.disconnect(self.__application__contentDropped)
+		self.__factoryScriptEditor.ui.Script_Editor_tabWidget.contentDropped.disconnect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		self.__removeActions()
 
@@ -555,7 +557,7 @@ class RawEditingUtilities(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editIblSetsInTextEditor_ui()
+		return self.editIblSetsFiles_ui()
 
 	@core.executionTrace
 	def __Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered(self, checked):
@@ -566,7 +568,7 @@ class RawEditingUtilities(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editInspectorIblSetInTextEditor_ui()
+		return self.editInspectorIblSetFile_ui()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_editTemplatesFilesAction__triggered(self, checked):
@@ -577,7 +579,7 @@ class RawEditingUtilities(UiComponent):
 		:return: Method success. ( Boolean )
 		"""
 
-		return self.editTemplatesInTextEditor_ui()
+		return self.editTemplatesFiles_ui()
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_lineEdit_setUi(self):
@@ -637,9 +639,23 @@ class RawEditingUtilities(UiComponent):
 				self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
-	def editIblSetsInTextEditor_ui(self):
+	def __factoryScriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
 		"""
-		This method edits selected Ibl Sets.
+		This method is triggered when content is dropped in the **factoryScriptEditor.ui.Script_Editor_tabWidget** Widget.
+		
+		:param event: Event. ( QEvent )
+		"""
+
+		if event.source() is self.__coreDatabaseBrowser.ui.Database_Browser_listView:
+			self.editIblSetsFiles_ui()
+		elif event.source() is self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView:
+			self.editTemplatesFiles_ui()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	def editIblSetsFiles_ui(self):
+		"""
+		This method edits selected Ibl Sets files.
 
 		:return: Method success. ( Boolean )
 
@@ -663,9 +679,9 @@ class RawEditingUtilities(UiComponent):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError)
-	def editInspectorIblSetInTextEditor_ui(self):
+	def editInspectorIblSetFile_ui(self):
 		"""
-		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set.
+		This method edits :mod:`umbra.components.core.inspector.inspector` Component Ibl Set file.
 
 		:return: Method success. ( Boolean )
 
@@ -680,9 +696,10 @@ class RawEditingUtilities(UiComponent):
 			raise foundations.exceptions.FileExistsError("{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
-	def editTemplatesInTextEditor_ui(self):
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	def editTemplatesFiles_ui(self):
 		"""
-		This method edits selected Templates.
+		This method edits selected Templates files.
 
 		:return: Method success. ( Boolean )
 
@@ -747,5 +764,5 @@ class RawEditingUtilities(UiComponent):
 			else:
 				raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
 		else:
-			self.__container.restoreLayout(self.__editLayout)
+			self.__container.currentLayout != self.__editLayout and self.__container.restoreLayout(self.__editLayout)
 			return self.__factoryScriptEditor.loadFile(file)
