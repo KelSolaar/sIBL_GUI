@@ -105,23 +105,20 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		umbra.engine.Umbra.__init__(self, componentsPaths, requisiteComponents, visibleComponents)
 
-		self.setOverrides()
+		self.__setOverrides()
 
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def setOverrides(self):
+	def __setOverrides(self):
 		"""
 		This method sets Application overrides.
-
-		:return: Method success. ( Boolean )
 		"""
 
 		factoryScriptEditor = self.componentsManager.getInterface("factory.scriptEditor")
+		factoryScriptEditor._ScriptEditor__developmentLayout = "editCentric"
 		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__application__contentDropped)
-
-		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
