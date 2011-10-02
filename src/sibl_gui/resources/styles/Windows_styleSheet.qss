@@ -126,9 +126,6 @@ QTabBar::tab:hover {
 
 QTabBar::tab:selected {
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(88, 88, 88), stop: 1 rgb(84, 84, 84));
-}
-
-QTabBar::tab:selected {
 	border-color: rgb(56, 56, 56);
 }
 
