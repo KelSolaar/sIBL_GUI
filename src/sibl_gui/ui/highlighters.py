@@ -78,7 +78,13 @@ class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
 
 		self.formats = umbra.ui.highlighters.Formats(default=umbra.ui.highlighters.getFormat(color=QColor(192, 192, 192)))
 
-		self.formats.section = umbra.ui.highlighters.getFormat(format=self.formats.default, bold=True)
+		self.formats.section = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(205, 170, 105), bold=True)
+		self.formats.parameter = umbra.ui.highlighters.getFormat(format=self.formats.default)
+		self.formats.storage = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(205, 170, 105))
+		self.formats.numericConstant = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(205, 105, 75))
+		self.formats.numericConstant = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(205, 105, 75))
+		self.formats.string = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(145, 160, 105), italic=True)
+		self.formats.lineComment = umbra.ui.highlighters.getFormat(format=self.formats.default, color=QColor(96, 96, 96))
 
 		return True
 
@@ -93,6 +99,11 @@ class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
 		self.rules = umbra.ui.highlighters.Rules()
 
 		self.rules.section = umbra.ui.highlighters.Rule(pattern=QRegExp(r"^\[.*\]"), format=self.formats.section)
+		self.rules.parameter = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\w+(?=\s*\=)"), format=self.formats.parameter)
+		self.rules.storage = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\="), format=self.formats.storage)
+		self.rules.numericConstant = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\b[-+]?[1-9]+\d*|0\b|[-+]?\d*\.?\d+([eE][-+]?\d+)?"), format=self.formats.numericConstant)
+		self.rules.doubleQuotation = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\"([^\"\\]|\\.)*\""), format=self.formats.string)
+		self.rules.lineComment = umbra.ui.highlighters.Rule(pattern=QRegExp(r"[;#].*$"), format=self.formats.lineComment)
 
 		return True
 

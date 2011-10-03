@@ -91,14 +91,14 @@ class RawEditingUtilities(UiComponent):
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
 
-		self.__languages = {"Ibl Set" : Language(name="Logging",
-												extension="\.ibl",
-												highlighter=sibl_gui.ui.highlighters.IblSetHighlighter,
-												completer=None,
-												preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators),
-												postInputAccelerators=(),
-												indentMarker="\t",
-												commentMarker=None)}
+		self.__languages = (Language(name="Ibl Set",
+							extension="\.ibl",
+							highlighter=sibl_gui.ui.highlighters.IblSetHighlighter,
+							completer=None,
+							preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators,),
+							postInputAccelerators=(),
+							indentMarker="\t",
+							commentMarker=None),)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -496,6 +496,9 @@ class RawEditingUtilities(UiComponent):
 		self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
 		self.__addActions()
+
+		for language in self.__languages:
+			self.__factoryScriptEditor.languagesModel.registerLanguage(language)
 
 		# Signals / Slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
