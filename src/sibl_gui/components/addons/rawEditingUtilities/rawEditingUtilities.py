@@ -29,10 +29,11 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import foundations.strings as strings
+import sibl_gui.ui.highlighters
 import umbra.ui.common
-import umbra.ui.widgets.messageBox as messageBox
+import umbra.ui.inputAccelerators
 from manager.uiComponent import UiComponent
+from umbra.components.factory.scriptEditor.editor import Language
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -89,6 +90,15 @@ class RawEditingUtilities(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
+
+		self.__languages = {"Ibl Set" : Language(name="Logging",
+												extension="\.ibl",
+												highlighter=sibl_gui.ui.highlighters.IblSetHighlighter,
+												completer=None,
+												preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators),
+												postInputAccelerators=(),
+												indentMarker="\t",
+												commentMarker=None)}
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -393,6 +403,36 @@ class RawEditingUtilities(UiComponent):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreTemplatesOutliner"))
 
+	@property
+	def languages(self):
+		"""
+		This method is the property for **self.__languages** attribute.
+
+		:return: self.__languages. ( Dictionary )
+		"""
+
+		return self.__languages
+
+	@languages.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def languages(self, value):
+		"""
+		This method is the setter method for **self.__languages** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("languages"))
+
+	@languages.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def languages(self):
+		"""
+		This method is the deleter method for **self.__languages** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("languages"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -650,6 +690,14 @@ class RawEditingUtilities(UiComponent):
 			self.editIblSetsFiles_ui()
 		elif event.source() is self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView:
 			self.editTemplatesFiles_ui()
+
+	@core.executionTrace
+	def __registerLanguages(self):
+		"""
+		This method registers Application related languages in **scriptEditor** component.
+		"""
+
+		pass
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
