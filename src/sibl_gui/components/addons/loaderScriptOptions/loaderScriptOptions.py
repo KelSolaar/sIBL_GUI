@@ -33,7 +33,7 @@ import foundations.io as io
 import foundations.parsers
 import foundations.strings as strings
 from foundations.parsers import SectionsFileParser
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LoaderScriptOptions(UiComponent):
+class LoaderScriptOptions(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
@@ -72,7 +72,7 @@ class LoaderScriptOptions(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -647,7 +647,7 @@ class LoaderScriptOptions(UiComponent):
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -668,7 +668,7 @@ class LoaderScriptOptions(UiComponent):
 		self.__templatesSettingsDirectory = os.path.basename(os.path.abspath(self.__templatesSettingsDirectory))
 		self.__templateSettingsFile = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

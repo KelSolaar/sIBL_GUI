@@ -33,7 +33,7 @@ import foundations.strings as strings
 import sibl_gui.ui.common
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -83,7 +83,7 @@ class Light(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-class Inspector(UiComponent):
+class Inspector(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate into the current selected Database Collection.
@@ -105,7 +105,7 @@ class Inspector(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
@@ -841,7 +841,7 @@ class Inspector(UiComponent):
 		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

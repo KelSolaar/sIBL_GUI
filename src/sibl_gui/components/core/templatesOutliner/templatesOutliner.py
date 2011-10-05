@@ -36,7 +36,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from foundations.walkers import OsWalker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -67,19 +67,19 @@ class TemplatesOutliner_Worker(QThread):
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Object container. ( Object )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QThread.__init__(self, container)
+		QThread.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
@@ -252,19 +252,19 @@ class TemplatesOutliner_QTreeView(QTreeView):
 	"""
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QTreeView.__init__(self, container)
+		QTreeView.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -299,7 +299,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
-class TemplatesOutliner(UiComponent):
+class TemplatesOutliner(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.core.templatesOutliner.templatesOutliner` Component Interface class.
 	| It defines methods for Database Templates management.
@@ -320,7 +320,7 @@ class TemplatesOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
@@ -1128,7 +1128,7 @@ class TemplatesOutliner(UiComponent):
 
 		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

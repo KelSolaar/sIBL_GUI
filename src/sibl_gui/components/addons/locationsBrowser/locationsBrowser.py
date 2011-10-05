@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
 from foundations.environment import Environment
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LocationsBrowser(UiComponent):
+class LocationsBrowser(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
@@ -86,7 +86,7 @@ class LocationsBrowser(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -467,7 +467,7 @@ class LocationsBrowser(UiComponent):
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -491,7 +491,7 @@ class LocationsBrowser(UiComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

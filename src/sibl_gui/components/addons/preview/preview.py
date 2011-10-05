@@ -37,7 +37,7 @@ import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -202,25 +202,27 @@ class Image_QGraphicsItem(QGraphicsItem):
 
 		painter.drawImage(-(self.__image.width() / 2), -(self.__image.height() / 2), self.__image)
 
-class ImagesPreviewer(object):
+class ImagesPreviewer(QObject):
 	"""
 	| This class provides the Application images previewer.
 	| It defines methods to navigate through the list of provided images ( List of images paths ), zoom in / out and fit the displayed image, etc...
 	"""
 
 	@core.executionTrace
-	def __init__(self, container, paths=None):
+	def __init__(self, parent, paths=None):
 		"""
 		This method initializes the class.
 
-		:param container: Container. ( Object )
+		:param parent: Object parent. ( QObject )
 		:param paths: Images paths. ( List )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+		
+		QObject.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 		self.__paths = None
 		self.paths = paths
 
@@ -1081,7 +1083,7 @@ class ImagesPreviewer(object):
 		self.setImage(index)
 		self.fitImage()
 
-class Preview(UiComponent):
+class Preview(QWidgetComponent):
 	"""
 	This class is the **Preview** class.
 	"""
@@ -1097,7 +1099,7 @@ class Preview(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -1480,7 +1482,7 @@ class Preview(UiComponent):
 
 		self.__imagesPreviewers = []
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -1505,7 +1507,7 @@ class Preview(UiComponent):
 		for imagesPreviewer in self.__imagesPreviewers[:]:
 			imagesPreviewer.ui.close()
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

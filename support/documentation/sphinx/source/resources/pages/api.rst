@@ -24,7 +24,7 @@ Modules Summary:
    manager.componentsManager <api/manager.componentsManager>
    manager.exceptions <api/manager.exceptions>
    manager.globals.constants <api/manager.globals.constants>
-   manager.uiComponent <api/manager.uiComponent>
+   manager.qwidgetComponent <api/manager.qwidgetComponent>
    umbra.components.addons.about.about <api/umbra.components.addons.about.about>
    umbra.components.addons.databaseOperations.databaseOperations <api/umbra.components.addons.databaseOperations.databaseOperations>
    umbra.components.addons.gpsMap.gpsMap <api/umbra.components.addons.gpsMap.gpsMap>
@@ -86,5 +86,5 @@ Modules Summary:
    tests.testsManager.testsComponentsManager <api/tests.testsManager.testsComponentsManager>
    tests.testsManager.testsExceptions <api/tests.testsManager.testsExceptions>
    tests.testsManager.testsGlobals.testsConstants <api/tests.testsManager.testsGlobals.testsConstants>
-   tests.testsManager.testsUiComponent <api/tests.testsManager.testsUiComponent>
+   tests.testsManager.testsQWidgetComponent <api/tests.testsManager.testsQWidgetComponent>
    tests.utilities <api/tests.utilities>

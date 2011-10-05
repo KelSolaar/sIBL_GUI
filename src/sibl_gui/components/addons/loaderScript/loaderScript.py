@@ -38,7 +38,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parsers import SectionsFileParser
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -58,7 +58,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LoaderScript(UiComponent):
+class LoaderScript(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.loaderScript.loaderScript` Component Interface class.
 	| It provides the glue between the Ibl Sets, the Templates and the 3d package.
@@ -84,7 +84,7 @@ class LoaderScript(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -536,7 +536,7 @@ class LoaderScript(UiComponent):
 		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -556,7 +556,7 @@ class LoaderScript(UiComponent):
 
 		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

@@ -35,7 +35,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -63,19 +63,19 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	"""
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QTreeView.__init__(self, container)
+		QTreeView.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
@@ -321,7 +321,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
-class CollectionsOutliner(UiComponent):
+class CollectionsOutliner(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
 	| It defines methods for Database Collections management.
@@ -343,7 +343,7 @@ class CollectionsOutliner(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
@@ -937,7 +937,7 @@ class CollectionsOutliner(UiComponent):
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

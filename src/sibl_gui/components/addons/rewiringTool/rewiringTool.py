@@ -30,7 +30,7 @@ import foundations.exceptions
 import foundations.parsers
 import foundations.strings as strings
 import umbra.ui.common
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class RewiringTool(UiComponent):
+class RewiringTool(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.rewiringTool.rewiringTool` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
@@ -68,7 +68,7 @@ class RewiringTool(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -354,7 +354,7 @@ class RewiringTool(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -372,7 +372,7 @@ class RewiringTool(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__addonsLoaderScript = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

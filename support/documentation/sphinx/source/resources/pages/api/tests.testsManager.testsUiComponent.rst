@@ -1,16 +1,16 @@
-_`tests.testsManager.testsUiComponent`
+_`tests.testsManager.testsQWidgetComponent`
 ======================================
 
-.. automodule:: tests.testsManager.testsUiComponent
+.. automodule:: tests.testsManager.testsQWidgetComponent
 
 Module Attributes
 -----------------
 
-.. attribute:: tests.testsManager.testsUiComponent.RESOURCES_DIRECTORY
+.. attribute:: tests.testsManager.testsQWidgetComponent.RESOURCES_DIRECTORY
 
-.. attribute:: tests.testsManager.testsUiComponent.UI_FILE
+.. attribute:: tests.testsManager.testsQWidgetComponent.UI_FILE
 
-.. attribute:: tests.testsManager.testsUiComponent.APPLICATION
+.. attribute:: tests.testsManager.testsQWidgetComponent.APPLICATION
 
 Classes
 -------

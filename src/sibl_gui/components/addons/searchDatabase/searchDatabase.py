@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
@@ -51,7 +51,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class SearchDatabase(UiComponent):
+class SearchDatabase(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.searchDatabase.searchDatabase` Component Interface class.
 	| It provides methods for the user to search into the Database using various filters.
@@ -68,7 +68,7 @@ class SearchDatabase(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -605,7 +605,7 @@ class SearchDatabase(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -625,7 +625,7 @@ class SearchDatabase(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreCollectionsOutliner = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

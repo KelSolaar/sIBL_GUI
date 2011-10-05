@@ -38,7 +38,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
 from foundations.pkzip import Pkzip
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
@@ -87,11 +87,11 @@ class DownloadManager(QObject):
 	downloadFinished = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, container, networkAccessManager, downloadDirectory, requests=None):
+	def __init__(self, parent, networkAccessManager, downloadDirectory, requests=None):
 		"""
 		This method initializes the class.
 
-		:param container: Container. ( Object )
+		:param parent: Object parent. ( QObject )
 		:param networkAccessManager: Network access manager. ( QNetworkAccessManager )
 		:param downloadDirectory: Download directory. ( String )
 		:param requests: Download requests. ( List )
@@ -99,10 +99,10 @@ class DownloadManager(QObject):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QObject.__init__(self)
+		QObject.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 		self.__networkAccessManager = networkAccessManager
 		self.__downloadDirectory = downloadDirectory
 
@@ -1444,7 +1444,7 @@ class RemoteUpdater(QObject):
 
 		return pkzip.extract(os.path.dirname(file))
 
-class OnlineUpdater(UiComponent):
+class OnlineUpdater(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
 	| This Component provides online updating capabilities to the Application available through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
@@ -1461,7 +1461,7 @@ class OnlineUpdater(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -1981,7 +1981,7 @@ class OnlineUpdater(UiComponent):
 
 		self.__reportUpdateStatus = True
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -2009,7 +2009,7 @@ class OnlineUpdater(UiComponent):
 
 		self.__reportUpdateStatus = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

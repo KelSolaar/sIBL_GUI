@@ -38,7 +38,7 @@ import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -68,19 +68,19 @@ class DatabaseBrowser_Worker(QThread):
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Object container. ( Object )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QThread.__init__(self, container)
+		QThread.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
@@ -253,19 +253,19 @@ class DatabaseBrowser_QListView(QListView):
 	"""
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QListView.__init__(self, container)
+		QListView.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
@@ -348,7 +348,7 @@ class DatabaseBrowser_QListView(QListView):
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
-class DatabaseBrowser(UiComponent):
+class DatabaseBrowser(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Interface class.
 	| It defines methods for Database Ibl Sets management.
@@ -370,7 +370,7 @@ class DatabaseBrowser(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
@@ -1110,7 +1110,7 @@ class DatabaseBrowser(UiComponent):
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

@@ -33,7 +33,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
-from manager.component import Component
+from manager.qobjectComponent import QObjectComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -62,19 +62,19 @@ class SetsScanner_Worker(QThread):
 	databaseChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, container):
+	def __init__(self, parent):
 		"""
 		This method initializes the class.
 
-		:param container: Object container. ( Object )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QThread.__init__(self)
+		QThread.__init__(self, parent)
 
 		# --- Setting class attributes. ---
-		self.__container = container
+		self.__container = parent
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
 
@@ -246,7 +246,7 @@ class SetsScanner_Worker(QThread):
 		needModelRefresh and self.databaseChanged.emit()
 		return True
 
-class SetsScanner(Component):
+class SetsScanner(QObjectComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.setsScanner.setsScanner` Component Interface class.
 	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets from Database registered directories parents.
@@ -262,7 +262,7 @@ class SetsScanner(Component):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		Component.__init__(self, name=name)
+		QObjectComponent.__init__(self, name=name)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -447,7 +447,7 @@ class SetsScanner(Component):
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return Component.activate(self)
+		return QObjectComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -465,7 +465,7 @@ class SetsScanner(Component):
 		self.__coreCollectionsOutliner = None
 		self.__coreDatabaseBrowser = None
 
-		return Component.deactivate(self)
+		return QObjectComponent.deactivate(self)
 
 	@core.executionTrace
 	def initialize(self):

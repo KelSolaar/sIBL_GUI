@@ -30,7 +30,7 @@ import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -66,7 +66,7 @@ class DbType(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-class DatabaseOperations(UiComponent):
+class DatabaseOperations(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.databaseOperations.databaseOperations` Component Interface class.
 	| It provides various methods to operate on the Database.
@@ -83,7 +83,7 @@ class DatabaseOperations(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -339,7 +339,7 @@ class DatabaseOperations(UiComponent):
 		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
 						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -360,7 +360,7 @@ class DatabaseOperations(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreTemplatesOutliner = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

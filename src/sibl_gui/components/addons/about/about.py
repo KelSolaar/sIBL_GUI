@@ -28,7 +28,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -109,7 +109,7 @@ ABOUT_MESSAGE = """
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class About(UiComponent):
+class About(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
@@ -127,7 +127,7 @@ class About(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -344,7 +344,7 @@ class About(UiComponent):
 
 		self.__addActions()
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -363,7 +363,7 @@ class About(UiComponent):
 		self.__container = None
 		self.__miscellaneousMenu = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

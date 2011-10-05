@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import umbra.ui.common
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -61,7 +61,7 @@ class Map(QWebView):
 		"""
 		This method initializes the class.
 
-		:param parent: Widget parent. ( QObject )
+		:param parent: Object parent. ( QObject )
 		"""
 
 		QWebView.__init__(self, parent)
@@ -144,7 +144,7 @@ class Map(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
 		return True
 
-class GpsMap(UiComponent):
+class GpsMap(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
 	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
@@ -161,7 +161,7 @@ class GpsMap(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -535,7 +535,7 @@ class GpsMap(UiComponent):
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -554,7 +554,7 @@ class GpsMap(UiComponent):
 
 		self.__coreDatabaseBrowser = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

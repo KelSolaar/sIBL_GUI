@@ -1,17 +1,17 @@
-_`manager.uiComponent`
+_`manager.qwidgetComponent`
 ======================
 
-.. automodule:: manager.uiComponent
+.. automodule:: manager.qwidgetComponent
 
 Module Attributes
 -----------------
 
-.. attribute:: manager.uiComponent.LOGGER
+.. attribute:: manager.qwidgetComponent.LOGGER
 
 Classes
 -------
 
-.. autoclass:: UiComponent
+.. autoclass:: QWidgetComponent
 	:show-inheritance:
 	:members:
 

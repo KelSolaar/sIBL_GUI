@@ -32,7 +32,7 @@ import foundations.exceptions
 import sibl_gui.ui.highlighters
 import umbra.ui.common
 import umbra.ui.inputAccelerators
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.components.factory.scriptEditor.editor import Language
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class RawEditingUtilities(UiComponent):
+class RawEditingUtilities(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
@@ -72,7 +72,7 @@ class RawEditingUtilities(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -458,7 +458,7 @@ class RawEditingUtilities(UiComponent):
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -481,7 +481,7 @@ class RawEditingUtilities(UiComponent):
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):

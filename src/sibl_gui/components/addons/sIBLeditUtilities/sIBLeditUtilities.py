@@ -29,7 +29,7 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.uiComponent import UiComponent
+from manager.qwidgetComponent import QWidgetComponent
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class sIBLeditUtilities(UiComponent):
+class sIBLeditUtilities(QWidgetComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
 	| It provides methods to link the Application to sIBLedit.
@@ -67,7 +67,7 @@ class sIBLeditUtilities(UiComponent):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		UiComponent.__init__(self, name=name, uiFile=uiFile)
+		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
@@ -318,7 +318,7 @@ class sIBLeditUtilities(UiComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 
-		return UiComponent.activate(self)
+		return QWidgetComponent.activate(self)
 
 	@core.executionTrace
 	def deactivate(self):
@@ -339,7 +339,7 @@ class sIBLeditUtilities(UiComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
-		return UiComponent.deactivate(self)
+		return QWidgetComponent.deactivate(self)
 
 	@core.executionTrace
 	def initializeUi(self):
