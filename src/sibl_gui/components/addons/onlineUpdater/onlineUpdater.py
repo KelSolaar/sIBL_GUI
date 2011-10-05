@@ -126,7 +126,7 @@ class DownloadManager(QObject):
 		if "." in sys.path:
 			sys.path.remove(".")
 
-		self.initializeUi()
+		DownloadManager.__initializeUi(self)
 
 		self.__ui.show()
 
@@ -529,11 +529,9 @@ class DownloadManager(QObject):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def initializeUi(self):
+	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
-
-		:return: Method success. ( Boolean )		
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -546,8 +544,6 @@ class DownloadManager(QObject):
 
 		# Signals / Slots.
 		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
-
-		return True
 
 	@core.executionTrace
 	def closeEvent(self, closeEvent):
@@ -719,7 +715,7 @@ class RemoteUpdater(QObject):
 		if "." in sys.path:
 			sys.path.remove(".")
 
-		self.initializeUi()
+		RemoteUpdater.__initializeUi(self)
 
 		self.__ui.show()
 
@@ -1241,11 +1237,9 @@ class RemoteUpdater(QObject):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def initializeUi(self):
+	def __initializeUi(self):
 		"""
-		This method initializes the **Remote_Updater** Widget ui.
-
-		:return: Method success. ( Boolean )		
+		This method initializes the Widget ui.
 		"""
 
 		umbra.ui.common.setWindowDefaultIcon(self.ui)
@@ -1318,8 +1312,6 @@ class RemoteUpdater(QObject):
 		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
 		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
 		self.__ui.Close_pushButton.clicked.connect(self.__Close_pushButton__clicked)
-
-		return True
 
 	@core.executionTrace
 	def __Get_sIBL_GUI_pushButton__clicked(self, checked):

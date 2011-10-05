@@ -257,7 +257,7 @@ class ImagesPreviewer(QObject):
 		self.__graphicsScene = None
 		self.__displayGraphicsItem = None
 
-		self.initializeUi()
+		ImagesPreviewer.__initializeUi(self)
 
 		self.__ui.show()
 
@@ -872,11 +872,9 @@ class ImagesPreviewer(QObject):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def initializeUi(self):
+	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
-
-		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
@@ -915,8 +913,6 @@ class ImagesPreviewer(QObject):
 		self.ui.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
 		self.ui.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton_clicked)
 		self.ui.Zoom_Fit_pushButton.clicked.connect(self.__Zoom_Fit_pushButton__clicked)
-
-		return True
 
 	@core.executionTrace
 	def closeUi(self, event):
