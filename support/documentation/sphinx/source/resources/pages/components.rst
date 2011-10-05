@@ -81,7 +81,7 @@ Columns Descriptions:
 
 -  **Components**: Components names (Components are sorted by families).
 -  **Activated**: Components activations status.
--  **Categorie**: Components categories (Default or Ui).
+-  **Category**: Components categories (Default or Ui).
 -  **Rank**: Components ranks (Components with a low rank will have a high instantiation priority).
 
 Context Menu:
