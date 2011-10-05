@@ -78,11 +78,11 @@ def getGraphicItem(path, type):
 
 		if os.path.exists(path):
 			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
+				if re.search(extension, path, flags=re.IGNORECASE):
 					return type(path)
 			else:
 				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
+					if re.search(extension, path, flags=re.IGNORECASE):
 						image = Image(str(path))
 						image = image.convertToQImage()
 						if type == QIcon:
@@ -144,11 +144,11 @@ def filterImagePath(path):
 
 		if os.path.exists(path):
 			for extension in UiConstants.nativeImageFormats.values():
-				if re.search(extension, path):
+				if re.search(extension, path, flags=re.IGNORECASE):
 					return path
 			else:
 				for extension in UiConstants.thirdPartyImageFormats.values():
-					if re.search(extension, path):
+					if re.search(extension, path, flags=re.IGNORECASE):
 						return umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 		else:
 			return umbra.ui.common.getResourcePath(UiConstants.missingImage)

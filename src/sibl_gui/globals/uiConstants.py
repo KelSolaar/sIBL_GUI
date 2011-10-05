@@ -138,17 +138,17 @@ class UiConstants():
 	apiFile = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html"
 	"""Application online api file: '**http://kelsolaar.hdrlabs.com/sIBL_GUI/Support/Documentation/Api/index.html**' ( String )"""
 
-	nativeImageFormats = { "Bmp" : "\.[bB][mM][pP]",
-							"Jpeg" : "\.[jJ][pP][eE][gG]",
-							"Jpg" : "\.[jJ][pP][gG]",
-							"Png" : "\.[pP][nN][gG]" }
+	nativeImageFormats = { "Bmp" : "\.bmp$",
+							"Jpeg" : "\.jpeg$",
+							"Jpg" : "\.jpg$",
+							"Png" : "\.png$" }
 	"""Application native image file formats. ( Dictionary )"""
 
-	thirdPartyImageFormats = { "Exr" : ("\.[eE][xX][rR]"),
-								"Hdr" : ("\.[hH][dD][rR]"),
-								"Tif" : ("\.[tT][iI][fF]"),
-								"Tiff" : ("\.[tT][iI][fF][fF]"),
-								"Tga" : ("\.[tT][gG][aA]")}
+	thirdPartyImageFormats = { "Exr" : ("\.exr$"),
+								"Hdr" : ("\.hdr$"),
+								"Tif" : ("\.tif$"),
+								"Tiff" : ("\.tiff$"),
+								"Tga" : ("\.tga$")}
 	"""Application third party image file formats. ( Dictionary )"""
 
 	pythonTokensFile = "others/Python_Tokens.rc"
