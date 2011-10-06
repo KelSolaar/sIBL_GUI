@@ -343,9 +343,7 @@ class DatabaseBrowser_QListView(QListView):
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
-		if not self.__container.parameters.databaseReadOnly:
-			pass
-		else:
+		if self.__container.parameters.databaseReadOnly:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 class DatabaseBrowser(QWidgetComponent):
