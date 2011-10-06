@@ -894,7 +894,6 @@ class LoaderScriptOptions(QWidgetComponent):
 		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def __updateOverrideKeys(self, tableWidget):
 		"""
 		This method updates the Loader Script Component override keys.
