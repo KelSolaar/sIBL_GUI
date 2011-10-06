@@ -494,11 +494,8 @@ class RawEditingUtilities(QWidgetComponent):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__Custom_Text_Editor_Path_lineEdit_setUi()
-
 		self.__addActions()
-
-		for language in self.__languages:
-			self.__factoryScriptEditor.languagesModel.registerLanguage(language)
+		self.__registerLanguages()
 
 		# Signals / Slots.
 		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
@@ -700,7 +697,8 @@ class RawEditingUtilities(QWidgetComponent):
 		This method registers Application related languages in **scriptEditor** component.
 		"""
 
-		pass
+		for language in self.__languages:
+			self.__factoryScriptEditor.languagesModel.registerLanguage(language)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
