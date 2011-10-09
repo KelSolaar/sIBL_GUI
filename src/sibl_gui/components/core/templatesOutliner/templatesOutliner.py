@@ -36,7 +36,7 @@ import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from foundations.walkers import OsWalker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -51,9 +51,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "TemplatesOutliner_Worker", "TemplatesOutliner_QTreeView", "TemplatesOutliner"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "TemplatesOutliner_Worker", "TemplatesOutliner_QTreeView", "TemplatesOutliner"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Outliner.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -299,7 +301,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
 
-class TemplatesOutliner(QWidgetComponent):
+class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.core.templatesOutliner.templatesOutliner` Component Interface class.
 	| It defines methods for Database Templates management.
@@ -310,22 +312,23 @@ class TemplatesOutliner(QWidgetComponent):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(TemplatesOutliner, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__uiPath = "ui/Templates_Outliner.ui"
 		self.__uiResources = "resources"
 		self.__uiSoftwareAffixe = "_Software.png"
 		self.__uiUnknownSoftwareImage = "Unknown_Software.png"
@@ -380,36 +383,6 @@ class TemplatesOutliner(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -1114,7 +1087,6 @@ class TemplatesOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
 		self.__settings = self.__container.settings
@@ -1128,7 +1100,8 @@ class TemplatesOutliner(QWidgetComponent):
 
 		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1153,19 +1126,19 @@ class TemplatesOutliner(QWidgetComponent):
 		self.__model = QStandardItemModel()
 		self.__Templates_Outliner_treeView_setModel()
 
-		self.ui.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__container)
-		self.ui.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
-		self.ui.Templates_Outliner_gridLayout.addWidget(self.ui.Templates_Outliner_treeView, 0, 0)
+		self.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__container)
+		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
+		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
 
-		self.ui.Templates_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.Templates_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Templates_Outliner_treeView_addActions()
 
 		self.__Templates_Outliner_treeView_setView()
 
-		self.ui.Template_Informations_textBrowser.setText(self.__templatesInformationsDefaultText)
-		self.ui.Template_Informations_textBrowser.setOpenLinks(False)
+		self.Template_Informations_textBrowser.setText(self.__templatesInformationsDefaultText)
+		self.Template_Informations_textBrowser.setOpenLinks(False)
 
-		self.ui.Templates_Outliner_splitter.setSizes([16777215, 1])
+		self.Templates_Outliner_splitter.setSizes([16777215, 1])
 
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
@@ -1178,8 +1151,8 @@ class TemplatesOutliner(QWidgetComponent):
 			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
-		self.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
-		self.ui.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
+		self.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
+		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Templates_Outliner_treeView_refreshModel)
 		if not self.__container.parameters.databaseReadOnly:
@@ -1207,7 +1180,7 @@ class TemplatesOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -1394,14 +1367,14 @@ class TemplatesOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Templates_Outliner_treeView"))
 
-		self.ui.Templates_Outliner_treeView.setAutoScroll(False)
-		self.ui.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
-		self.ui.Templates_Outliner_treeView.setDragDropMode(QAbstractItemView.DragOnly)
-		self.ui.Templates_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.ui.Templates_Outliner_treeView.setIndentation(self.__treeViewIndentation)
-		self.ui.Templates_Outliner_treeView.setSortingEnabled(True)
+		self.Templates_Outliner_treeView.setAutoScroll(False)
+		self.Templates_Outliner_treeView.setEditTriggers(QAbstractItemView.NoEditTriggers)
+		self.Templates_Outliner_treeView.setDragDropMode(QAbstractItemView.DragOnly)
+		self.Templates_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.Templates_Outliner_treeView.setIndentation(self.__treeViewIndentation)
+		self.Templates_Outliner_treeView.setSortingEnabled(True)
 
-		self.ui.Templates_Outliner_treeView.setModel(self.__model)
+		self.Templates_Outliner_treeView.setModel(self.__model)
 
 		self.__Templates_Outliner_treeView_setDefaultViewState()
 
@@ -1413,11 +1386,11 @@ class TemplatesOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Templates_Outliner_treeView"))
 
-		self.ui.Templates_Outliner_treeView.expandAll()
+		self.Templates_Outliner_treeView.expandAll()
 		for column in range(len(self.__modelHeaders)):
-			self.ui.Templates_Outliner_treeView.resizeColumnToContents(column)
+			self.Templates_Outliner_treeView.resizeColumnToContents(column)
 
-		self.ui.Templates_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
+		self.Templates_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshView(self):
@@ -1463,7 +1436,7 @@ class TemplatesOutliner(QWidgetComponent):
 					templateStandardItem = softwareStandardItem.child(k, 0)
 					templateStandardItem._datas.id in self.__modelSelection["Templates"] and indexes.append(self.__model.indexFromItem(templateStandardItem))
 
-		selectionModel = self.ui.Templates_Outliner_treeView.selectionModel()
+		selectionModel = self.Templates_Outliner_treeView.selectionModel()
 		if selectionModel:
 			selectionModel.clear()
 			for index in indexes:
@@ -1476,27 +1449,27 @@ class TemplatesOutliner(QWidgetComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__Templates_Outliner_treeView_addTemplateAction__triggered))
-			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__Templates_Outliner_treeView_removeTemplatesAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__Templates_Outliner_treeView_addTemplateAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__Templates_Outliner_treeView_removeTemplatesAction__triggered))
 
-			separatorAction = QAction(self.ui.Templates_Outliner_treeView)
+			separatorAction = QAction(self.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
-			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
+			self.Templates_Outliner_treeView.addAction(separatorAction)
 
-			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered))
-			self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered))
 
-			separatorAction = QAction(self.ui.Templates_Outliner_treeView)
+			separatorAction = QAction(self.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
-			self.ui.Templates_Outliner_treeView.addAction(separatorAction)
+			self.Templates_Outliner_treeView.addAction(separatorAction)
 		else:
 			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered))
+		self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered))
 
-		separatorAction = QAction(self.ui.Templates_Outliner_treeView)
+		separatorAction = QAction(self.Templates_Outliner_treeView)
 		separatorAction.setSeparator(True)
-		self.ui.Templates_Outliner_treeView.addAction(separatorAction)
+		self.Templates_Outliner_treeView.addAction(separatorAction)
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_addTemplateAction__triggered(self, checked):
@@ -1582,7 +1555,7 @@ class TemplatesOutliner(QWidgetComponent):
 
 		separator = len(content) == 1 and "" or "<p><center>* * *<center/></p>"
 
-		self.ui.Template_Informations_textBrowser.setText(separator.join(content))
+		self.Template_Informations_textBrowser.setText(separator.join(content))
 
 	@core.executionTrace
 	def __Template_Informations_textBrowser__anchorClicked(self, url):
@@ -1939,7 +1912,7 @@ class TemplatesOutliner(QWidgetComponent):
 		:return: View selected items. ( List )
 		"""
 
-		selectedIndexes = self.ui.Templates_Outliner_treeView.selectedIndexes()
+		selectedIndexes = self.Templates_Outliner_treeView.selectedIndexes()
 		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace

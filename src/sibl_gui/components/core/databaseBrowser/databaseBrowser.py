@@ -38,7 +38,7 @@ import sibl_gui.ui.common
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -52,9 +52,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "DatabaseBrowser_Worker", "DatabaseBrowser_QListView", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "DatabaseBrowser_QListView", "DatabaseBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Browser.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -346,7 +348,7 @@ class DatabaseBrowser_QListView(QListView):
 		if self.__container.parameters.databaseReadOnly:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
-class DatabaseBrowser(QWidgetComponent):
+class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Interface class.
 	| It defines methods for Database Ibl Sets management.
@@ -358,22 +360,23 @@ class DatabaseBrowser(QWidgetComponent):
 	modelChanged = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(DatabaseBrowser, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__uiPath = "ui/Database_Browser.ui"
 		self.__uiResources = "resources"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
@@ -413,36 +416,6 @@ class DatabaseBrowser(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -1098,7 +1071,6 @@ class DatabaseBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
 		self.__settings = self.__container.settings
@@ -1108,7 +1080,8 @@ class DatabaseBrowser(QWidgetComponent):
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1129,8 +1102,8 @@ class DatabaseBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
-		self.ui.Database_Browser_Widget_gridLayout.addWidget(self.ui.Database_Browser_listView, 0, 0)
+		self.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
+		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
 
 		self.__modelContent = dbCommon.getIblSets(self.__coreDb.dbSession)
 
@@ -1141,7 +1114,7 @@ class DatabaseBrowser(QWidgetComponent):
 		self.__model = QStandardItemModel()
 		self.__Database_Browser_listView_setModel()
 
-		self.ui.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Database_Browser_listView_addActions()
 
 		self.__Database_Browser_listView_setView()
@@ -1156,13 +1129,13 @@ class DatabaseBrowser(QWidgetComponent):
 		else:
 			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.ui.Thumbnails_Size_horizontalSlider.setValue(self.__listViewIconSize)
-		self.ui.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
-		self.ui.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
+		self.Thumbnails_Size_horizontalSlider.setValue(self.__listViewIconSize)
+		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLargestSizeImage)))
+		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSmallestSizeImage)))
 
 		# Signals / Slots.
-		self.ui.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
-		self.ui.Database_Browser_listView.doubleClicked.connect(self.ui.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
+		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
+		self.Database_Browser_listView.doubleClicked.connect(self.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
 		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelDatas)
 		self.modelChanged.connect(self.__Database_Browser_listView_refreshView)
 		self.modelChanged.connect(functools.partial(self.__coreCollectionsOutliner.emit, SIGNAL("modelPartialRefresh()")))
@@ -1194,7 +1167,7 @@ class DatabaseBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.centralwidget_gridLayout.addWidget(self.ui)
+		self.__container.centralwidget_gridLayout.addWidget(self)
 
 		return True
 
@@ -1329,16 +1302,16 @@ class DatabaseBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
 
-		self.ui.Database_Browser_listView.setAutoScroll(True)
-		self.ui.Database_Browser_listView.setResizeMode(QListView.Adjust)
-		self.ui.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.ui.Database_Browser_listView.setViewMode(QListView.IconMode)
+		self.Database_Browser_listView.setAutoScroll(True)
+		self.Database_Browser_listView.setResizeMode(QListView.Adjust)
+		self.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.Database_Browser_listView.setViewMode(QListView.IconMode)
 		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
-		self.ui.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
+		self.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
 
 		self.__Database_Browser_listView_setDefaultViewState()
 
-		self.ui.Database_Browser_listView.setModel(self.__model)
+		self.Database_Browser_listView.setModel(self.__model)
 
 	@core.executionTrace
 	def __Database_Browser_listView_setDefaultViewState(self):
@@ -1348,8 +1321,8 @@ class DatabaseBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
 
-		self.ui.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.ui.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+		self.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
 
 	@core.executionTrace
 	def __Database_Browser_listView_refreshView(self):
@@ -1384,7 +1357,7 @@ class DatabaseBrowser(QWidgetComponent):
 				iblSetStandardItem = self.__model.item(i)
 				iblSetStandardItem._datas.id in self.__modelSelection and indexes.append(self.__model.indexFromItem(iblSetStandardItem))
 
-			selectionModel = self.ui.Database_Browser_listView.selectionModel()
+			selectionModel = self.Database_Browser_listView.selectionModel()
 			if selectionModel:
 				selectionModel.clear()
 				for index in indexes:
@@ -1397,14 +1370,14 @@ class DatabaseBrowser(QWidgetComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
-			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
-			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
-			self.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
+			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
+			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
+			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
+			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
 
-			separatorAction = QAction(self.ui.Database_Browser_listView)
+			separatorAction = QAction(self.Database_Browser_listView)
 			separatorAction.setSeparator(True)
-			self.ui.Database_Browser_listView.addAction(separatorAction)
+			self.Database_Browser_listView.addAction(separatorAction)
 		else:
 			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1764,7 +1737,7 @@ class DatabaseBrowser(QWidgetComponent):
 		:return: View selected items. ( List )
 		"""
 
-		return [self.__model.itemFromIndex(index) for index in self.ui.Database_Browser_listView.selectedIndexes()]
+		return [self.__model.itemFromIndex(index) for index in self.Database_Browser_listView.selectedIndexes()]
 
 	@core.executionTrace
 	def getSelectedIblSets(self):

@@ -19,8 +19,6 @@
 #***********************************************************************************************
 import logging
 import os
-import platform
-import re
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -29,13 +27,12 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import foundations.strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -49,9 +46,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "CollectionsOutliner_QTreeView", "CollectionsOutliner"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "CollectionsOutliner_QTreeView", "CollectionsOutliner"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_Outliner.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -287,7 +286,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(iblSet.title, collection.name))
 					iblSet.collection = collection.id
 				if dbCommon.commit(self.__coreDb.dbSession):
-					self.__coreCollectionsOutliner.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+					self.__coreCollectionsOutliner.Collections_Outliner_treeView.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
@@ -321,7 +320,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
-class CollectionsOutliner(QWidgetComponent):
+class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
 	| It defines methods for Database Collections management.
@@ -333,22 +332,23 @@ class CollectionsOutliner(QWidgetComponent):
 	modelPartialRefresh = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(CollectionsOutliner, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__uiPath = "ui/Collections_Outliner.ui"
 		self.__uiResources = "resources"
 		self.__uiDefaultCollectionImage = "Default_Collection.png"
 		self.__uiUserCollectionImage = "User_Collection.png"
@@ -374,36 +374,6 @@ class CollectionsOutliner(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -928,7 +898,6 @@ class CollectionsOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
 		self.__settings = self.__container.settings
@@ -937,7 +906,8 @@ class CollectionsOutliner(QWidgetComponent):
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -962,18 +932,18 @@ class CollectionsOutliner(QWidgetComponent):
 		self.__model = QStandardItemModel()
 		self.__Collections_Outliner_treeView_setModel()
 
-		self.ui.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__container)
-		self.ui.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.ui.Collections_Outliner_treeView, 0, 0)
+		self.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__container)
+		self.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.Collections_Outliner_treeView, 0, 0)
 
-		self.ui.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Collections_Outliner_treeView_addActions()
 
 		self.__Collections_Outliner_treeView_setView()
 
 		# Signals / Slots.
-		self.ui.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
-		self.ui.Collections_Outliner_treeView.clicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
-		self.ui.Collections_Outliner_treeView.doubleClicked.connect(self.ui.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
+		self.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
+		self.Collections_Outliner_treeView.clicked.connect(self.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
+		self.Collections_Outliner_treeView.doubleClicked.connect(self.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
 		self.modelChanged.connect(self.__Collections_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Collections_Outliner_treeView_refreshModel)
 		self.modelPartialRefresh.connect(self.__Collections_Outliner_treeView_setIblSetsCounts)
@@ -1000,7 +970,7 @@ class CollectionsOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -1151,13 +1121,13 @@ class CollectionsOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Widget!".format("Collections_Outliner_treeView"))
 
-		self.ui.Collections_Outliner_treeView.setAutoScroll(False)
-		self.ui.Collections_Outliner_treeView.setDragDropMode(QAbstractItemView.DropOnly)
-		self.ui.Collections_Outliner_treeView.setIndentation(self.__treeViewIndentation)
-		self.ui.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.ui.Collections_Outliner_treeView.setSortingEnabled(True)
+		self.Collections_Outliner_treeView.setAutoScroll(False)
+		self.Collections_Outliner_treeView.setDragDropMode(QAbstractItemView.DropOnly)
+		self.Collections_Outliner_treeView.setIndentation(self.__treeViewIndentation)
+		self.Collections_Outliner_treeView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.Collections_Outliner_treeView.setSortingEnabled(True)
 
-		self.ui.Collections_Outliner_treeView.setModel(self.__model)
+		self.Collections_Outliner_treeView.setModel(self.__model)
 
 		self.__Collections_Outliner_treeView_setDefaultViewState()
 
@@ -1169,11 +1139,11 @@ class CollectionsOutliner(QWidgetComponent):
 
 		LOGGER.debug("> Setting '{0}' default View state!".format("Collections_Outliner_treeView"))
 
-		self.ui.Collections_Outliner_treeView.expandAll()
+		self.Collections_Outliner_treeView.expandAll()
 		for column in range(len(self.__modelHeaders)):
-			self.ui.Collections_Outliner_treeView.resizeColumnToContents(column)
+			self.Collections_Outliner_treeView.resizeColumnToContents(column)
 
-		self.ui.Collections_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
+		self.Collections_Outliner_treeView.sortByColumn(0, Qt.AscendingOrder)
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_setIblSetsCounts(self):
@@ -1235,7 +1205,7 @@ class CollectionsOutliner(QWidgetComponent):
 				collectionStandardItem = overallCollectionStandardItem.child(j, 0)
 				collectionStandardItem._datas.id in self.__modelSelection["Collections"] and indexes.append(self.__model.indexFromItem(collectionStandardItem))
 
-		selectionModel = self.ui.Collections_Outliner_treeView.selectionModel()
+		selectionModel = self.Collections_Outliner_treeView.selectionModel()
 		if selectionModel:
 			selectionModel.clear()
 			for index in indexes:
@@ -1248,9 +1218,9 @@ class CollectionsOutliner(QWidgetComponent):
 		"""
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Content ...", slot=self.__Collections_Outliner_treeView_addContentAction__triggered))
-			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...", slot=self.__Collections_Outliner_treeView_addCollectionAction__triggered))
-			self.ui.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...", slot=self.__Collections_Outliner_treeView_removeCollectionsAction__triggered))
+			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Content ...", slot=self.__Collections_Outliner_treeView_addContentAction__triggered))
+			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...", slot=self.__Collections_Outliner_treeView_addCollectionAction__triggered))
+			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...", slot=self.__Collections_Outliner_treeView_removeCollectionsAction__triggered))
 		else:
 			LOGGER.info("{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1390,7 +1360,7 @@ class CollectionsOutliner(QWidgetComponent):
 				if not self.collectionExists(name):
 					comment = len(collectionInformations) == 1 and "Double click to set a comment!" or collectionInformations[1].strip()
 					if self.addCollection(name, comment):
-						self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(name, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+						self.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.indexFromItem(self.__model.findItems(name, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 						return name
 					else:
 						raise Exception("{0} | Exception raised while adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
@@ -1424,7 +1394,7 @@ class CollectionsOutliner(QWidgetComponent):
 			success = True
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
-			self.ui.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+			self.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 			if success:
 				return True
 			else:
@@ -1544,7 +1514,7 @@ class CollectionsOutliner(QWidgetComponent):
 		:return: View selected items. ( List )
 		"""
 
-		selectedIndexes = self.ui.Collections_Outliner_treeView.selectedIndexes()
+		selectedIndexes = self.Collections_Outliner_treeView.selectedIndexes()
 		return rowsRootOnly and [item for item in set([self.__model.itemFromIndex(self.__model.sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.__model.itemFromIndex(index) for index in selectedIndexes]
 
 	@core.executionTrace
