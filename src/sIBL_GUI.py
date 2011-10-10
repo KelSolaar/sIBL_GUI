@@ -92,18 +92,20 @@ class sIBL_GUI(umbra.engine.Umbra):
 	"""
 
 	@core.executionTrace
-	def __init__(self, componentsPaths, requisiteComponents=None, visibleComponents=None):
+	def __init__(self, parent=None, componentsPaths=None, requisiteComponents=None, visibleComponents=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
 		:param componentsPaths: Components componentsPaths. ( Tuple / List )
 		:param requisiteComponents: Requisite components names. ( Tuple / List )
 		:param visibleComponents: Visible components names. ( Tuple / List )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.engine.Umbra.__init__(self, componentsPaths, requisiteComponents, visibleComponents)
+		umbra.engine.Umbra.__init__(self, parent, componentsPaths, requisiteComponents, visibleComponents, *args, **kwargs)
 
 		self.__setOverrides()
 
