@@ -30,7 +30,7 @@ import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -43,9 +43,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "DbType", "DatabaseOperations"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DbType", "DatabaseOperations"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Database_Operations.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -66,29 +68,29 @@ class DbType(core.Structure):
 
 		core.Structure.__init__(self, **kwargs)
 
-class DatabaseOperations(QWidgetComponent):
+class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.databaseOperations.databaseOperations` Component Interface class.
 	| It provides various methods to operate on the Database.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(DatabaseOperations, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
-
-		self.__uiPath = "ui/Database_Operations.ui"
 
 		self.__container = None
 
@@ -102,36 +104,6 @@ class DatabaseOperations(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def container(self):
 		"""
@@ -326,7 +298,6 @@ class DatabaseOperations(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -339,7 +310,8 @@ class DatabaseOperations(QWidgetComponent):
 		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
 						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -351,7 +323,6 @@ class DatabaseOperations(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 		self.__settings = None
 		self.__settingsSection = None
@@ -360,7 +331,8 @@ class DatabaseOperations(QWidgetComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreTemplatesOutliner = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -374,7 +346,7 @@ class DatabaseOperations(QWidgetComponent):
 
 		# Signals / Slots.
 		if not self.__container.parameters.databaseReadOnly:
-			self.ui.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
+			self.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
 			LOGGER.info("{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -391,7 +363,7 @@ class DatabaseOperations(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		not self.__container.parameters.databaseReadOnly and	self.ui.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
+		not self.__container.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
 
 		return True
 
@@ -405,7 +377,7 @@ class DatabaseOperations(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Database_Operations_groupBox)
+		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Database_Operations_groupBox)
 
 		return True
 
@@ -419,8 +391,8 @@ class DatabaseOperations(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
-		self.ui.Database_Operations_groupBox.setParent(None)
+		self.__factoryPreferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
+		self.Database_Operations_groupBox.setParent(None)
 
 		return True
 

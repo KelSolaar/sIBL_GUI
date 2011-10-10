@@ -28,7 +28,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -41,9 +41,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "ABOUT_MESSAGE", "About"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "ABOUT_MESSAGE", "About"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "About.ui")
 
 ABOUT_MESSAGE = """
 		<center>
@@ -109,7 +111,7 @@ ABOUT_MESSAGE = """
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class About(QWidgetComponent):
+class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
@@ -117,22 +119,23 @@ class About(QWidgetComponent):
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(About, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/About.ui"
 		self.__uiResources = "resources"
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 		self.__uiGpl3Image = "GPL_V3.png"
@@ -143,36 +146,6 @@ class About(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -337,14 +310,14 @@ class About(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
 		self.__miscellaneousMenu = self.__container.miscellaneousMenu
 
 		self.__addActions()
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -358,12 +331,12 @@ class About(QWidgetComponent):
 
 		self.__removeActions()
 
-		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
 		self.__container = None
 		self.__miscellaneousMenu = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -446,13 +419,13 @@ class About(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' window.".format("About"))
 
-		umbra.ui.common.setWindowDefaultIcon(self.ui)
+		umbra.ui.common.setWindowDefaultIcon(self)
 
 		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResources, self.__uiLogoImage),
 					Constants.releaseVersion.replace(".", " . "),
 					os.path.join(self.__uiResources, self.__uiGpl3Image))
 
-		self.ui.About_label.setText(aboutMessage)
+		self.About_label.setText(aboutMessage)
 
-		self.ui.show()
+		self.show()
 		return True

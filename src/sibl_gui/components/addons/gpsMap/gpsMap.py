@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import umbra.ui.common
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -43,9 +43,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Map", "GpsMap"]
+__all__ = ["LOGGER", "COMPONENT_FILE", "Map", "GpsMap"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
@@ -144,29 +146,30 @@ class Map(QWebView):
 		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
 		return True
 
-class GpsMap(QWidgetComponent):
+class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
 	| It displays the GPS map inside a `QDockWidget <http://doc.qt.nokia.com/4.7/qdockwidget.html>`_ window.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(GpsMap, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Gps_Map.ui"
 		self.__uiResources = "resources"
 		self.__uiZoomInImage = "Zoom_In.png"
 		self.__uiZoomOutImage = "Zoom_Out.png"
@@ -184,36 +187,6 @@ class GpsMap(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -528,14 +501,14 @@ class GpsMap(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 
 		self.__container = container
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -547,14 +520,14 @@ class GpsMap(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
 
 		self.__container = None
 
 		self.__coreDatabaseBrowser = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -566,24 +539,24 @@ class GpsMap(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomInImage)))
-		self.ui.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomOutImage)))
+		self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomInImage)))
+		self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomOutImage)))
 
-		self.ui.Map_Type_comboBox.addItems([mapType[0] for mapType in self.__mapTypeIds])
+		self.Map_Type_comboBox.addItems([mapType[0] for mapType in self.__mapTypeIds])
 
 		self.__map = Map()
 		self.__map.setMinimumSize(self.__gpsMapBaseSize)
 		self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__uiResources, self.__gpsMapHtmlFile))))
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Vertical, Qt.ScrollBarAlwaysOff)
-		self.ui.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
+		self.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
-		self.ui.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
-		self.ui.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
-		self.ui.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
+		self.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
+		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
+		self.Zoom_Out_pushButton.clicked.connect(self.__Zoom_Out_pushButton__clicked)
 
 		return True
 
@@ -596,11 +569,11 @@ class GpsMap(QWidgetComponent):
 		"""
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
-		self.ui.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
-		self.ui.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
-		self.ui.Zoom_Out_pushButton.clicked.disconnect(self.__Zoom_Out_pushButton__clicked)
+		self.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
+		self.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
+		self.Zoom_Out_pushButton.clicked.disconnect(self.__Zoom_Out_pushButton__clicked)
 
 		self.__map = None
 
@@ -616,7 +589,7 @@ class GpsMap(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -630,8 +603,8 @@ class GpsMap(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self.ui)
-		self.ui.setParent(None)
+		self.__container.removeDockWidget(self)
+		self.setParent(None)
 
 		return True
 
@@ -649,9 +622,9 @@ class GpsMap(QWidgetComponent):
 		return True
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_ui_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.ui.Database_Browser_listView** Model selection has changed.
+		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

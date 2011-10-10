@@ -38,7 +38,7 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.io import File
 from foundations.parsers import SectionsFileParser
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -51,14 +51,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "LoaderScript"]
+__all__ = ["LOGGER", "COMPONENT_FILE", "LoaderScript"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LoaderScript(QWidgetComponent):
+class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.loaderScript.loaderScript` Component Interface class.
 	| It provides the glue between the Ibl Sets, the Templates and the 3d package.
@@ -74,22 +76,23 @@ class LoaderScript(QWidgetComponent):
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(LoaderScript, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Loader_Script.ui"
 		self.__dockArea = 2
 
 		self.__container = None
@@ -114,36 +117,6 @@ class LoaderScript(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def dockArea(self):
 		"""
@@ -526,8 +499,6 @@ class LoaderScript(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
-
 		self.__container = container
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
@@ -536,7 +507,8 @@ class LoaderScript(QWidgetComponent):
 		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -548,7 +520,6 @@ class LoaderScript(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 
 		self.__coreDatabaseBrowser = None
@@ -556,7 +527,8 @@ class LoaderScript(QWidgetComponent):
 
 		self.__ioDirectory = os.path.basename(os.path.abspath(self.__ioDirectory))
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -568,14 +540,14 @@ class LoaderScript(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Remote_Connection_groupBox.hide()
+		self.Remote_Connection_groupBox.hide()
 		if platform.system() == "Linux" or platform.system() == "Darwin":
-			self.ui.Options_groupBox.hide()
+			self.Options_groupBox.hide()
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
-		self.ui.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
+		self.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 		return True
 
@@ -590,9 +562,9 @@ class LoaderScript(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
-		self.ui.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
+		self.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
 
 		return True
 
@@ -606,7 +578,7 @@ class LoaderScript(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -620,8 +592,8 @@ class LoaderScript(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self.ui)
-		self.ui.setParent(None)
+		self.__container.removeDockWidget(self)
+		self.setParent(None)
 
 		return True
 
@@ -646,9 +618,9 @@ class LoaderScript(QWidgetComponent):
 		self.sendLoaderScriptToSoftware_ui()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_ui_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreTemplatesOutliner.ui.Templates_Outliner_treeView** Model selection has changed.
+		This method is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -666,20 +638,20 @@ class LoaderScript(QWidgetComponent):
 
 				if self.__templateRemoteConnectionSection in templateSectionsFileParser.sections:
 					LOGGER.debug("> {0}' section found.".format(self.__templateRemoteConnectionSection))
-					self.ui.Remote_Connection_groupBox.show()
+					self.Remote_Connection_groupBox.show()
 					connectionType = foundations.parsers.getAttributeCompound("ConnectionType", templateSectionsFileParser.getValue("ConnectionType", self.__templateRemoteConnectionSection))
 					if connectionType.value == "Socket":
 						LOGGER.debug("> Remote connection type: 'Socket'.")
-						self.ui.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", templateSectionsFileParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
-						self.ui.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress", templateSectionsFileParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
-						self.ui.Remote_Connection_Options_frame.show()
+						self.Software_Port_spinBox.setValue(int(foundations.parsers.getAttributeCompound("DefaultPort", templateSectionsFileParser.getValue("DefaultPort", self.__templateRemoteConnectionSection)).value))
+						self.Address_lineEdit.setText(QString(foundations.parsers.getAttributeCompound("DefaultAddress", templateSectionsFileParser.getValue("DefaultAddress", self.__templateRemoteConnectionSection)).value))
+						self.Remote_Connection_Options_frame.show()
 					elif connectionType.value == "Win32":
 						LOGGER.debug("> Remote connection: 'Win32'.")
-						self.ui.Remote_Connection_Options_frame.hide()
+						self.Remote_Connection_Options_frame.hide()
 				else:
-					self.ui.Remote_Connection_groupBox.hide()
+					self.Remote_Connection_groupBox.hide()
 		else:
-			self.ui.Remote_Connection_groupBox.hide()
+			self.Remote_Connection_groupBox.hide()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, foundations.exceptions.FileExistsError, Exception)
@@ -738,7 +710,7 @@ class LoaderScript(QWidgetComponent):
 				return
 
 			loaderScriptPath = strings.getNormalizedPath(os.path.join(self.__ioDirectory, template.outputScript))
-			if self.ui.Convert_To_Posix_Paths_checkBox.isChecked():
+			if self.Convert_To_Posix_Paths_checkBox.isChecked():
 				loaderScriptPath = strings.toPosixPath(loaderScriptPath)
 			if not self.sendLoaderScriptToSoftware(template, loaderScriptPath):
 				raise Exception("{0} | Exception raised while sending Loader Script!".format(self.__class__.__name__))
@@ -798,7 +770,7 @@ class LoaderScript(QWidgetComponent):
 		if connectionType.value == "Socket":
 			try:
 				connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-				connection.connect((str(self.ui.Address_lineEdit.text()), int(self.ui.Software_Port_spinBox.value())))
+				connection.connect((str(self.Address_lineEdit.text()), int(self.Software_Port_spinBox.value())))
 				socketCommand = foundations.parsers.getAttributeCompound("ExecutionCommand", templateSectionsFileParser.getValue("ExecutionCommand", self.__templateRemoteConnectionSection)).value.replace("$loaderScriptPath", loaderScriptPath)
 				LOGGER.debug("> Current socket command: '%s'.", socketCommand)
 				connection.send(socketCommand)
