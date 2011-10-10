@@ -679,6 +679,9 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			raise foundations.exceptions.FileExistsError("{0} | '{1}' Template file doesn't exists!".format(self.__class__.__name__, template.name))
 
 		selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
+		if selectedIblSets and len(selectedIblSets) != 1:
+			messageBox.messageBox("Information", "Information", "{0} | Multiple selected Ibl Sets, '{1}' will be used!".format(self.__class__.__name__, selectedIblSets[0].name))
+
 		iblSet = selectedIblSets and selectedIblSets[0] or None
 		if not iblSet:
 			raise foundations.exceptions.UserError("{0} | In order to output the Loader Script, you need to select an Ibl Set!".format(self.__class__.__name__))

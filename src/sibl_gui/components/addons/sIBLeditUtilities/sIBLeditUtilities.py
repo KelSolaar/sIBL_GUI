@@ -29,7 +29,7 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -43,36 +43,38 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "sIBLeditUtilities"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "sIBLeditUtilities"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "sIBLedit_Utilities.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class sIBLeditUtilities(QWidgetComponent):
+class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities` Component Interface class.
 	| It provides methods to link the Application to sIBLedit.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(sIBLeditUtilities, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
-
-		self.__uiPath = "ui/sIBLedit_Utilities.ui"
 
 		self.__container = None
 		self.__settings = None
@@ -85,36 +87,6 @@ class sIBLeditUtilities(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def container(self):
 		"""
@@ -309,7 +281,6 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -318,7 +289,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -330,7 +302,6 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 		self.__settings = None
 		self.__settingsSection = None
@@ -339,7 +310,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -356,8 +328,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		self.__addActions()
 
 		# Signals / Slots.
-		self.ui.sIBLedit_Path_toolButton.clicked.connect(self.__sIBLedit_Path_toolButton__clicked)
-		self.ui.sIBLedit_Path_lineEdit.editingFinished.connect(self.__sIBLedit_Path_lineEdit__editFinished)
+		self.sIBLedit_Path_toolButton.clicked.connect(self.__sIBLedit_Path_toolButton__clicked)
+		self.sIBLedit_Path_lineEdit.editingFinished.connect(self.__sIBLedit_Path_lineEdit__editFinished)
 
 		return True
 
@@ -372,8 +344,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.sIBLedit_Path_toolButton.clicked.disconnect(self.__sIBLedit_Path_toolButton__clicked)
-		self.ui.sIBLedit_Path_lineEdit.editingFinished.disconnect(self.__sIBLedit_Path_lineEdit__editFinished)
+		self.sIBLedit_Path_toolButton.clicked.disconnect(self.__sIBLedit_Path_toolButton__clicked)
+		self.sIBLedit_Path_lineEdit.editingFinished.disconnect(self.__sIBLedit_Path_lineEdit__editFinished)
 
 		self.__removeActions()
 
@@ -389,7 +361,7 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.sIBLedit_Path_groupBox)
+		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.sIBLedit_Path_groupBox)
 
 		return True
 
@@ -403,7 +375,7 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.ui.sIBLedit_Path_groupBox.setParent(None)
+		self.sIBLedit_Path_groupBox.setParent(None)
 
 		return True
 
@@ -416,8 +388,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...", slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered))
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
+			self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...", slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered))
+			self.__coreInspector.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -431,10 +403,10 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		if not self.__container.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ..."
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetInSIBLEditAction))
+			self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetInSIBLEditAction))
 			self.__container.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
 			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInSIBLEditAction))
+			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInSIBLEditAction))
 			self.__container.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
 	@core.executionTrace
@@ -467,7 +439,7 @@ class sIBLeditUtilities(QWidgetComponent):
 
 		sIBLeditExecutable = self.__settings.getKey(self.__settingsSection, "sIBLeditExecutable")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("sIBLedit_Path_lineEdit", sIBLeditExecutable.toString()))
-		self.ui.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
+		self.sIBLedit_Path_lineEdit.setText(sIBLeditExecutable.toString())
 
 	@core.executionTrace
 	def __sIBLedit_Path_toolButton__clicked(self, checked):
@@ -480,8 +452,8 @@ class sIBLeditUtilities(QWidgetComponent):
 		sIBLeditExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "sIBLedit executable:", RuntimeGlobals.lastBrowsedPath))
 		if sIBLeditExecutable != "":
 			LOGGER.debug("> Chosen sIBLedit executable: '{0}'.".format(sIBLeditExecutable))
-			self.ui.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
-			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
+			self.sIBLedit_Path_lineEdit.setText(QString(sIBLeditExecutable))
+			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -490,13 +462,13 @@ class sIBLeditUtilities(QWidgetComponent):
 		This method is called when **sIBLedit_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		if not os.path.exists(os.path.abspath(str(self.ui.sIBLedit_Path_lineEdit.text()))) and str(self.ui.sIBLedit_Path_lineEdit.text()) != "":
+		if not os.path.exists(os.path.abspath(str(self.sIBLedit_Path_lineEdit.text()))) and str(self.sIBLedit_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__sIBLedit_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError("{0} | Invalid sIBLedit executable file!".format(self.__class__.__name__))
 		else:
-			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.ui.sIBLedit_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "sIBLeditExecutable", self.sIBLedit_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError)
@@ -509,12 +481,12 @@ class sIBLeditUtilities(QWidgetComponent):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
+		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			selectedIblSets = self.__coreDatabaseBrowser.getSelectedIblSets()
 			selectedIblSet = selectedIblSets and os.path.exists(selectedIblSets[0].path) and selectedIblSets[0] or None
 			if selectedIblSet:
-				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.ui.sIBLedit_Path_lineEdit.text()))
+				return self.editIblSetInSIBLedit(selectedIblSet.path, str(self.sIBLedit_Path_lineEdit.text()))
 			else:
 				raise foundations.exceptions.FileExistsError("{0} | Exception raised while sending Ibl Set to sIBLedit: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, selectedIblSet.name))
 		else:
@@ -531,7 +503,7 @@ class sIBLeditUtilities(QWidgetComponent):
 		:note: This method may require user interaction.
 		"""
 
-		sIBLedit = str(self.ui.sIBLedit_Path_lineEdit.text())
+		sIBLedit = str(self.sIBLedit_Path_lineEdit.text())
 		if sIBLedit:
 			inspectorIblSet = self.__coreInspector.inspectorIblSet
 			inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None

@@ -30,7 +30,7 @@ import foundations.exceptions
 import foundations.parsers
 import foundations.strings as strings
 import umbra.ui.common
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -44,36 +44,39 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "RewiringTool"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "RewiringTool"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Rewiring_Tool.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class RewiringTool(QWidgetComponent):
+class RewiringTool(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.rewiringTool.rewiringTool` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(RewiringTool, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Rewiring_Tool.ui"
 		self.__dockArea = 2
 
 		self.__container = None
@@ -94,36 +97,6 @@ class RewiringTool(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def dockArea(self):
 		"""
@@ -348,13 +321,13 @@ class RewiringTool(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -366,13 +339,13 @@ class RewiringTool(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 
 		self.__coreDatabaseBrowser = None
 		self.__addonsLoaderScript = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -384,9 +357,9 @@ class RewiringTool(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__reWireFramesWidgets = (self.ui.Background_frame, self.ui.Lighting_frame, self.ui.Reflection_frame)
-		self.__reWireComboBoxesWidgets = (self.ui.Background_comboBox, self.ui.Lighting_comboBox, self.ui.Reflection_comboBox)
-		self.__reWireLineEditWidgets = (self.ui.Background_Path_lineEdit, self.ui.Lighting_Path_lineEdit, self.ui.Reflection_Path_lineEdit)
+		self.__reWireFramesWidgets = (self.Background_frame, self.Lighting_frame, self.Reflection_frame)
+		self.__reWireComboBoxesWidgets = (self.Background_comboBox, self.Lighting_comboBox, self.Reflection_comboBox)
+		self.__reWireLineEditWidgets = (self.Background_Path_lineEdit, self.Lighting_Path_lineEdit, self.Reflection_Path_lineEdit)
 
 		for frame in self.__reWireFramesWidgets:
 			LOGGER.debug("> Hiding '%s'.", frame)
@@ -398,12 +371,12 @@ class RewiringTool(QWidgetComponent):
 			self.__reWireComboBoxesWidgets[index].setCurrentIndex(index)
 
 		# Signals / Slots.
-		self.ui.Background_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Lighting_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Reflection_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Background_Path_toolButton.clicked.connect(self.__Background_Path_toolButton__clicked)
-		self.ui.Lighting_Path_toolButton.clicked.connect(self.__Lighting_Path_toolButton__clicked)
-		self.ui.Reflection_Path_toolButton.clicked.connect(self.__Reflection_Path_toolButton__clicked)
+		self.Background_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.Lighting_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.Reflection_comboBox.activated.connect(self.__setReWireWidgetFramesVisibility)
+		self.Background_Path_toolButton.clicked.connect(self.__Background_Path_toolButton__clicked)
+		self.Lighting_Path_toolButton.clicked.connect(self.__Lighting_Path_toolButton__clicked)
+		self.Reflection_Path_toolButton.clicked.connect(self.__Reflection_Path_toolButton__clicked)
 
 		return True
 
@@ -422,12 +395,12 @@ class RewiringTool(QWidgetComponent):
 		self.__reWireLineEditWidgets = None
 
 		# Signals / Slots.
-		self.ui.Background_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Lighting_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Reflection_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
-		self.ui.Background_Path_toolButton.clicked.disconnect(self.__Background_Path_toolButton__clicked)
-		self.ui.Lighting_Path_toolButton.clicked.disconnect(self.__Lighting_Path_toolButton__clicked)
-		self.ui.Reflection_Path_toolButton.clicked.disconnect(self.__Reflection_Path_toolButton__clicked)
+		self.Background_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.Lighting_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.Reflection_comboBox.activated.disconnect(self.__setReWireWidgetFramesVisibility)
+		self.Background_Path_toolButton.clicked.disconnect(self.__Background_Path_toolButton__clicked)
+		self.Lighting_Path_toolButton.clicked.disconnect(self.__Lighting_Path_toolButton__clicked)
+		self.Reflection_Path_toolButton.clicked.disconnect(self.__Reflection_Path_toolButton__clicked)
 
 		return True
 
@@ -441,7 +414,7 @@ class RewiringTool(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -455,8 +428,8 @@ class RewiringTool(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self.ui)
-		self.ui.setParent(None)
+		self.__container.removeDockWidget(self)
+		self.setParent(None)
 
 		return True
 
@@ -518,11 +491,11 @@ class RewiringTool(QWidgetComponent):
 		LOGGER.debug("> Chosen custom '{0}': '{1}'.".format(component, customFile))
 		if customFile != "":
 			if component == "Background":
-				self.ui.Background_Path_lineEdit.setText(QString(customFile))
+				self.Background_Path_lineEdit.setText(QString(customFile))
 			elif component == "Lighting":
-				self.ui.Lighting_Path_lineEdit.setText(QString(customFile))
+				self.Lighting_Path_lineEdit.setText(QString(customFile))
 			elif component == "Reflection":
-				self.ui.Reflection_Path_lineEdit.setText(QString(customFile))
+				self.Reflection_Path_lineEdit.setText(QString(customFile))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

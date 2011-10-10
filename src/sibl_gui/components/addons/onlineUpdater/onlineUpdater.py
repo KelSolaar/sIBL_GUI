@@ -19,9 +19,6 @@
 #***********************************************************************************************
 import logging
 import os
-import platform
-import sys
-from PyQt4 import uic
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from PyQt4.QtNetwork import *
@@ -37,11 +34,9 @@ import sibl_gui.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
-from foundations.pkzip import Pkzip
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.addons.onlineUpdater.remoteUpdater import RemoteUpdater, ReleaseObject
 from umbra.globals.constants import Constants
-from umbra.globals.runtimeGlobals import RuntimeGlobals
-from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -53,1412 +48,40 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "REPOSITORY_URL", "ReleaseObject", "DownloadManager", "RemoteUpdater", "OnlineUpdater"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "REPOSITORY_URL", "OnlineUpdater"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Online_Updater.ui")
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class ReleaseObject(core.Structure):
-	"""
-	This class represents a storage object for a :class:`RemoteUpdater` class release.
-	"""
-
-	@core.executionTrace
-	def __init__(self, **kwargs):
-		"""
-		This method initializes the class.
-
-		:param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
-		"""
-
-		core.Structure.__init__(self, **kwargs)
-
-class DownloadManager(QObject):
-	"""
-	| This class defines the Application download manager.
-	| Once initialized with a `QNetworkAccessManager <http://doc.qt.nokia.com/4.7/qnetworkaccessmanager.html>`_ instance, a download directory and a list of requests ( List of online resources / files ), this class can proceed of the download of those requests using the :meth:`DownloadManager.startDownload` method.
-	"""
-
-	# Custom signals definitions.
-	downloadFinished = pyqtSignal()
-
-	@core.executionTrace
-	def __init__(self, parent, networkAccessManager, downloadDirectory, requests=None):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param networkAccessManager: Network access manager. ( QNetworkAccessManager )
-		:param downloadDirectory: Download directory. ( String )
-		:param requests: Download requests. ( List )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		QObject.__init__(self, parent)
-
-		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__networkAccessManager = networkAccessManager
-		self.__downloadDirectory = downloadDirectory
-
-		self.__uiPath = "ui/Download_Manager.ui"
-		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
-		self.__uiResources = "resources/"
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
-		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
-
-		self.__requests = None
-		self.requests = requests
-		self.__downloads = []
-		self.__currentRequest = None
-		self.__currentFile = None
-		self.__currentFilePath = None
-
-		# Helper attribute for QNetwork reply crash.
-		self.__downloadStatus = None
-
-		self.__ui = uic.loadUi(self.__uiPath)
-		if "." in sys.path:
-			sys.path.remove(".")
-
-		DownloadManager.__initializeUi(self)
-
-		self.__ui.show()
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
-
-	@property
-	def networkAccessManager(self):
-		"""
-		This method is the property for **self.__networkAccessManager** attribute.
-
-		:return: self.__networkAccessManager. ( QNetworkAccessManager )
-		"""
-
-		return self.__networkAccessManager
-
-	@networkAccessManager.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def networkAccessManager(self, value):
-		"""
-		This method is the setter method for **self.__networkAccessManager** attribute.
-
-		:param value: Attribute value. ( QNetworkAccessManager )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
-
-	@networkAccessManager.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def networkAccessManager(self):
-		"""
-		This method is the deleter method for **self.__networkAccessManager** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
-
-	@property
-	def downloadDirectory(self):
-		"""
-		This method is the property for **self.__downloadDirectory** attribute.
-
-		:return: self.__downloadDirectory. ( String )
-		"""
-
-		return self.__downloadDirectory
-
-	@downloadDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadDirectory(self, value):
-		"""
-		This method is the setter method for **self.__downloadDirectory** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadDirectory"))
-
-	@downloadDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadDirectory(self):
-		"""
-		This method is the deleter method for **self.__downloadDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadDirectory"))
-
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
-	@property
-	def uiResources(self):
-		"""
-		This method is the property for **self.__uiResources** attribute.
-
-		:return: self.__uiResources. ( String )
-		"""
-
-		return self.__uiResources
-
-	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
-		"""
-		This method is the setter method for **self.__uiResources** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
-
-	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
-		"""
-		This method is the deleter method for **self.__uiResources** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
-
-	@property
-	def uiLogoImage(self):
-		"""
-		This method is the property for **self.__uiLogoImage** attribute.
-
-		:return: self.__uiLogoImage. ( String )
-		"""
-
-		return self.__uiLogoImage
-
-	@uiLogoImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self, value):
-		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
-
-	@uiLogoImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self):
-		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
-
-	@property
-	def requests(self):
-		"""
-		This method is the property for **self.__requests** attribute.
-
-		:return: self.__requests. ( List )
-		"""
-
-		return self.__requests
-
-	@requests.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def requests(self, value):
-		"""
-		This method is the setter method for **self.__requests** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value:
-			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
-		self.__requests = value
-
-	@requests.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def requests(self):
-		"""
-		This method is the deleter method for **self.__requests** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("requests"))
-
-	@property
-	def downloads(self):
-		"""
-		This method is the property for **self.__downloads** attribute.
-
-		:return: self.__downloads. ( List )
-		"""
-
-		return self.__downloads
-
-	@downloads.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def downloads(self, value):
-		"""
-		This method is the setter method for **self.__downloads** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloads"))
-
-	@downloads.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloads(self):
-		"""
-		This method is the deleter method for **self.__downloads** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloads"))
-
-	@property
-	def currentRequest(self):
-		"""
-		This method is the property for **self.__currentRequest** attribute.
-
-		:return: self.__currentRequest. ( QNetworkReply )
-		"""
-
-		return self.__currentRequest
-
-	@currentRequest.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentRequest(self, value):
-		"""
-		This method is the setter method for **self.__currentRequest** attribute.
-
-		:param value: Attribute value. ( QNetworkReply )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentRequest"))
-
-	@currentRequest.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentRequest(self):
-		"""
-		This method is the deleter method for **self.__currentRequest** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentRequest"))
-
-	@property
-	def currentFile(self):
-		"""
-		This method is the property for **self.__currentFile** attribute.
-
-		:return: self.__currentFile. ( QFile )
-		"""
-
-		return self.__currentFile
-
-	@currentFile.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentFile(self, value):
-		"""
-		This method is the setter method for **self.__currentFile** attribute.
-
-		:param value: Attribute value. ( QFile )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFile"))
-
-	@currentFile.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentFile(self):
-		"""
-		This method is the deleter method for **self.__currentFile** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFile"))
-
-	@property
-	def currentFilePath(self):
-		"""
-		This method is the property for **self.__currentFilePath** attribute.
-
-		:return: self.__currentFilePath. ( String )
-		"""
-
-		return self.__currentFilePath
-
-	@currentFilePath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentFilePath(self, value):
-		"""
-		This method is the setter method for **self.__currentFilePath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("currentFilePath"))
-
-	@currentFilePath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def currentFilePath(self):
-		"""
-		This method is the deleter method for **self.__currentFilePath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("currentFilePath"))
-
-	@property
-	def downloadStatus(self):
-		"""
-		This method is the property for **self.__downloadStatus** attribute.
-
-		:return: self.__downloadStatus. ( QObject )
-		"""
-
-		return self.__downloadStatus
-
-	@downloadStatus.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadStatus(self, value):
-		"""
-		This method is the setter method for **self.__downloadStatus** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadStatus"))
-
-	@downloadStatus.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadStatus(self):
-		"""
-		This method is the deleter method for **self.__downloadStatus** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadStatus"))
-
-	@property
-	def ui(self):
-		"""
-		This method is the property for **self.__ui** attribute.
-
-		:return: self.__ui. ( Object )
-		"""
-
-		return self.__ui
-
-	@ui.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def ui(self, value):
-		"""
-		This method is the setter method for **self.__ui** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("ui"))
-
-	@ui.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def ui(self):
-		"""
-		This method is the deleter method for **self.__ui** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def __initializeUi(self):
-		"""
-		This method initializes the Widget ui.
-		"""
-
-		umbra.ui.common.setWindowDefaultIcon(self.ui)
-
-		self.__ui.Download_progressBar.setValue(0)
-		self.__ui.Download_progressBar.hide()
-		self.__ui.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLogoImage)))
-
-		self.__ui.closeEvent = self.closeEvent
-
-		# Signals / Slots.
-		self.__ui.Cancel_Close_pushButton.clicked.connect(self.__Cancel_Close_pushButton__clicked)
-
-	@core.executionTrace
-	def closeEvent(self, closeEvent):
-		"""
-		This method overloads the download manager close event.
-
-		:param closeEvent: Close event. ( QCloseEvent )
-		"""
-
-		self.__downloadStatus or self.abortDownload()
-		closeEvent.accept()
-
-	@core.executionTrace
-	def __Cancel_Close_pushButton__clicked(self, checked):
-		"""
-		This method is triggered when **Cancel_Close_pushButton** Widget is clicked.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		self.__ui.close()
-
-	@core.executionTrace
-	def __downloadNext(self):
-		"""
-		This method downloads the next request.
-		"""
-
-		if self.__requests:
-			self.__ui.Download_progressBar.show()
-
-			self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
-
-			self.__currentFilePath = os.path.join(self.__downloadDirectory, os.path.basename(str(self.__currentRequest.url().path())))
-			if os.path.exists(self.__currentFilePath):
-				LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
-				os.remove(self.__currentFilePath)
-
-			self.__currentFile = QFile(self.__currentFilePath)
-
-			if not self.__currentFile.open(QIODevice.WriteOnly):
-				messageBox.messageBox("Warning", "Warning", "{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
-				self.__downloadNext()
-				return
-
-			# Signals / Slots.
-			self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
-			self.__currentRequest.finished.connect(self.__downloadComplete)
-			self.__currentRequest.readyRead.connect(self.__requestReady)
-
-	@core.executionTrace
-	def __downloadProgress(self, bytesReceived, bytesTotal):
-		"""
-		This method updates the download progress.
-
-		:param bytesReceived: Bytes received. ( Integer )
-		:param bytesTotal: Bytes total. ( Integer )
-		"""
-
-		LOGGER.debug("> Updating download progress: '{0}' bytes received, '{1}' bytes total.".format(bytesReceived, bytesTotal))
-
-		self.__ui.Current_File_label.setText("Downloading: '{0}'.".format(os.path.basename(str(self.__currentRequest.url().path()))))
-		self.__ui.Download_progressBar.setRange(0, bytesTotal)
-		self.__ui.Download_progressBar.setValue(bytesReceived)
-
-	@core.executionTrace
-	def __requestReady(self):
-		"""
-		This method is triggered when the request is ready to write.
-		"""
-
-		LOGGER.debug("> Updating '{0}' file content.".format(self.__currentFile))
-
-		self.__currentFile.write(self.__currentRequest.readAll())
-
-	@core.executionTrace
-	def __downloadComplete(self):
-		"""
-		This method is triggered when the request download is complete.
-		"""
-
-		LOGGER.debug("> '{0}' download complete.".format(self.__currentFile))
-
-		self.__currentFile.close()
-		self.__downloads.append(self.__currentFilePath)
-		self.__ui.Current_File_label.setText("'{0}' downloading done!".format(os.path.basename(self.__currentFilePath)))
-		self.__ui.Download_progressBar.hide()
-		self.__currentRequest.deleteLater();
-
-		if self.__requests:
-			LOGGER.debug("> Proceeding to next download request.")
-			self.__downloadNext()
-		else:
-			self.__downloadStatus = True
-			self.__ui.Current_File_label.setText("Downloads complete!")
-			self.__ui.Cancel_Close_pushButton.setText("Close")
-			self.downloadFinished.emit()
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def startDownload(self):
-		"""
-		This method triggers the download.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		self.__downloadStatus = False
-		self.__downloadNext()
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def abortDownload(self):
-		"""
-		This method aborts the current download.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		self.__currentRequest.abort()
-		self.__currentRequest.deleteLater()
-		return True
-
-class RemoteUpdater(QObject):
-	"""
-	| This class defines the Application remote updater.
-	| The remote updater is initialized with a list of available online releases ( List of :class:`ReleaseObject` class instances ).
-	"""
-
-	@core.executionTrace
-	def __init__(self, parent=None, releases=None):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param releases: Releases. ( Dictionary )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		QObject.__init__(self, parent)
-
-		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__releases = None
-		self.releases = releases
-		self.__uiPath = "ui/Remote_Updater.ui"
-		self.__uiPath = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
-		self.__uiResources = "resources/"
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
-		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
-		self.__uiTemplatesImage = "Templates_Logo.png"
-		self.__uiLightGrayColor = QColor(240, 240, 240)
-		self.__uiDarkGrayColor = QColor(160, 160, 160)
-		self.__splitter = "|"
-		self.__tableWidgetRowHeight = 30
-		self.__tableWidgetHeaderHeight = 25
-
-		self.__templatesTableWidgetHeaders = ["_datas", "Get it!", "Local version", "Repository version", "Release type", "Comment"]
-
-		self.__applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
-		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
-
-		self.__downloadManager = None
-		self.__networkAccessManager = self.__container.networkAccessManager
-
-		self.__ui = uic.loadUi(self.__uiPath)
-		if "." in sys.path:
-			sys.path.remove(".")
-
-		RemoteUpdater.__initializeUi(self)
-
-		self.__ui.show()
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
-
-	@property
-	def releases(self):
-		"""
-		This method is the property for **self.__releases** attribute.
-
-		:return: self.__releases. ( Dictionary )
-		"""
-
-		return self.__releases
-
-	@releases.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def releases(self, value):
-		"""
-		This method is the setter method for **self.__releases** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value:
-			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("releases", value)
-		self.__releases = value
-
-	@releases.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def releases(self):
-		"""
-		This method is the deleter method for **self.__releases** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releases"))
-
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
-	@property
-	def uiResources(self):
-		"""
-		This method is the property for **self.__uiResources** attribute.
-
-		:return: self.__uiResources. ( String )
-		"""
-
-		return self.__uiResources
-
-	@uiResources.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
-		"""
-		This method is the setter method for **self.__uiResources** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
-
-	@uiResources.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
-		"""
-		This method is the deleter method for **self.__uiResources** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
-
-	@property
-	def uiLogoImage(self):
-		"""
-		This method is the property for **self.__uiLogoImage** attribute.
-
-		:return: self.__uiLogoImage. ( String )
-		"""
-
-		return self.__uiLogoImage
-
-	@uiLogoImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self, value):
-		"""
-		This method is the setter method for **self.__uiLogoImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLogoImage"))
-
-	@uiLogoImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLogoImage(self):
-		"""
-		This method is the deleter method for **self.__uiLogoImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLogoImage"))
-
-	@property
-	def uiTemplatesImage(self):
-		"""
-		This method is the property for **self.__uiTemplatesImage** attribute.
-
-		:return: self.__uiTemplatesImage. ( String )
-		"""
-
-		return self.__uiTemplatesImage
-
-	@uiTemplatesImage.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiTemplatesImage(self, value):
-		"""
-		This method is the setter method for **self.__uiTemplatesImage** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiTemplatesImage"))
-
-	@uiTemplatesImage.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiTemplatesImage(self):
-		"""
-		This method is the deleter method for **self.__uiTemplatesImage** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiTemplatesImage"))
-
-	@property
-	def uiLightGrayColor(self):
-		"""
-		This method is the property for **self.__uiLightGrayColor** attribute.
-
-		:return: self.__uiLightGrayColor. ( QColor )
-		"""
-
-		return self.__uiLightGrayColor
-
-	@uiLightGrayColor.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLightGrayColor(self, value):
-		"""
-		This method is the setter method for **self.__uiLightGrayColor** attribute.
-
-		:param value: Attribute value. ( QColor )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiLightGrayColor"))
-
-	@uiLightGrayColor.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiLightGrayColor(self):
-		"""
-		This method is the deleter method for **self.__uiLightGrayColor** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiLightGrayColor"))
-
-	@property
-	def uiDarkGrayColor(self):
-		"""
-		This method is the property for **self.__uiDarkGrayColor** attribute.
-
-		:return: self.__uiDarkGrayColor. ( QColor )
-		"""
-
-		return self.__uiDarkGrayColor
-
-	@uiDarkGrayColor.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDarkGrayColor(self, value):
-		"""
-		This method is the setter method for **self.__uiDarkGrayColor** attribute.
-
-		:param value: Attribute value. ( QColor )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiDarkGrayColor"))
-
-	@uiDarkGrayColor.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiDarkGrayColor(self):
-		"""
-		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiDarkGrayColor"))
-
-	@property
-	def splitter(self):
-		"""
-		This method is the property for **self.__splitter** attribute.
-
-		:return: self.__splitter. ( String )
-		"""
-
-		return self.__splitter
-
-	@splitter.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def splitter(self, value):
-		"""
-		This method is the setter method for **self.__splitter** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("splitter"))
-
-	@splitter.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def splitter(self):
-		"""
-		This method is the deleter method for **self.__splitter** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("splitter"))
-
-	@property
-	def tableWidgetRowHeight(self):
-		"""
-		This method is the property for **self.__tableWidgetRowHeight** attribute.
-
-		:return: self.__tableWidgetRowHeight. ( Integer )
-		"""
-
-		return self.__tableWidgetRowHeight
-
-	@tableWidgetRowHeight.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self, value):
-		"""
-		This method is the setter method for **self.__tableWidgetRowHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetRowHeight"))
-
-	@tableWidgetRowHeight.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tableWidgetRowHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetRowHeight"))
-
-	@property
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the property for **self.__tableWidgetHeaderHeight** attribute.
-
-		:return: self.__tableWidgetHeaderHeight. ( Integer )
-		"""
-
-		return self.__tableWidgetHeaderHeight
-
-	@tableWidgetHeaderHeight.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self, value):
-		"""
-		This method is the setter method for **self.__tableWidgetHeaderHeight** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("tableWidgetHeaderHeight"))
-
-	@tableWidgetHeaderHeight.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tableWidgetHeaderHeight(self):
-		"""
-		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tableWidgetHeaderHeight"))
-
-	@property
-	def templatesTableWidgetHeaders(self):
-		"""
-		This method is the property for **self.__templatesTableWidgetHeaders** attribute.
-
-		:return: self.__templatesTableWidgetHeaders. ( String )
-		"""
-
-		return self.__templatesTableWidgetHeaders
-
-	@templatesTableWidgetHeaders.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templatesTableWidgetHeaders(self, value):
-		"""
-		This method is the setter method for **self.__templatesTableWidgetHeaders** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("templatesTableWidgetHeaders"))
-
-	@templatesTableWidgetHeaders.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templatesTableWidgetHeaders(self):
-		"""
-		This method is the deleter method for **self.__templatesTableWidgetHeaders** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("templatesTableWidgetHeaders"))
-
-	@property
-	def applicationChangeLogUrl(self):
-		"""
-		This method is the property for **self.__applicationChangeLogUrl** attribute.
-
-		:return: self.__applicationChangeLogUrl. ( String )
-		"""
-
-		return self.__applicationChangeLogUrl
-
-	@applicationChangeLogUrl.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def applicationChangeLogUrl(self, value):
-		"""
-		This method is the setter method for **self.__applicationChangeLogUrl** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("applicationChangeLogUrl"))
-
-	@applicationChangeLogUrl.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def applicationChangeLogUrl(self):
-		"""
-		This method is the deleter method for **self.__applicationChangeLogUrl** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("applicationChangeLogUrl"))
-
-	@property
-	def repositoryUrl(self):
-		"""
-		This method is the property for **self.__repositoryUrl** attribute.
-
-		:return: self.__repositoryUrl. ( String )
-		"""
-
-		return self.__repositoryUrl
-
-	@repositoryUrl.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def repositoryUrl(self, value):
-		"""
-		This method is the setter method for **self.__repositoryUrl** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("repositoryUrl"))
-
-	@repositoryUrl.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def repositoryUrl(self):
-		"""
-		This method is the deleter method for **self.__repositoryUrl** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("repositoryUrl"))
-
-	@property
-	def downloadManager(self):
-		"""
-		This method is the property for **self.__downloadManager** attribute.
-
-		:return: self.__downloadManager. ( Object )
-		"""
-
-		return self.__downloadManager
-
-	@downloadManager.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadManager(self, value):
-		"""
-		This method is the setter method for **self.__downloadManager** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("downloadManager"))
-
-	@downloadManager.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def downloadManager(self):
-		"""
-		This method is the deleter method for **self.__downloadManager** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("downloadManager"))
-
-	@property
-	def networkAccessManager(self):
-		"""
-		This method is the property for **self.__networkAccessManager** attribute.
-
-		:return: self.__networkAccessManager. ( QNetworkAccessManager )
-		"""
-
-		return self.__networkAccessManager
-
-	@networkAccessManager.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def networkAccessManager(self, value):
-		"""
-		This method is the setter method for **self.__networkAccessManager** attribute.
-
-		:param value: Attribute value. ( QNetworkAccessManager )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("networkAccessManager"))
-
-	@networkAccessManager.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def networkAccessManager(self):
-		"""
-		This method is the deleter method for **self.__networkAccessManager** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("networkAccessManager"))
-
-	@property
-	def ui(self):
-		"""
-		This method is the property for **self.__ui** attribute.
-
-		:return: self.__ui. ( Object )
-		"""
-
-		return self.__ui
-
-	@ui.setter
-	def ui(self, value):
-		"""
-		This method is the setter method for **self.__ui** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		self.__ui = value
-
-	@ui.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def ui(self):
-		"""
-		This method is the deleter method for **self.__ui** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("ui"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def __initializeUi(self):
-		"""
-		This method initializes the Widget ui.
-		"""
-
-		umbra.ui.common.setWindowDefaultIcon(self.ui)
-
-		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
-
-		if Constants.applicationName not in self.__releases:
-			self.__ui.sIBL_GUI_groupBox.hide()
-			self.__ui.Get_sIBL_GUI_pushButton.hide()
-		else:
-			self.__ui.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLogoImage)))
-			self.__ui.Your_Version_label.setText(self.__releases[Constants.applicationName].localVersion)
-			self.__ui.Latest_Version_label.setText(self.__releases[Constants.applicationName].repositoryVersion)
-			self.__ui.Change_Log_webView.load(QUrl.fromEncoded(QByteArray(self.__applicationChangeLogUrl)))
-
-		templatesReleases = dict(self.__releases)
-		if Constants.applicationName in self.__releases:
-			templatesReleases.pop(Constants.applicationName)
-
-		if not templatesReleases:
-			self.__ui.Templates_groupBox.hide()
-			self.__ui.Get_Latest_Templates_pushButton.hide()
-		else:
-			self.__ui.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiTemplatesImage)))
-			self.__ui.Templates_tableWidget.clear()
-			self.__ui.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-			self.__ui.Templates_tableWidget.setRowCount(len(templatesReleases))
-			self.__ui.Templates_tableWidget.setColumnCount(len(self.__templatesTableWidgetHeaders))
-			self.__ui.Templates_tableWidget.setHorizontalHeaderLabels(self.__templatesTableWidgetHeaders)
-			self.__ui.Templates_tableWidget.hideColumn(0)
-			self.__ui.Templates_tableWidget.horizontalHeader().setStretchLastSection(True)
-			self.__ui.Templates_tableWidget.setMinimumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
-			self.__ui.Templates_tableWidget.setMaximumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
-
-			palette = QPalette()
-			palette.setColor(QPalette.Base, Qt.transparent)
-			self.__ui.Templates_tableWidget.setPalette(palette)
-
-			verticalHeaderLabels = []
-			for row, release in enumerate(sorted(templatesReleases)):
-					verticalHeaderLabels.append(release)
-
-					tableWidgetItem = QTableWidgetItem()
-					tableWidgetItem._datas = templatesReleases[release]
-					self.__ui.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
-
-					tableWidgetItem = Variable_QPushButton(self.__ui, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
-					self.__ui.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
-
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.__ui.Templates_tableWidget.setItem(row, 2, tableWidgetItem)
-
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].repositoryVersion)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.__ui.Templates_tableWidget.setItem(row, 3, tableWidgetItem)
-
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].type)
-					tableWidgetItem.setTextAlignment(Qt.AlignCenter)
-					self.__ui.Templates_tableWidget.setItem(row, 4, tableWidgetItem)
-
-					tableWidgetItem = QTableWidgetItem(templatesReleases[release].comment)
-					self.__ui.Templates_tableWidget.setItem(row, 5, tableWidgetItem)
-
-			self.__ui.Templates_tableWidget.setVerticalHeaderLabels(verticalHeaderLabels)
-			self.__ui.Templates_tableWidget.resizeColumnsToContents()
-
-		# Signals / Slots.
-		self.__ui.Get_sIBL_GUI_pushButton.clicked.connect(self.__Get_sIBL_GUI_pushButton__clicked)
-		self.__ui.Get_Latest_Templates_pushButton.clicked.connect(self.__Get_Latest_Templates_pushButton__clicked)
-		self.__ui.Open_Repository_pushButton.clicked.connect(self.__Open_Repository_pushButton__clicked)
-		self.__ui.Close_pushButton.clicked.connect(self.__Close_pushButton__clicked)
-
-	@core.executionTrace
-	def __Get_sIBL_GUI_pushButton__clicked(self, checked):
-		"""
-		This method is triggered when **Get_sIBL_GUI_pushButton** Widget is clicked.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-		urlTokens = self.releases[Constants.applicationName].url.split(self.__splitter)
-		builds = dict(((urlTokens[i].strip(), urlTokens[i + 1].strip(" \"")) for i in range(0, len(urlTokens), 2)))
-
-		if platform.system() == "Windows" or platform.system() == "Microsoft":
-			url = builds["Windows"]
-		elif platform.system() == "Darwin":
-			url = builds["Mac Os X"]
-		elif platform.system() == "Linux":
-			url = builds["Linux"]
-
-		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, self.__container.ioDirectory, [url])
-		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
-		self.__downloadManager.startDownload()
-
-	@core.executionTrace
-	def __Get_Latest_Templates_pushButton__clicked(self, checked):
-		"""
-		This method is triggered when **Get_Latest_Templates_pushButton** Widget is clicked.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		requests = []
-		for row in range(self.__ui.Templates_tableWidget.rowCount()):
-			if self.__ui.Templates_tableWidget.cellWidget(row, 1).state:
-				requests.append(self.__ui.Templates_tableWidget.item(row, 0)._datas)
-		if requests:
-			downloadDirectory = self.__getTemplatesDownloadDirectory()
-			if downloadDirectory:
-				LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
-				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests])
-				self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
-				self.__downloadManager.startDownload()
-
-	@core.executionTrace
-	def __Open_Repository_pushButton__clicked(self, checked):
-		"""
-		This method is triggered when **Open_Repository_pushButton** Widget is clicked.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		LOGGER.debug("> Opening url: '{0}'.".format(self.__repositoryUrl))
-		QDesktopServices.openUrl(QUrl(QString(self.__repositoryUrl)))
-
-	@core.executionTrace
-	def __Close_pushButton__clicked(self, checked):
-		"""
-		This method closes the RemoteUpdater.
-
-		:param checked: Checked state. ( Boolean )
-		"""
-
-		LOGGER.info("{0} | Closing '{1}' updater!".format(self.__class__.__name__, Constants.applicationName))
-		self.__ui.close()
-
-	@core.executionTrace
-	def __downloadManager__finished(self):
-		"""
-		This method is triggered when the download Manager finishes.
-		"""
-
-		for download in self.__downloadManager.downloads:
-			if download.endswith(".zip"):
-				if self.extractZipFile(download):
-					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
-					os.remove(download)
-				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__, os.path.basename(download)))
-				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id)
-			else:
-				if self.__container.addonsLocationsBrowser.activated:
-					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
-
-	@core.executionTrace
-	def __getTemplatesDownloadDirectory(self):
-		"""
-		This method gets the Templates directory.
-		"""
-
-		LOGGER.debug("> Retrieving Templates download directory.")
-
-		messageBox = QMessageBox()
-		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
-		messageBox.setIcon(QMessageBox.Question)
-		messageBox.setText("{0} | Which directory do you want to install the Templates into?".format(self.__class__.__name__))
-		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Cancel"), QMessageBox.AcceptRole)
-		reply = messageBox.exec_()
-
-		if reply == 0:
-			return os.path.join(RuntimeGlobals.templatesFactoryDirectory)
-		elif reply == 1:
-			return os.path.join(RuntimeGlobals.templatesUserDirectory)
-		elif reply == 2:
-			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self.__ui, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def extractZipFile(self, file):
-		"""
-		This method uncompress the provided zip file.
-
-		:param file: File to extract. ( String )
-		:return: Extraction success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Initializing '{0}' file uncompress.".format(file))
-
-		pkzip = Pkzip()
-		pkzip.archive = file
-
-		return pkzip.extract(os.path.dirname(file))
-
-class OnlineUpdater(QWidgetComponent):
+class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
 	| This Component provides online updating capabilities to the Application available through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(OnlineUpdater, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
-
-		self.__uiPath = "ui/Online_Updater.ui"
 
 		self.__container = None
 		self.__settings = None
@@ -1483,36 +106,6 @@ class OnlineUpdater(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def container(self):
 		"""
@@ -1956,7 +549,6 @@ class OnlineUpdater(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -1973,7 +565,8 @@ class OnlineUpdater(QWidgetComponent):
 
 		self.__reportUpdateStatus = True
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -1985,7 +578,6 @@ class OnlineUpdater(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 		self.__settings = None
 		self.__settingsSection = None
@@ -2001,7 +593,8 @@ class OnlineUpdater(QWidgetComponent):
 
 		self.__reportUpdateStatus = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -2019,9 +612,9 @@ class OnlineUpdater(QWidgetComponent):
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
-		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
+		self.Check_For_New_Releases_pushButton.clicked.connect(self.__Check_For_New_Releases_pushButton__clicked)
+		self.Check_For_New_Releases_On_Startup_checkBox.stateChanged.connect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+		self.Ignore_Non_Existing_Templates_checkBox.stateChanged.connect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
 		return True
 
@@ -2036,9 +629,9 @@ class OnlineUpdater(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
-		self.ui.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
+		self.Check_For_New_Releases_pushButton.clicked.disconnect(self.__Check_For_New_Releases_pushButton__clicked)
+		self.Check_For_New_Releases_On_Startup_checkBox.stateChanged.disconnect(self.__Check_For_New_Releases_On_Startup_checkBox__stateChanged)
+		self.Ignore_Non_Existing_Templates_checkBox.stateChanged.disconnect(self.__Ignore_Non_Existing_Templates_checkBox__stateChanged)
 
 		return True
 
@@ -2053,7 +646,7 @@ class OnlineUpdater(QWidgetComponent):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
-		not self.__container.parameters.deactivateWorkerThreads and self.ui.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		not self.__container.parameters.deactivateWorkerThreads and self.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 		return True
 
 	@core.executionTrace
@@ -2066,7 +659,7 @@ class OnlineUpdater(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Online_Updater_groupBox)
+		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Online_Updater_groupBox)
 
 	@core.executionTrace
 	def removeWidget(self):
@@ -2078,7 +671,7 @@ class OnlineUpdater(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.ui.Online_Updater_groupBox.setParent(None)
+		self.Online_Updater_groupBox.setParent(None)
 
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox_setUi(self):
@@ -2091,7 +684,7 @@ class OnlineUpdater(QWidgetComponent):
 
 		checkForNewReleasesOnStartup = self.__settings.getKey(self.__settingsSection, "checkForNewReleasesOnStartup")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Check_For_New_Releases_On_Startup_checkBox", checkForNewReleasesOnStartup.toInt()[0]))
-		self.ui.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
+		self.Check_For_New_Releases_On_Startup_checkBox.setCheckState(checkForNewReleasesOnStartup.toInt()[0])
 
 	@core.executionTrace
 	def __Check_For_New_Releases_On_Startup_checkBox__stateChanged(self, state):
@@ -2101,8 +694,8 @@ class OnlineUpdater(QWidgetComponent):
 		:param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.ui.Check_For_New_Releases_On_Startup_checkBox.checkState())
+		LOGGER.debug("> Check for new releases on startup state: '{0}'.".format(self.Check_For_New_Releases_On_Startup_checkBox.checkState()))
+		self.__settings.setKey(self.__settingsSection, "checkForNewReleasesOnStartup", self.Check_For_New_Releases_On_Startup_checkBox.checkState())
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox_setUi(self):
@@ -2115,7 +708,7 @@ class OnlineUpdater(QWidgetComponent):
 
 		ignoreNonExistingTemplates = self.__settings.getKey(self.__settingsSection, "ignoreNonExistingTemplates")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Ignore_Non_Existing_Templates_checkBox", ignoreNonExistingTemplates.toInt()[0]))
-		self.ui.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
+		self.Ignore_Non_Existing_Templates_checkBox.setCheckState(ignoreNonExistingTemplates.toInt()[0])
 
 	@core.executionTrace
 	def __Ignore_Non_Existing_Templates_checkBox__stateChanged(self, state):
@@ -2125,8 +718,8 @@ class OnlineUpdater(QWidgetComponent):
 		:param state: Checkbox state. ( Integer )
 		"""
 
-		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(self.ui.Ignore_Non_Existing_Templates_checkBox.checkState()))
-		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.ui.Ignore_Non_Existing_Templates_checkBox.checkState())
+		LOGGER.debug("> Ignore non existing Templates state: '{0}'.".format(self.Ignore_Non_Existing_Templates_checkBox.checkState()))
+		self.__settings.setKey(self.__settingsSection, "ignoreNonExistingTemplates", self.Ignore_Non_Existing_Templates_checkBox.checkState())
 
 	@core.executionTrace
 	def __Check_For_New_Releases_pushButton__clicked(self, checked):
@@ -2170,7 +763,7 @@ class OnlineUpdater(QWidgetComponent):
 																		url=sectionsFileParser.getValue("Url", remoteObject),
 																		comment=sectionsFileParser.getValue("Comment", remoteObject))
 							else:
-								if not self.ui.Ignore_Non_Existing_Templates_checkBox.isChecked():
+								if not self.Ignore_Non_Existing_Templates_checkBox.isChecked():
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
 																		repositoryVersion=sectionsFileParser.getValue("Release", remoteObject),
 																		localVersion=None,
@@ -2189,7 +782,8 @@ class OnlineUpdater(QWidgetComponent):
 															comment=None)
 			if releases:
 				LOGGER.debug("> Initializing Remote Updater.")
-				self.__remoteUpdater = RemoteUpdater(self, releases)
+				self.__remoteUpdater = RemoteUpdater(self, releases, Qt.Window)
+				self.__remoteUpdater.show()
 			else:
 				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
@@ -2219,7 +813,7 @@ class OnlineUpdater(QWidgetComponent):
 
 		if not self.__networkAccessManager.networkAccessible():
 			raise sibl_gui.exceptions.NetworkError("{0} | Network is not accessible!".format(self.__class__.__name__))
-	
+
 		self.__reportUpdateStatus = True
 		if self.checkForNewReleases():
 			return True
@@ -2237,6 +831,6 @@ class OnlineUpdater(QWidgetComponent):
 
 		if not self.__networkAccessManager.networkAccessible():
 			raise sibl_gui.exceptions.NetworkError("{0} | Network is not accessible!".format(self.__class__.__name__))
-	
+
 		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
 		return True

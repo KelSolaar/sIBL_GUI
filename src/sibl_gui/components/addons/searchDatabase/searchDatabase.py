@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.common as dbCommon
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
@@ -44,36 +44,39 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "SearchDatabase"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "SearchDatabase"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Search_Database.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class SearchDatabase(QWidgetComponent):
+class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.searchDatabase.searchDatabase` Component Interface class.
 	| It provides methods for the user to search into the Database using various filters.
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(SearchDatabase, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Search_Database.ui"
 		self.__uiResources = "resources"
 		self.__uiSearchImage = "Search_Glass.png"
 		self.__uiClearImage = "Search_Clear.png"
@@ -102,36 +105,6 @@ class SearchDatabase(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def uiResources(self):
 		"""
@@ -597,7 +570,6 @@ class SearchDatabase(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
 		self.__container = container
 
@@ -605,7 +577,8 @@ class SearchDatabase(QWidgetComponent):
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -617,7 +590,6 @@ class SearchDatabase(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__uiResources = os.path.basename(self.__uiResources)
 		self.__container = None
 
@@ -625,7 +597,8 @@ class SearchDatabase(QWidgetComponent):
 		self.__coreDatabaseBrowser = None
 		self.__coreCollectionsOutliner = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -637,27 +610,27 @@ class SearchDatabase(QWidgetComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.ui.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
-		self.ui.Search_Database_horizontalLayout.addWidget(self.ui.Search_Database_lineEdit)
-		self.ui.Tags_Cloud_groupBox.hide()
-		self.ui.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
+		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
+		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
+		self.Tags_Cloud_groupBox.hide()
+		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
-		self.ui.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSearchImage)))
-		self.ui.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
+		self.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSearchImage)))
+		self.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
 
 		self.__completer = QCompleter()
 		self.__completer.setCaseSensitivity(Qt.CaseInsensitive)
 		self.__completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
 		self.__completer.setMaxVisibleItems(self.__completerVisibleItemsCount)
-		self.ui.Search_Database_lineEdit.setCompleter(self.__completer)
+		self.Search_Database_lineEdit.setCompleter(self.__completer)
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
-		self.ui.Search_Database_comboBox.activated.connect(self.__Search_Database_comboBox__activated)
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
-		self.ui.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
-		self.ui.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
-		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
+		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
+		self.Search_Database_comboBox.activated.connect(self.__Search_Database_comboBox__activated)
+		self.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
+		self.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
+		self.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
 
 		return True
 
@@ -672,12 +645,12 @@ class SearchDatabase(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Search_Database_lineEdit.textChanged.disconnect(self.__Search_Database_lineEdit__textChanged)
-		self.ui.Search_Database_comboBox.activated.disconnect(self.__Search_Database_comboBox__activated)
-		self.ui.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
-		self.ui.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
-		self.ui.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
-		self.ui.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
+		self.Search_Database_lineEdit.textChanged.disconnect(self.__Search_Database_lineEdit__textChanged)
+		self.Search_Database_comboBox.activated.disconnect(self.__Search_Database_comboBox__activated)
+		self.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
+		self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
+		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
 
 		self.__completer = None
 
@@ -693,7 +666,7 @@ class SearchDatabase(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -707,8 +680,8 @@ class SearchDatabase(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self.ui)
-		self.ui.setParent(None)
+		self.__container.removeDockWidget(self)
+		self.setParent(None)
 
 		return True
 
@@ -730,10 +703,10 @@ class SearchDatabase(QWidgetComponent):
 		:param index: ComboBox activated item index. ( Integer )
 		"""
 
-		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
-			self.ui.Tags_Cloud_groupBox.show()
+		if self.Search_Database_comboBox.currentText() == self.__tagsCloudField:
+			self.Tags_Cloud_groupBox.show()
 		else:
-			self.ui.Tags_Cloud_groupBox.hide()
+			self.Tags_Cloud_groupBox.hide()
 		self.setSearchMatchingIblsSets()
 
 	@core.executionTrace
@@ -754,7 +727,7 @@ class SearchDatabase(QWidgetComponent):
 		:param time: Current time. ( QTime )
 		"""
 
-		self.ui.Time_Low_timeEdit.time() >= self.ui.Time_High_timeEdit.time() and self.ui.Time_Low_timeEdit.setTime(self.ui.Time_High_timeEdit.time().addSecs(-60))
+		self.Time_Low_timeEdit.time() >= self.Time_High_timeEdit.time() and self.Time_Low_timeEdit.setTime(self.Time_High_timeEdit.time().addSecs(-60))
 		self.setTimeMatchingIblSets()
 
 	@core.executionTrace
@@ -765,7 +738,7 @@ class SearchDatabase(QWidgetComponent):
 		:param time: Current time. ( QTime )
 		"""
 
-		self.ui.Time_High_timeEdit.time() <= self.ui.Time_Low_timeEdit.time() and self.ui.Time_High_timeEdit.setTime(self.ui.Time_Low_timeEdit.time().addSecs(60))
+		self.Time_High_timeEdit.time() <= self.Time_Low_timeEdit.time() and self.Time_High_timeEdit.setTime(self.Time_Low_timeEdit.time().addSecs(60))
 		self.setTimeMatchingIblSets()
 
 	@core.executionTrace
@@ -776,7 +749,7 @@ class SearchDatabase(QWidgetComponent):
 		:param listWidgetItem: List Widget item. ( QlistWidgetItem )
 		"""
 
-		self.ui.Search_Database_lineEdit.setText("{0} {1}".format(self.ui.Search_Database_lineEdit.text(), listWidgetItem.text()))
+		self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -789,8 +762,8 @@ class SearchDatabase(QWidgetComponent):
 
 		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 
-		timeLow = self.ui.Time_Low_timeEdit.time()
-		timeHigh = self.ui.Time_High_timeEdit.time()
+		timeLow = self.Time_Low_timeEdit.time()
+		timeHigh = self.Time_High_timeEdit.time()
 
 		LOGGER.debug("> Filtering sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
 
@@ -820,13 +793,13 @@ class SearchDatabase(QWidgetComponent):
 
 		previousModelContent = self.__coreDatabaseBrowser.modelContent
 
-		pattern = str(self.ui.Search_Database_lineEdit.text())
-		currentField = self.__databaseFields[self.ui.Search_Database_comboBox.currentIndex()][1]
-		flags = self.ui.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
+		pattern = str(self.Search_Database_lineEdit.text())
+		currentField = self.__databaseFields[self.Search_Database_comboBox.currentIndex()][1]
+		flags = self.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
 
 		LOGGER.debug("> Filtering Ibl Sets on '{0}' pattern in '{1}' field.".format(pattern, currentField))
 
-		if self.ui.Search_Database_comboBox.currentText() == self.__tagsCloudField:
+		if self.Search_Database_comboBox.currentText() == self.__tagsCloudField:
 			self.__completer.setModel(QStringListModel())
 			patternTokens = pattern.split()
 			patternTokens = patternTokens and patternTokens or (".*",)
@@ -848,8 +821,8 @@ class SearchDatabase(QWidgetComponent):
 				if patternsMatched:
 					allTags.extend(tagsCloud)
 					filteredSets.append(iblSet)
-			self.ui.Tags_Cloud_listWidget.clear()
-			self.ui.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
+			self.Tags_Cloud_listWidget.clear()
+			self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
 			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(set(filteredSets))]
 		else:
 			try:

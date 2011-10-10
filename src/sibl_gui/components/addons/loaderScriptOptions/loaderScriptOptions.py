@@ -33,7 +33,7 @@ import foundations.io as io
 import foundations.parsers
 import foundations.strings as strings
 from foundations.parsers import SectionsFileParser
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.variable_QPushButton import Variable_QPushButton
 
@@ -47,14 +47,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "LoaderScriptOptions"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "LoaderScriptOptions"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script_Options.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LoaderScriptOptions(QWidgetComponent):
+class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
@@ -62,22 +64,23 @@ class LoaderScriptOptions(QWidgetComponent):
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(LoaderScriptOptions, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiPath = "ui/Loader_Script_Options.ui"
 		self.__dockArea = 2
 
 		self.__container = None
@@ -105,36 +108,6 @@ class LoaderScriptOptions(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def dockArea(self):
 		"""
@@ -637,7 +610,6 @@ class LoaderScriptOptions(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
@@ -647,7 +619,8 @@ class LoaderScriptOptions(QWidgetComponent):
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -659,7 +632,6 @@ class LoaderScriptOptions(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 
 		self.__coreTemplatesOutliner = None
@@ -668,7 +640,8 @@ class LoaderScriptOptions(QWidgetComponent):
 		self.__templatesSettingsDirectory = os.path.basename(os.path.abspath(self.__templatesSettingsDirectory))
 		self.__templateSettingsFile = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -683,7 +656,7 @@ class LoaderScriptOptions(QWidgetComponent):
 		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
 
 		return True
 
@@ -698,7 +671,7 @@ class LoaderScriptOptions(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
 
 		return True
 
@@ -712,7 +685,7 @@ class LoaderScriptOptions(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self.ui)
+		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -726,8 +699,8 @@ class LoaderScriptOptions(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self.ui)
-		self.ui.setParent(None)
+		self.__container.removeDockWidget(self)
+		self.setParent(None)
 
 		return True
 
@@ -853,8 +826,8 @@ class LoaderScriptOptions(QWidgetComponent):
 		templateSectionsFileParser = SectionsFileParser(template.path)
 		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
 
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.ui.Common_Attributes_tableWidget, commonAttributesOverrides)
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.ui.Additional_Attributes_tableWidget, additionalAttributesOverrides)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.Common_Attributes_tableWidget, commonAttributesOverrides)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
 	@core.executionTrace
 	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -878,7 +851,7 @@ class LoaderScriptOptions(QWidgetComponent):
 		LOGGER.debug("> Initializing '{0}' Template settings file content.".format(self.__templateSettingsFile))
 		templateSettingsSectionsFileParser = SectionsFileParser(self.__templateSettingsFile)
 		templateSettingsSectionsFileParser.sections = OrderedDict()
-		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection, self.ui.Common_Attributes_tableWidget), (self.__templateAdditionalAttributesSection, self.ui.Additional_Attributes_tableWidget)]).items():
+		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection, self.Common_Attributes_tableWidget), (self.__templateAdditionalAttributesSection, self.Additional_Attributes_tableWidget)]).items():
 			templateSettingsSectionsFileParser.sections[section] = OrderedDict()
 			for row in range(tableWidget.rowCount()):
 				widget = tableWidget.cellWidget(row, 0)
@@ -932,8 +905,8 @@ class LoaderScriptOptions(QWidgetComponent):
 		LOGGER.info("{0} | Updating Loader Script override keys!".format(self.__class__.__name__))
 
 		success = True
-		success *= self.__updateOverrideKeys(self.ui.Common_Attributes_tableWidget) or False
-		success *= self.__updateOverrideKeys(self.ui.Additional_Attributes_tableWidget) or False
+		success *= self.__updateOverrideKeys(self.Common_Attributes_tableWidget) or False
+		success *= self.__updateOverrideKeys(self.Additional_Attributes_tableWidget) or False
 
 		if success:
 			return True

@@ -32,7 +32,7 @@ import foundations.exceptions
 import sibl_gui.ui.highlighters
 import umbra.ui.common
 import umbra.ui.inputAccelerators
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.components.factory.scriptEditor.editor import Language
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -47,14 +47,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "RawEditingUtilities"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "RawEditingUtilities"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Raw_Editing_Utilities.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class RawEditingUtilities(QWidgetComponent):
+class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
@@ -62,22 +64,22 @@ class RawEditingUtilities(QWidgetComponent):
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(RawEditingUtilities, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
-
-		self.__uiPath = "ui/Raw_Editing_Utilities.ui"
 
 		self.__container = None
 		self.__settings = None
@@ -103,36 +105,6 @@ class RawEditingUtilities(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def container(self):
 		"""
@@ -447,7 +419,6 @@ class RawEditingUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -458,7 +429,8 @@ class RawEditingUtilities(QWidgetComponent):
 		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -470,7 +442,6 @@ class RawEditingUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 		self.__settings = None
 		self.__settingsSection = None
@@ -481,7 +452,8 @@ class RawEditingUtilities(QWidgetComponent):
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -498,10 +470,10 @@ class RawEditingUtilities(QWidgetComponent):
 		self.__registerLanguages()
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
-		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+		self.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
+		self.Custom_Text_Editor_Path_lineEdit.editingFinished.connect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__container.contentDropped.connect(self.__application__contentDropped)
-		self.__factoryScriptEditor.ui.Script_Editor_tabWidget.contentDropped.connect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
+		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.connect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		return True
 
@@ -516,10 +488,10 @@ class RawEditingUtilities(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
-		self.ui.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
+		self.Custom_Text_Editor_Path_toolButton.clicked.disconnect(self.__Custom_Text_Editor_Path_toolButton__clicked)
+		self.Custom_Text_Editor_Path_lineEdit.editingFinished.disconnect(self.__Custom_Text_Editor_Path_lineEdit__editFinished)
 		self.__container.contentDropped.disconnect(self.__application__contentDropped)
-		self.__factoryScriptEditor.ui.Script_Editor_tabWidget.contentDropped.disconnect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
+		self.__factoryScriptEditor.Script_Editor_tabWidget.contentDropped.disconnect(self.__factoryScriptEditor_Script_Editor_tabWidget__contentDropped)
 
 		self.__removeActions()
 
@@ -535,7 +507,7 @@ class RawEditingUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_Text_Editor_Path_groupBox)
+		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_Text_Editor_Path_groupBox)
 
 		return True
 
@@ -549,8 +521,8 @@ class RawEditingUtilities(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self.ui)
-		self.ui.Custom_Text_Editor_Path_groupBox.setParent(None)
+		self.__factoryPreferencesManager.findChild(QGridLayout, "Others_Preferences_gridLayout").removeWidget(self)
+		self.Custom_Text_Editor_Path_groupBox.setParent(None)
 
 		return True
 
@@ -563,9 +535,9 @@ class RawEditingUtilities(QWidgetComponent):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...", slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered))
-			self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered))
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...", slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
+			self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...", slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered))
+			self.__coreInspector.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered))
+			self.__coreTemplatesOutliner.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...", slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
 		else:
 			LOGGER.info("{0} | Text editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -579,13 +551,13 @@ class RawEditingUtilities(QWidgetComponent):
 
 		if not self.__container.parameters.databaseReadOnly:
 			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
-			self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetsFilesAction))
+			self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetsFilesAction))
 			self.__container.actionsManager.unregisterAction(editIblSetsFilesAction)
 			editInspectorIblSetsFilesAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ..."
-			self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetsFilesAction))
+			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetsFilesAction))
 			self.__container.actionsManager.unregisterAction(editInspectorIblSetsFilesAction)
 			editTemplatesFilesAction = "Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ..."
-			self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(editTemplatesFilesAction))
+			self.__coreTemplatesOutliner.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(editTemplatesFilesAction))
 			self.__container.actionsManager.unregisterAction(editTemplatesFilesAction)
 
 	@core.executionTrace
@@ -629,7 +601,7 @@ class RawEditingUtilities(QWidgetComponent):
 
 		customTextEditor = self.__settings.getKey(self.__settingsSection, "customTextEditor")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Custom_Text_Editor_Path_lineEdit", customTextEditor.toString()))
-		self.ui.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
+		self.Custom_Text_Editor_Path_lineEdit.setText(customTextEditor.toString())
 
 	@core.executionTrace
 	def __Custom_Text_Editor_Path_toolButton__clicked(self, checked):
@@ -642,8 +614,8 @@ class RawEditingUtilities(QWidgetComponent):
 		customTextEditorExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom text editor executable:", RuntimeGlobals.lastBrowsedPath))
 		if customTextEditorExecutable != "":
 			LOGGER.debug("> Chosen custom text editor executable: '{0}'.".format(customTextEditorExecutable))
-			self.ui.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))
-			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
+			self.Custom_Text_Editor_Path_lineEdit.setText(QString(customTextEditorExecutable))
+			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -652,13 +624,13 @@ class RawEditingUtilities(QWidgetComponent):
 		This method is called when **Custom_Text_Editor_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		if not os.path.exists(os.path.abspath(str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.ui.Custom_Text_Editor_Path_lineEdit.text()) != "":
+		if not os.path.exists(os.path.abspath(str(self.Custom_Text_Editor_Path_lineEdit.text()))) and str(self.Custom_Text_Editor_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Text_Editor_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError("{0} | Invalid custom text editor executable file!".format(self.__class__.__name__))
 		else:
-			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.ui.Custom_Text_Editor_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	def __application__contentDropped(self, event):
@@ -676,19 +648,19 @@ class RawEditingUtilities(QWidgetComponent):
 		for url in event.mimeData().urls():
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 			if not re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())) and not re.search("\.{0}$".format(self.coreTemplatesOutliner.extension), str(url.path())) and not os.path.isdir(path):
-				self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text())
+				self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
 	def __factoryScriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
 		"""
-		This method is triggered when content is dropped in the **factoryScriptEditor.ui.Script_Editor_tabWidget** Widget.
+		This method is triggered when content is dropped in the **factoryScriptEditor.Script_Editor_tabWidget** Widget.
 		
 		:param event: Event. ( QEvent )
 		"""
 
-		if event.source() is self.__coreDatabaseBrowser.ui.Database_Browser_listView:
+		if event.source() is self.__coreDatabaseBrowser.Database_Browser_listView:
 			self.editIblSetsFiles_ui()
-		elif event.source() is self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView:
+		elif event.source() is self.__coreTemplatesOutliner.Templates_Outliner_treeView:
 			self.editTemplatesFiles_ui()
 
 	@core.executionTrace
@@ -717,7 +689,7 @@ class RawEditingUtilities(QWidgetComponent):
 		for iblSet in selectedIblSets:
 			path = iblSet.path and os.path.exists(iblSet.path) and iblSet.path
 			if path:
-				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
+				success *= self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
@@ -740,7 +712,7 @@ class RawEditingUtilities(QWidgetComponent):
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
 		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
 		if inspectorIblSet:
-			return self.editFile(inspectorIblSet.path, str(self.ui.Custom_Text_Editor_Path_lineEdit.text()))
+			return self.editFile(inspectorIblSet.path, str(self.Custom_Text_Editor_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError("{0} | Exception raised while editing Inspector Ibl Set: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
@@ -761,7 +733,7 @@ class RawEditingUtilities(QWidgetComponent):
 		for template in selectedTemplates:
 			path = template.path and os.path.exists(template.path) and template.path
 			if path:
-				success *= self.editFile(path, self.ui.Custom_Text_Editor_Path_lineEdit.text()) or False
+				success *= self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text()) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 

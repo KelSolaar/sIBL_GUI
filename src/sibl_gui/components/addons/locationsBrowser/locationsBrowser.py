@@ -30,7 +30,7 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.ui.common
 from foundations.environment import Environment
-from manager.qwidgetComponent import QWidgetComponent
+from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -44,14 +44,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "LocationsBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "LocationsBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
+
+COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Locations_Browser.ui")
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class LocationsBrowser(QWidgetComponent):
+class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
@@ -76,22 +78,22 @@ class LocationsBrowser(QWidgetComponent):
 	"""
 
 	@core.executionTrace
-	def __init__(self, name=None, uiFile=None):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
+		:param parent: Object parent. ( QObject )
 		:param name: Component name. ( String )
-		:param uiFile: Ui file. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QWidgetComponent.__init__(self, name=name, uiFile=uiFile)
+		super(LocationsBrowser, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.deactivatable = True
-
-		self.__uiPath = "ui/Locations_Browser.ui"
 
 		self.__container = None
 		self.__settings = None
@@ -111,36 +113,6 @@ class LocationsBrowser(QWidgetComponent):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def uiPath(self):
-		"""
-		This method is the property for **self.__uiPath** attribute.
-
-		:return: self.__uiPath. ( String )
-		"""
-
-		return self.__uiPath
-
-	@uiPath.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self, value):
-		"""
-		This method is the setter method for **self.__uiPath** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiPath"))
-
-	@uiPath.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiPath(self):
-		"""
-		This method is the deleter method for **self.__uiPath** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiPath"))
-
 	@property
 	def container(self):
 		"""
@@ -455,7 +427,6 @@ class LocationsBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiPath)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -467,7 +438,8 @@ class LocationsBrowser(QWidgetComponent):
 		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
 
-		return QWidgetComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -479,7 +451,6 @@ class LocationsBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.uiFile = None
 		self.__container = None
 		self.__settings = None
 		self.__settingsSection = None
@@ -491,7 +462,8 @@ class LocationsBrowser(QWidgetComponent):
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
 
-		return QWidgetComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -508,13 +480,13 @@ class LocationsBrowser(QWidgetComponent):
 		self.__addActions()
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.clicked.connect(self.__Custom_File_Browser_Path_toolButton__clicked)
-		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
+		self.Custom_File_Browser_Path_toolButton.clicked.connect(self.__Custom_File_Browser_Path_toolButton__clicked)
+		self.Custom_File_Browser_Path_lineEdit.editingFinished.connect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript addon component specific code.
 		if self.__addonsLoaderScript.activated:
-			self.__Open_Output_Directory_pushButton = QPushButton("Open output directory")
-			self.__addonsLoaderScript.ui.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
+			self.__Open_Output_Directory_pushButton = QPushButton("Open Output Directory ...")
+			self.__addonsLoaderScript.Loader_Script_verticalLayout.addWidget(self.__Open_Output_Directory_pushButton)
 
 			# Signals / Slots.
 			self.__Open_Output_Directory_pushButton.clicked.connect(self.__Open_Output_Directory_pushButton__clicked)
@@ -532,8 +504,8 @@ class LocationsBrowser(QWidgetComponent):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.ui.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
-		self.ui.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
+		self.Custom_File_Browser_Path_toolButton.clicked.disconnect(self.__Custom_File_Browser_Path_toolButton__clicked)
+		self.Custom_File_Browser_Path_lineEdit.editingFinished.disconnect(self.__Custom_File_Browser_Path_lineEdit__editFinished)
 
 		# LoaderScript addon component specific code.
 		if self.__addonsLoaderScript.activated:
@@ -557,7 +529,7 @@ class LocationsBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__factoryPreferencesManager.ui.Others_Preferences_gridLayout.addWidget(self.ui.Custom_File_Browser_Path_groupBox)
+		self.__factoryPreferencesManager.Others_Preferences_gridLayout.addWidget(self.Custom_File_Browser_Path_groupBox)
 
 		return True
 
@@ -571,7 +543,7 @@ class LocationsBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.ui.Custom_File_Browser_Path_groupBox.setParent(None)
+		self.Custom_File_Browser_Path_groupBox.setParent(None)
 
 		return True
 
@@ -583,10 +555,10 @@ class LocationsBrowser(QWidgetComponent):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
-		self.__coreInspector.ui.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Open Ibl Set location ...", slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
-		self.__factoryComponentsManagerUi.ui.Components_Manager_Ui_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
+		self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
+		self.__coreInspector.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Open Ibl Set location ...", slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
+		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -597,16 +569,16 @@ class LocationsBrowser(QWidgetComponent):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		openIblSetsLocationsAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
-		self.__coreDatabaseBrowser.ui.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(openIblSetsLocationsAction))
+		self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(openIblSetsLocationsAction))
 		self.__container.actionsManager.unregisterAction(openIblSetsLocationsAction)
 		openInspectorIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
-		self.__coreInspector.ui.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(openInspectorIblSetLocationsAction))
+		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(openInspectorIblSetLocationsAction))
 		self.__container.actionsManager.unregisterAction(openInspectorIblSetLocationsAction)
 		openComponentsLocationsAction = "Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ..."
-		self.__factoryComponentsManagerUi.ui.Components_Manager_Ui_treeView.removeAction(self.__container.actionsManager.getAction(openComponentsLocationsAction))
+		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.removeAction(self.__container.actionsManager.getAction(openComponentsLocationsAction))
 		self.__container.actionsManager.unregisterAction(openComponentsLocationsAction)
 		openTemplatesLocationsAction = "Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ..."
-		self.__coreTemplatesOutliner.ui.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(openTemplatesLocationsAction))
+		self.__coreTemplatesOutliner.Templates_Outliner_treeView.removeAction(self.__container.actionsManager.getAction(openTemplatesLocationsAction))
 		self.__container.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
 	@core.executionTrace
@@ -661,7 +633,7 @@ class LocationsBrowser(QWidgetComponent):
 
 		customFileBrowser = self.__settings.getKey(self.__settingsSection, "customFileBrowser")
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Custom_File_Browser_Path_lineEdit", customFileBrowser.toString()))
-		self.ui.Custom_File_Browser_Path_lineEdit.setText(customFileBrowser.toString())
+		self.Custom_File_Browser_Path_lineEdit.setText(customFileBrowser.toString())
 
 	@core.executionTrace
 	def __Custom_File_Browser_Path_toolButton__clicked(self, checked):
@@ -674,8 +646,8 @@ class LocationsBrowser(QWidgetComponent):
 		customFileBrowserExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom file browser executable:", RuntimeGlobals.lastBrowsedPath))
 		if customFileBrowserExecutable != "":
 			LOGGER.debug("> Chosen custom file browser executable: '{0}'.".format(customFileBrowserExecutable))
-			self.ui.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))
-			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
+			self.Custom_File_Browser_Path_lineEdit.setText(QString(customFileBrowserExecutable))
+			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
@@ -684,13 +656,13 @@ class LocationsBrowser(QWidgetComponent):
 		This method is called when **Custom_File_Browser_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
 
-		if not os.path.exists(os.path.abspath(str(self.ui.Custom_File_Browser_Path_lineEdit.text()))) and str(self.ui.Custom_File_Browser_Path_lineEdit.text()) != "":
+		if not os.path.exists(os.path.abspath(str(self.Custom_File_Browser_Path_lineEdit.text()))) and str(self.Custom_File_Browser_Path_lineEdit.text()) != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_File_Browser_Path_lineEdit_setUi()
 
 			raise foundations.exceptions.UserError("{0} | Invalid custom file browser executable file!".format(self.__class__.__name__))
 		else:
-			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.ui.Custom_File_Browser_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection, "customFileBrowser", self.Custom_File_Browser_Path_lineEdit.text())
 
 	@core.executionTrace
 	def __Open_Output_Directory_pushButton__clicked(self, checked):
@@ -719,7 +691,7 @@ class LocationsBrowser(QWidgetComponent):
 		for iblSet in selectedIblSets:
 			path = iblSet.path and os.path.exists(iblSet.path) and os.path.dirname(iblSet.path)
 			if path:
-				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Ibl Set file doesn't exists and will be skipped!".format(self.__class__.__name__, iblSet.title))
 
@@ -742,7 +714,7 @@ class LocationsBrowser(QWidgetComponent):
 		inspectorIblSet = self.__coreInspector.inspectorIblSet
 		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
 		if inspectorIblSet:
-			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.ui.Custom_File_Browser_Path_lineEdit.text()))
+			return self.exploreDirectory(os.path.dirname(inspectorIblSet.path), str(self.Custom_File_Browser_Path_lineEdit.text()))
 		else:
 			raise foundations.exceptions.FileExistsError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
@@ -763,7 +735,7 @@ class LocationsBrowser(QWidgetComponent):
 		for component in selectedComponents:
 			path = component.path and os.path.exists(component.path) and component.path
 			if path:
-				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Component file doesn't exists and will be skipped!".format(self.__class__.__name__, component.name))
 
@@ -789,7 +761,7 @@ class LocationsBrowser(QWidgetComponent):
 		for template in selectedTemplates:
 			path = template.path and os.path.exists(template.path) and os.path.dirname(template.path)
 			if path:
-				success *= self.exploreDirectory(path, str(self.ui.Custom_File_Browser_Path_lineEdit.text())) or False
+				success *= self.exploreDirectory(path, str(self.Custom_File_Browser_Path_lineEdit.text())) or False
 			else:
 				LOGGER.warning("!> {0} | '{1}' Template file doesn't exists and will be skipped!".format(self.__class__.__name__, template.name))
 
@@ -814,7 +786,7 @@ class LocationsBrowser(QWidgetComponent):
 		if not os.path.exists(directory):
 			raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, directory))
 
-		if self.exploreDirectory(directory, str(self.ui.Custom_File_Browser_Path_lineEdit.text())):
+		if self.exploreDirectory(directory, str(self.Custom_File_Browser_Path_lineEdit.text())):
 			return True
 		else:
 			raise Exception("{0} | Exception raised while exploring '{1}' directory!".format(self.__class__.__name__, directory))
