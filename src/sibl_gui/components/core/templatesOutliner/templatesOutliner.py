@@ -1813,7 +1813,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		LOGGER.debug("> Adding default Templates to the Database.")
-		for collection, path in self.__defaultCollections.items():
+		for collection, path in ((collection, path) for (collection, path) in self.__defaultCollections.items() if path):
 			if not os.path.exists(path):
 				continue
 
@@ -1947,4 +1947,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
-		return self.defaultCollections[self.__factoryCollection] in path and [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id or [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
+		if self.__defaultCollections[self.__factoryCollection]:
+			return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id
+		else:
+			return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
