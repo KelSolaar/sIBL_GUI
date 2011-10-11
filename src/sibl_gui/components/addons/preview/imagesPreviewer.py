@@ -224,8 +224,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__paths = None
 		self.paths = paths
 
-		self.__uiResources = "resources"
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiResourcesDirectory = "resources"
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"
 		self.__uiZoomOutImage = "Zoom_Out.png"
@@ -320,34 +320,34 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("paths"))
 
 	@property
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResources** attribute.
+		This method is the property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResources. ( String )
+		:return: self.__uiResourcesDirectory. ( String )
 		"""
 
-		return self.__uiResources
+		return self.__uiResourcesDirectory
 
-	@uiResources.setter
+	@uiResourcesDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
+	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResources** attribute.
+		This method is the setter method for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResourcesDirectory"))
 
-	@uiResources.deleter
+	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResources** attribute.
+		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResourcesDirectory"))
 
 	@property
 	def uiPreviousImage(self):
@@ -858,10 +858,10 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' ui.".format(self.__class__.__name__))
 
-		self.Previous_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
-		self.Next_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
-		self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomInImage)))
-		self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiZoomOutImage)))
+		self.Previous_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+		self.Next_Image_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
+		self.Zoom_In_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomInImage)))
+		self.Zoom_Out_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiZoomOutImage)))
 		len(self.__paths) <= 1 and self.Navigation_groupBox.hide()
 
 		LOGGER.debug("> Initializing graphics View.")

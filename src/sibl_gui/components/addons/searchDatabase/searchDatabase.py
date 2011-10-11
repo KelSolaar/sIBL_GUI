@@ -77,7 +77,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__uiResources = "resources"
+		self.__uiResourcesDirectory = "resources"
 		self.__uiSearchImage = "Search_Glass.png"
 		self.__uiClearImage = "Search_Clear.png"
 		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
@@ -106,34 +106,34 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResources** attribute.
+		This method is the property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResources. ( String )
+		:return: self.__uiResourcesDirectory. ( String )
 		"""
 
-		return self.__uiResources
+		return self.__uiResourcesDirectory
 
-	@uiResources.setter
+	@uiResourcesDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
+	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResources** attribute.
+		This method is the setter method for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResourcesDirectory"))
 
-	@uiResources.deleter
+	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResources** attribute.
+		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResourcesDirectory"))
 
 	@property
 	def uiSearchImage(self):
@@ -570,7 +570,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
 		self.__container = container
 
 		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
@@ -590,7 +590,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResources = os.path.basename(self.__uiResources)
+		self.__uiResourcesDirectory = os.path.basename(self.__uiResourcesDirectory)
 		self.__container = None
 
 		self.__coreDb = None
@@ -610,12 +610,12 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResources, self.__uiClearImage), os.path.join(self.__uiResources, self.__uiClearClickedImage))
+		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiClearImage), os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Tags_Cloud_groupBox.hide()
 		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
-		self.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiSearchImage)))
+		self.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage)))
 		self.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
 
 		self.__completer = QCompleter()

@@ -114,7 +114,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__uiResources = "resources"
+		self.__uiResourcesDirectory = "resources"
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"
 		self.__dockArea = 2
@@ -189,34 +189,34 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResources** attribute.
+		This method is the property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResources. ( String )
+		:return: self.__uiResourcesDirectory. ( String )
 		"""
 
-		return self.__uiResources
+		return self.__uiResourcesDirectory
 
-	@uiResources.setter
+	@uiResourcesDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
+	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResources** attribute.
+		This method is the setter method for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResourcesDirectory"))
 
-	@uiResources.deleter
+	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResources** attribute.
+		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResourcesDirectory"))
 
 	@property
 	def uiPreviousImage(self):
@@ -805,7 +805,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
 		self.__container = container
 		self.__settings = self.__container.settings
 		self.__settingsSection = self.name
@@ -835,10 +835,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
-		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
-		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiPreviousImage)))
-		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResources, self.__uiNextImage)))
+		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
+		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
 
 		self.Plates_frame.hide()
 		self.Inspector_Options_groupBox.hide()

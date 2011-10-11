@@ -96,8 +96,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__container = parent
 		self.__releases = None
 		self.releases = releases
-		self.__uiResources = "resources/"
-		self.__uiResources = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResources)
+		self.__uiResourcesDirectory = "resources/"
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 		self.__uiTemplatesImage = "Templates_Logo.png"
 		self.__uiLightGrayColor = QColor(240, 240, 240)
@@ -182,34 +182,34 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releases"))
 
 	@property
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the property for **self.__uiResources** attribute.
+		This method is the property for **self.__uiResourcesDirectory** attribute.
 
-		:return: self.__uiResources. ( String )
+		:return: self.__uiResourcesDirectory. ( String )
 		"""
 
-		return self.__uiResources
+		return self.__uiResourcesDirectory
 
-	@uiResources.setter
+	@uiResourcesDirectory.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self, value):
+	def uiResourcesDirectory(self, value):
 		"""
-		This method is the setter method for **self.__uiResources** attribute.
+		This method is the setter method for **self.__uiResourcesDirectory** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResourcesDirectory"))
 
-	@uiResources.deleter
+	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResources(self):
+	def uiResourcesDirectory(self):
 		"""
-		This method is the deleter method for **self.__uiResources** attribute.
+		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResources"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResourcesDirectory"))
 
 	@property
 	def uiLogoImage(self):
@@ -588,7 +588,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.sIBL_GUI_groupBox.hide()
 			self.Get_sIBL_GUI_pushButton.hide()
 		else:
-			self.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiLogoImage)))
+			self.Logo_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage)))
 			self.Your_Version_label.setText(self.__releases[Constants.applicationName].localVersion)
 			self.Latest_Version_label.setText(self.__releases[Constants.applicationName].repositoryVersion)
 			self.Change_Log_webView.load(QUrl.fromEncoded(QByteArray(self.__applicationChangeLogUrl)))
@@ -601,7 +601,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Templates_groupBox.hide()
 			self.Get_Latest_Templates_pushButton.hide()
 		else:
-			self.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResources, self.__uiTemplatesImage)))
+			self.Templates_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiTemplatesImage)))
 			self.Templates_tableWidget.clear()
 			self.Templates_tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 			self.Templates_tableWidget.setRowCount(len(templatesReleases))
