@@ -100,7 +100,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:param requisiteComponents: Requisite components names. ( Tuple / List )
 		:param visibleComponents: Visible components names. ( Tuple / List )
 		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Arguments. ( \* )
+		:param \*\*kwargs: Keywords arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))

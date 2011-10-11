@@ -72,7 +72,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param downloadDirectory: Download directory. ( String )
 		:param requests: Download requests. ( List )
 		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Arguments. ( \* )
+		:param \*\*kwargs: Keywords arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
