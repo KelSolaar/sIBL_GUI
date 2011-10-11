@@ -450,7 +450,8 @@ class SetsScanner(QObjectComponent):
 		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
 		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
 
-		return QObjectComponent.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -468,7 +469,8 @@ class SetsScanner(QObjectComponent):
 		self.__coreCollectionsOutliner = None
 		self.__coreDatabaseBrowser = None
 
-		return QObjectComponent.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initialize(self):

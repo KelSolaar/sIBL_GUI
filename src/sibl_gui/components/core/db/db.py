@@ -438,7 +438,8 @@ class Db(Component):
 
 		self.__container = container
 
-		return Component.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

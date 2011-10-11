@@ -150,7 +150,8 @@ class LoggingNotifier(Component):
 
 		self.__container = container
 
-		return Component.activate(self)
+		self.activated = True
+		return True
 
 	@core.executionTrace
 	def deactivate(self):
@@ -164,7 +165,8 @@ class LoggingNotifier(Component):
 
 		self.__container = None
 
-		return Component.deactivate(self)
+		self.activated = False
+		return True
 
 	@core.executionTrace
 	def initialize(self):
