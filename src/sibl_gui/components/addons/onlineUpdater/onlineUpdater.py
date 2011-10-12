@@ -98,7 +98,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__releasesFileUrl = "sIBL_GUI_Releases.rc"
 
 		self.__networkAccessManager = None
-		self.__releaseReply = None
+		self.__releasesFileReply = None
 
 		self.__remoteUpdater = None
 		self.__reportUpdateStatus = None
@@ -448,18 +448,18 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def releaseReply(self):
 		"""
-		This method is the property for **self.__releaseReply** attribute.
+		This method is the property for **self.__releasesFileReply** attribute.
 
-		:return: self.__releaseReply. ( QNetworkReply )
+		:return: self.__releasesFileReply. ( QNetworkReply )
 		"""
 
-		return self.__releaseReply
+		return self.__releasesFileReply
 
 	@releaseReply.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self, value):
 		"""
-		This method is the setter method for **self.__releaseReply** attribute.
+		This method is the setter method for **self.__releasesFileReply** attribute.
 
 		:param value: Attribute value. ( QNetworkReply )
 		"""
@@ -470,7 +470,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def releaseReply(self):
 		"""
-		This method is the deleter method for **self.__releaseReply** attribute.
+		This method is the deleter method for **self.__releasesFileReply** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("releaseReply"))
@@ -733,15 +733,17 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.exceptions.NetworkError)
-	def __releaseReply__finished(self):
+	def __releasesFileReply__finished(self):
 		"""
-		This method is triggered when the release reply finishes.
+		This method is triggered when the releases file reply finishes.
 		"""
 
-		if not self.__releaseReply.error():
+		self.__container.stopProcessing()
+
+		if not self.__releasesFileReply.error():
 			content = []
-			while not self.__releaseReply.atEnd ():
-				content.append(str(self.__releaseReply.readLine()))
+			while not self.__releasesFileReply.atEnd ():
+				content.append(str(self.__releasesFileReply.readLine()))
 
 			LOGGER.debug("> Parsing releases file content.")
 			sectionsFileParser = SectionsFileParser()
@@ -787,18 +789,19 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise sibl_gui.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releaseReply.error()))
+			raise sibl_gui.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releasesFileReply.error()))
 
 	@core.executionTrace
-	def __getReleaseFile(self, url):
+	def __getReleasesFile(self, url):
 		"""
-		This method gets the release file.
+		This method gets the releases file.
 		"""
 
 		LOGGER.debug("> Downloading '{0}' releases file.".format(url.path()))
 
-		self.__releaseReply = self.__networkAccessManager.get(QNetworkRequest(url))
-		self.__releaseReply.finished.connect(self.__releaseReply__finished)
+		self.__container.startProcessing("Retrieving Releases File ...", 0)
+		self.__releasesFileReply = self.__networkAccessManager.get(QNetworkRequest(url))
+		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, sibl_gui.exceptions.NetworkError, Exception)
@@ -832,5 +835,5 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__networkAccessManager.networkAccessible():
 			raise sibl_gui.exceptions.NetworkError("{0} | Network is not accessible!".format(self.__class__.__name__))
 
-		self.__getReleaseFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
+		self.__getReleasesFile(QUrl(os.path.join(self.__repositoryUrl, self.__releasesFileUrl)))
 		return True

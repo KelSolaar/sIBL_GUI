@@ -35,6 +35,7 @@ import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.ui.common
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
@@ -1512,6 +1513,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Adding Content ...")
 	def addContent_ui(self):
 		"""
 		This method adds user defined content to the Database.
@@ -1533,6 +1535,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Adding Ibl Set ...")
 	def addIblSet_ui(self):
 		"""
 		This method adds an user defined Ibl Set to the Database.
@@ -1571,10 +1574,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			self.__container.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
 			success = True
 			for iblSet in selectedIblSets:
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
-
+				self.__container.stepProcessing()
+			self.__container.stopProcessing()
 			self.modelDatasRefresh.emit()
 			self.modelRefresh.emit()
 
@@ -1585,6 +1590,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Update Ibl Set Location ...")
 	def updateIblSetsLocation_ui(self):
 		"""
 		This method updates user selected Ibl Sets locations.
@@ -1654,10 +1660,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
+		self.__container.isProcessing and self.__container.stopProcessing()
+		self.__container.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
 		success = True
 		for iblSet, path in osWalker.files.items():
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(), emitSignal=False) or False
+				self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
 		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()

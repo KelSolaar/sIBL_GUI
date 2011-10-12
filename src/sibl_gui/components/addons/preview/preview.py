@@ -30,6 +30,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
@@ -842,6 +843,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@umbra.ui.common.showWaitCursor
+	@umbra.engine.showProcessing("Reading Images...")
 	def getImagesPreviewer(self, paths):
 		"""
 		This method launches an Images Previewer.
@@ -850,7 +853,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Launching Images Previewer for '{0}' image.".format(paths))
+		LOGGER.debug("> Launching Images Previewer for '{0}' images.".format(", ".join(paths)))
 
 		self.addImagesPreviewer(ImagesPreviewer(self, paths, Qt.Window))
 		self.__imagesPreviewers[-1].show()

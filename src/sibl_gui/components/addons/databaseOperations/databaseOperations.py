@@ -28,6 +28,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -408,6 +409,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Synchronizing Database ...")
 	def synchronizeDatabase(self):
 		"""
 		| This method synchronizes the Database.
@@ -427,6 +429,8 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				else:
 					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 						dbType.updateLocationMethod(item)
+				self.__container.processEvents()
 			dbType.modelContainer.modelRefresh.emit()
+		self.__container.stopProcessing()
 		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 		return True

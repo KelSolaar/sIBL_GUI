@@ -43,7 +43,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Icon", "getGraphicItem", "getIcon", "getPixmap", "getImage", "filterImagePath"]
+__all__ = ["LOGGER", "Icon", "getDisplayItem", "getIcon", "getPixmap", "getImage", "filterImagePath"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -67,9 +67,9 @@ class Icon(core.Structure):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getGraphicItem(path, type):
+def getDisplayItem(path, type):
 		"""
-		This method gets a graphic display: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_, `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_, `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )
@@ -106,7 +106,7 @@ def getIcon(path):
 		:return: QIcon. ( QIcon )
 		"""
 
-		return getGraphicItem(path, QIcon)
+		return getDisplayItem(path, QIcon)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -118,7 +118,7 @@ def getPixmap(path):
 		:return: QPixmap. ( QPixmap )
 		"""
 
-		return getGraphicItem(path, QPixmap)
+		return getDisplayItem(path, QPixmap)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -130,7 +130,7 @@ def getImage(path):
 		:return: QImage. ( QImage )
 		"""
 
-		return getGraphicItem(path, QImage)
+		return getDisplayItem(path, QImage)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

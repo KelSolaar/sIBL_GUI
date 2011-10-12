@@ -30,6 +30,7 @@ import foundations.exceptions
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -1315,6 +1316,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Adding Content ...")
 	def addContent_ui(self):
 		"""
 		This method adds user defined content to the Database.
@@ -1340,6 +1342,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError, Exception)
+	@umbra.engine.showProcessing("Adding Collection ...")
 	def addCollection_ui(self):
 		"""
 		This method adds an user defined Collection to the Database.
@@ -1391,9 +1394,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			self.__container.startProcessing("Removing Collections ...", len(selectedCollections))
 			success = True
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
+				self.__container.stepProcessing()
+			self.__container.stopProcessing()
 			self.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 			if success:
 				return True
