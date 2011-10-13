@@ -1560,6 +1560,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def removeIblSets_ui(self):
 		"""
 		This method removes user selected Ibl Sets from the Database.
@@ -1580,6 +1581,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
 				self.__container.stepProcessing()
 			self.__container.stopProcessing()
+
 			self.modelDatasRefresh.emit()
 			self.modelRefresh.emit()
 
@@ -1590,7 +1592,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
-	@umbra.engine.showProcessing("Update Ibl Set Location ...")
+	@umbra.engine.encapsulateProcessing
 	def updateIblSetsLocation_ui(self):
 		"""
 		This method updates user selected Ibl Sets locations.
@@ -1604,12 +1606,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedIblSets:
 			return
 
+		self.__container.startProcessing("Update Ibl Sets Locations ...", len(selectedIblSets))
 		success = True
 		for iblSet in selectedIblSets:
 			file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), RuntimeGlobals.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
-			if not file:
-				continue
-			success *= self.updateIblSetLocation(iblSet, file) or False
+			if file:
+				success *= self.updateIblSetLocation(iblSet, file) or False
+			self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
 		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()
@@ -1646,6 +1650,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
 		This method adds directory Ibl Sets to the Database.
@@ -1660,13 +1665,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__container.isProcessing and self.__container.stopProcessing()
 		self.__container.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
 		success = True
 		for iblSet, path in osWalker.files.items():
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(), emitSignal=False) or False
-				self.__container.stepProcessing()
+			self.__container.stepProcessing()
 		self.__container.stopProcessing()
 
 		self.modelDatasRefresh.emit()

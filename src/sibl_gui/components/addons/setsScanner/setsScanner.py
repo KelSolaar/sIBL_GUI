@@ -31,6 +31,7 @@ import foundations.exceptions
 import foundations.namespace
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
+import umbra.engine
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.qobjectComponent import QObjectComponent
@@ -59,7 +60,7 @@ class SetsScanner_Worker(QThread):
 	"""
 
 	# Custom signals definitions.
-	databaseChanged = pyqtSignal()
+	iblSetsRetrieved = pyqtSignal(dict)
 
 	@core.executionTrace
 	def __init__(self, parent):
@@ -77,6 +78,8 @@ class SetsScanner_Worker(QThread):
 		self.__container = parent
 
 		self.__dbSession = self.__container.coreDb.dbSessionMaker()
+
+		self.__newIblSets = None
 
 		self.__extension = "ibl"
 
@@ -243,7 +246,7 @@ class SetsScanner_Worker(QThread):
 		self.__dbSession.close()
 
 		LOGGER.info("{0} | Scanning done!".format(self.__class__.__name__))
-		needModelRefresh and self.databaseChanged.emit()
+		needModelRefresh and self.iblSetsRetrieved.emit(self.__newIblSets)
 		return True
 
 class SetsScanner(QObjectComponent):
@@ -486,7 +489,7 @@ class SetsScanner(QObjectComponent):
 				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
-				self.__setsScannerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
+				self.__setsScannerWorkerThread.iblSetsRetrieved.connect(self.__setsScannerWorkerThread__iblSetsRetrieved)
 			else:
 				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -503,7 +506,7 @@ class SetsScanner(QObjectComponent):
 		if not self.__container.parameters.databaseReadOnly:
 			if not self.__container.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
-				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.databaseChanged.disconnect(self.__coreDb_database__changed)
+				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(self.__setsScannerWorkerThread__iblSetsRetrieved)
 
 				self.__setsScannerWorkerThread = None
 
@@ -521,20 +524,23 @@ class SetsScanner(QObjectComponent):
 		return True
 
 	@core.executionTrace
-	def __coreDb_database__changed(self):
+	@umbra.engine.encapsulateProcessing
+	def __setsScannerWorkerThread__iblSetsRetrieved(self, iblSets):
 		"""
 		This method is triggered by the **SetsScanner_Worker** when the Database has changed.
+
+		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
 
-		if self.__setsScannerWorkerThread.newIblSets:
-			if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in self.__setsScannerWorkerThread.newIblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-				for iblSet, path in self.__setsScannerWorkerThread.newIblSets.items():
-					iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
-					LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-					if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
-						LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
+		if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			self.__container.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
+			for iblSet, path in iblSets.items():
+				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
+				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
+				if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
+					LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
+				self.__container.stepProcessing()
+			self.__container.stopProcessing()
 
-				self.__coreDatabaseBrowser.modelDatasRefresh.emit()
-				self.__coreDatabaseBrowser.modelRefresh.emit()
-
-		self.__setsScannerWorkerThread.exit()
+			self.__coreDatabaseBrowser.modelDatasRefresh.emit()
+			self.__coreDatabaseBrowser.modelRefresh.emit()

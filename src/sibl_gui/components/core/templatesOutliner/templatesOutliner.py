@@ -34,6 +34,7 @@ import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -1619,6 +1620,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Adding Template ...")
 	def addTemplate_ui(self):
 		"""
 		This method adds an user defined Template to the Database.
@@ -1643,6 +1645,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def removeTemplates_ui(self):
 		"""
 		This method removes user selected Templates from the Database.
@@ -1673,9 +1676,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+			self.__container.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
 			for template in selectedTemplates:
 				success *= self.removeTemplate(template, emitSignal=False) or False
+				self.__container.stepProcessing()
+			self.__container.stopProcessing()
 
 			self.modelRefresh.emit()
 
@@ -1686,6 +1692,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.showProcessing("Importing Default Templates ...")
 	def importDefaultTemplates_ui(self):
 		"""
 		This method imports default Templates into the Database.
@@ -1702,6 +1709,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def displayHelpFiles_ui(self):
 		"""
 		This method displays user selected Templates help files.
@@ -1713,9 +1721,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedTemplates:
 			return
 
+		self.__container.startProcessing("Displaying Templates Help Files ...", len(selectedTemplates))
 		success = True
 		for template in selectedTemplates:
 			success *= self.displayHelpFile(template) or False
+			self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
 		if success:
 			return True
@@ -1724,6 +1735,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def filterTemplatesVersions_ui(self):
 		"""
 		This method filters Templates by versions.
@@ -1734,19 +1746,21 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
+		self.__container.startProcessing("Filtering Templates ...", len(templates.all()))
+		success = True
 		for template in templates:
 			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
-				success = True
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
-
 				self.modelRefresh.emit()
+			self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
-				if success:
-					return True
-				else:
-					raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
+		if success:
+			return True
+		else:
+			raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
@@ -1773,6 +1787,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
 		This method adds provided directory Templates to the Database.
@@ -1787,10 +1802,13 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
+		self.__container.startProcessing("Adding Directory Templates ...", len(osWalker.files.keys()))
 		success = True
 		for template, path in osWalker.files.items():
 			if not self.templateExists(path):
 				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, emitSignal=False) or False
+			self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
 		self.modelRefresh.emit()
 
@@ -1947,7 +1965,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		id = [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
 		if self.__defaultCollections[self.__factoryCollection]:
-			return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id
-		else:
-			return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
+			if path in self.__defaultCollections[self.__factoryCollection]:
+				id = [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id
+		return id

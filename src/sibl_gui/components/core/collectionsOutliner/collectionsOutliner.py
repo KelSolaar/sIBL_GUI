@@ -1376,6 +1376,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
+	@umbra.engine.encapsulateProcessing
 	def removeCollections_ui(self):
 		"""
 		This method removes user selected Collections from the Database.
