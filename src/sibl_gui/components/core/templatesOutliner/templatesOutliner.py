@@ -1580,6 +1580,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __application__contentDropped(self, event):
 		"""
 		This method is triggered when content is dropped in the Application.
@@ -1615,6 +1616,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 						self.addDirectory(path)
+				self.__container.processEvents()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 

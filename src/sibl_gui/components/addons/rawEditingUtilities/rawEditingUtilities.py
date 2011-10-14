@@ -30,6 +30,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import sibl_gui.ui.highlighters
+import umbra.engine
 import umbra.ui.common
 import umbra.ui.inputAccelerators
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -633,6 +634,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__settings.setKey(self.__settingsSection, "customTextEditor", self.Custom_Text_Editor_Path_lineEdit.text())
 
 	@core.executionTrace
+	@umbra.engine.encapsulateProcessing
 	def __application__contentDropped(self, event):
 		"""
 		This method is triggered when content is dropped in the Application.
@@ -643,12 +645,17 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not event.mimeData().hasUrls():
 			return
 
-		LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
+		urls = event.mimeData().urls()
 
+		LOGGER.debug("> Drag event urls list: '{0}'!".format(urls))
+
+		self.__container.startProcessing("Loading Files ...", len(urls))
 		for url in event.mimeData().urls():
 			path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 			if not re.search("\.{0}$".format(self.__coreDatabaseBrowser.extension), str(url.path())) and not re.search("\.{0}$".format(self.coreTemplatesOutliner.extension), str(url.path())) and not os.path.isdir(path):
 				self.editFile(path, self.Custom_Text_Editor_Path_lineEdit.text())
+			self.__container.stepProcessing()
+		self.__container.stopProcessing()
 
 	@core.executionTrace
 	def __factoryScriptEditor_Script_Editor_tabWidget__contentDropped(self, event):
