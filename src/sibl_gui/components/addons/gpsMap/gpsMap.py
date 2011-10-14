@@ -206,7 +206,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -215,7 +215,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiZoomInImage(self):
@@ -236,7 +236,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@uiZoomInImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -245,7 +245,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__uiZoomInImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@property
 	def uiZoomOutImage(self):
@@ -266,7 +266,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("uiZoomOutImage"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@uiZoomOutImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -275,7 +275,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__uiZoomOutImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiZoomOutImage"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@property
 	def gpsMapHtmlFile(self):
@@ -296,7 +296,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("gpsMapHtmlFile"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gpsMapHtmlFile"))
 
 	@gpsMapHtmlFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -305,7 +305,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__gpsMapHtmlFile** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("gpsMapHtmlFile"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gpsMapHtmlFile"))
 
 	@property
 	def gpsMapBaseSize(self):
@@ -326,7 +326,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( QSize() )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("gpsMapBaseSize"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "gpsMapBaseSize"))
 
 	@gpsMapBaseSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -335,7 +335,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__gpsMapBaseSize** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("gpsMapBaseSize"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "gpsMapBaseSize"))
 
 	@property
 	def dockArea(self):
@@ -356,7 +356,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -365,7 +365,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
 	def engine(self):
@@ -386,7 +386,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -395,7 +395,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -416,7 +416,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -425,7 +425,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
 	def map(self):
@@ -446,7 +446,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("map"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "map"))
 
 	@map.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -455,7 +455,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__map** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("map"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "map"))
 
 	@property
 	def mapTypeIds(self):
@@ -476,7 +476,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( Tuple )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("mapTypeIds"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "mapTypeIds"))
 
 	@mapTypeIds.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -485,7 +485,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		This method is the deleter method for **self.__mapTypeIds** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("mapTypeIds"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "mapTypeIds"))
 
 	#***********************************************************************************************
 	#***	Class methods.

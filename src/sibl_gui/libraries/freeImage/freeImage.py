@@ -1489,7 +1489,7 @@ class Image(object):
 		:param value: Attribute value. ( Library )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("library"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "library"))
 
 	@library.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1498,7 +1498,7 @@ class Image(object):
 		This method is the deleter method for **self.__library** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("library"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "library"))
 
 	@property
 	def errorsCallback(self):
@@ -1519,7 +1519,7 @@ class Image(object):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "errorsCallback"))
 
 	@errorsCallback.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -1528,7 +1528,7 @@ class Image(object):
 		This method is the deleter method for **self.__errorsCallback** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("errorsCallback"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "errorsCallback"))
 
 	@property
 	def imagePath(self):
@@ -1560,7 +1560,7 @@ class Image(object):
 		This method is the deleter method for **self.__imagePath** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("imagePath"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagePath"))
 
 	@property
 	def bitmap(self):
@@ -1590,7 +1590,7 @@ class Image(object):
 		This method is the deleter method for **self.__bitmap** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("bitmap"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "bitmap"))
 
 	#***********************************************************************************************
 	#***	Class methods.
