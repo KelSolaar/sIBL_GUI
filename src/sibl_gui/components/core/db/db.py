@@ -74,7 +74,7 @@ class Db(Component):
 		# --- Setting class attributes. ---
 		self.deactivatable = False
 
-		self.__container = None
+		self.__engine = None
 
 		self.__dbName = None
 		self.__dbSession = None
@@ -93,34 +93,34 @@ class Db(Component):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def dbName(self):
@@ -426,17 +426,17 @@ class Db(Component):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
+		self.__engine = engine
 
 		self.activated = True
 		return True
@@ -460,21 +460,21 @@ class Db(Component):
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		LOGGER.debug("> Initializing '{0}' SQLiteDatabase.".format(Constants.databaseFile))
-		if self.__container.parameters.databaseDirectory:
-			if os.path.exists(self.__container.parameters.databaseDirectory):
-				self.__dbName = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseFile)
-				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
+		if self.__engine.parameters.databaseDirectory:
+			if os.path.exists(self.__engine.parameters.databaseDirectory):
+				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
+				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise foundations.exceptions.DirectoryExistsError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__container.parameters.databaseDirectory, Constants.applicationName))
+				raise foundations.exceptions.DirectoryExistsError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__engine.parameters.databaseDirectory, Constants.applicationName))
 		else:
-			self.__dbName = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
-			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__container.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
+			self.__dbName = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
+			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
 
 		if os.path.exists(self.__dbName):
-			if not self.__container.parameters.databaseReadOnly:
+			if not self.__engine.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
 					LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
@@ -483,7 +483,7 @@ class Db(Component):
 			else:
 				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			LOGGER.info("{0} | SQLAlchemy Migrate repository location: '{1}'.".format(self.__class__.__name__, self.__dbMigrationsRepositoryDirectory))
 			LOGGER.debug("> Creating SQLAlchemy Migrate migrations directory and requisites.")
 			try:

@@ -273,7 +273,7 @@ class SetsScanner(QObjectComponent):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDb = None
 		self.__coreCollectionsOutliner = None
@@ -284,34 +284,34 @@ class SetsScanner(QObjectComponent):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def coreDb(self):
@@ -437,21 +437,21 @@ class SetsScanner(QObjectComponent):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
+		self.__engine = engine
 
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__coreCollectionsOutliner = self.__engine.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
 
 		self.activated = True
 		return True
@@ -466,7 +466,7 @@ class SetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDb = None
 		self.__coreCollectionsOutliner = None
@@ -483,10 +483,10 @@ class SetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__setsScannerWorkerThread = SetsScanner_Worker(self)
-				self.__container.workerThreads.append(self.__setsScannerWorkerThread)
+				self.__engine.workerThreads.append(self.__setsScannerWorkerThread)
 
 				# Signals / Slots.
 				self.__setsScannerWorkerThread.iblSetsRetrieved.connect(self.__setsScannerWorkerThread__iblSetsRetrieved)
@@ -503,10 +503,10 @@ class SetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
-				not self.__container.parameters.databaseReadOnly and self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(self.__setsScannerWorkerThread__iblSetsRetrieved)
+				not self.__engine.parameters.databaseReadOnly and self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(self.__setsScannerWorkerThread__iblSetsRetrieved)
 
 				self.__setsScannerWorkerThread = None
 
@@ -520,7 +520,7 @@ class SetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
-		not self.__container.parameters.databaseReadOnly and not self.__container.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
+		not self.__engine.parameters.databaseReadOnly and not self.__engine.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 		return True
 
 	@core.executionTrace
@@ -533,14 +533,14 @@ class SetsScanner(QObjectComponent):
 		"""
 
 		if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-			self.__container.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
+			self.__engine.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
 			for iblSet, path in iblSets.items():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
 				if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
 					LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				self.__container.stepProcessing()
-			self.__container.stopProcessing()
+				self.__engine.stepProcessing()
+			self.__engine.stopProcessing()
 
 			self.__coreDatabaseBrowser.modelDatasRefresh.emit()
 			self.__coreDatabaseBrowser.modelRefresh.emit()

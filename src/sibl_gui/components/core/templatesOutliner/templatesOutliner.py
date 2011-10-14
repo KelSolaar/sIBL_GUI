@@ -335,7 +335,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiUnknownSoftwareImage = "Unknown_Software.png"
 		self.__dockArea = 1
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
@@ -505,34 +505,34 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def settings(self):
@@ -1078,26 +1078,26 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__container.componentsManager.components["factory.scriptEditor"].interface
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
+		self.__factoryScriptEditor = self.__engine.componentsManager.components["factory.scriptEditor"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
-		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.templatesDirectory)
+		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.templatesDirectory)
 
 		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
@@ -1123,11 +1123,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Templates_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Templates_Outliner_treeView_setModel()
 
-		self.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__container)
+		self.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self.__engine)
 		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
 
@@ -1141,11 +1141,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Templates_Outliner_splitter.setSizes([16777215, 1])
 
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__templatesOutlinerWorkerThread = TemplatesOutliner_Worker(self)
 				self.__templatesOutlinerWorkerThread.start()
-				self.__container.workerThreads.append(self.__templatesOutlinerWorkerThread)
+				self.__engine.workerThreads.append(self.__templatesOutlinerWorkerThread)
 			else:
 				LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -1156,10 +1156,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
 		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Templates_Outliner_treeView_refreshModel)
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
-			self.__container.contentDropped.connect(self.__application__contentDropped)
+			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -1174,14 +1174,14 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -1189,7 +1189,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
@@ -1204,7 +1204,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			# Adding default templates.
 			self.addDefaultTemplates()
 
@@ -1449,16 +1449,16 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the **Templates_Outliner_treeView** actions.
 		"""
 
-		if not self.__container.parameters.databaseReadOnly:
-			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__Templates_Outliner_treeView_addTemplateAction__triggered))
-			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__Templates_Outliner_treeView_removeTemplatesAction__triggered))
+		if not self.__engine.parameters.databaseReadOnly:
+			self.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__Templates_Outliner_treeView_addTemplateAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__Templates_Outliner_treeView_removeTemplatesAction__triggered))
 
 			separatorAction = QAction(self.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
 			self.Templates_Outliner_treeView.addAction(separatorAction)
 
-			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered))
-			self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__Templates_Outliner_treeView_importDefaultTemplatesAction__triggered))
+			self.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__Templates_Outliner_treeView_filterTemplatesVersionsAction__triggered))
 
 			separatorAction = QAction(self.Templates_Outliner_treeView)
 			separatorAction.setSeparator(True)
@@ -1466,7 +1466,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.Templates_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered))
+		self.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__Templates_Outliner_treeView_displayHelpFilesAction__triggered))
 
 		separatorAction = QAction(self.Templates_Outliner_treeView)
 		separatorAction.setSeparator(True)
@@ -1593,7 +1593,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 				if re.search("\.{0}$".format(self.__extension), str(url.path())):
@@ -1603,7 +1603,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addTemplate(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__container.currentLayout != self.__editLayout and self.__container.restoreLayout(self.__editLayout)
+						self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1616,7 +1616,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 						self.addDirectory(path)
-				self.__container.processEvents()
+				self.__engine.processEvents()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
@@ -1678,12 +1678,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-			self.__container.startProcessing("Removing Templates ...", len(selectedTemplates))
+			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
 			for template in selectedTemplates:
 				success *= self.removeTemplate(template, emitSignal=False) or False
-				self.__container.stepProcessing()
-			self.__container.stopProcessing()
+				self.__engine.stepProcessing()
+			self.__engine.stopProcessing()
 
 			self.modelRefresh.emit()
 
@@ -1723,12 +1723,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedTemplates:
 			return
 
-		self.__container.startProcessing("Displaying Templates Help Files ...", len(selectedTemplates))
+		self.__engine.startProcessing("Displaying Templates Help Files ...", len(selectedTemplates))
 		success = True
 		for template in selectedTemplates:
 			success *= self.displayHelpFile(template) or False
-			self.__container.stepProcessing()
-		self.__container.stopProcessing()
+			self.__engine.stepProcessing()
+		self.__engine.stopProcessing()
 
 		if success:
 			return True
@@ -1748,7 +1748,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		templates = dbCommon.getTemplates(self.__coreDb.dbSession)
-		self.__container.startProcessing("Filtering Templates ...", len(templates.all()))
+		self.__engine.startProcessing("Filtering Templates ...", len(templates.all()))
 		success = True
 		for template in templates:
 			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
@@ -1756,8 +1756,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
 				self.modelRefresh.emit()
-			self.__container.stepProcessing()
-		self.__container.stopProcessing()
+			self.__engine.stepProcessing()
+		self.__engine.stopProcessing()
 
 		if success:
 			return True
@@ -1804,13 +1804,13 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__container.startProcessing("Adding Directory Templates ...", len(osWalker.files.keys()))
+		self.__engine.startProcessing("Adding Directory Templates ...", len(osWalker.files.keys()))
 		success = True
 		for template, path in osWalker.files.items():
 			if not self.templateExists(path):
 				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, emitSignal=False) or False
-			self.__container.stepProcessing()
-		self.__container.stopProcessing()
+			self.__engine.stepProcessing()
+		self.__engine.stopProcessing()
 
 		self.modelRefresh.emit()
 

@@ -93,7 +93,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDb = None
 		self.__factoryPreferencesManager = None
@@ -106,34 +106,34 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def coreDb(self):
@@ -289,24 +289,24 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager.components["factory.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 
 		self.__dbTypes = (DbType(type="Ibl Set", getMethod=dbCommon.getIblSets, updateContentMethod=dbCommon.updateIblSetContent, modelContainer=self.__coreDatabaseBrowser, updateLocationMethod=self.__coreDatabaseBrowser.updateIblSetLocation),
 						DbType(type="Template", getMethod=dbCommon.getTemplates, updateContentMethod=dbCommon.updateTemplateContent, modelContainer=self.__coreTemplatesOutliner, updateLocationMethod=self.__coreTemplatesOutliner.updateTemplateLocation))
@@ -324,7 +324,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 
@@ -346,7 +346,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			self.Synchronize_Database_pushButton.clicked.connect(self.__synchronize_Database_pushButton_clicked)
 		else:
 			LOGGER.info("{0} | Database Operations capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -364,14 +364,14 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		not self.__container.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
+		not self.__engine.parameters.databaseReadOnly and self.Synchronize_Database_pushButton.clicked.disconnect(self.__synchronize_Database_pushButton_clicked)
 
 		return True
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -385,7 +385,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -429,8 +429,8 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				else:
 					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
 						dbType.updateLocationMethod(item)
-				self.__container.processEvents()
+				self.__engine.processEvents()
 			dbType.modelContainer.modelRefresh.emit()
-		self.__container.stopProcessing()
+		self.__engine.stopProcessing()
 		messageBox.messageBox("Information", "Information", "{0} | Database synchronization done!".format(self.__class__.__name__), QMessageBox.Information, QMessageBox.Ok)
 		return True

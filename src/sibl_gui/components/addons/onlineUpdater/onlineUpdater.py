@@ -83,7 +83,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 
@@ -107,43 +107,43 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def settings(self):
@@ -539,26 +539,26 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
-		self.__addonsLocationsBrowser = self.__container.componentsManager.components["addons.locationsBrowser"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager.components["factory.preferencesManager"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
+		self.__addonsLocationsBrowser = self.__engine.componentsManager.components["addons.locationsBrowser"].interface
 
-		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		self.__ioDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.__networkAccessManager = QNetworkAccessManager()
@@ -578,7 +578,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 
@@ -606,7 +606,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+		self.__engine.parameters.deactivateWorkerThreads and LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()
@@ -646,13 +646,13 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		self.__reportUpdateStatus = False
-		not self.__container.parameters.deactivateWorkerThreads and self.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
+		not self.__engine.parameters.deactivateWorkerThreads and self.Check_For_New_Releases_On_Startup_checkBox.isChecked() and self.checkForNewReleases()
 		return True
 
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -664,7 +664,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -738,7 +738,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when the releases file reply finishes.
 		"""
 
-		self.__container.stopProcessing()
+		self.__engine.stopProcessing()
 
 		if not self.__releasesFileReply.error():
 			content = []
@@ -755,7 +755,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				if remoteObject != Constants.applicationName:
 						dbTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(remoteObject), "name")
 						dbTemplate = dbTemplates and [dbTemplate[0] for dbTemplate in sorted(((dbTemplate, dbTemplate.release) for dbTemplate in dbTemplates), reverse=True, key=lambda x:(strings.getVersionRank(x[1])))][0] or None
-						if not self.__container.parameters.databaseReadOnly:
+						if not self.__engine.parameters.databaseReadOnly:
 							if dbTemplate:
 								if dbTemplate.release != sectionsFileParser.getValue("Release", remoteObject):
 									releases[remoteObject] = ReleaseObject(name=remoteObject,
@@ -799,7 +799,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Downloading '{0}' releases file.".format(url.path()))
 
-		self.__container.startProcessing("Retrieving Releases File ...", 0)
+		self.__engine.startProcessing("Retrieving Releases File ...", 0)
 		self.__releasesFileReply = self.__networkAccessManager.get(QNetworkRequest(url))
 		self.__releasesFileReply.finished.connect(self.__releasesFileReply__finished)
 

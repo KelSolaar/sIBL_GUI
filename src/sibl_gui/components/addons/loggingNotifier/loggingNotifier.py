@@ -67,7 +67,7 @@ class LoggingNotifier(Component):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__container = None
+		self.__engine = None
 
 		self.__memoryHandlerStackDepth = 0
 
@@ -75,34 +75,34 @@ class LoggingNotifier(Component):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def memoryHandlerStackDepth(self):
@@ -138,17 +138,17 @@ class LoggingNotifier(Component):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
+		self.__engine = engine
 
 		self.activated = True
 		return True
@@ -163,7 +163,7 @@ class LoggingNotifier(Component):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 
 		self.activated = False
 		return True
@@ -177,7 +177,7 @@ class LoggingNotifier(Component):
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__container.timer.timeout.connect(self.__statusBar_showLoggingMessages)
+		self.__engine.timer.timeout.connect(self.__statusBar_showLoggingMessages)
 
 	@core.executionTrace
 	def uninitialize(self):
@@ -188,17 +188,17 @@ class LoggingNotifier(Component):
 		LOGGER.debug("> Uninitializing '{0}' Component.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__container.timer.timeout.disconnect(self.__statusBar_showLoggingMessages)
+		self.__engine.timer.timeout.disconnect(self.__statusBar_showLoggingMessages)
 
 	# @core.executionTrace
 	def __statusBar_showLoggingMessages(self):
 		"""
-		This method updates the container status bar with logging messages.
+		This method updates the engine status bar with logging messages.
 		"""
 
-		memoryHandlerStackDepth = len(self.__container.loggingSessionHandlerStream.stream)
+		memoryHandlerStackDepth = len(self.__engine.loggingSessionHandlerStream.stream)
 
 		if memoryHandlerStackDepth != self.__memoryHandlerStackDepth:
 			for index in range(self.__memoryHandlerStackDepth, memoryHandlerStackDepth):
-				self.__container.statusBar.showMessage(self.__container.loggingSessionHandlerStream.stream[index])
+				self.__engine.statusBar.showMessage(self.__engine.loggingSessionHandlerStream.stream[index])
 			self.__memoryHandlerStackDepth = memoryHandlerStackDepth

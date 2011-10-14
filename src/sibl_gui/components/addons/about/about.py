@@ -140,7 +140,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 		self.__uiGpl3Image = "GPL_V3.png"
 
-		self.__container = None
+		self.__engine = None
 		self.__miscellaneousMenu = None
 
 	#***********************************************************************************************
@@ -237,34 +237,34 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("uiGpl3Image"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def miscellaneousMenu(self):
@@ -300,19 +300,19 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
-		self.__container = container
-		self.__miscellaneousMenu = self.__container.miscellaneousMenu
+		self.__engine = engine
+		self.__miscellaneousMenu = self.__engine.miscellaneousMenu
 
 		self.__addActions()
 
@@ -332,7 +332,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__removeActions()
 
 		self.__uiResourcesDirectory = os.path.basename(self.__uiResourcesDirectory)
-		self.__container = None
+		self.__engine = None
 		self.__miscellaneousMenu = None
 
 		self.activated = False
@@ -365,7 +365,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -377,7 +377,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -394,7 +394,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__miscellaneousMenu.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName), slot=self.__miscellaneousMenu_aboutAction__triggered))
+		self.__miscellaneousMenu.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName), slot=self.__miscellaneousMenu_aboutAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -405,8 +405,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		aboutAction = "Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName)
-		self.__miscellaneousMenu.removeAction(self.__container.actionsManager.getAction(aboutAction))
-		self.__container.actionsManager.unregisterAction(aboutAction)
+		self.__miscellaneousMenu.removeAction(self.__engine.actionsManager.getAction(aboutAction))
+		self.__engine.actionsManager.unregisterAction(aboutAction)
 
 	@core.executionTrace
 	def __miscellaneousMenu_aboutAction__triggered(self, checked):

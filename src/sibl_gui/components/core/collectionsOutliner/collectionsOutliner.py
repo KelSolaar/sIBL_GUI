@@ -355,7 +355,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiUserCollectionImage = "User_Collection.png"
 		self.__dockArea = 1
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
@@ -496,34 +496,34 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def settings(self):
@@ -889,23 +889,23 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
 
 		self.activated = True
 		return True
@@ -929,11 +929,11 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Collections_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Collections_Outliner_treeView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Collections_Outliner_treeView_setModel()
 
-		self.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__container)
+		self.Collections_Outliner_treeView = CollectionsOutliner_QTreeView(self.__engine)
 		self.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.Collections_Outliner_treeView, 0, 0)
 
 		self.Collections_Outliner_treeView.setContextMenuPolicy(Qt.ActionsContextMenu)
@@ -948,7 +948,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelChanged.connect(self.__Collections_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Collections_Outliner_treeView_refreshModel)
 		self.modelPartialRefresh.connect(self.__Collections_Outliner_treeView_setIblSetsCounts)
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
+		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 		return True
 
@@ -964,14 +964,14 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
@@ -979,7 +979,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
@@ -994,7 +994,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			not self.getCollections() and self.addCollection(self.__defaultCollection, "Default Collection")
 		else:
 			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
@@ -1081,13 +1081,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					collectionStandardItem = QStandardItem(QString(collection.name))
 					iconPath = collection.name == self.defaultCollection and os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage) or os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 					collectionStandardItem.setIcon(QIcon(iconPath))
-					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
+					(collection.name == self.__defaultCollection or self.__engine.parameters.databaseReadOnly) and collectionStandardItem.setFlags(readOnlyFlags)
 
 					collectionSetsCountStandardItem = QStandardItem(QString(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collection.id).count())))
 					collectionSetsCountStandardItem.setTextAlignment(Qt.AlignCenter)
 
 					collectionCommentsStandardItem = QStandardItem(QString(collection.comment))
-					(collection.name == self.__defaultCollection or self.__container.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
+					(collection.name == self.__defaultCollection or self.__engine.parameters.databaseReadOnly) and collectionCommentsStandardItem.setFlags(readOnlyFlags)
 
 					collectionStandardItem._datas = collection
 					collectionStandardItem._type = "Collection"
@@ -1153,7 +1153,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		# Disconnecting model "dataChanged()" signal.
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.__Collections_Outliner_treeView_model__dataChanged)
+		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.disconnect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 		for i in range(self.__model.rowCount()):
 			currentStandardItem = self.__model.item(i)
@@ -1165,7 +1165,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				collectionSetsCountStandardItem.setText(str(self.__coreDb.dbSession.query(dbTypes.DbIblSet).filter_by(collection=collectionStandardItem._datas.id).count()))
 
 		# Reconnecting model "dataChanged()" signal.
-		not self.__container.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
+		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_refreshView(self):
@@ -1218,10 +1218,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the Collections Outliner actions.
 		"""
 
-		if not self.__container.parameters.databaseReadOnly:
-			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Content ...", slot=self.__Collections_Outliner_treeView_addContentAction__triggered))
-			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...", slot=self.__Collections_Outliner_treeView_addCollectionAction__triggered))
-			self.Collections_Outliner_treeView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...", slot=self.__Collections_Outliner_treeView_removeCollectionsAction__triggered))
+		if not self.__engine.parameters.databaseReadOnly:
+			self.Collections_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Content ...", slot=self.__Collections_Outliner_treeView_addContentAction__triggered))
+			self.Collections_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Add Collection ...", slot=self.__Collections_Outliner_treeView_addCollectionAction__triggered))
+			self.Collections_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.collectionsOutliner|Remove Collection(s) ...", slot=self.__Collections_Outliner_treeView_removeCollectionsAction__triggered))
 		else:
 			LOGGER.info("{0} | Collections Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1395,12 +1395,12 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-			self.__container.startProcessing("Removing Collections ...", len(selectedCollections))
+			self.__engine.startProcessing("Removing Collections ...", len(selectedCollections))
 			success = True
 			for collection in selectedCollections:
 				success *= self.removeCollection(collection) or False
-				self.__container.stepProcessing()
-			self.__container.stopProcessing()
+				self.__engine.stepProcessing()
+			self.__engine.stopProcessing()
 			self.Collections_Outliner_treeView.selectionModel().setCurrentIndex(self.__model.index(0, 0), QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 			if success:
 				return True

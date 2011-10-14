@@ -76,7 +76,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# --- Setting class attributes. ---
 		self.deactivatable = True
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 
@@ -88,34 +88,34 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def settings(self):
@@ -271,23 +271,23 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__container.componentsManager.components["factory.preferencesManager"].interface
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreInspector = self.__container.componentsManager.components["core.inspector"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager.components["factory.preferencesManager"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreInspector = self.__engine.componentsManager.components["core.inspector"].interface
 
 		self.activated = True
 		return True
@@ -302,7 +302,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 
@@ -354,7 +354,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -368,7 +368,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
@@ -387,9 +387,9 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...", slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered))
-			self.__coreInspector.Inspector_Overall_frame.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
+		if not self.__engine.parameters.databaseReadOnly:
+			self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ...", slot=self.__Database_Browser_listView_editIblSetInSIBLEditAction__triggered))
+			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit In sIBLedit ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetInSIBLEditAction__triggered))
 		else:
 			LOGGER.info("{0} | sIBLedit editing capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -401,13 +401,13 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			editIblSetInSIBLEditAction = "Actions|Umbra|Components|core.databaseBrowser|Edit In sIBLedit ..."
-			self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__container.actionsManager.getAction(editIblSetInSIBLEditAction))
-			self.__container.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
+			self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__engine.actionsManager.getAction(editIblSetInSIBLEditAction))
+			self.__engine.actionsManager.unregisterAction(editIblSetInSIBLEditAction)
 			editInspectorIblSetInSIBLEditAction = "Actions|Umbra|Components|core.inspector|Edit In sIBLedit ..."
-			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__container.actionsManager.getAction(editInspectorIblSetInSIBLEditAction))
-			self.__container.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
+			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(editInspectorIblSetInSIBLEditAction))
+			self.__engine.actionsManager.unregisterAction(editInspectorIblSetInSIBLEditAction)
 
 	@core.executionTrace
 	def __Database_Browser_listView_editIblSetInSIBLEditAction__triggered(self, checked):

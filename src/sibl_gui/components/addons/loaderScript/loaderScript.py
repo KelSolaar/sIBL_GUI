@@ -95,7 +95,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__dockArea = 2
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDatabaseBrowser = None
 		self.__coreTemplatesOutliner = None
@@ -148,34 +148,34 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -489,22 +489,22 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
+		self.__engine = engine
 
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 
-		self.__ioDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		self.__ioDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.activated = True
@@ -520,7 +520,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDatabaseBrowser = None
 		self.__coreTemplatesOutliner = None
@@ -571,28 +571,28 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self)
+		self.__engine.removeDockWidget(self)
 		self.setParent(None)
 
 		return True
@@ -733,17 +733,17 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__overrideKeys = self.getDefaultOverrideKeys()
 
-		for component in self.__container.componentsManager.getComponents():
-			profile = self.__container.componentsManager.components[component]
-			interface = self.__container.componentsManager.getInterface(component)
+		for component in self.__engine.componentsManager.getComponents():
+			profile = self.__engine.componentsManager.components[component]
+			interface = self.__engine.componentsManager.getInterface(component)
 			if interface.activated and profile.name != self.name:
 				hasattr(interface, "getOverrideKeys") and interface.getOverrideKeys()
 
-		if self.__container.parameters.loaderScriptsOutputDirectory:
-			if os.path.exists(self.__container.parameters.loaderScriptsOutputDirectory):
-				loaderScript = File(os.path.join(self.__container.parameters.loaderScriptsOutputDirectory, template.outputScript))
+		if self.__engine.parameters.loaderScriptsOutputDirectory:
+			if os.path.exists(self.__engine.parameters.loaderScriptsOutputDirectory):
+				loaderScript = File(os.path.join(self.__engine.parameters.loaderScriptsOutputDirectory, template.outputScript))
 			else:
-				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, self.__container.parameters.loaderScriptsOutputDirectory))
+				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' loader Script output directory doesn't exists!".format(self.__class__.__name__, self.__engine.parameters.loaderScriptsOutputDirectory))
 		else:
 			loaderScript = File(os.path.join(self.__ioDirectory, template.outputScript))
 

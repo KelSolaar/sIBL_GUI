@@ -84,7 +84,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__dockArea = 2
 		self.__tagsCloudListWidgetSpacing = 4
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDatabaseBrowser = None
 		self.__coreCollectionsOutliner = None
@@ -286,34 +286,34 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("tagsCloudListWidgetSpacing"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def coreDb(self):
@@ -408,18 +408,18 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def completer(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QCompleter )
+		:return: self.__engine. ( QCompleter )
 		"""
 
-		return self.__container
+		return self.__engine
 
 	@completer.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completer(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QCompleter )
 		"""
@@ -430,7 +430,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completer(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("completer"))
@@ -438,18 +438,18 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def completerVisibleItemsCount(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( Integer )
+		:return: self.__engine. ( Integer )
 		"""
 
-		return self.__container
+		return self.__engine
 
 	@completerVisibleItemsCount.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completerVisibleItemsCount(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -460,7 +460,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completerVisibleItemsCount(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("completerVisibleItemsCount"))
@@ -560,22 +560,22 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***********************************************************************************************
 
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
-		self.__container = container
+		self.__engine = engine
 
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
-		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
+		self.__coreCollectionsOutliner = self.__engine.componentsManager.components["core.collectionsOutliner"].interface
 
 		self.activated = True
 		return True
@@ -591,7 +591,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.basename(self.__uiResourcesDirectory)
-		self.__container = None
+		self.__engine = None
 
 		self.__coreDb = None
 		self.__coreDatabaseBrowser = None
@@ -659,28 +659,28 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self)
+		self.__engine.removeDockWidget(self)
 		self.setParent(None)
 
 		return True

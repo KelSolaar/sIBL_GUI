@@ -83,7 +83,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__dockArea = 2
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
@@ -139,34 +139,34 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("dockArea"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -600,22 +600,22 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = container
+		self.__engine = engine
 
-		self.__coreTemplatesOutliner = self.__container.componentsManager.components["core.templatesOutliner"].interface
-		self.__addonsLoaderScript = self.__container.componentsManager.components["addons.loaderScript"].interface
+		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
+		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
 
-		self.__templatesSettingsDirectory = os.path.join(self.__container.userApplicationDatasDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
+		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
@@ -632,7 +632,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Deactivating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__container = None
+		self.__engine = None
 
 		self.__coreTemplatesOutliner = None
 		self.__addonsLoaderScript = None
@@ -678,28 +678,28 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
+		self.__engine.addDockWidget(Qt.DockWidgetArea(self.__dockArea), self)
 
 		return True
 
 	@core.executionTrace
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Removing '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.removeDockWidget(self)
+		self.__engine.removeDockWidget(self)
 		self.setParent(None)
 
 		return True

@@ -386,7 +386,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__listViewMargin = 32
 		self.__listViewIconSize = 128
 
-		self.__container = None
+		self.__engine = None
 		self.__settings = None
 		self.__settingsSection = None
 		self.__settingsSeparator = ","
@@ -637,34 +637,34 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("listViewIconSize"))
 
 	@property
-	def container(self):
+	def engine(self):
 		"""
-		This method is the property for **self.__container** attribute.
+		This method is the property for **self.__engine** attribute.
 
-		:return: self.__container. ( QObject )
+		:return: self.__engine. ( QObject )
 		"""
 
-		return self.__container
+		return self.__engine
 
-	@container.setter
+	@engine.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
+	def engine(self, value):
 		"""
-		This method is the setter method for **self.__container** attribute.
+		This method is the setter method for **self.__engine** attribute.
 
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("engine"))
 
-	@container.deleter
+	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
+	def engine(self):
 		"""
-		This method is the deleter method for **self.__container** attribute.
+		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("container"))
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("engine"))
 
 	@property
 	def settings(self):
@@ -1062,24 +1062,24 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def activate(self, container):
+	def activate(self, engine):
 		"""
 		This method activates the Component.
 
-		:param container: Container to attach the Component to. ( QObject )
+		:param engine: Engine to attach the Component to. ( QObject )
 		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
 		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
-		self.__container = container
-		self.__settings = self.__container.settings
+		self.__engine = engine
+		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryScriptEditor = self.__container.componentsManager.components["factory.scriptEditor"].interface
-		self.__coreDb = self.__container.componentsManager.components["core.db"].interface
-		self.__coreCollectionsOutliner = self.__container.componentsManager.components["core.collectionsOutliner"].interface
+		self.__factoryScriptEditor = self.__engine.componentsManager.components["factory.scriptEditor"].interface
+		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
+		self.__coreCollectionsOutliner = self.__engine.componentsManager.components["core.collectionsOutliner"].interface
 
 		self.activated = True
 		return True
@@ -1103,7 +1103,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Database_Browser_listView = DatabaseBrowser_QListView(self.__container)
+		self.Database_Browser_listView = DatabaseBrowser_QListView(self.__engine)
 		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
 
 		self.__modelContent = dbCommon.getIblSets(self.__coreDb.dbSession)
@@ -1111,7 +1111,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
 		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
 
-		self.__container.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = QStandardItemModel()
 		self.__Database_Browser_listView_setModel()
 
@@ -1120,11 +1120,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__Database_Browser_listView_setView()
 
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__databaseBrowserWorkerThread = DatabaseBrowser_Worker(self)
 				self.__databaseBrowserWorkerThread.start()
-				self.__container.workerThreads.append(self.__databaseBrowserWorkerThread)
+				self.__engine.workerThreads.append(self.__databaseBrowserWorkerThread)
 			else:
 				LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
@@ -1142,11 +1142,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelChanged.connect(functools.partial(self.__coreCollectionsOutliner.emit, SIGNAL("modelPartialRefresh()")))
 		self.modelRefresh.connect(self.__Database_Browser_listView_refreshModel)
 
-		if not self.__container.parameters.databaseReadOnly:
-			if not self.__container.parameters.deactivateWorkerThreads:
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
 			self.__model.dataChanged.connect(self.__Database_Browser_listView_model__dataChanged)
-			self.__container.contentDropped.connect(self.__application__contentDropped)
+			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -1161,14 +1161,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def addWidget(self):
 		"""
-		This method adds the Component Widget to the container.
+		This method adds the Component Widget to the engine.
 
 		:return: Method success. ( Boolean )		
 		"""
 
 		LOGGER.debug("> Adding '{0}' Component Widget.".format(self.__class__.__name__))
 
-		self.__container.centralwidget_gridLayout.addWidget(self)
+		self.__engine.centralwidget_gridLayout.addWidget(self)
 
 		return True
 
@@ -1176,7 +1176,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def removeWidget(self):
 		"""
-		This method removes the Component Widget from the container.
+		This method removes the Component Widget from the engine.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
@@ -1192,7 +1192,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			# Wizard if sets table is empty.
 			if not self.getIblSets():
 				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
@@ -1270,7 +1270,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
 
-				self.__container.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+				self.__engine.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
 				iblSetStandardItem._datas = iblSet
 
@@ -1370,11 +1370,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets the Database Browser actions.
 		"""
 
-		if not self.__container.parameters.databaseReadOnly:
-			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
-			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
-			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
-			self.Database_Browser_listView.addAction(self.__container.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
+		if not self.__engine.parameters.databaseReadOnly:
+			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
+			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
+			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
+			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
 
 			separatorAction = QAction(self.Database_Browser_listView)
 			separatorAction.setSeparator(True)
@@ -1486,7 +1486,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Drag event urls list: '{0}'!".format(event.mimeData().urls()))
 
-		if not self.__container.parameters.databaseReadOnly:
+		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
 				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 				if re.search("\.{0}$".format(self.__extension), str(url.path())):
@@ -1496,7 +1496,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 						self.addIblSet(name, path)
 					elif choice == 1:
 						self.__factoryScriptEditor.loadFile(path)
-						self.__container.currentLayout != self.__editLayout and self.__container.restoreLayout(self.__editLayout)
+						self.__engine.currentLayout != self.__editLayout and self.__engine.restoreLayout(self.__editLayout)
 				else:
 					if not os.path.isdir(path):
 						return
@@ -1509,7 +1509,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
 						self.addDirectory(path)
-				self.__container.processEvents()
+				self.__engine.processEvents()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
@@ -1577,12 +1577,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
-			self.__container.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
+			self.__engine.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
 			success = True
 			for iblSet in selectedIblSets:
 				success *= self.removeIblSet(iblSet, emitSignal=False) or False
-				self.__container.stepProcessing()
-			self.__container.stopProcessing()
+				self.__engine.stepProcessing()
+			self.__engine.stopProcessing()
 
 			self.modelDatasRefresh.emit()
 			self.modelRefresh.emit()
@@ -1608,14 +1608,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedIblSets:
 			return
 
-		self.__container.startProcessing("Update Ibl Sets Locations ...", len(selectedIblSets))
+		self.__engine.startProcessing("Update Ibl Sets Locations ...", len(selectedIblSets))
 		success = True
 		for iblSet in selectedIblSets:
 			file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Ibl Set location:".format(iblSet.title), RuntimeGlobals.lastBrowsedPath, "Ibls files (*.{0})".format(self.__extension))))
 			if file:
 				success *= self.updateIblSetLocation(iblSet, file) or False
-			self.__container.stepProcessing()
-		self.__container.stopProcessing()
+			self.__engine.stepProcessing()
+		self.__engine.stopProcessing()
 
 		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()
@@ -1667,13 +1667,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		osWalker = OsWalker(directory)
 		osWalker.walk(("\.{0}$".format(self.__extension),), ("\._",))
 
-		self.__container.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
+		self.__engine.startProcessing("Adding Directory Ibl Sets ...", len(osWalker.files.keys()))
 		success = True
 		for iblSet, path in osWalker.files.items():
 			if not self.iblSetExists(path):
 				success *= self.addIblSet(namespace.getNamespace(iblSet, rootOnly=True), path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId(), emitSignal=False) or False
-			self.__container.stepProcessing()
-		self.__container.stopProcessing()
+			self.__engine.stepProcessing()
+		self.__engine.stopProcessing()
 
 		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()
