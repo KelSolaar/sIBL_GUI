@@ -733,7 +733,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.__overrideKeys = self.getDefaultOverrideKeys()
 
-		for component in self.__engine.componentsManager.getComponents():
+		for component in self.__engine.componentsManager.listComponents():
 			profile = self.__engine.componentsManager.components[component]
 			interface = self.__engine.componentsManager.getInterface(component)
 			if interface.activated and profile.name != self.name:
