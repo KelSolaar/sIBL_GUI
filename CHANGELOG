@@ -24,6 +24,7 @@ Change Log
 -  A new "Inspector" layout has been implemented, it makes use of the new "PREVIEWfile" attribute of .ibl files and allows you to browse your collections using large preview images.
 -  Support for Ibl Sets plates has been added (Templates don't create them in scenes yet).
 -  Startup speed have been dramaticaly increased (Non frozen application version is approximately 4 times faster).
+-  sIBL_GUI can be toggled to fullscreen using the related option in the "Custom_Layouts" menu.
 -  Templates settings are now stored / restored in preferences folder for each template release. 
 -  Most Maya templates have been ported toward Python for better maintainability and performance.
 -  The "logginWindow" component has been replaced by the "scriptEditor" component that allows direct interaction with sIBL_GUI.
