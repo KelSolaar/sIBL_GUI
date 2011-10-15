@@ -448,7 +448,7 @@ class Db(Component):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.DirectoryExistsError, Exception)
@@ -465,7 +465,7 @@ class Db(Component):
 				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
 				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
 			else:
-				raise foundations.exceptions.DirectoryExistsError("'{0}' Database storing directory doesn't exists, {1} will now close!".format(self.__engine.parameters.databaseDirectory, Constants.applicationName))
+				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(self.__class__.__name__, self.__engine.parameters.databaseDirectory, Constants.applicationName))
 		else:
 			self.__dbName = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
 			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
@@ -529,4 +529,4 @@ class Db(Component):
 		This method uninitializes the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))

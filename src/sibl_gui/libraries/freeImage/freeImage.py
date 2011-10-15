@@ -1602,7 +1602,7 @@ class Image(object):
 		This method logs the Library errors.
 		"""
 
-		raise foundations.exceptions.LibraryExecutionError("Exit code '{1}', message: '{2}'".format(self.__class__.__name__, errorCode, message))
+		raise foundations.exceptions.LibraryExecutionError("{0} | Exit code '{1}', message: '{2}'".format(self.__class__.__name__, errorCode, message))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1643,7 +1643,7 @@ class Image(object):
 				self.__bitmap and LOGGER.debug("> '{0}' image has been loaded!".format(self.__imagePath))
 				return True
 			else:
-				raise foundations.exceptions.LibraryExecutionError("'{0}' format read isn't supported!".format(FIF_LOOKUP.getFirstKeyFromValue(imageFormat)))
+				raise foundations.exceptions.LibraryExecutionError("{0} | '{1}' format read isn't supported!".format(self.__class__.__name__, FIF_LOOKUP.getFirstKeyFromValue(imageFormat)))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1675,7 +1675,7 @@ class Image(object):
 				LOGGER.debug("> '{0}' image has been saved!".format(imagePath))
 				return True
 		else:
-			raise foundations.exceptions.LibraryExecutionError("'{0}' format write isn't supported!".format(imageFormat))
+			raise foundations.exceptions.LibraryExecutionError("{0} | '{1}' format write isn't supported!".format(imageFormat))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1755,4 +1755,4 @@ class Image(object):
 
 			return image
 		else:
-			raise foundations.exceptions.LibraryExecutionError("Image bitmap is not of type '{0}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP))
+			raise foundations.exceptions.LibraryExecutionError("{0} | Image bitmap is not of type '{1}'!".format(FREE_IMAGE_TYPE.FIT_BITMAP))

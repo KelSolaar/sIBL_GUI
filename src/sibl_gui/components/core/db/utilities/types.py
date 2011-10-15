@@ -173,7 +173,7 @@ class DbIblSet(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureParsingError("'{0}' no sections found, file structure seems invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureParsingError("{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
 
 class DbTemplate(DbBase):
 	"""
@@ -288,7 +288,7 @@ class DbTemplate(DbBase):
 			return True
 
 		else:
-			raise foundations.exceptions.FileStructureParsingError("'{0}' no sections found, file structure seems invalid!".format(self.path))
+			raise foundations.exceptions.FileStructureParsingError("{0} | '{1}' no sections found, file structure seems invalid!".format(self.__class__.__name__, self.path))
 
 class DbCollection(DbBase):
 	"""

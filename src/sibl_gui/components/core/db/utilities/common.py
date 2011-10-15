@@ -17,6 +17,7 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
+import inspect
 import logging
 import os
 import re
@@ -102,7 +103,7 @@ def commit(session):
 		return True
 	except Exception as error:
 		session.rollback()
-		raise Exception("Database commit error: '{0}'".format(error))
+		raise Exception("{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

@@ -917,7 +917,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component cannot be deactivated!".format(self.__name))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	@core.executionTrace
 	def initializeUi(self):
@@ -959,7 +959,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component ui cannot be uninitialized!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
 	def addWidget(self):
@@ -982,7 +982,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method removes the Component Widget from the engine.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' Component Widget cannot be removed!".format(self.name))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
 	def onStartup(self):

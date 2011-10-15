@@ -789,7 +789,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				self.__reportUpdateStatus and messageBox.messageBox("Information", "Information", "{0} | '{1}' is up to date!".format(self.__class__.__name__, Constants.applicationName))
 		else:
-			raise sibl_gui.exceptions.NetworkError("QNetworkAccessManager error code: '{0}'.".format(self.__releasesFileReply.error()))
+			raise sibl_gui.exceptions.NetworkError("{0} | QNetworkAccessManager error code: '{1}'.".format(self.__class__.__name__, self.__releasesFileReply.error()))
 
 	@core.executionTrace
 	def __getReleasesFile(self, url):
