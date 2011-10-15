@@ -87,7 +87,7 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 
 	tocTree = ["\n"]
 	for line in file.content:
-		search = re.search("`([a-zA-Z_ ]+)`_", line)
+		search = re.search(r"`([a-zA-Z_ ]+)`_", line)
 		if not search:
 			continue
 

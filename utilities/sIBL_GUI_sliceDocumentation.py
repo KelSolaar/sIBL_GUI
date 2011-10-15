@@ -70,7 +70,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 
 	slices = OrderedDict()
 	for i, line in enumerate(file.content):
-		search = re.search("^\.\. \.(\w+)", line)
+		search = re.search(r"^\.\. \.(\w+)", line)
 		if search:
 			slices[search.groups()[0]] = i + SLICE_ATTRIBUTE_INDENT
 
@@ -89,7 +89,7 @@ def sliceDocumentation(fileIn, outputDirectory):
 				for pattern, value in CONTENT_SUBSTITUTIONS.items():
 					line = re.sub(pattern, value, line)
 
-				search = re.search("-  `[a-zA-Z0-9_ ]+`_ \(([a-zA-Z0-9_\.]+)\)", line)
+				search = re.search(r"-  `[\w ]+`_ \(([\w\.]+)\)", line)
 				if search:
 					LOGGER.info("{0} | Updating Line '{1}' link: '{2}'!".format(sliceDocumentation.__name__, i, search.groups()[0]))
 					line = "-  :ref:`{0}`\n".format(search.groups()[0])

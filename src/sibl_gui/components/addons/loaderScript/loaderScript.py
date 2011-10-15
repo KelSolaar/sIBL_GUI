@@ -441,7 +441,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("defaultStringSeparator", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("defaultStringSeparator", value)
-			assert not re.search("\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("defaultStringSeparator", value)
+			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("defaultStringSeparator", value)
 		self.__defaultStringSeparator = value
 
 	@defaultStringSeparator.deleter
@@ -872,7 +872,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			LOGGER.debug("> Building '{0}' custom attribute.".format("Lights|DynamicLights"))
 			dynamicLights = []
 			for section in iblSetSections:
-				if re.search("Light[0-9]+", section):
+				if re.search(r"Light\d+", section):
 					dynamicLights.append(section)
 					lightName = iblSetSectionsFileParser.getValue("LIGHTname", section)
 					dynamicLights.append(lightName and lightName or self.__unnamedLightName)
@@ -896,7 +896,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		bindedLoaderScript = []
 		for line in loaderScript:
-			bindingParameters = re.findall("{0}".format(self.__bindingIdentifierPattern), line)
+			bindingParameters = re.findall(r"{0}".format(self.__bindingIdentifierPattern), line)
 			if bindingParameters:
 				for parameter in bindingParameters:
 					for attribute in bindedAttributes.values():

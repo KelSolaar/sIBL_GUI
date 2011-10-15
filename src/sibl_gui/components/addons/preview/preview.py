@@ -907,7 +907,7 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				sectionsFileParser = SectionsFileParser(iblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
 				for section in sectionsFileParser.sections:
-					if re.search("Plate[0-9]+", section):
+					if re.search(r"Plate\d+", section):
 						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), sectionsFileParser.getValue("PLATEfile", section))))
 
 		for path in imagePaths[:]:

@@ -250,7 +250,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("namespaceSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("namespaceSplitter", value)
-			assert not re.search("\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("namespaceSplitter", value)
+			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("namespaceSplitter", value)
 		self.__namespaceSplitter = value
 
 	@namespaceSplitter.deleter
@@ -584,7 +584,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if value:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("enumSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enumSplitter", value)
-			assert not re.search("\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("enumSplitter", value)
+			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("enumSplitter", value)
 		self.__enumSplitter = value
 
 	@enumSplitter.deleter
@@ -807,7 +807,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if os.path.exists(self.__templateSettingsFile):
 			templateSettingsFile = self.__templateSettingsFile
 		else:
-			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search("\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
+			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
 				path = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
 				if os.path.exists(path):
 					templateSettingsFile = path

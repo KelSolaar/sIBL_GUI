@@ -1158,7 +1158,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if os.path.exists(self.__inspectorIblSet.path):
 				self.__inspectorPlates = OrderedDict()
 				for section in self.__inspectorIblSetParser.sections:
-					if re.search("Plate[0-9]+", section):
+					if re.search(r"Plate\d+", section):
 						self.__inspectorPlates[section] = Plate(name=strings.getSplitextBasename(self.__inspectorIblSetParser.getValue("PLATEfile", section)),
 																icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
 																previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
@@ -1180,7 +1180,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 													color=[int(value)for value in self.__inspectorIblSetParser.getValue("SUNcolor", section).split(",")],
 													uCoordinate=float(self.__inspectorIblSetParser.getValue("SUNu", section)),
 													vCoordinate=float(self.__inspectorIblSetParser.getValue("SUNv", section))))
-				elif re.search("Light[0-9]+", section):
+				elif re.search(r"Light\d+", section):
 					self.__drawLightLabel(painter, Light(name=self.__inspectorIblSetParser.getValue("LIGHTname", section),
 													color=[int(value)for value in self.__inspectorIblSetParser.getValue("LIGHTcolor", section).split(",")],
 													uCoordinate=float(self.__inspectorIblSetParser.getValue("LIGHTu", section)),

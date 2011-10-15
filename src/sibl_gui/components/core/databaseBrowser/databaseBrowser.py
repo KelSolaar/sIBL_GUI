@@ -1488,8 +1488,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
-				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search("^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
-				if re.search("\.{0}$".format(self.__extension), str(url.path())):
+				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+				if re.search(r"\.{0}$".format(self.__extension), str(url.path())):
 					name = strings.getSplitextBasename(path)
 					choice = messageBox.messageBox("Question", "Question", "'{0}' Ibl Set file has been dropped, would you like to 'Add' it to the Database or 'Edit' it in the Script Editor?".format(name), buttons=QMessageBox.Cancel, customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
 					if choice == 0:

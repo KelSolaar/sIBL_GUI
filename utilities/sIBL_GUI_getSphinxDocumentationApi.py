@@ -114,7 +114,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 		sourceFile.read()
 		trimStartIndex = trimEndIndex = None
 		for i, line in enumerate(sourceFile.content):
-			if re.search("__name__ +\=\= +\"__main__\"", line):
+			if re.search(r"__name__ +\=\= +\"__main__\"", line):
 				trimStartIndex = i
 			if trimStartIndex and re.search(r"^\s*$", line):
 				trimEndIndex = i
@@ -122,12 +122,12 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
 			if i < len(sourceFile.content):
-				if re.search("^[ \t]*@\w+", line) and (re.search("^[ \t]*def \w+", sourceFile.content[i + 1]) or re.search("^[ \t]*class \w+", sourceFile.content[i + 1]) or re.search("^[ \t]*@\w+", sourceFile.content[i + 1])):
-					if not re.search("^[ \t]*@property", line) and \
-						not re.search("^[ \t]*@\w+\.setter", line) and \
-						not re.search("^[ \t]*@\w+\.deleter", line) and \
-						not re.search("^[ \t]*@exceptionsHandler", line):
-						indent = re.search("^([ \t]*)", line)
+				if re.search(r"^[ \t]*@\w+", line) and (re.search(r"^[ \t]*def \w+", sourceFile.content[i + 1]) or re.search(r"^[ \t]*class \w+", sourceFile.content[i + 1]) or re.search(r"^[ \t]*@\w+", sourceFile.content[i + 1])):
+					if not re.search(r"^[ \t]*@property", line) and \
+						not re.search(r"^[ \t]*@\w+\.setter", line) and \
+						not re.search(r"^[ \t]*@\w+\.deleter", line) and \
+						not re.search(r"^[ \t]*@exceptionsHandler", line):
+						indent = re.search(r"^([ \t]*)", line)
 						sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
 		if trimStartIndex and trimEndIndex:
