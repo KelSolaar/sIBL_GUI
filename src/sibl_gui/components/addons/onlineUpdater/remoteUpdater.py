@@ -742,21 +742,12 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		LOGGER.debug("> Retrieving Templates download directory.")
 
-		messageBox = QMessageBox()
-		messageBox.setWindowTitle("{0}".format(self.__class__.__name__))
-		messageBox.setIcon(QMessageBox.Question)
-		messageBox.setText("{0} | Which directory do you want to install the Templates into?".format(self.__class__.__name__))
-		messageBox.addButton(QString("Factory"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("User"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Custom"), QMessageBox.AcceptRole)
-		messageBox.addButton(QString("Cancel"), QMessageBox.AcceptRole)
-		reply = messageBox.exec_()
-
-		if reply == 0:
+		choice = messageBox.messageBox("Question", "{0}".format(self.__class__.__name__), "{0} | Which directory do you want to install the Templates into?".format(self.__class__.__name__), buttons=QMessageBox.Cancel, customButtons=((QString("Factory"), QMessageBox.AcceptRole), (QString("User"), QMessageBox.AcceptRole), (QString("Custom"), QMessageBox.AcceptRole)))
+		if choice == 0:
 			return os.path.join(RuntimeGlobals.templatesFactoryDirectory)
-		elif reply == 1:
+		elif choice == 1:
 			return os.path.join(RuntimeGlobals.templatesUserDirectory)
-		elif reply == 2:
+		elif choice == 2:
 			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
 
 	@core.executionTrace
