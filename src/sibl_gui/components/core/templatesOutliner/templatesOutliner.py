@@ -1213,7 +1213,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 							self.updateTemplateLocation(template)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
@@ -1614,7 +1614,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					if not osWalker.files:
 						return
 
-					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 						self.addDirectory(path)
 				self.__engine.processEvents()
 		else:
@@ -1677,7 +1677,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedTemplates:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
 			for template in selectedTemplates:

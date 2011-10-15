@@ -1394,7 +1394,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedCollections:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Collection(s)?".format(", ".join((str(collection.name) for collection in selectedCollections))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Collections ...", len(selectedCollections))
 			success = True
 			for collection in selectedCollections:

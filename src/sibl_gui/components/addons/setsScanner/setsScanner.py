@@ -532,7 +532,7 @@ class SetsScanner(QObjectComponent):
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
 
-		if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
 			for iblSet, path in iblSets.items():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)

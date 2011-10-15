@@ -1195,7 +1195,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.__engine.parameters.databaseReadOnly:
 			# Wizard if sets table is empty.
 			if not self.getIblSets():
-				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
 					if directory:
 						if not self.addDirectory(directory):
@@ -1206,7 +1206,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if erroneousIblSets:
 				for iblSet in erroneousIblSets:
 					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 							self.updateIblSetLocation(iblSet)
 					else:
 						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
@@ -1507,7 +1507,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					if not osWalker.files:
 						return
 
-					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Ibl Set(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 						self.addDirectory(path)
 				self.__engine.processEvents()
 		else:
@@ -1576,7 +1576,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedIblSets:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == 16384:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
 			success = True
 			for iblSet in selectedIblSets:

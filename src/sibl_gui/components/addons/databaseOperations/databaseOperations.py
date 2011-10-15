@@ -427,7 +427,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					if dbType.updateContentMethod(self.__coreDb.dbSession, item):
 						LOGGER.info("{0} | '{1}' {2} has been synchronized!".format(self.__class__.__name__, item.name, dbType.type))
 				else:
-					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == 16384:
+					if messageBox.messageBox("Question", "Error", "{0} | '{1}' {2} file is missing, would you like to update it's location?".format(self.__class__.__name__, item.name, dbType.type), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 						dbType.updateLocationMethod(item)
 				self.__engine.processEvents()
 			dbType.modelContainer.modelRefresh.emit()
