@@ -52,7 +52,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "DatabaseBrowser_QListView", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "IblSetsModel", "DatabaseBrowser_QListView", "DatabaseBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -272,12 +272,10 @@ class IblSetsModel(QStandardItemModel):
 		QStandardItemModel.__init__(self, parent)
 
 		# --- Setting class attributes. ---
+		self.__container = parent
 		self.__iblSets = []
 		self.iblSets = iblSets
-		self.__container = parent
 		self.__editable = editable
-
-		self.__modelSelection = None
 
 		self.__toolTipText = """
 								<p><b>{0}</b></p>
@@ -286,6 +284,8 @@ class IblSetsModel(QStandardItemModel):
 								<b>Shot Date: </b>{3}<br>
 								<b>Comment: </b>{4}</p>
 								"""
+
+		iblSets and self.setIblSets(iblSets)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -383,38 +383,6 @@ class IblSetsModel(QStandardItemModel):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
 
 	@property
-	def modelSelection(self):
-		"""
-		This method is the property for **self.__modelSelection** attribute.
-
-		:return: self.__modelSelection. ( Dictionary )
-		"""
-
-		return self.__modelSelection
-
-	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self, value):
-		"""
-		This method is the setter method for **self.__modelSelection** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value:
-			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("modelSelection", value)
-		self.__modelSelection = value
-
-	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
-		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
-
-	@property
 	def toolTipText(self):
 		"""
 		This method is the property for **self.__toolTipText** attribute.
@@ -448,23 +416,9 @@ class IblSetsModel(QStandardItemModel):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def setIblSets(self, iblSets):
+	def __initializeModel(self):
 		"""
-		This method sets the provided Ibl Sets.
-		
-		:param iblSets: Ibl Sets. ( List )
-		return: Method success ( Boolean )
-		"""
-
-		self.__iblSets = iblSets
-		return self.setModel()
-
-	@core.executionTrace
-	def setModel(self):
-		"""
-		This method sets the Model using provided Ibl Sets.
-		
-		return: Method success ( Boolean )
+		This method initializes the Model using :obj:`IblSetsModel.iblSets` class property.
 		"""
 
 		LOGGER.debug("> Setting up Model!")
@@ -480,7 +434,7 @@ class IblSetsModel(QStandardItemModel):
 			try:
 				iblSetStandardItem = QStandardItem()
 				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__container.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 
 				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
 
@@ -493,10 +447,21 @@ class IblSetsModel(QStandardItemModel):
 
 			except Exception as error:
 				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to Model!".format(self.__class__.__name__, iblSet.name))
-				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "setModel"))
+				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__initializeModel"))
 
 		self.changed.emit()
 
+	@core.executionTrace
+	def setIblSets(self, iblSets):
+		"""
+		This method sets the provided Ibl Sets.
+		
+		:param iblSets: Ibl Sets. ( List )
+		return: Method success ( Boolean )
+		"""
+
+		self.__iblSets = iblSets
+		self.__initializeModel()
 		return True
 
 class DatabaseBrowser_QListView(QListView):
@@ -505,11 +470,12 @@ class DatabaseBrowser_QListView(QListView):
 	"""
 
 	@core.executionTrace
-	def __init__(self, parent, editable=True):
+	def __init__(self, parent, model=None, editable=True):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
+		:param model: Model. ( QObject )
 		:param editable: Model editable. ( Boolean )
 		"""
 
@@ -524,6 +490,9 @@ class DatabaseBrowser_QListView(QListView):
 		self.__listViewSpacing = 24
 		self.__listViewMargin = 32
 		self.__listViewIconSize = 128
+
+		self.setModel(model)
+		self.__modelSelection = []
 
 		DatabaseBrowser_QListView.__initializeUi(self)
 
@@ -689,6 +658,38 @@ class DatabaseBrowser_QListView(QListView):
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
+	@property
+	def modelSelection(self):
+		"""
+		This method is the property for **self.__modelSelection** attribute.
+
+		:return: self.__modelSelection. ( Dictionary )
+		"""
+
+		return self.__modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self, value):
+		"""
+		This method is the setter method for **self.__modelSelection** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value:
+			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("modelSelection", value)
+		self.__modelSelection = value
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self):
+		"""
+		This method is the deleter method for **self.__modelSelection** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -700,23 +701,14 @@ class DatabaseBrowser_QListView(QListView):
 		:param model: Model to set. ( QObject )
 		"""
 
+		if not model:
+			return
+
 		QListView.setModel(self, model)
 
 		# Signals / Slots.
 		self.model().aboutToChange.connect(self.__model__aboutToChange)
 		self.model().changed.connect(self.__model__changed)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def __QStandardItem__doubleClicked(self, index):
-		"""
-		This method defines the behavior when a QStandardItem is double clicked.
-
-		:param index: Clicked Model item index. ( QModelIndex )
-		"""
-
-		if not self.editable:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def __initializeUi(self):
@@ -731,10 +723,33 @@ class DatabaseBrowser_QListView(QListView):
 		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
 		self.setDragDropMode(QAbstractItemView.DragOnly)
 
-		self.setDefaultViewState()
+		self.__setDefaultUiState()
 
 		# Signals / Slots.
-		self.doubleClicked.connect(self.__QStandardItem__doubleClicked)
+		self.doubleClicked.connect(self.__QListView__doubleClicked)
+
+	@core.executionTrace
+	def __setDefaultUiState(self):
+		"""
+		This method sets the Widget default View state.
+		"""
+
+		LOGGER.debug("> Setting default View state!")
+
+		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	def __QListView__doubleClicked(self, index):
+		"""
+		This method defines the behavior when the Widget is double clicked.
+
+		:param index: Clicked Model item index. ( QModelIndex )
+		"""
+
+		if not self.editable:
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	def __model__aboutToChange(self):
@@ -751,49 +766,56 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 
 		self.restoreModelSelection()
-		self.setDefaultViewState()
+		self.__setDefaultUiState()
 
 	@core.executionTrace
-	def setDefaultViewState(self):
+	def getSelectedItems(self):
 		"""
-		This method sets the default view state.
+		This method returns the selected items.
+
+		:return: View selected items. ( List )
 		"""
 
-		LOGGER.debug("> Setting view item size to: {0}.".format(self.__listViewIconSize))
-
-		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+		return [self.model().itemFromIndex(index) for index in self.selectedIndexes()]
 
 	@core.executionTrace
 	def storeModelSelection(self):
 		"""
-		This method stores Model selection.
+		This method stores the Model selection.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Storing Model selection!")
 
-		self.model().modelSelection = []
-		for item in (self.model().itemFromIndex(index)._datas for index in self.selectedIndexes()):
-			self.model().modelSelection.append(item.id)
+		self.__modelSelection = []
+		for item in self.getSelectedItems():
+			self.__modelSelection.append(item._datas.id)
+		return True
 
 	@core.executionTrace
 	def restoreModelSelection(self):
 		"""
-		This method restoresModel selection.
+		This method restores the Model selection.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Restoring Model selection!")
 
+		if not self.__modelSelection:
+			return
+
 		indexes = []
 		for i in range(self.model().rowCount()):
 			iblSetStandardItem = self.model().item(i)
-			iblSetStandardItem._datas.id in self.model().modelSelection and indexes.append(self.model().indexFromItem(iblSetStandardItem))
+			iblSetStandardItem._datas.id in self.__modelSelection and indexes.append(self.model().indexFromItem(iblSetStandardItem))
 
-		selectionModel = self.selectionModel()
-		if selectionModel:
-			selectionModel.clear()
+		if self.selectionModel():
+			self.selectionModel().clear()
 			for index in indexes:
-				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
+				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select)
+		return True
 
 class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
@@ -841,7 +863,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner = None
 
 		self.__model = None
-		self._view = None
+		self.__view = None
 
 		self.__databaseBrowserWorkerThread = None
 
@@ -1273,7 +1295,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__view** attribute.
 
-		:return: self.__view. ( QObject )
+		:return: self.__view. ( QWidget )
 		"""
 
 		return self.__view
@@ -1284,7 +1306,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__view** attribute.
 
-		:param value: Attribute value. ( QObject )
+		:param value: Attribute value. ( QWidget )
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
@@ -1373,18 +1395,17 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 		self.__model = IblSetsModel(self, self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()), not self.__engine.parameters.databaseReadOnly)
-		self.__model.setModel()
 
-		self.Database_Browser_listView = DatabaseBrowser_QListView(self, not self.__engine.parameters.databaseReadOnly)
+		self.Database_Browser_listView = DatabaseBrowser_QListView(self, self.__model, not self.__engine.parameters.databaseReadOnly)
 		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
 		self.__view = self.Database_Browser_listView
-		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
-		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
-		self.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Database_Browser_listView_addActions()
-		self.Database_Browser_listView.setModel(self.__model)
+		self.__view.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.__view_addActions()
+		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
+		if state:
+			self.__view.listViewIconSize = listViewIconSize
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1396,14 +1417,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.Thumbnails_Size_horizontalSlider.setValue(self.__listViewIconSize)
+		self.Thumbnails_Size_horizontalSlider.setValue(self.__view.listViewIconSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
 		# Signals / Slots.
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
-		self.__model.changed.connect(self.__coreCollectionsOutliner.modelPartialRefresh.emit)
-		self.modelRefresh.connect(self.setIblSets)
+		self.__model.changed.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
+		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1483,7 +1504,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				ids = activeIblSetsIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeIblSetsIds]
-			self.__model.modelSelection = [int(id) for id in ids]
+			self.__view.modelSelection = [int(id) for id in ids]
 
 		self.__view.restoreModelSelection()
 		return True
@@ -1499,29 +1520,29 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
 		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__model.modelSelection))
+		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
 		return True
 
 	@core.executionTrace
-	def __Database_Browser_listView_addActions(self):
+	def __view_addActions(self):
 		"""
-		This method sets the Database Browser actions.
+		This method sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
-			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__Database_Browser_listView_addContentAction__triggered))
-			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__Database_Browser_listView_addIblSetAction__triggered))
-			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__Database_Browser_listView_removeIblSetsAction__triggered))
-			self.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_updateIblSetsLocationsAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__view_addContentAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__view_addIblSetAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__view_removeIblSetsAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__view_updateIblSetsLocationsAction__triggered))
 
-			separatorAction = QAction(self.Database_Browser_listView)
+			separatorAction = QAction(self.__view)
 			separatorAction.setSeparator(True)
-			self.Database_Browser_listView.addAction(separatorAction)
+			self.__view.addAction(separatorAction)
 		else:
 			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def __Database_Browser_listView_addContentAction__triggered(self, checked):
+	def __view_addContentAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
 
@@ -1532,7 +1553,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addContent_ui()
 
 	@core.executionTrace
-	def __Database_Browser_listView_addIblSetAction__triggered(self, checked):
+	def __view_addIblSetAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
 
@@ -1543,7 +1564,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addIblSet_ui()
 
 	@core.executionTrace
-	def __Database_Browser_listView_removeIblSetsAction__triggered(self, checked):
+	def __view_removeIblSetsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
 
@@ -1554,7 +1575,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.removeIblSets_ui()
 
 	@core.executionTrace
-	def __Database_Browser_listView_updateIblSetsLocationsAction__triggered(self, checked):
+	def __view_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
 
@@ -1572,18 +1593,26 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Thumbnails size. ( Integer )
 		"""
 
-		self.Database_Browser_listView.listViewIconSize = value
+		self.__view.listViewIconSize = value
 
-		self.Database_Browser_listView.setDefaultViewState()
+		self.__view._DatabaseBrowser_QListView__setDefaultUiState()
 
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
 		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
 	@core.executionTrace
+	def __databaseBrowser__modelRefresh(self):
+		"""
+		This method is triggered when the Model datas need refresh.
+		"""
+
+		self.setIblSets()
+
+	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method defines the behavior when the Model datas changed.
+		This method is triggered when the Model datas have changed.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1865,14 +1894,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
-	def setIblSets(self):
-		"""
-		This method sets Model Ibl Sets.
-		"""
-
-		self.__model.setIblSets(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()))
-
-	@core.executionTrace
 	def getIblSets(self):
 		"""
 		This method returns Database Ibl Sets.
@@ -1883,43 +1904,51 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
+	def setIblSets(self):
+		"""
+		This method sets Model Ibl Sets.
+		"""
+
+		self.__model.setIblSets(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()))
+
+	@core.executionTrace
 	def getSelectedItems(self):
 		"""
-		This method returns **Database_Browser_listView** selected items.
+		This method returns the selected items.
 
 		:return: View selected items. ( List )
 		"""
 
-		return [self.__model.itemFromIndex(index) for index in self.Database_Browser_listView.selectedIndexes()]
+		return self.__view.getSelectedItems()
 
 	@core.executionTrace
 	def getSelectedIblSets(self):
 		"""
-		This method returns selected Ibl Sets.
+		This method returns the selected Ibl Sets.
 
 		:return: View selected Ibl Sets. ( List )
 		"""
 
 		return [item._datas for item in self.getSelectedItems()]
 
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def getFormatedShotDate(self, date, time):
-		"""
-		This method returns a formated shot date.
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def getFormatedShotDate(date, time):
+	"""
+	This method returns a formated shot date.
 
-		:param date: sIBL set date key value. ( String )
-		:param time: sIBL set time key value. ( String )
-		:return: Current shot date. ( String )
-		"""
+	:param date: Ibl Set date key value. ( String )
+	:param time: Ibl Set time key value. ( String )
+	:return: Current shot date. ( String )
+	"""
 
-		LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
+	LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
 
-		if date and time and date != Constants.nullObject and time != Constants.nullObject:
-			shotTime = "{0}H{1}".format(*time.split(":"))
-			shotDate = date.replace(":", "/")[2:] + " - " + shotTime
+	if date and time and date != Constants.nullObject and time != Constants.nullObject:
+		shotTime = "{0}H{1}".format(*time.split(":"))
+		shotDate = date.replace(":", "/")[2:] + " - " + shotTime
 
-			LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
-			return shotDate
-		else:
-			return Constants.nullObject
+		LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
+		return shotDate
+	else:
+		return Constants.nullObject
