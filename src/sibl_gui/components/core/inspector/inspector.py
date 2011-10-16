@@ -854,7 +854,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
-		self.__coreDatabaseBrowser.modelChanged.connect(self.__coreDatabaseBrowser__modelChanged)
+		self.__coreDatabaseBrowser.model.changed.connect(self.__coreDatabaseBrowser__changed)
 		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
@@ -1047,7 +1047,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.uiRefresh.emit()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser__modelChanged(self):
+	def __coreDatabaseBrowser__changed(self):
 		"""
 		This method is triggered when :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model has changed.
 		"""

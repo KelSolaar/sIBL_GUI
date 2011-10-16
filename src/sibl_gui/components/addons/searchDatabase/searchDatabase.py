@@ -758,7 +758,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method gets the time matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
-		previousModelContent = self.__coreDatabaseBrowser.modelContent
+		previousModelContent = self.__coreDatabaseBrowser.model.iblSets
 
 		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 
@@ -775,13 +775,12 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			hours, minutes, seconds = iblSet.time.split(":")
 			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredSets.append(iblSet)
 
-		modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
+		modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
 
-		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
+		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
 
-		if previousModelContent != modelContent:
-			self.__coreDatabaseBrowser.modelContent = modelContent
-			self.__coreDatabaseBrowser.modelRefresh.emit()
+		if previousModelContent != modelIblSets:
+			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
 		return True
 
 	@core.executionTrace
@@ -791,7 +790,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method gets the pattern matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
-		previousModelContent = self.__coreDatabaseBrowser.modelContent
+		previousModelContent = self.__coreDatabaseBrowser.model.iblSets
 
 		pattern = str(self.Search_Database_lineEdit.text())
 		currentField = self.__databaseFields[self.Search_Database_comboBox.currentIndex()][1]
@@ -823,7 +822,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					filteredSets.append(iblSet)
 			self.Tags_Cloud_listWidget.clear()
 			self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(set(filteredSets))]
+			modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(set(filteredSets))]
 		else:
 			try:
 				re.compile(pattern)
@@ -831,11 +830,10 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise foundations.exceptions.UserError("{0} | Error while compiling '{1}' regex pattern!".format(self.__class__.__name__, pattern))
 
 			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousModelContent if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
-			modelContent = [displaySet for displaySet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
+			modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
 
-		LOGGER.debug("> Pattern filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelContent))))
+		LOGGER.debug("> Pattern filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
 
-		if previousModelContent != modelContent:
-			self.__coreDatabaseBrowser.modelContent = modelContent
-			self.__coreDatabaseBrowser.modelRefresh.emit()
+		if previousModelContent != modelIblSets:
+			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
 		return True

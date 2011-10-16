@@ -328,7 +328,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelChanged = pyqtSignal()
+	changed = pyqtSignal()
 	modelRefresh = pyqtSignal()
 	modelPartialRefresh = pyqtSignal()
 
@@ -945,7 +945,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Collections_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Collections_Outliner_treeView_selectionModel__selectionChanged)
 		self.Collections_Outliner_treeView.clicked.connect(self.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__clicked)
 		self.Collections_Outliner_treeView.doubleClicked.connect(self.Collections_Outliner_treeView._CollectionsOutliner_QTreeView__QTreeView__doubleClicked)
-		self.modelChanged.connect(self.__Collections_Outliner_treeView_refreshView)
+		self.changed.connect(self.__Collections_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Collections_Outliner_treeView_refreshModel)
 		self.modelPartialRefresh.connect(self.__Collections_Outliner_treeView_setIblSetsCounts)
 		not self.__engine.parameters.databaseReadOnly and self.__model.dataChanged.connect(self.__Collections_Outliner_treeView_model__dataChanged)
@@ -1102,7 +1102,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Database has no user defined Collections!".format(self.__class__.__name__))
 
 		self.__Collections_Outliner_treeView_restoreModelSelection()
-		self.modelChanged.emit()
+		self.changed.emit()
 
 	@core.executionTrace
 	def __Collections_Outliner_treeView_refreshModel(self):
@@ -1303,16 +1303,15 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
 		"""
-		self.__coreDatabaseBrowser.modelDatasRefresh.emit()
 		self.__coreDatabaseBrowser.modelRefresh.emit()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_Database_Browser_listView_setModelContent(self):
+	def __coreDatabaseBrowser_setIblSets(self):
 		"""
-		This method sets :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		This method sets :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model Ibl Sets.
 		"""
 
-		self.__coreDatabaseBrowser.modelContent = self.getCollectionsIblSets(self.getSelectedItems())
+		self.__coreDatabaseBrowser.model.setIblSets(self.getCollectionsIblSets(self.getSelectedItems()))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1449,7 +1448,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
 			self.modelRefresh.emit()
-			self.__coreDatabaseBrowser.modelDatasRefresh.emit()
+			self.__coreDatabaseBrowser.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
@@ -1484,7 +1483,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Ibl Sets list. ( List )
 		"""
 
-		return dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])
+		return [iblSet for iblSet in dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, [collection.id for collection in collections])]
 
 	@core.executionTrace
 	def getCollectionId(self, collection):

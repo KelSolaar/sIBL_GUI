@@ -17,7 +17,6 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
-import functools
 import logging
 import os
 import platform
@@ -226,12 +225,12 @@ class DatabaseBrowser_Worker(QThread):
 		self.__timer.moveToThread(self)
 		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
 
-		self.__timer.timeout.connect(self.__updateSets, Qt.DirectConnection)
+		self.__timer.timeout.connect(self.__updateIblSets, Qt.DirectConnection)
 
 		self.exec_()
 
 	@core.executionTrace
-	def __updateSets(self):
+	def __updateIblSets(self):
 		"""
 		This method updates Database sets if they have been modified on disk.
 		"""
@@ -250,27 +249,43 @@ class DatabaseBrowser_Worker(QThread):
 
 		needModelRefresh and self.databaseChanged.emit()
 
-class DatabaseBrowser_QListView(QListView):
+class IblSetsModel(QStandardItemModel):
 	"""
-	This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
+	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
 	"""
 
+	aboutToChange = pyqtSignal()
+	changed = pyqtSignal()
+
 	@core.executionTrace
-	def __init__(self, parent):
+	def __init__(self, parent, iblSets=None, editable=True):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
+		:param iblSets: iblSets. ( List )
+		:param editable: Model editable. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QListView.__init__(self, parent)
+		QStandardItemModel.__init__(self, parent)
 
 		# --- Setting class attributes. ---
+		self.__iblSets = []
+		self.iblSets = iblSets
 		self.__container = parent
+		self.__editable = editable
 
-		self.__coreDatabaseBrowser = self.__container.componentsManager.components["core.databaseBrowser"].interface
+		self.__modelSelection = None
+
+		self.__toolTipText = """
+								<p><b>{0}</b></p>
+								<p><b>Author: </b>{1}<br>
+								<b>Location: </b>{2}<br>
+								<b>Shot Date: </b>{3}<br>
+								<b>Comment: </b>{4}</p>
+								"""
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -306,48 +321,479 @@ class DatabaseBrowser_QListView(QListView):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
-	def coreDatabaseBrowser(self):
+	def iblSets(self):
 		"""
-		This method is the property for **self.__coreDatabaseBrowser** attribute.
+		This method is the property for **self.__iblSets** attribute.
 
-		:return: self.__coreDatabaseBrowser. ( Object )
+		:return: self.__iblSets. ( List )
 		"""
 
-		return self.__coreDatabaseBrowser
+		return self.__iblSets
 
-	@coreDatabaseBrowser.setter
+	@iblSets.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def iblSets(self, value):
+		"""
+		This method is the setter method for **self.__iblSets** attribute.
+
+		:param value: Attribute value. ( List )
+		"""
+
+		if value:
+			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("iblSets", value)
+		self.__iblSets = value
+
+	@iblSets.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self, value):
+	def iblSets(self):
 		"""
-		This method is the setter method for **self.__coreDatabaseBrowser** attribute.
-
-		:param value: Attribute value. ( Object )
+		This method is the deleter method for **self.__iblSets** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSets"))
 
-	@coreDatabaseBrowser.deleter
+	@property
+	def editable(self):
+		"""
+		This method is the property for **self.__editable** attribute.
+
+		:return: self.__editable. ( Boolean )
+		"""
+
+		return self.__editable
+
+	@editable.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDatabaseBrowser(self):
+	def editable(self, value):
 		"""
-		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
+		This method is the setter method for **self.__editable** attribute.
+
+		:param value: Attribute value. ( Boolean )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
+
+	@editable.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editable(self):
+		"""
+		This method is the deleter method for **self.__editable** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
+
+	@property
+	def modelSelection(self):
+		"""
+		This method is the property for **self.__modelSelection** attribute.
+
+		:return: self.__modelSelection. ( Dictionary )
+		"""
+
+		return self.__modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self, value):
+		"""
+		This method is the setter method for **self.__modelSelection** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value:
+			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("modelSelection", value)
+		self.__modelSelection = value
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self):
+		"""
+		This method is the deleter method for **self.__modelSelection** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+
+	@property
+	def toolTipText(self):
+		"""
+		This method is the property for **self.__toolTipText** attribute.
+
+		:return: self.__toolTipText. ( String )
+		"""
+
+		return self.__toolTipText
+
+	@toolTipText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self, value):
+		"""
+		This method is the setter method for **self.__toolTipText** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
+
+	@toolTipText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self):
+		"""
+		This method is the deleter method for **self.__toolTipText** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	def setIblSets(self, iblSets):
+		"""
+		This method sets the provided Ibl Sets.
+		
+		:param iblSets: Ibl Sets. ( List )
+		return: Method success ( Boolean )
+		"""
+
+		self.__iblSets = iblSets
+		return self.setModel()
+
+	@core.executionTrace
+	def setModel(self):
+		"""
+		This method sets the Model using provided Ibl Sets.
+		
+		return: Method success ( Boolean )
+		"""
+
+		LOGGER.debug("> Setting up Model!")
+
+		self.aboutToChange.emit()
+
+		self.clear()
+
+		for iblSet, title in sorted(((iblSet, iblSet.title) for iblSet in self.__iblSets), key=lambda x:(x[1])):
+
+			LOGGER.debug("> Preparing '{0}' Ibl Set for Model.".format(iblSet.name))
+
+			try:
+				iblSetStandardItem = QStandardItem()
+				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
+				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.__container.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+
+				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
+
+				self.__editable or iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+				iblSetStandardItem._datas = iblSet
+
+				LOGGER.debug("> Adding '{0}' to Model.".format(iblSet.name))
+				self.appendRow(iblSetStandardItem)
+
+			except Exception as error:
+				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to Model!".format(self.__class__.__name__, iblSet.name))
+				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "setModel"))
+
+		self.changed.emit()
+
+		return True
+
+class DatabaseBrowser_QListView(QListView):
+	"""
+	This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent, editable=True):
+		"""
+		This method initializes the class.
+
+		:param parent: Object parent. ( QObject )
+		:param editable: Model editable. ( Boolean )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QListView.__init__(self, parent)
+
+		# --- Setting class attributes. ---
+		self.__container = parent
+		self.__editable = editable
+
+		self.__listViewSpacing = 24
+		self.__listViewMargin = 32
+		self.__listViewIconSize = 128
+
+		DatabaseBrowser_QListView.__initializeUi(self)
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def container(self):
+		"""
+		This method is the property for **self.__container** attribute.
+
+		:return: self.__container. ( QObject )
+		"""
+
+		return self.__container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
+		"""
+		This method is the setter method for **self.__container** attribute.
+
+		:param value: Attribute value. ( QObject )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
+		"""
+		This method is the deleter method for **self.__container** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+
+	@property
+	def editable(self):
+		"""
+		This method is the property for **self.__editable** attribute.
+
+		:return: self.__editable. ( Boolean )
+		"""
+
+		return self.__editable
+
+	@editable.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editable(self, value):
+		"""
+		This method is the setter method for **self.__editable** attribute.
+
+		:param value: Attribute value. ( Boolean )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
+
+	@editable.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def editable(self):
+		"""
+		This method is the deleter method for **self.__editable** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
+
+	@property
+	def listViewSpacing(self):
+		"""
+		This method is the property for **self.__listViewSpacing** attribute.
+
+		:return: self.__listViewSpacing. ( Integer )
+		"""
+
+		return self.__listViewSpacing
+
+	@listViewSpacing.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def listViewSpacing(self, value):
+		"""
+		This method is the setter method for **self.__listViewSpacing** attribute.
+
+		:param value: Attribute value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
+		self.__listViewSpacing = value
+
+	@listViewSpacing.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def listViewSpacing(self):
+		"""
+		This method is the deleter method for **self.__listViewSpacing** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
+
+	@property
+	def listViewMargin(self):
+		"""
+		This method is the property for **self.__listViewMargin** attribute.
+
+		:return: self.__listViewMargin. ( Integer )
+		"""
+
+		return self.__listViewMargin
+
+	@listViewMargin.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def listViewMargin(self, value):
+		"""
+		This method is the setter method for **self.__listViewMargin** attribute.
+
+		:param value: Attribute value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
+		self.__listViewMargin = value
+
+	@listViewMargin.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def listViewMargin(self):
+		"""
+		This method is the deleter method for **self.__listViewMargin** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
+
+	@property
+	def listViewIconSize(self):
+		"""
+		This method is the property for **self.__listViewIconSize** attribute.
+
+		:return: self.__listViewIconSize. ( Integer )
+		"""
+
+		return self.__listViewIconSize
+
+	@listViewIconSize.setter
+	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+	def listViewIconSize(self, value):
+		"""
+		This method is the setter method for **self.__listViewIconSize** attribute.
+
+		:param value: Attribute value. ( Integer )
+		"""
+
+		if value:
+			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
+			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
+		self.__listViewIconSize = value
+
+	@listViewIconSize.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def listViewIconSize(self):
+		"""
+		This method is the deleter method for **self.__listViewIconSize** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def setModel(self, model):
+		"""
+		This method reimplements the **QListView.setModel** method.
+		
+		:param model: Model to set. ( QObject )
+		"""
+
+		QListView.setModel(self, model)
+
+		# Signals / Slots.
+		self.model().aboutToChange.connect(self.__model__aboutToChange)
+		self.model().changed.connect(self.__model__changed)
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def __QListView__doubleClicked(self, index):
+	def __QStandardItem__doubleClicked(self, index):
 		"""
 		This method defines the behavior when a QStandardItem is double clicked.
 
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
-		if self.__container.parameters.databaseReadOnly:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
+		if not self.editable:
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
+
+	@core.executionTrace
+	def __initializeUi(self):
+		"""
+		This method initializes the Widget ui.
+		"""
+
+		self.setAutoScroll(True)
+		self.setResizeMode(QListView.Adjust)
+		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.setViewMode(QListView.IconMode)
+		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
+		self.setDragDropMode(QAbstractItemView.DragOnly)
+
+		self.setDefaultViewState()
+
+		# Signals / Slots.
+		self.doubleClicked.connect(self.__QStandardItem__doubleClicked)
+
+	@core.executionTrace
+	def __model__aboutToChange(self):
+		"""
+		This method is triggered when the Model is about to change.
+		"""
+
+		self.storeModelSelection()
+
+	@core.executionTrace
+	def __model__changed(self):
+		"""
+		This method is triggered when the Model is changed.
+		"""
+
+		self.restoreModelSelection()
+		self.setDefaultViewState()
+
+	@core.executionTrace
+	def setDefaultViewState(self):
+		"""
+		This method sets the default view state.
+		"""
+
+		LOGGER.debug("> Setting view item size to: {0}.".format(self.__listViewIconSize))
+
+		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+
+	@core.executionTrace
+	def storeModelSelection(self):
+		"""
+		This method stores Model selection.
+		"""
+
+		LOGGER.debug("> Storing Model selection!")
+
+		self.model().modelSelection = []
+		for item in (self.model().itemFromIndex(index)._datas for index in self.selectedIndexes()):
+			self.model().modelSelection.append(item.id)
+
+	@core.executionTrace
+	def restoreModelSelection(self):
+		"""
+		This method restoresModel selection.
+		"""
+
+		LOGGER.debug("> Restoring Model selection!")
+
+		indexes = []
+		for i in range(self.model().rowCount()):
+			iblSetStandardItem = self.model().item(i)
+			iblSetStandardItem._datas.id in self.model().modelSelection and indexes.append(self.model().indexFromItem(iblSetStandardItem))
+
+		selectionModel = self.selectionModel()
+		if selectionModel:
+			selectionModel.clear()
+			for index in indexes:
+				selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
 
 class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
@@ -356,9 +802,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 
 	# Custom signals definitions.
-	modelDatasRefresh = pyqtSignal()
 	modelRefresh = pyqtSignal()
-	modelChanged = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -382,9 +826,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
 		self.__dockArea = 8
-		self.__listViewSpacing = 24
-		self.__listViewMargin = 32
-		self.__listViewIconSize = 128
 
 		self.__engine = None
 		self.__settings = None
@@ -400,19 +841,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner = None
 
 		self.__model = None
-		self.__modelSelection = None
+		self._view = None
 
 		self.__databaseBrowserWorkerThread = None
-
-		self.__modelContent = None
-
-		self.__toolTipText = """
-								<p><b>{0}</b></p>
-								<p><b>Author: </b>{1}<br>
-								<b>Location: </b>{2}<br>
-								<b>Shot Date: </b>{3}<br>
-								<b>Comment: </b>{4}</p>
-								"""
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -536,105 +967,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
-
-	@property
-	def listViewSpacing(self):
-		"""
-		This method is the property for **self.__listViewSpacing** attribute.
-
-		:return: self.__listViewSpacing. ( Integer )
-		"""
-
-		return self.__listViewSpacing
-
-	@listViewSpacing.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def listViewSpacing(self, value):
-		"""
-		This method is the setter method for **self.__listViewSpacing** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
-		self.__listViewSpacing = value
-
-	@listViewSpacing.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def listViewSpacing(self):
-		"""
-		This method is the deleter method for **self.__listViewSpacing** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
-
-	@property
-	def listViewMargin(self):
-		"""
-		This method is the property for **self.__listViewMargin** attribute.
-
-		:return: self.__listViewMargin. ( Integer )
-		"""
-
-		return self.__listViewMargin
-
-	@listViewMargin.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def listViewMargin(self, value):
-		"""
-		This method is the setter method for **self.__listViewMargin** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
-		self.__listViewMargin = value
-
-	@listViewMargin.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def listViewMargin(self):
-		"""
-		This method is the deleter method for **self.__listViewMargin** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
-
-	@property
-	def listViewIconSize(self):
-		"""
-		This method is the property for **self.__listViewIconSize** attribute.
-
-		:return: self.__listViewIconSize. ( Integer )
-		"""
-
-		return self.__listViewIconSize
-
-	@listViewIconSize.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def listViewIconSize(self, value):
-		"""
-		This method is the setter method for **self.__listViewIconSize** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		if value:
-			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
-			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
-		self.__listViewIconSize = value
-
-	@listViewIconSize.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def listViewIconSize(self):
-		"""
-		This method is the deleter method for **self.__listViewIconSize** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
 	@property
 	def engine(self):
@@ -937,34 +1269,34 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
-	def modelSelection(self):
+	def view(self):
 		"""
-		This method is the property for **self.__modelSelection** attribute.
+		This method is the property for **self.__view** attribute.
 
-		:return: self.__modelSelection. ( Dictionary )
+		:return: self.__view. ( QObject )
 		"""
 
-		return self.__modelSelection
+		return self.__view
 
-	@modelSelection.setter
+	@view.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self, value):
+	def view(self, value):
 		"""
-		This method is the setter method for **self.__modelSelection** attribute.
+		This method is the setter method for **self.__view** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "modelSelection"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
-	@modelSelection.deleter
+	@view.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
+	def view(self):
 		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
+		This method is the deleter method for **self.__view** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
 	def databaseBrowserWorkerThread(self):
@@ -995,68 +1327,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseBrowserWorkerThread"))
-
-	@property
-	def modelContent(self):
-		"""
-		This method is the property for **self.__modelContent** attribute.
-
-		:return: self.__modelContent. ( List )
-		"""
-
-		return self.__modelContent
-
-	@modelContent.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def modelContent(self, value):
-		"""
-		This method is the setter method for **self.__modelContent** attribute.
-
-		:param value: Attribute value. ( List )
-		"""
-
-		if value:
-			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("content", value)
-		self.__modelContent = value
-
-	@modelContent.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelContent(self):
-		"""
-		This method is the deleter method for **self.__modelContent** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelContent"))
-
-	@property
-	def toolTipText(self):
-		"""
-		This method is the property for **self.__toolTipText** attribute.
-
-		:return: self.__toolTipText. ( String )
-		"""
-
-		return self.__toolTipText
-
-	@toolTipText.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
-		"""
-		This method is the setter method for **self.__toolTipText** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
-
-	@toolTipText.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
-		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -1103,22 +1373,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Database_Browser_listView = DatabaseBrowser_QListView(self.__engine)
+		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__model = IblSetsModel(self, self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()), not self.__engine.parameters.databaseReadOnly)
+		self.__model.setModel()
+
+		self.Database_Browser_listView = DatabaseBrowser_QListView(self, not self.__engine.parameters.databaseReadOnly)
 		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
-
-		self.__modelContent = dbCommon.getIblSets(self.__coreDb.dbSession)
-
+		self.__view = self.Database_Browser_listView
 		listViewIconSize = self.__settings.getKey(self.__settingsSection, "listViewIconSize")
 		self.__listViewIconSize = listViewIconSize.toInt()[1] and listViewIconSize.toInt()[0] or self.__listViewIconSize
-
-		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Database_Browser_listView Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self.__model = QStandardItemModel()
-		self.__Database_Browser_listView_setModel()
-
 		self.Database_Browser_listView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.__Database_Browser_listView_addActions()
-
-		self.__Database_Browser_listView_setView()
+		self.Database_Browser_listView.setModel(self.__model)
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1136,16 +1402,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
-		self.Database_Browser_listView.doubleClicked.connect(self.Database_Browser_listView._DatabaseBrowser_QListView__QListView__doubleClicked)
-		self.modelDatasRefresh.connect(self.__Database_Browser_listView_setModelDatas)
-		self.modelChanged.connect(self.__Database_Browser_listView_refreshView)
-		self.modelChanged.connect(functools.partial(self.__coreCollectionsOutliner.emit, SIGNAL("modelPartialRefresh()")))
-		self.modelRefresh.connect(self.__Database_Browser_listView_refreshModel)
+		self.__model.changed.connect(self.__coreCollectionsOutliner.modelPartialRefresh.emit)
+		self.modelRefresh.connect(self.setIblSets)
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
 				self.__databaseBrowserWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
-			self.__model.dataChanged.connect(self.__Database_Browser_listView_model__dataChanged)
+			self.__model.dataChanged.connect(self.__model__dataChanged)
 			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
@@ -1220,9 +1483,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				ids = activeIblSetsIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeIblSetsIds]
-			self.__modelSelection = [int(id) for id in ids]
+			self.__model.modelSelection = [int(id) for id in ids]
 
-		self.__Database_Browser_listView_restoreModelSelection()
+		self.__view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -1235,134 +1498,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-		self.__Database_Browser_listView_storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__modelSelection))
+		self.__view.storeModelSelection()
+		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__model.modelSelection))
 		return True
-
-	@core.executionTrace
-	def __Database_Browser_listView_setModelDatas(self):
-		"""
-		This method sets **Database_Browser_listView** Model content.
-		"""
-
-		self.__modelContent = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
-
-	@core.executionTrace
-	def __Database_Browser_listView_setModel(self):
-		"""
-		This method sets the **Database_Browser_listView** Model.
-		"""
-
-		LOGGER.debug("> Setting up '{0}' Model!".format("Database_Browser_listView"))
-
-		self.__Database_Browser_listView_storeModelSelection()
-
-		self.__model.clear()
-
-		for iblSet in [iblSet[0] for iblSet in sorted(((displaySet, displaySet.title) for displaySet in self.__modelContent), key=lambda x:(x[1]))]:
-
-			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
-
-			try:
-				iblSetStandardItem = QStandardItem()
-				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, self.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
-
-				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
-
-				self.__engine.parameters.databaseReadOnly and iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-
-				iblSetStandardItem._datas = iblSet
-
-				LOGGER.debug("> Adding '{0}' to '{1}' Model.".format(iblSet.name, "Database_Browser_listView"))
-				self.__model.appendRow(iblSetStandardItem)
-
-			except Exception as error:
-				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to '{2}' Model!".format(self.__class__.__name__, iblSet.name, "Database_Browser_listView"))
-				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__Database_Browser_listView_setModel"))
-
-		self.__Database_Browser_listView_restoreModelSelection()
-
-		self.modelChanged.emit()
-
-	@core.executionTrace
-	def __Database_Browser_listView_refreshModel(self):
-		"""
-		This method refreshes the **Database_Browser_listView** Model.
-		"""
-
-		LOGGER.debug("> Refreshing '{0}' Model!".format("Database_Browser_listView"))
-
-		self.__Database_Browser_listView_setModel()
-
-	@core.executionTrace
-	def __Database_Browser_listView_setView(self):
-		"""
-		This method sets the **Database_Browser_listView** ui.
-		"""
-
-		LOGGER.debug("> Initializing '{0}' Widget!".format("Database_Browser_listView"))
-
-		self.Database_Browser_listView.setAutoScroll(True)
-		self.Database_Browser_listView.setResizeMode(QListView.Adjust)
-		self.Database_Browser_listView.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.Database_Browser_listView.setViewMode(QListView.IconMode)
-		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
-		self.Database_Browser_listView.setDragDropMode(QAbstractItemView.DragOnly)
-
-		self.__Database_Browser_listView_setDefaultViewState()
-
-		self.Database_Browser_listView.setModel(self.__model)
-
-	@core.executionTrace
-	def __Database_Browser_listView_setDefaultViewState(self):
-		"""
-		This method scales the **Database_Browser_listView** item size.
-		"""
-
-		LOGGER.debug("> Setting '{0}' view item size to: {1}.".format("Database_Browser_listView", self.__listViewIconSize))
-
-		self.Database_Browser_listView.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.Database_Browser_listView.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
-
-	@core.executionTrace
-	def __Database_Browser_listView_refreshView(self):
-		"""
-		This method refreshes the **Database_Browser_listView** View.
-		"""
-
-		self.__Database_Browser_listView_setDefaultViewState()
-
-	@core.executionTrace
-	def __Database_Browser_listView_storeModelSelection(self):
-			"""
-			This method stores **Database_Browser_listView** Model selection.
-			"""
-
-			LOGGER.debug("> Storing '{0}' Model selection!".format("Database_Browser_listView"))
-
-			self.__modelSelection = []
-			for item in self.getSelectedIblSets():
-				self.__modelSelection.append(item.id)
-
-	@core.executionTrace
-	def __Database_Browser_listView_restoreModelSelection(self):
-			"""
-			This method restores **Database_Browser_listView** Model selection.
-			"""
-
-			LOGGER.debug("> Restoring '{0}' Model selection!".format("Database_Browser_listView"))
-
-			indexes = []
-			for i in range(self.__model.rowCount()):
-				iblSetStandardItem = self.__model.item(i)
-				iblSetStandardItem._datas.id in self.__modelSelection and indexes.append(self.__model.indexFromItem(iblSetStandardItem))
-
-			selectionModel = self.Database_Browser_listView.selectionModel()
-			if selectionModel:
-				selectionModel.clear()
-				for index in indexes:
-					selectionModel.setCurrentIndex(index, QItemSelectionModel.Select)
 
 	@core.executionTrace
 	def __Database_Browser_listView_addActions(self):
@@ -1427,9 +1565,25 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.updateIblSetsLocation_ui()
 
 	@core.executionTrace
-	def __Database_Browser_listView_model__dataChanged(self, startIndex, endIndex):
+	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
-		This method defines the behavior when the **Database_Browser_listView** Model datas changes.
+		This method scales the **Database_Browser_listView** icons.
+
+		:param value: Thumbnails size. ( Integer )
+		"""
+
+		self.Database_Browser_listView.listViewIconSize = value
+
+		self.Database_Browser_listView.setDefaultViewState()
+
+		# Storing settings key.
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
+		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
+
+	@core.executionTrace
+	def __model__dataChanged(self, startIndex, endIndex):
+		"""
+		This method defines the behavior when the Model datas changed.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
@@ -1444,22 +1598,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		dbCommon.commit(self.__coreDb.dbSession)
 
 		self.modelRefresh.emit()
-
-	@core.executionTrace
-	def __Thumbnails_Size_horizontalSlider__changed(self, value):
-		"""
-		This method scales the **Database_Browser_listView** icons.
-
-		:param value: Thumbnails size. ( Integer )
-		"""
-
-		self.__listViewIconSize = value
-
-		self.__Database_Browser_listView_setDefaultViewState()
-
-		# Storing settings key.
-		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
-		self.__settings.setKey(self.__settingsSection, "listViewIconSize", value)
 
 	@core.executionTrace
 	def __coreDb_database__changed(self):
@@ -1584,7 +1722,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.modelDatasRefresh.emit()
 			self.modelRefresh.emit()
 
 			if success:
@@ -1617,7 +1754,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()
 
 		if success:
@@ -1641,9 +1777,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not self.iblSetExists(path):
 			LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
 			if dbCommon.addIblSet(self.__coreDb.dbSession, name, path, collectionId or self.__coreCollectionsOutliner.getUniqueCollectionId()):
-				if emitSignal:
-					self.modelDatasRefresh.emit()
-					self.modelRefresh.emit()
+				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
 				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, name))
@@ -1675,7 +1809,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
-		self.modelDatasRefresh.emit()
 		self.modelRefresh.emit()
 
 		if success:
@@ -1696,9 +1829,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.info("{0} | Removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
 		if dbCommon.removeIblSet(self.__coreDb.dbSession, iblSet.id):
-			if emitSignal:
-				self.modelDatasRefresh.emit()
-				self.modelRefresh.emit()
+			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Ibl Set from the Database!".format(self.__class__.__name__, iblSet.title))
@@ -1728,12 +1859,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.info("{0} | Updating '{1}' Ibl Set with new location: '{2}'!".format(self.__class__.__name__, iblSet.title, file))
 		if dbCommon.updateIblSetLocation(self.__coreDb.dbSession, iblSet, file):
-			if emitSignal:
-				self.modelDatasRefresh.emit()
-				self.modelRefresh.emit()
+			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))
+
+	@core.executionTrace
+	def setIblSets(self):
+		"""
+		This method sets Model Ibl Sets.
+		"""
+
+		self.__model.setIblSets(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()))
 
 	@core.executionTrace
 	def getIblSets(self):

@@ -542,5 +542,4 @@ class SetsScanner(QObjectComponent):
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 
-			self.__coreDatabaseBrowser.modelDatasRefresh.emit()
 			self.__coreDatabaseBrowser.modelRefresh.emit()

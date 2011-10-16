@@ -310,7 +310,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	# Custom signals definitions.
 	modelRefresh = pyqtSignal()
-	modelChanged = pyqtSignal()
+	changed = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -1154,7 +1154,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__Templates_Outliner_treeView_selectionModel__selectionChanged)
 		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
-		self.modelChanged.connect(self.__Templates_Outliner_treeView_refreshView)
+		self.changed.connect(self.__Templates_Outliner_treeView_refreshView)
 		self.modelRefresh.connect(self.__Templates_Outliner_treeView_refreshModel)
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1348,7 +1348,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__Templates_Outliner_treeView_restoreModelSelection()
 
-		self.modelChanged.emit()
+		self.changed.emit()
 
 	@core.executionTrace
 	def __Templates_Outliner_treeView_refreshModel(self):
