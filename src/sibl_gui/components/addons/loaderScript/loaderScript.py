@@ -547,7 +547,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		# Signals / Slots.
 		self.Output_Loader_Script_pushButton.clicked.connect(self.__Output_Loader_Script_pushButton__clicked)
 		self.Send_To_Software_pushButton.clicked.connect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -564,7 +564,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		# Signals / Slots.
 		self.Output_Loader_Script_pushButton.clicked.disconnect(self.__Output_Loader_Script_pushButton__clicked)
 		self.Send_To_Software_pushButton.clicked.disconnect(self.__Send_To_Software_pushButton__clicked)
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -618,9 +618,9 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.sendLoaderScriptToSoftware_ui()
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel_selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreTemplatesOutliner.Templates_Outliner_treeView** Model selection has changed.
+		This method is triggered when **coreTemplatesOutliner.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

@@ -856,7 +856,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		# Signals / Slots.
 		self.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
 		self.__coreDatabaseBrowser.model.changed.connect(self.__coreDatabaseBrowser__changed)
-		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
 		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
 		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
@@ -1056,9 +1056,9 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__setInspectorIblSet()
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
+		This method is triggered when **coreDatabaseBrowser.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )
@@ -1252,7 +1252,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif idx > model.rowCount() - 1:
 				idx = 0
 
-			selectionModel = self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel()
+			selectionModel = self.__coreDatabaseBrowser.view.selectionModel()
 			selectionModel.clear()
 			selectionModel.setCurrentIndex(index.sibling(idx, index.column()), QItemSelectionModel.Select)
 		else:

@@ -553,7 +553,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.Map_scrollAreaWidgetContents_gridLayout.addWidget(self.__map)
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.__map.loadFinished.connect(self.__map__loadFinished)
 		self.Map_Type_comboBox.activated.connect(self.__Map_Type_comboBox__activated)
 		self.Zoom_In_pushButton.clicked.connect(self.__Zoom_In_pushButton__clicked)
@@ -570,7 +570,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		# Signals / Slots.
-		self.__coreDatabaseBrowser.Database_Browser_listView.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged)
+		self.__coreDatabaseBrowser.view.selectionModel().selectionChanged.disconnect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
 		self.__map.loadFinished.disconnect(self.__map__loadFinished)
 		self.Map_Type_comboBox.activated.disconnect(self.__Map_Type_comboBox__activated)
 		self.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
@@ -623,9 +623,9 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		return True
 
 	@core.executionTrace
-	def __coreDatabaseBrowser_Database_Browser_listView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.Database_Browser_listView** Model selection has changed.
+		This method is triggered when **coreDatabaseBrowser.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

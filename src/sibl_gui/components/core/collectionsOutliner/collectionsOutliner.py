@@ -859,7 +859,7 @@ class CollectionsOutliner_QTreeView(QTreeView):
 	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default View state.
+		This method sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -1462,7 +1462,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __view_addActions(self):
 		"""
-		This method sets the Collections Outliner actions.
+		This method sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:

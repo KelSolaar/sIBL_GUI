@@ -555,10 +555,10 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__coreDatabaseBrowser.Database_Browser_listView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
+		self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered))
 		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Open Ibl Set location ...", slot=self.__Inspector_Overall_frame_openInspectorIblSetLocationsAction__triggered))
 		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|factory.ComponentsManagerUi|Open Component(s) Location(s) ...", slot=self.__Components_Manager_Ui_treeView_openComponentsLocationsAction__triggered))
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
+		self.__coreTemplatesOutliner.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ...", slot=self.__Templates_Outliner_treeView_openTemplatesLocationsAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -569,7 +569,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		openIblSetsLocationsAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
-		self.__coreDatabaseBrowser.Database_Browser_listView.removeAction(self.__engine.actionsManager.getAction(openIblSetsLocationsAction))
+		self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(openIblSetsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openIblSetsLocationsAction)
 		openInspectorIblSetLocationsAction = "Actions|Umbra|Components|core.inspector|Open Ibl Set location ..."
 		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(openInspectorIblSetLocationsAction))
@@ -578,7 +578,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__factoryComponentsManagerUi.Components_Manager_Ui_treeView.removeAction(self.__engine.actionsManager.getAction(openComponentsLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openComponentsLocationsAction)
 		openTemplatesLocationsAction = "Actions|Umbra|Components|core.templatesOutliner|Open Template(s) Location(s) ..."
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.removeAction(self.__engine.actionsManager.getAction(openTemplatesLocationsAction))
+		self.__coreTemplatesOutliner.view.removeAction(self.__engine.actionsManager.getAction(openTemplatesLocationsAction))
 		self.__engine.actionsManager.unregisterAction(openTemplatesLocationsAction)
 
 	@core.executionTrace

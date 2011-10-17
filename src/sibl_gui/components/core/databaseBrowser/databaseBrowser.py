@@ -731,7 +731,7 @@ class DatabaseBrowser_QListView(QListView):
 	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
-		This method sets the Widget default View state.
+		This method sets the Widget default ui state.
 		"""
 
 		LOGGER.debug("> Setting default View state!")
@@ -1588,7 +1588,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
-		This method scales the **Database_Browser_listView** icons.
+		This method scales the View icons.
 
 		:param value: Thumbnails size. ( Integer )
 		"""

@@ -656,7 +656,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -671,7 +671,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.Templates_Outliner_treeView.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -830,7 +830,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
 	@core.executionTrace
-	def __coreTemplatesOutliner_Templates_Outliner_treeView_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
 		This method is triggered when **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** Widget selection has changed.
 
