@@ -1833,6 +1833,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			return
 
 		LOGGER.debug("> Adding default Templates to the Database.")
+		
+		success = True
 		for collection, path in ((collection, path) for (collection, path) in self.__defaultCollections.items() if path):
 			if not os.path.exists(path):
 				continue
@@ -1840,10 +1842,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
 				dbCommon.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
-			if self.addDirectory(path, self.getCollection(collection).id):
-				return True
-			else:
-				raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__))
+			success *= self.addDirectory(path, self.getCollection(collection).id)
+		
+		if success:
+			return True
+		else:
+			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)

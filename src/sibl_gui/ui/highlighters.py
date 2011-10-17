@@ -38,7 +38,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "IblSetHighlighter"]
+__all__ = ["LOGGER", "IblSetHighlighter", "JavaScriptHighlighter", "MelScriptHighlighter", "MaxScriptHighlighter"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -104,6 +104,177 @@ class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
 		self.rules.numericConstant = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\b[-+]?[1-9]+\d*|0\b|[-+]?\d*\.?\d+([eE][-+]?\d+)?"), format=self.formats.numericConstant)
 		self.rules.doubleQuotation = umbra.ui.highlighters.Rule(pattern=QRegExp(r"\"([^\"\\]|\\.)*\""), format=self.formats.string)
 		self.rules.lineComment = umbra.ui.highlighters.Rule(pattern=QRegExp(r"[;#].*$"), format=self.formats.lineComment)
+
+		return True
+
+	# @core.executionTrace
+	def highlightBlock(self, block):
+		"""
+		This method highlights provided text block.
+
+		:param block: Text block. ( QString )
+		"""
+
+		self.highlightText(block, 0, len(block))
+
+class JavaScriptHighlighter(umbra.ui.highlighters.Highlighter):
+	"""
+	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting for Application Javascript Templates files.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent=None):
+		"""
+		This method initializes the class.
+
+		:param parent: Widget parent. ( QObject )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QSyntaxHighlighter.__init__(self, parent)
+
+		self.__setFormats()
+		self.__setRules()
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __setFormats(self):
+		"""
+		This method sets the highlighting formats.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.formats = umbra.ui.highlighters.Formats(default=umbra.ui.highlighters.getFormat(color=QColor(192, 192, 192)))
+
+		return True
+
+	@core.executionTrace
+	def __setRules(self):
+		"""
+		This method sets the highlighting rules.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.rules = umbra.ui.highlighters.Rules()
+
+		return True
+
+	# @core.executionTrace
+	def highlightBlock(self, block):
+		"""
+		This method highlights provided text block.
+
+		:param block: Text block. ( QString )
+		"""
+
+		self.highlightText(block, 0, len(block))
+
+class MelScriptHighlighter(umbra.ui.highlighters.Highlighter):
+	"""
+	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting for Application MelScript Templates files.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent=None):
+		"""
+		This method initializes the class.
+
+		:param parent: Widget parent. ( QObject )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QSyntaxHighlighter.__init__(self, parent)
+
+		self.__setFormats()
+		self.__setRules()
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __setFormats(self):
+		"""
+		This method sets the highlighting formats.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.formats = umbra.ui.highlighters.Formats(default=umbra.ui.highlighters.getFormat(color=QColor(192, 192, 192)))
+
+		return True
+
+	@core.executionTrace
+	def __setRules(self):
+		"""
+		This method sets the highlighting rules.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.rules = umbra.ui.highlighters.Rules()
+
+		return True
+
+	# @core.executionTrace
+	def highlightBlock(self, block):
+		"""
+		This method highlights provided text block.
+
+		:param block: Text block. ( QString )
+		"""
+
+		self.highlightText(block, 0, len(block))
+
+class MaxScriptHighlighter(umbra.ui.highlighters.Highlighter):
+	"""
+	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting for Application MaxScript Templates files.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent=None):
+		"""
+		This method initializes the class.
+
+		:param parent: Widget parent. ( QObject )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QSyntaxHighlighter.__init__(self, parent)
+
+		self.__setFormats()
+		self.__setRules()
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __setFormats(self):
+		"""
+		This method sets the highlighting formats.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.formats = umbra.ui.highlighters.Formats(default=umbra.ui.highlighters.getFormat(color=QColor(192, 192, 192)))
+
+		return True
+
+	@core.executionTrace
+	def __setRules(self):
+		"""
+		This method sets the highlighting rules.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.rules = umbra.ui.highlighters.Rules()
 
 		return True
 
