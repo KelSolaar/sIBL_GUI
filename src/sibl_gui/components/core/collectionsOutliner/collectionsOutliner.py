@@ -451,6 +451,8 @@ class CollectionsModel(QStandardItemModel):
 		self.setColumnCount(len(self.__headers))
 		readOnlyFlags = Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDropEnabled
 
+		rootItem = self.invisibleRootItem()
+
 		LOGGER.debug("> Preparing '{0}' Collection for Model.".format(self.__overallCollection))
 
 		overallCollectionStandardItem = QStandardItem(QString(self.__overallCollection))
@@ -466,7 +468,7 @@ class CollectionsModel(QStandardItemModel):
 		overallCollectionStandardItem._type = "Overall"
 
 		LOGGER.debug("> Adding '{0}' Collection to Model.".format(self.__overallCollection))
-		self.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
+		rootItem.appendRow([overallCollectionStandardItem, overallCollectionSetsCountStandardItem, overallCollectionCommentsStandardItem])
 
 		if self.__collections:
 			for collection in self.__collections:
