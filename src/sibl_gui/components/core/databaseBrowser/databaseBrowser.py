@@ -52,7 +52,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "IblSetsModel", "DatabaseBrowser_QListView", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "IblSetsModel", "DatabaseBrowser_QListView", "DatabaseBrowser", "getFormatedShotDate"]
 
 LOGGER = logging.getLogger(Constants.logger)
 

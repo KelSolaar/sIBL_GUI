@@ -43,7 +43,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Icon", "getDisplayItem", "getIcon", "getPixmap", "getImage", "filterImagePath"]
+__all__ = ["LOGGER", "Icon", "getDisplayItem", "getIcon", "getPixmap", "getImage", "filterImagePath", "getFormatedShotDate"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -152,3 +152,25 @@ def filterImagePath(path):
 						return umbra.ui.common.getResourcePath(UiConstants.formatErrorImage)
 		else:
 			return umbra.ui.common.getResourcePath(UiConstants.missingImage)
+
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def getFormatedShotDate(date, time):
+	"""
+	This method returns a formated shot date.
+
+	:param date: Ibl Set date key value. ( String )
+	:param time: Ibl Set time key value. ( String )
+	:return: Current shot date. ( String )
+	"""
+
+	LOGGER.debug("> Formating shot date with '{0}' date and '{1}' time.".format(date, time))
+
+	if date and time and date != Constants.nullObject and time != Constants.nullObject:
+		shotTime = "{0}H{1}".format(*time.split(":"))
+		shotDate = date.replace(":", "/")[2:] + " - " + shotTime
+
+		LOGGER.debug("> Formated shot date: '{0}'.".format(shotDate))
+		return shotDate
+	else:
+		return Constants.nullObject
