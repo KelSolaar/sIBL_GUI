@@ -476,7 +476,7 @@ class CollectionsModel(QStandardItemModel):
 
 				try:
 					collectionStandardItem = QStandardItem(QString(collection.name))
-					iconPath = collection.name == self.defaultCollection and os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage) or os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
+					iconPath = collection.name == self.__defaultCollection and os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage) or os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 					collectionStandardItem.setIcon(QIcon(iconPath))
 					if collection.name == self.__defaultCollection or not self.__editable:
 						collectionStandardItem.setFlags(readOnlyFlags)
@@ -1422,7 +1422,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			not self.getCollections() and self.addCollection(self.__defaultCollection, "Default Collection")
+			not self.getCollections() and self.addCollection(self.__model.defaultCollection, "Default Collection")
 		else:
 			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
@@ -1627,7 +1627,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if collectionInformations:
 			collectionInformations = str(collectionInformations).split(",")
 			name = collectionInformations[0].strip()
-			if name != self.__overallCollection:
+			if name != self.__model.overallCollection:
 				if not self.collectionExists(name):
 					comment = len(collectionInformations) == 1 and "Double click to set a comment!" or collectionInformations[1].strip()
 					if self.addCollection(name, comment):
@@ -1638,7 +1638,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				else:
 					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 			else:
-				raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection))
+				raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
 		else:
 			raise foundations.exceptions.UserError("{0} | Exception while adding a Collection to the Database: Cannot use an empty name!".format(self.__class__.__name__))
 
@@ -1655,10 +1655,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		selectedItems = self.getSelectedItems()
-		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__defaultCollection in (str(collection.text()) for collection in selectedItems):
-			messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' or '{2}' Collection!".format(self.__class__.__name__, self.__overallCollection, self.__defaultCollection))
+		if self.__overallCollection in (str(collection.text()) for collection in selectedItems) or self.__model.defaultCollection in (str(collection.text()) for collection in selectedItems):
+			messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' or '{2}' Collection!".format(self.__class__.__name__, self.__model.overallCollection, self.__model.defaultCollection))
 
-		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.name != self.__defaultCollection]
+		selectedCollections = [collection for collection in self.getSelectedCollections() if collection.name != self.__model.defaultCollection]
 		if not selectedCollections:
 			return
 
@@ -1686,7 +1686,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		if name != self.__overallCollection:
+		if name != self.__model.overallCollection:
 			if not self.collectionExists(name):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, name))
 				if dbCommon.addCollection(self.__coreDb.dbSession, name, "Sets", comment):
@@ -1697,7 +1697,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				raise foundations.exceptions.ProgrammingError("{0} | '{1}' Collection already exists in Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.ProgrammingError("{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__overallCollection))
+			raise foundations.exceptions.ProgrammingError("{0} | Cannot use '{1}' as Collection name!".format(self.__class__.__name__, self.__model.overallCollection))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1712,7 +1712,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		iblSets = dbCommon.getCollectionsIblSets(self.__coreDb.dbSession, (collection.id,))
 		for iblSet in iblSets:
 			LOGGER.info("{0} | Moving '{1}' Ibl Set to default Collection!".format(self.__class__.__name__, iblSet.title))
-			iblSet.collection = self.getCollectionId(self.__defaultCollection)
+			iblSet.collection = self.getCollectionId(self.__model.defaultCollection)
 
 		LOGGER.info("{0} | Removing '{1}' Collection from the Database!".format(self.__class__.__name__, collection.name))
 		if dbCommon.removeCollection(self.__coreDb.dbSession, str(collection.id)):
@@ -1783,7 +1783,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		ids = [collection.id for collection in self.getSelectedCollections()]
 		if not ids:
-			return self.getCollectionId(self.__defaultCollection)
+			return self.getCollectionId(self.__model.defaultCollection)
 		else:
 			len(ids) > 1 and LOGGER.warning("!> {0} | Multiple Collections selected, using '{1}' id!".format(self.__class__.__name__, ids[0]))
 			return ids[0]
