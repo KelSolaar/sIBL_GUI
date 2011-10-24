@@ -55,11 +55,11 @@ DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "IblSets", "Templates" : "Temp
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIblSetNode(object, parent=None, children=None):
+def getIblSetNode(dbIblSet, parent=None, children=None):
 	"""
 	This definition is a class instances factory creating :class:`IblSetNode` classes using given Ibl Set object.
 
-	:param object: Database object. ( Object )
+	:param dbIblSet: Database Ibl Set. ( DbIblSet )
 	:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
 	:param children: Children. ( List )
 	:return: IblSetNode class instance. ( IblSetNode )
@@ -73,9 +73,9 @@ def getIblSetNode(object, parent=None, children=None):
 				<b>Comment: </b>{4}</p>
 				"""
 
-	dbNode, attributes = umbra.ui.models.getGraphModelNode(object)
+	dbNode, attributes = umbra.ui.models.getGraphModelNode(dbIblSet)
 
-	IblSetNode = type("IblSetNode", (dbNode,), {"_IblSetNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[object.__table__.name]})
+	IblSetNode = type("IblSetNode", (dbNode,), {"_IblSetNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbIblSet.__table__.name]})
 
 	roles = {Qt.DisplayRole : attributes["title"].value,
 			Qt.DecorationRole : sibl_gui.ui.common.getIcon(attributes["icon"].value),
@@ -86,49 +86,49 @@ def getIblSetNode(object, parent=None, children=None):
 												sibl_gui.ui.common.getFormatedShotDate(attributes["date"].value, attributes["time"].value) or Constants.nullObject,
 												attributes["comment"].value or Constants.nullObject)}
 
-	flags = {}
+	flags = None
 
 	return IblSetNode(attributes.pop("name").value, parent, children, roles, flags, **attributes)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getTemplateNode(object, parent=None, children=None):
+def getTemplateNode(dbTemplate, parent=None, children=None):
 	"""
 	This definition is a class instances factory creating :class:`TemplateNode` classes using given Template object.
 
-	:param object: Database object. ( Object )
+	:param dbTemplate: Database Template. ( DbTemplate )
 	:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
 	:param children: Children. ( List )
 	:return: TemplateNode class instance. ( TemplateNode )
 	"""
 
-	dbNode, attributes = umbra.ui.models.getGraphModelNode(object)
+	dbNode, attributes = umbra.ui.models.getGraphModelNode(dbTemplate)
 
-	TemplateNode = type("TemplateNode", (dbNode,), {"_TemplateNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[object.__table__.name]})
+	TemplateNode = type("TemplateNode", (dbNode,), {"_TemplateNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbTemplate.__table__.name]})
 
-	roles = {}
-	flags = {}
+	roles = None
+	flags = None
 
 	name = attributes.pop("name").value
 	return TemplateNode(attributes["title"].value, parent, children, roles, flags, **attributes)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getCollectionNode(object, parent=None, children=None):
+def getCollectionNode(dbCollection, parent=None, children=None):
 	"""
 	This definition is a class instances factory creating :class:`CollectionNode` classes using given Collection object.
 
-	:param object: Database object. ( Object )
+	:param dbCollection: Database Collection. ( DbCollection )
 	:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
 	:param children: Children. ( List )
 	:return: CollectionNode class instance. ( CollectionNode )
 	"""
 
-	dbNode, attributes = umbra.ui.models.getGraphModelNode(object)
+	dbNode, attributes = umbra.ui.models.getGraphModelNode(dbCollection)
 
-	CollectionNode = type("CollectionNode", (dbNode,), {"_CollectionNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[object.__table__.name]})
+	CollectionNode = type("CollectionNode", (dbNode,), {"_CollectionNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbCollection.__table__.name]})
 
-	roles = {}
-	flags = {}
+	roles = None
+	flags = None
 
 	return CollectionNode(attributes.pop("name").value, parent, children, roles, flags, **attributes)

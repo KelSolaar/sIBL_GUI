@@ -33,9 +33,11 @@ import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.ui.common
 import umbra.engine
 import umbra.ui.common
+import umbra.ui.models
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -249,210 +251,246 @@ class DatabaseBrowser_Worker(QThread):
 
 		needModelRefresh and self.databaseChanged.emit()
 
-class IblSetsModel(QStandardItemModel):
-	"""
-	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
-	"""
+#class IblSetsModel(QStandardItemModel):
+#	"""
+#	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
+#	"""
+#
+#	aboutToChange = pyqtSignal()
+#	changed = pyqtSignal()
+#
+#	@core.executionTrace
+#	def __init__(self, parent, iblSets=None, editable=True):
+#		"""
+#		This method initializes the class.
+#
+#		:param parent: Object parent. ( QObject )
+#		:param iblSets: iblSets. ( List )
+#		:param editable: Model editable. ( Boolean )
+#		"""
+#
+#		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+#
+#		QStandardItemModel.__init__(self, parent)
+#
+#		# --- Setting class attributes. ---
+#		self.__container = parent
+#		self.__iblSets = []
+#		self.iblSets = iblSets
+#		self.__editable = editable
+#
+#		self.__toolTipText = """
+#								<p><b>{0}</b></p>
+#								<p><b>Author: </b>{1}<br>
+#								<b>Location: </b>{2}<br>
+#								<b>Shot Date: </b>{3}<br>
+#								<b>Comment: </b>{4}</p>
+#								"""
+#
+#		iblSets and self.setIblSetsNodes(iblSets)
+#
+#	#***********************************************************************************************
+#	#***	Attributes properties.
+#	#***********************************************************************************************
+#	@property
+#	def container(self):
+#		"""
+#		This method is the property for **self.__container** attribute.
+#
+#		:return: self.__container. ( QObject )
+#		"""
+#
+#		return self.__container
+#
+#	@container.setter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def container(self, value):
+#		"""
+#		This method is the setter method for **self.__container** attribute.
+#
+#		:param value: Attribute value. ( QObject )
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+#
+#	@container.deleter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def container(self):
+#		"""
+#		This method is the deleter method for **self.__container** attribute.
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+#
+#	@property
+#	def iblSets(self):
+#		"""
+#		This method is the property for **self.__iblSets** attribute.
+#
+#		:return: self.__iblSets. ( List )
+#		"""
+#
+#		return self.__iblSets
+#
+#	@iblSets.setter
+#	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
+#	def iblSets(self, value):
+#		"""
+#		This method is the setter method for **self.__iblSets** attribute.
+#
+#		:param value: Attribute value. ( List )
+#		"""
+#
+#		if value:
+#			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("iblSets", value)
+#		self.__iblSets = value
+#
+#	@iblSets.deleter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def iblSets(self):
+#		"""
+#		This method is the deleter method for **self.__iblSets** attribute.
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSets"))
+#
+#	@property
+#	def editable(self):
+#		"""
+#		This method is the property for **self.__editable** attribute.
+#
+#		:return: self.__editable. ( Boolean )
+#		"""
+#
+#		return self.__editable
+#
+#	@editable.setter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def editable(self, value):
+#		"""
+#		This method is the setter method for **self.__editable** attribute.
+#
+#		:param value: Attribute value. ( Boolean )
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
+#
+#	@editable.deleter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def editable(self):
+#		"""
+#		This method is the deleter method for **self.__editable** attribute.
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
+#
+#	@property
+#	def toolTipText(self):
+#		"""
+#		This method is the property for **self.__toolTipText** attribute.
+#
+#		:return: self.__toolTipText. ( String )
+#		"""
+#
+#		return self.__toolTipText
+#
+#	@toolTipText.setter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def toolTipText(self, value):
+#		"""
+#		This method is the setter method for **self.__toolTipText** attribute.
+#
+#		:param value: Attribute value. ( String )
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
+#
+#	@toolTipText.deleter
+#	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+#	def toolTipText(self):
+#		"""
+#		This method is the deleter method for **self.__toolTipText** attribute.
+#		"""
+#
+#		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
+#
+#	#***********************************************************************************************
+#	#***	Class methods.
+#	#***********************************************************************************************
+#	@core.executionTrace
+#	def __initializeModel(self):
+#		"""
+#		This method initializes the Model using :obj:`IblSetsModel.iblSets` class property.
+#		"""
+#
+#		LOGGER.debug("> Setting up Model!")
+#
+#		self.aboutToChange.emit()
+#
+#		self.clear()
+#
+#		for iblSet, title in sorted(((iblSet, iblSet.title) for iblSet in self.__iblSets), key=lambda x:(x[1])):
+#
+#			LOGGER.debug("> Preparing '{0}' Ibl Set for Model.".format(iblSet.name))
+#
+#			try:
+#				iblSetStandardItem = QStandardItem()
+#				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
+#				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+#
+#				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
+#
+#				self.__editable or iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+#
+#				iblSetStandardItem._datas = iblSet
+#
+#				LOGGER.debug("> Adding '{0}' to Model.".format(iblSet.name))
+#				self.appendRow(iblSetStandardItem)
+#
+#			except Exception as error:
+#				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to Model!".format(self.__class__.__name__, iblSet.name))
+#				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__initializeModel"))
+#
+#		self.changed.emit()
+#
+#	@core.executionTrace
+#	def setIblSetsNodes(self, iblSets):
+#		"""
+#		This method sets the provided Ibl Sets.
+#		
+#		:param iblSets: Ibl Sets. ( List )
+#		return: Method success ( Boolean )
+#		"""
+#
+#		self.__iblSets = iblSets
+#		self.__initializeModel()
+#		return True
+
+class IblSetsModel(umbra.ui.models.GraphModel):
+#	"""
+#	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
+#	"""
 
 	aboutToChange = pyqtSignal()
 	changed = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, parent, iblSets=None, editable=True):
+	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
-		:param iblSets: iblSets. ( List )
-		:param editable: Model editable. ( Boolean )
+		:param rootNode: Root node. ( AbstractCompositeNode )
+		:param horizontalHeaders: Headers. ( OrderedDict )
+		:param verticalHeaders: Headers. ( OrderedDict )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QStandardItemModel.__init__(self, parent)
-
-		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__iblSets = []
-		self.iblSets = iblSets
-		self.__editable = editable
-
-		self.__toolTipText = """
-								<p><b>{0}</b></p>
-								<p><b>Author: </b>{1}<br>
-								<b>Location: </b>{2}<br>
-								<b>Shot Date: </b>{3}<br>
-								<b>Comment: </b>{4}</p>
-								"""
-
-		iblSets and self.setIblSets(iblSets)
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
-
-	@property
-	def iblSets(self):
-		"""
-		This method is the property for **self.__iblSets** attribute.
-
-		:return: self.__iblSets. ( List )
-		"""
-
-		return self.__iblSets
-
-	@iblSets.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def iblSets(self, value):
-		"""
-		This method is the setter method for **self.__iblSets** attribute.
-
-		:param value: Attribute value. ( List )
-		"""
-
-		if value:
-			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("iblSets", value)
-		self.__iblSets = value
-
-	@iblSets.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def iblSets(self):
-		"""
-		This method is the deleter method for **self.__iblSets** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSets"))
-
-	@property
-	def editable(self):
-		"""
-		This method is the property for **self.__editable** attribute.
-
-		:return: self.__editable. ( Boolean )
-		"""
-
-		return self.__editable
-
-	@editable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self, value):
-		"""
-		This method is the setter method for **self.__editable** attribute.
-
-		:param value: Attribute value. ( Boolean )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
-
-	@editable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self):
-		"""
-		This method is the deleter method for **self.__editable** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
-
-	@property
-	def toolTipText(self):
-		"""
-		This method is the property for **self.__toolTipText** attribute.
-
-		:return: self.__toolTipText. ( String )
-		"""
-
-		return self.__toolTipText
-
-	@toolTipText.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
-		"""
-		This method is the setter method for **self.__toolTipText** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
-
-	@toolTipText.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
-		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def __initializeModel(self):
-		"""
-		This method initializes the Model using :obj:`IblSetsModel.iblSets` class property.
-		"""
-
-		LOGGER.debug("> Setting up Model!")
-
-		self.aboutToChange.emit()
-
-		self.clear()
-
-		for iblSet, title in sorted(((iblSet, iblSet.title) for iblSet in self.__iblSets), key=lambda x:(x[1])):
-
-			LOGGER.debug("> Preparing '{0}' Ibl Set for Model.".format(iblSet.name))
-
-			try:
-				iblSetStandardItem = QStandardItem()
-				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
-
-				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
-
-				self.__editable or iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-
-				iblSetStandardItem._datas = iblSet
-
-				LOGGER.debug("> Adding '{0}' to Model.".format(iblSet.name))
-				self.appendRow(iblSetStandardItem)
-
-			except Exception as error:
-				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to Model!".format(self.__class__.__name__, iblSet.name))
-				foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__initializeModel"))
-
-		self.changed.emit()
+		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
 
 	@core.executionTrace
-	def setIblSets(self, iblSets):
+	def setIblSetsNodes(self, iblSets):
 		"""
 		This method sets the provided Ibl Sets.
 		
@@ -460,8 +498,9 @@ class IblSetsModel(QStandardItemModel):
 		return: Method success ( Boolean )
 		"""
 
-		self.__iblSets = iblSets
-		self.__initializeModel()
+		self.aboutToChange.emit()
+		self.rootNode = iblSets
+		self.changed.emit()
 		return True
 
 class DatabaseBrowser_QListView(QListView):
@@ -1396,7 +1435,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self.__model = IblSetsModel(self, self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()), not self.__engine.parameters.databaseReadOnly)
+#		self.__model = IblSetsModel(self, self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()), not self.__engine.parameters.databaseReadOnly)
+		self.__model = IblSetsModel(self)
 
 		self.Database_Browser_listView = DatabaseBrowser_QListView(self, self.__model, not self.__engine.parameters.databaseReadOnly)
 		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
@@ -1423,7 +1463,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
-		self.__model.changed.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
+#		self.__model.changed.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsNodesCounts)
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1474,39 +1514,39 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )		
 		"""
 
-		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
-
-		if not self.__engine.parameters.databaseReadOnly:
-			# Wizard if sets table is empty.
-			if not self.getIblSets():
-				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
-					if directory:
-						if not self.addDirectory(directory):
-							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
-
-			# Ibl Sets table integrity checking.
-			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
-			if erroneousIblSets:
-				for iblSet in erroneousIblSets:
-					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-							self.updateIblSetLocation(iblSet)
-					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
-		else:
-			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-
-		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
-		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
-		if activeIblSetsIds:
-			if self.__settingsSeparator in activeIblSetsIds:
-				ids = activeIblSetsIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeIblSetsIds]
-			self.__view.modelSelection = [int(id) for id in ids]
-
-		self.__view.restoreModelSelection()
+#		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
+#
+#		if not self.__engine.parameters.databaseReadOnly:
+#			# Wizard if sets table is empty.
+#			if not self.getIblSets():
+#				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+#					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
+#					if directory:
+#						if not self.addDirectory(directory):
+#							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
+#
+#			# Ibl Sets table integrity checking.
+#			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
+#			if erroneousIblSets:
+#				for iblSet in erroneousIblSets:
+#					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
+#						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+#							self.updateIblSetLocation(iblSet)
+#					else:
+#						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
+#		else:
+#			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+#
+#		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
+#		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
+#		if activeIblSetsIds:
+#			if self.__settingsSeparator in activeIblSetsIds:
+#				ids = activeIblSetsIds.split(self.__settingsSeparator)
+#			else:
+#				ids = [activeIblSetsIds]
+#			self.__view.modelSelection = [int(id) for id in ids]
+#
+#		self.__view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -1607,7 +1647,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when the Model datas need refresh.
 		"""
 
-		self.setIblSets()
+		self.setIblSetsNodes()
 
 	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
@@ -1618,15 +1658,16 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
-		standardItem = self.__model.itemFromIndex(startIndex)
-		currentTitle = standardItem.text()
-
-		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
-		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
-		iblSet.title = str(currentTitle)
-		dbCommon.commit(self.__coreDb.dbSession)
-
-		self.modelRefresh.emit()
+		print "Changed!"
+#		standardItem = self.__model.itemFromIndex(startIndex)
+#		currentTitle = standardItem.text()
+#
+#		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
+#		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
+#		iblSet.title = str(currentTitle)
+#		dbCommon.commit(self.__coreDb.dbSession)
+#
+#		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __coreDb_database__changed(self):
@@ -1904,12 +1945,16 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
-	def setIblSets(self):
+	def setIblSetsNodes(self):
 		"""
 		This method sets Model Ibl Sets.
 		"""
 
-		self.__model.setIblSets(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()))
+		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+		for iblSet in iblSets:
+			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode)
+		self.__model.setIblSetsNodes(rootNode)
 
 	@core.executionTrace
 	def getSelectedItems(self):

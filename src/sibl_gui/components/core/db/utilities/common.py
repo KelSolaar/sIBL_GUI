@@ -27,6 +27,7 @@ import re
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import sibl_gui.components.core.db.exceptions
 import sibl_gui.components.core.db.utilities.types as dbTypes
 from umbra.globals.constants import Constants
 
@@ -89,7 +90,7 @@ DB_EXCEPTIONS = {"INEXISTING_IBL_SET_FILE_EXCEPTION" : "Ibl Set's file is missin
 #***	Module classes and definitions.
 #***********************************************************************************************
 @core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
+@foundations.exceptions.exceptionsHandler(None, False, sibl_gui.components.core.db.exceptions.DatabaseOperationError)
 def commit(session):
 	"""
 	This definition commits changes to the Database.
@@ -103,7 +104,7 @@ def commit(session):
 		return True
 	except Exception as error:
 		session.rollback()
-		raise Exception("{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
+		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError("{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

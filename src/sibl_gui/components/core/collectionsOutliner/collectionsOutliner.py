@@ -1506,7 +1506,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.removeCollections_ui()
 
 	@core.executionTrace
-	def __view_setIblSetsCounts(self):
+	def __view_setIblSetsNodesCounts(self):
 		"""
 		This method sets the View Ibl Sets counts.
 		"""

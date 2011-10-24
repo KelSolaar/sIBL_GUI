@@ -834,37 +834,37 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )		
 		"""
 
-		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
-
-		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
-		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
-		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
-		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
-
-		self.Plates_frame.hide()
-		self.Inspector_Options_groupBox.hide()
-
-		self.__model = QStandardItemModel()
-		self.__Plates_listView_setModel()
-		self.__Plates_listView_setView()
-
-		self.__Inspector_DockWidget_setUi()
-
-		self.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__Inspector_Overall_frame_addActions()
-
-		# Signals / Slots.
-		self.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
-		self.__coreDatabaseBrowser.model.changed.connect(self.__coreDatabaseBrowser__changed)
-		self.__coreDatabaseBrowser.view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
-		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
-		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
-		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
-		self.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
-		self.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
-		self.modelRefresh.connect(self.__Plates_listView_refreshModel)
-		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
-		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
+#		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
+#
+#		self.Previous_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+#		self.Next_Ibl_Set_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
+#		self.Previous_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiPreviousImage)))
+#		self.Next_Plate_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiNextImage)))
+#
+#		self.Plates_frame.hide()
+#		self.Inspector_Options_groupBox.hide()
+#
+#		self.__model = QStandardItemModel()
+#		self.__Plates_listView_setModel()
+#		self.__Plates_listView_setView()
+#
+#		self.__Inspector_DockWidget_setUi()
+#
+#		self.Inspector_Overall_frame.setContextMenuPolicy(Qt.ActionsContextMenu)
+#		self.__Inspector_Overall_frame_addActions()
+#
+#		# Signals / Slots.
+#		self.Plates_listView.selectionModel().selectionChanged.connect(self.__Plates_listView_selectionModel__selectionChanged)
+#		self.__coreDatabaseBrowser.model.changed.connect(self.__coreDatabaseBrowser__changed)
+#		self.__coreDatabaseBrowser.view.selectionModel().selectionChanged.connect(self.__coreDatabaseBrowser_view_selectionModel__selectionChanged)
+#		self.Previous_Ibl_Set_pushButton.clicked.connect(self.__Previous_Ibl_Set_pushButton__clicked)
+#		self.Next_Ibl_Set_pushButton.clicked.connect(self.__Next_Ibl_Set_pushButton__clicked)
+#		self.Previous_Plate_pushButton.clicked.connect(self.__Previous_Plate_pushButton__clicked)
+#		self.Next_Plate_pushButton.clicked.connect(self.__Next_Plate_pushButton__clicked)
+#		self.Image_label.linkActivated.connect(self.__Image_label__linkActivated)
+#		self.modelRefresh.connect(self.__Plates_listView_refreshModel)
+#		self.uiRefresh.connect(self.__Inspector_DockWidget_refreshUi)
+#		self.uiClear.connect(self.__Inspector_DockWidget_clearUi)
 
 		return True
 
