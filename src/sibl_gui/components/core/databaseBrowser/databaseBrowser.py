@@ -287,7 +287,7 @@ class DatabaseBrowser_Worker(QThread):
 #								<b>Comment: </b>{4}</p>
 #								"""
 #
-#		iblSets and self.setIblSetsNodes(iblSets)
+#		iblSets and self.setIblSets(iblSets)
 #
 #	#***********************************************************************************************
 #	#***	Attributes properties.
@@ -434,18 +434,18 @@ class DatabaseBrowser_Worker(QThread):
 #			LOGGER.debug("> Preparing '{0}' Ibl Set for Model.".format(iblSet.name))
 #
 #			try:
-#				iblSetStandardItem = QStandardItem()
-#				iblSetStandardItem.setData(iblSet.title, Qt.DisplayRole)
-#				iblSetStandardItem.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
+#				iblSetNode = QStandardItem()
+#				iblSetNode.setData(iblSet.title, Qt.DisplayRole)
+#				iblSetNode.setToolTip(self.__toolTipText.format(iblSet.title, iblSet.author or Constants.nullObject, iblSet.location or Constants.nullObject, getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject, iblSet.comment or Constants.nullObject))
 #
-#				iblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
+#				iblSetNode.setIcon(sibl_gui.ui.common.getIcon(iblSet.icon))
 #
-#				self.__editable or iblSetStandardItem.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+#				self.__editable or iblSetNode.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 #
-#				iblSetStandardItem._datas = iblSet
+#				iblSetNode._datas = iblSet
 #
 #				LOGGER.debug("> Adding '{0}' to Model.".format(iblSet.name))
-#				self.appendRow(iblSetStandardItem)
+#				self.appendRow(iblSetNode)
 #
 #			except Exception as error:
 #				LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to Model!".format(self.__class__.__name__, iblSet.name))
@@ -454,7 +454,7 @@ class DatabaseBrowser_Worker(QThread):
 #		self.changed.emit()
 #
 #	@core.executionTrace
-#	def setIblSetsNodes(self, iblSets):
+#	def setIblSets(self, iblSets):
 #		"""
 #		This method sets the provided Ibl Sets.
 #		
@@ -470,9 +470,6 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 #	"""
 #	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Ibl Sets.
 #	"""
-
-	aboutToChange = pyqtSignal()
-	changed = pyqtSignal()
 
 	@core.executionTrace
 	def __init__(self, parent=None, rootNode=None, horizontalHeaders=None, verticalHeaders=None):
@@ -490,17 +487,17 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
 
 	@core.executionTrace
-	def setIblSetsNodes(self, iblSets):
+	def initializeModel(self, rootNode):
 		"""
-		This method sets the provided Ibl Sets.
+		This method initializes the model using given root node.
 		
-		:param iblSets: Ibl Sets. ( List )
+		:param rootNode: Graph root node. ( DefaultNode )
 		return: Method success ( Boolean )
 		"""
 
-		self.aboutToChange.emit()
-		self.rootNode = iblSets
-		self.changed.emit()
+		self.beginResetModel()
+		self.rootNode = rootNode
+		self.endResetModel()
 		return True
 
 class DatabaseBrowser_QListView(QListView):
@@ -746,8 +743,8 @@ class DatabaseBrowser_QListView(QListView):
 		QListView.setModel(self, model)
 
 		# Signals / Slots.
-		self.model().aboutToChange.connect(self.__model__aboutToChange)
-		self.model().changed.connect(self.__model__changed)
+		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
+		self.model().modelReset.connect(self.__model__modelReset)
 
 	@core.executionTrace
 	def __initializeUi(self):
@@ -791,15 +788,15 @@ class DatabaseBrowser_QListView(QListView):
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	def __model__aboutToChange(self):
+	def __model__modelAboutToBeReset(self):
 		"""
-		This method is triggered when the Model is about to change.
+		This method is triggered when the Model is about to be reset.
 		"""
 
 		self.storeModelSelection()
 
 	@core.executionTrace
-	def __model__changed(self):
+	def __model__modelReset(self):
 		"""
 		This method is triggered when the Model is changed.
 		"""
@@ -812,10 +809,17 @@ class DatabaseBrowser_QListView(QListView):
 		"""
 		This method returns the selected items.
 
-		:return: View selected items. ( List )
+		:return: View selected items. ( Dictionary )
 		"""
 
-		return [self.model().getNode(index) for index in self.selectedIndexes()]
+		nodes = {}
+		for index in self.selectedIndexes():
+			node = self.model().getNode(index)
+			if not node in nodes.keys():
+				nodes[node] = []
+			attribute = self.model().getAttribute(node, index.column())
+			attribute and nodes[node].append(attribute)
+		return nodes
 
 	@core.executionTrace
 	def storeModelSelection(self):
@@ -828,8 +832,8 @@ class DatabaseBrowser_QListView(QListView):
 		LOGGER.debug("> Storing Model selection!")
 
 		self.__modelSelection = []
-		for item in self.getSelectedItems():
-			self.__modelSelection.append(item._datas.id)
+		for item in self.getSelectedItems().keys():
+			self.__modelSelection.append(item.id.value)
 		return True
 
 	@core.executionTrace
@@ -847,8 +851,9 @@ class DatabaseBrowser_QListView(QListView):
 
 		indexes = []
 		for i in range(self.model().rowCount()):
-			iblSetStandardItem = self.model().item(i)
-			iblSetStandardItem._datas.id in self.__modelSelection and indexes.append(self.model().indexFromItem(iblSetStandardItem))
+			index = self.model().index(i)
+			iblSetNode = self.model().getNode(index)
+			iblSetNode.id.value in self.__modelSelection and indexes.append(index)
 
 		if self.selectionModel():
 			self.selectionModel().clear()
@@ -1463,7 +1468,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
-#		self.__model.changed.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsNodesCounts)
+#		self.__model.changed.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1514,39 +1519,39 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )		
 		"""
 
-#		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
-#
-#		if not self.__engine.parameters.databaseReadOnly:
-#			# Wizard if sets table is empty.
-#			if not self.getIblSets():
-#				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-#					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
-#					if directory:
-#						if not self.addDirectory(directory):
-#							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
-#
-#			# Ibl Sets table integrity checking.
-#			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
-#			if erroneousIblSets:
-#				for iblSet in erroneousIblSets:
-#					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
-#						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
-#							self.updateIblSetLocation(iblSet)
-#					else:
-#						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
-#		else:
-#			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-#
-#		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
-#		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
-#		if activeIblSetsIds:
-#			if self.__settingsSeparator in activeIblSetsIds:
-#				ids = activeIblSetsIds.split(self.__settingsSeparator)
-#			else:
-#				ids = [activeIblSetsIds]
-#			self.__view.modelSelection = [int(id) for id in ids]
-#
-#		self.__view.restoreModelSelection()
+		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
+
+		if not self.__engine.parameters.databaseReadOnly:
+			# Wizard if sets table is empty.
+			if not self.getIblSets():
+				if messageBox.messageBox("Question", "Question", "The Database is empty, would you like to add some Ibl Sets?", buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+					directory = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Add content:", RuntimeGlobals.lastBrowsedPath)))
+					if directory:
+						if not self.addDirectory(directory):
+							raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
+
+			# Ibl Sets table integrity checking.
+			erroneousIblSets = dbCommon.checkIblSetsTableIntegrity(self.__coreDb.dbSession)
+			if erroneousIblSets:
+				for iblSet in erroneousIblSets:
+					if erroneousIblSets[iblSet] == "INEXISTING_IBL_SET_FILE_EXCEPTION":
+						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Ibl Set file is missing, would you like to update it's location?".format(self.__class__.__name__, iblSet.title), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+							self.updateIblSetLocation(iblSet)
+					else:
+						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, iblSet.title, dbCommon.DB_EXCEPTIONS[erroneousIblSets[iblSet]]))
+		else:
+			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+
+		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
+		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
+		if activeIblSetsIds:
+			if self.__settingsSeparator in activeIblSetsIds:
+				ids = activeIblSetsIds.split(self.__settingsSeparator)
+			else:
+				ids = [activeIblSetsIds]
+			self.__view.modelSelection = [int(id) for id in ids]
+
+		self.__view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -1559,8 +1564,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-#		self.__view.storeModelSelection()
-#		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
+		self.__view.storeModelSelection()
+		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
 		return True
 
 	@core.executionTrace
@@ -1647,7 +1652,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is triggered when the Model datas need refresh.
 		"""
 
-		self.setIblSetsNodes()
+		self.setIblSets()
 
 	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
@@ -1660,13 +1665,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		iblSetNode = self.__model.getNode(startIndex)
 		iblSetNode.synchronizeDbItem()
-		
+
 		title = iblSetNode.name
 		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
 		iblSetNode.dbItem.title = title
-		
+
 		dbCommon.commit(self.__coreDb.dbSession)
-#		self.modelRefresh.emit()
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __coreDb_database__changed(self):
@@ -1783,7 +1788,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if not selectedIblSets:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((str(iblSet.title) for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' sets(s)?".format(", ".join((iblSet.title for iblSet in selectedIblSets))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Ibl Sets ...", len(selectedIblSets))
 			success = True
 			for iblSet in selectedIblSets:
@@ -1938,13 +1943,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method returns Database Ibl Sets.
 
-		:return: Database Ibl Sets Collections. ( List )
+		:return: Database Ibl Sets. ( List )
 		"""
 
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
-	def setIblSetsNodes(self):
+	def setIblSets(self):
 		"""
 		This method sets Model Ibl Sets.
 		"""
@@ -1953,7 +1958,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
 			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode)
-		self.__model.setIblSetsNodes(rootNode)
+		self.__model.initializeModel(rootNode)
 
 	@core.executionTrace
 	def getSelectedItems(self):
@@ -1973,7 +1978,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Ibl Sets. ( List )
 		"""
 
-		return [item._datas for item in self.getSelectedItems()]
+		return [item.dbItem for item in self.getSelectedItems().keys()]
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

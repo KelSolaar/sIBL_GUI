@@ -780,7 +780,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
 
 		if previousModelContent != modelIblSets:
-			self.__coreDatabaseBrowser.model.setIblSetsNodes(modelIblSets)
+			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
 		return True
 
 	@core.executionTrace
@@ -835,5 +835,5 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Pattern filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
 
 		if previousModelContent != modelIblSets:
-			self.__coreDatabaseBrowser.model.setIblSetsNodes(modelIblSets)
+			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
 		return True
