@@ -29,9 +29,9 @@ from PyQt4.QtWebKit import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
+import sibl_gui.ui.common
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.core.databaseBrowser.databaseBrowser import getFormatedShotDate
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -710,6 +710,6 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 			return True
 
 		LOGGER.debug("> Ibl Set '{0}' provides GEO coordinates.".format(iblSet.name))
-		shotDateString = "<b>Shot Date: </b>{0}".format(getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
+		shotDateString = "<b>Shot Date: </b>{0}".format(sibl_gui.ui.common.getFormatedShotDate(iblSet.date, iblSet.time) or Constants.nullObject)
 		content = "<p><h3><b>{0}</b></h3></p><p><b>Author: </b>{1}<br><b>Location: </b>{2}<br>{3}<br><b>Comment: </b>{4}</p>".format(iblSet.title, iblSet.author, iblSet.location, shotDateString, iblSet.comment)
 		return self.__map.addMarker((iblSet.latitude, iblSet.longitude), iblSet.title, strings.toForwardSlashes(iblSet.icon), content)

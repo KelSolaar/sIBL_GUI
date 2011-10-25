@@ -31,10 +31,10 @@ import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.ui.common
+import sibl_gui.ui.common
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.core.databaseBrowser.databaseBrowser import getFormatedShotDate
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -916,7 +916,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			else:
 				self.Image_label.setText(self.__noPreviewImageText.format(sibl_gui.ui.common.filterImagePath(self.__inspectorIblSet.icon), self.__inspectorIblSet.author, self.__inspectorIblSet.link))
 
-			self.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
+			self.Image_label.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, sibl_gui.ui.common.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 
 			self.Details_label.setText("<center><b>Comment:</b> {0}</center>".format(self.__inspectorIblSet.comment))
 
@@ -962,7 +962,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.debug("> Preparing '{0}' Ibl Set for '{1}' Model.".format(self.__inspectorIblSet.name, "Plates_listView"))
 			inspectorIblSetStandardItem = QStandardItem()
 			inspectorIblSetStandardItem.setIcon(sibl_gui.ui.common.getIcon(self.__inspectorIblSet.icon))
-			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
+			inspectorIblSetStandardItem.setToolTip(self.__inspectorIblSetToolTipText.format(self.__inspectorIblSet.title, self.__inspectorIblSet.author or Constants.nullObject, self.__inspectorIblSet.location or Constants.nullObject, sibl_gui.ui.common.getFormatedShotDate(self.__inspectorIblSet.date, self.__inspectorIblSet.time) or Constants.nullObject, self.__inspectorIblSet.comment or Constants.nullObject))
 			self.__model.appendRow(inspectorIblSetStandardItem)
 
 			for name, plate in self.__inspectorPlates.items():

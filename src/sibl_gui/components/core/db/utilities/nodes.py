@@ -55,13 +55,14 @@ DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "IblSets", "Templates" : "Temp
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIblSetNode(dbIblSet, parent=None, children=None):
+def getIblSetNode(dbIblSet, parent=None, children=None, flags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled):
 	"""
 	This definition is a class instances factory creating :class:`IblSetNode` classes using given Ibl Set object.
 
 	:param dbIblSet: Database Ibl Set. ( DbIblSet )
 	:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
 	:param children: Children. ( List )
+	:param flags: Flags. ( Qt.ItemFlag )
 	:return: IblSetNode class instance. ( IblSetNode )
 	"""
 
@@ -86,7 +87,8 @@ def getIblSetNode(dbIblSet, parent=None, children=None):
 												sibl_gui.ui.common.getFormatedShotDate(attributes["date"].value, attributes["time"].value) or Constants.nullObject,
 												attributes["comment"].value or Constants.nullObject)}
 
-	flags = None
+	for attribute in attributes.values():
+		attribute.flags = flags
 
 	return IblSetNode(attributes.pop("name").value, parent, children, roles, flags, **attributes)
 
