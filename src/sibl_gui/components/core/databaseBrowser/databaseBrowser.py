@@ -815,7 +815,7 @@ class DatabaseBrowser_QListView(QListView):
 		:return: View selected items. ( List )
 		"""
 
-		return [self.model().itemFromIndex(index) for index in self.selectedIndexes()]
+		return [self.model().getNode(index) for index in self.selectedIndexes()]
 
 	@core.executionTrace
 	def storeModelSelection(self):
@@ -1559,8 +1559,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
+#		self.__view.storeModelSelection()
+#		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
 		return True
 
 	@core.executionTrace
@@ -1658,15 +1658,14 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
-		print "Changed!"
-#		standardItem = self.__model.itemFromIndex(startIndex)
-#		currentTitle = standardItem.text()
-#
-#		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(standardItem._datas.title, currentTitle))
-#		iblSet = dbCommon.filterIblSets(self.__coreDb.dbSession, "^{0}$".format(standardItem._datas.id), "id")[0]
-#		iblSet.title = str(currentTitle)
-#		dbCommon.commit(self.__coreDb.dbSession)
-#
+		iblSetNode = self.__model.getNode(startIndex)
+		iblSetNode.synchronizeDbItem()
+		
+		title = iblSetNode.name
+		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
+		iblSetNode.dbItem.title = title
+		
+		dbCommon.commit(self.__coreDb.dbSession)
 #		self.modelRefresh.emit()
 
 	@core.executionTrace
