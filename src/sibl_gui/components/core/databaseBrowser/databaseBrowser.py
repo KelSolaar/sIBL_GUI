@@ -238,15 +238,19 @@ class DatabaseBrowser_Worker(QThread):
 
 		needModelRefresh = False
 		for iblSet in dbCommon.getIblSets(self.__dbSession):
-			if iblSet.path:
-				if os.path.exists(iblSet.path):
-					storedStats = iblSet.osStats.split(",")
-					osStats = os.stat(iblSet.path)
-					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(self.__class__.__name__, iblSet.title))
-						if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
-							LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
-							needModelRefresh = True
+			if not iblSet.path:
+				continue
+
+			if not os.path.exists(iblSet.path):
+				continue
+
+			storedStats = iblSet.osStats.split(",")
+			osStats = os.stat(iblSet.path)
+			if str(osStats[8]) != str(storedStats[8]):
+				LOGGER.info("{0} | '{1}' Ibl Set file has been modified and will be updated!".format(self.__class__.__name__, iblSet.title))
+				if dbCommon.updateIblSetContent(self.__dbSession, iblSet):
+					LOGGER.info("{0} | '{1}' Ibl Set has been updated!".format(self.__class__.__name__, iblSet.title))
+					needModelRefresh = True
 
 		needModelRefresh and self.databaseChanged.emit()
 
@@ -589,7 +593,7 @@ class DatabaseBrowser_QListView(QListView):
 		self.__setDefaultUiState()
 
 	@core.executionTrace
-	def getSelectedItems(self):
+	def getSelectedNodes(self):
 		"""
 		This method returns the selected items.
 
@@ -616,7 +620,7 @@ class DatabaseBrowser_QListView(QListView):
 		LOGGER.debug("> Storing Model selection!")
 
 		self.__modelSelection = []
-		for item in self.getSelectedItems().keys():
+		for item in self.getSelectedNodes().keys():
 			self.__modelSelection.append(item.id.value)
 		return True
 
@@ -1745,14 +1749,24 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model.initializeModel(rootNode)
 
 	@core.executionTrace
-	def getSelectedItems(self):
+	def getSelectedNodes(self):
 		"""
-		This method returns the selected items.
+		This method returns the selected nodes.
 
-		:return: View selected items. ( List )
+		:return: View selected nodes. ( Dictionary )
 		"""
 
-		return self.__view.getSelectedItems()
+		return self.__view.getSelectedNodes()
+
+	@core.executionTrace
+	def getSelectedIblSetsNodes(self):
+		"""
+		This method returns the selected Ibl Sets nodes.
+
+		:return: View selected Ibl Sets nodes. ( List )
+		"""
+
+		return [item for item in self.getSelectedNodes().keys()]
 
 	@core.executionTrace
 	def getSelectedIblSets(self):
@@ -1762,5 +1776,5 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Ibl Sets. ( List )
 		"""
 
-		return [item.dbItem for item in self.getSelectedItems().keys()]
+		return [node.dbItem for node in self.getSelectedIblSetsNodes()]
 
