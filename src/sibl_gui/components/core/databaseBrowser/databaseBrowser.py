@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseBrowser` Component Interface class, the :class:`DatabaseBrowser_QListView` class and the the :class:`DatabaseBrowser_Worker` worker thread class.
+	This module defines the :class:`DatabaseBrowser` Component Interface class, the :class:`Thumbnails_QListView` class and the the :class:`DatabaseBrowser_Worker` worker thread class.
 
 **Others:**
 
@@ -17,10 +17,12 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
+import functools
 import logging
 import os
 import platform
 import re
+from collections import OrderedDict
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -37,6 +39,7 @@ import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.models
+import sibl_gui.ui.views
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.qwidgetComponent import QWidgetComponentFactory
@@ -53,7 +56,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "IblSetsModel", "DatabaseBrowser_QListView", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "IblSetsModel", "Thumbnails_QListView", "Thumbnails_QListView", "Details_QTreeView", "DatabaseBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -288,101 +291,35 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 		self.endResetModel()
 		return True
 
-class DatabaseBrowser_QListView(QListView):
+class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
-	This class is a `QListView <http://doc.qt.nokia.com/4.7/qlistview.html>`_ subclass used to display Database Ibl Sets.
+	This class is used to display Database Ibl Sets as thumbnails.
 	"""
 
 	@core.executionTrace
-	def __init__(self, parent, model=None, editable=True):
+	def __init__(self, parent, model=None, readOnly=False):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
 		:param model: Model. ( QObject )
-		:param editable: Model editable. ( Boolean )
+		:param readOnly: View is read only. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QListView.__init__(self, parent)
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly)
 
 		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__editable = editable
-
 		self.__listViewSpacing = 24
 		self.__listViewMargin = 32
 		self.__listViewIconSize = 128
 
-		self.setModel(model)
-		self.__modelSelection = []
-
-		DatabaseBrowser_QListView.__initializeUi(self)
+		Thumbnails_QListView.__initializeUi(self)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
-
-	@property
-	def editable(self):
-		"""
-		This method is the property for **self.__editable** attribute.
-
-		:return: self.__editable. ( Boolean )
-		"""
-
-		return self.__editable
-
-	@editable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self, value):
-		"""
-		This method is the setter method for **self.__editable** attribute.
-
-		:param value: Attribute value. ( Boolean )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
-
-	@editable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self):
-		"""
-		This method is the deleter method for **self.__editable** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
-
 	@property
 	def listViewSpacing(self):
 		"""
@@ -482,6 +419,139 @@ class DatabaseBrowser_QListView(QListView):
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __initializeUi(self):
+		"""
+		This method initializes the Widget ui.
+		"""
+
+		self.setAutoScroll(True)
+		self.setResizeMode(QListView.Adjust)
+		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.setViewMode(QListView.IconMode)
+		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
+		self.setDragDropMode(QAbstractItemView.DragOnly)
+
+		self.__setDefaultUiState()
+
+	@core.executionTrace
+	def __setDefaultUiState(self):
+		"""
+		This method sets the Widget default ui state.
+		"""
+
+		LOGGER.debug("> Setting default View state!")
+
+		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
+		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+
+class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
+	"""
+	This class is used to display Database Ibl Sets columns.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent, model=None, readOnly=False):
+		"""
+		This method initializes the class.
+
+		:param parent: Object parent. ( QObject )
+		:param model: Model. ( QObject )
+		:param readOnly: View is read only. ( Boolean )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		sibl_gui.ui.views.Abstract_QListView.__init__(self, parent, model, readOnly)
+
+		Columns_QListView.__initializeUi(self)
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __initializeUi(self):
+		"""
+		This method initializes the Widget ui.
+		"""
+
+		self.setAutoScroll(True)
+		self.setResizeMode(QListView.Adjust)
+		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+
+		self.__setDefaultUiState()
+
+	@core.executionTrace
+	def __setDefaultUiState(self):
+		"""
+		This method sets the Widget default ui state.
+		"""
+
+		LOGGER.debug("> Setting default View state!")
+
+class Details_QTreeView(QTreeView):
+	"""
+	This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Ibl Sets.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent, model=None, readOnly=False):
+		"""
+		This method initializes the class.
+
+		:param parent: Object parent. ( QObject )
+		:param model: Model. ( QObject )
+		:param readOnly: View is read only. ( Boolean )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		QTreeView.__init__(self, parent)
+
+		# --- Setting class attributes. ---
+		self.__readOnly = readOnly
+
+		self.setModel(model)
+		self.__modelSelection = []
+
+		Details_QTreeView.__initializeUi(self)
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def readOnly(self):
+		"""
+		This method is the property for **self.__readOnly** attribute.
+
+		:return: self.__readOnly. ( Boolean )
+		"""
+
+		return self.__readOnly
+
+	@readOnly.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def readOnly(self, value):
+		"""
+		This method is the setter method for **self.__readOnly** attribute.
+
+		:param value: Attribute value. ( Boolean )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "readOnly"))
+
+	@readOnly.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def readOnly(self):
+		"""
+		This method is the deleter method for **self.__readOnly** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "readOnly"))
+
 	@property
 	def modelSelection(self):
 		"""
@@ -520,7 +590,7 @@ class DatabaseBrowser_QListView(QListView):
 	@core.executionTrace
 	def setModel(self, model):
 		"""
-		This method reimplements the **QListView.setModel** method.
+		This method reimplements the **QTreeView.setModel** method.
 		
 		:param model: Model to set. ( QObject )
 		"""
@@ -528,7 +598,7 @@ class DatabaseBrowser_QListView(QListView):
 		if not model:
 			return
 
-		QListView.setModel(self, model)
+		QTreeView.setModel(self, model)
 
 		# Signals / Slots.
 		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
@@ -540,17 +610,10 @@ class DatabaseBrowser_QListView(QListView):
 		This method initializes the Widget ui.
 		"""
 
-		self.setAutoScroll(True)
-		self.setResizeMode(QListView.Adjust)
-		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.setViewMode(QListView.IconMode)
-		# Previous statement sets the dragDropMode to "QAbstractItemView.DragDrop".
-		self.setDragDropMode(QAbstractItemView.DragOnly)
-
 		self.__setDefaultUiState()
 
 		# Signals / Slots.
-		self.doubleClicked.connect(self.__QListView__doubleClicked)
+		self.doubleClicked.connect(self.__QTreeView__doubleClicked)
 
 	@core.executionTrace
 	def __setDefaultUiState(self):
@@ -560,19 +623,25 @@ class DatabaseBrowser_QListView(QListView):
 
 		LOGGER.debug("> Setting default View state!")
 
-		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+		self.expandAll()
+		self.sortByColumn(0, Qt.AscendingOrder)
+
+		if not self.model():
+			return
+
+		for column in range(len(self.model().horizontalHeaders)):
+			self.resizeColumnToContents(column)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def __QListView__doubleClicked(self, index):
+	def __QTreeView__doubleClicked(self, index):
 		"""
 		This method defines the behavior when the Widget is double clicked.
 
 		:param index: Clicked Model item index. ( QModelIndex )
 		"""
 
-		if not self.editable:
+		if not self.readOnly:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
@@ -677,6 +746,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.deactivatable = False
 
 		self.__uiResourcesDirectory = "resources"
+		self.__uiThumbnailsViewImage = "Thumbnails_View.png"
+		self.__uiColumnsViewImage = "Columns_View.png"
+		self.__uiDetailsViewImage = "Details_View.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
 		self.__dockArea = 8
@@ -695,7 +767,15 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner = None
 
 		self.__model = None
-		self.__view = None
+		self.__thumbnailsView = None
+		self.__columnsView = None
+		self.__detailsView = None
+		self.__detailsHeaders = OrderedDict([("Author", "author"),
+										("Shot Location", "location"),
+										("Latitude", "latitude"),
+										("Longitude", "longitude"),
+										("Shot Date", "date"),
+										("Shot Time", "time")])
 
 		self.__databaseBrowserWorkerThread = None
 
@@ -1123,31 +1203,121 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
-	def view(self):
+	def thumbnailsView(self):
 		"""
-		This method is the property for **self.__view** attribute.
+		This method is the property for **self.__thumbnailsView** attribute.
 
-		:return: self.__view. ( QWidget )
+		:return: self.__thumbnailsView. ( QListView )
 		"""
 
-		return self.__view
+		return self.__thumbnailsView
 
-	@view.setter
+	@thumbnailsView.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def view(self, value):
+	def thumbnailsView(self, value):
 		"""
-		This method is the setter method for **self.__view** attribute.
+		This method is the setter method for **self.__thumbnailsView** attribute.
 
-		:param value: Attribute value. ( QWidget )
+		:param value: Attribute value. ( QListView )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "thumbnailsView"))
 
-	@view.deleter
+	@thumbnailsView.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def view(self):
+	def thumbnailsView(self):
 		"""
-		This method is the deleter method for **self.__view** attribute.
+		This method is the deleter method for **self.__thumbnailsView** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
+	def columnsView(self):
+		"""
+		This method is the property for **self.__columnsView** attribute.
+
+		:return: self.__columnsView. ( QListView )
+		"""
+
+		return self.__columnsView
+
+	@columnsView.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def columnsView(self, value):
+		"""
+		This method is the setter method for **self.__columnsView** attribute.
+
+		:param value: Attribute value. ( QListView )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "columnsView"))
+
+	@columnsView.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def columnsView(self):
+		"""
+		This method is the deleter method for **self.__columnsView** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
+	def detailsView(self):
+		"""
+		This method is the property for **self.__detailsView** attribute.
+
+		:return: self.__detailsView. ( QTreeView )
+		"""
+
+		return self.__detailsView
+
+	@detailsView.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def detailsView(self, value):
+		"""
+		This method is the setter method for **self.__detailsView** attribute.
+
+		:param value: Attribute value. ( QTreeView )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "detailsView"))
+
+	@detailsView.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def detailsView(self):
+		"""
+		This method is the deleter method for **self.__detailsView** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+
+	@property
+	def detailsViewHeaders(self):
+		"""
+		This method is the property for **self.__detailsViewHeaders** attribute.
+
+		:return: self.__detailsViewHeaders. ( OrderedDict )
+		"""
+
+		return self.__detailsViewHeaders
+
+	@detailsViewHeaders.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def detailsViewHeaders(self, value):
+		"""
+		This method is the setter method for **self.__detailsViewHeaders** attribute.
+
+		:param value: Attribute value. ( OrderedDict )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "detailsViewHeaders"))
+
+	@detailsViewHeaders.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def detailsViewHeaders(self):
+		"""
+		This method is the deleter method for **self.__detailsViewHeaders** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
@@ -1228,16 +1398,32 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self.__model = IblSetsModel(self)
+		self.__model = IblSetsModel(self, horizontalHeaders=self.__detailsHeaders)
 
-		self.Database_Browser_listView = DatabaseBrowser_QListView(self, self.__model, not self.__engine.parameters.databaseReadOnly)
-		self.Database_Browser_Widget_gridLayout.addWidget(self.Database_Browser_listView, 0, 0)
-		self.__view = self.Database_Browser_listView
-		self.__view.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__view_addActions()
+		self.Database_Browser_stackedWidget = QStackedWidget(self)
+		self.Database_Browser_gridLayout.addWidget(self.Database_Browser_stackedWidget)
+
+		self.__thumbnailsView = Thumbnails_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
+		self.__thumbnailsView_addActions()
 		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
 		if state:
-			self.__view.listViewIconSize = listViewIconSize
+			self.__thumbnailsView.listViewIconSize = listViewIconSize
+		self.Database_Browser_stackedWidget.addWidget(self.__thumbnailsView)
+
+		self.__columnsView = Columns_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.Database_Browser_stackedWidget.addWidget(self.__columnsView)
+
+		self.__detailsView = Details_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.Database_Browser_stackedWidget.addWidget(self.__detailsView)
+
+		self.Thumbnails_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiThumbnailsViewImage)))
+		self.Columns_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiColumnsViewImage)))
+		self.Details_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiDetailsViewImage)))
+
+		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
+		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
+		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1249,11 +1435,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.Thumbnails_Size_horizontalSlider.setValue(self.__view.listViewIconSize)
-		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
-		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
-
 		# Signals / Slots.
+		self.Thumbnails_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 0))
+		self.Columns_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 1))
+		self.Details_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 2))
+
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
@@ -1336,9 +1522,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				ids = activeIblSetsIds.split(self.__settingsSeparator)
 			else:
 				ids = [activeIblSetsIds]
-			self.__view.modelSelection = [int(id) for id in ids]
+			self.__thumbnailsView.modelSelection = [int(id) for id in ids]
 
-		self.__view.restoreModelSelection()
+		self.__thumbnailsView.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -1351,30 +1537,30 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection))
+		self.__thumbnailsView.storeModelSelection()
+		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__thumbnailsView.modelSelection))
 		return True
 
 	@core.executionTrace
-	def __view_addActions(self):
+	def __thumbnailsView_addActions(self):
 		"""
 		This method sets the View actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__view_addContentAction__triggered))
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__view_addIblSetAction__triggered))
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__view_removeIblSetsAction__triggered))
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__view_updateIblSetsLocationsAction__triggered))
+			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__thumbnailsView_addContentAction__triggered))
+			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__thumbnailsView_addIblSetAction__triggered))
+			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__thumbnailsView_removeIblSetsAction__triggered))
+			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__thumbnailsView_updateIblSetsLocationsAction__triggered))
 
-			separatorAction = QAction(self.__view)
+			separatorAction = QAction(self.__thumbnailsView)
 			separatorAction.setSeparator(True)
-			self.__view.addAction(separatorAction)
+			self.__thumbnailsView.addAction(separatorAction)
 		else:
 			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def __view_addContentAction__triggered(self, checked):
+	def __thumbnailsView_addContentAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
 
@@ -1385,7 +1571,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addContent_ui()
 
 	@core.executionTrace
-	def __view_addIblSetAction__triggered(self, checked):
+	def __thumbnailsView_addIblSetAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
 
@@ -1396,7 +1582,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addIblSet_ui()
 
 	@core.executionTrace
-	def __view_removeIblSetsAction__triggered(self, checked):
+	def __thumbnailsView_removeIblSetsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
 
@@ -1407,7 +1593,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.removeIblSets_ui()
 
 	@core.executionTrace
-	def __view_updateIblSetsLocationsAction__triggered(self, checked):
+	def __thumbnailsView_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
 
@@ -1425,9 +1611,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Thumbnails size. ( Integer )
 		"""
 
-		self.__view.listViewIconSize = value
+		self.__thumbnailsView.listViewIconSize = value
 
-		self.__view._DatabaseBrowser_QListView__setDefaultUiState()
+		self.__thumbnailsView._Thumbnails_QListView__setDefaultUiState()
 
 		# Storing settings key.
 		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("listViewIconSize", value))
@@ -1756,7 +1942,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected nodes. ( Dictionary )
 		"""
 
-		return self.__view.getSelectedNodes()
+		return self.__thumbnailsView.getSelectedNodes()
 
 	@core.executionTrace
 	def getSelectedIblSetsNodes(self):

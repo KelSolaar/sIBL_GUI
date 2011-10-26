@@ -1,0 +1,184 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+**views.py**
+
+**Platform:**
+	Windows, Linux, Mac Os X.
+
+**Description:**
+	This module defines the Application views classes.
+
+**Others:**
+
+"""
+
+#***********************************************************************************************
+#***	External imports.
+#***********************************************************************************************
+import logging
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+#***********************************************************************************************
+#***	Internal imports.
+#***********************************************************************************************
+import foundations.core as core
+import foundations.exceptions
+import umbra.ui.views
+from umbra.globals.constants import Constants
+
+#***********************************************************************************************
+#***	Module attributes.
+#***********************************************************************************************
+__author__ = "Thomas Mansencal"
+__copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
+__license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
+__maintainer__ = "Thomas Mansencal"
+__email__ = "thomas.mansencal@gmail.com"
+__status__ = "Production"
+
+__all__ = ["LOGGER", "Abstract_QListView"]
+
+LOGGER = logging.getLogger(Constants.logger)
+
+#***********************************************************************************************
+#***	Module classes and definitions.
+#***********************************************************************************************
+class Abstract_QListView(umbra.ui.views.Abstract_QListView):
+	"""
+	This class used as base by others Application views classes.
+	"""
+
+	@core.executionTrace
+	def __init__(self, parent=None, model=None, readOnly=False):
+		"""
+		This method initializes the class.
+
+		:param parent: Object parent. ( QObject )
+		:param model: Model. ( QObject )
+		:param readOnly: View is read only. ( Boolean )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		umbra.ui.views.Abstract_QListView.__init__(self, parent, readOnly)
+
+		# --- Setting class attributes. ---
+		self.__modelSelection = []
+
+		self.setModel(model)
+
+		Abstract_QListView.__initializeUi(self)
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def modelSelection(self):
+		"""
+		This method is the property for **self.__modelSelection** attribute.
+
+		:return: self.__modelSelection. ( Dictionary )
+		"""
+
+		return self.__modelSelection
+
+	@modelSelection.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self, value):
+		"""
+		This method is the setter method for **self.__modelSelection** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		if value:
+			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("modelSelection", value)
+		self.__modelSelection = value
+
+	@modelSelection.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def modelSelection(self):
+		"""
+		This method is the deleter method for **self.__modelSelection** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def setModel(self, model):
+		"""
+		This method reimplements the **QListView.setModel** method.
+		
+		:param model: Model to set. ( QObject )
+		"""
+
+		if not model:
+			return
+
+		umbra.ui.views.Abstract_QListView.setModel(self, model)
+
+		# Signals / Slots.
+		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
+		self.model().modelReset.connect(self.__model__modelReset)
+
+	@core.executionTrace
+	def __model__modelAboutToBeReset(self):
+		"""
+		This method is triggered when the Model is about to be reset.
+		"""
+
+		self.storeModelSelection()
+
+	@core.executionTrace
+	def __model__modelReset(self):
+		"""
+		This method is triggered when the Model is changed.
+		"""
+
+		self.restoreModelSelection()
+
+	@core.executionTrace
+	def storeModelSelection(self):
+		"""
+		This method stores the Model selection.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Storing Model selection!")
+
+		self.__modelSelection = []
+		for item in self.getSelectedNodes().keys():
+			self.__modelSelection.append(item.id.value)
+		return True
+
+	@core.executionTrace
+	def restoreModelSelection(self):
+		"""
+		This method restores the Model selection.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Restoring Model selection!")
+
+		if not self.__modelSelection:
+			return
+
+		indexes = []
+		for i in range(self.model().rowCount()):
+			index = self.model().index(i)
+			node = self.model().getNode(index)
+			node.id.value in self.__modelSelection and indexes.append(index)
+
+		if self.selectionModel():
+			self.selectionModel().clear()
+			for index in indexes:
+				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select)
+		return True
