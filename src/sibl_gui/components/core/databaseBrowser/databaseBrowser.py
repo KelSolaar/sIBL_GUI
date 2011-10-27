@@ -767,10 +767,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreCollectionsOutliner = None
 
 		self.__model = None
+		self.__views = None
 		self.__thumbnailsView = None
 		self.__columnsView = None
 		self.__detailsView = None
-		self.__detailsHeaders = OrderedDict([("Author", "author"),
+		self.__detailsHeaders = OrderedDict([("Ibl Set", "title"),
+										("Author", "author"),
 										("Shot Location", "location"),
 										("Latitude", "latitude"),
 										("Longitude", "longitude"),
@@ -1203,6 +1205,36 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
+	def views(self):
+		"""
+		This method is the property for **self.__views** attribute.
+
+		:return: self.__views. ( Tuple )
+		"""
+
+		return self.__views
+
+	@views.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def views(self, value):
+		"""
+		This method is the setter method for **self.__views** attribute.
+
+		:param value: Attribute value. ( Tuple )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "views"))
+
+	@views.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def views(self):
+		"""
+		This method is the deleter method for **self.__views** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
+
+	@property
 	def thumbnailsView(self):
 		"""
 		This method is the property for **self.__thumbnailsView** attribute.
@@ -1404,18 +1436,25 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Database_Browser_gridLayout.addWidget(self.Database_Browser_stackedWidget)
 
 		self.__thumbnailsView = Thumbnails_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__thumbnailsView.setObjectName("Thumbnails_listView")
 		self.__thumbnailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
-		self.__thumbnailsView_addActions()
 		listViewIconSize, state = self.__settings.getKey(self.__settingsSection, "listViewIconSize").toInt()
 		if state:
 			self.__thumbnailsView.listViewIconSize = listViewIconSize
 		self.Database_Browser_stackedWidget.addWidget(self.__thumbnailsView)
 
 		self.__columnsView = Columns_QListView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__columnsView.setObjectName("Columns_listView")
+		self.__columnsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Database_Browser_stackedWidget.addWidget(self.__columnsView)
 
 		self.__detailsView = Details_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.__detailsView.setObjectName("Details_treeView")
+		self.__detailsView.setContextMenuPolicy(Qt.ActionsContextMenu)
 		self.Database_Browser_stackedWidget.addWidget(self.__detailsView)
+
+		self.__views = (self.__thumbnailsView, self.__columnsView, self.__detailsView)
+		self.__views_addActions()
 
 		self.Thumbnails_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiThumbnailsViewImage)))
 		self.Columns_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiColumnsViewImage)))
@@ -1436,9 +1475,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
-		self.Thumbnails_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 0))
-		self.Columns_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 1))
-		self.Details_View_pushButton.clicked.connect(functools.partial(self.Database_Browser_stackedWidget.setCurrentIndex, 2))
+		self.Thumbnails_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 0))
+		self.Columns_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 1))
+		self.Details_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 2))
 
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
@@ -1542,25 +1581,27 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return True
 
 	@core.executionTrace
-	def __thumbnailsView_addActions(self):
+	def __views_addActions(self):
 		"""
-		This method sets the View actions.
+		This method sets the Views actions.
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
-			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__thumbnailsView_addContentAction__triggered))
-			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__thumbnailsView_addIblSetAction__triggered))
-			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__thumbnailsView_removeIblSetsAction__triggered))
-			self.__thumbnailsView.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__thumbnailsView_updateIblSetsLocationsAction__triggered))
-
+			addContentAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__views_addContentAction__triggered) 
+			addIblSetAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__views_addIblSetAction__triggered)
+			removeIblSetsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__views_removeIblSetsAction__triggered)
+			updateIblSetsLocationsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__views_updateIblSetsLocationsAction__triggered)
 			separatorAction = QAction(self.__thumbnailsView)
 			separatorAction.setSeparator(True)
-			self.__thumbnailsView.addAction(separatorAction)
+			
+			for view in self.__views:
+				for action in (addContentAction, addIblSetAction, removeIblSetsAction, updateIblSetsLocationsAction):
+					view.addAction(action)
 		else:
 			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
-	def __thumbnailsView_addContentAction__triggered(self, checked):
+	def __views_addContentAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Content ...'** action.
 
@@ -1571,7 +1612,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addContent_ui()
 
 	@core.executionTrace
-	def __thumbnailsView_addIblSetAction__triggered(self, checked):
+	def __views_addIblSetAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...'** action.
 
@@ -1582,7 +1623,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.addIblSet_ui()
 
 	@core.executionTrace
-	def __thumbnailsView_removeIblSetsAction__triggered(self, checked):
+	def __views_removeIblSetsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...'** action.
 
@@ -1593,7 +1634,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.removeIblSets_ui()
 
 	@core.executionTrace
-	def __thumbnailsView_updateIblSetsLocationsAction__triggered(self, checked):
+	def __views_updateIblSetsLocationsAction__triggered(self, checked):
 		"""
 		This method is triggered by **'Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...'** action.
 
@@ -1602,6 +1643,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		return self.updateIblSetsLocation_ui()
+
+	@core.executionTrace
+	def __views_pushButtons__clicked(self, index, checked):
+		"""
+		This method is triggered when **\*_View_pushButton** Widget is clicked.
+
+		:param index: Button index. ( Integer )
+		:param checked: Checked state. ( Boolean )
+		"""
+
+		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
+		self.Database_Browser_stackedWidget.setCurrentIndex(index)
 
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
