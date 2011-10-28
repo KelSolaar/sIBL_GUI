@@ -291,6 +291,27 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 		self.endResetModel()
 		return True
 
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	def sort(self, column, order=Qt.AscendingOrder):
+		"""
+		This method reimplements the :meth:`umbra.ui.models.GraphModel.sort` method.
+		
+		:param column: Column. ( Integer )
+		:param order: Order. ( Qt.SortOrder )
+		"""
+
+		if column > self.columnCount():
+			return
+
+		self.beginResetModel()
+		if column == 0:
+			self.rootNode.sortChildren(attribute="title", reverseOrder=order)
+		else:
+			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]], reverseOrder=order)
+		self.endResetModel()
+
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
 	This class is used to display Database Ibl Sets as thumbnails.
@@ -450,7 +471,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
-	This class is used to display Database Ibl Sets columns.
+	This class is used to display Database Ibl Sets in columns.
 	"""
 
 	@core.executionTrace
@@ -481,6 +502,7 @@ class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.setAutoScroll(True)
 		self.setResizeMode(QListView.Adjust)
 		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.setDragDropMode(QAbstractItemView.DragOnly)
 
 		self.__setDefaultUiState()
 
@@ -492,9 +514,9 @@ class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 		LOGGER.debug("> Setting default View state!")
 
-class Details_QTreeView(QTreeView):
+class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
-	This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Ibl Sets.
+	This class is used to display Database Ibl Sets columns.
 	"""
 
 	@core.executionTrace
@@ -509,13 +531,10 @@ class Details_QTreeView(QTreeView):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QTreeView.__init__(self, parent)
+		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly)
 
 		# --- Setting class attributes. ---
-		self.__readOnly = readOnly
-
-		self.setModel(model)
-		self.__modelSelection = []
+		self.__treeViewIndentation = 15
 
 		Details_QTreeView.__initializeUi(self)
 
@@ -523,97 +542,51 @@ class Details_QTreeView(QTreeView):
 	#***	Attributes properties.
 	#***********************************************************************************************
 	@property
-	def readOnly(self):
+	def treeViewIndentation(self):
 		"""
-		This method is the property for **self.__readOnly** attribute.
+		This method is the property for **self.__treeViewIndentation** attribute.
 
-		:return: self.__readOnly. ( Boolean )
+		:return: self.__treeViewIndentation. ( Integer )
 		"""
 
-		return self.__readOnly
+		return self.__treeViewIndentation
 
-	@readOnly.setter
+	@treeViewIndentation.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def readOnly(self, value):
+	def treeViewIndentation(self, value):
 		"""
-		This method is the setter method for **self.__readOnly** attribute.
+		This method is the setter method for **self.__treeViewIndentation** attribute.
 
-		:param value: Attribute value. ( Boolean )
+		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "readOnly"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
-	@readOnly.deleter
+	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def readOnly(self):
+	def treeViewIndentation(self):
 		"""
-		This method is the deleter method for **self.__readOnly** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "readOnly"))
-
-	@property
-	def modelSelection(self):
-		"""
-		This method is the property for **self.__modelSelection** attribute.
-
-		:return: self.__modelSelection. ( Dictionary )
+		This method is the deleter method for **self.__treeViewIndentation** attribute.
 		"""
 
-		return self.__modelSelection
-
-	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self, value):
-		"""
-		This method is the setter method for **self.__modelSelection** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		if value:
-			assert type(value) in (tuple, list), "'{0}' attribute: '{1}' type is not 'tuple' or 'list'!".format("modelSelection", value)
-		self.__modelSelection = value
-
-	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
-		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
-	@core.executionTrace
-	def setModel(self, model):
-		"""
-		This method reimplements the **QTreeView.setModel** method.
-		
-		:param model: Model to set. ( QObject )
-		"""
-
-		if not model:
-			return
-
-		QTreeView.setModel(self, model)
-
-		# Signals / Slots.
-		self.model().modelAboutToBeReset.connect(self.__model__modelAboutToBeReset)
-		self.model().modelReset.connect(self.__model__modelReset)
-
 	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
 		"""
 
-		self.__setDefaultUiState()
+		self.setAutoScroll(True)
+		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
+		self.setIndentation(self.__treeViewIndentation)
+		self.setDragDropMode(QAbstractItemView.DragOnly)
+		self.setSortingEnabled(True)
 
-		# Signals / Slots.
-		self.doubleClicked.connect(self.__QTreeView__doubleClicked)
+		self.__setDefaultUiState()
 
 	@core.executionTrace
 	def __setDefaultUiState(self):
@@ -623,7 +596,6 @@ class Details_QTreeView(QTreeView):
 
 		LOGGER.debug("> Setting default View state!")
 
-		self.expandAll()
 		self.sortByColumn(0, Qt.AscendingOrder)
 
 		if not self.model():
@@ -631,92 +603,6 @@ class Details_QTreeView(QTreeView):
 
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
-	def __QTreeView__doubleClicked(self, index):
-		"""
-		This method defines the behavior when the Widget is double clicked.
-
-		:param index: Clicked Model item index. ( QModelIndex )
-		"""
-
-		if not self.readOnly:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
-
-	@core.executionTrace
-	def __model__modelAboutToBeReset(self):
-		"""
-		This method is triggered when the Model is about to be reset.
-		"""
-
-		self.storeModelSelection()
-
-	@core.executionTrace
-	def __model__modelReset(self):
-		"""
-		This method is triggered when the Model is changed.
-		"""
-
-		self.restoreModelSelection()
-		self.__setDefaultUiState()
-
-	@core.executionTrace
-	def getSelectedNodes(self):
-		"""
-		This method returns the selected items.
-
-		:return: View selected items. ( Dictionary )
-		"""
-
-		nodes = {}
-		for index in self.selectedIndexes():
-			node = self.model().getNode(index)
-			if not node in nodes.keys():
-				nodes[node] = []
-			attribute = self.model().getAttribute(node, index.column())
-			attribute and nodes[node].append(attribute)
-		return nodes
-
-	@core.executionTrace
-	def storeModelSelection(self):
-		"""
-		This method stores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Storing Model selection!")
-
-		self.__modelSelection = []
-		for item in self.getSelectedNodes().keys():
-			self.__modelSelection.append(item.id.value)
-		return True
-
-	@core.executionTrace
-	def restoreModelSelection(self):
-		"""
-		This method restores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Restoring Model selection!")
-
-		if not self.__modelSelection:
-			return
-
-		indexes = []
-		for i in range(self.model().rowCount()):
-			index = self.model().index(i)
-			iblSetNode = self.model().getNode(index)
-			iblSetNode.id.value in self.__modelSelection and indexes.append(index)
-
-		if self.selectionModel():
-			self.selectionModel().clear()
-			for index in indexes:
-				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select)
-		return True
 
 class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
@@ -1554,19 +1440,24 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Database Ibl Sets wizard and Ibl Sets integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "activeIblSets").toString())
-		LOGGER.debug("> Stored '{0}' active Ibl Sets ids selection: '{1}'.".format(self.__class__.__name__, activeIblSetsIds))
-		if activeIblSetsIds:
-			if self.__settingsSeparator in activeIblSetsIds:
-				ids = activeIblSetsIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeIblSetsIds]
-			self.__thumbnailsView.modelSelection = [int(id) for id in ids]
+		activeView, state = self.__settings.getKey(self.__settingsSection, "activeView").toInt()
+		state and self.setActiveViewIndex(activeView)
 
-		self.__thumbnailsView.restoreModelSelection()
+		for view in self.__views:
+			viewName = view.objectName()
+			viewSelectedIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(viewName)).toString())
+			LOGGER.debug("> '{0}' View storedselected Ibl Sets ids: '{1}'.".format(viewName, viewSelectedIblSetsIds))
+			if viewSelectedIblSetsIds:
+				if self.__settingsSeparator in viewSelectedIblSetsIds:
+					ids = viewSelectedIblSetsIds.split(self.__settingsSeparator)
+				else:
+					ids = [viewSelectedIblSetsIds]
+				view.modelSelection["Default"] = [int(id) for id in ids]
+			view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onClose(self):
 		"""
 		This method is called on Framework close.
@@ -1576,8 +1467,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-		self.__thumbnailsView.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeIblSets", self.__settingsSeparator.join(str(id) for id in self.__thumbnailsView.modelSelection))
+		for view in self.__views:
+			view.storeModelSelection()
+			self.__settings.setKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(view.objectName()), self.__settingsSeparator.join(str(id) for id in view.modelSelection["Default"]))
+
+		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
+
 		return True
 
 	@core.executionTrace
@@ -1587,13 +1482,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
-			addContentAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__views_addContentAction__triggered) 
+			addContentAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Content ...", slot=self.__views_addContentAction__triggered)
 			addIblSetAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__views_addIblSetAction__triggered)
 			removeIblSetsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__views_removeIblSetsAction__triggered)
 			updateIblSetsLocationsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__views_updateIblSetsLocationsAction__triggered)
 			separatorAction = QAction(self.__thumbnailsView)
 			separatorAction.setSeparator(True)
-			
+
 			for view in self.__views:
 				for action in (addContentAction, addIblSetAction, removeIblSetsAction, updateIblSetsLocationsAction):
 					view.addAction(action)
@@ -1750,6 +1645,54 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__engine.processEvents()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getActiveView(self):
+		"""
+		This method returns the current active View.
+
+		:return: Current active View. ( QWidget )
+		"""
+
+		return self.Database_Browser_stackedWidget.currentWidget()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getActiveViewIndex(self):
+		"""
+		This method returns the current active View index.
+
+		:return: Current active View index. ( Integer )
+		"""
+
+		return self.Database_Browser_stackedWidget.currentIndex()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setActiveView(self, view):
+		"""
+		This method sets the active View to given View.
+
+		:param view: View. ( QWidget )
+		:return: Method success. ( Boolean )
+		"""
+
+		self.Database_Browser_stackedWidget.setCurrentIndex(self.Database_Browser_stackedWidget.indexOf(view))
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setActiveViewIndex(self, index):
+		"""
+		This method sets the active View to given index.
+
+		:param index: Index. ( Integer )
+		:return: Method success. ( Boolean )
+		"""
+
+		self.Database_Browser_stackedWidget.setCurrentIndex(index)
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1995,7 +1938,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected nodes. ( Dictionary )
 		"""
 
-		return self.__thumbnailsView.getSelectedNodes()
+		return self.getActiveView().getSelectedNodes()
 
 	@core.executionTrace
 	def getSelectedIblSetsNodes(self):
