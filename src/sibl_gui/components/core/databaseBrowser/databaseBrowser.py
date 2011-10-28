@@ -612,6 +612,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 	# Custom signals definitions.
 	modelRefresh = pyqtSignal()
+	activeViewChanged = pyqtSignal(int)
 
 	@core.executionTrace
 	def __init__(self, parent=None, name=None, *args, **kwargs):
@@ -654,6 +655,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__model = None
 		self.__views = None
+		self.__viewsPushButtons = None
 		self.__thumbnailsView = None
 		self.__columnsView = None
 		self.__detailsView = None
@@ -1121,6 +1123,36 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "views"))
 
 	@property
+	def viewsPushButtons(self):
+		"""
+		This method is the property for **self.__viewsPushButtons** attribute.
+
+		:return: self.__viewsPushButtons. ( Dictionary )
+		"""
+
+		return self.__viewsPushButtons
+
+	@viewsPushButtons.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def viewsPushButtons(self, value):
+		"""
+		This method is the setter method for **self.__viewsPushButtons** attribute.
+
+		:param value: Attribute value. ( Dictionary )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "viewsPushButtons"))
+
+	@viewsPushButtons.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def viewsPushButtons(self):
+		"""
+		This method is the deleter method for **self.__viewsPushButtons** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "viewsPushButtons"))
+
+	@property
 	def thumbnailsView(self):
 		"""
 		This method is the property for **self.__thumbnailsView** attribute.
@@ -1341,10 +1373,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__views = (self.__thumbnailsView, self.__columnsView, self.__detailsView)
 		self.__views_addActions()
+		self.__viewsPushButtons = {0 : (self.Thumbnails_View_pushButton, self.__uiThumbnailsViewImage),
+									1 : (self.Columns_View_pushButton, self.__uiColumnsViewImage),
+									2 : (self.Details_View_pushButton, self.__uiDetailsViewImage)}
 
-		self.Thumbnails_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiThumbnailsViewImage)))
-		self.Columns_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiColumnsViewImage)))
-		self.Details_View_pushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiDetailsViewImage)))
+		for index, data in self.__viewsPushButtons.items():
+			viewPushButton, image = data
+			viewPushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, image)))
 
 		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
@@ -1361,9 +1396,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Ibl Sets continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
-		self.Thumbnails_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 0))
-		self.Columns_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 1))
-		self.Details_View_pushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, 2))
+		self.activeViewChanged.connect(self.__views__activeViewChanged)
+		for index, data in self.__viewsPushButtons.items():
+			viewPushButton, image = data
+			viewPushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, index))
 
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
@@ -1548,8 +1584,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
-		self.Database_Browser_stackedWidget.setCurrentIndex(index)
+		self.setActiveViewIndex(index)
 
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
@@ -1593,6 +1628,19 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		dbCommon.commit(self.__coreDb.dbSession)
 		self.modelRefresh.emit()
+
+	@core.executionTrace
+	def __views__activeViewChanged(self, index):
+		"""
+		This method is triggered when the active View has changed.
+
+		:param index: Current active View. ( integer )
+		"""
+
+		self.Database_Browser_Thumbnails_Slider_frame.setVisible(not index)
+		for viewIndex, data in self.__viewsPushButtons.items():
+			viewPushButton, image = data
+			viewPushButton.setChecked(viewIndex == index and True or False)
 
 	@core.executionTrace
 	def __coreDb_database__changed(self):
@@ -1678,7 +1726,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.Database_Browser_stackedWidget.setCurrentIndex(self.Database_Browser_stackedWidget.indexOf(view))
+		index = self.Database_Browser_stackedWidget.indexOf(view)
+		self.Database_Browser_stackedWidget.setCurrentIndex()
+		self.activeViewChanged.emit(index)
 		return True
 
 	@core.executionTrace
@@ -1692,6 +1742,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.Database_Browser_stackedWidget.setCurrentIndex(index)
+		self.activeViewChanged.emit(index)
 		return True
 
 	@core.executionTrace

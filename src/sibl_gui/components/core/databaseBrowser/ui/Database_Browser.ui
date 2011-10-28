@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>Database_Browser_Widget</class>
  <widget class="QWidget" name="Database_Browser_Widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>46</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Database Browser</string>
   </property>
@@ -125,6 +133,9 @@
           <property name="text">
            <string/>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -132,12 +143,18 @@
           <property name="text">
            <string/>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="Details_View_pushButton">
           <property name="text">
            <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
