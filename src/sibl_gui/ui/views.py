@@ -39,7 +39,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Abstract_QListView"]
+__all__ = ["LOGGER", "storeDefaultViewModelSelection", "restoreDefaultViewModelSelection", "Abstract_QListView", "Abstract_QTreeView"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
