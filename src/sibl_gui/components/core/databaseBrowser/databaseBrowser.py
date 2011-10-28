@@ -288,6 +288,7 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 
 		self.beginResetModel()
 		self.rootNode = rootNode
+		self.rootNode.sortChildren(attribute="title")
 		self.endResetModel()
 		return True
 
@@ -458,6 +459,9 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 
 		self.__setDefaultUiState()
 
+		# Signals / Slots.
+		self.model().modelReset.connect(self.__setDefaultUiState)
+
 	@core.executionTrace
 	def __setDefaultUiState(self):
 		"""
@@ -505,6 +509,9 @@ class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.setDragDropMode(QAbstractItemView.DragOnly)
 
 		self.__setDefaultUiState()
+		
+		# Signals / Slots.
+		self.model().modelReset.connect(self.__setDefaultUiState)
 
 	@core.executionTrace
 	def __setDefaultUiState(self):
@@ -587,6 +594,9 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		self.setSortingEnabled(True)
 
 		self.__setDefaultUiState()
+		
+		# Signals / Slots.
+		self.model().modelReset.connect(self.__setDefaultUiState)
 
 	@core.executionTrace
 	def __setDefaultUiState(self):
@@ -595,8 +605,6 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		"""
 
 		LOGGER.debug("> Setting default View state!")
-
-		self.sortByColumn(0, Qt.AscendingOrder)
 
 		if not self.model():
 			return
