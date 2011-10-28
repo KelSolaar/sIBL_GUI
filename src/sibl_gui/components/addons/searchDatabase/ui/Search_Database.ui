@@ -74,33 +74,8 @@
              </layout>
             </widget>
            </item>
-           <item row="1" column="1" colspan="3">
+           <item row="1" column="0" colspan="4">
             <layout class="QHBoxLayout" name="Search_Database_horizontalLayout"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="Search_Database_label">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
            </item>
           </layout>
          </widget>
@@ -231,15 +206,15 @@
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
-             <property name="displayFormat">
-              <string>h:mm</string>
-             </property>
              <property name="time">
               <time>
                <hour>23</hour>
                <minute>59</minute>
                <second>0</second>
               </time>
+             </property>
+             <property name="displayFormat">
+              <string>h:mm</string>
              </property>
             </widget>
            </item>

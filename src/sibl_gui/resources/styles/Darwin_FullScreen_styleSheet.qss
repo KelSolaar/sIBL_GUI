@@ -452,7 +452,7 @@ QToolTip {
 }
 
 /* Addon Component "Search Database". */
-#Clear_Field_button {
+#Search_Field_button, #Clear_Field_button {
 	background-color: rgb(40, 40, 40);
 }
 

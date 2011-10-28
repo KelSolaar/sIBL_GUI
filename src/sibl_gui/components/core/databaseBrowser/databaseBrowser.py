@@ -45,6 +45,7 @@ from foundations.walkers import OsWalker
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
+from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
 
 #***********************************************************************************************
 #***	Module attributes.
@@ -509,7 +510,7 @@ class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 		self.setDragDropMode(QAbstractItemView.DragOnly)
 
 		self.__setDefaultUiState()
-		
+
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
@@ -594,7 +595,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		self.setSortingEnabled(True)
 
 		self.__setDefaultUiState()
-		
+
 		# Signals / Slots.
 		self.model().modelReset.connect(self.__setDefaultUiState)
 
@@ -644,6 +645,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiThumbnailsViewImage = "Thumbnails_View.png"
 		self.__uiColumnsViewImage = "Columns_View.png"
 		self.__uiDetailsViewImage = "Details_View.png"
+		self.__uiSearchImage = "Search_Glass.png"
+		self.__uiSearchClickedImage = "Search_Glass_Clicked.png"
+		self.__uiClearImage = "Search_Clear.png"
+		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
 		self.__dockArea = 8
@@ -709,6 +714,216 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+
+	@property
+	def uiThumbnailsViewImage(self):
+		"""
+		This method is the property for **self.__uiThumbnailsViewImage** attribute.
+
+		:return: self.__uiThumbnailsViewImage. ( String )
+		"""
+
+		return self.__uiThumbnailsViewImage
+
+	@uiThumbnailsViewImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiThumbnailsViewImage(self, value):
+		"""
+		This method is the setter method for **self.__uiThumbnailsViewImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiThumbnailsViewImage"))
+
+	@uiThumbnailsViewImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiThumbnailsViewImage(self):
+		"""
+		This method is the deleter method for **self.__uiThumbnailsViewImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiThumbnailsViewImage"))
+
+	@property
+	def uiColumnsViewImage(self):
+		"""
+		This method is the property for **self.__uiColumnsViewImage** attribute.
+
+		:return: self.__uiColumnsViewImage. ( String )
+		"""
+
+		return self.__uiColumnsViewImage
+
+	@uiColumnsViewImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiColumnsViewImage(self, value):
+		"""
+		This method is the setter method for **self.__uiColumnsViewImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiColumnsViewImage"))
+
+	@uiColumnsViewImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiColumnsViewImage(self):
+		"""
+		This method is the deleter method for **self.__uiColumnsViewImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiColumnsViewImage"))
+
+	@property
+	def uiDetailsViewImage(self):
+		"""
+		This method is the property for **self.__uiDetailsViewImage** attribute.
+
+		:return: self.__uiDetailsViewImage. ( String )
+		"""
+
+		return self.__uiDetailsViewImage
+
+	@uiDetailsViewImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDetailsViewImage(self, value):
+		"""
+		This method is the setter method for **self.__uiDetailsViewImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDetailsViewImage"))
+
+	@uiDetailsViewImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiDetailsViewImage(self):
+		"""
+		This method is the deleter method for **self.__uiDetailsViewImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDetailsViewImage"))
+
+	@property
+	def uiSearchImage(self):
+		"""
+		This method is the property for **self.__uiSearchImage** attribute.
+
+		:return: self.__uiSearchImage. ( String )
+		"""
+
+		return self.__uiSearchImage
+
+	@uiSearchImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchImage(self, value):
+		"""
+		This method is the setter method for **self.__uiSearchImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSearchImage"))
+
+	@uiSearchImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchImage(self):
+		"""
+		This method is the deleter method for **self.__uiSearchImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchImage"))
+
+	@property
+	def uiSearchClickedImage(self):
+		"""
+		This method is the property for **self.__uiSearchClickedImage** attribute.
+
+		:return: self.__uiSearchClickedImage. ( String )
+		"""
+
+		return self.__uiSearchClickedImage
+
+	@uiSearchClickedImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchClickedImage(self, value):
+		"""
+		This method is the setter method for **self.__uiSearchClickedImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSearchClickedImage"))
+
+	@uiSearchClickedImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchClickedImage(self):
+		"""
+		This method is the deleter method for **self.__uiSearchClickedImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchClickedImage"))
+
+	@property
+	def uiClearImage(self):
+		"""
+		This method is the property for **self.__uiClearImage** attribute.
+
+		:return: self.__uiClearImage. ( String )
+		"""
+
+		return self.__uiClearImage
+
+	@uiClearImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearImage(self, value):
+		"""
+		This method is the setter method for **self.__uiClearImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiClearImage"))
+
+	@uiClearImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearImage(self):
+		"""
+		This method is the deleter method for **self.__uiClearImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiClearImage"))
+
+	@property
+	def uiClearClickedImage(self):
+		"""
+		This method is the property for **self.__uiClearClickedImage** attribute.
+
+		:return: self.__uiClearClickedImage. ( String )
+		"""
+
+		return self.__uiClearClickedImage
+
+	@uiClearClickedImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedImage(self, value):
+		"""
+		This method is the setter method for **self.__uiClearClickedImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiClearClickedImage"))
+
+	@uiClearClickedImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiClearClickedImage(self):
+		"""
+		This method is the deleter method for **self.__uiClearClickedImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiClearClickedImage"))
 
 	@property
 	def uiLargestSizeImage(self):
@@ -1389,9 +1604,17 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			viewPushButton, image = data
 			viewPushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, image)))
 
+		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiSearchClickedImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiClearImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
+		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
+
 		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
+
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:

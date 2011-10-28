@@ -79,6 +79,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__uiResourcesDirectory = "resources"
 		self.__uiSearchImage = "Search_Glass.png"
+		self.__uiSearchClickedImage = "Search_Glass_Clicked.png"
 		self.__uiClearImage = "Search_Clear.png"
 		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
 		self.__dockArea = 2
@@ -92,12 +93,12 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__completer = None
 		self.__completerVisibleItemsCount = 16
 
-		self.__tagsCloudField = "In tags cloud "
-		self.__databaseFields = (("In names", "title"),
-								("In authors", "author"),
-								("In links", "link"),
-								("In locations", "location"),
-								("In comments", "comment"),
+		self.__tagsCloudField = "In Tags Cloud "
+		self.__databaseFields = (("In Names", "title"),
+								("In Authors", "author"),
+								("In Links", "link"),
+								("In Locations", "location"),
+								("In Comments", "comment"),
 								(self.__tagsCloudField, "comment"),)
 
 		self.__cloudExcludedTags = ("^a$", "^and$", "^by$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
@@ -164,6 +165,36 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchImage"))
+
+	@property
+	def uiSearchClickedImage(self):
+		"""
+		This method is the property for **self.__uiSearchClickedImage** attribute.
+
+		:return: self.__uiSearchClickedImage. ( String )
+		"""
+
+		return self.__uiSearchClickedImage
+
+	@uiSearchClickedImage.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchClickedImage(self, value):
+		"""
+		This method is the setter method for **self.__uiSearchClickedImage** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSearchClickedImage"))
+
+	@uiSearchClickedImage.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def uiSearchClickedImage(self):
+		"""
+		This method is the deleter method for **self.__uiSearchClickedImage** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSearchClickedImage"))
 
 	@property
 	def uiClearImage(self):
@@ -610,12 +641,14 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiClearImage), os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
+		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiSearchClickedImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiClearImage),
+														os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Tags_Cloud_groupBox.hide()
 		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
-		self.Search_Database_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage)))
 		self.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
 
 		self.__completer = QCompleter()
