@@ -289,7 +289,6 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 
 		self.beginResetModel()
 		self.rootNode = rootNode
-		self.rootNode.sortChildren(attribute="title")
 		self.endResetModel()
 		return True
 
@@ -678,7 +677,8 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Latitude", "latitude"),
 										("Longitude", "longitude"),
 										("Shot Date", "date"),
-										("Shot Time", "time")])
+										("Shot Time", "time"),
+										("Comment", "comment")])
 
 		self.__searchContexts = OrderedDict([("Search In Names", "title"),
 								("Search In Authors", "author"),
@@ -1679,7 +1679,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 		searchContextsMenu = QMenu()
 		for context in self.__searchContexts.keys():
-			searchContextsMenu.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context), text="{0} ...".format(context), slot=functools.partial(self.setActiveSearchContext, context)))
+			searchContextsMenu.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context), text="{0} ...".format(context), checkable=True, slot=functools.partial(self.setActiveSearchContext, context)))
 		self.Search_Database_lineEdit.searchActiveLabel.setMenu(searchContextsMenu)
 		self.setActiveSearchContext(self.__activeSearchContext)
 
@@ -1899,7 +1899,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param text: Current text value. ( QString )
 		"""
 
-		self.filterIblsSets(text, "title")
+		self.setIblSets(self.filterIblsSets(str(self.Search_Database_lineEdit.text()), self.__searchContexts[self.__activeSearchContext], not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0))
 
 	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
@@ -2071,10 +2071,12 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method succes. ( Boolean )
 		"""
 
-		print  self.__engine.actionsManager.getCategory("Actions|Umbra|Components|core.databaseBrowser|Search")
+		text = "{0} ...".format(context)
+		for action in  self.__engine.actionsManager.getCategory("Actions|Umbra|Components|core.databaseBrowser|Search").values():
+			action.setChecked(action.text() == text and True or False)
 
 		self.__activeSearchContext = context
-		self.Search_Database_lineEdit.setPlaceholderText("{0} ...".format(context))
+		self.Search_Database_lineEdit.setPlaceholderText(text)
 		return True
 
 	@core.executionTrace
@@ -2316,21 +2318,32 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
 			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable)
+		rootNode.sortChildren(attribute="title")
 		self.__model.initializeModel(rootNode)
 		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def filterIblsSets(self, filter, context):
+	def filterIblsSets(self, pattern, attribute, flags=re.IGNORECASE):
 		"""
 		This method filters the current Collection Ibl Sets.
 		
-		:param filter: Ibl Sets filter. ( String )
+		:param pattern: Ibl Sets filter pattern. ( String )
+		:param attribute: Attribute to filter Ibl Sets on. ( String )
+		:param flags: Regex filtering flags. ( Integer )
+
+		:return: Filtered Ibl Sets. ( List )
 		"""
 
-		print filter
+		try:
+			pattern = re.compile(pattern, flags)
+		except:
+			return
 
-		return True
+		iblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern.pattern)), attribute, flags))]
+		self.Search_Database_lineEdit.completer.setModel(QStringListModel(sorted((value for value in set((getattr(iblSetNode, attribute) for iblSetNode in iblSets if getattr(iblSetNode, attribute)))))))
+
+		return iblSets
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
