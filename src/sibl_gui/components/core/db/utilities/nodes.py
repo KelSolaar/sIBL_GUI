@@ -55,14 +55,15 @@ DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "IblSets", "Templates" : "Temp
 #***********************************************************************************************
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIblSetNode(dbIblSet, parent=None, children=None, flags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled):
+def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled):
 	"""
 	This definition is a class instances factory creating :class:`IblSetNode` classes using given Ibl Set object.
 
 	:param dbIblSet: Database Ibl Set. ( DbIblSet )
 	:param parent: Node parent. ( AbstractNode / AbstractCompositeNode )
 	:param children: Children. ( List )
-	:param flags: Flags. ( Qt.ItemFlag )
+	:param nodeFlags: Node flags. ( Qt.ItemFlag )
+	:param attributeFlags: Attribute flags. ( Qt.ItemFlag )
 	:return: IblSetNode class instance. ( IblSetNode )
 	"""
 
@@ -88,9 +89,9 @@ def getIblSetNode(dbIblSet, parent=None, children=None, flags=Qt.ItemIsSelectabl
 												attributes["comment"].value or Constants.nullObject)}
 
 	for attribute in attributes.values():
-		attribute.flags = flags
+		attribute.flags = attributeFlags
 
-	return IblSetNode(attributes.pop("name").value, parent, children, roles, flags, **attributes)
+	return IblSetNode(attributes.pop("name").value, parent, children, roles, nodeFlags, **attributes)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

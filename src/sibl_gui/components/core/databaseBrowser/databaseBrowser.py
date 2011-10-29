@@ -680,6 +680,13 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										("Shot Date", "date"),
 										("Shot Time", "time")])
 
+		self.__searchContexts = OrderedDict([("Search In Names", "title"),
+								("Search In Authors", "author"),
+								("Search In Links", "link"),
+								("Search In Locations", "location"),
+								("Search In Comments", "comment")])
+		self.__activeSearchContext = "Search In Names"
+
 		self.__databaseBrowserWorkerThread = None
 
 	#***********************************************************************************************
@@ -1496,6 +1503,66 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
+	def searchContexts(self):
+		"""
+		This method is the property for **self.__searchContexts** attribute.
+
+		:return: self.__searchContexts. ( OrderedDict )
+		"""
+
+		return self.__searchContexts
+
+	@searchContexts.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def searchContexts(self, value):
+		"""
+		This method is the setter method for **self.__searchContexts** attribute.
+
+		:param value: Attribute value. ( OrderedDict )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "searchContexts"))
+
+	@searchContexts.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def searchContexts(self):
+		"""
+		This method is the deleter method for **self.__searchContexts** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "searchContexts"))
+
+	@property
+	def activeSearchContext(self):
+		"""
+		This method is the property for **self.__activeSearchContext** attribute.
+
+		:return: self.__activeSearchContext. ( OrderedDict )
+		"""
+
+		return self.__activeSearchContext
+
+	@activeSearchContext.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def activeSearchContext(self, value):
+		"""
+		This method is the setter method for **self.__activeSearchContext** attribute.
+
+		:param value: Attribute value. ( OrderedDict )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "activeSearchContext"))
+
+	@activeSearchContext.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def activeSearchContext(self):
+		"""
+		This method is the deleter method for **self.__activeSearchContext** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "activeSearchContext"))
+
+	@property
 	def databaseBrowserWorkerThread(self):
 		"""
 		This method is the property for **self.__databaseBrowserWorkerThread** attribute.
@@ -1608,13 +1675,17 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 														os.path.join(self.__uiResourcesDirectory, self.__uiSearchClickedImage),
 														os.path.join(self.__uiResourcesDirectory, self.__uiClearImage),
 														os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
-		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
+		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+		searchContextsMenu = QMenu()
+		for context in self.__searchContexts.keys():
+			searchContextsMenu.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Search|Set '{0}' Context ...".format(context), text="{0} ...".format(context), slot=functools.partial(self.setActiveSearchContext, context)))
+		self.Search_Database_lineEdit.searchActiveLabel.setMenu(searchContextsMenu)
+		self.setActiveSearchContext(self.__activeSearchContext)
 
 		self.Thumbnails_Size_horizontalSlider.setValue(self.__thumbnailsView.listViewIconSize)
 		self.Largest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiLargestSizeImage)))
 		self.Smallest_Size_label.setPixmap(QPixmap(os.path.join(self.__uiResourcesDirectory, self.__uiSmallestSizeImage)))
-
 
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
@@ -1632,7 +1703,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			viewPushButton, image = data
 			viewPushButton.clicked.connect(functools.partial(self.__views_pushButtons__clicked, index))
 
+		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
+
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
+
 		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
 
@@ -1818,6 +1892,16 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.setActiveViewIndex(index)
 
 	@core.executionTrace
+	def __Search_Database_lineEdit__textChanged(self, text):
+		"""
+		This method is triggered when **Search_Database_lineEdit** text changes.
+
+		:param text: Current text value. ( QString )
+		"""
+
+		self.filterIblsSets(text, "title")
+
+	@core.executionTrace
 	def __Thumbnails_Size_horizontalSlider__changed(self, value):
 		"""
 		This method scales the View icons.
@@ -1974,6 +2058,23 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Database_Browser_stackedWidget.setCurrentIndex(index)
 		self.activeViewChanged.emit(index)
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setActiveSearchContext(self, context, *args):
+		"""
+		This method sets the active search context.
+
+		:param context: Search context. ( String )
+		:param \*args: Arguments. ( \* )
+		:return: Method succes. ( Boolean )
+		"""
+
+		print  self.__engine.actionsManager.getCategory("Actions|Umbra|Components|core.databaseBrowser|Search")
+
+		self.__activeSearchContext = context
+		self.Search_Database_lineEdit.setPlaceholderText("{0} ...".format(context))
 		return True
 
 	@core.executionTrace
@@ -2190,6 +2291,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Ibl Set location!".format(self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getIblSets(self):
 		"""
 		This method returns Database Ibl Sets.
@@ -2200,19 +2302,38 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [iblSet for iblSet in dbCommon.getIblSets(self.__coreDb.dbSession)]
 
 	@core.executionTrace
-	def setIblSets(self):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def setIblSets(self, iblSets=None):
 		"""
 		This method sets Model Ibl Sets nodes.
+	
+		:param iblSets: Ibl Sets to set. ( List )
+		:return: Method success. ( Boolean )
 		"""
 
-		flags = self.__engine.parameters.databaseReadOnly and Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled
-		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		nodeFlags = self.__engine.parameters.databaseReadOnly and Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled
+		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, flags=flags)
+			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable)
 		self.__model.initializeModel(rootNode)
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def filterIblsSets(self, filter, context):
+		"""
+		This method filters the current Collection Ibl Sets.
+		
+		:param filter: Ibl Sets filter. ( String )
+		"""
+
+		print filter
+
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
 		This method returns the selected nodes.
@@ -2223,6 +2344,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.getActiveView().getSelectedNodes()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSetsNodes(self):
 		"""
 		This method returns the selected Ibl Sets nodes.
@@ -2233,6 +2355,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [item for item in self.getSelectedNodes().keys()]
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSets(self):
 		"""
 		This method returns the selected Ibl Sets.

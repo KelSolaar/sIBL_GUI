@@ -85,6 +85,9 @@
         </property>
         <item>
          <widget class="QPushButton" name="Thumbnails_View_pushButton">
+          <property name="statusTip">
+           <string>Thumbnails View Push Button: Displays Ibl Sets as thumbnails.</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -95,6 +98,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="Columns_View_pushButton">
+          <property name="statusTip">
+           <string>Columns View Push Button: Displays Ibl Sets as a list.</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -105,6 +111,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="Details_View_pushButton">
+          <property name="statusTip">
+           <string>Details View Push Button: Displays Ibl Sets with details.</string>
+          </property>
           <property name="text">
            <string/>
           </property>

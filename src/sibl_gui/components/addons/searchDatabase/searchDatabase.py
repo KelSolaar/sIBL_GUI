@@ -439,18 +439,18 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def completer(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		This method is the property for **self.__completer** attribute.
 
-		:return: self.__engine. ( QCompleter )
+		:return: self.__completer. ( QCompleter )
 		"""
 
-		return self.__engine
+		return self.__completer
 
 	@completer.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completer(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		This method is the setter method for **self.__completer** attribute.
 
 		:param value: Attribute value. ( QCompleter )
 		"""
@@ -461,7 +461,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completer(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		This method is the deleter method for **self.__completer** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "completer"))
@@ -469,18 +469,18 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@property
 	def completerVisibleItemsCount(self):
 		"""
-		This method is the property for **self.__engine** attribute.
+		This method is the property for **self.__completerVisibleItemsCount** attribute.
 
-		:return: self.__engine. ( Integer )
+		:return: self.__completerVisibleItemsCount. ( Integer )
 		"""
 
-		return self.__engine
+		return self.__completerVisibleItemsCount
 
 	@completerVisibleItemsCount.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completerVisibleItemsCount(self, value):
 		"""
-		This method is the setter method for **self.__engine** attribute.
+		This method is the setter method for **self.__completerVisibleItemsCount** attribute.
 
 		:param value: Attribute value. ( Integer )
 		"""
@@ -491,7 +491,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
 	def completerVisibleItemsCount(self):
 		"""
-		This method is the deleter method for **self.__engine** attribute.
+		This method is the deleter method for **self.__completerVisibleItemsCount** attribute.
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "completerVisibleItemsCount"))

@@ -452,8 +452,8 @@ QToolTip {
 }
 
 /* Addon Component "Search Database". */
-#Search_Field_button, #Clear_Field_button {
-	background-color: rgb(40, 40, 40);
+#Search_Field_activeLabel, #Clear_Field_button {
+	background-color: transparent;
 }
 
 #Tags_Cloud_listWidget::item {
