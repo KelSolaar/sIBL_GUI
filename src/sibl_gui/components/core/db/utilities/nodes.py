@@ -42,6 +42,7 @@ __status__ = "Production"
 
 __all__ = ["LOGGER",
 			"DATABASE_TABLE_TO_NODE_FAMILY_MAPPING",
+			"AbstractDatabaseNode",
 			"getAbstractDatabaseNode",
 			"getIblSetNode",
 			"getTemplateNode",
@@ -54,6 +55,126 @@ DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "Ibl Set", "Templates" : "Temp
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
+class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
+	"""
+	This class factory defines the Application abstract base class used by concrete Database node classes.
+	"""
+
+	__family = "AbstractDatabaseNode"
+
+	@core.executionTrace
+	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, flags=None, ** kwargs):
+		"""
+		This method initializes the class.
+
+		:param dbItem: Database object.  ( Object )
+		:param name: Node name.  ( String )
+		:param parent: Node parent. ( GraphModelNode )
+		:param children: Children. ( List )
+		:param roles: Roles. ( Dictionary )
+		:param flags: Flags. ( Integer )
+		:param \*\*kwargs: Keywords arguments. ( \* )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		umbra.ui.models.GraphModelNode.__init__(self, name, parent, children, roles, flags, ** kwargs)
+
+		# --- Setting class attributes. ---
+		self.__dbItem = dbItem
+
+		AbstractDatabaseNode.__initializeNodeAttributes(self)
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def dbItem(self):
+		"""
+		This method is the property for **self.__dbItem** attribute.
+
+		:return: self.__dbItem. ( Object )
+		"""
+
+		return self.__dbItem
+
+	@dbItem.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbItem(self, value):
+		"""
+		This method is the setter method for **self.__dbItem** attribute.
+
+		:param value: Attribute value. ( Object )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbItem"))
+
+	@dbItem.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def dbItem(self):
+		"""
+		This method is the deleter method for **self.__dbItem** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbItem"))
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __initializeNodeAttributes(self):
+		"""
+		This method initializes the node attributes from the dbItem.
+		"""
+		
+		for column in self.__dbItem.__table__.columns:
+			attribute = column.key
+			if attribute == "name":
+				continue
+
+			value = getattr(self.__dbItem, attribute)
+			roles = {Qt.DisplayRole : value,
+					Qt.EditRole : value}
+			flags = int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
+			self[attribute] = umbra.ui.models.GraphModelAttribute(attribute, value, roles, flags)
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeNodeAttributes(self):
+		"""
+		This method synchronizes the node attributes from the dbItem.
+		
+		:return: Method success. ( Boolean )
+		"""
+
+		for column in self.__dbItem.__table__.columns:
+			attribute = column.key
+			value = getattr(dbItem, attribute)
+			if not attribute in self.keys():
+				break
+
+			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
+					self[attribute] = value
+		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeDbItem(self):
+		"""
+		This method synchronizes the dbItem from the node attributes.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		for column in self.__dbItem.__table__.columns:
+			attribute = column.key
+			if not attribute in self.keys():
+				break
+
+			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
+					setattr(self.__dbItem, attribute, self[attribute].value)
+		return True
+
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getAbstractDatabaseNode(dbItem):
@@ -64,9 +185,9 @@ def getAbstractDatabaseNode(dbItem):
 	:return: AbstractDatabaseNode class. ( AbstractDatabaseNode )
 	"""
 
-	defaultFlags = Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled
+	defaultFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 
-	graphModelNode = umbra.ui.models.getGraphModelNode()
+	graphModelNode = umbra.ui.models.GraphModelNode
 
 	AbstractDatabaseNode = type("AbstractDatabaseNode", (graphModelNode,), {"_AbstractDatabaseNode__family" : "AbstractDatabaseNode"})
 
@@ -159,7 +280,7 @@ def getAbstractDatabaseNode(dbItem):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled):
+def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)):
 	"""
 	This definition is a class instances factory creating :class:`IblSetNode` classes using given Collection object.
 
@@ -179,23 +300,21 @@ def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=Qt.ItemIsSelec
 				<b>Comment: </b>{4}</p>
 				"""
 
-	abstractDatabaseNode, attributes = getAbstractDatabaseNode(dbIblSet)
+	IblSetNode = type("IblSetNode", (AbstractDatabaseNode,), {"_IblSetNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbIblSet.__table__.name]})
 
-	IblSetNode = type("IblSetNode", (abstractDatabaseNode,), {"_IblSetNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbIblSet.__table__.name]})
+	roles = {Qt.DisplayRole : dbIblSet.title,
+			Qt.DecorationRole : sibl_gui.ui.common.getIcon(dbIblSet.icon),
+			Qt.EditRole : dbIblSet.title,
+			Qt.ToolTipRole : toolTipText.format(dbIblSet.title,
+												dbIblSet.author or Constants.nullObject,
+												dbIblSet.location or Constants.nullObject,
+												sibl_gui.ui.common.getFormatedShotDate(dbIblSet.date, dbIblSet.time) or Constants.nullObject,
+												dbIblSet.comment or Constants.nullObject)}
 
-	roles = {Qt.DisplayRole : attributes["title"].value,
-			Qt.DecorationRole : sibl_gui.ui.common.getIcon(attributes["icon"].value),
-			Qt.EditRole : attributes["title"].value,
-			Qt.ToolTipRole : toolTipText.format(attributes["title"].value,
-												attributes["author"].value or Constants.nullObject,
-												attributes["location"].value or Constants.nullObject,
-												sibl_gui.ui.common.getFormatedShotDate(attributes["date"].value, attributes["time"].value) or Constants.nullObject,
-												attributes["comment"].value or Constants.nullObject)}
+#	 for attribute in attributes.values():
+#	 	attribute.flags = attributeFlags
 
-	for attribute in attributes.values():
-		attribute.flags = attributeFlags
-
-	return IblSetNode(attributes.pop("name").value, parent, children, roles, nodeFlags, **attributes)
+	return IblSetNode(dbIblSet, dbIblSet.name, parent, children, roles, nodeFlags)
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -221,7 +340,7 @@ def getTemplateNode(dbTemplate, parent=None, children=None):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getCollectionNode(dbCollection, parent=None, children=None, nodeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled):
+def getCollectionNode(dbCollection, parent=None, children=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)):
 	"""
 	This definition is a class instances factory creating :class:`CollectionNode` classes using given Collection object.
 
@@ -243,6 +362,6 @@ def getCollectionNode(dbCollection, parent=None, children=None, nodeFlags=Qt.Ite
 	for attribute in attributes.values():
 		attribute.flags = attributeFlags
 
-	attributes["count"] = umbra.ui.models.GraphModelAttribute(name="count", value=None, flags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+	attributes["count"] = umbra.ui.models.GraphModelAttribute(name="count", value=None, flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 	return CollectionNode(attributes.pop("name").value, parent, children, roles, nodeFlags, **attributes)

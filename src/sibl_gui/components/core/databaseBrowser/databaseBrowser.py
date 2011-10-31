@@ -1769,11 +1769,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		nodeFlags = self.__engine.parameters.databaseReadOnly and Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled
+		nodeFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 		rootNode.sortChildren(attribute="title")
 		self.__model.initializeModel(rootNode)
 		return True

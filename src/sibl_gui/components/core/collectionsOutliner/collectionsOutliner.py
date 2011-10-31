@@ -1944,19 +1944,19 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets Model Collections.
 		"""
 
-		nodeFlags = attributesFlags = self.__engine.parameters.databaseReadOnly and Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled
+		nodeFlags = attributesFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled)
 		collections = self.getCollections()
 
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 
 		overallCollectionNode = getOverallCollectionNode("Overall", rootNode)
-		overallCollectionNode.flags = Qt.ItemIsSelectable | Qt.ItemIsEnabled
+		overallCollectionNode.flags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 
 		iblSetsCount = 0
 		for collection in collections:
 			decorationRole = QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage))
 			if collection.name == self.__defaultCollection:
-				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				decorationRole = QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage))
 			else:
 				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=nodeFlags, attributeFlags=attributesFlags)

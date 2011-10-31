@@ -57,14 +57,14 @@ def getOverallCollectionNode(name=None, parent=None):
 	:return: OverallCollectionNode class instance. ( OverallCollectionNode )
 	"""
 
-	graphModelNode = umbra.ui.models.getGraphModelNode()
+	graphModelNode = umbra.ui.models.GraphModelNode
 
 	OverallCollectionNode = type("OverallCollection", (graphModelNode,), {"_OverallCollection__family" : "OverallCollection"})
 
 	overallCollectionNode = OverallCollectionNode(name, parent)
 
-	overallCollectionNode["count"] = umbra.ui.models.GraphModelAttribute(name="count", flags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
-	overallCollectionNode["comment"] = umbra.ui.models.GraphModelAttribute(name="comment", flags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+	overallCollectionNode["count"] = umbra.ui.models.GraphModelAttribute(name="count", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+	overallCollectionNode["comment"] = umbra.ui.models.GraphModelAttribute(name="comment", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 	return overallCollectionNode
 
