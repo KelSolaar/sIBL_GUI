@@ -1773,7 +1773,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled or Qt.ItemIsSelectable)
+			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
 		rootNode.sortChildren(attribute="title")
 		self.__model.initializeModel(rootNode)
 		return True
@@ -1805,7 +1805,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedNodes(self):
 		"""
-		This method returns the selected nodes.
+		This method returns the current active View selected nodes.
 
 		:return: View selected nodes. ( Dictionary )
 		"""
@@ -1816,18 +1816,18 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSetsNodes(self):
 		"""
-		This method returns the selected Ibl Sets nodes.
+		This method returns the current active View selected Ibl Sets nodes.
 
 		:return: View selected Ibl Sets nodes. ( List )
 		"""
 
-		return [item for item in self.getSelectedNodes().keys()]
+		return [node for node in self.getSelectedNodes().keys() if node.family == "Ibl Set"]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedIblSets(self):
 		"""
-		This method returns the selected Ibl Sets.
+		This method returns the current active View selected Ibl Sets.
 
 		:return: View selected Ibl Sets. ( List )
 		"""

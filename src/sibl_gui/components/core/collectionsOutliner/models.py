@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Models.
 
 **Others:**
 
@@ -39,16 +39,38 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "IblSetsModel"]
+__all__ = ["LOGGER", "OverallCollectionNode", "CollectionsModel"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class IblSetsModel(umbra.ui.models.GraphModel):
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def getOverallCollectionNode(name=None, parent=None):
 	"""
-	This class defines the model used the by :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
+	This definition is a class instances factory creating :class:`OverallCollectionNode` classes instances.
+
+	:param name: Node name. ( String )
+	:param parent: Node parent. ( GraphModelNode )
+	:return: OverallCollectionNode class instance. ( OverallCollectionNode )
+	"""
+
+	graphModelNode = umbra.ui.models.getGraphModelNode()
+
+	OverallCollectionNode = type("OverallCollection", (graphModelNode,), {"_OverallCollection__family" : "OverallCollection"})
+
+	overallCollectionNode = OverallCollectionNode(name, parent)
+
+	overallCollectionNode["count"] = umbra.ui.models.GraphModelAttribute(name="count", flags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+	overallCollectionNode["comment"] = umbra.ui.models.GraphModelAttribute(name="comment", flags=Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+	return overallCollectionNode
+
+class CollectionsModel(umbra.ui.models.GraphModel):
+	"""
+	This class defines the model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -70,7 +92,6 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeModel(self, rootNode):
 		"""
 		This method initializes the model using given root node.
@@ -83,23 +104,3 @@ class IblSetsModel(umbra.ui.models.GraphModel):
 		self.rootNode = rootNode
 		self.endResetModel()
 		return True
-
-	# @core.executionTrace
-	# @foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def sort(self, column, order=Qt.AscendingOrder):
-		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.sort` method.
-		
-		:param column: Column. ( Integer )
-		:param order: Order. ( Qt.SortOrder )
-		"""
-
-		if column > self.columnCount():
-			return
-
-		self.beginResetModel()
-		if column == 0:
-			self.rootNode.sortChildren(attribute="title", reverseOrder=order)
-		else:
-			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]], reverseOrder=order)
-		self.endResetModel()

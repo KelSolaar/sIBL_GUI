@@ -17,6 +17,7 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
+import pickle
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -46,6 +47,31 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
+@core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
+def setMimeData(view, event):
+	"""
+	This method sets given View MimeData.
+	
+	:param view: View. ( QWidget )
+	:param event: QEvent. ( QEvent )
+	:return: Definition success. ( Boolean )
+	"""
+
+	index = view.indexAt(event.pos())
+	if not index.isValid():
+		return
+
+	selectedIblSets = [node.dbItem for node in view.getSelectedNodes().keys() if node.family == "Ibl Set"]
+
+	byteStream = pickle.dumps(selectedIblSets)
+	mimeData = QMimeData()
+	mimeData.setData("application/x-IblSets", byteStream)
+
+	byteStream = mimeData.retrieveData("application/x-IblSets", QVariant.ByteArray)
+	IblSets = pickle.loads(byteStream.toByteArray())
+	print IblSets
+
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
 	This class is used to display Database Ibl Sets as thumbnails.
@@ -177,6 +203,19 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
+	@core.executionTrace
+	def mousePressEvent(self, event):
+		"""
+		This method reimplements the :meth:`QlistView.mousePressEvent` method.
+		
+		:param event: QEvent. ( QEvent )
+		:return: Method success. ( Boolean )
+		"""
+
+		setMimeData(self, event)
+
+		return QListView.mousePressEvent(self, event)
+
 	@core.executionTrace
 	def __initializeUi(self):
 		"""
