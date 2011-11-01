@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines objects to generate Application nodes classes from Database objects.
+	This module defines Application nodes classes related to Database objects.
 
 **Others:**
 

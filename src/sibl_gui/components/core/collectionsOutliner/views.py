@@ -17,6 +17,7 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
+import pickle
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -67,6 +68,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		sibl_gui.ui.views.Abstract_QTreeView.__init__(self, parent, model, readOnly)
 
 		# --- Setting class attributes. ---
+		self.__container = parent
+
 		self.__treeViewIndentation = 15
 
 		IblSetsCollections_QTreeView.__initializeUi(self)
@@ -74,6 +77,36 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
+	@property
+	def container(self):
+		"""
+		This method is the property for **self.__container** attribute.
+
+		:return: self.__container. ( QObject )
+		"""
+
+		return self.__container
+
+	@container.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self, value):
+		"""
+		This method is the setter method for **self.__container** attribute.
+
+		:param value: Attribute value. ( QObject )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+
+	@container.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def container(self):
+		"""
+		This method is the deleter method for **self.__container** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+
 	@property
 	def treeViewIndentation(self):
 		"""
@@ -115,8 +148,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param event: QEvent. ( QEvent )
 		"""
 
-		if event.mimeData().hasFormat("application/x-qabstractitemmodeldatalist"):
-			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-qabstractitemmodeldatalist"))
+		if event.mimeData().hasFormat("application/x-umbragraphmodeldatalist"):
+			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-umbragraphmodeldatalist"))
 			event.accept()
 		else:
 			event.ignore()
@@ -142,21 +175,27 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		if not self.readOnly:
 			indexAt = self.indexAt(event.pos())
-			itemAt = self.model().getNodeIndex(indexAt)
+			collectionNode = self.model().getNode(indexAt)
 
-			if not itemAt:
+			if not collectionNode:
 				return
 
-			LOGGER.debug("> Item at drop position: '{0}'.".format(itemAt))
-			print itemAt
-#			collectionStandardItem = self.model().itemFromIndex(self.model().sibling(indexAt.row(), 0, indexAt))
-#			if collectionStandardItem.text() != self.model().overallCollection:
-#				collection = collectionStandardItem._datas
-#				for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
-#					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(iblSet.title, collection.name))
-#					iblSet.collection = collection.id
-#				if dbCommon.commit(self.__coreDb.dbSession):
-#					self.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+			if collectionNode.name in (self.__container.overallCollection, "InvisibleRootNode"):
+				return
+
+			LOGGER.debug("> Item at drop position: '{0}'.".format(collectionNode))
+
+			nodes = pickle.loads(event.mimeData().data("application/x-umbragraphmodeldatalist"))
+			for node in nodes:
+				if node.family != "IblSet":
+					continue
+
+				node._AbstractDatabaseNode__dbItem = self.__container.coreDb.dbSession.merge(node.dbItem)
+				if collectionNode.dbItem.id != node.dbItem.collection:
+					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title, collectionNode.dbItem.name))
+					node.dbItem.collection = collectionNode.dbItem.id
+			if self.__container.coreDb.commit():
+				self.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 

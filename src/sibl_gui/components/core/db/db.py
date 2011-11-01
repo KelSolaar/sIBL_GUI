@@ -29,6 +29,7 @@ import shutil
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.ui.common
 from foundations.rotatingBackup import RotatingBackup
@@ -455,6 +456,8 @@ class Db(Component):
 	def initialize(self):
 		"""
 		This method initializes the Component.
+
+		:return: Method success. ( Boolean )
 		"""
 
 		LOGGER.debug("> Initializing '{0}' Component.".format(self.__class__.__name__))
@@ -521,6 +524,7 @@ class Db(Component):
 		self.__dbSessionMaker = sqlalchemy.orm.sessionmaker(bind=self.__dbEngine)
 
 		self.__dbSession = self.__dbSessionMaker()
+		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -530,3 +534,14 @@ class Db(Component):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def commit(self):
+		"""
+		This method commits pending changes in the Database.
+	
+		:return: Method success. ( Boolean )
+		"""
+
+		return dbCommon.commit(self.__dbSession)
