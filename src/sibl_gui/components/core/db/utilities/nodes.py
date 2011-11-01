@@ -50,20 +50,20 @@ __all__ = ["LOGGER",
 
 LOGGER = logging.getLogger(Constants.logger)
 
-DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "Ibl Set", "Templates" : "Template", "Collections" : "Collection"}
+DATABASE_TABLE_TO_NODE_FAMILY_MAPPING = {"Sets" : "IblSet", "Templates" : "Template", "Collections" : "Collection"}
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
 class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines the Application abstract base class used by concrete Database node classes.
+	This class defines Application Database abstract base class used by concrete Database node classes.
 	"""
 
 	__family = "AbstractDatabaseNode"
 
 	@core.executionTrace
-	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, flags=None, ** kwargs):
+	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled), ** kwargs):
 		"""
 		This method initializes the class.
 
@@ -72,18 +72,19 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:param parent: Node parent. ( GraphModelNode )
 		:param children: Children. ( List )
 		:param roles: Roles. ( Dictionary )
-		:param flags: Flags. ( Integer )
+		:param nodeFlags: Node flags. ( Integer )
+		:param attributesFlags: Attributes flags. ( Integer )
 		:param \*\*kwargs: Keywords arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.models.GraphModelNode.__init__(self, name, parent, children, roles, flags, ** kwargs)
+		umbra.ui.models.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
 
 		# --- Setting class attributes. ---
 		self.__dbItem = dbItem
 
-		AbstractDatabaseNode.__initializeNodeAttributes(self)
+		AbstractDatabaseNode.__initializeNode(self, attributesFlags)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -122,11 +123,13 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def __initializeNodeAttributes(self):
+	def __initializeNode(self, attributesFlags):
 		"""
-		This method initializes the node attributes from the dbItem.
-		"""
+		This method initializes the node.
 		
+		:param attributesFlags: Attributes flags. ( Integer )
+		"""
+
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
 			if attribute == "name":
@@ -135,8 +138,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 			value = getattr(self.__dbItem, attribute)
 			roles = {Qt.DisplayRole : value,
 					Qt.EditRole : value}
-			flags = int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
-			self[attribute] = umbra.ui.models.GraphModelAttribute(attribute, value, roles, flags)
+			self[attribute] = umbra.ui.models.GraphModelAttribute(attribute, value, roles, attributesFlags)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -149,12 +151,11 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
-			value = getattr(dbItem, attribute)
 			if not attribute in self.keys():
 				break
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
-					self[attribute] = value
+					self[attribute] = getattr(dbItem, attribute)
 		return True
 
 	@core.executionTrace
@@ -278,21 +279,33 @@ def getAbstractDatabaseNode(dbItem):
 
 	return AbstractDatabaseNode, attributes
 
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)):
+class IblSetNode(AbstractDatabaseNode):
 	"""
-	This definition is a class instances factory creating :class:`IblSetNode` classes using given Collection object.
-
-	:param dbIblSet: Database Collection. ( DbIblSet )
-	:param parent: Node parent. ( GraphModelNode )
-	:param children: Children. ( List )
-	:param nodeFlags: Node flags. ( Qt.ItemFlag )
-	:param attributeFlags: Attribute flags. ( Qt.ItemFlag )
-	:return: IblSetNode class instance. ( IblSetNode )
+	This class defines Ibl Sets nodes.
 	"""
 
-	toolTipText = """
+	__family = "IblSet"
+
+	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=None, **kwargs):
+		"""
+		This method initializes the class.
+
+		:param dbItem: Database object.  ( Object )
+		:param name: Node name.  ( String )
+		:param parent: Node parent. ( GraphModelNode )
+		:param children: Children. ( List )
+		:param roles: Roles. ( Dictionary )
+		:param nodeFlags: Node flags. ( Integer )
+		:param attributesFlags: Attributes flags. ( Integer )
+		:param \*\*kwargs: Keywords arguments. ( \* )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+
+		# --- Setting class attributes. ---
+		self.__toolTipText = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
 				<b>Location: </b>{2}<br>
@@ -300,21 +313,57 @@ def getIblSetNode(dbIblSet, parent=None, children=None, nodeFlags=int(Qt.ItemIsS
 				<b>Comment: </b>{4}</p>
 				"""
 
-	IblSetNode = type("IblSetNode", (AbstractDatabaseNode,), {"_IblSetNode__family" : DATABASE_TABLE_TO_NODE_FAMILY_MAPPING[dbIblSet.__table__.name]})
+		IblSetNode.__initializeNode(self)
 
-	roles = {Qt.DisplayRole : dbIblSet.title,
-			Qt.DecorationRole : sibl_gui.ui.common.getIcon(dbIblSet.icon),
-			Qt.EditRole : dbIblSet.title,
-			Qt.ToolTipRole : toolTipText.format(dbIblSet.title,
-												dbIblSet.author or Constants.nullObject,
-												dbIblSet.location or Constants.nullObject,
-												sibl_gui.ui.common.getFormatedShotDate(dbIblSet.date, dbIblSet.time) or Constants.nullObject,
-												dbIblSet.comment or Constants.nullObject)}
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def toolTipText(self):
+		"""
+		This method is the property for **self.__toolTipText** attribute.
 
-#	 for attribute in attributes.values():
-#	 	attribute.flags = attributeFlags
+		:return: self.__toolTipText. ( String )
+		"""
 
-	return IblSetNode(dbIblSet, dbIblSet.name, parent, children, roles, nodeFlags)
+		return self.__toolTipText
+
+	@toolTipText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self, value):
+		"""
+		This method is the setter method for **self.__toolTipText** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
+
+	@toolTipText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self):
+		"""
+		This method is the deleter method for **self.__toolTipText** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __initializeNode(self):
+		"""
+		This method initializes the node.
+		"""
+
+		self.roles.update({Qt.DisplayRole : self.dbItem.title,
+		Qt.DecorationRole : self.dbItem.icon,
+		Qt.EditRole : self.dbItem.title,
+		Qt.ToolTipRole : self.__toolTipText.format(self.dbItem.title,
+													self.dbItem.author or Constants.nullObject,
+													self.dbItem.location or Constants.nullObject,
+													sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
+													self.dbItem.comment or Constants.nullObject)})
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)

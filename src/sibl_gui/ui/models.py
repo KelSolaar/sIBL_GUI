@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class Models.
+	This module defines the Application models classes.
 
 **Others:**
 
@@ -25,8 +25,8 @@ from PyQt4.QtGui import *
 #***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
-import foundations.exceptions
-import sibl_gui.ui.models
+import sibl_gui.ui.common
+import umbra.ui.models
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -39,16 +39,16 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "IblSetsModel"]
+__all__ = ["LOGGER", "GraphModel"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class IblSetsModel(sibl_gui.ui.models.GraphModel):
+class GraphModel(umbra.ui.models.GraphModel):
 	"""
-	This class defines the model used the by :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
+	This class provideds a graph model based on :class:`umbra.ui.models.GraphModel` but reimplementing the :meth:`umbra.ui.models.GraphModel.data` method to support various images formats as **Qt.DecorationRole**.
 	"""
 
 	@core.executionTrace
@@ -64,42 +64,28 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
 
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def initializeModel(self, rootNode):
-		"""
-		This method initializes the model using given root node.
-		
-		:param rootNode: Graph root node. ( DefaultNode )
-		return: Method success ( Boolean )
-		"""
-
-		self.beginResetModel()
-		self.rootNode = rootNode
-		self.endResetModel()
-		return True
-
 	# @core.executionTrace
 	# @foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def sort(self, column, order=Qt.AscendingOrder):
+	def data(self, index, role=Qt.DisplayRole):
 		"""
-		This method reimplements the :meth:`umbra.ui.models.GraphModel.sort` method.
+		This method reimplements the :meth:`umbra.ui.models.GraphModel.data` method.
 		
-		:param column: Column. ( Integer )
-		:param order: Order. ( Qt.SortOrder )
+		:param index: Index. ( QModelIndex )
+		:param role: Role. ( Integer )
+		:return: Data. ( QVariant )
 		"""
 
-		if column > self.columnCount():
-			return
+		if not index.isValid():
+			return QVariant()
 
-		self.beginResetModel()
-		if column == 0:
-			self.rootNode.sortChildren(attribute="title", reverseOrder=order)
+		node = self.getNode(index)
+		if index.column() == 0:
+			return hasattr(node, "roles") and role == Qt.DecorationRole and sibl_gui.ui.common.getIcon(node.roles.get(role, str())) or node.roles.get(role, None) or QVariant()
 		else:
-			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]], reverseOrder=order)
-		self.endResetModel()
+			attribute = self.getAttribute(node, index.column())
+			return attribute and hasattr(attribute, "roles") and role == Qt.DecorationRole and sibl_gui.ui.common.getIcon(attribute.roles.get(role, str())) or attribute.roles.get(role, QVariant()) or QVariant()

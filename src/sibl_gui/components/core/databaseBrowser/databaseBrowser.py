@@ -1773,7 +1773,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		iblSets = iblSets or self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
-			iblSetNode = dbNodes.getIblSetNode(iblSet, parent=rootNode, nodeFlags=nodeFlags, attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+			iblSetNode = dbNodes.IblSetNode(iblSet, name=iblSet.title, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 		rootNode.sortChildren(attribute="title")
 		self.__model.initializeModel(rootNode)
 		return True
@@ -1821,7 +1821,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: View selected Ibl Sets nodes. ( List )
 		"""
 
-		return [node for node in self.getSelectedNodes().keys() if node.family == "Ibl Set"]
+		return [node for node in self.getSelectedNodes().keys() if node.family == "IblSet"]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

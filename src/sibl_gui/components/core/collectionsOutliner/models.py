@@ -26,6 +26,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import sibl_gui.ui.models
 import umbra.ui.models
 from umbra.globals.constants import Constants
 
@@ -68,7 +69,7 @@ def getOverallCollectionNode(name=None, parent=None):
 
 	return overallCollectionNode
 
-class CollectionsModel(umbra.ui.models.GraphModel):
+class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	"""
 	This class defines the model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
 	"""
@@ -86,7 +87,7 @@ class CollectionsModel(umbra.ui.models.GraphModel):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
+		sibl_gui.ui.models.GraphModel.__init__(self, parent, rootNode, horizontalHeaders, verticalHeaders)
 
 	#***********************************************************************************************
 	#***	Class methods.

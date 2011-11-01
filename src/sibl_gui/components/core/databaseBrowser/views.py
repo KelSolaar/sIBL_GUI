@@ -62,15 +62,14 @@ def setMimeData(view, event):
 	if not index.isValid():
 		return
 
-	selectedIblSets = [node.dbItem for node in view.getSelectedNodes().keys() if node.family == "Ibl Set"]
+	selectedNodes = view.getSelectedNodes().keys()
 
-	byteStream = pickle.dumps(selectedIblSets)
+	byteStream = pickle.dumps(selectedNodes, pickle.HIGHEST_PROTOCOL)
 	mimeData = QMimeData()
-	mimeData.setData("application/x-IblSets", byteStream)
+	mimeData.setData("application/x-iblsets", byteStream)
 
-	byteStream = mimeData.retrieveData("application/x-IblSets", QVariant.ByteArray)
+	byteStream = mimeData.retrieveData("application/x-iblsets", QVariant.ByteArray)
 	IblSets = pickle.loads(byteStream.toByteArray())
-	print IblSets
 
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""

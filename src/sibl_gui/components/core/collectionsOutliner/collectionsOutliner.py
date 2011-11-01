@@ -1954,10 +1954,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		iblSetsCount = 0
 		for collection in collections:
-			decorationRole = QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage))
+			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
 				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-				decorationRole = QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage))
+				decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage)
 			else:
 				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=nodeFlags, attributeFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
@@ -2003,7 +2003,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Provided Collection id. ( Integer )
 		"""
 
-		return self.__model.findItems(collection, Qt.MatchExactly | Qt.MatchRecursive, 0)[0]._datas.id
+		return self.__model.findChildren(r"\b{0}\b".format(collection))[0].dbItem.id
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -2016,7 +2016,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		ids = [collection.id for collection in self.getSelectedCollections()]
 		if not ids:
-			return self.getCollectionId(self.__model.defaultCollection)
+			return self.getCollectionId(self.__defaultCollection)
 		else:
 			len(ids) > 1 and LOGGER.warning("!> {0} | Multiple Collections selected, using '{1}' id!".format(self.__class__.__name__, ids[0]))
 			return ids[0]

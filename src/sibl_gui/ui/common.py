@@ -76,6 +76,9 @@ def getDisplayItem(path, type):
 		:return: Graphic display. ( Icon, QImage, QPixmap )
 		"""
 
+		if not path:
+			return
+
 		if os.path.exists(path):
 			for extension in UiConstants.nativeImageFormats.values():
 				if re.search(extension, path, flags=re.IGNORECASE):
