@@ -1956,10 +1956,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for collection in collections:
 			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
-				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage)
 			else:
-				collectionNode = dbNodes.getCollectionNode(collection, parent=overallCollectionNode, nodeFlags=nodeFlags, attributeFlags=attributesFlags)
+				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=nodeFlags, attributeFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
 			collectionIblSetsCount = self.getCollectionIblSetsCount(collection)
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
@@ -2009,7 +2009,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getUniqueCollectionId(self):
 		"""
-		This method returns an unique Collection id (Either first selected Collection or default one).
+		This method returns an unique Collection id ( Either first selected Collection or default one ).
 
 		:return: Unique id. ( Integer )
 		"""

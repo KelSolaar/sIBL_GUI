@@ -47,30 +47,6 @@ LOGGER = logging.getLogger(Constants.logger)
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-@core.executionTrace
-@foundations.exceptions.exceptionsHandler(None, False, Exception)
-def setMimeData(view, event):
-	"""
-	This method sets given View MimeData.
-	
-	:param view: View. ( QWidget )
-	:param event: QEvent. ( QEvent )
-	:return: Definition success. ( Boolean )
-	"""
-
-	index = view.indexAt(event.pos())
-	if not index.isValid():
-		return
-
-	selectedNodes = view.getSelectedNodes().keys()
-
-	byteStream = pickle.dumps(selectedNodes, pickle.HIGHEST_PROTOCOL)
-	mimeData = QMimeData()
-	mimeData.setData("application/x-iblsets", byteStream)
-
-	byteStream = mimeData.retrieveData("application/x-iblsets", QVariant.ByteArray)
-	IblSets = pickle.loads(byteStream.toByteArray())
-
 class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
 	This class is used to display Database Ibl Sets as thumbnails.
@@ -202,19 +178,6 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
-	@core.executionTrace
-	def mousePressEvent(self, event):
-		"""
-		This method reimplements the :meth:`QlistView.mousePressEvent` method.
-		
-		:param event: QEvent. ( QEvent )
-		:return: Method success. ( Boolean )
-		"""
-
-		setMimeData(self, event)
-
-		return QListView.mousePressEvent(self, event)
-
 	@core.executionTrace
 	def __initializeUi(self):
 		"""
