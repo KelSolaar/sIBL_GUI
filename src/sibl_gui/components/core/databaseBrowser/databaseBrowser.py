@@ -1243,7 +1243,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for view in self.__views:
 			viewName = view.objectName()
 			viewSelectedIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(viewName)).toString())
-			LOGGER.debug("> '{0}' View storedselected Ibl Sets ids: '{1}'.".format(viewName, viewSelectedIblSetsIds))
+			LOGGER.debug("> '{0}' View stored selected Ibl Sets ids: '{1}'.".format(viewName, viewSelectedIblSetsIds))
 			if viewSelectedIblSetsIds:
 				if self.__settingsSeparator in viewSelectedIblSetsIds:
 					ids = viewSelectedIblSetsIds.split(self.__settingsSeparator)

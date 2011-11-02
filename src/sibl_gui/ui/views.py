@@ -58,8 +58,8 @@ def storeDefaultViewModelSelection(view):
 	LOGGER.debug("> Storing Model selection!")
 
 	view.modelSelection = {"Default" : []}
-	for item in view.getSelectedNodes().keys():
-		view.modelSelection["Default"].append(item.id.value)
+	for node in view.getSelectedNodes().keys():
+		view.modelSelection["Default"].append(node.id.value)
 	return True
 
 @core.executionTrace
@@ -89,7 +89,7 @@ def restoreDefaultModelSelection(view):
 	if view.selectionModel():
 		view.selectionModel().clear()
 		for index in indexes:
-			view.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select)
+			view.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
 	return True
 
 class Abstract_QListView(umbra.ui.views.Abstract_QListView):
@@ -197,8 +197,6 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Storing Model selection!")
-
 		return storeDefaultViewModelSelection(self)
 
 	@core.executionTrace
@@ -208,8 +206,6 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 
 		:return: Method success. ( Boolean )
 		"""
-
-		LOGGER.debug("> Restoring Model selection!")
 
 		return restoreDefaultModelSelection(self)
 
@@ -318,8 +314,6 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Storing Model selection!")
-
 		return storeDefaultViewModelSelection(self)
 
 	@core.executionTrace
@@ -329,7 +323,5 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 
 		:return: Method success. ( Boolean )
 		"""
-
-		LOGGER.debug("> Restoring Model selection!")
 
 		return restoreDefaultModelSelection(self)

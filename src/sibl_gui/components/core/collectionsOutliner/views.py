@@ -232,8 +232,51 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)
 
+	@core.executionTrace
 	def storeModelSelection(self):
-		pass
+		"""
+		This method stores the Model selection.
 
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Storing Model selection!")
+
+		self.modelSelection = {"Overall" : [], "Collections" : []}
+		for node in self.getSelectedNodes().keys():
+			if node.name == self.__container.overallCollection:
+				self.modelSelection["Overall"].append(node.name)
+			elif node.family == "Collection":
+				self.modelSelection["Collections"].append(node.id.value)
+		return True
+
+	@core.executionTrace
 	def restoreModelSelection(self):
-		pass
+		"""
+		This method restores the Model selection.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		LOGGER.debug("> Restoring Model selection!")
+
+		if not self.modelSelection:
+			return
+
+		selection = self.modelSelection.get("Overall", None) or self.modelSelection.get("Collections", None)
+		if not selection:
+			return
+
+		indexes = []
+		for i in range(self.model().rowCount()):
+			index = self.model().index(i)
+			node = self.model().getNode(index)
+			self.__container.overallCollection in self.modelSelection["Overall"] and indexes.append(index)
+			for child in node.children:
+				child.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(child))
+
+		if self.selectionModel():
+			self.selectionModel().clear()
+			for index in indexes:
+				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
+		return True
