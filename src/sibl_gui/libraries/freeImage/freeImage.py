@@ -1358,7 +1358,7 @@ FREEIMAGE_FUNCTIONS = (
 	LibraryHook(name="FreeImage_FindNextMetadata", argumentsTypes=[pointer(FIMETADATA), pointer(pointer(FITAG))], returnValue=BOOL),
 	LibraryHook(name="FreeImage_FindCloseMetadata", argumentsTypes=[pointer(FIMETADATA)], returnValue=None),
 
-	# Metadatas getters / setters functions.
+	# Metadata getters / setters functions.
 	LibraryHook(name="FreeImage_SetMetadata", argumentsTypes=[FREE_IMAGE_MDMODEL, pointer(FIBITMAP), ctypes.c_char_p, pointer(FITAG)], returnValue=BOOL),
 	LibraryHook(name="FreeImage_GetMetadata", argumentsTypes=[FREE_IMAGE_MDMODEL, pointer(FIBITMAP), ctypes.c_char_p, pointer(pointer(FITAG))], returnValue=BOOL),
 	LibraryHook(name="FreeImage_GetMetadataCount", argumentsTypes=[FREE_IMAGE_MDMODEL, pointer(FIBITMAP)], returnValue=ctypes.c_uint),
@@ -1746,7 +1746,7 @@ class Image(object):
 
 			image = QImage(voidptr(bitsPointer, size=height * pitch), width, height, pitch, QImage.Format_RGB32)
 
-			image._datas = ImageInformationsHeader(path=self.__imagePath, width=width, height=height, bpp=bpp)
+			image._data = ImageInformationsHeader(path=self.__imagePath, width=width, height=height, bpp=bpp)
 
 			# Removing the following line would result in a blank image display the first time.
 			LOGGER.debug("> Final memory pointer with '{0}' address.".format(image.bits().__int__()))

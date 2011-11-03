@@ -42,7 +42,7 @@ _`Command Line Parameters`
 -  **-a, —about**: Display application “About” message. (Mac Os X and Linux only)
 -  **-v VERBOSITYLEVEL, —verbose=VERBOSITYLEVEL**: Application verbosity levels: 0 = Critical \| 1 = Error \| 2 = Warning \| 3 = Info \| 4 = Debug.
 -  **-f LOGGINGFORMATER, —loggingFormatter=LOGGINGFORMATER**: Application Logging Formatter: 'Default, Extended, Standard’.
--  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDatasDirectory=USERAPPLICATIONDATASDIRECTORY**: User application datas directory (Preferences directory).
+-  **-u USERAPPLICATIONDATASDIRECTORY, —userApplicationDataDirectory=USERAPPLICATIONDATASDIRECTORY**: User application data directory (Preferences directory).
 -  **-t, —deactivateWorkerThreads**: The Worker Threads are deactivated.
 -  **-d DATABASEDIRECTORY, —databaseDirectory=DATABASEDIRECTORY**: Database directory.
 -  **-r, —databaseReadOnly**: Database is read only, database write access methods are not exposed into the interface.

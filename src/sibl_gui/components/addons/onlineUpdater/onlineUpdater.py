@@ -558,7 +558,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLocationsBrowser = self.__engine.componentsManager.components["addons.locationsBrowser"].interface
 
-		self.__ioDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.__networkAccessManager = QNetworkAccessManager()

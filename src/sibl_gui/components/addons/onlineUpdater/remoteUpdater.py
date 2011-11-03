@@ -106,7 +106,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__tableWidgetRowHeight = 30
 		self.__tableWidgetHeaderHeight = 25
 
-		self.__templatesTableWidgetHeaders = ["_datas", "Get it!", "Local version", "Repository version", "Release type", "Comment"]
+		self.__templatesTableWidgetHeaders = ["_data", "Get it!", "Local version", "Repository version", "Release type", "Comment"]
 
 		self.__applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
 		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
@@ -621,7 +621,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					verticalHeaderLabels.append(release)
 
 					tableWidgetItem = QTableWidgetItem()
-					tableWidgetItem._datas = templatesReleases[release]
+					tableWidgetItem._data = templatesReleases[release]
 					self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
 					tableWidgetItem = Variable_QPushButton(self, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
@@ -684,7 +684,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		requests = []
 		for row in range(self.Templates_tableWidget.rowCount()):
 			if self.Templates_tableWidget.cellWidget(row, 1).state:
-				requests.append(self.Templates_tableWidget.item(row, 0)._datas)
+				requests.append(self.Templates_tableWidget.item(row, 0)._data)
 		if requests:
 			downloadDirectory = self.__getTemplatesDownloadDirectory()
 			if downloadDirectory:

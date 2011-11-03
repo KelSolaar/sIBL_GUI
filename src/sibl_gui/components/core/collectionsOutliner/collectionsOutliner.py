@@ -789,7 +789,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __collectionsOutliner__modelRefresh(self):
 		"""
-		This method is triggered when the Model datas need refresh.
+		This method is triggered when the Model data need refresh.
 		"""
 
 		self.setCollections()
@@ -798,7 +798,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method is triggered when the Model datas have changed.
+		This method is triggered when the Model data have changed.
 		
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )

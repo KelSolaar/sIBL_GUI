@@ -149,7 +149,7 @@ Addons Functionalities:
 _`Db` (core.db)
 ^^^^^^^^^^^^^^^
 
-The *Db* component is the heart of *sIBL_GUI* datas storage, it provides the database manipulation, read, write and rotating backup methods.
+The *Db* component is the heart of *sIBL_GUI* data storage, it provides the database manipulation, read, write and rotating backup methods.
 
 
 
@@ -349,7 +349,7 @@ _`Loader Script` (addons.loaderScript)
 | ..  image:: ../pictures/sIBL_GUI_LoaderScript.jpg            |
 +--------------------------------------------------------------+
 
-The *Loader Script* component is providing the bridge between *sIBL_GUI* and the 3d packages. It parses the selected Ibl Set, extracts datas from it, and feeds the selected Template with those datas resulting in a loader script that can be executed by the 3d package.
+The *Loader Script* component is providing the bridge between *sIBL_GUI* and the 3d packages. It parses the selected Ibl Set, extracts data from it, and feeds the selected Template with those data resulting in a loader script that can be executed by the 3d package.
 
 Interactions:
 

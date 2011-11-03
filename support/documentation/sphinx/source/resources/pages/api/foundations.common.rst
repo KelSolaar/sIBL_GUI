@@ -11,9 +11,9 @@ Module Attributes
 Functions
 ---------
 
-.. autofunction:: getSystemApplicationDatasDirectory
+.. autofunction:: getSystemApplicationDataDirectory
 
-.. autofunction:: getUserApplicationDatasDirectory
+.. autofunction:: getUserApplicationDataDirectory
 
 .. autofunction:: removeLoggingHandler
 

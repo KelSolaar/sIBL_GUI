@@ -984,14 +984,14 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if self.__paths:
 			path = self.__paths[index]
 			image = sibl_gui.ui.common.getImage(path)
-			if not hasattr(image, "_datas"):
-				image._datas = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
+			if not hasattr(image, "_data"):
+				image._data = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
 
 			LOGGER.debug("> Initializing graphics item.")
 			self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
 			self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
-			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image._datas.path), image._datas.width, image._datas.height, image._datas.bpp))
+			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image._data.path), image._data.width, image._data.height, image._data.bpp))
 
 	@core.executionTrace
 	def fitImage(self):
@@ -1010,7 +1010,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param backward: Looping backward. ( Boolean )
 		"""
 
-		index = self.__paths.index(self.__displayGraphicsItem.image._datas.path)
+		index = self.__paths.index(self.__displayGraphicsItem.image._data.path)
 		index += not backward and 1 or -1
 		if index < 0:
 			index = len(self.__paths) - 1

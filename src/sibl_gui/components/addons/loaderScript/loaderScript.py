@@ -504,7 +504,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 
-		self.__ioDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.ioDirectory, self.__ioDirectory)
+		self.__ioDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.ioDirectory, self.__ioDirectory)
 		not os.path.exists(self.__ioDirectory) and os.makedirs(self.__ioDirectory)
 
 		self.activated = True

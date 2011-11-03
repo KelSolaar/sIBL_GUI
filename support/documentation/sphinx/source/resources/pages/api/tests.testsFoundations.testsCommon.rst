@@ -6,11 +6,11 @@ _`tests.testsFoundations.testsCommon`
 Classes
 -------
 
-.. autoclass:: GetSystemApplicationDatasDirectoryTestCase
+.. autoclass:: GetSystemApplicationDataDirectoryTestCase
 	:show-inheritance:
 	:members:
 
-.. autoclass:: GetUserApplicationDatasDirectoryTestCase
+.. autoclass:: GetUserApplicationDataDirectoryTestCase
 	:show-inheritance:
 	:members:
 

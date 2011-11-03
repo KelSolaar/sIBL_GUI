@@ -125,7 +125,7 @@ Change Log
 -  Added "-o / --loaderScriptsOutputDirectory" command line parameter allowing user to specify loader scripts output directory.
 -  Added "-r / --databaseReadOnly" command line parameter that disable database edition methods.
 -  Added "-d / --databaseDirectory" command line parameter allowing user to specify the database directory.
--  Added "-u / --userApplicationDatasDirectory" command line parameter allowing user to specify application datas directory (Preferences directory).
+-  Added "-u / --userApplicationDataDirectory" command line parameter allowing user to specify application data directory (Preferences directory).
 
 3.0.6 - Stable
 --------------

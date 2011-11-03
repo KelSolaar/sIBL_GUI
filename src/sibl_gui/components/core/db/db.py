@@ -470,8 +470,8 @@ class Db(Component):
 			else:
 				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(self.__class__.__name__, self.__engine.parameters.databaseDirectory, Constants.applicationName))
 		else:
-			self.__dbName = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseFile)
-			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDatasDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
+			self.__dbName = os.path.join(self.__engine.userApplicationDataDirectory , Constants.databaseDirectory, Constants.databaseFile)
+			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
@@ -516,7 +516,7 @@ class Db(Component):
 		LOGGER.debug("> Creating Database engine.")
 		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
 
-		LOGGER.debug("> Creating Database metadatas.")
+		LOGGER.debug("> Creating Database metadata.")
 		self.__dbCatalog = dbTypes.DbBase.metadata
 		self.__dbCatalog.create_all(self.__dbEngine)
 

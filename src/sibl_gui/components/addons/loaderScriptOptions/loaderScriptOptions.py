@@ -615,7 +615,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
 
-		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
+		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
@@ -774,7 +774,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				# Signals / Slots.
 				item.editingFinished.connect(self.__tableWidget__valueChanged)
 
-			item._datas = attributeCompound
+			item._data = attributeCompound
 			tableWidget.setCellWidget(row, 0, item)
 
 		tableWidget.setVerticalHeaderLabels (verticalHeaderLabels)
@@ -863,7 +863,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					value = str(widget.currentText())
 				else:
 					value = str(widget.text())
-				templateSettingsSectionsFileParser.sections[section][foundations.namespace.removeNamespace(widget._datas.name)] = value
+				templateSettingsSectionsFileParser.sections[section][foundations.namespace.removeNamespace(widget._data.name)] = value
 		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace
@@ -887,10 +887,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				value = str(widget.currentText())
 			else:
 				value = str(widget.text())
-			widget._datas.value = value
+			widget._data.value = value
 
-			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget._datas.name, widget._datas.value))
-			self.__addonsLoaderScript.overrideKeys[widget._datas.name] = widget._datas
+			LOGGER.debug("> Adding '{0}' override key with value: '{1}'.".format(widget._data.name, widget._data.value))
+			self.__addonsLoaderScript.overrideKeys[widget._data.name] = widget._data
 		return True
 
 	@core.executionTrace

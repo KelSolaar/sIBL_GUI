@@ -95,9 +95,9 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 		code = "{0}{1}".format(item[0].lower(), item.replace(" ", "")[1:])
 		if code in existingFiles:
 			link = "{0}/{1}".format(relativeDirectory, code)
-			datas = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
-			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__, datas.replace("\n", "")))
-			tocTree.append(datas)
+			data = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
+			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__, data.replace("\n", "")))
+			tocTree.append(data)
 	tocTree.append("\n")
 
 	content = TOCTREE_TEMPLATE_BEGIN

@@ -561,7 +561,7 @@ class TemplatesModel(QStandardItemModel):
 			LOGGER.debug("> Preparing '{0}' Collection for Model.".format(collection.name))
 
 			collectionStandardItem = QStandardItem(QString(collection.name))
-			collectionStandardItem._datas = collection
+			collectionStandardItem._data = collection
 			collectionStandardItem._type = "Collection"
 
 			LOGGER.debug("> Adding '{0}' Collection to Model.".format(collection.name))
@@ -601,7 +601,7 @@ class TemplatesModel(QStandardItemModel):
 						templateVersionStandardItem = QStandardItem(QString(template.version))
 						templateVersionStandardItem.setTextAlignment(Qt.AlignCenter)
 
-						templateStandardItem._datas = template
+						templateStandardItem._data = template
 						templateStandardItem._type = "Template"
 
 						LOGGER.debug("> Adding '{0}' Template to Model.".format(template.name))
@@ -873,7 +873,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 			elif item._type == "Software":
 				self.__modelSelection["Softwares"].append(item.text())
 			else:
-				self.__modelSelection["Templates"].append(item._datas.id)
+				self.__modelSelection["Templates"].append(item._data.id)
 		return True
 
 	@core.executionTrace
@@ -898,7 +898,7 @@ class TemplatesOutliner_QTreeView(QTreeView):
 				softwareStandardItem.text() in self.__modelSelection["Softwares"] and indexes.append(self.model().indexFromItem(softwareStandardItem))
 				for k in range(softwareStandardItem.rowCount()):
 					templateStandardItem = softwareStandardItem.child(k, 0)
-					templateStandardItem._datas.id in self.__modelSelection["Templates"] and indexes.append(self.model().indexFromItem(templateStandardItem))
+					templateStandardItem._data.id in self.__modelSelection["Templates"] and indexes.append(self.model().indexFromItem(templateStandardItem))
 
 		if self.selectionModel():
 			self.selectionModel().clear()
@@ -1577,7 +1577,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
-		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDatasDirectory, Constants.templatesDirectory)
+		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.templatesDirectory)
 
 		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
@@ -1870,7 +1870,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __templatesOutliner__modelRefresh(self):
 		"""
-		This method is triggered when the Model datas need refresh.
+		This method is triggered when the Model data need refresh.
 		"""
 
 		self.setTemplates()
@@ -1976,7 +1976,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			elif item._type == "Software":
 				selectedSoftwares.append(str(item.text()))
 			else:
-				selectedTemplates.append(item._datas)
+				selectedTemplates.append(item._data)
 
 		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
 		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
@@ -2262,7 +2262,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		selectedItems = self.getSelectedItems()
-		return selectedItems and [item._datas for item in selectedItems if item._type == "Template"] or []
+		return selectedItems and [item._data for item in selectedItems if item._type == "Template"] or []
 
 	@core.executionTrace
 	def getCollection(self, collection):

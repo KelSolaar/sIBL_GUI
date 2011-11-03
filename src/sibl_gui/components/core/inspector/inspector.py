@@ -972,7 +972,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					plateStandardItem.setIcon(sibl_gui.ui.common.getIcon(plate.icon))
 					plateStandardItem.setToolTip(self.__inspectorIblSetPlatesToolTipText.format(plate.name))
 
-					plateStandardItem._datas = plate
+					plateStandardItem._data = plate
 
 					LOGGER.debug("> Adding '{0}' to '{1}' Model.".format(name, "Plates_listView"))
 					self.__model.appendRow(plateStandardItem)
@@ -1042,8 +1042,8 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		index = selectedItems.indexes() and selectedItems.indexes()[0] or None
 		item = index and self.__model.itemFromIndex(index) or None
 		if item:
-			if hasattr(item, "_datas"):
-				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(item._datas.previewImage))
+			if hasattr(item, "_data"):
+				self.Image_label.setPixmap(sibl_gui.ui.common.getPixmap(item._data.previewImage))
 			else:
 				self.uiRefresh.emit()
 
@@ -1134,7 +1134,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__inspectorIblSet = selectedIblSet and selectedIblSet[0] or None
 		if not self.__inspectorIblSet:
 			model = self.__coreDatabaseBrowser.model
-			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0)._datas or None
+			self.__inspectorIblSet = model.rowCount() != 0 and model.item(0)._data or None
 		self.__inspectorIblSet and self.__setInspectorIblSetParser()
 
 	@core.executionTrace
@@ -1237,7 +1237,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if self.__inspectorIblSet:
-			iblSetStandardItems = [iblSetStandardItem for iblSetStandardItem in self.__coreDatabaseBrowser.model.findItems("*", Qt.MatchWildcard | Qt.MatchRecursive, 0) if iblSetStandardItem._datas.path == self.__inspectorIblSet.path]
+			iblSetStandardItems = [iblSetStandardItem for iblSetStandardItem in self.__coreDatabaseBrowser.model.findItems("*", Qt.MatchWildcard | Qt.MatchRecursive, 0) if iblSetStandardItem._data.path == self.__inspectorIblSet.path]
 			inspectorIblSetStandardItem = iblSetStandardItems and iblSetStandardItems[0] or None
 			if not inspectorIblSetStandardItem:
 				return True

@@ -1376,7 +1376,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __databaseBrowser__modelRefresh(self):
 		"""
-		This method is triggered when the Model datas need refresh.
+		This method is triggered when the Model data need refresh.
 		"""
 
 		self.setIblSets()
@@ -1384,7 +1384,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __model__dataChanged(self, startIndex, endIndex):
 		"""
-		This method is triggered when the Model datas have changed.
+		This method is triggered when the Model data have changed.
 
 		:param startIndex: Edited item starting QModelIndex. ( QModelIndex )
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
