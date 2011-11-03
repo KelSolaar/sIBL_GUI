@@ -1391,13 +1391,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		iblSetNode = self.__model.getNode(startIndex)
+
+		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
 		iblSetNode.synchronizeDbItem()
 
-		title = iblSetNode.name
-		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
-		iblSetNode.dbItem.title = title
-
-		dbCommon.commit(self.__coreDb.dbSession)
+		self.__coreDb.commit()
 		self.modelRefresh.emit()
 
 	@core.executionTrace

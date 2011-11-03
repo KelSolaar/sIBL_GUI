@@ -139,7 +139,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def synchronizeNodeAttributes(self):
 		"""
-		This method synchronizes the node attributes from the dbItem.
+		This method synchronizes the node attributes from the dbItem attributes.
 		
 		:return: Method success. ( Boolean )
 		"""
@@ -147,17 +147,17 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
 			if not attribute in self.keys():
-				break
+				continue
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
-					self[attribute] = getattr(dbItem, attribute)
+				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = getattr(self.__dbItem, attribute)
 		return True
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def synchronizeDbItem(self):
+	def synchronizeDbItemAttributes(self):
 		"""
-		This method synchronizes the dbItem from the node attributes.
+		This method synchronizes the dbItem attributes from the node attributes.
 
 		:return: Method success. ( Boolean )
 		"""
@@ -165,11 +165,33 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		for column in self.__dbItem.__table__.columns:
 			attribute = column.key
 			if not attribute in self.keys():
-				break
+				continue
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
-					setattr(self.__dbItem, attribute, self[attribute].value)
+				setattr(self.__dbItem, attribute, self[attribute].value)
 		return True
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeNode(self):
+		"""
+		This method synchronizes the node from the dbItem.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeNode.__name__, self.__class__.__name__))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeDbItem(self):
+		"""
+		This method synchronizes the dbItem from the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
 
 class IblSetNode(AbstractDatabaseNode):
 	"""
@@ -239,6 +261,7 @@ class IblSetNode(AbstractDatabaseNode):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
+
 	#***********************************************************************************************
 	#***	Class methods.
 	#***********************************************************************************************
@@ -256,6 +279,30 @@ class IblSetNode(AbstractDatabaseNode):
 													self.dbItem.location or Constants.nullObject,
 													sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
 													self.dbItem.comment or Constants.nullObject)})
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeNode(self):
+		"""
+		This method synchronizes the node from the dbItem.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__dbItem.title
+		return self.synchronizeNodeAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeDbItem(self):
+		"""
+		This method synchronizes the dbItem from the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.dbItem.title = self.name
+		return self.synchronizeDbItemAttributes()
 
 class CollectionNode(AbstractDatabaseNode):
 	"""
@@ -297,3 +344,27 @@ class CollectionNode(AbstractDatabaseNode):
 			Qt.EditRole : self.dbItem.name})
 
 		self["count"] = umbra.ui.models.GraphModelAttribute(name="count", value=None, flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeNode(self):
+		"""
+		This method synchronizes the node from the dbItem.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.dbItem.name
+		return self.synchronizeNodeAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeDbItem(self):
+		"""
+		This method synchronizes the dbItem from the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.dbItem.name = self.name
+		return self.synchronizeDbItemAttributes()

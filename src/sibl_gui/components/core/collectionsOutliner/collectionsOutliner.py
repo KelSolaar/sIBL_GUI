@@ -804,32 +804,19 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param endIndex: Edited item ending QModelIndex. ( QModelIndex )
 		"""
 
-#		standardItem = self.__model.itemFromIndex(startIndex)
-#		currentText = standardItem.text()
-#
-#		if currentText:
-#			collectionStandardItem = self.__model.itemFromIndex(self.__model.sibling(startIndex.row(), 0, startIndex))
-#			id = collectionStandardItem._type == "Collection" and collectionStandardItem._datas.id or None
-#			collections = [collection for collection in self.getCollections()]
-#			if not id and not collections:
-#				return
-#
-#			if startIndex.column() == 0:
-#				if currentText not in (collection.name for collection in collections):
-#					LOGGER.debug("> Updating Collection '{0}' name to '{1}'.".format(id, currentText))
-#					collection = dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
-#					collection.name = str(currentText)
-#					dbCommon.commit(self.__coreDb.dbSession)
-#				else:
-#					messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__, currentText))
-#			elif startIndex.column() == 2:
-#				LOGGER.debug("> Updating Collection '{0}' comment to '{1}'.".format(id, currentText))
-#				collection = dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(id), "id")[0]
-#				collection.comment = str(currentText)
-#				dbCommon.commit(self.__coreDb.dbSession)
-#		else:
-#			raise foundations.exceptions.UserError("{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__))
-#		self.modelRefresh.emit()
+		collectionNode = self.__model.getNode(startIndex)
+		if startIndex.column() == 0:
+			if self.collectionExists(collectionNode.name):
+				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__, collectionNode.name))
+				return
+
+			if not collectionNode.name:
+				collectionNode.synchronizeNode()
+				raise foundations.exceptions.UserError("{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__))
+
+		collectionNode.synchronizeDbItem()
+		self.__coreDb.commit()
+		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -1024,10 +1011,10 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for collection in collections:
 			decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiUserCollectionImage)
 			if collection.name == self.__defaultCollection:
-				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				decorationRole = os.path.join(self.__uiResourcesDirectory, self.__uiDefaultCollectionImage)
 			else:
-				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=nodeFlags, attributeFlags=attributesFlags)
+				collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=overallCollectionNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
 			collectionNode.roles[Qt.DecorationRole] = decorationRole
 			collectionIblSetsCount = self.getCollectionIblSetsCount(collection)
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
