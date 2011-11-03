@@ -26,6 +26,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.walkers
 import umbra.ui.views
 from umbra.globals.constants import Constants
 
@@ -81,10 +82,8 @@ def restoreDefaultModelSelection(view):
 		return
 
 	indexes = []
-	for i in range(view.model().rowCount()):
-		index = view.model().index(i)
-		node = view.model().getNode(index)
-		node.id.value in selection and indexes.append(index)
+	for node in foundations.walkers.nodesWalker(view.model().rootNode):
+		node.id.value in selection and indexes.append(view.model().getNodeIndex(node))
 
 	if view.selectionModel():
 		view.selectionModel().clear()
