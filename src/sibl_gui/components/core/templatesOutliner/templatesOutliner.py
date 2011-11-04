@@ -21,6 +21,7 @@ import logging
 import os
 import platform
 import re
+from collections import OrderedDict
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -33,12 +34,16 @@ import foundations.namespace as namespace
 import foundations.strings as strings
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
+import sibl_gui.components.core.db.utilities.nodes as dbNodes
 import sibl_gui.components.core.db.utilities.types as dbTypes
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from foundations.walkers import OsWalker
+from sibl_gui.components.core.templatesOutliner.models import SoftwareNode, TemplatesModel
+from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
+from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_Worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -52,7 +57,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "TemplatesOutliner_Worker", "TemplatesModel", "TemplatesOutliner_QTreeView", "TemplatesOutliner"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "TemplatesOutliner"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -61,327 +66,89 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Templates_Out
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class TemplatesOutliner_Worker(QThread):
+class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to track modified Templates and update the Database accordingly.
+	| This class is the :mod:`umbra.components.core.templatesOutliner.templatesOutliner` Component Interface class.
+	| It defines methods for Database Templates management.
 	"""
 
 	# Custom signals definitions.
-	databaseChanged = pyqtSignal()
+	modelRefresh = pyqtSignal()
 
 	@core.executionTrace
-	def __init__(self, parent):
+	def __init__(self, parent=None, name=None, *args, **kwargs):
 		"""
 		This method initializes the class.
 
 		:param parent: Object parent. ( QObject )
+		:param name: Component name. ( String )
+		:param \*args: Arguments. ( \* )
+		:param \*\*kwargs: Keywords arguments. ( \* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		QThread.__init__(self, parent)
+		super(TemplatesOutliner, self).__init__(parent, name, *args, **kwargs)
 
 		# --- Setting class attributes. ---
-		self.__container = parent
-
-		self.__dbSession = self.__container.coreDb.dbSessionMaker()
-
-		self.__timer = None
-		self.__timerCycleMultiplier = 5
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
-
-	@property
-	def dbSession(self):
-		"""
-		This method is the property for **self.__dbSession** attribute.
-
-		:return: self.__dbSession. ( Object )
-		"""
-
-		return self.__dbSession
-
-	@dbSession.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def dbSession(self, value):
-		"""
-		This method is the setter method for **self.__dbSession** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
-
-	@dbSession.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def dbSession(self):
-		"""
-		This method is the deleter method for **self.__dbSession** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
-
-	@property
-	def timer(self):
-		"""
-		This method is the property for **self.__timer** attribute.
-
-		:return: self.__timer. ( QTimer )
-		"""
-
-		return self.__timer
-
-	@timer.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timer(self, value):
-		"""
-		This method is the setter method for **self.__timer** attribute.
-
-		:param value: Attribute value. ( QTimer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timer"))
-
-	@timer.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timer(self):
-		"""
-		This method is the deleter method for **self.__timer** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timer"))
-
-	@property
-	def timerCycleMultiplier(self):
-		"""
-		This method is the property for **self.__timerCycleMultiplier** attribute.
-
-		:return: self.__timerCycleMultiplier. ( Float )
-		"""
-
-		return self.__timerCycleMultiplier
-
-	@timerCycleMultiplier.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timerCycleMultiplier(self, value):
-		"""
-		This method is the setter method for **self.__timerCycleMultiplier** attribute.
-
-		:param value: Attribute value. ( Float )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timerCycleMultiplier"))
-
-	@timerCycleMultiplier.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def timerCycleMultiplier(self):
-		"""
-		This method is the deleter method for **self.__timerCycleMultiplier** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timerCycleMultiplier"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def run(self):
-		"""
-		This method starts the QThread.
-		"""
-
-		self.__timer = QTimer()
-		self.__timer.moveToThread(self)
-		self.__timer.start(Constants.defaultTimerCycle * self.__timerCycleMultiplier)
-
-		self.__timer.timeout.connect(self.updateTemplates, Qt.DirectConnection)
-
-		self.exec_()
-
-	@core.executionTrace
-	def updateTemplates(self):
-		"""
-		This method updates Database Templates if they have been modified on disk.
-		"""
-
-		needModelRefresh = False
-		for template in dbCommon.getTemplates(self.__dbSession):
-			if template.path:
-				if os.path.exists(template.path):
-					storedStats = template.osStats.split(",")
-					osStats = os.stat(template.path)
-					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(self.__class__.__name__, template.name))
-						if dbCommon.updateTemplateContent(self.__dbSession, template):
-							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
-							needModelRefresh = True
-
-		needModelRefresh and self.databaseChanged.emit()
-
-class TemplatesModel(QStandardItemModel):
-	"""
-	This class is a `QStandardItemModel <http://doc.qt.nokia.com/4.7/qstandarditemModel.html>`_ subclass used to store :mod:`umbra.components.core.templatesOutliner.TemplatesOutliner` Component Templates.
-	"""
-
-	aboutToChange = pyqtSignal()
-	changed = pyqtSignal()
-
-	@core.executionTrace
-	def __init__(self, parent, templates=None, editable=True):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param templates: Templates. ( List )
-		:param editable: Model editable. ( Boolean )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		QStandardItemModel.__init__(self, parent)
-
-		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__templates = []
-		self.__editable = editable
+		self.deactivatable = False
 
 		self.__uiResourcesDirectory = "resources"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
 		self.__uiSoftwareAffixe = "_Software.png"
 		self.__uiUnknownSoftwareImage = "Unknown_Software.png"
+		self.__dockArea = 1
 
-		self.__headers = ["Templates", "Release", "Software version"]
+		self.__engine = None
+		self.__settings = None
+		self.__settingsSection = None
+		self.__settingsSeparator = ","
 
-		self.__coreDb = self.__container.engine.componentsManager.components["core.db"].interface
+		self.__editLayout = "editCentric"
 
-		templates and self.setTemplates(templates)
+		self.__factoryScriptEditor = None
+		self.__coreDb = None
+
+		self.__model = None
+		self.__view = None
+		self.__headers = OrderedDict([("Templates", "name"),
+										("Release", "release"),
+										("Software Version", "version")])
+
+		self.__templatesOutlinerWorkerThread = None
+
+		self.__extension = "sIBLT"
+
+		self.__defaultCollections = None
+		self.__factoryCollection = "Factory"
+		self.__userCollection = "User"
+
+		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
+
+		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
+		self.__templatesInformationsText = """
+											<h4><center>{0}</center></h4>
+											<p>
+											<b>Date:</b> {1}
+											<br/>
+											<b>Author:</b> {2}
+											<br/>
+											<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
+											<br/>
+											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
+											<br/>
+											<b>Output script:</b> {5}
+											<p>
+											<b>Comment:</b> {6}
+											</p>
+											<p>
+											<b>Help file:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
+											</p>
+											</p>
+											"""
 
 	#***********************************************************************************************
 	#***	Attributes properties.
 	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
-
-	@property
-	def templates(self):
-		"""
-		This method is the property for **self.__templates** attribute.
-
-		:return: self.__templates. ( List )
-		"""
-
-		return self.__templates
-
-	@templates.setter
-	@foundations.exceptions.exceptionsHandler(None, False, AssertionError)
-	def templates(self, value):
-		"""
-		This method is the setter method for **self.__templates** attribute.
-
-		:param value: Attribute value. ( List )
-		"""
-
-		if value:
-			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("templates", value)
-		self.__templates = value
-
-	@templates.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def templates(self):
-		"""
-		This method is the deleter method for **self.__templates** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templates"))
-
-	@property
-	def editable(self):
-		"""
-		This method is the property for **self.__editable** attribute.
-
-		:return: self.__editable. ( Boolean )
-		"""
-
-		return self.__editable
-
-	@editable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self, value):
-		"""
-		This method is the setter method for **self.__editable** attribute.
-
-		:param value: Attribute value. ( Boolean )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
-
-	@editable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self):
-		"""
-		This method is the deleter method for **self.__editable** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
-
 	@property
 	def uiResourcesDirectory(self):
 		"""
@@ -471,548 +238,6 @@ class TemplatesModel(QStandardItemModel):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
-
-	@property
-	def headers(self):
-		"""
-		This method is the property for **self.__headers** attribute.
-
-		:return: self.__headers. ( List )
-		"""
-
-		return self.__headers
-
-	@headers.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def headers(self, value):
-		"""
-		This method is the setter method for **self.__headers** attribute.
-
-		:param value: Attribute value. ( List )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
-
-	@headers.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def headers(self):
-		"""
-		This method is the deleter method for **self.__headers** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
-
-	@property
-	def coreDb(self):
-		"""
-		This method is the property for **self.__coreDb** attribute.
-
-		:return: self.__coreDb. ( Object )
-		"""
-
-		return self.__coreDb
-
-	@coreDb.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self, value):
-		"""
-		This method is the setter method for **self.__coreDb** attribute.
-
-		:param value: Attribute value. ( Object )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
-
-	@coreDb.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def coreDb(self):
-		"""
-		This method is the deleter method for **self.__coreDb** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def __initializeModel(self):
-		"""
-		This method initializes the Model using :obj:`TemplatesModel.templates` class property.
-		"""
-
-		LOGGER.debug("> Setting up Model!")
-
-		self.aboutToChange.emit()
-
-		self.clear()
-
-		self.setHorizontalHeaderLabels(self.__headers)
-		self.setColumnCount(len(self.__headers))
-
-		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
-
-		for collection in collections:
-			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
-
-			if not softwares:
-				continue
-
-			LOGGER.debug("> Preparing '{0}' Collection for Model.".format(collection.name))
-
-			collectionStandardItem = QStandardItem(QString(collection.name))
-			collectionStandardItem._data = collection
-			collectionStandardItem._type = "Collection"
-
-			LOGGER.debug("> Adding '{0}' Collection to Model.".format(collection.name))
-			self.appendRow(collectionStandardItem)
-
-			for software in softwares:
-				templates = set((template[0] for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate.id).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
-
-				if not templates:
-					continue
-
-				LOGGER.debug("> Preparing '{0}' software for Model.".format(software))
-
-				softwareStandardItem = QStandardItem(QString(software))
-				iconPath = os.path.join(self.__uiResourcesDirectory, "{0}{1}".format(software, self.__uiSoftwareAffixe))
-				if os.path.exists(iconPath):
-					softwareStandardItem.setIcon(QIcon(iconPath))
-				else:
-					softwareStandardItem.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)))
-
-				softwareStandardItem._type = "Software"
-
-				LOGGER.debug("> Adding '{0}' software to Model.".format(software))
-				collectionStandardItem.appendRow([softwareStandardItem, None, None])
-
-				for template in templates:
-					template = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template), "id")[0]
-
-					LOGGER.debug("> Preparing '{0}' Template for Model.".format(template.name))
-
-					try:
-						templateStandardItem = QStandardItem(QString("{0} {1}".format(template.renderer, template.title)))
-
-						templateReleaseStandardItem = QStandardItem(QString(template.release))
-						templateReleaseStandardItem.setTextAlignment(Qt.AlignCenter)
-
-						templateVersionStandardItem = QStandardItem(QString(template.version))
-						templateVersionStandardItem.setTextAlignment(Qt.AlignCenter)
-
-						templateStandardItem._data = template
-						templateStandardItem._type = "Template"
-
-						LOGGER.debug("> Adding '{0}' Template to Model.".format(template.name))
-						softwareStandardItem.appendRow([templateStandardItem, templateReleaseStandardItem, templateVersionStandardItem])
-
-					except Exception as error:
-						LOGGER.error("!>{0} | Exception raised while adding '{1}' Template to Model!".format(self.__class__.__name__, template.name))
-						foundations.exceptions.defaultExceptionsHandler(error, "{0} | {1}.{2}()".format(core.getModule(self).__name__, self.__class__.__name__, "__initializeModel"))
-
-		self.changed.emit()
-
-	@core.executionTrace
-	def setTemplates(self, templates):
-		"""
-		This method sets the provided Templates.
-		
-		:param templates: Templates. ( List )
-		return: Method success ( Boolean )
-		"""
-
-		self.__templates = templates
-		self.__initializeModel()
-		return True
-
-class TemplatesOutliner_QTreeView(QTreeView):
-	"""
-	This class is a `QTreeView <http://doc.qt.nokia.com/4.7/qtreeview.html>`_ subclass used to display Database Templates.
-	"""
-
-	@core.executionTrace
-	def __init__(self, parent, model=None, editable=True):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param model: Model. ( QObject )
-		:param editable: Model editable. ( Boolean )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		QTreeView.__init__(self, parent)
-
-		# --- Setting class attributes. ---
-		self.__container = parent
-		self.__editable = editable
-
-		self.__treeViewIndentation = 15
-
-		self.setModel(model)
-		self.__modelSelection = {"Collections":[], "Softwares":[], "Templates":[]}
-
-		TemplatesOutliner_QTreeView.__initializeUi(self)
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def container(self):
-		"""
-		This method is the property for **self.__container** attribute.
-
-		:return: self.__container. ( QObject )
-		"""
-
-		return self.__container
-
-	@container.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self, value):
-		"""
-		This method is the setter method for **self.__container** attribute.
-
-		:param value: Attribute value. ( QObject )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
-
-	@container.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def container(self):
-		"""
-		This method is the deleter method for **self.__container** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
-
-	@property
-	def editable(self):
-		"""
-		This method is the property for **self.__editable** attribute.
-
-		:return: self.__editable. ( Boolean )
-		"""
-
-		return self.__editable
-
-	@editable.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self, value):
-		"""
-		This method is the setter method for **self.__editable** attribute.
-
-		:param value: Attribute value. ( Boolean )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editable"))
-
-	@editable.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def editable(self):
-		"""
-		This method is the deleter method for **self.__editable** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editable"))
-
-	@property
-	def treeViewIndentation(self):
-		"""
-		This method is the property for **self.__treeViewIndentation** attribute.
-
-		:return: self.__treeViewIndentation. ( Integer )
-		"""
-
-		return self.__treeViewIndentation
-
-	@treeViewIndentation.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def treeViewIndentation(self, value):
-		"""
-		This method is the setter method for **self.__treeViewIndentation** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
-
-	@treeViewIndentation.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def treeViewIndentation(self):
-		"""
-		This method is the deleter method for **self.__treeViewIndentation** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
-
-	@property
-	def modelSelection(self):
-		"""
-		This method is the property for **self.__modelSelection** attribute.
-
-		:return: self.__modelSelection. ( Dictionary )
-		"""
-
-		return self.__modelSelection
-
-	@modelSelection.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self, value):
-		"""
-		This method is the setter method for **self.__modelSelection** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "modelSelection"))
-
-	@modelSelection.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def modelSelection(self):
-		"""
-		This method is the deleter method for **self.__modelSelection** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
-
-	#***********************************************************************************************
-	#***	Class methods.
-	#***********************************************************************************************
-	@core.executionTrace
-	def setModel(self, model):
-		"""
-		This method reimplements the **QTreeView.setModel** method.
-		
-		:param model: Model to set. ( QObject )
-		"""
-
-		if not model:
-			return
-
-		QTreeView.setModel(self, model)
-
-		# Signals / Slots.
-		self.model().aboutToChange.connect(self.__model__aboutToChange)
-		self.model().changed.connect(self.__model__changed)
-
-	@core.executionTrace
-	def __initializeUi(self):
-		"""
-		This method initializes the Widget ui.
-		"""
-
-		self.setAutoScroll(False)
-		self.setEditTriggers(QAbstractItemView.NoEditTriggers)
-		self.setDragDropMode(QAbstractItemView.DragOnly)
-		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
-		self.setIndentation(self.__treeViewIndentation)
-		self.setSortingEnabled(True)
-
-		self.__setDefaultUiState()
-
-	@core.executionTrace
-	def __setDefaultUiState(self):
-		"""
-		This method sets the Widget default ui state.
-		"""
-
-		LOGGER.debug("> Setting default View state!")
-
-		self.expandAll()
-		for column in range(len(self.model().headers)):
-			self.resizeColumnToContents(column)
-
-		self.sortByColumn(0, Qt.AscendingOrder)
-
-	@core.executionTrace
-	def __model__aboutToChange(self):
-		"""
-		This method is triggered when the Model is about to change.
-		"""
-
-		self.storeModelSelection()
-
-	@core.executionTrace
-	def __model__changed(self):
-		"""
-		This method is triggered when the Model is changed.
-		"""
-
-		self.restoreModelSelection()
-		self.__setDefaultUiState()
-
-	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
-		"""
-		This method returns the selected items.
-
-		:param rowsRootOnly: Return rows roots only. ( Boolean )
-		:return: View selected items. ( List )
-		"""
-
-		selectedIndexes = self.selectedIndexes()
-		return rowsRootOnly and [item for item in set([self.model().itemFromIndex(self.model().sibling(index.row(), 0, index)) for index in selectedIndexes])] or [self.model().itemFromIndex(index) for index in selectedIndexes]
-
-	@core.executionTrace
-	def storeModelSelection(self):
-		"""
-		This method stores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Storing Model selection!")
-
-		for item in self.getSelectedItems():
-			if item._type == "Collection":
-				self.__modelSelection["Collections"].append(item.text())
-			elif item._type == "Software":
-				self.__modelSelection["Softwares"].append(item.text())
-			else:
-				self.__modelSelection["Templates"].append(item._data.id)
-		return True
-
-	@core.executionTrace
-	def restoreModelSelection(self):
-		"""
-		This method restores the Model selection.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Restoring Model selection!")
-
-		if not self.__modelSelection:
-			return
-
-		indexes = []
-		for i in range(self.model().rowCount()):
-			collectionStandardItem = self.model().item(i)
-			collectionStandardItem.text() in self.__modelSelection["Collections"] and indexes.append(self.model().indexFromItem(collectionStandardItem))
-			for j in range(collectionStandardItem.rowCount()):
-				softwareStandardItem = collectionStandardItem.child(j, 0)
-				softwareStandardItem.text() in self.__modelSelection["Softwares"] and indexes.append(self.model().indexFromItem(softwareStandardItem))
-				for k in range(softwareStandardItem.rowCount()):
-					templateStandardItem = softwareStandardItem.child(k, 0)
-					templateStandardItem._data.id in self.__modelSelection["Templates"] and indexes.append(self.model().indexFromItem(templateStandardItem))
-
-		if self.selectionModel():
-			self.selectionModel().clear()
-			for index in indexes:
-				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-		return True
-
-class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
-	"""
-	| This class is the :mod:`umbra.components.core.templatesOutliner.templatesOutliner` Component Interface class.
-	| It defines methods for Database Templates management.
-	"""
-
-	# Custom signals definitions.
-	modelRefresh = pyqtSignal()
-
-	@core.executionTrace
-	def __init__(self, parent=None, name=None, *args, **kwargs):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		:param name: Component name. ( String )
-		:param \*args: Arguments. ( \* )
-		:param \*\*kwargs: Keywords arguments. ( \* )
-		"""
-
-		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
-
-		super(TemplatesOutliner, self).__init__(parent, name, *args, **kwargs)
-
-		# --- Setting class attributes. ---
-		self.deactivatable = False
-
-		self.__uiResourcesDirectory = "resources"
-		self.__dockArea = 1
-
-		self.__engine = None
-		self.__settings = None
-		self.__settingsSection = None
-		self.__settingsSeparator = ","
-
-		self.__editLayout = "editCentric"
-
-		self.__factoryScriptEditor = None
-		self.__coreDb = None
-
-		self.__model = None
-		self.__view = None
-
-		self.__templatesOutlinerWorkerThread = None
-
-		self.__extension = "sIBLT"
-
-		self.__defaultCollections = None
-		self.__factoryCollection = "Factory"
-		self.__userCollection = "User"
-
-		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
-
-		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
-		self.__templatesInformationsText = """
-											<h4><center>{0}</center></h4>
-											<p>
-											<b>Date:</b> {1}
-											<br/>
-											<b>Author:</b> {2}
-											<br/>
-											<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
-											<br/>
-											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
-											<br/>
-											<b>Output script:</b> {5}
-											<p>
-											<b>Comment:</b> {6}
-											</p>
-											<p>
-											<b>Help file:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
-											</p>
-											</p>
-											"""
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def uiResourcesDirectory(self):
-		"""
-		This method is the property for **self.__uiResourcesDirectory** attribute.
-
-		:return: self.__uiResourcesDirectory. ( String )
-		"""
-
-		return self.__uiResourcesDirectory
-
-	@uiResourcesDirectory.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self, value):
-		"""
-		This method is the setter method for **self.__uiResourcesDirectory** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
-
-	@uiResourcesDirectory.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def uiResourcesDirectory(self):
-		"""
-		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def dockArea(self):
@@ -1315,6 +540,36 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
+	def headers(self):
+		"""
+		This method is the property for **self.__headers** attribute.
+
+		:return: self.__headers. ( OrderedDict )
+		"""
+
+		return self.__headers
+
+	@headers.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def headers(self, value):
+		"""
+		This method is the setter method for **self.__headers** attribute.
+
+		:param value: Attribute value. ( OrderedDict )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
+
+	@headers.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def headers(self):
+		"""
+		This method is the deleter method for **self.__headers** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
+
+	@property
 	def templatesOutlinerWorkerThread(self):
 		"""
 		This method is the property for **self.__templatesOutlinerWorkerThread** attribute.
@@ -1604,9 +859,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
-		self.__model = TemplatesModel(self, self.getTemplates(), not self.__engine.parameters.databaseReadOnly)
+		self.__model = TemplatesModel(self, horizontalHeaders=self.__headers)
+		self.setTemplates()
 
-		self.Templates_Outliner_treeView = TemplatesOutliner_QTreeView(self, self.__model, not self.__engine.parameters.databaseReadOnly)
+
+		self.Templates_Outliner_treeView = Templates_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
 		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
 		self.__view = self.Templates_Outliner_treeView
@@ -1629,13 +886,13 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
-		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
-		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
-		if not self.__engine.parameters.databaseReadOnly:
-			if not self.__engine.parameters.deactivateWorkerThreads:
-				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
-			self.__engine.contentDropped.connect(self.__application__contentDropped)
+#		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
+#		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
+#		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
+#		if not self.__engine.parameters.databaseReadOnly:
+#			if not self.__engine.parameters.deactivateWorkerThreads:
+#				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
+#			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -1696,34 +953,34 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollections = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollections))
-		if activeCollections:
-			if self.__settingsSeparator in activeCollections:
-				collections = activeCollections.split(self.__settingsSeparator)
-			else:
-				collections = [activeCollections]
-			self.__view.modelSelection["Collections"] = collections
-
-		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
-		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
-		if activeSoftwares:
-			if self.__settingsSeparator in activeSoftwares:
-				softwares = activeSoftwares.split(self.__settingsSeparator)
-			else:
-				softwares = [activeSoftwares]
-			self.__view.modelSelection["Softwares"] = softwares
-
-		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
-		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
-		if activeTemplatesIds:
-			if self.__settingsSeparator in activeTemplatesIds:
-				ids = activeTemplatesIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeTemplatesIds]
-			self.__view.modelSelection["Templates"] = [int(id) for id in ids]
-
-		self.__view.restoreModelSelection()
+#		activeCollections = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+#		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollections))
+#		if activeCollections:
+#			if self.__settingsSeparator in activeCollections:
+#				collections = activeCollections.split(self.__settingsSeparator)
+#			else:
+#				collections = [activeCollections]
+#			self.__view.modelSelection["Collections"] = collections
+#
+#		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
+#		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
+#		if activeSoftwares:
+#			if self.__settingsSeparator in activeSoftwares:
+#				softwares = activeSoftwares.split(self.__settingsSeparator)
+#			else:
+#				softwares = [activeSoftwares]
+#			self.__view.modelSelection["Softwares"] = softwares
+#
+#		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
+#		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
+#		if activeTemplatesIds:
+#			if self.__settingsSeparator in activeTemplatesIds:
+#				ids = activeTemplatesIds.split(self.__settingsSeparator)
+#			else:
+#				ids = [activeTemplatesIds]
+#			self.__view.modelSelection["Templates"] = [int(id) for id in ids]
+#
+#		self.__view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -1736,10 +993,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Templates"]))
-		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Collections"]))
-		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Softwares"]))
+#		self.__view.storeModelSelection()
+#		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Templates"]))
+#		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Collections"]))
+#		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Softwares"]))
 		return True
 
 	@core.executionTrace
@@ -1964,7 +1221,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedItems = self.getSelectedItems()
+		selectedItems = self.getSelectedNodes()
 
 		selectedCollections = []
 		selectedSoftwares = []
@@ -2240,29 +1497,66 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method sets Model Templates.
 		"""
 
-		self.__model.setTemplates(self.getTemplates())
+		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+
+		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
+
+		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
+		for collection in collections:
+			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
+			if not softwares:
+				continue
+
+			collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=rootNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+
+			for software in softwares:
+				templates = set((template for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
+
+				if not templates:
+					continue
+
+				softwareNode = SoftwareNode(name=software, parent=collectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+				iconPath = os.path.join(self.__uiResourcesDirectory, "{0}{1}".format(software, self.__uiSoftwareAffixe))
+				softwareNode.roles[Qt.DecorationRole] = os.path.exists(iconPath) and iconPath or os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
+
+				for template in templates:
+					templateNode = dbNodes.TemplateNode(template, name="{0} {1}".format(template.renderer, template.title), parent=softwareNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
+
+		self.__model.initializeModel(rootNode)
+		return True
 
 	@core.executionTrace
-	def getSelectedItems(self, rowsRootOnly=True):
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getSelectedNodes(self):
 		"""
-		This method returns the selected items.
+		This method returns the View selected nodes.
 
-		:param rowsRootOnly: Return rows roots only. ( Boolean )
-		:return: View selected items. ( List )
+		:return: View selected nodes. ( Dictionary )
 		"""
 
-		return self.__view.getSelectedItems(rowsRootOnly)
+		return self.__view.getSelectedNodes()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def getSelectedTemplatesNodes(self):
+		"""
+		This method returns the View selected Templates nodes.
+
+		:return: View selected Templates nodes. ( List )
+		"""
+
+		return [node for node in self.getSelectedNodes().keys() if node.family == "Template"]
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getSelectedTemplates(self):
 		"""
-		This method returns the selected Templates.
+		This method gets the View selected Templates.
 
 		:return: View selected Templates. ( List )
 		"""
 
-		selectedItems = self.getSelectedItems()
-		return selectedItems and [item._data for item in selectedItems if item._type == "Template"] or []
+		return [node.dbItem for node in self.getSelectedTemplatesNodes()]
 
 	@core.executionTrace
 	def getCollection(self, collection):

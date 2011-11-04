@@ -36,7 +36,7 @@ import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.core.collectionsOutliner.models import getOverallCollectionNode, CollectionsModel
+from sibl_gui.components.core.collectionsOutliner.models import OverallCollectionNode, CollectionsModel
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
@@ -805,6 +805,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		collectionNode = self.__model.getNode(startIndex)
+		if collectionNode.family != "Collection":
+			return
+
 		if startIndex.column() == 0:
 			if self.collectionExists(collectionNode.name):
 				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Collection name already exists in Database!".format(self.__class__.__name__, collectionNode.name))
@@ -1004,8 +1007,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 
-		overallCollectionNode = getOverallCollectionNode("Overall", rootNode)
-		overallCollectionNode.flags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+		overallCollectionNode = OverallCollectionNode(name="Overall", parent=rootNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 		iblSetsCount = 0
 		for collection in collections:

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Models.
 
 **Others:**
 
@@ -25,6 +25,7 @@ from PyQt4.QtGui import *
 #***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
+import foundations.exceptions
 import sibl_gui.ui.models
 import umbra.ui.models
 from umbra.globals.constants import Constants
@@ -39,19 +40,19 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "OverallCollectionNode", "CollectionsModel"]
+__all__ = ["LOGGER", "SoftwareNode", "TemplatesModel"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class OverallCollectionNode(umbra.ui.models.GraphModelNode):
+class SoftwareNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Model **Overall** collection node.
+	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Model software node.
 	"""
 
-	__family = "OverallCollection"
+	__family = "Software"
 
 	@core.executionTrace
 	def __init__(self, name=None, parent=None, children=None, roles=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), ** kwargs):
@@ -71,7 +72,7 @@ class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 
 		umbra.ui.models.GraphModelNode.__init__(self, name, parent, children, roles, nodeFlags, **kwargs)
 
-		OverallCollectionNode.__initializeNode(self, attributesFlags)
+		SoftwareNode.__initializeNode(self, attributesFlags)
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -84,12 +85,11 @@ class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		self["count"] = umbra.ui.models.GraphModelAttribute(name="count", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self["comment"] = umbra.ui.models.GraphModelAttribute(name="comment", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		pass
 
-class CollectionsModel(sibl_gui.ui.models.GraphModel):
+class TemplatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
+	This class defines the model used the by :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class. 
 	"""
 
 	@core.executionTrace

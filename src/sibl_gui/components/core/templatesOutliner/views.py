@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Views.
+	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Views.
 
 **Others:**
 
@@ -41,14 +41,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "IblSetsCollections_QTreeView"]
+__all__ = ["LOGGER", "Templates_QTreeView"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
+class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	"""
 	This class is used to display Database Collections.
 	"""
@@ -72,7 +72,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		self.__treeViewIndentation = 15
 
-		IblSetsCollections_QTreeView.__initializeUi(self)
+		Templates_QTreeView.__initializeUi(self)
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -141,74 +141,16 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
-	def dragEnterEvent(self, event):
-		"""
-		This method defines the drag enter event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		if event.mimeData().hasFormat("application/x-umbragraphmodeldatalist"):
-			LOGGER.debug("> '{0}' drag event type accepted!".format("application/x-umbragraphmodeldatalist"))
-			event.accept()
-		else:
-			event.ignore()
-
-	@core.executionTrace
-	def dragMoveEvent(self, event):
-		"""
-		This method defines the drag move event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		pass
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DirectoryExistsError, foundations.exceptions.UserError)
-	def dropEvent(self, event):
-		"""
-		This method defines the drop event behavior.
-
-		:param event: QEvent. ( QEvent )
-		"""
-
-		if not self.readOnly:
-			indexAt = self.indexAt(event.pos())
-			collectionNode = self.model().getNode(indexAt)
-
-			if not collectionNode:
-				return
-
-			if collectionNode.name in (self.__container.overallCollection, "InvisibleRootNode"):
-				return
-
-			LOGGER.debug("> Item at drop position: '{0}'.".format(collectionNode))
-
-			nodes = pickle.loads(event.mimeData().data("application/x-umbragraphmodeldatalist"))
-			for node in nodes:
-				if node.family != "IblSet":
-					continue
-
-				node._AbstractDatabaseNode__dbItem = self.__container.coreDb.dbSession.merge(node.dbItem)
-				if collectionNode.dbItem.id != node.dbItem.collection:
-					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title, collectionNode.dbItem.name))
-					node.dbItem.collection = collectionNode.dbItem.id
-			if self.__container.coreDb.commit():
-				self.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
-		else:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
-
-	@core.executionTrace
 	def __initializeUi(self):
 		"""
 		This method initializes the Widget ui.
 		"""
 
-		self.setAutoScroll(True)
+		self.setAutoScroll(False)
+		self.setEditTriggers(QAbstractItemView.NoEditTriggers)
+		self.setDragDropMode(QAbstractItemView.DragOnly)
 		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.setIndentation(self.__treeViewIndentation)
-		self.setDragDropMode(QAbstractItemView.DropOnly)
 		self.setSortingEnabled(True)
 
 		self.__setDefaultUiState()
@@ -242,13 +184,13 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		LOGGER.debug("> Storing Model selection!")
 
-		self.modelSelection = {"Overall" : [], "Collections" : []}
-		for node in self.getSelectedNodes().keys():
-			if node.name == self.__container.overallCollection:
-				self.modelSelection["Overall"].append(node.name)
-			elif node.family == "Collection":
-				self.modelSelection["Collections"].append(node.id.value)
-		return True
+#		self.modelSelection = {"Overall" : [], "Collections" : []}
+#		for node in self.getSelectedNodes().keys():
+#			if node.name == self.__container.overallCollection:
+#				self.modelSelection["Overall"].append(node.name)
+#			elif node.family == "Collection":
+#				self.modelSelection["Collections"].append(node.id.value)
+#		return True
 
 	@core.executionTrace
 	def restoreModelSelection(self):
@@ -258,24 +200,24 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:return: Method success. ( Boolean )
 		"""
 
-		LOGGER.debug("> Restoring Model selection!")
-
-		if not self.modelSelection:
-			return
-
-		selection = self.modelSelection.get("Overall", None) or self.modelSelection.get("Collections", None)
-		if not selection:
-			return
-
-		indexes = []
-		for node in foundations.walkers.nodesWalker(self.model().rootNode):
-			if node.family == "Collection":
-				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
-			else:
-				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
-
-		if self.selectionModel():
-			self.selectionModel().clear()
-			for index in indexes:
-				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-		return True
+#		LOGGER.debug("> Restoring Model selection!")
+#
+#		if not self.modelSelection:
+#			return
+#
+#		selection = self.modelSelection.get("Overall", None) or self.modelSelection.get("Collections", None)
+#		if not selection:
+#			return
+#
+#		indexes = []
+#		for node in foundations.walkers.nodesWalker(self.model().rootNode):
+#			if node.family == "Collection":
+#				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
+#			else:
+#				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
+#
+#		if self.selectionModel():
+#			self.selectionModel().clear()
+#			for index in indexes:
+#				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
+#		return True

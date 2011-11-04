@@ -43,6 +43,7 @@ __status__ = "Production"
 __all__ = ["LOGGER",
 			"AbstractDatabaseNode",
 			"IblSetNode",
+			"TemplateNode",
 			"CollectionNode"]
 
 LOGGER = logging.getLogger(Constants.logger)
@@ -279,6 +280,110 @@ class IblSetNode(AbstractDatabaseNode):
 													self.dbItem.location or Constants.nullObject,
 													sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
 													self.dbItem.comment or Constants.nullObject)})
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeNode(self):
+		"""
+		This method synchronizes the node from the dbItem.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.name = self.roles[Qt.DisplayRole] = self.roles[Qt.EditRole] = self.__dbItem.title
+		return self.synchronizeNodeAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeDbItem(self):
+		"""
+		This method synchronizes the dbItem from the node.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.dbItem.title = self.name
+		return self.synchronizeDbItemAttributes()
+
+class TemplateNode(AbstractDatabaseNode):
+	"""
+	This class defines Templates nodes.
+	"""
+
+	__family = "Template"
+
+	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=None, **kwargs):
+		"""
+		This method initializes the class.
+
+		:param dbItem: Database object.  ( Object )
+		:param name: Node name.  ( String )
+		:param parent: Node parent. ( GraphModelNode )
+		:param children: Children. ( List )
+		:param roles: Roles. ( Dictionary )
+		:param nodeFlags: Node flags. ( Integer )
+		:param attributesFlags: Attributes flags. ( Integer )
+		:param \*\*kwargs: Keywords arguments. ( \* )
+		"""
+
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
+		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
+
+		# --- Setting class attributes. ---
+		self.__toolTipText = """
+				<p><b>{0}</b></p>
+				<p><b>Author: </b>{1}<br>
+				"""
+
+		TemplateNode.__initializeNode(self)
+
+	#***********************************************************************************************
+	#***	Attributes properties.
+	#***********************************************************************************************
+	@property
+	def toolTipText(self):
+		"""
+		This method is the property for **self.__toolTipText** attribute.
+
+		:return: self.__toolTipText. ( String )
+		"""
+
+		return self.__toolTipText
+
+	@toolTipText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self, value):
+		"""
+		This method is the setter method for **self.__toolTipText** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
+
+	@toolTipText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self):
+		"""
+		This method is the deleter method for **self.__toolTipText** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
+
+	#***********************************************************************************************
+	#***	Class methods.
+	#***********************************************************************************************
+	@core.executionTrace
+	def __initializeNode(self):
+		"""
+		This method initializes the node.
+		"""
+
+		self.roles.update({Qt.DisplayRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+							Qt.EditRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+							Qt.ToolTipRole : self.__toolTipText.format(self.dbItem.title,
+														self.dbItem.author or Constants.nullObject)})
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
