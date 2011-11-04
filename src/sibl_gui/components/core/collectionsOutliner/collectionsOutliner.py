@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`CollectionsOutliner` Component Interface class and the :class:`CollectionsOutliner_QTreeView` class.
+	This module defines the :class:`CollectionsOutliner` Component Interface class.
 
 **Others:**
 
@@ -728,7 +728,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__view.storeModelSelection()
 		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(id) for id in self.__view.modelSelection["Collections"])))
-		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(id) for id in self.__view.modelSelection[self.__overallCollection])))
+		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(name) for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
 	@core.executionTrace
@@ -999,7 +999,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setCollections(self):
 		"""
-		This method sets Model Collections.
+		This method sets the Collections Model nodes.
 		"""
 
 		nodeFlags = attributesFlags = self.__engine.parameters.databaseReadOnly and int(Qt.ItemIsSelectable | Qt.ItemIsEnabled) or int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled)

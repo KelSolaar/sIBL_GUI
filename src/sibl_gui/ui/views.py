@@ -48,6 +48,7 @@ LOGGER = logging.getLogger(Constants.logger)
 #***	Module classes and definitions.
 #***********************************************************************************************
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def storeDefaultViewModelSelection(view):
 	"""
 	This method stores the View Model selection.
@@ -64,6 +65,7 @@ def storeDefaultViewModelSelection(view):
 	return True
 
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def restoreDefaultModelSelection(view):
 	"""
 	This method restores the View Model selection.

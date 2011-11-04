@@ -25,7 +25,6 @@ from PyQt4.QtGui import *
 #***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
-import foundations.exceptions
 import sibl_gui.ui.models
 import umbra.ui.models
 from umbra.globals.constants import Constants
@@ -85,7 +84,8 @@ class SoftwareNode(umbra.ui.models.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		pass
+		self["release"] = umbra.ui.models.GraphModelAttribute(name="release", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["version"] = umbra.ui.models.GraphModelAttribute(name="version", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 class TemplatesModel(sibl_gui.ui.models.GraphModel):
 	"""

@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`DatabaseBrowser` Component Interface class, the :class:`Thumbnails_QListView` class and the the :class:`DatabaseBrowser_Worker` worker thread class.
+	This module defines the :class:`DatabaseBrowser` Component Interface class.
 
 **Others:**
 
@@ -59,7 +59,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser_Worker", "DatabaseBrowser"]
+__all__ = ["LOGGER", "COMPONENT_UI_FILE", "DatabaseBrowser"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -1761,7 +1761,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setIblSets(self, iblSets=None):
 		"""
-		This method sets Model Ibl Sets nodes.
+		This method sets the Ibl Sets Model nodes.
 	
 		:param iblSets: Ibl Sets to set. ( List )
 		:return: Method success. ( Boolean )

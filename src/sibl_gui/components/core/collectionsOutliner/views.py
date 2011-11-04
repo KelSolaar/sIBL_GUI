@@ -209,7 +209,9 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.setIndentation(self.__treeViewIndentation)
 		self.setDragDropMode(QAbstractItemView.DropOnly)
+
 		self.setSortingEnabled(True)
+		self.sortByColumn(0, Qt.AscendingOrder)
 
 		self.__setDefaultUiState()
 
@@ -233,6 +235,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 			self.resizeColumnToContents(column)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -251,6 +254,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.

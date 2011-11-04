@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`TemplatesOutliner` Component Interface class, the :class:`TemplatesOutliner_QTreeView` class and the the :class:`TemplatesOutliner_Worker` worker thread class.
+	This module defines the :class:`TemplatesOutliner` Component Interface class.
 
 **Others:**
 
@@ -862,7 +862,6 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model = TemplatesModel(self, horizontalHeaders=self.__headers)
 		self.setTemplates()
 
-
 		self.Templates_Outliner_treeView = Templates_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
 		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
@@ -886,13 +885,13 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
-#		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
-#		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
-#		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
-#		if not self.__engine.parameters.databaseReadOnly:
-#			if not self.__engine.parameters.deactivateWorkerThreads:
-#				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
-#			self.__engine.contentDropped.connect(self.__application__contentDropped)
+		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
+		self.Template_Informations_textBrowser.anchorClicked.connect(self.__Template_Informations_textBrowser__anchorClicked)
+		self.modelRefresh.connect(self.__templatesOutliner__modelRefresh)
+		if not self.__engine.parameters.databaseReadOnly:
+			if not self.__engine.parameters.deactivateWorkerThreads:
+				self.__templatesOutlinerWorkerThread.databaseChanged.connect(self.__coreDb_database__changed)
+			self.__engine.contentDropped.connect(self.__application__contentDropped)
 		return True
 
 	@core.executionTrace
@@ -953,34 +952,34 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-#		activeCollections = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-#		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollections))
-#		if activeCollections:
-#			if self.__settingsSeparator in activeCollections:
-#				collections = activeCollections.split(self.__settingsSeparator)
-#			else:
-#				collections = [activeCollections]
-#			self.__view.modelSelection["Collections"] = collections
-#
-#		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
-#		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
-#		if activeSoftwares:
-#			if self.__settingsSeparator in activeSoftwares:
-#				softwares = activeSoftwares.split(self.__settingsSeparator)
-#			else:
-#				softwares = [activeSoftwares]
-#			self.__view.modelSelection["Softwares"] = softwares
-#
-#		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
-#		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
-#		if activeTemplatesIds:
-#			if self.__settingsSeparator in activeTemplatesIds:
-#				ids = activeTemplatesIds.split(self.__settingsSeparator)
-#			else:
-#				ids = [activeTemplatesIds]
-#			self.__view.modelSelection["Templates"] = [int(id) for id in ids]
-#
-#		self.__view.restoreModelSelection()
+		activeCollectionsIds = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
+		if activeCollectionsIds:
+			if self.__settingsSeparator in activeCollectionsIds:
+				ids = activeCollectionsIds.split(self.__settingsSeparator)
+			else:
+				ids = [activeCollectionsIds]
+			self.__view.modelSelection["Collections"] = [int(id) for id in ids]
+
+		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
+		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
+		if activeSoftwares:
+			if self.__settingsSeparator in activeSoftwares:
+				softwares = activeSoftwares.split(self.__settingsSeparator)
+			else:
+				softwares = [activeSoftwares]
+			self.__view.modelSelection["Softwares"] = softwares
+
+		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
+		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
+		if activeTemplatesIds:
+			if self.__settingsSeparator in activeTemplatesIds:
+				ids = activeTemplatesIds.split(self.__settingsSeparator)
+			else:
+				ids = [activeTemplatesIds]
+			self.__view.modelSelection["Templates"] = [int(id) for id in ids]
+
+		self.__view.restoreModelSelection()
 		return True
 
 	@core.executionTrace
@@ -993,10 +992,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
-#		self.__view.storeModelSelection()
-#		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Templates"]))
-#		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Collections"]))
-#		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Softwares"]))
+		self.__view.storeModelSelection()
+		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Templates"]))
+		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Collections"]))
+		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(name) for name in self.__view.modelSelection["Softwares"]))
 		return True
 
 	@core.executionTrace
@@ -1221,23 +1220,19 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		selectedItems = self.getSelectedNodes()
+		selectedNodes = self.getSelectedNodes()
 
 		selectedCollections = []
 		selectedSoftwares = []
-		selectedTemplates = []
-
-		for item in selectedItems:
-			if item._type == "Collection":
-				selectedCollections.append(str(item.text()))
-			elif item._type == "Software":
-				selectedSoftwares.append(str(item.text()))
-			else:
-				selectedTemplates.append(item._data)
-
+		for item in selectedNodes:
+			if item.family == "Collection":
+				selectedCollections.append(item.name)
+			elif item.family == "Software":
+				selectedSoftwares.append(item.name)
 		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
 		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
+		selectedTemplates = self.getSelectedTemplates()
 		if not selectedTemplates:
 			return
 
@@ -1494,10 +1489,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def setTemplates(self):
 		"""
-		This method sets Model Templates.
+		This method sets the Templates Model nodes.
 		"""
 
-		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
+		nodeFlags = attributesFlags = int(Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled)
 
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 
@@ -1507,7 +1502,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not softwares:
 				continue
 
-			collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=rootNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+			collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=rootNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+							release=umbra.ui.models.GraphModelAttribute(name="release", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)), version=umbra.ui.models.GraphModelAttribute(name="version", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
 				templates = set((template for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
@@ -1559,6 +1555,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [node.dbItem for node in self.getSelectedTemplatesNodes()]
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollection(self, collection):
 		"""
 		This method gets Template Collection from provided Collection name.
@@ -1570,6 +1567,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getUniqueCollectionId(self, path):
 		"""
 		This method gets an unique Collection id using provided path.

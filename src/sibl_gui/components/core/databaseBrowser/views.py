@@ -324,7 +324,9 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.setIndentation(self.__treeViewIndentation)
 		self.setDragDropMode(QAbstractItemView.DragOnly)
+
 		self.setSortingEnabled(True)
+		self.sortByColumn(0, Qt.AscendingOrder)
 
 		self.__setDefaultUiState()
 

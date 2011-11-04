@@ -334,6 +334,8 @@ class TemplateNode(AbstractDatabaseNode):
 		self.__toolTipText = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
+				<b>Release Date: </b>{2}<br>
+				<b>Comment: </b>{3}</p></p>
 				"""
 
 		TemplateNode.__initializeNode(self)
@@ -380,10 +382,13 @@ class TemplateNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		self.roles.update({Qt.DisplayRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+		name = "{0} {1}".format(self.dbItem.renderer, self.dbItem.title)
+		self.roles.update({Qt.DisplayRole : name,
 							Qt.EditRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
-							Qt.ToolTipRole : self.__toolTipText.format(self.dbItem.title,
-														self.dbItem.author or Constants.nullObject)})
+							Qt.ToolTipRole : self.__toolTipText.format(name,
+																	self.dbItem.author,
+																	self.dbItem.date,
+																	self.dbItem.comment)})
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

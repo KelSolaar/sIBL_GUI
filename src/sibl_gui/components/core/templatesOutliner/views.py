@@ -17,7 +17,6 @@
 #***********************************************************************************************
 #***	External imports.
 #***********************************************************************************************
-import pickle
 import logging
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -26,9 +25,9 @@ from PyQt4.QtGui import *
 #***	Internal imports.
 #***********************************************************************************************
 import foundations.core as core
+import foundations.namespace
 import foundations.exceptions
 import sibl_gui.ui.views
-import umbra.ui.common
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -146,12 +145,13 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method initializes the Widget ui.
 		"""
 
-		self.setAutoScroll(False)
-		self.setEditTriggers(QAbstractItemView.NoEditTriggers)
-		self.setDragDropMode(QAbstractItemView.DragOnly)
+		self.setAutoScroll(True)
 		self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 		self.setIndentation(self.__treeViewIndentation)
+		self.setDragDropMode(QAbstractItemView.DragOnly)
+
 		self.setSortingEnabled(True)
+		self.sortByColumn(0, Qt.AscendingOrder)
 
 		self.__setDefaultUiState()
 
@@ -175,6 +175,7 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 			self.resizeColumnToContents(column)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def storeModelSelection(self):
 		"""
 		This method stores the Model selection.
@@ -184,15 +185,18 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 		LOGGER.debug("> Storing Model selection!")
 
-#		self.modelSelection = {"Overall" : [], "Collections" : []}
-#		for node in self.getSelectedNodes().keys():
-#			if node.name == self.__container.overallCollection:
-#				self.modelSelection["Overall"].append(node.name)
-#			elif node.family == "Collection":
-#				self.modelSelection["Collections"].append(node.id.value)
-#		return True
+		self.modelSelection = {"Templates" : [], "Collections" : [], "Softwares" : []}
+		for node in self.getSelectedNodes().keys():
+			if node.family == "Template":
+				self.modelSelection["Templates"].append(node.id.value)
+			elif node.family == "Collection":
+				self.modelSelection["Collections"].append(node.id.value)
+			elif node.family == "Software":
+				self.modelSelection["Softwares"].append(foundations.namespace.setNamespace(node.parent.id.value, node.name))
+		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def restoreModelSelection(self):
 		"""
 		This method restores the Model selection.
@@ -200,24 +204,34 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:return: Method success. ( Boolean )
 		"""
 
-#		LOGGER.debug("> Restoring Model selection!")
-#
-#		if not self.modelSelection:
-#			return
-#
-#		selection = self.modelSelection.get("Overall", None) or self.modelSelection.get("Collections", None)
-#		if not selection:
-#			return
-#
-#		indexes = []
-#		for node in foundations.walkers.nodesWalker(self.model().rootNode):
-#			if node.family == "Collection":
-#				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
-#			else:
-#				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
-#
-#		if self.selectionModel():
-#			self.selectionModel().clear()
-#			for index in indexes:
-#				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
-#		return True
+		LOGGER.debug("> Restoring Model selection!")
+
+		if not self.modelSelection:
+			return
+
+		selection = self.modelSelection.get("Templates", None) or self.modelSelection.get("Collections", None) or self.modelSelection.get("Softwares", None)
+		if not selection:
+			return
+
+		indexes = []
+		for node in foundations.walkers.nodesWalker(self.model().rootNode):
+			if node.family == "Template":
+				node.id.value in self.modelSelection["Templates"] and indexes.append(self.model().getNodeIndex(node))
+			elif node.family == "Collection":
+				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
+			elif node.family == "Software":
+				for item in self.modelSelection["Softwares"]:
+					parentId, name = item.split(foundations.namespace.NAMESPACE_SPLITTER)
+					for collection in self.model().rootNode.children:
+						if not str(collection.id.value) == parentId:
+							continue
+
+						for software in collection.children:
+							if software.name == name:
+								indexes.append(self.model().getNodeIndex(software))
+
+		if self.selectionModel():
+			self.selectionModel().clear()
+			for index in indexes:
+				self.selectionModel().setCurrentIndex(index, QItemSelectionModel.Select | QItemSelectionModel.Rows)
+		return True
