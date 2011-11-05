@@ -89,7 +89,7 @@ class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 
 class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
+	This class defines the Model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -113,7 +113,7 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	@core.executionTrace
 	def initializeModel(self, rootNode):
 		"""
-		This method initializes the model using given root node.
+		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
 		return: Method success ( Boolean )

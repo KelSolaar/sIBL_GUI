@@ -160,7 +160,7 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 
 class PlatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class. 
+	This class defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -185,7 +185,7 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeModel(self, rootNode):
 		"""
-		This method initializes the model using given root node.
+		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
 		return: Method success ( Boolean )
