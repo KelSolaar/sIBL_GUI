@@ -1278,11 +1278,11 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			addIblSetAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Add Ibl Set ...", slot=self.__views_addIblSetAction__triggered)
 			removeIblSetsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Remove Ibl Set(s) ...", slot=self.__views_removeIblSetsAction__triggered)
 			updateIblSetsLocationsAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Update Ibl Set(s) Location(s) ...", slot=self.__views_updateIblSetsLocationsAction__triggered)
-			separatorAction = QAction(self.__thumbnailsView)
-			separatorAction.setSeparator(True)
 
 			for view in self.__views:
-				for action in (addContentAction, addIblSetAction, removeIblSetsAction, updateIblSetsLocationsAction):
+				separatorAction = QAction(view)
+				separatorAction.setSeparator(True)
+				for action in (addContentAction, addIblSetAction, removeIblSetsAction, updateIblSetsLocationsAction, separatorAction):
 					view.addAction(action)
 		else:
 			LOGGER.info("{0} | Ibl Sets Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))

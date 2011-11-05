@@ -560,7 +560,10 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...", slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered))
+			editIblSetsFilesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ...", slot=self.__Database_Browser_listView_editIblSetsFilesAction__triggered)
+			for view in self.__coreDatabaseBrowser.views:
+				view.addAction(editIblSetsFilesAction)
+
 			self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ...", slot=self.__Inspector_Overall_frame_editInspectorIblSetsFilesAction__triggered))
 			self.__coreTemplatesOutliner.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Edit Template(s) File(s) ...", slot=self.__Templates_Outliner_treeView_editTemplatesFilesAction__triggered))
 		else:
@@ -575,8 +578,9 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
-			self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
+			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
+			for view in self.__coreDatabaseBrowser.views:
+				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)
 			editInspectorIblSetsFilesAction = "Actions|Umbra|Components|core.inspector|Edit Ibl Set(s) File(s) ..."
 			self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(editInspectorIblSetsFilesAction))
@@ -689,7 +693,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param event: Event. ( QEvent )
 		"""
 
-		if event.source() is self.__coreDatabaseBrowser.view:
+		if event.source() in self.__coreDatabaseBrowser.views:
 			self.editIblSetsFiles_ui()
 		elif event.source() is self.__coreTemplatesOutliner.view:
 			self.editTemplatesFiles_ui()

@@ -532,14 +532,16 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		separatorAction = QAction(self.__coreDatabaseBrowser.view)
-		separatorAction.setSeparator(True)
-		self.__coreDatabaseBrowser.view.addAction(separatorAction)
 
-		self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Background Image ...", slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered))
-		self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...", slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered))
-		self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...", slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered))
-		self.__coreDatabaseBrowser.view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...", slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered))
+		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Background Image ...", slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
+		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...", slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
+		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...", slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
+		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...", slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
+		for view in self.__coreDatabaseBrowser.views:
+			separatorAction = QAction(view)
+			separatorAction.setSeparator(True)
+			for action in (separatorAction, viewIblSetsBackgroundImagesAction, viewIblSetsLightingImagesAction, viewIblSetsReflectionImagesAction, viewIblSetsPlatesAction):
+				view.addAction(action)
 
 		separatorAction = QAction(self.__coreInspector.Inspector_Overall_frame)
 		separatorAction.setSeparator(True)
@@ -559,17 +561,15 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		viewIblSetsBackgroundImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Background Image ..."
-		self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(viewIblSetsBackgroundImagesAction))
-		self.__engine.actionsManager.unregisterAction(viewIblSetsBackgroundImagesAction)
 		viewIblSetsLightingImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ..."
-		self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(viewIblSetsLightingImagesAction))
-		self.__engine.actionsManager.unregisterAction(viewIblSetsLightingImagesAction)
 		viewIblSetsReflectionImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ..."
-		self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(viewIblSetsReflectionImagesAction))
-		self.__engine.actionsManager.unregisterAction(viewIblSetsReflectionImagesAction)
 		viewIblSetsPlatesAction = "Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ..."
-		self.__coreDatabaseBrowser.view.removeAction(self.__engine.actionsManager.getAction(viewIblSetsPlatesAction))
-		self.__engine.actionsManager.unregisterAction(viewIblSetsPlatesAction)
+		actions = (viewIblSetsBackgroundImagesAction, viewIblSetsLightingImagesAction, viewIblSetsReflectionImagesAction, viewIblSetsPlatesAction)
+		for view in self.__coreDatabaseBrowser.views:
+			for action in actions:
+				view.removeAction(self.__engine.actionsManager.getAction(action))
+		for action in actions:
+			self.__engine.actionsManager.unregisterAction(action)
 
 		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
 		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
