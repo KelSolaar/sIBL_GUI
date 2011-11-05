@@ -38,3 +38,11 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: OrderedStructureTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: LookupTestCase
+	:show-inheritance:
+	:members:
+

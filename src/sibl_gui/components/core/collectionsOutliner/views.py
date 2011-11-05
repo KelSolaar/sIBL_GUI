@@ -274,9 +274,9 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		indexes = []
 		for node in foundations.walkers.nodesWalker(self.model().rootNode):
 			if node.family == "Collection":
-				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Collections", None) and node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
 			else:
-				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Overall", None) and  node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
 
 		if self.selectionModel():
 			self.selectionModel().clear()

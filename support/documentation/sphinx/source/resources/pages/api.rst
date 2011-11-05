@@ -8,6 +8,7 @@ Modules Summary:
 
    foundations.common <api/foundations.common>
    foundations.core <api/foundations.core>
+   foundations.dag <api/foundations.dag>
    foundations.environment <api/foundations.environment>
    foundations.exceptions <api/foundations.exceptions>
    foundations.globals.constants <api/foundations.globals.constants>
@@ -19,44 +20,81 @@ Modules Summary:
    foundations.rotatingBackup <api/foundations.rotatingBackup>
    foundations.streamObject <api/foundations.streamObject>
    foundations.strings <api/foundations.strings>
-   foundations.walker <api/foundations.walker>
+   foundations.ui.common <api/foundations.ui.common>
+   foundations.walkers <api/foundations.walkers>
    manager.component <api/manager.component>
    manager.componentsManager <api/manager.componentsManager>
    manager.exceptions <api/manager.exceptions>
    manager.globals.constants <api/manager.globals.constants>
+   manager.qobjectComponent <api/manager.qobjectComponent>
    manager.qwidgetComponent <api/manager.qwidgetComponent>
-   umbra.components.addons.about.about <api/umbra.components.addons.about.about>
-   umbra.components.addons.databaseOperations.databaseOperations <api/umbra.components.addons.databaseOperations.databaseOperations>
-   umbra.components.addons.gpsMap.gpsMap <api/umbra.components.addons.gpsMap.gpsMap>
-   umbra.components.addons.loaderScript.loaderScript <api/umbra.components.addons.loaderScript.loaderScript>
-   umbra.components.addons.loaderScriptOptions.loaderScriptOptions <api/umbra.components.addons.loaderScriptOptions.loaderScriptOptions>
-   umbra.components.addons.locationsBrowser.locationsBrowser <api/umbra.components.addons.locationsBrowser.locationsBrowser>
-   umbra.components.addons.loggingNotifier.loggingNotifier <api/umbra.components.addons.loggingNotifier.loggingNotifier>
-   umbra.components.addons.loggingWindow.loggingWindow <api/umbra.components.addons.loggingWindow.loggingWindow>
-   umbra.components.addons.onlineUpdater.onlineUpdater <api/umbra.components.addons.onlineUpdater.onlineUpdater>
-   umbra.components.addons.preview.preview <api/umbra.components.addons.preview.preview>
-   umbra.components.addons.rawEditingUtilities.rawEditingUtilities <api/umbra.components.addons.rawEditingUtilities.rawEditingUtilities>
-   umbra.components.addons.rewiringTool.rewiringTool <api/umbra.components.addons.rewiringTool.rewiringTool>
-   umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities <api/umbra.components.addons.sIBLeditUtilities.sIBLeditUtilities>
-   umbra.components.addons.searchDatabase.searchDatabase <api/umbra.components.addons.searchDatabase.searchDatabase>
-   umbra.components.addons.setsScanner.setsScanner <api/umbra.components.addons.setsScanner.setsScanner>
-   umbra.components.core.collectionsOutliner.collectionsOutliner <api/umbra.components.core.collectionsOutliner.collectionsOutliner>
-   umbra.components.core.componentsManagerUi.componentsManagerUi <api/umbra.components.core.componentsManagerUi.componentsManagerUi>
-   umbra.components.core.databaseBrowser.databaseBrowser <api/umbra.components.core.databaseBrowser.databaseBrowser>
-   umbra.components.core.db.db <api/umbra.components.core.db.db>
-   umbra.components.core.db.utilities.common <api/umbra.components.core.db.utilities.common>
-   umbra.components.core.db.utilities.types <api/umbra.components.core.db.utilities.types>
-   umbra.components.core.db.migrations.versions.001_table_Sets_Column_previewImage <api/umbra.components.core.db.migrations.versions.001_table_Sets_Column_previewImage>
-   umbra.components.core.inspector.inspector <api/umbra.components.core.inspector.inspector>
-   umbra.components.core.preferencesManager.preferencesManager <api/umbra.components.core.preferencesManager.preferencesManager>
-   umbra.components.core.templatesOutliner.templatesOutliner <api/umbra.components.core.templatesOutliner.templatesOutliner>
+   sIBL_GUI <api/sIBL_GUI>
+   sibl_gui.components.addons.about.about <api/sibl_gui.components.addons.about.about>
+   sibl_gui.components.addons.databaseOperations.databaseOperations <api/sibl_gui.components.addons.databaseOperations.databaseOperations>
+   sibl_gui.components.addons.gpsMap.gpsMap <api/sibl_gui.components.addons.gpsMap.gpsMap>
+   sibl_gui.components.addons.loaderScript.loaderScript <api/sibl_gui.components.addons.loaderScript.loaderScript>
+   sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions <api/sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions>
+   sibl_gui.components.addons.locationsBrowser.locationsBrowser <api/sibl_gui.components.addons.locationsBrowser.locationsBrowser>
+   sibl_gui.components.addons.loggingNotifier.loggingNotifier <api/sibl_gui.components.addons.loggingNotifier.loggingNotifier>
+   sibl_gui.components.addons.onlineUpdater.downloadManager <api/sibl_gui.components.addons.onlineUpdater.downloadManager>
+   sibl_gui.components.addons.onlineUpdater.onlineUpdater <api/sibl_gui.components.addons.onlineUpdater.onlineUpdater>
+   sibl_gui.components.addons.onlineUpdater.remoteUpdater <api/sibl_gui.components.addons.onlineUpdater.remoteUpdater>
+   sibl_gui.components.addons.preview.imagesPreviewer <api/sibl_gui.components.addons.preview.imagesPreviewer>
+   sibl_gui.components.addons.preview.preview <api/sibl_gui.components.addons.preview.preview>
+   sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities <api/sibl_gui.components.addons.rawEditingUtilities.rawEditingUtilities>
+   sibl_gui.components.addons.rewiringTool.rewiringTool <api/sibl_gui.components.addons.rewiringTool.rewiringTool>
+   sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities <api/sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities>
+   sibl_gui.components.addons.searchDatabase.searchDatabase <api/sibl_gui.components.addons.searchDatabase.searchDatabase>
+   sibl_gui.components.addons.setsScanner.setsScanner <api/sibl_gui.components.addons.setsScanner.setsScanner>
+   sibl_gui.components.core.collectionsOutliner.collectionsOutliner <api/sibl_gui.components.core.collectionsOutliner.collectionsOutliner>
+   sibl_gui.components.core.collectionsOutliner.models <api/sibl_gui.components.core.collectionsOutliner.models>
+   sibl_gui.components.core.collectionsOutliner.views <api/sibl_gui.components.core.collectionsOutliner.views>
+   sibl_gui.components.core.databaseBrowser.databaseBrowser <api/sibl_gui.components.core.databaseBrowser.databaseBrowser>
+   sibl_gui.components.core.databaseBrowser.models <api/sibl_gui.components.core.databaseBrowser.models>
+   sibl_gui.components.core.databaseBrowser.views <api/sibl_gui.components.core.databaseBrowser.views>
+   sibl_gui.components.core.databaseBrowser.workers <api/sibl_gui.components.core.databaseBrowser.workers>
+   sibl_gui.components.core.db.db <api/sibl_gui.components.core.db.db>
+   sibl_gui.components.core.db.exceptions <api/sibl_gui.components.core.db.exceptions>
+   sibl_gui.components.core.db.migrations.versions.001_table_Sets_Column_previewImage <api/sibl_gui.components.core.db.migrations.versions.001_table_Sets_Column_previewImage>
+   sibl_gui.components.core.db.utilities.common <api/sibl_gui.components.core.db.utilities.common>
+   sibl_gui.components.core.db.utilities.nodes <api/sibl_gui.components.core.db.utilities.nodes>
+   sibl_gui.components.core.db.utilities.types <api/sibl_gui.components.core.db.utilities.types>
+   sibl_gui.components.core.inspector.inspector <api/sibl_gui.components.core.inspector.inspector>
+   sibl_gui.components.core.templatesOutliner.models <api/sibl_gui.components.core.templatesOutliner.models>
+   sibl_gui.components.core.templatesOutliner.templatesOutliner <api/sibl_gui.components.core.templatesOutliner.templatesOutliner>
+   sibl_gui.components.core.templatesOutliner.views <api/sibl_gui.components.core.templatesOutliner.views>
+   sibl_gui.components.core.templatesOutliner.workers <api/sibl_gui.components.core.templatesOutliner.workers>
+   sibl_gui.exceptions <api/sibl_gui.exceptions>
+   sibl_gui.globals.constants <api/sibl_gui.globals.constants>
+   sibl_gui.globals.runtimeGlobals <api/sibl_gui.globals.runtimeGlobals>
+   sibl_gui.globals.uiConstants <api/sibl_gui.globals.uiConstants>
+   sibl_gui.libraries.freeImage.freeImage <api/sibl_gui.libraries.freeImage.freeImage>
+   sibl_gui.ui.common <api/sibl_gui.ui.common>
+   sibl_gui.ui.highlighters <api/sibl_gui.ui.highlighters>
+   sibl_gui.ui.models <api/sibl_gui.ui.models>
+   sibl_gui.ui.views <api/sibl_gui.ui.views>
+   umbra.actionsManager <api/umbra.actionsManager>
+   umbra.components.factory.componentsManagerUi.componentsManagerUi <api/umbra.components.factory.componentsManagerUi.componentsManagerUi>
+   umbra.components.factory.preferencesManager.preferencesManager <api/umbra.components.factory.preferencesManager.preferencesManager>
+   umbra.components.factory.scriptEditor.editor <api/umbra.components.factory.scriptEditor.editor>
+   umbra.components.factory.scriptEditor.editorStatus <api/umbra.components.factory.scriptEditor.editorStatus>
+   umbra.components.factory.scriptEditor.scriptEditor <api/umbra.components.factory.scriptEditor.scriptEditor>
+   umbra.components.factory.scriptEditor.searchAndReplace <api/umbra.components.factory.scriptEditor.searchAndReplace>
+   umbra.engine <api/umbra.engine>
+   umbra.exceptions <api/umbra.exceptions>
    umbra.globals.constants <api/umbra.globals.constants>
    umbra.globals.runtimeGlobals <api/umbra.globals.runtimeGlobals>
    umbra.globals.uiConstants <api/umbra.globals.uiConstants>
-   umbra.libraries.freeImage.freeImage <api/umbra.libraries.freeImage.freeImage>
-   umbra.sIBL_GUI <api/umbra.sIBL_GUI>
+   umbra.preferences <api/umbra.preferences>
+   umbra.processing <api/umbra.processing>
    umbra.ui.common <api/umbra.ui.common>
+   umbra.ui.completers <api/umbra.ui.completers>
+   umbra.ui.highlighters <api/umbra.ui.highlighters>
+   umbra.ui.inputAccelerators <api/umbra.ui.inputAccelerators>
+   umbra.ui.models <api/umbra.ui.models>
+   umbra.ui.views <api/umbra.ui.views>
    umbra.ui.widgets.active_QLabel <api/umbra.ui.widgets.active_QLabel>
+   umbra.ui.widgets.codeEditor_QPlainTextEdit <api/umbra.ui.widgets.codeEditor_QPlainTextEdit>
    umbra.ui.widgets.delayed_QSplashScreen <api/umbra.ui.widgets.delayed_QSplashScreen>
    umbra.ui.widgets.messageBox <api/umbra.ui.widgets.messageBox>
    umbra.ui.widgets.search_QLineEdit <api/umbra.ui.widgets.search_QLineEdit>
@@ -64,21 +102,20 @@ Modules Summary:
    tests.tests <api/tests.tests>
    tests.testsFoundations.testsCommon <api/tests.testsFoundations.testsCommon>
    tests.testsFoundations.testsCore <api/tests.testsFoundations.testsCore>
+   tests.testsFoundations.testsDag <api/tests.testsFoundations.testsDag>
    tests.testsFoundations.testsEnvironment <api/tests.testsFoundations.testsEnvironment>
    tests.testsFoundations.testsExceptions <api/tests.testsFoundations.testsExceptions>
    tests.testsFoundations.testsGlobals.testsConstants <api/tests.testsFoundations.testsGlobals.testsConstants>
    tests.testsFoundations.testsIo <api/tests.testsFoundations.testsIo>
    tests.testsFoundations.testsLibrary <api/tests.testsFoundations.testsLibrary>
    tests.testsFoundations.testsNamespace <api/tests.testsFoundations.testsNamespace>
-   tests.testsFoundations.testsParser <api/tests.testsFoundations.testsParser>
+   tests.testsFoundations.testsParsers <api/tests.testsFoundations.testsParsers>
    tests.testsFoundations.testsPkzip <api/tests.testsFoundations.testsPkzip>
    tests.testsFoundations.testsRotatingBackup <api/tests.testsFoundations.testsRotatingBackup>
    tests.testsFoundations.testsStreamObject <api/tests.testsFoundations.testsStreamObject>
    tests.testsFoundations.testsStrings <api/tests.testsFoundations.testsStrings>
-   tests.testsFoundations.testsWalker <api/tests.testsFoundations.testsWalker>
-   tests.testsGlobals.testsConstants <api/tests.testsGlobals.testsConstants>
-   tests.testsGlobals.testsRuntimeGlobals <api/tests.testsGlobals.testsRuntimeGlobals>
-   tests.testsGlobals.testsUiConstants <api/tests.testsGlobals.testsUiConstants>
+   tests.testsFoundations.testsUi.testsCommon <api/tests.testsFoundations.testsUi.testsCommon>
+   tests.testsFoundations.testsWalkers <api/tests.testsFoundations.testsWalkers>
    tests.testsManager.resources.components.addons.testsComponentC.testsComponentC <api/tests.testsManager.resources.components.addons.testsComponentC.testsComponentC>
    tests.testsManager.resources.components.core.testsComponentA.testsComponentA <api/tests.testsManager.resources.components.core.testsComponentA.testsComponentA>
    tests.testsManager.resources.components.core.testsComponentB.testsComponentB <api/tests.testsManager.resources.components.core.testsComponentB.testsComponentB>
@@ -86,5 +123,14 @@ Modules Summary:
    tests.testsManager.testsComponentsManager <api/tests.testsManager.testsComponentsManager>
    tests.testsManager.testsExceptions <api/tests.testsManager.testsExceptions>
    tests.testsManager.testsGlobals.testsConstants <api/tests.testsManager.testsGlobals.testsConstants>
+   tests.testsManager.testsQObjectComponent <api/tests.testsManager.testsQObjectComponent>
    tests.testsManager.testsQWidgetComponent <api/tests.testsManager.testsQWidgetComponent>
+   tests.testsSibl_gui.testsExceptions <api/tests.testsSibl_gui.testsExceptions>
+   tests.testsSibl_gui.testsGlobals.testsConstants <api/tests.testsSibl_gui.testsGlobals.testsConstants>
+   tests.testsSibl_gui.testsGlobals.testsRuntimeGlobals <api/tests.testsSibl_gui.testsGlobals.testsRuntimeGlobals>
+   tests.testsSibl_gui.testsGlobals.testsUiConstants <api/tests.testsSibl_gui.testsGlobals.testsUiConstants>
+   tests.testsUmbra.testsExceptions <api/tests.testsUmbra.testsExceptions>
+   tests.testsUmbra.testsGlobals.testsConstants <api/tests.testsUmbra.testsGlobals.testsConstants>
+   tests.testsUmbra.testsGlobals.testsRuntimeGlobals <api/tests.testsUmbra.testsGlobals.testsRuntimeGlobals>
+   tests.testsUmbra.testsGlobals.testsUiConstants <api/tests.testsUmbra.testsGlobals.testsUiConstants>
    tests.utilities <api/tests.utilities>

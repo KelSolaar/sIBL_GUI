@@ -23,22 +23,26 @@ Functions
 
 .. autofunction:: uiStandaloneSystemExitExceptionHandler
 
+.. autofunction:: getResourcePath
+
 .. autofunction:: setWindowDefaultIcon
 
 .. autofunction:: centerWidgetOnScreen
 
-.. autofunction:: getGraphicItem
+.. autofunction:: getTokensParser
 
-.. autofunction:: getIcon
+.. autofunction:: storeLastBrowsedPath
 
-.. autofunction:: getPixmap
+.. autofunction:: parentsWalker
 
-.. autofunction:: getImage
-
-.. autofunction:: filterImagePath
+.. autofunction:: showWaitCursor
 
 Classes
 -------
+
+.. autoclass:: LayoutActiveLabel
+	:show-inheritance:
+	:members:
 
 .. autoclass:: Icon
 	:show-inheritance:

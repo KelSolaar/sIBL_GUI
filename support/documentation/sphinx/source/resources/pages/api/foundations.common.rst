@@ -21,3 +21,5 @@ Functions
 
 .. autofunction:: wait
 
+.. autofunction:: uniqify
+

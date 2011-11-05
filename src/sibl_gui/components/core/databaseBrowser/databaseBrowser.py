@@ -1242,14 +1242,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for view in self.__views:
 			viewName = view.objectName()
-			viewSelectedIblSetsIds = str(self.__settings.getKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(viewName)).toString())
-			LOGGER.debug("> '{0}' View stored selected Ibl Sets ids: '{1}'.".format(viewName, viewSelectedIblSetsIds))
-			if viewSelectedIblSetsIds:
-				if self.__settingsSeparator in viewSelectedIblSetsIds:
-					ids = viewSelectedIblSetsIds.split(self.__settingsSeparator)
-				else:
-					ids = [viewSelectedIblSetsIds]
-				view.modelSelection["Default"] = [int(id) for id in ids]
+			viewSelectedIblSetsIdentities = str(self.__settings.getKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(viewName)).toString())
+			LOGGER.debug("> '{0}' View stored selected Ibl Sets identities: '{1}'.".format(viewName, viewSelectedIblSetsIdentities))
+			view.modelSelection["Default"] = viewSelectedIblSetsIdentities and [int(identity) for identity in viewSelectedIblSetsIdentities.split(self.__settingsSeparator)] or []
 			view.restoreModelSelection()
 		return True
 
@@ -1266,7 +1261,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		for view in self.__views:
 			view.storeModelSelection()
-			self.__settings.setKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(view.objectName()), self.__settingsSeparator.join(str(id) for id in view.modelSelection["Default"]))
+			self.__settings.setKey(self.__settingsSection, "{0}_viewSelecteIblSets".format(view.objectName()), self.__settingsSeparator.join(str(identity) for identity in view.modelSelection["Default"]))
 
 		self.__settings.setKey(self.__settingsSection, "activeView", self.getActiveViewIndex())
 
@@ -1772,7 +1767,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		rootNode = umbra.ui.models.DefaultNode(name="InvisibleRootNode")
 		for iblSet in iblSets:
 			iblSetNode = dbNodes.IblSetNode(iblSet, name=iblSet.title, parent=rootNode, nodeFlags=nodeFlags, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+
 		rootNode.sortChildren(attribute="title")
+
 		self.__model.initializeModel(rootNode)
 		return True
 

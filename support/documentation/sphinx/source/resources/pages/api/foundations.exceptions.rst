@@ -58,15 +58,19 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: AbstractDatabaseError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: DatabaseOperationError
-	:show-inheritance:
-	:members:
-
 .. autoclass:: AbstractUserError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: AbstractNodeError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: NodeAttributeTypeError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: NodeAttributeExistsError
 	:show-inheritance:
 	:members:
 
@@ -87,10 +91,6 @@ Classes
 	:members:
 
 .. autoclass:: SocketConnectionError
-	:show-inheritance:
-	:members:
-
-.. autoclass:: AbstractComponentError
 	:show-inheritance:
 	:members:
 

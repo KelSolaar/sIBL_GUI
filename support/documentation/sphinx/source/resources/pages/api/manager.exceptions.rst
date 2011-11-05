@@ -3,11 +3,6 @@ _`manager.exceptions`
 
 .. automodule:: manager.exceptions
 
-Module Attributes
------------------
-
-.. attribute:: manager.exceptions.LOGGER
-
 Classes
 -------
 
@@ -44,6 +39,10 @@ Classes
 	:members:
 
 .. autoclass:: ComponentReloadError
+	:show-inheritance:
+	:members:
+
+.. autoclass:: ComponentExistsError
 	:show-inheritance:
 	:members:
 

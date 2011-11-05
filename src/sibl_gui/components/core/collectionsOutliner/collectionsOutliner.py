@@ -640,7 +640,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model = CollectionsModel(self, horizontalHeaders=self.__headers)
 		self.setCollections()
 
+		self.Collections_Outliner_treeView.setParent(None)
 		self.Collections_Outliner_treeView = IblSetsCollections_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.Collections_Outliner_treeView.setObjectName("Collections_Outliner_treeView")
 		self.Collections_Outliner_dockWidgetContents_gridLayout.addWidget(self.Collections_Outliner_treeView, 0, 0)
 		self.__view = self.Collections_Outliner_treeView
 		self.__view.setContextMenuPolicy(Qt.ActionsContextMenu)
@@ -700,19 +702,13 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Database default Collection wizard deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIds = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-		LOGGER.debug("> '{0}' View stored selected Collections ids '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
-		if activeCollectionsIds:
-			if self.__settingsSeparator in activeCollectionsIds:
-				ids = activeCollectionsIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeCollectionsIds]
-			self.__view.modelSelection["Collections"] = [int(id) for id in ids]
+		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+		LOGGER.debug("> '{0}' View stored selected Collections identities '{1}'.".format(self.__class__.__name__, activeCollectionsIdentities))
+		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and [int(identity) for identity in activeCollectionsIdentities.split(self.__settingsSeparator)] or []
 
 		activeOverallCollection = str(self.__settings.getKey(self.__settingsSection, "activeOverallCollection").toString())
 		LOGGER.debug("> '{0}' View stored 'Overall' Collection: '{1}'.".format(self.__class__.__name__, activeOverallCollection))
-		if activeOverallCollection:
-			self.__view.modelSelection[self.__overallCollection] = [activeOverallCollection]
+		self.__view.modelSelection[self.__overallCollection] = activeCollectionsIdentities and [activeOverallCollection] or []
 		self.__view.restoreModelSelection()
 		return True
 
@@ -727,7 +723,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
 		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(id) for id in self.__view.modelSelection["Collections"])))
+		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join((str(identity) for identity in self.__view.modelSelection["Collections"])))
 		self.__settings.setKey(self.__settingsSection, "activeOverallCollection", self.__settingsSeparator.join((str(name) for name in self.__view.modelSelection[self.__overallCollection])))
 		return True
 
@@ -1022,6 +1018,8 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = collectionIblSetsCount
 			iblSetsCount += collectionIblSetsCount
 		overallCollectionNode.count.value = overallCollectionNode.count.roles[Qt.DisplayRole] = iblSetsCount
+
+		rootNode.sortChildren()
 
 		self.__model.initializeModel(rootNode)
 		return True

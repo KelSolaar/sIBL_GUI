@@ -54,3 +54,11 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: OrderedStructure
+	:show-inheritance:
+	:members:
+
+.. autoclass:: Lookup
+	:show-inheritance:
+	:members:
+

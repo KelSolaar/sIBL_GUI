@@ -344,5 +344,7 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		if not self.model():
 			return
 
+		self.expandAll()
+
 		for column in range(len(self.model().horizontalHeaders)):
 			self.resizeColumnToContents(column)

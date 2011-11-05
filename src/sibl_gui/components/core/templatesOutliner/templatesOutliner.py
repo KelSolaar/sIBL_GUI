@@ -862,7 +862,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__model = TemplatesModel(self, horizontalHeaders=self.__headers)
 		self.setTemplates()
 
+		self.Templates_Outliner_treeView.setParent(None)
 		self.Templates_Outliner_treeView = Templates_QTreeView(self, self.__model, self.__engine.parameters.databaseReadOnly)
+		self.Templates_Outliner_treeView.setObjectName("Templates_Outliner_treeView")
 		self.Templates_Outliner_gridLayout.setContentsMargins(self.__treeViewInnerMargins)
 		self.Templates_Outliner_gridLayout.addWidget(self.Templates_Outliner_treeView, 0, 0)
 		self.__view = self.Templates_Outliner_treeView
@@ -952,32 +954,17 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		else:
 			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		activeCollectionsIds = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIds))
-		if activeCollectionsIds:
-			if self.__settingsSeparator in activeCollectionsIds:
-				ids = activeCollectionsIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeCollectionsIds]
-			self.__view.modelSelection["Collections"] = [int(id) for id in ids]
+		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
+		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIdentities))
+		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and [int(identity) for identity in activeCollectionsIdentities.split(self.__settingsSeparator)] or []
 
 		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
-		if activeSoftwares:
-			if self.__settingsSeparator in activeSoftwares:
-				softwares = activeSoftwares.split(self.__settingsSeparator)
-			else:
-				softwares = [activeSoftwares]
-			self.__view.modelSelection["Softwares"] = softwares
+		self.__view.modelSelection["Softwares"] = activeSoftwares and  activeSoftwares.split(self.__settingsSeparator) or []
 
-		activeTemplatesIds = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
-		LOGGER.debug("> Stored '{0}' active Templates ids selection: '{1}'.".format(self.__class__.__name__, activeTemplatesIds))
-		if activeTemplatesIds:
-			if self.__settingsSeparator in activeTemplatesIds:
-				ids = activeTemplatesIds.split(self.__settingsSeparator)
-			else:
-				ids = [activeTemplatesIds]
-			self.__view.modelSelection["Templates"] = [int(id) for id in ids]
+		activeTemplatesIdentities = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
+		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__, activeTemplatesIdentities))
+		self.__view.modelSelection["Templates"] = activeTemplatesIdentities and [int(identity) for identity in activeTemplatesIdentities.split(self.__settingsSeparator)] or []
 
 		self.__view.restoreModelSelection()
 		return True
@@ -993,8 +980,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
 		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Templates"]))
-		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(id) for id in self.__view.modelSelection["Collections"]))
+		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(identity) for identity in self.__view.modelSelection["Templates"]))
+		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(identity) for identity in self.__view.modelSelection["Collections"]))
 		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(name) for name in self.__view.modelSelection["Softwares"]))
 		return True
 
@@ -1517,6 +1504,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 				for template in templates:
 					templateNode = dbNodes.TemplateNode(template, name="{0} {1}".format(template.renderer, template.title), parent=softwareNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
+
+		rootNode.sortChildren(attribute="title")
 
 		self.__model.initializeModel(rootNode)
 		return True

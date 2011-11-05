@@ -159,7 +159,7 @@
           </item>
           <item row="2" column="0">
            <widget class="QFrame" name="Plates_frame">
-            <layout class="QGridLayout" name="Platres_frame_gridLayout">
+            <layout class="QGridLayout" name="Plates_frame_gridLayout">
              <property name="margin">
               <number>0</number>
              </property>
@@ -178,7 +178,7 @@
                 </size>
                </property>
                <property name="statusTip">
-                <string>Previous Plate Push Button: Navigates to previous Inspector Ibl Set plate.</string>
+                <string>Previous Plate Push Button: Navigates to previous Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
                 <string/>
@@ -200,7 +200,7 @@
                 </size>
                </property>
                <property name="statusTip">
-                <string>Next Plate Push Button: Navigates to next Inspector Ibl Set plate.</string>
+                <string>Next Plate Push Button: Navigates to next Inspector Ibl Set Plate.</string>
                </property>
                <property name="text">
                 <string/>

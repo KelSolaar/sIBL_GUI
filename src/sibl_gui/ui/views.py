@@ -113,7 +113,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		umbra.ui.views.Abstract_QListView.__init__(self, parent, readOnly)
 
 		# --- Setting class attributes. ---
-		self.__modelSelection = []
+		self.__modelSelection = {"Default" : []}
 
 		self.setModel(model)
 
@@ -230,7 +230,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		umbra.ui.views.Abstract_QTreeView.__init__(self, parent, readOnly)
 
 		# --- Setting class attributes. ---
-		self.__modelSelection = []
+		self.__modelSelection = {"Default" : []}
 
 		self.setModel(model)
 

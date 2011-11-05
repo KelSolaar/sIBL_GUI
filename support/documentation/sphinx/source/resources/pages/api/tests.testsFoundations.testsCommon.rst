@@ -14,3 +14,7 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: UniqifyTestCase
+	:show-inheritance:
+	:members:
+
