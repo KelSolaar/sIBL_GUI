@@ -627,7 +627,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	@core.executionTrace
 	def __coreDatabaseBrowser_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **coreDatabaseBrowser.view** Model selection has changed.
+		This method is triggered when **Data** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

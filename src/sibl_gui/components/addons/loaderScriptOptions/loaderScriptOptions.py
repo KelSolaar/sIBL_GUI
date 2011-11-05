@@ -832,7 +832,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
 		"""
-		This method is triggered when **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** Widget selection has changed.
+		This method is triggered when **coreTemplatesOutliner.view** Model selection has changed.
 
 		:param selectedItems: Selected items. ( QItemSelection )
 		:param deselectedItems: Deselected items. ( QItemSelection )

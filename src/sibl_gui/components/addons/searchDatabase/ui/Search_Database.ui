@@ -20,7 +20,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="Fields_page">
+      <widget class="QWidget" name="Tags_Cloud_page">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -30,97 +30,11 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>Search In Fields</string>
+        <string>Search In Tags Cloud</string>
        </attribute>
        <layout class="QGridLayout" name="Fields_page_gridLayout">
-        <item row="1" column="0" colspan="2">
-         <widget class="QGroupBox" name="Search_groupBox">
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QGridLayout" name="Search_groupBox_gridLayout">
-           <item row="0" column="0" colspan="4">
-            <widget class="QComboBox" name="Search_Database_comboBox">
-             <property name="statusTip">
-              <string>Search Database Combo Box: Database fields types.</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="4">
-            <widget class="QGroupBox" name="Tags_Cloud_groupBox">
-             <property name="title">
-              <string>Tags Cloud</string>
-             </property>
-             <layout class="QGridLayout" name="Tags_Cloud_groupBox_gridLayout">
-              <item row="0" column="0">
-               <widget class="QListWidget" name="Tags_Cloud_listWidget">
-                <property name="statusTip">
-                 <string>Tags Cloud List Widget: Displays current Collection Ibl Sets tags cloud.</string>
-                </property>
-                <property name="movement">
-                 <enum>QListView::Static</enum>
-                </property>
-                <property name="resizeMode">
-                 <enum>QListView::Adjust</enum>
-                </property>
-                <property name="viewMode">
-                 <enum>QListView::IconMode</enum>
-                </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="4">
-            <layout class="QHBoxLayout" name="Search_Database_horizontalLayout"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="2" column="0" colspan="2">
-         <widget class="QGroupBox" name="Case_Insensitive_Matching_groupBox">
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QGridLayout" name="Case_Insensitive_Matching_groupBox_gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="Case_Insensitive_Matching_label">
-             <property name="text">
-              <string>Case Insensitive Matching</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QCheckBox" name="Case_Insensitive_Matching_checkBox">
-             <property name="statusTip">
-              <string>Case Insensitive Check Box: Database search will ignore case.</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <spacer name="Case_Insensitive_Matching_horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>33</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2">
-         <spacer name="Fields_Page_verticalSpacer">
+        <item row="7" column="0" colspan="2">
+         <spacer name="Tags_Cloud_Page_verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -131,6 +45,54 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="6" column="0">
+         <widget class="QListWidget" name="Tags_Cloud_listWidget">
+          <property name="statusTip">
+           <string>Tags Cloud List Widget: Displays current Collection Ibl Sets tags cloud.</string>
+          </property>
+          <property name="movement">
+           <enum>QListView::Static</enum>
+          </property>
+          <property name="resizeMode">
+           <enum>QListView::Adjust</enum>
+          </property>
+          <property name="viewMode">
+           <enum>QListView::IconMode</enum>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="Search_Database_horizontalLayout">
+          <property name="spacing">
+           <number>2</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="Case_Sensitive_Matching_pushButton">
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="statusTip">
+             <string>Case Sensitive Matching Push Button: Searchs will be performed case sensitively.</string>
+            </property>
+            <property name="text">
+             <string>Aa</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>

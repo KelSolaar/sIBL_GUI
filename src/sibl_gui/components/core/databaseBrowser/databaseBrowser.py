@@ -100,10 +100,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__uiThumbnailsViewImage = "Thumbnails_View.png"
 		self.__uiColumnsViewImage = "Columns_View.png"
 		self.__uiDetailsViewImage = "Details_View.png"
-		self.__uiSearchImage = "Search_Glass.png"
-		self.__uiSearchClickedImage = "Search_Glass_Clicked.png"
-		self.__uiClearImage = "Search_Clear.png"
-		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
+		self.__uiSearchImage = "images/Search_Glass.png"
+		self.__uiSearchClickedImage = "images/Search_Glass_Clicked.png"
+		self.__uiClearImage = "images/Search_Clear.png"
+		self.__uiClearClickedImage = "images/Search_Clear_Clicked.png"
 		self.__uiLargestSizeImage = "Largest_Size.png"
 		self.__uiSmallestSizeImage = "Smallest_Size.png"
 		self.__dockArea = 8
@@ -1127,10 +1127,10 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			viewPushButton, image = data
 			viewPushButton.setIcon(QIcon(os.path.join(self.__uiResourcesDirectory, image)))
 
-		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiSearchClickedImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiClearImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
+		self.Search_Database_lineEdit = Search_QLineEdit(self, umbra.ui.common.getResourcePath(self.__uiSearchImage),
+														umbra.ui.common.getResourcePath(self.__uiSearchClickedImage),
+														umbra.ui.common.getResourcePath(self.__uiClearImage),
+														umbra.ui.common.getResourcePath(self.__uiClearClickedImage))
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
 		self.Search_Database_lineEdit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 		searchContextsMenu = QMenu()

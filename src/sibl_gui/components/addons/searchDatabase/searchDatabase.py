@@ -20,6 +20,7 @@
 import logging
 import os
 import re
+import itertools
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -29,7 +30,7 @@ from PyQt4.QtGui import *
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
-import sibl_gui.components.core.db.utilities.common as dbCommon
+import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
 from umbra.globals.constants import Constants
 from umbra.ui.widgets.search_QLineEdit import Search_QLineEdit
@@ -78,10 +79,10 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.deactivatable = True
 
 		self.__uiResourcesDirectory = "resources"
-		self.__uiSearchImage = "Search_Glass.png"
-		self.__uiSearchClickedImage = "Search_Glass_Clicked.png"
-		self.__uiClearImage = "Search_Clear.png"
-		self.__uiClearClickedImage = "Search_Clear_Clicked.png"
+		self.__uiSearchImage = "images/Search_Glass.png"
+		self.__uiSearchClickedImage = "images/Search_Glass_Clicked.png"
+		self.__uiClearImage = "images/Search_Clear.png"
+		self.__uiClearClickedImage = "images/Search_Clear_Clicked.png"
 		self.__dockArea = 2
 		self.__tagsCloudListWidgetSpacing = 4
 
@@ -90,18 +91,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreDatabaseBrowser = None
 		self.__coreCollectionsOutliner = None
 
-		self.__completer = None
-		self.__completerVisibleItemsCount = 16
-
-		self.__tagsCloudField = "In Tags Cloud "
-		self.__databaseFields = (("In Names", "title"),
-								("In Authors", "author"),
-								("In Links", "link"),
-								("In Locations", "location"),
-								("In Comments", "comment"),
-								(self.__tagsCloudField, "comment"),)
-
-		self.__cloudExcludedTags = ("^a$", "^and$", "^by$", "^for$", "^from$", "^in$", "^of$", "^on$", "^or$", "^the$", "^to$", "^with$",)
+		self.__cloudExcludedTags = ("a", "and", "by", "for", "from", "in", "of", "on", "or", "the", "to", "with")
 
 	#***********************************************************************************************
 	#***	Attributes properties.
@@ -437,126 +427,6 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
 
 	@property
-	def completer(self):
-		"""
-		This method is the property for **self.__completer** attribute.
-
-		:return: self.__completer. ( QCompleter )
-		"""
-
-		return self.__completer
-
-	@completer.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def completer(self, value):
-		"""
-		This method is the setter method for **self.__completer** attribute.
-
-		:param value: Attribute value. ( QCompleter )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "completer"))
-
-	@completer.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def completer(self):
-		"""
-		This method is the deleter method for **self.__completer** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "completer"))
-
-	@property
-	def completerVisibleItemsCount(self):
-		"""
-		This method is the property for **self.__completerVisibleItemsCount** attribute.
-
-		:return: self.__completerVisibleItemsCount. ( Integer )
-		"""
-
-		return self.__completerVisibleItemsCount
-
-	@completerVisibleItemsCount.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def completerVisibleItemsCount(self, value):
-		"""
-		This method is the setter method for **self.__completerVisibleItemsCount** attribute.
-
-		:param value: Attribute value. ( Integer )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "completerVisibleItemsCount"))
-
-	@completerVisibleItemsCount.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def completerVisibleItemsCount(self):
-		"""
-		This method is the deleter method for **self.__completerVisibleItemsCount** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "completerVisibleItemsCount"))
-
-	@property
-	def tagsCloudField(self):
-		"""
-		This method is the property for **self.__tagsCloudField** attribute.
-
-		:return: self.__tagsCloudField. ( String )
-		"""
-
-		return self.__tagsCloudField
-
-	@tagsCloudField.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tagsCloudField(self, value):
-		"""
-		This method is the setter method for **self.__tagsCloudField** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tagsCloudField"))
-
-	@tagsCloudField.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def tagsCloudField(self):
-		"""
-		This method is the deleter method for **self.__tagsCloudField** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tagsCloudField"))
-
-	@property
-	def databaseFields(self):
-		"""
-		This method is the property for **self.__databaseFields** attribute.
-
-		:return: self.__databaseFields. ( List )
-		"""
-
-		return self.__databaseFields
-
-	@databaseFields.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def databaseFields(self, value):
-		"""
-		This method is the setter method for **self.__databaseFields** attribute.
-
-		:param value: Attribute value. ( List )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "databaseFields"))
-
-	@databaseFields.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def databaseFields(self):
-		"""
-		This method is the deleter method for **self.__databaseFields** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "databaseFields"))
-
-	@property
 	def cloudExcludedTags(self):
 		"""
 		This method is the property for **self.__cloudExcludedTags** attribute.
@@ -641,30 +511,24 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.Search_Database_lineEdit = Search_QLineEdit(self, os.path.join(self.__uiResourcesDirectory, self.__uiSearchImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiSearchClickedImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiClearImage),
-														os.path.join(self.__uiResourcesDirectory, self.__uiClearClickedImage))
+		self.Search_Database_lineEdit = Search_QLineEdit(self, umbra.ui.common.getResourcePath(self.__uiSearchImage),
+														umbra.ui.common.getResourcePath(self.__uiSearchClickedImage),
+														umbra.ui.common.getResourcePath(self.__uiClearImage),
+														umbra.ui.common.getResourcePath(self.__uiClearClickedImage))
 		self.Search_Database_horizontalLayout.addWidget(self.Search_Database_lineEdit)
-		self.Tags_Cloud_groupBox.hide()
+		self.Search_Database_lineEdit.setPlaceholderText("Search In Tags Cloud ...")
 		self.Tags_Cloud_listWidget.setSpacing(self.__tagsCloudListWidgetSpacing)
 
-		self.Search_Database_comboBox.addItems([databaseField[0] for databaseField in self.__databaseFields])
-
-		self.__completer = QCompleter()
-		self.__completer.setCaseSensitivity(Qt.CaseInsensitive)
-		self.__completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
-		self.__completer.setMaxVisibleItems(self.__completerVisibleItemsCount)
-		self.Search_Database_lineEdit.setCompleter(self.__completer)
+		self.__cloudExcludedTags = list(itertools.chain.from_iterable([(r"^{0}$".format(tag), r"^{0}$".format(tag.title()), r"^{0}$".format(tag.upper())) for tag in self.__cloudExcludedTags]))
+		self.setTagsCloudMatchingIblsSets()
 
 		# Signals / Slots.
 		self.Search_Database_lineEdit.textChanged.connect(self.__Search_Database_lineEdit__textChanged)
-		self.Search_Database_comboBox.activated.connect(self.__Search_Database_comboBox__activated)
-		self.Case_Insensitive_Matching_checkBox.stateChanged.connect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.Case_Sensitive_Matching_pushButton.clicked.connect(self.__Case_Sensitive_Matching_pushButton__clicked)
 		self.Time_Low_timeEdit.timeChanged.connect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.connect(self.__Time_High_timeEdit__timeChanged)
 		self.Tags_Cloud_listWidget.itemDoubleClicked.connect(self.__Tags_Cloud_listWidget__doubleClicked)
-
+		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.connect(self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
 		return True
 
 	@core.executionTrace
@@ -684,8 +548,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
 		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
-
-		self.__completer = None
+		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.disconnect(self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -726,31 +589,17 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param text: Current text value. ( QString )
 		"""
 
-		self.setSearchMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSets()
 
 	@core.executionTrace
-	def __Search_Database_comboBox__activated(self, index):
+	def __Case_Sensitive_Matching_pushButton__clicked(self, checked):
 		"""
-		This method is triggered when **Search_Database_comboBox** index changes.
+		This method is triggered when **Case_Sensitive_Matching_pushButton** Widget is clicked.
 
-		:param index: ComboBox activated item index. ( Integer )
-		"""
-
-		if self.Search_Database_comboBox.currentText() == self.__tagsCloudField:
-			self.Tags_Cloud_groupBox.show()
-		else:
-			self.Tags_Cloud_groupBox.hide()
-		self.setSearchMatchingIblsSets()
-
-	@core.executionTrace
-	def __Case_Insensitive_Matching_checkBox__stateChanged(self, state):
-		"""
-		This method is triggered when **Case_Insensitive_Matching_checkBox** state changes.
-
-		:param state: Current checkbox state. ( Integer )
+		:param checked: Checked state. ( Boolean )
 		"""
 
-		self.setSearchMatchingIblsSets()
+		self.setTagsCloudMatchingIblsSets()
 
 	@core.executionTrace
 	def __Time_Low_timeEdit__timeChanged(self, time):
@@ -785,88 +634,83 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Search_Database_lineEdit.setText("{0} {1}".format(self.Search_Database_lineEdit.text(), listWidgetItem.text()))
 
 	@core.executionTrace
+	def __coreCollectionsOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
+		"""
+		This method is triggered when **coreCollectionsOutliner.view** Model selection has changed.
+
+		:param selectedItems: Selected items. ( QItemSelection )
+		:param deselectedItems: Deselected items. ( QItemSelection )
+		"""
+
+		self.setTagsCloudMatchingIblsSets()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
+	def setTagsCloudMatchingIblsSets(self):
+		"""
+		This method gets the pattern matching Ibl Sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		"""
+
+		pattern = str(self.Search_Database_lineEdit.text())
+		flags = not self.Case_Sensitive_Matching_pushButton.isChecked() and re.IGNORECASE or 0
+
+		LOGGER.debug("> Filtering Ibl Sets by Tags.")
+
+		patternTokens = pattern.split() or (".*",)
+		filteredIblSets = []
+		allTags = []
+
+		for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections()):
+			if not getattr(iblSet, "comment"):
+				continue
+
+			tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, "comment")), filtersOut=self.__cloudExcludedTags, flags=flags)
+			patternsMatched = True
+			for pattern in patternTokens:
+				patternMatched = False
+				for tag in tagsCloud:
+					if re.search(pattern, tag, flags=flags):
+						patternMatched = True
+						break
+				patternsMatched *= patternMatched
+			if patternsMatched:
+				allTags.extend(tagsCloud)
+				filteredIblSets.append(iblSet)
+
+		self.Tags_Cloud_listWidget.clear()
+		self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
+		filteredIblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections())).intersection(set(filteredIblSets))]
+
+		LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in filteredIblSets))))
+
+		self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
+		return True
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTimeMatchingIblSets(self):
 		"""
-		This method gets the time matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
+		This method gets the time matching Ibl Sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
 		"""
 
-		previousModelContent = self.__coreDatabaseBrowser.model.iblSets
-
-		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections())
 
 		timeLow = self.Time_Low_timeEdit.time()
 		timeHigh = self.Time_High_timeEdit.time()
 
-		LOGGER.debug("> Filtering sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
+		LOGGER.debug("> Filtering Ibl Sets by time range from '{0}' to '{1}'.".format(timeLow, timeHigh))
 
-		filteredSets = []
+		filteredIblSets = []
 		for iblSet in iblSets:
 			if not iblSet.time:
 				continue
 
 			hours, minutes, seconds = iblSet.time.split(":")
-			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredSets.append(iblSet)
+			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredIblSets.append(iblSet)
 
-		modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(filteredSets)]
+		filteredIblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections())).intersection(filteredIblSets)]
 
-		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
+		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in filteredIblSets))))
 
-		if previousModelContent != modelIblSets:
-			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.UserError)
-	def setSearchMatchingIblsSets(self):
-		"""
-		This method gets the pattern matching sets and updates :mod:`umbra.components.core.databaseBrowser.databaseBrowser` Component Model content.
-		"""
-
-		previousModelContent = self.__coreDatabaseBrowser.model.iblSets
-
-		pattern = str(self.Search_Database_lineEdit.text())
-		currentField = self.__databaseFields[self.Search_Database_comboBox.currentIndex()][1]
-		flags = self.Case_Insensitive_Matching_checkBox.isChecked() and re.IGNORECASE or 0
-
-		LOGGER.debug("> Filtering Ibl Sets on '{0}' pattern in '{1}' field.".format(pattern, currentField))
-
-		if self.Search_Database_comboBox.currentText() == self.__tagsCloudField:
-			self.__completer.setModel(QStringListModel())
-			patternTokens = pattern.split()
-			patternTokens = patternTokens and patternTokens or (".*",)
-			filteredSets = []
-			allTags = []
-			for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections()):
-				if not getattr(iblSet, currentField):
-					continue
-
-				tagsCloud = strings.filterWords(strings.getWords(getattr(iblSet, currentField)), filtersOut=self.__cloudExcludedTags, flags=flags)
-				patternsMatched = True
-				for pattern in patternTokens:
-					patternMatched = False
-					for tag in tagsCloud:
-						if re.search(pattern, tag, flags=flags):
-							patternMatched = True
-							break
-					patternsMatched *= patternMatched
-				if patternsMatched:
-					allTags.extend(tagsCloud)
-					filteredSets.append(iblSet)
-			self.Tags_Cloud_listWidget.clear()
-			self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-			modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(set(filteredSets))]
-		else:
-			try:
-				re.compile(pattern)
-			except:
-				raise foundations.exceptions.UserError("{0} | Error while compiling '{1}' regex pattern!".format(self.__class__.__name__, pattern))
-
-			self.__completer.setModel(QStringListModel(sorted((fieldValue for fieldValue in set((getattr(iblSet, currentField) for iblSet in previousModelContent if getattr(iblSet, currentField))) if re.search(pattern, fieldValue, flags)))))
-			modelIblSets = [visibleIblSet for visibleIblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())).intersection(dbCommon.filterIblSets(self.__coreDb.dbSession, "{0}".format(str(pattern)), currentField, flags))]
-
-		LOGGER.debug("> Pattern filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in modelIblSets))))
-
-		if previousModelContent != modelIblSets:
-			self.__coreDatabaseBrowser.model.setIblSets(modelIblSets)
+		self.__coreDatabaseBrowser.setIblSets(filteredIblSets)
 		return True
