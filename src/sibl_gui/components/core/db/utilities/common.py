@@ -243,7 +243,7 @@ def filterItems(session, items, pattern, field, flags=0):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def itemExists(session, items, pattern, field, flags=0):
 	"""
-	This definition returns if provided item exists in the Database.
+	This definition returns if given item exists in the Database.
 
 	:param session: Database session. ( Session )
 	:param items: Database items. ( List )
@@ -283,7 +283,7 @@ def filterIblSets(session, pattern, field, flags=0):
 @core.executionTrace
 def iblSetExists(session, path):
 	"""
-	This method returns if provided Ibl Set exists in the Database.
+	This method returns if given Ibl Set exists in the Database.
 
 	:param name: Ibl Set path. ( String )
 	:return: Ibl Set exists. ( Boolean )
@@ -488,7 +488,7 @@ def filterTemplates(session, pattern, field, flags=0):
 @core.executionTrace
 def templateExists(session, path):
 	"""
-	This method returns if provided Template exists in the Database.
+	This method returns if given Template exists in the Database.
 
 	:param name: Template path. ( String )
 	:return: Template exists. ( Boolean )

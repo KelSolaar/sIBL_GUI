@@ -941,7 +941,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeCollection(self, collection):
 		"""
-		This method removes provided Collection from the Database.
+		This method removes given Collection from the Database.
 
 		:param collection: Collection to remove. ( DbCollection )
 		:return: Method success. ( Boolean )
@@ -964,7 +964,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def collectionExists(self, name):
 		"""
-		This method returns if provided Collection name exists in the Database.
+		This method returns if given Collection name exists in the Database.
 
 		:param name: Collection name. ( String )
 		:return: Collection exists. ( Boolean )
@@ -1020,7 +1020,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionsIblSets(self, collections):
 		"""
-		This method gets provided Collections Ibl Sets.
+		This method gets given Collections Ibl Sets.
 
 		:param collections: Collections to get Ibl Sets from. ( List )
 		:return: Ibl Sets list. ( List )
@@ -1032,7 +1032,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionIblSetsCount(self, collection):
 		"""
-		This method returns provided Collection Ibl Sets count.
+		This method returns given Collection Ibl Sets count.
 
 		:param collection: Collectionm. ( DbCollection )
 		:return: Collection Ibl Sets count. ( Integer )
@@ -1044,7 +1044,7 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollectionId(self, collection):
 		"""
-		This method returns provided Collection id.
+		This method returns given Collection id.
 
 		:param collection: Collection to get the id from. ( String )
 		:return: Provided Collection id. ( Integer )

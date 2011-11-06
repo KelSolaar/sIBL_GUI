@@ -8,7 +8,7 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	Slices provided documentation file.
+	Slices given documentation file.
 
 **Others:**
 
@@ -58,7 +58,7 @@ CONTENT_SUBSTITUTIONS = {"resources/": "../",
 #***********************************************************************************************
 def sliceDocumentation(fileIn, outputDirectory):
 	"""
-	This Definition slices provided documentation file.
+	This Definition slices given documentation file.
 
 	:param fileIn: File to convert. ( String )
 	:param outputDirectory: Output directory. ( String )

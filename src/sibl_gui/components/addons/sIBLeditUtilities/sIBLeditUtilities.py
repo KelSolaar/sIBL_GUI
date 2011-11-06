@@ -535,7 +535,7 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def editIblSetInSIBLedit(self, path, sIBLedit):
 		"""
-		This method edits provided Ibl Set in sIBLedit.
+		This method edits given Ibl Set in sIBLedit.
 
 		:param path: Path. ( String )
 		:param sIBLedit: sIBLedit. ( String )
@@ -550,4 +550,4 @@ class sIBLeditUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			editProcess.startDetached(editCommand)
 			return True
 		else:
-			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
+			raise Exception("{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))

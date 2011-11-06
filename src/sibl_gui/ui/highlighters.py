@@ -110,7 +110,7 @@ class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
 	# @core.executionTrace
 	def highlightBlock(self, block):
 		"""
-		This method highlights provided text block.
+		This method highlights given text block.
 
 		:param block: Text block. ( QString )
 		"""
@@ -167,7 +167,7 @@ class JavaScriptHighlighter(umbra.ui.highlighters.Highlighter):
 	# @core.executionTrace
 	def highlightBlock(self, block):
 		"""
-		This method highlights provided text block.
+		This method highlights given text block.
 
 		:param block: Text block. ( QString )
 		"""
@@ -224,7 +224,7 @@ class MelScriptHighlighter(umbra.ui.highlighters.Highlighter):
 	# @core.executionTrace
 	def highlightBlock(self, block):
 		"""
-		This method highlights provided text block.
+		This method highlights given text block.
 
 		:param block: Text block. ( QString )
 		"""
@@ -281,7 +281,7 @@ class MaxScriptHighlighter(umbra.ui.highlighters.Highlighter):
 	# @core.executionTrace
 	def highlightBlock(self, block):
 		"""
-		This method highlights provided text block.
+		This method highlights given text block.
 
 		:param block: Text block. ( QString )
 		"""

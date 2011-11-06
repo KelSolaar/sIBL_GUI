@@ -1338,7 +1338,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@umbra.engine.encapsulateProcessing
 	def addDirectory(self, directory, collectionId=None):
 		"""
-		This method adds provided directory Templates to the Database.
+		This method adds given directory Templates to the Database.
 
 		:param directory: Templates directory. ( String )
 		:param collectionId: Collection id. ( Integer )
@@ -1399,7 +1399,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeTemplate(self, template, emitSignal=True):
 		"""
-		This method removes provided Template from the Database.
+		This method removes given Template from the Database.
 
 		:param templates: Template to remove. ( List )
 		:param emitSignal: Emit signal. ( Boolean )
@@ -1416,7 +1416,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def templateExists(self, path):
 		"""
-		This method returns if provided Template path exists in the Database.
+		This method returns if given Template path exists in the Database.
 
 		:param name: Template path. ( String )
 		:return: Template exists. ( Boolean )
@@ -1428,7 +1428,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateTemplateLocation(self, template, emitSignal=True):
 		"""
-		This method updates provided Template location.
+		This method updates given Template location.
 
 		:param template: Template to update. ( DbTemplate )
 		:param emitSignal: Emit signal. ( Boolean )
@@ -1450,7 +1450,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
 	def displayHelpFile(self, template):
 		"""
-		This method displays provided Templates help file.
+		This method displays given Templates help file.
 
 		:param template: Template to display help file. ( DbTemplate )
 		:return: Method success. ( Boolean )
@@ -1549,7 +1549,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getCollection(self, collection):
 		"""
-		This method gets Template Collection from provided Collection name.
+		This method gets Template Collection from given Collection name.
 
 		:param collection: Collection name. ( String )
 		:return: Collection. ( DbCollection )
@@ -1561,7 +1561,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getUniqueCollectionId(self, path):
 		"""
-		This method gets an unique Collection id using provided path.
+		This method gets an unique Collection id using given path.
 
 		:param path: Template path. ( String )
 		:return: Unique id. ( Integer )

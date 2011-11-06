@@ -707,7 +707,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __tableWidget_setUi(self, section, tableWidget, overrides):
 		"""
-		This method defines and sets the provided table widget.
+		This method defines and sets the given table widget.
 
 		:param section: Section attributes. ( Dictionary )
 		:param tableWidget: Table Widget. ( QTableWidget )

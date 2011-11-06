@@ -1137,7 +1137,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __drawLightLabel(self, painter, light):
 		"""
-		This method draws a light label on provided QPainter.
+		This method draws a light label on given QPainter.
 
 		:param painter: QPainter. ( QPainter )
 		:param light: Light. ( Light )

@@ -51,7 +51,7 @@ def recursiveRemove(rootDirectory, pattern):
 
 def remove(item):
 	"""
-	This definition deletes provided item.
+	This definition deletes given item.
 	:param item: Item to delete. ( String )
 	"""
 

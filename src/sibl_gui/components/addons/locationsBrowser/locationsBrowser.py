@@ -862,4 +862,4 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			browserProcess.startDetached(browserCommand)
 			return True
 		else:
-			raise Exception("{0} | Exception raised: No suitable process command provided!".format(self.__class__.__name__))
+			raise Exception("{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))

@@ -1696,7 +1696,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def removeIblSet(self, iblSet, emitSignal=True):
 		"""
-		This method removes provided Ibl Set from the Database.
+		This method removes given Ibl Set from the Database.
 
 		:param iblSet: Ibl Set to remove. ( DbIblSet )
 		:param emitSignal: Emit signal. ( Boolean )
@@ -1713,7 +1713,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def iblSetExists(self, path):
 		"""
-		This method returns if provided Ibl Set path exists in the Database.
+		This method returns if given Ibl Set path exists in the Database.
 
 		:param path: Collection path. ( String )
 		:return: Collection exists. ( Boolean )
@@ -1725,7 +1725,7 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
 	def updateIblSetLocation(self, iblSet, file, emitSignal=True):
 		"""
-		This method updates provided Ibl Set location.
+		This method updates given Ibl Set location.
 
 		:param iblSet: Ibl Set to update. ( DbIblSet )
 		:param iblSet: New Ibl Set file. ( String )

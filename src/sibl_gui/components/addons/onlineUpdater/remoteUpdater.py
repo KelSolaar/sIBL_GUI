@@ -754,7 +754,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def extractZipFile(self, file):
 		"""
-		This method uncompress the provided zip file.
+		This method uncompress the given zip file.
 
 		:param file: File to extract. ( String )
 		:return: Extraction success. ( Boolean )

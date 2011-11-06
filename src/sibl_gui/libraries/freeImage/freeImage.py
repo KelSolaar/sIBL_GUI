@@ -1660,7 +1660,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.LibraryExecutionError)
 	def saveAs(self, imageFormat, imagePath, flags=FI_DEFAULT_NULL):
 		"""
-		This method saves the image to the provided file.
+		This method saves the image to the given file.
 
 		:param imageFormat: Image format. ( Integer )
 		:param imagePath: Image path. ( String )
@@ -1681,7 +1681,7 @@ class Image(object):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def convertToType(self, targetType, linearScale=True):
 		"""
-		This method converts the bitmap to provided type.
+		This method converts the bitmap to given type.
 
 		:param targetType: Target type. ( Integer )
 		:param linearScale: Linear scale. ( Boolean )

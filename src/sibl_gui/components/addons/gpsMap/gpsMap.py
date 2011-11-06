@@ -702,7 +702,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setMarker(self, iblSet):
 		"""
-		This method sets provided Ibl Set marker.
+		This method sets given Ibl Set marker.
 
 		:param iblSet: Ibl Set to display marker. ( DbIblSet )
 		:return: Method success. ( Boolean )
