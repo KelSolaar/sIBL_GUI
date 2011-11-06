@@ -177,7 +177,7 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.layoutsActiveLabels:
-			layoutActiveLabel.object.clicked.connect(functools.partial(self.layoutActiveLabel__clicked, layoutActiveLabel.layout))
+			layoutActiveLabel.object.clicked.connect(functools.partial(self._Umbra__layoutActiveLabel__clicked, layoutActiveLabel.layout))
 
 		return True
 
