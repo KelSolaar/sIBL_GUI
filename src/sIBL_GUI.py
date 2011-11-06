@@ -123,6 +123,19 @@ class sIBL_GUI(umbra.engine.Umbra):
 		self.contentDropped.disconnect(factoryScriptEditor._ScriptEditor__application__contentDropped)
 
 	@core.executionTrace
+	def __centralWidgetButton__clicked(self):
+		"""
+		This method sets the **Central** Widget visibility.
+		"""
+
+		LOGGER.debug("> Central Widget button clicked!")
+
+		if self.centralwidget.isVisible():
+			self.centralwidget.hide()
+		else:
+			self.centralwidget.show()
+
+	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getLayoutsActiveLabels(self):
 		"""
@@ -183,10 +196,11 @@ class sIBL_GUI(umbra.engine.Umbra):
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 
 		# Signals / Slots.
-		centralWidgetButton.clicked.connect(self.centralWidgetButton__clicked)
+		centralWidgetButton.clicked.connect(self.__centralWidgetButton__clicked)
 		return centralWidgetButton
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initializeToolBar(self):
 		"""
 		This method initializes Application toolBar.
@@ -219,20 +233,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		self.toolBar.addWidget(self.getClosureSpacerLabel())
 		return True
 
-	@core.executionTrace
-	def centralWidgetButton__clicked(self):
-		"""
-		This method sets the **Central** Widget visibility.
-		"""
-
-		LOGGER.debug("> Central Widget button clicked!")
-
-		if self.centralwidget.isVisible():
-			self.centralwidget.hide()
-		else:
-			self.centralwidget.show()
-
 @core.executionTrace
+@foundations.exceptions.exceptionsHandler(None, False, Exception)
 def extendCommandLineParametersParser(parser):
 	"""
 	This definition returns the command line parameters parser.

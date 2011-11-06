@@ -437,6 +437,7 @@ class SetsScanner(QObjectComponent):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -457,6 +458,7 @@ class SetsScanner(QObjectComponent):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -476,6 +478,7 @@ class SetsScanner(QObjectComponent):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -496,6 +499,7 @@ class SetsScanner(QObjectComponent):
 			LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.
@@ -511,6 +515,7 @@ class SetsScanner(QObjectComponent):
 				self.__setsScannerWorkerThread = None
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def onStartup(self):
 		"""
 		This method is called on Framework startup.

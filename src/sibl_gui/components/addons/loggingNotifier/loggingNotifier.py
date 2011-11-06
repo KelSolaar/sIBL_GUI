@@ -138,6 +138,7 @@ class LoggingNotifier(Component):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
 		"""
 		This method activates the Component.
@@ -154,6 +155,7 @@ class LoggingNotifier(Component):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def deactivate(self):
 		"""
 		This method deactivates the Component.
@@ -169,6 +171,7 @@ class LoggingNotifier(Component):
 		return True
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -180,6 +183,7 @@ class LoggingNotifier(Component):
 		self.__engine.timer.timeout.connect(self.__statusBar_showLoggingMessages)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def uninitialize(self):
 		"""
 		This method uninitializes the Component.

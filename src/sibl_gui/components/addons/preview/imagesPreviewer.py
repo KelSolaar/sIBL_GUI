@@ -944,6 +944,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.fitImage()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def scaleView(self, scaleFactor):
 		"""
 		This method scales the QGraphicsView.
@@ -959,6 +960,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		graphicsView.scale(scaleFactor, scaleFactor)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def fitPreviewer(self):
 		"""
 		This method fits the previewer window.
@@ -974,6 +976,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			umbra.ui.common.centerWidgetOnScreen(self)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setImage(self, index=0):
 		"""
 		This method sets the display image.
@@ -994,6 +997,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image._data.path), image._data.width, image._data.height, image._data.bpp))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def fitImage(self):
 		"""
 		This method fits the display image.
@@ -1003,6 +1007,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.__graphicsView.fitInView(QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2), -(self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2), self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin, self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin), Qt.KeepAspectRatio)
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def loopThroughImages(self, backward=False):
 		"""
 		This method loops through Images Previewer images.

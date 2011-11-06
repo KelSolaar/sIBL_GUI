@@ -158,6 +158,7 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setModel(self, model):
 		"""
 		This method reimplements the **QListView.setModel** method.
@@ -275,6 +276,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 	#***	Class methods.
 	#***********************************************************************************************
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setModel(self, model):
 		"""
 		This method reimplements the **QTreeView.setModel** method.

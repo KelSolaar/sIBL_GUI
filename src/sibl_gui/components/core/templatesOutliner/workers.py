@@ -216,6 +216,7 @@ class TemplatesOutliner_Worker(QThread):
 		self.exec_()
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def updateTemplates(self):
 		"""
 		This method updates Database Templates if they have been modified on disk.
