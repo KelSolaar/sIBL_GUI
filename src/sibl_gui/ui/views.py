@@ -277,7 +277,7 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 	@core.executionTrace
 	def setModel(self, model):
 		"""
-		This method reimplements the **QListView.setModel** method.
+		This method reimplements the **QTreeView.setModel** method.
 		
 		:param model: Model to set. ( QObject )
 		"""

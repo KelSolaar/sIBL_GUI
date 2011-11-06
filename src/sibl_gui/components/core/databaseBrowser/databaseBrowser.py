@@ -1163,7 +1163,6 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Thumbnails_Size_horizontalSlider.valueChanged.connect(self.__Thumbnails_Size_horizontalSlider__changed)
 
-		self.__model.modelReset.connect(self.__coreCollectionsOutliner._CollectionsOutliner__view_setIblSetsCounts)
 		self.modelRefresh.connect(self.__databaseBrowser__modelRefresh)
 
 		if not self.__engine.parameters.databaseReadOnly:
@@ -1389,9 +1388,9 @@ class DatabaseBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Updating Ibl Set '{0}' title to '{1}'.".format(iblSetNode.dbItem.title, iblSetNode.name))
 		iblSetNode.synchronizeDbItem()
+		iblSetNode.synchronizeToolTip()
 
 		self.__coreDb.commit()
-		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __views__activeViewChanged(self, index):

@@ -195,7 +195,7 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title, collectionNode.dbItem.name))
 					node.dbItem.collection = collectionNode.dbItem.id
 			if self.__container.coreDb.commit():
-				self.selectionModel().setCurrentIndex(indexAt, QItemSelectionModel.Current | QItemSelectionModel.Select | QItemSelectionModel.Rows)
+				self.__container.modelRefresh.emit()
 		else:
 			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
 

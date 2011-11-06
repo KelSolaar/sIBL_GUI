@@ -774,15 +774,6 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return self.removeCollections_ui()
 
 	@core.executionTrace
-	def __view_setIblSetsCounts(self):
-		"""
-		This method sets the View Ibl Sets counts.
-		"""
-
-		for collectionNode in self.__model.findChildren("^{0}$".format(self.__overallCollection))[0].children:
-			collectionNode.count.value = collectionNode.count.roles[Qt.DisplayRole] = self.getCollectionIblSetsCount(collectionNode.dbItem)
-
-	@core.executionTrace
 	def __collectionsOutliner__modelRefresh(self):
 		"""
 		This method is triggered when the Model data need refresh.
@@ -814,8 +805,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				raise foundations.exceptions.UserError("{0} | Exception while editing a Collection field: Cannot use an empty value!".format(self.__class__.__name__))
 
 		collectionNode.synchronizeDbItem()
+		collectionNode.synchronizeToolTip()
+
 		self.__coreDb.commit()
-		self.modelRefresh.emit()
 
 	@core.executionTrace
 	def __view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):

@@ -578,7 +578,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Removing '{0}' Component actions.".format(self.__class__.__name__))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ..."
+			editIblSetsFilesAction = "Actions|Umbra|Components|core.databaseBrowser|Edit Ibl Set(s) File(s) ..."
 			for view in self.__coreDatabaseBrowser.views:
 				view.removeAction(self.__engine.actionsManager.getAction(editIblSetsFilesAction))
 			self.__engine.actionsManager.unregisterAction(editIblSetsFilesAction)

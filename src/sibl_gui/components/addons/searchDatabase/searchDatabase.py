@@ -543,8 +543,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		# Signals / Slots.
 		self.Search_Database_lineEdit.textChanged.disconnect(self.__Search_Database_lineEdit__textChanged)
-		self.Search_Database_comboBox.activated.disconnect(self.__Search_Database_comboBox__activated)
-		self.Case_Insensitive_Matching_checkBox.stateChanged.disconnect(self.__Case_Insensitive_Matching_checkBox__stateChanged)
+		self.Case_Sensitive_Matching_pushButton.clicked.disconnect(self.__Case_Sensitive_Matching_pushButton__clicked)
 		self.Time_Low_timeEdit.timeChanged.disconnect(self.__Time_Low_timeEdit__timeChanged)
 		self.Time_High_timeEdit.timeChanged.disconnect(self.__Time_High_timeEdit__timeChanged)
 		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
@@ -660,7 +659,8 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		filteredIblSets = []
 		allTags = []
 
-		for iblSet in self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections()):
+		iblSets = self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections() or self.__coreCollectionsOutliner.getCollections())
+		for iblSet in iblSets:
 			if not getattr(iblSet, "comment"):
 				continue
 
@@ -679,7 +679,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.Tags_Cloud_listWidget.clear()
 		self.Tags_Cloud_listWidget.addItems(sorted(set(allTags), key=lambda x:x.lower()))
-		filteredIblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections())).intersection(set(filteredIblSets))]
+		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(set(filteredIblSets))]
 
 		LOGGER.debug("> Tags Cloud filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in filteredIblSets))))
 
@@ -708,7 +708,7 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			hours, minutes, seconds = iblSet.time.split(":")
 			int(hours) * 60 + int(minutes) >= timeLow.hour() * 60 + timeLow.minute() and int(hours) * 60 + int(minutes) <= timeHigh.hour() * 60 + timeHigh.minute() and filteredIblSets.append(iblSet)
 
-		filteredIblSets = [iblSet for iblSet in set(self.__coreCollectionsOutliner.getCollectionsIblSets(self.__coreCollectionsOutliner.getSelectedCollections())).intersection(filteredIblSets)]
+		filteredIblSets = [iblSet for iblSet in set(iblSets).intersection(filteredIblSets)]
 
 		LOGGER.debug("> Time range filtered Ibl Set(s): '{0}'".format(", ".join((iblSet.name for iblSet in filteredIblSets))))
 

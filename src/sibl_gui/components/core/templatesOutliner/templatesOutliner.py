@@ -1464,6 +1464,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise foundations.exceptions.FileExistsError("{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile))
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def getTemplates(self):
 		"""
 		This method returns Database Templates.
@@ -1474,6 +1475,7 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		return [template for template in dbCommon.getTemplates(self.__coreDb.dbSession)]
 
 	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def setTemplates(self):
 		"""
 		This method sets the Templates Model nodes.

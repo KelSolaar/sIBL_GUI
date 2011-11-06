@@ -79,6 +79,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		# --- Setting class attributes. ---
 		self.__dbItem = dbItem
+		self.__toolTipText = str()
 
 		AbstractDatabaseNode.__initializeNode(self, attributesFlags)
 
@@ -114,6 +115,38 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		"""
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbItem"))
+
+	@property
+	def toolTipText(self):
+		"""
+		This method is the property for **self.__toolTipText** attribute.
+
+		:return: self.__toolTipText. ( String )
+		"""
+
+		return self.__toolTipText
+
+	@toolTipText.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self, value):
+		"""
+		This method is the setter method for **self.__toolTipText** attribute.
+
+		:param value: Attribute value. ( String )
+		"""
+
+		if value:
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("toolTipText", value)
+		self.__toolTipText = value
+
+	@toolTipText.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def toolTipText(self):
+		"""
+		This method is the deleter method for **self.__toolTipText** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -194,6 +227,17 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 
 		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
 
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeToolTip(self):
+		"""
+		This method synchronizes the node tooltip.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeToolTip.__name__, self.__class__.__name__))
+
 class IblSetNode(AbstractDatabaseNode):
 	"""
 	This class defines Ibl Sets nodes.
@@ -220,7 +264,7 @@ class IblSetNode(AbstractDatabaseNode):
 		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
 		# --- Setting class attributes. ---
-		self.__toolTipText = """
+		self.toolTipText = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
 				<b>Location: </b>{2}<br>
@@ -229,39 +273,6 @@ class IblSetNode(AbstractDatabaseNode):
 				"""
 
 		IblSetNode.__initializeNode(self)
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def toolTipText(self):
-		"""
-		This method is the property for **self.__toolTipText** attribute.
-
-		:return: self.__toolTipText. ( String )
-		"""
-
-		return self.__toolTipText
-
-	@toolTipText.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
-		"""
-		This method is the setter method for **self.__toolTipText** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
-
-	@toolTipText.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
-		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -273,13 +284,9 @@ class IblSetNode(AbstractDatabaseNode):
 		"""
 
 		self.roles.update({Qt.DisplayRole : self.dbItem.title,
-		Qt.DecorationRole : self.dbItem.icon,
-		Qt.EditRole : self.dbItem.title,
-		Qt.ToolTipRole : self.__toolTipText.format(self.dbItem.title,
-													self.dbItem.author or Constants.nullObject,
-													self.dbItem.location or Constants.nullObject,
-													sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
-													self.dbItem.comment or Constants.nullObject)})
+							Qt.DecorationRole : self.dbItem.icon,
+							Qt.EditRole : self.dbItem.title})
+		self.synchronizeToolTip()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -302,8 +309,24 @@ class IblSetNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.dbItem.title = self.name
+		self.title = self.dbItem.title = self.name
 		return self.synchronizeDbItemAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeToolTip(self):
+		"""
+		This method synchronizes the node tooltip.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.dbItem.title,
+																self.dbItem.author or Constants.nullObject,
+																self.dbItem.location or Constants.nullObject,
+																sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
+																self.dbItem.comment or Constants.nullObject)
+		return True
 
 class TemplateNode(AbstractDatabaseNode):
 	"""
@@ -331,7 +354,7 @@ class TemplateNode(AbstractDatabaseNode):
 		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
 		# --- Setting class attributes. ---
-		self.__toolTipText = """
+		self.toolTipText = """
 				<p><b>{0}</b></p>
 				<p><b>Author: </b>{1}<br>
 				<b>Release Date: </b>{2}<br>
@@ -339,39 +362,6 @@ class TemplateNode(AbstractDatabaseNode):
 				"""
 
 		TemplateNode.__initializeNode(self)
-
-	#***********************************************************************************************
-	#***	Attributes properties.
-	#***********************************************************************************************
-	@property
-	def toolTipText(self):
-		"""
-		This method is the property for **self.__toolTipText** attribute.
-
-		:return: self.__toolTipText. ( String )
-		"""
-
-		return self.__toolTipText
-
-	@toolTipText.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self, value):
-		"""
-		This method is the setter method for **self.__toolTipText** attribute.
-
-		:param value: Attribute value. ( String )
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
-
-	@toolTipText.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def toolTipText(self):
-		"""
-		This method is the deleter method for **self.__toolTipText** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.
@@ -382,13 +372,9 @@ class TemplateNode(AbstractDatabaseNode):
 		This method initializes the node.
 		"""
 
-		name = "{0} {1}".format(self.dbItem.renderer, self.dbItem.title)
-		self.roles.update({Qt.DisplayRole : name,
-							Qt.EditRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
-							Qt.ToolTipRole : self.__toolTipText.format(name,
-																	self.dbItem.author,
-																	self.dbItem.date,
-																	self.dbItem.comment)})
+		self.roles.update({Qt.DisplayRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+							Qt.EditRole : "{0} {1}".format(self.dbItem.renderer, self.dbItem.title)})
+		self.synchronizeToolTip()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -411,8 +397,23 @@ class TemplateNode(AbstractDatabaseNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		self.dbItem.title = self.name
+		self.title = self.dbItem.title = self.name
 		return self.synchronizeDbItemAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeToolTip(self):
+		"""
+		This method synchronizes the node tooltip.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format("{0} {1}".format(self.dbItem.renderer, self.dbItem.title),
+																	self.dbItem.author,
+																	self.dbItem.date,
+																	self.dbItem.comment)
+		return True
 
 class CollectionNode(AbstractDatabaseNode):
 	"""
@@ -439,6 +440,12 @@ class CollectionNode(AbstractDatabaseNode):
 
 		AbstractDatabaseNode.__init__(self, dbItem, name, parent, children, roles, nodeFlags, attributesFlags, **kwargs)
 
+		# --- Setting class attributes. ---
+		self.toolTipText = """
+				<p><b>{0}</b></p>
+				<p><b>Comment: </b>{1}<br></p>
+				"""
+
 		CollectionNode.__initializeNode(self)
 
 	#***********************************************************************************************
@@ -452,8 +459,8 @@ class CollectionNode(AbstractDatabaseNode):
 
 		self.roles.update({Qt.DisplayRole : self.dbItem.name,
 			Qt.EditRole : self.dbItem.name})
-
 		self["count"] = umbra.ui.models.GraphModelAttribute(name="count", value=None, flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self.synchronizeToolTip()
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -478,3 +485,16 @@ class CollectionNode(AbstractDatabaseNode):
 
 		self.dbItem.name = self.name
 		return self.synchronizeDbItemAttributes()
+
+	@core.executionTrace
+	@foundations.exceptions.exceptionsHandler(None, False, Exception)
+	def synchronizeToolTip(self):
+		"""
+		This method synchronizes the node tooltip.
+
+		:return: Method success. ( Boolean )
+		"""
+
+		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.dbItem.name,
+																self.dbItem.comment)
+		return True
