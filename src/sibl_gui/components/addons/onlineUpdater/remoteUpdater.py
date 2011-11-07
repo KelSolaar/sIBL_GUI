@@ -69,6 +69,8 @@ class ReleaseObject(core.Structure):
 		:param kwargs: name, repositoryVersion, localVersion, type, url, comment. ( Key / Value pairs )
 		"""
 
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
 		core.Structure.__init__(self, **kwargs)
 
 class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):

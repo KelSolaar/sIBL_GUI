@@ -67,6 +67,8 @@ class DbType(core.Structure):
 		:param kwargs: type, getMethod, updateContentMethod, modelContainer, updateLocationMethod ( Key / Value pairs )
 		"""
 
+		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
+
 		core.Structure.__init__(self, **kwargs)
 
 class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
