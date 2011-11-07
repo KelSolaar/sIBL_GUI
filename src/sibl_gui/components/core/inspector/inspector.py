@@ -60,7 +60,7 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Inspector.ui"
 #***********************************************************************************************
 class Plate(core.Structure):
 	"""
-	This class represents a storage object for an Ibl Set plate.
+	This class represents a storage object for an Ibl Set Plate.
 	"""
 
 	@core.executionTrace

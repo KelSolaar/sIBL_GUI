@@ -28,6 +28,7 @@ from PyQt4.QtGui import *
 #***********************************************************************************************
 import foundations.core as core
 import foundations.exceptions
+import foundations.walkers
 import sibl_gui.components.core.db.exceptions as dbExceptions
 import sibl_gui.components.core.db.utilities.common as dbCommon
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -104,9 +105,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__view = None
 		self.__overallCollection = "Overall"
 		self.__defaultCollection = "Default"
-		self.__setsCountLabel = "Ibl Sets"
+		self.__iblSetsCountLabel = "Ibl Sets"
 		self.__headers = OrderedDict([("Collections", "name"),
-										(self.__setsCountLabel, "count"),
+										(self.__iblSetsCountLabel, "count"),
 										("Comment", "comment")])
 
 	#***********************************************************************************************
@@ -533,34 +534,34 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "defaultCollection"))
 
 	@property
-	def setsCountLabel(self):
+	def iblSetsCountLabel(self):
 		"""
-		This method is the property for **self.__setsCountLabel** attribute.
+		This method is the property for **self.__iblSetsCountLabel** attribute.
 
-		:return: self.__setsCountLabel. ( String )
+		:return: self.__iblSetsCountLabel. ( String )
 		"""
 
-		return self.__setsCountLabel
+		return self.__iblSetsCountLabel
 
-	@setsCountLabel.setter
+	@iblSetsCountLabel.setter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def setsCountLabel(self, value):
+	def iblSetsCountLabel(self, value):
 		"""
-		This method is the setter method for **self.__setsCountLabel** attribute.
+		This method is the setter method for **self.__iblSetsCountLabel** attribute.
 
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "setsCountLabel"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "iblSetsCountLabel"))
 
-	@setsCountLabel.deleter
+	@iblSetsCountLabel.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def setsCountLabel(self):
+	def iblSetsCountLabel(self):
 		"""
-		This method is the deleter method for **self.__setsCountLabel** attribute.
+		This method is the deleter method for **self.__iblSetsCountLabel** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "setsCountLabel"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "iblSetsCountLabel"))
 
 	@property
 	def headers(self):
@@ -824,6 +825,32 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		self.__coreDatabaseBrowser.modelRefresh.emit()
+
+	@core.executionTrace
+	def __view_setIblSetsCounts(self):
+		"""
+		This method sets the View Ibl Sets counts.
+		"""
+
+		iblSetsCount = 0
+		for node in foundations.walkers.nodesWalker(self.__model.rootNode):
+			if not node.family == "Collection":
+				continue
+
+			collectionIblSetsCount = self.getCollectionIblSetsCount(node.dbItem)
+			if collectionIblSetsCount == node.count.value:
+				continue
+
+			node.count.value = collectionIblSetsCount
+			self.__model.setData(self.__model.getAttributeIndex(node, self.__headers.keys().index(self.__iblSetsCountLabel)), QVariant(collectionIblSetsCount), Qt.DisplayRole)
+			iblSetsCount += collectionIblSetsCount
+
+		overallCollectionNode = self.__model.findChildren("^{0}$".format(self.__overallCollection))[0]
+		if iblSetsCount == overallCollectionNode.count.value:
+			return
+
+		overallCollectionNode.count.value = iblSetsCount
+		self.__model.setData(self.__model.getAttributeIndex(overallCollectionNode, self.__headers.keys().index(self.__iblSetsCountLabel)), QVariant(iblSetsCount), Qt.DisplayRole)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
