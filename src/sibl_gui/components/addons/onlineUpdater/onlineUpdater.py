@@ -35,7 +35,8 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.addons.onlineUpdater.remoteUpdater import RemoteUpdater, ReleaseObject
+from sibl_gui.components.addons.onlineUpdater.remoteUpdater import ReleaseObject
+from sibl_gui.components.addons.onlineUpdater.remoteUpdater import RemoteUpdater
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************

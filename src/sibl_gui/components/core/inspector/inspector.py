@@ -35,7 +35,8 @@ import sibl_gui.ui.common
 import umbra.ui.common
 from foundations.parsers import SectionsFileParser
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.core.inspector.models import PlatesNode, PlatesModel
+from sibl_gui.components.core.inspector.models import PlatesModel
+from sibl_gui.components.core.inspector.models import PlatesNode
 from sibl_gui.components.core.inspector.views import Plates_QListView
 from umbra.globals.constants import Constants
 

@@ -41,7 +41,8 @@ import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
 from foundations.walkers import OsWalker
-from sibl_gui.components.core.templatesOutliner.models import SoftwareNode, TemplatesModel
+from sibl_gui.components.core.templatesOutliner.models import SoftwareNode
+from sibl_gui.components.core.templatesOutliner.models import TemplatesModel
 from sibl_gui.components.core.templatesOutliner.views import Templates_QTreeView
 from sibl_gui.components.core.templatesOutliner.workers import TemplatesOutliner_Worker
 from umbra.globals.constants import Constants

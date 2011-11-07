@@ -43,7 +43,9 @@ import umbra.ui.widgets.messageBox as messageBox
 from foundations.walkers import OsWalker
 from manager.qwidgetComponent import QWidgetComponentFactory
 from sibl_gui.components.core.databaseBrowser.models import IblSetsModel
-from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView, Columns_QListView, Details_QTreeView
+from sibl_gui.components.core.databaseBrowser.views import Columns_QListView
+from sibl_gui.components.core.databaseBrowser.views import Details_QTreeView
+from sibl_gui.components.core.databaseBrowser.views import Thumbnails_QListView
 from sibl_gui.components.core.databaseBrowser.workers import DatabaseBrowser_Worker
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals

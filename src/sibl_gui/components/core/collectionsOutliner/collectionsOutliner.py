@@ -37,7 +37,8 @@ import umbra.engine
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from manager.qwidgetComponent import QWidgetComponentFactory
-from sibl_gui.components.core.collectionsOutliner.models import OverallCollectionNode, CollectionsModel
+from sibl_gui.components.core.collectionsOutliner.models import CollectionsModel
+from sibl_gui.components.core.collectionsOutliner.models import OverallCollectionNode
 from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollections_QTreeView
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
