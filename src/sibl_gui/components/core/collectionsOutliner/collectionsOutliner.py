@@ -20,8 +20,13 @@
 import logging
 import os
 from collections import OrderedDict
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QVariant
+from PyQt4.QtCore import Qt
+from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QInputDialog
+from PyQt4.QtGui import QItemSelectionModel
+from PyQt4.QtGui import QMessageBox
 
 #***********************************************************************************************
 #***	Internal imports.

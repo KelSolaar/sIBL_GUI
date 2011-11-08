@@ -19,9 +19,10 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from PyQt4.QtNetwork import *
+from PyQt4.QtCore import QUrl
+from PyQt4.QtCore import Qt
+from PyQt4.QtNetwork import QNetworkAccessManager
+from PyQt4.QtNetwork import QNetworkRequest
 
 #***********************************************************************************************
 #***	Internal imports.

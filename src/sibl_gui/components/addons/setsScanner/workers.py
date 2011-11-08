@@ -20,8 +20,8 @@
 import logging
 import os
 import re
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QThread
+from PyQt4.QtCore import pyqtSignal
 
 #***********************************************************************************************
 #***	Internal imports.

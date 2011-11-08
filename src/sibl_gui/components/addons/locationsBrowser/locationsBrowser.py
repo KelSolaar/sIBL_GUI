@@ -20,8 +20,10 @@
 import logging
 import os
 import platform
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QProcess
+from PyQt4.QtCore import QString
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QPushButton
 
 #***********************************************************************************************
 #***	Internal imports.

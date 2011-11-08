@@ -19,8 +19,8 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QGridLayout
+from PyQt4.QtGui import QMessageBox
 
 #***********************************************************************************************
 #***	Internal imports.

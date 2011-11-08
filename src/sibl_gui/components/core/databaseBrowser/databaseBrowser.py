@@ -23,8 +23,18 @@ import os
 import platform
 import re
 from collections import OrderedDict
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QString
+from PyQt4.QtCore import Qt
+from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtGui import QAction
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QMenu
+from PyQt4.QtGui import QMessageBox
+from PyQt4.QtGui import QPixmap
+from PyQt4.QtGui import QSizePolicy
+from PyQt4.QtGui import QStackedWidget
+from PyQt4.QtGui import QStringListModel
 
 #***********************************************************************************************
 #***	Internal imports.

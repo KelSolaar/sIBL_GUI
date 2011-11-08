@@ -19,9 +19,11 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from PyQt4.QtWebKit import *
+from PyQt4.QtCore import QSize
+from PyQt4.QtCore import QUrl
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QIcon
+from PyQt4.QtWebKit import QWebView
 
 #***********************************************************************************************
 #***	Internal imports.

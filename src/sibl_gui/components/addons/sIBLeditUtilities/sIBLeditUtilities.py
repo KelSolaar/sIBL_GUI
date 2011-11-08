@@ -19,8 +19,9 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QProcess
+from PyQt4.QtCore import QString
+from PyQt4.QtGui import QFileDialog
 
 #***********************************************************************************************
 #***	Internal imports.

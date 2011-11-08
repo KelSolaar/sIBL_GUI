@@ -21,8 +21,7 @@ import logging
 import os
 import re
 import itertools
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import Qt
 
 #***********************************************************************************************
 #***	Internal imports.

@@ -19,8 +19,16 @@
 #***********************************************************************************************
 import logging
 import os
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QRectF
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QApplication
+from PyQt4.QtGui import QBrush
+from PyQt4.QtGui import QColor
+from PyQt4.QtGui import QGraphicsItem
+from PyQt4.QtGui import QGraphicsScene
+from PyQt4.QtGui import QGraphicsView
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QImage
 
 #***********************************************************************************************
 #***	Internal imports.

@@ -21,8 +21,13 @@ import logging
 import os
 import re
 from collections import OrderedDict
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QString
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QColor
+from PyQt4.QtGui import QComboBox
+from PyQt4.QtGui import QDoubleSpinBox
+from PyQt4.QtGui import QLineEdit
+from PyQt4.QtGui import QPalette
 
 #***********************************************************************************************
 #***	Internal imports.

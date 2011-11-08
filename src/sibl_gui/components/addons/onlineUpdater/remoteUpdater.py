@@ -20,8 +20,18 @@
 import logging
 import os
 import platform
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QByteArray
+from PyQt4.QtCore import QString
+from PyQt4.QtCore import QUrl
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QAbstractItemView
+from PyQt4.QtGui import QColor
+from PyQt4.QtGui import QDesktopServices
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QMessageBox
+from PyQt4.QtGui import QPalette
+from PyQt4.QtGui import QPixmap
+from PyQt4.QtGui import QTableWidgetItem
 
 #***********************************************************************************************
 #***	Internal imports.

@@ -20,8 +20,9 @@
 import logging
 import os
 import re
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QIcon
+from PyQt4.QtGui import QImage
+from PyQt4.QtGui import QPixmap
 
 #***********************************************************************************************
 #***	Internal imports.

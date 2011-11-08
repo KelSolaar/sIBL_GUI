@@ -18,8 +18,10 @@
 #***	External imports.
 #***********************************************************************************************
 import logging
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QSize
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QAbstractItemView
+from PyQt4.QtGui import QListView
 
 #***********************************************************************************************
 #***	Internal imports.
