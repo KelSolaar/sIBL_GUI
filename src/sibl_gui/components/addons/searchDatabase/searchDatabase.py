@@ -551,6 +551,9 @@ class SearchDatabase(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.Tags_Cloud_listWidget.itemDoubleClicked.disconnect(self.__Tags_Cloud_listWidget__doubleClicked)
 		self.__coreCollectionsOutliner.view.selectionModel().selectionChanged.disconnect(self.__coreCollectionsOutliner_view_selectionModel__selectionChanged)
 
+		self.Search_Database_lineEdit.setParent(None)
+		self.Search_Database_lineEdit = None
+
 		return True
 
 	@core.executionTrace

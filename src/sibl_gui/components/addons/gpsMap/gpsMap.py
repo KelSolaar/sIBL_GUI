@@ -23,7 +23,6 @@ from PyQt4.QtCore import QSize
 from PyQt4.QtCore import QUrl
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import QIcon
-from PyQt4.QtWebKit import QWebView
 
 #***********************************************************************************************
 #***	Internal imports.
@@ -34,6 +33,7 @@ import foundations.strings as strings
 import sibl_gui.ui.common
 import umbra.ui.common
 from manager.qwidgetComponent import QWidgetComponentFactory
+from sibl_gui.components.addons.gpsMap.views import Map_QWebView
 from umbra.globals.constants import Constants
 
 #***********************************************************************************************
@@ -46,7 +46,7 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "COMPONENT_FILE", "Map", "GpsMap"]
+__all__ = ["LOGGER", "COMPONENT_FILE", "GpsMap"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -55,105 +55,6 @@ COMPONENT_FILE = os.path.join(os.path.dirname(__file__), "ui", "Gps_Map.ui")
 #***********************************************************************************************
 #***	Module classes and definitions.
 #***********************************************************************************************
-class Map(QWebView):
-	"""
-	| This class is a `QWebView <http://doc.qt.nokia.com/4.7/qwebview.html>`_ subclass used for the GPS map.
-	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined in the Component resources html file through Javascript evaluation.
-	"""
-
-	@core.executionTrace
-	def __init__(self, parent=None):
-		"""
-		This method initializes the class.
-
-		:param parent: Object parent. ( QObject )
-		"""
-
-		QWebView.__init__(self, parent)
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def addMarker(self, coordinates, title, icon, content):
-		"""
-		This method adds a marker to the map.
-
-		:param coordinates: Marker coordinates. ( Tuple )
-		:param title: Marker title. ( String )
-		:param icon: Marker icon. ( String )
-		:param content: Marker popup window content. ( String )
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
-
-		latitude, longitude = coordinates
-		self.page().mainFrame().evaluateJavaScript("addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude, longitude, title, icon, content))
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def removeMarkers(self):
-		"""
-		This method removes the map markers.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Removing GPS map markers.")
-
-		self.page().mainFrame().evaluateJavaScript("removeMarkers()")
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setCenter(self):
-		"""
-		This method centers the map.
-
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Centering GPS map.")
-
-		self.page().mainFrame().evaluateJavaScript("setCenter()")
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setMapType(self, mapTypeId):
-		"""
-		This method sets the map type.
-		
-		Available map types:
-			
-			- MapTypeId.auto
-			- MapTypeId.aerial
-			- MapTypeId.road
-			
-		:param mapTypeId: GPS map type. ( String )
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Setting GPS map type to '{0}'.".format(mapTypeId))
-
-		self.page().mainFrame().evaluateJavaScript("setMapType(\"{0}\")".format(mapTypeId))
-		return True
-
-	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, Exception)
-	def setZoom(self, type):
-		"""
-		This method sets the map zoom.
-
-		:param type: Zoom type. ( String )
-		:return: Method success. ( Boolean )
-		"""
-
-		LOGGER.debug("> Zooming '{0}' GPS map.".format(type))
-
-		self.page().mainFrame().evaluateJavaScript("setZoom(\"{0}\")".format(type))
-		return True
-
 class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.gpsMap.gpsMap` Component Interface class.
@@ -555,7 +456,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		self.Map_Type_comboBox.addItems([mapType[0] for mapType in self.__mapTypeIds])
 
-		self.__map = Map()
+		self.__map = Map_QWebView()
 		self.__map.setMinimumSize(self.__gpsMapBaseSize)
 		self.__map.load(QUrl.fromLocalFile(os.path.normpath(os.path.join(self.__uiResourcesDirectory, self.__gpsMapHtmlFile))))
 		self.__map.page().mainFrame().setScrollBarPolicy(Qt.Horizontal, Qt.ScrollBarAlwaysOff)
@@ -589,6 +490,7 @@ class GpsMap(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		self.Zoom_In_pushButton.clicked.disconnect(self.__Zoom_In_pushButton__clicked)
 		self.Zoom_Out_pushButton.clicked.disconnect(self.__Zoom_Out_pushButton__clicked)
 
+		self.__map.setParent(None)
 		self.__map = None
 
 		return True
