@@ -272,7 +272,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 		This method is the setter method for **self.__requests** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( List )
 		"""
 
 		if value:

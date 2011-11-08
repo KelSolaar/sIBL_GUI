@@ -407,7 +407,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		"""
 
 		if value:
-			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("sections", value)
+			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("overrideKeys", value)
 		self.__overrideKeys = value
 
 	@overrideKeys.deleter
