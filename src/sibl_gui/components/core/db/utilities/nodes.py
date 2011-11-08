@@ -145,7 +145,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__toolTipText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
 
 	#***********************************************************************************************
 	#***	Class methods.

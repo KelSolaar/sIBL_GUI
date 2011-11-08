@@ -133,7 +133,7 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is read only!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
 
 	@toolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -142,7 +142,7 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__toolTipText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("'{0}' attribute is not deletable!".format("toolTipText"))
+		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
 	#***********************************************************************************************
 	#***	Class methods.
