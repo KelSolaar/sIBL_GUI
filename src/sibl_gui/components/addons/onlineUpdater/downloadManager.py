@@ -32,7 +32,6 @@ from PyQt4.QtNetwork import QNetworkRequest
 import foundations.core as core
 import foundations.exceptions
 import foundations.ui.common
-import umbra.exceptions
 import umbra.ui.common
 import umbra.ui.widgets.messageBox as messageBox
 from umbra.globals.constants import Constants
@@ -277,6 +276,8 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		if value:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
+			for element in value:
+				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("requests", element)
 		self.__requests = value
 
 	@requests.deleter
@@ -485,27 +486,29 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method downloads the next request.
 		"""
 
-		if self.__requests:
-			self.Download_progressBar.show()
+		if not self.__requests:
+			return
 
-			self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
+		self.Download_progressBar.show()
 
-			self.__currentFilePath = os.path.join(self.__downloadDirectory, os.path.basename(str(self.__currentRequest.url().path())))
-			if os.path.exists(self.__currentFilePath):
-				LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
-				os.remove(self.__currentFilePath)
+		self.__currentRequest = self.__networkAccessManager.get(QNetworkRequest(QUrl(self.__requests.pop())))
 
-			self.__currentFile = QFile(self.__currentFilePath)
+		self.__currentFilePath = os.path.join(self.__downloadDirectory, os.path.basename(str(self.__currentRequest.url().path())))
+		if os.path.exists(self.__currentFilePath):
+			LOGGER.info("{0} | Removing '{1}' local file from previous online update!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+			os.remove(self.__currentFilePath)
 
-			if not self.__currentFile.open(QIODevice.WriteOnly):
-				messageBox.messageBox("Warning", "Warning", "{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
-				self.__downloadNext()
-				return
+		self.__currentFile = QFile(self.__currentFilePath)
 
-			# Signals / Slots.
-			self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
-			self.__currentRequest.finished.connect(self.__downloadComplete)
-			self.__currentRequest.readyRead.connect(self.__requestReady)
+		if not self.__currentFile.open(QIODevice.WriteOnly):
+			messageBox.messageBox("Warning", "Warning", "{0} | Error while writing '{1}' file to disk, proceeding to next download!".format(self.__class__.__name__, os.path.basename(self.__currentFilePath)))
+			self.__downloadNext()
+			return
+
+		# Signals / Slots.
+		self.__currentRequest.downloadProgress.connect(self.__downloadProgress)
+		self.__currentRequest.finished.connect(self.__downloadComplete)
+		self.__currentRequest.readyRead.connect(self.__requestReady)
 
 	@core.executionTrace
 	def __downloadProgress(self, bytesReceived, bytesTotal):

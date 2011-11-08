@@ -316,6 +316,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		if value:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("paths", value)
+			for element in value:
+				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("paths", element)
 		self.__paths = value
 
 	@paths.deleter

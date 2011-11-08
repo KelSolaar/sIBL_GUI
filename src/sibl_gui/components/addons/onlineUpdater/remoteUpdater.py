@@ -182,6 +182,9 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("releases", value)
+			for key, element in value.items():
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("variables", key)
+				assert type(element) is ReleaseObject, "'{0}' attribute: '{1}' type is not 'ReleaseObject'!".format("variables", element)
 		self.__releases = value
 
 	@releases.deleter
@@ -697,14 +700,19 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		for row in range(self.Templates_tableWidget.rowCount()):
 			if self.Templates_tableWidget.cellWidget(row, 1).state:
 				requests.append(self.Templates_tableWidget.item(row, 0)._data)
-		if requests:
-			downloadDirectory = self.__getTemplatesDownloadDirectory()
-			if downloadDirectory:
-				LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
-				self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests], Qt.Window)
-				self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
-				self.__downloadManager.show()
-				self.__downloadManager.startDownload()
+
+		if not requests:
+			return
+
+		downloadDirectory = self.__getTemplatesDownloadDirectory()
+		if not downloadDirectory:
+			return
+
+		LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
+		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests], Qt.Window)
+		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
+		self.__downloadManager.show()
+		self.__downloadManager.startDownload()
 
 	@core.executionTrace
 	def __Open_Repository_pushButton__clicked(self, checked):

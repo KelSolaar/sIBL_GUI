@@ -142,6 +142,9 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
+			for key, element in value.items():
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("modelSelection", key)
+				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection", element)
 		self.__modelSelection = value
 
 	@modelSelection.deleter
@@ -260,7 +263,10 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
-		self.__modelSelection = value
+			for key, element in value.items():
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("modelSelection", key)
+				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection", element)
+			self.__modelSelection = value
 
 	@modelSelection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)

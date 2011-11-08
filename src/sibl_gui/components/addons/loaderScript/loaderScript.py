@@ -408,6 +408,9 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("overrideKeys", value)
+			for key, element in value.items():
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("overrideKeys", key)
+				assert type(element) is foundations.parsers.AttributeCompound, "'{0}' attribute: '{1}' type is not 'foundations.parsers.AttributeCompound'!".format("overrideKeys", element)
 		self.__overrideKeys = value
 
 	@overrideKeys.deleter
