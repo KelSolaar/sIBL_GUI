@@ -14,9 +14,9 @@
 
 """
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	External imports.
-#***********************************************************************************************
+#**********************************************************************************************************************
 import logging
 import os
 from collections import OrderedDict
@@ -28,9 +28,9 @@ from PyQt4.QtGui import QInputDialog
 from PyQt4.QtGui import QItemSelectionModel
 from PyQt4.QtGui import QMessageBox
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Internal imports.
-#***********************************************************************************************
+#**********************************************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 import foundations.walkers
@@ -48,9 +48,9 @@ from sibl_gui.components.core.collectionsOutliner.views import IblSetsCollection
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Module attributes.
-#***********************************************************************************************
+#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -64,9 +64,9 @@ LOGGER = logging.getLogger(Constants.logger)
 
 COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Collections_Outliner.ui")
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Module classes and definitions.
-#***********************************************************************************************
+#**********************************************************************************************************************
 class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.core.collectionsOutliner.collectionsOutliner` Component Interface class.
@@ -116,9 +116,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 										(self.__iblSetsCountLabel, "count"),
 										("Comment", "comment")])
 
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	#***	Attributes properties.
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	@property
 	def uiResourcesDirectory(self):
 		"""
@@ -599,9 +599,9 @@ class CollectionsOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	#***	Class methods.
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):

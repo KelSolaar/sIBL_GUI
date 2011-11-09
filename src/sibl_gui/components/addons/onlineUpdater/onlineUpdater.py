@@ -14,9 +14,9 @@
 
 """
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	External imports.
-#***********************************************************************************************
+#**********************************************************************************************************************
 import logging
 import os
 from PyQt4.QtCore import QUrl
@@ -24,9 +24,9 @@ from PyQt4.QtCore import Qt
 from PyQt4.QtNetwork import QNetworkAccessManager
 from PyQt4.QtNetwork import QNetworkRequest
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Internal imports.
-#***********************************************************************************************
+#**********************************************************************************************************************
 import foundations.core as core
 import foundations.exceptions
 import foundations.strings as strings
@@ -40,9 +40,9 @@ from sibl_gui.components.addons.onlineUpdater.remoteUpdater import ReleaseObject
 from sibl_gui.components.addons.onlineUpdater.remoteUpdater import RemoteUpdater
 from umbra.globals.constants import Constants
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Module attributes.
-#***********************************************************************************************
+#**********************************************************************************************************************
 __author__ = "Thomas Mansencal"
 __copyright__ = "Copyright (C) 2008 - 2011 - Thomas Mansencal"
 __license__ = "GPL V3.0 - http://www.gnu.org/licenses/"
@@ -58,9 +58,9 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Online_Update
 
 REPOSITORY_URL = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Repository/"
 
-#***********************************************************************************************
+#**********************************************************************************************************************
 #***	Module classes and definitions.
-#***********************************************************************************************
+#**********************************************************************************************************************
 class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
@@ -105,9 +105,9 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__remoteUpdater = None
 		self.__reportUpdateStatus = None
 
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	#***	Attributes properties.
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	@property
 	def engine(self):
 		"""
@@ -528,9 +528,9 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "reportUpdateStatus"))
 
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	#***	Class methods.
-	#***********************************************************************************************
+	#******************************************************************************************************************
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
 	def activate(self, engine):
