@@ -58,7 +58,15 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 	__family = "AbstractDatabaseNode"
 
 	@core.executionTrace
-	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled), ** kwargs):
+	def __init__(self,
+				dbItem,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=None,
+				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsDragEnabled),
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -104,7 +112,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbItem"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbItem"))
 
 	@dbItem.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -113,7 +122,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__dbItem** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbItem"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbItem"))
 
 	@property
 	def toolTipText(self):
@@ -135,7 +145,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("toolTipText", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			"toolTipText", value)
 		self.__toolTipText = value
 
 	@toolTipText.deleter
@@ -145,7 +156,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__toolTipText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "toolTipText"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -183,7 +195,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 				continue
 
 			if issubclass(self[attribute].__class__, umbra.ui.models.GraphModelAttribute):
-				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = getattr(self.__dbItem, attribute)
+				self[attribute].value = self[attribute].roles[Qt.DisplayRole] = self[attribute].roles[Qt.EditRole] = \
+				getattr(self.__dbItem, attribute)
 		return True
 
 	@core.executionTrace
@@ -213,7 +226,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeNode.__name__, self.__class__.__name__))
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
+		self.__class__.__name__, self.synchronizeNode.__name__, self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -224,7 +238,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
+		self.__class__.__name__, self.synchronizeDbItem.__name__, self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -235,7 +250,8 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:return: Method success. ( Boolean )
 		"""
 
-		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(self.__class__.__name__, self.synchronizeToolTip.__name__, self.__class__.__name__))
+		raise NotImplementedError("{0} | '{1}' must be implemented by '{2}' subclasses!".format(
+		self.__class__.__name__, self.synchronizeToolTip.__name__, self.__class__.__name__))
 
 class IblSetNode(AbstractDatabaseNode):
 	"""
@@ -244,7 +260,15 @@ class IblSetNode(AbstractDatabaseNode):
 
 	__family = "IblSet"
 
-	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=None, **kwargs):
+	def __init__(self,
+				dbItem,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=None,
+				attributesFlags=None,
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -321,10 +345,11 @@ class IblSetNode(AbstractDatabaseNode):
 		"""
 
 		self.roles[Qt.ToolTipRole] = self.toolTipText.format(self.dbItem.title,
-																self.dbItem.author or Constants.nullObject,
-																self.dbItem.location or Constants.nullObject,
-																sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date, self.dbItem.time) or Constants.nullObject,
-																self.dbItem.comment or Constants.nullObject)
+															self.dbItem.author or Constants.nullObject,
+															self.dbItem.location or Constants.nullObject,
+															sibl_gui.ui.common.getFormatedShotDate(self.dbItem.date,
+																			self.dbItem.time) or Constants.nullObject,
+															self.dbItem.comment or Constants.nullObject)
 		return True
 
 class TemplateNode(AbstractDatabaseNode):
@@ -334,7 +359,15 @@ class TemplateNode(AbstractDatabaseNode):
 
 	__family = "Template"
 
-	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=None, **kwargs):
+	def __init__(self,
+				dbItem,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=None,
+				attributesFlags=None,
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -421,7 +454,15 @@ class CollectionNode(AbstractDatabaseNode):
 
 	__family = "Collection"
 
-	def __init__(self, dbItem, name=None, parent=None, children=None, roles=None, nodeFlags=None, attributesFlags=None, **kwargs):
+	def __init__(self,
+				dbItem,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=None,
+				attributesFlags=None,
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -458,7 +499,9 @@ class CollectionNode(AbstractDatabaseNode):
 
 		self.roles.update({Qt.DisplayRole : self.dbItem.name,
 			Qt.EditRole : self.dbItem.name})
-		self["count"] = umbra.ui.models.GraphModelAttribute(name="count", value=None, flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["count"] = umbra.ui.models.GraphModelAttribute(name="count",
+															value=None,
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 		self.synchronizeToolTip()
 
 	@core.executionTrace

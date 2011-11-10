@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Component Interface class Models.
 
 **Others:**
 
@@ -48,13 +49,22 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class PlatesNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class Model Plates node.
+	This class factory defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Component Interface class Model Plates node.
 	"""
 
 	__family = "Plate"
 
 	@core.executionTrace
-	def __init__(self, plate, name=None, parent=None, children=None, roles=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), ** kwargs):
+	def __init__(self,
+				plate,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -103,7 +113,8 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		:param value: Attribute value. ( Plate )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "plate"))
 
 	@plate.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -112,7 +123,8 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__plate** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
 	@property
 	def toolTipText(self):
@@ -133,7 +145,8 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "toolTipText"))
 
 	@toolTipText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -142,7 +155,8 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		This method is the deleter method for **self.__toolTipText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "plate"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -159,7 +173,8 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 
 class PlatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class. 
+	This class defines the Model used the by :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Component Interface class. 
 	"""
 
 	@core.executionTrace

@@ -8,7 +8,9 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Views.
+	This module defines
+	the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component
+	Interface class Views.
 
 **Others:**
 
@@ -47,7 +49,8 @@ LOGGER = logging.getLogger(Constants.logger)
 class Map_QWebView(QWebView):
 	"""
 	| This class is a `QWebView <http://doc.qt.nokia.com/4.7/qwebview.html>`_ subclass used for the GPS map.
-	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined in the Component resources html file through Javascript evaluation.
+	| It provides various methods to manipulate the `Microsoft Bing Maps <http://www.bing.com/maps/>`_ defined
+	in the Component resources html file through Javascript evaluation.
 	"""
 
 	@core.executionTrace
@@ -76,7 +79,12 @@ class Map_QWebView(QWebView):
 		LOGGER.debug("> Adding '{0}' marker to gps map with '{1}' coordinates.".format(title, coordinates))
 
 		latitude, longitude = coordinates
-		self.page().mainFrame().evaluateJavaScript("addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude, longitude, title, icon, content))
+		self.page().mainFrame().evaluateJavaScript(
+		"addMarker( new Microsoft.Maps.Location({0},{1}),\"{2}\",\"{3}\",\"{4}\")".format(latitude,
+																						longitude,
+																						title,
+																						icon,
+																						content))
 		return True
 
 	@core.executionTrace

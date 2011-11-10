@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser`
+	Component Interface class Models.
 
 **Others:**
 
@@ -47,7 +48,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
+	This class defines the Model used the by 
+	:class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -100,5 +102,6 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		if column == 0:
 			self.rootNode.sortChildren(attribute="title", reverseOrder=order)
 		else:
-			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]], reverseOrder=order)
+			self.rootNode.sortChildren(attribute=self.horizontalHeaders[self.horizontalHeaders.keys()[column]],
+										reverseOrder=order)
 		self.endResetModel()

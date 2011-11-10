@@ -57,7 +57,8 @@ LOGGER = logging.getLogger(Constants.logger)
 class Db(Component):
 	"""
 	| This class is the :mod:`umbra.components.core.db.db` Component Interface class.
-	| It provides Application Database creation and session, proceed to its backup using the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
+	| It provides Application Database creation and session, proceed to its backup using
+	the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""
 
 	@core.executionTrace
@@ -112,7 +113,8 @@ class Db(Component):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -121,7 +123,8 @@ class Db(Component):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def dbName(self):
@@ -142,7 +145,8 @@ class Db(Component):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbName"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbName"))
 
 	@dbName.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -151,7 +155,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbName** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbName"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbName"))
 
 	@property
 	def dbEngine(self):
@@ -172,7 +177,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbEngine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbEngine"))
 
 	@dbEngine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -181,7 +187,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbEngine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbEngine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbEngine"))
 
 	@property
 	def dbCatalog(self):
@@ -202,7 +209,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbCatalog"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbCatalog"))
 
 	@dbCatalog.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -211,7 +219,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbCatalog** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbCatalog"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbCatalog"))
 
 	@property
 	def dbSession(self):
@@ -232,7 +241,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -241,7 +251,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbSession** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
 
 	@property
 	def dbSessionMaker(self):
@@ -262,7 +273,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSessionMaker"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSessionMaker"))
 
 	@dbSessionMaker.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -271,7 +283,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbSessionMaker** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSessionMaker"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSessionMaker"))
 
 	@property
 	def connectionString(self):
@@ -292,7 +305,8 @@ class Db(Component):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "connectionString"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "connectionString"))
 
 	@connectionString.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -301,7 +315,8 @@ class Db(Component):
 		This method is the deleter method for **self.__connectionString** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "connectionString"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "connectionString"))
 
 	@property
 	def dbMigrationsRepositoryDirectory(self):
@@ -322,7 +337,8 @@ class Db(Component):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
 
 	@dbMigrationsRepositoryDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -331,7 +347,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbMigrationsRepositoryDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsRepositoryDirectory"))
 
 	@property
 	def dbMigrationsTemplatesDirectory(self):
@@ -352,7 +369,8 @@ class Db(Component):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
 
 	@dbMigrationsTemplatesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -361,7 +379,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbMigrationsTemplatesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbMigrationsTemplatesDirectory"))
 
 	@property
 	def dbBackupDirectory(self):
@@ -382,7 +401,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupDirectory"))
 
 	@dbBackupDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -391,7 +411,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbBackupDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupDirectory"))
 
 	@property
 	def dbBackupCount(self):
@@ -412,7 +433,8 @@ class Db(Component):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupCount"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbBackupCount"))
 
 	@dbBackupCount.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -421,7 +443,8 @@ class Db(Component):
 		This method is the deleter method for **self.__dbBackupCount** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupCount"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbBackupCount"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -450,10 +473,14 @@ class Db(Component):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler, False, foundations.exceptions.DirectoryExistsError, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiSystemExitExceptionHandler,
+											False,
+											foundations.exceptions.DirectoryExistsError,
+											Exception)
 	def initialize(self):
 		"""
 		This method initializes the Component.
@@ -467,12 +494,19 @@ class Db(Component):
 		if self.__engine.parameters.databaseDirectory:
 			if os.path.exists(self.__engine.parameters.databaseDirectory):
 				self.__dbName = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseFile)
-				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory, Constants.databaseMigrationsDirectory)
+				self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.parameters.databaseDirectory,
+																	Constants.databaseMigrationsDirectory)
 			else:
-				raise foundations.exceptions.DirectoryExistsError("{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(self.__class__.__name__, self.__engine.parameters.databaseDirectory, Constants.applicationName))
+				raise foundations.exceptions.DirectoryExistsError(
+				"{0} | '{1}' Database storing directory doesn't exists, {2} will now close!".format(
+				self.__class__.__name__, self.__engine.parameters.databaseDirectory, Constants.applicationName))
 		else:
-			self.__dbName = os.path.join(self.__engine.userApplicationDataDirectory , Constants.databaseDirectory, Constants.databaseFile)
-			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory , Constants.databaseDirectory, Constants.databaseMigrationsDirectory)
+			self.__dbName = os.path.join(self.__engine.userApplicationDataDirectory,
+										Constants.databaseDirectory,
+										Constants.databaseFile)
+			self.__dbMigrationsRepositoryDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
+																Constants.databaseDirectory,
+																Constants.databaseMigrationsDirectory)
 
 		LOGGER.info("{0} | Session Database location: '{1}'.".format(self.__class__.__name__, self.__dbName))
 		self.__connectionString = "sqlite:///{0}".format(self.__dbName)
@@ -481,38 +515,52 @@ class Db(Component):
 			if not self.__engine.parameters.databaseReadOnly:
 					backupDestination = os.path.join(os.path.dirname(self.dbName), self.__dbBackupDirectory)
 
-					LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__, Constants.databaseFile, backupDestination))
+					LOGGER.info("{0} | Backing up '{1}' Database to '{2}'!".format(self.__class__.__name__,
+																					Constants.databaseFile,
+																					backupDestination))
 					rotatingBackup = RotatingBackup(self.__dbName, backupDestination, self.__dbBackupCount)
 					rotatingBackup.backup()
 			else:
-				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+				LOGGER.info("{0} | Database backup deactivated by '{1}' command line parameter value!".format(
+				self.__class__.__name__, "databaseReadOnly"))
 
 		if not self.__engine.parameters.databaseReadOnly:
-			LOGGER.info("{0} | SQLAlchemy Migrate repository location: '{1}'.".format(self.__class__.__name__, self.__dbMigrationsRepositoryDirectory))
+			LOGGER.info("{0} | SQLAlchemy Migrate repository location: '{1}'.".format(self.__class__.__name__,
+																				self.__dbMigrationsRepositoryDirectory))
 			LOGGER.debug("> Creating SQLAlchemy Migrate migrations directory and requisites.")
 			try:
-				repositoryTemplate = os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsTemplatesDirectory)
-				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory, "Migrations", version_table="Migrate", templates_path=repositoryTemplate)
+				repositoryTemplate = os.path.join(os.path.dirname(__file__),
+												Constants.databaseMigrationsDirectory,
+												Constants.databaseMigrationsTemplatesDirectory)
+				migrate.versioning.api.create(self.__dbMigrationsRepositoryDirectory,
+											"Migrations",
+											version_table="Migrate",
+											templates_path=repositoryTemplate)
 			except migrate.exceptions.KnownError:
 				LOGGER.debug("> SQLAlchemy Migrate repository directory already exists!")
 
 			LOGGER.debug("> Copying migrations files to SQLAlchemy Migrate repository.")
-			osWalker = OsWalker(os.path.join(os.path.dirname(__file__), Constants.databaseMigrationsDirectory, Constants.databaseMigrationsFilesDirectory))
+			osWalker = OsWalker(os.path.join(os.path.dirname(__file__),
+								Constants.databaseMigrationsDirectory,
+								Constants.databaseMigrationsFilesDirectory))
 			osWalker.walk(filtersIn=(Constants.databaseMigrationsFilesExtension,))
 			for file in osWalker.files.values():
-				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory, Constants.databaseMigrationsFilesDirectory))
+				shutil.copy(file, os.path.join(self.__dbMigrationsRepositoryDirectory,
+											Constants.databaseMigrationsFilesDirectory))
 
 			if os.path.exists(self.__dbName):
 				LOGGER.debug("> Placing Database under SQLAlchemy Migrate version control.")
 				try:
-					migrate.versioning.api.version_control(self.__connectionString, self.__dbMigrationsRepositoryDirectory)
+					migrate.versioning.api.version_control(self.__connectionString,
+															self.__dbMigrationsRepositoryDirectory)
 				except migrate.exceptions.DatabaseAlreadyControlledError:
 					LOGGER.debug("> Database is already under SQLAlchemy Migrate version control!")
 
 				LOGGER.debug("> Upgrading Database.")
 				migrate.versioning.api.upgrade(self.__connectionString, self.__dbMigrationsRepositoryDirectory)
 		else:
-			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | SQLAlchemy Migrate deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		LOGGER.debug("> Creating Database engine.")
 		self.__dbEngine = sqlalchemy.create_engine(self.__connectionString)
@@ -534,7 +582,8 @@ class Db(Component):
 		This method uninitializes the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Component cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

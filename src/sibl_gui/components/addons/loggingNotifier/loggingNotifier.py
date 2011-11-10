@@ -49,7 +49,9 @@ LOGGER = logging.getLogger(Constants.logger)
 class LoggingNotifier(Component):
 	"""
 	| This class is the :mod:`umbra.components.addons.loggingNotifier.loggingNotifier` Component Interface class.
-	| It displays Application logging messages in the Application status bar. The full Application logging history is available through the :mod:`umbra.components.addons.loggingWindow.loggingWindow` Component.
+	| It displays Application logging messages in the Application status bar.
+	The full Application logging history is available through
+	the :mod:`umbra.components.addons.loggingWindow.loggingWindow` Component.
 	"""
 
 	@core.executionTrace
@@ -93,7 +95,8 @@ class LoggingNotifier(Component):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -102,7 +105,8 @@ class LoggingNotifier(Component):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def memoryHandlerStackDepth(self):
@@ -123,7 +127,8 @@ class LoggingNotifier(Component):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "memoryHandlerStackDepth"))
 
 	@memoryHandlerStackDepth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -132,7 +137,8 @@ class LoggingNotifier(Component):
 		This method is the deleter method for **self.__memoryHandlerStackDepth** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "memoryHandlerStackDepth"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "memoryHandlerStackDepth"))
 
 	#******************************************************************************************************************
 	#***	Class methods.

@@ -48,7 +48,9 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class GraphModel(umbra.ui.models.GraphModel):
 	"""
-	This class provideds a graph model based on :class:`umbra.ui.models.GraphModel` but reimplementing the :meth:`umbra.ui.models.GraphModel.data` method to support various images formats as **Qt.DecorationRole**.
+	This class provideds a graph model based on :class:`umbra.ui.models.GraphModel`
+	but reimplementing the :meth:`umbra.ui.models.GraphModel.data` method
+	to support various images formats as **Qt.DecorationRole**.
 	"""
 
 	@core.executionTrace

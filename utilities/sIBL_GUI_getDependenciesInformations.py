@@ -50,7 +50,8 @@ GIT_EXECUTABLE = "/usr/local/git/bin/git"
 FOUNDATIONS_DIRECTORY = "../../Foundations"
 MANAGER_DIRECTORY = "../../Manager"
 TEMPLATES_DIRECTORY = "../../sIBL_GUI_Templates"
-DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY), ("Manager", MANAGER_DIRECTORY), ("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
+DEPENDENCIES = OrderedDict((("Foundations", FOUNDATIONS_DIRECTORY),
+							("Manager", MANAGER_DIRECTORY), ("sIBL_GUI_Templates", TEMPLATES_DIRECTORY)))
 DEPENDENCIES_FILE = "../releases/sIBL_GUI_Dependencies.rc"
 
 #**********************************************************************************************************************
@@ -63,7 +64,10 @@ def getDependenciesInformations():
 
 	content = ["[Dependencies]\n"]
 	for dependency, path in DEPENDENCIES.items():
-		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[0]
+		release = subprocess.Popen("cd {0} &&  {1} describe".format(path, GIT_EXECUTABLE),
+									shell=True,
+									stdout=subprocess.PIPE,
+									stderr=subprocess.PIPE).communicate()[0]
 		LOGGER.info("{0} | '{1}': '{2}'.".format(getDependenciesInformations.__name__, dependency, release.strip()))
 		content.append("{0}={1}".format(dependency, release))
 	file = File(DEPENDENCIES_FILE)

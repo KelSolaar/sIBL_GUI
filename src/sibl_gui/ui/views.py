@@ -39,7 +39,11 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "storeDefaultViewModelSelection", "restoreDefaultViewModelSelection", "Abstract_QListView", "Abstract_QTreeView"]
+__all__ = ["LOGGER",
+			"storeDefaultViewModelSelection",
+			"restoreDefaultViewModelSelection",
+			"Abstract_QListView",
+			"Abstract_QTreeView"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -143,8 +147,10 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
 			for key, element in value.items():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("modelSelection", key)
-				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection", element)
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				"modelSelection", key)
+				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
+																								element)
 		self.__modelSelection = value
 
 	@modelSelection.deleter
@@ -154,7 +160,8 @@ class Abstract_QListView(umbra.ui.views.Abstract_QListView):
 		This method is the deleter method for **self.__modelSelection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -264,8 +271,10 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("modelSelection", value)
 			for key, element in value.items():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("modelSelection", key)
-				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection", element)
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				"modelSelection", key)
+				assert type(element) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("modelSelection",
+																								element)
 			self.__modelSelection = value
 
 	@modelSelection.deleter
@@ -275,7 +284,8 @@ class Abstract_QTreeView(umbra.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__modelSelection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "modelSelection"))
 
 	#******************************************************************************************************************
 	#***	Class methods.

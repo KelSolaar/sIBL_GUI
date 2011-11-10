@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class Views.
+	This module defines the :class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser`
+	Component Interface class Views.
 
 **Others:**
 
@@ -108,7 +109,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		This method is the deleter method for **self.__listViewSpacing** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewSpacing"))
 
 	@property
 	def listViewMargin(self):
@@ -141,7 +143,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		This method is the deleter method for **self.__listViewMargin** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewMargin"))
 
 	@property
 	def listViewIconSize(self):
@@ -174,7 +177,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		This method is the deleter method for **self.__listViewIconSize** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -206,7 +210,8 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		LOGGER.debug("> Setting default View state!")
 
 		self.setIconSize(QSize(self.__listViewIconSize, self.__listViewIconSize))
-		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing, self.__listViewIconSize + self.__listViewMargin))
+		self.setGridSize(QSize(self.__listViewIconSize + self.__listViewSpacing,
+								self.__listViewIconSize + self.__listViewMargin))
 
 class Columns_QListView(sibl_gui.ui.views.Abstract_QListView):
 	"""
@@ -302,7 +307,8 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -311,7 +317,8 @@ class Details_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__treeViewIndentation** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	#******************************************************************************************************************
 	#***	Class methods.

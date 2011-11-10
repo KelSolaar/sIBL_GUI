@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Workers.
+	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
+	Component Interface class Workers.
 
 **Others:**
 
@@ -51,7 +52,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class TemplatesOutliner_Worker(QThread):
 	"""
-	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used to track modified Templates and update the Database accordingly.
+	This class is a `QThread <http://doc.qt.nokia.com/4.7/qthread.html>`_ subclass used
+	to track modified Templates and update the Database accordingly.
 	"""
 
 	# Custom signals definitions.
@@ -99,7 +101,8 @@ class TemplatesOutliner_Worker(QThread):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -108,7 +111,8 @@ class TemplatesOutliner_Worker(QThread):
 		This method is the deleter method for **self.__container** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
 	def dbSession(self):
@@ -129,7 +133,8 @@ class TemplatesOutliner_Worker(QThread):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dbSession"))
 
 	@dbSession.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -138,7 +143,8 @@ class TemplatesOutliner_Worker(QThread):
 		This method is the deleter method for **self.__dbSession** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dbSession"))
 
 	@property
 	def timer(self):
@@ -159,7 +165,8 @@ class TemplatesOutliner_Worker(QThread):
 		:param value: Attribute value. ( QTimer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timer"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timer"))
 
 	@timer.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -168,7 +175,8 @@ class TemplatesOutliner_Worker(QThread):
 		This method is the deleter method for **self.__timer** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timer"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timer"))
 
 	@property
 	def timerCycleMultiplier(self):
@@ -189,7 +197,8 @@ class TemplatesOutliner_Worker(QThread):
 		:param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "timerCycleMultiplier"))
 
 	@timerCycleMultiplier.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -198,7 +207,8 @@ class TemplatesOutliner_Worker(QThread):
 		This method is the deleter method for **self.__timerCycleMultiplier** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timerCycleMultiplier"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "timerCycleMultiplier"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -231,9 +241,11 @@ class TemplatesOutliner_Worker(QThread):
 					storedStats = template.osStats.split(",")
 					osStats = os.stat(template.path)
 					if str(osStats[8]) != str(storedStats[8]):
-						LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(self.__class__.__name__, template.name))
+						LOGGER.info("{0} | '{1}' Template file has been modified and will be updated!".format(
+						self.__class__.__name__, template.name))
 						if dbCommon.updateTemplateContent(self.__dbSession, template):
-							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__, template.name))
+							LOGGER.info("{0} | '{1}' Template has been updated!".format(self.__class__.__name__,
+																						template.name))
 							needModelRefresh = True
 
 		needModelRefresh and self.databaseChanged.emit()

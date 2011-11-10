@@ -44,7 +44,14 @@ __maintainer__ = "Thomas Mansencal"
 __email__ = "thomas.mansencal@gmail.com"
 __status__ = "Production"
 
-__all__ = ["LOGGER", "Icon", "getDisplayItem", "getIcon", "getPixmap", "getImage", "filterImagePath", "getFormatedShotDate"]
+__all__ = ["LOGGER",
+			"Icon",
+			"getDisplayItem",
+			"getIcon",
+			"getPixmap",
+			"getImage",
+			"filterImagePath",
+			"getFormatedShotDate"]
 
 LOGGER = logging.getLogger(Constants.logger)
 
@@ -72,7 +79,8 @@ class Icon(core.Structure):
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
 def getDisplayItem(path, type):
 		"""
-		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_, `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
+		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,
+		`QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_, `QPixmap <http://doc.qt.nokia.com/4.7/qpixmap.html>`_.
 
 		:param path: Image path. ( String )
 		:param type: QIcon, QImage, QPixmap. ( QObject )

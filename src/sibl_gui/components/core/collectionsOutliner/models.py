@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+	Component Interface class Models.
 
 **Others:**
 
@@ -48,13 +49,22 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Model **Overall** collection node.
+	This class factory defines
+	:class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+	Component Interface class Model **Overall** collection node.
 	"""
 
 	__family = "OverallCollection"
 
 	@core.executionTrace
-	def __init__(self, name=None, parent=None, children=None, roles=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), ** kwargs):
+	def __init__(self,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -84,12 +94,16 @@ class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		self["count"] = umbra.ui.models.GraphModelAttribute(name="count", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self["comment"] = umbra.ui.models.GraphModelAttribute(name="comment", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["count"] = umbra.ui.models.GraphModelAttribute(name="count",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["comment"] = umbra.ui.models.GraphModelAttribute(name="comment",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class. 
+	This class defines the Model used the by
+	:class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+	Component Interface class. 
 	"""
 
 	@core.executionTrace

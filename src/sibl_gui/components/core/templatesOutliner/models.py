@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Models.
+	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
+	Component Interface class Models.
 
 **Others:**
 
@@ -48,13 +49,21 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class SoftwareNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Model software node.
+	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
+	Component Interface class Model software node.
 	"""
 
 	__family = "Software"
 
 	@core.executionTrace
-	def __init__(self, name=None, parent=None, children=None, roles=None, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), ** kwargs):
+	def __init__(self,
+				name=None,
+				parent=None,
+				children=None,
+				roles=None,
+				nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -84,12 +93,15 @@ class SoftwareNode(umbra.ui.models.GraphModelNode):
 		:param attributesFlags: Attributes flags. ( Integer )
 		"""
 
-		self["release"] = umbra.ui.models.GraphModelAttribute(name="release", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
-		self["version"] = umbra.ui.models.GraphModelAttribute(name="version", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["release"] = umbra.ui.models.GraphModelAttribute(name="release",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+		self["version"] = umbra.ui.models.GraphModelAttribute(name="version",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 
 class TemplatesModel(sibl_gui.ui.models.GraphModel):
 	"""
-	This class defines the Model used the by :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class. 
+	This class defines the Model used the by
+	:class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class. 
 	"""
 
 	@core.executionTrace

@@ -78,11 +78,13 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 	:param contentDirectory: Content directory. ( String )
 	"""
 
-	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__, fileOut))
+	LOGGER.info("{0} | Building Sphinx documentation index '{1}' file!".format(getSphinxDocumentationTocTree.__name__,
+																				fileOut))
 	file = File(fileIn)
 	file.read()
 
-	existingFiles = [strings.getSplitextBasename(item) for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]
+	existingFiles = [strings.getSplitextBasename(item)
+					for item in glob.glob("{0}/*{1}".format(contentDirectory, FILES_EXTENSION))]
 	relativeDirectory = contentDirectory.replace("{0}/".format(os.path.dirname(fileOut)), "")
 
 	tocTree = ["\n"]
@@ -96,7 +98,8 @@ def getSphinxDocumentationTocTree(fileIn, fileOut, contentDirectory):
 		if code in existingFiles:
 			link = "{0}/{1}".format(relativeDirectory, code)
 			data = "{0}{1}{2} <{3}>\n".format(" ", " " * line.index("-"), item, link)
-			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__, data.replace("\n", "")))
+			LOGGER.info("{0} | Adding '{1}' entry to Toc Tree!".format(getSphinxDocumentationTocTree.__name__,
+																		data.replace("\n", "")))
 			tocTree.append(data)
 	tocTree.append("\n")
 

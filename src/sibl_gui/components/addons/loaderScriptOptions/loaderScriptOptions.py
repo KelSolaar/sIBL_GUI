@@ -63,9 +63,10 @@ COMPONENT_UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Loader_Script
 #**********************************************************************************************************************
 class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
-	| This class is the :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
+	| This class isthe :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
-	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that the user can configure the behavior of the Loader Script.
+	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that
+	the user can configure the behavior of the Loader Script.
 	"""
 
 	@core.executionTrace
@@ -132,7 +133,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -141,7 +143,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
 	def engine(self):
@@ -162,7 +165,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -171,7 +175,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def coreTemplatesOutliner(self):
@@ -192,7 +197,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreTemplatesOutliner"))
 
 	@coreTemplatesOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -201,7 +207,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__coreTemplatesOutliner** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
 
 	@property
 	def addonsLoaderScript(self):
@@ -222,7 +229,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "addonsLoaderScript"))
 
 	@addonsLoaderScript.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -231,7 +239,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__addonsLoaderScript** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "addonsLoaderScript"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "addonsLoaderScript"))
 
 	@property
 	def namespaceSplitter(self):
@@ -253,9 +262,12 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("namespaceSplitter", value)
-			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("namespaceSplitter", value)
-			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("namespaceSplitter", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			"namespaceSplitter", value)
+			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
+			"namespaceSplitter", value)
+			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
+			"namespaceSplitter", value)
 		self.__namespaceSplitter = value
 
 	@namespaceSplitter.deleter
@@ -265,7 +277,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__namespaceSplitter** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "namespaceSplitter"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "namespaceSplitter"))
 
 	@property
 	def templatesSettingsDirectory(self):
@@ -286,7 +299,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesSettingsDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesSettingsDirectory"))
 
 	@templatesSettingsDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -295,7 +309,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templatesSettingsDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesSettingsDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesSettingsDirectory"))
 
 	@property
 	def templateSettingsFile(self):
@@ -316,7 +331,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateSettingsFile"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateSettingsFile"))
 
 	@templateSettingsFile.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -325,7 +341,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templateSettingsFile** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateSettingsFile"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateSettingsFile"))
 
 	@property
 	def templateCommonAttributesSection(self):
@@ -346,7 +363,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateCommonAttributesSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateCommonAttributesSection"))
 
 	@templateCommonAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -355,7 +373,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templateCommonAttributesSection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateCommonAttributesSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateCommonAttributesSection"))
 
 	@property
 	def templateAdditionalAttributesSection(self):
@@ -376,7 +395,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateAdditionalAttributesSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateAdditionalAttributesSection"))
 
 	@templateAdditionalAttributesSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -385,7 +405,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templateAdditionalAttributesSection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateAdditionalAttributesSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(
+		self.__class__.__name__, "templateAdditionalAttributesSection"))
 
 	@property
 	def templateScriptSection(self):
@@ -406,7 +428,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templateScriptSection"))
 
 	@templateScriptSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -415,7 +438,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templateScriptSection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateScriptSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templateScriptSection"))
 
 	@property
 	def optionsToolboxesHeaders(self):
@@ -436,7 +460,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "optionsToolboxesHeaders"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "optionsToolboxesHeaders"))
 
 	@optionsToolboxesHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -445,7 +470,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__optionsToolboxesHeaders** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "optionsToolboxesHeaders"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "optionsToolboxesHeaders"))
 
 	@property
 	def uiLightGrayColor(self):
@@ -466,7 +492,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -475,7 +502,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiLightGrayColor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@property
 	def uiDarkGrayColor(self):
@@ -496,7 +524,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -505,7 +534,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@property
 	def tableWidgetRowHeight(self):
@@ -526,7 +556,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -535,7 +566,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@property
 	def tableWidgetHeaderHeight(self):
@@ -556,7 +588,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -565,7 +598,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@property
 	def enumSplitter(self):
@@ -587,9 +621,11 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if value:
-			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("enumSplitter", value)
+			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+			"enumSplitter", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format("enumSplitter", value)
-			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format("enumSplitter", value)
+			assert not re.search(r"\w", value), "'{0}' attribute: '{1}' is an alphanumeric character!".format(
+			"enumSplitter", value)
 		self.__enumSplitter = value
 
 	@enumSplitter.deleter
@@ -599,7 +635,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__enumSplitter** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "enumSplitter"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "enumSplitter"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -621,7 +658,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
 
-		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.settingsDirectory, self.__templatesSettingsDirectory)
+		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory, 
+														Constants.settingsDirectory, 
+														self.__templatesSettingsDirectory)
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None
 
@@ -664,7 +703,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__commonAndAdditionalAttributesTablesWidgets_setUi()
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.connect(
+		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -680,7 +720,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Uninitializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		# Signals / Slots.
-		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
+		self.__coreTemplatesOutliner.view.selectionModel().selectionChanged.disconnect(
+		self.__coreTemplatesOutliner_view_selectionModel__selectionChanged)
 
 		return True
 
@@ -757,7 +798,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.debug("> Attribute type: '{0}'.".format(attributeCompound.type))
 			if attributeCompound.type == "Boolean":
 				state = int(overridesValue or attributeCompound.value) and True or False
-				item = Variable_QPushButton(self, state, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("True", "False"))
+				item = Variable_QPushButton(self,
+						state,
+						(self.__uiLightGrayColor, self.__uiDarkGrayColor),
+						("True", "False"))
 				item.setChecked(state)
 
 				# Signals / Slots.
@@ -810,7 +854,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		additionalAttributesOverrides = {}
 		templateSettingsDirectory = os.path.join(self.__templatesSettingsDirectory, template.software, template.name)
 		currentTemplateSettingsDirectory = os.path.join(templateSettingsDirectory, template.release)
-		self.__templateSettingsFile = os.path.join(templateSettingsDirectory, template.release, os.path.basename(template.path))
+		self.__templateSettingsFile = os.path.join(templateSettingsDirectory,
+										template.release,
+										os.path.basename(template.path))
 
 		not os.path.exists(currentTemplateSettingsDirectory) and io.setDirectory(currentTemplateSettingsDirectory)
 
@@ -818,7 +864,9 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if os.path.exists(self.__templateSettingsFile):
 			templateSettingsFile = self.__templateSettingsFile
 		else:
-			for version in sorted((path for path in os.listdir(templateSettingsDirectory) if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
+			for version in sorted((
+							path for path in os.listdir(templateSettingsDirectory)
+							if re.search(r"\d\.\d\.\d", path)), reverse=True, key=lambda x:(strings.getVersionRank(x))):
 				path = os.path.join(templateSettingsDirectory, version, os.path.basename(template.path))
 				if os.path.exists(path):
 					templateSettingsFile = path
@@ -828,17 +876,23 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			LOGGER.debug("> Accessing '{0}' Template settings file: '{1}'.".format(template.name, templateSettingsFile))
 			templateSettingsSectionsFileParser = SectionsFileParser(templateSettingsFile)
 			templateSettingsSectionsFileParser.read() and templateSettingsSectionsFileParser.parse()
-			commonAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
-			additionalAttributesOverrides.update(templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
+			commonAttributesOverrides.update(
+			templateSettingsSectionsFileParser.sections[self.__templateCommonAttributesSection])
+			additionalAttributesOverrides.update(
+			templateSettingsSectionsFileParser.sections[self.__templateAdditionalAttributesSection])
 		else:
 			LOGGER.debug("> No Template settings file found for : '{0}'.".format(template.name))
 
-		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
+		LOGGER.debug("> Parsing '{0}' Template for '{1}' and '{2}' section.".format(
+		template.name, self.__templateCommonAttributesSection, self.__templateAdditionalAttributesSection))
 		templateSectionsFileParser = SectionsFileParser(template.path)
-		templateSectionsFileParser.read() and templateSectionsFileParser.parse(rawSections=(self.__templateScriptSection))
+		templateSectionsFileParser.read() and templateSectionsFileParser.parse(
+		rawSections=(self.__templateScriptSection))
 
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection], self.Common_Attributes_tableWidget, commonAttributesOverrides)
-		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection], self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateCommonAttributesSection],
+								self.Common_Attributes_tableWidget, commonAttributesOverrides)
+		self.__tableWidget_setUi(templateSectionsFileParser.sections[self.__templateAdditionalAttributesSection],
+								self.Additional_Attributes_tableWidget, additionalAttributesOverrides)
 
 	@core.executionTrace
 	def __coreTemplatesOutliner_view_selectionModel__selectionChanged(self, selectedItems, deselectedItems):
@@ -854,7 +908,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	@core.executionTrace
 	def __tableWidget__valueChanged(self, *args):
 		"""
-		This method is triggered when a **Common_Attributes_tableWidget** or **Additional_Attributes_tableWidget** Widget value has changed.
+		This method is triggered when a **Common_Attributes_tableWidget** or 
+		**Additional_Attributes_tableWidget** Widget value has changed.
 
 		:param \*args: Arguments. ( \* )
 		"""
@@ -862,7 +917,10 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Template settings file content.".format(self.__templateSettingsFile))
 		templateSettingsSectionsFileParser = SectionsFileParser(self.__templateSettingsFile)
 		templateSettingsSectionsFileParser.sections = OrderedDict()
-		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection, self.Common_Attributes_tableWidget), (self.__templateAdditionalAttributesSection, self.Additional_Attributes_tableWidget)]).items():
+		for section, tableWidget in OrderedDict([(self.__templateCommonAttributesSection,
+												self.Common_Attributes_tableWidget),
+												(self.__templateAdditionalAttributesSection,
+												self.Additional_Attributes_tableWidget)]).items():
 			templateSettingsSectionsFileParser.sections[section] = OrderedDict()
 			for row in range(tableWidget.rowCount()):
 				widget = tableWidget.cellWidget(row, 0)
@@ -874,7 +932,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					value = str(widget.currentText())
 				else:
 					value = str(widget.text())
-				templateSettingsSectionsFileParser.sections[section][foundations.namespace.removeNamespace(widget._data.name)] = value
+				templateSettingsSectionsFileParser.sections[
+				section][foundations.namespace.removeNamespace(widget._data.name)] = value
 		templateSettingsSectionsFileParser.write()
 
 	@core.executionTrace

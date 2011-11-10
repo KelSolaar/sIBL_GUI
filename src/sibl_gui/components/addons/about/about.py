@@ -59,7 +59,8 @@ ABOUT_MESSAGE = """
 		*
 		<br/><br/>Thanks To all folks at <b>HDRLabs.com</b> for providing Smart Ibl world!
 		<br/>
-		Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler, Lee and Brett.
+		Special thanks to: Dschaga, Tischbein3, Andy, Volxen, Gwynne, Keksonja, Yuri, Rork, Jeff Hanna, Spedler,
+		Lee and Brett.
 		<br/>
 		Another big thanks to Emanuele Santos for helping me out on the Mac Os X bundle.
 		<br/>
@@ -83,22 +84,27 @@ ABOUT_MESSAGE = """
 		<br/>
 		Please contact us at HDRLabs:
 		<br/>
-		Christian Bloch - <a href="mailto:blochi@edenfx.com"><span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
+		Christian Bloch - <a href="mailto:blochi@edenfx.com">
+		<span style=" text-decoration: underline; color:#e0e0e0;">blochi@edenfx.com</span></a>
 		<br/>
-		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com"><span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
+		Thomas Mansencal - <a href="mailto:thomas.mansencal@gmail.com">
+		<span style=" text-decoration: underline; color:#e0e0e0;">thomas.mansencal@gmail.com</span></a>
 		</p>
 		<p>
 		sIBL_GUI by Thomas Mansencal - 2008 - 2011
 		<br/>
-		This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
+		This software is released under terms of GNU GPL v3 license: <a href="http://www.gnu.org/licenses/">
+		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.gnu.org/licenses/</span></a>
 		<br/>
-		<a href="http://www.thomasmansencal.com/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.thomasmansencal.com/</span></a>
+		<a href="http://www.thomasmansencal.com/">
+		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.thomasmansencal.com/</span></a>
 		</p>
 		<p>
 		*
 		</p>
 		<p>
-		<a href="http://www.hdrlabs.com/"><span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/</span></a>
+		<a href="http://www.hdrlabs.com/">
+		<span style=" text-decoration: underline; color:#e0e0e0;">http://www.hdrlabs.com/</span></a>
 		</p>
 		*
 		<p>
@@ -115,7 +121,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
-	| The message displayed by the **sIBL_GUI - About** window is defined by the :attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
+	| The message displayed by the **sIBL_GUI - About** window is defined by the
+	:attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
 	@core.executionTrace
@@ -165,7 +172,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -174,7 +182,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiLogoImage(self):
@@ -195,7 +204,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@uiLogoImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -204,7 +214,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiLogoImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@property
 	def uiGpl3Image(self):
@@ -225,7 +236,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiGpl3Image"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiGpl3Image"))
 
 	@uiGpl3Image.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -234,7 +246,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiGpl3Image** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiGpl3Image"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiGpl3Image"))
 
 	@property
 	def engine(self):
@@ -255,7 +268,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -264,7 +278,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def miscellaneousMenu(self):
@@ -285,7 +300,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QMenu )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneousMenu"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "miscellaneousMenu"))
 
 	@miscellaneousMenu.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -294,7 +310,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__miscellaneousMenu** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneousMenu"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "miscellaneousMenu"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -311,7 +328,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), 
+													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__miscellaneousMenu = self.__engine.miscellaneousMenu
 
@@ -400,7 +418,9 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
-		self.__miscellaneousMenu.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName), slot=self.__miscellaneousMenu_aboutAction__triggered))
+		self.__miscellaneousMenu.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|ToolBar|Miscellaneous|About {0} ...".format(Constants.applicationName),
+																slot=self.__miscellaneousMenu_aboutAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -428,8 +448,8 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		umbra.ui.common.setWindowDefaultIcon(self)
 
 		aboutMessage = ABOUT_MESSAGE.format(os.path.join(self.__uiResourcesDirectory, self.__uiLogoImage),
-					Constants.releaseVersion.replace(".", " . "),
-					os.path.join(self.__uiResourcesDirectory, self.__uiGpl3Image))
+						Constants.releaseVersion.replace(".", " . "),
+						os.path.join(self.__uiResourcesDirectory, self.__uiGpl3Image))
 
 		self.About_label.setText(aboutMessage)
 

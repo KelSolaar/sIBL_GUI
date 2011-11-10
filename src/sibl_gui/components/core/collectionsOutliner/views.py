@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner` Component Interface class Views.
+	This module defines the :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+	Component Interface class Views.
 
 **Others:**
 
@@ -97,7 +98,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -106,7 +108,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__container** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
 	def treeViewIndentation(self):
@@ -127,7 +130,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -136,7 +140,8 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__treeViewIndentation** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -166,7 +171,10 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		pass
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.DirectoryExistsError, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+											False,
+											foundations.exceptions.DirectoryExistsError,
+											foundations.exceptions.UserError)
 	def dropEvent(self, event):
 		"""
 		This method defines the drop event behavior.
@@ -193,12 +201,14 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 
 				node._AbstractDatabaseNode__dbItem = self.__container.coreDb.dbSession.merge(node.dbItem)
 				if collectionNode.dbItem.id != node.dbItem.collection:
-					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title, collectionNode.dbItem.name))
+					LOGGER.info("> Moving '{0}' Ibl Set to '{1}' Collection.".format(node.dbItem.title,
+																					collectionNode.dbItem.name))
 					node.dbItem.collection = collectionNode.dbItem.id
 			if self.__container.coreDb.commit():
 				self.__container.modelRefresh.emit()
 		else:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(self.__class__.__name__))
+			raise foundations.exceptions.UserError("{0} | Cannot perform action, View has been set read only!".format(
+			self.__class__.__name__))
 
 	@core.executionTrace
 	def __initializeUi(self):
@@ -275,9 +285,11 @@ class IblSetsCollections_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		indexes = []
 		for node in foundations.walkers.nodesWalker(self.model().rootNode):
 			if node.family == "Collection":
-				self.modelSelection.get("Collections", None) and node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Collections", None) and \
+				node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
 			else:
-				self.modelSelection.get("Overall", None) and  node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Overall", None) and \
+				node.name in self.modelSelection["Overall"] and indexes.append(self.model().getNodeIndex(node))
 
 		if self.selectionModel():
 			self.selectionModel().clear()

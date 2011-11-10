@@ -132,7 +132,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__treeViewInnerMargins = QMargins(0, 0, 0, 12)
 
-		self.__templatesInformationsDefaultText = "<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
+		self.__templatesInformationsDefaultText = \
+					"<center><h4>* * *</h4>Select a Template to display related informations!<h4>* * *</h4></center>"
 		self.__templatesInformationsText = """
 											<h4><center>{0}</center></h4>
 											<p>
@@ -140,16 +141,20 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 											<br/>
 											<b>Author:</b> {2}
 											<br/>
-											<b>Email:</b> <a href="mailto:{3}"><span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
+											<b>Email:</b> <a href="mailto:{3}">
+											<span style=" text-decoration: underline; color:#e0e0e0;">{3}</span></a>
 											<br/>
-											<b>Url:</b> <a href="{4}"><span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
+											<b>Url:</b> <a href="{4}">
+											<span style=" text-decoration: underline; color:#e0e0e0;">{4}</span></a>
 											<br/>
 											<b>Output script:</b> {5}
 											<p>
 											<b>Comment:</b> {6}
 											</p>
 											<p>
-											<b>Help file:</b> <a href="{7}"><span style=" text-decoration: underline; color:#e0e0e0;">template manual</span></a>
+											<b>Help file:</b> <a href="{7}">
+											<span style=" text-decoration: underline; color:#e0e0e0;">
+											template manual</span></a>
 											</p>
 											</p>
 											"""
@@ -176,7 +181,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -185,7 +191,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiSoftwareAffixe(self):
@@ -206,7 +213,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSoftwareAffixe"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiSoftwareAffixe"))
 
 	@uiSoftwareAffixe.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -215,7 +223,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiSoftwareAffixe** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSoftwareAffixe"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiSoftwareAffixe"))
 
 	@property
 	def uiUnknownSoftwareImage(self):
@@ -236,7 +245,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
 
 	@uiUnknownSoftwareImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -245,7 +255,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiUnknownSoftwareImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiUnknownSoftwareImage"))
 
 	@property
 	def dockArea(self):
@@ -266,7 +277,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "dockArea"))
 
 	@dockArea.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -275,7 +287,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__dockArea** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "dockArea"))
 
 	@property
 	def engine(self):
@@ -296,7 +309,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -305,7 +319,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def settings(self):
@@ -326,7 +341,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -335,7 +351,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__settings** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
 	@property
 	def settingsSection(self):
@@ -356,7 +373,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -365,7 +383,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__settingsSection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
 	def settingsSeparator(self):
@@ -386,7 +405,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@settingsSeparator.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -395,7 +415,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__settingsSeparator** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSeparator"))
 
 	@property
 	def editLayout(self):
@@ -416,7 +437,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "editLayout"))
 
 	@editLayout.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -425,7 +447,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__editLayout** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "editLayout"))
 
 	@property
 	def factoryScriptEditor(self):
@@ -446,7 +469,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryScriptEditor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryScriptEditor"))
 
 	@factoryScriptEditor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -455,7 +479,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__factoryScriptEditor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryScriptEditor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryScriptEditor"))
 
 	@property
 	def coreDb(self):
@@ -476,7 +501,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -485,7 +511,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__coreDb** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
 
 	@property
 	def model(self):
@@ -506,7 +533,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QStandardItemModel )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "model"))
 
 	@model.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -515,7 +543,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__model** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "model"))
 
 	@property
 	def view(self):
@@ -536,7 +565,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QWidget )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "view"))
 
 	@view.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -545,7 +575,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__view** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "view"))
 
 	@property
 	def headers(self):
@@ -566,7 +597,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( OrderedDict )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "headers"))
 
 	@headers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -575,7 +607,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__headers** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "headers"))
 
 	@property
 	def templatesOutlinerWorkerThread(self):
@@ -596,7 +629,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QThread )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
 
 	@templatesOutlinerWorkerThread.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -605,7 +639,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templatesOutlinerWorkerThread** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesOutlinerWorkerThread"))
 
 	@property
 	def extension(self):
@@ -626,7 +661,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "extension"))
 
 	@extension.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -635,7 +671,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__extension** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "extension"))
 
 	@property
 	def defaultCollections(self):
@@ -656,7 +693,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultCollections"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "defaultCollections"))
 
 	@defaultCollections.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -665,7 +703,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__defaultCollections** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "defaultCollections"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "defaultCollections"))
 
 	@property
 	def factoryCollection(self):
@@ -686,7 +725,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryCollection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryCollection"))
 
 	@factoryCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -695,7 +735,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__factoryCollection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryCollection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryCollection"))
 
 	@property
 	def userCollection(self):
@@ -716,7 +757,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "userCollection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "userCollection"))
 
 	@userCollection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -725,7 +767,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__userCollection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "userCollection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "userCollection"))
 
 	@property
 	def templatesInformationsDefaultText(self):
@@ -746,7 +789,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsDefaultText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsDefaultText"))
 
 	@templatesInformationsDefaultText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -755,7 +799,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templatesInformationsDefaultText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesInformationsDefaultText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesInformationsDefaultText"))
 
 	@property
 	def treeViewInnerMargins(self):
@@ -776,7 +821,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewInnerMargins"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewInnerMargins"))
 
 	@treeViewInnerMargins.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -785,7 +831,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__treeViewInnerMargins** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewInnerMargins"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewInnerMargins"))
 
 	@property
 	def templatesInformationsText(self):
@@ -806,7 +853,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesInformationsText"))
 
 	@templatesInformationsText.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -815,7 +863,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__templatesInformationsText** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesInformationsText"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesInformationsText"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -832,7 +881,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
@@ -841,9 +891,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreDb = self.__engine.componentsManager.components["core.db"].interface
 
 		RuntimeGlobals.templatesFactoryDirectory = umbra.ui.common.getResourcePath(Constants.templatesDirectory)
-		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory, Constants.templatesDirectory)
+		RuntimeGlobals.templatesUserDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
+															Constants.templatesDirectory)
 
-		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory, self.__userCollection : RuntimeGlobals.templatesUserDirectory}
+		self.__defaultCollections = {self.__factoryCollection : RuntimeGlobals.templatesFactoryDirectory,
+									self.__userCollection : RuntimeGlobals.templatesUserDirectory}
 
 		self.activated = True
 		return True
@@ -855,7 +907,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method deactivates the Component.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Component cannot be deactivated!".format(self.__class__.__name__, self.__name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -868,7 +921,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__engine.parameters.databaseReadOnly and LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+		self.__engine.parameters.databaseReadOnly and \
+		LOGGER.info("{0} | Model edition deactivated by '{1}' command line parameter value!".format(
+		self.__class__.__name__, "databaseReadOnly"))
 		self.__model = TemplatesModel(self, horizontalHeaders=self.__headers)
 		self.setTemplates()
 
@@ -892,9 +947,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				self.__templatesOutlinerWorkerThread.start()
 				self.__engine.workerThreads.append(self.__templatesOutlinerWorkerThread)
 			else:
-				LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(
+				self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
-			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates continuous scanner deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 		# Signals / Slots.
 		self.__view.selectionModel().selectionChanged.connect(self.__view_selectionModel__selectionChanged)
@@ -913,7 +970,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method uninitializes the Component ui.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Component ui cannot be uninitialized!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -937,7 +995,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method removes the Component Widget from the engine.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Component Widget cannot be removed!".format(self.__class__.__name__, self.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -959,24 +1018,37 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if erroneousTemplates:
 				for template in erroneousTemplates:
 					if erroneousTemplates[template] == "INEXISTING_TEMPLATE_FILE_EXCEPTION":
-						if messageBox.messageBox("Question", "Error", "{0} | '{1}' Template file is missing, would you like to update it's location?".format(self.__class__.__name__, template.name), QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+						if messageBox.messageBox("Question", "Error",
+						"{0} | '{1}' Template file is missing, would you like to update it's location?".format(
+						self.__class__.__name__, template.name),
+						QMessageBox.Critical, QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 							self.updateTemplateLocation(template)
 					else:
-						messageBox.messageBox("Warning", "Warning", "{0} | '{1}' {2}".format(self.__class__.__name__, template.name, dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
+						messageBox.messageBox("Warning", "Warning",
+						"{0} | '{1}' {2}".format(self.__class__.__name__,
+												template.name,
+												dbCommon.DB_EXCEPTIONS[erroneousTemplates[template]]))
 		else:
-			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Database default Templates wizard and Templates integrity checking method deactivated by \
+			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
 		activeCollectionsIdentities = str(self.__settings.getKey(self.__settingsSection, "activeCollections").toString())
-		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__, activeCollectionsIdentities))
-		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and [int(identity) for identity in activeCollectionsIdentities.split(self.__settingsSeparator)] or []
+		LOGGER.debug("> Stored '{0}' active Collections selection: '{1}'.".format(self.__class__.__name__,
+																				activeCollectionsIdentities))
+		self.__view.modelSelection["Collections"] = activeCollectionsIdentities and [int(identity)
+																		for identity in activeCollectionsIdentities.split(
+																		self.__settingsSeparator)] or []
 
 		activeSoftwares = str(self.__settings.getKey(self.__settingsSection, "activeSoftwares").toString())
 		LOGGER.debug("> Stored '{0}' active softwares selection: '{1}'.".format(self.__class__.__name__, activeSoftwares))
-		self.__view.modelSelection["Softwares"] = activeSoftwares and  activeSoftwares.split(self.__settingsSeparator) or []
+		self.__view.modelSelection["Softwares"] = activeSoftwares and activeSoftwares.split(self.__settingsSeparator) or []
 
 		activeTemplatesIdentities = str(self.__settings.getKey(self.__settingsSection, "activeTemplates").toString())
-		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__, activeTemplatesIdentities))
-		self.__view.modelSelection["Templates"] = activeTemplatesIdentities and [int(identity) for identity in activeTemplatesIdentities.split(self.__settingsSeparator)] or []
+		LOGGER.debug("> '{0}' View stored selected Templates identities '{1}'.".format(self.__class__.__name__,
+																						activeTemplatesIdentities))
+		self.__view.modelSelection["Templates"] = activeTemplatesIdentities and [int(identity)
+																		for identity in activeTemplatesIdentities.split(
+																		self.__settingsSeparator)] or []
 
 		self.__view.restoreModelSelection()
 		return True
@@ -993,9 +1065,18 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Calling '{0}' Component Framework 'onClose' method.".format(self.__class__.__name__))
 
 		self.__view.storeModelSelection()
-		self.__settings.setKey(self.__settingsSection, "activeTemplates", self.__settingsSeparator.join(str(identity) for identity in self.__view.modelSelection["Templates"]))
-		self.__settings.setKey(self.__settingsSection, "activeCollections", self.__settingsSeparator.join(str(identity) for identity in self.__view.modelSelection["Collections"]))
-		self.__settings.setKey(self.__settingsSection, "activeSoftwares", self.__settingsSeparator.join(str(name) for name in self.__view.modelSelection["Softwares"]))
+		self.__settings.setKey(self.__settingsSection,
+								"activeTemplates",
+								self.__settingsSeparator.join(str(identity)
+															for identity in self.__view.modelSelection["Templates"]))
+		self.__settings.setKey(self.__settingsSection,
+								"activeCollections",
+								self.__settingsSeparator.join(str(identity)
+															for identity in self.__view.modelSelection["Collections"]))
+		self.__settings.setKey(self.__settingsSection,
+								"activeSoftwares",
+								self.__settingsSeparator.join(str(name)
+															for name in self.__view.modelSelection["Softwares"]))
 		return True
 
 	@core.executionTrace
@@ -1005,23 +1086,34 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if not self.__engine.parameters.databaseReadOnly:
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Add Template ...", slot=self.__view_addTemplateAction__triggered))
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...", slot=self.__view_removeTemplatesAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction(
+			"Actions|Umbra|Components|core.templatesOutliner|Add Template ...",
+			slot=self.__view_addTemplateAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction(
+			"Actions|Umbra|Components|core.templatesOutliner|Remove Template(s) ...",
+			slot=self.__view_removeTemplatesAction__triggered))
 
 			separatorAction = QAction(self.__view)
 			separatorAction.setSeparator(True)
 			self.__view.addAction(separatorAction)
 
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Import Default Templates", slot=self.__view_importDefaultTemplatesAction__triggered))
-			self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions", slot=self.__view_filterTemplatesVersionsAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction(
+			"Actions|Umbra|Components|core.templatesOutliner|Import Default Templates",
+			slot=self.__view_importDefaultTemplatesAction__triggered))
+			self.__view.addAction(self.__engine.actionsManager.registerAction(
+			"Actions|Umbra|Components|core.templatesOutliner|Filter Templates Versions",
+			slot=self.__view_filterTemplatesVersionsAction__triggered))
 
 			separatorAction = QAction(self.__view)
 			separatorAction.setSeparator(True)
 			self.__view.addAction(separatorAction)
 		else:
-			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Templates Database alteration capabilities deactivated by \
+			'{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
 
-		self.__view.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...", slot=self.__view_displayHelpFilesAction__triggered))
+		self.__view.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.templatesOutliner|Display Help File(s) ...",
+		slot=self.__view_displayHelpFilesAction__triggered))
 
 		separatorAction = QAction(self.__view)
 		separatorAction.setSeparator(True)
@@ -1098,7 +1190,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if selectedTemplates:
 			for template in selectedTemplates:
-				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template.software, template.renderer, template.title),
+				template and content.append(self.__templatesInformationsText.format("{0} {1} {2}".format(template.software,
+																										template.renderer,
+																										template.title),
 												template.date,
 												template.author,
 												template.email,
@@ -1142,7 +1236,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.modelRefresh.emit()
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+											False,
+											foundations.exceptions.UserError)
 	@umbra.engine.showProcessing("Retrieving Templates ...")
 	def __application__contentDropped(self, event):
 		"""
@@ -1158,10 +1254,15 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		if not self.__engine.parameters.databaseReadOnly:
 			for url in event.mimeData().urls():
-				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
+				path = (platform.system() == "Windows" or platform.system() == "Microsoft") and \
+				re.search(r"^\/[A-Z]:", str(url.path())) and str(url.path())[1:] or str(url.path())
 				if re.search(r"\.{0}$".format(self.__extension), str(url.path())):
 					name = strings.getSplitextBasename(path)
-					choice = messageBox.messageBox("Question", "Question", "'{0}' Template file has been dropped, would you like to 'Add' it to the Database or 'Edit' it in the Script Editor?".format(name), buttons=QMessageBox.Cancel, customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
+					choice = messageBox.messageBox("Question", "Question",
+					"'{0}' Template file has been dropped, would you like \
+					to 'Add' it to the Database or 'Edit' it in the Script Editor?".format(name),
+					buttons=QMessageBox.Cancel,
+					customButtons=((QString("Add"), QMessageBox.AcceptRole), (QString("Edit"), QMessageBox.AcceptRole)))
 					if choice == 0:
 						self.addTemplate(name, path)
 					elif choice == 1:
@@ -1177,11 +1278,14 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 					if not osWalker.files:
 						return
 
-					if messageBox.messageBox("Question", "Question", "Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+					if messageBox.messageBox("Question", "Question",
+					"Would you like to add '{0}' directory Template(s) file(s) to the Database?".format(path),
+					buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 						self.addDirectory(path)
 				self.__engine.processEvents()
 		else:
-			raise foundations.exceptions.UserError("{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
+			raise foundations.exceptions.UserError(
+			"{0} | Cannot perform action, Database has been set read only!".format(self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1195,7 +1299,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:note: This method may require user interaction.
 		"""
 
-		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Add Template:", RuntimeGlobals.lastBrowsedPath, "sIBLT files (*.{0})".format(self.__extension))))
+		path = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																		"Add Template:",
+																		RuntimeGlobals.lastBrowsedPath,
+																		"sIBLT files (*.{0})".format(self.__extension))))
 		if not path:
 			return
 
@@ -1204,9 +1311,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if self.addTemplate(strings.getSplitextBasename(path), path):
 				return True
 			else:
-				raise Exception("{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, path))
+				raise Exception("{0} | Exception raised while adding '{1}' Template to the Database!".format(
+				self.__class__.__name__, path))
 		else:
-			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, path))
+			messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Template already exists in Database!".format(
+			self.__class__.__name__, path))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1229,14 +1338,19 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				selectedCollections.append(item.name)
 			elif item.family == "Software":
 				selectedSoftwares.append(item.name)
-		selectedCollections and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
-		selectedSoftwares and messageBox.messageBox("Warning", "Warning", "{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
+		selectedCollections and messageBox.messageBox("Warning", "Warning",
+		"{0} | Cannot remove '{1}' Collection(s)!".format(self.__class__.__name__, ", ".join(selectedCollections)))
+		selectedSoftwares and messageBox.messageBox("Warning", "Warning",
+		"{0} | Cannot remove '{1}' software(s)!".format(self.__class__.__name__, ", ".join(selectedSoftwares)))
 
 		selectedTemplates = self.getSelectedTemplates()
 		if not selectedTemplates:
 			return
 
-		if messageBox.messageBox("Question", "Question", "Are you sure you want to remove '{0}' Template(s)?".format(", ".join([str(template.name) for template in selectedTemplates])), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+		if messageBox.messageBox("Question", "Question",
+		"Are you sure you want to remove '{0}' Template(s)?".format(
+		", ".join([str(template.name) for template in selectedTemplates])),
+		buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Removing Templates ...", len(selectedTemplates))
 			success = True
 			for template in selectedTemplates:
@@ -1249,7 +1363,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if success:
 				return True
 			else:
-				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
+				raise Exception("{0} | Exception raised while removing '{1}' Templates from the Database!".format(
+				self.__class__.__name__, ", ". join((template.name for template in selectedTemplates))))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1266,7 +1381,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if self.addDefaultTemplates(forceImport=True):
 			return True
 		else:
-			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(self.__class__.__name__))
+			raise Exception("{0} | Exception raised while importing default Templates into the Database!".format(
+			self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)
@@ -1312,7 +1428,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		for template in templates:
 			matchingTemplates = dbCommon.filterTemplates(self.__coreDb.dbSession, "^{0}$".format(template.name), "name")
 			if len(matchingTemplates) != 1:
-				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates], reverse=True, key=lambda x:(strings.getVersionRank(x[1])))[1:]:
+				for id in sorted([(dbTemplate.id, dbTemplate.release) for dbTemplate in matchingTemplates],
+								reverse=True,
+								key=lambda x:(strings.getVersionRank(x[1])))[1:]:
 					success *= dbCommon.removeTemplate(self.__coreDb.dbSession, id[0]) or False
 				self.modelRefresh.emit()
 			self.__engine.stepProcessing()
@@ -1324,7 +1442,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			raise Exception("{0} | Exception raised while filtering Templates by versions!".format(self.__class__.__name__))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError, dbExceptions.DatabaseOperationError)
+	@foundations.exceptions.exceptionsHandler(None,
+											False,
+											foundations.exceptions.ProgrammingError,
+											dbExceptions.DatabaseOperationError)
 	def addTemplate(self, name, path, collectionId=None, emitSignal=True):
 		"""
 		This method adds a Template to the Database.
@@ -1342,9 +1463,11 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				emitSignal and self.modelRefresh.emit()
 				return True
 			else:
-				raise dbExceptions.DatabaseOperationError("{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
+				raise dbExceptions.DatabaseOperationError(
+				"{0} | Exception raised while adding '{1}' Template to the Database!".format(self.__class__.__name__, name))
 		else:
-			raise foundations.exceptions.ProgrammingError("{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
+			raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' Template already exists in Database!".format(self.__class__.__name__, name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1367,7 +1490,10 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		success = True
 		for template, path in osWalker.files.items():
 			if not self.templateExists(path):
-				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True), path, collectionId, emitSignal=False) or False
+				success *= self.addTemplate(namespace.getNamespace(template, rootOnly=True),
+											path,
+											collectionId,
+											emitSignal=False) or False
 			self.__engine.stepProcessing()
 		self.__engine.stopProcessing()
 
@@ -1376,7 +1502,8 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if success:
 			return True
 		else:
-			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(self.__class__.__name__, directory))
+			raise Exception("{0} | Exception raised while adding '{1}' directory content to the Database!".format(
+			self.__class__.__name__, directory))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1398,15 +1525,20 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if not os.path.exists(path):
 				continue
 
-			if not set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
+			if not set(dbCommon.filterCollections(self.__coreDb.dbSession,
+												"^{0}$".format(collection), "name")).intersection(
+												dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")):
 				LOGGER.info("{0} | Adding '{1}' Collection to the Database!".format(self.__class__.__name__, collection))
-				dbCommon.addCollection(self.__coreDb.dbSession, collection, "Templates", "Template {0} Collection".format(collection))
+				dbCommon.addCollection(self.__coreDb.dbSession,
+										collection,
+										"Templates", "Template {0} Collection".format(collection))
 			success *= self.addDirectory(path, self.getCollection(collection).id)
 
 		if success:
 			return True
 		else:
-			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(self.__class__.__name__))
+			raise Exception("{0} | Exception raised while adding default Templates to the Database!".format(
+			self.__class__.__name__))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, dbExceptions.DatabaseOperationError)
@@ -1424,7 +1556,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__, template.name))
+			raise dbExceptions.DatabaseOperationError(
+			"{0} | Exception raised while removing '{1}' Template from the Database!".format(self.__class__.__name__,
+																							template.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1449,16 +1583,21 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Method success. ( Boolean )
 		"""
 
-		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self, "Updating '{0}' Template location:".format(template.name), RuntimeGlobals.lastBrowsedPath, "Template files (*{0})".format(self.__extension))))
+		file = umbra.ui.common.storeLastBrowsedPath((QFileDialog.getOpenFileName(self,
+																"Updating '{0}' Template location:".format(template.name),
+																RuntimeGlobals.lastBrowsedPath,
+																"Template files (*{0})".format(self.__extension))))
 		if not file:
 			return
 
-		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__, template.name, file))
+		LOGGER.info("{0} | Updating '{1}' Template with new location '{2}'!".format(self.__class__.__name__,
+																					template.name, file))
 		if not dbCommon.updateTemplateLocation(self.__coreDb.dbSession, template, file):
 			emitSignal and self.modelRefresh.emit()
 			return True
 		else:
-			raise dbExceptions.DatabaseOperationError("{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
+			raise dbExceptions.DatabaseOperationError(
+			"{0} | Exception raised while updating '{1}' Template location!".format(self.__class__.__name__, template.name))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
@@ -1471,11 +1610,15 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		if os.path.exists(template.helpFile):
-			LOGGER.info("{0} | Opening '{1}' Template help file: '{2}'.".format(self.__class__.__name__, template.name, template.helpFile))
+			LOGGER.info("{0} | Opening '{1}' Template help file: '{2}'.".format(self.__class__.__name__,
+																				template.name,
+																				template.helpFile))
 			QDesktopServices.openUrl(QUrl.fromLocalFile(template.helpFile))
 			return True
 		else:
-			raise foundations.exceptions.FileExistsError("{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(self.__class__.__name__, template.name, template.helpFile))
+			raise foundations.exceptions.FileExistsError(
+			"{0} | Exception raised while displaying '{1}' Template help file: '{2}' file doesn't exists!".format(
+			self.__class__.__name__, template.name, template.helpFile))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1501,25 +1644,42 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		collections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
 		for collection in collections:
-			softwares = set((software[0] for software in self.__coreDb.dbSession.query(dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
+			softwares = set((software[0] for software in self.__coreDb.dbSession.query(
+						dbTypes.DbTemplate.software).filter(dbTypes.DbTemplate.collection == collection.id)))
 			if not softwares:
 				continue
 
-			collectionNode = dbNodes.CollectionNode(collection, name=collection.name, parent=rootNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
-							release=umbra.ui.models.GraphModelAttribute(name="release", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)), version=umbra.ui.models.GraphModelAttribute(name="version", flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
+			collectionNode = dbNodes.CollectionNode(collection,
+													name=collection.name,
+													parent=rootNode,
+													nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+													attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+													release=umbra.ui.models.GraphModelAttribute(name="release",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)),
+													version=umbra.ui.models.GraphModelAttribute(name="version",
+															flags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled)))
 
 			for software in softwares:
-				templates = set((template for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate).filter(dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
+				templates = set((template for template in self.__coreDb.dbSession.query(dbTypes.DbTemplate).filter(
+				dbTypes.DbTemplate.collection == collection.id).filter(dbTypes.DbTemplate.software == software)))
 
 				if not templates:
 					continue
 
-				softwareNode = SoftwareNode(name=software, parent=collectionNode, nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled), attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
+				softwareNode = SoftwareNode(name=software,
+											parent=collectionNode,
+											nodeFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled),
+											attributesFlags=int(Qt.ItemIsSelectable | Qt.ItemIsEnabled))
 				iconPath = os.path.join(self.__uiResourcesDirectory, "{0}{1}".format(software, self.__uiSoftwareAffixe))
-				softwareNode.roles[Qt.DecorationRole] = os.path.exists(iconPath) and iconPath or os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
+				softwareNode.roles[Qt.DecorationRole] = os.path.exists(iconPath) and iconPath or \
+												os.path.join(self.__uiResourcesDirectory, self.__uiUnknownSoftwareImage)
 
 				for template in templates:
-					templateNode = dbNodes.TemplateNode(template, name="{0} {1}".format(template.renderer, template.title), parent=softwareNode, nodeFlags=nodeFlags, attributesFlags=attributesFlags)
+					templateNode = dbNodes.TemplateNode(template,
+														name="{0} {1}".format(template.renderer, template.title),
+														parent=softwareNode,
+														nodeFlags=nodeFlags,
+														attributesFlags=attributesFlags)
 
 		rootNode.sortChildren(attribute="title")
 
@@ -1569,7 +1729,9 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:return: Collection. ( DbCollection )
 		"""
 
-		return [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(collection), "name")).intersection(dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
+		return [collection for collection in set(dbCommon.filterCollections(
+		self.__coreDb.dbSession,"^{0}$".format(collection), "name")).intersection(
+		dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type"))][0]
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1582,8 +1744,12 @@ class TemplatesOutliner(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		templatesCollections = dbCommon.filterCollections(self.__coreDb.dbSession, "Templates", "type")
-		id = [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(templatesCollections)][0].id
+		id = [collection for collection in set(dbCommon.filterCollections(
+			self.__coreDb.dbSession, "^{0}$".format(self.__userCollection), "name")).intersection(
+			templatesCollections)][0].id
 		if self.__defaultCollections[self.__factoryCollection]:
 			if path in self.__defaultCollections[self.__factoryCollection]:
-				id = [collection for collection in set(dbCommon.filterCollections(self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(templatesCollections)][0].id
+				id = [collection for collection in set(dbCommon.filterCollections(
+					self.__coreDb.dbSession, "^{0}$".format(self.__factoryCollection), "name")).intersection(
+					templatesCollections)][0].id
 		return id

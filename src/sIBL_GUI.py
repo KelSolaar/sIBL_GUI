@@ -43,8 +43,10 @@ umbra.globals.constants.Constants.__dict__.update(sibl_gui.globals.constants.Con
 umbra.globals.uiConstants.UiConstants.__dict__.update(sibl_gui.globals.uiConstants.UiConstants.__dict__)
 umbra.globals.runtimeGlobals.RuntimeGlobals.__dict__.update(sibl_gui.globals.runtimeGlobals.RuntimeGlobals.__dict__)
 
-for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory), os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
-	(os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths) and umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths.append(path)
+for path in (os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.resourcesDirectory),
+			os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.resourcesDirectory)):
+	((os.path.exists(path) and not path in umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths) and
+	umbra.globals.runtimeGlobals.RuntimeGlobals.resourcesPaths.append(path))
 
 import foundations.globals.constants
 import manager.globals.constants
@@ -56,8 +58,11 @@ def _overrideDependenciesGlobals():
 	:return: Definition success. ( Boolean )
 	"""
 
-	foundations.globals.constants.Constants.logger = manager.globals.constants.Constants.logger = umbra.globals.constants.Constants.logger
-	foundations.globals.constants.Constants.applicationDirectory = manager.globals.constants.Constants.applicationDirectory = umbra.globals.constants.Constants.applicationDirectory
+	foundations.globals.constants.Constants.logger = \
+	manager.globals.constants.Constants.logger = umbra.globals.constants.Constants.logger
+
+	foundations.globals.constants.Constants.applicationDirectory = \
+	manager.globals.constants.Constants.applicationDirectory = umbra.globals.constants.Constants.applicationDirectory
 	return True
 
 _overrideDependenciesGlobals()
@@ -93,7 +98,13 @@ class sIBL_GUI(umbra.engine.Umbra):
 	"""
 
 	@core.executionTrace
-	def __init__(self, parent=None, componentsPaths=None, requisiteComponents=None, visibleComponents=None, *args, **kwargs):
+	def __init__(self,
+				parent=None,
+				componentsPaths=None,
+				requisiteComponents=None,
+				visibleComponents=None,
+				*args,
+				**kwargs):
 		"""
 		This method initializes the class.
 
@@ -106,7 +117,13 @@ class sIBL_GUI(umbra.engine.Umbra):
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
 
-		umbra.engine.Umbra.__init__(self, parent, componentsPaths, requisiteComponents, visibleComponents, *args, **kwargs)
+		umbra.engine.Umbra.__init__(self,
+									parent,
+									componentsPaths,
+									requisiteComponents,
+									visibleComponents,
+									*args,
+									**kwargs)
 
 		self.__setOverrides()
 
@@ -145,40 +162,61 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:return: Method success. ( Boolean )
 		"""
 
-		libraryActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
+		libraryActiveLabel = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.libraryActiveIcon)), True)
 		libraryActiveLabel.setObjectName("Library_activeLabel")
 
-		inspectActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
-														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
-														QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
+		inspectActiveLabel = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.inspectActiveIcon)), True)
 		inspectActiveLabel.setObjectName("Inspect_activeLabel")
 
-		exportActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
-												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
-												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
+		exportActiveLabel = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.exportActiveIcon)), True)
 		exportActiveLabel.setObjectName("Export_activeLabel")
 
-		editActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editIcon)),
-												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editHoverIcon)),
-												QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editActiveIcon)), True)
+		editActiveLabel = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.editActiveIcon)), True)
 		editActiveLabel.setObjectName("Edit_activeLabel")
 
-		preferencesActiveLabel = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
-													QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
+		preferencesActiveLabel = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.preferencesActiveIcon)), True)
 		preferencesActiveLabel.setObjectName("Preferences_activeLabel")
 
-		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library", object=libraryActiveLabel, layout="setsCentric", shortcut=Qt.Key_6),
-									umbra.ui.common.LayoutActiveLabel(name="Inspect", object=inspectActiveLabel, layout="inspectCentric", shortcut=Qt.Key_7),
-									umbra.ui.common.LayoutActiveLabel(name="Export", object=exportActiveLabel, layout="templatesCentric", shortcut=Qt.Key_8),
-									umbra.ui.common.LayoutActiveLabel(name="Edit", object=editActiveLabel, layout="editCentric", shortcut=Qt.Key_9),
-									umbra.ui.common.LayoutActiveLabel(name="Preferences", object=preferencesActiveLabel, layout="preferencesCentric", shortcut=Qt.Key_0))
+		self.layoutsActiveLabels = (umbra.ui.common.LayoutActiveLabel(name="Library",
+																	object=libraryActiveLabel,
+																	layout="setsCentric",
+																	shortcut=Qt.Key_6),
+									umbra.ui.common.LayoutActiveLabel(name="Inspect",
+																	object=inspectActiveLabel,
+																	layout="inspectCentric",
+																	shortcut=Qt.Key_7),
+									umbra.ui.common.LayoutActiveLabel(name="Export",
+																	object=exportActiveLabel,
+																	layout="templatesCentric",
+																	shortcut=Qt.Key_8),
+									umbra.ui.common.LayoutActiveLabel(name="Edit",
+																	object=editActiveLabel,
+																	layout="editCentric",
+																	shortcut=Qt.Key_9),
+									umbra.ui.common.LayoutActiveLabel(name="Preferences",
+																	object=preferencesActiveLabel,
+																	layout="preferencesCentric",
+																	shortcut=Qt.Key_0))
 
 		# Signals / Slots.
 		for layoutActiveLabel in self.layoutsActiveLabels:
-			layoutActiveLabel.object.clicked.connect(functools.partial(self._Umbra__layoutActiveLabel__clicked, layoutActiveLabel.layout))
+			layoutActiveLabel.object.clicked.connect(functools.partial(self._Umbra__layoutActiveLabel__clicked,
+																		layoutActiveLabel.layout))
 
 		return True
 
@@ -191,9 +229,10 @@ class sIBL_GUI(umbra.engine.Umbra):
 		:return: Central Widget active label. ( Active_QLabel )
 		"""
 
-		centralWidgetButton = Active_QLabel(self, QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
-											QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
+		centralWidgetButton = Active_QLabel(self,
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetHoverIcon)),
+		QPixmap(umbra.ui.common.getResourcePath(umbra.globals.uiConstants.UiConstants.centralWidgetActiveIcon)))
 		centralWidgetButton.setObjectName("Central_Widget_activeLabel")
 
 		# Signals / Slots.
@@ -208,7 +247,8 @@ class sIBL_GUI(umbra.engine.Umbra):
 		"""
 
 		LOGGER.debug("> Initializing Application toolBar!")
-		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize, umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
+		self.toolBar.setIconSize(QSize(umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize,
+										umbra.globals.uiConstants.UiConstants.defaultToolbarIconSize))
 
 		LOGGER.debug("> Adding 'Application_Logo_label' widget!")
 		self.toolBar.addWidget(self.getApplicationLogoLabel())
@@ -216,7 +256,13 @@ class sIBL_GUI(umbra.engine.Umbra):
 		LOGGER.debug("> Adding 'Logo_Spacer_label' widget!")
 		self.toolBar.addWidget(self.getLogoSpacerLabel())
 
-		LOGGER.debug("> Adding 'Library_activeLabel', 'Inspect_activeLabel', 'Export_activeLabel', 'Edit_activeLabel', 'Preferences_activeLabel' widgets!")
+		LOGGER.debug("> Adding 'Library_activeLabel', \
+					'Inspect_activeLabel', \
+					'Export_activeLabel', \
+					'Edit_activeLabel', \
+					'Preferences_activeLabel' \
+					widgets!")
+
 		self.getLayoutsActiveLabels()
 		for activeLabel in self.layoutsActiveLabels:
 			self.toolBar.addWidget(activeLabel.object)
@@ -244,10 +290,30 @@ def extendCommandLineParametersParser(parser):
 	:return: Definition success. ( Boolean )
 	"""
 
-	parser.add_option("-t", "--deactivateWorkerThreads", action="store_true", default=False, dest="deactivateWorkerThreads", help="'Deactivate worker threads'.")
-	parser.add_option("-d", "--databaseDirectory", action="store", type="string", dest="databaseDirectory", help="'Database directory'.")
-	parser.add_option("-r", "--databaseReadOnly", action="store_true", default=False, dest="databaseReadOnly", help="'Database read only'.")
-	parser.add_option("-o", "--loaderScriptsOutputDirectory", action="store", type="string", dest="loaderScriptsOutputDirectory", help="'Loader Scripts output directory'.")
+	parser.add_option("-t",
+					"--deactivateWorkerThreads",
+					action="store_true",
+					default=False,
+					dest="deactivateWorkerThreads",
+					help="'Deactivate worker threads'.")
+	parser.add_option("-d",
+					"--databaseDirectory",
+					action="store",
+					type="string",
+					dest="databaseDirectory",
+					help="'Database directory'.")
+	parser.add_option("-r",
+					"--databaseReadOnly",
+					action="store_true",
+					default=False,
+					dest="databaseReadOnly",
+					help="'Database read only'.")
+	parser.add_option("-o",
+					"--loaderScriptsOutputDirectory",
+					action="store",
+					type="string",
+					dest="loaderScriptsOutputDirectory",
+					help="'Loader Scripts output directory'.")
 
 	return True
 
@@ -259,11 +325,22 @@ if __name__ == "__main__":
 	extendCommandLineParametersParser(commandLineParametersParser)
 	componentsPaths = []
 	for path in (os.path.join(umbra.__path__[0], umbra.globals.constants.Constants.factoryComponentsDirectory),
-					os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryComponentsDirectory),
-					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
-					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
-					os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
-					os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
+		os.path.join(os.getcwd(), umbra.__name__, umbra.globals.constants.Constants.factoryComponentsDirectory),
+		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.coreComponentsDirectory),
+		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.coreComponentsDirectory),
+		os.path.join(sibl_gui.__path__[0], sibl_gui.globals.constants.Constants.addonsComponentsDirectory),
+		os.path.join(os.getcwd(), sibl_gui.__name__, sibl_gui.globals.constants.Constants.addonsComponentsDirectory)):
 		(os.path.exists(path) and not path in componentsPaths) and componentsPaths.append(path)
 
-	umbra.engine.run(sIBL_GUI, commandLineParametersParser.parse_args(sys.argv), componentsPaths, ("factory.scriptEditor", "factory.preferencesManager", "factory.componentsManagerUi", "core.db", "core.collectionsOutliner", "core.databaseBrowser", "core.inspector", "core.templatesOutliner"), ("core.databaseBrowser",))
+	umbra.engine.run(sIBL_GUI,
+					commandLineParametersParser.parse_args(sys.argv),
+					componentsPaths,
+					("factory.scriptEditor",
+					"factory.preferencesManager",
+					"factory.componentsManagerUi",
+					"core.db",
+					"core.collectionsOutliner",
+					"core.databaseBrowser",
+					"core.inspector",
+					"core.templatesOutliner"),
+					("core.databaseBrowser",))

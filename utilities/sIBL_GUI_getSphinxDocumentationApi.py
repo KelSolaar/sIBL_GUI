@@ -69,15 +69,17 @@ TOCTREE_TEMPLATE_BEGIN = ["Api\n",
 
 TOCTREE_TEMPLATE_END = []
 
-STATEMENTS_UPDATE_MESSAGGE = "#***********************************************************************************************\n" \
+STATEMENTS_UPDATE_MESSAGGE = "#**********************************************************************************************************************\n" \
 							"#***\tSphinx: Statements updated for auto-documentation purpose.\n" \
-							"#***********************************************************************************************"
+							"#**********************************************************************************************************************"
 
 DECORATORS_COMMENT_MESSAGE = "#***\tSphinx: Decorator commented for auto-documentation purpose."
 
-CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler.*": "{0}\n\tpass".format(STATEMENTS_UPDATE_MESSAGGE),
+CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler.*": "{0}\n\tpass".format(
+						STATEMENTS_UPDATE_MESSAGGE),
 						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
-						"This method initializes the class.\n" : ".. Sphinx: Statements updated for auto-documentation purpose.\n"}
+						"This method initializes the class.\n" :
+						".. Sphinx: Statements updated for auto-documentation purpose.\n"}
 
 #**********************************************************************************************************************
 #***	Main Python code.
@@ -102,7 +104,8 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 	modules = []
 	for file in sorted(osWalker.files.values()):
 		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
-		module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))), strings.getSplitextBasename(file)).strip(".")
+		module = "{0}.{1}" .format((".".join(os.path.dirname(file).replace(sourceDirectory, "").split("/"))),
+											strings.getSplitextBasename(file)).strip(".")
 		LOGGER.info("{0} | Module name: '{1}'".format(getSphinxDocumentationApi.__name__, module))
 		directory = os.path.dirname(os.path.join(cloneDirectory, module.replace(".", "/")))
 		if not os.path.exists(directory):
@@ -122,7 +125,9 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 				if re.search(pattern, line):
 					sourceFile.content[i] = re.sub(pattern, value, line)
 			if i < len(sourceFile.content):
-				if re.search(r"^[ \t]*@\w+", line) and (re.search(r"^[ \t]*def \w+", sourceFile.content[i + 1]) or re.search(r"^[ \t]*class \w+", sourceFile.content[i + 1]) or re.search(r"^[ \t]*@\w+", sourceFile.content[i + 1])):
+				if re.search(r"^[ \t]*@\w+", line) and (re.search(r"^[ \t]*def \w+", sourceFile.content[i + 1]) or \
+				re.search(r"^[ \t]*class \w+", sourceFile.content[i + 1]) or \
+				re.search(r"^[ \t]*@\w+", sourceFile.content[i + 1])):
 					if not re.search(r"^[ \t]*@property", line) and \
 						not re.search(r"^[ \t]*@\w+\.setter", line) and \
 						not re.search(r"^[ \t]*@\w+\.deleter", line) and \

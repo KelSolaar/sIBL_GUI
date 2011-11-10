@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the *001* version Application Database migrations objects: :func:`upgrade` and :func:`downgrade` definitions.
+	This module defines the *001* version Application Database migrations objects: :func:`upgrade`
+	and :func:`downgrade` definitions.
 
 **Others:**
 
@@ -62,7 +63,8 @@ def upgrade(dbEngine):
 		column = sqlalchemy.Column(columnName, sqlalchemy.String)
 		column.create(table)
 	else:
-		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' already exists in '{2}' table!".format(__name__, columnName, table))
+		LOGGER.info("{0} | SQLAlchemy Migrate: Column '{1}' already exists in '{2}' table!".format(__name__,
+																									columnName, table))
 
 def downgrade(dbEngine):
 	"""

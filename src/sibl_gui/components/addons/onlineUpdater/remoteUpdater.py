@@ -86,7 +86,8 @@ class ReleaseObject(core.Structure):
 class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
 	| This class defines the Application remote updater.
-	| The remote updater is initialized with a list of available online releases ( List of :class:`ReleaseObject` class instances ).
+	| The remote updater is initialized with a list of available online releases
+	( List of :class:`ReleaseObject` class instances ).
 	"""
 
 	@core.executionTrace
@@ -109,7 +110,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__releases = None
 		self.releases = releases
 		self.__uiResourcesDirectory = "resources/"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+													self.__uiResourcesDirectory)
 		self.__uiLogoImage = "sIBL_GUI_Small_Logo.png"
 		self.__uiTemplatesImage = "Templates_Logo.png"
 		self.__uiLightGrayColor = QColor(240, 240, 240)
@@ -118,7 +120,12 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__tableWidgetRowHeight = 30
 		self.__tableWidgetHeaderHeight = 25
 
-		self.__templatesTableWidgetHeaders = ["_data", "Get it!", "Local version", "Repository version", "Release type", "Comment"]
+		self.__templatesTableWidgetHeaders = ["_data",
+											"Get it!",
+											"Local version",
+											"Repository version",
+											"Release type",
+											"Comment"]
 
 		self.__applicationChangeLogUrl = "http://kelsolaar.hdrlabs.com/sIBL_GUI/Change%20Log/Change%20Log.html"
 		self.__repositoryUrl = "http://kelsolaar.hdrlabs.com/?dir=./sIBL_GUI/Repository"
@@ -150,7 +157,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -159,7 +167,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__container** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
 	def releases(self):
@@ -183,8 +192,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if value:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("releases", value)
 			for key, element in value.items():
-				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("variables", key)
-				assert type(element) is ReleaseObject, "'{0}' attribute: '{1}' type is not 'ReleaseObject'!".format("variables", element)
+				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				"variables", key)
+				assert type(element) is ReleaseObject, "'{0}' attribute: '{1}' type is not 'ReleaseObject'!".format(
+				"variables", element)
 		self.__releases = value
 
 	@releases.deleter
@@ -194,7 +205,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__releases** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "releases"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "releases"))
 
 	@property
 	def uiResourcesDirectory(self):
@@ -215,7 +227,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -224,7 +237,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiLogoImage(self):
@@ -245,7 +259,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@uiLogoImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -254,7 +269,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiLogoImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLogoImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLogoImage"))
 
 	@property
 	def uiTemplatesImage(self):
@@ -275,7 +291,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiTemplatesImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiTemplatesImage"))
 
 	@uiTemplatesImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -284,7 +301,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiTemplatesImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiTemplatesImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiTemplatesImage"))
 
 	@property
 	def uiLightGrayColor(self):
@@ -305,7 +323,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@uiLightGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -314,7 +333,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiLightGrayColor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLightGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiLightGrayColor"))
 
 	@property
 	def uiDarkGrayColor(self):
@@ -335,7 +355,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QColor )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@uiDarkGrayColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -344,7 +365,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiDarkGrayColor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiDarkGrayColor"))
 
 	@property
 	def splitter(self):
@@ -365,7 +387,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "splitter"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "splitter"))
 
 	@splitter.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -374,7 +397,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__splitter** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "splitter"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "splitter"))
 
 	@property
 	def tableWidgetRowHeight(self):
@@ -395,7 +419,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@tableWidgetRowHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -404,7 +429,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__tableWidgetRowHeight** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetRowHeight"))
 
 	@property
 	def tableWidgetHeaderHeight(self):
@@ -425,7 +451,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@tableWidgetHeaderHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -434,7 +461,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__tableWidgetHeaderHeight** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "tableWidgetHeaderHeight"))
 
 	@property
 	def templatesTableWidgetHeaders(self):
@@ -455,7 +483,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
 
 	@templatesTableWidgetHeaders.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -464,7 +493,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__templatesTableWidgetHeaders** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "templatesTableWidgetHeaders"))
 
 	@property
 	def applicationChangeLogUrl(self):
@@ -485,7 +515,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "applicationChangeLogUrl"))
 
 	@applicationChangeLogUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -494,7 +525,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__applicationChangeLogUrl** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "applicationChangeLogUrl"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "applicationChangeLogUrl"))
 
 	@property
 	def repositoryUrl(self):
@@ -515,7 +547,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "repositoryUrl"))
 
 	@repositoryUrl.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -524,7 +557,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__repositoryUrl** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "repositoryUrl"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "repositoryUrl"))
 
 	@property
 	def downloadManager(self):
@@ -545,7 +579,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloadManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "downloadManager"))
 
 	@downloadManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -554,7 +589,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__downloadManager** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "downloadManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "downloadManager"))
 
 	@property
 	def networkAccessManager(self):
@@ -575,7 +611,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QNetworkAccessManager )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "networkAccessManager"))
 
 	@networkAccessManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -584,7 +621,8 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__networkAccessManager** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "networkAccessManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "networkAccessManager"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -624,8 +662,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			self.Templates_tableWidget.setHorizontalHeaderLabels(self.__templatesTableWidgetHeaders)
 			self.Templates_tableWidget.hideColumn(0)
 			self.Templates_tableWidget.horizontalHeader().setStretchLastSection(True)
-			self.Templates_tableWidget.setMinimumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
-			self.Templates_tableWidget.setMaximumHeight(len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
+			self.Templates_tableWidget.setMinimumHeight(
+			len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
+			self.Templates_tableWidget.setMaximumHeight(
+			len(templatesReleases) * self.__tableWidgetRowHeight + self.__tableWidgetHeaderHeight)
 
 			palette = QPalette()
 			palette.setColor(QPalette.Base, Qt.transparent)
@@ -639,7 +679,10 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					tableWidgetItem._data = templatesReleases[release]
 					self.Templates_tableWidget.setItem(row, 0, tableWidgetItem)
 
-					tableWidgetItem = Variable_QPushButton(self, True, (self.__uiLightGrayColor, self.__uiDarkGrayColor), ("Yes", "No"))
+					tableWidgetItem = Variable_QPushButton(self,
+															True,
+															(self.__uiLightGrayColor, self.__uiDarkGrayColor),
+															("Yes", "No"))
 					self.Templates_tableWidget.setCellWidget(row, 1, tableWidgetItem)
 
 					tableWidgetItem = QTableWidgetItem(templatesReleases[release].localVersion or Constants.nullObject)
@@ -683,7 +726,11 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		elif platform.system() == "Linux":
 			url = builds["Linux"]
 
-		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, self.__container.ioDirectory, [url], Qt.Window)
+		self.__downloadManager = DownloadManager(self,
+												self.__networkAccessManager,
+												self.__container.ioDirectory,
+												[url],
+												Qt.Window)
 		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
 		self.__downloadManager.show()
 		self.__downloadManager.startDownload()
@@ -709,7 +756,11 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			return
 
 		LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
-		self.__downloadManager = DownloadManager(self, self.__networkAccessManager, downloadDirectory, [request.url for request in requests], Qt.Window)
+		self.__downloadManager = DownloadManager(self,
+												self.__networkAccessManager,
+												downloadDirectory, 
+												[request.url for request in requests],
+												Qt.Window)
 		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)
 		self.__downloadManager.show()
 		self.__downloadManager.startDownload()
@@ -748,8 +799,12 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 					LOGGER.info("{0} | Removing '{1}' archive!".format(self.__class__.__name__, download))
 					os.remove(download)
 				else:
-					messageBox.messageBox("Warning", "Warning", "{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__, os.path.basename(download)))
-				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download), self.__container.coreTemplatesOutliner.getCollection(self.__container.coreTemplatesOutliner.userCollection).id)
+					messageBox.messageBox("Warning", "Warning",
+					"{0} | Failed extracting '{1}', proceeding to next file!".format(self.__class__.__name__,
+																					os.path.basename(download)))
+				self.__container.coreTemplatesOutliner.addDirectory(os.path.dirname(download),
+															self.__container.coreTemplatesOutliner.getCollection(
+															self.__container.coreTemplatesOutliner.userCollection).id)
 			else:
 				if self.__container.addonsLocationsBrowser.activated:
 					self.__container.addonsLocationsBrowser.exploreDirectory(os.path.dirname(download))
@@ -762,13 +817,22 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 
 		LOGGER.debug("> Retrieving Templates download directory.")
 
-		choice = messageBox.messageBox("Question", "{0}".format(self.__class__.__name__), "{0} | Which directory do you want to install the Templates into?".format(self.__class__.__name__), buttons=QMessageBox.Cancel, customButtons=((QString("Factory"), QMessageBox.AcceptRole), (QString("User"), QMessageBox.AcceptRole), (QString("Custom"), QMessageBox.AcceptRole)))
+		choice = messageBox.messageBox("Question", "{0}".format(self.__class__.__name__),
+		"{0} | Which directory do you want to install the Templates into?".format(
+		self.__class__.__name__),
+		buttons=QMessageBox.Cancel,
+		customButtons=((QString("Factory"), QMessageBox.AcceptRole),
+					(QString("User"), QMessageBox.AcceptRole),
+					(QString("Custom"), QMessageBox.AcceptRole)))
 		if choice == 0:
 			return os.path.join(RuntimeGlobals.templatesFactoryDirectory)
 		elif choice == 1:
 			return os.path.join(RuntimeGlobals.templatesUserDirectory)
 		elif choice == 2:
-			return self.__container.container.storeLastBrowsedPath((QFileDialog.getExistingDirectory(self, "Choose Templates directory:", self.__container.container.lastBrowsedPath)))
+			return self.__container.container.storeLastBrowsedPath(
+			QFileDialog.getExistingDirectory(self,
+											"Choose Templates directory:",
+											self.__container.container.lastBrowsedPath))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

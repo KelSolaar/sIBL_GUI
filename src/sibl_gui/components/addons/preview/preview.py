@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class and others images preview related objects.
+	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class and
+	others images preview related objects.
 
 **Others:**
 
@@ -99,10 +100,22 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__imagesPreviewers = None
 		self.__maximumImagesPreviewersInstances = 5
 
-		self.__inspectorButtons = {"Background" : {"object" : None, "text": "View Background Image", "row" : 1, "column" : 3},
-									"Lighting" : {"object" : None, "text": "View Lighting Image", "row" : 1, "column" : 4},
-									"Reflection" : {"object" : None, "text": "View Reflection Image", "row" : 1, "column" : 5},
-									"Plates" : {"object" : None, "text": "View Plate(s)", "row" : 1, "column" : 6}}
+		self.__inspectorButtons = {"Background" : {"object" : None,
+													"text": "View Background Image",
+													"row" : 1,
+													"column" : 3},
+									"Lighting" : {"object" : None,
+													"text": "View Lighting Image",
+													"row" : 1,
+													"column" : 4},
+									"Reflection" : {"object" : None,
+													"text": "View Reflection Image",
+													"row" : 1,
+													"column" : 5},
+									"Plates" : {"object" : None,
+													"text": "View Plate(s)",
+													"row" : 1,
+													"column" : 6}}
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -126,7 +139,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -135,7 +149,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def engine(self):
@@ -156,7 +171,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -165,7 +181,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def settings(self):
@@ -186,7 +203,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( QSettings )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settings"))
 
 	@settings.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -195,7 +213,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__settings** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settings"))
 
 	@property
 	def settingsSection(self):
@@ -216,7 +235,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "settingsSection"))
 
 	@settingsSection.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -225,7 +245,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__settingsSection** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "settingsSection"))
 
 	@property
 	def factoryPreferencesManager(self):
@@ -246,7 +267,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "factoryPreferencesManager"))
 
 	@factoryPreferencesManager.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -255,7 +277,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__factoryPreferencesManager** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "factoryPreferencesManager"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -276,7 +299,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -285,7 +309,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
 	def coreInspector(self):
@@ -306,7 +331,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreInspector"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreInspector"))
 
 	@coreInspector.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -315,7 +341,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__coreInspector** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreInspector"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreInspector"))
 
 	@property
 	def imagesPreviewers(self):
@@ -336,7 +363,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( List )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesPreviewers"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesPreviewers"))
 
 	@imagesPreviewers.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -345,7 +373,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__imagesPreviewers** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesPreviewers"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesPreviewers"))
 
 	@property
 	def maximumImagesPreviewersInstances(self):
@@ -366,7 +395,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "maximumImagesPreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "maximumImagesPreviewersInstances"))
 
 	@maximumImagesPreviewersInstances.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -375,7 +405,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__maximumImagesPreviewersInstances** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "maximumImagesPreviewersInstances"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "maximumImagesPreviewersInstances"))
 
 	@property
 	def inspectorButtons(self):
@@ -396,7 +427,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param value: Attribute value. ( Dictionary )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorButtons"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "inspectorButtons"))
 
 	@inspectorButtons.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -405,7 +437,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is the deleter method for **self.__inspectorButtons** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorButtons"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "inspectorButtons"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -422,12 +455,14 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__settings = self.__engine.settings
 		self.__settingsSection = self.name
 
-		self.__factoryPreferencesManager = self.__engine.componentsManager.components["factory.preferencesManager"].interface
+		self.__factoryPreferencesManager = self.__engine.componentsManager.components[
+											"factory.preferencesManager"].interface
 		self.__coreDatabaseBrowser = self.__engine.componentsManager.components["core.databaseBrowser"].interface
 		self.__coreInspector = self.__engine.componentsManager.components["core.inspector"].interface
 
@@ -544,24 +579,44 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 
-		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Background Image ...", slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
-		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...", slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
-		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...", slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
-		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...", slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
+		viewIblSetsBackgroundImagesAction = self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.databaseBrowser|View Background Image ...",
+		slot=self.__Database_Browser_listView_viewIblSetsBackgroundImagesAction__triggered)
+		viewIblSetsLightingImagesAction = self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ...",
+		slot=self.__Database_Browser_listView_viewIblSetsLightingImagesAction__triggered)
+		viewIblSetsReflectionImagesAction = self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ...",
+		slot=self.__Database_Browser_listView_viewIblSetsReflectionImagesAction__triggered)
+		viewIblSetsPlatesAction = self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ...",
+		slot=self.__Database_Browser_listView_viewIblSetsPlatesAction__triggered)
 		for view in self.__coreDatabaseBrowser.views:
 			separatorAction = QAction(view)
 			separatorAction.setSeparator(True)
-			for action in (separatorAction, viewIblSetsBackgroundImagesAction, viewIblSetsLightingImagesAction, viewIblSetsReflectionImagesAction, viewIblSetsPlatesAction):
+			for action in (separatorAction,
+							viewIblSetsBackgroundImagesAction,
+							viewIblSetsLightingImagesAction,
+							viewIblSetsReflectionImagesAction,
+							viewIblSetsPlatesAction):
 				view.addAction(action)
 
 		separatorAction = QAction(self.__coreInspector.Inspector_Overall_frame)
 		separatorAction.setSeparator(True)
 		self.__coreInspector.Inspector_Overall_frame.addAction(separatorAction)
 
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Background Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Lighting Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Reflection Image ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered))
-		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction("Actions|Umbra|Components|core.inspector|View Plate(s) ...", slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
+		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.inspector|View Background Image ...",
+		slot=self.__Inspector_Overall_frame_viewInspectorIblSetBackgroundImageAction__triggered))
+		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.inspector|View Lighting Image ...",
+		slot=self.__Inspector_Overall_frame_viewInspectorIblSetLightingImageAction__triggered))
+		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.inspector|View Reflection Image ...",
+		slot=self.__Inspector_Overall_frame_viewInspectorIblSetReflectionImageAction__triggered))
+		self.__coreInspector.Inspector_Overall_frame.addAction(self.__engine.actionsManager.registerAction(
+		"Actions|Umbra|Components|core.inspector|View Plate(s) ...",
+		slot=self.__Inspector_Overall_frame_viewInspectorIblSetPlatesAction__triggered))
 
 	@core.executionTrace
 	def __removeActions(self):
@@ -575,7 +630,10 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		viewIblSetsLightingImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Lighting Image ..."
 		viewIblSetsReflectionImagesAction = "Actions|Umbra|Components|core.databaseBrowser|View Reflection Image ..."
 		viewIblSetsPlatesAction = "Actions|Umbra|Components|core.databaseBrowser|View Plate(s) ..."
-		actions = (viewIblSetsBackgroundImagesAction, viewIblSetsLightingImagesAction, viewIblSetsReflectionImagesAction, viewIblSetsPlatesAction)
+		actions = (viewIblSetsBackgroundImagesAction,
+					viewIblSetsLightingImagesAction,
+					viewIblSetsReflectionImagesAction,
+					viewIblSetsPlatesAction)
 		for view in self.__coreDatabaseBrowser.views:
 			for action in actions:
 				view.removeAction(self.__engine.actionsManager.getAction(action))
@@ -583,16 +641,20 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.__engine.actionsManager.unregisterAction(action)
 
 		viewInspectorIblSetBackgroundImageAction = "Actions|Umbra|Components|core.inspector|View Background Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
+		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__engine.actionsManager.getAction(viewInspectorIblSetBackgroundImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetBackgroundImageAction)
 		viewInspectorIblSetLightingImageAction = "Actions|Umbra|Components|core.inspector|View Lighting Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(viewInspectorIblSetLightingImageAction))
+		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__engine.actionsManager.getAction(viewInspectorIblSetLightingImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetLightingImageAction)
 		viewInspectorIblSetReflectionImageAction = "Actions|Umbra|Components|core.inspector|View Reflection Image ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(viewInspectorIblSetReflectionImageAction))
+		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__engine.actionsManager.getAction(viewInspectorIblSetReflectionImageAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetReflectionImageAction)
 		viewInspectorIblSetPlatesAction = "Actions|Umbra|Components|core.inspector|View Plate(s) ..."
-		self.__coreInspector.Inspector_Overall_frame.removeAction(self.__engine.actionsManager.getAction(viewInspectorIblSetPlatesAction))
+		self.__coreInspector.Inspector_Overall_frame.removeAction(
+		self.__engine.actionsManager.getAction(viewInspectorIblSetPlatesAction))
 		self.__engine.actionsManager.unregisterAction(viewInspectorIblSetPlatesAction)
 
 	@core.executionTrace
@@ -604,7 +666,9 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreInspector.Inspector_Options_groupBox.show()
 		for key, value in self.__inspectorButtons.items():
 			value["object"] = QPushButton(value["text"])
-			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"], value["row"], value["column"])
+			self.__coreInspector.Inspector_Options_groupBox_gridLayout.addWidget(value["object"],
+																				value["row"],
+																				value["column"])
 			value["object"].clicked.connect(functools.partial(self.viewIblSetsImages_ui, key))
 
 	def __removeInspectorButtons(self):
@@ -710,7 +774,8 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 
 		customPreviewer = self.__settings.getKey(self.__settingsSection, "customPreviewer")
-		LOGGER.debug("> Setting '{0}' with value '{1}'.".format("Custom_Previewer_Path_lineEdit", customPreviewer.toString()))
+		LOGGER.debug("> Setting '{0}' with value '{1}'.".format(
+		"Custom_Previewer_Path_lineEdit", customPreviewer.toString()))
 		self.Custom_Previewer_Path_lineEdit.setText(customPreviewer.toString())
 
 	@core.executionTrace
@@ -721,24 +786,31 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		:param checked: Checked state. ( Boolean )
 		"""
 
-		customPreviewerExecutable = umbra.ui.common.storeLastBrowsedPath(QFileDialog.getOpenFileName(self, "Custom previewer executable:", RuntimeGlobals.lastBrowsedPath))
+		customPreviewerExecutable = umbra.ui.common.storeLastBrowsedPath(
+		QFileDialog.getOpenFileName(self, "Custom previewer executable:", RuntimeGlobals.lastBrowsedPath))
 		if customPreviewerExecutable != "":
 			LOGGER.debug("> Chosen custom Images Previewer executable: '{0}'.".format(customPreviewerExecutable))
 			self.Custom_Previewer_Path_lineEdit.setText(QString(customPreviewerExecutable))
-			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.Custom_Previewer_Path_lineEdit.text())
+			self.__settings.setKey(self.__settingsSection,
+									"customPreviewer",
+									self.Custom_Previewer_Path_lineEdit.text())
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.UserError)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+											False,
+											foundations.exceptions.UserError)
 	def __Custom_Previewer_Path_lineEdit__editFinished(self):
 		"""
 		This method is called when **Custom_Previewer_Path_lineEdit** Widget is edited and check that entered path is valid.
 		"""
-
-		if not os.path.exists(os.path.abspath(str(self.Custom_Previewer_Path_lineEdit.text()))) and str(self.Custom_Previewer_Path_lineEdit.text()) != "":
+		
+		value = str(self.Custom_Previewer_Path_lineEdit.text())
+		if not os.path.exists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")
 			self.__Custom_Previewer_Path_lineEdit_setUi()
 
-			raise foundations.exceptions.UserError("{0} | Invalid custom Images Previewer executable file!".format(self.__class__.__name__))
+			raise foundations.exceptions.UserError("{0} | Invalid custom Images Previewer executable file!".format(
+			self.__class__.__name__))
 		else:
 			self.__settings.setKey(self.__settingsSection, "customPreviewer", self.Custom_Previewer_Path_lineEdit.text())
 
@@ -757,20 +829,28 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		success = True
 		for iblSet in self.__coreDatabaseBrowser.getSelectedIblSets():
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning", "{0} | You can only launch '{1}' images Previewer instances at same time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				messageBox.messageBox("Warning", "Warning",
+				"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
+				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 				break
 			paths = self.getIblSetImagesPaths(iblSet, imageType)
 			if paths:
 				success *= self.viewImages(paths, str(self.Custom_Previewer_Path_lineEdit.text())) or False
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(self.__class__.__name__, iblSet.title, imageType))
+				messageBox.messageBox("Warning", "Warning",
+				"{0} | '{1}' Ibl Set has no '{2}' image type and will be skipped!".format(
+				self.__class__.__name__, iblSet.title, imageType))
 		if success:
 			return True
 		else:
-			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(self.__class__.__name__, iblSet.title))
+			raise Exception("{0} | Exception raised while displaying '{1}' Ibl Set image(s)!".format(
+			self.__class__.__name__, iblSet.title))
 
 	@core.executionTrace
-	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, foundations.exceptions.FileExistsError, Exception)
+	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler,
+											False,
+											foundations.exceptions.FileExistsError,
+											Exception)
 	def viewInspectorIblSetImages_ui(self, imageType, *args):
 		"""
 		This method launches :mod:`umbra.components.core.inspector.inspector` Component Ibl Set Images Previewer.
@@ -785,17 +865,25 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		inspectorIblSet = inspectorIblSet and os.path.exists(inspectorIblSet.path) and inspectorIblSet or None
 		if inspectorIblSet:
 			if len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
-				messageBox.messageBox("Warning", "Warning", "{0} | You can only launch '{1}' images Previewer instances at same time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				messageBox.messageBox("Warning", "Warning",
+				"{0} | You can only launch '{1}' images Previewer instances at same time!".format(
+				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 			paths = self.getIblSetImagesPaths(inspectorIblSet, imageType)
 			if paths:
 				if self.viewImages(paths, str(self.Custom_Previewer_Path_lineEdit.text())):
 					return True
 				else:
-					raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(self.__class__.__name__, inspectorIblSet.title))
+					raise Exception("{0} | Exception raised while displaying '{1}' inspector Ibl Set image(s)!".format(
+					self.__class__.__name__, inspectorIblSet.title))
 			else:
-				messageBox.messageBox("Warning", "Warning", "{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, inspectorIblSet.title, imageType))
+				messageBox.messageBox("Warning", "Warning",
+				"{0} | '{1}' inspector Ibl Set has no '{2}' image type!".format(self.__class__.__name__, 
+																				inspectorIblSet.title, 
+																				imageType))
 		else:
-			raise foundations.exceptions.FileExistsError("{0} | Exception raised while opening Inspector Ibl Set directory: '{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
+			raise foundations.exceptions.FileExistsError(
+			"{0} | Exception raised while opening Inspector Ibl Set directory: \
+			'{1}' Ibl Set file doesn't exists!".format(self.__class__.__name__, inspectorIblSet.title))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -811,17 +899,20 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			previewCommand = self.getProcessCommand(paths, customPreviewer)
 			if previewCommand:
 				LOGGER.debug("> Current image preview command: '{0}'.".format(previewCommand))
-				LOGGER.info("{0} | Launching Previewer with '{1}' images paths.".format(self.__class__.__name__, ", ".join(paths)))
+				LOGGER.info("{0} | Launching Previewer with '{1}' images paths.".format(self.__class__.__name__, 
+																						", ".join(paths)))
 				editProcess = QProcess()
 				editProcess.startDetached(previewCommand)
 				return True
 			else:
-				raise Exception("{0} | Exception raised: No suitable process command given!".format(self.__class__.__name__))
+				raise Exception("{0} | Exception raised: No suitable process command given!".format(
+				self.__class__.__name__))
 		else:
 			if not len(self.__imagesPreviewers) >= self.__maximumImagesPreviewersInstances:
 				return self.getImagesPreviewer(paths)
 			else:
-				LOGGER.warning("!> {0} | You can only launch '{1}' images Previewer instances at same time!".format(self.__class__.__name__, self.__maximumImagesPreviewersInstances))
+				LOGGER.warning("!> {0} | You can only launch '{1}' images Previewer instances at same time!".format(
+				self.__class__.__name__, self.__maximumImagesPreviewersInstances))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -919,9 +1010,11 @@ class Preview(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 				sectionsFileParser.read() and sectionsFileParser.parse()
 				for section in sectionsFileParser.sections:
 					if re.search(r"Plate\d+", section):
-						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path), sectionsFileParser.getValue("PLATEfile", section))))
+						imagePaths.append(os.path.normpath(os.path.join(os.path.dirname(iblSet.path),
+																	sectionsFileParser.getValue("PLATEfile", section))))
 
 		for path in imagePaths[:]:
 			if not os.path.exists(path):
-				imagePaths.remove(path) and LOGGER.warning("!> {0} | '{1}' image file doesn't exists and will be skipped!".format(self.__class__.__name__, path))
+				imagePaths.remove(path) and LOGGER.warning(
+				"!> {0} | '{1}' image file doesn't exists and will be skipped!".format(self.__class__.__name__, path))
 		return imagePaths

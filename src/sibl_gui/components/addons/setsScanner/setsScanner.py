@@ -54,7 +54,8 @@ LOGGER = logging.getLogger(Constants.logger)
 class SetsScanner(QObjectComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.setsScanner.setsScanner` Component Interface class.
-	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets from Database registered directories parents.
+	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets
+	from Database registered directories parents.
 	"""
 
 	@core.executionTrace
@@ -104,7 +105,8 @@ class SetsScanner(QObjectComponent):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "engine"))
 
 	@engine.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -113,7 +115,8 @@ class SetsScanner(QObjectComponent):
 		This method is the deleter method for **self.__engine** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "engine"))
 
 	@property
 	def coreDb(self):
@@ -134,7 +137,8 @@ class SetsScanner(QObjectComponent):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDb"))
 
 	@coreDb.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -143,7 +147,8 @@ class SetsScanner(QObjectComponent):
 		This method is the deleter method for **self.__coreDb** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDb"))
 
 	@property
 	def coreCollectionsOutliner(self):
@@ -164,7 +169,8 @@ class SetsScanner(QObjectComponent):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreCollectionsOutliner"))
 
 	@coreCollectionsOutliner.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -173,7 +179,8 @@ class SetsScanner(QObjectComponent):
 		This method is the deleter method for **self.__coreCollectionsOutliner** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreCollectionsOutliner"))
 
 	@property
 	def coreDatabaseBrowser(self):
@@ -194,7 +201,8 @@ class SetsScanner(QObjectComponent):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@coreDatabaseBrowser.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -203,7 +211,8 @@ class SetsScanner(QObjectComponent):
 		This method is the deleter method for **self.__coreDatabaseBrowser** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreDatabaseBrowser"))
 
 	@property
 	def setsScannerWorkerThread(self):
@@ -224,7 +233,8 @@ class SetsScanner(QObjectComponent):
 		:param value: Attribute value. ( QThread )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "setsScannerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "setsScannerWorkerThread"))
 
 	@setsScannerWorkerThread.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -233,7 +243,8 @@ class SetsScanner(QObjectComponent):
 		This method is the deleter method for **self.__setsScannerWorkerThread** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "setsScannerWorkerThread"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "setsScannerWorkerThread"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -296,9 +307,11 @@ class SetsScanner(QObjectComponent):
 				# Signals / Slots.
 				self.__setsScannerWorkerThread.iblSetsRetrieved.connect(self.__setsScannerWorkerThread__iblSetsRetrieved)
 			else:
-				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by \
+				'{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
-			LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(self.__class__.__name__, "databaseReadOnly"))
+			LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
+			self.__class__.__name__, "databaseReadOnly"))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -312,7 +325,9 @@ class SetsScanner(QObjectComponent):
 		if not self.__engine.parameters.databaseReadOnly:
 			if not self.__engine.parameters.deactivateWorkerThreads:
 				# Signals / Slots.
-				not self.__engine.parameters.databaseReadOnly and self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(self.__setsScannerWorkerThread__iblSetsRetrieved)
+				not self.__engine.parameters.databaseReadOnly and \
+				self.__setsScannerWorkerThread.iblSetsRetrieved.disconnect(
+				self.__setsScannerWorkerThread__iblSetsRetrieved)
 
 				self.__setsScannerWorkerThread = None
 
@@ -327,7 +342,8 @@ class SetsScanner(QObjectComponent):
 
 		LOGGER.debug("> Calling '{0}' Component Framework 'onStartup' method.".format(self.__class__.__name__))
 
-		not self.__engine.parameters.databaseReadOnly and not self.__engine.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
+		not self.__engine.parameters.databaseReadOnly and \
+		not self.__engine.parameters.deactivateWorkerThreads and self.__setsScannerWorkerThread.start()
 		return True
 
 	@core.executionTrace
@@ -339,13 +355,21 @@ class SetsScanner(QObjectComponent):
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
 
-		if messageBox.messageBox("Question", "Question", "One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))), buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
+		if messageBox.messageBox("Question", "Question", 
+		"One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(
+		", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))),
+		 buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
 			self.__engine.startProcessing("Adding Retrieved Ibl Sets ...", len(iblSets.keys()))
 			for iblSet, path in iblSets.items():
 				iblSet = foundations.namespace.getNamespace(iblSet, rootOnly=True)
 				LOGGER.info("{0} | Adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
-				if not dbCommon.addIblSet(self.__coreDb.dbSession, iblSet, path, self.__coreCollectionsOutliner.getCollectionId(self.__coreCollectionsOutliner.defaultCollection)):
-					LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(self.__class__.__name__, iblSet))
+				if not dbCommon.addIblSet(self.__coreDb.dbSession,
+				 						iblSet,
+										path,
+										self.__coreCollectionsOutliner.getCollectionId(
+										self.__coreCollectionsOutliner.defaultCollection)):
+					LOGGER.error("!>{0} | Exception raised while adding '{1}' Ibl Set to the Database!".format(
+					self.__class__.__name__, iblSet))
 				self.__engine.stepProcessing()
 			self.__engine.stopProcessing()
 

@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner` Component Interface class Views.
+	This module defines the :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
+	Component Interface class Views.
 
 **Others:**
 
@@ -96,7 +97,8 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -105,7 +107,8 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__container** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
 	def treeViewIndentation(self):
@@ -126,7 +129,8 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	@treeViewIndentation.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -135,7 +139,8 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		This method is the deleter method for **self.__treeViewIndentation** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "treeViewIndentation"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -210,16 +215,19 @@ class Templates_QTreeView(sibl_gui.ui.views.Abstract_QTreeView):
 		if not self.modelSelection:
 			return
 
-		selection = self.modelSelection.get("Templates", None) or self.modelSelection.get("Collections", None) or self.modelSelection.get("Softwares", None)
+		selection = self.modelSelection.get("Templates", None) or self.modelSelection.get("Collections", None) or \
+		self.modelSelection.get("Softwares", None)
 		if not selection:
 			return
 
 		indexes = []
 		for node in foundations.walkers.nodesWalker(self.model().rootNode):
 			if node.family == "Template":
-				self.modelSelection.get("Templates", None) and  node.id.value in self.modelSelection["Templates"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Templates", None) and  node.id.value in self.modelSelection["Templates"] and \
+				indexes.append(self.model().getNodeIndex(node))
 			elif node.family == "Collection":
-				self.modelSelection.get("Collections", None) and  node.id.value in self.modelSelection["Collections"] and indexes.append(self.model().getNodeIndex(node))
+				self.modelSelection.get("Collections", None) and  node.id.value in self.modelSelection["Collections"] and \
+				indexes.append(self.model().getNodeIndex(node))
 			elif node.family == "Software":
 				for item in self.modelSelection["Softwares"]:
 					parentId, name = item.split(foundations.namespace.NAMESPACE_SPLITTER)

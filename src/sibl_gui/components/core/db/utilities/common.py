@@ -104,7 +104,8 @@ def commit(session):
 		return True
 	except Exception as error:
 		session.rollback()
-		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError("{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
+		raise sibl_gui.components.core.db.exceptions.DatabaseOperationError(
+		"{0} | Database commit error: '{1}'".format(inspect.getmodulename(__file__), error))
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -145,7 +146,8 @@ def addStandardItem(session, type, name, path, collection):
 		if dbItem.setContent():
 			return addItem(session, dbItem)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(core.getModule(addStandardItem).__name__, path, type.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
+		core.getModule(addStandardItem).__name__, path, type.__name__))
 		return False
 
 @core.executionTrace
@@ -199,7 +201,8 @@ def updateItemContent(session, item):
 	if item.setContent():
 		return commit(session)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(core.getModule(updateItemContent).__name__, item.name, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' content update failed!".format(core.getModule(updateItemContent).__name__,
+		item.name, item.__class__.__name__))
 		return False
 
 @core.executionTrace
@@ -220,7 +223,8 @@ def updateItemLocation(session, item, path):
 		item.path = path
 		return updateItemContent(session, item)
 	else:
-		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
+		LOGGER.warning("!> {0} | '{1}' '{2}' path already exists in Database!".format(
+		core.getModule(updateItemLocation).__name__, path, item.__class__.__name__))
 		return False
 
 @core.executionTrace
@@ -361,13 +365,17 @@ def checkIblSetsTableIntegrity(session):
 				continue
 			if not os.path.exists(iblSet.icon):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_ICON_EXCEPTION"
-			if iblSet.previewImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.previewImage)):
+			if iblSet.previewImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+																	iblSet.previewImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_PREVIEW_IMAGE_EXCEPTION"
-			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.backgroundImage)):
+			if iblSet.backgroundImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+																		iblSet.backgroundImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_BACKGROUND_IMAGE_EXCEPTION"
-			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.lightingImage)):
+			if iblSet.lightingImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+																		iblSet.lightingImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_LIGHTING_IMAGE_EXCEPTION"
-			if iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path), iblSet.reflectionImage)):
+			if iblSet.reflectionImage and not os.path.exists(os.path.join(os.path.dirname(iblSet.path),
+																		iblSet.reflectionImage)):
 				erroneousSets[iblSet] = "INEXISTING_IBL_SET_REFLECTION_IMAGE_EXCEPTION"
 
 	if erroneousSets:
@@ -427,7 +435,8 @@ def addCollection(session, collection, type, comment):
 		dbItem = dbTypes.DbCollection(name=collection, type=type, comment=comment)
 		return addItem(session, dbItem)
 	else:
-		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(core.getModule(addCollection).__name__, collection))
+		LOGGER.warning("!> {0} | '{1}' Collection already exists in Database!".format(
+		core.getModule(addCollection).__name__, collection))
 		return False
 
 @core.executionTrace

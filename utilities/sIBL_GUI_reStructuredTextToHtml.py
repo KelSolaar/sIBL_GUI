@@ -63,7 +63,10 @@ def reStructuredTextToHtml(fileIn, fileOut):
 	"""
 
 	LOGGER.info("{0} | Converting '{1}' reStructuredText file to html!".format(reStructuredTextToHtml.__name__, fileIn))
-	os.system("{0} --stylesheet-path='{1}' '{2}' > '{3}'".format(RST2HTML, os.path.join(os.path.dirname(__file__), CSS_FILE), fileIn, fileOut))
+	os.system("{0} --stylesheet-path='{1}' '{2}' > '{3}'".format(RST2HTML,
+																os.path.join(os.path.dirname(__file__), CSS_FILE),
+																fileIn,
+																fileOut))
 
 	LOGGER.info("{0} | Formatting html file!".format("Tidy"))
 	os.system("tidy -config {0} -m '{1}'".format(os.path.join(os.path.dirname(__file__), TIDY_SETTINGS_FILE), fileOut))

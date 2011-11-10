@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class and others images preview related objects.
+	This module defines the :class:`Preview` Component Interface class, the :class:`ImagesPreviewer` class
+	and others images preview related objects.
 
 **Others:**
 
@@ -62,7 +63,8 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Previewer.ui")
 #**********************************************************************************************************************
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
-	This class is a `QGraphicsItem <http://doc.qt.nokia.com/4.7/qgraphicsitem.html>`_ subclass used to display given `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
+	This class is a `QGraphicsItem <http://doc.qt.nokia.com/4.7/qgraphicsitem.html>`_ subclass used
+	to display given `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 	"""
 
 	@core.executionTrace
@@ -117,7 +119,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This method is the deleter method for **self.__image** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "image"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "image"))
 
 	@property
 	def width(self):
@@ -149,7 +152,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This method is the deleter method for **self.__width** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "width"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "width"))
 
 	@property
 	def height(self):
@@ -181,7 +185,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This method is the deleter method for **self.__height** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "height"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "height"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -192,7 +197,10 @@ class Image_QGraphicsItem(QGraphicsItem):
 		This method sets the bounding rectangle.
 		"""
 
-		return QRectF(-(self.__image.width()) / 2, -(self.__image.height()) / 2, self.__image.width(), self.__image.height())
+		return QRectF(-(self.__image.width()) / 2,
+					-(self.__image.height()) / 2,
+					self.__image.width(),
+					self.__image.height())
 
 	@core.executionTrace
 	def paint(self, painter, options, widget):
@@ -209,7 +217,8 @@ class Image_QGraphicsItem(QGraphicsItem):
 class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
 	| This class provides the Application images previewer.
-	| It defines methods to navigate through the list of given images ( List of images paths ), zoom in / out and fit the displayed image, etc...
+	| It defines methods to navigate through the list of given images ( List of images paths ),
+	zoom in / out and fit the displayed image, etc...
 	"""
 
 	@core.executionTrace
@@ -233,7 +242,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.paths = paths
 
 		self.__uiResourcesDirectory = "resources"
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), self.__uiResourcesDirectory)
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
+													self.__uiResourcesDirectory)
 		self.__uiPreviousImage = "Previous.png"
 		self.__uiNextImage = "Next.png"
 		self.__uiZoomOutImage = "Zoom_Out.png"
@@ -249,8 +259,10 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__maximumZoomFactor = 25
 		self.__previewerMargin = 128
 		self.__displayGraphicsItemMargin = 32
-		self.__graphicsSceneWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width() * (1 / self.__minimumZoomFactor * 1.75)
-		self.__graphicsSceneHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__graphicsSceneWidth = QApplication.desktop().screenGeometry(
+								QApplication.desktop().primaryScreen()).width() * (1 / self.__minimumZoomFactor * 1.75)
+		self.__graphicsSceneHeight = QApplication.desktop().screenGeometry(
+								QApplication.desktop().primaryScreen()).height() * (1 / self.__minimumZoomFactor * 1.75)
 		self.__wheelZoomFactor = 350.0
 		self.__keyZoomFactor = 1.20
 
@@ -284,7 +296,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QObject )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "container"))
 
 	@container.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -293,7 +306,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__container** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "container"))
 
 	@property
 	def paths(self):
@@ -317,7 +331,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if value:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("paths", value)
 			for element in value:
-				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format("paths", element)
+				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
+				"paths", element)
 		self.__paths = value
 
 	@paths.deleter
@@ -327,7 +342,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__paths** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "paths"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "paths"))
 
 	@property
 	def uiResourcesDirectory(self):
@@ -348,7 +364,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@uiResourcesDirectory.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -357,7 +374,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiResourcesDirectory** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiResourcesDirectory"))
 
 	@property
 	def uiPreviousImage(self):
@@ -378,7 +396,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@uiPreviousImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -387,7 +406,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiPreviousImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiPreviousImage"))
 
 	@property
 	def uiNextImage(self):
@@ -408,7 +428,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiNextImage"))
 
 	@uiNextImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -417,7 +438,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiNextImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiNextImage"))
 
 	@property
 	def uiZoomOutImage(self):
@@ -438,7 +460,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomOutImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@uiZoomOutImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -447,7 +470,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiZoomOutImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomOutImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomOutImage"))
 
 	@property
 	def uiZoomInImage(self):
@@ -468,7 +492,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@uiZoomInImage.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -477,7 +502,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__uiZoomInImage** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomInImage"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "uiZoomInImage"))
 
 	@property
 	def graphicsSceneBackgroundColor(self):
@@ -498,7 +524,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QColors )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
 
 	@graphicsSceneBackgroundColor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -507,7 +534,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__graphicsSceneBackgroundColor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneBackgroundColor"))
 
 	@property
 	def previewerMargin(self):
@@ -528,7 +556,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "previewerMargin"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "previewerMargin"))
 
 	@previewerMargin.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -537,7 +566,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__previewerMargin** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "previewerMargin"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "previewerMargin"))
 
 	@property
 	def graphicsSceneWidth(self):
@@ -558,7 +588,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneWidth"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneWidth"))
 
 	@graphicsSceneWidth.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -567,7 +598,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__graphicsSceneWidth** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneWidth"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneWidth"))
 
 	@property
 	def graphicsSceneHeight(self):
@@ -588,7 +620,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Object )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsSceneHeight"))
 
 	@graphicsSceneHeight.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -597,7 +630,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__graphicsSceneHeight** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneHeight"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsSceneHeight"))
 
 	@property
 	def minimumZoomFactor(self):
@@ -618,7 +652,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "minimumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "minimumZoomFactor"))
 
 	@minimumZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -627,7 +662,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__minimumZoomFactor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "minimumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "minimumZoomFactor"))
 
 	@property
 	def maximumZoomFactor(self):
@@ -648,7 +684,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "maximumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "maximumZoomFactor"))
 
 	@maximumZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -657,7 +694,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__maximumZoomFactor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "maximumZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "maximumZoomFactor"))
 
 	@property
 	def wheelZoomFactor(self):
@@ -678,7 +716,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "wheelZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "wheelZoomFactor"))
 
 	@wheelZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -687,7 +726,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__wheelZoomFactor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "wheelZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "wheelZoomFactor"))
 
 	@property
 	def keyZoomFactor(self):
@@ -708,7 +748,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( Float )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "keyZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "keyZoomFactor"))
 
 	@keyZoomFactor.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -717,7 +758,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__keyZoomFactor** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "keyZoomFactor"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "keyZoomFactor"))
 
 	@property
 	def graphicsView(self):
@@ -738,7 +780,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QGraphicsView )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsView"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsView"))
 
 	@graphicsView.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -747,7 +790,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__graphicsView** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsView"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsView"))
 
 	@property
 	def graphicsScene(self):
@@ -768,7 +812,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QGraphicsScene )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsScene"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "graphicsScene"))
 
 	@graphicsScene.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -777,7 +822,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__graphicsScene** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsScene"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "graphicsScene"))
 
 	@property
 	def displayGraphicsItem(self):
@@ -798,7 +844,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( QGraphicsItem )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "displayGraphicsItem"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "displayGraphicsItem"))
 
 	@displayGraphicsItem.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -807,7 +854,8 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		This method is the deleter method for **self.__displayGraphicsItem** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "displayGraphicsItem"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "displayGraphicsItem"))
 
 	#******************************************************************************************************************
 	#***	Class methods.
@@ -886,7 +934,10 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.debug("> Initializing graphics scene.")
 		self.__graphicsScene = QGraphicsScene(self.__graphicsView)
 		self.__graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
-		self.__graphicsScene.setSceneRect(-(float(self.__graphicsSceneWidth)) / 2, -(float(self.__graphicsSceneHeight)) / 2, float(self.__graphicsSceneWidth), float(self.__graphicsSceneHeight))
+		self.__graphicsScene.setSceneRect(-(float(self.__graphicsSceneWidth)) / 2,
+										-(float(self.__graphicsSceneHeight)) / 2,
+										float(self.__graphicsSceneWidth),
+										float(self.__graphicsSceneHeight))
 
 		self.__graphicsView.setScene(self.__graphicsScene)
 		self.__graphicsView.setBackgroundBrush(QBrush(self.__graphicsSceneBackgroundColor))
@@ -979,8 +1030,12 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if self.__displayGraphicsItem:
 			desktopWidth = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).width()
 			desktopHeight = QApplication.desktop().screenGeometry(QApplication.desktop().primaryScreen()).height()
-			width = self.__displayGraphicsItem.width > desktopWidth and desktopWidth / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.width + self.__previewerMargin
-			height = self.__displayGraphicsItem.height > desktopHeight and desktopHeight / 1.5 + self.__previewerMargin or self.__displayGraphicsItem.height + self.__previewerMargin
+			width = self.__displayGraphicsItem.width > desktopWidth and \
+					desktopWidth / 1.5 + self.__previewerMargin or \
+					self.__displayGraphicsItem.width + self.__previewerMargin
+			height = self.__displayGraphicsItem.height > desktopHeight and \
+					desktopHeight / 1.5 + self.__previewerMargin or \
+					self.__displayGraphicsItem.height + self.__previewerMargin
 
 			self.resize(width, height)
 			umbra.ui.common.centerWidgetOnScreen(self)
@@ -998,13 +1053,19 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 			path = self.__paths[index]
 			image = sibl_gui.ui.common.getImage(path)
 			if not hasattr(image, "_data"):
-				image._data = freeImage.ImageInformationsHeader(path=path, width=image.width(), height=image.height(), bpp=image.depth())
+				image._data = freeImage.ImageInformationsHeader(path=path,
+																width=image.width(),
+																height=image.height(),
+																bpp=image.depth())
 
 			LOGGER.debug("> Initializing graphics item.")
 			self.__displayGraphicsItem = Image_QGraphicsItem(image=image)
 			self.__graphicsScene.addItem(self.__displayGraphicsItem)
 
-			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image._data.path), image._data.width, image._data.height, image._data.bpp))
+			self.Images_Informations_label.setText("{0} - {1} x {2} - {3} bpp".format(os.path.basename(image._data.path),
+			 																		image._data.width,
+																					image._data.height,
+																					image._data.bpp))
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)
@@ -1014,7 +1075,12 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		"""
 
 		if self.__displayGraphicsItem:
-			self.__graphicsView.fitInView(QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2), -(self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2), self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin, self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin), Qt.KeepAspectRatio)
+			self.__graphicsView.fitInView(
+			QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2),
+					-(self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2),
+					self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin,
+					self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin),
+					Qt.KeepAspectRatio)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, Exception)

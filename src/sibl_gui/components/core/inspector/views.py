@@ -8,7 +8,8 @@
 	Windows, Linux, Mac Os X.
 
 **Description:**
-	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector` Component Interface class Views.
+	This module defines the :class:`sibl_gui.components.core.inspector.inspector.Inspector`
+	Component Interface class Views.
 
 **Others:**
 
@@ -94,7 +95,8 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "listViewIconSize"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "listViewIconSize"))
 
 	@listViewIconSize.deleter
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
@@ -103,7 +105,8 @@ class Plates_QListView(sibl_gui.ui.views.Abstract_QListView):
 		This method is the deleter method for **self.__listViewIconSize** attribute.
 		"""
 
-		raise foundations.exceptions.ProgrammingError("{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "listViewIconSize"))
 
 	#******************************************************************************************************************
 	#***	Class methods.

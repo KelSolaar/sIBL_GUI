@@ -67,7 +67,9 @@ def getHDRLabsDocumentation(fileIn, fileOut):
 	tree = ElementTree.ElementTree(element)
 
 	LOGGER.info("{0} | Processing 'body' data!".format(getHDRLabsDocumentation.__name__))
-	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 2)) for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n") if not re.search(r"<html:body.*", line) and not re.search(r"</html:body.*", line)]
+	content = ["{0}\n".format(line.replace("html:", "").replace("\t", "", 2))
+				for line in ElementTree.tostring(tree.find("{http://www.w3.org/1999/xhtml}body")).split("\n")
+				if not re.search(r"<html:body.*", line) and not re.search(r"</html:body.*", line)]
 
 	file = File(fileOut)
 	file.content = content
