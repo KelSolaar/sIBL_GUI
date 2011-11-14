@@ -95,7 +95,7 @@ class UiConstantsTestCase(unittest.TestCase):
 								"apiFile",
 								"nativeImageFormats",
 								"thirdPartyImageFormats",
-								"pythonTokensFile")
+								"pythonGrammarFile")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, UiConstants.__dict__)
@@ -437,10 +437,10 @@ class UiConstantsTestCase(unittest.TestCase):
 
 	def testPythonTokensFileAttribute(self):
 		"""
-		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.pythonTokensFile` attribute.
+		This method tests :attr:`sibl_gui.globals.uiConstants.UiConstants.pythonGrammarFile` attribute.
 		"""
 
-		self.assertRegexpMatches(UiConstants.pythonTokensFile, "\w+")
+		self.assertRegexpMatches(UiConstants.pythonGrammarFile, "\w+")
 
 if __name__ == "__main__":
 	unittest.main()

@@ -29,7 +29,7 @@ Functions
 
 .. autofunction:: centerWidgetOnScreen
 
-.. autofunction:: getTokensParser
+.. autofunction:: getSectionsFileParser
 
 .. autofunction:: storeLastBrowsedPath
 
