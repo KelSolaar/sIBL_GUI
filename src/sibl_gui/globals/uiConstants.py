@@ -152,6 +152,3 @@ class UiConstants():
 								"Tiff" : ("\.tiff$"),
 								"Tga" : ("\.tga$")}
 	"""Application third party image file formats. ( Dictionary )"""
-
-	pythonTokensFile = "others/Python_Tokens.rc"
-	"""Python tokens file: '**others/Python_Tokens.rc**' ( String )"""

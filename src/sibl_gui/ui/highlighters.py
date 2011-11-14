@@ -46,9 +46,9 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 #***	Module classes and definitions.
 #**********************************************************************************************************************
-class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
+class IblSetHighlighter(umbra.ui.highlighters.AbstractHighlighter):
 	"""
-	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting
+	This class is a :class:`umbra.ui.higlighters.AbstractHighlighter` subclass providing syntax highlighting
 	for Application Ibl Sets files.
 	"""
 
@@ -133,9 +133,9 @@ class IblSetHighlighter(umbra.ui.highlighters.Highlighter):
 
 		self.highlightText(block, 0, len(block))
 
-class JavaScriptHighlighter(umbra.ui.highlighters.Highlighter):
+class JavaScriptHighlighter(umbra.ui.highlighters.AbstractHighlighter):
 	"""
-	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting
+	This class is a :class:`umbra.ui.higlighters.AbstractHighlighter` subclass providing syntax highlighting
 	for Application Javascript Templates files.
 	"""
 
@@ -191,9 +191,9 @@ class JavaScriptHighlighter(umbra.ui.highlighters.Highlighter):
 
 		self.highlightText(block, 0, len(block))
 
-class MelScriptHighlighter(umbra.ui.highlighters.Highlighter):
+class MelScriptHighlighter(umbra.ui.highlighters.AbstractHighlighter):
 	"""
-	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting
+	This class is a :class:`umbra.ui.higlighters.AbstractHighlighter` subclass providing syntax highlighting
 	for Application MelScript Templates files.
 	"""
 
@@ -249,9 +249,9 @@ class MelScriptHighlighter(umbra.ui.highlighters.Highlighter):
 
 		self.highlightText(block, 0, len(block))
 
-class MaxScriptHighlighter(umbra.ui.highlighters.Highlighter):
+class MaxScriptHighlighter(umbra.ui.highlighters.AbstractHighlighter):
 	"""
-	This class is a :class:`umbra.ui.higlighters.Highlighter` subclass providing syntax highlighting
+	This class is a :class:`umbra.ui.higlighters.AbstractHighlighter` subclass providing syntax highlighting
 	for Application MaxScript Templates files.
 	"""
 

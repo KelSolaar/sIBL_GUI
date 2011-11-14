@@ -18,7 +18,6 @@
 #***	External imports.
 #**********************************************************************************************************************
 import logging
-import os
 from PyQt4.QtGui import QMessageBox
 
 #**********************************************************************************************************************
@@ -355,7 +354,7 @@ class SetsScanner(QObjectComponent):
 		:param iblSets: Retrieve Ibl Sets. ( Dictionary )
 		"""
 
-		if messageBox.messageBox("Question", "Question", 
+		if messageBox.messageBox("Question", "Question",
 		"One or more neighbor Ibl Sets have been found! Would you like to add that content: '{0}' to the Database?".format(
 		", ".join((foundations.namespace.getNamespace(iblSet, rootOnly=True) for iblSet in iblSets.keys()))),
 		 buttons=QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes:
