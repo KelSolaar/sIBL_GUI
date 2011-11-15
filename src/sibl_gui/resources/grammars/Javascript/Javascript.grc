@@ -1,0 +1,15 @@
+[Language]
+Name = "Javascript"
+Extensions = "\.js"
+
+[Syntax]
+IndentMarker = "	"
+CommentMarker = "//"
+
+[Accelerators]
+Highlighter = "DefaultHighlighter"
+Theme = "DefaultTheme"
+
+[Tokens]
+
+[Rules]

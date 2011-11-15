@@ -31,7 +31,6 @@ from PyQt4.QtGui import QGridLayout
 #**********************************************************************************************************************
 import foundations.core as core
 import foundations.exceptions
-import sibl_gui.ui.highlighters
 import umbra.engine
 import umbra.ui.common
 import umbra.ui.inputAccelerators
@@ -97,39 +96,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreDatabaseBrowser = None
 		self.__coreInspector = None
 		self.__coreTemplatesOutliner = None
-
-		self.__languages = (Language(name="Ibl Set",
-							extension="\.ibl",
-							highlighter=sibl_gui.ui.highlighters.IblSetHighlighter,
-							completer=None,
-							preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators,),
-							postInputAccelerators=(),
-							indentMarker="\t",
-							commentMarker=None),
-							Language(name="JavaScript",
-							extension="\.js",
-							highlighter=sibl_gui.ui.highlighters.JavaScriptHighlighter,
-							completer=None,
-							preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators,),
-							postInputAccelerators=(),
-							indentMarker="\t",
-							commentMarker=None),
-							Language(name="MelScript",
-							extension="\.mel",
-							highlighter=sibl_gui.ui.highlighters.MelScriptHighlighter,
-							completer=None,
-							preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators,),
-							postInputAccelerators=(),
-							indentMarker="\t",
-							commentMarker=None),
-							Language(name="MaxScript",
-							extension="\.mxs",
-							highlighter=sibl_gui.ui.highlighters.MaxScriptHighlighter,
-							completer=None,
-							preInputAccelerators=(umbra.ui.inputAccelerators.symbolsExpandingPreEventInputAccelerators,),
-							postInputAccelerators=(),
-							indentMarker="\t",
-							commentMarker=None),)
 
 	#******************************************************************************************************************
 	#***	Attributes properties.
@@ -422,38 +388,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		raise foundations.exceptions.ProgrammingError(
 		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "coreTemplatesOutliner"))
 
-	@property
-	def languages(self):
-		"""
-		This method is the property for **self.__languages** attribute.
-
-		:return: self.__languages. ( Dictionary )
-		"""
-
-		return self.__languages
-
-	@languages.setter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def languages(self, value):
-		"""
-		This method is the setter method for **self.__languages** attribute.
-
-		:param value: Attribute value. ( Dictionary )
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "languages"))
-
-	@languages.deleter
-	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
-	def languages(self):
-		"""
-		This method is the deleter method for **self.__languages** attribute.
-		"""
-
-		raise foundations.exceptions.ProgrammingError(
-		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "languages"))
-
 	#******************************************************************************************************************
 	#***	Class methods.
 	#******************************************************************************************************************
@@ -519,7 +453,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		self.__Custom_Text_Editor_Path_lineEdit_setUi()
 		self.__addActions()
-		self.__registerLanguages()
 
 		# Signals / Slots.
 		self.Custom_Text_Editor_Path_toolButton.clicked.connect(self.__Custom_Text_Editor_Path_toolButton__clicked)
@@ -756,15 +689,6 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			self.editIblSetsFiles_ui()
 		elif event.source() is self.__coreTemplatesOutliner.view:
 			self.editTemplatesFiles_ui()
-
-	@core.executionTrace
-	def __registerLanguages(self):
-		"""
-		This method registers Application related languages in **scriptEditor** component.
-		"""
-
-		for language in self.__languages:
-			self.__factoryScriptEditor.languagesModel.registerLanguage(language)
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(umbra.ui.common.uiBasicExceptionHandler, False, Exception)

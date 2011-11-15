@@ -1,0 +1,15 @@
+[Language]
+Name = "Melscript"
+Extensions = "\.mel"
+
+[Syntax]
+IndentMarker = "	"
+CommentMarker = "//"
+
+[Accelerators]
+Highlighter = "DefaultHighlighter"
+Theme = "DefaultTheme"
+
+[Tokens]
+
+[Rules]

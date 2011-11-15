@@ -1,0 +1,15 @@
+[Language]
+Name = "Ibl Set"
+Extensions = "\.ibl"
+
+[Syntax]
+IndentMarker = "	"
+CommentMarker = "#"
+
+[Accelerators]
+Highlighter = "DefaultHighlighter"
+Theme = "DefaultTheme"
+
+[Tokens]
+
+[Rules]
