@@ -424,7 +424,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( Dictionary )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is dict, "'{0}' attribute: '{1}' type is not 'dict'!".format("overrideKeys", value)
 			for key, element in value.items():
 				assert type(key) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
@@ -463,7 +463,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 			"defaultStringSeparator", value)
 			assert len(value) == 1, "'{0}' attribute: '{1}' has multiples characters!".format(
@@ -501,7 +501,7 @@ class LoaderScript(QWidgetComponentFactory(uiFile=COMPONENT_FILE)):
 		:param value: Attribute value. ( String )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 			"unnamedLightName", value)
 		self.__unnamedLightName = value

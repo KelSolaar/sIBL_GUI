@@ -97,7 +97,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewSpacing", value)
 			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewSpacing", value)
 		self.__listViewSpacing = value
@@ -131,7 +131,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewMargin", value)
 			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewMargin", value)
 		self.__listViewMargin = value
@@ -165,7 +165,7 @@ class Thumbnails_QListView(sibl_gui.ui.views.Abstract_QListView):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("listViewIconSize", value)
 			assert value > 0, "'{0}' attribute: '{1}' need to be exactly positive!".format("listViewIconSize", value)
 		self.__listViewIconSize = value

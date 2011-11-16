@@ -108,7 +108,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		:param value: Attribute value. ( QImage )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is QImage, "'{0}' attribute: '{1}' type is not 'QImage'!".format("image", value)
 		self.__image = value
 
@@ -141,7 +141,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("width", value)
 		self.__width = value
 
@@ -174,7 +174,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		:param value: Attribute value. ( Integer )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is int, "'{0}' attribute: '{1}' type is not 'int'!".format("height", value)
 		self.__height = value
 
@@ -328,7 +328,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( List )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("paths", value)
 			for element in value:
 				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(

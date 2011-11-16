@@ -287,7 +287,7 @@ class DownloadManager(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		:param value: Attribute value. ( List )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is list, "'{0}' attribute: '{1}' type is not 'list'!".format("requests", value)
 			for element in value:
 				assert type(element) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(

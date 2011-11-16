@@ -2108,7 +2108,7 @@ class Image(object):
 		:param value: Attribute value. ( String )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) is str, "'{0}' attribute: '{1}' type is not 'str'!".format("imagePath", value)
 		self.__imagePath = value
 

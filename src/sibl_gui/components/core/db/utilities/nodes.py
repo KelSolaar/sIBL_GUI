@@ -144,7 +144,7 @@ class AbstractDatabaseNode(umbra.ui.models.GraphModelNode):
 		:param value: Attribute value. ( String )
 		"""
 
-		if value:
+		if value is not None:
 			assert type(value) in (str, unicode), "'{0}' attribute: '{1}' type is not 'str' or 'unicode'!".format(
 			"toolTipText", value)
 		self.__toolTipText = value
