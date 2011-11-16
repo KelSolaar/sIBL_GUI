@@ -1,6 +1,6 @@
 [Language]
 Name = "Javascript"
-Extensions = "\.js"
+Extensions = "\.js|\.jsx"
 
 [Syntax]
 IndentMarker = "	"
@@ -8,8 +8,59 @@ CommentMarker = "//"
 
 [Accelerators]
 Highlighter = "DefaultHighlighter"
+Completer = "DefaultCompleter"
 Theme = "DefaultTheme"
 
 [Tokens]
+storage.type.javascript = "boolean|byte|char|class|double|enum|float|function|int|interface|long|short|var|void"
+storage.modifier.javascript = "const|export|extends|final|implements|native|private|protected|public|static|synchronized|throws|transient|volatile"
+keyword.control.javascript = "break|case|catch|continue|default|do|else|finally|for|goto|if|import|package|return|switch|throw|try|while"
+keyword.operator.javascript = "delete|in|instanceof|new|typeof|with"
+constant.language.boolean.true.javascript = "true"
+constant.language.boolean.false.javascript = "false"
+constant.language.null.javascript = "null"
+variable.language.javascript = "super|this"
+keyword.other.javascript = "debugger"
+support.class.javascript = "Anchor|Applet|Area|Array|Boolean|Button|Checkbox|Date|document|event|FileUpload|Form|Frame|Function|Hidden|History|Image|JavaArray|JavaClass|JavaObject|JavaPackage|java|Layer|Link|Location|Math|MimeType|Number|navigator|netscape|Object|Option|Packages|Password|Plugin|Radio|RegExp|Reset|Select|String|Style|Submit|screen|sun|Text|Textarea|window|XMLHttpRequest"
+support.function.javascript = ""
+support.function.dom.javascript = ""
+support.constant.javascript = ""
+support.constant.dom.javascript = "ELEMENT_NODE|ATTRIBUTE_NODE|TEXT_NODE|CDATA_SECTION_NODE|ENTITY_REFERENCE_NODE|ENTITY_NODE|PROCESSING_INSTRUCTION_NODE|COMMENT_NODE|DOCUMENT_NODE|DOCUMENT_TYPE_NODE|DOCUMENT_FRAGMENT_NODE|NOTATION_NODE|INDEX_SIZE_ERR|DOMSTRING_SIZE_ERR|HIERARCHY_REQUEST_ERR|WRONG_DOCUMENT_ERR|INVALID_CHARACTER_ERR|NO_DATA_ALLOWED_ERR|NO_MODIFICATION_ALLOWED_ERR|NOT_FOUND_ERR|NOT_SUPPORTED_ERR|INUSE_ATTRIBUTE_ERR"
+support.function.event-handler.javascript = ""
+constant.language.javascript = "Infinity|NaN|undefined"
 
 [Rules]
+storage.type.javascript = "\b(@Tokens)\b"
+storage.modifier.javascript = "\b(@Tokens)\b"
+
+keyword.control.javascript = "\b(@Tokens)\b"
+keyword.operator.javascript = "!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\b(@Tokens)"
+keyword.other.javascript = "\b(@Tokens)\b"
+
+constant.language.boolean.true.javascript = "\b(@Tokens)\b"
+constant.language.boolean.false.javascript = "\b(@Tokens)\b"
+constant.language.null.javascript = "\b(@Tokens)\b"
+constant.language.javascript = "\b(@Tokens)\b"
+constant.numeric.integer.hexadecimal.javascript = "\b[-+]?0x[a-fA-F\d]+\b"
+constant.numeric.integer.octal.javascript = "\b[-+]?0[0-7]+\b"
+constant.numeric.float.javascript = "[-+]?\d*\.?\d+([eE][-+]?\d+)?"
+constant.numeric.integer.decimal.javascript = r"\b[-+]?[1-9]+\d*|0\b"
+
+variable.language.javascript = "\b(@Tokens)\b"
+
+support.class.javascript = "\b(@Tokens)\b"
+support.function.javascript = "\b(@Tokens)\b"
+support.function.dom.javascript = "\b(@Tokens)\b"
+support.constant.javascript = "\b(@Tokens)\b"
+support.constant.dom.javascript = "\b(@Tokens)\b"
+support.function.event-handler.javascript = "\b(@Tokens)\b"
+
+punctuation.terminator.statement.javascript = "\;"
+
+string.quoted.double.javascript = "(\"([^\"\\]|\\.)*\")"
+string.quoted.single.javascript = "('([^'\\]|\\.)*')"
+
+comment.line.double-slash.javascript = "(//).*$\n?"
+
+comment.block.start.javascript = "/\*"
+comment.block.end.javascript = "\*/"
