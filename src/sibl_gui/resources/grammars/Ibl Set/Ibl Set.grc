@@ -19,7 +19,7 @@ constant.numeric.integer.hexadecimal.iblSet = "\b[-+]?0x[a-fA-F\d]+\b"
 constant.numeric.integer.octal.iblSet = "\b[-+]?0[0-7]+\b"
 constant.numeric.complex.iblSet = "[-+]?\d*\.?\d+([eE][-+]?\d+)?\s*\s*[-+]?\d*\.?\d+([eE][-+]?\d+)?[jJ]"
 constant.numeric.float.iblSet = "[-+]?\d*\.?\d+([eE][-+]?\d+)?"
-constant.numeric.integer.decimal.iblSet = r"\b[-+]?[1-9]+\d*|0\b"
+constant.numeric.integer.decimal.iblSet = "\b[-+]?[1-9]+\d*|0\b"
 
 keyword.operator.iblSet = "\="
 
