@@ -19,7 +19,7 @@ storage.type.javascript = "\b(boolean|byte|char|class|double|enum|float|function
 storage.modifier.javascript = "\b(const|export|extends|final|implements|native|private|protected|public|static|synchronized|throws|transient|volatile)\b"
 
 keyword.control.javascript = "\b(break|case|catch|continue|default|do|else|finally|for|goto|if|import|package|return|switch|throw|try|while)\b"
-keyword.operator.javascript = "!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\b(delete|in|instanceof|new|typeof|with)"
+keyword.operator.javascript = "!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|delete|in|instanceof|new|typeof|with\b"
 keyword.other.javascript = "\b(debugger)\b"
 
 constant.language.boolean.true.javascript = "\b(true)\b"
