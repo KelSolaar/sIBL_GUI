@@ -634,8 +634,8 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
 		self.__engine.parameters.deactivateWorkerThreads and \
-		LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by \
-		'{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+		LOGGER.info("{0} | 'OnStartup' Online Updater worker thread deactivated by '{1}' command line parameter value!".format(
+		self.__class__.__name__, "deactivateWorkerThreads"))
 
 		self.__Check_For_New_Releases_On_Startup_checkBox_setUi()
 		self.__Ignore_Non_Existing_Templates_checkBox_setUi()

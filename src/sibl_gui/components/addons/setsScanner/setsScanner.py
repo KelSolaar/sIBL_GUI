@@ -306,8 +306,8 @@ class SetsScanner(QObjectComponent):
 				# Signals / Slots.
 				self.__setsScannerWorkerThread.iblSetsRetrieved.connect(self.__setsScannerWorkerThread__iblSetsRetrieved)
 			else:
-				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by \
-				'{1}' command line parameter value!".format(self.__class__.__name__, "deactivateWorkerThreads"))
+				LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
+				self.__class__.__name__, "deactivateWorkerThreads"))
 		else:
 			LOGGER.info("{0} | Ibl Sets scanning capabilities deactivated by '{1}' command line parameter value!".format(
 			self.__class__.__name__, "databaseReadOnly"))
