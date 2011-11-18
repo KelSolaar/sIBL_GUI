@@ -1,30 +1,34 @@
 [Language]
-Name = "Ibl Set"
-Extensions = "\.ibl"
+Name = Ibl Set
+Extensions = \.ibl
 
 [Syntax]
-IndentMarker = "	"
-CommentMarker = ";"
+CommentMarker = ;
+SymbolsPairs = ()|[]|{}|""|''|``
 
 [Accelerators]
-Highlighter = "DefaultHighlighter"
-Theme = "DefaultTheme"
+Highlighter = DefaultHighlighter
+Completer = DefaultCompleter
+PreInputAccelerators = symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators
+PostInputAccelerators = completionPostEventInputAccelerators
+Dictionary = Ibl Set.drc
+Theme = DefaultTheme
 
 [Rules]
-entity.name.section.iblSet = "^\[.*\]"
+entity.name.section.iblSet = ^\[.*\]
 
-variable.parameter.iblSet = "\w+(?=\s*\=)"
+variable.parameter.iblSet = \w+(?=\s*\=)
 
-constant.numeric.integer.hexadecimal.iblSet = "\b[-+]?0x[a-fA-F\d]+\b"
-constant.numeric.integer.octal.iblSet = "\b[-+]?0[0-7]+\b"
-constant.numeric.complex.iblSet = "[-+]?\d*\.?\d+([eE][-+]?\d+)?\s*\s*[-+]?\d*\.?\d+([eE][-+]?\d+)?[jJ]"
-constant.numeric.float.iblSet = "[-+]?\d*\.?\d+([eE][-+]?\d+)?"
-constant.numeric.integer.decimal.iblSet = "\b[-+]?[1-9]+\d*|0\b"
+constant.numeric.integer.hexadecimal.iblSet = \b[-+]?0x[a-fA-F\d]+\b
+constant.numeric.integer.octal.iblSet = \b[-+]?0[0-7]+\b
+constant.numeric.complex.iblSet = [-+]?\d*\.?\d+([eE][-+]?\d+)?\s*\s*[-+]?\d*\.?\d+([eE][-+]?\d+)?[jJ]
+constant.numeric.float.iblSet = [-+]?\d*\.?\d+([eE][-+]?\d+)?
+constant.numeric.integer.decimal.iblSet = \b[-+]?[1-9]+\d*|0\b
 
-keyword.operator.iblSet = "\="
+keyword.operator.iblSet = \=
 
-string.quoted.double.iblSet = "(\"([^\"\\]|\\.)*\")"
-string.quoted.single.iblSet = "('([^'\\]|\\.)*')"
+string.quoted.double.iblSet = (\"([^\"\\]|\\.)*\")
+string.quoted.single.iblSet = ('([^'\\]|\\.)*')
 
-comment.line.number-sign.iblSet = "[;#].*$\n?"
+comment.line.number-sign.iblSet = [;#].*$\n?
 

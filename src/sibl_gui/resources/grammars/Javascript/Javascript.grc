@@ -1,51 +1,54 @@
 [Language]
-Name = "Javascript"
-Extensions = "\.js|\.jsx"
+Name = Javascript
+Extensions = \.js|\.jsx
 
 [Syntax]
-IndentMarker = "	"
-CommentMarker = "//"
+CommentMarker = //
+CommentBlockMarkerStart = /*
+CommentBlockMarkerEnd = */
+SymbolsPairs = ()|[]|{}|""|''
+IndentationSymbols = {
 
 [Accelerators]
-Highlighter = "DefaultHighlighter"
-Completer = "DefaultCompleter"
-PreInputAccelerators = "symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators"
-PostInputAccelerators = "completionPostEventInputAccelerators"
-Dictionary = "Javascript.drc"
-Theme = "DefaultTheme"
+Highlighter = DefaultHighlighter
+Completer = DefaultCompleter
+PreInputAccelerators = indentationPreEventInputAccelerators|symbolsExpandingPreEventInputAccelerators|completionPreEventInputAccelerators
+PostInputAccelerators = completionPostEventInputAccelerators|indentationPostEventInputAccelerators
+Dictionary = Javascript.drc
+Theme = DefaultTheme
 
 [Rules]
-storage.type.javascript = "\b(boolean|byte|char|class|double|enum|float|function|int|interface|long|short|var|void)\b"
-storage.modifier.javascript = "\b(const|export|extends|final|implements|native|private|protected|public|static|synchronized|throws|transient|volatile)\b"
+storage.type.javascript = \b(boolean|byte|char|class|double|enum|float|function|int|interface|long|short|var|void)\b
+storage.modifier.javascript = \b(const|export|extends|final|implements|native|private|protected|public|static|synchronized|throws|transient|volatile)\b
 
-keyword.control.javascript = "\b(break|case|catch|continue|default|do|else|finally|for|goto|if|import|package|return|switch|throw|try|while)\b"
-keyword.operator.javascript = "!|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\b(delete|in|instanceof|new|typeof|with)\b"
-keyword.other.javascript = "\b(debugger)\b"
+keyword.control.javascript = \b(break|case|catch|continue|default|do|else|finally|for|goto|if|import|package|return|switch|throw|try|while)\b
+keyword.operator.javascript = !|\$|%|&|\*|\-\-|\-|\+\+|\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\|\||\?\:|\*=|(?<!\()/=|%=|\+=|\-=|&=|\^=|\b(delete|in|instanceof|new|typeof|with)\b
+keyword.other.javascript = \b(debugger)\b
 
-constant.language.boolean.true.javascript = "\b(true)\b"
-constant.language.boolean.false.javascript = "\b(false)\b"
-constant.language.null.javascript = "\b(null)\b"
-constant.language.javascript = "\b(Infinity|NaN|undefined)\b"
-constant.numeric.integer.hexadecimal.javascript = "\b[-+]?0x[a-fA-F\d]+\b"
-constant.numeric.integer.octal.javascript = "\b[-+]?0[0-7]+\b"
-constant.numeric.float.javascript = "[-+]?\d*\.?\d+([eE][-+]?\d+)?"
-constant.numeric.integer.decimal.javascript = "\b[-+]?[1-9]+\d*|0\b"
+constant.language.boolean.true.javascript = \b(true)\b
+constant.language.boolean.false.javascript = \b(false)\b
+constant.language.null.javascript = \b(null)\b
+constant.language.javascript = \b(Infinity|NaN|undefined)\b
+constant.numeric.integer.hexadecimal.javascript = \b[-+]?0x[a-fA-F\d]+\b
+constant.numeric.integer.octal.javascript = \b[-+]?0[0-7]+\b
+constant.numeric.float.javascript = [-+]?\d*\.?\d+([eE][-+]?\d+)?
+constant.numeric.integer.decimal.javascript = \b[-+]?[1-9]+\d*|0\b
 
-variable.language.javascript = "\b(super|this)\b"
+variable.language.javascript = \b(super|this)\b
 
-support.class.javascript = "\b(Anchor|Applet|Area|Array|Boolean|Button|Checkbox|Date|document|event|FileUpload|Form|Frame|Function|Hidden|History|Image|JavaArray|JavaClass|JavaObject|JavaPackage|java|Layer|Link|Location|Math|MimeType|Number|navigator|netscape|Object|Option|Packages|Password|Plugin|Radio|RegExp|Reset|Select|String|Style|Submit|screen|sun|Text|Textarea|window|XMLHttpRequest)\b"
-support.function.javascript = "\b(s(h(ift|ow(Mod(elessDialog|alDialog)|Help))|croll(X|By(Pages|Lines)?|Y|To)?|t(op|rike)|i(n|zeToContent|debar|gnText)|ort|u(p|b(str(ing)?)?)|pli(ce|t)|e(nd|t(Re(sizable|questHeader)|M(i(nutes|lliseconds)|onth)|Seconds|Ho(tKeys|urs)|Year|Cursor|Time(out)?|Interval|ZOptions|Date|UTC(M(i(nutes|lliseconds)|onth)|Seconds|Hours|Date|FullYear)|FullYear|Active)|arch)|qrt|lice|avePreferences|mall)|h(ome|andleEvent)|navigate|c(har(CodeAt|At)|o(s|n(cat|textual|firm)|mpile)|eil|lear(Timeout|Interval)?|a(ptureEvents|ll)|reate(StyleSheet|Popup|EventObject))|t(o(GMTString|S(tring|ource)|U(TCString|pperCase)|Lo(caleString|werCase))|est|a(n|int(Enabled)?))|i(s(NaN|Finite)|ndexOf|talics)|d(isableExternalCapture|ump|etachEvent)|u(n(shift|taint|escape|watch)|pdateCommands)|j(oin|avaEnabled)|p(o(p|w)|ush|lugins.refresh|a(ddings|rse(Int|Float)?)|r(int|ompt|eference))|e(scape|nableExternalCapture|val|lementFromPoint|x(p|ec(Script|Command)?))|valueOf|UTC|queryCommand(State|Indeterm|Enabled|Value)|f(i(nd|le(ModifiedDate|Size|CreatedDate|UpdatedDate)|xed)|o(nt(size|color)|rward)|loor|romCharCode)|watch|l(ink|o(ad|g)|astIndexOf)|a(sin|nchor|cos|t(tachEvent|ob|an(2)?)|pply|lert|b(s|ort))|r(ou(nd|teEvents)|e(size(By|To)|calc|turnValue|place|verse|l(oad|ease(Capture|Events)))|andom)|g(o|et(ResponseHeader|M(i(nutes|lliseconds)|onth)|Se(conds|lection)|Hours|Year|Time(zoneOffset)?|Da(y|te)|UTC(M(i(nutes|lliseconds)|onth)|Seconds|Hours|Da(y|te)|FullYear)|FullYear|A(ttention|llResponseHeaders)))|m(in|ove(B(y|elow)|To(Absolute)?|Above)|ergeAttributes|a(tch|rgins|x))|b(toa|ig|o(ld|rderWidths)|link|ack))\b"
-support.function.dom.javascript = "\b(s(ub(stringData|mit)|plitText|e(t(NamedItem|Attribute(Node)?)|lect))|has(ChildNodes|Feature)|namedItem|c(l(ick|o(se|neNode))|reate(C(omment|DATASection|aption)|T(Head|extNode|Foot)|DocumentFragment|ProcessingInstruction|E(ntityReference|lement)|Attribute))|tabIndex|i(nsert(Row|Before|Cell|Data)|tem)|open|delete(Row|C(ell|aption)|T(Head|Foot)|Data)|focus|write(ln)?|a(dd|ppend(Child|Data))|re(set|place(Child|Data)|move(NamedItem|Child|Attribute(Node)?)?)|get(NamedItem|Element(sBy(Name|TagName)|ById)|Attribute(Node)?)|blur)\b"
-support.constant.javascript = "\b(s(ystemLanguage|cr(ipts|ollbars|een(X|Y|Top|Left))|t(yle(Sheets)?|atus(Text|bar)?)|ibling(Below|Above)|ource|uffixes|e(curity(Policy)?|l(ection|f)))|h(istory|ost(name)?|as(h|Focus))|y|X(MLDocument|SLDocument)|n(ext|ame(space(s|URI)|Prop))|M(IN_VALUE|AX_VALUE)|c(haracterSet|o(n(structor|trollers)|okieEnabled|lorDepth|mp(onents|lete))|urrent|puClass|l(i(p(boardData)?|entInformation)|osed|asses)|alle(e|r)|rypto)|t(o(olbar|p)|ext(Transform|Indent|Decoration|Align)|ags)|SQRT(1_2|2)|i(n(ner(Height|Width)|put)|ds|gnoreCase)|zIndex|o(scpu|n(readystatechange|Line)|uter(Height|Width)|p(sProfile|ener)|ffscreenBuffering)|NEGATIVE_INFINITY|d(i(splay|alog(Height|Top|Width|Left|Arguments)|rectories)|e(scription|fault(Status|Ch(ecked|arset)|View)))|u(ser(Profile|Language|Agent)|n(iqueID|defined)|pdateInterval)|_content|p(ixelDepth|ort|ersonalbar|kcs11|l(ugins|atform)|a(thname|dding(Right|Bottom|Top|Left)|rent(Window|Layer)?|ge(X(Offset)?|Y(Offset)?))|r(o(to(col|type)|duct(Sub)?|mpter)|e(vious|fix)))|e(n(coding|abledPlugin)|x(ternal|pando)|mbeds)|v(isibility|endor(Sub)?|Linkcolor)|URLUnencoded|P(I|OSITIVE_INFINITY)|f(ilename|o(nt(Size|Family|Weight)|rmName)|rame(s|Element)|gColor)|E|whiteSpace|l(i(stStyleType|n(eHeight|kColor))|o(ca(tion(bar)?|lName)|wsrc)|e(ngth|ft(Context)?)|a(st(M(odified|atch)|Index|Paren)|yer(s|X)|nguage))|a(pp(MinorVersion|Name|Co(deName|re)|Version)|vail(Height|Top|Width|Left)|ll|r(ity|guments)|Linkcolor|bove)|r(ight(Context)?|e(sponse(XML|Text)|adyState))|global|x|m(imeTypes|ultiline|enubar|argin(Right|Bottom|Top|Left))|L(N(10|2)|OG(10E|2E))|b(o(ttom|rder(RightWidth|BottomWidth|Style|Color|TopWidth|LeftWidth))|ufferDepth|elow|ackground(Color|Image)))\b"
-support.constant.dom.javascript = "\b(s(hape|ystemId|c(heme|ope|rolling)|ta(ndby|rt)|ize|ummary|pecified|e(ctionRowIndex|lected(Index)?)|rc)|h(space|t(tpEquiv|mlFor)|e(ight|aders)|ref(lang)?)|n(o(Resize|tation(s|Name)|Shade|Href|de(Name|Type|Value)|Wrap)|extSibling|ame)|c(h(ildNodes|Off|ecked|arset)?|ite|o(ntent|o(kie|rds)|de(Base|Type)?|l(s|Span|or)|mpact)|ell(s|Spacing|Padding)|l(ear|assName)|aption)|t(ype|Bodies|itle|Head|ext|a(rget|gName)|Foot)|i(sMap|ndex|d|m(plementation|ages))|o(ptions|wnerDocument|bject)|d(i(sabled|r)|o(c(type|umentElement)|main)|e(clare|f(er|ault(Selected|Checked|Value)))|at(eTime|a))|useMap|p(ublicId|arentNode|r(o(file|mpt)|eviousSibling))|e(n(ctype|tities)|vent|lements)|v(space|ersion|alue(Type)?|Link|Align)|URL|f(irstChild|orm(s)?|ace|rame(Border)?)|width|l(ink(s)?|o(ngDesc|wSrc)|a(stChild|ng|bel))|a(nchors|c(ce(ssKey|pt(Charset)?)|tion)|ttributes|pplets|l(t|ign)|r(chive|eas)|xis|Link|bbr)|r(ow(s|Span|Index)|ules|e(v|ferrer|l|adOnly))|m(ultiple|e(thod|dia)|a(rgin(Height|Width)|xLength))|b(o(dy|rder)|ackground|gColor))|ELEMENT_NODE|ATTRIBUTE_NODE|TEXT_NODE|CDATA_SECTION_NODE|ENTITY_REFERENCE_NODE|ENTITY_NODE|PROCESSING_INSTRUCTION_NODE|COMMENT_NODE|DOCUMENT_NODE|DOCUMENT_TYPE_NODE|DOCUMENT_FRAGMENT_NODE|NOTATION_NODE|INDEX_SIZE_ERR|DOMSTRING_SIZE_ERR|HIERARCHY_REQUEST_ERR|WRONG_DOCUMENT_ERR|INVALID_CHARACTER_ERR|NO_DATA_ALLOWED_ERR|NO_MODIFICATION_ALLOWED_ERR|NOT_FOUND_ERR|NOT_SUPPORTED_ERR|INUSE_ATTRIBUTE_ERR\b"
-support.function.event-handler.javascript = "\bon(R(ow(s(inserted|delete)|e(nter|xit))|e(s(ize(start|end)?|et)|adystatechange))|Mouse(o(ut|ver)|down|up|move)|B(efore(cut|deactivate|u(nload|pdate)|p(aste|rint)|editfocus|activate)|lur)|S(croll|top|ubmit|elect(start|ionchange)?)|H(over|elp)|C(hange|ont(extmenu|rolselect)|ut|ellchange|l(ick|ose))|D(eactivate|ata(setc(hanged|omplete)|available)|r(op|ag(start|over|drop|en(ter|d)|leave)?)|blclick)|Unload|P(aste|ropertychange)|Error(update)?|Key(down|up|press)|Focus|Load|A(ctivate|fter(update|print)|bort))\b"
+support.class.javascript = \b(Anchor|Applet|Area|Array|Boolean|Button|Checkbox|Date|document|event|FileUpload|Form|Frame|Function|Hidden|History|Image|JavaArray|JavaClass|JavaObject|JavaPackage|java|Layer|Link|Location|Math|MimeType|Number|navigator|netscape|Object|Option|Packages|Password|Plugin|Radio|RegExp|Reset|Select|String|Style|Submit|screen|sun|Text|Textarea|window|XMLHttpRequest)\b
+support.function.javascript = \b(abort|abs|acos|alert|anchor|apply|asin|atan|atan2|atob|attachEvent|back|big|blink|bold|borderWidths|btoa|call|captureEvents|ceil|charAt|charCodeAt|clear|clearInterval|clearTimeout|compile|concat|confirm|contextual|cos|createEventObject|createPopup|createStyleSheet|detachEvent|disableExternalCapture|dump|elementFromPoint|enableExternalCapture|escape|eval|exec|execCommand|execScript|exp|fileCreatedDate|fileModifiedDate|fileSize|fileUpdatedDate|find|fixed|floor|fontcolor|fontsize|forward|fromCharCode|getAllResponseHeaders|getAttention|getDate|getDay|getFullYear|getHours|getMilliseconds|getMinutes|getMonth|getResponseHeader|getSeconds|getSelection|getTime|getTimezoneOffset|getUTCDate|getUTCDay|getUTCFullYear|getUTCHours|getUTCMilliseconds|getUTCMinutes|getUTCMonth|getUTCSeconds|getYear|go|handleEvent|home|indexOf|isFinite|isNaN|italics|javaEnabled|join|lastIndexOf|link|load|log|margins|match|max|mergeAttributes|min|moveAbove|moveBelow|moveBy|moveTo|moveToAbsolute|navigate|paddings|parse|parseFloat|parseInt|pluginsRefresh|pop|pow|preference|print|prompt|push|queryCommandEnabled|queryCommandIndeterm|queryCommandState|queryCommandValue|random|recalc|releaseCapture|releaseEvents|reload|replace|resizeBy|resizeTo|returnValue|reverse|round|routeEvents|savePreferences|scroll|scrollBy|scrollByLines|scrollByPages|scrollTo|scrollX|scrollY|search|send|setActive|setCursor|setDate|setFullYear|setHotKeys|setHours|setInterval|setMilliseconds|setMinutes|setMonth|setRequestHeader|setResizable|setSeconds|setTime|setTimeout|setUTCDate|setUTCFullYear|setUTCHours|setUTCMilliseconds|setUTCMinutes|setUTCMonth|setUTCSeconds|setYear|setZOptions|shift|showHelp|showModalDialog|showModelessDialog|sidebar|signText|sin|sizeToContent|slice|small|sort|splice|split|sqrt|stop|strike|sub|substr|substring|sup|taint|taintEnabled|tan|test|toGMTString|toLocaleString|toLowerCase|toSource|toString|toUpperCase|toUTCString|unescape|unshift|untaint|unwatch|updateCommands|UTC|valueOf|watch)\b
+support.function.dom.javascript = \b(add|appendChild|appendData|blur|click|cloneNode|close|createAttribute|createCaption|createCDATASection|createComment|createDocumentFragment|createElement|createEntityReference|createProcessingInstruction|createTextNode|createTFoot|createTHead|deleteCaption|deleteCell|deleteData|deleteRow|deleteTFoot|deleteTHead|focus|getAttribute|getAttributeNode|getElementById|getElementsByName|getElementsByTagName|getNamedItem|hasChildNodes|hasFeature|insertBefore|insertCell|insertData|insertRow|item|namedItem|open|remove|removeAttribute|removeAttributeNode|removeChild|removeNamedItem|replaceChild|replaceData|reset|select|setAttribute|setAttributeNode|setNamedItem|splitText|submit|substringData|tabIndex|write|writeln)\b
+support.constant.javascript = \b(above|aLinkcolor|all|appCodeName|appCore|appMinorVersion|appName|appVersion|arguments|arity|availHeight|availLeft|availTop|availWidth|backgroundColor|backgroundImage|below|borderBottomWidth|borderColor|borderLeftWidth|borderRightWidth|borderStyle|borderTopWidth|bottom|bufferDepth|callee|caller|characterSet|classes|clientInformation|clip|clipboardData|closed|colorDepth|complete|components|constructor|controllers|cookieEnabled|cpuClass|crypto|current|defaultCharset|defaultChecked|defaultStatus|defaultView|description|dialogArguments|dialogHeight|dialogLeft|dialogTop|dialogWidth|directories|display|E|embeds|enabledPlugin|encoding|expando|external|fgColor|filename|fontFamily|fontSize|fontWeight|formName|frameElement|frames|global|hasFocus|hash|history|host|hostname|ids|ignoreCase|innerHeight|innerWidth|input|language|lastIndex|lastMatch|lastModified|lastParen|layers|layerX|left|leftContext|length|lineHeight|linkColor|listStyleType|LN10|LN2|localName|location|locationbar|LOG10E|LOG2E|lowsrc|marginBottom|marginLeft|marginRight|marginTop|MAX_VALUE|menubar|mimeTypes|MIN_VALUE|multiline|nameProp|namespaces|namespaceURI|NEGATIVE_INFINITY|next|offscreenBuffering|onLine|onreadystatechange|opener|opsProfile|oscpu|outerHeight|outerWidth|paddingBottom|paddingLeft|paddingRight|paddingTop|pageX|pageXOffset|pageY|pageYOffset|parent|parentLayer|parentWindow|pathname|personalbar|PI|pixelDepth|pkcs11|platform|plugins|port|POSITIVE_INFINITY|prefix|previous|product|productSub|prompter|protocol|prototype|readyState|responseText|responseXML|right|rightContext|screenLeft|screenTop|screenX|screenY|scripts|scrollbars|security|securityPolicy|selection|self|siblingAbove|siblingBelow|source|SQRT1_2|SQRT2|status|statusbar|statusText|style|styleSheets|suffixes|systemLanguage|tags|textAlign|textDecoration|textIndent|textTransform|toolbar|top|undefined|uniqueID|updateInterval|URLUnencoded|userAgent|userLanguage|userProfile|vendor|vendorSub|visibility|vLinkcolor|whiteSpace|x|XMLDocument|XSLDocument|y|zIndex|_content)\b
+support.constant.dom.javascript = \b(abbr|accept|acceptCharset|accessKey|action|align|aLink|alt|anchors|applets|archive|areas|attributes|axis|background|bgColor|body|border|caption|cellPadding|cells|cellSpacing|ch|charset|checked|childNodes|chOff|cite|className|clear|code|codeBase|codeType|color|cols|colSpan|compact|content|cookie|coords|data|dateTime|declare|defaultChecked|defaultSelected|defaultValue|defer|dir|disabled|doctype|documentElement|domain|elements|enctype|entities|event|face|firstChild|form|forms|frame|frameBorder|headers|height|href|hreflang|hspace|htmlFor|httpEquiv|id|images|implementation|index|isMap|label|lang|lastChild|link|links|longDesc|lowSrc|marginHeight|marginWidth|maxLength|media|method|multiple|name|nextSibling|nodeName|nodeType|nodeValue|noHref|noResize|noShade|notationName|notations|noWrap|object|options|ownerDocument|parentNode|previousSibling|profile|prompt|publicId|readOnly|referrer|rel|rev|rowIndex|rows|rowSpan|rules|scheme|scope|scrolling|sectionRowIndex|selected|selectedIndex|shape|size|specified|src|standby|start|summary|systemId|tagName|target|tBodies|text|tFoot|tHead|title|type|URL|useMap|vAlign|value|valueType|version|vLink|vspace|width|ELEMENT_NODE|ATTRIBUTE_NODE|TEXT_NODE|CDATA_SECTION_NODE|ENTITY_REFERENCE_NODE|ENTITY_NODE|PROCESSING_INSTRUCTION_NODE|COMMENT_NODE|DOCUMENT_NODE|DOCUMENT_TYPE_NODE|DOCUMENT_FRAGMENT_NODE|NOTATION_NODE|INDEX_SIZE_ERR|DOMSTRING_SIZE_ERR|HIERARCHY_REQUEST_ERR|WRONG_DOCUMENT_ERR|INVALID_CHARACTER_ERR|NO_DATA_ALLOWED_ERR|NO_MODIFICATION_ALLOWED_ERR|NOT_FOUND_ERR|NOT_SUPPORTED_ERR|INUSE_ATTRIBUTE_ERR\b
+support.function.event-handler.javascript = \b(onAbort|onActivate|onAfterprint|onAfterupdate|onBeforeactivate|onBeforecut|onBeforedeactivate|onBeforeeditfocus|onBeforepaste|onBeforeprint|onBeforeunload|onBeforeupdate|onBlur|onCellchange|onChange|onClick|onClose|onContextmenu|onControlselect|onCut|onDataavailable|onDatasetchanged|onDatasetcomplete|onDblclick|onDeactivate|onDrag|onDragdrop|onDragend|onDragenter|onDragleave|onDragover|onDragstart|onDrop|onError|onErrorupdate|onFocus|onHelp|onHover|onKeydown|onKeypress|onKeyup|onLoad|onMousedown|onMousemove|onMouseout|onMouseover|onMouseup|onPaste|onPropertychange|onReadystatechange|onReset|onResize|onResizeend|onResizestart|onRowenter|onRowexit|onRowsdelete|onRowsinserted|onScroll|onSelect|onSelectionchange|onSelectstart|onStop|onSubmit|onUnload)\b
 
-punctuation.terminator.statement.javascript = "\;"
+punctuation.terminator.statement.javascript = \;
 
-string.quoted.double.javascript = "(\"([^\"\\]|\\.)*\")"
-string.quoted.single.javascript = "('([^'\\]|\\.)*')"
+string.quoted.double.javascript = \"([^\"\\]|\\.)*\"
+string.quoted.single.javascript = '([^'\\]|\\.)*'
 
-comment.line.double-slash.javascript = "(//).*$\n?"
+comment.line.double-slash.javascript = (//).*$\n?
 
-comment.block.start.javascript = "/\*"
-comment.block.end.javascript = "\*/"
+comment.block.start.javascript = /\*
+comment.block.end.javascript = \*/
