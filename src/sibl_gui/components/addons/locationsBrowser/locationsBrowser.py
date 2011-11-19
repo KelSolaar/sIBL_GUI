@@ -60,8 +60,8 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| This class is the :mod:`umbra.components.addons.locationsBrowser.locationsBrowser` Component Interface class.
 	| It provides methods to explore operating system directories.
 	| By default the Component will use current operating system file browsers but 
-	the user can define a custom file browser through options exposed
-	in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
+		the user can define a custom file browser through options exposed
+		in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 
 	Defaults file browsers:
 
@@ -590,7 +590,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		LOGGER.debug("> Adding '{0}' Component actions.".format(self.__class__.__name__))
 
 		openIblSetsLocationsAction = self.__engine.actionsManager.registerAction(
-									"Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...", 
+									"Actions|Umbra|Components|core.databaseBrowser|Open Ibl Set(s) Location(s) ...",
 									slot=self.__Database_Browser_listView_openIblSetsLocationsAction__triggered)
 		for view in self.__coreDatabaseBrowser.views:
 			view.addAction(openIblSetsLocationsAction)
@@ -719,7 +719,7 @@ class LocationsBrowser(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is called when **Custom_File_Browser_Path_lineEdit** Widget
 		is edited and check that entered path is valid.
 		"""
-		
+
 		value = str(self.Custom_File_Browser_Path_lineEdit.text())
 		if not os.path.exists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")

@@ -32,6 +32,7 @@ Modules Summary:
    sibl_gui.components.addons.about.about <api/sibl_gui.components.addons.about.about>
    sibl_gui.components.addons.databaseOperations.databaseOperations <api/sibl_gui.components.addons.databaseOperations.databaseOperations>
    sibl_gui.components.addons.gpsMap.gpsMap <api/sibl_gui.components.addons.gpsMap.gpsMap>
+   sibl_gui.components.addons.gpsMap.views <api/sibl_gui.components.addons.gpsMap.views>
    sibl_gui.components.addons.loaderScript.loaderScript <api/sibl_gui.components.addons.loaderScript.loaderScript>
    sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions <api/sibl_gui.components.addons.loaderScriptOptions.loaderScriptOptions>
    sibl_gui.components.addons.locationsBrowser.locationsBrowser <api/sibl_gui.components.addons.locationsBrowser.locationsBrowser>
@@ -46,6 +47,7 @@ Modules Summary:
    sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities <api/sibl_gui.components.addons.sIBLeditUtilities.sIBLeditUtilities>
    sibl_gui.components.addons.searchDatabase.searchDatabase <api/sibl_gui.components.addons.searchDatabase.searchDatabase>
    sibl_gui.components.addons.setsScanner.setsScanner <api/sibl_gui.components.addons.setsScanner.setsScanner>
+   sibl_gui.components.addons.setsScanner.workers <api/sibl_gui.components.addons.setsScanner.workers>
    sibl_gui.components.core.collectionsOutliner.collectionsOutliner <api/sibl_gui.components.core.collectionsOutliner.collectionsOutliner>
    sibl_gui.components.core.collectionsOutliner.models <api/sibl_gui.components.core.collectionsOutliner.models>
    sibl_gui.components.core.collectionsOutliner.views <api/sibl_gui.components.core.collectionsOutliner.views>
@@ -60,6 +62,8 @@ Modules Summary:
    sibl_gui.components.core.db.utilities.nodes <api/sibl_gui.components.core.db.utilities.nodes>
    sibl_gui.components.core.db.utilities.types <api/sibl_gui.components.core.db.utilities.types>
    sibl_gui.components.core.inspector.inspector <api/sibl_gui.components.core.inspector.inspector>
+   sibl_gui.components.core.inspector.models <api/sibl_gui.components.core.inspector.models>
+   sibl_gui.components.core.inspector.views <api/sibl_gui.components.core.inspector.views>
    sibl_gui.components.core.templatesOutliner.models <api/sibl_gui.components.core.templatesOutliner.models>
    sibl_gui.components.core.templatesOutliner.templatesOutliner <api/sibl_gui.components.core.templatesOutliner.templatesOutliner>
    sibl_gui.components.core.templatesOutliner.views <api/sibl_gui.components.core.templatesOutliner.views>
@@ -70,14 +74,17 @@ Modules Summary:
    sibl_gui.globals.uiConstants <api/sibl_gui.globals.uiConstants>
    sibl_gui.libraries.freeImage.freeImage <api/sibl_gui.libraries.freeImage.freeImage>
    sibl_gui.ui.common <api/sibl_gui.ui.common>
-   sibl_gui.ui.highlighters <api/sibl_gui.ui.highlighters>
    sibl_gui.ui.models <api/sibl_gui.ui.models>
    sibl_gui.ui.views <api/sibl_gui.ui.views>
    umbra.actionsManager <api/umbra.actionsManager>
    umbra.components.factory.componentsManagerUi.componentsManagerUi <api/umbra.components.factory.componentsManagerUi.componentsManagerUi>
+   umbra.components.factory.componentsManagerUi.models <api/umbra.components.factory.componentsManagerUi.models>
+   umbra.components.factory.componentsManagerUi.views <api/umbra.components.factory.componentsManagerUi.views>
    umbra.components.factory.preferencesManager.preferencesManager <api/umbra.components.factory.preferencesManager.preferencesManager>
    umbra.components.factory.scriptEditor.editor <api/umbra.components.factory.scriptEditor.editor>
    umbra.components.factory.scriptEditor.editorStatus <api/umbra.components.factory.scriptEditor.editorStatus>
+   umbra.components.factory.scriptEditor.exceptions <api/umbra.components.factory.scriptEditor.exceptions>
+   umbra.components.factory.scriptEditor.models <api/umbra.components.factory.scriptEditor.models>
    umbra.components.factory.scriptEditor.scriptEditor <api/umbra.components.factory.scriptEditor.scriptEditor>
    umbra.components.factory.scriptEditor.searchAndReplace <api/umbra.components.factory.scriptEditor.searchAndReplace>
    umbra.engine <api/umbra.engine>
@@ -92,6 +99,7 @@ Modules Summary:
    umbra.ui.highlighters <api/umbra.ui.highlighters>
    umbra.ui.inputAccelerators <api/umbra.ui.inputAccelerators>
    umbra.ui.models <api/umbra.ui.models>
+   umbra.ui.themes <api/umbra.ui.themes>
    umbra.ui.views <api/umbra.ui.views>
    umbra.ui.widgets.active_QLabel <api/umbra.ui.widgets.active_QLabel>
    umbra.ui.widgets.codeEditor_QPlainTextEdit <api/umbra.ui.widgets.codeEditor_QPlainTextEdit>

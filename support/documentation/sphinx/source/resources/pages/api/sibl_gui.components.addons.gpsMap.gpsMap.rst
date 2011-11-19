@@ -13,10 +13,6 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: Map
-	:show-inheritance:
-	:members:
-
 .. autoclass:: GpsMap
 	:show-inheritance:
 	:members:

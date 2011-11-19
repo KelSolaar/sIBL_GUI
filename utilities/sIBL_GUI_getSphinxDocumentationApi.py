@@ -75,11 +75,15 @@ STATEMENTS_UPDATE_MESSAGGE = "#*************************************************
 
 DECORATORS_COMMENT_MESSAGE = "#***\tSphinx: Decorator commented for auto-documentation purpose."
 
-CONTENT_SUBSTITUTIONS = {"\tumbra\.ui\.common\.uiStandaloneSystemExitExceptionHandler.*": "{0}\n\tpass".format(
-						STATEMENTS_UPDATE_MESSAGGE),
-						"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
+CONTENT_SUBSTITUTIONS = {"APPLICATION \= QApplication\(sys.argv\)": "{0}".format(STATEMENTS_UPDATE_MESSAGGE),
 						"This method initializes the class.\n" :
-						".. Sphinx: Statements updated for auto-documentation purpose.\n"}
+						".. Sphinx: Statements updated for auto-documentation purpose.\n",
+						"PYTHON_LANGUAGE \= getPythonLanguage\(\)" :
+						"{0}\n{1}".format(STATEMENTS_UPDATE_MESSAGGE, "PYTHON_LANGUAGE = None"),
+						"LOGGING_LANGUAGE \= getLoggingLanguage\(\)" :
+						"{0}\n{1}".format(STATEMENTS_UPDATE_MESSAGGE, "LOGGING_LANGUAGE = None"),
+						"TEXT_LANGUAGE \= getTextLanguage\(\)" :
+						"{0}\n{1}".format(STATEMENTS_UPDATE_MESSAGGE, "TEXT_LANGUAGE = None")}
 
 #**********************************************************************************************************************
 #***	Main Python code.
@@ -99,8 +103,19 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 	not cloneDirectory in sys.path and sys.path.append(sourceDirectory)
 
 	osWalker = OsWalker(sourceDirectory)
-	osWalker.walk(filtersIn=("\.py$",))
+	osWalker.walk(filtersIn=("\.ui$",))
+	for file in sorted(osWalker.files.values()):
+		LOGGER.info("{0} | Ui file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
+		targetDirectory = "{0}/{1}" .format(os.path.dirname(file).replace(sourceDirectory, ""),
+							strings.getSplitextBasename(file))
+		directory = os.path.dirname(os.path.join(cloneDirectory, targetDirectory))
+		if not os.path.exists(directory):
+			os.makedirs(directory)
+		source = os.path.join(directory, os.path.basename(file))
+		shutil.copyfile(file, source)
 
+	osWalker = OsWalker(sourceDirectory)
+	osWalker.walk(filtersIn=("\.py$",))
 	modules = []
 	for file in sorted(osWalker.files.values()):
 		LOGGER.info("{0} | Python file: '{1}'".format(getSphinxDocumentationApi.__name__, file))
@@ -136,7 +151,7 @@ def getSphinxDocumentationApi(sourceDirectory, cloneDirectory, outputDirectory, 
 						sourceFile.content[i] = "{0}{1} {2}".format(indent.groups()[0], DECORATORS_COMMENT_MESSAGE, line)
 
 		if trimStartIndex and trimEndIndex:
-			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__, module))
+			LOGGER.info("{0} | Trimming '__main__' statements!".format(getSphinxDocumentationApi.__name__))
 			content = [sourceFile.content[i] for i in range(trimStartIndex)]
 			content.append("\n{0}\n".format(STATEMENTS_UPDATE_MESSAGGE))
 			content.extend([sourceFile.content[i] for i in range(trimEndIndex, len(sourceFile.content))])

@@ -49,9 +49,8 @@ LOGGER = logging.getLogger(Constants.logger)
 #**********************************************************************************************************************
 class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 	"""
-	This class factory defines
-	:class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
-	Component Interface class Model **Overall** collection node.
+	This class factory defines :class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+		Component Interface class Model **Overall** collection node.
 	"""
 
 	__family = "OverallCollection"
@@ -102,8 +101,8 @@ class OverallCollectionNode(umbra.ui.models.GraphModelNode):
 class CollectionsModel(sibl_gui.ui.models.GraphModel):
 	"""
 	This class defines the Model used the by
-	:class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
-	Component Interface class. 
+		:class:`sibl_gui.components.core.collectionsOutliner.collectionsOutliner.CollectionsOutliner`
+		Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -131,8 +130,10 @@ class CollectionsModel(sibl_gui.ui.models.GraphModel):
 		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
-		return: Method success ( Boolean )
+		:return: Method success ( Boolean )
 		"""
+
+		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))
 
 		self.beginResetModel()
 		self.rootNode = rootNode

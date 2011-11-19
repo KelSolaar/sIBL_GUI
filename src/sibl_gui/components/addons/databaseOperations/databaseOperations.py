@@ -57,7 +57,7 @@ class DbType(core.Structure):
 	"""
 	| This class represents a storage object for manipulation methods associated to a given Database type.
 	| See :mod:`umbra.components.core.db.utilities.types` module for more informations
-	about the available Database types.
+		about the available Database types.
 	"""
 
 	@core.executionTrace
@@ -447,7 +447,7 @@ class DatabaseOperations(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		| This method synchronizes the Database.
 		| Each type defined by :meth:`DatabaseOperations.dbTypes` attribute
-		will have its instances checked and updated by their associated methods.
+			will have its instances checked and updated by their associated methods.
 
 		:return: Method success. ( Boolean )
 		"""

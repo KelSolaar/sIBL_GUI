@@ -20,6 +20,8 @@ Module Attributes
 
 .. attribute:: tests.testsFoundations.testsParsers.PARSING_ERRORS_FILE
 
+.. attribute:: tests.testsFoundations.testsParsers.PLIST_FILE
+
 .. attribute:: tests.testsFoundations.testsParsers.STANDARD_FILES
 
 .. attribute:: tests.testsFoundations.testsParsers.STANDARD_FILES_RAW_SECTIONS
@@ -40,10 +42,16 @@ Module Attributes
 
 .. attribute:: tests.testsFoundations.testsParsers.SCRIPT_RAW_SECTION
 
+.. attribute:: tests.testsFoundations.testsParsers.PLIST_FILE_CONTENT
+
 Classes
 -------
 
 .. autoclass:: SectionsFileParserTestCase
+	:show-inheritance:
+	:members:
+
+.. autoclass:: PlistFileParserTestCase
 	:show-inheritance:
 	:members:
 

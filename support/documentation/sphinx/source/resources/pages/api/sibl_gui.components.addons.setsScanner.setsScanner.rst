@@ -11,10 +11,6 @@ Module Attributes
 Classes
 -------
 
-.. autoclass:: SetsScanner_Worker
-	:show-inheritance:
-	:members:
-
 .. autoclass:: SetsScanner
 	:show-inheritance:
 	:members:

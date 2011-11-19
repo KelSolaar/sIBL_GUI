@@ -49,7 +49,7 @@ LOGGER = logging.getLogger(Constants.logger)
 class IblSetsModel(sibl_gui.ui.models.GraphModel):
 	"""
 	This class defines the Model used the by 
-	:class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
+		:class:`sibl_gui.components.core.databaseBrowser.databaseBrowser.DatabaseBrowser` Component Interface class. 
 	"""
 
 	@core.executionTrace
@@ -77,8 +77,10 @@ class IblSetsModel(sibl_gui.ui.models.GraphModel):
 		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
-		return: Method success ( Boolean )
+		:return: Method success ( Boolean )
 		"""
+
+		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))
 
 		self.beginResetModel()
 		self.rootNode = rootNode

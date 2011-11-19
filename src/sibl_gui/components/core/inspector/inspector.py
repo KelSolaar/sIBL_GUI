@@ -108,7 +108,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.core.inspector.inspector` Component Interface class.
 	| It offers a large preview of the current inspected Ibl Set, and a way to navigate
-	into the current selected Database Collection.
+		into the current selected Database Collection.
 	"""
 
 	# Custom signals definitions.
@@ -1191,7 +1191,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			if re.search(r"Plate\d+", section):
 				self.__inspectorPlates[section] = \
 				Plate(name=strings.getSplitextBasename(self.__inspectorIblSetParser.getValue("PLATEfile", section)),
-					icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path), 
+					icon=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
 														self.__inspectorIblSetParser.getValue("PLATEthumb", section))),
 					previewImage=os.path.normpath(os.path.join(os.path.dirname(self.__inspectorIblSet.path),
 															self.__inspectorIblSetParser.getValue("PLATEpreview", section))),
@@ -1244,7 +1244,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		textWidth = painter.fontMetrics().width(light.name.title())
 		xLabelTextOffset = x + textWidth + self.__lightLabelTextMargin + self.__lightLabelTextOffset > width and \
-		-(self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
+		- (self.__lightLabelTextOffset + textWidth) or self.__lightLabelTextOffset
 		yLabelTextOffset = y - (self.__lightLabelTextHeight + self.__lightLabelTextMargin + self.__lightLabelTextOffset) \
 		< 0 and -(self.__lightLabelTextOffset + self.__lightLabelTextHeight) or self.__lightLabelTextOffset
 		painter.drawText(x + xLabelTextOffset, y - yLabelTextOffset, light.name.title())

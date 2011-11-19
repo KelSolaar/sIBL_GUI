@@ -65,7 +65,7 @@ class OnlineUpdater(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.onlineUpdater.onlineUpdater` Component Interface class.
 	| This Component provides online updating capabilities to the Application available through options exposed in
-	the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
+		the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
 	@core.executionTrace

@@ -64,7 +64,7 @@ UI_FILE = os.path.join(os.path.dirname(__file__), "ui", "Images_Previewer.ui")
 class Image_QGraphicsItem(QGraphicsItem):
 	"""
 	This class is a `QGraphicsItem <http://doc.qt.nokia.com/4.7/qgraphicsitem.html>`_ subclass used
-	to display given `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
+		to display given `QImage <http://doc.qt.nokia.com/4.7/qimage.html>`_.
 	"""
 
 	@core.executionTrace
@@ -198,7 +198,7 @@ class Image_QGraphicsItem(QGraphicsItem):
 		"""
 
 		return QRectF(-(self.__image.width()) / 2,
-					-(self.__image.height()) / 2,
+					- (self.__image.height()) / 2,
 					self.__image.width(),
 					self.__image.height())
 
@@ -218,7 +218,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
 	| This class provides the Application images previewer.
 	| It defines methods to navigate through the list of given images ( List of images paths ),
-	zoom in / out and fit the displayed image, etc...
+		zoom in / out and fit the displayed image, etc...
 	"""
 
 	@core.executionTrace
@@ -935,7 +935,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		self.__graphicsScene = QGraphicsScene(self.__graphicsView)
 		self.__graphicsScene.setItemIndexMethod(QGraphicsScene.NoIndex)
 		self.__graphicsScene.setSceneRect(-(float(self.__graphicsSceneWidth)) / 2,
-										-(float(self.__graphicsSceneHeight)) / 2,
+										- (float(self.__graphicsSceneHeight)) / 2,
 										float(self.__graphicsSceneWidth),
 										float(self.__graphicsSceneHeight))
 
@@ -1077,7 +1077,7 @@ class ImagesPreviewer(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		if self.__displayGraphicsItem:
 			self.__graphicsView.fitInView(
 			QRectF(-(self.__displayGraphicsItem.width / 2) - (self.__displayGraphicsItemMargin / 2),
-					-(self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2),
+					- (self.__displayGraphicsItem.height / 2) - (self.__displayGraphicsItemMargin / 2),
 					self.__displayGraphicsItem.width + self.__displayGraphicsItemMargin,
 					self.__displayGraphicsItem.height + self.__displayGraphicsItemMargin),
 					Qt.KeepAspectRatio)

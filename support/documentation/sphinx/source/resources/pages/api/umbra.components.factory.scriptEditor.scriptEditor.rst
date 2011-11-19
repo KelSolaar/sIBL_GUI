@@ -17,10 +17,6 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: LanguagesModel
-	:show-inheritance:
-	:members:
-
 .. autoclass:: ScriptEditor
 	:show-inheritance:
 	:members:

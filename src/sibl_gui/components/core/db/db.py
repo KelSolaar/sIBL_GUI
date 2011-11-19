@@ -58,7 +58,7 @@ class Db(Component):
 	"""
 	| This class is the :mod:`umbra.components.core.db.db` Component Interface class.
 	| It provides Application Database creation and session, proceed to its backup using
-	the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
+		the :mod:`foundations.rotatingBackup`, and migrate it whenever new Database versions are available.
 	"""
 
 	@core.executionTrace

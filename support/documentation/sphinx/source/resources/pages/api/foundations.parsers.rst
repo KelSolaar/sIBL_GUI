@@ -24,3 +24,7 @@ Classes
 	:show-inheritance:
 	:members:
 
+.. autoclass:: PlistFileParser
+	:show-inheritance:
+	:members:
+

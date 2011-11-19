@@ -54,7 +54,7 @@ class SetsScanner(QObjectComponent):
 	"""
 	| This class is the :mod:`umbra.components.addons.setsScanner.setsScanner` Component Interface class.
 	| It instantiates the :class:`SetsScanner` class on Application startup which will gather new Ibl Sets
-	from Database registered directories parents.
+		from Database registered directories parents.
 	"""
 
 	@core.executionTrace

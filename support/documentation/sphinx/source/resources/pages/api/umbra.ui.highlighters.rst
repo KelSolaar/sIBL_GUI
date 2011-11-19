@@ -8,13 +8,6 @@ Module Attributes
 
 .. attribute:: umbra.ui.highlighters.LOGGER
 
-.. attribute:: umbra.ui.highlighters.PYTHON_TOKENS_FILE
-
-Functions
----------
-
-.. autofunction:: getFormat
-
 Classes
 -------
 
@@ -22,23 +15,19 @@ Classes
 	:show-inheritance:
 	:members:
 
-.. autoclass:: Rules
+.. autoclass:: FormatNode
 	:show-inheritance:
 	:members:
 
-.. autoclass:: Formats
+.. autoclass:: FormatsTree
 	:show-inheritance:
 	:members:
 
-.. autoclass:: Highlighter
+.. autoclass:: AbstractHighlighter
 	:show-inheritance:
 	:members:
 
-.. autoclass:: LoggingHighlighter
-	:show-inheritance:
-	:members:
-
-.. autoclass:: PythonHighlighter
+.. autoclass:: DefaultHighlighter
 	:show-inheritance:
 	:members:
 

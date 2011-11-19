@@ -37,7 +37,13 @@ Functions
 
 .. autofunction:: getObjectName
 
+.. autofunction:: extractStack
+
 .. autofunction:: executionTrace
+
+.. autofunction:: executionTime
+
+.. autofunction:: memoize
 
 Classes
 -------

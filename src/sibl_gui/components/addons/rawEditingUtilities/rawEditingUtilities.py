@@ -33,9 +33,7 @@ import foundations.core as core
 import foundations.exceptions
 import umbra.engine
 import umbra.ui.common
-import umbra.ui.inputAccelerators
 from manager.qwidgetComponent import QWidgetComponentFactory
-from umbra.components.factory.scriptEditor.editor import Language
 from umbra.globals.constants import Constants
 from umbra.globals.runtimeGlobals import RuntimeGlobals
 
@@ -62,9 +60,8 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	"""
 	| This class is the :mod:`umbra.components.addons.rawEditingUtilities.rawEditingUtilities` Component Interface class.
 	| It provides methods to edit Application related text files.
-	| By default the Component will use the **factory.scriptEditor** Component
-	but the user can define a custom file editor through options exposed in
-	the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
+	| By default the Component will use the **factory.scriptEditor** Component	but the user can define a custom file editor
+		through options exposed in the :mod:`umbra.components.core.preferencesManager.preferencesManager` Component ui.
 	"""
 
 	@core.executionTrace
@@ -637,7 +634,7 @@ class RawEditingUtilities(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		This method is called when **Custom_Text_Editor_Path_lineEdit** Widget
 		is edited and check that entered path is valid.
 		"""
-		
+
 		value = str(self.Custom_Text_Editor_Path_lineEdit.text())
 		if not os.path.exists(os.path.abspath(value)) and value != "":
 			LOGGER.debug("> Restoring preferences!")

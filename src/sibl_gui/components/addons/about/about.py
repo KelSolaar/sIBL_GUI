@@ -122,7 +122,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| This class is the :mod:`umbra.components.addons.about.about` Component Interface class.
 	| It adds the **About sIBL_GUI ...** miscellaneous menu action and provides associated **sIBL_GUI - About** window.
 	| The message displayed by the **sIBL_GUI - About** window is defined by the
-	:attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
+		:attr:`umbra.components.addons.about.about.ABOUT_MESSAGE` attribute.  
 	"""
 
 	@core.executionTrace
@@ -328,7 +328,7 @@ class About(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Activating '{0}' Component.".format(self.__class__.__name__))
 
-		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__), 
+		self.__uiResourcesDirectory = os.path.join(os.path.dirname(core.getModule(self).__file__),
 													self.__uiResourcesDirectory)
 		self.__engine = engine
 		self.__miscellaneousMenu = self.__engine.miscellaneousMenu

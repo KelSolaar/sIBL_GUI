@@ -66,7 +66,7 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 	| This class isthe :mod:`umbra.components.addons.loaderScriptOptions.loaderScriptOptions` Component Interface class.
 	| It provides override keys on request for the :mod:`umbra.components.addons.loaderScript.loaderScript` Component.
 	| It exposes Templates files **Common Attributes** and **Additional Attributes** sections so that
-	the user can configure the behavior of the Loader Script.
+		the user can configure the behavior of the Loader Script.
 	"""
 
 	@core.executionTrace
@@ -658,8 +658,8 @@ class LoaderScriptOptions(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		self.__coreTemplatesOutliner = self.__engine.componentsManager.components["core.templatesOutliner"].interface
 		self.__addonsLoaderScript = self.__engine.componentsManager.components["addons.loaderScript"].interface
 
-		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory, 
-														Constants.settingsDirectory, 
+		self.__templatesSettingsDirectory = os.path.join(self.__engine.userApplicationDataDirectory,
+														Constants.settingsDirectory,
 														self.__templatesSettingsDirectory)
 		not os.path.exists(self.__templatesSettingsDirectory) and os.makedirs(self.__templatesSettingsDirectory)
 		self.__templateSettingsFile = None

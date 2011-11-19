@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 class PlatesNode(umbra.ui.models.GraphModelNode):
 	"""
 	This class factory defines :class:`sibl_gui.components.core.inspector.inspector.Inspector`
-	Component Interface class Model Plates node.
+		Component Interface class Model Plates node.
 	"""
 
 	__family = "Plate"
@@ -202,8 +202,10 @@ class PlatesModel(sibl_gui.ui.models.GraphModel):
 		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
-		return: Method success ( Boolean )
+		:return: Method success ( Boolean )
 		"""
+
+		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))
 
 		self.beginResetModel()
 		self.rootNode = rootNode

@@ -87,7 +87,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 	"""
 	| This class defines the Application remote updater.
 	| The remote updater is initialized with a list of available online releases
-	( List of :class:`ReleaseObject` class instances ).
+		( List of :class:`ReleaseObject` class instances ).
 	"""
 
 	@core.executionTrace
@@ -758,7 +758,7 @@ class RemoteUpdater(foundations.ui.common.QWidgetFactory(uiFile=UI_FILE)):
 		LOGGER.debug("> Templates download directory: '{0}'.".format(downloadDirectory))
 		self.__downloadManager = DownloadManager(self,
 												self.__networkAccessManager,
-												downloadDirectory, 
+												downloadDirectory,
 												[request.url for request in requests],
 												Qt.Window)
 		self.__downloadManager.downloadFinished.connect(self.__downloadManager__finished)

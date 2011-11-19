@@ -8,16 +8,20 @@ Module Attributes
 
 .. attribute:: umbra.ui.inputAccelerators.LOGGER
 
-.. attribute:: umbra.ui.inputAccelerators.DEFAULT_SYMBOLS_PAIRS
-
 Functions
 ---------
 
+.. autofunction:: getEditorCapability
+
 .. autofunction:: indentationPreEventInputAccelerators
+
+.. autofunction:: indentationPostEventInputAccelerators
+
+.. autofunction:: performCompletion
 
 .. autofunction:: completionPreEventInputAccelerators
 
-.. autofunction:: symbolsExpandingPreEventInputAccelerators
+.. autofunction:: completionPostEventInputAccelerators
 
-.. autofunction:: pythonPostEventInputAccelerators
+.. autofunction:: symbolsExpandingPreEventInputAccelerators
 

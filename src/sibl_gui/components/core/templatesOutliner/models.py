@@ -50,7 +50,7 @@ LOGGER = logging.getLogger(Constants.logger)
 class SoftwareNode(umbra.ui.models.GraphModelNode):
 	"""
 	This class factory defines :class:`sibl_gui.components.core.templatesOutliner.templatesOutliner.TemplatesOutliner`
-	Component Interface class Model software node.
+		Component Interface class Model software node.
 	"""
 
 	__family = "Software"
@@ -129,8 +129,10 @@ class TemplatesModel(sibl_gui.ui.models.GraphModel):
 		This method initializes the Model using given root node.
 		
 		:param rootNode: Graph root node. ( DefaultNode )
-		return: Method success ( Boolean )
+		:return: Method success ( Boolean )
 		"""
+
+		LOGGER.debug("> Initializing model with '{0}' root node.".format(rootNode))
 
 		self.beginResetModel()
 		self.rootNode = rootNode
