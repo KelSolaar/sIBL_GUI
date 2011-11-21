@@ -77,6 +77,7 @@ class Icon(core.Structure):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
+@core.memoize(None)
 def getDisplayItem(path, type):
 		"""
 		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,

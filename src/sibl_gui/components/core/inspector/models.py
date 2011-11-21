@@ -75,7 +75,7 @@ class PlatesNode(umbra.ui.models.GraphModelNode):
 		:param roles: Roles. ( Dictionary )
 		:param nodeFlags: Node flags. ( Integer )
 		:param attributesFlags: Attributes flags. ( Integer )
-		:param \*\*kwargs: Keywords arguments. ( \* )
+		:param \*\*kwargs: Keywords arguments. ( \*\* )
 		"""
 
 		LOGGER.debug("> Initializing '{0}()' class.".format(self.__class__.__name__))
