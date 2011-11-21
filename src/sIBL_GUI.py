@@ -35,6 +35,7 @@ import sibl_gui.globals.runtimeGlobals
 import umbra.globals.constants
 import umbra.globals.uiConstants
 import umbra.globals.runtimeGlobals
+from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 
 #**********************************************************************************************************************
 #***	Dependencies globals manipulation.
@@ -71,6 +72,7 @@ _overrideDependenciesGlobals()
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.cache
 import umbra.engine
 import umbra.ui.common
 from umbra.ui.widgets.active_QLabel import Active_QLabel
@@ -88,6 +90,8 @@ __status__ = "Production"
 __all__ = ["LOGGER", "sIBL_GUI", "extendCommandLineParametersParser"]
 
 LOGGER = logging.getLogger(umbra.globals.constants.Constants.logger)
+
+RuntimeGlobals.imagesCache = foundations.cache.Cache()
 
 #**********************************************************************************************************************
 #***	Module classes and definitions.
@@ -125,7 +129,45 @@ class sIBL_GUI(umbra.engine.Umbra):
 									*args,
 									**kwargs)
 
+		# --- Initializing Application image cache. ---
+		self.__imagesCache = RuntimeGlobals.imagesCache
+
 		self.__setOverrides()
+
+	#******************************************************************************************************************
+	#***	Attributes properties.
+	#******************************************************************************************************************
+	@property
+	def imagesCache(self):
+		"""
+		This method is the property for **self.__imagesCache** attribute.
+
+		:return: self.__imagesCache. ( Cache )
+		"""
+
+		return self.__imagesCache
+
+	@imagesCache.setter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def imagesCache(self, value):
+		"""
+		This method is the setter method for **self.__imagesCache** attribute.
+
+		:param value: Attribute value. ( Cache )
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is read only!".format(self.__class__.__name__, "imagesCache"))
+
+	@imagesCache.deleter
+	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.ProgrammingError)
+	def imagesCache(self):
+		"""
+		This method is the deleter method for **self.__imagesCache** attribute.
+		"""
+
+		raise foundations.exceptions.ProgrammingError(
+		"{0} | '{1}' attribute is not deletable!".format(self.__class__.__name__, "imagesCache"))
 
 	#******************************************************************************************************************
 	#***	Class methods.

@@ -39,6 +39,7 @@ from PyQt4.QtGui import QPen
 #***	Internal imports.
 #**********************************************************************************************************************
 import foundations.core as core
+import foundations.cache
 import foundations.exceptions
 import foundations.strings as strings
 import sibl_gui.components.core.db.utilities.nodes as dbNodes
@@ -446,7 +447,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the property for **self.__sectionsFileParserCache** attribute.
 
-		:return: self.__sectionsFileParserCache. ( Dictionary )
+		:return: self.__sectionsFileParserCache. ( Cache )
 		"""
 
 		return self.__sectionsFileParserCache
@@ -457,7 +458,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		"""
 		This method is the setter method for **self.__sectionsFileParserCache** attribute.
 
-		:param value: Attribute value. ( Dictionary )
+		:param value: Attribute value. ( Cache )
 		"""
 
 		raise foundations.exceptions.ProgrammingError(
@@ -905,7 +906,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		LOGGER.debug("> Initializing '{0}' Component ui.".format(self.__class__.__name__))
 
-		self.__sectionsFileParsersCache = {}
+		self.__sectionsFileParsersCache = foundations.cache.Cache()
 
 		self.__model = PlatesModel()
 
@@ -1172,10 +1173,10 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 		if os.path.exists(self.__inspectorIblSet.path):
 			LOGGER.debug("> Parsing Inspector Ibl Set file: '{0}'.".format(self.__inspectorIblSet))
 
-			if not self.__sectionsFileParsersCache.get(self.__inspectorIblSet.path):
+			if not self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path):
 				sectionsFileParser = SectionsFileParser(self.__inspectorIblSet.path)
 				sectionsFileParser.read() and sectionsFileParser.parse()
-				self.__sectionsFileParsersCache[self.__inspectorIblSet.path] = sectionsFileParser
+				self.__sectionsFileParsersCache.addContent(**{self.__inspectorIblSet.path : sectionsFileParser})
 
 	@core.executionTrace
 	@foundations.exceptions.exceptionsHandler(None, False, foundations.exceptions.FileExistsError)
@@ -1193,7 +1194,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 			"{0} | Exception raised while retrieving Plates: '{1}' Ibl Set file doesn't exists!".format(
 			self.__class__.__name__, self.__inspectorIblSet.title))
 
-		sectionsFileParser = self.__sectionsFileParsersCache[path]
+		sectionsFileParser = self.__sectionsFileParsersCache.getContent(path)
 		self.__inspectorPlates = OrderedDict()
 		for section in sectionsFileParser.sections:
 			if re.search(r"Plate\d+", section):
@@ -1214,7 +1215,7 @@ class Inspector(QWidgetComponentFactory(uiFile=COMPONENT_UI_FILE)):
 
 		painter = QPainter(self.Image_label.pixmap())
 		painter.setRenderHints(QPainter.Antialiasing)
-		sectionsFileParser = self.__sectionsFileParsersCache[self.__inspectorIblSet.path]
+		sectionsFileParser = self.__sectionsFileParsersCache.getContent(self.__inspectorIblSet.path)
 		for section in sectionsFileParser.sections:
 				if section == "Sun":
 					self.__drawLightLabel(painter, Light(name="Sun",

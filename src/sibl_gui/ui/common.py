@@ -32,6 +32,7 @@ import foundations.exceptions
 import umbra.ui.common
 from sibl_gui.libraries.freeImage.freeImage import Image
 from sibl_gui.globals.uiConstants import UiConstants
+from sibl_gui.globals.runtimeGlobals import RuntimeGlobals
 from umbra.globals.constants import Constants
 
 #**********************************************************************************************************************
@@ -77,7 +78,7 @@ class Icon(core.Structure):
 
 @core.executionTrace
 @foundations.exceptions.exceptionsHandler(None, False, Exception)
-@core.memoize(None)
+@core.memoize(RuntimeGlobals.imagesCache)
 def getDisplayItem(path, type):
 		"""
 		This method gets a display item: `QIcon <http://doc.qt.nokia.com/4.7/qicon.html>`_,

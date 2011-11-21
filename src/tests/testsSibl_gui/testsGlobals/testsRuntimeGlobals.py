@@ -50,7 +50,8 @@ class RuntimeGlobalsTestCase(unittest.TestCase):
 		"""
 
 		requiredAttributes = ("templatesFactoryDirectory",
-								"templatesUserDirectory")
+								"templatesUserDirectory",
+								"imagesCache")
 
 		for attribute in requiredAttributes:
 			self.assertIn(attribute, RuntimeGlobals.__dict__)

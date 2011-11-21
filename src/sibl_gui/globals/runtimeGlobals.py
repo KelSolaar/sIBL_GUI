@@ -38,3 +38,6 @@ class RuntimeGlobals():
 	"""Templates factory directory."""
 	templatesUserDirectory = None
 	"""Templates user directory."""
+
+	imagesCache = None
+	"""Images cache."""
